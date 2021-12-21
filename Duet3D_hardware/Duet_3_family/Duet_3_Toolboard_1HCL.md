@@ -1,0 +1,206 @@
+---
+title: Duet 3 Expansion 1HCL
+description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
+published: true
+date: 2021-12-17T14:43:28.588Z
+tags: 
+editor: markdown
+dateCreated: 2021-12-17T14:13:43.010Z
+---
+
+[summary_image 4121 **UPDATE LINK**]()
+
+# Introduction
+
+The EXP1HCL board provides a high current Stepper motor driver, combined with multiple interfaces for position feedback and firmware to implement closed loop position control. In addition it has a number of peripheral inputs and outputs for functions such as sensing motor temperature, controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the Duet 3 Mainboard 6HC, Duet 3 expansion boards, and the tool distribution board). Multiple EXP1HCL boards can be daisy chained on the bus, with power (up to 48V) provided locally. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
+
+[image 4022 **UPDATE LINK**]()
+
+# Specification
+
+* ARM Cortex-M4F microcontroller running at 120MHz.
+* An advanced TMC2160A stepper driver: SPI controlled, can be run in open loop or closed loop mode. Maximum motor current 6.3A peak per phase (4.45A RMS).
+* Two medium-current (2.5A max recommended) outputs at VIN or VBRAKE voltage with PWM capability and built-in flyback diodes: **out0**, **out1**
+  * Optionally provide VBRAKE at a different voltage from VIN to allow (for example) to run the stepper motor at 48V and the brake at 24V.
+  * Note the flyback diodes are connected to the voltage being used (VBRAKE or VIN as selected)
+* Two 3.3V-level PWM capable output (3mA max), through 470R series resistor: **io0.out**, **io1.out**.
+* Two digital inputs with permanent 27K pullup resistors, protected against over-voltage: **io0.in**, **io1.in**
+  * Example Use: endstop switches.  
+* One thermistor/PT1000 input: **temp0**
+  * This is intended to allow for motor temperature monitoring (potentially couple with a cooling system controlled by one of the outputs)
+* RJ11 CAN In and CAN Out connectors to connect to the Duet 3 CAN-FD bus.
+* Optional on-board CAN bus termination
+* VIN: 12V-48V nominal (the absolute maximum VIN rating is somewhat higher to allow for the overshoot that occurs when the stepper motor is turned off)
+* Jumper to force bootloader to request firmware update from Duet 3 main board - marked CAN_RST
+* 5V and 3.3V available on IO headers for low current external devices, Maximum 300mA at 5V (3.3V is converted from 5V so if using 3.3V externally the 5V limit is reduced).
+
+# Dimensions
+
+[image 4023 **UPDATE LINK**]()
+
+# Wiring
+
+## Wiring Diagram
+
+[image 4024 **UPDATE LINK**]()
+
+# Encoders
+
+## Quadrature encoder
+
+The 1HCL supports a quadrature encoder connected to the Quadrature Input interface. This works with common 5V, 1000CPR-2500CPR optical encoders that are frequently supplied with closed loop stepper motors.   (One example is the [17E1K-05](https://www.omc-stepperonline.com/closed-loop-stepper-motor/p-series-nema-17-closed-loop-stepper-motor-48ncm-67-99oz-in-with-encoder-1000cpr.html)), however there are many other examples).
+
+### Connecting a Quadrature Encoder
+
+Quadrature encoders have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output.
+
+*note the index signal is not currently used*
+
+If the encoder has a single ended output the signal lines connect to the 1HCL input. A to A_INPUT, B to B_INPUT . 5V or VCC to the +5V and ground to ground. The Z or N can be left disconnected.
+
+If the encoder has a differential output then connect the A+, B+ to the signal inputs on the 1HCL. 5V/VCC to 5V and ground to ground. The A-,B- and Z+Z-/N+N- can be left disconnected.
+
+Here is a picture (courtesy of LDO motors) which shows a single ended and differential encoder output:
+
+[image 4081 **UPDATE LINK**]()
+
+## Magnetic Encoder
+
+The 1HCL supports SPI connected encoders (initially just the AS5047D sensing an on motor shaft magnet will be supported). Duet3D will supply this encoder on a Nema17 form factor PCB, designed to sense a diametrically magnetised magnet glued to the back of the motor shaft.
+
+*More details to follow, including mounting pictures once further testing is completed*
+
+# Commissioning
+
+See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
+
+All boards in the system must have different CAN addresses. 1HCL boards are shipped set to a default CAN address of 123. They will also revert to 123 if you use the jumper to force the bootloader to request new firmware. Therefore, if you have more than one new 1HCL board, only one of them must be powered up and connected to the CAN bus. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that board, you can connect the next one; and so on.
+
+## Testing communication
+
+Check that you can communicate with the 1HCL board, by sending:
+
+`M115 B123`
+
+If that fails try placing a jumper on the CAN_RST pins and powering up, then power down and remove the jumper before powering up again, this will reset the CAN-FD bus settings to the default (address 123, bus speed 1Mbps)
+
+## Updating the firmware
+
+The 1HCL board will be shipped with firmware loaded during production. You can  check the version loaded by sending
+
+`M115 B123`
+
+(or B## where ## is the new CAN address of the board if you have changed it already)
+
+To update the firmware get the [latest version from the RepRapFirmware github.](https://github.com/Duet3D/RepRapFirmware/releases) It is recommended to upgrade all the firmware in your Duet 3 system together so that the versions do not get out of sync.
+
+Send M997 B## to carry out a firmware update, the bootloader will request the Duet3Firmware_EXP1HCL.bin from the Duet 3 main board, it needs to be in the /firmware folder.
+
+## Set the CAN address
+
+* Send command M115 B## to verify that the main board can communicate with the 1HCL board, where ## is the default address of 123 if it has not been changed already.
+* Send command M952 B# A## where ## is the new address you want to use. Allowed CAN addresses for normal use are 1 to 119. We suggest you use addresses starting at 50 for 1HCLs. So for the first 1HCL board, if your new CAN board was at address 123, send M952 B123 A50.
+* Power the system down and up again, or send M999 B123. This will cause the 1HCL board to restart with the new address.
+* Send command M122 B50 (or whatever address you chose) to verify that you can communicate with the 1HCL board at its new address
+* You can now power up the next 1HCL board and commission it in the same way, **choosing a different CAN address for it**.
+
+# Firmware
+
+The default CAN address is 123. It can be changed as described above.
+
+## Limitations
+
+Please see the current RepRapFirmware limitations, especially Z probing with drivers drivers on external boards:
+
+[Duet 3 firmware with CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations)
+
+## Startup Time
+
+It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards
+
+`G4 S1   ;wait for expansion boards to start`
+
+## Sample configuration examples
+
+**CAUTION** before using these examples check the datasheet and user manual of the motor, encoder (and optionally brake) you are using. Especially: check compatibility of signal voltages.
+
+### Adding a closed loop motor
+
+[M569.1](/User_manual/Reference/Gcodes/M569_1) is used to configure the closed loop driver.
+
+Two general types of encoder can be used for feedback:
+
+* A quadrature encoder connected to the Quadrature Input interface. This works with common 5V optical encoders that are frequently supplied with closed loop stepper motors.
+* An SPI connection that can communicate with supported encoders that communicate over SPI. Initially this is the AS5047D encoder sensing a magnet on the motor shaft. In the future other SPI encoders may be supported.
+
+Here's an sample excerpt from a config.g file to drive the X and Y motors from 1HCL  boards configured at CAN addresses 50 and 51,  with quadrature encoders.
+
+```
+M569.1 P50.0 T2 C20 R100 I0 D0 ; Configure the 1HCL board at CAN address 50 with a quadrature encoder on the motor shaft that has 20 steps per motor full step. 
+M569.1 P51.0 T2 C20 R100 I0 D0  ; Configure the 1HCL board at CAN address 51 with a quadrature encoder on the motor shaft that has 20 steps per motor full step. 
+M569 P50.0 D4 S1 ; Configure the motor on the 1HCL at can address 50 as being in closed-loop drive mode (D4) and not reversed (S1) 
+M569 P51.0 D4 S1 ; Configure the motor on the 1HCL at can address 51 as being in closed-loop drive mode (D4) and not reversed (S1) 
+M584 X50.0 Y51.0 ; set X and Y drivers
+M917 X0 Y0 ; Set the closed loop axes to have a holding current of zero
+```
+
+Note the initial PID values show will need to be tuned to the particular motor.
+
+In contrast to usual drivers, the closed loop axes can have their holding current set to zero using M917, with negligible detrimental effect. Whilst a normal driver may slip if it's holding current is set to zero, a closed loop driver will notice that it has slipped an apply a current to return the drive to it's intended position. Setting a holding current of zero will also mean less current is used, so the motor runs cooler. However, a holding current can still be set using M917 if desired.
+
+### Tuning the PID for the closed loop
+
+See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning) for details on tuning.
+
+### Temperature sensor
+
+The following code could be used in config.g to set the sensor as a thermistor:
+
+```
+M308 S3 P"50.temp0" Y"thermistor" T100000 B3950 A"X Motor Temp" ;Setup temp  0  on 1HCL at CAN address 50 as sensor 3  - sensing X motor temperature
+M308 S4 P"51.temp0" Y"thermistor" T100000 B3950 A"Y Motor Temp" ;Setup temp 0 on 1HCL at CAN address 51 as sensor 4  - sensing Y motor temperature
+```
+
+These sensors would be displayed in the "extras" tab in  DWC and available in the object model to query and potentially take action on for example the following could be inserted into [daemon.g](/User_manual/Tuning/Macros#daemong) to check the motor temperature every second and raise the alarm if they are higher than a set value of 70C
+
+```
+if sensors.analog[3].lastReading >70
+    echo "X MOTOR Temp Alarm: ", sensors.analog[3].lastReading
+    M98 P"motorovertemp.g"
+if sensors.analog[4].lastReading >70
+     echo "Y MOTOR Temp Alarm: ", sensors.analog[4].lastReading
+     M98 P"motorovertemp.g"
+G4 P1000
+```
+
+Where the "motorovertemp.g" macro can have whatever actions are appropriate. This logic can be extended to take different actions at different temperatures ( e.g. log at 70, sound alarm at 80, pause print at 100)
+
+### Motor Brake Control
+
+***NOTE: This is not yet implemented in RepRapFirmware***
+
+Some motors have a motor brake fitted for an holding brake solenoid. As long as the solenoid max current draw is <2,5A it can be directly controlled by out 0 or out 1. If the Brake needs a different voltage from the VIN voltage used for the motor then that can supplied on the VBRAKE connector.
+
+In future versions of the 1HCL firmware the facility to automatically apply and remove the brake may be added if one is configured.
+
+This example sets out0 to control the brake and assumes the brake is applied when not powered.
+
+`M950 P7 C"50.out0" ; create a GPIO pin number 7 on 1HCL board at CAN address 50 for the brake solenoid.`
+
+Then the following code can be used to turn on the brake
+
+`M42 P7 S0 ; set board 50 out0 to 0 (turn on brake)`
+
+with similar code to turn it off.
+
+`M42 P7 S1 ; set board 50 out0 to 1 (turn off brake)`
+
+***NOTE proceed with caution, always test these examples with low motor current and slow speeds first***
+
+extreme care should be exercised in where the brake is turned on/off. It would be worth checking the brake was off before any macro or print file that can command movement. A macro can be produced to turn off all brakes on connected motors and that macro called at the start of all other movement macros and in start gcode.
+
+# Revisions
+
+## Revision v0.3
+
+* First prototype to use the SAME51 processor.

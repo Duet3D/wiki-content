@@ -1,0 +1,104 @@
+---
+title: Updating the bootloader on Duet 3 expansion and tool boards
+description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
+published: true
+date: 2021-11-30T13:04:33.982Z
+tags: 
+editor: markdown
+dateCreated: 2021-11-30T13:04:31.062Z
+---
+
+# Introduction
+
+Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. Here are two ways of doing so.
+
+# Download the bootloader
+
+The bootloader can be downloaded from [GitHub](https://github.com/Duet3D/Duet3Bootloader/releases)
+
+**.bin** files are used when performing updates via CAN
+**.elf** files are used when performing updates via Atmel ICE
+
+Here is a list of expansion boards and corresponding bootloader files:
+
+| Board | Bootloader file |
+|:---|:---|
+| Expansion 3HC | Duet3Bootloader-SAME5x.* |
+| Expansion 1XD, Toolboard 1LC | Duet3Bootloader-SAMC21.* |
+| Sammy-C21 development board | Duet3Bootloader-SAMMYC21.* |
+
+# Updating the bootloader via CAN
+
+## Prerequisites
+
+* You must be running RepRapFirmware 3.2.2 or later.
+* Ensure that you have a stable power supply providing power to the Duet 3 main board and to the expansion board or tool board. If the power fails during the update process, the bootloader may be only partially written, in which case it will need to be updated using the second method.
+* If you are updating the bootloader in-situ in a 3D printer, ensure that all motors are turned off using M18, and all fans and heaters are turned off. That will maximise the reserve power in the event of a power cut.
+* If your tool board is version 0.6 then we recommend that you disconnect the hot end heater before updating the bootloader. You can reconnect it (with power off) after the bootloader has been updated and you have checked that the tool board responds to commands.
+
+## Process
+
+1. Upload the .bin file through the System page of DWC as if you are uploading a firmware file
+1. Update the bootloader using the [M997](/User_manual/Reference/Gcodes/M997) command with parameter S3 and the B parameter corresponding to the CAN address of the expansion or tool board. Example:
+`M997 B20 S3`
+
+## Result
+
+```
+14/11/2020, 19:01:25    M997 B20 S3
+Board 20 starting bootloader update
+```
+
+## Confirmation of bootloader version
+
+To check the bootloader has been updated correctly you can send M122 Bnnn and the bootloader version will be displayed along with other diagnostic information:
+
+```
+M122 B11
+Diagnostics for board 11:
+Duet TOOL1LC firmware version 3.3beta2+1 (2021-03-20 14:03:00)
+Bootloader ID: SAMC21 bootloader version 2.3 (2021-01-26b1)
+```
+
+If it reports **Bootloader ID: not available** then your board is using a version 1.x bootloader.
+
+# Updating the bootloader using an Atmel ICE
+
+## Prerequisites
+
+* Atmel ICE with firmware version 1.29 or later (check in "Tool Information" tab on Device programming in Atmel Studio 7)
+* Adapter cable to connect the ICE to the 6-pin JST ZH connector on the expansion board or tool board
+* Windows PC running Atmel Studio 7
+
+## Process
+
+* Update the ICE firmware to latest version. The firmware on the ICE as it is supplied typically will not work for this purpose.
+* Disconnect the CAN connector from the target board. 
+  *This is to prevent the old bootloader loading new firmware, which will immediately protect the old bootloader again.*
+* Connect the Atmel ICE to the 6-pin SWD connector on the target board, and to the PC via USB
+* Power up the target board
+* Load Atmel Studio on the PC
+* Select Tools->Device Programming
+* Select the ICE tool
+* Select MCU type ATSAME51N19A for a EXP3HX expansion board, or ATSAMC21G18A for a TOOL1LC or EXP1XD board
+* Press the Read button next to the Device Signature box and check that it reads the ID
+* Select Memories
+* Press the Erase Now button next to Erase Chip. 
+  *This erases the main firmware, but not the bootloader*
+* Select Fuses
+* Find USER_WORD_0.NVMCRTL_BOOTPROT and set it to 0kbytes.
+* Press Program to update the fuses.
+* Select Memories
+* Browse to the correct bootloader file for the target board, then press program.
+* Make sure the it reports verification succeeded.
+
+## Confirmation of bootloader version
+
+To check the bootloader has been updated correctly you can send M122 Bnnn and the bootloader version will be displayed along with other diagnostic information:
+
+```
+M122 B11
+Diagnostics for board 11:
+Duet TOOL1LC firmware version 3.3beta2+1 (2021-03-20 14:03:00)
+Bootloader ID: SAMC21 bootloader version 2.3 (2021-01-26b1)
+```

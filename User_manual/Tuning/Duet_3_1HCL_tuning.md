@@ -1,0 +1,326 @@
+---
+title: Tuning the Duet 3 Expansion 1HCL
+description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
+published: true
+date: 2021-12-17T14:52:39.781Z
+tags: 
+editor: markdown
+dateCreated: 2021-12-17T14:38:19.042Z
+---
+
+# Introduction
+
+The Duet 3 Expansion 1HCL (*"closed-loop expansion board"*) provides a high current stepper motor driver that can be controlled in closed loop mode. This document provides a background in closed loop control (which may be skipped if the reader is already familiar with the concept) in addition to details on how to tune the closed loop system to operate optimally. For more details on the Duet 3 Expansion 1HCL, please see it's [dedicated page](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1HCL).
+
+**If you are just interested in the bare minimum required to get closed-loop functioning, skip ahead to the two 'What do I need to do?' sections below.**
+
+# Background on Closed Loop Control
+
+*A reader with prior knowledge of closed loop control may wish to skip the following sections on 'feedback' and 'PID controllers', however may still find the sections on 'closing the loop on stepper motors' and 'A Physical Interpretation of the 1HCL PID controller' beneficial.*
+
+## Feedback Control Systems
+
+[Control Theory](https://en.wikipedia.org/wiki/Control_theory) concerns itself with controlling dynamical systems. A motor can be viewed as one such system if we simplify our understanding of a motor to a shaft that can have a torque applied to it to make it rotate, and that has some damping (such that a motor with no torque slows down over time). The job of a control system is to calculate how much torque is required, and when it should be applied, to move the motor to it's desired position.
+
+Consider if you wanted to rotate the motor from 0 degrees to 90 degrees. You could apply just the right amount of torque so the motor speeds up, slows down, and lands exactly on 90 degrees. This method, however, would prove imprecise. It may not land on exactly 90 degrees, and any error introduced here would accumulate over more and more moves. This control system would be classified as 'open-loop' control.
+
+A more precise system could use feedback of the motor's position to inform it's calculations. Imagine instead the system could sense how close it was to it's target. If it was far from it's target then it would apply a large torque, and as it got closer to it's target, it would apply less of a torque until eventually it was at it's target and applying zero torque. This type of control system, that uses feedback as a part of it's calculation, is classified as a 'closed-loop' system.
+
+## PID Control Systems
+
+One implementation of a closed loop controller is a PID controller. A 'controller' is simply a mathematical system that takes some set of inputs (including a target position), and outputs a control signal to make the system achieve the target position. In the case of a motor, the control signal is a 'torque' i.e. the controller can command the motor to produce some torque in order to reach the target position.
+
+A PID controller has two inputs, the target and the feedback (current position). From this, the PID controller calculates the error as
+
+`error = target - feedback`
+
+It then also calculates the derivative and integral of that error with respect to time.
+
+From these values, the control signal is then calculated as
+
+`control signal = Kd * error derivative + Kp * error + Ki * error integral`
+
+Where Kd, Kp and Ki are all constants of the user's choice.
+
+The interactions between Kd, Kp and Ki are complex, but each can roughly be summarised as follows:
+
+* Kp - How quickly the motor will reach it's target. However, moving fast may introduce overshoot and oscillations. A typical value may be 100-1000.
+* Kd - Dampens down overshoot and oscillations. A typical value may be 0.01 - 0.1.
+* Ki - Ensures the motor can maintain a stationary position under load. A typical value may be 100-1000.
+
+## A Physical Interpretation of the 1HCL PID controller
+
+It is useful to have physical interpretations of the PID constants and control signal, as these can vary between controllers. Duet boards are implemented such that the following are true:
+
+* Control Signal - Clamped between -255 and 255, 255 represents the motor moving as fast as possible in the positive direction.
+* Kp - A Kp of 1 with an error of 1 step will result in a control signal of 1
+* Kd - A Kd of 1 with an error increasing at the rate of 1 step per second will result in a control signal of 1
+* Ki - A Ki of 1 with an error of 1 step will result in a control signal of 1 after 1 second.
+
+## Closing the Loop on Stepper Motors
+
+As described above, a PID controller outputs a torque control signal. This means that our electronics must be able to then induce this torque in the stepper motor, however this is not classically the way in which stepper motors operate. In order to understand how a torque can be applied, it is useful to revisit how a stepper motor works. A stepper motor has 2 coils that can have varying amounts of current running through them. Shown below left is a diagram of the current in these coils whilst the motor is taking four steps. Each time the current changes, the shaft 'snaps' to the next position. If we wanted to move more continuously instead of snapping, we could half each step (microstepping) - this is shown below middle. We can continue halving these steps as shown below right.
+
+
+[image 4037 **UPDATE LINK**]() [image 4038 **UPDATE LINK**]() [image 4039 **UPDATE LINK**]()
+
+We can see that this approximates a sine and cosine wave. This means that if we applied a sine and cosine signal to the input coils, the motor would rotate continuously - i.e. experience a constant torque - let’s call this torque Tmax.
+
+Therefore, to induce a torque of Tmax at any instance, we need to assert the value of sin(theta) on coil A and cos(theta) on coil B, where theta is representative of how far through a cycle of 4 steps the motor is. Intuitively, now that we know the current required to produce a torque of Tmax, we can find the current to produce a torque of a fraction of Tmax by multiplying the current by the fraction.
+
+# Tuning
+
+The 1HCL closed loop driver requires two types of tuning to perform optimally:
+
+1. **Runtime Tuning** - Small manoeuvres that the closed loop drive must perform before it can operate to force the drive into a known state (similar to homing, where you move an axis until an endstop is hit to force the axis into the 0 state)
+1. **PID Tuning** - Adjusting the parameters of the PID control system to provide better response characteristics (e.g. reducing the steady-state error and preventing oscillation - see 'PID Control Systems' above)
+
+## Runtime Tuning
+
+As described above, the purpose of runtime tuning is to force the drive into a known state. Runtime tuning itself consists of a number of different manoeuvres, however the easiest to understand is the zeroing manoeuvre.
+
+The following example is for quadrature-style motors. Zeroing works slightly differently for magnetic encoders as described below. However, reading the below is still useful for all to gain a conceptual understanding.
+
+As described in 'Closing the Loop on Stepper Motors' above, the closed loop system needs to know that a feedback reading of 0 corresponds to the position the motor is in when the first coil is fully energised. Because the printer has no guarantee of this at start-up, it must perform a small manoeuvre, similar to a homing move, that ensures this is the case.
+
+In order to perform a tuning manoeuvre, the [M569.6](/User_manual/Reference/Gcodes/M569_6) command is used. As per the GCODE dictionary, this command takes a driver address (P) and a manoeuvre number (V as in manoeu++**V**++re). The manoeuvre number of a zeroing move is 2, so to run a zeroing manoeuvre on drive 0 of a 1HCL board at CAN address 50, one would run:
+
+`M569.6 P50.0 V2`
+
+*Note that the drive must be in closed-loop mode before this command can be run. See [M569 D4](/User_manual/Reference/Gcodes/M569) for putting a drive in closed-loop mode.*
+
+Running this command should make the drive move slightly (tuning manoeuvres will at most make the motor move 10 steps). You may get a warning at this stage, but this is nothing to worry about.
+
+**Warning: Duet firmware currently only supports tuning one driver at a time. This means that when tuning a multi-driver axis, one driver will move and the other(s) will not. If attempting to tune a multi-driver axis, please take appropriate mitigation to ensure the axis doesn't become stressed/misaligned when only one one driver moves.**
+
+The table below lists the available tuning manoeuvres:
+
+
+| Manoeuvre Name | Description | Required? || Manoeuvre ID |
+| ^^ | ^^ | Quadrature | Magnetic | ^^ |
+|:---|:---|:---:|:---:|:---:|
+| Polarity Detection | Detects in which orientation the stepper motor coils are connected. | Yes | Yes | 1 |
+| Zeroing | Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. | Yes | Once* | 2 |
+| Polarity Check | Checks that the polarity has been detected correctly by the polarity detection manoeuvre to a high degree of accuracy. This will also detect if a motor's wiring is faulty or it is not plugged in. | Yes | Yes | 4 |
+| Control Check | [Coming Soon!] Checks that the motor is controllable. For instance, if the PID parameters are set such that they push the motor away from the target instead of towards it (the P term is negative), this check will fail. | Yes | Yes | 8 |
+| Encoder Steps Check | [Coming Soon!] Checks that the encoder is sending the correct count per revolution, as set by M569.1. | Yes | Yes | 16 |
+| Continuous Increase Manoeuvre | [Coming Soon!] Applies a continuous sin/cos wave to the motor inputs to move the motor continuously in 1 direction. Stops after 8 steps. | No | No | 32 |
+| Step Manoeuvre | Applies a step change to the PID target to view the step response of the PID controller. | No | No | 64 |
+| Ziegler-Nichols Manoeuvre | [Coming Soon!] Attempts to find the ultimate gain and oscillation period of the motor for use in Ziegler-Nichols tuning | No | No | 128 |
+
+In order to combine multiple moves, add the manoeuvre IDs. For example, to perform polarity detection and zeroing, use 1+2=**3** as the V parameter to M569.6. The manoeuvres will be performed in ascending order of ID - so in the above example, polarity detection would occur first, followed by zeroing.
+
+### What do I Need to Do?
+
+This depends on what type of encoder you are using. Read the appropriate section below and then advance to 'Running Tuning on Power On'.
+
+**Quadrature Encoders**
+
+If you are using a quadrature encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1 or T2), then from the table above, manoeuvres 1, 2, 4, 8 and 16 are required - this means that they must be run every time the printer is powered on.  This can be achieved by using the following command:
+
+`M569.6 P##.# V31    ; Where P##.# is the driver address to tune`
+
+**Magnetic Encoders**
+
+If you are using a magnetic encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T3), then from the table above, manoeuvres 1, 4, 8 and 16 are required - this means that they must be run every time the printer is powered on.  This can be achieved by using the following command:
+
+`M569.6 P##.# V29    ; Where P##.# is the driver address to tune`
+
+In addition, manoeuvre 2 must be run at least once. The procedure for this is detailed in the 'Caveats for Magnetic Encoders' section below. Follow the instructions here, and then read the instructions in that section.
+
+**Running Tuning on Power On**
+
+The most suitable way to ensure tuning is run every time the printer is powered on is to modify the homing moves to include tuning. A suitable new homing procedure is as follows:
+
+1. Home, as usual, in open-loop mode
+1. Move to a known-safe position to perform tuning
+1. Switch to closed-loop mode
+1. Perform the tuning manoeuvres
+1. Move back to home
+
+An example of this is shown below for a driver attached to the X axis, as driver 0 on the board at CAN address 50 with a **quadrature** encoder:
+
+```
+; homex.g
+; called to home the X axis
+
+M569 P50.0 D0           ; Turn off closed loop
+
+G91                     ; relative positioning
+G1 H2 Z5 F6000          ; lift Z relative to current position
+G1 H1 X-240 F3000       ; move quickly to X axis endstop and stop there (first pass)
+G1 H2 X5 F6000          ; go back a few mm
+G1 H1 X-240 F240        ; move slowly to X axis endstop once more (second pass)
+
+G90                     ; absolute positioning
+G1 X50 F3000            ; Move to a known-safe position
+M400                    ; Wait for the move to complete
+G4 P500                 ; Wait for the motor to settle
+M569 P50.0 D4           ; Turn closed loop back on
+M569.6 P50.0 V31        ; Perform the tuning manoeuvres for a quadrature encoder
+G1 X0                   ; Move back to X0
+
+G1 H2 Z0 F6000          ; lower Z again
+```
+
+Currently the RRF configuration tool will not generate these homing GCODE files so they will need to be modified manually.
+
+If tuning fails, the M569.6 command will report an error. In this case, check the troubleshooting section below.
+
+## PID Tuning
+
+As discussed in the above 'PID Control Systems' section, the PID controller can be tuned by setting it's P, I and D parameters. This is often considered more of an art than a science, and many methods exist for choosing parameters that lead to desirable characteristics.
+
+### What do I Need to Do?
+
+Nothing! The 1HCL expansion board comes with good-enough PID parameters out of the box for most basic use cases (P=100, I=0, D=0). However, the real power of closed-loop control comes when the PID controller is tuned for your specific setup. The sections below contain more details on how to tune your PID controller to achieve better results.
+
+On average, tuning a PID controller results in an order of magnitude better performance, so whilst the factory default will work out of the box, tuning is very much recommended!
+
+### Automatic Tuning
+
+Coming soon!
+
+### Manual Tuning
+
+In order to manually tune the PID controller, one needs to be able to visualise how the system is responding. In order to do this, the [closed loop plugin](https://github.com/Duet3D/Closed-Loop-Plugin) can be used. Firstly, download the 'closed-loop-plugin.zip' file from [the assets section of the latest release](https://github.com/Duet3D/Closed-Loop-Plugin/releases), once downloaded, upload the zip file (without decompressing) to your Duet by using System > Upload System Files, and follow the on-screen instructions to install the plugin. Fially, navigate to Setting > Machine Specific > Machine Specific Plugins and click the 'Start' button. For more details and troubleshooting, see the [GitHub repository](https://github.com/Duet3D/Closed-Loop-Plugin).
+
+Once the plugin is installed & enabled, a new 'Closed Loop' item should appear on the left menu-bar (under Settings). Clicking into this will bring up the interface shown below.
+
+[image 4029 **UPDATE LINK**]()
+
+This plugin is essentially a GUI for the [M569.5](/User_manual/Reference/Gcodes/M569_5) command - a command to record data from the closed loop system. This can be used alongside the step manoeuvre to manually tune the PID controller. The settings shown below will record the response to a step change. (Note: This will cause a movement of ~4 steps, and runtime tuning must have been run for the motor - see above.)
+
+[image 4031 **UPDATE LINK**]()
+
+The following shows a typical response from the system - the black line represents the target, which steps up 4 steps at the start. The motor then reacts to meet this new target, at first overshooting and oscillating, and then settles down to roughly meet the target.
+
+There are 3 features of interest in this graph, the **rise time** (how steep the initial rise is), the **overshoot** (how far the response exceeds the target) and the **steady state error** (how far above the target the response is after oscillations have settled)
+
+[image 4030 **UPDATE LINK**]()
+
+In order to tune the PID system, we will adjust the tuning parameters, perform a step manoeuvre, and observe how the rise time, overshoot and steady state error change.
+
+**Warning: Incorrectly set PID parameters may cause unstable oscillations. This is where small oscillations grow larger exponentially. This may cause damage if the axis oscillates out of control. Always be ready to trigger an emergency stop. It is recommended that you first disconnect the motor from the axis in order to tune. This will not give precise tuning results, but will give you a feel of what can induce oscillations in your motor. Once you are comfortable with preventing oscillations, hook your motor back up to the drive.**
+
+To set up for tuning, set all gains to zero, and the holding current to 100:
+
+```
+M569.1 P##.# R0 I0 D0    ; Where P##.# is the address of the driver being tuned
+M917 #100                ; Where # is the axis being tuned (X, Y or Z)
+```
+
+#### Tuning P
+
+First, gradually increase the value of the proportional constant (R) until the rise time does not improve noticeably.
+
+The images below show some responses for P=50, 75, 150 and 200 respectively. Improvements are seen up to P=150, but not in P=200. This gives a value for P of 150.
+
+|---|---|
+| **P=50** `M569.1 P##.# R50 I0 D0` | [image 4055 **UPDATE LINK**]() |
+| **P=75** `M569.1 P##.# R75 I0 D0` | [image 4056 **UPDATE LINK**]() |
+| **P=150** `M569.1 P##.# R150 I0 D0` | [image 4057 **UPDATE LINK**]() |
+| **P=200** `M569.1 P##.# R200 I0 D0` | [image 4058 **UPDATE LINK**]() |
+
+#### Tuning D
+
+The next stage is to increase the derivative constant (D) until there is no overshoot (this is called being 'critically damped'). However, a large D term will start to introduce oscillations, so we want to use the lowest value of D that gets us critically damped. Exceedingly large D terms may cause runaway oscillations - so be careful!
+
+The images below show some responses for D=0.1, 0.2, 0.25 and 0.3 respectively. The response becomes critically damped at 0.2, so D=0.2 is used. 0.3 shows an example of oscillations - this is what you want to avoid!
+
+|---|---|
+| **D=0.1** `M569.1 P##.# R150 I0 D0.1` | [image 4059 **UPDATE LINK**]() |
+| **D=0.2** `M569.1 P##.# R150 I0 D0.2` | [image 4060 **UPDATE LINK**]() |
+| **D=0.25** `M569.1 P##.# R150 I0 D0.25` | [image 4062 **UPDATE LINK**]() |
+| **D=0.3** `M569.1 P##.# R150 I0 D0.3` | [image 4061 **UPDATE LINK**]() |
+
+#### Tuning I
+
+The final parameter to adjust is the I parameter. This should be set to reduce the 'steady state' error to zero (the steady state error is the error seen once the response has settled down). The graphs above show 400 samples, when tuning the I parameter it can be useful to go higher. 1000 samples is usually enough to view the steady state response. In addition, it is useful to plot the 'current error' instead of 'target/current motor steps'.
+
+The images below show some responses for I=0, 500, 5000 and 50,000 respectively. I=5000 shows the steady state being reduced to zero, so this would be a suitable choice here. I=50,000 shows an I term that is too large - large (unsafe) oscillations are introduced.
+
+|---|---|
+| **I=0** `M569.1 P##.# R150 I0 D0.2` | [image 4063 **UPDATE LINK**]() |
+| **I=500** `M569.1 P##.# R150 I500 D0.2` | [image 4064 **UPDATE LINK**]() |
+| **I=5000** `M569.1 P##.# R150 I5000 D0.2` | [image 4065 **UPDATE LINK**]() |
+| **I=50000** `M569.1 P##.# R150 I50000 D0.2` | [image 4066 **UPDATE LINK**]() |
+
+At the end of these steps a configuration of P=150, I=5000 and D=0.2 has been found. This was for the x-axis drive of an Ender 3, but these values will be different for your configuration. For example, one would expect a drive with a static load (such as a z-axis) to require a larger I term to account for this. Save your configuration to config.g by updating the M569.1 line to include these newfound tuning parameters.
+
+#### Testing the Tuning Parameters
+
+In order to investigate how well the tuning has worked, a G1 move can be recorded. Below is a configuration that will record samples of a G1 move:
+
+[image 4067 **UPDATE LINK**]()
+
+As an example, this is the result after using the above to tune an Ender 3 x-axis:
+
+[image 4068 **UPDATE LINK**]()
+
+The maximum error here is only 0.08 of a step. The graph shows points only at ±4 discrete locations - this corresponds to the resolution of the encoder. It is harder to get better control when the error signal is hovering around the resolution of the encoder, so this drive has been successfully tuned.
+
+For comparison, below is the same graph, but for the factory default tuning parameters. The error is still below 1 step, however is an order of magnitude worse than what has been achieved by tuning. In addition, the tuned controller keeps the average error to zero, however the factory-default controller has an average error of over half a step!
+
+[image 4070 **UPDATE LINK**]()
+
+#### Tuning the Holding Current
+
+At the beginning of this process, the holding current was set to 100%. This can now be reduced to save power (and prevent the motors running hot!).
+
+To do so, use
+
+`M917 #nn                ; Where # is the axis being tuned (X, Y or Z) and nn is the holding percent`
+
+to gradually reduce the holding current. Each time, record a G1 command and view the error (as above). Keep reducing the current to get it as low as possible whilst remaining within an acceptable level of error - the exact value of which is a matter of personal preference.
+
+Standard closed loop drives should be able to perform correctly with a holding current as low as 0-20%.
+
+Don't forget to update config.g with your updated M917 command after you have found a suitable value!
+
+#### Noise reduction
+
+You might have noticed that your motor makes a noise similar to white noise after tuning. The reasons for this can be seen by plotting the PID control signal and it's components on a G1 move:
+
+[image 4071 **UPDATE LINK**]()
+
+The PID signal has a large potion of noise introduced by the D term. This isn't too much of a surprise since even small amounts of noise will be picked up by the D term as large gradients, and amplified.
+
+In order to reduce this noise, the D term can be set to zero, however this will have an effect on accuracy.
+
+When a G1 command is run on the Ender 3 example above, a tuned D value gives a maximum error of ± 0.07 steps. When using D=0, that error is increased to ± 0.1 steps, however the motor runs much quieter. This is still an order of magnitude better than the factory-default parameters, and is a matter of personal preference weighing up the sound of the motors against the decreased accuracy.
+
+# Caveats for Magnetic Encoders
+
+Magnetic encoders have a number of caveats that must be noted. Please read the following sections if you are using a magnetic encoder such as the Duet closed loop magnetic sensor, based on the AS5047D.
+
+## Runtime Tuning
+
+As mentioned above, the zeroing runtime manoeuvre must only be performed once. This means it doesn't need to be done every time the printer is powered on. Read below how to perform this.
+
+**Motivation**
+
+The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is incredibly difficult to align the centre of the magnet with the centre of rotation, so instead of requiring sub-mm precision gluing skills, the zeroing move measures how offset the magnet is, and then corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, it is a good idea to re-run this tuning move.
+
+**Running the move**
+
+To measure the offset, a full rotation of the motor is used. Unlike other tuning moves, you would be fine to disconnect the motor from the axis - the magnet offset isn't affected by load on the motor, unlike some other tuning parameters.
+
+Once you are satisfied that the motor can freely make up to 2 rotations (the motor first rotates to find the zero position, then makes 1 full rotation), run the following command:
+
+`M569.6 P##.# V3    ; Where P##.# is the driver address to tune`
+
+*Note: Some older firmware versions may include a bug whereby sending the tuning command does not 'wake' drivers, so they do not move. As a workaround, cycle the power, move the axis in open-loop mode to wake it, and then run*
+
+```
+M569 P##.# D4      ; Put the drive in closed loop mode
+M569.6 P##.# V3    ; Perform the manoeuvre
+```
+
+Once this has been performed once, the values should be written to non-volatile memory, and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V3 command again.
+
+# Troubleshooting
+
+## Error on M569.6 Command
+
+Coming Soon!

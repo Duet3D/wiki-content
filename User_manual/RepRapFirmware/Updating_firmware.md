@@ -1,0 +1,222 @@
+---
+title: Installing and Updating Firmware
+description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards. 
+published: true
+date: 2021-12-14T16:09:10.564Z
+tags: 
+editor: markdown
+dateCreated: 2021-11-30T12:57:13.348Z
+---
+
+# Notes before you start
+
+<!-- * These instructions are focussed on updating firmware on current boards, and to RepRapFirmware 3.x. If you need instructions for older boards or older versions of the firmware, see [Installing and Updating Firmware (Legacy) **UPDATE LINK**]() -->
+* These instructions are for updating firmware on Duet 3 (all boards, in standalone mode), Duet 2 WiFi, Ethernet and Maestro boards only. Updating firmware for Duet 3 using a Single Board Computer (eg Raspberry Pi) is quite different. For Duet 3 + SBC firmware update information, see [Getting Started with Duet 3](/User_manual/Overview/Getting_started_Duet_3_MB6HC).
+* Check that you have [downloaded the correct firmware](https://github.com/Duet3D/RepRapFirmware/releases) before installing it. See section below regarding which files are needed for each board.
+* Make sure you download and save the files as bin or zip and check the files sizes match.
+* Backup your SD card and download a copy of your current firmware version in case you need to revert the firmware.
+* Some updates to the main firmware on a Duet 2 WiFi or Duet 3 Mini 5+ WiFi may require an update to a compatible WiFi server firmware version as well, and vice versa. See the 'updating WiFi firmware' below which explains how to do this.
+* **If you download more than just the main firmware (DuetWiFiFirmware.bin/Duet2CombinedFirmware.bin) then please read the 'updating more than one firmware at a time' section below before proceeding as the firmware needs to be updated in a specific order.**
+* For RepRapFirmware 2, please ensure you read the [RepRapFirmware 1.x and 2.x Changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-1.x-&-2.x) notices for the new version of the firmware as it will contain information on changes that affect your configuration.
+* For RepRapFirmware 3, please ensure you read the [RepRapFirmware 3.x Changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x) notices for the new version of the firmware as it will contain information on changes that affect your configuration.
+
+## Required files
+
+Each Duet board needs up to four files to fully update the firmware and software. These are:
+
+**Firmware binary** - This is the main firmware for the Duet boards, and there is a specific version for each Duet board.
+
+**In-App programmer (IAP) binary** - This file is needed on the SD card and does the job of programming the firmware. There is a specific version for each Duet board. They don’t change with every firmware release, but new versions often accompany major firmware releases. You will get a message if it is missing, with the filename it expects, and (in DWC 3.3b1 and later) the location it expects to find it. Download the correct file from the matching firmware release, don't just rename an existing IAP file.
+
+**WiFi firmware binary** - Required for the ESP8266-based WiFi board on the Duet 2 WiFi and Duet 3 Mini 5+ WiFi. Use the same version that is supplied with the firmware you are flashing.
+
+**Duet Web Control (DWC) zip** - Web-browser-based user interface for communicating and controlling all Duet boards. Use the same version that is supplied with the firmware you are flashing.
+
+## Duet boards and supported firmware versions
+
+Duet 3 (MB6HC, Mini 5+) - RepRapFirmware 3.x
+Duet 2 (WiFi, Ethernet, Maestro) - RepRapFirmware 1.x, 2.x, 3.x
+
+Currently, the latest version of RepRapFirmware 2.x is v2.05.1. The latest version of RepRapFirmware 1.x is v1.26.1. These are available [here](https://github.com/Duet3D/RepRapFirmware/releases/tag/2.05.1).
+
+## Downloading RepRapFirmware files
+
+The latest beta, release and previous versions of RepRapFirmware are available at [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases)
+
+Our general advice is to use the [‘Latest release‘ version from GitHub](https://github.com/Duet3D/RepRapFirmware/releases/latest), unless you have a specific reason to use a 'beta' or 'RC' (release candidate) release. Beta and RC versions are marked ‘Pre-release’ on GitHub.
+
+Each 'release' version should have a large zip file that contains all the files needed to update all Duet boards. Download this, without unzipping it. Or download individual binary files, as needed.
+
+## Updating from older firmware versions
+
+If you are upgrading from quite an old version of the firmware, there may be additional steps you need to take. Send M115 to your Duet via USB or in the DWC console to check the current firmware version. Then:
+
+### Updating from RRF 3.x to a newer version
+
+If you are updating from an earlier version of RRF 3.x, you should be able to update by downloading the Duet2and3Firmware-3.x.zip file (where 3.x is the version number). This contains all the firmware and software files for all Duet boards. There’s no need to unzip it. You can download individual files as necessary, too. See the section later about updating individual files.
+
+### Updating from RRF 2.x to 3.x
+
+**Upgrading ANY Duet 2 from 2.x to 3.0 or later requires installing 3.0 first.**
+
+The version 3.01 and later binaries are too large to be installed by the IAP program supported by version 1.x and 2.x firmware. Therefore you cannot upgrade directly from version 1.x or 2.x firmware to 3.01 or later firmware. This is the procedure:
+
+* Download file Duet2and3Firmware-3.0.zip from https://github.com/Duet3D/RepRapFirmware/releases/tag/3.0
+* Upload and install that file on the Duet through Duet Web Control
+* Send M115 and check the response to confirm that you are running version 3.0 firmware
+* You can then upgrade to version 3.01 or later firmware.
+
+**Important!** When upgrading from 1.x or 2.x firmware to 3.x you will need to make substantial changes to your config.g file. See [Migrating from RRF2 to RRF3](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3).
+
+### Updating from RRF 1.x to 2.x
+
+* For updating your Duet from RRF v1.x to 2.x, see the legacy firmware update instructions.
+* Upgrading a Duet 2 Wifi or Duet 2 Ethernet from 1.20 or earlier firmware to 1.21 or later requires a file to be renamed. See Upgrading to 1.21 or later on the Legacy firmware update instructions.
+* Upgrading a Duet 2 Wifi from 1.18.2 or earlier firmware to 1.19 or later firmware requires a special procedure. See Upgrading to 1.19 or later on the Legacy firmware update instructions.
+
+## File locations on the Duet SD card
+
+* With all firmware versions up to RRF v3.2.2, all firmware update files are stored in the ‘0:/sys/’ directory. 
+* From RRF v3.3beta1, to avoid too many files in this folder, all firmware update files are stored in ‘0:/firmware/’ directory. 
+
+This means if you have upgraded from, for example, RRF v3.2.2 to RRF v3.3beta1 (the firmware, IAP and DWC files will be put in the ‘sys’ directory), then update to RRF v3.3beta2 by just uploading the firmware binary (which it will put in the ‘firmware’ directory), you’ll get a message that the IAP file is missing, because it expects to find it in ‘firmware’. Upload the IAP file from the v3.2.2 release, and it should put it in the ‘firmware’ folder.
+
+# Usual procedure
+
+1. Download firmware zip bundle (named Duet2and3Firmware-3.xxx.zip) , or individual binary files, from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases)
+1. Connect to DuetWebControl.
+1. In DWC, go to the System page and click the "Upload System Files" button.  
+1. Browse to the new firmware zip file or individual firmware binary file you have downloaded.
+1. After uploading, Duet Web Control will ask you whether you want to install the new firmware. If you are updating using the firmware zip bundle, this will update firmware, IAP, WiFi firmware and DWC all at once, so click **Yes**.
+1. If you are only updating the main firmware, answer **Yes**. If you are updating WiFi firmware as well, answer **No** so that you can upload the new WiFi firmware too.
+1. If your machine is idle when you upload the file but Duet Web Control does not offer to install it, then it doesn't recognise the filename as being a firmware binary. Check that you have uploaded the correct file.
+
+# Fallback procedure #1
+
+If you are unable to connect to your Duet from a browser, but you can connect to the Duet via USB using YAT or other serial terminal:
+
+**Use caution when connecting your Duet to a PC via USB while VIN is still connected as this may lead to a ground loop situation. When connecting USB, and VIN power is not required, disconnect the PSU that supplies VIN power from the mains.** See here for more details: [USB ground loops](/User_manual/Overview/USB_ground_loops)
+
+1. Take the on-board SD card out and put it in a computer
+1. Delete any existing firmware files in /sys
+1. Copy the new firmware binary file to the **/firmware** (if RRF 3.3beta1 or later is installed) or **/sys** folder (for earlier firmware versions)
+1. Also copy the relevant IAP file (see Required Files, above) into **/sys**
+1. If your board is a Duet WiFi, also copy the new DuetWiFiServer.bin file into /sys
+1. Eject/safely remove the SD card from the PC
+1. Replace the on-board SD card in the Duet 2 WiFi
+1. Restart the Duet 2 WiFi and connect with Pronterface or YAT
+1. Send command **M997 S0** to install the firmware.
+1. Press the Disconnect button in Pronterface, then when the USB port disappears and reappears about 20 seconds later, press Connect.
+1. Send M115 to confirm the new firmware version
+1. If the board is a Duet WiFi, send **M997 S1** to install the WiFi module firmware
+
+Note: when you run M997 S0, if your board is a Duet WiFi or Ethernet running old firmware, you may get an error message telling you that file DuetWiFiFirmware.bin or DuetEthernetFirmware.bin was not found. If that happens, copy or rename the Duet2CombinedFirmware.bin file to that filename and try again.
+
+Duet 3 expansion board firmware can be manually updated with M997 Bn, where n is the CAN bus address of the expansion board.
+
+# Fallback procedure #2
+
+**Only use this if the firmware on the Duet has been corrupted, or if you have accidentally pressed the Erase button, so you can’t connect over USB with YAT..**
+
+**Use caution when connecting your Duet to a PC via USB while VIN is still connected as this may lead to a ground loop situation. When connecting USB, and VIN power is not required, disconnect the PSU that supplies VIN power from the mains.** See here for more details: [USB ground loops](/User_manual/Overview/USB_ground_loops)
+
+Before proceeding, connect the Duet to your PC using a USB cable and check whether the Duet is visible in the port list. Under Windows you can do this by going to **Device Manager** and expanding **Ports (COM and LPT)**. If **Duet 3D printer electronics** is listed, you should be able to connect using Pronterface or YAT unless some other program is already using the port. If **Bossa Port** is listed then the firmware has already been erased. If neither is listed:
+
+* Try a different USB cable
+* Try a different USB port
+
+If you get the **Duet 3D printer electronics** port to appear, then firmware is already running on the Duet and you should use fallback procedure #1 or #2 instead. If you get **Bossa Port**, read on.
+
+## Duet 3 Mini 5+ WiFi/Ethernet
+
+The Duet 3 Mini 5+ supports an easy mechanism for updating the firmware directly.
+
+* Connect the Duet to a PC (Windows, Mac or Linux) using a USB cable
+* Press the Reset button twice quickly in succession. The Status LED should cycle slowly between dim and bright. This indicates that the bootloader is active.
+* A new Mass Storage device should appear on the PC. Identify its drive letter (Windows) or mount path (Linux).
+* A directory listing of this mass storage device should show three virtual files. File CURRENT.UF2 is the existing firmware on the Duet.
+* Copy the new Duet3Firmware-Mini5plus.uf2 file to the mass storage device
+* The Status LED will flicker as the firmware is being written, then the Duet will reboot using the new firmware. The mass storage device will disappear from your PC and the Duet 3 COM port will appear.
+
+## All other Duet boards
+
+You will need a Windows, Apple Macintosh or Linux PC.  
+* Download the main firmware file from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases)
+* Verify that the downloaded firmware file has the correct size, as shown on the page you downloaded it from.
+* Connect the Duet to your PC via USB.
+* Verify that the 5V and 3.3V LED are on before continuing.
+* Erase the firmware on the Duet by either:
+  * Pressing the **Erase** button (next to the reset button on older Duets)
+  * Jumpering the erase jumper
+  
+  ![firmware_update_02_erase_pins.jpg](/manual/configuration/firmware_update_02_erase_pins.jpg =400x)
+* Remove the erase jumper once the Diag LED lights up. This means you are successfully in programming mode.
+![firmware_update_01_reset_switch.jpg](/manual/configuration/firmware_update_01_reset_switch.jpg =400x)
+* then press the **Reset** button (if one is present).
+
+Now use either Bossa or SAM-BA to flash the firmware to the Duet.
+
+## {.tabset}
+
+### Bossa
+
+Bossa is available for Windows and Apple Mac OS X. Mac OS X users, please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x) to resolve some issues with it.
+
+* Download and install Bossa 1.9.1 from [ShumaTech](https://github.com/shumatech/BOSSA/releases). 
+* Load Bossa. It usually detects the correct COM port automatically.
+* Check boxes *Erase all*, *Lock*, and *Boot to flash*
+* Browse to the firmware binary file to be installed, then press Write.
+![paneldue_firmware_flashing.jpg](/hardware/paneldue/paneldue_firmware_flashing.jpg =500x)
+*Note: picture of BOSSA above shows PanelDue firmware flashing, not RepRapFirmware flashing!*
+* When the write completes, press *Verify*
+* It is also possible to use the command line version (bossac) with this command line (replace COMxx by the correct COM port number): 
+  `bossac --port=COMxx -b -U -e -w -v path\Duet2CombinedFirmware.bin -R`
+
+### SAM-BA
+
+SAM-BA is available for Windows and Linux.
+
+* Download and install SAM-BA version 2.17 from [Microchip](http://aem-origin.microchip.com/en-us/development-tool/SAM-BA-IN-SYSTEM-PROGRAMMER)
+* Load SAM-BA. It usually detects the correct COM port automatically.
+  * For Duet WiFi/Ethernet, select **at91sam4e8-ek**. For Maestro, select **at91sam4s8-ek**. Press **Connect**. A connection error will be reported if the wrong board is selected.
+
+![firmware_update_03_samba1.jpg](/manual/configuration/firmware_update_03_samba1.jpg =500x)
+
+* In the Send File Name box enter or browse to the firmware binary file to be installed, then press **Send File** (leave the **Address** at the default of 0x400000). On completion it will invite you to lock the region; press **Yes**.
+  * If desired, press **Compare sent file with memory**.
+  * Press the **Execute** button next to the **Boot from Flash** option in the Scripts box. Then exit SAM-BA.
+
+![firmware_update_04_samba2.jpg](/manual/configuration/firmware_update_04_samba2.jpg =500x)
+
+* Press **Reset** on the board or on boards that don't have this button, remove and restore 5V power (usually provided by the USB cable).
+* You should now be able to connect via USB/Pronterface or YAT.
+
+# Updating individual firmware components
+
+## Updating board firmware
+
+* Upload the firmware binary file via DWC. You will be prompted if you want to install it, and the Duet will reboot after installation.
+
+## Updating WiFi firmware
+
+**Note**, this applies to Duet 2 WiFi and Duet 3 Mini 5+ WiFi only.
+
+* Check the current version of the WiFi firmware by sending M122, and checking the WiFi section at the end for the WiFi firmware version.
+* Upload the new DuetWiFiServer.bin file to the /firmware or /sys folder (depending on currently installed version of RRF) on the on-board SD card, by either:
+  * If WiFi is working, via the System page (click the "Upload System Files" button) of DuetWebControl
+  * or by temporarily moving the on-board SD card to a PC. If you copy it directly to the SD card on a PC, you must remove the version number from the filename so that its name on the SD card is exactly DuetWiFiServer.bin. If you upload it through the Settings page of DuetWebControl, the renaming will be done automatically.
+* If DWC doesn’t ask if you want to install it, send command M997 S1 to install the new firmware. If you send this command from YAT or PanelDue, the update status will be reported.
+* If you sent the M997 S1 command via the web interface, it will lose the connection and you should allow a minute or so for the firmware installation to complete before you press the Connect button.
+
+## Updating DuetWebControl files
+
+* Upload the new **DuetWebControl.zip** file by going to the DWC System page and clicking the "Upload System Files" button. Select the file and DWC will extract the files, put them in the right place, and refresh the browser to start using the new files immediately.
+* If the web interface is not working, then move the SD card to a PC, delete or rename any existing /www folder, create a new one, and extract the contents of DuetWebControl.zip into it. Do not unzip the individual .gz files, leave them as they are on the SD card.
+
+## Updating more than one firmware at a time
+
+If you want to update the Duet firmware and WiFi firmware at the same time:
+
+* Upload both firmware files via DWC System page (it will put them in the right place) but decline any offers to install them
+* If you’re editing the SD card on a PC, upload the files to /firmware or /sys (depending on firmware version) on the on-board SD card, then replace the card in the Duet.
+* The M997 command will install firmware files, and can be run from DWC or via a serial terminal (eg YAT) connected by USB. Specifying which firmwares you want to update in the S parameter. For example, M997 S0:1 will update the mainboard and WiFi firmwares, provided that the firmware files and IAP binary are present in /firmware or /sys (depending on firmware version) on the SD card.

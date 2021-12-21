@@ -1,0 +1,49 @@
+---
+title: WiFi troubleshooting
+description: 
+published: true
+date: 2021-12-17T00:41:03.704Z
+tags: 
+editor: markdown
+dateCreated: 2021-12-06T00:23:04.224Z
+---
+
+<!-- Migrated not updated -->
+
+# Introduction
+
+If you find that your web browser repeatedly disconnects from the Duet, typically with an AJAX Error message from older versions of DuetWebControl or "The last HTTP request has timed out" from version 1.20 or later, follow these troubleshooting steps. Many of them relate to the Duet 2 Wifi only, but some are also applicable to the Duet 2 Ethernet.
+
+# Troubleshooting
+
+* Make sure you are running the [latest stable versions](https://github.com/dc42/RepRapFirmware/releases/)of the main firmware (e.g. Duet2CombinedFirmware.bin), the Wifi module firmware (DuetWiFiServer), and DuetWebControl.
+  * In particular, Duet Wifi Server 1.19.2 and later (which requires DuetWiFiFirmware 1.19.2 too) tries harder to reconnect to your access point if the Wifi connection is lost. You can check which versions you are running on the Settings/General tab of Duet Web Control.
+* If an AJAX Error is reported, check the Error Reason given at the bottom of the error message box. If it is anything other than Timeout, this indicates mismatched versions of Duet Web Control, or possibly a bug. If you are running the current stable firmware versions, or later beta versions, report the problem on the forum.
+* If the disconnection always happens when you switch to the GCode Files page in Duet Web Control, see [Network disconnections after uploading large files](/User_manual/RepRapFirmware/SD_card#network-disconnections-after-uploading-large-files).
+* Run `M122` from either the web interface (if you can reconnect) or from USB. In the Network diagnostics, check the **WiFi signal strength**, also called **RSSI**. Values in the range -30 to -50 are good, -50 to -60 is OK, -60 to -70 is marginal. Anything below -70 is weak and likely be unreliable. See below for how to improve RSSI.
+* Also in the M122 Network diagnostics check the WiFi Module Reset Reason. It should be "turned on by main processor". If it is anything else (e.g. "exception"), report the problem on the forum.
+* In Duet Web Control, on the Settings/General tab check that "Maximum number of AJAX retries" is at least 3.
+* Are the disconnections related to another device that uses the 2.4GHz band? Typical devices that may cause problems include cordless telephones, baby monitors, and leaky microwave ovens.
+* Try changing the channel on your WiFi router. Most routers default to Auto, but can be set to use a fixed channel instead. The channels overlap, so it is common to use channel 1, 6 or 11. This may also help if another device is causing interference. We have some feedback that channel 6 gives better results than channel 1.
+* Is the connection stable when the printer is idle, but unreliable when printing? If so then there may be too few CPU cycles to service the network interface, because of an excessive step pulse rate.
+  * Check the M122 report after a disconnection during a print, or after completing the print, and look at the MaxReps figure in the Move diagnostics. 
+  * This value should be kept below about 50. If it is higher, reduce either microstepping (M350) or maximum speed (M203).
+  * Please note, MaxReps is reset when you run M122 so only the value the first time you run M122 after a disconnection or completion of a print is significant.
+* Also if the connection is stable when the printer is idle but not when printing: could it be temperature-related? Does the disconnection occur when the CPU temperature displayed in DWC reaches a certain value? If so, try cooling the Duet with a fan, if you are not doing so already.
+* If unable to connect to your wireless network at boot up, try deleting all saved wifi networks with `M588 S"*"` (That is, using an asterix for the network name), then re-adding it with M587. For example, `M587 S"networkname" P"password"`.
+* You can manually reset the wifi module if you have console access via USB, or a PanelDue. Send `M552 S0`, to disable networking, followed by `M552 S1` to enable networking.
+* Consider running the Duet 2 Wifi in access point mode. This way the Duet creates a network which you can join from your wireless enabled device, (eg, PC, tablet, phone, etc.) and connect to the DWC to perform further configuration.
+* If you are completely unable to connect, you can remove the SD card and edit the config.g files so that the network setup commands are run at startup.
+
+# How to improve RSSI
+
+* If your printer is largely constructed from metallic components, make sure that the Wifi antenna at the edge of the Duet 2 Wifi is outside of or at the edge of the metallic structure, so that radio waves from your router can reach it unimpeded.
+* Move the printer and your router closer to each other. Avoid having solid walls between them.
+* Try a different Wifi channel (see earlier)
+* Consider locating a Wifi repeater, or dedicated 2.4Ghz Wireless G router in the room with the printer.
+* It's now possible to replace the ESP-12F Wifi module on the Duet by an ESP-07S with external antenna, but this is not an easy modification to make unless you are experienced with hot air SMD rework and have the necessary equipment.
+* Ensure there are no large motors or fans in the area, or wireless telephones, or microwaves, as these can interfere with the 2.4Ghz spectrum.
+
+# Firmware corruption
+
+The firmware upload protocol defined by the manufacturer of the WiFi module does not include error detection, and it may appear to succeed but to leave the WiFi module running corrupt firmware sometimes. In this case you can try reflashing the firmware.
