@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2021-12-22T10:24:55.156Z
+date: 2021-12-22T11:03:57.410Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3685,8 +3685,7 @@ Switches to Fused Filament Fabrication mode for filament printing.
 <br>
 <pre style="color:blue;font-size:0.8em">
 ; old code (RRF 2.x):
-M452 P3 I1 F100  ; laser uses heater3 pin, PWM frequency 100Hz
-
+M452 P3 I1 F100  ; laser uses heater3 pin, PWM frequency 100Hz<br>
 ; new code (RRF 3.x):
 M452 C"!exp.heater3" F100 ; laser uses heater3 pin inverted, PWM frequency 100Hz
 </pre>
@@ -3747,8 +3746,7 @@ Switches to CNC mode. All other parameters have been removed and moved into M950
 <br>
 <pre style="color:blue;font-size:0.8em">
 ; Old code
-M453 S0 T1 C"!exp.heater3" R12000 ; Assign tool 1 to spindle index 0, with PWM pin on heater 3 and 12000 RPM achieved at full PWM
-
+M453 S0 T1 C"!exp.heater3" R12000 ; Assign tool 1 to spindle index 0, with PWM pin on heater 3 and 12000 RPM achieved at full PWM<br>
 ; New code
 M950 R0 C"!exp.heater3" L12000 ; Create spindle index 0, with PWM pin on heater 3 and 12000 RPM achieved at full PWM
 M563 P1 S"Spindle 1" R0 ; Create tool 1 with spindle 0 and call it "Spindle 1"
@@ -3758,8 +3756,7 @@ M453
 <br>
 <pre style="color:blue;font-size:0.8em">
 ; Old code
-M453 S0 T1 C"exp.heater3+exp.heater4+exp.heater5" Q100 ; spindle PWM on heater 3 pin, on/off on heater 4, reverse/forward on heater 5, PWM frequency 100Hz
-
+M453 S0 T1 C"exp.heater3+exp.heater4+exp.heater5" Q100 ; spindle PWM on heater 3 pin, on/off on heater 4, reverse/forward on heater 5, PWM frequency 100Hz<br>
 ; New code
 M950 R0 C"exp.heater3+exp.heater4+exp.heater5" Q100
 M563 P1 S"Spindle 1" R0 ; Create tool 1 with spindle 0 and call it "Spindle 1"
@@ -4301,23 +4298,19 @@ M558 must come before G31.
 ##### Examples
 <br>
 <pre style="color:blue;font-size:0.8em">
-M558 P5 C"e0stop" H5 F120 T3000  ; Z probe connected to Duet 2 E0 endstop input
-
+M558 P5 C"e0stop" H5 F120 T3000  ; Z probe connected to Duet 2 E0 endstop input<br>
 M574 Z0 P"nil" ; (RRF 3.0 on Duet 2 ONLY) no Z endstop switch, free up Z endstop input
-M558 P5 C"zstop" H5 F120 T3000  ; Z probe connected to Duet 2 Z endstop input
-
+M558 P5 C"zstop" H5 F120 T3000  ; Z probe connected to Duet 2 Z endstop input<br>
 ; BL Touch on Duet 3 Mini 5+
 M950 S0 C"io3.out" ; servo/gpio 0 is io3.out pin
 M558 P9 C"io3.in" H5 F500:120 T3000 ; BLTouch connected to io3.in pin
 ...
-M280 P0 S10 ; send control signal to BLTouch through servo/gpio 0
-
+M280 P0 S10 ; send control signal to BLTouch through servo/gpio 0<br>
 ; BLTouch on Duet WiFi
 M950 S0 C"exp.heater3" ; create servo/gpio 0 on heater 3 pin on expansion connector
 M558 P9 C"^zprobe.in" H5 F120 T3000  ; BLTouch connected to Z probe IN pin
 ...
-M280 P0 S10 ; send control signal to BLTouch through servo/gpio 0
-
+M280 P0 S10 ; send control signal to BLTouch through servo/gpio 0<br>
 ; For the Duet Smart Effector on Duet 2
 M558 P8 C"zprobe.in+zprobe.mod" R0.4 F1200 ; zprobe.mod is the programming pin for M672
 </pre>
@@ -4383,17 +4376,13 @@ M558 must come before G31.
 ##### Examples
 <br>
 <pre style="color:blue;font-size:0.8em">
-M558 P1 X1 Y0 Z1 F500 T5000 H3 ; Z probe is used for homing X and Z axes (RRF 1.19 and earlier)
-
-M558 P4 H5 F120 T3000  ; Z probe connected to E0 endstop input
-
-M558 P7 H5 F120 T3000  ; Z probe connected to Z endstop input
-
+M558 P1 X1 Y0 Z1 F500 T5000 H3 ; Z probe is used for homing X and Z axes (RRF 1.19 and earlier)<br>
+M558 P4 H5 F120 T3000  ; Z probe connected to E0 endstop input<br>
+M558 P7 H5 F120 T3000  ; Z probe connected to Z endstop input<br>
 ; BLTouch on Duet Maestro
 M558 P9 H5 F120 T3000  ; BLTouch connected to Z probe IN pin
 ...
-M280 P64 S10 ; send control signal to BLTouch through Z probe MOD pin
-
+M280 P64 S10 ; send control signal to BLTouch through Z probe MOD pin<br>
 ; BLTouch on Duet WiFi
 M558 P9 H5 F120 T3000  ; BLTouch connected to Z probe IN pin
 M307 H3 A-1 C-1 D-1 ; free up heater 3 to use as BLTouch servo pin
