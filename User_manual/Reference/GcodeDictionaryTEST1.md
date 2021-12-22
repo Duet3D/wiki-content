@@ -2,7 +2,7 @@
 title: Gcode Dictionary TEST 1
 description: 
 published: true
-date: 2021-12-22T11:54:39.597Z
+date: 2021-12-22T23:18:11.875Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-21T23:37:57.258Z
@@ -18,8 +18,7 @@ RepRapFirmware GCodes were originally based on the information from the [RepRap 
 
 A typical piece of GCode sent to a machine running RepRapFirmware might look like this (The meaning of these codes (and more) is explained below on this page.)
 <br>
-<div style="color:blue;font-size:0.8em;white-space:pre-line;font-family:monospace,monospace">
-G10 P0 S195 R175
+<div style="padding-top:5px;padding-right:5px;padding-bottom:5px;padding-left:8px;background-color:black;color:white;font-size:0.8em;white-space:pre-line;font-family:monospace,monospace">G10 P0 S195 R175
 T0
 G1 X100 Y100 Z0.3 F3000
 G1 X100.4 Y99.3 E0.23 F600
