@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2021-12-22T10:22:03.021Z
+date: 2021-12-22T10:24:55.156Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5210,13 +5210,13 @@ This sets the communications parameters of the SPI channel. Supported in RRF 3.4
 
 #### M577 - RepRapFirmware 3.01RC2 and later
 
-### Parameters
+##### Parameters
 
 * **Sn** Desired endstop or input level: 1 = triggered/active (default), 0 =not triggered/inactive
 * **X, Y, Z, U, V, W, A, B, C, D** Axis endstop to wait for
 * **Pnnn** Input pin number to wait for (see M950 with J parameter)
 
-### Examples
+##### Examples
 <br>
 <pre style="color:blue;font-size:0.8em">
 M577 X S0  ; wait until X endstop is not triggered
@@ -5227,11 +5227,11 @@ Wait for an endstop switch to be triggered or an input to become active.
 
 #### M577 - RepRapFirmware 3.0 up to 3.01RC1
 
-### Parameters
+##### Parameters
 
 * **P"nnn"** Specifies one or more pin names, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names)
 
-### Examples
+##### Examples
 <br>
 <pre style="color:blue;font-size:0.8em">
 M577 P"!xstop+!e0stop"
@@ -5255,7 +5255,7 @@ M577 P"!xstop+!e0stop" ; wait until the X and E0 endstop inputs are both low
 
 #### M577 - RepRapFirmware 2.x and earlier
 
-### Parameters
+##### Parameters
 
 * **Snnn** Desired endstop level
 * **Xnnn** Select X axis endstop
@@ -5263,7 +5263,7 @@ M577 P"!xstop+!e0stop" ; wait until the X and E0 endstop inputs are both low
 * **Znnn** Select Z axis endstop
 * **Ennn** Select extruder drive endstop
 
-### Examples
+##### Examples
 <br>
 <pre style="color:blue;font-size:0.8em">
 M577 E0 S1
