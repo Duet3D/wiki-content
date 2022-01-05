@@ -2,7 +2,7 @@
 title: Gcode Dictionary TEST 1
 description: 
 published: true
-date: 2022-01-05T10:28:26.095Z
+date: 2022-01-05T10:33:29.914Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-21T23:37:57.258Z
@@ -20,8 +20,8 @@ A typical piece of GCode sent to a machine running RepRapFirmware might look lik
 <br>
 <pre class=cblock>
 G10 P0 S195 R175
-T0
-G1 X100 Y100 Z0.3 F3000
+   T0
+G1 X100 Y100 Z0.3 F3000      ;      comment
 G1 X100.4 Y99.3 E0.23 F600
 ...many 1000 more lines...
 </pre>
