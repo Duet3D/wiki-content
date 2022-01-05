@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-05T16:57:08.194Z
+date: 2022-01-05T17:29:21.796Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -236,7 +236,7 @@ counts as 30 characters
 
 ## Live editing
 
-As a general rule, any G or M command can be sent at any time. This means all settings can be changed 'on the fly', i.e. while printing. This does not take into account logical considerations, or individual pre-requisites for individual commands. For example, editing M566 'jerk', M201 'acceleration', or M203 'max speed' while printing is a great way to tune these values. However, while it is theoretically possible to change M563 'define a tool' *while* printing, it's probably *not a good idea*.
+As a general rule, any G or M command can be sent at any time. This means all settings can be changed 'on the fly', i.e. while printing. This does not take into account logical considerations, or individual pre-requisites for individual commands. For example, sending new values for M566 'jerk', M201 'acceleration', or M203 'max speed' while printing is a great way to tune these values. However, while it is theoretically possible to change M563 'define a tool' *while* printing, it's probably *not a good idea*.
 
 
 # G-commands
