@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a CNC machine
 description: This page describes the hardware and wiring, and changes to the RepRapFirmware files required to support a CNC.
 published: true
-date: 2021-12-19T11:39:43.887Z
+date: 2022-01-05T12:24:10.417Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:34:29.590Z
@@ -86,4 +86,4 @@ Don't use this scheme with more than 5V input, because it bypasses the input rev
 
 ## Connecting a CNC pendant
 
-Here are instructions on converting a readily-available [CNC Pendant](/User_manual/Connecting_hardware/IO_CNC_Pendant) to use with a Duet.
+Readily-available CNC Pendants can be converted for use with Duet and RRF; see [CNC Pendant](/User_manual/Connecting_hardware/IO_CNC_Pendant).
