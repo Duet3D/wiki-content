@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2021-12-15T22:24:30.665Z
+date: 2022-01-05T12:27:05.936Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -184,7 +184,7 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 
 * RepRapFirmware expects a connected 4-wire fan to adhere to the [Intel 4-Wire Pulse Width Modulation (PWM) Controlled Fans specification](https://web.archive.org/web/20110726062453/http://www.formfactors.org/developer/specs/4_Wire_PWM_Spec.pdf).
 * This means that the expected Pulses Per Revolution (PPR) from the tacho is 2, and the RPM reading calculated assumes that.
-* The Intel fan specification also says that the fan must be able to go down to 30% PWM or lower. Below 30% PWM the fan is allowed to continue at the 30% PWM level, or go slower, or turn off. So at zero PWM the fan may still be at 30%. The Noctua fans all turn off at zero PWM.
+* The Intel fan specification also says that the fan must be able to go down to 30% PWM or lower. Below 30% PWM the fan is allowed to continue at the 30% PWM level, or go slower, or turn off. So at zero PWM the fan may still be at 30%. Most Noctua fans turn off at zero PWM.
 * If the speed control of a 4-wire fan is not working well, i.e. fan speed does not scale well with PWM setting, you may be able to improve the response by connecting an external pullup resistor between the PWM input and +5V. 10K ohm would be a good starting point.
 * For more information, see [this forum thread](https://forum.duet3d.com/topic/25511/).
 
