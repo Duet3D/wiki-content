@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-05T16:56:40.816Z
+date: 2022-01-05T16:57:08.194Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -23,7 +23,7 @@ G10 P0 S195 R175
 T0
 G1 X100 Y100 Z0.3 F3000
 G1 X100.4 Y99.3 E0.23 F600
-...many 1000 more lines...
+...many 1000s more lines...
 </pre>
 
 ## GCode Everywhere
