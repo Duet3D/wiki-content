@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2021-12-22T11:03:57.410Z
+date: 2022-01-05T16:56:40.816Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -18,7 +18,7 @@ RepRapFirmware GCodes were originally based on the information from the [RepRap 
 
 A typical piece of GCode sent to a machine running RepRapFirmware might look like this (The meaning of these codes (and more) is explained below on this page.)
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G10 P0 S195 R175
 T0
 G1 X100 Y100 Z0.3 F3000
@@ -79,7 +79,7 @@ For example:
 
 GCode comments begin at a semicolon, and end at the end of the line:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 T0 ; This is a comment
 G92 E0
 ;So is this
@@ -88,7 +88,7 @@ G28
 
 Alternatively, comments can be enclosed in brackets, but they must start and end on the same line:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G28 (here come the axes to be homed) X Y
 </pre>
 
@@ -139,13 +139,13 @@ Unfortunately, many GCode sender programs convert all characters to uppercase an
 
 Example: to add SSID MYROUTER with password ABCxyz;" 123 to the WiFi network list, use command:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M587 S"MYROUTER" P"ABCxyz;"" 123"
 </pre>
 
 or if you can't send lowercase characters:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M587 S"MYROUTER" P"ABC'X'Y'Z;"" 123"
 </pre>
 
@@ -179,7 +179,7 @@ You can leave both of these out - RepRapFirmware will still work, but it won't d
 
 The checksum "cs" for a GCode string "cmd" (including its line number) is computed by exor-ing the bytes in the string up to and not including the * character as follows:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 int cs = 0;
 for(i = 0; cmd[i] != '*' && cmd[i] != NULL; i++)
  cs = cs ^ cmd[i];
@@ -228,11 +228,16 @@ Full paths, including all directories and subdirectories are limited to 120 char
 
 e.g.:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 0:/gcodes/0123456789/012.gcode
 </pre>
 
 counts as 30 characters
+
+## Live editing
+
+As a general rule, any G or M command can be sent at any time. This means all settings can be changed 'on the fly', i.e. while printing. This does not take into account logical considerations, or individual pre-requisites for individual commands. For example, editing M566 'jerk', M201 'acceleration', or M203 'max speed' while printing is a great way to tune these values. However, while it is theoretically possible to change M563 'define a tool' *while* printing, it's probably *not a good idea*.
+
 
 # G-commands
 
@@ -259,7 +264,7 @@ Blah
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 Gx P1 X2 Y3 Z4 ; description of effect
 </pre>
 
@@ -386,7 +391,7 @@ In **RRF 2.01 and earlier**, S parameter controls the movement type. There is no
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G0 X12               ; (move to 12mm on the X axis)
 G0 F1500             ; (Set the feedrate to 1500mm/minute)
 G1 X90.6 Y13.8 E22.4 ; (Move to 90.6mm on the X axis and 13.8mm on the Y axis while extruding 22.4mm of material)
@@ -400,14 +405,14 @@ RepRapFirmware treats G0 and G1 in the same way **except** as follows:
 
 ### Feedrate
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G1 F1500
 G1 X50 Y25.3 E22.4
 </pre>
 
 In the above example, we set the feedrate to 1500mm/minute on line 1, then move to 50mm on the X axis and 25.3mm on the Y axis while extruding 22.4mm of filament between the two points.
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G1 F1500
 G1 X50 Y25.3 E22.4 F3000
 </pre>
@@ -455,7 +460,7 @@ Either the R parameter must be provided, or at least one of I and J must be prov
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G2 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Clockwise arc from the current point to point (X=90.6,Y=13.8), with a center point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
 G3 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Counter-Clockwise arc from the current point to point (X=90.6,Y=13.8), with a center point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
 G2 X100 Y50 R200            ; (draw a clockwise arc with radius 200 from the current position to X=100 Y=50)
@@ -472,7 +477,7 @@ Pause the machine for a period of time.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G4 P200 ; wait for 200 milliseconds
 </pre>
 
@@ -500,7 +505,7 @@ The tool must be created with M563 before it is referenced with this command.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G10 P1 R140 S205 ; set standby and active temperatures for tool 1
 </pre>
 
@@ -545,7 +550,7 @@ See also [M585](/User_manual/Reference/Gcodes/M585).
 
 **Tool Offset Examples**
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G10 P2 X17.8 Y-19.3 Z0.0    ; sets the offset for tool 2 to the X, Y, and Z values specified
 G10 L1 P2 X17.8 Y-19.3 Z0.0 ; sets the offset for tool 2 to the X, Y, and Z values specified
 </pre>
@@ -581,7 +586,7 @@ This form of the G10 command is recognised by having no parameters.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G10
 </pre>
 
@@ -597,7 +602,7 @@ RepRapFirmware recognizes G10 as a command to set tool offsets and/or temperatur
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G11
 </pre>
 
@@ -633,7 +638,7 @@ The active plane determines how the tool path of an arc (G2 or G3) is interprete
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G20 ; set units to inches
 </pre>
 
@@ -647,7 +652,7 @@ In RRF 2.03 and later, each GCode input channel has a separate inches/mm setting
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G21 ; set units to millimeters
 </pre>
 
@@ -670,7 +675,7 @@ This command may not be used within a homing file.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G28    ; Home all axes
 G28 XZ ; Home the X and Z axes
 </pre>
@@ -717,7 +722,7 @@ If G29 is commanded with no S parameter, then file **sys/mesh.g** is run if it e
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G29 S0              ; Probe the bed, save height map to *heightmap.csv* and enable compensation
 G29 S3 P"usual.csv" ; Save the current height map to file *usual.csv*
 G29 S2              ; clear bed height map (disables bed compensation)
@@ -746,7 +751,7 @@ You can find more detailed information about setting up [Mesh Bed Compensation h
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G30     ; Probe the bed at the current XY position. When the probe is triggered, set the Z coordinate to the probe trigger height.
 G30 S-1 ; Probe the bed at the current XY position. When the probe is triggered, do not adjust the Z coordinate, just report the machine height at which the probe was triggered.
 G30 S-2 ; Probe the bed at the current XY position. When the probe is triggered, adjust the Z offset of the current tool to make the current position Z=0.
@@ -776,7 +781,7 @@ This is used for operations that are performed after the printer has been homed 
 
 For example, a bed.g for a Cartesian/CoreXY machine probing 3 points might be:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G28 ; home
 G30 P0 X20 Y190 Z-99999 ; probe point 0 near a leadscrew
 G30 P1 X180 Y190 Z-99999 ; probe point 1 near a leadscrew
@@ -825,7 +830,7 @@ The **K parameter** is applicable to all G30 commands. It is the Z probe number,
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G31 P500 Z2.6
 G31 X16.0 Y1.5
 </pre>
@@ -851,7 +856,7 @@ In RRF 3.3 and later any parameters will be passed to macro file bed.g.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G32 ; execute macro bed.g
 </pre>
 
@@ -1035,7 +1040,7 @@ Note: RepRapFirmware uses [M83](/User_manual/Reference/Gcodes/M83) to set the ex
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G92 X10 E90
 </pre>
 
@@ -1052,7 +1057,7 @@ Allows manual specification of the axis positions by specifying the current posi
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M0
 </pre>
 
@@ -1069,7 +1074,7 @@ See also M1, M112.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M1
 </pre>
 
@@ -1094,7 +1099,7 @@ Supported in RepRapFirmware version 1.20 and later when the printer mode is set 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M3 S4000 ; turn on spindle at speed of 4000 RPM, clockwise
 </pre>
 
@@ -1117,7 +1122,7 @@ Supported in RepRapFirmware version 1.20 and later when the printer mode is set 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M4 S4000 ; turn on spindle at speed of 4000 RPM, counterclockwise
 </pre>
 
@@ -1139,7 +1144,7 @@ Supported in RepRapFirmware version 1.20 and later when the printer mode is set 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M5 ; turn of spindle/laser
 </pre>
 
@@ -1165,7 +1170,7 @@ Available in RepRapFirmware 3.3beta2 and later.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M17
 M17 X E0
 </pre>
@@ -1188,7 +1193,7 @@ Enables all stepper motors when used without parameters. Stepper motors can also
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M18
 M18 X E0
 </pre>
@@ -1206,7 +1211,7 @@ Disables stepper motors and allows axes to move 'freely.' Stepper motors can be 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M20                      ; lists all files in the root folder of the internal SD card
 M20 S2 P"/gcodes/subdir" ; lists all files in the gcodes/subdir folder of the internal SD card, using JSON format
 M20 P"1:/"               ; lists all files on the secondary (PanelDue) SD card's root
@@ -1214,7 +1219,7 @@ M20 P"1:/"               ; lists all files on the secondary (PanelDue) SD card's
 
 If Marlin compatibility is enabled, a file list response is encapsulated:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 Begin file list:
  Traffic cone.g
  frog.gcode
@@ -1225,7 +1230,7 @@ Begin file list:
 
 If RepRapFirmware emulates no firmware compatibility, a typical response looks like:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 GCode files:
  "Traffic cone.g","frog.gcode","calibration piece.g"
 </pre>
@@ -1234,7 +1239,7 @@ RepRapFirmware always returns long filenames in the case in which they are store
 
 If the S2 parameter is used then the file list is returned in JSON format as a single array called "files" with each name that corresponds to a subdirectory preceded by an asterisk, and the directory is returned in variable "dir". Example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M20 S2 P"/gcodes"
  {"dir":"/gcodes","first":0,"next":0,"files":["4-piece-1-2-3-4.gcode","Hinged_Box.gcode","Hollow_Dodecahedron_190.gcode","*Calibration pieces"]}
 </pre>
@@ -1250,7 +1255,7 @@ Returned value "first" is the number of files that were skipped (as specified in
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M21
 M21 P1
 </pre>
@@ -1268,7 +1273,7 @@ In SBC mode and v3.4 or newer this code may be used to mount block devices or re
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M21 P"192.168.1.222:3D" S"0:/gcodes/remote" T"nfs"
 M21 P"//192.168.1.222/3D" S"0:/gcodes/remote" T"cifs" O"user=myUser,password=myPass"
 M21 P"curlftpfs#ftp://192.168.1.222:/3D" S"0:/gcodes/remote" T"fuse" O"user=myUser:myPass" ; requires curlftpfs package
@@ -1283,7 +1288,7 @@ M21 P"curlftpfs#ftp://192.168.1.222:/3D" S"0:/gcodes/remote" T"fuse" O"user=myUs
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M22
 M22 P1
 </pre>
@@ -1298,7 +1303,7 @@ In SBC mode and v3.4 or newer this code may be used to unmount block devices or 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M22 P"0:/gcodes/remote"
 </pre>
 
@@ -1306,7 +1311,7 @@ M22 P"0:/gcodes/remote"
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M23 filename.gco
 </pre>
 
@@ -1316,7 +1321,7 @@ Full paths, including all directories and subdirectories are limited to 120 char
 
 e.g.;
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 0:/gcodes/0123456789/012.gcode
 </pre>
 
@@ -1326,7 +1331,7 @@ counts as 30 characters
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M24
 </pre>
 
@@ -1338,7 +1343,7 @@ When this command is used to resume a print that was paused, the macro file **re
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M25
 </pre>
 
@@ -1363,7 +1368,7 @@ After movement is halted as described above but prior to the pause operation com
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M26 S49315
 </pre>
 
@@ -1373,19 +1378,19 @@ Set the file offset in bytes from the start of the SD card file selected by M23.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M27
 </pre>
 
 Reports the number of bytes processed in this format, which can be processed by Pronterface:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 SD printing byte 2134/235422
 </pre>
 
 If no file is being printed, only this message is reported:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 Not SD printing.
 </pre>
 
@@ -1393,7 +1398,7 @@ Not SD printing.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M28 filename.gco
 </pre>
 
@@ -1403,7 +1408,7 @@ File specified by filename.gco is created (or overwritten if it exists) on the S
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M29
 </pre>
 
@@ -1413,7 +1418,7 @@ File opened by M28 command is closed, and all subsequent commands sent to the ma
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M30 filename.g
 M30 "filename.g"
 </pre>
@@ -1424,7 +1429,7 @@ filename.g is deleted.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M32 filename.g
 M32 "filename.g"
 </pre>
@@ -1435,7 +1440,7 @@ It can be used when printing from SD card and does the same as M23 and M24.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M36 "filename.g"
 </pre>
 
@@ -1459,7 +1464,7 @@ If the file name parameter is not supplied and a file on the SD card is currentl
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M37 S1
 M37 P"MyModel.g"
 </pre>
@@ -1476,7 +1481,7 @@ M37 with no S parameter prints the time taken by the simulation, from the time i
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M38 gcodes/myfile.g
 </pre>
 
@@ -1493,7 +1498,7 @@ Supported in ReprapFirmware 1.21 and later.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M39       ; report information for SD card 0 in plain text format
 M39 P1 S2 ; report information for SD card 1 in JSON format
 </pre>
@@ -1527,7 +1532,7 @@ The capacity and free space are in bytes and the interface speed is in bytes/sec
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M950 P0 C"exp.heater3" Q500  ; allocate GPIO port 0 to heater3 on expansion connector, 500Hz
 ...
 M42 P0 S0.5  ; set 50% PWM on GPIO port 0
@@ -1554,7 +1559,7 @@ In RRF 3.4, Duet 3 supports up to 32 outpus and 16 inputs, Duet 2 Wifi/Ethernet 
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M42 P3 I1 S0.5 F500  ; set Heater 3 pin to 50% PWM at 500Hz, inverted
 </pre>
 
@@ -1583,7 +1588,7 @@ M73 is generated by some slicers, to inform the firmware about the state of the 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M80          ; sets pin in the power on state
 M80 C"pson"  ; allocates the pin and sets the pin in the power on state.
 M80 C"!pson" ; inverts the PS_ON output for Meanwell power supplies
@@ -1602,7 +1607,7 @@ In RRF 3.4.0beta6 and later, M80 will do nothing unless you have previously allo
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M81 C"pson" ; allocate the PS_ON pin to power control but leave power off
 M81         ; turn power off immediately
 M81 S1      ; turn power off when all thermostatic fans have turned off
@@ -1616,7 +1621,7 @@ In RRF 3.4beta6 and later, M81 will have no effect unless a power control pin ha
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M82 ; absolute extrusion mode
 </pre>
 
@@ -1626,7 +1631,7 @@ Makes the extruder interpret extrusion as absolute positions.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M83 ; relative extrusion mode
 </pre>
 
@@ -1642,7 +1647,7 @@ Makes the extruder interpret extrusion values as relative positions.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M84
 M84 E0:1:2:3:4
 </pre>
@@ -1673,7 +1678,7 @@ If this command refers to any axes other than X, Y and Z then it must be later i
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M92 X80 Y80 Z80
 M92 E420:500
 </pre>
@@ -1696,7 +1701,7 @@ RepRapFirmware uses floating point maths so it is possible to use floating point
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M98 P"mymacro.g"
 </pre>
 
@@ -1714,7 +1719,7 @@ The filename may include a path to a subdirectory. For relative paths, the defau
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M99
 </pre>
 
@@ -1753,7 +1758,7 @@ Must select "Generate M101, M102, M103" in Simplify3D.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M104 S190
 M104 S220 T1
 </pre>
@@ -1776,7 +1781,7 @@ This is deprecated because temperatures should be set using the G10/M568 and T c
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M105
 M105 S2
 </pre>
@@ -1807,7 +1812,7 @@ Request the temperature of the current extruder and the build base in degrees Ce
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M106 S127
 M106 P1 T45 S0.7 H1:2
 M106 P1 T40:50 H1:2
@@ -1815,7 +1820,7 @@ M106 P1 T40:50 H1:2
 
 The first example turns on the default cooling fan at half speed. The second example sets the second fan to a thermostatic fan for sensors 1 and 2 (e.g. the extruder heaters in a dual-nozzle machine) such that the fan will be on at 70% PWM when either hot end is at or above 45C. The third example also sets up a thermostatic fan, but this time it runs in proportional mode. 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M308 S10 Y"mcu-temp" A"MCU"                      ; defines sensor 10 as MCU temperature sensor
 M308 S11 Y"drivers" A"Duet stepper drivers"      ; defines sensor 11 as stepper driver temperature sensor
 M308 S12 Y"drivers-duex" A"Duex stepper drivers" ; for Duet 2 WiFi/Ethernet with DueX2/5, defines sensor 12 as DueX2/5 stepper driver temps
@@ -1839,7 +1844,7 @@ If you were using the PB6 tacho input on Duet 2 WiFi/Ethernet running RRF 2.x, y
 
 Example
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 ; RRF 2.x code
 M106 P2 I1 F25000  ; fan 2 is a 4-wire PWM fan so invert it and use high PWM frequency. tacho connected to PB6 on expansion connector. PB6 is defined by default.
 
@@ -1866,7 +1871,7 @@ M950 F2 C"!Fan2+exp.pb6" Q25000  ; fan 2 is a 4-wire PWM fan so invert it, use h
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M106 S127
 M106 P1 T45 S0.7 H1:2
 M106 P1 T40:50 H1:2
@@ -1923,7 +1928,7 @@ Breaks out of an M109 or M190 wait-for-temperature loop, continuing the print jo
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M109 S215
 </pre>
 
@@ -1941,7 +1946,7 @@ To better support slicers that don't select a tool when doing a single-extrusion
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M110 N123
 </pre>
 
@@ -1956,7 +1961,7 @@ This example sets the current line number to 123. Thus the expected next line af
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M111
 M111 P1 S1 ; enable debugging for module 1
 </pre>
@@ -1971,7 +1976,7 @@ The details of what debugging information is output when debugging is enabled va
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M112
 </pre>
 
@@ -1981,7 +1986,7 @@ Any moves in progress are immediately terminated, then RepRap shuts down. All mo
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M114
 </pre>
 
@@ -1989,7 +1994,7 @@ This reports the X, Y, Z (,U, V, W, A, B, C if configured) and E coordinates to 
 
 For example, the machine returns a string such as:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 C: X:10.000 Y:20.000 Z:5.000 E:51.000 E0:51.0 E1:0.0 Count 800 1600 2000 Machine 10.00 20.00 5.00 Bed comp 0.00
 </pre>
 
@@ -2007,7 +2012,7 @@ Note: there is no agreed definition of what the response to M114 should be. We t
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M115
 M115 P2
 </pre>
@@ -2016,7 +2021,7 @@ Request the Firmware Version and Capabilities of the current microcontroller.
 
 The details are returned to the host computer as key:value pairs separated by spaces and terminated with a linefeed.:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M115
 FIRMWARE_NAME: RepRapFirmware for Duet 2 WiFi/Ethernet FIRMWARE_VERSION: 2.04RC1 ELECTRONICS: Duet WiFi 1.0 or 1.01 FIRMWARE_DATE: 2019-07-14b1
 </pre>
@@ -2034,7 +2039,7 @@ The 'P' parameter is used tell the firmware about the hardware on which it is ru
 
 The 'B' parameter is used on Duet 3 only, using RRF3. M115 can take an optional B (board number) parameter which is the CAN address of the board to be queried, default 0 (i.e. main board). Example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M115 B1
 Board EXP3HC firmware 3.0beta1 2019-10-28b1
 </pre>
@@ -2051,7 +2056,7 @@ Board EXP3HC firmware 3.0beta1 2019-10-28b1
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M116
 M116 P1
 M116 H0 S5
@@ -2075,7 +2080,7 @@ Recent versions of RepRapFirmware also allow a list of the heaters to be specifi
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M117 Hello World
 M117 "Hello world"
 </pre>
@@ -2098,7 +2103,7 @@ Supported in RepRapFirmware 1.21 and later.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M118 S"Hello Duet"
 M118 S"Hello Logfile" L1
 M118 P0 S"Hello Logfile and DWC" L1
@@ -2115,7 +2120,7 @@ The third example shows how to prevent a message from being logged.
 
 Note that a message only having the **Lnnn** parameter but no **Pnnn** parameter will only go to the log file (if the log level matches the current log level of the system) and will not be sent to other outputs. If you want it to show on DWC as well then send:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M118 P0 S"message" L1
 </pre>
 
@@ -2123,7 +2128,7 @@ M118 P0 S"message" L1
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M119
 </pre>
 
@@ -2133,7 +2138,7 @@ Returns the current state of the configured endstops. Takes into account any 'in
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M120
 </pre>
 
@@ -2147,7 +2152,7 @@ Push the state of the machine onto a stack. Called automatically when a macro fi
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M121
 </pre>
 
@@ -2164,7 +2169,7 @@ Recover the last state pushed onto the stack.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M122
 </pre>
 
@@ -2193,7 +2198,7 @@ Note: do not use M122 with a P parameter of 1000 or greater. There are a few val
 
 The 'B' parameter is used in RepRapFirmware 3 on Duet 3 only, to report diagnostic information from connected boards. The B (board number) parameter is the CAN address of the board to be queried, default 0 (i.e. main board). Example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M122 B1
 Diagnostics for board 1:
 Board EXP3HC firmware 3.0beta1 2019-10-28b1
@@ -2217,7 +2222,7 @@ MCU temperature: min 43.8C, current 43.9C, max 44.1C
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M135 S300
 </pre>
 
@@ -2238,7 +2243,7 @@ In RRF3 a M140 command with H parameter (other than H-1) must come after the M95
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M140 H0
 M140 S55
 M140 S65 R40
@@ -2272,7 +2277,7 @@ In RRF3 a M141 command with H parameter (other than H-1) must come after the M95
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M141 S30
 M141 H3
 </pre>
@@ -2307,7 +2312,7 @@ By default, monitor 0 is set up to generate a heater fault if a temperature limi
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M143 H1 P0 S275 A2 ; switch off heater 1 temporarily if it exceeds 275°C
 M143 H1 P1 S285 A0 ; raise a heater fault if it exceeds 285C
 </pre>
@@ -2325,7 +2330,7 @@ M143 H1 P1 S285 A0 ; raise a heater fault if it exceeds 285C
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M143 S275 ; set the maximum temperature of the hot-end to 275°C
 M143 H0 S125 ; set the maximum bed temperature to 125C
 M143 H1 S275 X103 ; use virtual heater 103 to monitor heater 1
@@ -2333,7 +2338,7 @@ M143 H1 S275 X103 ; use virtual heater 103 to monitor heater 1
 
 You have heater 3 mapped to a chamber heater which is supposed to be temporarily turned off when the temperature in it exceeds 65C. The thermistor for the chamber is set up as a virtual heater on channel 104 and can be viewed on the "Extra" panel on DWC (refer to M305 for further details on how to set this up). To achieve this you can configure an extra heater protection with the following GCode:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M143 P100 H3 X104 A2 C0 S65
 </pre>
 
@@ -2362,7 +2367,7 @@ With A0 set on RepRapFirmware 1.26.1, PS_ON is triggered after the fault has exi
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M144
 </pre>
 
@@ -2385,7 +2390,7 @@ Switch the bed to its standby temperature. M144 S1 will set it back to its activ
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M150 X1 Q3000000      ; set LED type to NeoPixel and set SPI frequency to 3MHz
 M150 R255 P128 S20 F1    ; set first 20 LEDs to red, half brightness, more commands for the strip follow
 M150 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished programming strip
@@ -2399,7 +2404,7 @@ The specified RGB values will be sent to the number of LEDs in the LED strip as 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M918 P2 E-4 F2000000           ; Fysetc 12864mini
 M150 X2 R255 U0 B0 P255 S1 F1      ; display led
 M150 X2 R0 U255 B0 P255 S1 F1      ; left encoder led
@@ -2416,7 +2421,7 @@ M150 X2 R0 U255 B0 P255 S1 F0      ; right encoder led
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M190 S60
 </pre>
 
@@ -2434,7 +2439,7 @@ Set the temperature of the bed to 60C and wait for the temperature to be reached
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M191 S60
 </pre>
 
@@ -2449,7 +2454,7 @@ Set the temperature of the build chamber to 60C and wait for the temperature to 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M200 D0 ; disable volumetric extrusion on all extruders
 M200 D1.75 ; set all extruder filament diameters to 1.75mm
 M200 D1.75:3.0:1.75 ; set extruder 0 to 1.75mm, extruder 1 to 3.0mm and all remaining extruders to 1.75mm
@@ -2483,7 +2488,7 @@ If this command refers to any axes other than X, Y and Z then it must be later i
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M201 X1000 Y1000 Z100 E2000
 </pre>
 
@@ -2508,7 +2513,7 @@ Example: If you have two motors on your Z axis, physically connected to Z and E0
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M201.1 X500 Y500 Z20 E500:500
 </pre>
 
@@ -2537,7 +2542,7 @@ If this command refers to any axes other than X, Y and Z then it must be later i
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M203 X6000 Y6000 Z300 E10000
 </pre>
 
@@ -2558,7 +2563,7 @@ Example: If you have two motors on your Z axis, physically connected to Z and E0
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M204 P500 T2000
 </pre>
 
@@ -2604,7 +2609,7 @@ If this command refers to any axes other than X, Y and Z then it must be later i
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M206 X10.0 Y10.0 Z-0.4
 </pre>
 
@@ -2623,7 +2628,7 @@ The values specified will be subtracted from the coordinates given in G0, G1 and
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M207 S4.0 F2400 Z0.075
 </pre>
 
@@ -2650,7 +2655,7 @@ If this command refers to any axes other than X, Y and Z then it must be later i
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M208 X200 Y200 Z90 ; set axis maxima
 M208 X-5 Y0 Z0 S1 ; set axis minima
 M208 X-5:200 Y0:200 Z0:90 ; set axis minima and maxima
@@ -2670,7 +2675,7 @@ The M208 minimum Z value applies to deltas. The M208 XY min/max and Z max values
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M220 S80
 </pre>
 
@@ -2685,7 +2690,7 @@ Sets the speed factor override percentage.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M221 S70
 M221 S95 D1
 </pre>
@@ -2696,7 +2701,7 @@ Sets extrude factor override percentage. In the case of RepRapFirmware, sets the
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M226
 </pre>
 
@@ -2718,7 +2723,7 @@ Send and/or receive data over the i2c bus. Supported in RepRapFirmware 1.21 and 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M260 A5 B65                   ; Send 'A' to address 5 now
 M260 A"x7F" B65               ; Send 'A' to address 7F (hex)
 M260 A0 B82:101:112:82:97:112 ; Send 'RepRap' to address 0
@@ -2738,7 +2743,7 @@ Deprecated in RRF 2.02 and later. Use M260 instead.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M261 A99 B5 ; Request 5 bytes from Address 99
 </pre>
 
@@ -2755,7 +2760,7 @@ M261 A99 B5 ; Request 5 bytes from Address 99
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M950 S0 C"exp.heater3"  ; assign GPIO port 0 to heater3 on expansion connector, servo mode
 ...
 M280 P0 S80  ; set 80deg servo position on GPIO port 0
@@ -2779,7 +2784,7 @@ In RRF 3.4, Duet 3 supports up to 32 output and 16 input ports, Duet 2 Wifi/Ethe
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M280 P1 S50    ; set Heater 1 pin to 50deg servo position
 M280 P3 I1 S80 ; set Heater 3 pin to 80deg servo position, inverted
 </pre>
@@ -2811,7 +2816,7 @@ Supported in firmware version 1.18 and later.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M290 S0.05  ; babystep the head up 0.05mm
 M290 R0 S0  ; clear babystepping (RepRapFirmware 1.21 and later only)
 </pre>
@@ -2842,7 +2847,7 @@ This command provides a more flexible alternative to M117, in particular message
 
 Allowed message box modes (S parameter) are:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 0. No buttons are displayed (non-blocking)
 1. Only "Close" is displayed (non-blocking)
 2. Only "OK" is displayed (blocking, send M292 to resume the execution)
@@ -2880,7 +2885,7 @@ Supported in firmware version 1.19 and later.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M300 S300 P1000
 </pre>
 
@@ -2892,7 +2897,7 @@ If you intend to play multiple notes in a row, you will need to insert a G4 dela
 
 Example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M300 S2000 P200
 G4 P200
 M300 S2500 P300
@@ -2912,7 +2917,7 @@ See also [Macros, sounds section](/User_manual/Tuning/Macros#sounds)
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M301 H1 ; Report PID values
 M301 H1 P20 I0.5 D100 ; Set PID values
 </pre>
@@ -2941,7 +2946,7 @@ Note: PID parameters are computed automatically when the M307 command is used to
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M302 ; Report current state
 M302 P1 ; Allow cold extrusion
 M302 S120 R110 ; Allow extrusion starting from 120°C and retractions already from 110°C
@@ -2957,7 +2962,7 @@ M302 with no parameters it will report the current cold extrusion state.
 
 One limitation of M302 is that it requires a thermistor to be present for the temperature to be monitored. If your system does not have a thermistor or heater to be monitored, you can define your tool in M563 without a heater to disable cold extrusion protection on that tool. Example: 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M563 P0 S"Pump" D0 F0
 </pre>
  
@@ -2977,7 +2982,7 @@ Note the lack of H parameter.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M303 H1 P1 S240 ; tune heater 1 using 100% PWM, target temperature 240C
 M303 T0 S205 ; tune the primary heater of tool 0 (RRF 3.2beta3.2 and later)
 </pre>
@@ -2999,7 +3004,7 @@ Tuning is performed asynchronously. Run M303 with no parameters while a tuning i
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M304 P1 I2 D3
 M304 ; Report parameters
 </pre>
@@ -3029,7 +3034,7 @@ RepRapFirmware 3: Use M308 instead (see Notes).
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M305 P1 T100000 R1000 B4200
 </pre>
 
@@ -3047,7 +3052,7 @@ Prior to RRF3, every temperature sensor belongs to a heater. For sensors with no
 
 RepRapFirmware also supports ADC gain and offset correction and a thermistor selection facility. Example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M305 P1 T100000 R1000 B4200 H14 L-11 X2
 </pre>
 
@@ -3071,7 +3076,7 @@ If the M305 command for a real heater does not specify a sensor channel and the 
 
 PT1000 Example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M305 P1 X501 R2200 ; heater 1 uses a PT1000 connected to thermistor channel 1 which has a 2.2K series resistor (i.e a Duet 2 Maestro)
 </pre>
 
@@ -3081,13 +3086,13 @@ Virtual heaters 100, 101 and 102 are preconfigured to use temperature sensor cha
 
 If you send the following command:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M305 P101
 </pre>
 
 you should get the response "Heater 101 uses TMC2660 temperature warnings sensor channel 1001". But as this virtual heater has no name, it doesn't show up in DWC. You can fix that by sending:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M305 P101 S"Drivers"
 </pre>
 
@@ -3116,7 +3121,7 @@ After that, if you go to the "Extra" tab in DWC (where is says Tools/Heaters/Ext
 
 ##### Examples (RRF 3.4.0beta7 and later)
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M307 H0 ; report the process parameters for heater 0
 M307 H1 R2.186 K0.17:0.11 D5.67 S1.00 V24.0 ; set the process parameters for heater 1
 </pre>
@@ -3144,7 +3149,7 @@ M307 H1 R2.186 K0.17:0.11 D5.67 S1.00 V24.0 ; set the process parameters for hea
 
 ##### Examples (RRF 3.2 and 3.3)
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M307 H0 ; report the process parameters for heater 0
 M307 H1 R2.186 C202.1:155.0 D5.67 S1.00 V24.0 ; set the process parameters for heater 1
 </pre>
@@ -3172,7 +3177,7 @@ M307 H1 R2.186 C202.1:155.0 D5.67 S1.00 V24.0 ; set the process parameters for h
 
 ##### Examples (RRF 3.1 and 3.0)
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M307 H0 ; report the process parameters for heater 0
 M307 H1 A346.2 C140 D5.3 B0 S0.8 V23.8; set process parameters for heater 1, use PID, and limit heater 1 PWM to 80%
 </pre>
@@ -3185,7 +3190,7 @@ M307 H1 A346.2 C140 D5.3 B0 S0.8 V23.8; set process parameters for heater 1, use
 
 Example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 ;RRF 2.x code
 M307 H0 F100  ; change heater 0 PWM frequency to 100Hz
 M307 H2 A-1 C-1 D-1 ; disable heater 2 so we can use its pin to drive a fan
@@ -3275,7 +3280,7 @@ Reimplementing DHT support in RepRapFirmware 3 has led to a new concept of addit
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M308 S10 P"0.spi.cs1" Y"dht22" A"Filament Temp"      ; define DHT22 temperature sensor
 M308 S11 P"S10.1" Y"dhthumidity" A"Filament Hum[%]"  ; Attach DHT22 humidity sensor to secondary output of temperature sensor
 </pre>
@@ -3296,14 +3301,14 @@ When converting from older versions of RRF to RRF3 you must replace each M305 co
 
 Example - old code:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M305 P0 T100000 B3950 ; bed heater uses a B3950 thermistor
 M305 P1 T100000 B4725 C7.06e-8 ; E0 heater uses E3D thermistor
 </pre>
 
 New code:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M308 S0 P"bed_temp" Y"thermistor" T100000 B3950 ; define bed temperature sensor
 M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.06e-8 ; define E0 temperature sensor
 M950 H0 C"bed_heat" T0 ; heater 0 uses the bed_heat pin, sensor 0
@@ -3362,7 +3367,7 @@ This command must be later in config.g than any M584 command.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M350 Z1 ;set the Z-axis' driver to use full steps
 M350 E4:4:4 ;set extruders 0-2 to use quarter steps)
 </pre>
@@ -3371,7 +3376,7 @@ When M350 is processed, the steps/mm will be adjusted automatically to allow for
 
 a) Set Steps/mm correctly for the default 1/16 microstepping, then set the microstepping to the desired amount using M350:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M92 X80 Y80 Z400 ; set axis steps/mm
 M92 E420:430 ; set extruder 0 and 1 steps/mm
 M350 X128 Y128 Z128 E128:128 ; set microstepping
@@ -3381,7 +3386,7 @@ or
 
 b) Set the microstepping using M350 and then set the correct steps/mm for that microstepping amount:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M350 X128 Y128 Z128 E128:128 ; set microstepping
 M92 X640 Y640 Z3200 ; set axis steps/mm @128 microstepping
 M92 E3360:3440 ; set extruder 0 and 1 steps/mm
@@ -3424,7 +3429,7 @@ Loads the grid matrix file
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M375
 M375 P"MyAlternateHeightMap.csv"
 </pre>
@@ -3443,7 +3448,7 @@ In RepRapFirmware this command is equivalent to the G29 S1 command.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M376 H10
 </pre>
 
@@ -3457,7 +3462,7 @@ RepRapFirmware does not adjust the extrusion factor to account for the layer hei
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M400
 </pre>
 
@@ -3473,7 +3478,7 @@ Finishes all current moves and and thus clears the buffer. That's identical to G
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M401
 M401 P1
 </pre>
@@ -3488,7 +3493,7 @@ This runs macro file **sys/deployprobe#.g** (where # is the probe number) if it 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M402
 M402 P1
 </pre>
@@ -3506,7 +3511,7 @@ This runs macro file **sys/retractprobe#.g** (where # is the probe number) if it
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M404 N1.75
 M404 N3.0 D1.0
 </pre>
@@ -3530,7 +3535,7 @@ Deprecated in RRF 3.3 and later. Use M409 to get response from Object Model, whi
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M408 S0
 </pre>
 
@@ -3547,7 +3552,7 @@ This reports a JSON-style response by specifying the desired type using the 'S' 
 
 Here is an example of a typical type 0 response:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 {"status":"I","heaters":[25.0,29.0,28.3],"active":[-273.1,0.0,0.0],"standby":[-273.1,0.0,0.0],"hstat":[0,2,1],"pos":[-11.00,0.00,0.00],"extr":[0.0,0.0],"sfactor":100.00, "efactor":[100.00,100.00],"tool":1,"probe":"535","fanPercent":[75.0,0.0],"fanRPM":0,"homed":[0,0,0],"fraction_printed":0.572}
 </pre>
 
@@ -3597,7 +3602,7 @@ PanelDue currently uses only M408 S0 and M408 S1.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M409 K"move.axes" F"f"   ; report all frequently-changing properties of all axes
 M409 K"move.axes[0] F"v,n,d4"  ; report all properties of the first axis, including values not normally reported, to a maximum depth of 4
 M409 K"move.axes.homed"  ; for all axes, report whether it is homed
@@ -3636,7 +3641,7 @@ For details of the Object Model supported by RepRapFirmware, see [Object Model o
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M450
 </pre>
 
@@ -3660,7 +3665,7 @@ The default at power up is FFF.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M451
 </pre>
 
@@ -3683,7 +3688,7 @@ Switches to Fused Filament Fabrication mode for filament printing.
 
 ##### Example
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 ; old code (RRF 2.x):
 M452 P3 I1 F100  ; laser uses heater3 pin, PWM frequency 100Hz<br>
 ; new code (RRF 3.x):
@@ -3714,7 +3719,7 @@ See also [Configuring RepRapFirmware for a laser engraver/cutter](/User_manual/M
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M452 P2 R255 F200 ; switch to laser mode using the heater 2 (E1 heater) output pins to control the laser
 </pre>
 
@@ -3744,7 +3749,7 @@ Switches to CNC mode. All other parameters have been removed and moved into M950
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 ; Old code
 M453 S0 T1 C"!exp.heater3" R12000 ; Assign tool 1 to spindle index 0, with PWM pin on heater 3 and 12000 RPM achieved at full PWM<br>
 ; New code
@@ -3754,7 +3759,7 @@ M453
 </pre>
 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 ; Old code
 M453 S0 T1 C"exp.heater3+exp.heater4+exp.heater5" Q100 ; spindle PWM on heater 3 pin, on/off on heater 4, reverse/forward on heater 5, PWM frequency 100Hz<br>
 ; New code
@@ -3775,7 +3780,7 @@ M453
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M453 C"exp.heater3+exp.heater4+exp.heater5" Q100 T1 ; spindle PWM on heater 3 pin, on/off on heater 4, reverse/forward on heater 5, PWM frequency 100Hz
 </pre>
 
@@ -3791,7 +3796,7 @@ M453 C"exp.heater3+exp.heater4+exp.heater5" Q100 T1 ; spindle PWM on heater 3 pi
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M453 C"exp.heater3+exp.heater4" F100 T1 ; spindle forward/reverse on heater 3&4 pins, PWM frequency 100Hz
 </pre>
 
@@ -3808,7 +3813,7 @@ M453 C"exp.heater3+exp.heater4" F100 T1 ; spindle forward/reverse on heater 3&4 
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M453 P2 R5000 ; switch to CNC mode using heater 2 (E1 heater) pins to control the spindle motor
 </pre>
 
@@ -3828,7 +3833,7 @@ See also [Configuring RepRapFirmware for a CNC machine](/User_manual/Machine_con
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M470 P"/sys/config.d"
 </pre>
 
@@ -3854,7 +3859,7 @@ Supported in RRF >= 2.03.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M471 S"/sys/config-override.g" T"/sys/config-override.g.bak"
 </pre>
 
@@ -3877,7 +3882,7 @@ Supported in RRF 3.1 and later.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M486 T12               ; Total of 12 objects (otherwise the firmware must count)
 M486 S3                ; Indicate that the 4th object is starting now
 M486 S3 A"cube copy 3" ; Indicate that the 4th object is starting now and name it
@@ -3912,7 +3917,7 @@ Implemented in RepRapFirmware 1.17 and later.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M500
 M500 P31
 M500 P10
@@ -3940,7 +3945,7 @@ Ensure that M501 is at the end of config.g in order for the values in config-ove
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M501
 </pre>
 
@@ -3952,7 +3957,7 @@ Set the active parameters to those stored in sys/config-override.g on the SD car
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M502
 </pre>
 
@@ -3966,7 +3971,7 @@ M502 does not clear or reset the config-override.g file; so next time the machin
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M503
 </pre>
 
@@ -3986,7 +3991,7 @@ The output may be truncated if it is too long. M503 does **not** include values 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M505 P"experimental" ; change config file path from /sys/ to /sys/experimental/
 </pre>
 
@@ -3996,7 +4001,7 @@ Following this command, files that would normally be fetched from /sys/ (for exa
 
 This command can be used to allow multiple configurations to be maintained easily. In RepRapFirmware the file /sys/config.g can contain just these two lines:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M505 P"config1"
 M98 P"config.g"`
 </pre>
@@ -4011,7 +4016,7 @@ The first line changes the config file folder to /sys/config1 and the second one
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M540 PDE:AD:BE:EF:CA:FE
 </pre>
 
@@ -4035,7 +4040,7 @@ All devices running on the same network should have different MAC addresses. For
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M550 P"Godzilla"
 </pre>
 
@@ -4063,7 +4068,7 @@ Both the mDNS and NetBIOS name are limited to 15 characters. If you use a longer
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M551 P"my-very-secret-word"
 </pre>
 
@@ -4091,7 +4096,7 @@ Quotation marks around the password are mandatory in RRF3, but discretionary in 
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M552 S1 P"MyNetwork"
 </pre>
 
@@ -4116,7 +4121,7 @@ On Duet boards with WiFi interfaces running firmware 1.19 and later, the IP addr
 
 **Duet 2 Ethernet:**
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M552 S1 P192.168.1.14
 </pre>
 
@@ -4143,7 +4148,7 @@ In firmware 1.18 and later the HTTP port address is set using the M586 command, 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M553 P255.255.255.0
 </pre>
 
@@ -4161,7 +4166,7 @@ DuetWifiFirmware versions 1.18 and earlier do not support setting the network ma
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M554 P192.168.1.1
 </pre>
 
@@ -4177,7 +4182,7 @@ DuetWifiFirmware versions 1.18 and earlier do not support setting the gateway ad
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M555 P1
 </pre>
 
@@ -4209,7 +4214,7 @@ Currently, only RepRapFirmware, Marlin and nanoDLP emulations are supported.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M556 S100 X0.7 Y-0.2 Z0.6
 </pre>
 
@@ -4238,7 +4243,7 @@ All values in mm.
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M557 X0:200 Y0:220 S20
 M557 X0:100 Y0:120 S50:60
 M557 R150 S15
@@ -4264,7 +4269,7 @@ Deprecated and not supported in firmware 1.18 and later. Cartesian/CoreXY printe
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M557 P1 X30 Y40.5
 </pre>
 
@@ -4297,7 +4302,7 @@ M558 must come before G31.
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M558 P5 C"e0stop" H5 F120 T3000  ; Z probe connected to Duet 2 E0 endstop input<br>
 M574 Z0 P"nil" ; (RRF 3.0 on Duet 2 ONLY) no Z endstop switch, free up Z endstop input
 M558 P5 C"zstop" H5 F120 T3000  ; Z probe connected to Duet 2 Z endstop input<br>
@@ -4375,7 +4380,7 @@ M558 must come before G31.
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M558 P1 X1 Y0 Z1 F500 T5000 H3 ; Z probe is used for homing X and Z axes (RRF 1.19 and earlier)<br>
 M558 P4 H5 F120 T3000  ; Z probe connected to E0 endstop input<br>
 M558 P7 H5 F120 T3000  ; Z probe connected to Z endstop input<br>
@@ -4426,7 +4431,7 @@ See also: [Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M559 P"config.g"
 </pre>
 
@@ -4448,7 +4453,7 @@ Was used by the original web interface to upload a configuration file. Can now b
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M560 P"index.html"
 </pre>
 
@@ -4464,7 +4469,7 @@ Clearly that string cannot exist in the body of the file, but can be put on the 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M561
 </pre>
 
@@ -4480,7 +4485,7 @@ This cancels any bed-plane fitting as the result of probing (or anything else) a
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M562 P2 ; Reset a temperature fault on heater 2
 </pre>
 
@@ -4506,7 +4511,7 @@ In firmware 1.20 and later, M562 with no parameters will clear a heater fault on
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M563 P0 D0:2:3 H1:3 ; create a tool using extruder drives 0, 2 and 3 and heaters 1 and 3
 M563 P1 D1 H2 X3 ; create a tool using extruder drive 1 and heater 2 with X movement mapped to the U axis
 M563 P2 D0:1 H1:2 X0:3 F0:2 ; create a tool using extruder drives 0 and 1, heaters 1 and 2, with X movement mapped to both X and U axes and fan 0 mapped to fans 0 and 2
@@ -4521,7 +4526,7 @@ Tools are usually (though not necessarily) extruders. Normally an M563 command t
 
 **D** The 'D' field specifies the drive(s) used by the tool - in the first example drives 0, 2 and 3. The 'D' field number corresponds to the 'E' parameter defined in the M584 command. '0' means first 'E' driver in M584 and so on. Drive 0 is the first drive in the machine after the movement drives (usually X, Y and Z). If there is no 'D' field the tool has no drives. Tools are driven using multiple values in the 'E' field of G1 commands, each controlling the corresponding drive in the 'D' field above, as follows:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 G1 X90.6 Y13.8 E2.24:2.24:15.89
 G1 X70.6 E0:0:42.4
 </pre>
@@ -4534,13 +4539,13 @@ Alternatively, if the slicer does not support generating G1 commands with multip
 
 **F** The print cooling fan of the tool, default 0. Use this parameter if you are not using fan 0 as the print cooling fan for the tool you are defining. You do not need to, and should not, map thermostatic fans to tools. To map more than one fan to the tool, the definition would typically look like this:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M563 P0 D0 H1 F0:1 ; tool 0 uses extruder drive 0 and heater 1. Fan 0 and Fan 1 are mapped to tool 0
 </pre>
 
 **R** The spindle number mapped to this tool. (RRF >= 3.3beta2)
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M563 P0 R0 ; assign spindle 0 to tool 0
 </pre>
 
@@ -4548,7 +4553,7 @@ M563 P0 R0 ; assign spindle 0 to tool 0
 
 **S** As shown in the example above the S parameter can be used to give a tool a name. RepRapFirmware supports an additional form of the M563 command. The command:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M563 S1
 </pre>
 
@@ -4562,7 +4567,7 @@ M563 with just a P parameter just reports the existing configuration of the tool
 
 RepRapFirmware allows the deletion of existing tools if M563 is called in this way:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M563 P1 D-1 H-1
 </pre>
 
@@ -4575,7 +4580,7 @@ M563 P1 D-1 H-1
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M564 S0 H0
 </pre>
 
@@ -4595,7 +4600,7 @@ Allow moves outside the print volume and before homing, or not. If the S paramet
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M566 X600 Y600 Z50 E600
 </pre>
 
@@ -4628,7 +4633,7 @@ Example: If you have two motors on your Z axis, physically connected to Z and E0
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M567 P2 E0.1:0.2:0.1:0.6
 </pre>
 
@@ -4662,7 +4667,7 @@ The default is for the first driver to be set to 1, and all others to be set to 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M568 P1 R140 S205 ; set standby and active temperatures for tool 1
 M568 P0 F5200 ; set spindle RPM for tool 0
 M568 P2 A1  ; set tool 2 heaters to their standby temperatures
@@ -4698,7 +4703,7 @@ See also [M585](/User_manual/Reference/Gcodes/M585).
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M568 P2 S0
 </pre>
 
@@ -4727,7 +4732,7 @@ After turning off command G1 instructions must send as many E values as the tool
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569 P0 S0        ; reverse the direction of the motor attached to driver 0
 M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimum step pulse, 2.5us minimum step interval, 5us DIR setup time and no hold time
 </pre>
@@ -4776,7 +4781,7 @@ Supported in RRF 3.3 and later on main boards with TMC22xx or TMC51xx stepper dr
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.2 P1 R0
 </pre>
 
@@ -4801,37 +4806,37 @@ A maximum of four CAN-connected drivers can be reached with M569.3 counting from
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.3
 Error: M569: missing parameter 'P'
 </pre>
 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.3 P54.0
 Error: M569.3: Message not received
 </pre>
 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.3 P50.0:51.0:52.0:53.0
 [-155.28, -4089.60, 6842.04, 0.00, ],
 </pre>
 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.3 P53.0:51.0:52.0:50.0
 [0.00, -4089.60, 6842.04, -155.28, ],
 </pre>
 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.3 P53.0:51.0:52.0:50.0 S
 [0.00, 0.00, 0.00, 0.00, ],
 </pre>
 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.3 P49.0
 Error: M569.3: Max CAN addresses we can reference is 4. Can't reference board 49.
 </pre>
@@ -4851,25 +4856,25 @@ The driver is put back into position mode by requesting a torque smaller than 0.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.4
 Error: M569: missing parameter 'P'
 </pre>
 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.4 P50.0:51.0
 Error: M569: missing parameter 'T'
 </pre>
 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.4 P50.0 T0.001
 0.001000 Nm
 </pre>
 
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.4 P50.0:51.0 T0
 pos_mode, pos_mode
 </pre>
@@ -4928,7 +4933,7 @@ The following manoeuvres are available:
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.5 P50.0 S500 A0 R0 D6 V64
 </pre>
 
@@ -4960,7 +4965,7 @@ The table below lists the available tuning manoeuvres. For more information see 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.6 P50.0 V1 ; conduct polarity detection and zeroing move on closed loop driver on HCL board at address 50.
 M569.6 P51.0 V2 ; conduct absolute SPI encoder calibration on move on closed loop driver on HCL board with magnetic encoder at address 50.
 </pre>
@@ -4974,7 +4979,7 @@ M569.6 P51.0 V2 ; conduct absolute SPI encoder calibration on move on closed loo
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M569.7 P40.0 C"out1"   ; driver 0 on board 40 uses port out1 on board 40 to control the brake
 </pre>
 
@@ -4997,7 +5002,7 @@ Note: after M569.7 is executed, the port will be initially off. Therefore, M569.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M570 S120
 </pre>
 
@@ -5009,7 +5014,7 @@ When using RepRapFirmware 3 the M570 command must come later in config,g than th
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M570 H1 P4 T15
 </pre>
 
@@ -5027,7 +5032,7 @@ M570 H1 P4 T15
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M571 P3 F200 S1  ; turn on logical pin 3 while extrusion is commanded (RRF 2)
 M571 P"heater3" S0.5 ; turn on heater 3 output at 50% PWM while extrusion is commanded (RRF 3)
 </pre>
@@ -5047,7 +5052,7 @@ RepRapFirmware 1.20 and later do not default to using the FAN0 output, so you mu
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M572 D0 S0.1 ; set extruder 0 pressure advance to 0.1 seconds
 M572 D0:1:2 S0.2 ; set extruder 0, 1 and 2 pressure advance to 0.2 seconds (RepRapFirmware 1.20 and later)
 </pre>
@@ -5068,7 +5073,7 @@ For more details such as tuning the value see [Pressure advance](/User_manual/Tu
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M573 P1
 </pre>
 
@@ -5108,13 +5113,13 @@ The M574 command has been updated to allow for more flexibility. This includes s
 
 Old RRF2.x code:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M574 X1 Y1 Z1 U2 S1  ; active high endstop switches, XYZ at min, U at max
 </pre>
 
 New RRF3 code:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M574 X1 S1 P"xstop"  ; X min active high endstop switch
 M574 Y1 S1 P"ystop"  ; Y min active high endstop switch
 M574 Z1 S1 P"zstop"  ; Z min active high endstop switch
@@ -5123,7 +5128,7 @@ M574 U2 S1 P"e0stop"  ; U max active high endstop switch
 
 To use two Z motors using independent homing switches, declare two Z motors in M584, then declare two pins for Z endstops in a single M574 command. Example
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M584 X0 Y1 Z2:3 E4
 M574 Z1 S1 P"io2.in+io3.in" ; Z axis with two motors, individual min endstops, active high
 </pre>
@@ -5146,7 +5151,7 @@ If this command refers to any axes other than X, Y and Z then it must be later i
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M574 X1 Y2 Z0 S1 ; X endstop at low end, Y endstop at high end, no Z endstop, all active high
 </pre>
 
@@ -5175,7 +5180,7 @@ In RepRapFirmware 1.16 and earlier, the M574 command with E parameter was used t
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M575 P1 B57600 S1
 </pre>
 
@@ -5207,7 +5212,7 @@ This sets the communications parameters of the SPI channel. Supported in RRF 3.4
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M577 X S0  ; wait until X endstop is not triggered
 M577 P2 ; wait
 </pre>
@@ -5222,7 +5227,7 @@ Wait for an endstop switch to be triggered or an input to become active.
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M577 P"!xstop+!e0stop"
 </pre>
 
@@ -5232,13 +5237,13 @@ The command waits for a high input level. To wait for a low input level, invert 
 
 Example - old code (RRF2.x):
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M577 X E0 S0 ; wait until the X and E0 endstop inputs are both low
 </pre>
 
 New code (RRF3):
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M577 P"!xstop+!e0stop" ; wait until the X and E0 endstop inputs are both low
 </pre>
 
@@ -5254,7 +5259,7 @@ M577 P"!xstop+!e0stop" ; wait until the X and E0 endstop inputs are both low
 
 ##### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M577 E0 S1
 </pre>
 
@@ -5278,7 +5283,7 @@ The following trigger types may be used using the 'S' parameter:
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M578 P3 S5
 </pre>
 
@@ -5299,7 +5304,7 @@ An alternative way of controlling inkjets would be to use the P parameter on the
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M579 X1.0127 Y0.998
 </pre>
 
@@ -5318,7 +5323,7 @@ On a suitable-configured IDEX printer, a scaling factor of -1 for the U axis can
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M580 R1 PVS4;!VZ2;!MC1;
 </pre>
 
@@ -5338,7 +5343,7 @@ The [Modela MDX-20](https://www.rolanddga.com/support/products/milling/modela-md
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 or E2 endstop input and a file is being printed from SD card
 </pre>
 
@@ -5359,7 +5364,7 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M581 P"e0stop+e1stop" T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 or E2 endstop input and a file is being printed from SD card
 M581 P"nil" T2 ; don't invoke trigger 2 on any input change any more
 </pre>
@@ -5385,7 +5390,7 @@ M581 P"nil" T2 ; don't invoke trigger 2 on any input change any more
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M581 T2 P0:3 S1 R1 ; invoke trigger 2 when an inactive-to-active edge is detected on input 0 or input 3 and a file is being printed from SD card
 M581 T3 X Y S1  ; invoke trigger 3 when the X or Y endstop switch is triggered
 M581 T2 P-1 ; don't invoke trigger 2 on any input change any more
@@ -5408,7 +5413,7 @@ M581 T2 P-1 ; don't invoke trigger 2 on any input change any more
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M582 T2 ; check levels of inputs that give rise to trigger #2
 </pre>
 
@@ -5435,7 +5440,7 @@ For example, if you use M581 to support an out-of-filament sensor, then M582 all
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M584 X0 Y1 Z2:3 E4:5:6 ; Driver 0 controls the X motor, 1 controls Y, 2 and 3 control Z motors, 4 5 and 6 control E motors
 </pre>
 
@@ -5449,19 +5454,19 @@ M584 X0 Y1 Z2:3 E4:5:6 ; Driver 0 controls the X motor, 1 controls Y, 2 and 3 co
 * On the Duet 2 WiFi and Duet 2 Ethernet, if you configure multiple drivers for an axis, either all of them must be TMC2660 drivers on the Duet or a Duet expansion board, or none of them must be. This is to facilitate dynamic microstepping and other features of the TMC2660.
 * In RRF3, M584 works the same way as in RRF2, with exception that on Duet 3 the driver on expansion boards are assigned with \<board address>.\<driver number>. Example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M584 X0 Y1 Z2 E3:4:1.0:1.1
 </pre>
 
 The "0" index for the main board is implicit, this is equivalent to the previous example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M584 X0.0 Y0.1 Z0.2 E0.3:0.4:1.0:1.1
 </pre>
 
 * If you assign an axis or extruder to one or more drivers, and later you want to reassign it to a different driver, then to ensure correct operation you must disable those axes/extruders using M18 before using M584 to reassign them. After using M584, you must set the motor current using M906 and the microstepping using M350. Example:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 ; Here axis B and extruder E0 have already been assigned and possibly moved, but we now want to reassign them
 M18 B E0      ; disable the axes/extruder that we are going to reassign
 M584 B3 E4     ; reassign them
@@ -5510,13 +5515,13 @@ This code works similarly to G1 .. H1 (machine homing; G1 .. S1 is RRF 2.02 and 
 
 Example - old code:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M585 X100 F600 E3 L0 S0 ; probe X until E0 endstop goes low
 </pre>
 
 New code:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M558 K1 P5 C"!e0stop" ; create probe #1 for use with M585, active low
 ...
 M585 X100 F600 P1 S0 ; probe X until probe #1 is triggered
@@ -5641,7 +5646,7 @@ This configures filament sensing for the specified extruder. The sensor may be a
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M591 P3 C"e0stop" S1 D0 ; filament monitor connected to E0 endstop
 </pre>
 
@@ -5655,7 +5660,7 @@ As RRF3, except 'C' parameter is the endstop number.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M591 D0 P3 C3 S1 R70:130 L24.8 E3.0  ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, enabled, sensitivity 24.8mm.rev, 70% to 130% tolerance, 3mm detection length
 M591 D0   ; display filament sensor parameters for extruder drive 0
 </pre>
@@ -5681,7 +5686,7 @@ M591 D0   ; display filament sensor parameters for extruder drive 0
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M591 D0 P5 C3 R70:140 E3.0 S1  ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, sensitivity 1.05, tolerance 70% to 140%, 3mm detection length
 M591 D1 ; display filament sensor parameters for extruder drive 1
 </pre>
@@ -5704,7 +5709,7 @@ M591 D1 ; display filament sensor parameters for extruder drive 1
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M592 D0 A0.01 B0.0005 ; set parameters for extruder drive 0
 
 M592 D0 ; report parameters for drive 0
@@ -5746,20 +5751,20 @@ Nonlinear extrusion is not applied to extruder-only movements such as retraction
 
 **Example (RRF 3.2 and earlier)**
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M593 F40.5  ; use DAA to cancel ringing at 40.5Hz
 </pre>
 
 **Example (RRF 3.3)**
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M593 P"daa" F40.5  ; use DAA to cancel ringing at 40.5Hz
 M593 P"none"   ; disable DAA
 </pre>
 
 **Examples (RRF 3.4 and later)**
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M593 P"zvd" F40.5  ; use ZVD input shaping to cancel ringing at 40.5Hz
 M593 P"none"     ; disable input shaping
 M593 P"custom" H0.4:0.7 T0.0135:0.0135 ; use custom input shaping
@@ -5830,7 +5835,7 @@ This command is sent by nanoDLP to execute a peel move after exposing a layer. R
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M665 L250 R160 B80 H240 X0 Y0 Z0
 </pre>
 
@@ -5854,7 +5859,7 @@ Set the delta calibration variables
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M666 X-0.1 Y+0.2 Z0
 </pre>
 
@@ -5881,7 +5886,7 @@ This command is deprecated in RRF 2.03 and later. Use M669 instead.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M667 S1
 </pre>
 
@@ -5928,7 +5933,7 @@ In RRF 3, segmentation is not used unless the S and/or T parameter is given. Seg
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M669
 Kinematics is Cartesian, matrix:
 1.00 0 0
@@ -5938,13 +5943,13 @@ Kinematics is Cartesian, matrix:
 
 CoreXY with extra Markforge U axis (see [this forum post](https://forum.duet3d.com/post/136554) for an example)
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M669 K1 X1:1:0:0 Y1:-1:0:-1 Z0:0:1:0 U0:0:0:1
 </pre>
 
 Note U motor values in X, Y, Z and U parameters come after the Z motor values. M669 reports:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M669
 Kinematics is modified CoreXY, matrix:
 1.00 1.00 0 0
@@ -5979,7 +5984,7 @@ In RRF 3, segmentation is not used unless the S and/or T parameter is given. Seg
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M669 K4 P300 D250 A-90:90 B-135:135 C0:0:0 S100 X300 Y0
 </pre>
 
@@ -6014,13 +6019,13 @@ There is currently no facility for offsetting the radius arm sideways from the c
 
 Example - old code:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M670 T5 P220:221:222
 </pre>
 
 New code:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M670 T5 C"sx1509b.0+sx1509b.1+sx1509b.2"
 </pre>
 
@@ -6042,7 +6047,7 @@ M670 T5 C"sx1509b.0+sx1509b.1+sx1509b.2"
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M671 X-15.0:100.0:215.0 Y220.0:-20.0:220.0 ; Z leadscrews are at (-15,220), (100,-20) and (215,220)
 </pre>
 
@@ -6064,7 +6069,7 @@ Note: the M671 command in config.g must come after any command to change the kin
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M672 S105:50:205
 </pre>
 
@@ -6086,7 +6091,7 @@ See the [Smart effector and carriage adapters for delta printer](/Duet3D_hardwar
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M673 A
 </pre>
 
@@ -6112,7 +6117,7 @@ This code is intended to determine the Z center point of a stash that is mounted
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M675 X R2 F1200
 </pre>
 
@@ -6127,7 +6132,7 @@ This code is intended to find the center of a cavity that can be measured using 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M701 S"PLA"
 </pre>
 
@@ -6151,7 +6156,7 @@ If this code is called without any parameters, RepRapFirmware will report the na
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M702
 </pre>
 
@@ -6169,7 +6174,7 @@ In contrast to M701 this code is intended to unload the previously loaded filame
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M703
 </pre>
 
@@ -6270,7 +6275,7 @@ Supported in RepRapFirmware version 1.16 and later.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M905 P2016-10-26 S00:23:12
 M905 P2016-10-26 S00:23:12 T"Europe/Berlin" ^1^
 </pre>
@@ -6295,7 +6300,7 @@ This command must be later in config.g than any M584 command.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M906 X300 Y500 Z200 E350:350
 </pre>
 
@@ -6335,7 +6340,7 @@ This code is supported in SBC mode in DSF v3.4-b2 and later (see [here](https://
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M911 S19.8 R22.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
 </pre>
 
@@ -6353,7 +6358,7 @@ M911 with no parameters displays the current enable/disable state, and the thres
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M911 S12.0:19.5:22.0
 </pre>
 
@@ -6430,7 +6435,7 @@ If this command refers to any axes other than X, Y and Z then it must appear lat
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M915 P0:2:3 S10 F1 R0
 M915 X Y S5 R2
 </pre>
@@ -6453,7 +6458,7 @@ Supported in firmware 1.20 beta 2 and later.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M916
 </pre>
 
@@ -6477,7 +6482,7 @@ If this command refers to any axes other than X, Y and Z then it must appear lat
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M917 X70 Y70 Z80 E70:70
 </pre>
 
@@ -6501,7 +6506,7 @@ This command is used to tell RepRapFirmware about a directly-connected LCD such 
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M918 P1 E2
 </pre>
 
@@ -6515,7 +6520,7 @@ M918 P1 E2
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M929 P"eventlog.txt" S1 ; start logging to file eventlog.txt
 M929 S0 ; stop logging
 </pre>
@@ -6561,7 +6566,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 
 When using M950 to create a fan, the port name string may be either a single port, or two ports separated by the '+' sign. The second port is used to read the fan tacho. **Any CAN address at the start of the port name string applies to both port names.**
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M950 F5 C"!out4+out4.tach" Q450 ; Create Fan 5 on the mainboard on OUT4 with a tacho input
 M950 F0 C"!1.out3+out3.tach" Q450 ; Create Fan 0 on expansion board 1, output OUT3 with a tacho input
 </pre>
@@ -6570,7 +6575,7 @@ When using M950 to create a heater, RRF 3.4 allows multiple port names to be pro
 
 When using M950 to create a spindle (from RRF 3.3) use the following format:
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M950 R0 C"pwm_pin+forward_pin+reverse_pin" Qfff Laa:bb
 </pre>
 
@@ -6580,7 +6585,7 @@ M950 R0 C"pwm_pin+forward_pin+reverse_pin" Qfff Laa:bb
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M950 H1 C"out1" Q100 T1 ; create heater 1
 M950 H1 C"3.out0+out2" Q100 T1 ; create heater 1 using ports OUT0 and OUT1 on CAN board 3 (RRF 3.4 or later)
 M950 H2 C"nil" ; disable heater 2 and free up the associated pin
@@ -6620,7 +6625,7 @@ If commanding the motors to increase Z causes the sensor value to increase, then
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M952 B121 A20  ; change the CAN address of expansion board 121 to 20
 M952 B20 S500  ; change the CAN bit rate or expansion board 20 to 500kbps
 </pre>
@@ -6714,7 +6719,7 @@ This command is used to raise an event internally as if the event had actually o
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M957 E"heaterFault" D1 B2
 </pre>
 
@@ -6738,7 +6743,7 @@ The meaning of the optional additional parameter also depends on the event type.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M997 S0:1 - update firmware modules 0 and 1
 </pre>
 
@@ -6766,7 +6771,7 @@ See [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firm
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M998 P34
 </pre>
 
@@ -6782,7 +6787,7 @@ Request a resend of line 34. In some implementations the input-handling code ove
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 M999
 </pre>
 
@@ -6807,7 +6812,7 @@ Restarts the firmware using a software reset.
 
 ### Examples
 <br>
-<pre style="color:blue;font-size:0.8em">
+<pre class="cblock">
 T0 ; select tool 0
 T1 P0 ; select tool 1 but don't run any tool change macro files
 T-1 P0 ; deselect all tools but don't run any tool change macro files
