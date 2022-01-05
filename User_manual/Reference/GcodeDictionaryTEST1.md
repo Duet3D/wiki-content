@@ -2,7 +2,7 @@
 title: Gcode Dictionary TEST 1
 description: 
 published: true
-date: 2022-01-05T11:06:31.126Z
+date: 2022-01-05T11:30:07.640Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-21T23:37:57.258Z
@@ -18,57 +18,32 @@ RepRapFirmware GCodes were originally based on the information from the [RepRap 
 
 A typical piece of GCode sent to a machine running RepRapFirmware might look like this (The meaning of these codes (and more) is explained below on this page.)
 
-.contents .cblock {
-  padding-top: 5px;
-  padding-right: 5px;
-  padding-bottom: 5px;
-  padding-left: 8px;
-  background-color: #e1e1e1;
-  color: #0318d1;
-  font-size: .85rem;
-  overflow: auto;
-  font-family: monospace,monospace
-}
-
-div class=cblock (ignores white space and overflow)
+div with white-space: pre-line
 <br>
-<div class=cblock>
-G10 P0 S195 R175
-   T0
+<div class=cblock style="white-space: pre-line">G10 P0 S195 R175
+  T0 ; this line is meant to be indented 2 spaces
 G1 X100 Y100 Z0.3 F3000      ;      really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line 
 G1 X100.4 Y99.3 E0.23 F600
-...many 1000 more lines...
+...many 1000s more lines...
 </div>
 
-
-div class=cblock style="white-space: pre-line" (ignores overflow, first line extra return unless immediately follows )
+div with white-space: pre-wrap
 <br>
-<div class=cblock style="white-space: pre-line">
-G10 P0 S195 R175
-   T0
+<div class=cblock style="white-space: pre-wrap">G10 P0 S195 R175
+  T0 ; this line is meant to be indented 2 spaces
 G1 X100 Y100 Z0.3 F3000      ;      really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line 
 G1 X100.4 Y99.3 E0.23 F600
-...many 1000 more lines...
+...many 1000s more lines...
 </div>
 
-div class=cblock style="white-space: pre-wrap"
-<br>
-<div class=cblock style="white-space: pre-wrap">
-G10 P0 S195 R175
-   T0
-G1 X100 Y100 Z0.3 F3000      ;      really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line 
-G1 X100.4 Y99.3 E0.23 F600
-...many 1000 more lines...
-</div>
-
-pre class=cblock
+pre with overflow: auto
 <br>
 <pre class=cblock>
 G10 P0 S195 R175
-   T0
+  T0 ; this line is meant to be indented 2 spaces
 G1 X100 Y100 Z0.3 F3000      ;      really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line really long line 
 G1 X100.4 Y99.3 E0.23 F600
-...many 1000 more lines...
+...many 1000s more lines...
 </pre>
 
 
