@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-07T11:34:43.680Z
+date: 2022-01-07T13:44:55.897Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3236,8 +3236,7 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 
 * **Sn** Sensor number
 * **P"pin_name"** The name of the control board pin that this sensor uses. For thermistors it is the thermistor input pin name, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names). For sensors connected to the SPI bus it is the name of the output pin used as the chip select.
-* **Y"sensor_type"** The sensor and interface type, one of: "thermistor", "pt1000", "rtd-max31865", "thermocouple-max31855", "thermocouple-max31856", "linear-analog", "dht21", "dht22", "dhthumidity", "current-loop-pyro", "drivers". All boards except the Duet 3 Mini also support "mcu-temp". Duet WiFi/Ethernet with an attached DueX2 or DueX5 also support "drivers-duex". Firmware 3.2 and earlier also supports "dht11" but this support is likely to be removed in future firmware versions.
-
+* **Y"sensor_type"** The sensor and interface type, one of: "thermistor", "pt1000", "rtd-max31865", "thermocouple-max31855", "thermocouple-max31856", "linear-analog", "dht21", "dht22", "dhthumidity", "current-loop-pyro", "drivers", "mcu-temp" (see note below regarding "mcu-temp" support on Duet 3 Mini 5+). Duet WiFi/Ethernet with an attached DueX2 or DueX5 also support "drivers-duex". Firmware 3.2 and earlier also supports "dht11" but this support is likely to be removed in future firmware versions.
 * **A"name"** Sensor name (optional), displayed in the web interface
 
 **Additional parameters for thermistors**
@@ -3267,13 +3266,9 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 
 **Additional parameters for linear analog sensors**
 
-* **Fn** F0 = unfiltered (fast response), F1 = filtered (slower response, but noise reduced and ADC oversampling used to increase resolution)
+* **Fn** F0 = unfiltered (fast response), F1 = filtered (slower response, but noise reduced and ADC oversampling used to increase resolution). F1 is only available when using a port intended for thermistors, not when using a general input port.
 * **Bnnn** The temperature or other value when the ADC output is zero
 * **Cnnn** The temperature or other value when the ADC output is full scale
-
-**Note on the drivers temperature sensor**
-
-The Trinamic drivers used on Duets do not report temperature, rather they report one of: temperature OK, temperature overheat warning, and temperature overheat error. RRF translates these three states into readings of 0C, 100C and 130C.
 
 **P"nnn" parameter for "dhthumidty"**
 
@@ -3282,9 +3277,25 @@ Reimplementing DHT support in RepRapFirmware 3 has led to a new concept of addit
 ### Examples
 <br>
 <pre class="cblock">
-M308 S10 P"0.spi.cs1" Y"dht22" A"Filament Temp"      ; define DHT22 temperature sensor
-M308 S11 P"S10.1" Y"dhthumidity" A"Filament Hum[%]"  ; Attach DHT22 humidity sensor to secondary output of temperature sensor
+M308 S1 P"temp1" Y"thermistor" T100000 B4725 C7.06e-8 ; configure sensor 1 as thermistor on pin temp1
+M308 S1 P"temp1" Y"pt1000"                            ; configure sensor 1 as PT1000 on pin temp1
+M308 S1 P"spi.cs1" Y"thermocouple-max31856"           ; configure sensor 1 as K-type thermocouple via CS pin spi.cs1 
+M308 S1 P"spi.cs1" Y"rtd-max31865"                    ; configure sensor 1 as PT100 on pin spi.cs1
+M308 S10 Y"mcu-temp" A"MCU"                           ; defines sensor 10 as MCU temperature sensor
+M308 S11 Y"drivers" A"Duet stepper drivers"           ; defines sensor 11 as stepper driver temperature sensor
+M308 S12 Y"drivers-duex" A"Duex stepper drivers"      ; for Duet 2 WiFi/Ethernet with DueX2/5, defines sensor 12 as DueX2/5 stepper driver temps<br>
+M308 S10 P"0.spi.cs1" Y"dht22" A"Filament Temp"       ; define DHT22 temperature sensor
+M308 S11 P"S10.1" Y"dhthumidity" A"Filament Hum[%]"   ; Attach DHT22 humidity sensor to secondary output of temperature sensor
 </pre>
+
+To read mcu and  driver temperatures on an expansion board connected to a Duet 3 mainboard, set the CAN address in the P parameter. For example, a board at CAN address 1 would use:
+<br>
+<pre class="cblock">
+M308 S12 Y"mcu-temp" P"1.dummy" A"3HC MCU"
+M307 S13 Y"drivertemp" P"1.dummy" A"3HC Steppers"
+</pre>
+
+Note that from RRF 3.4.0 beta 8, "drivertemp" will be changed to "drivers" to match the main board.
 
 ### Notes
 
@@ -3293,10 +3304,14 @@ This code replaces M305 in RepRapFirmware 3. In earlier versions of RepRapFirmwa
 M308 can be used in the following ways:
 * **M308 Snn Y"type" [other parameters]**: delete sensor nn if it exists, create a new one with default settings, and configure it using the other parameters. At least the pin name must also be provided, unless the sensor doesn't use a pin (e.g. MCU temperature sensor).
 * **M308 Snn**: report the settings of sensor nn, this will also report the last error on that sensor if applicable
-* **M308 A"name"*: report the settings of the first sensor named "name"
+* **M308 A"name"**: report the settings of the first sensor named "name"
 * **M308 Snn [any other parameters except Y]**: amend the settings of sensor nn
 
 Sensor type names obey the same rules as [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names), i.e. case is not significant, neither are hyphen and underscore characters.
+
+The Trinamic drivers used on Duets do not report temperature, rather they report one of: temperature OK, temperature overheat warning, and temperature overheat error. RRF translates these three states into readings of 0C, 100C and 130C.
+
+mcu-temp on Duet 3 Mini 5+: The SAME54P20A chip used in the Duet 3 Mini 5+ does not have a functioning temperature sensor. In theory it does have an on-chip temperature sensor, but the errata document for the chip says it doesn't work. However, experimental support for the Duet 3 Mini 5+ on-chip MCU temperature sensor has been added in RepRapFirmware 3.3 beta 3. As the chip manufacturer advises that it is not supported and should not be used, we can't promise that it will give useful readings on all boards. It will be removed if it causes significant support issues. Please report any issues in the [Duet3D support forum](https://forum.duet3d.com/).
 
 When converting from older versions of RRF to RRF3 you must replace each M305 command by a similar M308 command, which must be earlier in config.g than any M950 command that uses it. You must also use M950 to define each heater that you use, because there are no default heaters.
 
