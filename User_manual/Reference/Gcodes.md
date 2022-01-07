@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-07T16:19:23.622Z
+date: 2022-01-07T20:04:11.430Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5630,12 +5630,12 @@ The M588 command will fail if the WiFi module has not yet been taken out of rese
 
 This command configures a given pin to read a filament sensor and configures filament monitoring for its corresponding extruder. The filament sensor may be a simple switch that detects the presence of filament, or a sensor that measures filament motion (e.g. laser, magnetic or pulsed filament monitor), or both.
 
-In RRF 3.2 and later, the action on a filament error is to:
+In **RRF 3.2 and later**, the action on a filament error is to:
 * run filament-error#.g if available, where # is the extruder number
 * failing that run filament-error.g if available
 * failing that the Duet enters the Pausing state, shows a message on all available targets with the type of filament error, and invokes system macro pause.g. The job is paused and will need manual intervention to resume the print.
 
-RRF 1.19 to 3.1.1 does not support filament-error macros. The action on a filament error is to enter the Pausing state, show a message on all available targets with the type of filament error, and invoke system macro pause.g. The job is paused and will need manual intervention to resume the print.
+**RRF 1.19 to 3.1.1** does not support filament-error macros. The action on a filament error is to enter the Pausing state, show a message on all available targets with the type of filament error, and invoke system macro pause.g. The job is paused and will need manual intervention to resume the print.
 
 Note that filament monitoring in RRF is only active when printing from SD card.
 
@@ -5724,7 +5724,7 @@ M591 D1 ; display filament sensor parameters for extruder drive 1
 
 ### Notes
 
-* DueX2/5: Endstop inputs on the DueX expansion board (duex.e[2-6]stop in RRF 3.x, C5 thru C9 in RRF 2.x), can only be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation or laser sensor). However, the endstop inputs on the Duet 2 WiFi/Ethernet CONN_LCD connector (connlcd.4 and connlcd.3 in RRF3.x, C10 and C11 in RRF 2.x) can.
+* DueX2/5: Endstop inputs on the DueX expansion board (duex.e[2-6]stop in RRF 3.x, C5 thru C9 in RRF 2.x) can only be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation or laser sensor). However, the endstop inputs on the Duet 2 WiFi/Ethernet CONN_LCD connector (connlcd.4 and connlcd.3 in RRF3.x, C10 and C11 in RRF 2.x) support any filament sensor.
 * To free a filament sensor's GPIO pin, run M591 D# P0, where # is the corresponding extruder.
 
 ### Documentation
