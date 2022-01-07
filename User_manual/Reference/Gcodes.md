@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-07T20:04:11.430Z
+date: 2022-01-07T20:06:34.598Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5679,6 +5679,7 @@ Note that filament monitoring in RRF is only active when printing from SD card.
 <br>
 <pre class="cblock">
 M591 P3 C"e0stop" S1 D0 ; filament monitor connected to E0 endstop
+M591 D0 ; display filament sensor parameters for extruder drive 0
 </pre>
 
 #### M591 - RepRapFirmware 1.21 to 2.x
@@ -5692,8 +5693,8 @@ As RRF3, except 'C' parameter is the endstop number.
 ##### Examples
 <br>
 <pre class="cblock">
-M591 D0 P3 C3 S1 R70:130 L24.8 E3.0  ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, enabled, sensitivity 24.8mm.rev, 70% to 130% tolerance, 3mm detection length
-M591 D0   ; display filament sensor parameters for extruder drive 0
+M591 D0 P3 C3 S1 R70:130 L24.8 E3.0 ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, enabled, sensitivity 24.8mm.rev, 70% to 130% tolerance, 3mm detection length
+M591 D0 ; display filament sensor parameters for extruder drive 0
 </pre>
 
 #### M591 - RepRapFirmware 1.20 and earlier
@@ -5718,7 +5719,7 @@ M591 D0   ; display filament sensor parameters for extruder drive 0
 ##### Examples
 <br>
 <pre class="cblock">
-M591 D0 P5 C3 R70:140 E3.0 S1  ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, sensitivity 1.05, tolerance 70% to 140%, 3mm detection length
+M591 D0 P5 C3 R70:140 E3.0 S1 ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, sensitivity 1.05, tolerance 70% to 140%, 3mm detection length
 M591 D1 ; display filament sensor parameters for extruder drive 1
 </pre>
 
