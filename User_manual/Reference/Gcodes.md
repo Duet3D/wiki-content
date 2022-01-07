@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-07T14:38:28.148Z
+date: 2022-01-07T15:17:07.204Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5628,19 +5628,32 @@ The M588 command will fail if the WiFi module has not yet been taken out of rese
 
 ## M591: Configure filament sensing
 
-This configures filament sensing for the specified extruder. The sensor may be a simple filament presence detector, or a device that measures movement of filament, or both. The action on a filament error is to run filament-error#.g (RRF 3.2 and later, where # is the extruder number), failing that run filament-error.g (RRF 3.2 and later), or failing that run pause.g (RRF 1.19 and later). After that the print is paused and a notification is sent advise you that there has been a filament error. Note that filament monitoring in RRF is only active when printing from SD card.
+This command configures a given pin to read a filament sensor and configures filament monitoring for its corresponding extruder. The filament sensor may be a simple switch that detects the presence of filament, or a sensor that measures filament motion (e.g. laser, magnetic or pulsed filament monitor), or both.
 
-#### M591 - RepRapFirmware 3
+In RRF 3.2 and later, the action on a filament error is to:
+* run filament-error#.g if available, where # is the extruder number
+* failing that run filament-error.g if available
+* failing that the Duet enters the Pausing state, shows a message on all available targets with the type of filament error, and invokes system macro pause.g.
 
-### Parameters
+RRF 1.19 to 3.1.1 does not support filament-error macros. The action on a filament error is to enter the Pausing state, show a message on all available targets with the type of filament error, and invoke system macro pause.g.
+
+If the firmware invokes pause.g when an error is detected, the job is paused and will need manual intervention to resume the print.
+
+Note that filament monitoring in RRF is only active when printing from SD card.
+
+### Tabs {.tabset}
+
+#### M591 - RepRapFirmware 3.x
+
+##### Parameters
 
 * **Dnn** Extruder drive number (0, 1, 2...)
 * **Pnn** Type of sensor:
-  * 0=none
-  * 1=simple sensor (high signal when filament present)
-  * 2=simple sensor (low signal when filament present)
-  * 3=Duet3D rotating magnet sensor
-  * 4=Duet3D rotating magnet sensor with microswitch
+  * 0 = none
+  * 1 = simple sensor (high signal when filament present)
+  * 2 = simple sensor (low signal when filament present)
+  * 3 = Duet3D rotating magnet sensor
+  * 4 = Duet3D rotating magnet sensor with microswitch
   * 5 = Duet3D laser sensor
   * 6 = Duet3D laser sensor with microswitch
   * 7 = pulse-generating sensor
@@ -5664,7 +5677,7 @@ This configures filament sensing for the specified extruder. The sensor may be a
 * **Lnn** Filament movement per pulse in mm
 * **R, E** As for Duet3D laser filament monitor
 
-### Examples
+##### Examples
 <br>
 <pre class="cblock">
 M591 P3 C"e0stop" S1 D0 ; filament monitor connected to E0 endstop
@@ -5672,13 +5685,13 @@ M591 P3 C"e0stop" S1 D0 ; filament monitor connected to E0 endstop
 
 #### M591 - RepRapFirmware 1.21 to 2.x
 
-### Parameters
+##### Parameters
 
 As RRF3, except 'C' parameter is the endstop number.
 
 * **Cnn** Which input the filament sensor is connected to. On Duet electronics: 0=X endstop input, 1=Y endstop input, 2=Z endstop input, 3=E0 endstop input etc. If you have a Duex 2 or Duex 5 in your system, note that C5 thru C9 (the endstop inputs on the DueX) cannot be used for filament monitors, but C10 and C11 (the endstop inputs on the CONN_LCD connector) can.
 
-### Examples
+##### Examples
 <br>
 <pre class="cblock">
 M591 D0 P3 C3 S1 R70:130 L24.8 E3.0  ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, enabled, sensitivity 24.8mm.rev, 70% to 130% tolerance, 3mm detection length
@@ -5687,16 +5700,16 @@ M591 D0   ; display filament sensor parameters for extruder drive 0
 
 #### M591 - RepRapFirmware 1.20 and earlier
 
-### Parameters
+##### Parameters
 
 * **Dnn** Extruder drive number (0, 1, 2...)
 * **Pnn** Type of sensor, where:
-  * 0=none
-  * 1=simple sensor (high signal when filament present)
-  * 2=simple sensor (low signal when filament present)
-  * 3=Duet3D rotating magnet sensor
-  * 4=Duet3D rotating magnet sensor with microswitch
-* **Cn** Which input the filament sensor is connected to. On Duet electronics: 0=X endstop input, 1=Y endstop input, 2=Z endstop input, 3=E0 endstop input etc.
+  * 0 = none
+  * 1 = simple sensor (high signal when filament present)
+  * 2 = simple sensor (low signal when filament present)
+  * 3 = Duet3D rotating magnet sensor
+  * 4 = Duet3D rotating magnet sensor with microswitch
+* **Cn** Which input the filament sensor is connected to. On Duet electronics: 0 = X endstop input, 1 = Y endstop input, 2 = Z endstop input, 3 = E0 endstop input etc.
 
 **Additional parameters for Duet3D rotating magnet filament monitor**
 
@@ -5704,14 +5717,19 @@ M591 D0   ; display filament sensor parameters for extruder drive 0
 * **Rnn** Tolerance as a percentage of the commanded extrusion amount. A negative value puts the firmware in calibration mode.
 * **Enn** minimum extrusion length before a commanded/measured comparison is done, default 3mm
 
-### Examples
+##### Examples
 <br>
 <pre class="cblock">
 M591 D0 P5 C3 R70:140 E3.0 S1  ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, sensitivity 1.05, tolerance 70% to 140%, 3mm detection length
 M591 D1 ; display filament sensor parameters for extruder drive 1
 </pre>
 
-**Documentation**
+### Notes
+
+* Endstop inputs on the Duex expansion board, such as duex.e2stop, can only be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation or laser sensor).
+* To free a filament sensor's GPIO pin, run M591 D# P0, where # is the corresponding extruder.
+
+### Documentation
 
 * [Duet3d Rotating Magnet Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor)
 * [Duet3d Laser Filament Monitor](/Duet3D_hardware/Accessories/Laser_Filament_Monitor)
