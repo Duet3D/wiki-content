@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-07T15:17:07.204Z
+date: 2022-01-07T16:19:23.622Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5633,11 +5633,9 @@ This command configures a given pin to read a filament sensor and configures fil
 In RRF 3.2 and later, the action on a filament error is to:
 * run filament-error#.g if available, where # is the extruder number
 * failing that run filament-error.g if available
-* failing that the Duet enters the Pausing state, shows a message on all available targets with the type of filament error, and invokes system macro pause.g.
+* failing that the Duet enters the Pausing state, shows a message on all available targets with the type of filament error, and invokes system macro pause.g. The job is paused and will need manual intervention to resume the print.
 
-RRF 1.19 to 3.1.1 does not support filament-error macros. The action on a filament error is to enter the Pausing state, show a message on all available targets with the type of filament error, and invoke system macro pause.g.
-
-If the firmware invokes pause.g when an error is detected, the job is paused and will need manual intervention to resume the print.
+RRF 1.19 to 3.1.1 does not support filament-error macros. The action on a filament error is to enter the Pausing state, show a message on all available targets with the type of filament error, and invoke system macro pause.g. The job is paused and will need manual intervention to resume the print.
 
 Note that filament monitoring in RRF is only active when printing from SD card.
 
@@ -5657,7 +5655,7 @@ Note that filament monitoring in RRF is only active when printing from SD card.
   * 5 = Duet3D laser sensor
   * 6 = Duet3D laser sensor with microswitch
   * 7 = pulse-generating sensor
-* **C"name"** Pin name the filament sensor is connected to (RRF3 only), see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names)
+* **C"name"** Pin name the filament sensor is connected to (RRF3 only), see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names). DueX2/5 users, see Notes below.
 * **Sn** 0 = disable filament monitoring (default), 1 = enable filament monitoring when printing from SD card. Supported for all filament sensor types in firmwares 1.21.1 and in 2.0 and later. In firmware 1.21 this parameter is not supported for sensor types 1 and 2. Filament monitors accumulate calibration data (where applicable) even when filament monitoring is disabled.
 
 **Additional parameters for Duet3D laser filament monitor**
@@ -5689,7 +5687,7 @@ M591 P3 C"e0stop" S1 D0 ; filament monitor connected to E0 endstop
 
 As RRF3, except 'C' parameter is the endstop number.
 
-* **Cnn** Which input the filament sensor is connected to. On Duet electronics: 0=X endstop input, 1=Y endstop input, 2=Z endstop input, 3=E0 endstop input etc. If you have a Duex 2 or Duex 5 in your system, note that C5 thru C9 (the endstop inputs on the DueX) cannot be used for filament monitors, but C10 and C11 (the endstop inputs on the CONN_LCD connector) can.
+* **Cnn** Which input the filament sensor is connected to. On Duet electronics: 0=X endstop input, 1=Y endstop input, 2=Z endstop input, 3=E0 endstop input etc. DueX2/5 users, see Notes below.
 
 ##### Examples
 <br>
@@ -5709,7 +5707,7 @@ M591 D0   ; display filament sensor parameters for extruder drive 0
   * 2 = simple sensor (low signal when filament present)
   * 3 = Duet3D rotating magnet sensor
   * 4 = Duet3D rotating magnet sensor with microswitch
-* **Cn** Which input the filament sensor is connected to. On Duet electronics: 0 = X endstop input, 1 = Y endstop input, 2 = Z endstop input, 3 = E0 endstop input etc.
+* **Cn** Which input the filament sensor is connected to. On Duet electronics: 0 = X endstop input, 1 = Y endstop input, 2 = Z endstop input, 3 = E0 endstop input etc. DueX2/5 users, see Notes below.
 
 **Additional parameters for Duet3D rotating magnet filament monitor**
 
@@ -5726,7 +5724,7 @@ M591 D1 ; display filament sensor parameters for extruder drive 1
 
 ### Notes
 
-* Endstop inputs on the Duex expansion board, such as duex.e2stop, can only be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation or laser sensor).
+* DueX2/5: Endstop inputs on the DueX expansion board (duex.e[2-6]stop in RRF 3.x, C5 thru C9 in RRF 2.x), can only be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation or laser sensor). However, the endstop inputs on the Duet 2 WiFi/Ethernet CONN_LCD connector (connlcd.4 and connlcd.3 in RRF3.x, C10 and C11 in RRF 2.x) can.
 * To free a filament sensor's GPIO pin, run M591 D# P0, where # is the corresponding extruder.
 
 ### Documentation
@@ -5748,8 +5746,7 @@ M591 D1 ; display filament sensor parameters for extruder drive 1
 ### Examples
 <br>
 <pre class="cblock">
-M592 D0 A0.01 B0.0005 ; set parameters for extruder drive 0
-
+M592 D0 A0.01 B0.0005 ; set parameters for extruder drive 0<br>
 M592 D0 ; report parameters for drive 0
 </pre>
 
