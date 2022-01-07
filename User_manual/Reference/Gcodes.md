@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-05T17:29:21.796Z
+date: 2022-01-07T10:22:23.876Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -699,7 +699,7 @@ Because the behaviour of **G28** can be complex, it is recommended to consider t
 
 ## G29: Mesh bed probe
 
-This command uses a probe to measure the bed height at 4 or more points to determine its tilt and overall flatness. It then enables mesh compensation so that the nozzle will remain parallel to the bed. The printer must be homed with **G28** before using this command.
+This command uses a probe to measure the bed height at 4 or more points to determine its tilt and overall flatness. It then enables mesh bed compensation so that the nozzle will remain parallel to the bed. The printer must be homed with [G28](/User_manual/Reference/Gcodes/G28) before using this command.
 
 ### Usage
 
@@ -711,11 +711,11 @@ This command uses a probe to measure the bed height at 4 or more points to deter
 
 ### Parameters
 
-* **S0** Probe the bed, save the height map in a file on the SD card, and activate bed compensation. The height map is stored in file is */sys/heightmap.csv*.
-* **S1** Load the height map from file and activate bed compensation. The default filename is as for S0 but a different filename can be specified using the P parameter.
-* **S2** Clear height map
+* **S0** Probe the bed, save the height map in a file on the SD card, and activate mesh bed compensation. The height map is stored in file is */sys/heightmap.csv*.
+* **S1** Load the height map from file and activate mesh bed compensation. The default filename is as for S0 but a different filename can be specified using the P parameter.
+* **S2** Disable mesh bed compensation
 * **S3** Save height map (supported in RepRapFirmware 2.04 and later)
-* **P"file.csv"** Optional file name for bed height map file to save with **S3** or load with **S1**.
+* **P"file.csv"** Optional file name for height map file to save with **S3** or load with **S1**.
 * **Kn** (supported in RRF 3.01-RC5 and later only, default 0) Z probe number
 
 If G29 is commanded with no S parameter, then file **sys/mesh.g** is run if it exists, and in RRF 3.3 and later any parameters present are passed to mesh.g. If sys/mesh.g is not present then the command behaves like G29 S0.
@@ -723,15 +723,17 @@ If G29 is commanded with no S parameter, then file **sys/mesh.g** is run if it e
 ### Examples
 <br>
 <pre class="cblock">
-G29 S0              ; Probe the bed, save height map to *heightmap.csv* and enable compensation
-G29 S3 P"usual.csv" ; Save the current height map to file *usual.csv*
-G29 S2              ; clear bed height map (disables bed compensation)
-G29 S1 P"usual.csv" ; Load height map file *usual.csv* and enable compensation
+G29 S0              ; Probe the bed, save height map to "heightmap.csv" and enable mesh bed compensation
+G29 S3 P"usual.csv" ; Save the current height map to file "usual.csv"
+G29 S2              ; Disable mesh bed compensation)
+G29 S1 P"usual.csv" ; Load height map file "usual.csv" and enable mesh bed compensation
 </pre>
 
-To define the probe grid, see [M557](/User_manual/Reference/Gcodes/M557).
-You can define a height to taper off the compensation using [M376](/User_manual/Reference/Gcodes/M376)
-You can find more detailed information about setting up [Mesh Bed Compensation here](/User_manual/Connecting_hardware/Z_probe_mesh_bed).
+### Notes
+
+* To define the probe grid, see [M557](/User_manual/Reference/Gcodes/M557).
+* You can define a height to taper off the compensation using [M376](/User_manual/Reference/Gcodes/M376)
+* You can find more detailed information about setting up [Mesh Bed Compensation here](/User_manual/Connecting_hardware/Z_probe_mesh_bed).
 
 ## G30: Single Z-Probe
 
@@ -755,7 +757,7 @@ You can find more detailed information about setting up [Mesh Bed Compensation h
 G30     ; Probe the bed at the current XY position. When the probe is triggered, set the Z coordinate to the probe trigger height.
 G30 S-1 ; Probe the bed at the current XY position. When the probe is triggered, do not adjust the Z coordinate, just report the machine height at which the probe was triggered.
 G30 S-2 ; Probe the bed at the current XY position. When the probe is triggered, adjust the Z offset of the current tool to make the current position Z=0.
-G30 S-3 ; Probe the bed and set the Z probe trigger height to the height it stopped at (supported in RRF 2.03 and later)
+G30 S-3 ; Probe the bed and set the Z probe trigger height to the height it stopped at (supported in RRF 2.03 and later)<br>
 G30 P0 X20 Y50 Z-99999       ; Probe the bed at X20 Y50 and save the XY coordinates and the height error as point 0
 G30 P3 X180 Y180 Z-99999 S4  ; Probe the bed at X180 Y180, save the XY coordinates and the height error as point 3 and calculate 4-point compensation or calibration
 G30 P3 X180 Y180 Z-99999 S-1 ; As previous example but just report the height errors
@@ -764,7 +766,6 @@ G30 P3 X180 Y180 Z-99999 S-1 ; As previous example but just report the height er
 ### Description
 
 **Caution:** the XY coordinates are permitted to be outside the normal printable bed area! This is intentional, because some printers (e.g. delta printers) benefit from probing areas not used for printing.
-
 
 **G30 without a P parameter**
 
