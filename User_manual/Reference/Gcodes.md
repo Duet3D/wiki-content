@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-07T13:44:55.897Z
+date: 2022-01-07T14:38:28.148Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2626,6 +2626,10 @@ The values specified will be subtracted from the coordinates given in G0, G1 and
 * **Fnnn** retraction feedrate, in mm/min
 * **Tnnn** feedrate for un-retraction if different from retraction, mm/min (RepRapFirmware 1.16 and later only)
 * **Znnn** additional zlift/hop
+
+### Order dependency
+
+The M207 command must come later in config.g than the [M563](/User_manual/Reference/Gcodes/M563) command that creates the tool to which it relates.
 
 ### Examples
 <br>
