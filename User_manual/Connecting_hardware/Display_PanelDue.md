@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2021-12-15T22:52:03.478Z
+date: 2022-01-10T16:13:02.743Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -22,8 +22,8 @@ Information for connecting older versions of the PanelDue is available from [dc4
 
 |  | 4-wire | ribbon | 4-wire and ribbon |
 |:---|:---|
-| Duet 3 Mainboard 6HC | PanelDue, no SD | N/A | N/A |
-| Duet 3 Mini 5+ WiFi/Ethernet | PanelDue, no SD | PanelDue, SD | no reason to use both |
+| Duet 3 Mainboard 6HC | PanelDue, no SD | see below | see below |
+| Duet 3 Mini 5+, Duet 3 MB6XD | PanelDue, no SD | PanelDue, SD | no reason to use both |
 | Duet 2 WiFi/Ethernet v1.02 and later | PanelDue, no SD | PanelDue, SD | no reason to use both |
 | Duet 2 WiFi/Ethernet v1.0, v1.01 | PanelDue, no SD | SD only | PanelDue, SD |
 | Duet 2 Maestro | PanelDue, no SD | PanelDue, SD | no reason to use both |
@@ -46,7 +46,7 @@ The length of the 4-way cable is not critical, however the resistance per conduc
 
 ## Tabs {.tabset}
 
-### Duet 3
+### Duet 3 (all main boards)
 
 A PanelDue can be connected to connector IO_0 using a 4-core cable wired like the one shown in the images below. The 4-wire cable supplied with the PanelDue has a 4-way Molex KK connecter on each end, but is supplied with a 5-way Molex KK connector for use with Duet 3. You will need to rewire one end. The 4-wire cable does not allow access to the SD card socket on the PanelDue.
 
@@ -56,8 +56,8 @@ A PanelDue can be connected to connector IO_0 using a 4-core cable wired like th
 |---|---|
 | +5V | Red | 5V_EXT (pin 5) | ![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =200x) |
 | GND | Black/yellow | GND (pin 3) | ^^ |
-| URXD0 | Blue | IO_0_IN (pin 2) | ^^ |
-| UTXD0 | Green | IO_0_OUT (pin 4) | ^^ |
+| Dout | Blue | IO_0_IN (pin 2) | ^^ |
+| Din | Green | IO_0_OUT (pin 4) | ^^ |
 
 ![displays_paneldue_d3_wiring_01.jpg](/manual/displays/displays_paneldue_d3_wiring_01.jpg =400x)
 
@@ -81,16 +81,16 @@ Older versions of the Duet 2 WiFi/Ethernet need both the 4-wire and ribbon cable
 # Option 2: Ribbon cable
 
 * Available for PanelDue V2.0, V3.0, 5i and 7i only
-* Compatible with Duet 3 Mini 5+, Duet 2 WiFi / Ethernet / Maestro
+* Compatible with Duet 3 Mini 5+, Duet 3 MB6XD, Duet 2 WiFi / Ethernet / Maestro
 * Supports use of PanelDue SD card slot
-* Connects to PanelDue_SD on Duet 5 Mini 5+, CONN_SD on Duet 2
+* Connects to PanelDue_SD on Duet 5 Mini 5+ and Duet 3 MB6XD, CONN_SD on Duet 2
 * Cable length limited to 400mm for reliability
 * For PanelDue V2.0, both the ribbon cable **AND** 4-wire cable need to be connected to enable use of SD card slot.
 
 |  | Connect to: | Notes |
 |:---|:---|
-| Duet 3 Mainboard 6HC | N/A | No support for additional SD card in firmware |
-| Duet 3 Mini 5+ WiFi/Ethernet | PanelDue_SD | Additional jumper required; see note below |
+| Duet 3 MB6HC | N/A | See below for special wiring scheme |
+| Duet 3 Mini 5+, Duet 3 MB6XD | PanelDue_SD | Additional jumper may be required; see note below |
 | Duet 2 WiFi/Ethernet | CONN_SD |  |
 | Duet 2 Maestro | CONN_SD |  |
 
@@ -106,16 +106,50 @@ In tests using standard 28awg 1.27mm spaced ribbon cable, 400mm worked reliably 
 
 **Caution:** if you are using a thermocouple and/or PT100 daughter board, the use of long ribbon cables between the Duet and PanelDue may affect communication between the Duet and the daughter boards, because the ribbon cable connection to the SD card on PanelDue uses the same SPI bus as the daughter boards.
 
-### Duet 3 Mini 5+ WiFi/Ethernet
+### Duet 3 Mini 5+ and Duet 3 MB6XD
 
+On Duet 3 Mini 5+ and Duet 3 MB6XD, a PanelDue can be connected using a ribbon cable plugged into the socket labelled 'PanelDue_SD'. This is the only way to use the SD card socket on the PanelDue. Note:
+
+* Non-integrated versions of PanelDue and older versions of PanelDue 5i and 7i do not provide a card detect signal, so for these displays it is necessary to ground the card detect signal. On the Duet 3 Mini 5+ you can do this by bridging pins 2 and 4 of the EXP2 connector as shown here.
 ![displays_paneldue_ribbon_02.png](/manual/displays/displays_paneldue_ribbon_02.png =400x)
-
-On Duet 3 Mini 5+ WiFi/Ethernet, a PanelDue can be connected using a ribbon cable plugged into the socket labelled 'PanelDue_SD'. This is the only way to use the SD card socket on the PanelDue. Note:
-
-* **Do not do this on version 0.2 boards!** (see [Duet 3 Mini 5+ Errata](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview))
-* The PanelDue does not provide a card detect signal, so it is necessary to bridge pins 2 and 4 of the EXP2 connector as shown here.
 * The PanelDue connector on the Duet 3 Mini 5+ shares the io0.out and io0.in pins, so IO_0 cannot be used at the same time. 
-* If you have a PanelDue V3, 5i or 7i, you can connect using just the ribbon cable. If you have a PanelDue V2, you will need to connect the ribbon cable AND the 4-wire cable to access the SD card.
+
+### Duet 3 MB6HC using ribbon cable
+
+Although the Duet 3 MB6HC does not have a connector for the PanelDue ribbon cable, if access to the SD card on PanelDue is required then this is possible using a special wiring arrangement. You must use RepRapFirmware 3.4 or later, and you must enable the external SD card using this command:
+
+`M950 D1 C"cs_pin+cd_pin"`
+
+where ''cs_pin'' is the pin that the SD card CS line is connected to and ''cd_pin'' is the pin that the SD card detect pin (if available) is connected to. For these pins, if you are not using a temperature daughter board then we suggest that you use CS0 and CS2 respectively on the SPI daughter board connector to simplify the wiring; otherwise use the output pin and the input pin on one of the IO connectors. So the M950 line would look like this:
+
+`M950 D1 C"spi.cs0+spi.cs2"`
+
+or (for example)
+
+`M950 D1 C"io3.out+io3.in"`
+
+Note: if you are using an older version of either PanelDue 7i or PanelDue 5i, or a non-integrated version of PanelDue, then those do not support the CD signal. In that case you should omit the second port, for example:
+
+`M950 D1 C"spi.cs0"`
+
+The required wiring is as follows
+
+| PanelDue ribbon cable pin | Signal name | Duet 3 MB6HC pin |
+|---|---|
+| 1 | +5V | IO0 +5V |
+| 2 | GND | Temperature daughterboard pin 2 |
+| 3 | CS | Temperature daughterboard pin 3 (spi.cs0) or IOx OUT |
+| 4 | SCLK | Temperature daughterboard pin 4 |
+| 5 | MOSI | Temperature daughterboard pin 5 |
+| 6 | MISO | Temperature daughterboard pin 6 |
+| 7 | CD | Temperature daughterboard pin 7 (spi.cs2) or IOx IN |
+| 8 | +3V3 | Temperature daughterboard pin 8 |
+| 9 | Dout | IO0 IN |
+| 10 | Din | IO1 OUT |
+
+If you have no temperature daughter boards installed, then one way to cable this is to use both the ribbon cable and the 4-way cable, and remove conductors 1, 9 and 10 of the ribbon cable as illustrated here. **Caution! Using a ribbon cable with all conductors present will feed +5V into the microcontroller!**
+
+![displays_mb6hc_ribbon_cable.jpg](/manual/displays/displays_mb6hc_ribbon_cable.jpg =300x)
 
 # Firmware configuration
 
