@@ -2,7 +2,7 @@
 title: GCodes by function
 description: 
 published: true
-date: 2021-12-16T23:13:45.261Z
+date: 2022-01-10T11:03:08.606Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-06T15:58:12.677Z
@@ -227,6 +227,8 @@ dateCreated: 2021-07-06T15:58:12.677Z
 [M32](/User_manual/Reference/Gcodes/M32): Select file and start SD print
 
 [M36](/User_manual/Reference/Gcodes/M36): Return file information
+
+[M36.1](/User_manual/Reference/Gcodes/M36_1): Return embedded thumbnail data
 
 [M38](/User_manual/Reference/Gcodes/M38): Compute SHA1 hash of target file
 
