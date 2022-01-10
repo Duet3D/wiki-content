@@ -2,7 +2,7 @@
 title: GCodes by function
 description: 
 published: true
-date: 2022-01-10T11:03:08.606Z
+date: 2022-01-10T11:07:03.020Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-06T15:58:12.677Z
