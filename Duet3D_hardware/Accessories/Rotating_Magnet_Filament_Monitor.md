@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2021-12-13T13:30:31.913Z
+date: 2022-01-10T07:01:52.061Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -135,11 +135,11 @@ On systems that use a bowden tube it is also possible to mount the filament moni
 
 ## Tabs {.tabset}
 
-### PCB v1.7a
+### PCB v1.7a, 1.7b
 
-![magnetic_fm_v1.7a_wiring.png](/hardware/magnetic_filament_monitor/magnetic_fm_v1.7a_wiring.png =500x)
+![Wiring for the Rotating Magnet Filament monitor version 1.7a and v1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_wiring_d1.0.png =500x)
 
-**Note:** on board revision v1.7a, the 'Switch' and 'Output' header is rotated 180 degrees, ie the connector tab is on the outside edge, compared with v1.7.
+**Note:** on board revision v1.7a and later, the 'Switch' and 'Output' header is rotated 180 degrees, ie the connector tab is on the outside edge, compared with v1.7.
 
 ### PCB v1.7 
 
@@ -181,6 +181,14 @@ Connect the filament monitor to an endstop connection on the Duet 2 mainboard (t
 ## Optional filament presence switch
 
 You can connect a micro-switch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
+
+## 5V Operation
+
+It is possible to modify the Filament monitor PCB to connect to a controller that uses 5V logic. To do this use a small drill bit to carefully remove the connection between the two pads that is made with the ring of the throuhg hole between the pads. **Test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.**
+
+![Diagram showing the locaiton of the 3.3V/5V drillable jumper on the rotating magnet PCB version 1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_5v_d1.0.png =600x)
+
+This image shows PCB v1.7b, the process is the same for 1.7 and 1.7a
 
 # Firmware configuration
 
