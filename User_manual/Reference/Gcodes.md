@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-10T10:08:22.105Z
+date: 2022-01-10T10:43:33.801Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1443,17 +1443,24 @@ It can be used when printing from SD card and does the same as M23 and M24.
 <br>
 <pre class="cblock">
 M36 "filename.g"
+M36
 </pre>
 
-In RRF 3.x, the quotation marks around the filename are mandatory. Returns information for the specified SD card file in JSON format. If no path is specified in the filename, the default path is the folder where GCode file to print are normally stored, which in RepRapFirmware is 0:/gcodes.
+Returns information in JSON format for the specified SD card file (if a filename was provided) or for the file currently being printed. A sample response is:
+<br>
+<pre class="cblock">
+{"err":0,"size":436831,"fileName":"EscherLizardModified.gcode","lastModified":"2017-09-21T16:58:07","height":5.20,"layerHeight":0.20,"printTime":660,"simulatedTime":1586,"filament":[1280.7],"generatedBy":"Simplify3D(R) Version 4.0.0"}
+</pre>
 
-A sample response is:
+The "err" field is zero if successful, nonzero if the file was not found or an error occurred while processing it. The "size" field should always be present if the operation was successful. The presence or absence of other fields depends on whether the corresponding values could be found by reading the file. The "filament" field is an array of the filament lengths required from each spool. The size is in bytes, the times are in seconds, all other values are in mm. "printTime" is the printing time estimated by the slicer, "simulationTime" is the time measured when the print was simulated by the firmware. The fields may appear in any order, and additional fields may be present. Versions of RepRapFirmware prior to 3.4 do not provide the "fileName" field if information for a specific file was requested.
 
-`{"err":0,"size":457574,"height":4.00,"layerHeight":0.25,"filament":[6556.3],"generatedBy":"Slic3r 1.1.7 on 2014-11-09 at 17:11:32"}`
+RepRapFirmware 3.4 and later also return information about thumbnail imaged embedded in the GCode file via an additional JSON field "thumbnails". A sample value for this field is:
+<br>
+<pre class="cblock">
+"thumbnails":[{"width":32,"height":32,"fmt":"qoi","offset":103,"size":2140},{"width":220,"height":220,"fmt":"qoi","offset":2384,"size":25464}]
+</pre>
 
-The "err" field is zero if successful, nonzero if the file was not found or an error occurred while processing it. The "size" field should always be present if the operation was successful. The presence or absence of other fields depends on whether the corresponding values could be found by reading the file. The "filament" field is an array of the filament lengths required from each spool. The size is in bytes, all other values are in mm. The fields may appear in any order, and additional fields may be present.
-
-If the file name parameter is not supplied and a file on the SD card is currently being printed, then information for that file is returned including additional field "fileName". This feature is used by the web interface and by PanelDue, so that if a connection is made when a file is already being printed, the name and other information about that file can be shown.
+The "fmt" field denotes the encoding of the thumbnail and is either "png" or "qoi". The "thumbnails" field is omitted entirely if there are no thumbnails embedded in the GCode file.
 
 ## M37: Simulation mode
 
