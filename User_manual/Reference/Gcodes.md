@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-07T20:06:34.598Z
+date: 2022-01-10T10:08:22.105Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5630,13 +5630,15 @@ The M588 command will fail if the WiFi module has not yet been taken out of rese
 
 This command configures a given pin to read a filament sensor and configures filament monitoring for its corresponding extruder. The filament sensor may be a simple switch that detects the presence of filament, or a sensor that measures filament motion (e.g. laser, magnetic or pulsed filament monitor), or both.
 
-In **RRF 3.2 and later**, the action on a filament error is to:
+In **RRF 3.4 and later**, the action on a filament error is to:
 * run filament-error#.g if available, where # is the extruder number
 * failing that run filament-error.g if available
 * failing that the Duet enters the Pausing state, shows a message on all available targets with the type of filament error, and invokes system macro pause.g. The job is paused and will need manual intervention to resume the print.
+* note if you use a filament-error macro, there is no pause unless you put an M25 in the macro. If the job is paused, it will require manual intervention, or M24 in the macro [currently not tested, but should work!], to resume the print.
+
+**RRF 3.2 and 3.3** is the same as RRF 3.4 and later, except the print is paused first. filament-error#.g or filament-error.g is run instead of pause.g if one of them exists. However, as the job is paused, you will need manual intervention to resume the print (M24 cannot be called from within any pause macro, which is what the filament-error macros are).
 
 **RRF 1.19 to 3.1.1** does not support filament-error macros. The action on a filament error is to enter the Pausing state, show a message on all available targets with the type of filament error, and invoke system macro pause.g. The job is paused and will need manual intervention to resume the print.
-
 Note that filament monitoring in RRF is only active when printing from SD card.
 
 ### Tabs {.tabset}
