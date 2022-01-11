@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2022-01-11T12:40:31.031Z
+date: 2022-01-11T13:09:11.509Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -97,9 +97,9 @@ Older versions of the Duet 2 WiFi/Ethernet need both the 4-wire and ribbon cable
 ## Notes
 
 * In order to use the SD card slot on the PanelDue, you must use the ribbon cable option. If you do not wish to use the SD card slot, it's recommended to use the 4-wire cable option described in Option 1. 
-* If using a non-integrated PanelDue, or PanelDue 5i v1.0 or PanelDue 7i v2.0 with Duet 3, see 'Card detect signal' section below.
-* The **Duet 3 MB6HC** has no PanelDue_SD socket. It requires RRF 3.4 or later, and special wiring scheme; see 'Duet 3 MB6HC using ribbon cable' section below.
-* The PanelDue connector on the **Duet 3 Mini 5+** shares the io0.out and io0.in pins, so IO_0 cannot be used at the same time. 
+* If a **Duet 3** with a non-integrated PanelDue, PanelDue 5i v1.0 or PanelDue 7i v2.0, see 'Card detect signal' section below.
+* The **Duet 3 MB6HC** has no PanelDue_SD socket. To use the external SD card, it requires RRF 3.4 or later, and a special wiring scheme; see 'Duet 3 MB6HC using ribbon cable' section below.
+* On **Duet 3 Mini 5+** and **Duet 3 MB6XD**, the PanelDue connector shares the io0.out and io0.in pins, so IO_0 cannot be used at the same time. 
 
 ## Wiring
 
@@ -119,7 +119,7 @@ Although the Duet 3 MB6HC does not have a connector for the PanelDue ribbon cabl
 
 `M950 D1 C"cs_pin+cd_pin"`
 
-where ''cs_pin'' is the pin that the SD card CS line is connected to and ''cd_pin'' is the pin that the SD card detect pin (if available) is connected to. For these pins, if you are not using a temperature daughter board then we suggest that you use CS0 and CS2 respectively on the SPI daughter board connector to simplify the wiring; otherwise use the output pin and the input pin on one of the IO connectors. So the M950 line would look like this:
+where *cs_pin* is the pin that the SD card CS line is connected to and *cd_pin* is the pin that the SD card detect pin (if available) is connected to. For these pins, if you are not using a temperature daughter board then we suggest that you use CS0 and CS2 respectively on the SPI daughter board connector to simplify the wiring; otherwise use the output pin and the input pin on one of the IO connectors. So the M950 line would look like this:
 
 `M950 D1 C"spi.cs0+spi.cs2"`
 
