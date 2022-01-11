@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2022-01-10T16:13:02.743Z
+date: 2022-01-11T12:40:31.031Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -14,7 +14,7 @@ dateCreated: 2021-11-09T17:02:03.830Z
 
 All Duet boards support the PanelDue colour TFT touch screen control panel.
 
-There are two cable options for connecting the PanelDue, both options are included with the PanelDue V3 kit. Option 1 is the included 4-wire cable with Molex KK connector ends. Option 2 is the included 10-wire ribbon cable. For some boards, both cables need to be plugged in to enable both TFT panel and SD card socket.
+There are two cable options for connecting the PanelDue, both options are included with the PanelDue. Option 1 is the included 4-wire cable with Molex KK connector ends. Option 2 is the included 10-wire ribbon cable. For some older boards, both cables need to be plugged in to enable both TFT panel and SD card socket.
 
 Information for connecting older versions of the PanelDue is available from [dc42's blog here](https://miscsolutions.wordpress.com/paneldue/).
 
@@ -22,7 +22,7 @@ Information for connecting older versions of the PanelDue is available from [dc4
 
 |  | 4-wire | ribbon | 4-wire and ribbon |
 |:---|:---|
-| Duet 3 Mainboard 6HC | PanelDue, no SD | see below | see below |
+| Duet 3 Mainboard 6HC | PanelDue, no SD | see below ||
 | Duet 3 Mini 5+, Duet 3 MB6XD | PanelDue, no SD | PanelDue, SD | no reason to use both |
 | Duet 2 WiFi/Ethernet v1.02 and later | PanelDue, no SD | PanelDue, SD | no reason to use both |
 | Duet 2 WiFi/Ethernet v1.0, v1.01 | PanelDue, no SD | SD only | PanelDue, SD |
@@ -82,19 +82,26 @@ Older versions of the Duet 2 WiFi/Ethernet need both the 4-wire and ribbon cable
 
 * Available for PanelDue V2.0, V3.0, 5i and 7i only
 * Compatible with Duet 3 Mini 5+, Duet 3 MB6XD, Duet 2 WiFi / Ethernet / Maestro
+* Supported on Duet 3 MB6HC requires RRF 3.4 and later, and modified wiring loom; see below
 * Supports use of PanelDue SD card slot
 * Connects to PanelDue_SD on Duet 5 Mini 5+ and Duet 3 MB6XD, CONN_SD on Duet 2
 * Cable length limited to 400mm for reliability
 * For PanelDue V2.0, both the ribbon cable **AND** 4-wire cable need to be connected to enable use of SD card slot.
 
-|  | Connect to: | Notes |
+|  | Connect to: | 
 |:---|:---|
-| Duet 3 MB6HC | N/A | See below for special wiring scheme |
-| Duet 3 Mini 5+, Duet 3 MB6XD | PanelDue_SD | Additional jumper may be required; see note below |
-| Duet 2 WiFi/Ethernet | CONN_SD |  |
-| Duet 2 Maestro | CONN_SD |  |
+| Duet 3 MB6HC |  see below | 
+| Duet 3 Mini 5+, Duet 3 MB6XD | PanelDue_SD | 
+| Duet 2 WiFi/Ethernet/Maestro | CONN_SD |  
 
-In order to use the SD card slot on the PanelDue, you must use the ribbon cable option. If you do not wish to use the SD card slot, it's recommended to use the 4-wire cable option described in Option 1.
+## Notes
+
+* In order to use the SD card slot on the PanelDue, you must use the ribbon cable option. If you do not wish to use the SD card slot, it's recommended to use the 4-wire cable option described in Option 1. 
+* If using a non-integrated PanelDue, or PanelDue 5i v1.0 or PanelDue 7i v2.0 with Duet 3, see 'Card detect signal' section below.
+* The **Duet 3 MB6HC** has no PanelDue_SD socket. It requires RRF 3.4 or later, and special wiring scheme; see 'Duet 3 MB6HC using ribbon cable' section below.
+* The PanelDue connector on the **Duet 3 Mini 5+** shares the io0.out and io0.in pins, so IO_0 cannot be used at the same time. 
+
+## Wiring
 
 Connect a 10-way ribbon cable between socket X5 on the PanelDue and socket CONN_SD (Duet 2) or PanelDue_SD (Duet 3). The connector is a standard 10 pin 2 row 2.54mm pitch box connector that accepts IDC connectors for 1.27mm ribbon cable.
 
@@ -106,15 +113,7 @@ In tests using standard 28awg 1.27mm spaced ribbon cable, 400mm worked reliably 
 
 **Caution:** if you are using a thermocouple and/or PT100 daughter board, the use of long ribbon cables between the Duet and PanelDue may affect communication between the Duet and the daughter boards, because the ribbon cable connection to the SD card on PanelDue uses the same SPI bus as the daughter boards.
 
-### Duet 3 Mini 5+ and Duet 3 MB6XD
-
-On Duet 3 Mini 5+ and Duet 3 MB6XD, a PanelDue can be connected using a ribbon cable plugged into the socket labelled 'PanelDue_SD'. This is the only way to use the SD card socket on the PanelDue. Note:
-
-* Non-integrated versions of PanelDue and older versions of PanelDue 5i and 7i do not provide a card detect signal, so for these displays it is necessary to ground the card detect signal. On the Duet 3 Mini 5+ you can do this by bridging pins 2 and 4 of the EXP2 connector as shown here.
-![displays_paneldue_ribbon_02.png](/manual/displays/displays_paneldue_ribbon_02.png =400x)
-* The PanelDue connector on the Duet 3 Mini 5+ shares the io0.out and io0.in pins, so IO_0 cannot be used at the same time. 
-
-### Duet 3 MB6HC using ribbon cable
+## Duet 3 MB6HC using ribbon cable
 
 Although the Duet 3 MB6HC does not have a connector for the PanelDue ribbon cable, if access to the SD card on PanelDue is required then this is possible using a special wiring arrangement. You must use RepRapFirmware 3.4 or later, and you must enable the external SD card using this command:
 
@@ -150,6 +149,35 @@ The required wiring is as follows
 If you have no temperature daughter boards installed, then one way to cable this is to use both the ribbon cable and the 4-way cable, and remove conductors 1, 9 and 10 of the ribbon cable as illustrated here. **Caution! Using a ribbon cable with all conductors present will feed +5V into the microcontroller!**
 
 ![displays_mb6hc_ribbon_cable.jpg](/manual/displays/displays_mb6hc_ribbon_cable.jpg =300x)
+
+## Card detect signal
+
+The card detect signal (CD) is used to tell the Duet whether a card is inserted or not. Non-integrated versions of PanelDue (V2, V3) and older versions of PanelDue 5i and 7i (v1.0 of the 5i and v2.0 of the 7i) do not provide a card detect signal.
+
+**Duet 2** boards do not support the card detect signal on the external SD card, so can never tell whether a card is inserted or not except by trying to read it, and can't detect a card being removed. No modifications are required connected older or newer PanelDue, or other external SD card adapters, to Duet 2 boards.
+
+**Duet 3** boards do support the card detect signal. Newer versions of the PanelDue 5i and 7i (v1.01 and later of the 5i and v2.01 and later of the 7i) provide this signal. 
+
+However, if you use a non-integrated versions of PanelDue or older versions of PanelDue 5i and 7i with Duet 3, it is necessary to ground the card detect signal, or the firmware will permanently think no card is inserted. There are a number of ways to achieve this.
+
+## Tabs {.tabset}
+
+### Modify the PanelDue
+
+This mod will enable the card detect signal. See the pictures below showing how to modify a PanelDue 5i v1.0. Connect a wire (thin enamelled copper in this instance) from the SD card socket Card Detect pin to the appropriate pin on the ribbon cable connector.
+
+![displays_5i_cd_mod_01.jpg](/manual/displays/displays_5i_cd_mod_01.jpg =400x) ![displays_5i_cd_mod_02.jpg](/manual/displays/displays_5i_cd_mod_02.jpg =400x)
+
+You can alternatively solder a jumper wire between GND and NC (pin 7, above Dout), though the firmware will see the SD card as always being present.
+
+### Modify the ribbon cable
+
+Modify the ribbon cable by connecting the card detect wire to ground. The firmware will see the SD card as always being present.
+
+### Duet 3 Mini 5+
+
+On the Duet 3 Mini 5+ you can ground the card detect signal by bridging pins 2 and 4 of the EXP2 connector as shown here. The firmware will see the SD card as always being present.
+![displays_paneldue_ribbon_02.png](/manual/displays/displays_paneldue_ribbon_02.png =400x)
 
 # Firmware configuration
 
