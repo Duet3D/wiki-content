@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-10T12:01:34.306Z
+date: 2022-01-11T17:01:08.493Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4203,7 +4203,13 @@ In firmware 1.18 and later the HTTP port address is set using the M586 command, 
 M553 P255.255.255.0
 </pre>
 
-Sets the network mask of the RepRap machine to (in this case) 255.255.255.0. A restart may be required before the new network mask is used. If no 'P' field is specified, this echoes the existing network mask configured.
+Sets the network mask of the RepRap machine to (in this case) 255.255.255.0. 
+
+### Notes
+
+A restart may be required before the new network mask is used. 
+
+If no 'P' field is specified, this echoes the existing network mask configured.
 
 DuetWifiFirmware versions 1.18 and earlier do not support setting the network mask manually.
 
@@ -4221,7 +4227,13 @@ DuetWifiFirmware versions 1.18 and earlier do not support setting the network ma
 M554 P192.168.1.1
 </pre>
 
-Sets the Gateway IP address of the RepRap machine to (in this case) 192.168.1.1. A restart may be required before the new gateway IP address is used. If no 'P' field is specified, this echoes the existing Gateway IP address configured.
+Sets the Gateway IP address of the RepRap machine to (in this case) 192.168.1.1. 
+
+### Notes
+
+A restart may be required before the new gateway IP address is used. 
+
+If no 'P' field is specified, this echoes the existing Gateway IP address configured.
 
 DuetWifiFirmware versions 1.18 and earlier do not support setting the gateway address.
 
@@ -4498,9 +4510,9 @@ Was used by the original web interface to upload a configuration file. Can now b
 
 ### Parameters
 
-* **P**"filename". File name to upload to. 
-* **S**nnn File size for binary transfer. If not present, the transfer is terminated by a special string, described below.
-* **C**nnn CRC-32 of the file (optional)
+* **P"filename"** File name to upload to. 
+* **Snnn** File size for binary transfer. If not present, the transfer is terminated by a special string, described below.
+* **Cnnn** CRC-32 of the file (optional)
 
 ### Examples
 <br>
@@ -4512,9 +4524,7 @@ M560 P"index.html"
 
 In RRF 3.1 and earlier, the default filename is reprap.htm and the default path is /www.
 
-After sending M560 the file should be sent, terminated by the string:
-`<!-- **EoF** -->` 
-Clearly that string cannot exist in the body of the file, but can be put on the end to facilitate this process.
+After sending M560 the file should be sent, terminated by the string `<!-- **EoF** -->`. Clearly that string cannot exist in the body of the file, but can be put on the end to facilitate this process.
 
 ## M561: Set Identity Transform
 
@@ -4550,7 +4560,7 @@ In firmware 1.20 and later, M562 with no parameters will clear a heater fault on
 
 ### Parameters
 
-* **Pnnn** Tool number
+* **Pnnn** Tool number (0 to 49 in RRF 3.x)
 * **S"name"** Tool name (optional)
 * **Dnnn** Extruder drive(s)
 * **Hnnn** Heater(s)
@@ -4613,6 +4623,8 @@ means add 1 (the value of the S parameter) to all tool numbers found in the rema
 RepRapFirmware maps the loaded filament on a per-extruder basis so if you have a mixing tool (one with more than one extruder), the **L** parameter tells the web interface which filament to display. If there is more than one extruder and the L parameter is omitted, no filament is displayed at all.
 
 ### Notes
+
+In **RepRapFirmware 3.x**, in order to avoid the serialised object model getting very large, the P parameter (tool number) may not exceed 49.
 
 M563 with just a P parameter just reports the existing configuration of the tool. Therefore, if you want to create a tool with no heaters and no extruders, you must provide at least one other parameter. For example, you can use the S parameter to name the tool.
 
@@ -4689,8 +4701,10 @@ M567 P2 E0.1:0.2:0.1:0.6
 </pre>
 
 This example sets the mix ratio for tool 2 (the P value). When a G1 or G0 command contains only a single E value but the current tool uses multiple extruders, each extruder will extrude the amount specified in the E parameter times the mix value for that tool. For example:
-
+<br>
+<pre class="cblock">
 G1 X20 E1.3
+</pre>
 
 This will move to X=20 extruding a total length of filament of 1.3mm. The first drive of tool 2 will extrude 0.1\*1.3mm, the second 0.2\*1.3mm and so on. The ratios don't have to add up to 1.0 - the calculation done is as just described. But when using a mixing hot end it is normally sensible if they do, otherwise under or over extrusion would occur. When printing concurrently with multiple print heads (e.g. ditto printing on an IDEX machine), it is normal for each print head to have a [total] extrusion factor of 1.0.
 
@@ -4743,9 +4757,9 @@ See the [T code (select tool)](/User_manual/Reference/Gcodes/T) below. In tools 
 
 See also [M585](/User_manual/Reference/Gcodes/M585).
 
-#### M568: Deprecated : Turn off/on tool mix ratios
+## M568: Turn off/on tool mix ratios (deprecated)
 
-**Deprecated:** from firmware 1.19 onwards, this command is no longer required or supported. If a G1 command for the tool provides just one E value, then the mix ratio defined by M567 will always be used.
+***Deprecated:** from firmware 1.19 onwards, this command is no longer required or supported.* 
 
 ### Parameters
 
@@ -4761,6 +4775,8 @@ M568 P2 S0
 Turn on/off automatic mix ratios for tool 2. 
 
 ### Notes
+
+If a G1 command for the tool provides just one E value, then the mix ratio defined by M567 will always be used.
 
 After turning off command G1 instructions must send as many E values as the tool has drives: G1 X20 E0.2:0.4:0.166:0.3
 
@@ -4809,7 +4825,7 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 
 ### Description
 
-Set the configuration parameters of a closed loop driver. See the [M569](/User_manual/Reference/Gcodes/M569) D parameter for switching a driver to closed loop after it has been configured.
+Sets the configuration parameters of a closed loop driver. See the [M569](/User_manual/Reference/Gcodes/M569) D parameter for switching a driver to closed loop after it has been configured.
 
 Encoder counts per step (Cn.n) can be found from the datasheet of the encoder being used. If the value is stated as counts per revolution (CPR), divide by the steps per revolution of the stepper motor to get the count per step. For example, a 1000 CPR encoder attached to a 200 step/rev motor will have a count per step of 1000 ÷ 200 = 5.
 
@@ -4822,7 +4838,7 @@ See '[Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning)'
 
 ## M569.2: Read or write stepper driver register
 
-Supported in RRF 3.3 and later on main boards with TMC22xx or TMC51xx stepper drivers.
+*Supported in RRF 3.3 and later on main boards with TMC22xx or TMC51xx stepper drivers.*
 
 ### Parameters
 
@@ -4836,6 +4852,8 @@ Supported in RRF 3.3 and later on main boards with TMC22xx or TMC51xx stepper dr
 M569.2 P1 R0
 </pre>
 
+### Description
+
 If the V parameter is not provided, this command reads the specified register and returns the value of that register. If the V parameter is provided, that value is written to the specified register.
 
 **WARNING!** Use of M569.2 to write stepper driver registers may result in damage to the stepper drivers, for example from excessive motor current or insufficient blanking time.
@@ -4844,16 +4862,10 @@ If the V parameter is not provided, this command reads the specified register an
 
 Report a current motor encoder positions to the host in units of arc degrees (1/360'ths of turns), relative to some reference position that you set with the **S** parameter.
 
-Before the first call with the **S** parameter, the reference is unknown and arbitrary.
-
 ### Parameters
 
 * **Pnn** Motor driver number, or board address and driver number. Several (remote) drivers may be specified, separated by colon. No more than number of visible axes, as specified by M584 P parameter, are allowed.
 * **S** Sets an encoder reference point. Current and subsequent M569.3 Pn.n calls returns numbers that are relative to the M569.3 Pn.n S call.
-
-If P is not supplied, an error is returned.
-
-A maximum of four CAN-connected drivers can be reached with M569.3 counting from machine boot. CAN addresses that fail to respond don't count towards this maximum.
 
 ### Examples
 <br>
@@ -4892,6 +4904,14 @@ M569.3 P49.0
 Error: M569.3: Max CAN addresses we can reference is 4. Can't reference board 49.
 </pre>
 
+### Notes
+
+Before the first call with the **S** parameter, the reference is unknown and arbitrary.
+
+If **P** is not supplied, an error is returned.
+
+A maximum of four CAN-connected drivers can be reached with M569.3 counting from machine boot. CAN addresses that fail to respond don't count towards this maximum.
+
 ## M569.4: Set Motor Driver Torque Mode
 
 Tell one or more motor drivers to apply a specified torque regardless of position. Planned for support in RRF 3.4.
@@ -4900,10 +4920,6 @@ Tell one or more motor drivers to apply a specified torque regardless of positio
 
 * **Pn** or **Pn.n** Motor driver number, or board address and driver number. Can also be a colon separated list of driver numbers.
 * **Tn** Where n is the mode/torque to apply in units of Nm.
-
-If **P** or **T** parameter is missing, then no action is taken.
-
-The driver is put back into position mode by requesting a torque smaller than 0.0001 Nm.
 
 ### Examples
 <br>
@@ -4932,17 +4948,15 @@ pos_mode, pos_mode
 
 ### Notes
 
+If **P** or **T** parameter is missing, then no action is taken.
+
+The driver is put back into position mode by requesting a torque smaller than 0.0001 Nm.
+
 Hangprinter's "torque mode" will be implemented as a RepRapFirmware macro that depends on M569.4.
 
 ## M569.5: Closed loop data collection
 
 Collect performance data from a drive whilst in closed loop mode. Can be used alongside the Duet [Closed Loop plugin](https://github.com/Duet3D/Closed-Loop-Plugin) for visualisation. Records back to a CSV file located in the /sys/closed-loop directory, which will be created if it does not exist.
-
-Supported for drivers attached to:
-
-* [Duet 3 Expansiom 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1HCL)
-
-Note: The driver must be configured in closed loop mode (See [M569](/User_manual/Reference/Gcodes/M569) D parameter).
 
 ### Parameters
 
@@ -4953,6 +4967,8 @@ Note: The driver must be configured in closed loop mode (See [M569](/User_manual
 * **Dnn** Variable filter. Determines which variables are recorded. See below for a list of available variables and how they are represented.
 * **Vnn** Perform a tuning manoeuvre. Available manoeuvres described below.
 * **Snn** Number of samples to record. When recording with rate R0, this sample rate is limited depending on the number of variables being recorded. The command will report back the maximum allowable samples if the maximum is exceeded. The maximum allowable samples may differ between board types since it is dependant on the available RAM.
+
+### Description
 
 The following variables are available to record:
 
@@ -4990,20 +5006,26 @@ M569.5 P50.0 S500 A0 R0 D6 V64
 
 Record 500 samples (S500) of the current motor steps and target motor steps (D6) of driver 0 attached to board 50 (P50.0) immediately (A0) and as fast as possible (R0) whilst performing a step manoeuvre (V64)
 
+### Notes
+
 **The Duet [Closed Loop plugin](https://github.com/Duet3D/Closed-Loop-Plugin) can be used to generate and run M569.5 commands.**
-
-## M569.6: Execute closed loop tuning move
-
-Perform a [runtime tuning manoeuvre](/User_manual/Tuning/Duet_3_1HCL_tuning#runtime-tuning) with a closed loop drive.
 
 Supported for drivers attached to:
 
 * [Duet 3 Expansiom 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1HCL)
 
+Note: The driver must be configured in closed loop mode (See [M569](/User_manual/Reference/Gcodes/M569) D parameter).
+
+## M569.6: Execute closed loop tuning move
+
+Perform a [runtime tuning manoeuvre](/User_manual/Tuning/Duet_3_1HCL_tuning#runtime-tuning) with a closed loop drive.
+
 ### Parameters
 
 * **Pnn** Motor driver number
 * **Vnn** Tuning move(s) to perform. See below for usage details.
+
+### Description
 
 **Warning: Duet firmware currently only supports tuning one driver at a time. This means that when tuning a multi-driver axis, one driver will move and the other(s) will not. If attempting to tune a multi-driver axis, please take appropriate mitigation to ensure the axis doesn't become stressed/misaligned when only one one driver moves.**
 
@@ -5021,6 +5043,12 @@ M569.6 P50.0 V1 ; conduct polarity detection and zeroing move on closed loop dri
 M569.6 P51.0 V2 ; conduct absolute SPI encoder calibration on move on closed loop driver on HCL board with magnetic encoder at address 50.
 </pre>
 
+### Notes
+
+Supported for drivers attached to:
+* [Duet 3 Expansiom 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1HCL)
+
+
 ## M569.7: Configure motor brake port
 
 ### Parameters
@@ -5033,6 +5061,8 @@ M569.6 P51.0 V2 ; conduct absolute SPI encoder calibration on move on closed loo
 <pre class="cblock">
 M569.7 P40.0 C"out1"   ; driver 0 on board 40 uses port out1 on board 40 to control the brake
 </pre>
+
+### Notes
 
 When the motor driver is enabled, the specified output port will be turned on at the same time to release the brake. When the motor driver is disabled, the output port will be turned off. Idle current mode does not count as disabled.
 
@@ -5051,14 +5081,6 @@ Note: after M569.7 is executed, the port will be initially off. Therefore, M569.
 
 * **Snnn** Heater timeout (in seconds)
 
-### Examples
-<br>
-<pre class="cblock">
-M570 S120
-</pre>
-
-After a heater has been switched on, wait 120 seconds for it to get close to the set temperature. If it takes longer than this, raise a heater fault.
-
 ### Order dependency
 
 When using RepRapFirmware 3 the M570 command must come later in config,g than the M950 command that creates the heater specified in the H parameter.
@@ -5066,10 +5088,13 @@ When using RepRapFirmware 3 the M570 command must come later in config,g than th
 ### Examples
 <br>
 <pre class="cblock">
-M570 H1 P4 T15
+M570 S120 ; After a heater has been switched on, wait 120 seconds for it to get close to the set temperature. If it takes longer than this, raise a heater fault.
+M570 H1 P4 T15 ; An anomaly on heater 1 must persist for 4 seconds, and must be greater or less than 15C from the setpoint, to raise a heater fault.
 </pre>
 
-**Warning!** Heating fault detection is provided to reduce the risk of starting a fire if a dangerous fault occurs, for example if the heater cartridge or thermistor falls out of the heater block. You should carefully consider sensible values for the detection time or permitted temperature excursion, setting them to incorrectly will reduce the protection. Also note that this protection should not be relied upon exclusively. Protection against fire should be provided external to the operation of the firmware as well (fuses, fire detection, do not print unattended etc)
+### Notes
+
+**Warning!** Heating fault detection is provided to reduce the risk of starting a fire if a dangerous fault occurs, for example if the heater cartridge or thermistor falls out of the heater block. You should carefully consider sensible values for the detection time or permitted temperature excursion, setting them incorrectly will reduce the protection. Also note that this protection should not be relied upon exclusively. Protection against fire should be provided external to the operation of the firmware as well (fuses, fire detection, do not print unattended etc)
 
 ## M571: Set output on extrude
 
@@ -5088,9 +5113,17 @@ M571 P3 F200 S1  ; turn on logical pin 3 while extrusion is commanded (RRF 2)
 M571 P"heater3" S0.5 ; turn on heater 3 output at 50% PWM while extrusion is commanded (RRF 3)
 </pre>
 
+### Description
+
 This turns the controlled pin output on whenever extrusion is being done, and turns it off when the extrusion is finished. The output could control a fan or a stirrer or anything else that needs to work just when extrusion is happening. It also can be used to control a laser beam. The S parameter sets the value of the PWM to the output. 0.0 is off; 1.0 is fully on.
 
-In RepRapFirmware 1.17 and later you can use the P parameter to change the pin used and you can also set the PWM frequency. For RepRapFirmware 1.x and 2.x, pin numbers are the same as in the M42 and M280 commands. The pin you specify must not be in use for anything else, so if it is normally used as a heater you must disable the heater first using M307, or if it is used for a fan you must disable the fan using M106 with the I-1 parameter. In RepRapFirmware 3 you specify the pin name instead.
+### Notes
+
+In RepRapFirmware 3 you specify the pin name using the P parameter.
+
+For RepRapFirmware 1.x and 2.x, pin numbers are the same as in the M42 and M280 commands. The pin you specify must not be in use for anything else, so if it is normally used as a heater you must disable the heater first using M307, or if it is used for a fan you must disable the fan using M106 with the I-1 parameter. 
+
+In RepRapFirmware 1.17 and later you can use the P parameter to change the pin used and set the PWM frequency. Defaults to using the FAN0 output.
 
 RepRapFirmware 1.20 and later do not default to using the FAN0 output, so you must send M571 with a P parameter at least once to define the pin that you wish to use.
 
@@ -5107,6 +5140,8 @@ RepRapFirmware 1.20 and later do not default to using the FAN0 output, so you mu
 M572 D0 S0.1 ; set extruder 0 pressure advance to 0.1 seconds
 M572 D0:1:2 S0.2 ; set extruder 0, 1 and 2 pressure advance to 0.2 seconds (RepRapFirmware 1.20 and later)
 </pre>
+
+### Description
 
 This sets the pressure advance coefficient (S parameter) for the specified extruder (D parameter). Only one S value is allowed. If you wish to set different pressure advance for different extruders, use multiple M572 commands.
 
@@ -5128,6 +5163,8 @@ For more details such as tuning the value see [Pressure advance](/User_manual/Tu
 M573 P1
 </pre>
 
+### Description
+
 This gives a running average (usually taken over about five seconds) of the PWM to the heater specified by the P field. If you know the voltage of the supply and the resistance of the heater this allows you to work out the power going to the heater. Scale: 0 to 1.
 
 ## M574: Set endstop configuration
@@ -5136,7 +5173,7 @@ This gives a running average (usually taken over about five seconds) of the PWM 
 
 #### M574 - RepRapFirmware 3
 
-### Parameters
+##### Parameters
 
 * **Xnnn** Position of X endstop: 0 = none, 1 = low end, 2 = high end.
 * **Ynnn** Position of Y endstop: 0 = none, 1 = low end, 2 = high end.
@@ -5144,37 +5181,19 @@ This gives a running average (usually taken over about five seconds) of the PWM 
 * **P"pin_name"** Defines the pin name(s) that the endstop(s) for the specified axis are connected to, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names). Needed when S=1. May need ! before pin name to invert signal, or ^ to enable the pullup resistor, for example on the Duex expansion board.
 * **Snnn** 1 = switch-type (eg microswitch) endstop input, 2 = Z probe (when used to home an axis other than Z), 3 = single motor load detection, 4 = multiple motor load detection (see Notes).
 
-### Order dependency
+##### Order dependency
 
 This command must be later in config.g than the M584 command that creates additional axes, or axes that have multiple motors and endstops.
 
-### Usage
+##### Examples
 
-The M574 command has been updated to allow for more flexibility. This includes supporting axes defined with multiple motors and multiple endstops (one per motor), use of non-default endstop inputs, and re-assigning endstop inputs.
-
-### Notes
-
-* Use a separate M574 command for each axis.
-* Endstop type S0 (active low switch) is no longer supported in M574 commands. Instead, use type S1 and invert the input by prefixing the pin name with '!'. **Ex: M574 X1 S1 P"!xstop"**. Invert the input when using an NPN output inductive or capacitive sensor, or using a NO switch (not recommended, use a NC switch instead).
-* New parameter P gives the pin name(s) for the endstop(s) for the specified axis. If the number of pins matches the number of motors assigned to that axis, motors will be stopped individually when their endstop switches trigger.
-* New endstop type S4 means use motor stall detection (like S3) but if there are multiple motors, stop each one individually as it stalls. S3 means use motor stall detection but as in RRF 2: stop all relevant motors when the first one stalls.
-* The S2 option of M574 is intended for use only when axes other than Z are using the Z probe for homing. The only printers known that do this using Duet electronics are the RepRapPro Ormerod, Huxley Duo, and Mendel Tricolour machines. When using the Z probe to home Z, M574 Z has no bearing on the probe setup or usage. A Z probe and a Z endstop can both be configured at the same time. G30 calling the probe setup with M558, and G1 H1 Z moves calling the endstop configured with M574 Z.
-
-### Examples
-
-Old RRF2.x code:
 <br>
 <pre class="cblock">
-M574 X1 Y1 Z1 U2 S1  ; active high endstop switches, XYZ at min, U at max
-</pre>
-
-New RRF3 code:
-<br>
-<pre class="cblock">
-M574 X1 S1 P"xstop"  ; X min active high endstop switch
-M574 Y1 S1 P"ystop"  ; Y min active high endstop switch
-M574 Z1 S1 P"zstop"  ; Z min active high endstop switch
-M574 U2 S1 P"e0stop"  ; U max active high endstop switch
+M574 X1 S1 P"io1.in"  ; configure active high endstop switch for low end on X (Duet 3)
+M574 Y2 S1 P"!io2.in" ; configure active low endstop switch for high end on Y (Duet 3)
+M574 Z1 S1 P"e0stop"  ; configure active high endstop switch for low end on Z (Duet 2)
+M574 U1 S2            ; configure Z-probe endstop for low end on U
+M574 V2 S3            ; configure sensorless endstop for high end on V
 </pre>
 
 To use two Z motors using independent homing switches, declare two Z motors in M584, then declare two pins for Z endstops in a single M574 command. Example
@@ -5184,11 +5203,20 @@ M584 X0 Y1 Z2:3 E4
 M574 Z1 S1 P"io2.in+io3.in" ; Z axis with two motors, individual min endstops, active high
 </pre>
 
-The order of endstop switch pin names in M574 must match the order of Z motor driver numbers in M584. When homing Z, RRF3 homes the motors of the axis at the same time, independently to their defined endstops.
+The order of endstop switch pin names in M574 must match the order of Z motor driver numbers in M584. When homing Z, RRF3 homes the motors of the axis at the same time, independently to their defined endstops. See [Axis levelling using endstops](/User_manual/Connecting_hardware/Z_probe_auto_levelling#axis-levelling-using-endstops).
+
+##### Notes
+
+* In RRF3, the M574 command allows for more flexibility than in RRF2. This includes supporting axes defined with multiple motors and multiple endstops (one per motor), use of non-default endstop inputs, and re-assigning endstop inputs.
+* Use a separate M574 command for each axis.
+* Parameter **P** gives the pin name(s) for the endstop(s) for the specified axis. If the number of pins matches the number of motors assigned to that axis, motors will be stopped individually when their endstop switches trigger.
+* For active low endstops, use type S1 and invert the input by prefixing the pin name with '!', for example `M574 X1 S1 P"!xstop"`. Invert the input when using an NPN output inductive or capacitive sensor, or using a NO switch (not recommended, use a NC switch instead).
+* The S2 option of M574 is intended for use only when axes other than Z are using the Z probe for homing. The only printers known that do this using Duet electronics are the RepRapPro Ormerod, Huxley Duo, and Mendel Tricolour machines. When using the Z probe to home Z, M574 Z has no bearing on the probe setup or usage. A Z probe and a Z endstop can both be configured at the same time. G30 calling the probe setup with M558, and G1 H1 Z moves calling the endstop configured with M574 Z.
+* Endstop type S4 means use motor stall detection (like S3) but if there are multiple motors, stop each one individually as it stalls. S3 means use motor stall detection but stop all relevant motors when the first one stalls.
 
 #### M574 - RepRapFirmware 2.x and earlier
 
-### Parameters
+##### Parameters
 
 * **Xnnn** Position of X endstop: 0 = none, 1 = low end, 2 = high end.
 * **Ynnn** Position of Y endstop: 0 = none, 1 = low end, 2 = high end.
@@ -5196,17 +5224,17 @@ The order of endstop switch pin names in M574 must match the order of Z motor dr
 * **E** Select extruder endstops to define active high or low (RepRapFirmware 1.16 and earlier only)
 * **Snnn** Endstop type: 0 = active low endstop input, 1 = active high endstop input, 2 = Z probe, 3 = motor load detection
 
-### Order dependency
+##### Order dependency
 
 If this command refers to any axes other than X, Y and Z then it must be later in config.g than the M584 command that creates those additional axes.
 
-### Examples
+##### Examples
 <br>
 <pre class="cblock">
 M574 X1 Y2 Z0 S1 ; X endstop at low end, Y endstop at high end, no Z endstop, all active high
 </pre>
 
-### Usage
+##### Notes
 
 This defines the type of endstop switch or opto sensor that the printer has for each axis: 0 = none, 1 = low end, 2 = high end. The optional S parameter defines whether the endstop input is active high (S1, the default) or low (S0). A normally-closed endstop switch wired in the usual way produces an active high output (S1).
 
@@ -5214,12 +5242,9 @@ The S2 and S3 options are supported in firmware 1.20 and later.
 
 This is intended for use with boards that provide a single endstop input for each axis that may be used for either a high or a low end endstop, such as the Duet. On delta printers, the XYZ parameters refer to the towers and the endstops should normally all be high end (i.e. at the top of the towers).
 
-### Notes
-
 If you have more than one homing switch for an axis because you want to home multiple motors driving that axis individually, you will need to split them into separate axes during homing, and home those axes together. See [Axis levelling using endstops](/User_manual/Connecting_hardware/Z_probe_auto_levelling#axis-levelling-using-endstops).
 
 In RepRapFirmware 1.16 and earlier, the M574 command with E parameter was used to specify whether a Z probe connected to the E0 endstop input produces an active high (S1) or active low (S0) output. In RepRapFirmware 1.17 and later, use the I parameter of the M558 command instead.
-
 
 ## M575: Set serial comms parameters
 
