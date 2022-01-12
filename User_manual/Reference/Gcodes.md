@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-11T17:01:08.493Z
+date: 2022-01-12T15:15:27.210Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -244,19 +244,19 @@ As a general rule, any G or M command can be sent at any time. This means all se
 <!-- Example entry
 ## Gx: Short description
 
-Sentence description if referring to another GCode (example: G0).
-See 'Gx: Short description' for usage
-Supported/deprecated from firmware version X.XX
+*Supported/deprecated from firmware version X.XX*
 
-### Usage
-
-Gx Pnnn Xnnn Ynnn Znnn etc
+Short description
 
 ### Parameters
 
 * **P** First parameter description
 * **X** Second parameter description
 * **Y** Third parameter description
+
+### Usage
+
+Gx Pnnn Xnnn Ynnn Znnn etc
 
 ### Order dependency
 
@@ -282,8 +282,7 @@ Blah blah
 
 ## G0: Rapid move
 
-Same as G1 except when in Laser and CNC mode, where moves are executed at the maximum feedrate available.
-See 'G1: Controlled linear' move for usage.
+Same as G1 except when in Laser and CNC mode, where moves are executed at the maximum feedrate available. See 'G1: Controlled linear' move for usage.
 
 ## G1: Controlled linear move
 
@@ -314,6 +313,22 @@ See 'G1: Controlled linear' move for usage.
 
 **Very important!** If you use M452 to put your machine into Laser mode, when upgrading firmware from 2.01 or earlier to 2.02 or later you must replace all S parameters in G0/G1 commands in homing files etc. by H parameters. This is because S is now used to control laser power, for compatibility with programs that generate GCode files for laser cutters.
 
+
+### Examples
+<br>
+<pre class="cblock">
+G0 X12               ; (move to 12mm on the X axis)
+G0 F1500             ; (Set the feedrate to 1500mm/minute)
+G1 X90.6 Y13.8 E22.4 ; (Move to 90.6mm on the X axis and 13.8mm on the Y axis while extruding 22.4mm of material)
+G1 E10:10:5:0:0 F300 ; with a tool that has 5 extruder drives, extrude 10mm on drive 0, 10mm on drive 1, 5mm on drive 2 and 0mm on drive 3 and 4.
+</pre>
+
+## Notes
+
+RepRapFirmware treats G0 and G1 in the same way **except** as follows:
+* On SCARA and similar architectures that normally require linear motion to be approximated by short segments, a single continuous non-segmented movement will be used if this can be done without the print head dropping below the current Z height.
+* In Laser and CNC mode, G0 moves are executed at the maximum feed rate available, to comply with the NIST GCode standard, This feed rate is set by the M203 command.
+
 #### G0/G1 H and S parameter
 
 The meaning of the H parameter is as follows:
@@ -326,9 +341,9 @@ The meaning of the H parameter is as follows:
 
 The meaning of the S parameter has changed over successive versions of RepRapFirmware. It currently sets the laser power when M452 Laser mode is set, but was also used for homing behaviour. See below.
 
-### {.tabset}
+#### {.tabset}
 
-#### RRF 3
+##### RRF 3
 
 In **RRF 3**, H parameter controls movement type, S parameter sets laser power with range of 0 to 254 when M452 Laser mode set, otherwise ignored.
 
@@ -351,7 +366,7 @@ In **RRF 3**, H parameter controls movement type, S parameter sets laser power w
 |:------------|----------|
 | S parameter sets laser power with range of 0 to 254. ||
 
-#### RRF 2.02 to 2.05.1
+##### RRF 2.02 to 2.05.1
 
 In **RRF 2.02 to 2.05.1**, H parameter controls movement type. S parameter controls movement type BEFORE M452 Laser Mode is set. S parameter sets laser power with range of 0 to 254 AFTER M452 Laser mode set.
 
@@ -377,7 +392,7 @@ In **RRF 2.02 to 2.05.1**, H parameter controls movement type. S parameter contr
 |:------------|----------|
 | S parameter sets laser power with range of 0 to 254. ||
 
-#### RRF 2.01 and earlier
+##### RRF 2.01 and earlier
 
 In **RRF 2.01 and earlier**, S parameter controls the movement type. There is no H parameter or M452 Laser Mode.
 
@@ -389,21 +404,7 @@ In **RRF 2.01 and earlier**, S parameter controls the movement type. There is no
 | G1 Xnnn Ynnn Znnn S2 | Ignore endstops while moving. Also ignore if axis has not been homed. On Delta and CoreXY, axis letters refer to individual towers. |
 | G1 Xnnn Ynnn Znnn S3 | Sense endstops while measuring axis length, and set the appropriate M208 limit to the measured position at which the endstop switch triggers. |
 
-### Examples
-<br>
-<pre class="cblock">
-G0 X12               ; (move to 12mm on the X axis)
-G0 F1500             ; (Set the feedrate to 1500mm/minute)
-G1 X90.6 Y13.8 E22.4 ; (Move to 90.6mm on the X axis and 13.8mm on the Y axis while extruding 22.4mm of material)
-G1 E10:10:5:0:0 F300 ; with a tool that has 5 extruder drives, extrude 10mm on drive 0, 10mm on drive 1, 5mm on drive 2 and 0mm on drive 3 and 4.
-</pre>
-
-RepRapFirmware treats G0 and G1 in the same way **except** as follows:
-
-* On SCARA and similar architectures that normally require linear motion to be approximated by short segments, a single continuous non-segmented movement will be used if this can be done without the print head dropping below the current Z height.
-* In Laser and CNC mode, G0 moves are executed at the maximum feed rate available, to comply with the NIST GCode standard, This feed rate is set by the M203 command.
-
-### Feedrate
+#### Feedrate
 <br>
 <pre class="cblock">
 G1 F1500
@@ -423,7 +424,7 @@ Feedrate is treated as simply another variable (like X, Y, Z, and E) to be linea
 
 **For CNC users especially: RRF has a default minimum movement speed of 0.5mm/sec.** In firmware 2.03 and later this can be changed using the I ('i') parameter of the M203 command.
 
-### Maximum Length of Moves
+#### Maximum Length of Moves
 
 The firmware keeps track of the exact number of microsteps sent to each movement axis using a 32-bit signed integer microstep counter, this limits the maximum absolute move and axis length to (2^31 - 1) microsteps. This does not apply to extruder drives. The firmware multiplies the requested axis position (after adding any offsets) by the steps/mm to get the required microstep position and the microstep counter accumulates across multiple moves, as the axis position increases it increments, as it decreases it decrements. The maximum size of the microstep counter is only an issue for situations where an axis needs to accommodate one or more moves or an overall axis length that would overflow the counter (i.e. an extremely long axis, or an extremely high resolution axis). In typical uses this is not a concern, for example on a standard linear axis using 160 microsteps/mm an axis of over 13km is supported. In cases where the microstep counter is not sufficient (e.g. a very high resolution rotary axis moving for a very long time) G92 can be used to set the origin to a new point on the axis and thus reset the counter.
 
@@ -5248,6 +5249,8 @@ In RepRapFirmware 1.16 and earlier, the M574 command with E parameter was used t
 
 ## M575: Set serial comms parameters
 
+This sets the communications parameters of the serial comms channel specified by the P parameter.
+
 ### Parameters
 
 * **Pnnn** Serial channel number
@@ -5260,11 +5263,18 @@ In RepRapFirmware 1.16 and earlier, the M574 command with E parameter was used t
 M575 P1 B57600 S1
 </pre>
 
-This sets the communications parameters of the serial comms channel specified by the P parameter. P0 specifies the main serial interface (typically a USB port, or serial-over-USB), while P1 specifies an auxiliary serial port (for example, the port used to connect a PanelDue) and P2 specifies a second auxiliary port if there is one. The B parameter is the required baud rate (this parameter is typically ignored if the port is a true USB port).
+### Description
+
+P0 specifies the main serial interface (typically a USB port, or serial-over-USB), while P1 specifies an auxiliary serial port (for example, the port used to connect a PanelDue) and P2 specifies a second auxiliary port if there is one. The B parameter is the required baud rate (this parameter is typically ignored if the port is a true USB port).
+
+### Notes
 
 In RRF 3.1 and later for Duet 3, the auxiliary serial port remains disabled until a M575 P1 command is received. This is to allow the IO_0 port to be used for other purposes. In RRF 3.2 and later on all boards, the auxilliary serial port(s) remain disabled until enabled using M575.
 
 ## M576: Set SPI comms parameters
+
+*Supported in RRF 3.4 and later in SBC mode.*
+This sets the communications parameters of the SPI channel. 
 
 ### Parameters
 
@@ -5272,30 +5282,34 @@ In RRF 3.1 and later for Duet 3, the auxiliary serial port remains disabled unti
 * **Fnnn** Maximum delay between full SPI transfers when a file is open (in ms, defaults to 5ms)
 * **Pnnn** Number of events required to skip the delay (defaults to 4)
 
-This sets the communications parameters of the SPI channel. Supported in RRF 3.4 and later in SBC mode.
 
 ## M577: Wait until endstop is triggered
 
+Wait for an endstop switch to be triggered or an input to become active.
+
 ### {.tabset}
 
-#### M577 - RepRapFirmware 3.01RC2 and later
+#### RepRapFirmware 3.01RC2 and later
 
 ##### Parameters
 
 * **Sn** Desired endstop or input level: 1 = triggered/active (default), 0 =not triggered/inactive
 * **X, Y, Z, U, V, W, A, B, C, D** Axis endstop to wait for
-* **Pnnn** Input pin number to wait for (see M950 with J parameter)
+* **Pnnn** Input pin number to wait for (see [M950](/User_manual/Reference/Gcodes/M950) with J parameter)
+
+##### Order dependency
+
+If M577 uses an input pin number, M577 must come after the [M950](/User_manual/Reference/Gcodes/M950) command that defines the input pin number.
 
 ##### Examples
 <br>
 <pre class="cblock">
-M577 X S0  ; wait until X endstop is not triggered
-M577 P2 ; wait
+M577 X S0  ; wait until X endstop is not triggered<br>
+M950 J2 P"!e0stop" ; define input pin number 2
+M577 P2 ; wait until tE0 endstop input is low
 </pre>
 
-Wait for an endstop switch to be triggered or an input to become active.
-
-#### M577 - RepRapFirmware 3.0 up to 3.01RC1
+#### RepRapFirmware 3.0 to 3.01RC1
 
 ##### Parameters
 
@@ -5304,26 +5318,16 @@ Wait for an endstop switch to be triggered or an input to become active.
 ##### Examples
 <br>
 <pre class="cblock">
-M577 P"!xstop+!e0stop"
-</pre>
-
-In RRF3, use the P parameter to specify one or more pin names. The pin(s) do not need to be exclusively used by M577; for example, it is permitted to specify the name of a pin that has already been declared as used by an endstop switch in a M574 command.
-
-The command waits for a high input level. To wait for a low input level, invert the pin name by prefixing "!".
-
-Example - old code (RRF2.x):
-<br>
-<pre class="cblock">
-M577 X E0 S0 ; wait until the X and E0 endstop inputs are both low
-</pre>
-
-New code (RRF3):
-<br>
-<pre class="cblock">
 M577 P"!xstop+!e0stop" ; wait until the X and E0 endstop inputs are both low
 </pre>
 
-#### M577 - RepRapFirmware 2.x and earlier
+##### Notes
+
+Use the P parameter to specify one or more pin names. The pin(s) do not need to be exclusively used by M577; for example, it is permitted to specify the name of a pin that has already been declared as used by an endstop switch in a M574 command.
+
+The command waits for a high input level. To wait for a low input level, invert the pin name by prefixing "!".
+
+#### RepRapFirmware 2.x and earlier
 
 ##### Parameters
 
@@ -5350,7 +5354,7 @@ The following trigger types may be used using the 'S' parameter:
 
 ## M578: Fire inkjet bits
 
-**This command is not enabled unless the SUPPORT_INKJET feature is enabled when the firmware is built.**
+*This command is not enabled unless the SUPPORT_INKJET feature is enabled when the firmware is built.*
 
 ### Parameters
 
@@ -5363,13 +5367,19 @@ The following trigger types may be used using the 'S' parameter:
 M578 P3 S5
 </pre>
 
-This fires inkjet head 3 (the P field) using the bit pattern specified by the S field. The example shown would fire bits 101. If the P parameter is ommitted inkjet 0 is assumed.
+This fires inkjet head 3 (the P field) using the bit pattern specified by the S field, in the example shown would fire bits 101. 
+
+### Notes
+
+If the P parameter is ommitted inkjet 0 is assumed.
 
 This is a version of the M700 command used by [Inkshield](http://reprap.org/wiki/Inkshield).
 
-An alternative way of controlling inkjets would be to use the P parameter on the G1 command, in conjunction with the M670 command.
+An alternative way of controlling inkjets would be to use the P parameter on the [G1](/User_manual/Reference/Gcodes/G1) command, in conjunction with the [M670](/User_manual/Reference/Gcodes/M670) command.
 
 ## M579: Scale Cartesian axes
+
+On a Cartesian RepRap you can get prints exactly the right size by tweaking the axis steps/mm using the [M92](/User_manual/Reference/Gcodes/M92) GCode. But this does not work so easily for Delta and other RepRaps for which there is cross-talk between the axes. This command allows you to adjust the X, Y, and Z axis scales directly. So, if you print a part for which the Y length should be 100mm and measure it and find that it is 100.3mm long then you set Y0.997 (= 100/100.3).
 
 ### Parameters
 
@@ -5384,13 +5394,15 @@ An alternative way of controlling inkjets would be to use the P parameter on the
 M579 X1.0127 Y0.998
 </pre>
 
-On a Cartesian RepRap you can get prints exactly the right size by tweaking the axis steps/mm using the M92 G Code above. But this does not work so easily for Delta and other RepRaps for which there is cross-talk between the axes. This command allows you to adjust the X, Y, and Z axis scales directly. So, if you print a part for which the Y length should be 100mm and measure it and find that it is 100.3mm long then you set Y0.997 (= 100/100.3).
+### Notes
 
 On a suitable-configured IDEX printer, a scaling factor of -1 for the U axis can be used to turn a ditto print into a mirror image print.
 
 ## M580: Select Roland
 
-* This M-code is not available by default. To enable it change the value of SUPPORT_ROLAND in the Pins_*.h file from 0 to 1 and recompile the firmware
+*This M-code is not available by default. To enable it change the value of SUPPORT_ROLAND in the Pins_\*.h file from 0 to 1 and recompile the firmware.*
+
+The [Modela MDX-20](https://www.rolanddga.com/support/products/milling/modela-mdx-20-3d-milling-machine.htm) and similar milling machines are very widely available in hackerspaces and maker groups, but annoyingly they don't speak GCodes. As all RepRap firmware includes a GCode interpreter, it is often easy to add functions to convert GCodes to RML.  
 
 ### Parameters
 
@@ -5403,60 +5415,19 @@ On a suitable-configured IDEX printer, a scaling factor of -1 for the U axis can
 M580 R1 PVS4;!VZ2;!MC1;
 </pre>
 
-The [Modela MDX-20](https://www.rolanddga.com/support/products/milling/modela-mdx-20-3d-milling-machine.htm) and similar milling machines are very widely available in hackerspaces and maker groups, but annoyingly they don't speak G Codes. As all RepRap firmware includes a GCode interpreter, it is often easy to add functions to convert G Codes to RML. M580 selects a Roland device for output if the R field is 1, and returns to native mode if the R field is 0. The optional P string is sent to the Roland if R is 1. It is permissible to call this repeatedly with R set to 1 and different strings in the P field to communicate directly with a Roland.
+### Description
+
+M580 selects a Roland device for output if the R field is 1, and returns to native mode if the R field is 0.
+
+The optional P string is sent to the Roland if R is 1. It is permissible to call this repeatedly with R set to 1 and different strings in the P field to communicate directly with a Roland.
 
 ## M581: Configure external trigger
 
-#### M581 - RepRapFirmware 2.x and earlier
+### Tabs {.tabset}
 
-### Parameters
+#### RepRapFirmware 3.01 and later
 
-* **Tnn** Logical trigger number to associate the endstop input(s) with, from zero up to a firmware-specific maximum (e.g. 9 for RepRapFirmware)
-* **X, Y, Z, E** Selects endstop input(s) to monitor
-* **P** Reserved, may be used in future to allow general I/O pins to cause triggers
-* **S** Whether trigger occurs on a rising edge of that input (S1, default), falling edge (S0), or ignores that input (S-1). By default, all triggers ignore all inputs.
-* **C** Condition: whether to trigger at any time (C0, default) or only when printing a file from SD card (C1)
-
-### Examples
-<br>
-<pre class="cblock">
-M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 or E2 endstop input and a file is being printed from SD card
-</pre>
-
-### Notes
-
-* When M581 is executed, if the T parameter is present but the other parameters are omitted, the trigger inputs and edge polarities for that trigger number are reported. Otherwise, the specified inputs and their polarities are added to the conditions that cause that trigger. Using S-1 with no X Y Z or E parameters sets the trigger back to ignoring all inputs.
-* Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
-* A maximum of 16 triggers can be configured on Duet 2.
-* Warning: if executed during a build process, and more than one line long the GCode within the trigger file may be executed between later commands from the build file. Bounding the trigger file with M25 and M24 may help, but this will cause error warnings if the trigger happens outside of a build process. The use of M25/M24 will cause the execution of pause and resume system macros.
-
-#### M581 - RepRapFirmware 3.0 to 3.01RC1 (but not 3.01RC2 and later)
-
-### Parameters
-
-* **P** Specify one or more pin names, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names)
-* **Tnn** Logical trigger number to associate the endstop input(s) with, from zero up to a firmware-specific maximum
-* **C** Condition: whether to trigger at any time (C0, default) or only when printing a file from SD card (C1)
-
-### Examples
-<br>
-<pre class="cblock">
-M581 P"e0stop+e1stop" T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 or E2 endstop input and a file is being printed from SD card
-M581 P"nil" T2 ; don't invoke trigger 2 on any input change any more
-</pre>
-
-### Notes
-
-* Use the P parameter to specify one or more pin names. Use P"nil" to disable that trigger number.
-* The pin(s) do not need to be exclusively used by M581; for example, it is permitted to specify the name of a pin that has already been declared as used by an endstop switch in a M574 command.
-* The S parameter used in RRF2.x is removed. The command waits for a low-to-high input transition. To wait for a high-to-low transition, invert the pin name using '!'.
-* When M581 is executed, if the T parameter is present but the other parameters are omitted, the trigger inputs and edge polarities for that trigger number are reported. Otherwise, the specified inputs and their polarities are added to the conditions that cause that trigger.
-* Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
-* Warning: if executed during a build process, and more than one line long the GCode within the trigger file may be executed between later commands from the build file. Bounding the trigger file with M25 and M24 may help, but this will cause error warnings if the trigger happens outside of a build process. The use of M25/M24 will cause the execution of pause and resume system macros.
-
-#### M581 - RepRapFirmware 3.01 and later
-
-### Parameters
+##### Parameters
 
 * **P** Specify one or more input pin numbers that you created using M950 with the J parameter, or -1 to delete the trigger
 * **Tnn** Logical trigger number to associate the input(s) with, from zero up to a firmware-specific maximum
@@ -5464,7 +5435,7 @@ M581 P"nil" T2 ; don't invoke trigger 2 on any input change any more
 * **R** Condition: whether to trigger at any time (R0, default), only when printing a file from SD card (R1), or only when not printing a file from SD card (R2, supported in RRF 3.2 and later). R-1 temporarily disables the trigger.
 * **X**, **Y**, **Z** or any other axis letter: axis or axes whose endstop switches are to cause the trigger
 
-### Examples
+##### Examples
 <br>
 <pre class="cblock">
 M581 T2 P0:3 S1 R1 ; invoke trigger 2 when an inactive-to-active edge is detected on input 0 or input 3 and a file is being printed from SD card
@@ -5472,26 +5443,73 @@ M581 T3 X Y S1  ; invoke trigger 3 when the X or Y endstop switch is triggered
 M581 T2 P-1 ; don't invoke trigger 2 on any input change any more
 </pre>
 
-### Notes
+##### Notes
 
 * When M581 is executed, if the T parameter is present but the other parameters are omitted, the trigger inputs and edge polarities for that trigger number are reported. Otherwise, the specified inputs and their polarities are added to the conditions that cause that trigger.
 * Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
-
 * A maximum of 32 triggers can be configured on Duet 3, a maximum of 16 on Duet 2.
+* **Warning**: if executed during a job, and more than one line long the GCode within the trigger file may be executed between later commands from the job. Bounding the trigger file with M25 and M24 may help, but this will cause warnings if the trigger happens outside of a job. The use of M25/M24 will cause the execution of pause and resume system macros.
 
-* Warning: if executed during a job, and more than one line long the GCode within the trigger file may be executed between later commands from the job. Bounding the trigger file with M25 and M24 may help, but this will cause warnings if the trigger happens outside of a job. The use of M25/M24 will cause the execution of pause and resume system macros.
+#### RepRapFirmware 3.0 to 3.01RC1
+
+##### Parameters
+
+* **P** Specify one or more pin names, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names)
+* **Tnn** Logical trigger number to associate the endstop input(s) with, from zero up to a firmware-specific maximum
+* **C** Condition: whether to trigger at any time (C0, default) or only when printing a file from SD card (C1)
+
+##### Examples
+<br>
+<pre class="cblock">
+M581 P"e0stop+e1stop" T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 or E2 endstop input and a file is being printed from SD card
+M581 P"nil" T2 ; don't invoke trigger 2 on any input change any more
+</pre>
+
+##### Notes
+
+* Use the P parameter to specify one or more pin names. Use P"nil" to disable that trigger number.
+* The pin(s) do not need to be exclusively used by M581; for example, it is permitted to specify the name of a pin that has already been declared as used by an endstop switch in a M574 command.
+* The S parameter used in RRF2.x is removed. The command waits for a low-to-high input transition. To wait for a high-to-low transition, invert the pin name using '!'.
+* When M581 is executed, if the T parameter is present but the other parameters are omitted, the trigger inputs and edge polarities for that trigger number are reported. Otherwise, the specified inputs and their polarities are added to the conditions that cause that trigger.
+* Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
+* **Warning**: if executed during a build process, and more than one line long the GCode within the trigger file may be executed between later commands from the build file. Bounding the trigger file with M25 and M24 may help, but this will cause error warnings if the trigger happens outside of a build process. The use of M25/M24 will cause the execution of pause and resume system macros.
+
+#### RepRapFirmware 2.x and earlier
+
+##### Parameters
+
+* **Tnn** Logical trigger number to associate the endstop input(s) with, from zero up to a firmware-specific maximum (e.g. 9 for RepRapFirmware)
+* **X, Y, Z, E** Selects endstop input(s) to monitor
+* **P** Reserved, may be used in future to allow general I/O pins to cause triggers
+* **S** Whether trigger occurs on a rising edge of that input (S1, default), falling edge (S0), or ignores that input (S-1). By default, all triggers ignore all inputs.
+* **C** Condition: whether to trigger at any time (C0, default) or only when printing a file from SD card (C1)
+
+##### Examples
+<br>
+<pre class="cblock">
+M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 or E2 endstop input and a file is being printed from SD card
+</pre>
+
+##### Notes
+
+* When M581 is executed, if the T parameter is present but the other parameters are omitted, the trigger inputs and edge polarities for that trigger number are reported. Otherwise, the specified inputs and their polarities are added to the conditions that cause that trigger. Using S-1 with no X Y Z or E parameters sets the trigger back to ignoring all inputs.
+* Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
+* A maximum of 16 triggers can be configured on Duet 2.
+* **Warning**: if executed during a build process, and more than one line long the GCode within the trigger file may be executed between later commands from the build file. Bounding the trigger file with M25 and M24 may help, but this will cause error warnings if the trigger happens outside of a build process. The use of M25/M24 will cause the execution of pause and resume system macros.
 
 ## M582: Check external trigger
 
 ### Parameters
 
-* T Trigger number to poll
+* **T** Trigger number to poll
 
 ### Examples
 <br>
 <pre class="cblock">
 M582 T2 ; check levels of inputs that give rise to trigger #2
 </pre>
+
+### Notes
 
 Triggers set up by the M581 command are normally activated only when the specified inputs change state. This command provides a way of causing the trigger to be executed if the input is at a certain level. For each of the inputs associated with the trigger, the trigger condition will be checked as if the input had just changed from the opposite state to the current state.
 
@@ -5504,11 +5522,11 @@ For example, if you use M581 to support an out-of-filament sensor, then M582 all
 * **Xnnn** Driver number(s) for X motor(s)
 * **Ynnn** Driver number(s) for Y motor(s)
 * **Znnn** Driver number(s) for Z motor(s)
+* **Ennn** Driver number(s) for E motor(s)
+* **U, V, W, A, B, Cnnn** Driver number(s) for additional axes U, V, W, A, B and C (UVW available in RepRapFirmware 1.16 and later; UVWABC available in RepRapFirmware 1.19 and later; UVWABCD available in RepRapFirmware 3.0 and later; UVWABCDabcdefghijkl available in RepRapFirmware 3.3 and later, Duet 3 MB6HC only).
 * **Rn** (optional, supported in RRF 3.2beta1 and later) 0 = axes creates in this command are linear, 1 = axes created are rotational. If not present, then RRF 3.2beta3 and later assume UVW are linear and ABCD are rotational.
 * **Sn** (optional, supported in RRF 3.2beta3 and later) 0 = axes created in this command are treated as linear in feedrate calculations, 1 = axes created are treated as rotational in feedrate calculations. See section 2.1.2.5 of the NIST GCode standard for how the feedrate is interpreted. Default is S0 for linear axes and S1 for rotational axes (see the R parameter).
-* **U, V, W, A, B, Cnnn** Driver number(s) for additional axes U, V, W, A, B and C (UVW available in RepRapFirmware 1.16 and later; UVWABC available in RepRapFirmware 1.19 and later; UVWABCD available in RepRapFirmware 3.0 and later).
-* **Ennn** Driver number(s) for E motor(s)
-* **Pnnn** Number of visible axes, defaults to the total number of axes configured.
+* **Pnnn** Number of visible axes, defaults to the total number of axes configured, excluding extruder drives.
 
 ### Order dependency
 
@@ -5522,11 +5540,15 @@ M584 X0 Y1 Z2:3 E4:5:6 ; Driver 0 controls the X motor, 1 controls Y, 2 and 3 co
 
 ### Notes
 
-* **VERY IMPORTANT!** Assigning a drive using M584 does not remove its old assignment. Therefore, **if you assign a drive that defaults to being an extruder drive, you should also assign the extruder drives explicitly as in the above example**. Failure to do so may result in unexpected behaviour.
-* You can use M584 to create additional axes - for example, to represent additional carriages on a machine with multiple independent X carriages. In 1.20 and later firmware you can create new axes in any order. In earlier firmware versions, additional axes must be created in the order UVWABC. You can hide some of the last axes you create using the P parameter. Hidden axes have no homing buttons or jog controls in the user interface.
-* RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M92 Z80, not M92 Z80:80
+* **VERY IMPORTANT!** From **RRF 3.3**, X (driver 0), Y (driver 1) and Z (driver 2) are assigned by default. There are no default extruder drives; all extruder drives must be declared explicitly using M584. Changing an existing drive (i.e. X, Y or Z) to a different driver with an **existing** assignment will result in two axes using the same driver, e.g. M584 X1 results in 'Driver assignments: X1 Y1 Z2'. Changing a drive to an unassigned driver results in the drive moving to the new driver, e.g. M584 Z3 results in 'Driver assignments: X1 Y1 Z3'. This may result in unexpected behaviour. It is best practice to define all drives explicitly as in the above example, if you are not using the default drive/driver assignments.
+* In **RRF 3.2.2 and earlier**, X (driver 0), Y (driver 1), Z (driver 2) and one extruder (driver 3) are assigned by default. Changing an existing drive (i.e. X, Y, Z or E) to a different driver with an **existing** assignment will result in two axes using the same driver. This may result in unexpected behaviour. It is best practice to define all drives explicitly as in the above example, if you are not using the default drive/driver assignments.
+* You can use M584 to create additional axes - for example, to represent additional carriages on a machine with multiple independent X carriages. In 1.20 and later firmware you can create new axes in any order. In earlier firmware versions, additional axes must be created in the order UVWABC. 
+* You can hide axes, starting with the last axis created, using the P parameter. Hidden axes have no homing buttons or jog controls in the user interface.
 * If you create more than one axis in a M584 command, the axes are created in the order UVWABCD regardless of the order of the parameters in the M584 command. This affects which axes will be hidden if you use the M584 P parameter to hide axes. For example, M584 C5 U6 creates axes U and C in that order, so M584 P4 would hide the C axis, not the U axis. If you want to create the axes in the order C then U (so that M584 P4 hides the U axis), use two M584 commands: M584 C5 followed by M584 U6.
-* Using M584 to map drivers to axes does not affect endstop inputs. In RRF2, endstop inputs XYZ are pre-allocated, after that they are allocated in the order in which axes are created. So if you create just one extra axes (e.g. U), it will use the E0 endstop input. If more than one axis is created in a single M584 command, endstop inputs are allocated to the new axes in axis creation order (see previous item). For example, M584 C5 U6 would allocate endstop input E0 to the U axis and E1 to the C axis.
+* RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M92 Z80, not M92 Z80:80
+* Every driver that is assigned must have its current set using M906. Not setting a current will default a low current (approx 1/32 of the driver max current), however M906 will report 0 until a current is assigned. Disable the driver explicitly if you do not want any current sent to a driver that is assigned.
+* The maximum number of axes supported on Duet 3 MB6HC is increased to 15 in RRF 3.3 and later. Axis letters abcdefghijkl may be used in addition to XYZUVWABCD. Because GCode is normally case insensitive, these must be prefixed with a single quote character in GCode commands. For example, M584 'A1.2 would assign axis 'a' to driver 1.2, and G1 'A10 would move the 'a' axis to the 10mm or 10 degree position (or by 10mm or 10 degrees if in relative mode).
+* Using M584 to map drivers to axes does not affect endstop inputs. In RRF 3, endstops inputs for each axis need to be defined. In RRF 2, endstop inputs XYZ are pre-allocated, after that they are allocated in the order in which axes are created. So if you create just one extra axes (e.g. U), it will use the E0 endstop input. If more than one axis is created in a single M584 command, endstop inputs are allocated to the new axes in axis creation order (see previous item). For example, M584 C5 U6 would allocate endstop input E0 to the U axis and E1 to the C axis.
 * On the Duet 2 WiFi and Duet 2 Ethernet, if you configure multiple drivers for an axis, either all of them must be TMC2660 drivers on the Duet or a Duet expansion board, or none of them must be. This is to facilitate dynamic microstepping and other features of the TMC2660.
 * In RRF3, M584 works the same way as in RRF2, with exception that on Duet 3 the driver on expansion boards are assigned with \<board address>.\<driver number>. Example:
 <br>
@@ -5552,11 +5574,9 @@ M350 B16 E16 I1  ; set the microstepping
 
 ## M585: Probe Tool
 
-Supported in RRF 1.20 and later.
+*Supported in RRF 1.20 and later.*
 
-In machines with at least one tool probe this code allows to update the current tool's offset by driving it into a given endstop.
-
-This code works similarly to G1 .. H1 (machine homing; G1 .. S1 is RRF 2.02 and earlier) except that it sets the offset of the current tool instead of the machine position, and that a custom endstop number (RRF 2.x) or custom Z probe (RRF 3.x) can be used.
+In machines with at least one tool probe this code allows to update the current tool's offset by driving it into a given endstop. This code works similarly to G1 .. H1 (machine homing; G1 .. S1 is RRF 2.02 and earlier) except that it sets the offset of the current tool instead of the machine position, and that a custom endstop number (RRF 2.x) or custom Z probe (RRF 3.x) can be used.
 
 ### Parameters
 
@@ -6380,13 +6400,15 @@ Updates the machine's local date and time or reports them if no parameters are s
 
 ## M906: Set motor currents
 
+Sets the peak currents to send to the stepper motors for each axis. The values are in milliamps.
+
 ### Parameters
 
-* **Xnnn** X drive peak motor current^1,3^
-* **Ynnn** Y drive peak motor current^1,3^
-* **Znnn** Z drive peak motor current^1,3^
-* **Ennn** E drive(s) peak motor current(s)^1,3^
-* **Innn** Motor current idle factor (0..100)^2^
+* **Xnnn** X drive peak motor current
+* **Ynnn** Y drive peak motor current
+* **Znnn** Z drive peak motor current
+* **Ennn** E drive(s) peak motor current(s)
+* **Innn** Motor current idle factor (0..100)
 
 ### Order dependency
 
@@ -6398,27 +6420,24 @@ This command must be later in config.g than any M584 command.
 M906 X300 Y500 Z200 E350:350
 </pre>
 
-Sets the peak currents to send to the stepper motors for each axis. The values are in milliamps.
-
 ### Notes
 
-^1^Current setting on the various Duet boards are as follows:
+RRF uses peak current. Divide by 1.414 for RMS current as used in Marlin implementations for Trinamic drivers
 
+Current setting on the various Duet boards are as follows:
 * Duet 2 WiF/Ethernet is done in steps of 100mA and is rounded down.
 * Duet Maestro is in steps of 50mA and rounded down.
-* Duet 3 MB6HC and EXP3HC it is 26.2mA.
-* Duet 3 Mini5+ it is 74mA (provisionally), rounded down.
-* Duet 3 1LC tool board is 50ma, rounded down.
+* Duet 3 MB6HC and EXP3HC is in steps of 26.2mA.
+* Duet 3 Mini5+ is in steps of 74mA (provisionally), rounded down.
+* Duet 3 1LC toolboard is in steps of 50mA, rounded down.
 
-^2^This is the percentage of normal that the motor currents should be reduced to when the printer becomes idle but the motors have not been switched off. The default value is 30% and will always be at least 100mA - starting from RRF 2.02 setting it to 0 will disable the steppers after timeout like M18|M84 do and if an axis is related to the motor, throw out the "homing" of it, since it is likely that the position cannot be precisely determined anymore. Note that the idle current is applied globally for all motors and cannot be set per axis.
+The **I** parameter is the percentage of normal that the motor currents should be reduced to when the printer becomes idle but the motors have not been switched off. The default value is 30% and will always be at least 100mA - starting from RRF 2.02 setting it to 0 will disable the steppers after timeout like M18|M84 do and if an axis is related to the motor, throw out the "homing" of it, since it is likely that the position cannot be precisely determined anymore. Note that the idle current is applied globally for all motors and cannot be set per axis.
 
-RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
+Every driver that is assigned must have its current set using M906. Not setting a current will default a low current (approx 1/32 of the driver max current), however M906 will report 0 until a current is assigned. Disable the driver explicitly if you do not want any current sent to a driver that is assigned.
 
-Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M906 Z200, not M906 Z200:200
+RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M906 Z200, not M906 Z200:200
 
-^3^Divide by 1.414 for RMS current as used in Marlin implementations for Trinamic drivers
-
-**NOTE**: As a rule of thumb, the recommendation is to set M906 to use 60-85% of the rated maximum current for the motor. Though you can go above or below as needed, and will have to tune for a balance of motor temperature, motor torque, and noise level. You can also go at it from the EMF calculator route ([reprapfirmware.org](https://www.reprapfirmware.org/) and click on EMF calculator) and play with different values to see how it changes behaviour.
+As a rule of thumb, the recommendation is to set M906 to use 60-85% of the rated maximum current for the motor. Though you can go above or below as needed, and will have to tune for a balance of motor temperature, motor torque, and noise level. You can also go at it from the EMF calculator route ([reprapfirmware.org](https://www.reprapfirmware.org/) and click on EMF calculator) and play with different values to see how it changes behaviour.
 
 ## M911: Configure auto save on loss of power
 
