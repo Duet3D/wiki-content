@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2022-01-14T15:13:45.072Z
+date: 2022-01-14T17:10:23.774Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -12,7 +12,7 @@ dateCreated: 2021-10-26T13:10:27.693Z
 
 If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament. To do this the printer needs to have a filament-out sensor attached.
 
-The filament sensor may be a simple switch that detects the presence of filament, or a sensor that measures filament motion (e.g. laser, magnetic or pulsed filament monitor), or both.
+The filament sensor may be a simple switch that detects the presence of filament, or a sensor that measures filament motion (e.g. laser, rotating magnet or pulsed filament monitor), or both.
 
 There are two Duet3D products for precise motion detection with direction:
 
@@ -39,72 +39,27 @@ For all firmware versions, **note** that filament monitoring in RRF is only acti
 
 ## Connecting to the Duet
 
-## Tabs {.tabset}
+### Tabs {.tabset}
 
-### Duet 3
+#### Duet 3
 
 **Important!** If you are using a Duet 3 or 3 Mini with tool or expansion boards, then **the filament monitor must be connected to the same board as the motor** for the extruder that it is monitoring. Filament monitors connected to tool and expansion boards are supported in RepRapFirmware 3.2beta4 and later.
 
-Connect the filament monitor to the +3.3V, GND and IN pins of one of the IO_ connectors on the Duet 3 main board or on a tool or expansion board.
+Connect a **laser, rotating magnet or pulsed filament monitor** to the +3.3V, GND and IN pins of one of the IO_ connectors on the Duet 3 main board or on a tool or expansion board.
 
 | Duet 3 | Filament monitor |
 |:---|:---|
-| 3.3V | 3.3V |
+| 3.3V | 3.3V | 
 | io[x].in | OUT |
 | GND | GND |
 | io[x].out | - |
 | 5V_EXT | - |
 
-### Duet 2
+For a **simple filament presence switch** connect the switch between the IN and GND pins of your chosen IO_x connector. We recommend you use the normally-closed contacts of a microswitch, which are generally the outside two connections on the microswitch, as the signal is less susceptible to interference than normally-open connections.
 
-Connect the filament monitor to an endstop connection on the Duet 2 mainboard (typically E0 or E1, but you can also use any of X, Y or Z that are free).
+#### Duet 2
 
-**Note:** The Filament monitor must be connected to an endstop on the Duet 2 Wifi, Duet 2 Ethernet or Duet 2 Maestro. It does not work connected to an endstop on a Duex expansion board.
-
-| Duet 2 | Filament monitor |
-|:---|:---|
-| E0_STOP | OUT |
-| 3.3V | 3.3V |
-| GND | GND |
-
-* For filament monitor version 1.7a and later use a cross over  3 wire cable with a molex KK on either end. (i.e. pin 1 to pin 3, pin 2 to pin 2, pin 3 to pin 1).
-* For filament monitor version 1.7 use a straight through over  3 wire cable with a molex KK on either end. (i.e. pin 1 to pin 1, pin 2 to pin 2, pin 3 to pin 3).
-
-## Optional filament presence switch
-
-You can connect a micro-switch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
-
-## 5V Operation
-
-It is possible to modify the Filament monitor PCB to connect to a controller that uses 5V logic. To do this use a small drill bit to carefully remove the connection between the two pads that is made with the ring of the throuhg hole between the pads. **Test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.**
-
-![Diagram showing the locaiton of the 3.3V/5V drillable jumper on the rotating magnet PCB version 1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_5v_d1.0.png =600x)
-
-This image shows PCB v1.7b, the process is the same for 1.7 and 1.7a
-
-
-
-## Connecting to the Duet
-
-## Tabs {.tabset}
-
-### Duet 3
-
-**Important!** If you are using a Duet 3 or 3 Mini with tool or expansion boards, then **the filament monitor must be connected to the same board as the motor** for the extruder that it is monitoring. Filament monitors connected to tool and expansion boards are supported in RepRapFirmware 3.2beta4 and later.
-
-Connect the filament monitor to the +3.3V, GND and IN pins of one of the IO connectors on the Duet 3 main board or on a tool or expansion board.
-
-| Duet 3 | Filament monitor |
-|:---|:---|
-| 3.3V | 3.3V |
-| io[x].in | OUT |
-| GND | GND |
-| io[x].out | - |
-| 5V_EXT | - |
-
-### Duet 2
-
-Connect the filament monitor to an **endstop** connection on the Duet 2 **main board**, using a 3 wire straight-through cable with a Molex KK cable socket on either end. The cable does not need to be shielded.
+Connect a **laser, rotating magnet or pulsed filament monitor** to an **endstop** connection on the Duet 2 **main board**, using a 3 wire cable with a Molex KK cable socket on either end. The cable does not need to be shielded.
 
 **Note:** The Filament monitor must be connected to an endstop (X, Y, Z, E0, E1) on the main Duet board, or to Stop 10 (connlcd.encb) or Stop 11 (connlcd.enca) on the CONN_LCD connector. It does not work connected to an endstop on a DueX expansion board.
 
@@ -114,7 +69,32 @@ Connect the filament monitor to an **endstop** connection on the Duet 2 **main b
 | 3.3V | 3.3V |
 | GND | GND |
 
-## Optional filament presence switch
+For a **simple filament presence switch** connect the switch between the STP and GND pins of your chosen endstop connection. We recommend you use the normally-closed contacts of a microswitch, which are generally the outside two connections on the microswitch, as the signal is less susceptible to interference than normally-open connections.
+
+
+Connect a **laser, rotating magnet or pulsed filament monitor** to an **endstop** connection on the Duet 2 mainboard (typically E0 or E1, but you can also use any of X, Y or Z that are free).
+
+**Note:** Endstop inputs on the DueX2/5 expansion board (duex.e[2-6]stop in RRF 3.x, C5 thru C9 in RRF 2.x) can only be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation, pulsed or laser sensor). However, the endstop inputs on the Duet 2 WiFi/Ethernet CONN_LCD connector (connlcd.4 and connlcd.3 in RRF3.x, C10 and C11 in RRF 2.x) support any filament sensor.
+
+### Notes on connecting Duet3D filament monitors
+
+#### Duet3D Rotating Magnet Filament Monitor
+
+##### Optional filament presence switch
+
+You can connect a micro-switch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
+
+##### 5V Operation
+
+It is possible to modify the Filament monitor PCB to connect to a controller that uses 5V logic. To do this use a small drill bit to carefully remove the connection between the two pads that is made with the ring of the throuhg hole between the pads. **Test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.**
+
+![Diagram showing the locaiton of the 3.3V/5V drillable jumper on the rotating magnet PCB version 1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_5v_d1.0.png =600x)
+
+This image shows PCB v1.7b, the process is the same for 1.7 and 1.7a
+
+#### Duet3D Laser Filament Monitor
+
+##### Optional filament presence switch
 
 You may connect a micro-switch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not. However, this is not normally necessary, because the filament monitor will detect that there is no filament moving through just a few mm after the end of the filament has passed over the sensor, which will normally be well before the end of the filament reaches the extruder drive.
 
@@ -123,8 +103,9 @@ You may connect a micro-switch to the 2-pin "SW" header arranged so that the swi
 
 
 
-# Rotating magnet filament sensor
 
+
+# Rotating magnet filament sensor
 
 # Firmware configuration
 
