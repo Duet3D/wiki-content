@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-12T17:15:24.847Z
+date: 2022-01-14T11:46:50.264Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5707,6 +5707,8 @@ M587 with no parameters lists all the remembered SSIDs, but not the remembered p
 
 The M587 command will fail if the WiFi module has not yet been taken out of reset. So if the WiFi module has not been started, send M552 S0 to put it in idle mode first.
 
+When connecting to an open network with no password, M587 still requires a password in the P parameter. However, it doesn't matter what password you provide as long as it meets the minimum length requirement for M587.
+
 **Important!** Do not use M587 within config.g. As well as being a security hazard, writing the access point parameters to WiFi chip every time you start the Duet may eventually wear out the flash memory. Also, the wifi module does not get enabled until the end of running config.g (see [this forum thread](https://forum.duet3d.com/post/42798) for explanation). It is better to use a macro to send M587.
 
 ## M588: Forget WiFi host network
@@ -5741,10 +5743,15 @@ The M588 command will fail if the WiFi module has not yet been taken out of rese
 * **Inn.nn.nn.nn** The IP address to use
 * **Cnn** The WiFi channel to use (optional)
 
-**Example command: M589 S"DuetSSID" P"password" I192.168.0.1 C1**
+### Examples 
+<br>
+<pre class="cblock">
+M589 S"DuetSSID" P"password" I192.168.0.1 C1
+</pre>
+
+### Notes
 
 **To use AP mode:**
-
 * Send a M589 command once from the console, or via macro to set the access point name, IP address etc. These parameters will be saved within the WiFi module.
 * The M589 command will fail if the WiFi module has not yet been taken out of reset. So if the WiFi module has not been started, send M552 S0 to put it in idle mode first.
 * M589 does not work from within config.g at startup.
@@ -5879,6 +5886,8 @@ M592 D0 A0.01 B0.0005 ; set parameters for extruder drive 0<br>
 M592 D0 ; report parameters for drive 0
 </pre>
 
+### Notes
+
 Most extruder drives use toothed shafts to grip the filament and drive it through the hot end. As the extrusion speed increases, so does the back pressure from the hot end, and the increased back pressure causes the amount of filament extruded per step taken by the extruder stepper motor to reduce. This may be because at high back pressures, each tooth compresses and skates over the surface of the filament for longer before it manages to bite. See [RepRap forum post here](http://forums.reprap.org/read.php?262,802277) and the [graph here](http://forums.reprap.org/file.php?262,file=100851,filename=graph.JPG) for an example.
 
 Nonlinear extrusion is an experimental feature in RepRapFirmware to compensate for this effect. The amount of extrusion requested is multiplied by (1 + min(L, A*v + B*v^2)) where v is the requested extrusion speed (calculated from the actual speed at which the move will take place) in mm/sec.
@@ -5887,24 +5896,43 @@ Nonlinear extrusion is not applied to extruder-only movements such as retraction
 
 ## M593: Configure Input Shaping
 
-**Parameters (RRF 3.2 and earlier)**
+The purpose of input shaping is to reduce ringing (also called ghosting).
 
-* **Fnnn** Frequency of ringing to cancel by DAA, in Hz. Zero or negative values disable DAA.
-* **Lnnn** Minimum acceleration allowed, default 10mm/sec^2. DAA will not be applied if it requires the average acceleration to be reduced below this value.
+### Tabs {.tabset}
 
-**Parameters (RRF 3.3 and later)**
+#### RepRapFirmware 3.3 and later
 
-* **P"type"** Type of input shaping to use, not case sensitive. In RRF 3.3, "type" must be "none" or "daa", and if no P parameter is given but the F parameter is given then "daa" is assumed, for compatibility with previous releases. RRF 3.4 instead supports "none", "zvd", "zvdd", "zvddd", "mzv", "ei2", "ei3" and "custom".
+##### Parameters
+
+* **P"type"** Type of input shaping to use, not case sensitive. 
+RRF 3.4 supports "none", "zvd", "zvdd", "zvddd", "mzv", "ei2", "ei3" and "custom".
+RRF 3.3 supports "none" or "daa", and if no P parameter is given but the F parameter is given then "daa" is assumed, for compatibility with previous releases. 
 * **Fnnn** Frequency of ringing to cancel in Hz
 * **Snnn** (optional) Damping factor of ringing to be cancelled, default 0.1.
 * **Lnnn** (optional) Minimum acceleration allowed, default 10mm/sec^2. Input shaping will not be applied if it requires the average acceleration to be reduced below this value.
 * **Hnn:nn...** Amplitudes of each impulse except the last, normally below 1.0. Only used with P"custom" parameter.
 * **Tnn:nn** Durations of each impulse except the last. Only used with P"custom" parameter.
 
-**Information about the Input Shapers**
+##### Examples
 
+**RRF 3.4 and later**
+<br>
+<pre class="cblock">
+M593 P"zvd" F40.5 ; use ZVD input shaping to cancel ringing at 40.5Hz
+M593 P"none"      ; disable input shaping
+M593 P"custom" H0.4:0.7 T0.0135:0.0135 ; use custom input shaping
+</pre>
 
-|width=75% | Input Shaper | Shaper Duration | Vibration reduction with default damping factor (0.1) |
+**RRF 3.3**
+<br>
+<pre class="cblock">
+M593 P"daa" F40.5 ; use DAA to cancel ringing at 40.5Hz
+M593 P"none"      ; disable DAA
+</pre>
+
+##### Information about the Input Shapers
+
+| Input Shaper | Shaper Duration | Vibration reduction with default damping factor (0.1) |
 |:---|:---|
 | ZVD | 1 / Frequency | ± 15% Frequency |
 | ZVDD | 1.5 / Frequency | |
@@ -5913,28 +5941,20 @@ Nonlinear extrusion is not applied to extruder-only movements such as retraction
 | EI2 | 1.5 / Frequency | ± 35% Frequency |
 | EI3 | 3 / Frequency | ± -45%...+50% Frequency |
 
+#### RepRapFirmware 3.2 and earlier
+
+##### Parameters
+
+* **Fnnn** Frequency of ringing to cancel by DAA, in Hz. Zero or negative values disable DAA.
+* **Lnnn** Minimum acceleration allowed, default 10mm/sec^2. DAA will not be applied if it requires the average acceleration to be reduced below this value.
+
 **Example (RRF 3.2 and earlier)**
 <br>
 <pre class="cblock">
 M593 F40.5  ; use DAA to cancel ringing at 40.5Hz
 </pre>
 
-**Example (RRF 3.3)**
-<br>
-<pre class="cblock">
-M593 P"daa" F40.5  ; use DAA to cancel ringing at 40.5Hz
-M593 P"none"   ; disable DAA
-</pre>
-
-**Examples (RRF 3.4 and later)**
-<br>
-<pre class="cblock">
-M593 P"zvd" F40.5  ; use ZVD input shaping to cancel ringing at 40.5Hz
-M593 P"none"     ; disable input shaping
-M593 P"custom" H0.4:0.7 T0.0135:0.0135 ; use custom input shaping
-</pre>
-
-The purpose of input shaping is to reduce ringing (also called ghosting).
+### Notes
 
 In firmware 2.02 up to 3.3 the only form of input shaping supported is Dynamic Acceleration Adjustment (DAA). By default, DAA is disabled. If it is enabled, then acceleration and deceleration rates will be adjusted per-move to reduce ringing at the specified frequency. Acceleration limits set by M201 and M204 will still be honoured when DAA is enabled, so DAA will only ever reduce acceleration. Therefore your M201 and M204 limits must be high enough so that DAA can reduce the acceleration to the optimum value. Where possible DAA reduces the acceleration or deceleration so that the time for that phase is the period of the ringing. If that is not possible because of the acceleration limits, it tries for 2 times the period of the ringing.
 
@@ -5948,19 +5968,25 @@ High X and Y jerk values reduce the effectiveness of DAA; therefore you should s
 
 Keep in mind that you have to retune Pressure Advance after you have configured Input Shaping. The Pressure Advance will differ from shaper to shaper and from frequency to frequency.
 
+See also: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) and [Input shaping](/User_manual/Tuning/Input_shaping)
+
 ## M594: Enter/Leave Height Following mode
+
+Height following mode allows the Z position of the tool to be controlled by a PID controller using feedback from a sensor. See also [M951](/User_manual/Reference/Gcodes/M951) for configuration.
 
 ### Parameters
 
 * **Pn** P1 = enter height following mode, P0 = leave height following mode
 
-Height following mode allows the Z position of the tool to be controlled by a PID controller using feedback from a sensor. See also M951.
+### Notes
 
 If a movement command (e.g. G1) explicitly mentions the Z axis while height following mode is active, existing moves in the pipeline will be allowed to complete and the machine allowed to come to a standstill. Then height following mode will be terminated and the new move executed.
 
 ## M595: Set movement queue length
 
-Supported in RRF 3.2 and later.
+*Supported in RRF 3.2 and later.*
+
+Different features of motion control firmware may have competing demands on microcontroller RAM. In particular, operations that use many short segments (e.g. laser rastering) need longer movement queues than typical 3D printing, but have fewer motors to control. This command allows the movement queue parameters to be adjusted so that the queue can be lengthened if necessary, or kept short if a long movement queue is not needed and there are other demands on RAM.
 
 ### Parameters
 
@@ -5969,13 +5995,15 @@ Supported in RRF 3.2 and later.
 * **Rnnn** Grace period in milliseconds (supported in RRF 3.3 and later). When filling the movement queue from empty, the system waits for this amount of time after the last movement command was received before starting movement. This is to allow the movement queue to fill more before movement is started when commands are received from USB, Telnet or another serial channel. It should not be needed when processing a GCode file from the SD card.
 * **Qn** (optional, RRF3.3 and later) Movement queue number, default 0. Some builds of RRF have a secondary movement queue. You can configure the length of that queue by specifying Q1.
 
-Different features of motion control firmware may have competing demands on microcontroller RAM. In particular, operations that use many short segments (e.g. laser rastering) need longer movement queues than typical 3D printing, but have fewer motors to control. This command allows the movement queue parameters to be adjusted so that the queue can be lengthened if necessary, or kept short if a long movement queue is not needed and there are other demands on RAM.
+### Notes
 
 M595 without any parameters reports the length of the movement queue and the number of per-motor movement objects allocated.
 
 ## M600: Filament change pause
 
-This command behaves like M226 except that if macro file filament-change.g exists in /sys on the SD card, it is run in preference to pause.g. Supported in firmware 2.02 and later.
+*Supported in firmware 2.02 and later.*
+
+This command behaves like [M226](/User_manual/Reference/Gcodes/M226) except that if macro file filament-change.g exists in /sys on the SD card, it is run in preference to pause.g. 
 
 ## M650: Set peel move parameters
 
@@ -5987,15 +6015,17 @@ This command is sent by nanoDLP to execute a peel move after exposing a layer. R
 
 ## M665: Set delta configuration
 
+Set the delta calibration variables
+
 ### Parameters
 
-* **Lnnn** Diagonal rod length^2^
+* **Lnnn** or **Lnnn:nnn:...** Diagonal rod length
 * **Rnnn** Delta radius
 * **Bnnn** Safe printing radius
 * **Hnnn** Nozzle height above the bed when homed after allowing for endstop corrections
-* **Xnnn** X tower position correction^1^
-* **Ynnn** Y tower position correction^1^
-* **Znnn** Z tower position correction^1^
+* **Xnnn** X tower position correction
+* **Ynnn** Y tower position correction
+* **Znnn** Z tower position correction
 
 ### Examples
 <br>
@@ -6003,23 +6033,28 @@ This command is sent by nanoDLP to execute a peel move after exposing a layer. R
 M665 L250 R160 B80 H240 X0 Y0 Z0
 </pre>
 
-Set the delta calibration variables
-
 ### Notes
 
-^1^X, Y and Z tower angular offsets from the ideal (i.e. equilateral triangle) positions, in degrees, measured anti-clockwise looking down on the printer.
+The **X**, **Y** and **Z** parameters are the X, Y and Z tower angular offsets from the ideal (i.e. equilateral triangle) positions, in degrees, measured anti-clockwise looking down on the printer.
 
-^2^In RRF 2.03 and later, multiple L values can be provided, for example **L260.1:260.2:260.0**. The values are the lengths of the rods to the X, Y and Z towers respectively. If more than 3 values are provided, the firmware assumes that there are as many towers as L values up to the maximum supported (currently 6). The XY coordinates of the additional towers must be defined subsequently using the M669 command. If only one L value is provided, the machine is assumed to have 3 towers with all rods having the same length.
+In RRF 2.03 and later, multiple **L** values can be provided, for example:
+<br>
+<pre class="cblock">
+L260.1:260.2:260.0
+</pre>
+The values are the lengths of the rods to the X, Y and Z towers respectively. If more than 3 values are provided, the firmware assumes that there are as many towers as L values up to the maximum supported (currently 6). The XY coordinates of the additional towers must be defined subsequently using the M669 command. If only one L value is provided, the machine is assumed to have 3 towers with all rods having the same length.
 
 ## M666: Set delta endstop adjustment
+
+Sets delta endstops adjustments.
 
 ### Parameters
 
 * **Xnnn** X axis endstop adjustment
 * **Ynnn** Y axis endstop adjustment
 * **Znnn** Z axis endstop adjustment
-* **Annn** X bed tilt in percent^1^
-* **Bnnn** Y bed tilt in percent^1^
+* **Annn** X bed tilt in percent (RRF 1.16 and later)
+* **Bnnn** Y bed tilt in percent (RRF 1.16 and later)
 
 ### Examples
 <br>
@@ -6027,15 +6062,13 @@ Set the delta calibration variables
 M666 X-0.1 Y+0.2 Z0
 </pre>
 
-Sets delta endstops adjustments.
+### Notes
 
 Positive endstop adjustments move the head closer to the bed when it is near the corresponding tower. Endstop corrections are expressed in mm.
 
-^1^RepRapFirmware 1.16 and later.
-
 ## M667: Select CoreXY or related mode
 
-This command is deprecated in RRF 2.03 and later. Use M669 instead.
+*This command is deprecated in RRF 2.03 and later.* Use [M669](/User_manual/Reference/Gcodes/M669) instead.
 
 ### Parameters
 
@@ -6053,6 +6086,8 @@ This command is deprecated in RRF 2.03 and later. Use M669 instead.
 <pre class="cblock">
 M667 S1
 </pre>
+
+### Notes
 
 M667 S0 selects Cartesian mode (unless the printer is configured as a delta using the M665 command). Forward motion of the X motor moves the head in the +X direction. Similarly for the Y motor and Y axis, and the Z motor and Z axis. This is the default state of the firmware on power up.
 
@@ -6765,7 +6800,7 @@ M950 R0 C"pwm_pin+forward_pin+reverse_pin" Qfff Laa:bb
 
 ## M951: Set height following mode parameters
 
-Supported in RepRapFirmware 3.x
+*Supported in RepRapFirmware 3.x*
 
 Height following mode allows the Z position of the tool to be controlled by a PID controller using feedback from a sensor. See also M594.
 
@@ -6777,6 +6812,8 @@ Height following mode allows the Z position of the tool to be controlled by a PI
 * **Dnn.n** Derivative factor, in mm per rate of change of sensor units (change in sensor unit per second)
 * **Fnn.n** (optional) Sample and correction frequency (Hz), default 5Hz
 * **Znn.n:nn.n** Minimum and maximum permitted Z values
+
+### Notes
 
 If commanding the motors to increase Z causes the sensor value to increase, then all of P, I and D must be positive. If commanding the motors to increase Z causes the sensor value to decrease, then all of P, I and D must be negative.
 
