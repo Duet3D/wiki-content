@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-01-15T16:27:19.466Z
+date: 2022-01-15T17:07:39.547Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -202,12 +202,14 @@ Except as noted in the table below, an IO_x_IN pin can always be used to provide
 
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|
-| 0 | yes | yes | no |  |
+| 0 | yes | yes | no | Can be used with I2C from v1.01 onwards ^1^  |
 | 1 | yes | yes | yes |  |
 | 2 | yes | yes | no |  |
 | 3 | no | no | no |  |
 | 4 | no | no | yes |  |
 | 5 | no | yes | no |  |
+
+^1^ Note, to use IO 0 with I2C the protection bypass resistor must be fitted to bypass the 10K series resistor. If this is fitted then IO0.in is no longer protected sufficiently against over voltage/over current.
 
 ## Power distribution
 
@@ -255,6 +257,30 @@ The Duet 3 Expansion 3HC has a 4-bank DIP switch to set the address. The CAN add
 | on | off | on | on | 13 |
 | off | on | on | on | 14 |
 | on | on | on | on | 15 |
+
+## Commissioning
+
+### Updating the firmware
+The 3HC board will be shipped with firmware loaded during production. You can check the version loaded by sending
+
+M115 B1
+(or B## where ## is the new CAN address of the board if you have changed it already)
+
+To update the firmware get the [latest version from the RepRapFirmware github](https://github.com/Duet3D/RepRapFirmware/releases). It is recommended to upgrade all the firmware in your Duet 3 system together so that the versions do not get out of sync.
+
+Send M997 B## to carry out a firmware update, the bootloader will request the Duet3Firmware_EXP3HC.bin from the Duet 3 main board, it needs to be in the /firmware folder (/sys folder for versions of RRF before 3.3).
+
+Once the update is complete restart the mainboard and 3HC, then send M115 B## (where B## is the address set with the dip switches) to check the firmware is updated.
+
+### Forcing a firmware update
+
+If the 3HC is unresponsive, or the firmware update is not working, set all the sip switches to "off", then reset the 3HC. This will force the 3HC bootloader to request a firmware update over CAN when it starts up.
+
+Ensure the 3HC firmware is in the /firmware directory (/sys on RRF versions earlier than 3.3)
+
+Ensure you have can communication (the status light is flashing in sync with the Duet 3 mainboard)
+
+
 
 # Revision History
 
