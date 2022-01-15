@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2021-12-20T12:08:49.043Z
+date: 2022-01-15T16:27:19.466Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -260,10 +260,28 @@ The Duet 3 Expansion 3HC has a 4-bank DIP switch to set the address. The CAN add
 
 # Tabs{.tabset}
 
-## Revision v1.01a
+## Revision v1.01
+
+* Added a green LED for CAN Activity.
+* Add Programming pads so the SWD header does not need to be used for initial programming.
+* Enlarged the VFUSED trace to the three high current outputs so its capable of handling 15A@40C rise.
+* Added bypass jumper to IO_0_IN to bypass the 10K protection resistor to allow for I2C to be used on IO_0
+* Many changes to components to work arround supply chain issues that do not impact the functionality of the baord.
+
+## Revision v1.0a
+
+* Improved thermistor circuit connections
+* Change stepper driver output labelling to A+ A- B+ B- to match other Duet 3s
 
 ## Revision v1.0
 
+* Add an LED to indicate when +12V is present
+* Rotate the DIP switch 180 degrees
+* Changed CAN polarity so a cross over cable was not needed.
+* Swap polarity of OUT0, OUT1 and OUT2 connectors, for consistency with the 2-pin Molex KK connectors
+* improve stepper driver output circuits.
+
 ## Revision v0.9
 
+* initial prototpye distributed.
 Prototype wiring is the same as version 1.0 wiring.
