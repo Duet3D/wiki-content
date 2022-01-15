@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-01-15T17:07:39.547Z
+date: 2022-01-15T17:10:49.891Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -84,9 +84,13 @@ Duet 3 Expansion 3HC [STEP File on github](https://github.com/Duet3D/Duet3-Expan
 
 ## Tabs {.tabset}
 
+### Revision v1.01
+
+![duet3_eb_3hc_v1.01_d1.4_wiring.png](/duet_boards/duet_3_can_expansion/duet3_eb_3hc_v1.01_d1.4_wiring.png =x600)
+
 ### Revision v1.0, v1.0a
 
-![duet_3_3hc_v1.0_v1.0a_wiring.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v1.0_v1.0a_wiring.jpg =x500)
+![duet_3_3hc_v1.0_v1.0a_wiring.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v1.0_v1.0a_wiring.jpg =x600)
 
 ### Revision v0.9
 
