@@ -2,13 +2,11 @@
 title: Getting Started with Duet 2 WiFi / Ethernet
 description: This page contains a step by step guide and links to using your Duet 2 Wifi or Ethernet.
 published: true
-date: 2021-12-14T12:44:13.254Z
+date: 2022-01-17T14:27:11.386Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:10:28.657Z
 ---
-
-<!--- Migrated not updated! -->
 
 ![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top.jpg =400x)
 
@@ -16,7 +14,7 @@ dateCreated: 2021-11-29T15:10:28.657Z
 
 Congratulations on your new Duet 2 WiFi or Ethernet! This page will guide you through getting connected, updating firmware, setting up initial configuration.
 
-First, read the warnings! See [Warnings](/User_manual/Overview/Warnings) and [Fire safety](/User_manual/Overview/Fire_safety) for precautions you must take.
+First, read the warnings! See [Warnings](/User_manual/Overview/Warnings), [Fire safety](/User_manual/Overview/Fire_safety) and [USB ground loops](/User_manual/Overview/USB_ground_loops) for precautions you must take.
 
 # Preparation
 
@@ -43,7 +41,7 @@ The Duet Web Control user interface it the best way to control your Duet. It is 
 
 ## Now with RepRapFirmware 3 installed
 
-From late 2020, Duet 2 boards will start shipping with RepRapFirmware 3 loaded by default (prior to this Duet 2 boards had RepRapFirmware 2 loaded and an upgrade procedure was required - see links below).
+From late 2020, Duet 2 boards ship with RepRapFirmware 3 loaded by default. Prior to this Duet 2 boards had RepRapFirmware 2 loaded and an upgrade procedure was required - see links below.
 
 Duet 2 boards with RepRapFirmware 3 installed will have a sticker indicating this (with a QR code that links here).
 
@@ -97,7 +95,7 @@ There are more detailed wiki pages for each printer type:
 
 # Commissioning tests
 
-A step by step example guide for basic commissioning can be [guide|39|found here.] It uses a Duet Maestro and an Ender 3, but the steps are broadly applicable.
+<!--* A step by step example guide for basic commissioning can be [guide|39|found here.] It uses a Duet Maestro and an Ender 3, but the steps are broadly applicable.-->
 
 More detailed specifics are found below:
 
