@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards. 
 published: true
-date: 2021-12-14T16:09:10.564Z
+date: 2022-01-17T14:22:34.866Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -45,7 +45,9 @@ The latest beta, release and previous versions of RepRapFirmware are available a
 
 Our general advice is to use the [‘Latest release‘ version from GitHub](https://github.com/Duet3D/RepRapFirmware/releases/latest), unless you have a specific reason to use a 'beta' or 'RC' (release candidate) release. Beta and RC versions are marked ‘Pre-release’ on GitHub.
 
-Each 'release' version should have a large zip file that contains all the files needed to update all Duet boards. Download this, without unzipping it. Or download individual binary files, as needed.
+Each 'release' version should have a large zip file that contains all the files needed to update all Duet boards. Download this, without unzipping it. Or download individual binary files, as needed. 
+
+'Beta' and 'RC' releases are supplied as individual files, not as a convenient zip file, and need to be downloaded and installed individually.
 
 ## Updating from older firmware versions
 
