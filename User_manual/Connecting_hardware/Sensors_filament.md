@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2022-01-14T17:10:23.774Z
+date: 2022-01-17T12:29:07.124Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -33,7 +33,7 @@ In **RRF 3.4 and later**, the action on a filament error is to:
 
 **RRF 1.19 to 3.1.1** does not support filament-error macros. The action on a filament error is to enter the Pausing state, show a message on all available targets with the type of filament error, and invoke system macro pause.g. The job is paused and will need manual intervention to resume the print.
 
-For all firmware versions, **note** that filament monitoring in RRF is only active when printing from SD card.
+For all firmware versions, **note that filament monitoring in RRF is only active when printing from SD card.**
 
 # Connecting a filament sensor
 
@@ -45,7 +45,9 @@ For all firmware versions, **note** that filament monitoring in RRF is only acti
 
 **Important!** If you are using a Duet 3 or 3 Mini with tool or expansion boards, then **the filament monitor must be connected to the same board as the motor** for the extruder that it is monitoring. Filament monitors connected to tool and expansion boards are supported in RepRapFirmware 3.2beta4 and later.
 
-Connect a **laser, rotating magnet or pulsed filament monitor** to the +3.3V, GND and IN pins of one of the IO_ connectors on the Duet 3 main board or on a tool or expansion board.
+##### Laser, rotating magnet or pulsed filament monitor
+
+Connect a **laser, rotating magnet or pulsed filament monitor** to the +3.3V, GND and IN pins of one of the IO connectors on the Duet 3 mainboard, or on a tool or expansion board.
 
 | Duet 3 | Filament monitor |
 |:---|:---|
@@ -55,13 +57,25 @@ Connect a **laser, rotating magnet or pulsed filament monitor** to the +3.3V, GN
 | io[x].out | - |
 | 5V_EXT | - |
 
-For a **simple filament presence switch** connect the switch between the IN and GND pins of your chosen IO_x connector. We recommend you use the normally-closed contacts of a microswitch, which are generally the outside two connections on the microswitch, as the signal is less susceptible to interference than normally-open connections.
+**Optional filament presence switch**
+
+The Duet3D Rotating Magnet Filament Monitor and Duet3D Laser Filament Monitor have an optional filament presence switch. You can connect a microswitch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
+
+However, this is not normally necessary, because the filament monitor will detect that there is no filament moving through just a few mm after the end of the filament has passed over the sensor, which will normally be well before the end of the filament reaches the extruder drive.
+
+*Note this switch header is not populated in  all versions of the monitor but it can be added if desired. It is a standard  a standard Molex KK 2 pin header*
+
+##### Simple filament presence switch
+
+For a **simple filament presence switch** connect the switch between the IN and GND pins of your chosen IO_x connector, as you would a normal microswitch endstop. We recommend you use the normally-closed contacts of a microswitch, which are generally the outside two connections on the microswitch, as the signal is less susceptible to interference than normally-open connections.
 
 #### Duet 2
 
-Connect a **laser, rotating magnet or pulsed filament monitor** to an **endstop** connection on the Duet 2 **main board**, using a 3 wire cable with a Molex KK cable socket on either end. The cable does not need to be shielded.
+##### Laser, rotating magnet or pulsed filament monitor
 
-**Note:** The Filament monitor must be connected to an endstop (X, Y, Z, E0, E1) on the main Duet board, or to Stop 10 (connlcd.encb) or Stop 11 (connlcd.enca) on the CONN_LCD connector. It does not work connected to an endstop on a DueX expansion board.
+Connect a **laser, rotating magnet or pulsed filament monitor** to an **endstop** connection on the Duet 2 **mainboard**, using a 3 wire cable with a Molex KK cable socket on either end. The cable does not need to be shielded.
+
+**DueX2/5 Note:** A Laser, rotating magnet or pulsed filament monitor must be connected to an endstop on the Duet 2 WiFi/Ethernet mainboard. This can be X, Y, Z, E0, E1, Stop 10 (connlcd.encb in RRF 3.x, C10 in RRF 2.x) or Stop 11 (connlcd.enca in RRF 3.x, C11 in RRF 2.x) on the CONN_LCD connector. It will not work connected to an endstop on a DueX expansion board. Endstop inputs on the DueX2/5 expansion board can be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation, pulsed or laser sensor).
 
 | Duet 2 | Filament monitor |
 |:---|:---|
@@ -69,54 +83,33 @@ Connect a **laser, rotating magnet or pulsed filament monitor** to an **endstop*
 | 3.3V | 3.3V |
 | GND | GND |
 
-For a **simple filament presence switch** connect the switch between the STP and GND pins of your chosen endstop connection. We recommend you use the normally-closed contacts of a microswitch, which are generally the outside two connections on the microswitch, as the signal is less susceptible to interference than normally-open connections.
+**Optional filament presence switch**
 
+The Duet3D Rotating Magnet Filament Monitor and Duet3D Laser Filament Monitor have an optional filament presence switch. You can connect a microswitch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
 
-Connect a **laser, rotating magnet or pulsed filament monitor** to an **endstop** connection on the Duet 2 mainboard (typically E0 or E1, but you can also use any of X, Y or Z that are free).
-
-**Note:** Endstop inputs on the DueX2/5 expansion board (duex.e[2-6]stop in RRF 3.x, C5 thru C9 in RRF 2.x) can only be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation, pulsed or laser sensor). However, the endstop inputs on the Duet 2 WiFi/Ethernet CONN_LCD connector (connlcd.4 and connlcd.3 in RRF3.x, C10 and C11 in RRF 2.x) support any filament sensor.
-
-### Notes on connecting Duet3D filament monitors
-
-#### Duet3D Rotating Magnet Filament Monitor
-
-##### Optional filament presence switch
-
-You can connect a micro-switch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
-
-##### 5V Operation
-
-It is possible to modify the Filament monitor PCB to connect to a controller that uses 5V logic. To do this use a small drill bit to carefully remove the connection between the two pads that is made with the ring of the throuhg hole between the pads. **Test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.**
-
-![Diagram showing the locaiton of the 3.3V/5V drillable jumper on the rotating magnet PCB version 1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_5v_d1.0.png =600x)
-
-This image shows PCB v1.7b, the process is the same for 1.7 and 1.7a
-
-#### Duet3D Laser Filament Monitor
-
-##### Optional filament presence switch
-
-You may connect a micro-switch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not. However, this is not normally necessary, because the filament monitor will detect that there is no filament moving through just a few mm after the end of the filament has passed over the sensor, which will normally be well before the end of the filament reaches the extruder drive.
+However, this is not normally necessary, because the filament monitor will detect that there is no filament moving through just a few mm after the end of the filament has passed over the sensor, which will normally be well before the end of the filament reaches the extruder drive.
 
 *Note this switch header is not populated in  all versions of the monitor but it can be added if desired. It is a standard  a standard Molex KK 2 pin header*
 
+##### Simple filament presence switch
 
+For a **simple filament presence switch** connect the switch between the STP and GND pins of your chosen endstop connection, as you would a normal microswitch endstop. 
 
+You can use any available endstop; X, Y, Z, E0, E1, Stop 10 (connlcd.encb in RRF 3.x, C10 in RRF 2.x) or Stop 11 (connlcd.enca in RRF 3.x, C11 in RRF 2.x) on the CONN_LCD connector, and/or the endstops on a DueX2/5 expansion board (duex.e[2-6]stop in RRF 3.x, C5 thru C9 in RRF 2.x). 
 
+We recommend you use the normally-closed contacts of a microswitch, which are generally the outside two connections on the microswitch, as the signal is less susceptible to interference than normally-open connections.
 
-
-# Rotating magnet filament sensor
-
-# Firmware configuration
+# Duet3D Rotating magnet filament sensor
 
 ## Firmware requirements
 
 **Note**: RRF v2.03 or later is required to support the Magnetic Filament Monitor, version 2.04RC4 or later is recommended.
 
+## Firmware configuration
+
 ## Tabs {.tabset}
 
 ### RepRapFirmware 3.x
-
 
 The filament monitor is configured using the [M591](/User_manual/Reference/Gcodes/M591) command. Here are some examples of that command:
 
@@ -163,13 +156,13 @@ Brief explanation of parameters:
 
 Initially you will not know the exact "L" parameter to use so start with 24.8 and use the output of the calibration to tweak this.
 
-# Commissioning
+## Commissioning
 
-## Power on test
+### Power on test
 
 Once power is turned on, the filament monitor will flash the green LED 3 times to indicate the magnet is detected. The green LED will then flash periodically indicating communication to the Duet. If the magnet is rotating the LED will flash more frequently. For other LED flashing codes see the Troubleshooting section below
 
-## Calibration
+### Calibration
 
 1. If you haven't done so already, send the M591 command with the correct parameters to tell the firmware about the sensor.
 1. Run M591 D# where # is the extruder number and check that the sensor angle is reported, to confirm that communication from the filament monitor to the Duet is working.
@@ -178,16 +171,16 @@ Once power is turned on, the filament monitor will flash the green LED 3 times t
 1. If you pause and then resume the print, calibration will be re-started and the values accumulated from before you paused will be discarded.
 1. The mm/rev value goes into the L parameter of the M591 command. Use a positive or negative sign as reported by M591. Set the R (tolerance) parameter to somewhat more than the reported variation.
 
-## How it works
+### How it works
 
 * While a file is being printed the Duet Firmware reads the angle from the Filament monitor.
 * The Duet firmware uses the parameters configured in M591 to determine the angle change that relates to a specific filament movement distance.
 * Once net extruder movement greater than the number of mm configured in the E parameter (for example 3mm) has been commanded, the extrusion measured by the filament monitor is compared with the amount of extrusion commanded.
 * If there is a difference between what has been commanded and what has been measured by the filament monitor that is greater than the configured tolerance (configured using the R parameter) the print is paused and an error is reported.
 
-# Troubleshooting
+## Troubleshooting
 
-## Status indication LEDs
+### Status indication LEDs
 
 In normal operation, during initial power up, the filament monitor will flash the green LED 3 times to indicate the magnet is detected. The green LED will then flash periodically red and green indicating communication to the Duet (the green flashes are position reports, the red ones are status reports). If the magnet is rotating the green LED will flash more frequently (can look like almost solid green)
 
@@ -203,7 +196,7 @@ The number of flashes of the red LED indicates the nature of the error, as follo
 
 Typically errors 6 & 7 means that the magnet is too far away from the sensor chip. See the description of "agc" below on how to solve this.
 
-## Errors during operation
+### Errors during operation
 
 The rotating magnetic sensor should be mounted as close as possible to the extruder, to minimise filament hysteresis between them. If a large distance between the sensor and extruder is unavoidable, you may need to increase the M591 'E' parameter (minimum extrusion length before a commanded/measured comparison is done) to something much larger than the default 3mm, perhaps 10 to 20 mm, to account for filament hysteresis.
 
@@ -227,10 +220,7 @@ Values for 'agc' of 50 to 105 are considered normal. If the value is higher, up 
 If the above doesn’t help, and you are still getting spurious readings, please contact Duet3D support by [posting on the forum](https://forum.duet3d.com/).
 
 
-# Laser filament sensor
-
-
-# Firmware configuration
+# Duet3D Laser filament sensor
 
 ## Recommended RepRapFirmware versions
 
@@ -238,7 +228,7 @@ For **Revision 2.0** we recommend you use **RepRapFirmware 2.03 or later** in or
 
 For **Revision 1.7** you must be using **RepRapFirmware 1.21 or later**.
 
-## Common configuration to both revisions
+## Firmware configuration
 
 ## Tabs {.tabset}
 
@@ -286,15 +276,15 @@ Brief explanation of parameters:
 
 Initially you will not know some of the correct parameters for the M591 command, so put in the correct D, C and P parameters and set S to 0.
 
-# Commissioning
+## Commissioning
 
-## Self test
+### Self test
 
 On startup, after a few seconds the green LED on the filament monitor will flash 3 times if initialisation and self-test are successful.  The green and red LEDs will then flash periodically indicating communication to the Duet. If the filament is moving, the green LED will flash more frequently.
 
 If initialisation or self test fail, the red LED will flash an error code (currently this is always 5 flashes). It will retry every few seconds.
 
-## Calibration
+### Calibration
 
 1. Make sure you have calibrated your extruder steps/mm correctly
 1. If you haven't done so already, send the M591 command with the correct D, P and C parameters and S=0 to tell the firmware about the sensor.
@@ -305,13 +295,13 @@ If initialisation or self test fail, the red LED will flash an error code (curre
 1. Set the R (tolerance) parameter of the M591 command to give a somewhat wider tolerance than the calibration reports. For example, if calibration reports 43% to 115% then you might choose R30:130.
 1. It is worth testing with a wide variety of filaments that you typically use before setting the minimum and maximum trigger values as the laser sensor is sensitive to filament material. Alternatively you can use a different bracket of minimum and maximum for different filament types by setting the M591 setting within the print start gcode, through a macro or through the [filament management system](/User_manual/Reference/DWC_filaments).
 
-# Troubleshooting
+## Troubleshooting
 
-## LED diagnosis
+### LED diagnosis
 
 If the filament monitor fails to initialise after power up, then instead of flashing the green LED 3 times it will flash the red LED five times to indicate an error. It will continue to try to initialise and flash the red LED until successful initialisation.
 
-## Reported Information
+### Reported Information
 
 Three pieces of information are reported by the filament monitor that describe how well the sensor chip is reading the moving surface of the filament (or other surface for an indirect measurement).
 
@@ -320,38 +310,30 @@ Three pieces of information are reported by the filament monitor that describe h
 * **shutter** - It is controlled by the PAT9130 sensor auto-exposure algorithm. lower numbers for shutter indicate a "better" surface. (theoretical range 0-255)
 
 
-# Connecting a filament-out sensor
+# Configuring other filament-out sensors
 
-Connect a filament sensor to an available IO header or endstop. 
-
-**Duet 3 with CAN expansion boards:** Filament monitors on CAN expansion boards are supported from RRF 3.2. Filament monitors must be connected to the same board as the corresponding extruder motor. This is so that the firmware can correlate the measured filament movement and the commanded extruder movement in real time.
-
-**Duet 2 WiFi/Ethernet:** If you have a DueX2 or DueX5 in your system, note that C5 thru C9 (the endstop inputs on the DueX) cannot be used for filament monitors, but C10 and C11 (the endstop inputs on the CONN_LCD connector) can.
-
-# Configuring a filament-out sensor
-
-RepRapFirmware supports  a variety of different filament presence and motion sensors using the [M591](/User_manual/Reference/Gcodes/M591) Gcode, where the 'Pnn' parameter is the type of sensor:
+RepRapFirmware supports a variety of different filament presence and motion sensors using the [M591](/User_manual/Reference/Gcodes/M591) Gcode, where the 'Pnn' parameter is the type of sensor:
 
 * 0 = none
 * 1 = simple sensor (high signal when filament present)
 * 2 = simple sensor (low signal when filament present)
 * 3 = Duet3D rotating magnet sensor
 * 4 = Duet3D rotating magnet sensor with microswitch
-* 5 = Duet3D laser sensor
-* 6 = Duet3D laser sensor with microswitch
-* 7 = pulse-generating sensor
+* 5 = Duet3D laser sensor (RRF 1.21 and later)
+* 6 = Duet3D laser sensor with microswitch (RRF 1.21 and later)
+* 7 = pulse-generating sensor (RRF 1.21 and later)
 
 Map the filament sensor to the extruder drive number ('Dnn' parameter) using the 'Cnn' parameter. In RRF 3.x, this is the pin name the filament monitor is connected to. In RRF 2.x, this is the logical pin number. Example:
 
 ```
 ;RepRapFirmware 3.x, Duet 3
-M591 D0 P3 C"io4.in" S1 ; rotating filament monitor connected to IO_4 for drive 0, enabled
+M591 D0 P1 C"io4.in" S1 ; simple sensor (high signal when filament present) connected to IO_4 for drive 0, enabled
 
 ;RepRapFirmware 3.x, Duet 2
-M591 D0 P3 C"e0stop" S1 ; rotating filament monitor connected to E0 endstop for drive 0, enabled
+M591 D0 P7 C"e0stop" S1 ; pulse-generating sensor connected to E0 endstop for drive 0, enabled
 
 ;RepRapFirmware 2.x, Duet 2
-M591 D0 P3 C S1 ; rotating filament monitor connected to E0 endstop for drive 0, enabled
+M591 D0 P3 C3 S1 ; rotating filament monitor connected to E0 endstop for drive 0, enabled
 ```
 To report the current settings, send:
 ```
@@ -359,9 +341,3 @@ M591 D0 ; display filament sensor parameters for extruder drive 0
 ```
 
 **Note that filament monitoring in RRF is only active when printing from SD card.**
-
-The action on a filament error is to:
-1. Run filament-error#.g (RRF 3.2 and later, where # is the extruder number)
-2. Failing that run filament-error.g (RRF 3.2 and later)
-3. Failing that run pause.g (RRF 1.19 and later) to pause the print and advise you that there has been a filament error. 
-
