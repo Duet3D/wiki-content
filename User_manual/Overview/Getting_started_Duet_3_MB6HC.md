@@ -2,7 +2,7 @@
 title: Getting Started With Duet 3 MB6HC
 description: 
 published: true
-date: 2021-12-14T12:29:22.642Z
+date: 2022-01-17T14:32:42.247Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:18:25.164Z
@@ -18,7 +18,7 @@ dateCreated: 2021-11-29T15:18:25.164Z
 
 Congratulations on your new Duet 3 MB6HC! This page will guide you through getting connected, updating firmware, setting up initial configuration.
 
-First, read the warnings! See [Warnings](/User_manual/Overview/Warnings) and [Fire safety](/User_manual/Overview/Fire_safety) for precautions you must take.
+First, read the warnings! See [Warnings](/User_manual/Overview/Warnings), [Fire safety](/User_manual/Overview/Fire_safety) and [USB ground loops](/User_manual/Overview/USB_ground_loops) for precautions you must take.
 
 <!-- 
 ## Package contents
