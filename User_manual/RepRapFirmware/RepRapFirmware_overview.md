@@ -2,13 +2,11 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2021-12-14T15:16:35.733Z
+date: 2022-01-17T14:14:15.192Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
 ---
-
-<!-- Migrated not updated! -->
 
 # Introduction
 
@@ -48,94 +46,25 @@ RepRapFirmware supports the following machine kinematics:
 
 # Checking firmware versions
 
-To check the firmware versions in Duet Web Control, go to the Settings page and select the General tab. 
+To check the **RepRapFirmware** version in Duet Web Control (v2 and v3), to to Settings > Machine-Specific > General tab:
 
-<!-- You should see a box listing the versions of the three firmware files, like this:
+![dwc23_23_settings_03.png](/manual/dwc/dwc23_23_settings_03.png =800x)
 
-[image 289 **UPDATE LINK**]() UPDATE IMAGE 
+This screen shows settings that are specific for the machine including, in the **Electronics** section, the Duet board type, firmware version and, if available, WiFi firmware version. It is useful to quote these when posting a request for support on the [support forum](https://forum.duet3d.com/).
 
-For production Duet 2 WiFi and Ethernet boards, the minimum recommended version of RepRapFirmware, DuetWifiServer (on the Duet 2 Wifi) and DuetWebControl are:
+To check the **Duet Web Control** version, go to Settings > General > General tab:
 
-* Firmware Version (file Duet2CombinedFirmware.bin): 1.21
-* WiFi Server Version (file DuetWiFiServer.bin): 1.21
-* Web Interface Version (file DuetWebControl.zip): 1.21
+![dwc23_23_settings_01.png](/manual/dwc/dwc23_23_settings_01.png =800x)
 
-ABOVE NOT NECESSARY?
-
--->
-
-Duet boards are shipped with RepRapFirmware installed however users are advised to check the version installed and, if required, to upgrade to the latest stable version. To upgrade firmware see the [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware) page.
+This screen shows the DWC Version, which is also useful to quote when posting a request for support on the [support forum](https://forum.duet3d.com/).
 
 ## Checking versions when not on the network yet
 
-If you cannot get onto Duet Web Control yet because the network is not set up, then connect using YAT or another terminal program and use [M115](/User_manual/Reference/Gcodes/M115) to get a print out of the firmware versions.
-
-# Where to get firmware, software and drivers
-
-## Duet 3
-
-Duet 3 boards run RepRapFirmware 3; RRF 2 is not compatible with them. If you are running a Duet 3 Mainboard 6HC or Duet 3 Mini 5+ using an attached Single Board Computer (SBC) then the firmware update process is part of updating the Duet Software Framework on the SBC. Please see here for more details: [Getting Started With Duet 3](https://docs.duet3d.com/User_manual/Overview/Getting_started_Duet_3_MB6HC#updating-duet-3-main-board-firmware)
-
-If you are running a Duet 3 Mainboard or Mini in stand alone mode (booting off an SD card and using the attached network) then the process is similar to Duet 2. It is highly recommended to read all the notes on the version of firmware you are looking to upgrade to.
-
-For RRF 3 see the [changelog here](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x)
-
-### Duet 3 Mainboard 6HC
-
-* It is recommended that in most cases the **Duet2and3Firmware-3.x.x.zip** is downloaded and then [uploaded via DWC](/User_manual/Reference/Duet_Web_Control_Manual). this will ensure that all the firmware, DWC etc is updates at the same time to compatible versions.
-* The main firmware file is **Duet3Firmware_MB6HC.bin** 
-* The firmware update loader file stored in /sys on the internal SD card is called **Duet3_SDiap_MB6HC.bin**.
-
-### Duet 3 Mini5+ Wifi or Ethernet
-
-*Note that the Duet 3 Mini 5+ requires RRF 3.2b3 or later*
-
-* It is recommended that in most cases the **Duet2and3Firmware-3.x.x.zip** is downloaded and then [uploaded via DWC](/User_manual/Reference/Duet_Web_Control_Manual). this will ensure that all the firmware, DWC etc is updates at the same time to compatible versions.
-* The main firmware file is **Duet3Firmware_Mini5plus.uf2** 
-* The firmware update loader file stored in /sys on the internal SD card is called **Duet3_SDiap_Mini5plus.bin**.
-
-## Duet 2
-
-It is highly recommended to read all the notes on the version of firmware you are looking to upgrade to.
-
-For RRF 3.x see the [changelog here](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x). For RRF 2.x see the [changelog here](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-1.x-&-2.x)
-
-Stable releases of the dc42 build of main firmware and wifi firmware can be found at [RepRapFirmware Releases](https://github.com/Duet3D/RepRapFirmware/releases).
-
-You will also find the appropriate versions of DuetWebControl there. The files to download depend on which Duet you have.
-
-### Duet 2 WiFi
-
-* It is recommended that in most cases the **Duet2and3Firmware-3.x.x.zip** is downloaded and then [uploaded via DWC](/User_manual/Reference/Duet_Web_Control_Manual). this will ensure that all the firmware, DWC etc is updates at the same time to compatible versions.
-* The main firmware file is **Duet2CombinedFirmware** for version 1.21 and later ( **DuetWiFiFirmware.bin** up to version 1.20)
-* The WiFi module firmware is **DuetWiFiServer.bin**
-* The firmware update loader file stored in /sys on the internal SD card is called **Duet2CombinedIAP.bin**.
-* With firmware 1.19 and later, the Duet Web Control files are stored on the SD card in the /www directory
-* With firmware version 1.18.2 and earlier, the Duet Web Control files were not stored on the internal SD card. Instead they were uploaded to the WiFi module from file **DuetWebControl.bin**
-
-### Duet 2 Ethernet
-
-* It is recommended that in most cases the **Duet2and3Firmware-3.x.x.zip** is downloaded and then [uploaded via DWC](/User_manual/Reference/Duet_Web_Control_Manual). this will ensure that all the firmware, DWC etc is updates at the same time to compatible versions.
-* The main firmware file is **Duet2CombinedFirmware** for version 1.21 and later ( **DuetEthernetFirmware.bin** up to version 1.20)
-* The web interface is **DuetWebControl.zip**
-* The firmware update loader file stored in /sys on the internal SD card is called **Duet3_SDiap_MB6HC.bin**.
-
-### Duet 2 Maestro
-
-* The main firmware is **DuetMaestroFirmware.bin**
-* The web interface is **DuetWebControl.zip**
-* The firmware update loader file stored in /sys on the internal SD card is called **DuetMaestroIAP.bin**.
-
-## Drivers & helper files
-
-* The firmware update helper file (iap, or in-app programmer) is available alongside the main firmware release files at [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases).
-* The Windows device driver files which may be required if you want to communicate with the Duet over USB from your PC are available at [https://github.com/Duet3D/RepRapFirmware/tree/dev/Driver](https://github.com/Duet3D/RepRapFirmware/tree/dev/Driver)
-* If you need to re-install the main firmware via USB, you will need Atmel's SAM-BA version 2.17 from [Microchip](http://aem-origin.microchip.com/en-us/development-tool/SAM-BA-IN-SYSTEM-PROGRAMMER).
-* Alternatively you can install main firmware via USB using Bossa 1.8 from [ShumaTech](http://shumatech.com/web/products/bossa)
+If you cannot get onto Duet Web Control yet because the network is not set up, then connect using YAT or another terminal program and send [M115](/User_manual/Reference/Gcodes/M115) to get a print out of the firmware versions.
 
 # Installing and Updating Firmware
 
-See the wiki page on [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware).
+Duet boards are shipped with RepRapFirmware installed, however users are advised to check the version, if required, to upgrade to the latest stable version. To upgrade firmware, WiFi firmware, in-app programmer and Duet Web Control (and for an explanation of these files) see the [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware) page.
 
 # SD card structure
 
@@ -154,15 +83,6 @@ The Duets run RepRapFirmware. This differs from Marlin, Repetier and other firmw
 * Marlin and Reptier often use **mm/s** for speed values. RepRapFirmware uses **mm/min**. Be careful when switching between the two. To convert from one to the other you will either need to multiply or divide by 60. Example 100mm/s = 6000mm/min. 
 
 See also [Adapting an existing printer to Duet](/User_manual/Overview/Adapting)
-
-# Known firmware issues and limitations
-
-Version 1.19 firmware used with DuetWebControl 1.19 had the following known issues and limitations:
-
-* Connecting to the Duet 2 WiFi by name only works if your client device supports mDNS protocol (e.g. Apple Bonjour service). Otherwise you have to connect to it by IP address.
-* The Duet 2 Ethernet and Duet 2 Maestro do not yet support mDNS, please connect to the IP address.
-* You cannot change microstepping on the fly during a print, because you must re-home the printer after changing microstepping.
-* The diagnostic LED is not currently used. In future it will be used to indicate progress of firmware updates, and for other purposes.
 
 # Printing over USB connection (Octoprint, Cura, Simplify3D, Etc.)
 
