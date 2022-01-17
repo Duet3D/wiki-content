@@ -1,16 +1,16 @@
 ---
 title: Adapting an existing printer to Duet
-description: What mechanical and electrical details are needed to configure RepRapFirmware?  What information is needed to configure an existing 3D printer to work with a Duet control board? Going from Marlin on Arduino to RepRapFirmware on Duet
+description: What mechanical and electrical details are needed to configure RepRapFirmware? What information is needed to configure an existing 3D printer to work with a Duet control board? Going from Marlin on Arduino to RepRapFirmware on Duet.
 published: true
-date: 2021-12-13T14:41:05.923Z
+date: 2022-01-17T13:53:14.678Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T14:53:55.818Z
 ---
 
-<!--- Migrated not edited! -->
+# Required information
 
-# What information is needed to configure an existing 3D printer to work with a Duet control board?
+**What information is needed to configure an existing 3D printer to work with a Duet control board?**
 
 Every 3D printer is different. And while mechanics are commonly shared, the specifics will vary greatly. Changing over an existing commercial 3D printer to use Duet electronics requires some basic mechanical and electrical knowledge of the printer. This information can usually be obtained from manufacturer documentation, or a quick google search. Some firmwares will report the current configuration by sending `M501`. In a pinch you can measure. The details needed, and common values for them are found below.
 
@@ -34,7 +34,7 @@ Every 3D printer is different. And while mechanics are commonly shared, the spec
   * Lead screw pitch and lead
   * Pitch = distance between threads
   * Lead = travel in mm for one revolution
-    * TR8*8 are most common with a pitch of 2mm and a lead of 8mm
+    * TR8\*8 are most common with a pitch of 2mm and a lead of 8mm
   * Gear Ratios
   * Extruder Gearing
     * Example: E3D Titan and BondTech extruders use 3:1 gearing.
