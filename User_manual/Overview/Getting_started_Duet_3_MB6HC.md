@@ -2,13 +2,12 @@
 title: Getting Started With Duet 3 MB6HC
 description: 
 published: true
-date: 2022-01-17T14:32:42.247Z
+date: 2022-01-17T15:11:54.438Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:18:25.164Z
 ---
 
-<!-- Migrated not updated! -->
 
 <!-- ![duet_3_mb6hc_getting_connected_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_connected_01.jpg =200x) -->
 
