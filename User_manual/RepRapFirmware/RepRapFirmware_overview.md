@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2022-01-17T14:14:15.192Z
+date: 2022-01-17T14:19:22.338Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -60,7 +60,11 @@ This screen shows the DWC Version, which is also useful to quote when posting a 
 
 ## Checking versions when not on the network yet
 
-If you cannot get onto Duet Web Control yet because the network is not set up, then connect using YAT or another terminal program and send [M115](/User_manual/Reference/Gcodes/M115) to get a print out of the firmware versions.
+If you cannot get onto Duet Web Control yet because the network is not set up, then connect using YAT or another terminal program and send [M115](/User_manual/Reference/Gcodes/M115) to get a print out of the firmware versions. For example:
+```
+M115
+FIRMWARE_NAME: RepRapFirmware for Duet 2 WiFi/Ethernet FIRMWARE_VERSION: 3.3 ELECTRONICS: Duet WiFi 1.02 or later FIRMWARE_DATE: 2021-06-15 21:45:03
+```
 
 # Installing and Updating Firmware
 
