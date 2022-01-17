@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2022-01-17T12:29:50.904Z
+date: 2022-01-17T12:33:09.149Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -319,9 +319,9 @@ RepRapFirmware supports a variety of different filament presence and motion sens
 * 2 = simple sensor (low signal when filament present)
 * 3 = Duet3D rotating magnet sensor
 * 4 = Duet3D rotating magnet sensor with microswitch
-* 5 = Duet3D laser sensor (RRF 1.21 and later)
-* 6 = Duet3D laser sensor with microswitch (RRF 1.21 and later)
-* 7 = pulse-generating sensor (RRF 1.21 and later)
+* 5 = Duet3D laser sensor
+* 6 = Duet3D laser sensor with microswitch
+* 7 = pulse-generating sensor
 
 Map the filament sensor to the extruder drive number ('Dnn' parameter) using the 'Cnn' parameter. In RRF 3.x, this is the pin name the filament monitor is connected to. In RRF 2.x, this is the logical pin number. Example:
 
