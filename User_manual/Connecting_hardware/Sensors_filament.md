@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2022-01-17T12:29:07.124Z
+date: 2022-01-17T12:29:50.904Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -222,7 +222,7 @@ If the above doesn’t help, and you are still getting spurious readings, please
 
 # Duet3D Laser filament sensor
 
-## Recommended RepRapFirmware versions
+## Firmware requirements
 
 For **Revision 2.0** we recommend you use **RepRapFirmware 2.03 or later** in order to get the correct readings.
 
