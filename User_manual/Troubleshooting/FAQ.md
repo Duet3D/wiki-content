@@ -2,13 +2,13 @@
 title: Troubleshooting FAQ
 description: Frequently asked questions
 published: true
-date: 2021-12-17T00:01:30.299Z
+date: 2022-01-18T15:17:56.197Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:36:20.508Z
 ---
 
-<!-- Migrated not updated! 
+<!--
 
 [summary_image|355]
 
@@ -60,7 +60,7 @@ See the [BLTouch Troubleshooting](/User_manual/Troubleshooting/BLTouch_troublesh
 
 ## I can control fans 0 and 2, but not fan 1
 
-Fan 1 output is configured in thermostatic mode by default and also turns on automatically when the processor is started up or reset. This is for added safety when you use it to control the hot end fan. See [Connecting and configuring fans: Thermostatically controlled fans](/User_manual/Connecting_hardware/Fans_connecting#thermostatically-controlled-fans) and also the following section on that page.
+Fan 1 output is configured in thermostatic mode by default in RRF 2.x, and also turns on automatically when the processor is started up or reset. This is for added safety when you use it to control the hot end fan. See [Connecting and configuring fans: Thermostatically controlled fans](/User_manual/Connecting_hardware/Fans_connecting#thermostatically-controlled-fans) and also the following section on that page.
 
 ## I upgraded from firmware 1.18.2 or earlier to firmware 1.19 or later, and now when I try to probe the bed using G32, G29 or G30, it makes unexpected movements
 
