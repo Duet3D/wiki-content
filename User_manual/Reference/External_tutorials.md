@@ -2,7 +2,7 @@
 title: External Tutorials
 description: A collection of tutorials, how to guides etc on using the Duet and RepRapFirmware. 
 published: true
-date: 2021-12-03T22:24:46.943Z
+date: 2022-01-18T15:11:21.997Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T22:24:44.188Z
@@ -68,4 +68,4 @@ Below is a list of tutorials for features that are still being developed by  Due
 
 User [Jacotheron](https://forum.duet3d.com/user/jacotheron) on the forum has written a detailed guide on how to setup a RaspPi Zero to act as a proxy server (and web cam) to enable HTTPS.
 
-* [https://www.instructables.com/id/DuetWifi-HTTPS-Proxy-and-Camera-Using-RaspberryPi-/](https://www.instructables.com/id/DuetWifi-HTTPS-Proxy-and-Camera-Using-RaspberryPi-/)
+* [DuetWifi DWC Encryption using Rasberry Pi Zero W as Proxy Server](https://forum.duet3d.com/topic/5851/) (was on Instructables, now no longer available there).
