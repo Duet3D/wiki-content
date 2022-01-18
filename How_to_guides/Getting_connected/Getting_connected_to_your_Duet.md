@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2021-12-14T15:03:01.410Z
+date: 2022-01-18T11:55:54.059Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -27,21 +27,32 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Duet 3 Mini 5+
 
-![duet_3_mini_5+_getting_started_03.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_getting_started_03.jpg =600x)
+![duet_3_mini_5+_getting_started_03.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_getting_started_03.jpg =500x)
 
 * 1 x **Duet 3 Mini 5+** (WiFi or Ethernet)
 * 1 x Connector kit, including:
   * Würth Elektronic WR-WTB series connectors (Molex-KK compatible)
-  * Ferrules for power input and bed heater
-  * Connectors and crimps for hotend heaters.
-* 100 x crimps for connectors
-* 1 x SD Card
+  * Fork crimps for power input and bed heater
+  * JST VH connectors and crimps for hotend heaters.
+  * Plastic washers for isolation when mounting.
+* 100 x crimps for connectors (Molex-KK compatible)
+* 1 x micro SD Card
 * 1 x Single Board Computer (SBC) ribbon cable
 * 1 x External antenna (WiFi version only)
 
 ### Duet 3 Mainboard 6HC
 
-To do
+![duet_3_mb6hc_getting_started_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg =600x)
+
+* 1 x **Duet 3 MB6HC**
+* 1 x Connector kit, including:
+  * Würth Elektronic WR-WTB series connectors (Molex-KK compatible)
+  * Fork crimps for power input and bed heater
+  * JST VH connectors and crimps for stepper motors and hotend heaters.
+  * Plastic washers for isolation when mounting.
+* 100 x crimps for connectors (Molex-KK compatible)
+* 1 x micro SD Card
+* 1 x 26/40 Single Board Computer (SBC) ribbon cable
 
 ### Duet 2 WiFi and Ethernet
 
@@ -54,12 +65,19 @@ To do
   * Plastic washers for isolation when mounting.
 * 100 x crimps for connectors
 * 3 ft. USB Cable
-* 1 x SD Card
+* 1 x micro SD Card
 * 1 x External antenna (external WiFi version only)
 
 ### Duet 2 Maestro
 
-To do
+* 1 x **Duet 2 Maestro**
+* 1 x Connector kit, including:
+  * Würth Elektronic WR-WTB series connectors (Molex-KK compatible)
+  * Ferrules for power input, bed heater, and hotend heaters.
+  * Plastic washers for isolation when mounting.
+* 100 x crimps for connectors
+* 3 ft. USB Cable
+* 1 x micro SD Card
 
 # 2 Connect your Duet via USB
 
@@ -85,9 +103,9 @@ To do
 * If a USB device does show the yellow triangle, or as a Generic USB device, right click on the device. Click Install Driver and browse to the location of the driver that was downloaded at the beginning of this step. Continue setup by clicking "Next" until the device driver has been installed.
 
 
-### Mac OSX
+### macOS
 
-**Mac OS X** users have no drivers to install. 
+**macOS** users have no drivers to install. 
 
 ![02_connect_via_usb_03.jpg](/guides/getting_connected/02_connect_usb_03.jpg =600x) 
 
@@ -109,7 +127,7 @@ To do
 > To set up the network connection on the Duet, we must use a terminal emulation program to talk to the Duet via the USB cable.
 {.is-info}
 
-> We have recommendations for what software to use on Windows, Mac OS and Linux. This is because 3D printer host programs (such as Pronterface) and other terminal emulation programs may send all characters in uppercase, which causes problems when making changes to WiFi settings, as the SSID and password are case sensitive.
+> We have recommendations for what software to use on Windows, macOS and Linux. This is because 3D printer host programs (such as Pronterface) and other terminal emulation programs may send all characters in uppercase, which causes problems when making changes to WiFi settings, as the SSID and password are case sensitive.
 {.is-info}
 
 # {.tabset}
@@ -150,7 +168,7 @@ Select "Terminal" menu, then "Open/Start" to connect to your Duet. Or click the 
 
 ![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =600x) 
   
-## Mac OS
+## macOS
 
 ### SerialTools
 
@@ -216,21 +234,41 @@ If you have a **Duet 2 Wifi** or **Duet 3 Mini 5+ WiFi**, you may find you are g
 
 To check the Duet's firmware version, send command `M115` to the Duet board (see [M115](/User_manual/Reference/Gcodes/M115) in the G-code dictionary). The Duet will respond with the firmware version being used.
 
+## Tabs {.tabset}
+
+> Once you know the firmware version your Duet is using, check for the latest version of the firmware in our [Github repository here](https://github.com/Duet3D/RepRapFirmware/releases). Use the 'Latest release', not any 'pre-release', 'beta' or 'RC' version until you are familiar with Duet.
+> If your Duet is using an old firmware version, we recommend upgrading. See [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware) documentation.
+{.is-info}
+
+### Windows
+
 YAT:
+
 ![Windows YAT](/guides/getting_connected/04_check_firmware_01.jpg =600x)
 
-CuteCom:
-![](/guides/getting_connected/04_check_firmware_02.jpg =600x)
+### macOS
 
-**Mac OS** and **Linux** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
+SerialTools:
+
+![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =600x)
+
+**macOS** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
 
 Copy `M115` and paste into terminal and then hit enter. You will see OK when a succesful command is received. Wait a few moments and the firmware version will be displayed.
 
 ![Screen](/guides/getting_connected/04_check_firmware_03.jpg =600x)
 
-> Once you know the firmware version your Duet is using, check for the latest version of the firmware in our [Github repository here](https://github.com/Duet3D/RepRapFirmware/releases). Use the 'Latest release', not any 'pre-release', 'beta' or 'RC' version until you are familiar with Duet.
-> If your Duet is using an old firmware version, we recommend upgrading. See [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware) documentation.
-{.is-info}
+### Linux
+
+CuteCom:
+
+![](/guides/getting_connected/04_check_firmware_02.jpg =600x)
+
+**Linux** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
+
+Copy `M115` and paste into terminal and then hit enter. You will see OK when a succesful command is received. Wait a few moments and the firmware version will be displayed.
+
+![Screen Linux](/guides/getting_connected/03_connect_to_duet_lin_03.png =600x)
 
 # 5 Connect Duet to Network
 
