@@ -2,7 +2,7 @@
 title: Getting Started with Duet 3 Mini 5+
 description: This page contains a step by step guide and links to using your Duet 3 Mini 5+ Wifi or Ethernet.
 published: true
-date: 2022-01-17T15:12:56.064Z
+date: 2022-01-18T10:44:25.214Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:21:27.557Z
@@ -17,7 +17,7 @@ dateCreated: 2021-11-29T15:21:27.557Z
 
 Congratulations on your new Duet 3 Mini 5+! This page will guide you through getting connected, updating firmware, setting up initial configuration.
 
-First, read the warnings! See [Warnings](/User_manual/Overview/Warnings) and [Fire safety](/User_manual/Overview/Fire_safety) for precautions you must take.
+First, read the warnings! See [Warnings](/User_manual/Overview/Warnings), [Fire safety](/User_manual/Overview/Fire_safety) and [USB ground loops](/User_manual/Overview/USB_ground_loops) for precautions you must take.
 
 ## Package contents
 
