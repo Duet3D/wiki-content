@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2022-01-18T12:08:38.667Z
+date: 2022-01-18T12:10:14.095Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z
@@ -18,7 +18,7 @@ This document covers networking options in more detail, including setting up a D
 
 ## Connect to WiFi host network
 
-This is the standard setup, with the Duet 3 Mini 5+ WiFi (in standalone mode) or Duet 2 WiFi connecting to your network through a WiFi access point/router. This is covered in the [Getting Connected](/How_to_guides/Getting_connected) guide. Briefly:
+This is the standard setup, with the Duet 3 Mini 5+ WiFi (in standalone mode) or Duet 2 WiFi connecting to your network through a WiFi access point/router. This is covered in the [Getting Connected](/How_to_guides/Getting_connected/Getting_connected_to_your_Duet) guide. Briefly:
 
 * Connect to Duet, via USB and serial terminal, or via console if already connected to network.
 * Use [M587](/User_manual/Reference/Gcodes/M587) to add a WiFi host network to the remembered list of networks.
