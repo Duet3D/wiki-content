@@ -2,7 +2,7 @@
 title: User manual: Tuning
 description: 
 published: true
-date: 2021-12-17T14:51:17.455Z
+date: 2022-01-18T13:47:16.971Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:58:18.971Z
@@ -14,6 +14,7 @@ dateCreated: 2021-06-08T13:58:18.971Z
 [Setting up to resume a print after a power failure or planned power down](/User_manual/Tuning/Resume)
 [Calibrating a delta printer](/User_manual/Tuning/Delta_calibration)
 [Filaments](/User_manual/Reference/DWC_filaments)
+[Slicing recommendations](/User_manual/Reference/Slicing_recommendations)
 
 # Motor configuration tuning
 
