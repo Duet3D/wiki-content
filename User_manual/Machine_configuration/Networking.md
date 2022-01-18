@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2022-01-18T12:10:14.095Z
+date: 2022-01-18T12:10:50.062Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z
@@ -51,7 +51,7 @@ To do this, use [M589](/User_manual/Reference/Gcodes/M589) and [M552](/User_manu
 
 ## Wired network connection
 
-This is the standard setup for a Duet with a wired Ethernet port (Duet 3 in standalone mode, Duet 2 Ethernet and Maestro), and the set up is covered in the [Getting Connected](/How_to_guides/Getting_connected) guide. The Duet is connected by a cable directly to the network router (though you could connect the Duet to a wired to wireless access point, and then connect that wirelessly to the router's WiFi). The Duet can have its IP address set by DHCP by the router, or set a static IP address in config.g.
+This is the standard setup for a Duet with a wired Ethernet port (Duet 3 in standalone mode, Duet 2 Ethernet and Maestro), and the set up is covered in the [Getting Connected](/How_to_guides/Getting_connected/Getting_connected_to_your_Duet) guide. The Duet is connected by a cable directly to the network router (though you could connect the Duet to a wired to wireless access point, and then connect that wirelessly to the router's WiFi). The Duet can have its IP address set by DHCP by the router, or set a static IP address in config.g.
 
 **Note:** the IP addresses in the following diagram are an example of how a network may be configured. Your network may use different IP addresses and ranges.
 
