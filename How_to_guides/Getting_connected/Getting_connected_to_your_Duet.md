@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-01-18T11:55:54.059Z
+date: 2022-01-18T12:11:12.933Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -40,7 +40,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 * 1 x Single Board Computer (SBC) ribbon cable
 * 1 x External antenna (WiFi version only)
 
-### Duet 3 Mainboard 6HC
+### Duet 3 MB6HC
 
 ![duet_3_mb6hc_getting_started_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg =600x)
 
@@ -63,7 +63,7 @@ If you have any problems with your Duet when using this guide, rather than posti
   * Würth Elektronic WR-WTB series connectors (Molex-KK compatible)
   * Ferrules for power input, bed heater, and hotend heaters.
   * Plastic washers for isolation when mounting.
-* 100 x crimps for connectors
+* 100 x crimps for connectors (Molex-KK compatible)
 * 3 ft. USB Cable
 * 1 x micro SD Card
 * 1 x External antenna (external WiFi version only)
@@ -75,7 +75,7 @@ If you have any problems with your Duet when using this guide, rather than posti
   * Würth Elektronic WR-WTB series connectors (Molex-KK compatible)
   * Ferrules for power input, bed heater, and hotend heaters.
   * Plastic washers for isolation when mounting.
-* 100 x crimps for connectors
+* 100 x crimps for connectors (Molex-KK compatible)
 * 3 ft. USB Cable
 * 1 x micro SD Card
 
@@ -230,9 +230,9 @@ Run `screen /dev/ttyACM0 115200`. (Replace "ttyACM0" with the port name if it's 
 # 4 Check your Firmware Version
 By this point, your computer should be connected and talking to your Duet. You may have received a number of messages from the Duet already; it's generally safe to ignore these for now. The Duet uses 'GCodes' to communicate and for all configuration. See the [GCode dictionary here](/User_manual/Reference/Gcodes) for a description and full list.
 
-If you have a **Duet 2 Wifi** or **Duet 3 Mini 5+ WiFi**, you may find you are getting a lot of messages like *"WiFi reported error: no known networks found"*. The default configuration turns on the WiFi, but it is not finding a network to connect to. To stop the WiFi, send `M552 S-1` (see [M552](/User_manual/Reference/Gcodes/M552) in the G-code dictionary).
+If you have a **Duet 2 Wifi** or **Duet 3 Mini 5+ WiFi**, you may find you are getting a lot of messages like *"WiFi reported error: no known networks found"*. The default configuration turns on the WiFi, but it is not finding a network to connect to. To stop the WiFi, send `M552 S-1` (see [M552](/User_manual/Reference/Gcodes/M552) in the GCode dictionary).
 
-To check the Duet's firmware version, send command `M115` to the Duet board (see [M115](/User_manual/Reference/Gcodes/M115) in the G-code dictionary). The Duet will respond with the firmware version being used.
+To check the Duet's firmware version, send command `M115` to the Duet board (see [M115](/User_manual/Reference/Gcodes/M115) in the GCode dictionary). The Duet will respond with the firmware version being used.
 
 ## Tabs {.tabset}
 
@@ -296,7 +296,7 @@ If you didn't turn off WiFi in Step 4, you may find you are getting a lot of mes
 
 ![YAT](/guides/getting_connected/05_network_02.jpg =600x) 
 
-**Mac OS** and **Linux** users using 'screen': send the same commands as above, you just won't be able to see what you have sent.
+**macOS** and **Linux** users using 'screen': send the same commands as above, you just won't be able to see what you have sent.
 
 ![Screen](/guides/getting_connected/05_network_03.jpg =600x)
 
@@ -326,7 +326,7 @@ Send command `M552 S1` to connect to WiFi. After a moment, the Duet will confirm
 
 ![](/guides/getting_connected/05_network_05.jpg =600x) 
 
-**Mac OS** and **Linux** users using 'screen': send the same commands as above, you just won't be able to see what you have sent.
+**macOS** and **Linux** users using 'screen': send the same commands as above, you just won't be able to see what you have sent.
 
 ![](/guides/getting_connected/05_network_06.jpg =600x)
 
@@ -336,7 +336,7 @@ Send command `M552 S1` to connect to WiFi. After a moment, the Duet will confirm
 > **M587** saves the SSID and password to the Duet 2 Wifi, and is persistent. You do not need to run this command every time the board is started. **M552 S1** starts the network, and this command **does** need to be run every time the board starts (so ensure it is in config.g so it runs automatically - editing config.g will be covered later)
 {.is-info}
 
-> **Mac** users using 'screen': Press CTRL-A then CTRL-\ to exit screen and return to terminal.
+> **macOS** users using 'screen': Press CTRL-A then CTRL-\ to exit screen and return to terminal.
 **Linux** users using 'screen': CTRL-A then \ to exit screen and return to terminal. 
 You can safely close Terminal at this point.
 {.is-info}
@@ -374,7 +374,9 @@ In both cases, after 10-30 seconds the board should reply with Network running a
 > These network settings are temporary! They will be lost when you restart and will have to be re-entered. Step 7 will explain how to set it up permanently.
 {.is-warning}
 
-> Mac users using 'screen': Press CTRL-A then CTRL-\ to exit screen and return to terminal. Linux users using 'screen': CTRL-A then \ to exit screen and return to terminal. You can safely close Terminal at this point.
+> **macOS** users using 'screen': Press CTRL-A then CTRL-\ to exit screen and return to terminal.
+**Linux** users using 'screen': CTRL-A then \ to exit screen and return to terminal. 
+You can safely close Terminal at this point.
 {.is-info}
 
 # 6 Check Access to Duet Web Control
@@ -469,8 +471,8 @@ You may also need to change the [**M554**](/User_manual/Reference/Gcodes/M554) (
 
 > This guide assumes that you connect your Duet via WiFi or Ethernet to your network router, to make it accessible to your network. This may be impractical for your setup, so the Duet offers alternative connection methods:
 > 
-> - The **Duet 3 Mini 5+ WiFi** and **Duet 2 WiFi** offer an "Access Point" mode that allows a direct WiFi connection to the Duet. See [M589](/User_manual/Reference/Gcodes/M589) and [M552](/User_manual/Reference/Gcodes/M552) in the Gcode dictionary.
-> - The **Duet 3 MB6HC**, **Duet 3 Mini 5+ Ethernet**, **Duet 2 Ethernet** and **Duet 2 Maestro** can be configured to connect directly to an available ethernet port on your PC. See [this thread](https://forum.duet3d.com/topic/12552/issues-with-ender-3-and-duet-maestro/3) on the forum for details.
+> - The **Duet 3 Mini 5+ WiFi** and **Duet 2 WiFi** offer an "Access Point" mode that allows a direct WiFi connection to the Duet.
+> - The **Duet 3 MB6HC**, **Duet 3 Mini 5+ Ethernet**, **Duet 2 Ethernet** and **Duet 2 Maestro** can be configured to connect directly to an available ethernet port on your PC. 
 >
 > A guide to these alternative network setups is available here: [Setting up networking on Duet](/User_manual/Machine_configuration/Networking).
 {.is-info}
