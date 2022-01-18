@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards. 
 published: true
-date: 2022-01-17T14:22:34.866Z
+date: 2022-01-18T14:23:27.934Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -17,8 +17,8 @@ dateCreated: 2021-11-30T12:57:13.348Z
 * Backup your SD card and download a copy of your current firmware version in case you need to revert the firmware.
 * Some updates to the main firmware on a Duet 2 WiFi or Duet 3 Mini 5+ WiFi may require an update to a compatible WiFi server firmware version as well, and vice versa. See the 'updating WiFi firmware' below which explains how to do this.
 * **If you download more than just the main firmware (DuetWiFiFirmware.bin/Duet2CombinedFirmware.bin) then please read the 'updating more than one firmware at a time' section below before proceeding as the firmware needs to be updated in a specific order.**
-* For RepRapFirmware 2, please ensure you read the [RepRapFirmware 1.x and 2.x Changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-1.x-&-2.x) notices for the new version of the firmware as it will contain information on changes that affect your configuration.
 * For RepRapFirmware 3, please ensure you read the [RepRapFirmware 3.x Changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x) notices for the new version of the firmware as it will contain information on changes that affect your configuration.
+* For RepRapFirmware 2, please ensure you read the [RepRapFirmware 1.x and 2.x Changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-1.x-&-2.x) notices for the new version of the firmware as it will contain information on changes that affect your configuration.
 
 ## Required files
 
@@ -51,13 +51,23 @@ Each 'release' version should have a large zip file that contains all the files 
 
 ## Updating from older firmware versions
 
-If you are upgrading from quite an old version of the firmware, there may be additional steps you need to take. Send M115 to your Duet via USB or in the DWC console to check the current firmware version. Then:
+If you are upgrading from an old version of the firmware, there may be additional steps you need to take. Send M115 to your Duet via USB or in the DWC console to check the current firmware version.
 
 ### Updating from RRF 3.x to a newer version
 
 If you are updating from an earlier version of RRF 3.x, you should be able to update by downloading the Duet2and3Firmware-3.x.zip file (where 3.x is the version number). This contains all the firmware and software files for all Duet boards. There’s no need to unzip it. You can download individual files as necessary, too. See the section later about updating individual files.
 
-### Updating from RRF 2.x to 3.x
+### Updating from RRF 1.x or 2.x to 3.x
+
+**Important!** When upgrading from 1.x or 2.x firmware to 3.x you will need to make substantial changes to your config.g file. See [Migrating from RRF2 to RRF3](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3).
+
+#### Updating with firmware erase
+
+While it is possible to update from older versions of RepRapFirmware by uploading firmware releases via the web interface, you may have to do this multiple times depending on the firmware version. If you're planning on jumping to the latest RRF 3.x version, it may be more convenient to simply erase the firmware and flash the latest version with BOSSA or SAM-BA; see 'Fallback procedure #2' instructions below.
+
+If you are updating a Duet 2 WiFi from RRF 1.18.2 or earlier, you will also need to manually update the WiFi firmware via USB or PanelDue. See 'Updating WiFi firmware' instructions below. And you will need to unzip the Duet Web Control zip file into a folder called 'www' on the SD card. See [SD card](/User_manual/RepRapFirmware/SD_card) for the current SD card structure.
+
+#### Updating without firmware erase
 
 **Upgrading ANY Duet 2 from 2.x to 3.0 or later requires installing 3.0 first.**
 
@@ -67,14 +77,6 @@ The version 3.01 and later binaries are too large to be installed by the IAP pro
 * Upload and install that file on the Duet through Duet Web Control
 * Send M115 and check the response to confirm that you are running version 3.0 firmware
 * You can then upgrade to version 3.01 or later firmware.
-
-**Important!** When upgrading from 1.x or 2.x firmware to 3.x you will need to make substantial changes to your config.g file. See [Migrating from RRF2 to RRF3](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3).
-
-### Updating from RRF 1.x to 2.x
-
-* For updating your Duet from RRF v1.x to 2.x, see the legacy firmware update instructions.
-* Upgrading a Duet 2 Wifi or Duet 2 Ethernet from 1.20 or earlier firmware to 1.21 or later requires a file to be renamed. See Upgrading to 1.21 or later on the Legacy firmware update instructions.
-* Upgrading a Duet 2 Wifi from 1.18.2 or earlier firmware to 1.19 or later firmware requires a special procedure. See Upgrading to 1.19 or later on the Legacy firmware update instructions.
 
 ## File locations on the Duet SD card
 
