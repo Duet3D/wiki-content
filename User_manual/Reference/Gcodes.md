@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-14T14:33:11.492Z
+date: 2022-01-19T12:28:50.511Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1489,6 +1489,8 @@ The "fileName" and "offset" values are as given in the command. "data" is part o
 
 ## M37: Simulation mode
 
+Used to switch between printing mode and simulation mode. Simulation mode allows the electronics to compute an accurate printing time, taking into account the maximum speeds, accelerations etc. that are configured.
+
 ### Parameters
 
 * **S1** Enter simulation mode
@@ -1502,7 +1504,7 @@ M37 S1
 M37 P"MyModel.g"
 </pre>
 
-Used to switch between printing mode and simulation mode. Simulation mode allows the electronics to compute an accurate printing time, taking into account the maximum speeds, accelerations etc. that are configured.
+### Notes
 
 M37 S1 enters simulation mode. All G and M codes will not be acted on, but the time they would take to execute will be calculated.
 
@@ -1512,17 +1514,23 @@ M37 with no S parameter prints the time taken by the simulation, from the time i
 
 ## M38: Compute SHA1 hash of target file
 
+Used to compute a hash of a file on the SD card and returns a hexadecimal string which is the SHA1 of the file. 
+
 ### Examples
 <br>
 <pre class="cblock">
 M38 gcodes/myfile.g
 </pre>
 
-Used to compute a hash of a file on the SD card and returns a hexadecimal string which is the SHA1 of the file. If the file cannot be found, then the string "Cannot find file" is returned instead.
+### Notes
+
+If the file cannot be found, then the string "Cannot find file" is returned instead.
 
 ## M39: Report SD card information
 
-Supported in ReprapFirmware 1.21 and later.
+*Supported in ReprapFirmware 1.21 and later.*
+
+This command returns information about the SD card in the specified slot in the requested format.
 
 ### Parameters
 
@@ -1533,20 +1541,17 @@ Supported in ReprapFirmware 1.21 and later.
 <br>
 <pre class="cblock">
 M39       ; report information for SD card 0 in plain text format
-M39 P1 S2 ; report information for SD card 1 in JSON format
+M39 P1 S2 ; report information for SD card 1 in JSON format<br>
+; example output from RRF 3.3
+M39
+SD card in slot 0: capacity 3.97Gb, free space 3.81Gb, speed 20.00MBytes/sec, cluster size 32kb
+M39 S2
+{"SDinfo":{"slot":0,"present":1,"capacity":3965190144,"free":3807379456,"speed":20000000,"clsize":32768}}
 </pre>
 
-This command returns information about the SD card in the specified slot in the requested format. At least the following is returned:
+### Notes
 
-* Whether or not a usable card is present in the slot
-* The capacity of the card in bytes (if a card is present)
-* The amount of free space on the card in bytes (if a card is present)
-
-The JSON response has the following format (this is provisional):
-
-`{"SDinfo":{"slot":0,"present":1,"capacity":4294967296,"free":2147485184,"speed":20971520}}`
-
-The capacity and free space are in bytes and the interface speed is in bytes/second.
+In the JSON response, capacity, free space and cluster size are in bytes. and interface speed is in bytes/second.
 
 ## M42: Switch I/O pin
 
