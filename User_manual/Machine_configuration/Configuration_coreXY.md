@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for CoreXY Printer
 description: This page describes how to set up the configuration files for CoreXY printers, the same firmware binary also supports Cartesian, Delta and other printers kinematics .
 published: true
-date: 2021-11-30T16:28:03.660Z
+date: 2022-01-19T14:43:15.817Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T16:28:00.743Z
@@ -11,7 +11,7 @@ dateCreated: 2021-11-30T16:28:00.743Z
 
 This page describes how to set up the configuration files for CoreXY printers, the same firmware binary also supports Cartesian, Delta and other printers kinematics .
 
-[summary_image|373]
+<!--[summary_image|373]-->
 
 # Overview
 
