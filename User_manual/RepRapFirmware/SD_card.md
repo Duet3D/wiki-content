@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2021-12-14T15:32:45.071Z
+date: 2022-01-19T12:32:21.695Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -238,12 +238,12 @@ This issue is triggered by the combination of a large GCode file with a small cl
 
 A workaround is to reformat the SD card to use a larger cluster size. Here's how:
 
-1. Check the existing cluster size. If you are running firmware 1.21 then you can run M39 from the command line to find this. Otherwise, move the card to a PC and examine the disk properties.
+1. Check the existing cluster size. If you are running firmware 1.21 or later, then you can run [M39](/User_manual/Reference/Gcodes/M39) from the command line to find this. Otherwise, move the card to a PC and examine the disk properties.
 1. If the cluster size is already 64Kb then the following won't help; although defragmenting the large file that is causing the problem may help.
 1. Move the SD card to a PC
 1. Create a temporary folder on your PC to hold the contents of the card
 1. Copy all files and subfolders on the SD card into your temporary folder
-1. Reformat the SD card. If it is 4Gb or smaller, specify FAT16 format, with cluster size 64kb if you are given a choice. If it is larger than 4Gb then FAT16 will not be available, so use FAT32 and specify 64kb cluster size.
+1. Reformat the SD card, see [SD card page here](/User_manual/RepRapFirmware/SD_card#formatting). If it is 4Gb or smaller, specify FAT16 format, with cluster size 64kb if you are given a choice. If it is larger than 4Gb then FAT16 will not be available, so use FAT32 and specify 64kb cluster size.
 1. Copy all the files and folders form your temporary folder back on to the SD card
 1. Eject or safely remove the SD card form the PC and put it back in the Duet
 1. Restart the Duet
