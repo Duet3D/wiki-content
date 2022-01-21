@@ -2,27 +2,26 @@
 title: Getting Started
 description: 
 published: true
-date: 2021-12-06T23:16:26.774Z
+date: 2022-01-21T15:31:02.043Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:42:15.895Z
 ---
 
 # General warnings and safety
-Warnings
-Fire safety
-USB ground loops
-Prerequisites for using the Duet
+[Warnings](/User_manual/Overview/Warnings)
+[Fire safety](/User_manual/Overview/Fire_safety)
+[USB ground loops](/User_manual/Overview/USB_ground_loops)
 
 # Quick start guides
-Getting Started with Duet 2 WiFi / Ethernet
-Getting Started with Duet 3 MB6HC
-Getting Started with Duet 3 Mini 5+
+[Getting Started with Duet 3 MB6HC](/User_manual/Overview/Getting_started_Duet_3_MB6HC)
+[Getting Started with Duet 3 Mini 5+](/User_manual/Overview/Getting_started_Duet_3_Mini_5+)
+[Getting Started with Duet 2 WiFi / Ethernet](/User_manual/Overview/Getting_started_Duet_2_WiFi_Ethernet)
 
 # Getting Connected
 
 [Getting Connected to your Duet](/How_to_guides/Getting_connected/Getting_connected_to_your_Duet)
-SBC Setup for Duet 3
+[SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup)
 
 <!--
 # Wiring how-to guides
