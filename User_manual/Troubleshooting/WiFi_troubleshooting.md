@@ -2,7 +2,7 @@
 title: WiFi troubleshooting
 description: 
 published: true
-date: 2022-01-19T14:59:17.077Z
+date: 2022-01-21T10:04:28.312Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T00:23:04.224Z
@@ -36,13 +36,13 @@ If you find that your web browser repeatedly disconnects from the Duet, typicall
 # How to improve RSSI
 
 * If your printer is largely constructed from metallic components, make sure that the WiFi antenna at the edge of the Duet 2 WiFi is outside of or at the edge of the metallic structure, so that radio waves from your router can reach it unimpeded. 
-* Duet 3 Mini 5+ WiFi and some Duet 2 WiFi boards have external antennas. Make sure the antenna is firmly connected to the WiFi module
+* Duet 3 Mini 5+ WiFi and some Duet 2 WiFi boards have external antennas. Make sure the antenna is firmly connected to the WiFi module.
 * Move the printer and your router closer to each other. Avoid having solid walls between them.
-* Try a different WiFi channel (see earlier)
+* Try a different WiFi channel (see earlier).
 * Consider locating a WiFi repeater, or dedicated 2.4Ghz Wireless G router in the room with the printer.
 * Ensure there are no large motors or fans in the area, or wireless telephones, or microwaves, as these can interfere with the 2.4Ghz spectrum.
 * It's now possible to replace the ESP-12F WiFi module on the Duet 2 WiFi by an ESP-07S with external antenna, but this is not an easy modification to make unless you are experienced with hot air SMD rework and have the necessary equipment.
 
 # Firmware corruption
 
-The firmware upload protocol defined by the manufacturer of the WiFi module does not include error detection, and it may appear to succeed but to leave the WiFi module running corrupt firmware sometimes. In this case you can try reflashing the WiFi firmware. Connect via USB and send `M997 S1`.
+* The firmware upload protocol defined by the manufacturer of the WiFi module does not include error detection, and it may appear to succeed but to leave the WiFi module running corrupt firmware sometimes. In this case you can try reflashing the WiFi firmware. Connect via USB and send `M997 S1`.
