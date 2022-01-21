@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-01-18T12:16:23.119Z
+date: 2022-01-21T15:58:02.732Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -191,7 +191,7 @@ You should see a blank screen, but see note on Duets with WiFi below. Hit enter 
 
 If you get an error, *"Sorry, could not find a PTY."* unplug the USB, plug it back in and try again.
 
->No matter which connection method you use, if you are connecting to a Duet 2 WiFi or Duet 3 Mini 5+ WiFi, you may see lots of "WiFi reported error: no known networks found" messages. Don't worry, that's normal, and it means that the Duet is working!
+>No matter which connection method you use, if you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of "WiFi reported error: no known networks found" messages. Don't worry, that's normal, and it means that the Duet is working!
 {.is-info}
 
 > At certain points in these instructions, you may need to use quote marks in commands. Any double quotation marks must be sent as straight double quotation marks. To enable straight double quotation marks go to System Preferences > Keyboard > Text. Then under the Double Quotes drop down, select straight double quotations.
@@ -221,11 +221,11 @@ Press CTRL-A then W for linewrap, CTRL-A then U for CR at end of line, and CTRL-
 
 Finally, you can use the built-in 'screen' terminal. However, you cannot see the commands you type in, and the responses from the Duet are not formatted nicely on the screen. If you want to use 'screen', do this:
 
-Run `screen /dev/ttyACM0 115200`. (Replace "ttyACM0" with the port name if it's different.) You should see a blank screen, but see note on Duet 2 WiFi below.
+Run `screen /dev/ttyACM0 115200`. (Replace "ttyACM0" with the port name if it's different.) You should see a blank screen, but see note on Duets with WiFi below.
 
 ![Screen Linux](/guides/getting_connected/03_connect_to_duet_lin_03.png =600x)
 
-> No matter which connection method you use, if you are connecting to a Duet 2 WiFi or Duet 3 Mini 5+ WiFi, you may see lots of "WiFi reported error: no known networks found" messages. Don't worry, that's normal, and it means that the Duet is working!
+> No matter which connection method you use, if you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of "WiFi reported error: no known networks found" messages. Don't worry, that's normal, and it means that the Duet is working!
 {.is-info}
 
 # 4 Check your Firmware Version
