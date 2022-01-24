@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: 
 published: true
-date: 2022-01-24T14:21:36.622Z
+date: 2022-01-24T14:25:37.823Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -68,11 +68,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 * Compatible RepRapFirmware versions: RRF 3.2 and later
 
-Specific Firmware updating notes for the mini 5+ are here:
-[Duet 3 Mini 5+ Firmware Updating](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Firmware)
-
-For general Duet 3 firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
-
+For firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
 If running from an SBC, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
 
 ## Open Source
@@ -417,4 +413,10 @@ First prototype, this revision will not be supported in future firmware releases
 | 4 | no | no | yes |  |
 | 5 | no | no | no | IO5_OUT is shared with PSON output |
 | 6 | no | no | n/a | 3-pin connector, input only |
-| 7 | no | no | n/a | 3-pin connector, input only
+| 7 | no | no | n/a | 3-pin connector, input only |
+
+**Firmware note:**
+
+Version 0.2 boards run RepRapFirmware 3.2beta1 or beta2. The WiFi and Ethernet variants use a common firmware binary, named Duet3Mini5plus.uf2 in the 3.2beta 1 release, and Duet3Mini5plus_v02.uf2 in the 3.2beta 2 release. These binaries also support an attached Single Board Computer.
+
+Note that support for version 0.2 prototypes will not be maintained in future firmware, starting from RRF 3.2 stable onwards.
