@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-01-24T19:30:57.121Z
+date: 2022-01-24T19:35:23.031Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -121,17 +121,17 @@ STEP file to follow.
 
 * The Driver Active enable select options: "ACTIVE ENABLE" and "ACTIVE DISABLE" legends are the wrong way round on the board silk screen
 
-<!---
+<!--
 ## Description of Connections
 
 | Duet 3 Mini 5+ Connectors |||
 |:---|:---|---|
 | **1 x 2-way barrier strip** | POWER IN, GND, VIN  | Two pins for main VIN and GND protected by a 15A fuse. |
 | **3 x 2-pin JST VH connectors** | OUT_0, OUT_1, OUT_2 | Intended for extruder heaters or similar high current resistive loads. Flyback diodes are built-in to these outputs. Maximum recommended current 6A each. |
-| **3 x 4-pin KK connectors** | OUT_3, OUT_4, OUT_5 | Intended for PWM-controllable fans or other medium/low current loads. Flyback diodes are built-in to these outputs. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OULC1+ pin (+ve) and the OUT_n_NEG pin (-ve).
-| ^^ | ^^ | **Note:** OUT_3 and OUT_4 are protected by a flyback diode to V_FUSED. This does not provide protection if driving these outputs from a higher voltage than V_FUSED |
-| **1 x 3-pin Jumper** | OUT_3&4 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each ). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
-| **2 x 2-pin KK connectors** | OUT_5, OUT_6 | these are intended for PWM-controllable fans or other medium/low current loads. Flyback diodes are built-in to these outputs. **Note** out_6 PWM pin is shared with LASER/VFD |
+| **3 x 4-pin KK connectors** | OUT_3, OUT_4, OUT_5 | Intended for PWM-controllable fans or other medium current loads. Flyback diodes are built-in to these outputs. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUTLC1+ pin (+ve) and the OUT_n_NEG pin (-ve).
+| ^^ | ^^ | **Note:** OUT_3, OUT_4, OUT_5 are protected by a flyback diode to V_OUTLC1. This does not provide protection if driving these outputs from a higher voltage than V_OUTLC1 |
+| **1 x 3-pin Jumper** | OUT_3-OUT5 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 1A each, 2A total). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
+| **3 x 2-pin KK connectors** | OUT_6, OUT_7, OUT_8 | these are intended for PWM-controllable fans or other medium current loads. Flyback diodes are built-in to these outputs.|
 | ^^ | ^^ | **Note:** OUT_5 and OUT_6 are protected by a flyback diode to V_FUSED. This does not provide protection if driving these outputs from a higher voltage than V_FUSED |
 | **1 x 3-pin Jumper** | OUT_5&6 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each ). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
 | **5 x 4-pin KK connectors** | DRIVER_0, DRIVER_1, DRIVER_2, DRIVER_3, DRIVER_4 | Stepper motor connections, See "Connecting Stepper Motors" section below. |
