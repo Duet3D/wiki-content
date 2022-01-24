@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: 
 published: true
-date: 2022-01-24T14:25:37.823Z
+date: 2022-01-24T14:57:37.838Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -361,6 +361,20 @@ See [Connecting stepper motors](/User_manual/Connecting_hardware/Motors_connecti
 ## Connecting Fans
 
 See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting).
+
+# Programming the bootloader
+
+The bootloader is in protected memory and should not need to be reprogrammed. If you do need to reprogram it, you will need a Windows PC running Atmel Studio, and a SWD programming tool. Suitable tools, in order of increasing price, include:
+
+* SEGGER J-Link EDU Mini (for non-commercial use only)
+* Atmel ICE Basic
+* SEGGER J-Link BASE
+
+If using the Segger tool, see [this Adafruit page](https://learn.adafruit.com/how-to-program-samd-bootloaders/overview) for an overview of the process.
+
+To connect the programmer to the Duet, you will need a SWD cable breakout board such as [this one](https://www.adafruit.com/product/2743) and a 6-pin JST ZH cable.
+
+You will need to remove the bootloader protection by doing Erase Chip first and then setting USER_WORD_0.NVMCTRL_BOOTPROT to zero. After that you can program the bootloader binary into memory.
 
 # Revision History
 
