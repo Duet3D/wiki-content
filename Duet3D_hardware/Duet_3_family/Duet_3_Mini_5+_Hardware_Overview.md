@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: 
 published: true
-date: 2022-01-24T14:20:59.539Z
+date: 2022-01-24T14:21:36.622Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
