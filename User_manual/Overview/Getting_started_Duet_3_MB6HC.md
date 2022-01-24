@@ -2,7 +2,7 @@
 title: Getting Started With Duet 3 MB6HC
 description: 
 published: true
-date: 2022-01-17T15:11:54.438Z
+date: 2022-01-24T15:08:24.312Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:18:25.164Z
@@ -19,21 +19,19 @@ Congratulations on your new Duet 3 MB6HC! This page will guide you through getti
 
 First, read the warnings! See [Warnings](/User_manual/Overview/Warnings), [Fire safety](/User_manual/Overview/Fire_safety) and [USB ground loops](/User_manual/Overview/USB_ground_loops) for precautions you must take.
 
-<!-- 
 ## Package contents
 
-![duet_3_mini_5+_getting_started_03.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_getting_started_03.jpg =600x)
+![duet_3_mb6hc_getting_started_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg =50%x){.align-right}
 
-* 1 x Duet 3 Mini 5+ (WiFi or Ethernet)
+* 1 x **Duet 3 MB6HC**
 * 1 x Connector kit, including:
   * Würth Elektronic WR-WTB series connectors (Molex-KK compatible)
-  * Ferrules for power input and bed heater
-  * Connectors and crimps for hotend heaters.
-* 100 x crimps for connectors
-* 1 x SD Card
-* 1 x Single Board Computer (SBC) ribbon cable
-* 1 x External antenna (WiFi version only)
- -->
+  * Fork crimps for power input and bed heater
+  * JST VH connectors and crimps for stepper motors and hotend heaters.
+  * Plastic washers for isolation when mounting.
+* 100 x crimps for connectors (Molex-KK compatible)
+* 1 x micro SD Card
+* 1 x 26/40 Single Board Computer (SBC) ribbon cable
 
 ## Standalone mode vs SBC mode
 
@@ -135,6 +133,12 @@ Additional expansion boards add further functionality to your Duet 3 mainboard. 
 If you connect one or more expansion boards via CAN (as shown in the earlier photo), you must install the two CAN termination jumpers on the last board in the chain, but not on any additional boards in the middle of the chain.
 
 For a list of expansion boards that can be connect to a Duet 3 mainboard, see the 'CAN expansion' section of the [Duet 3 family](/Duet3D_hardware/Duet_3_family) page.
+
+## Reporting issues
+
+Please use the forum to report any issues: [https://forum.duet3d.com/](https://forum.duet3d.com/)
+
+<!--
 
 # Duet 3 and RepRapFirmware 3
 
@@ -305,7 +309,7 @@ To provide a controller base for the Duet, the first SPI port on the Linux contr
 
 `sudo raspi-config`
 
-<!-- (Alternatively `sudo raspi-config nonint do_spi 0` will enable SPI with a single command) -->
+(Alternatively `sudo raspi-config nonint do_spi 0` will enable SPI with a single command)
 
 2. Navigate to **Interface options**
 
@@ -464,3 +468,4 @@ If you wish to upgrade to the unstable package feed, check out the docs on GitHu
 ## Reporting issues
 
 Please use the forum to report any issues: [https://forum.duet3d.com/](https://forum.duet3d.com/)
+-->
