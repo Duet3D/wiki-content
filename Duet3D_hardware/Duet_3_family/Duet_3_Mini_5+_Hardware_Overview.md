@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: 
 published: true
-date: 2021-12-20T12:10:24.746Z
+date: 2022-01-24T14:20:59.539Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -68,8 +68,12 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 * Compatible RepRapFirmware versions: RRF 3.2 and later
 
-For firmware update instructions, see [Duet 3 Mini 5+ firmware page](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Firmware), or [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
-If running from an SBC, see [Update Duet 3 connected to SBC](/User_manual/Machine_configuration/SBC_setup).
+Specific Firmware updating notes for the mini 5+ are here:
+[Duet 3 Mini 5+ Firmware Updating](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Firmware)
+
+For general Duet 3 firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
+
+If running from an SBC, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
 
 ## Open Source
 
