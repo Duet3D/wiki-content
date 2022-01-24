@@ -2,13 +2,15 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-01-24T19:30:04.220Z
+date: 2022-01-24T19:30:57.121Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
 ---
 
 ![Render of the Duet 3 Mainboard 6XD v0.1](/duet_boards/duet_3_mb6xd/6xd_v0.1_proto_render1.png =400x)
+
+## This page is still in draft
 
 # Introduction
 
@@ -119,7 +121,7 @@ STEP file to follow.
 
 * The Driver Active enable select options: "ACTIVE ENABLE" and "ACTIVE DISABLE" legends are the wrong way round on the board silk screen
 
-
+<!---
 ## Description of Connections
 
 | Duet 3 Mini 5+ Connectors |||
