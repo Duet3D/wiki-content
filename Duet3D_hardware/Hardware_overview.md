@@ -2,7 +2,7 @@
 title: Hardware overview
 description: 
 published: true
-date: 2021-12-20T12:13:33.670Z
+date: 2022-01-24T15:38:21.847Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T11:36:08.818Z
@@ -40,7 +40,7 @@ dateCreated: 2021-12-06T11:36:08.818Z
 | **SD card interface speed** | 25Mbytes/sec | 22.5Mbytes/sec || 20Mbytes/sec ||
 | **RepRapFirmware versions available** | 3.0 series | 3.0 series || 2.0 series, 3.0 series ||
 | **Dimensions** | 140x134mm | 120x100mm || 120x100mm ||
-
+<!---
 ## Legacy Duets
 
 | Feature | [Duet 2 Maestro](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro) | [Duet 0.8.5](https://reprap.org/wiki/Duet) | [Duet 0.6](https://reprap.org/wiki/Duet) |
