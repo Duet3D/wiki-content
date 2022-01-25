@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-01-25T15:07:12.884Z
+date: 2022-01-25T16:00:51.001Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -221,7 +221,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | TEMP 3 | temp3 |^^ |
 | Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc |
 | ^^ | ^^ | io0.out | ^^ |
-| ^^ | IO_1 | io1<nolink>.in | ^^ |
+| ^^ | IO_1 | io1.in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
 | ^^ | IO_2 | io2.in | ^^ |
 | ^^ | ^^ | io2.out | ^^ |
@@ -237,73 +237,130 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | io7.out | ^^ |
 | ^^ | IO_8 | io8.in | ^^ |
 | ^^ | ^^ | io8.out | ^^ |
-| SPI CS | TEMPDB | spi.cs0 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
-| ^^ | ^^ | spi.cs1 | ^^ |
+| Optoisolated Inputs/Outputs | IO_5 | io5.in | These signals are available as differential signals, e.g. IO5 In Pos(+) and IO5 In Neg(-), IO5 Out Pos(+) and IO5 Out Neg(-) |
+| ^^ | ^^ | io5.out | ^^ |
+| ^^ | IO_6 | io6.in | ^^ |
+| ^^ | ^^ | io6.out | ^^ |
+| ^^ | IO_7 | io7.in | ^^ |
+| ^^ | ^^ | io7.out | ^^ |
+| ^^ | IO_8 | io8.in | ^^ |
+| ^^ | ^^ | io8.out | ^^ |
+| SPI CS | TEMPDB | spi.cs1 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
+| ^^ | ^^ | spi.cs4 | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
 | ^^ | LASER/VFD | laser, vfd | Pin shared with OUT 6 and LASER/VFD connectors |
 
-## IO port pin capabilities
+## Input/Output Port capabilities
 
-OUT_0 to OUT_6 are all PWM-capable. OUT_6 is shared with LASER/VFD.
+There are 9 IO headers on board, IO_0-IO_8. Each has an input and output along with 3.3V, 5V and Gnd supplied. This enables them to support a wide range of endstops, probes, filament monitors and future low bandwidth devices.
 
-Capabilities of IO_0 to IO_6 are shown below.
+![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =282x)
+
+RepRapFirmware 3 can be configured to map these ports to the appropriate functions as required.
+
+Except as noted in the table below, an IO_x_IN pin can always be used to provide a digital input (e.g. for endstop inputs or filament monitors), and an IO_x_OUT pin can always be used to provide a digital output.
+
+Some ports have further capabilitied as shown in this table
+
+### Specific capabilities
+Capabilities of IO_0 to IO_8 are shown below.
 
 | IO # | UART? | Analog in? | PWM out? | Notes |
-|:---|:---|
-| 0 | yes | no | no | AUX0 port, can be used to connect a PanelDue. Configure using M575 P1. |
-| 1 | yes | no | yes | AUX1 port. Configure using M575 P2. |
-| 2 | yes | no | yes | The  standard firmware does not support this UART |
-| 3 | no | yes | yes | Shared with  backlight control on 12864 displays having Neopixel backlights |
-| 4 | no | no | no | IO4_OUT is shared with PSON output |
-| 5 | no | no | n/a | 3-pin connector, input only |
-| 6 | no | no | n/a | 3-pin connector, input only |
+|:---|:---|:---|:---|:---|
+| 0 | yes | no | no | Shared with PanelDue header for UART connection|
+| 1 | yes | no | no |  |
+| 2 | no | no | no | I2C bypass jumper provided |
+| 3 | no | yes | no |  |
+| 4 | no | yes | yes |  |
+| 5 | no | yes | no |  |
+| 6 | no | yes | no |  |
+| 7 | no | yes | yes |  |
+| 8 | no | yes | no |  |
+
+### Optoisolated IO
+
+IO_5-IO_8 are also available as opto isolated inputs and outputs
+
+#### Optoisolated Inputs
+
+Wiring example to follow
+
+
+#### Optoisolated Outputs
+
+Wiring example to follow
+
 
 ## Power distribution
 
 ### VIN (Input voltage from PSU)
 
-Supply 12V-24V input power (11-25V absolute minimum/maximum) between the GND and VIN terminals.
+Supply 12V-24V input power (11-30V absolute minimum/maximum) between the GND and VIN terminals.
 
-VIN is split via two fuses:
+VIN is split via four fuses:
 
-V_FUSED: 10A :  All on board power demands, other than OUT0 (Normally used for heated bed
+V_FUSED: 15A :  All on board power demands, other than those specified below
 
-OUT0_FUSE: 15A: Directly to the V_OUT0 terminal
+VLC1_FUSE: 3A :  OUT3-OUT5 when the select jumper is on VIN
 
-VFUSED is distributed across the board as follows:
+VLC2_FUSE: 3A :  OUT6-OUT8 when the select jumper is on VIN
+
+VFUSED_IO: 300mA: VIN current for the OptoIsolated Output headers IO_5-IO_8
+
+V_FUSED is distributed across the board as follows:
 
 * 12V Regulator
 * 5V regulator
-* Stepper drivers (including external driver header)
-* OUT 1 and OUT 2 headers
-* V_OUTLC1 and V_OUTLC2 selection jumpers
+* OUT 0 - OUT 2 headers
 
 ### 12V
 
+The Duet 3 Mainboard 6XD produces 12V onboard from VIN. 12V will not be produced if only 12V is provided as VIN, a minimum of 14V is recommended to use the onboard 12V regulator. 
+
 **12V_EXT**: 800mA limit, Supplied to:
-  * V_OUTLC1/2 for OUT_3 thru OUT_6.
-  * 12V header (useful for supplying 12V to a VFD controlled from the adjacent 5V PWM header)
+  * V_OUTLC1/2 for OUT_3 thru OUT_8.
+  * 12V header (useful for supplying 12V to a VFD)
 
 ### 5V
 
-**5V**: Split up to 5V_EXT, 5V_INT. Those points can also be supplied by VBUS (i.e. USB) and from the 5V_SELECT jumper that selects between 5V_EXT_INPUT and 5V_SBC. (see 5V power options below for more details).
+**5V**: Split up to 5V_EXT, 5V_INT. (see 5V input power options below for more details).
+
 * **5V_EXT feeds**:
   * IO headers
-  * 12864 display and PanelDue
+  * PanelDue
   * LASER/VFD header
 * **5V_INT feeds**:
   * Internal and External 3.3V regulators
-  * External Driver header
+  * External Driver headers
   * Internal 5V logic
 
 5V input can come from one of these sources:
 
-* **Onboard 5V regulator:** Once 3.3V and other onboard demands are met approximately 700mA remains for use on the 5V_EXT rail.
-* **USB:** Can supply both 5V_INT and 5V_EXT. limits based on USB specification. 
-* **5V_EXT_INPUT**: With the 5V_SELECT jumper set to this position, 5V is passed through to both 5V_EXT and 5V_INT from the EXT_5V header. When using EXT_5V, add jumper to Int_5V_Disable, to disable the onboard 5V regulator. The EXT_5V header also has a pin for controlling an external power supply (note signal shared with io4.out). This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. 
-* **5V_SBC:** In some, limited, cases it may be desirable to power the board from the 5V output of a SBC connected to the SBC header. Note that the total power of the Duet+ peripherals must be factored into the SBC power budget. Also note that powering the SBC from the duet is not supported.
+* **Onboard 5V regulator:** Once 3.3V and other onboard demands are met approximately 3A remains for use on the 5V_EXT rail.
+* **USB:** Can supply both 5V_INT and 5V_EXT. limited to 1A
+* **5V_EXT_IN**:  When using EXT_5V_IN, add jumper to Int_5V_Disable, to disable the onboard 5V regulator. The EXT_5V header also has a pin for controlling an external power supply. This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. 
+* **5V_SBC:** In some, limited, cases it may be desirable to power the board from the 5V output of a SBC connected to the SBC header. Note that the total power of the Duet+ peripherals must be factored into the SBC power budget. See notes below
+
+There is an array of jumpers to customise the 5V power setup as required:
+
+![6xd_5v_options.png](/duet_boards/duet_3_mb6xd/6xd_5v_options.png =300x)
+
+![duet_3_mb6hc_5v_options_02.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_5v_options_02.png)
+The default configuration has jumpers on the "Int 5V EN" (Internal 5V enable) and "5V -> SBC" pins only. This means the internal 5V is enabled and the SBC is powered by the Duet's  5V. The Duet can supply up to 3.0A to the SBC.
+
+![duet_3_mb6hc_5v_options_02.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_5v_options_03.png)
+Alternatively, the SBC can provide 5V for the Duet using the "SBC -> 5V" jumper. Note that the Duet's in-built protection is bypassed. In this case the "5V->SBC" and the "SBC->5V*" jumpers should both be fitted, but remove the jumper from "Int 5V EN".
+
+![duet_3_mb6hc_5v_options_02.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_5v_options_04.png)
+
+If you wish to power the Duet and SBC separately, fit just one jumper, to "Int 5V EN". The Duet will be powered by it's internal 5V regulator and the SBC from it's own 5V power supply.
+
+**Note:** No other jumper configuration is recommended or supported.
+
+**Note:** Newer SBCs (e.g. RPi 4) need too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarily the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give an under voltage warning.
+
 
 ### 3.3V
 
