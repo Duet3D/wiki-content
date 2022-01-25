@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards. 
 published: true
-date: 2022-01-25T13:48:21.770Z
+date: 2022-01-25T15:58:10.185Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -11,7 +11,7 @@ dateCreated: 2021-11-30T12:57:13.348Z
 # Notes before you start
 
 <!-- * These instructions are focussed on updating firmware on current boards, and to RepRapFirmware 3.x. If you need instructions for older boards or older versions of the firmware, see [Installing and Updating Firmware (Legacy) **UPDATE LINK**]() -->
-* These instructions are for updating firmware on Duet 3 (all boards, in standalone mode), Duet 2 WiFi, Ethernet and Maestro boards only. Updating firmware for Duet 3 using a Single Board Computer (eg Raspberry Pi) is quite different. For Duet 3 + SBC firmware update information, see [Getting Started with Duet 3](/User_manual/Overview/Getting_started_Duet_3_MB6HC).
+* These instructions are for updating firmware on Duet 3 (all boards, in standalone mode), Duet 2 WiFi, Ethernet and Maestro boards only. Updating firmware for Duet 3 using a Single Board Computer (eg Raspberry Pi) is quite different. For Duet 3 + SBC firmware update information, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
 * Check that you have [downloaded the correct firmware](https://github.com/Duet3D/RepRapFirmware/releases) before installing it. See section below regarding which files are needed for each board.
 * Make sure you download and save the files as bin or zip and check the files sizes match.
 * Backup your SD card and download a copy of your current firmware version in case you need to revert the firmware.
