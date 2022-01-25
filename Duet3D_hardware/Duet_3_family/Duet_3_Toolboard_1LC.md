@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2021-12-10T16:26:16.561Z
+date: 2022-01-25T17:03:06.387Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -316,7 +316,7 @@ The buttons can be used to generate triggers in the normal way. Their pin names 
 
 ## Factory Reset
 
-The board will do a factory reset if you power it up with both buttons held down. The CAN address will be reset to the default (121) and the CAN bus timing will also be reset to default (1Mbps).
+The board will do a factory reset if you power it up with both buttons held down. The CAN address will be reset to the default (121), the CAN bus timing will also be reset to default (1Mbps), and the bootloader will request a firmware update.
 
 ## Startup Time
 
@@ -335,6 +335,8 @@ You can reset the CAN-FD bus back to defaults (CAN Address 121, Bus speed 1Mbps)
 The firmware filename is Duet3Firmware_TOOL1LC.bin and this needs to be uploaded to the /firmware folder of the SD card on the attached SBC, or the SD card in the Duet 3 main board if it is running in standalone mode. (note for RRF versions prior to 3.3 firmware files were in the /sys directory not the /firmware directory).
 
 Update the firmware by using the M997 B# command, where # is the CAN address of the new board.
+
+Pressing both buttons will cause a factory reset (CAN address set back to default 121 address), and for the bootloader to request a firmware update.
 
 **CAUTION**! On version 0.6 Toolboards, the heater and fans will be turned on when the board is powered up unless valid firmware is loaded. This means that the heater and fans will be on during a firmware update. This isn't normally a problem unless you have a very fast hot end heater, because the firmware update process takes only a few seconds. However, **if the firmware update fails, the heater could be left on for an extended period of time**. Therefore, when updating firmware, you should either disconnect the heater, or watch the red LED carefully and be ready to turn power off if it doesn't resume flashing in sync with the Duet 3 Mainboard within a few seconds.
 
