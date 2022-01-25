@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards. 
 published: true
-date: 2022-01-24T14:56:33.330Z
+date: 2022-01-25T13:48:21.770Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -147,13 +147,13 @@ The Duet 3 Mini 5+ supports an easy mechanism for updating the firmware directly
 
 ## All other Duet boards
 
-You will need a Windows, Apple Macintosh or Linux PC.  
+You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).  
 * Download the main firmware file from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases)
 * Verify that the downloaded firmware file has the correct size, as shown on the page you downloaded it from.
 * Connect the Duet to your PC via USB.
 * Verify that the 5V and 3.3V LED are on before continuing.
 * Erase the firmware on the Duet by either:
-  * Pressing the **Erase** button (next to the reset button on older Duets)
+  * Pressing the **Erase** button (next to the reset button on older Duets); or
   * Jumpering the erase jumper
   
   ![firmware_update_02_erase_pins.jpg](/manual/configuration/firmware_update_02_erase_pins.jpg =400x)
@@ -167,9 +167,17 @@ Now use either Bossa or SAM-BA to flash the firmware to the Duet.
 
 ### Bossa
 
-Bossa is available for Windows and Apple Mac OS X. Mac OS X users, please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x) to resolve some issues with it.
+Bossa is available for Windows, Apple macOS and Linux. 
 
-* Download and install Bossa 1.9.1 from [ShumaTech](https://github.com/shumatech/BOSSA/releases). 
+**macOS users:** please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x) to resolve some issues with Bossa.
+
+**Duet 3 MB6HC:** When BOSSA is used to flash the SAME70 processor in the MB6HC, the processor uses the USB port in high speed mode (unlike the processors used in other Duets). This means that the length and quality of the USB cable is especially important. USB cables that can be used to send GCode commands and receive replies to/from a Duet MB6HC that is running RepRapFirmware may not be suitable for flashing the firmware using BOSSA.
+
+#### Tabs {.tabset}
+
+##### Windows and macOS
+
+* Download and install Bossa 1.9.1 from [ShumaTech](https://github.com/shumatech/BOSSA/releases).
 * Load Bossa. It usually detects the correct COM port automatically.
 * Check boxes *Erase all*, *Lock*, and *Boot to flash*
 * Browse to the firmware binary file to be installed, then press Write.
@@ -178,6 +186,21 @@ Bossa is available for Windows and Apple Mac OS X. Mac OS X users, please see [t
 * When the write completes, press *Verify*
 * It is also possible to use the command line version (bossac) with this command line (replace COMxx by the correct COM port number): 
   `bossac --port=COMxx -b -U -e -w -v path\Duet2CombinedFirmware.bin -R`
+  
+##### Linux and Raspberry Pi
+
+* Install Bossa with the following commands:
+  ```
+  sudo apt update && sudo apt install -y libwxgtk3.0-dev libreadline-dev
+  git clone https://github.com/shumatech/BOSSA
+  cd BOSSA
+  make
+  ```
+* then send:
+  ```
+  ~/BOSSA/bin/bossac -e -w -v -b [file location and name]
+  ```
+  where [file location and name] is where the firmware binary file is saved, eg /opt/dsf/sd/sys/Duet3Firmware_MB6HC.bin
 
 ### SAM-BA
 
