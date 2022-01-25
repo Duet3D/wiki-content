@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-01-25T16:46:28.449Z
+date: 2022-01-25T16:52:28.587Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -119,7 +119,7 @@ STEP file to follow.
 
 #### Errata
 
-* The Driver Active enable select options: "ACTIVE ENABLE" and "ACTIVE DISABLE" legends are the wrong way round on the board silk screen
+>The Driver Active enable select options: "ACTIVE ENABLE" and "ACTIVE DISABLE" legends are the wrong way round on the board silk screen {.is-warning}
 
 
 ## Description of Connections
@@ -139,7 +139,7 @@ STEP file to follow.
 | **1 x 2-pin KK connector** | 12V GND | Always on 12V supply (*see note 1 below*) |
 | **1 x 3-pin KK connector** | LASER/VFD | 5V buffered output, along with 5V and ground supply (*see note 2 below*). Provides a 5V PWM signal to drive hobby servos, and PWM->analog controls for VFDs or Lasers. |
 | **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*).|
-| ^^ | ^^ | **Note** PanelDue Uart shared with io0.in and io0.out pins on the IO_0 header. |
+| ^^ | ^^ | **Note** PanelDue UART shared with io0.in and io0.out pins on the IO_0 header. |
 | **1 x RJ11 CAN connector** | CAN_1_OUT | CAN-FD connection for Duet 3 expansion boards. This has a permanent termination resistor, so it must be at one end of the CAN bus |
 | **1 x 2-pin KK connector** | CAN_0_OUT | CAN-FD Bus connection for future expansion. bus termination resistors can be disconnected with dillable/solderable jumpers underneath the board |
 | **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface boards.|
@@ -167,7 +167,7 @@ STEP file to follow.
 **Notes**
 
 1. Total 12V load should not exceed 800mA
-1. 5V power can be sourced from can be powered from multiple inputs (USB, External 5V input, SBC) as well as the internal 5V regulator. Total 5V load should not exceed 3A when powered from the internal 5V regulator. see the "Power Distribution, 5V" subsection below for more information {.is-warning}
+1. 5V power can be sourced from can be powered from multiple inputs (USB, External 5V input, SBC) as well as the internal 5V regulator. Total 5V load should not exceed 3A when powered from the internal 5V regulator. see the "[Power Distribution, 5V](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview#h-5v)" subsection below for more information
 
 ## LED indications
 
