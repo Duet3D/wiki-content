@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-01-24T19:35:23.031Z
+date: 2022-01-25T15:07:12.884Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -121,45 +121,53 @@ STEP file to follow.
 
 * The Driver Active enable select options: "ACTIVE ENABLE" and "ACTIVE DISABLE" legends are the wrong way round on the board silk screen
 
-<!--
+
 ## Description of Connections
 
-| Duet 3 Mini 5+ Connectors |||
+| Duet 3 Mini 5+ Connectors and Jumpers |||
 |:---|:---|---|
 | **1 x 2-way barrier strip** | POWER IN, GND, VIN  | Two pins for main VIN and GND protected by a 15A fuse. |
-| **3 x 2-pin JST VH connectors** | OUT_0, OUT_1, OUT_2 | Intended for extruder heaters or similar high current resistive loads. Flyback diodes are built-in to these outputs. Maximum recommended current 6A each. |
-| **3 x 4-pin KK connectors** | OUT_3, OUT_4, OUT_5 | Intended for PWM-controllable fans or other medium current loads. Flyback diodes are built-in to these outputs. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUTLC1+ pin (+ve) and the OUT_n_NEG pin (-ve).
-| ^^ | ^^ | **Note:** OUT_3, OUT_4, OUT_5 are protected by a flyback diode to V_OUTLC1. This does not provide protection if driving these outputs from a higher voltage than V_OUTLC1 |
-| **1 x 3-pin Jumper** | OUT_3-OUT5 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 1A each, 2A total). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
-| **3 x 2-pin KK connectors** | OUT_6, OUT_7, OUT_8 | these are intended for PWM-controllable fans or other medium current loads. Flyback diodes are built-in to these outputs.|
-| ^^ | ^^ | **Note:** OUT_5 and OUT_6 are protected by a flyback diode to V_FUSED. This does not provide protection if driving these outputs from a higher voltage than V_FUSED |
-| **1 x 3-pin Jumper** | OUT_5&6 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each ). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
-| **5 x 4-pin KK connectors** | DRIVER_0, DRIVER_1, DRIVER_2, DRIVER_3, DRIVER_4 | Stepper motor connections, See "Connecting Stepper Motors" section below. |
-| **1 x 16-pin socket strip** | EXTERNAL DRIVERS | Step, Direction, Enable, Diag and UART connections for DRIVER_5 and DRIVER_6, along with fused VIN, ground, 3.3V and 5V. Designed for a Mini 2+ expansion board to plug directly in. Step, direction and enable can also be used with other external drivers (3.3V signal level). |
-| **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*). **Note** shared with io0.in and io0.out pins on the IO_0 header. |
-| **1 x 3-pin KK connectors** | LASER/VFD | 5V buffered output shared with out6, along with 5V and ground supply (*see note 2 below*). Provides a 5V PWM signal to drive hobby servos, and PWM->analog controls for VFDs or Lasers. **Note** out6 PWM pin is shared with OUT_6 |
-| **1 x 2-pin KK connectors** | 12V | Always on 12V supply (*see note 1 below*) |
-| **Network** | **Ethernet** | 1 x RJ45 100BaseT Port. *non MDIX* connect to an Ethernet switch, hub or MDIX enabled laptop port. If connecting to a non MDIX enabled port use a crossover cable. Orange LED on Ethernet port indicates Ethernet enabled, green LED indicates network activity |
-| ^^ | **Wifi** | U.FL/IPEX push on connector for external antenna. *Note this connector is delicate, take care when plugging and unplugging*. "LED ESP": green LED indicates Wifi connection status |
-| **Reset** |  | Single push to reset the board. Double push to put the board into UF2 bootloader upload mode. See [Duet 3 Mini 5 + Firmware, Updating firmware via USB](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Firmware#updating-firmware-via-usb) |
-| **1 x JST ZH 6-pin connectors** | SWD | Connection for an SWD programming device such as an Atmel-ICE |
-| **1 x 2-pin KK connectors** | CAN | CAN-FD Bus connection for Duet 3 CAN-FD expansion boards. |
-| **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signals levels with 470R series resistors. IO_1,2,3 are PWM capable. |
-| **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. Jumpers to allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C. |
-| **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors |
-| **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
+| **1 x 3-pin KK connector** | EXT 5V | Open drain mosfet output for controlling an ATX-style power supply or a SSR. The +5V pin can also be used to provide external 5V power. A small amount of 5V power can be drawn from this pin (through an internal 220 ohm resistor), so that the control terminals of an SSR can be connected directly between the +5V and PS_ON pins. |
+| **3 x 2-pin JST VH connectors** | OUT_0, OUT_1, OUT_2 | Intended for extruder heaters or similar high current resistive loads. Flyback diodes are built-in to these outputs. Maximum current 6A each, 15A total|
+| **3 x 4-pin KK connectors** | OUT_3, OUT_4, OUT_5 | Intended for PWM-controllable fans or other medium current loads. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUTLC1+ pin (+ve) and the OUT_n_NEG pin (-ve).
+| ^^ | ^^ | **Note:** OUT_3, OUT_4, OUT_5 are protected by a flyback diode to V_OUTLC1. This does not provide protection if driving these outputs from a higher voltage than V_OUTLC1. V_OUTLC1 is fused with a 3A fuse.|
+| **1 x 3-pin Jumper** | OUT_3-OUT5 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each, 3A total). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
+| **3 x 2-pin KK connectors** | OUT_6, OUT_7, OUT_8 | these are intended for PWM-controllable fans or other medium current loads.|
+| ^^ | ^^ | **Note:** OUT_6, OUT_7, OUT_8 are are protected by a flyback diode to V_OUTLC2. This does not provide protection if driving these outputs from a higher voltage than V_OUTLC2. V_OUTLC2 is fused with a 3A fuse.|
+| **1 x 3-pin Jumper** |  OUT_6-OUT8 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each, 3A total ). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
+| **1 x 2-pin KK connector** | V+ GND | Always on V_FUSED supply, do not draw more than 2A from this connector |
+| **1 x 2-pin KK connector** | 12V GND | Always on 12V supply (*see note 1 below*) |
+| **1 x 3-pin KK connector** | LASER/VFD | 5V buffered output, along with 5V and ground supply (*see note 2 below*). Provides a 5V PWM signal to drive hobby servos, and PWM->analog controls for VFDs or Lasers. |
+| **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*).|
+| ^^ | ^^ | **Note** PanelDue Uart shared with io0.in and io0.out pins on the IO_0 header. |
+| **1 x RJ11 CAN connector** | CAN_1_OUT | CAN-FD connection for Duet 3 expansion boards. This has a permanent termination resistor, so it must be at one end of the CAN bus |
+| **1 x 2-pin KK connector** | CAN_0_OUT | CAN-FD Bus connection for future expansion. bus termination resistors can be disconnected with dillable/solderable jumpers underneath the board |
+| **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface boards.|
+| **6 x 6-pin KK connectors** | DRIVER_0-DRIVER_5 | External stepper or servo motor driver connections. 5V, GND, single ended outputs for Step, Dir and Enable along with a fault input provided per driver. See "Connecting External Drivers" section below. |
+| **1 x 3-pin Jumper** |  Driver Enable Polarity | A jumper in the "left" position is used for external drivers which are enabled when a voltage is applied to the enable connection (Active Enable). A jumper in the "right" position is used for external drivers which are disabled when a voltage is applied to the enable connection (Active Disable) (*Note the v0.1 boards have the silkscreen reversed*). |
+| **1 x 3-pin Jumper** |  Error Pull u/d Select | A jumper in the "top"/Pull Down position applies a pull down resistor to the driver fault signals - an external driver must set the line high to indicate a fault. A jumper in the "bottom"/Pull Up position applies a pull up resistor to the driver fault signals - an external driver must set the line low to indicate a fault |
+| **1 x 4-pin KK connector** | DS_LED | This is to connect and power DotStar LED strips. |
+| ^^ | ^^ | **Caution!** *see note 2 below* |
+| **Network** | Ethernet | 1 x RJ45 100BaseT Port. *non MDIX* connect to an Ethernet switch, hub or MDIX enabled laptop port. If connecting to a non MDIX enabled port use a crossover cable. Orange LED on Ethernet port indicates Ethernet enabled, green LED indicates network activity |
+| **1 x USB C** | USB | USB 2.0 forst of intial firmware installation and USB power. Up to 1A max current allowed, do not power high current 5V loads through this USB port (e.g. SBC with screen or large strings of LEDs) |
+| **4 x 2-pin KK connectors** | TEMP_0,-TEMP_3 | Connections for thermistor or PT1000 sensors. |
+| **9 x 5-pin KK connectors** | IO_0-IO_8 | Duet 3 standard GPIO ports. These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option for IO2). The outputs are 3.3V signals levels with 470R series resistors. See IO capabilities table below for specifics of each IO. |
+| ^^ | ^^ | **Note** IO_5-IO_8 are also provided as optoisolated outputs on seperate connectors. See below |
+| **1 x 2-pin Jumper** | IO2_I2C_Byp | Jumper to allow the 10K resistors on IO2.in to be bypassed with 470R resistors. This is required to use IO2 for I2C. |
+| **4 x 2-pin KK connectors** | IO_5_ISO_IN-IO_8_ISO_IN | Differential signal, optoisolated inputs for IO5.in - IO8.in, rated to 30V. |
+| **4 x 4-pin KK connectors** | IO_5_ISO_OUT-IO_8_ISO_OUT | Differential signal, optoisolated outputs for IO5.in - IO8.in. Each output is fused at 50mA |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
-| **1 x 2x5 IDC connector** | TEMPDB | For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface board. **Note** boards cannot be stacked so only 1 board at a time is supported. |
-| **1 x 3-pin Jumper** | 5V_SELECT | Source of optional External 5V input, see note 2 below |
-| **1 x 2-pin Jumper** | Int_5V_Disable | Connect a jumper across this to disable the internal 5V regulator, see note 2 below |
-| **2 x 2x5 IDCs** | 12864_EXP1, 12864_EXP2 | Headers for connecting a 12864 display using  a ST7567 controller, see "Connecting a 12864 display" below. |
-| **1 x 3-pin KK connector** | NP_LED | This is to connect and power NeoPixel LED strips (DotStar LED strips are not supported) . Connect the  DO pin to Neopixel DI. External 5V must be supplied to the "EXT 5V" header to power the NeoPixel array, they cannot be powered from the onboard regulator. |
-| **1 x 3-pin KK connector** | EXT 5V | Input for External 5V supply, see Note 2 below. There is a buffered 5V "pson" pin which can be used to switch an external supply, note it is shared with io4.out |
+| **3 x 2-pin Jumpers for 5V selection** | Int 5V EN | Enable the on board 5V regulator  |
+| ^^ | 5V_EXT-5V_INT | Bridge internal 5V to External 5V. **Caution** this removes the protection for the internal 5V circuitry from overvoltage on the external 5V.
+| ^^ | 5V_EXT-5V_SBC | Connect the external 5V to 5V SBC
+| ^^ | ^^ | *see note 2 below*.
+| **Reset** |  | Single push to reset the board.|
+| **1 x JST ZH 6-pin connectors** | SWD | Connection for an SWD programming/debugging device such as an Atmel-ICE |
 
 **Notes**
 
 1. Total 12V load should not exceed 800mA
-1. 5V can be powered from multiple inputs (USB, External 5V input, SBC) as well as the internal 5V regulator. Total 5V load should not exceed 800mA when powered from the internal 5V regulator. see the "Power distribution, 5V" section below for more information
+1. 5V power can be sourced from can be powered from multiple inputs (USB, External 5V input, SBC) as well as the internal 5V regulator. Total 5V load should not exceed 3A when powered from the internal 5V regulator. see the "Power distribution, 5V" section below for more information
 
 ## LED indications
 
@@ -173,18 +181,16 @@ LEDs are provided to indicate the following:
 | **12V+** | Amber | Indicates indicates on-board 12V regulator operating |
 | **5V+** | Red | Indicates indicates 5V supply present |
 | **3.3V+** | Green | Indicates on-board 3.3V regulator operating |
-| **ESP** | Green | WiFi version only. Indicates WiFi activity; flashing for searching/connecting, on for connected. |
 | **OUT_0** | Red | Next to the OUT 0 connector, indicates when on |
 | **OUT_1** | Red | Next to the OUT 1 connector, indicates when on |
 | **OUT_2** | Red | Next to the OUT 2 connector, indicates when on |
 
-The red LED next to the Reset button is labelled "STATUS".  *On version 0.2 boards it is labelled DIAG*. It indicates the state of the board, as follows.
+The red LED next to the Reset button, labelled "STATUS" indicates the state of the board, as follows:
 
 | LED | Meaning |
 |:---|:---|
 | Flashing steadily, about half a second off and half a second on | Normal operation, RepRapFirmware is running |
 | Flashing three times, then off for a while | Firmware CRC check failed |
-| Fading from bright to dim and then back again | USB bootloader activated |
 
 
 ## Pin names
@@ -195,45 +201,48 @@ RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin number
 
 The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mini 5+.
 
-| Pin location | RRF3 Pin name | Notes |
+| Function | Pin location | RRF3 Pin name | Notes |
 |---|---|---|
-| **Heater outputs** |||
-| OUT_0 | out0 | High current output, bed heater |
-| OUT_1 | out1 | Medium current outputs, hot ends |
-| OUT_2 | out2 | |
-| **Outputs (4-pin)** |||
-| OUT_3 | out3 | 4-wire fans with tacho|
-| ^^ | out3.tach | ^^ |
-| OUT_4 | out4 | ^^ |
-| ^^ | out4.tach | ^^ |
-| **Outputs (2-pin)** |||
-| OUT_5 | out5 | |
-| OUT_6 | out6, laser, vfd | Pin shared with OUT 6 and LASER/VFD connectors |
-| **Temperature inputs** |||
-| TEMP_0 | temp0 | |
-| TEMP_1 | temp1 | |
-| TEMP_2 | temp2 | |
-| **Inputs/Output** |||
-| IO_0 | io0.in | Endstops, Z probes, filament monitors etc |
-| ^^ | io0.out | ^^ |
-| IO_1 | io1.in | ^^ |
-| ^^ | io1.out | ^^ |
-| IO_2 | io2.in | ^^ |
-| ^^ | io2.out | ^^ |
-| IO_3 | io3.in | ^^ |
-| ^^ | io3.out | ^^ |
-| IO_4 | io4.in | ^^ |
-| ^^ | io4.out, pson | ^^ |
-| IO_5 | io5.in | Input only |
-| IO_6 | io6.in | ^^ |
-| **SPI CS** |||
-| TEMPDB | spi.cs0 | Thermocouple or PT100 daughterboard |
-| ^^ | spi.cs1 | ^^ |
-| ^^ | spi.cs2 | ^^ |
-| ^^ | spi.cs3 | ^^ |
-| **Miscellaneous** |||
-| LASER/VFD | laser, vfd, out6 | Pin shared with OUT 6 and LASER/VFD connectors |
-| EXT 5V | pson, io4.out | For controlling an external PSU or SSR, shared with io4.out |
+| Outputs | OUT 0 | out0| high current output, 6A, e.g. hot ends |
+| ^^ | OUT 1 | out1 | ^^ |
+| ^^ | OUT 2 | out2 | ^^ |
+| Outputs (4-pin) | OUT 3 | out3 | Fans, pumps. 2A limit per pin on VIN, 3A limit per bank of 3, 800mA limit total on internal 12V |
+| ^^ | ^^ | out3.tach | ^^ |
+| ^^ | OUT 4 | out4 | ^^ |
+| ^^ | ^^ | out4.tach | ^^ |
+| ^^ | OUT 5 | out5 | ^^ |
+| ^^ | ^^ | out5.tach | ^^ |
+| Outputs (2-pin) | OUT 6 | out6 | ^^ |
+| ^^ | OUT 7 | out7 | ^^ |
+| ^^ | OUT 8 | out8 | ^^ |
+| Temperature inputs | TEMP 0 | temp0 | Thermistors and PT1000 sensors|
+| ^^ | TEMP 1 | temp1 |^^ |
+| ^^ | TEMP 2 | temp2 |^^ |
+| ^^ | TEMP 3 | temp3 |^^ |
+| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc |
+| ^^ | ^^ | io0.out | ^^ |
+| ^^ | IO_1 | io1<nolink>.in | ^^ |
+| ^^ | ^^ | io1.out | ^^ |
+| ^^ | IO_2 | io2.in | ^^ |
+| ^^ | ^^ | io2.out | ^^ |
+| ^^ | IO_3 | io3.in | ^^ |
+| ^^ | ^^ | io3.out | ^^ |
+| ^^ | IO_4 | io4.in | ^^ |
+| ^^ | ^^ | io4.out | ^^ |
+| ^^ | IO_5 | io5.in | IO5 to IO8 also available as opto isolated signals, see below |
+| ^^ | ^^ | io5.out | ^^ |
+| ^^ | IO_6 | io6.in | ^^ |
+| ^^ | ^^ | io6.out | ^^ |
+| ^^ | IO_7 | io7.in | ^^ |
+| ^^ | ^^ | io7.out | ^^ |
+| ^^ | IO_8 | io8.in | ^^ |
+| ^^ | ^^ | io8.out | ^^ |
+| SPI CS | TEMPDB | spi.cs0 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
+| ^^ | ^^ | spi.cs1 | ^^ |
+| ^^ | ^^ | spi.cs2 | ^^ |
+| ^^ | ^^ | spi.cs3 | ^^ |
+| Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
+| ^^ | LASER/VFD | laser, vfd | Pin shared with OUT 6 and LASER/VFD connectors |
 
 ## IO port pin capabilities
 
