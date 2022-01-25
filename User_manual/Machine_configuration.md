@@ -2,7 +2,7 @@
 title: User manual: Machine configuration
 description: 
 published: true
-date: 2021-11-30T23:09:04.850Z
+date: 2022-01-25T16:42:57.964Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:58:06.577Z
@@ -33,6 +33,7 @@ Configuring RepRapFirmware for a Serial SCARA printer -->
 # Duet 3 SBC and CAN
 
 [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup)
+[Duet Software Framework (DSF) on Raspberry Pi](/User_manual/Machine_configuration/DSF_RPi)
 [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
 
 # Networking
