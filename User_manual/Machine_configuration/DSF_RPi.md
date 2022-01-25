@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2022-01-25T12:15:12.719Z
+date: 2022-01-25T13:46:38.427Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -58,7 +58,9 @@ After that, restart your system to apply the new buffer size.
 
 *Note that the following steps are not required if you are already running DuetPi*
 
-### Installing latest stable release
+See also [DSF github wiki here](https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide).
+
+### Installing from stable feed
 
 To obtain the required software packages on a Debian-based distribution running an ARMv7 processor (RaspPi 3 or newer) execute the following commands:
 
@@ -79,9 +81,9 @@ sudo apt-get update
 sudo apt-get install duetsoftwareframework
 ```
 
-### Installing latest unstable/beta release 
+### Installing from unstable/beta feed 
 
-If you wish to use the latest unstable DSF components, you can run the following commands instead:
+If you wish to use the latest unstable/beta DSF components, you can run the following commands instead:
 
 ```
 wget -q https://pkg.duet3d.com/duet3d.gpg
@@ -102,41 +104,59 @@ sudo apt-get install duetsoftwareframework
 
 Please be aware that the unstable repository is meant for beta testers and that it can contain experimental code. For production use, the stable repository is strongly recommended.
 
-### Changing from stable to unstable
+### Changing from stable to unstable feed
 
-In case you were using the stock package feed, make sure to remove it before you run `apt-get`:
-```
-sudo rm /etc/apt/sources.list.d/duet3d.list
-```
+1. Remove the stable package feed, make sure to remove it before you run `apt-get`:
+   ```
+   sudo rm /etc/apt/sources.list.d/duet3d.list
+   ```
+1. Then install the unstable package feed:
+   ```
+   wget -q https://pkg.duet3d.com/duet3d-unstable.list
+   sudo mv duet3d-unstable.list /etc/apt/sources.list.d/duet3d-unstable.list
+   sudo chown root:root /etc/apt/sources.list.d/duet3d-unstable.list
+   ```
+1. And update the installation:
+   ```
+   sudo apt-get update
+   sudo apt-get install duetsoftwareframework
+   ```
 
+### Changing from unstable to stable feed
 
-### Changing from unstable to stable versions
-
-To downgrade from an installed unstable version to a stable release follow the following steps:
+To downgrade from an installed unstable version to a stable release requires a few extra steps, to remove files newer than the release version. Follow the following steps:
 
 1. Change back unstable to stable in /etc/apt/sources.list.d/duet3d.list:
-
-`sudo bash -c "echo 'deb https://pkg.duet3d.com/ stable armv7' > /etc/apt/sources.list.d/duet3d.list"`
+   ```
+   sudo bash -c "echo 'deb https://pkg.duet3d.com/ stable armv7' > /etc/apt/sources.list.d/duet3d.list"
+   ```
 
 2. Refresh the package lists:
-
-`sudo apt update`
+   ```
+   sudo apt update
+   ```
 
 3. Remove potentially left-over RRF packages
-
-`rm -f ./reprapfirmware*.deb`
+   ```
+   rm -f ./reprapfirmware*.deb
+   ```
 
 4. Download the latest stable RepRapFirmware package
-
-`apt download reprapfirmware/stable`
+   ```
+   apt download reprapfirmware/stable
+   ```
 
 5. Downgrade RepRapFirmware
-
-`sudo dpkg -i --force-depends ./reprapfirmware*.deb`
+   ```
+   sudo dpkg -i --force-depends ./reprapfirmware*.deb
+   ```
 
 6. Downgrade DSF:
+   ```
+   sudo apt install -y --allow-downgrades duetsoftwareframework/stable duetcontrolserver/stable duetwebserver/stable duetpluginservice/stable duettools/stable duetruntime/stable duetwebcontrol/stable
+   ```
 
-`sudo apt install -y --allow-downgrades duetsoftwareframework/stable duetcontrolserver/stable duetwebserver/stable duetpluginservice/stable duettools/stable duetruntime/stable duetwebcontrol/stable`
+## Starting services
 
 ### Duet Control Server
 
