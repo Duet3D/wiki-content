@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-01-25T16:00:51.001Z
+date: 2022-01-25T16:46:28.449Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -167,7 +167,7 @@ STEP file to follow.
 **Notes**
 
 1. Total 12V load should not exceed 800mA
-1. 5V power can be sourced from can be powered from multiple inputs (USB, External 5V input, SBC) as well as the internal 5V regulator. Total 5V load should not exceed 3A when powered from the internal 5V regulator. see the "Power distribution, 5V" section below for more information
+1. 5V power can be sourced from can be powered from multiple inputs (USB, External 5V input, SBC) as well as the internal 5V regulator. Total 5V load should not exceed 3A when powered from the internal 5V regulator. see the "Power Distribution, 5V" subsection below for more information {.is-warning}
 
 ## LED indications
 
@@ -199,7 +199,7 @@ For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_
 
 RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of gcode commands, eg M574, M558, M950.
 
-The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mini 5+.
+The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mainbaord 6XD+.
 
 | Function | Pin location | RRF3 Pin name | Notes |
 |---|---|---|
@@ -319,9 +319,11 @@ V_FUSED is distributed across the board as follows:
 
 The Duet 3 Mainboard 6XD produces 12V onboard from VIN. 12V will not be produced if only 12V is provided as VIN, a minimum of 14V is recommended to use the onboard 12V regulator. 
 
-**12V_EXT**: 800mA limit, Supplied to:
+**12V_EXT**: , Supplied to:
   * V_OUTLC1/2 for OUT_3 thru OUT_8.
   * 12V header (useful for supplying 12V to a VFD)
+  
+> **Caution** on board 12V regulator has a 800mA limit {.is-warning}
 
 ### 5V
 
@@ -331,6 +333,7 @@ The Duet 3 Mainboard 6XD produces 12V onboard from VIN. 12V will not be produced
   * IO headers
   * PanelDue
   * LASER/VFD header
+  * Dotstar header
 * **5V_INT feeds**:
   * Internal and External 3.3V regulators
   * External Driver headers
@@ -340,66 +343,71 @@ The Duet 3 Mainboard 6XD produces 12V onboard from VIN. 12V will not be produced
 
 * **Onboard 5V regulator:** Once 3.3V and other onboard demands are met approximately 3A remains for use on the 5V_EXT rail.
 * **USB:** Can supply both 5V_INT and 5V_EXT. limited to 1A
-* **5V_EXT_IN**:  When using EXT_5V_IN, add jumper to Int_5V_Disable, to disable the onboard 5V regulator. The EXT_5V header also has a pin for controlling an external power supply. This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. 
+* **5V_EXT_IN**:  When using EXT_5V_IN, remove the jumper from Int 5V EN to disable the onboard 5V regulator (see below for more details). The EXT_5V header also has a pin for controlling an external power supply. This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. 
 * **5V_SBC:** In some, limited, cases it may be desirable to power the board from the 5V output of a SBC connected to the SBC header. Note that the total power of the Duet+ peripherals must be factored into the SBC power budget. See notes below
 
 There is an array of jumpers to customise the 5V power setup as required:
 
-![6xd_5v_options.png](/duet_boards/duet_3_mb6xd/6xd_5v_options.png =300x)
+![render of the area of the PCB dhowing the three 5V selection jumpers](/duet_boards/duet_3_mb6xd/6xd_5v_options.png =300x)
 
-![duet_3_mb6hc_5v_options_02.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_5v_options_02.png)
-The default configuration has jumpers on the "Int 5V EN" (Internal 5V enable) and "5V -> SBC" pins only. This means the internal 5V is enabled and the SBC is powered by the Duet's  5V. The Duet can supply up to 3.0A to the SBC.
+**Internal 5V only**
+![jumper positions for using internal 5V regulator only](/duet_boards/duet_3_mb6xd/6xd_5v_option_int_en.png =200x)
+The default configuration has a jumpers on the "Int 5V EN" only. This means the internal 5V is enabled but the SBC is not powered by the Duet but from it's own power supply. The Duet can supply up to 3.0A to all 5V loads.
 
-![duet_3_mb6hc_5v_options_02.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_5v_options_03.png)
-Alternatively, the SBC can provide 5V for the Duet using the "SBC -> 5V" jumper. Note that the Duet's in-built protection is bypassed. In this case the "5V->SBC" and the "SBC->5V*" jumpers should both be fitted, but remove the jumper from "Int 5V EN".
+**Internal 5V & Duet 3 6XD supplying the SBC**
+![jumper positions for using internal 5V regulator and powering the SBC](/duet_boards/duet_3_mb6xd/6xd_5v_option_int_power_sbc.png =200x)
+With jumpers on the "Int 5V EN" and "5V_EXT - SBC" pins the internal 5V is enabled and the SBC is powered by the Duet's 5V. The Duet can supply up to 3.0A to all 5V loads including the SBC ^1^.
 
-![duet_3_mb6hc_5v_options_02.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_5v_options_04.png)
+>**^1^** Newer SBCs (e.g. RPi 4) need too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarily the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give an under voltage warning. {.is-info}
 
-If you wish to power the Duet and SBC separately, fit just one jumper, to "Int 5V EN". The Duet will be powered by it's internal 5V regulator and the SBC from it's own 5V power supply.
+**SBC supplying 5V to the Duet 3 6XD**
+![jumper positions for powering the Duet5V from the SBC](/duet_boards/duet_3_mb6xd/6xd_5v_option_sbc_power.png =200x)
+In some, limited, cases it may be desirable to power the board from the 5V output of a SBC connected to the SBC header. Note that the total power of the Duet 3 6XD and  peripherals must be factored into the SBC power budget. Jumpers are fitted on the the "5V_EXT-5V_SBC" and the "5V_EXT-5V_INT" jumpers.
 
-**Note:** No other jumper configuration is recommended or supported.
+>**CAUTION** With the "5V_EXT-5V_INT" fitted the Duet 3 6XD in-built protection for the 5V_INT supply is bypassed. {.is-warning}
 
-**Note:** Newer SBCs (e.g. RPi 4) need too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarily the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give an under voltage warning.
+**Powered from 5V_EXT_IN**
+![6xd_5v_option_ext_only.png](/duet_boards/duet_3_mb6xd/6xd_5v_option_ext_only.png =200x)
+If 5V is being supplied via the 5V_EXT_IN header then disable the onboard 5V regulator. It is possible to fit the 5V_EXT-5V_SBC jumper to pass this power through to the SBC but it is not recommended because of the drop in voltage on the Duet due to potection circuits. It is better to provide a seperate 5V connection to the SBC.
 
+> **Caution! No other jumper configuration is recommended or supported. {.is-warning}
+
+#### SBC 5V considerations
+
+Powering a SBC like the Pi3 from the Duet is feasible provided any USB peripherals attached to the Pi are very low power draw or have their own separate power supply. Higher power draw SBC like the Pi4 may draw more power than the internal 5v on the Duet can supply, especially with added peripherals. In general, for best results, it is recommended to power the Duet and the SBC separately to avoid power overdraw issues.
+
+Furthermore, it is recommended to use a sufficient power supply for the Pi4 that is capable of providing 3A. The official Raspberry Pi Power Supply is a good example of this. Additionally, the USB cable used to power the Pi must be of good quality.
+
+Power overdraw conditions may result in poor communication between the Pi and Duet. The Pi may display a lightning bolt icon on the display (if connected) which is a good indication there is a power supply problem.
 
 ### 3.3V
 
-**3.3V**: Internal 3.3V supply for onboard logic, Temperature Daughterboards and external drivers
-* **3.3V_EXT**:
-  * IO Headers
-  * External SD cards
+**+3.3V**: Internal 3.3V supply for onboard logic and SPI Daughterboards
+ 
+**3.3V_EXT**:
+ * IO Headers
+ * External SD card on PanelDue header
 
 
 ## Connecting Displays
-
-### Connecting a 12864 display
-
-The signal levels are mostly 3.3V. This means that LCD modules using a ST7920 display powered from 5V (e.g. the RepRapDiscount display) will **not** work reliably. Use a display with a ST7567 controller instead. The display we test with is the Fysetc Mini 12864 display version 2.1. You can connect this directly to the EXP1 and EXP2 connectors using the straight-through ribbon cables normally supplied with this display. Enable the display using these commands in config.g:
-
-```
-M918 P2                     ; enable ST7567-based 12864 display
-M150 X2 R255 U255 B255 S3   ; set all 3 LEDs to white
-```
-
-You can adjust the M150 command to change the backlight colours. Please note, interrupts are disabled for a short time while the backlight colours are changed, and printing will be paused during this time; therefore you should not change the backlight colours during a print.
 
 ### Connecting a PanelDue
 
 A [PanelDue](/Duet3D_hardware/Accessories/PanelDue) can be connected to IO_0 using a 4-wire cable. See [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#option-1-4-way-cable)
 
-Alternatively, it can be connected using a ribbon cable plugged into the socket labelled PanelDue_SD, which enables access to the PanelDue SD card socket. However, there are some caveats; see note on Duet 3 Mini 5+ on [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#duet-3-mini-5-wifiethernet).
+Alternatively, it can be connected using a ribbon cable plugged into the socket labelled PanelDue_SD, which enables access to the PanelDue SD card socket. However, there are some caveats; see note on Duet 3 MB6XD on [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#notes).
 
 ## Connecting a Raspberry Pi
 
-The Duet 3 Mini+ cannot power the Pi. You must power the Pi separately. The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers or other USB power supplies cannot supply sufficient voltage. Therefore, we strongly recommend that you use the official Raspberry Pi PSU, or another PSU specifically designed to power a Raspberry Pi. If the red LED on the Pi is not continuously illuminated, the power supply is insufficient.
+The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers or other USB power supplies cannot supply sufficient voltage. Therefore, we strongly recommend that you use the official Raspberry Pi PSU, or another PSU specifically designed to power a Raspberry Pi. If the red LED on the Pi is not continuously illuminated, the power supply is insufficient.
 
-In other respects, SBC connection to the Duet and configuration is the same for the Duet 3 Mini  as for the Duet 3 Mainboard 6HC. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
+In other respects, SBC connection to the Duet and configuration is the same as for the Duet 3 Mainboard 6HC. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
 
-When using an attached Raspberry Pi or other SBC, the WiFi or Ethernet interface on the Duet 3 Mini+ is disabled.
+When using an attached Raspberry Pi or other SBC the Ethernet interface on the Duet 3 Mini+ is disabled.
 
-## Connecting Stepper Motors
+## Connecting External Motor Drivers
 
-See [Connecting stepper motors](/User_manual/Connecting_hardware/Motors_connecting).
+To follow
 
 ## Connecting Fans
 
@@ -409,51 +417,6 @@ See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_conn
 
 # Tabs{.tabset}
 
-## Revision 1.01
+## Revision 0.1
 
-* Added Jumpers to bypass 10K input protection resistors with 470R resistors for IO2.in and IO3.in. This is to allow these inputs to be used with I2C.
-* Add a 10K pulldown resistor between signal line io4_out and ground. This is to prevent PS_ON turning on momentarily when the board is powered up.
-
-## Revision 1.0
-
-* Component footprint and solder stencil changes to improve manufacturability
-* Ground plane changes to further improve EMC performance
-* Minor component changes to increase commonality with other Duet 3 products
-
-## Revision 0.5
-
-* Add 5V TVS diode footprint option so either 1610 or SMC can be used on 5V.
-* Move OUT3 and OUT 4 connector up slightly to clear the stepper diver expansion header.
-* Added pullup between Driver enable and 3.3.V
-* Add 3.3V TVS diode
-* Updated the 12V and 5V BUCK input circuits to improve EMC performance.
-* Updated the passive components around the Ethernet Phy to improve EMC performance.
-* Further minor routing and component updates.
-
-## Revision 0.4
-
-* Added CAN support
-* Removed IO_4 (pins used for CAN) and renamed IO_5, 6,7 to 4,5,6.
-* Remove 1 stepper driver and TMC diag mux. Used freed pins to route each stepper driver diag line directly to the MCU. Significantly improves stall detection performance.
-* Swap 4 wire fan pin headers for normal molex KK
-* 3 way jumper to choose between External 5V and 5V_SBC
-* Swap the pinout for IO6 and IO7 to be the same as Duet 2
-* Rename DIAG LED to STATUS
-* Further minor routing and component updates.
-
-## Revision 0.2
-
-First prototype, this revision will not be supported in future firmware releases.
-
-### Revision 0.2 IO port pin capabilities
-
-| IO # | UART? | Analog in? | PWM out? | Notes |
-|:---|:---|
-| 0 | yes | no | no | Can be used to connect a PanelDue |
-| 1 | yes | no | yes |  |
-| 2 | yes | no | no | The  standard firmware does not support this UART |
-| 3 | no | yes | yes |  |
-| 4 | no | no | yes |  |
-| 5 | no | no | no | IO5_OUT is shared with PSON output |
-| 6 | no | no | n/a | 3-pin connector, input only |
-| 7 | no | no | n/a | 3-pin connector, input only
+First prototype.
