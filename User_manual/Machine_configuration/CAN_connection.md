@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2021-12-15T14:38:03.094Z
+date: 2022-01-25T16:33:24.833Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -108,6 +108,24 @@ If you have just one of these boards (or at most one of each type) in your syste
 * Power up the system and use M952 again to set the address of the new board, choosing a different new address this time
 * Repeat until you have configured all the boards
 
+# Updating Duet 3 expansion board firmware
+
+Unless the bootloader has been corrupted, the expansion board firmware can be updated over CAN. Below are general instructions for updating expansion board firmware; see individual board hardware pages for specific instructions for each board.
+
+* Ensure that the correct expansion board firmware binary (for example, Duet3Firmware-EXP3HC.bin for the 3-driver high current expansion board) is present in the /firmware folder (/sys folder for versions of RRF before 3.3) on the RPi if using it, or on the SD card if running standalone.
+* If the expansion board is already communicating with the main board, send M997 B# where # is the address of the expansion board. The expansion board will commence a firmware update and the DIAG LED will go out for a while. When the update is complete, it will flash and re-sync with the main board.
+* Alternatively, set the expansion board bootloader to request a firmware update:
+  * On **Duet 3 EXP3HC**, set the expansion board address to zero (switches all off) and press the Reset button on the expansion board to commence the firmware update (or power down, change the switches, and power up again). When re-syncing is complete, change the switches back to the correct board address and press Reset again (or power down, change the switches, and power up again).
+  * On **Duet 3 TOOL1LC**, hold down the two buttons on power up to force a factory reset (which resets the CAN address to the default 121), and cause the board to request a firmware update. When re-syncing is complete, cycle power.
+  * On **EXP1XD** and **EXP1HCL**, fit the CAN reset button, and power up. The CAN address will be reset to default, and the board will request a firmware update. When re-syncing is complete, turn off power, remove CAN reset jumper, then power up again. 
+* You can check the firmware version installed on an expansion board by sending M115 B# where has is the board number.
+
+**Note**: after updating expansion board firmware, you must restart the main board or at least re-run config.g in order to create any sensors, heaters, fans etc. that you have configured on that board in config.g.
+
+## If the bootloader becomes corrupted
+
+Follow the process for [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
+
 # LED behaviour and error codes
 
 All expansion and tool boards have a red LED. Some also have a green LED. On more recent boards, the red LED is labelled STATUS and the green on is labelled ACT (for Activity). On older boards the red LED is labelled DIAG.
@@ -133,6 +151,8 @@ The red LED behaviour is:
 | 12 | Bootloader was unable to write flash memory |
 | 13 | Bootloader was unable to lock flash memory |
 | 14 | The VIN voltage was too low to to be considered safe to flash the bootloader |
+
+*Note: continuous rapid flashing indicated that the CAN connection is lost.*
 
 # Factory resetting a tool or expansion board
 
