@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2022-01-25T13:46:38.427Z
+date: 2022-01-25T16:37:22.948Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -23,6 +23,8 @@ DuetPi is the official Debian image based on Raspbian that is customised for the
 # Raspbian Setup Guide
 
 If you have the latest Raspbian image installed on your Raspberry Pi, follow these instructions to get started with DSF. These steps are obsolete if you are using DuetPi.
+
+See also [DSF github wiki here](https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide).
 
 ## Enabling SPI
 
@@ -57,8 +59,6 @@ After that, restart your system to apply the new buffer size.
 ## Software Installation
 
 *Note that the following steps are not required if you are already running DuetPi*
-
-See also [DSF github wiki here](https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide).
 
 ### Installing from stable feed
 
