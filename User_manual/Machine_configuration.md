@@ -2,7 +2,7 @@
 title: User manual: Machine configuration
 description: 
 published: true
-date: 2022-01-26T17:11:14.137Z
+date: 2022-01-26T17:18:51.008Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:58:06.577Z
@@ -30,9 +30,7 @@ Configuring RepRapFirmware for a FiveAxisRobot
 
 [Configuring RepRapFirmware for a CNC machine](/User_manual/Machine_configuration/Configuration_CNC)
 [Configuring RepRapFirmware for a Laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser)
-<!--- 
-Using RepRapFirmware with OpenPnP 
--->
+[Configuring RepRapFirmware for OpenPnP](/User_manual/Machine_configuration/Configuration_OpenPnP)
 
 # Duet 3 SBC and CAN
 
