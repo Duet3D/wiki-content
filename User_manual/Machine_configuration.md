@@ -2,7 +2,7 @@
 title: User manual: Machine configuration
 description: 
 published: true
-date: 2022-01-26T11:58:41.497Z
+date: 2022-01-26T15:15:44.006Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:58:06.577Z
@@ -19,9 +19,12 @@ Configuration (General Cartesian) -->
 [Configuring RepRapFirmware for an IDEX printer](/User_manual/Machine_configuration/Configuration_IDEX)
 [Configuring RepRapFirmware for a DLP printer controlled by nanoDLP](/User_manual/Machine_configuration/Configuration_nanoDLP)
 [Configuring RepRapFirmware for a Hangprinter](/User_manual/Machine_configuration/Configuration_Hangprinter)
-Configuring RepRapFirmware for a Polar printer
-Configuring RepRapFirmware for a Rotary Delta
+[Configuring RepRapFirmware for a Polar printer](/User_manual/Machine_configuration/Configuration_Polar)
+[Configuring RepRapFirmware for a Rotary Delta](/User_manual/Machine_configuration/Configuration_rotary_delta)
+<!--- 
 Configuring RepRapFirmware for a Serial SCARA printer
+Configuring RepRapFirmware for a FiveAxisRobot
+-->
 
 # CNC/Laser configuration
 
@@ -29,7 +32,6 @@ Configuring RepRapFirmware for a Serial SCARA printer
 [Configuring RepRapFirmware for a Laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser)
 <!--- 
 Using RepRapFirmware with OpenPnP 
-Configuring RepRapFirmware for a FiveAxisRobot
 -->
 
 # Duet 3 SBC and CAN
