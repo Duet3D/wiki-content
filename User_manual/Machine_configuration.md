@@ -2,7 +2,7 @@
 title: User manual: Machine configuration
 description: 
 published: true
-date: 2022-01-25T16:42:57.964Z
+date: 2022-01-26T11:58:41.497Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:58:06.577Z
@@ -17,18 +17,20 @@ Configuration (General Cartesian) -->
 [Configuring RepRapFirmware for a CoreXY printer](/User_manual/Machine_configuration/Configuration_coreXY)
 [Configuring RepRapFirmware for a Linear Delta printer](/User_manual/Machine_configuration/Configuration_linear_delta)
 [Configuring RepRapFirmware for an IDEX printer](/User_manual/Machine_configuration/Configuration_IDEX)
-<!--- Configuring RepRapFirmware for a DLP printer controlled by nanoDLP
-Configuring RepRapFirmware for a FiveAxisRobot
-Configuring RepRapFirmware for a Hangprinter
+[Configuring RepRapFirmware for a DLP printer controlled by nanoDLP](/User_manual/Machine_configuration/Configuration_nanoDLP)
+[Configuring RepRapFirmware for a Hangprinter](/User_manual/Machine_configuration/Configuration_Hangprinter)
 Configuring RepRapFirmware for a Polar printer
 Configuring RepRapFirmware for a Rotary Delta
-Configuring RepRapFirmware for a Serial SCARA printer -->
+Configuring RepRapFirmware for a Serial SCARA printer
 
 # CNC/Laser configuration
 
 [Configuring RepRapFirmware for a CNC machine](/User_manual/Machine_configuration/Configuration_CNC)
 [Configuring RepRapFirmware for a Laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser)
-<!--- Using RepRapFirmware with OpenPnP -->
+<!--- 
+Using RepRapFirmware with OpenPnP 
+Configuring RepRapFirmware for a FiveAxisRobot
+-->
 
 # Duet 3 SBC and CAN
 
