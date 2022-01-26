@@ -2,7 +2,7 @@
 title: Spurious heater faults and how to avoid them
 description: RepRapFirmware monitors heater temperatures to check they are behaving as expected, to detect situations that might pose a danger. Sometimes, the firmware may mistakenly think there is a heater fault in certain situations. 
 published: true
-date: 2022-01-18T16:13:20.623Z
+date: 2022-01-18T16:13:23.976Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:56:18.764Z

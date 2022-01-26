@@ -2,7 +2,7 @@
 title: Terminal Emulators
 description: There is no requirement to connect to your Duet hardware over USB for normal operation however for certain trouble shooting steps the use of a terminal emulator is required. This page provides some information on getting connected with one.
 published: true
-date: 2022-01-21T15:55:50.888Z
+date: 2022-01-21T15:55:54.147Z
 tags: yat, terminal emulator, troubleshooting
 editor: markdown
 dateCreated: 2021-10-31T18:10:59.107Z

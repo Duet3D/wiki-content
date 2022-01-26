@@ -2,7 +2,7 @@
 title: Getting Started With Duet 3 MB6HC
 description: 
 published: true
-date: 2022-01-25T16:03:40.331Z
+date: 2022-01-25T16:03:44.230Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:18:25.164Z

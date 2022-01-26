@@ -2,7 +2,7 @@
 title: GDF2
 description: 
 published: true
-date: 2021-12-21T02:21:23.451Z
+date: 2021-12-21T02:21:30.770Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-21T02:21:23.451Z

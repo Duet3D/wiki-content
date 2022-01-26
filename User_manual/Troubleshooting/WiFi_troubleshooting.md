@@ -2,7 +2,7 @@
 title: WiFi troubleshooting
 description: 
 published: true
-date: 2022-01-21T10:04:28.312Z
+date: 2022-01-21T10:04:31.670Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T00:23:04.224Z

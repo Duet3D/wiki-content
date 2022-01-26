@@ -2,7 +2,7 @@
 title: BLTouch Troubleshooting
 description: Getting the most out of your BLTouch on the Duet.
 published: true
-date: 2022-01-18T16:53:55.800Z
+date: 2022-01-18T16:53:59.132Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T23:15:24.992Z

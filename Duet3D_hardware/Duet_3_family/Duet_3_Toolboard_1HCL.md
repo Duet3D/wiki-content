@@ -2,19 +2,19 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2021-12-17T14:43:28.588Z
+date: 2022-01-21T16:26:08.879Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:13:43.010Z
 ---
 
-[summary_image 4121 **UPDATE LINK**]()
+![duet_3_1hcl_01.jpg](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_01.jpg =x400)
 
 # Introduction
 
 The EXP1HCL board provides a high current Stepper motor driver, combined with multiple interfaces for position feedback and firmware to implement closed loop position control. In addition it has a number of peripheral inputs and outputs for functions such as sensing motor temperature, controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the Duet 3 Mainboard 6HC, Duet 3 expansion boards, and the tool distribution board). Multiple EXP1HCL boards can be daisy chained on the bus, with power (up to 48V) provided locally. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
 
-[image 4022 **UPDATE LINK**]()
+![duet_3_1hcl_top_01.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_top_01.png =x400)
 
 # Specification
 
@@ -36,13 +36,13 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 
 # Dimensions
 
-[image 4023 **UPDATE LINK**]()
+![duet_3_1hcl_dimensions_01.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_dimensions_01.png =500x)
 
 # Wiring
 
 ## Wiring Diagram
 
-[image 4024 **UPDATE LINK**]()
+![duet_3_1hcl_wiring_01.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_wiring_01.png =600x)
 
 # Encoders
 
@@ -62,7 +62,7 @@ If the encoder has a differential output then connect the A+, B+ to the signal i
 
 Here is a picture (courtesy of LDO motors) which shows a single ended and differential encoder output:
 
-[image 4081 **UPDATE LINK**]()
+![duet_3_1hcl_encoders_01.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_encoders_01.png =600x)
 
 ## Magnetic Encoder
 

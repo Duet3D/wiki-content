@@ -2,7 +2,7 @@
 title: Community Projects
 description: Hardware and software projects started by community members to extend the Duet ecosystem. 
 published: true
-date: 2022-01-18T15:01:19.186Z
+date: 2022-01-18T15:01:22.917Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:54:58.958Z

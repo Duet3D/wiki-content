@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a CNC machine
 description: This page describes the hardware and wiring, and changes to the RepRapFirmware files required to support a CNC.
 published: true
-date: 2022-01-05T12:24:10.417Z
+date: 2022-01-05T12:24:13.747Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:34:29.590Z

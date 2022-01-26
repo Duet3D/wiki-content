@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2022-01-19T12:32:21.695Z
+date: 2022-01-19T12:32:25.770Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z

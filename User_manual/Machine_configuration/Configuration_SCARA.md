@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Serial SCARA printer
 description: This page describes how to set up the configuration files for Serial SCARA printers.
 published: true
-date: 2022-01-26T17:10:46.643Z
+date: 2022-01-26T17:10:50.111Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T17:10:46.643Z

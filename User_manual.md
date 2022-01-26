@@ -2,7 +2,7 @@
 title: User manual
 description: 
 published: true
-date: 2021-06-10T09:02:49.811Z
+date: 2021-12-21T01:07:08.668Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-04T12:33:09.567Z

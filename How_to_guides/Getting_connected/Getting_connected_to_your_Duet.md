@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-01-21T15:58:02.732Z
+date: 2022-01-21T23:59:43.824Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -27,7 +27,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Duet 3 Mini 5+
 
-![duet_3_mini_5+_getting_started_03.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_getting_started_03.jpg =500x)
+![duet_3_mini_5+_getting_started_03.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_getting_started_03.jpg =50%x){.align-right}
 
 * 1 x **Duet 3 Mini 5+** (WiFi or Ethernet)
 * 1 x Connector kit, including:
@@ -40,9 +40,11 @@ If you have any problems with your Duet when using this guide, rather than posti
 * 1 x Single Board Computer (SBC) ribbon cable
 * 1 x External antenna (WiFi version only)
 
+<p style="clear:both"></p>
+
 ### Duet 3 MB6HC
 
-![duet_3_mb6hc_getting_started_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg =600x)
+![duet_3_mb6hc_getting_started_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg =50%x){.align-right}
 
 * 1 x **Duet 3 MB6HC**
 * 1 x Connector kit, including:
@@ -54,9 +56,11 @@ If you have any problems with your Duet when using this guide, rather than posti
 * 1 x micro SD Card
 * 1 x 26/40 Single Board Computer (SBC) ribbon cable
 
+<p style="clear:both"></p>
+
 ### Duet 2 WiFi and Ethernet
 
-![01_unboxing.jpg](/guides/getting_connected/01_unboxing.jpg =600x)
+![01_unboxing.jpg](/guides/getting_connected/01_unboxing.jpg =50%x){.align-right}
 
 * 1 x **Duet 2 WiFi / Ethernet**
 * 1 x Connector kit, including:
@@ -67,6 +71,8 @@ If you have any problems with your Duet when using this guide, rather than posti
 * 3 ft. USB Cable
 * 1 x micro SD Card
 * 1 x External antenna (external WiFi version only)
+
+<p style="clear:both"></p>
 
 ### Duet 2 Maestro
 
@@ -85,7 +91,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 {.is-info}
 
 ## Plug in USB lead
-![Duet 2 Wifi showing a USB lead connected](/guides/getting_connected/02_connect_usb_01.jpg =600x)
+![Duet 2 Wifi showing a USB lead connected](/guides/getting_connected/02_connect_usb_01.jpg =50%x){.align-right}
 
 * Connect the Duet to your PC with the USB cable provided. Do not connect other power supplies at this stage.
 
@@ -96,32 +102,38 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 **Windows** users:
 
-![02_connect_via_usb_02.jpg](/guides/getting_connected/02_connect_usb_02.jpg =600x) 
+![02_connect_via_usb_02.jpg](/guides/getting_connected/02_connect_usb_02.jpg =600x){.align-right} 
 
 * Download the [USB drivers for Duet here](https://github.com/Duet3D/RepRapFirmware/blob/dev/Driver/WindowsDriverFiles.zip) and extract the files to a suitable location. 
 * To install drivers, open Device Manager by pressing Windows Key + R and type devmgmt.msc, or launch from the Start menu by typing "Device Manager". On Windows 10, you can right-click on the Start icon and click on "Device Manager".
 * Look for any devices with a yellow triangle, or for any "Generic USB" devices which would indicate that the Duet driver is not installed.
 * If a USB device does show the yellow triangle, or as a Generic USB device, right click on the device. Click Install Driver and browse to the location of the driver that was downloaded at the beginning of this step. Continue setup by clicking "Next" until the device driver has been installed.
 
+<p style="clear:both"></p>
+
 
 ### macOS
 
 **macOS** users have no drivers to install. 
 
-![02_connect_via_usb_03.jpg](/guides/getting_connected/02_connect_usb_03.jpg =600x) 
+![02_connect_via_usb_03.jpg](/guides/getting_connected/02_connect_usb_03.jpg =600x){.align-right} 
 
 * To check the Duet is recognised open Applications > Utilities > System Information, under Hardware > USB for a 'Duet' entry. 
 * For the Serial Port name, open Applications > Utilities > Terminal, then run `ls /dev/tty.*` The Duet uses a port with USB in the name, e.g. `/dev/tty.usbmodem1411`
+
+<p style="clear:both"></p>
 
 
 ### Linux
 
 **Linux** users have no drivers to install. 
 
-![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =600x)
+![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =600x){.align-right}
 
 * To check the Duet is recognised open a Terminal window and send lsusb, which should show an entry for the Duet. 
 * For the Serial Port name, send `ls /dev/tty*` which should show an entry `/dev/ttyACM[number]`. This is the port the Duet is using.
+
+<p style="clear:both"></p>
 
 # 3 Connect to Duet
 

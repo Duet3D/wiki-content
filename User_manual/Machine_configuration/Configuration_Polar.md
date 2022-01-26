@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Polar printer
 description: This page describes how to set up the configuration files for Polar printers.
 published: true
-date: 2022-01-26T12:44:43.105Z
+date: 2022-01-26T12:44:46.804Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T12:44:43.105Z

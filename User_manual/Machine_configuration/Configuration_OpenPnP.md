@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for OpenPnP
 description: RepRapFirmware running on Duet can be used in conjunction with OpenPnP to control movement of a pick-and-place machine.
 published: true
-date: 2022-01-26T17:18:06.032Z
+date: 2022-01-26T17:18:09.270Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T17:18:06.032Z

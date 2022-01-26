@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a DLP printer controlled by nanoDLP
 description: RRF can be used to control a DLP printer, accepting commands via the USB port from nanoDLP software
 published: true
-date: 2022-01-26T11:12:57.195Z
+date: 2022-01-26T11:13:00.533Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T11:12:57.195Z

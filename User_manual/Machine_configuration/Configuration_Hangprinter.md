@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Hangprinter
 description: This page describes how to set up the configuration files for Hangprinters. The same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics.
 published: true
-date: 2022-01-26T14:51:08.541Z
+date: 2022-01-26T14:51:11.917Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T11:56:32.634Z

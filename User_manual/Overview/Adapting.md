@@ -2,7 +2,7 @@
 title: Adapting an existing printer to Duet
 description: What mechanical and electrical details are needed to configure RepRapFirmware? What information is needed to configure an existing 3D printer to work with a Duet control board? Going from Marlin on Arduino to RepRapFirmware on Duet.
 published: true
-date: 2022-01-17T13:53:14.678Z
+date: 2022-01-17T13:53:17.933Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T14:53:55.818Z

@@ -2,7 +2,7 @@
 title: Jerky movement when printing
 description: If your printer moves jerkily during printing, here are the most common causes.
 published: true
-date: 2022-01-18T16:18:19.944Z
+date: 2022-01-18T16:18:23.097Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T23:12:33.044Z

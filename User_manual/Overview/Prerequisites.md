@@ -2,7 +2,7 @@
 title: Prerequisites for using the Duet
 description: 
 published: true
-date: 2022-01-17T13:49:41.689Z
+date: 2022-01-17T13:49:44.874Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T14:34:28.583Z

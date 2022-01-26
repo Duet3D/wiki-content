@@ -2,7 +2,7 @@
 title: Getting Started with Duet 3 Mini 5+
 description: This page contains a step by step guide and links to using your Duet 3 Mini 5+ Wifi or Ethernet.
 published: true
-date: 2022-01-24T15:08:29.144Z
+date: 2022-01-24T15:08:33.378Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:21:27.557Z
