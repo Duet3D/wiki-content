@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Hangprinter
 description: This page describes how to set up the configuration files for Hangprinters. The same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics.
 published: true
-date: 2022-01-26T11:56:32.634Z
+date: 2022-01-26T14:51:08.541Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T11:56:32.634Z
@@ -30,7 +30,7 @@ Additional info can be found at [Hangprinter.org](http://hangprinter.org/) or at
 
 ## Select Hangprinter kinematics
 
-To tell RepRapFirmware that your printer is a Hangprinter and to define its parameters, use [M669](/User_manual/Reference/Gcodes/M669). Put command **M669 K6 Axx:yy:zz B xx:yy:zz Cxx:yy:xx Dzz Prr** in your sys/config.g file on the on-board SD card. The parameters are:
+To tell RepRapFirmware that your printer is a Hangprinter and to define its parameters, use [M669](/User_manual/Reference/Gcodes/M669). Put command **M669 K6 Axx:yy:zz B xx:yy:zz Cxx:yy:xx Dzz Prr** in your sys/config.g file. The parameters are:
 
 * **Knnn** Geometry class, 6 = Hangprinter
 * **Axx:yy:zz** X, Y and Z coordinates of the A anchor
@@ -57,7 +57,7 @@ The Z movement limits should be set in [M208](/User_manual/Reference/Gcodes/M208
 
 ## Example
 
-Here is an extract from a sample config.g file:
+Here is an extract from a sample config.g file (Duet 2, RRF 3.x):
 
 ```
 ** Axis and motor configuration**
@@ -71,8 +71,8 @@ M584 X0 Y1 Z2 E3 U4 ; create U axis for the D motor, attached to the E1 motor co
 M669 K6 A0.0:-2163.0:-75.5 B-1841.0:741.0:-75.5 C1639.0:1404.0:-75.5 D3250.5 P1500 ; set Hangprinter kinematics parameters
 
 M92 X101.86 Y101.86 Z101.85 U101.86 ; set steps/mm for each spool
-M203 X6000 Y6000 Z6000 E3600 ; maximum linear speeds mm/minute
-M906 X1000 Y1000 Y1000 E1000 ; set motor currents (mA)
+M203 X6000 Y6000 Z6000 U6000 E3600 ; maximum linear speeds mm/minute
+M906 X1000 Y1000 Y1000 U1000 E1000 ; set motor currents (mA)
 
 M208 S0 Z1500 ; maximum height 1500mm
 M208 S1 Z-5 ; minimum height -5mm
