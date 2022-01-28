@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Serial SCARA printer
 description: This page describes how to set up the configuration files for Serial SCARA printers.
 published: true
-date: 2022-01-26T17:10:50.111Z
+date: 2022-01-28T11:56:33.124Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T17:10:46.643Z
@@ -246,6 +246,6 @@ Initially you may not know the exact joint at which the proximal and distal homi
 * When the distal *arm* is in line with the proximal *arm*, the distal joint is at zero angle
 * Measure the approximate joint angles between the zero angle position and the position at which the homing switch triggers. Also measure how far the joint can rotate the other way from the zero angle position. Use those measurements in your M669 command A and B parameters.
 * Run X homing (which is really proximal homing) and Y homing (which is really distal homing).
-* Send command `G1 S2 X0 Y0` to command the printer to the zero angle position.
+* Send command `G1 H2 X0 Y0` to command the printer to the zero angle position.
 * The proximal *arm* should now point along the X axis. If this is not where you want it to be, adjust whichever A parameter (first or second) corresponds to the position of the proximal homing switch (fully clockwise or fully anticlockwise). Adding a positive value to it will rotate the X axis clockwise.
 * The distal *arm* should be **exactly** in line with the proximal *arm*. If it isn't, adjust whichever B parameter (first or second) corresponds to the position of the distal homing switch (fully clockwise or fully anticlockwise). Adding a positive value to it will rotate the distal *arm* zero position clockwise relative to the proximal *arm*.
