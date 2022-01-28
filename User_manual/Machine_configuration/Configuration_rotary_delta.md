@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Rotary Delta
 description: 
 published: true
-date: 2022-01-26T15:14:49.016Z
+date: 2022-01-28T11:54:55.714Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T15:14:26.484Z
@@ -69,13 +69,13 @@ Set up your homedelta.g file as you would for a linear delta (see [Configuring R
 
 ## Adjust endstop offsets
 
-After homing the printer, send `G90` then `G1 S2 X0 Y0 Z0 F60`. It should move all 3 arms to the horizontal position (at 1deg/second). The next step is to adjust the endstop offsets so that that the arms are all exactly horizontal after sending this command. So check them, for example using a spirit level. **Note: "horizontal" here means that a line between the rotation centres of the joints at either end of the arm is horizontal.**
+After homing the printer, send `G90` then `G1 H2 X0 Y0 Z0 F60`. It should move all 3 arms to the horizontal position (at 1deg/second). The next step is to adjust the endstop offsets so that that the arms are all exactly horizontal after sending this command. So check them, for example using a spirit level. **Note: "horizontal" here means that a line between the rotation centres of the joints at either end of the arm is horizontal.**
 
-To get an arm to be horizontal, you need to adjust what the firmware thinks the arm angles are when the endstop is triggered. The arm angles are given by the second number in the A parameter of the M669 command. For example, you may have used A-25:30 meaning that the minimum arm angle is 25 degrees below the horizontal, and the maximum arm angle (which is the angle at which the endstop triggers) is 30 degrees above the horizontal. If after sending G1 S2 X0 Y0 Z0 F60 you find all arms are below the horizontal, subtract the angular error from the second A value. For example, using the above figures, if the command places the arms 2 degrees below the horizontal then change A-25:30 to A-25:28. Similarly, if the command leaves the arms above the horizontal, increase the second A parameter by the angular error.
+To get an arm to be horizontal, you need to adjust what the firmware thinks the arm angles are when the endstop is triggered. The arm angles are given by the second number in the A parameter of the M669 command. For example, you may have used A-25:30 meaning that the minimum arm angle is 25 degrees below the horizontal, and the maximum arm angle (which is the angle at which the endstop triggers) is 30 degrees above the horizontal. If after sending `G1 H2 X0 Y0 Z0 F60` you find all arms are below the horizontal, subtract the angular error from the second A value. For example, using the above figures, if the command places the arms 2 degrees below the horizontal then change A-25:30 to A-25:28. Similarly, if the command leaves the arms above the horizontal, increase the second A parameter by the angular error.
 
-You can fine-tune individual arms using the M666 command.  When used in config.g, this command must come **after** the M679 command. For example, `M666 X0.1 Y0.2 Z-0.3` will change the position (after homing and sending `G1 S2 X0 Y0 Z0 F60`) such that the X arm is 0.1 degree lower, Y is 0.2 degree lower, and Z is 0.3 degree higher.
+You can fine-tune individual arms using the M666 command.  When used in config.g, this command must come **after** the M679 command. For example, `M666 X0.1 Y0.2 Z-0.3` will change the position (after homing and sending `G1 H2 X0 Y0 Z0 F60`) such that the X arm is 0.1 degree lower, Y is 0.2 degree lower, and Z is 0.3 degree higher.
 
-After making any changes to the M679 or M666 values,  home the printer and send  G1 S2 X0 Y0 Z0 F60 again to see the effect of the changes.
+After making any changes to the M679 or M666 values,  home the printer and send  `G1 H2 X0 Y0 Z0 F60` again to see the effect of the changes.
 
 ## Test some simple X, Y and Z moves
 
