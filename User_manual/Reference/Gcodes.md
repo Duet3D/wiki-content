@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-19T17:03:59.630Z
+date: 2022-01-28T12:10:24.182Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5436,7 +5436,7 @@ The optional P string is sent to the Roland if R is 1. It is permissible to call
 
 * **P** Specify one or more input pin numbers that you created using M950 with the J parameter, or -1 to delete the trigger
 * **Tnn** Logical trigger number to associate the input(s) with, from zero up to a firmware-specific maximum
-* **S** Whether trigger occurs on an inactive-to-active edge of that input (S1, default), active-to-inactive edge (S0), or ignores that input (S-1). By default, all triggers ignore all inputs.
+* **S** Whether trigger occurs on an inactive-to-active edge of that input (S1, default), active-to-inactive edge (S0), or ignores that input (S-1).
 * **R** Condition: whether to trigger at any time (R0, default), only when printing a file from SD card (R1), or only when not printing a file from SD card (R2, supported in RRF 3.2 and later). R-1 temporarily disables the trigger.
 * **X**, **Y**, **Z** or any other axis letter: axis or axes whose endstop switches are to cause the trigger
 
