@@ -2,11 +2,14 @@
 title: User manual: Connecting hardware
 description: 
 published: true
-date: 2021-12-15T15:11:06.261Z
+date: 2022-01-28T14:34:21.750Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:51:46.990Z
 ---
+
+# General recommendations
+[Crimping guide (TO DO)]()
 
 # Temperature sensors
 
