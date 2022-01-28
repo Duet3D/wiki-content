@@ -2,19 +2,20 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-01-21T16:26:08.879Z
+date: 2022-01-28T16:47:18.663Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:13:43.010Z
 ---
 
-![duet_3_1hcl_01.jpg](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_01.jpg =x400)
+![Photograph of a Duet 3 1HCL board shown at an angle](/duet_boards/duet_3_can_expansion/duet_3_1hcl/1hcl_angle_4_wb_sm.png =x400)
 
 # Introduction
 
 The EXP1HCL board provides a high current Stepper motor driver, combined with multiple interfaces for position feedback and firmware to implement closed loop position control. In addition it has a number of peripheral inputs and outputs for functions such as sensing motor temperature, controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the Duet 3 Mainboard 6HC, Duet 3 expansion boards, and the tool distribution board). Multiple EXP1HCL boards can be daisy chained on the bus, with power (up to 48V) provided locally. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
 
-![duet_3_1hcl_top_01.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_top_01.png =x400)
+![Photograph of a Duet 3 1HCL board shown from above](/duet_boards/duet_3_can_expansion/duet_3_1hcl/1hcl_overhead_wb_sm.png =x500)
+
 
 # Specification
 
@@ -36,13 +37,13 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 
 # Dimensions
 
-![duet_3_1hcl_dimensions_01.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_dimensions_01.png =500x)
+![Image showing the key dimensions of the Duet 3 1HCL](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_dimensions_01.png =500x)
 
 # Wiring
 
 ## Wiring Diagram
 
-![duet_3_1hcl_wiring_01.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_wiring_01.png =600x)
+![Image showing all the connections on a Duet 3 1HCL to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_wiring_01.png =600x)
 
 # Encoders
 
@@ -62,9 +63,11 @@ If the encoder has a differential output then connect the A+, B+ to the signal i
 
 Here is a picture (courtesy of LDO motors) which shows a single ended and differential encoder output:
 
-![duet_3_1hcl_encoders_01.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_encoders_01.png =600x)
+![Image showing both single ended and differential encoder connection schemes](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_encoders_01.png =600x)
 
 ## Magnetic Encoder
+
+*This support is still experimental in RRF 3.4*
 
 The 1HCL supports SPI connected encoders (initially just the AS5047D sensing an on motor shaft magnet will be supported). Duet3D will supply this encoder on a Nema17 form factor PCB, designed to sense a diametrically magnetised magnet glued to the back of the motor shaft.
 
@@ -177,29 +180,27 @@ Where the "motorovertemp.g" macro can have whatever actions are appropriate. Thi
 
 ### Motor Brake Control
 
-***NOTE: This is not yet implemented in RepRapFirmware***
+Some motors have a motor brake fitted for an holding brake solenoid. As long as the solenoid max current draw is <2.5A it can be directly controlled by out 0 or out 1. If the Brake needs a different voltage from the VIN voltage used for the motor then that can supplied on the VBRAKE connector.
 
-Some motors have a motor brake fitted for an holding brake solenoid. As long as the solenoid max current draw is <2,5A it can be directly controlled by out 0 or out 1. If the Brake needs a different voltage from the VIN voltage used for the motor then that can supplied on the VBRAKE connector.
+This example sets out0 to control the brake using the [M569.7](https://docs.duet3d.com/User_manual/Reference/Gcodes#m5697-configure-motor-brake-port) command
 
-In future versions of the 1HCL firmware the facility to automatically apply and remove the brake may be added if one is configured.
-
-This example sets out0 to control the brake and assumes the brake is applied when not powered.
-
-`M950 P7 C"50.out0" ; create a GPIO pin number 7 on 1HCL board at CAN address 50 for the brake solenoid.`
-
-Then the following code can be used to turn on the brake
-
-`M42 P7 S0 ; set board 50 out0 to 0 (turn on brake)`
-
-with similar code to turn it off.
-
-`M42 P7 S1 ; set board 50 out0 to 1 (turn off brake)`
+`M569.7 P50.0 C"out0"`
 
 ***NOTE proceed with caution, always test these examples with low motor current and slow speeds first***
 
-extreme care should be exercised in where the brake is turned on/off. It would be worth checking the brake was off before any macro or print file that can command movement. A macro can be produced to turn off all brakes on connected motors and that macro called at the start of all other movement macros and in start gcode.
+When the motor driver is enabled, the specified output port will be turned on at the same time to release the brake. When the motor driver is disabled, the output port will be turned off. Idle current mode does not count as disabled.
+
+After M569.7 is executed, the port will be initially off. Therefore, M569.7 should be executed before the motor is first enabled.
 
 # Revisions
+
+## Revision v1.0
+
+* Pin changes to allow a UART and PWM on IO_0 and I2C on IO_1
+* Add a physical jumper for I2C support on IO_1
+* Change the SPI header to be a 2x5 box header so an off the shelf 2x5 ribbon cable can be used.	Used the same pinout arrangement as the SPI temperature Daughterboard connector (with the quadrature pins where CS lines were).
+* Add a second temperature input on PA7 (AIN7)
+* Remove the button
 
 ## Revision v0.3
 
