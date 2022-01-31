@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-01-31T11:26:12.650Z
+date: 2022-01-31T15:15:10.175Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -10,14 +10,12 @@ dateCreated: 2022-01-28T15:53:00.844Z
 
 # Introduction
 
-**This document is relevant to:** Duet 2 WiFi / Ethernet, Duet 2 Maestro, and Duet 3 MB6HC and Mini 5+ WiFi / Ethernet in standalone mode.
+**This document is relevant to:** Duet 2 WiFi / Ethernet and Duet 2 Maestro
 **Firmware versions:** All versions
 **Difficulty:** Moderate
 **Time Required:** 30 minutes - 1 hour
 
-This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet mainboard.
-
-If you are setting up a **Duet 3** with a connected **Single Board Computer** (SBC, eg Raspberry Pi), please see [SBC setup for Duet 3](https://duet3d.dozuki.com/Wiki/SBC_Setup_for_Duet_3) documentation for connecting the SBC.
+This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 
 **Note:** The pictures in this guide are from an earlier version of the Duet 2 WiFi/Ethernet however the wiring guide steps are still valid. Images relevant for other boards will be added as/when available.
 
@@ -34,45 +32,18 @@ To complete the wiring of your Duet, you will usually need:
 
 Here is a good guide to crimping: [Teaching Tech on YouTube](https://youtu.be/GZOh1NzqzzU)
 
-## Tabs {.tabset}
+**Crimping power supply and high current connectors**
 
-### Duet 3
+* **Duet 2 Wifi and Ethernet** uses bootlace ferrules on the end of the power supply and heated bed wires, which connect to the screw terminal on the Duet board. Use an appropriate bootlace ferrule crimping tool to crimp the wires in the bootlace ferrule. Tools are available that can crimp the ferrule into a C shape along it's length, or that crimp around the ferrule to make it into a square or hexagonal shape.
+* **Duet 2 Maestro** has a 4-way barrier strip with screw terminals to connect power supply and heated bed wires, and are supplied with insulated spade crimp terminals. Use an appropriate crimping tool; we find ratchet wire crimping tools produce better crimps than the non-ratcheting type.
 
-#### Crimping power supply and high current connectors
-
-Duet 3 mainboards have a barrier strip with screw terminals to connect power supply wires, and are supplied with insulated spade crimps.
-* **Duet 3 MB6HC**: uses a 6-way barrier strip for Power in, OUT0 power in, OUT0 (high current output, eg heated bed, max 15A, can be different voltage than main power in.)
-* **Duet 3 Mini 5+**: uses a 4-way barrier strip for Power in, OUT0 (high current output, eg heated bed, max 15A).
-
-Standard red/blue/yellow automotive crimp tools will crimp these terminals. There are ratchet tools to crimp these as well as low-cost non-ratchet tools; we find ratchet wire crimping tools produce better crimps than the non-ratcheting type.
-
-#### Crimping medium current connectors
-
-Duet 3 mainboards use JST VH series connectors for medium current outputs:
-* **Duet 3 MB6HC**: used for the 4-wire motor outputs (Driver 0 to 5) and OUT1, OUT2 and OUT3
-* **Duet 3 Mini 5+**: used for OUT1 and OUT2
-
-You will need a suitable crimping tool for the crimp pins, for example Engineer PA21 (use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation). Alternatively you can solder the wire to the crimp pin.
-
-#### Crimping low current connectors
-
-Molex KK-compatible connectors are used for all other inputs and outputs on the Duet. Use a ratchet crimping tool, eg HT-225D ratchet crimper, or manual tool such as Engineer PA09 or PA20.
-
-### Duet 2
-
-#### Crimping power supply and high current connectors
-
-**Duet 2 Wifi and Ethernet** uses bootlace ferrules on the end of the power supply and heated bed wires, which connect to the screw terminal on the Duet board. Use an appropriate bootlace ferrule crimping tool to crimp the wires in the bootlace ferrule. Tools are available that can crimp the ferrule into a C shape along it's length, or that crimp around the ferrule to make it into a square or hexagonal shape.
-
-**Duet 2 Maestro** has a 4-way barrier strip with screw terminals to connect power supply and heated bed wires, and are supplied with insulated spade crimp terminals. Use an appropriate crimping tool; we find ratchet wire crimping tools produce better crimps than the non-ratcheting type.
-
-#### Crimping medium current connectors
+**Crimping medium current connectors**
 
 Duet 2 boards use bootlace ferrules on the end of the medium current (usually hot end heater) wires, which connect to the screw terminal on the Duet board. Use an appropriate bootlace ferrule crimping tool to crimp the wires in the bootlace ferrule, as for the 
 
-#### Crimping low current connectors
+**Crimping low current connectors**
 
-Molex KK-compatible connectors are used for all other inputs and outputs on the Duet. Use a ratchet crimping tool, eg HT-225D ratchet crimper, or manual tool such as Engineer PA09 or PA20.
+Molex KK-compatible connectors are used for all other inputs and outputs on the Duet. Use a ratchet crimping tool such as HT-225D ratchet crimper, or manual tool such as Engineer PA09 or PA20.
 
 
 # 2. Board Diagram
@@ -80,14 +51,6 @@ Molex KK-compatible connectors are used for all other inputs and outputs on the 
 * Take a moment to familiarize yourself with the wiring diagram. It may help to open the high resolution image in another window, or print it out. Right-click on the image, and 'Open image in new tab'.
 
 ## Tabs {.tabset}
-
-### Duet 3 Mini 5+
-
-![duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png =800x)
-
-### Duet 3 MB6HC
-
-![duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png =800x)
 
 ### Duet 2 WiFi and Ethernet
 
@@ -98,34 +61,28 @@ Molex KK-compatible connectors are used for all other inputs and outputs on the 
 ![duet_2_maestro_v1.0_wiring.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_v1.0_wiring.png =800x)
 
 # 3. A Note on Fire Safety
-* WARNING: (Duet 2) it is imperative that you use the provided crimped ferrule connectors for the power supply, hotend heaters, and bed heater. Failure to use these can result in wire creeping, causing the wires to come loose and can possibly create a short circuit, which could result in fire.
+* WARNING: it is imperative that you use the provided crimped ferrule connectors for the power supply, hotend heaters, and bed heater. Failure to use these can result in wire creeping, causing the wires to come loose and can possibly create a short circuit, which could result in fire.
 * The crimp tool shown in this photo is a basic and inexpensive tool available from any hardware store, electrical shop, etc.
 * The method of crimp shown here is called an indent crimp. You should ensure that the tool you use provides a tight crimp to the ferrule.
 * It is also best to use the include Molex connectors for all other connections as they ensure correct polarity and lock into place.
 
 # 3. Powering the Duet Board
+
 * Connect your power supply to the Power In terminal.
-* Be sure to observe correct polarity when making the connections. The picture is of a Duet 2 WiFi/Ethernet; **check polarity** if wiring Duet 2 Maestro, Duex 2/5 and Duet 3.
-* WARNING: (Duet 2) It is HIGHLY recommended to use the included ferrules, by crimping them to the wires before putting the wires in the terminal block. Failure to do so could allow the wires to creep over time, become loose, and could possibly short circuit and start a fire.
+* Be sure to observe correct polarity when making the connections. The picture is of a Duet 2 WiFi/Ethernet; **check polarity** if wiring Duet 2 Maestro or Duex 2/5.
+* WARNING: It is HIGHLY recommended to use the included ferrules, by crimping them to the wires before putting the wires in the terminal block. Failure to do so could allow the wires to creep over time, become loose, and could possibly short circuit and start a fire.
 * Do not tin (add solder to) these wires. The solder will flow over time, and will become loose in the screw terminal.
 * Be sure not to twist the terminal block while tightening the screws. It can help to hold the terminal block while tightening.
 * Check the screws after a few days/week of operation to ensure they are still snug.
-* The gauge of wire should be appropriate to the current that the Duet will draw. This depends on a number of factors, however at its maximum this will be dominated by the 15A for the bed heater. The red and black ferrules (Duet 2) provided are 1.0mm^2 and 1.5mm^2 respectively. This relates to 17 and 15 AWG respectively.
+* The gauge of wire should be appropriate to the current that the Duet will draw. This depends on a number of factors, however at its maximum this will be dominated by the 15A for the bed heater. The red and black ferrules provided are 1.0mm^2 and 1.5mm^2 respectively. This relates to 17 and 15 AWG respectively.
 
 # 4. Communicating With the Duet Board
+
 * Lets begin by ensuring there's a connection to the board. This can be over USB, wifi, or ethernet. Please refer to [Getting Connected to Your Duet](/How_to_guides/Getting_connected/Getting_connected_to_your_Duet) for details.
 * We'll be using Duet Web Control during this guide, though you can use your favorite host software over USB if a network connection is unavailable.
 * If using USB, connect a USB cable at this time. But be aware of the dangers of [USB ground loops](/User_manual/Overview/USB_ground_loops).
 
 # 5. Reset button and erase button/jumper
-
-## Tabs {.tabset}
-
-### Duet 3
-
-
-
-### Duet 2
 
 * We'll start at the reset button, and work our way around the wiring diagram clockwise.
 * The reset button reboots the board, this is OK to press if a reboot is needed.
@@ -137,30 +94,14 @@ Molex KK-compatible connectors are used for all other inputs and outputs on the 
 
 # 6. LED Indicators
 
-## Tabs {.tabset}
-
-### Duet 3
-
-
-
-### Duet 2
-
 * These indicators show the status of 3.3v power, 5v power, the Vin (power from your power supply) and the two extruder heaters.
 * When the board is idle and connected to a power supply, expect the 3.3v, 5v, and Vin LEDs to be illuminated.
 * When the board is powered only through an external 5v supply or through USB, expect only the 5v and 3.3v lights to be on.
 * In this area you will also find indicators to show when an extruder heater is turned on.
 
 # 7. Endstops
+
 * Endstops tell the printer when the travel limit has been reached on a particular axis. The Duet's connections are a little different than RAMPS style boards, so please review this step and your endstops carefully.
-
-## Tabs {.tabset}
-
-### Duet 3
-
-
-
-### Duet 2
-
 * X Endstop
 * Y Endstop
 * Z Endstop
@@ -190,14 +131,6 @@ TO DO
 
 # 9. Hotend Heaters
 
-## Tabs {.tabset}
-
-### Duet 3
-
-
-
-### Duet 2 WiFi/Ethernet
-
 * Your hotend heaters should be connected here. From left to right, the connectors are E1 and E0.
 * Polarity does not matter for hotend heaters.
 * WARNING: It is HIGHLY recommended to use the included ferrules, by crimping them to the wires before putting the wires in the terminal block. Failure to do so could allow the wires to creep over time, become loose, and could possibly short circuit and start a fire.
@@ -209,14 +142,6 @@ TO DO
 
 * The Duet uses internal stepper drivers. In the event that you desire external drivers, consult the wiki.
 * Is your stepper motor spinning in the wrong direction? We will cover reversing the direction in firmware later on in the configuration guide.
-
-## Tabs {.tabset}
-
-### Duet 3
-
-
-
-### Duet 2
 * If you have two Z-Axis stepper motors, connect them to ZA and ZB.
 * If you only have one Z-Axis stepper motor, plug it into the ZA connector and be sure that the supplied jumpers are installed on the ZB connector.
 * ZA and ZB are wired in series; without a second stepper motor or the jumpers in place on ZB, ZA will not function.
@@ -233,14 +158,6 @@ TO DO
 
 # 12. Fans
 
-## Tabs {.tabset}
-
-### Duet 3
-
-
-
-### Duet 2
-
 * The Duet has three PWM controlled fan headers and two Always On fan headers.
 * A PWM (Pulse Width Modulation) fan connection is for fans you wish to control the speed of, for example a print cooling fan.
 * An always on fan is for something like an electronics fan - always on when the printer is on.
@@ -248,14 +165,6 @@ TO DO
 * The polarity of the fans is important - don't connect them backwards.
 
 # 13. Bed Heater
-
-## Tabs {.tabset}
-
-### Duet 3
-
-
-
-### Duet 2
 
 * The Duet is able to power a heated bed, and is fused at 15A. This should be well above the requirement for most heated beds.
 * If your heater has an integrated LED, then the polarity will matter as the LED will not light with reverse polarity. Otherwise, a heater's polarity doesn't matter.
@@ -266,34 +175,26 @@ TO DO
 
 # 14. Bed Thermistor
 
-## Tabs {.tabset}
-
-### Duet 3
-
-
-
-### Duet 2
-
 * Connect the bed thermistor to BED_TEMP.
 * The polarity of a thermistor does not matter.
 
 # 15. PANELDUE, CONN_SD and CONN_LCD
 
-Duet 3 MB6HC has none of these headers. Duet 3 Mini 5+ and Duet 2 Maestro have a PANELDUE header. Duet 2 WiFi/Ethernet has CONN_SD and CONN_LCD.
+Duet 2 Maestro have a PANELDUE header. Duet 2 WiFi/Ethernet has CONN_SD and CONN_LCD.
 
 * PANELDUE / CONN_SD is used to connect the SD card reader on a PanelDue touchscreen display to the Duet.
 * If you are using a PanelDue , this connection is optional and does not effect the function of the touchscreen monitor itself.
 * The CONN_LCD header is reserved for future development at this time and should not be used.
 
+# 19. Panel Due
+
+* The PanelDue, an optional accessory sold separately, is a touchscreen display which gives a user the ability to control the Duet with an intuitive interface directly at the printer.
+* The PanelDue can be connected in two ways:
+  * A 4 wire cable that contains power and serial signals. This has a maximum recommended length of 1 meter
+  * a 10 way flat cable which claos contains an external SD card signals with a maximum recommended length of 400mm
+* The wiki has more information on the types and sizes of PanelDue available. Also on connecting a PanelDue.
+
 # 16. Expansion
-
-## Tabs {.tabset}
-
-### Duet 3
-
-
-
-### Duet 2 WiFi/Ethernet
 
 * The expansion header is to connect the Duet 2 WiFi/Ethernet to a DueX2 or DueX5 expansion board, or an Expansion Breakout Board (EBoB).
 * The DueX2 and DueX5 expansion is an available add-on which offers additional stepper motor drivers, heater outputs, fan headers, endstop inputs, additional thermistor inputs, support for additional Temperature Daughterboards, and more.
@@ -312,14 +213,6 @@ Duet 3 MB6HC has none of these headers. Duet 3 Mini 5+ and Duet 2 Maestro have a
 * The Duet supports a Z-probe via this dedicated connector. There are many different kinds of probe, and the wiring will be different for each one.
 * See this section of the wiki, Choosing a Z probe, which will help you choose a suitable Z probe if you have not already.
 * See this section of the wiki, Connecting a Z probe, which contains guidance for wiring your Z probe to the Duet.
-
-# 19. Panel Due
-
-* The PanelDue, an optional accessory sold separately, is a touchscreen display which gives a user the ability to control the Duet with an intuitive interface directly at the printer.
-* The PanelDue can be connected in two ways:
-* A 4 wire cable that contains power and serial signals. This has a maximum recommended length of 1 meter
-* a 10 way flat cable which claos contains an external SD card signals with a maximum recommended length of 400mm
-* The wiki has more information on the types and sizes of PanelDue available. Also on connecting a PanelDue.
 
 # 21. Ethernet or WiFi Module
 
