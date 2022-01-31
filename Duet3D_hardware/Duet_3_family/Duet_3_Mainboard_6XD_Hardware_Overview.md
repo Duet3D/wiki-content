@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-01-31T12:53:08.008Z
+date: 2022-01-31T17:47:59.439Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -63,8 +63,8 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 | **Non opto isolated Inputs** | Permanent 27K pullup resistor to +3.3V included. Input voltage limits: -1V to +30V. |
 | **Non opto isolated Outputs** | 3.3V signal level, 470 ohm series resistor |
 | **Opto Isolated Inputs** | 24V nominal, working range 12V to 50V. Reverse polarity protection included. Compatible with both PNP and NPN PLC outputs. |
-| **Opto Isolated Outputs** | Limits TBC |
-| **Fuses** | 15A for V_FUSED, 2A for each bank of medium current outputs/ |
+| **Opto Isolated Outputs** | Max voltage 55V, max current 50mA |
+| **Fuses** | 15A for V_FUSED, 3A for each bank of medium current outputs/ |
 | **5V current limit** | 3A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power, and any connected SBC powered by the Duet. |
 | **12V current limit** | 800mA (only used for fan outputs OUT_3 thru OUT_8, when selected) |
 
