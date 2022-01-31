@@ -1,8 +1,8 @@
 ---
-title: Wiring your Duet mainboard
-description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet mainboard.
+title: Wiring your Duet 2 mainboard
+description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-01-28T15:53:00.844Z
+date: 2022-01-31T11:26:12.650Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
