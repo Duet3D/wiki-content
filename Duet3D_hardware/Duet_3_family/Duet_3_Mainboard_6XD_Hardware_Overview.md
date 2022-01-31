@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-01-25T16:56:40.333Z
+date: 2022-01-31T12:53:08.008Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -34,9 +34,9 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 | **High current outputs** | 3 x High current outputs (up to 6A each) |
 | **medium current outputs** | 6 x medium current outputs for PWM fans and similar devices, of which 3 support 4-wire fans with PWM and tacho wires. Arranged in two banks, each bank is individually fused with voltage selectable between VIN / 12V.|
 | **Thermistor/PT1000 inputs** | 4, optimised for 100K thermistors and PT1000 sensors |
-| **Inputs/Outputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo, or PanelDue connection. Inputs are 30V-tolerant. 4 of the 9 pairs of IO are Opto Isolated.
+| **Inputs/Outputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo, or PanelDue connection. Inputs are 30V-tolerant. 4 of the 9 pairs of IO also have alternative Opto Isolated connectors.
 | **Power monitoring** | VIN voltage monitoring allows for state save on power failure.12V regulator output voltage also monitored |
-| **SD card interface** | On-board high speed (25Mbytes/sec) SD card socket. |
+| **SD card interface** | On-board high speed (25Mbytes/sec) SD card socket. External SD card socket (e.g. on attached PanelDue) also supported.|
 
 
 | **EXPANSION** ||
@@ -58,10 +58,12 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **high current outputs** | 3 x high current outputs up to 6A each, total high current heater limit fused at 15A |
 | **medium current outputs** | 3 x medium current outputs up to 1A each, each bank of medium current outputs fused at 2A (note when set to 12V there is a total 800mA limit) |
-| **External Driver Signal voltage** | 5V |
-| **External Driver Signal current** | TBCmA |
-| **Non opto isolated Inputs/Outputs** | Inputs are 30V-tolerant |
-| **Opto Isolated Inputs/Outputs** | Limits TBC |
+| **External Driver Signal voltage** | 5V nominal (min. 4.2V @ 20mA) |
+| **External Driver Signal current** | 20mA maximum |
+| **Non opto isolated Inputs** | Permanent 27K pullup resistor to +3.3V included. Input voltage limits: -1V to +30V. |
+| **Non opto isolated Outputs** | 3.3V signal level, 470 ohm series resistor |
+| **Opto Isolated Inputs** | 24V nominal, working range 12V to 50V. Reverse polarity protection included. Compatible with both PNP and NPN PLC outputs. |
+| **Opto Isolated Outputs** | Limits TBC |
 | **Fuses** | 15A for V_FUSED, 2A for each bank of medium current outputs/ |
 | **5V current limit** | 3A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power, and any connected SBC powered by the Duet. |
 | **12V current limit** | 800mA (only used for fan outputs OUT_3 thru OUT_8, when selected) |
