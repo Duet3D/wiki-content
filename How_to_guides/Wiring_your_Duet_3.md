@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-01-31T12:27:10.363Z
+date: 2022-01-31T15:15:18.010Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -48,7 +48,7 @@ Duet 3 mainboards use JST VH series connectors for medium current outputs:
 * **Duet 3 MB6HC**: used for the 4-wire motor outputs (Driver 0 to 5) and OUT1, OUT2 and OUT3
 * **Duet 3 Mini 5+**: used for OUT1 and OUT2
 
-You will need a suitable crimping tool for the crimp pins, for example Engineer PA21 (use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation). Alternatively you can solder the wire to the crimp pin.
+You will need a suitable crimping tool for the crimp pins, for example Engineer PA21. The PA21 is designed to handle the longer flanges of the VH crimps that grip the insulation. Use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation. Alternatively you can solder the wire to the crimp pin.
 
 ## Crimping low current connectors
 
