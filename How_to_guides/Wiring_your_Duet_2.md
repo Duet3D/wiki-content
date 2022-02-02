@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-02-02T14:45:14.280Z
+date: 2022-02-02T14:46:45.024Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -101,10 +101,10 @@ Molex KK-compatible connectors are used for all other inputs and outputs on the 
 We'll start at the reset button, and work our way around the wiring diagram clockwise.
 
 ![wiring_d2we_02_reset.jpg](/guides/wiring/wiring_d2we_02_reset.jpg =32%x) ![wiring_d2we_03_erase_pins.jpg](/guides/wiring/wiring_d2we_03_erase_pins.jpg =32%x) ![wiring_d2we_04_erase_switch.jpg](/guides/wiring/wiring_d2we_04_erase_switch.jpg =32%x)
-* The reset button reboots the board, press if a reboot is needed. (<span style="background-color:#FFA500">Orange circle</span>, first picture above.)
+* The reset button reboots the board, press if a reboot is needed. (<span style="background-color:#FFA500">circled orange</span>, first picture above.)
 * The firmware is erased in one of two ways depending on the hardware PCB revision:
-  * For revisions v1.04 and later it is a jumper which is bridged to erase the firmware. (<span style="background-color:#00FF00">Green circle</span>, second picture above.)
-  * For all versions prior to v1.04 it is through an erase switch. (<span style="background-color:#FFFF00">Yellow circle</span>, third picture above.)
+  * For revisions v1.04 and later it is a jumper which is bridged to erase the firmware. (<span style="background-color:#00FF00">circled green</span>, second picture above.)
+  * For all versions prior to v1.04 it is through an erase switch. (<span style="background-color:#FFFF00">circled yellow</span>, third picture above.)
 * The erase jumper/button will erase the firmware that is stored on the main processor. The SD card does not hold the firmware, just some configuration files.
 * Do not press the erase button unless you know what you are doing. There firmware does not need to be erased for normal upgrading. The process of reinstalling the firmware after it is erased is detailed In fallback procedure #3.
 
