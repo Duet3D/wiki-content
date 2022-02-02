@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-02-02T14:11:26.997Z
+date: 2022-02-02T14:45:14.280Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -271,43 +271,45 @@ TO DO
 # 18. Temperature Daughterboard
 
 ![wiring_d2we_16_tempdb.jpg](/guides/wiring/wiring_d2we_16_tempdb.jpg =32%x) ![wiring_d2we_17_tempdb.jpg](/guides/wiring/wiring_d2we_17_tempdb.jpg =32%x) ![wiring_d2we_18_tempdb.jpg](/guides/wiring/wiring_d2we_18_tempdb.jpg =32%x)
-
-* A Temperature Daughterboard allows the Duet to connect with a thermocouple or PT100 temperature sensor, which send a different type of signal than a thermistor.
+* A Temperature Daughterboard (labelled 'SPIO' or 'TEMP_DB') allows the Duet to connect with a thermocouple or PT100 temperature sensor, which send a different type of signal than a thermistor.
 * Each daughterboard supports two additional temperature sensors of the same type, ie either 2x PT100 or 2x thermocouple.
 * Duet 2 WiFi/Ethernet and Duet 2 Maestro boards supports up to two temperature daughterboards.
 * A Temperature Daughterboard may be desired if, for example, you wish to print with materials which require greater than 290°C, which is the limit for a thermistor.
 * If you plan to use PT100 temperature senesors, please read the wiki regarding the use of Temperature Daughterboards.
+* For more details, see [User manual: Connecting thermocouples](/User_manual/Connecting_hardware/Temperature_connecting_thermocouples) and [User manual: Connecting PT100 temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_PT100)
 
 # 19. Z Probe
 
 ![wiring_d2we_19_zprobe.jpg](/guides/wiring/wiring_d2we_19_zprobe.jpg =50%x){.align-right}
 * The Duet supports a Z-probe via this dedicated connector. There are many different kinds of probe, and the wiring will be different for each one.
-* See this section of the wiki, Choosing a Z probe, which will help you choose a suitable Z probe if you have not already.
-* See this section of the wiki, Connecting a Z probe, which contains guidance for wiring your Z probe to the Duet.
+* See [User manual: Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing), which will help you choose a suitable Z probe if you have not already.
+* See [User manual: Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting), which contains guidance for wiring your Z probe to the Duet.
 
 # 20. PanelDue
 
-![wiring_d2we_20_paneldue.jpg](/guides/wiring/wiring_d2we_20_paneldue.jpg =50%x){.align-right}
-![wiring_d2we_21_paneldue.jpg](/guides/wiring/wiring_d2we_21_paneldue.jpg =50%x){.align-right}
-* The PanelDue, an optional accessory sold separately, is a touchscreen display which gives a user the ability to control the Duet with an intuitive interface directly at the printer.
+![wiring_d2we_20_paneldue.jpg](/guides/wiring/wiring_d2we_20_paneldue.jpg =50%x){.align-right} 
+* The [PanelDue](/Duet3D_hardware/Accessories/PanelDue), an optional accessory sold separately, is a touchscreen display which gives a user the ability to control the Duet with an intuitive interface directly at the printer.
 * The PanelDue can be connected in two ways:
-  * A 4 wire cable that contains power and serial signals. This has a maximum recommended length of 1 meter
-  * a 10 way flat cable which claos contains an external SD card signals with a maximum recommended length of 400mm
-* The wiki has more information on the types and sizes of PanelDue available. Also on connecting a PanelDue.
+  * A 4-wire cable that contains power and serial signals. This has a maximum recommended length of 1 meter. It plugs into the <span style="background-color:#FFFF00">PanelDUE</span> header.
+  * a 10-way flat cable which claos contains an external SD card signals with a maximum recommended length of 400mm (see earlier section on CONN_SD/PANELDUE_SD)
+* For more details, see [User manual: Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue).
 
-# 21. Ethernet or WiFi Module
+# 21. WiFi or Ethernet Module
 
-![wiring_d2we_23_wifi.jpg](/guides/wiring/wiring_d2we_23_wifi.jpg =32%x) ![wiring_d2we_25_ethernet.jpg](/guides/wiring/wiring_d2we_25_ethernet.jpg =32%x) ![wiring_d2we_24_ethernet.jpg](/guides/wiring/wiring_d2we_24_ethernet.jpg =32%x)
-* The Ethernet or WiFi Module supports a connection over a web interface. It is responsible for a network connection as well as the web-based user interface.
+![wiring_d2we_23_wifi.jpg](/guides/wiring/wiring_d2we_23_wifi.jpg =49%x) ![wiring_d2we_24_ethernet.jpg](/guides/wiring/wiring_d2we_24_ethernet.jpg =49%x)
+* Note: **Duet 2 Maestro** is Ethernet-only.
+* The WiFi or Ethernet Module supports a connection over a web interface. It is responsible for a network connection as well as the web-based user interface.
 * The WiFi module has a blue LED that flashes only when the firmware is being changed.
-* The Ethernet module has two LEDs - Link, which is on when an ethernet connection is established, and Activity, which flashed whenever data is being actively transferred.
+* The Ethernet module has two LEDs on the RJ45 housing; Link, which is on when an ethernet connection is established, and Activity, which flashed whenever data is being actively transferred.
 
 # 22. Hotend Thermistor(s)
 
 ![wiring_d2we_26_thermistors.jpg](/guides/wiring/wiring_d2we_26_thermistors.jpg =50%x){.align-right}
-* Connect your hotend thermistors here.
+* Connect your hotend thermistors to <span style="background-color:#FFFF00">E0_TEMP</span> and/or <span style="background-color:#FFFF00">E1_TEMP</span>.
 * The polarity of thermistors does not matter.
-* A thermistor can read up to 290°C. If you wish to print at a higher temperature than this, you should upgrade to a thermocouple or PT100 temperature sensor (See step 16). A PT100 also provides a more consistent reading between multiple sensors and resists noise interference in 4-wire mode.
+* A thermistor can read up to 290°C. If you wish to print at a higher temperature than this, you should upgrade to a thermocouple or PT100 temperature sensor (See step 18). A PT100 also provides a more consistent reading between multiple sensors and resists noise interference in 4-wire mode.
+* **Duet 2 Maestro** has an additional temperature input, C_TEMP. It is electrically identical to the other temperature inputs, so can be used in the same way. 
+* For more details, see [User manual: Connecting thermistors and PT1000 temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000).
 
 # 23. Wiring Complete!
 * Congratulations! Your Duet is wired and is ready to configure. 
