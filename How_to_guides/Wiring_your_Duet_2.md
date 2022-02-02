@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-02-02T14:46:45.024Z
+date: 2022-02-02T14:55:33.423Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -242,13 +242,13 @@ TO DO
 # 15. CONN_SD and CONN_LCD - Duet 2 WiFi and Etherenet
 
 ![wiring_d2we_14_conn.jpg](/guides/wiring/wiring_d2we_14_conn.jpg =50%x){.align-right}
-* <span style="background-color:#FFFF00">CONN_SD</span> is used as an alternative way to connect a [PanelDue](/Duet3D_hardware/Accessories/PanelDue) touchscreen display to the Duet that allows the Duet to access the PanelDue's SD card reader. It can also be used to connect an external SD card reader.
+* <span style="background-color:#FFFF00">CONN_SD</span> is used as an alternative way (see Step 20 below) to connect a [PanelDue](/Duet3D_hardware/Accessories/PanelDue) touchscreen display to the Duet that allows the Duet to access the PanelDue's SD card reader. It can also be used to connect an external SD card reader.
 * If you are using a PanelDue, this connection is optional and does not effect the function of the touchscreen monitor itself.  For details, see [Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue).
 * The <span style="background-color:#FF0000">CONN_LCD</span> header can be used for driving [external stepper drivers](/User_manual/Connecting_hardware/Motors_connecting_external), extra [endstop](/User_manual/Connecting_hardware/Sensors_endstops) and/or [filament monitor](/User_manual/Connecting_hardware/Sensors_filament) connections, and connecting [12864 displays](/User_manual/Connecting_hardware/Display_12864).
 
 # 16. PANELDUE_SD and 12864_EXP1/2 - Duet 2 Maestro
 
-* The PANELDUE_SD connector is used as an alternative way to connect a [PanelDue](/Duet3D_hardware/Accessories/PanelDue) touchscreen display to the Duet that allows the Duet to access the PanelDue's SD card reader. It can also be used to connect an external SD card reader.
+* The PANELDUE_SD connector is used as an alternative way (see Step 20 below) to connect a [PanelDue](/Duet3D_hardware/Accessories/PanelDue) touchscreen display to the Duet that allows the Duet to access the PanelDue's SD card reader. It can also be used to connect an external SD card reader.
 * If you are using a PanelDue, this connection is optional and does not effect the function of the touchscreen monitor itself. For details, see [User manual: Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue).
 * The 12864_EXP1 and 12864_EXP2 connectors are used to connect a 12864 display. For details, see [User manual: Connecting 12864 displays](/User_manual/Connecting_hardware/Display_12864).
 
@@ -271,7 +271,7 @@ TO DO
 # 18. Temperature Daughterboard
 
 ![wiring_d2we_16_tempdb.jpg](/guides/wiring/wiring_d2we_16_tempdb.jpg =32%x) ![wiring_d2we_17_tempdb.jpg](/guides/wiring/wiring_d2we_17_tempdb.jpg =32%x) ![wiring_d2we_18_tempdb.jpg](/guides/wiring/wiring_d2we_18_tempdb.jpg =32%x)
-* A Temperature Daughterboard (labelled 'SPIO' or 'TEMP_DB') allows the Duet to connect with a thermocouple or PT100 temperature sensor, which send a different type of signal than a thermistor.
+* The Temperature Daughterboard connector (labelled 'SPIO' or 'TEMP_DB') allows the Duet to connect with a thermocouple or PT100 temperature sensor, which send a different type of signal than a thermistor.
 * Each daughterboard supports two additional temperature sensors of the same type, ie either 2x PT100 or 2x thermocouple.
 * Duet 2 WiFi/Ethernet and Duet 2 Maestro boards supports up to two temperature daughterboards.
 * A Temperature Daughterboard may be desired if, for example, you wish to print with materials which require greater than 290°C, which is the limit for a thermistor.
@@ -307,7 +307,7 @@ TO DO
 ![wiring_d2we_26_thermistors.jpg](/guides/wiring/wiring_d2we_26_thermistors.jpg =50%x){.align-right}
 * Connect your hotend thermistors to <span style="background-color:#FFFF00">E0_TEMP</span> and/or <span style="background-color:#FFFF00">E1_TEMP</span>.
 * The polarity of thermistors does not matter.
-* A thermistor can read up to 290°C. If you wish to print at a higher temperature than this, you should upgrade to a thermocouple or PT100 temperature sensor (See step 18). A PT100 also provides a more consistent reading between multiple sensors and resists noise interference in 4-wire mode.
+* A thermistor can read up to 290°C. If you wish to print at a higher temperature than this, you should upgrade to a thermocouple or PT100 temperature sensor (see step 18). A PT100 also provides a more consistent reading between multiple sensors and resists noise interference in 4-wire mode.
 * **Duet 2 Maestro** has an additional temperature input, C_TEMP. It is electrically identical to the other temperature inputs, so can be used in the same way. 
 * For more details, see [User manual: Connecting thermistors and PT1000 temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000).
 
