@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-02-02T13:50:15.808Z
+date: 2022-02-02T14:11:26.997Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -183,7 +183,8 @@ TO DO
 * If you have only one Z-Axis stepper motor, plug it into the ZA connector and be sure that the supplied jumpers are installed on the ZB connector.
 * If you have two Z-Axis stepper motors, connect them to ZA and ZB.
 * ZA and ZB are wired in series; without a second stepper motor or the jumpers in place on ZB, ZA will not function.
-* If you need more than five stepper motors, you may use a [DueX2 or DueX5](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) expansion board which offers 2 or 5 extra stepper motor outputs, respectively.
+* For the **Duet 2 WiFi/Ethernet**, if you need more than five stepper motors, you may use a [DueX2 or DueX5](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) expansion board which offers 2 or 5 extra stepper motor outputs, respectively.
+* For the **Duet 2 Maestro**, below the endstop connectors there are two headers for [Dual Stepper Driver Expansion Module](/Duet3D_hardware/Duet_2_family/Dual_Stepper_Driver_Expansion_Module), which supports an additional two stepper motors.
 * For more details, see [User manual: Choosing stepper motors](/User_manual/Connecting_hardware/Motors_choosing)
 * If you want to run external drivers, see [User manual: Connecting external stepper motor drivers](/User_manual/Connecting_hardware/Motors_connecting_external).
 
@@ -199,8 +200,21 @@ TO DO
 
 # 12. Fans
 
+## Tabs {.tabset}
+
+### Duet 2 WiFi and Ethernet
+
 ![wiring_d2we_10_fans.jpg](/guides/wiring/wiring_d2we_10_fans.jpg =49%x) ![wiring_d2we_11_fans.jpg](/guides/wiring/wiring_d2we_11_fans.jpg =49%x) 
 * The Duet has three PWM controlled fan headers (<span style="background-color:#FFFF00">outlined yellow</span> in the image above) and two Always On fan headers (<span style="background-color:#FF0000">outlined red</span>).
+* A PWM (Pulse Width Modulation) fan connection is for fans you wish to control the speed of, for example a print cooling fan.
+* An always on fan is for something like an electronics fan - always on when the printer is on.
+* Some fans are more compatible with PWM control than others. If you have trouble varying the speed of a fan, check the documentation for changing PWM frequency.
+* The polarity of the fans is important - don't connect them backwards.
+* For more details, see [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting)
+
+### Duet 2 Maestro
+
+* There are three PWM controlled fan headers and one Always On fan header. Voltage is selectable between VIN, 5V or external supply, in 2 banks. See the wiring diagram for details.
 * A PWM (Pulse Width Modulation) fan connection is for fans you wish to control the speed of, for example a print cooling fan.
 * An always on fan is for something like an electronics fan - always on when the printer is on.
 * Some fans are more compatible with PWM control than others. If you have trouble varying the speed of a fan, check the documentation for changing PWM frequency.
@@ -252,7 +266,7 @@ TO DO
 
 ### Duet 2 Maestro
 
-* The expansion header is used to connect other hardware directly; hobby servo, endstops, general purpose input/output, sensors and triggers. See [User manual: Connecting hardware](/User_manual/Connecting_hardware) for details.
+* The expansion header is used to connect other hardware directly; hobby servo, general purpose input/output, sensors and triggers. See [User manual: Connecting hardware](/User_manual/Connecting_hardware) for details.
 
 # 18. Temperature Daughterboard
 
