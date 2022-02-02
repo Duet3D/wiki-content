@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-02-02T14:55:33.423Z
+date: 2022-02-02T15:00:55.391Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -72,7 +72,7 @@ Molex KK-compatible connectors are used for all other inputs and outputs on the 
 * Do not tin (add solder to) these wires. The solder will flow over time, and will become loose in the screw terminal and possibly create a hot spot or short circuit, which could result in fire.
 * The crimp tools shown above are generally available from any hardware store, electrical shop, online etc., and when used correctly will give good quality, solid connections.
 * The method of crimp used is called an indent crimp. You should ensure that the tool you use provides a tight crimp of the ferrule to the wire.
-* It is also best to use the include Molex connectors for all other connections as they ensure correct polarity and lock into place.
+* It is also best to use the included Molex connectors for all other connections as they ensure correct polarity and lock into place.
 
 # 4. Communicating with the Duet board
 
