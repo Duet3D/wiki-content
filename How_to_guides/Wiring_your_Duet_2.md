@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-02-02T12:31:08.418Z
+date: 2022-02-02T13:50:15.808Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -187,7 +187,7 @@ TO DO
 * For more details, see [User manual: Choosing stepper motors](/User_manual/Connecting_hardware/Motors_choosing)
 * If you want to run external drivers, see [User manual: Connecting external stepper motor drivers](/User_manual/Connecting_hardware/Motors_connecting_external).
 
-# 12. External 5V input and power supply control
+# 11. External 5V input and power supply control
 
 ![wiring_d2we_09_ext_5v.jpg](/guides/wiring/wiring_d2we_09_ext_5v.jpg =50%x){.align-right}
 * EXT_5V or 5V_PS is an optional 5v power input and is not required for operation.
@@ -197,7 +197,7 @@ TO DO
   * <span style="background-color:#00FF00">INT 5V EN</span>
   * <span style="background-color:#FFFF00">EXT 5V EN</span>
 
-# 13. Fans
+# 12. Fans
 
 ![wiring_d2we_10_fans.jpg](/guides/wiring/wiring_d2we_10_fans.jpg =49%x) ![wiring_d2we_11_fans.jpg](/guides/wiring/wiring_d2we_11_fans.jpg =49%x) 
 * The Duet has three PWM controlled fan headers (<span style="background-color:#FFFF00">outlined yellow</span> in the image above) and two Always On fan headers (<span style="background-color:#FF0000">outlined red</span>).
@@ -207,7 +207,7 @@ TO DO
 * The polarity of the fans is important - don't connect them backwards.
 * For more details, see [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting)
 
-# 14. Bed Heater
+# 13. Bed Heater
 
 ![wiring_d2we_12_bed_heater.jpg](/guides/wiring/wiring_d2we_12_bed_heater.jpg =50%x){.align-right}
 * The Duet is able to power a heated bed, and is fused at 15A. This should be well above the requirement for most heated beds.
@@ -216,29 +216,43 @@ TO DO
 * Do not tin (add solder to) these wires.
 * Be sure not to twist the terminal block while tightening the screws. It can help to hold the terminal block while tightening.
 * Check the screws after a few days/weeks of operation to ensure they are still snug.
-* For more details, see [User manual: Connecting and configuring a bed heater](/User_manual/Connecting_hardware/Heaters_bed)
+* For more details, see [User manual: Connecting and configuring a bed heater](/User_manual/Connecting_hardware/Heaters_bed).
 
-# 15. Bed Thermistor
+# 14. Bed Thermistor
 
 ![wiring_d2we_13_bed_thermistor.jpg](/guides/wiring/wiring_d2we_13_bed_thermistor.jpg =50%x){.align-right}
 * Connect the bed thermistor to BED_TEMP (<span style="background-color:#FFFF00">outlined yellow</span>).
 * The polarity of a thermistor does not matter.
+* For more details, see [User manual: Connecting thermistors and PT1000 temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000).
 
-# 16. PANELDUE, CONN_SD and CONN_LCD
-
-Duet 2 Maestro has a PANELDUE header. Duet 2 WiFi/Ethernet has CONN_SD and CONN_LCD.
+# 15. CONN_SD and CONN_LCD - Duet 2 WiFi and Etherenet
 
 ![wiring_d2we_14_conn.jpg](/guides/wiring/wiring_d2we_14_conn.jpg =50%x){.align-right}
-* PANELDUE / CONN_SD is used to connect the SD card reader on a PanelDue touchscreen display to the Duet.
-* If you are using a PanelDue , this connection is optional and does not effect the function of the touchscreen monitor itself.
-* The CONN_LCD header is reserved for future development at this time and should not be used.
+* <span style="background-color:#FFFF00">CONN_SD</span> is used as an alternative way to connect a [PanelDue](/Duet3D_hardware/Accessories/PanelDue) touchscreen display to the Duet that allows the Duet to access the PanelDue's SD card reader. It can also be used to connect an external SD card reader.
+* If you are using a PanelDue, this connection is optional and does not effect the function of the touchscreen monitor itself.  For details, see [Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue).
+* The <span style="background-color:#FF0000">CONN_LCD</span> header can be used for driving [external stepper drivers](/User_manual/Connecting_hardware/Motors_connecting_external), extra [endstop](/User_manual/Connecting_hardware/Sensors_endstops) and/or [filament monitor](/User_manual/Connecting_hardware/Sensors_filament) connections, and connecting [12864 displays](/User_manual/Connecting_hardware/Display_12864).
+
+# 16. PANELDUE_SD and 12864_EXP1/2 - Duet 2 Maestro
+
+* The PANELDUE_SD connector is used as an alternative way to connect a [PanelDue](/Duet3D_hardware/Accessories/PanelDue) touchscreen display to the Duet that allows the Duet to access the PanelDue's SD card reader. It can also be used to connect an external SD card reader.
+* If you are using a PanelDue, this connection is optional and does not effect the function of the touchscreen monitor itself. For details, see [User manual: Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue).
+* The 12864_EXP1 and 12864_EXP2 connectors are used to connect a 12864 display. For details, see [User manual: Connecting 12864 displays](/User_manual/Connecting_hardware/Display_12864).
 
 # 17. Expansion
 
+## Tabs {.tabset}
+
+### Duet 2 WiFi and Ethernet
+
 ![wiring_d2we_15_expansion.jpg](/guides/wiring/wiring_d2we_15_expansion.jpg =50%x){.align-right}
-* The expansion header is to connect the Duet 2 WiFi/Ethernet to a DueX2 or DueX5 expansion board, or an Expansion Breakout Board (EBoB).
+* The expansion header is used to connect the Duet 2 WiFi/Ethernet to a [DueX2 or DueX5](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) expansion board, or an [Expansion Breakout Board (EBoB)](/Duet3D_hardware/Duet_2_family/Duet_Expansion_Breakout_Board).
 * The DueX2 and DueX5 expansion is an available add-on which offers additional stepper motor drivers, heater outputs, fan headers, endstop inputs, additional thermistor inputs, support for additional Temperature Daughterboards, and more.
 * The Expansion Breakout Board (EBoB) is an available add-on which offers connections for external stepper drivers and hobby servos.
+* The expansion connector can be used to connect other hardware directly; probes, stepper drivers, endstops, general purpose input/output, sensors and triggers. See [User manual: Connecting hardware](/User_manual/Connecting_hardware) for details.
+
+### Duet 2 Maestro
+
+* The expansion header is used to connect other hardware directly; hobby servo, endstops, general purpose input/output, sensors and triggers. See [User manual: Connecting hardware](/User_manual/Connecting_hardware) for details.
 
 # 18. Temperature Daughterboard
 
