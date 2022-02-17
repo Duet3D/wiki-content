@@ -2,7 +2,7 @@
 title: Getting Started with Duet 3 Mini 5+
 description: This page contains a step by step guide and links to using your Duet 3 Mini 5+ Wifi or Ethernet.
 published: true
-date: 2022-01-24T15:08:33.378Z
+date: 2022-02-17T13:44:53.083Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:21:27.557Z
@@ -88,7 +88,7 @@ After following this guide, you should be able to connect to your Duet 3 Mini 5+
 
 #### Update firmware
 
-Update to the latest release firmware. Follow the guide here: [Updating Duet 3 Mini 5+ firmware](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Firmware)
+Update to the latest release firmware. Follow the guide here: [Updating Firmware](User_manual/RepRapFirmware/Updating_firmware). Note that if the normal method over DWC does not work intially then the [fallback method for the mini 5+ is straightforward](https://docs.duet3d.com/en/User_manual/RepRapFirmware/Updating_firmware#duet-3-mini-5-wifiethernet)
 
 ### SBC mode
 
