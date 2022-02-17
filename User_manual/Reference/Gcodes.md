@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-01-28T12:10:24.182Z
+date: 2022-02-17T15:50:42.757Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -643,7 +643,7 @@ The active plane determines how the tool path of an arc (G2 or G3) is interprete
 G20 ; set units to inches
 </pre>
 
-Units from this command onwards are in inches. Note that this is only intended to affect G0, G1 and other commands commonly found in GCode files that represent objects to print. Specifically G20 only affects: G0 to G3, G10/M568 and G92.
+Units from this command onwards are in inches. Note that this is only intended to affect G0, G1 and other commands commonly found in GCode files that represent objects to print. Specifically G20 only affects: G0 to G3, G10 and G92.
 
 So you should use metric values in config.g when configuring the printer and then change to inches with G20 at the end of it if the GCodes you want to send to move the machine are expressed in inches by default.
 
@@ -3559,25 +3559,25 @@ M402 P1
 
 This runs macro file **sys/retractprobe#.g** (where # is the probe number) if it exists, otherwise **sys/retractprobe.g** if it exists.
 
-## M404: Filament width and nozzle diameter
+## M404: Filament width
 
 ### Parameters
 
 * **Nnnn** Filament width (in mm)
-* **Dnnn** Nozzle diameter (in mm)
+* **Dnnn** Nozzle diameter (in mm) (deprecated in 3.4-b1)
 
 ### Examples
 <br>
 <pre class="cblock">
 M404 N1.75
-M404 N3.0 D1.0
+M404 N3.0 D1.0 ; See note below about D parameter
 </pre>
 
 ### Notes
 
 Enter the nominal filament width (3mm, 1.75mm) or will display nominal filament width without parameters.
 
-The 'D' parameter is used to properly detect the first layer height when files are parsed or a new print is being started.
+The 'D' parameter is used to properly detect the first layer height when files are parsed or a new print is being started. From RRF 3.4-b1 the D parameter is deprecated, and no longer used to in detecting the first layer height.
 
 The values of this command are currently only used for the print monitor.
 
@@ -3990,7 +3990,7 @@ Save current parameters to the sys/config-override.g on the SD card, similar to 
 * Delta printer M665 and M666 settings
 * Any M208 axis limits that were determined using a G1 S3 move
 * If the P31 parameter is used, the G31 trigger height, trigger value and X and Y offsets for each possible Z probe type (in older firmware versions the G31 parameters are stored even if the P31 parameter is not present)
-* If the P10 parameter is present, the G10/M568 tool offsets
+* If the P10 parameter is present, the G10 tool offsets
 
 Ensure that M501 is at the end of config.g in order for the values in config-override.g to be loaded on startup.
 
@@ -4587,7 +4587,7 @@ M563 P3 D0 H1 S"Chocolate extruder" ; create a named tool using extruder drive 0
 
 ### Description
 
-Tools are usually (though not necessarily) extruders. Normally an M563 command to define a tool is immediately followed by a G10/M568 command to set the tool's offsets and temperatures.
+Tools are usually (though not necessarily) extruders. Normally an M563 command to define a tool is immediately followed by a G10 command to set the tool's offsets and temperatures (temperatures can also be set with M568).
 
 **P** The 'P' field specifies the tool number. In RRF3, tool numbers may be between 0 and 49. In RRF2 they may be between 0 and 65535. If you use the M563 command with a P value for a tool that has already been defined, and you provide any other parameters, that tool is redefined using the new values you provide.
 
@@ -4795,7 +4795,7 @@ After turning off command G1 instructions must send as many E values as the tool
 * **Rnnn** Driver enable polarity: 0 = active low, 1 = active high, -1 = driver is always disabled and is not monitored (default 0)
 * **Tnnn** (firmware 1.14 and later) Minimum driver step pulse width and interval in microseconds
 * **Taa:bb:cc:dd** (firmware 1.21 and later) Minimum driver step pulse width, step pulse interval, direction setup time and direction hold time, in microseconds
-* **Dnn** (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160, TMC5160 and TMC5161 stepper drivers) Driver mode: 0=constant off time, 1=random off time, 2=spread cycle, 3=stealthChop or stealthChop2 (mode 3 for TMC22xx/TMC2160/TMC516x only), 4 = Closed Loop (only for [Duet 3 Expansiom 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1HCL)). The default is spreadCycle for TMC2660, TMC2160 and TMC516x drivers, and stealthChop2 for TMC22xx. In stealthChop mode the drivers will switch over to spreadCycle automatically at high speeds, see the V parameter.
+* **Dnn** (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160, TMC5160 and TMC5161 stepper drivers) Driver mode: 0=constant off time, 1=random off time, 2=spread cycle, 3=stealthChop or stealthChop2 (mode 3 for TMC22xx/TMC2160/TMC516x only), 4 = Closed Loop (only for [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL)). The default is spreadCycle for TMC2660, TMC2160 and TMC516x drivers, and stealthChop2 for TMC22xx. In stealthChop mode the drivers will switch over to spreadCycle automatically at high speeds, see the V parameter.
 * **Fnn** (firmware 2.02 and later) Off-time in the chopper control register, 1 to 15
 * **Cnnnn** (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160 and TMC516x stepper drivers) Lowest 17 bits of the chopper control register value.
 * **Bnn** (firmware 2.02 and later) Blanking time (*tbl*) in the chopper control register, 0 to 3. See the TMC driver datasheet.
@@ -4838,7 +4838,7 @@ Encoder counts per step (Cn.n) can be found from the datasheet of the encoder be
 ### Notes
 
 Supported for drivers attached to:
-* [Duet 3 Expansiom 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1HCL)
+* [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL)
 
 See '[Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning)' for further details on setting the proportional/integral/derivative constants.
 
@@ -4962,7 +4962,7 @@ Hangprinter's "torque mode" will be implemented as a RepRapFirmware macro that d
 
 ## M569.5: Closed loop data collection
 
-Collect performance data from a drive whilst in closed loop mode. Can be used alongside the Duet [Closed Loop plugin](https://github.com/Duet3D/Closed-Loop-Plugin) for visualisation. Records back to a CSV file located in the /sys/closed-loop directory, which will be created if it does not exist.
+Collect performance data from a drive whilst in closed loop mode. Can be used alongside the Duet [Closed Loop plugin](https://github.com/Duet3D/Closed-Loop-Plugin){target=_blank} for visualisation. Records back to a CSV file located in the /sys/closed-loop directory, which will be created if it does not exist.
 
 ### Parameters
 
@@ -4981,14 +4981,14 @@ The following variables are available to record:
 | Variable Name | Description | Variable ID |
 |:---|:---|
 | Raw Encoder Reading | The raw reading that the expansion board has read from the encoder. For a quadrature encoder, this represents the number of pulses received, so may be 4 times the expected CPR. | 1 |
-| Current motor Steps | The current position of the motor measured in the standard unit of 'steps'. Similar to raw encoder reading, but will be standardised across different types of encoders with different CPRs. | 2 |
+| Measured Motor Steps | The current position of the motor measured in the standard unit of 'steps'. Similar to raw encoder reading, but will be standardised across different types of encoders with different CPRs. | 2 |
 | Target Motor Steps | The number of steps that the motor has been commanded to take. This becomes the target signal fed into the PID controller. | 4 |
 | Current Error | The difference between the current motor steps and the target motor steps. Directly used as an input to the PID controller. | 8 |
 | PID Control Signal | The control signal (normalised between -255 and 255 coming from the PID controller. | 16 |
 | PID P Term | The value of the PID controller's P term. | 32 |
 | PID I Term | The value of the PID controller's I term | 64 |
 | PID D Term | The value of the PID controller's D term. | 128 |
-| Step Phase | The current position of the motor's stator, expressed as the proportion of the way through the motor's 4 step cycle. Normalised between 0-4095 | 256 |
+| Measured Step Phase | The current position of the motor's stator, expressed as the proportion of the way through the motor's 4 step cycle. Normalised between 0-4095 | 256 |
 | Desired Step Phase | The angle for which current will be applied. For maximal torque, this value will be 25% ahead of step phase, for minimal torque, this value will equal step phase. | 512 |
 | Phase Shift | The difference between the desired step phase and the step phase. Roughly proportional to torque applied. | 1024 |
 | Coil A Current | The current running through coil A, expressed as a proportion of the motor's maximum current normalised between -255 to 255. | 2048 |
@@ -5014,11 +5014,11 @@ Record 500 samples (S500) of the current motor steps and target motor steps (D6)
 
 ### Notes
 
-**The Duet [Closed Loop plugin](https://github.com/Duet3D/Closed-Loop-Plugin) can be used to generate and run M569.5 commands.**
+**The Duet [Closed Loop plugin](https://github.com/Duet3D/Closed-Loop-Plugin){target=_blank} can be used to generate and run M569.5 commands.**
 
 Supported for drivers attached to:
 
-* [Duet 3 Expansiom 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1HCL)
+* [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL)
 
 Note: The driver must be configured in closed loop mode (See [M569](/User_manual/Reference/Gcodes/M569) D parameter).
 
@@ -5052,7 +5052,7 @@ M569.6 P51.0 V2 ; conduct absolute SPI encoder calibration on move on closed loo
 ### Notes
 
 Supported for drivers attached to:
-* [Duet 3 Expansiom 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1HCL)
+* [Duet 3 Expansion 1HCL boards](Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL)
 
 
 ## M569.7: Configure motor brake port
@@ -5159,6 +5159,8 @@ For more details such as tuning the value see [Pressure advance](/User_manual/Tu
 
 ## M573: Report heater PWM
 
+*Not supported in RRF 3.4 and later.*
+
 ### Parameters
 
 * **Pnnn** Heater number
@@ -5172,6 +5174,9 @@ M573 P1
 ### Description
 
 This gives a running average (usually taken over about five seconds) of the PWM to the heater specified by the P field. If you know the voltage of the supply and the resistance of the heater this allows you to work out the power going to the heater. Scale: 0 to 1.
+
+In RRF 3.4 and later, if you need to find the average heater PWM, you can query the object model instead. The recommended replacement for M573 P1 is:
+`echo heat.heaters[1].avgPwm`
 
 ## M574: Set endstop configuration
 
@@ -5260,7 +5265,7 @@ This sets the communications parameters of the serial comms channel specified by
 
 * **Pnnn** Serial channel number
 * **Bnnn** Baud rate, default 57600 (same as the default PanelDue baud rate)
-* **Snnn** Mode: 0 = PanelDue mode without checksums; 1 (default) = PanelDue mode, checksum required; 2= raw mode, 3 = raw mode with checksums. Modes 2 and 3 are only supported in RRF 3.01-RC11 and later.
+* **Snnn** Mode: 0 = PanelDue mode without checksums; 1 (default) = PanelDue mode, checksum required; 2 = raw mode; 3 = raw mode with checksums required; 5 = PanelDue mode with CRC required for all commands except M409, and CRC or checksum required for M409 command. Modes 2 and 3 are only supported in RRF 3.01 and later. Mode 5 is only supported in RRF 3.4 and later.
 
 ### Examples
 <br>
@@ -5613,11 +5618,11 @@ M585 X100 F600 P1 S0 ; probe X until probe #1 is triggered
 * You can use M585 to probe until a regular axis endstop is triggered.
 * If you want to probe until a custom input is triggered, use M558 to configure an additional probe that uses that pin, then refer to that probe in your M585 command. See example above.
 * In principle the following workflow should be performed for each axis using a macro file. You may wish to enhance this workflow depending on your own requirements and endstop configuration.
-  * Reset the axis tool offset (G10/M568 Pxx X0 Y0 Z0)
+  * Reset the axis tool offset (G10 Pxx X0 Y0 Z0)
   * Select your tool (Txx)
   * Move the tool to your starting position (G1 X?? Y?? Z?? F3000)
   * Drive the tool into the endstop or custom input, stop there and apply the new tool offset with the given correction factor (M585 XYZ?? F1000 P??)
-  * Call G10/M568 Pxx with your tool number to get the corrected tool offset or call M500 (supported in RRF 1.20beta3 and later) to store the probed tool offsets on the SD card
+  * Call G10 Pxx with your tool number to get the corrected tool offset or call M500 (supported in RRF 1.20beta3 and later) to store the probed tool offsets on the SD card
 
 #### RepRapFirmware 2.x and earlier
 
@@ -5704,7 +5709,7 @@ M587 S"Network-ssid-123" P"Password123" I192.128.1.200
 
 In SBC mode (v3.3 and later) it is not possible to configure different IP addresses per SSID.
 
-Many programs used to send GCodes convert all characters to uppercase. In firmware 1.19.2 and later, within any quoted string you can use a single-quote character to indicate that the following character should be changed to lowercase. For example, M587 S"ABC" P"P'A'S'SW'O'R'D" would specify that the password is "PassWord". Use two single quote characters to represent one actual single quote character in the password or in the SSID. For example, if your SSID is "Pete's network" then enter "Pete*s network".
+Many programs used to send GCodes convert all characters to uppercase. In firmware 1.19.2 and later, within any quoted string you can use a single-quote character to indicate that the following character should be changed to lowercase. For example, M587 S"ABC" P"P'A'S'SW'O'R'D" would specify that the password is "PassWord". Use two single quote characters to represent one actual single quote character in the password or in the SSID. For example, if your SSID is "Pete's network" then enter "Pete''s network".
 
 The use of special characters in the SSID cannot be guaranteed to work. In general it's best to avoid most special characters. Spaces, periods, dashes, underscores, and other punctuation is likely ok, but special characters on the number keys likely are not safe. (@#$%^&\*). If you are having troubles adding your SSID, try a simplified version with only letters and numbers.
 
@@ -6290,6 +6295,7 @@ This command is for sending configuration data to programmable Z probes such as 
 ### Parameters
 
 * **Snn:nn:nn...** Sequence of 8-bit unsigned values to send to the currently-selected Z probe
+* **Knn** (optional) Z probe number, default 0 (supported in RRF 3.01-RC5 and later)
 
 ### Examples
 <br>
@@ -7163,11 +7169,13 @@ T ; report the current tool number
 
 If T*n* is used to select tool *n* but that tool is already active, the command does nothing. Otherwise, the sequence followed is:
 
-1. If another tool is already selected and all axes have been homed, run macro tfree#.g where # is the number of that tool. As of release 3.3, the tool change files will be actioned even if not homed, so that you can use conditional GCode to choose which commands to run.
+**Note:** Prior to RRF 3.3, when changing tools, tool change macro files are not run unless all axes have been homed. In RRF 3.3 and later, tool change macro files are run ***regardless of whether axes have been homed or not***. You can use conditional GCode to choose which commands are executed if axes have been homed/not homed.
+
+1. If another tool is already selected, run macro tfree#.g where # is the number of that tool.
 1. If another tool is already selected, deselect it and set its heaters to their standby temperatures (as defined by the R parameter in the most recent G10/M568 command for that tool)
-1. If all axes have been homed, run macro tpre#.g where # is the number of the new tool
+1. Run macro tpre#.g where # is the number of the new tool
 1. Set the new tool to its operating temperatures specified by the S parameter in the most recent G10/M568 command for that tool
-1. If all axes have been homed, run macro tpost#.g where # is the number of the new tool. Typically this file would contain at least a M116 command to wait for its temperatures to stabilise.
+1. Run macro tpost#.g where # is the number of the new tool. Typically this file would contain at least a M116 command to wait for its temperatures to stabilise.
 1. Apply any X, Y, Z offset for the new tool specified by G10
 1. Use the new tool.
 
