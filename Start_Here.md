@@ -2,14 +2,14 @@
 title: Start Here
 description: 
 published: true
-date: 2022-02-17T14:00:28.188Z
+date: 2022-02-17T14:01:05.837Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-17T13:59:45.745Z
 ---
 
 # Welcome
-If you are new to Duet3D hardware, firmware and software and what to get up and running quickly with a Duet3D board you have purchased please select your board from the options below to get started.
+To get up and running quickly with a Duet3D board you have purchased please select your board from the options below.
 
 
 |---|---|
