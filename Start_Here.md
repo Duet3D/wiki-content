@@ -1,8 +1,8 @@
 ---
 title: Start Here
-description: Duet3D Documentation Start page
+description: 
 published: true
-date: 2022-02-17T13:59:45.745Z
+date: 2022-02-17T14:00:17.968Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-17T13:59:45.745Z
