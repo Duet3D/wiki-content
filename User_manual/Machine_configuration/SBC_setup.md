@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspian OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2022-02-18T16:00:54.365Z
+date: 2022-02-18T16:11:05.387Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -56,8 +56,7 @@ network={
 ## Tabs {.tabset}
 
 ### Duet 3 MB6HC
-
-![sbc_setup_02.jpg](/manual/configuration/sbc_setup_02.jpg =49%x) ![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =49%x)
+[![sbc_setup_02.jpg](/manual/configuration/sbc_setup_02.jpg =49%x)](/manual/configuration/sbc_setup_02.jpg){target=_blank} [![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =49%x)](/manual/configuration/sbc_setup_03.jpg){target=_blank}
 1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, connect a USB cable to the Duet 3 for power and connect a . Ensure there is NO SD card in the Duet itself.
 
 1. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
@@ -70,7 +69,7 @@ network={
 
 ### Duet 3 Mini 5+
 
-![sbc_setup_09.jpg](/manual/configuration/sbc_setup_09.jpg =49%x)
+[![sbc_setup_09.jpg](/manual/configuration/sbc_setup_09.jpg =49%x)](/manual/configuration/sbc_setup_09.jpg){target=_blank}
 1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
 
 1. The Duet 3 Mini+ cannot power the Pi. You must power the Pi separately. The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers or other USB power supplies cannot supply sufficient voltage. Therefore, we strongly recommend that you use the official Raspberry Pi PSU, or another PSU specifically designed to power a Raspberry Pi. If the red LED on the Pi is not continuously illuminated, the power supply is insufficient.
