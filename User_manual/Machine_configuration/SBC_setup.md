@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspian OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2022-01-25T13:05:59.601Z
+date: 2022-02-18T16:00:54.365Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -12,7 +12,7 @@ dateCreated: 2021-11-30T22:13:44.507Z
 
 This guide describes how to setup a Single Board Computer (SBC) with Duet 3. It assumes you are using Raspian (the operating system that runs on the Raspberry Pi) and are using the SD card image specifically setup for Duet 3. In the future other SBCs may be officially supported. Most of the time you can start at Step 2 as you will receive a SD card pre-flashed with the image of Raspian, however If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, start at step 1.
 
-# Step 1 - Flash the image file
+# 1. Flash the image file
 
 1. You will need at least an 8Gb class 10 SD card.
 
@@ -29,7 +29,7 @@ This guide describes how to setup a Single Board Computer (SBC) with Duet 3. It 
 
 1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
 
-# Step 2 - Setup wifi
+# 2. Setup wifi
 
 1. This step is optional if you are going to connect to the SBC using an Ethernet network, or if you are going to plug a monitor, keyboard and mouse into the SBC.
 
@@ -51,17 +51,35 @@ network={
 
 1. Save and safely eject the SD card.
 
-# Step 3 - First Boot
+# 3. Connect Single Board Computer (SBC)
 
-1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3 and connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
-![sbc_setup_02.jpg](/manual/configuration/sbc_setup_02.jpg =500x)
+## Tabs {.tabset}
+
+### Duet 3 MB6HC
+
+![sbc_setup_02.jpg](/manual/configuration/sbc_setup_02.jpg =49%x) ![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =49%x)
+1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, connect a USB cable to the Duet 3 for power and connect a . Ensure there is NO SD card in the Duet itself.
 
 1. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
 
-1. It is acceptable, especially with longer ribbon cables than shown here, to route the cable around the back of the SBC, however pin 1 must connect as shown:
-![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =500x)
+1. It is acceptable, especially with longer ribbon cables than shown here, to route the cable around the back of the SBC, however pin 1 must connect as shown.
 
-1. Ensure the USB supply is sufficient to power the peripherals attached to the Pi, especially screens that do not have a separate power supply. [See here for more details on 5v power jumper position selection](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v). Using a Pi4 may require a separate power supply for both the Duet and Pi4 due to power draw. The same holds true if using peripherals that draw power via USB.
+1. Ensure the USB supply is sufficient to power the peripherals attached to the Pi, especially screens that do not have a separate power supply. [See here for more details on 5v power jumper position selection](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v). 
+
+1. Using a Pi4 may require a separate power supply for both the Duet and Pi4 due to power draw. The same holds true if using peripherals that draw power via USB.
+
+### Duet 3 Mini 5+
+
+![sbc_setup_09.jpg](/manual/configuration/sbc_setup_09.jpg =49%x)
+1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
+
+1. The Duet 3 Mini+ cannot power the Pi. You must power the Pi separately. The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers or other USB power supplies cannot supply sufficient voltage. Therefore, we strongly recommend that you use the official Raspberry Pi PSU, or another PSU specifically designed to power a Raspberry Pi. If the red LED on the Pi is not continuously illuminated, the power supply is insufficient.
+
+1. Connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
+
+# 4. First Boot
+
+1. Turn on power to Duet and SBC.
 
 1. If you have a screen attached when power is applied you will see the SBC boot up. Once bootup is complete the Chromiun browser will launch DuetWebControl in full screen. press F11 if you want to exit fullscreen.
 
@@ -111,7 +129,7 @@ either when going to [`http://duet3.local/`](http://duet3.local/) or to the IP a
 
 Ensure there is no SD card in the Duet itself. In order to run in SBC connected mode, the Duet SD card slot must be empty. If an SD card is present in the Duet, it will attempt to start in standalone mode.
 
-# Step 4 - Accessing the SBC through SSH/VNC
+# 5. Accessing the SBC through SSH/VNC
 
 *Note this is optional if you have a screen and keyboard attached to the SBC*
 
@@ -167,7 +185,7 @@ If you prefer a desktop environment to a command line then you can use the realV
 
 * Once installed open the realVNC client, go to "file" -> "new connection" and use duet3.local or the IP address of your SBC to connect. the username and password are the same as for ssh.
 
-# Step 5 - Update firmware
+# 6. Update firmware
 
 Once your Raspberry Pi has established an internet connection, it is recommended to install the latest updates. To do so, connect via SSH or VNC (see above) to your Raspberry Pi or open a terminal (if you have keyboard and monitor connected) and run:
 
@@ -178,9 +196,9 @@ sudo apt-get upgrade
 
 This will install the latest software components and the latest RepRapFirmware version on your Duet 3. You can do this regularly to update the system as new firmware is released.
 
-To switch between stable/release package feed and unstable/beta package feed, see 
+To switch between stable/release package feed and unstable/beta package feed, see [DSF installation](https://docs.duet3d.com/User_manual/Machine_configuration/DSF_RPi#software-installation).
 
-# Step 6 - Configuring system files
+# 7. Configuring system files
 
 By this step you should have Duet Web Control showing when you go to [`http://duet3.local/`](http://duet3.local/) or the IP address of your SBC.
 
@@ -197,7 +215,7 @@ The changes required to create a set of Duet 3 config files is outside the scope
 
 Once you have a set of system files they can be uploaded via the "system" tab in DWC.
 
-# Step 7 - Changing the SBC hostname
+# 8. Changing the SBC hostname
 
 This is an optional step if you only have a single duet3 on your network. It is required if you have more than one duet 3 as each duet 3 on a network needs a unique host name.
 
