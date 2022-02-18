@@ -2,7 +2,7 @@
 title: Multiple tools and Tool change macros
 description: 
 published: true
-date: 2021-12-03T16:26:59.585Z
+date: 2022-02-18T15:45:17.943Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:26:56.963Z
@@ -28,17 +28,27 @@ RepRapFirmware handles multiple extruders through a tool definition mechanism. I
 
 Only one tool is active at a time. To switch between tools, use the T command. Tools are conventionally numbered from zero, so in a dual nozzle printer the tools would normally be T0 and T1. The current PanelDue firmware expects the tools to be numbered T0, T1 and so on; but the web interface doesn't mind if the tools are not numbered consecutively.
 
-When the firmware receives a T command and the requested tool number is not already active, it goes through the following sequence:
+## Tool change sequence
 
-1. If another tool is already selected and all axes have been homed, run macro tfree#.g where # is the number of that tool
-1. If another tool is already selected, deselect it and set its heaters to their standby temperatures (as defined by the R parameter in the most recent G10 command for that tool)
-1. If all axes have been homed, run macro tpre#.g where # is the number of the new tool
-1. Set the new tool to its operating temperatures specified by the S parameter in the most recent G10 command for that tool
-1. If all axes have been homed, run macro tpost#.g where # is the number of the new tool. Typically this file would contain at least a M116 command to wait for its temperatures to stabilise.
+If Tn is used to select tool n but that tool is already active, the command does nothing. Otherwise, the sequence followed is:
+
+**Note:** Prior to RRF 3.3, when changing tools, tool change macro files are not run unless all axes have been homed. In RRF 3.3 and later, tool change macro files are run **regardless of whether axes have been homed or not**. You can use conditional GCode to choose which commands are executed if axes have been homed/not homed.
+
+1. If another tool is already selected, run macro **tfree#.g** where # is the number of that tool.
+1. If another tool is already selected, deselect it and set its heaters to their standby temperatures (as defined by the R parameter in the most recent G10/M568 command for that tool)
+1. Run macro **tpre#.g** where # is the number of the new tool
+1. Set the new tool to its operating temperatures specified by the S parameter in the most recent G10/M568 command for that tool
+1. Run macro **tpost#.g** where # is the number of the new tool. Typically this file would contain at least a M116 command to wait for its temperatures to stabilise.
 1. Apply any X, Y, Z offset for the new tool specified by G10
 1. Use the new tool.
 
-The tool change macro files are not run if the printer has not been homed since power up. This allows you to put a T0 command at the end of config.g, which is convenient if you have only one tool.
+## Selecting tool in config.g
+
+**Prior to RRF 3.3**, the tool change macro files are not run if the printer has not been homed since power up. This allows you to put a T0 command at the end of config.g, which is convenient if you have only one tool. 
+
+In **RRF 3.3 and later**, tool change macro files are run **regardless of whether axes have been homed or not**, and will run if `Tn` is in config.g. You can either put `T0 P0` in config.g (to select the tool without running any tool change files), or use conditional GCode to choose which commands are executed.
+
+## Sample macros
 
 Here is a sample tfree0.g file:
 
