@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: 
 published: true
-date: 2022-01-24T14:58:30.483Z
+date: 2022-02-19T04:30:51.933Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -88,7 +88,7 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a featu
 
 ## Dimensions
 
-![duet_3_mini_5+_wifi_dimensions.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_dimensions.png =500x)
+[![duet_3_mini_5+_wifi_dimensions.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_dimensions.png =500x)](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_dimensions.png){target=_blank}
 
 ## Mounting
 
@@ -120,21 +120,28 @@ The STEP files for both boards are available [on Github here](https://github.com
 
 ### Revision v0.5, v1.0  and v1.01
 
-![duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png =x500)
+[![duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png =x500)](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png){target=_blank}
 
 ### Revision 0.4
-
-![duet_3_mini_5+_wiring_v0.4.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.4.jpg =400x)
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[Duet 3 Mini 5+ v0.4 wiring diagram](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.4.jpg){target=_blank}
 
 #### Errata
 
 * There is insufficient room to fit the PanelDue 2x5 pin box connector unless a small part of the connector housing is removed, because the processor intrudes into its footprint. All version 0.4 boards have been fitted either with a box connector with some of the plastic removed, or with a 2x5 pin header instead. If a pin header is fitted, the PanelDue ribbon cable must be mated with it such that the spigot on the ribbon cable connector faces away from the stepper drivers. Pin 1 of the ribbon cable (usually indicated by a red stripe) must face towards the power input connector as shown above.
 * A pullup resistor was missing. All version 0.4 boards have been modified to include this resistor on the underside of the board.
 
+<!--
+Removed revision 0.2 section because they are no longer supported and had very limited distribution.
+
 ### Revision 0.2
 
-![duet_3_mini_5+_wiring_v0.4.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.2.jpg =x400)
+Wiring diagram is similar to the v0.4
 
+![10K pullup between RESET and 3.3V](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.2.jpg =x400)
+
+This prototype version of the Duet3 Mini 5+ had limited distribution
+ -->
 #### Errata
 
 * The SCLK and MOSI signals on the PanelDue ribbon cable connector have 5V signal levels, however the PanelDue displays connect these signals directly to the SD card socket, therefore they should be 3.3V. **Do not use a SD card in the SD card socket of PanelDue.** Doing so may damage the card.
@@ -169,7 +176,7 @@ The STEP files for both boards are available [on Github here](https://github.com
 | **1 x 2-pin KK connectors** | CAN | CAN-FD Bus connection for Duet 3 CAN-FD expansion boards. |
 | **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signals levels with 470R series resistors. IO_1,2,3 are PWM capable. |
 | **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. Jumpers to allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C. |
-| **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors |
+| **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
 | **1 x 2x5 IDC connector** | TEMPDB | For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface board. **Note** boards cannot be stacked so only 1 board at a time is supported. |
