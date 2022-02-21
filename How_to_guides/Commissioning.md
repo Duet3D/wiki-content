@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: false
-date: 2022-02-21T15:40:25.484Z
+date: 2022-02-21T15:44:33.087Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -49,10 +49,10 @@ Check the temperature reading on heaters, eg "T0", "Bed".
 # 4. Check Fans 
 
 * Always On fans should already be on. Check them at this time.
-* If you have a fan that is connected as FAN 0, you can enable it by sending G-Code command `M106 P0 S1`. To turn it off, send `M106 P0 S0`
+* If you have a fan that is connected as FAN 0, you can enable it by sending G-Code command `M106 P0 S1`. To turn it off, send `M106 P0 S0`. You can also use the Fan Control slider.
 * For thermostatically controlled fans, we can check them by temporarily changing the temperature at which they activate.
   * In the Duet web interface, load the G-Code Console.
-  * Send the following command to the Duet: `M106 P1 T1 H1`. The T parameter sets the temperature it comes on 
+  * Send the following command to the Duet: `M106 P1 T1 H1`. The T parameter sets the temperature the fan comes on at. To turn it off, send `M106 P1 T50 H1`
   * P1 is for Fan 1. If you have two thermostatically controlled fans, repeat this step after changing P1 to P2.
 * After confirming the operation of the fans, you may reset the configuration by simply pressing the "Reset" button on the Duet, or send `M999`.
 * See [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting) and GCode [M106](/User_manual/Reference/Gcodes/M106) for more details.
@@ -60,7 +60,7 @@ Check the temperature reading on heaters, eg "T0", "Bed".
 # Check Heater Functionality
 
 Since we have checked for proper operation of our thermistors, we may now check our heaters.
-* On the Machine Control page, enter a number in the "Active" box for each heater. Start off with a low number such as 35°C.
+* On the Dashboard page, enter a number in the "Active" box for each heater. Start off with a low number such as 35°C.
 * Select the drop down box next to "Tool 0" and click "Select Tool".
 
 You should see the corresponding temperature begin to rise. It is possible that it will overshoot the set temperature a bit, this is OK.
