@@ -1,14 +1,17 @@
 ---
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
-published: true
-date: 2022-01-31T15:15:18.010Z
+published: false
+date: 2022-02-21T13:27:53.599Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
 ---
 
 # Introduction
+
+## **This page is in draft**
+
 
 **This document is relevant to:** Duet 3 MB6HC and Mini 5+.
 **Firmware versions:** All versions
@@ -17,11 +20,11 @@ dateCreated: 2022-01-31T12:27:10.363Z
 
 This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 
-If you are setting up your Duet 3 with a connected **Single Board Computer** (SBC, eg Raspberry Pi), please see [SBC setup for Duet 3](https://duet3d.dozuki.com/Wiki/SBC_Setup_for_Duet_3) documentation for connecting the SBC.
+If you are setting up your Duet 3 with a connected **Single Board Computer** (SBC, eg Raspberry Pi), please see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank} documentation for connecting the SBC.
 
 **Note:** The pictures in this guide are from an earlier version of the Duet 2 WiFi/Ethernet however the wiring guide steps are still valid. Images relevant for other boards will be added as/when available.
 
-If you have any problems with your Duet when using this guide, rather than posting comments, **please use our support forum: [https://forum.duet3d.com/](https://forum.duet3d.com/)**
+If you have any problems with your Duet when using this guide, rather than posting comments, **please use our support forum: [https://forum.duet3d.com/](https://forum.duet3d.com/){target=_blank}**
 
 
 # 1. Tools required
@@ -32,7 +35,7 @@ To complete the wiring of your Duet, you will usually need:
 * crimping tool(s) (see tabs below)
 * pliers
 
-Here is a good guide to crimping: [Teaching Tech on YouTube](https://youtu.be/GZOh1NzqzzU)
+Here is a good guide to crimping: [Teaching Tech on YouTube](https://youtu.be/GZOh1NzqzzU){target=_blank}
 
 ## Crimping power supply and high current connectors
 
@@ -62,11 +65,11 @@ Molex KK-compatible connectors are used for all other inputs and outputs on the 
 
 ### Duet 3 Mini 5+
 
-![duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png =800x)
+[![duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png =800x)](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png){target=_blank}
 
 ### Duet 3 MB6HC
 
-![duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png =800x)
+[![duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png =800x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png){target=_blank}
 
 # 3. A Note on Fire Safety
 
