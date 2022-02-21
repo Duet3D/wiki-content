@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for you machine
 description: 
 published: true
-date: 2022-02-21T14:58:20.321Z
+date: 2022-02-21T15:19:35.128Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:25:14.342Z
@@ -160,6 +160,7 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 
 **Heater configuration**
 * The 'Heater configuration' section sets heater temperature and PWM limits, and the parameters for thermistors.
+* **IMPORTANT!** To get accurate temperature readings, you must enter parameters that match your temperature sensor. Otherwise your machine may over or under report the temperature! Use the manufacturer's specification for the sensor, if possible.
 * Clicking on 'R25', 'Beta' or 'C' parameter boxes for a heater will bring up a pop-up, allowing you to select your thermistor type from a drop-down list.
 * If your particular thermistor is not listed, clicking 'Custom' on the drop down list shows a thermistor parameter calculator. Enter values for it to calculate the thermistor coefficients for you.
 * If you know your thermistor parameters, you can input them directly in the R25, beta and C boxes.
