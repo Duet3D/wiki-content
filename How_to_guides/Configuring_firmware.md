@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for you machine
 description: 
 published: true
-date: 2022-02-18T17:10:34.708Z
+date: 2022-02-21T14:58:20.321Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:25:14.342Z
@@ -269,5 +269,5 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 > If your Duet has rebooted and mains power is applied, **IMMEDIATELY** check that your new configuration is not heating heaters/moving axes/starting spindles or any other unexpected and unwanted behaviour. If it is, **TURN OFF THE POWER!** You can investigate any problems and check configuration by powering the Duet with USB power only.
 {.is-warning}
 
-> With your new configuration in place, move on to the **Commissioning guide** to check all parts working correctly.
+> With your new configuration in place, move on to the **Commissioning guide** to check all parts are working correctly.
 {.is-info}
