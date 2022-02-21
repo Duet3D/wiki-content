@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-02-02T15:00:55.391Z
+date: 2022-02-21T14:56:46.209Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -127,42 +127,6 @@ We'll start at the reset button, and work our way around the wiring diagram cloc
 * If using 2 wire microswitch endstops, connect one wire to GND and the other wire to signal (STP), which are the outer two pins on the Duet connector.
 * Never connect your endstop wires from +3.3v to ground. This will create a short circuit and could damage the Duet.
 * If using other endstops, please refer to [User manual: Connecting endstop switches](/User_manual/Connecting_hardware/Sensors_endstops) for details.
-
-<!--
-# 9. Checking Endstops
-
-* It is important that you check that the Duet is receiving a signal from your endstops. Failure to do so could cause damage to your printer!
-* On Duet 2 WiFi/Ethernet, there is an enstop status LED between each motor driver.
-* You can also see the status of your endstops a number of ways:
-
-## Tabs {.tabset}
-
-### M119
-
-![wiring_d2we_06_test_endstop_01.png](/guides/wiring/wiring_d2we_06_test_endstop_01.png =50%x){.align-right}
-The simplest way of checking endstop status is to send [M119](/User_manual/Reference/Gcodes/M119), and this can be sent from DWC or if connected by serial terminal over USB.
-* In DWC, go to Control > Console and type in `M119` in the text box, then press return or the 'Send' button. You should get the endstop status response in the area below.
-* If connected to the Duet by a serial terminial over USB, type `M119` and press return; the Duet will respond with the endstop status.
-* Press and hold an endstop switch, and sent the command again, and you should see the status response of that switch change.
-
-<p style="clear:both"></p>
-
-### Object model browser
-
-![wiring_d2we_06_test_endstop_02.png](/guides/wiring/wiring_d2we_06_test_endstop_02.png =50%x){.align-right}
-![wiring_d2we_06_test_endstop_03.png](/guides/wiring/wiring_d2we_06_test_endstop_03.png =50%x){.align-right}
-TO DO
-
-<p style="clear:both"></p>
-
-### Endstop plugin
-
-![wiring_d2we_06_test_endstop_04.png](/guides/wiring/wiring_d2we_06_test_endstop_04.png =50%x){.align-right}
-![wiring_d2we_06_test_endstop_05.png](/guides/wiring/wiring_d2we_06_test_endstop_05.png =50%x){.align-right}
-TO DO
-
-<p style="clear:both"></p>
--->
 
 # 9. Hotend heaters
 
