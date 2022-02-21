@@ -1,8 +1,8 @@
 ---
-title: Getting Started
+title: How To Guides
 description: 
 published: true
-date: 2022-01-21T15:31:05.315Z
+date: 2022-02-21T13:29:56.462Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:42:15.895Z
@@ -23,7 +23,6 @@ dateCreated: 2021-05-05T13:42:15.895Z
 [Getting Connected to your Duet](/How_to_guides/Getting_connected/Getting_connected_to_your_Duet)
 [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup)
 
-<!--
 # Wiring how-to guides
 
 Wiring your Duet 2 WiFi/Ethernet
@@ -33,6 +32,8 @@ Connecting and configuring fans
 Choosing and connecting stepper motors
 Connecting External Drivers
 Connecting endstop switches
+
+Panucatt Viki 2 / VIKI2 setup
 
 # Configuration how-to guides
 
@@ -48,11 +49,16 @@ Calibrating a delta printer
 
 ## Duet 3 Mini 5+
 
-Ender 3 Pro and Duet 3 Mini 5+ Guide Part 1: Wiring
-Ender 3 Pro and Duet 3 Mini 5+ Guide Part 2: Configuration
-Ender 3 Pro and Duet 3 Mini 5+ Guide Part 3: Commissioning
+[Ender 3 Pro and Duet 3 Mini 5+ Guide Part 1: Wiring](/How_to_guides/e3p_Mini5+_guide_part1_wiring)
+[Ender 3 Pro and Duet 3 Mini 5+ Guide Part 2: Configuration](/How_to_guides/e3p_Mini5+_guide_part2_configuration)
+[Ender 3 Pro and Duet 3 Mini 5+ Guide Part 3: Commissioning](/How_to_guides/e3p_Mini5+_guide_part3_commissioning)
 Ender 3 Pro and Duet 3 Mini 5+ Guide Part 4: Calibration
 
+## Duet 3 MB6HC
+
+VORON PRINTER RUN DUET 3 6HC/ TOOLBOARD
+
+<!--
 ## Duet 2 Maestro
 
 Ender 3 Pro and Duet Maestro Guide Part 1: Wiring
