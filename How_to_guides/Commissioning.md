@@ -2,47 +2,66 @@
 title: Commissioning your machine
 description: 
 published: false
-date: 2022-02-21T13:36:37.262Z
+date: 2022-02-21T15:40:25.484Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
 ---
 
-# Check Thermistors
+# Introduction
 
-Note: If you changed the machine name in the RepRapFirmware Configurator, this will be reflected in the .local address. For instance, if you named the machine "My Printer", you will navigate to myprinter.local/ (without spaces and not case sensitive).
+**This document is relevant to:** All Duet boards
+**Firmware versions:** All versions
+**Difficulty:** Moderate
+**Time Required:** 30 minutes - 1 hour
 
-Open your browser and navigate to yourduetname.local/.
+This guide covers configuring RepRapFirmware for your machine.
 
-Check that you are getting a temperature reading on "Tool 0" and "Bed". It should be around room temperature. It is OK if there's a few degrees of error as thermistor readings have better resolution at higher temperatures.
+If you have any problems with your Duet when using this guide, rather than posting comments, **please use our support forum: [https://forum.duet3d.com/](https://forum.duet3d.com/){target=_blank}**
 
-If you get a reading of "2000°C", there is a problem with your thermistor wiring. Correct this before continuing.
+# 1. Turn on power
 
-# Check Fans 
+> If you have just changed your configuration, and the Duet has rebooted with mains power, **IMMEDIATELY** check that your new configuration is not heating heaters/moving axes/starting spindles or any other unexpected and unwanted behaviour. If it is, **TURN OFF THE POWER!** You can investigate any problems and check configuration by powering the Duet with USB power only.
+{.is-warning}
 
-Always On fans should already be on. Check them at this time.
+# 2. Connect to Duet Web Console (DWC)
 
-If you have a fan that is connected to F0, you can enable it by sending G-Code command "M106 P0 S1"
+> If you changed the machine name in the RepRapFirmware Configurator, this will be reflected in the .local address. For instance, if you named the machine "My Printer", you will navigate to myprinter.local/ (without spaces and not case sensitive).
+{.is-info}
 
-For thermostatically controlled fans, (which are F1 and F2 by default) we can check them by temporarily changing the temperature at which they activate.
+* Open your browser and navigate to yourduetname.local/ or the IP address .
 
-In the Duet web interface, load the G-Code Console.
+# 3. Check Thermistors
 
-Send the following command to the Duet: "M106 P1 T1 H1".
+Check the temperature reading on heaters, eg "T0", "Bed". 
+* It should be around room temperature if the heaters have not recently been on. 
+* It is OK if there's a few degrees of error as thermistor readings have better resolution at higher temperatures.
+* If you get a temperature reading of "-273°C", this indicates an open circuit, i.e. nothing is connected to the defined pins.
+  * Check that the temperature sensor is connected to the correct pins
+  * Check the wiring for breaks
+  * Measure the resistance of the wires that connect to the Duet, and that it corresponds with what the firmware expects
+  * Check that the configuration is set correctly for the temperature sensor.
+* If you get a temperature reading of "2000°C", this indicates a dead short between the temperature sensor pins on the Duet, or mis-configured firmware.
+  * Check your M305/M308 configuration
+  * Check the wiring isn't grounding out to something
+* See [User manual: Connecting thermistor and PT1000 temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000) and [M308](/User_manual/Reference/Gcodes/M308) (RRF 3.x) or [M305](/User_manual/Reference/Gcodes/M305) (RRF 2.x) for more details.
 
-P1 is for Fan 1. If you have two thermostatically controlled fans, repeat this step after changing P1 to P2.
+# 4. Check Fans 
 
-After confirming the operation of the fans, you may reset the configuration by simply pressing the "Reset" button on the Duet, if you wish. Do not confuse the Reset button with the Erase button!
-
-For more details on configuring fans see these wiki pages: Connecting and configuring fans, and Gcode: M106
+* Always On fans should already be on. Check them at this time.
+* If you have a fan that is connected as FAN 0, you can enable it by sending G-Code command `M106 P0 S1`. To turn it off, send `M106 P0 S0`
+* For thermostatically controlled fans, we can check them by temporarily changing the temperature at which they activate.
+  * In the Duet web interface, load the G-Code Console.
+  * Send the following command to the Duet: `M106 P1 T1 H1`. The T parameter sets the temperature it comes on 
+  * P1 is for Fan 1. If you have two thermostatically controlled fans, repeat this step after changing P1 to P2.
+* After confirming the operation of the fans, you may reset the configuration by simply pressing the "Reset" button on the Duet, or send `M999`.
+* See [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting) and GCode [M106](/User_manual/Reference/Gcodes/M106) for more details.
 
 # Check Heater Functionality
 
 Since we have checked for proper operation of our thermistors, we may now check our heaters.
-
-On the Machine Control page, enter a number in the "Active" box for each heater. Start off with a low number such as 35°C.
-
-Select the drop down box next to "Tool 0" and click "Select Tool".
+* On the Machine Control page, enter a number in the "Active" box for each heater. Start off with a low number such as 35°C.
+* Select the drop down box next to "Tool 0" and click "Select Tool".
 
 You should see the corresponding temperature begin to rise. It is possible that it will overshoot the set temperature a bit, this is OK.
 
@@ -62,7 +81,38 @@ Navigate to the console.
 
 Send M119 - you will see the state of the endstops, will all be non triggered, then hold each one down in turn, while sending M119 again and confirm the state changes to triggered.
 
-# Configuring Active High or Active Low Endstops 
+# 9. Checking Endstops
+
+* It is important that you check that the Duet is receiving a signal from your endstops. Failure to do so could cause damage to your printer!
+* On Duet 2 WiFi/Ethernet, there is an enstop status LED between each motor driver.
+* You can also see the status of your endstops a number of ways:
+
+## Tabs {.tabset}
+
+### M119
+
+[![wiring_d2we_06_test_endstop_01.png](/guides/wiring/wiring_d2we_06_test_endstop_01.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_01.png){target=_blank}
+The simplest way of checking endstop status is to send [M119](/User_manual/Reference/Gcodes/M119), and this can be sent from DWC or if connected by serial terminal over USB.
+* In DWC, go to Control > Console and type in `M119` in the text box, then press return or the 'Send' button. You should get the endstop status response in the area below.
+* If connected to the Duet by a serial terminial over USB, type `M119` and press return; the Duet will respond with the endstop status.
+* Press and hold an endstop switch, and sent the command again, and you should see the status response of that switch change.
+
+<p style="clear:both"></p>
+
+### Object model browser
+
+[![wiring_d2we_06_test_endstop_02.png](/guides/wiring/wiring_d2we_06_test_endstop_02.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_02.png){target=_blank}[![wiring_d2we_06_test_endstop_03.png](/guides/wiring/wiring_d2we_06_test_endstop_03.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_03.png){target=_blank}TO DO
+
+<p style="clear:both"></p>
+
+### Endstop plugin
+
+[![wiring_d2we_06_test_endstop_04.png](/guides/wiring/wiring_d2we_06_test_endstop_04.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_04.png){target=_blank}[![wiring_d2we_06_test_endstop_05.png](/guides/wiring/wiring_d2we_06_test_endstop_05.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_05.png){target=_blank}TO DO
+
+<p style="clear:both"></p>
+
+
+# Configure Endstops: Active High or Low 
 
 If you found that any endstops are not configured properly in the last step, navigate to Settings, then to "System Editor" and open the config.g file.
 
@@ -76,7 +126,7 @@ The second line (S1) defines all active high endstops.
 
 If you are unsure if your endstops are active high or active low, you can test them by observing the light next to the corresponding stepper motor connector. If the light is lit when the button is pressed, then this would indicate an active low endstop.
 
-# Configure High End or Low End Endstops
+# Configure Endstops: High or Low End
 
 Remaining in the same config.g file as the last step, observe the number next to each axis' endstop - for example X0, Z0 and Y2.
 
@@ -86,7 +136,7 @@ Observe the physical location of each endstop and compare it to this setting. If
 
 # Check Stepper Motors 
 
-Before conducting this step, temporarily alow axis movement without homing by navigating to the G Code console and entering: M564 S0 H0
+Before conducting this step, temporarily allow axis movement without homing by navigating to the GCode console and entering: `M564 S0 H0`
 
 Navigate back to the Machine Control page. At this time, we will check the operation of our stepper motors.
 
