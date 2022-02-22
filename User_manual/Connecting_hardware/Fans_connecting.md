@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2022-01-05T12:27:09.935Z
+date: 2022-02-22T15:25:04.843Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -188,7 +188,7 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 * If the speed control of a 4-wire fan is not working well, i.e. fan speed does not scale well with PWM setting, you may be able to improve the response by connecting an external pullup resistor between the PWM input and +5V. 10K ohm would be a good starting point.
 * For more information, see [this forum thread](https://forum.duet3d.com/topic/25511/).
 
-## Using 12V fans when VIN is 24V
+## Duet 2: Using 12V fans when VIN is 24V
 
 If you need to use 12V fans but your ``VIN`` is 24V and all your fans are 12V, then on the Duet 2 Wifi / Ethernet you have the following options using a buck-down converter:
 
