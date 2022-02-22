@@ -2,19 +2,19 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-01-31T17:47:59.439Z
+date: 2022-02-22T21:01:49.253Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
 ---
 
-![Render of the Duet 3 Mainboard 6XD v0.1](/duet_boards/duet_3_mb6xd/6xd_v0.1_proto_render1.png =400x)
+![Render of the Duet 3 Mainboard 6XD v0.1](/duet_boards/duet_3_mb6xd/6xd_v0.1_proto_render400.png)
 
 ## This page is still in draft
 
 # Introduction
 
-The Duet 3 Mainboard 6XD is designed to allow interfacing with the most common external stepper and servo motor dives using step and direction signals, with support for 6 external drivers. In addition it provides Opto Isolated Input and Output connections for some of the GPIO functions to allow easier interfacing with PLC control systems.
+The Duet 3 Mainboard 6XD is designed to allow interfacing with the most common external stepper and servo motor drivers using step and direction signals, with support for 6 external drivers. In addition it provides Opto Isolated Input and Output connections for some of the GPIO functions to allow easier interfacing with PLC control systems.
 
 Like the other Duet 3 mainboards it can be accessed directly over the network in stand alone mode (via the Ethernet post) or it has the option of using an SBC (Single Board Computer, e.g. Raspberry Pi) for control. Using the Duet 3 CAN-FD bus it is expandable with the range of Duet 3 expansion and tool boards.
 
@@ -22,7 +22,7 @@ Like the other Duet 3 mainboards it can be accessed directly over the network in
 
 ## Hardware Specification
 
-The main hardware features of the Duet 3 Mini 5+ are listed below.
+The main hardware features of the Duet 3 6XD are listed below.
 
 
 | HARDWARE SPECIFICATION ||
@@ -85,7 +85,7 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a featu
 
 ## Dimensions
 
-![Diagram showing the critical dimensions of the Duet3 6XD v0.1 prototype](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dimensions_d1.0.png =500x)
+[![Diagram showing the critical dimensions of the Duet3 6XD v0.1 prototype](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dimensions_d1.0.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dimensions_d1.0.png){target=_blank}
 
 ## Mounting
 
@@ -117,16 +117,17 @@ STEP file to follow.
 ### Revision 0.1
 
 
-![duet3_mb_6xd_v0.1_d1.0_wiring.png](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_d1.0_wiring.png =500x)
+[![Duet3 Mainboard 6XD prototype v0.1 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_wiring.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_wiring.png){target=_blank}
+
 
 #### Errata
 
->The Driver Active enable select options: "ACTIVE ENABLE" and "ACTIVE DISABLE" legends are the wrong way round on the board silk screen {.is-warning}
+>in the v0.1 prototypes the Driver Active enable select options: "ACTIVE ENABLE" and "ACTIVE DISABLE" legends are the wrong way round on the board silk screen {.is-warning}
 
 
 ## Description of Connections
 
-| Duet 3 Mini 5+ Connectors and Jumpers |||
+| Duet 3 6XD Connectors and Jumpers |||
 |:---|:---|---|
 | **1 x 2-way barrier strip** | POWER IN, GND, VIN  | Two pins for the main VIN and GND, protected by a 15A fuse. |
 | **1 x 3-pin KK connector** | EXT 5V | Open drain mosfet output for controlling an ATX-style power supply or a SSR. The +5V pin can also be used to provide external 5V power. A small amount of 5V power can be drawn from this pin (through an internal 220 ohm resistor), so that the control terminals of an SSR can be connected directly between the +5V and PS_ON pins. |
@@ -143,7 +144,7 @@ STEP file to follow.
 | **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*).|
 | ^^ | ^^ | **Note** The PanelDue UART is shared with io0.in and io0.out pins on the IO_0 header. |
 | **1 x RJ11 CAN connector** | CAN_1_OUT | CAN-FD connection for Duet 3 expansion boards. This has a permanent termination resistor, so it must be at one end of the CAN bus |
-| **1 x 2-pin KK connector** | CAN_0_OUT | CAN-FD Bus connection for future expansion. bus termination resistors can be disconnected with dillable/solderable jumpers underneath the board |
+| **1 x 2-pin KK connector** | CAN_0_OUT | CAN-FD Bus connection for future expansion. bus termination resistors can be disconnected with drillable/solderable jumpers underneath the board |
 | **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface boards.|
 | **6 x 6-pin KK connectors** | DRIVER_0-DRIVER_5 | External stepper or servo motor driver connections. 5V, GND, single ended outputs for Step, Dir and Enable along with a fault input provided per driver. See "Connecting External Drivers" section below. |
 | **1 x 3-pin Jumper** |  Driver Enable Polarity | A jumper in the "left" position is used for external drivers which are enabled when a voltage is applied to the enable connection (Active Enable). A jumper in the "right" position is used for external drivers which are disabled when a voltage is applied to the enable connection (Active Disable) (*Note the v0.1 boards have the silkscreen reversed*). |
@@ -405,7 +406,7 @@ The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers
 
 In other respects, SBC connection to the Duet and configuration is the same as for the Duet 3 Mainboard 6HC. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
 
-When using an attached Raspberry Pi or other SBC the Ethernet interface on the Duet 3 Mini+ is disabled.
+When using an attached Raspberry Pi or other SBC the Ethernet interface on the Duet 3 6XD is disabled.
 
 ## Connecting External Motor Drivers
 
