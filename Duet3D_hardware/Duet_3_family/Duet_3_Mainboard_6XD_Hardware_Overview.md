@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-02-22T21:01:49.253Z
+date: 2022-02-22T22:53:47.803Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -410,7 +410,13 @@ When using an attached Raspberry Pi or other SBC the Ethernet interface on the D
 
 ## Connecting External Motor Drivers
 
-To follow
+The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have optoisolated or similar inputs. The Step, Dir and Enable outputs from the 6XD are either low (when "on") or floating/high impedence when "off". To connect a Pololu/StepStick/similar driver to the 6XD a 10K pullup resistor is needed from the Step/Dir/En lines to +5V.
+
+This diagram shows connection to a "typical" optoisolated stepper motor driver
+
+[![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dvr_conn.png){target=_black}
+
+
 
 ## Connecting Fans
 
