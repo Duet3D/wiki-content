@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-02-22T22:53:47.803Z
+date: 2022-02-24T15:55:16.431Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -293,7 +293,10 @@ Wiring example to follow
 
 #### Opto Isolated Outputs
 
-Wiring example to follow
+The opto isolated outputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
+
+![Diagram showing the connection of the Duet 3 MB6XD opto isolated outputs and inputs in SBC mode](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_opto_out.png)
+
 
 
 ## Power distribution
