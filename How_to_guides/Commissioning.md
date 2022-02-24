@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: false
-date: 2022-02-21T15:44:33.087Z
+date: 2022-02-24T17:29:05.985Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -29,7 +29,11 @@ If you have any problems with your Duet when using this guide, rather than posti
 > If you changed the machine name in the RepRapFirmware Configurator, this will be reflected in the .local address. For instance, if you named the machine "My Printer", you will navigate to myprinter.local/ (without spaces and not case sensitive).
 {.is-info}
 
-* Open your browser and navigate to yourduetname.local/ or the IP address .
+* Open your browser and navigate to `yourduetname.local` or the IP address you set. If you have trouble finding the IP address of the Duet, you can:
+  * Connect to your Duet via USB. Send [M552](/User_manual/Reference/Gcodes/M552) to see the network configuration and IP address.
+  * Login to your router; it should be able to show a list of connected devices
+  * Use a network scanning app to show the connected devices on the network.
+* You will be using Duet Web Console (DWC) for most of the commissioning; see [User manual: Duet Web Console](/User_manual/Reference/Duet_Web_Control_Manual) for a full introduction to the interface.
 
 # 3. Check Thermistors
 
@@ -49,9 +53,11 @@ Check the temperature reading on heaters, eg "T0", "Bed".
 # 4. Check Fans 
 
 * Always On fans should already be on. Check them at this time.
-* If you have a fan that is connected as FAN 0, you can enable it by sending G-Code command `M106 P0 S1`. To turn it off, send `M106 P0 S0`. You can also use the Fan Control slider.
+* If you have a fan that is connected as FAN 0, you can use the Fan Control slider to check it works. You can also enter GCode commands directly in the Control > Console page:
+  * Turn it on by sending GCode command `M106 P0 S1`. 
+  * Turn it off by sending `M106 P0 S0`. 
 * For thermostatically controlled fans, we can check them by temporarily changing the temperature at which they activate.
-  * In the Duet web interface, load the G-Code Console.
+  * In the Duet web interface, load the GCode Console.
   * Send the following command to the Duet: `M106 P1 T1 H1`. The T parameter sets the temperature the fan comes on at. To turn it off, send `M106 P1 T50 H1`
   * P1 is for Fan 1. If you have two thermostatically controlled fans, repeat this step after changing P1 to P2.
 * After confirming the operation of the fans, you may reset the configuration by simply pressing the "Reset" button on the Duet, or send `M999`.
