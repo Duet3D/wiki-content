@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: false
-date: 2022-02-25T17:10:38.694Z
+date: 2022-02-25T22:54:19.597Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -40,7 +40,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 > To get accurate temperatures, you must configure temperature sensing correctly for the type of temperature sensor you are using. The default values in the RepRapFirmware Configuration Tool are unlikely to be correct!
 {.is-warning}
 
-On the Control > Dashboard page of DWC, in the Tools section, check the 'Current' temperature reading on each heater. Each heater is configured to be either a Tool, Bed or Chamber, eg "T0", "Bed". 
+On the 'Control > Dashboard' page of DWC, in the Tools section, check the 'Current' temperature reading on each heater. Each heater is configured to be either a Tool, Bed or Chamber, eg "T0", "Bed". 
 * It should be around room temperature if the heaters have not recently been on. 
 * It is OK if there's a few degrees of error as thermistor readings have better resolution at higher temperatures.
 * If you get a temperature reading of "-273°C", this indicates an open circuit, i.e. nothing is connected to the defined pins.
@@ -56,7 +56,7 @@ On the Control > Dashboard page of DWC, in the Tools section, check the 'Current
 # 4. Check fans 
 
 * Always On fans should already be on. Check them at this time.
-* If you have a fan that is connected as FAN 0 (usually the part cooling fan), you can use the Fan Control slider to check it works. You can also enter GCode commands directly in the Control > Console page:
+* If you have a fan that is connected as FAN 0 (usually the part cooling fan), you can use the Fan Control slider to check it works. You can also enter GCode commands directly in the 'Control > Console' page:
   * Turn it on by sending GCode command `M106 P0 S1`. 
   * Turn it off by sending `M106 P0 S0`. 
 * For thermostatically controlled fans, we can check them by temporarily changing the temperature at which they activate.
@@ -64,8 +64,10 @@ On the Control > Dashboard page of DWC, in the Tools section, check the 'Current
   * In the box under Status section, enter the following command then press return to send it to the Duet: `M106 P1 T1 H1`. The T parameter sets the temperature the fan comes on at. 
   * To turn it off, send `M106 P1 T50 H1`
   * P1 is for Fan 1. If you have two thermostatically controlled fans, repeat this step after changing P1 to P2.
-* After confirming the operation of the fans, you may reset the configuration by simply pressing the "Reset" button on the Duet, or send `M999`.
 * See [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting) and GCode [M106](/User_manual/Reference/Gcodes/M106) for more details.
+
+> After confirming the operation of the fans, to reset the configuration you can either press the "Reset" button on the Duet, or send `M999`, or re-run config.g by sending `M98 P"config.g"` in 'Control > Console'.
+{.is-info}
 
 # 5. Check heater functionality
 
@@ -104,9 +106,12 @@ M307 H1 R7.046 K1.519:0.006 D3.58 E1.35 S1.00 B0 V23.9
   * If your config.g has [M501](/User_manual/Reference/Gcodes/M501) at the end, you can save the current heater settings by sending [M500](/User_manual/Reference/Gcodes/M500). This will save the current parameters to the sys/config-override.g on the SD card. M501 in config.g will load them at each reboot.
 * If you encounter any errors, see [User manual: Tuning the heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning) for more details.
 
+> After confirming the operation of the heaters and to save and implement the changes you have made, you need to reset the Duet. If you edit then save the config.g, DWC should ask if you want to reset the Duet or re-run config.g. You can also press the "Reset" button on the Duet, or send `M999`, or re-run config.g by sending `M98 P"config.g"` in 'Control > Console'.
+{.is-info}
+
 # 7. Check Endstops
 
->Never connect an endstop wires from +3.3v to ground. This will create a short circuit and could damage the Duet.
+> Never connect endstop wires from +3.3v to ground. This will create a short circuit and could damage the Duet.
 {.is-warning}
 
 When 'homing' your machine, each axis will move towards the end of its travel. It expects to trigger a switch, which will set the axis location. Simple microswitches, hall sensors or optical sensors can be used.
@@ -119,8 +124,7 @@ When 'homing' your machine, each axis will move towards the end of its travel. I
 
 ### M119
 
-[![wiring_d2we_06_test_endstop_01.png](/guides/wiring/wiring_d2we_06_test_endstop_01.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_01.png){target=_blank}
-The simplest way of checking endstop status is to send [M119](/User_manual/Reference/Gcodes/M119), and this can be sent from DWC or if connected by serial terminal over USB.
+[![wiring_d2we_06_test_endstop_01.png](/guides/wiring/wiring_d2we_06_test_endstop_01.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_01.png){target=_blank}The simplest way of checking endstop status is to send [M119](/User_manual/Reference/Gcodes/M119), and this can be sent from DWC or if connected by serial terminal over USB.
 * In DWC, go to Control > Console and type in `M119` in the text box, then press return or the 'Send' button. You should get the endstop status response in the area below.
 * If connected to the Duet by a serial terminial over USB, type `M119` and press return; the Duet will respond with the endstop status.
 * Press and hold an endstop switch, and sent the command again, and you should see the status response of that switch change.
@@ -140,7 +144,7 @@ The simplest way of checking endstop status is to send [M119](/User_manual/Refer
 
 [![wiring_d2we_06_test_endstop_04.png](/guides/wiring/wiring_d2we_06_test_endstop_04.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_04.png){target=_blank}[![wiring_d2we_06_test_endstop_05.png](/guides/wiring/wiring_d2we_06_test_endstop_05.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_05.png){target=_blank}You can also install a plugin to show endstop status.
 * Go to [https://github.com/Duet3D/DSF-Plugins/releases/](https://github.com/Duet3D/DSF-Plugins/releases/){target=_blank}
-* Download the "EndstopsMonitor-X.X.zip" (where "X.X" is the version number).
+* Download the "EndstopsMonitor-xxx.zip", where "xxx" is the version number, and matches the version of DWC you are running (check on the 'Setting > General' page).
 * Go to 'Settings > Plugins > External plugins' ('Settings > Machine-specific > Machine-specific plugins' in older versions of DWC) and click 'Install plugin'.
 * Navigate to the "EndstopsMonitor-X.X.zip" you downloaded, select and click 'Open'.
 * Click through the next few windows, reading the information and warnings.
@@ -170,70 +174,64 @@ If you found that any endstops are not configured properly in the last step, nav
 * On Duet 2 WiFi/Ethernet, you can test whether your endstops are active low or active high by observing the red LED next to the corresponding stepper motor connector. If the LED is lit when the endstop is triggered, this would indicate an active low endstop. If the LED is lit when the endstop is not triggered, this would indicate an active high endstop.
 * See [Configuring endstop switches](/User_manual/Connecting_hardware/Sensors_endstops) for more details.
 
+> After confirming the operation of the endstops and to save and implement the changes you have made, you need to reset the Duet. If you edit then save the config.g, DWC should ask if you want to reset the Duet or re-run config.g. You can also press the "Reset" button on the Duet, or send `M999`, or re-run config.g by sending `M98 P"config.g"` in 'Control > Console'.
+{.is-info}
+
 <!-- Done up to here -->
 
-# Check Stepper Motors 
+# 9. Check Stepper Motors 
 
-Before conducting this step, temporarily allow axis movement without homing by navigating to the GCode console and entering: `M564 S0 H0`
+* Before conducting this step, temporarily allow axis movement without homing by navigating to 'Control > Console' and entering: `M564 S0 H0`
+* Navigate back to 'Control > Dashboard'. You will check the operation of our stepper motors.
+* Move each stepper motor, individually, 1 mm in each direction. If any motors are incorrect, we will fix them in the next step.
+* Note: for cartesian kinematics, where only one motor moves for each X, Y and Z axis, this is straightforward. If you have a CoreXY, delta or Scara, see [User manual: Testing stepper motors](/User_manual/Connecting_hardware/Motors_testing) for the correct motor movements.
+* Note: a stepper can't be moved before homing, unless the [M564](/User_manual/Reference/Gcodes/M564) command is used to override this safety default.
+* Be sure that you have confirmed the correct operation of your endstops before homing.
+* If your motor moves in the correct direction, you may home the axis at this time.
 
-Navigate back to the Machine Control page. At this time, we will check the operation of our stepper motors.
+**Reversing a Stepper Motor**
+* To reverse the direction of a stepper motor, navigate to 'Files > System' and open the config.g file.
+* Look for M569 settings. S1 configures a drive to move in the "forward" direction and S0 is "reverse".
+* For any stepper motors that are moving in the wrong direction, change the configuration of S1 to S0 for the corresponding drive.
+> After confirming the operation of the motors and to save and implement the changes you have made, you need to reset the Duet. If you edit then save the config.g, DWC should ask if you want to reset the Duet or re-run config.g. You can also press the "Reset" button on the Duet, or send `M999`, or re-run config.g by sending `M98 P"config.g"` in 'Control > Console'.
+{.is-info}
 
-Move each stepper motor, individually, 1 mm in each direction. If any motors are incorrect, we will fix them in the next step.
+# 10. Configuring PanelDue
 
-Note that a stepper can't be moved before homing. unless the M564 command is used to override this safety default.
+* If you are using a PanelDue, if connected properly it should already be configured.
+* You can check that it is functioning by making sure that it turned on and is displaying reasonably correct temperature information. You may also choose to home an axis or by starting a heater.
+* If the display is not connecting, make sure you have the following command in config.g: `M575 P1 S1 B57600`
 
-If your motor moves in the correct direction, you may home the axis at this time.
+# 11. Z Probe
 
-Important: Be sure that you have confirmed the correct operation of your endstops before homing.
+**Check configuration**
+* Begin by familiarizing yourself with the different probe modes; see [User manual: Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)
+* Navigate to 'Files > System' and open the config.g file.
+* [M558](/User_manual/Reference/Gcodes/M558) configures the Z probe. Check the P value matches whichever probe you are using.
+* H value defines the dive height, which is the height above the trigger height from which probing starts.
+* F value defines the "feed rate", or probing speed in millimeters per minute.
+* T value defines the travel speed at which the probe is moved between probe points in millimeters per minute.
+* For more information on Z probing see: 
+  [User manual: Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing)
+  [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)
 
-# Reversing a Stepper Motor 
+**Test Z Probe**
+* Test the Z probe by ensuring that the status changes in Duet Web Control. e.g. If using an IR probe, by putting a piece of paper under the probe.
+* For more detailed instructions, see [User manual: Test and calibrate a Z probe](/User_manual/Connecting_hardware/Z_probe_testing)
 
-To reverse the direction of a stepper motor, navigate to Settings, then to System Editor and open the config.g file.
+# 12. Commissioning Complete!
 
-Look for M569 settings. S1 configures a drive to move in the "forward" direction and S0 is "reverse".
+> Congratulations! Upon completion of this guide, your Duet is set up. 
+{.is-info}
 
-For any stepper motors that are moving in the wrong direction, change the configuration of S1 to S0 for the corresponding drive.
+The next step will be calibrating and tuning the various parts of your printer, running test prints, and then printing! This can include:
+* Levelling the bed.
+* Calibrating extruder steps per mm.
+* Tuning Acceleration, Jerk, Retraction, Pressure Advance
+* Input shaping
 
-The default mapping for drives is 0=X, 1=Y, 2=Z, 3=E0 and 4=E1.
+For the above see [User manual: Tuning](/User_manual/Tuning)
 
-# Configuring PanelDue
-
-If you are using a PanelDue, if connected properly it should already be configured.
-
-You can check that it is functioning by making sure that it turned on and is displaying reasonably correct temperature information. You may also choose to home an axis or by starting a heater.
-
-# Configuring Z Probe
-
-Begin by familiarizing yourself with the different probe modes which can be found Connecting a Z probe
-
-Navigate to Settings, then System Editor and open the config.g file.
-
-Change the P value of M558 to match whichever probe you are using.
-
-X, Y and Z values define whether or not there is a probe on that axis. A zero means that a probe is not used.
-
-H value defines the dive height, which is the height above the trigger height from which probing starts.
-
-F value defines the "feed rate", or probing speed in millimeters per minute.
-
-T value defines the travel speed at which the probe is moved between probe points in millimeters per minute.
-
-For more information on Z probing see these wiki pages: Choosing a Z probe, how to Test and calibrate a Z probe and Setting up automatic probing of the print bed.
-
-# Test Z Probe
-
-Test the Z probe and ensuring that the status changes in Duet Web Control.
-
-e.g. If using an IR probe, by putting a piece of paper under the probe
-
-# Configuration Complete!
-
-Congratulations! Upon completion of this guide, your Duet is set up. For further details the following wiki pages are a good place to start:
-
-Step by step guide to using your Duet
-
-Configuring RepRapFirmware for a Cartesian Printer
-
-FAQ
-
-The complete reference for all gcodes use for configuration and control: Gcode dictionary
+For further details the following wiki pages are a good place to start:
+* [Configuring RepRapFirmware for a Cartesian Printer](/User_manual/Machine_configuration/Configuration_cartesian)
+* [Gcode dictionary](/User_manual/Reference/Gcodes)
