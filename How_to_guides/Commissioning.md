@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: false
-date: 2022-02-24T17:29:05.985Z
+date: 2022-02-25T15:45:46.826Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -35,9 +35,12 @@ If you have any problems with your Duet when using this guide, rather than posti
   * Use a network scanning app to show the connected devices on the network.
 * You will be using Duet Web Console (DWC) for most of the commissioning; see [User manual: Duet Web Console](/User_manual/Reference/Duet_Web_Control_Manual) for a full introduction to the interface.
 
-# 3. Check Thermistors
+# 3. Check thermistors
 
-Check the temperature reading on heaters, eg "T0", "Bed". 
+> To get accurate temperatures, you must configure temperature sensing correctly for the type of temperature sensor you are using. The default values in the RepRapFirmware Configuration Tool are unlikely to be correct!
+{.is-warning}
+
+On the Control > Dashboard page of DWC, in the Tools section, check the 'Current' temperature reading on each heater. Each heater is configured to be either a Tool, Bed or Chamber, eg "T0", "Bed". 
 * It should be around room temperature if the heaters have not recently been on. 
 * It is OK if there's a few degrees of error as thermistor readings have better resolution at higher temperatures.
 * If you get a temperature reading of "-273°C", this indicates an open circuit, i.e. nothing is connected to the defined pins.
@@ -50,47 +53,63 @@ Check the temperature reading on heaters, eg "T0", "Bed".
   * Check the wiring isn't grounding out to something
 * See [User manual: Connecting thermistor and PT1000 temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000) and [M308](/User_manual/Reference/Gcodes/M308) (RRF 3.x) or [M305](/User_manual/Reference/Gcodes/M305) (RRF 2.x) for more details.
 
-# 4. Check Fans 
+# 4. Check fans 
 
 * Always On fans should already be on. Check them at this time.
-* If you have a fan that is connected as FAN 0, you can use the Fan Control slider to check it works. You can also enter GCode commands directly in the Control > Console page:
+* If you have a fan that is connected as FAN 0 (usually the part cooling fan), you can use the Fan Control slider to check it works. You can also enter GCode commands directly in the Control > Console page:
   * Turn it on by sending GCode command `M106 P0 S1`. 
   * Turn it off by sending `M106 P0 S0`. 
 * For thermostatically controlled fans, we can check them by temporarily changing the temperature at which they activate.
-  * In the Duet web interface, load the GCode Console.
-  * Send the following command to the Duet: `M106 P1 T1 H1`. The T parameter sets the temperature the fan comes on at. To turn it off, send `M106 P1 T50 H1`
+  * In DWC, go to Control > Console.
+  * In the box under Status section, enter the following command then press return to send it to the Duet: `M106 P1 T1 H1`. The T parameter sets the temperature the fan comes on at. 
+  * To turn it off, send `M106 P1 T50 H1`
   * P1 is for Fan 1. If you have two thermostatically controlled fans, repeat this step after changing P1 to P2.
 * After confirming the operation of the fans, you may reset the configuration by simply pressing the "Reset" button on the Duet, or send `M999`.
 * See [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting) and GCode [M106](/User_manual/Reference/Gcodes/M106) for more details.
 
-# Check Heater Functionality
+# 5. Check heater functionality
 
 Since we have checked for proper operation of our thermistors, we may now check our heaters.
-* On the Dashboard page, enter a number in the "Active" box for each heater. Start off with a low number such as 35°C.
-* Select the drop down box next to "Tool 0" and click "Select Tool".
+* On the Dashboard page, the Tools section lists the tools, bed heaters and chamber heaters.
+* The firmware allows one tool to be selected/active at a time. The associated heater(s) is/are set to 'active' when the tool is selected, and set to 'standby' when the tool is deselected. However, tool heaters can also be manually controlled, independently of tools.
+* Enter a number in the "Active" box for the first tool. Start off with a low number such as 35°C. 
+* Under the first 'Heater [#]' (where # is the heater number) it should say 'off', 'standby' or 'active'.
+  * Clicking the associated tool name (eg 'T0' in the Tool column) will cycle the heater between 'active' and 'standby', as the tool is selected and deselected. The target temperature for each state is set by the associated Active and Standby temperature.
+  * Clicking the heater name (eg 'Heater 1' in the Heater column) will cycle the heater between 'active', 'standby' and 'off'. The heater can be controlled independently of the tool state.
+  * Bed and Chamber heaters are controlled more directly, and cycle through 'active', 'standby' and 'off' whether you click the name or the heater number.
+* With the heater set to 'active', you should see the corresponding temperature begin to rise. It is possible that it will overshoot the set temperature a bit; this is OK.
+> **WARNING:** If you enable the heater but do not observe an increase in the temperature reading, turn off the controller immediately and check your wiring.
+{.is-warning}
+* You may receive errors such as "Error: Heater [heater #] fault: temperature rising too slowly". This may be because the firmware does not have an accurate model of how the heater responds. You will need to 'tune' the heaters, which is covered in the next section.
+  * Click on the tool, bed or chamber name, or the heater name, to reset the heater fault. DWC will pop up a stern warning with a timer, and allow you to reset the fault after a few seconds. You can also send [M562](/User_manual/Reference/Gcodes/M562) to reset temperature faults.
+* Complete this step by clicking the tool, bed or chamber name, or the heater name, to set the tool/heater into standby.
+* Repeat this step for the rest of the tool, bed and chamber heaters.
+* If you need to 'hot-tighten' your hot end nozzle, now is a good time to do it. Set the Tool heater active temperature to the temperature specified by the manufacturer and click the tool name to set the tool to active. Once finished, click the tool name to turn off the heater.
 
-You should see the corresponding temperature begin to rise. It is possible that it will overshoot the set temperature a bit, this is OK.
+# 6. Tune heaters
 
-Complete this step by selecting "Tool 0" and "Deselect Tool" to put the tool into standby.
+It is recommended that you *'tune'* your heaters after ensuring their functionality. This gives the firmware an accurate model of how your heater responds, so it can spot if something goes wrong. Make sure that your temperature sensors are configured correctly and reporting sensible temperatures first!
+* If you have received a temperature error and a heater is marked as 'fault', click on the tool, bed or chamber name, or the heater name, to reset the heater fault. DWC will pop up a stern warning with a timer, and allow you to reset the fault after a few seconds. You can also send [M562](/User_manual/Reference/Gcodes/M562) to reset temperature faults.
+* To tune heaters, use the [M303](/User_manual/Reference/Gcodes/M303) GCode command.
+  * Heaters must be at room temperature before starting tuning.
+  * Move the hot end so the nozzle is around 1mm above the bed. If you haven't tested moving the motors yet, you can move the hot end SLOWLY by hand. Tuning can use check the effect of the cooling fan on the nozzle heater.
+  * Tune tools first. In Control > Console, send `M303 T0 S200` where 'T' is the tool number, and 'S' is the target temperature. Tuning a tool heater usually takes around five minutes.
+  * To tune a bed or chamber heater, send `M303 H0 S60` where 'H' is the heater number for the bed or chamber, and 'S' is the target temperature. Tuning these heaters can take a long time, possibly up to 2 hours, as the heater needs to go through a number of heating and cooling cycles. The bigger the heater, the longer this takes.
+* If successful, the firmware will report the parameters to use, and an [M307](/User_manual/Reference/Gcodes/M307) GCcode command eg 
+```
+M307 H1 R7.046 K1.519:0.006 D3.58 E1.35 S1.00 B0 V23.9
+```
+* Either:
+  * Copy this into your config.g, replacing the existing one for the heater, or
+  * If your config.g has [M501](/User_manual/Reference/Gcodes/M501) at the end, you can save the current heater settings by sending [M500](/User_manual/Reference/Gcodes/M500). This will save the current parameters to the sys/config-override.g on the SD card. M501 in config.g will load them at each reboot.
+* If you encounter any errors, see [User manual: Tuning the heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning) for more details.
 
-Repeat this step for the bed heater.
+# 7. Check Endstops
 
-WARNING: If you enable the heater but do not observe an increase in the temperature reading, turn off the controller immediately and check your wiring.
-
-It is recommended that you tune your heaters after ensuring their functionality.
-
-# Check Endstop Configuration 
-
-You should have already checked for proper operation of endstops. At this time, we will make sure that they are correctly configured.
-
-Navigate to the console.
-
-Send M119 - you will see the state of the endstops, will all be non triggered, then hold each one down in turn, while sending M119 again and confirm the state changes to triggered.
-
-# 9. Checking Endstops
-
-* It is important that you check that the Duet is receiving a signal from your endstops. Failure to do so could cause damage to your printer!
-* On Duet 2 WiFi/Ethernet, there is an enstop status LED between each motor driver.
+When 'homing' your machine, each axis will move towards the end of its travel. It expects to trigger a switch, which will set the axis location. Simple microswitches, hall sensors or optical sensors can be used.
+* It is important that you check that the Duet is receiving a signal from your endstops, if you have them fitted. Failure to do so could cause damage to your printer!
+* You want the firmware to report them as 'not stopped' when they are not triggered, and 'at max/min stop' when they are triggered.
+* On Duet 2 WiFi/Ethernet, there is an endstop status LED between each motor driver.
 * You can also see the status of your endstops a number of ways:
 
 ## Tabs {.tabset}
@@ -103,36 +122,40 @@ The simplest way of checking endstop status is to send [M119](/User_manual/Refer
 * If connected to the Duet by a serial terminial over USB, type `M119` and press return; the Duet will respond with the endstop status.
 * Press and hold an endstop switch, and sent the command again, and you should see the status response of that switch change.
 
-<p style="clear:both"></p>
-
 ### Object model browser
 
-[![wiring_d2we_06_test_endstop_02.png](/guides/wiring/wiring_d2we_06_test_endstop_02.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_02.png){target=_blank}[![wiring_d2we_06_test_endstop_03.png](/guides/wiring/wiring_d2we_06_test_endstop_03.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_03.png){target=_blank}TO DO
-
-<p style="clear:both"></p>
+[![wiring_d2we_06_test_endstop_02.png](/guides/wiring/wiring_d2we_06_test_endstop_02.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_02.png){target=_blank}[![wiring_d2we_06_test_endstop_03.png](/guides/wiring/wiring_d2we_06_test_endstop_03.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_03.png){target=_blank}You can also check the endstops status in the DWC Object model browser. The RepRapFirmware Object model shows all the firmware variables and values.
+* Enable the Object model browser by going to Settings > Plugins (Settings > General > Built-in Plugins in older versions of DWC) and click 'Start' on the 'Object Model Browser'.
+* A new menu option 'Object Model' will appear; select it.
+* Navigate to 'sensors > endstops'. Expand the numbered sections. Trigger an endstop, and it will show as 'triggered = true' if correctly configured.
 
 ### Endstop plugin
 
-[![wiring_d2we_06_test_endstop_04.png](/guides/wiring/wiring_d2we_06_test_endstop_04.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_04.png){target=_blank}[![wiring_d2we_06_test_endstop_05.png](/guides/wiring/wiring_d2we_06_test_endstop_05.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_05.png){target=_blank}TO DO
+[![wiring_d2we_06_test_endstop_04.png](/guides/wiring/wiring_d2we_06_test_endstop_04.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_04.png){target=_blank}[![wiring_d2we_06_test_endstop_05.png](/guides/wiring/wiring_d2we_06_test_endstop_05.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_05.png){target=_blank}You can also install a plugin to show endstop status.
+* Go to [https://github.com/Duet3D/DSF-Plugins/releases/](https://github.com/Duet3D/DSF-Plugins/releases/){target=_blank}
+* Download the "EndstopsMonitor-X.X.zip" (where "X.X" is the version number).
+* 
 
-<p style="clear:both"></p>
+# 8. Configure Endstops: Active High or Low 
 
 
-# Configure Endstops: Active High or Low 
+If you found that any endstops are not configured properly in the last step, navigate to Files > System and open the config.g file.
 
-If you found that any endstops are not configured properly in the last step, navigate to Settings, then to "System Editor" and open the config.g file.
 
-Endstops are configured here. The first line (S0) defines all active low endstops.
+* Endstops are configured here. Each endstop has it's own configuration line, using [M574](/User_manual/Reference/Gcodes/M574).
+  * In RRF 3.x, 
 
-An active low endstop is one which pulls the signal to ground when the endstop is pressed (normally open). An active high endstop is one which pulls the signal to ground when the endstop is not pressed.
+
+  * An active low endstop is one which pulls the signal to ground when the endstop is pressed (normally open). 
+  * An active high endstop is one which pulls the signal to ground when the endstop is not pressed.
 
 Never connect an endstop wires from +3.3v to ground. This will create a short circuit and could damage the Duet.
 
 The second line (S1) defines all active high endstops.
 
-If you are unsure if your endstops are active high or active low, you can test them by observing the light next to the corresponding stepper motor connector. If the light is lit when the button is pressed, then this would indicate an active low endstop.
+On Duet 2 WiFi/Ethernet, you can test whether your endstops are active low or active high by observing the red LED next to the corresponding stepper motor connector. If the light is lit when the button is pressed, then this would indicate an active low endstop.
 
-# Configure Endstops: High or Low End
+# 9. Configure Endstops: High or Low End
 
 Remaining in the same config.g file as the last step, observe the number next to each axis' endstop - for example X0, Z0 and Y2.
 
