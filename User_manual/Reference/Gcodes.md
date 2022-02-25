@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-02-17T15:50:42.757Z
+date: 2022-02-25T11:56:40.455Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5265,7 +5265,7 @@ This sets the communications parameters of the serial comms channel specified by
 
 * **Pnnn** Serial channel number
 * **Bnnn** Baud rate, default 57600 (same as the default PanelDue baud rate)
-* **Snnn** Mode: 0 = PanelDue mode without checksums; 1 (default) = PanelDue mode, checksum required; 2 = raw mode; 3 = raw mode with checksums required; 5 = PanelDue mode with CRC required for all commands except M409, and CRC or checksum required for M409 command. Modes 2 and 3 are only supported in RRF 3.01 and later. Mode 5 is only supported in RRF 3.4 and later.
+* **Snnn** Mode: 0 = PanelDue; 1 (default) = PanelDue mode, checksum or CRC required; 2 = raw mode; 3 = raw mode with checksum or CRC required; 4 = PanelDue mode, CRC required; 6 = raw mode, CRC required. Modes 2 and 3 are only supported in RRF 3.01 and later. Modes 4 and 6 are only supported in RRF 3.4 and later.
 
 ### Examples
 <br>
