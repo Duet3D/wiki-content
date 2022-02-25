@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-02-25T11:56:40.455Z
+date: 2022-02-25T13:27:51.196Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2541,6 +2541,8 @@ RepRapFirmware does not support individual motor settings where an axis has mult
 Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M201 Z100, not M201 Z100:100
 
 ## M201.1: Set reduced acceleration for special move types
+
+*Supported in RRF 3.4 and later*
 
 ### Parameters
 
