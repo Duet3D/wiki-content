@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-02-25T07:33:54.939Z
+date: 2022-02-25T07:39:20.508Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -362,9 +362,12 @@ The Duet 3 Mainboard 6XD produces 12V onboard from VIN. 12V will not be produced
 * **5V_EXT_IN**:  When using EXT_5V_IN, remove the jumper from Int 5V EN to disable the onboard 5V regulator (see below for more details). The EXT_5V header also has a pin for controlling an external power supply. This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. 
 * **5V_SBC:** In some, limited, cases it may be desirable to power the board from the 5V output of a SBC connected to the SBC header. Note that the total power of the Duet+ peripherals must be factored into the SBC power budget. See notes below
 
+
 There is an array of jumpers to customise the 5V power setup as required:
 
 ![render of the area of the PCB showing the three 5V selection jumpers](/duet_boards/duet_3_mb6xd/6xd_5v_options.png =300x)
+
+> On the prototpye v0.1 Duet 3 Mainboard 6XD only the Int 5V En jumper header is fitted {.is-info}
 
 **Internal 5V only**
 ![jumper positions for using internal 5V regulator only](/duet_boards/duet_3_mb6xd/6xd_5v_option_int_en.png =200x)
