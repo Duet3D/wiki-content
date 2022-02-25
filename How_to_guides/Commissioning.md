@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: false
-date: 2022-02-25T17:07:51.105Z
+date: 2022-02-25T17:10:38.694Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -125,12 +125,16 @@ The simplest way of checking endstop status is to send [M119](/User_manual/Refer
 * If connected to the Duet by a serial terminial over USB, type `M119` and press return; the Duet will respond with the endstop status.
 * Press and hold an endstop switch, and sent the command again, and you should see the status response of that switch change.
 
+<p style="clear:both"></p>
+
 ### Object model browser
 
 [![wiring_d2we_06_test_endstop_02.png](/guides/wiring/wiring_d2we_06_test_endstop_02.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_02.png){target=_blank}[![wiring_d2we_06_test_endstop_03.png](/guides/wiring/wiring_d2we_06_test_endstop_03.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_03.png){target=_blank}You can also check the endstops status in the DWC Object model browser. The RepRapFirmware Object model shows all the firmware variables and values.
 * Enable the Object model browser by going to 'Settings > Plugins > Integrated plugins' ('Settings > General > Built-in Plugins' in older versions of DWC) and click 'Start' on the 'Object Model Browser'.
 * A new menu option 'Object Model' will appear; select it.
 * Navigate to 'sensors > endstops'. Expand the numbered sections. Trigger an endstop, and it will show as 'triggered = true' if correctly configured.
+
+<p style="clear:both"></p>
 
 ### Endstop plugin
 
@@ -142,6 +146,8 @@ The simplest way of checking endstop status is to send [M119](/User_manual/Refer
 * Click through the next few windows, reading the information and warnings.
 * Once installed, click on 'Start'. 
 * You can now see the endstop status in 'Settings > Machine-specific > Endstops'.
+
+<p style="clear:both"></p>
 
 # 8. Re-configure Endstops
 
