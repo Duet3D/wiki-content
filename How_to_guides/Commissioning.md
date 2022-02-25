@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: false
-date: 2022-02-25T15:45:46.826Z
+date: 2022-02-25T17:07:51.105Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -106,6 +106,9 @@ M307 H1 R7.046 K1.519:0.006 D3.58 E1.35 S1.00 B0 V23.9
 
 # 7. Check Endstops
 
+>Never connect an endstop wires from +3.3v to ground. This will create a short circuit and could damage the Duet.
+{.is-warning}
+
 When 'homing' your machine, each axis will move towards the end of its travel. It expects to trigger a switch, which will set the axis location. Simple microswitches, hall sensors or optical sensors can be used.
 * It is important that you check that the Duet is receiving a signal from your endstops, if you have them fitted. Failure to do so could cause damage to your printer!
 * You want the firmware to report them as 'not stopped' when they are not triggered, and 'at max/min stop' when they are triggered.
@@ -125,7 +128,7 @@ The simplest way of checking endstop status is to send [M119](/User_manual/Refer
 ### Object model browser
 
 [![wiring_d2we_06_test_endstop_02.png](/guides/wiring/wiring_d2we_06_test_endstop_02.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_02.png){target=_blank}[![wiring_d2we_06_test_endstop_03.png](/guides/wiring/wiring_d2we_06_test_endstop_03.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_03.png){target=_blank}You can also check the endstops status in the DWC Object model browser. The RepRapFirmware Object model shows all the firmware variables and values.
-* Enable the Object model browser by going to Settings > Plugins (Settings > General > Built-in Plugins in older versions of DWC) and click 'Start' on the 'Object Model Browser'.
+* Enable the Object model browser by going to 'Settings > Plugins > Integrated plugins' ('Settings > General > Built-in Plugins' in older versions of DWC) and click 'Start' on the 'Object Model Browser'.
 * A new menu option 'Object Model' will appear; select it.
 * Navigate to 'sensors > endstops'. Expand the numbered sections. Trigger an endstop, and it will show as 'triggered = true' if correctly configured.
 
@@ -134,34 +137,34 @@ The simplest way of checking endstop status is to send [M119](/User_manual/Refer
 [![wiring_d2we_06_test_endstop_04.png](/guides/wiring/wiring_d2we_06_test_endstop_04.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_04.png){target=_blank}[![wiring_d2we_06_test_endstop_05.png](/guides/wiring/wiring_d2we_06_test_endstop_05.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_05.png){target=_blank}You can also install a plugin to show endstop status.
 * Go to [https://github.com/Duet3D/DSF-Plugins/releases/](https://github.com/Duet3D/DSF-Plugins/releases/){target=_blank}
 * Download the "EndstopsMonitor-X.X.zip" (where "X.X" is the version number).
-* 
+* Go to 'Settings > Plugins > External plugins' ('Settings > Machine-specific > Machine-specific plugins' in older versions of DWC) and click 'Install plugin'.
+* Navigate to the "EndstopsMonitor-X.X.zip" you downloaded, select and click 'Open'.
+* Click through the next few windows, reading the information and warnings.
+* Once installed, click on 'Start'. 
+* You can now see the endstop status in 'Settings > Machine-specific > Endstops'.
 
-# 8. Configure Endstops: Active High or Low 
+# 8. Re-configure Endstops
 
-
-If you found that any endstops are not configured properly in the last step, navigate to Files > System and open the config.g file.
-
-
+If you found that any endstops are not configured properly in the last step, navigate to 'Files > System' and open the config.g file.
 * Endstops are configured here. Each endstop has it's own configuration line, using [M574](/User_manual/Reference/Gcodes/M574).
-  * In RRF 3.x, 
 
+**High end or low end?**
+* In RRF 3.x, the  M574 X, Y, and Z parameters configure the position of the endstop; 0 for no endstop, 1 for low end endstop, 2 for high end endstop. eg `M574 X0` would mean no endstop on X, `M574 Y2` means Y endstop on the high end.
+* Think of "low end" and "high end" as a numeric scale for the axis. If your Y axis has a 250mm range of motion, the low end is 0mm and the high end is 250mm.
+* Observe the physical location of each endstop and compare it to this setting. If it is incorrect, change it now.
+* On a Delta, all endstops are usually at the high end. On Cartesian and CoreXY, the Z low end is where the nozzle is closest to the bed, ie where Z=0.
 
-  * An active low endstop is one which pulls the signal to ground when the endstop is pressed (normally open). 
-  * An active high endstop is one which pulls the signal to ground when the endstop is not pressed.
+**Active high or active low?**
+* In RRF 3.x, the M574 P parameter configures the pins the endstop is connected to. It also configures how the signal is interpreted.
+* An active low endstop is one which pulls the signal to ground when the endstop is pressed. On Duet, this means that it is 'normally open' (or NO) when not pressed. 
+* An active high endstop is one which pulls the signal to ground when the endstop is not pressed. On Duet, this means it is 'normally closed' (or NC) when not pressed. Duet3D recommend NC endstops, as they are less susceptible to interference from other sources, eg stepper motor wiring.
+* If you found that the endstop was responding the wrong way in the test in the previous section, we can invert the input on the pins, in the endstop definition. Do this by:
+  * Invert the signal in the M574 command with `!`, eg `M574 Y2 P"!ystop"`
+  * If the M574 command already has a `!` in it, remove it.
+* On Duet 2 WiFi/Ethernet, you can test whether your endstops are active low or active high by observing the red LED next to the corresponding stepper motor connector. If the LED is lit when the endstop is triggered, this would indicate an active low endstop. If the LED is lit when the endstop is not triggered, this would indicate an active high endstop.
+* See [Configuring endstop switches](/User_manual/Connecting_hardware/Sensors_endstops) for more details.
 
-Never connect an endstop wires from +3.3v to ground. This will create a short circuit and could damage the Duet.
-
-The second line (S1) defines all active high endstops.
-
-On Duet 2 WiFi/Ethernet, you can test whether your endstops are active low or active high by observing the red LED next to the corresponding stepper motor connector. If the light is lit when the button is pressed, then this would indicate an active low endstop.
-
-# 9. Configure Endstops: High or Low End
-
-Remaining in the same config.g file as the last step, observe the number next to each axis' endstop - for example X0, Z0 and Y2.
-
-Think of "low end" and "high end" as a numeric scale for the axis. If your Y axis has a 250mm range of motion, the low end is 0mm and the high end is 250mm.
-
-Observe the physical location of each endstop and compare it to this setting. If it is incorrect, change it now.
+<!-- Done up to here -->
 
 # Check Stepper Motors 
 
