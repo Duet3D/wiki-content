@@ -1,8 +1,8 @@
 ---
 title: Commissioning your machine
 description: 
-published: false
-date: 2022-02-25T22:54:19.597Z
+published: true
+date: 2022-02-28T11:55:35.780Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
