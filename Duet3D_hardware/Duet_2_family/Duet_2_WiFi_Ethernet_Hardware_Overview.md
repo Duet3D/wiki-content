@@ -2,7 +2,7 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2021-12-13T11:29:13.576Z
+date: 2022-02-28T16:49:36.963Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z
@@ -26,10 +26,10 @@ The feature diagram for v1.03 and earlier is below.
 
 | | **Duet 2 WiFi** | **Duet 2 Ethernet** |
 |:---|:---|:---|
-| **Processor** | [ATSAM4E8E](http://www.atmel.com/devices/ATSAM4E8E.aspx) ||
+| **Processor** | [ATSAM4E8E](http://www.atmel.com/devices/ATSAM4E8E.aspx){target=_blank} ||
 | **Processor features** | 120MHz ARM Cortex M4F, 512Kb flash, 128Kb RAM, hardware floating point (single precision), DMA, 2Kb cache ||
 | **Networking/Comms** | 2.4GHz WiFi, WPA-2 encryption; USB port; serial port | 10BaseT/100BaseTX Ethernet; USB port; serial port |
-| **On-board Stepper drivers** | 5 x [TMC2660](https://www.trinamic.com/products/integrated-circuits/details/tmc2660c-pa/) ||
+| **On-board Stepper drivers** | 5 x [TMC2660](https://www.trinamic.com/products/integrated-circuits/details/tmc2660c-pa/){target=_blank} ||
 | **Stepper driver features** | Up to 2.4A peak current, up to x256 microstepping, optional x16 interpolation on x16 microstepping, stall detection ||
 | **Heater outputs** | Bed heater (up to 18A^1^), 2 x extruder heater (up to 6A each) ||
 | **Thermistor/PT1000 inputs** | 3, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy ||
@@ -80,17 +80,17 @@ When on external 5V power with no connected devices drawing power from the 3.3V 
 ## Firmware notes
 
 * Compatible RepRapFirmware versions: RRF 2.x, RRF 3.x
-* The Duet 2 WiFi has a WiFi module, the [ESP8266](https://en.wikipedia.org/wiki/ESP8266). This is another 32-bit microcontroller with its own flash storage area, which is where the WiFi connection details are stored. It runs its own firmware, which occasionally needs to be updated. The Duet 2 Ethernet has a W5500 TCP IP processor on board which handles the low level Ethernet networking functions. Installation of both the WiFi and Ethernet modules on the same board at the same time is not supported.
+* The Duet 2 WiFi has a WiFi module, the [ESP8266](https://en.wikipedia.org/wiki/ESP8266){target=_blank}. This is another 32-bit microcontroller with its own flash storage area, which is where the WiFi connection details are stored. It runs its own firmware, which occasionally needs to be updated. The Duet 2 Ethernet has a W5500 TCP IP processor on board which handles the low level Ethernet networking functions. Installation of both the WiFi and Ethernet modules on the same board at the same time is not supported.
 
 
 ## Open Source
 
 Importantly Duets are Open:
 
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet-2-Hardware/blob/master/LICENSE)
-* All hardware [source files](https://github.com/Duet3D/Duet-2-Hardware) are available on Github.
-* Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet-2-Hardware/blob/master/LICENSE){target=_blank}
+* All hardware [source files](https://github.com/Duet3D/Duet-2-Hardware){target=_blank} are available on Github.
+* Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/){target=_blank} using open tools means the barrier to getting involved is as low as possible.
 
 ## Feature Comparison
 
@@ -107,17 +107,17 @@ The diagrams below show the mounting hole points in the format X,Y so the bottom
 ## Dimensions {.tabset}
 ### Duet 2 WiFi Dimensions
 
-![duet2wifiv1.05dims.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet2wifiv1.05dims.png =400x)
+[![duet2wifiv1.05dims.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet2wifiv1.05dims.png =400x)](/duet_boards/duet_2_wifi_ethernet_maestro/duet2wifiv1.05dims.png){target=_blank}
 
 *Note: from v1.05 the WiFi Antenna size on the Duet 2 WiFi internal antenna version has increased slightly*
 
-![duet_2_wifi_dimensions.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_dimensions.png =200x)
+[See this image for Duet 2 Wifi dimensions for v1.04c and earlier](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_dimensions.png){target=_blank}
 
 
 
 ### Duet 2 Ethernet Dimensions
 
-![duet_2_ethernet_dimensions.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_ethernet_dimensions.png =400x)
+[![duet_2_ethernet_dimensions.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_ethernet_dimensions.png =400x)](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_ethernet_dimensions.png){target=_blank}
 
 ## Mounting
 
@@ -140,9 +140,9 @@ If you mount the board horizontally then a cooling fan is recommended, especiall
 
 ## 3D models
 
-Phil Maddox has created a 3d model of the Duet 2 WiFi [available here](https://grabcad.com/library/duet-wifi-1).
+Phil Maddox has created a 3d model of the Duet 2 WiFi [available here](https://grabcad.com/library/duet-wifi-1){target=_blank}.
 
-Giuliano Moschini has created a model based on the Duet 2 WiFi model for the Duet 2 Ethernet [available here](https://grabcad.com/library/duet-ethernet-1)
+Giuliano Moschini has created a model based on the Duet 2 WiFi model for the Duet 2 Ethernet [available here](https://grabcad.com/library/duet-ethernet-1){target=_blank}
 
 # Physical connections
 
@@ -152,9 +152,9 @@ Giuliano Moschini has created a model based on the Duet 2 WiFi model for the Due
 
 The version 1.0 and later boards is shown in the diagram below.
 
-![Diagram showing the Duet 2 board with the pins labelled to aid wiring.](/duet_boards/duet_2_wifi_ethernet_maestro/duet2ndgen_connections_v1.0-1.5_d2.1.png =600x)
+[![Diagram showing the Duet 2 board with the pins labelled to aid wiring.](/duet_boards/duet_2_wifi_ethernet_maestro/duet2ndgen_connections_v1.0-1.5_d2.1.png =600x)](/duet_boards/duet_2_wifi_ethernet_maestro/duet2ndgen_connections_v1.0-1.5_d2.1.png){target=_blank}
 
-The .svg version of this diagram is [available on github](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Wiring%20Diagrams).
+The .svg version of this diagram is [available on github](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Wiring%20Diagrams){target=_blank}.
 
 ## Description of Connections
 
@@ -186,7 +186,7 @@ The board has a number of on board LEDs which are used to indicate the state of 
 
 ## Pin names
 
-For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names).
+For more information on pin names, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names).
 
 RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default.
 
@@ -267,32 +267,36 @@ In the table below, multiple names on a line are aliases for a single pin. Some 
 
 ## Input/output
 
-To see where these pins are, see the *Wiring diagram* section above.
+To see where these pins are, see the *Wiring diagram* section above. 
+**Note:** Except for bedheat (VIN), e[0-1]heat (VIN) and fan[0-2] (selectable VIN/5V/external supply), all output pins have 3.3V signal level and there is no protection.
 
-| Pin name (RRF 3.x)| Logical pin (RRF 2.x) | Location/PCB label | PWM capable? | Servo capable? | Notes |
+| Pin name (RRF 3.x)| Logical pin (RRF 2.x) | Location/PCB label | Input/Output? | PWM capable? | Servo capable? | Notes |
 |:---|:---|
-| bedheat, e[0-1]heat | 0-2 | Heater connectors | yes | no | Heaters 0-2 on Duet mainboard |
-| exp.heater[3-7] | 3-7 | Expansion header | yes | yes | The outputs on the expansion connector are active low with 3.3V signal level. |
-| bedtemp, e[0-1]temp | - | Thermistor/PT1000 headers | no | no | Has extra latency caused by the RC smoothing circuit for thermistors |
-| e[2-6]temp | - | Expansion header thermistor[3-7] (pins 36-39) | no | no | |
-| fan[0-2] | 20-22 | Fan connectors | yes | no | Fans 0-2 on Duet mainboard |
-| [x,y,z,e0,e1]stop| 40-44 | Endstop connectors | no | no | Input only. Endstops on Duet mainboard |
-| exp.e[2-6]stop | 45-49 | Expansion header | no | no | Additional endstop connections in the expansion connector. |
-| exp.pb6 | - | Expansion header PB6/TMS (pin 29) | no | no | Dedicated in RRF 2.x to fan tacho |
-| spi.cs1 | - | Temp DB, pin 3 | no | no | |
-| spi.cs2 | - | Temp DB, pin 1 | no | no | |
-| spi.cs3 | - | Temp DB, pin 7 | no | no | |
-| spi.cs4 | - | Temp DB, pin 9 | no | no | |
-| spi.cs5 | 60 | Expansion header CS5 (pin 50) | no | no | Signal name: CS5 |
-| spi.cs6 | 61 | Expansion header E3_STOP (pin 9) | no | no | Signal name: CS6 |
-| spi.cs7 | 62 | Expansion header E4_STOP (pin 14) | no | no | Signal name: CS7 |
-| spi.cs8 | 63 | Expansion header E5_STOP (pin 19) | no | no | Signal name: CS8 |
-| connlcd.encb | - | CONN_LCD ENC_B (pin 3) | no | no | |
-| connlcd.enca | - | CONN_LCD ENC_A (pin 4) | no | no | |
-| connsd.encsw | 64 | CONN_SD ENC_SW (pin 7) | no | no | See notes below. Signal name: ENC_SW |
-| zprobe.in | - | Z PROBE header Z_PROBE_IN (pin 1) | no | no | |
-| zprobe.mod | 65 | Z PROBE header Z_PROBE_MOD (pin 3) | no | no | See notes below. Signal name: Z_PROBE_MOD |
-| sx1509b.[0-15] | 120-135 | SX1509B expansion I/O pins | yes | no | On an SX1509B-based expander board at I2C address 0x71 connected to a Duet 2 WiFi/Ethernet |
+| bedheat, e[0-1]heat | 0-2 | Heater connectors | output only | yes | no | Heaters 0-2 on Duet mainboard, VIN |
+| exp.heater[3-7] | 3-7 | Expansion header | output only | yes | yes | The outputs on the expansion connector are active low with 3.3V signal level. |
+| bedtemp, e[0-1]temp | - | Thermistor/PT1000 headers | input only | no | no | ADC inputs. Has extra latency caused by the RC smoothing circuit for thermistors |
+| e[2-6]temp | - | Expansion header thermistor[3-7] (pins 36-39) | input only | no | no | ADC inputs |
+| fan[0-2] | 20-22 | Fan connectors | output only | yes | no | Fans 0-2 on Duet mainboard, voltage selectable VIN/5V/external supply |
+| [x,y,z,e0,e1]stop| 40-44 | Endstop connectors | input only | no | no | Endstops on Duet mainboard |
+| exp.e[2-6]stop | 45-49 | Expansion header | yes | no | no | Additional endstop connections in the expansion connector. |
+| exp.pb6 | - | Expansion header PB6/TMS (pin 29) | yes | no | no | Dedicated in RRF 2.x to fan tacho |
+| spi.cs1 | - | Temp DB, pin 3 | yes | no | no | |
+| spi.cs2 | - | Temp DB, pin 1 | yes | no | no | |
+| spi.cs3 | - | Temp DB, pin 7 | yes | no | no | |
+| spi.cs4 | - | Temp DB, pin 9 | yes | no | no | |
+| spi.cs5 | 60 | Expansion header CS5 (pin 50) | yes | no | no | Signal name: CS5 |
+| spi.cs6 | 61 | Expansion header E3_STOP (pin 9) | yes | no | no | Signal name: CS6 |
+| spi.cs7 | 62 | Expansion header E4_STOP (pin 14) | yes | no | no | Signal name: CS7 |
+| spi.cs8 | 63 | Expansion header E5_STOP (pin 19) | yes | no | no | Signal name: CS8 |
+| connlcd.encb | - | CONN_LCD ENC_B (pin 3) | yes | no | no | |
+| connlcd.enca | - | CONN_LCD ENC_A (pin 4) | yes | no | no | |
+| connsd.encsw | 64 | CONN_SD ENC_SW (pin 7) | yes | no | no | See notes below. Signal name: ENC_SW |
+| urxd0	| - | PanelDue Dout | yes | no | no | Available for I/O if PanelDue not enabled |
+| utxd0 |	- | PanelDue Din | yes | no | no | Available for I/O if PanelDue not enabled |
+| pson | - | EXT 5V, PS_ON pin | output only | no | no | Open drain. Available if not controlling PSU |
+| zprobe.in | - | Z PROBE header Z_PROBE_IN (pin 1) | input only | no | no | ADC input |
+| zprobe.mod | 65 | Z PROBE header Z_PROBE_MOD (pin 3) | output only | no | no | See notes below. Signal name: Z_PROBE_MOD |
+| sx1509b.[0-15] | 120-135 | SX1509B expansion I/O pins | yes | yes | no | On an SX1509B-based expander board at I2C address 0x71 connected to a Duet 2 WiFi/Ethernet. See [Adding additional output ports](/User_manual/Connecting_hardware/IO_additional_IO) |
 
 **Notes:**
 * Logical pin numbers for RRF 2.x are not the physical pin numbers on the expansion header, or the internal pin numbering within the firmware.
@@ -364,7 +368,7 @@ See the Duet 2 WiFi and Ethernet wiring diagrams above for the expansion connect
 
 # PCB revision history
 
-The Duet 2 WiFi and Ethernet both use the same Duet 2 base controller board. The difference is only in the communications module. This base controller board has gone through a number of PCB design revisions. The revision number is marked on the silkscreen on the board, to the left of the large processor chip. The linked page has more  information on the [Version Numbering](https://docs.duet3d.com/en/Duet3D_hardware/Hardware_overview#version-numbering) system.
+The Duet 2 WiFi and Ethernet both use the same Duet 2 base controller board. The difference is only in the communications module. This base controller board has gone through a number of PCB design revisions. The revision number is marked on the silkscreen on the board, to the left of the large processor chip. The linked page has more  information on the [Version Numbering](/Duet3D_hardware/Hardware_overview#version-numbering) system.
 
 ## Tabs {.tabset}
 
@@ -388,15 +392,15 @@ Compared to PCB revision v1.03 the following changes have been implemented:
 * Changes to some layouts, and trace routing to further improve EMI performance.
 * On 1.04a and later the JTAG header is removed
 
-Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Duet2v1.04).
+Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Duet2v1.04){target=_blank}.
 
 Note: 1.04 Duet WiFi/Ethernet boards manufactured in June/July 2018 had the incorrect resistor value fitted at position R107 (10K instead of 100R). On these boards, the external reset pin on the expansion connector will not work. This can be remedied by soldering a 100R 0603 resistor on top of the existing one at position R107.
 
 ### PCB revision v1.03
 
 The feature diagram for PCB revision v1.03 and earlier is below
-
-![duet_2_we_v1.03_feature.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_v1.03_feature.png =400x)
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[Duet 2 v1.03 feature diagram](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_v1.03_feature.png){target=_blank}
 
 Compared to PCB revision v1.02  the following changes have been implemented:
 
@@ -404,7 +408,7 @@ Compared to PCB revision v1.02  the following changes have been implemented:
 * Each of the TMC2660s Stall Guard outputs is ORd together and fed to the MCU. This allows for quicker reaction to SG signals.
 * Minor routing changes
 
-Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/Duet2v1.03)
+Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/Duet2v1.03){target=_blank}
 
 ### PCB revision v1.02
 
@@ -415,7 +419,7 @@ Compared to PCB revision v1.01 it had the following changes:
 * Added flyback diodes to the PWM fan outputs to protect against non brushless DC fans/pumps.
 * Minor routing changes.
 
-Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/DuetWifiv1.02)
+Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/DuetWifiv1.02){target=_blank}
 
 ### PCB revision v1.01
 
@@ -425,7 +429,7 @@ Compared to PCB revision v1.0 it had the following changes:
 * The filter capacitors for the ADC inputs are connected to main ground, to better protect the MCU if the VSSA fuse blows
 * **Note:** (There is an error on v1.0 and v1.01 on the silkscreen where the E0-/E1- and VIN  are reversed - use the diagram above rather than the silkscreen. This is fixed in v1.02 boards)
 
-Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/DuetWifiv1.01)
+Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/DuetWifiv1.01){target=_blank}
 
 ### PCB revision v1.0
 
@@ -438,9 +442,9 @@ The first production version. Compared to the prototype it had the following cha
 * Minor routing changes.
 * **Note:** (There is an error on v1.0 and v1.01 on the silkscreen where the E0-/E1- and VIN  are reversed - use the diagram above rather than the silkscreen. This is fixed in v1.02 boards)
 
-Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/DuetWifiv1.0)
+Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/DuetWifiv1.0){target=_blank}
 
-### prototype (v0.10)
+### prototype (v0.2)
 
 This board is identifiable by the white solder-mask (all other boards are blue) it was made in a limited production run compared the version.
 
@@ -454,6 +458,6 @@ b) SD and LCD connectors reversed.
 
 c) endstop connectors reversed.
 
-**The following diagram is for white pre-production Duet WiFi boards only!**
-
-![duet_2_we_prototype_wiring.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_prototype_wiring.png =300x)
+> **The linked diagram is for white pre-production Duet WiFi boards only!** {.is-warning}
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[Duet 2 Wifi v0.2 prototype wiring](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_prototype_wiring.png){target=_blank}
