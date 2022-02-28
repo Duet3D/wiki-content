@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-02-25T13:27:51.196Z
+date: 2022-02-28T16:03:40.684Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4796,7 +4796,7 @@ After turning off command G1 instructions must send as many E values as the tool
 * **Snnn** Direction of movement of the motor(s) attached to this driver: 0 = backwards, 1 = forwards (default 1)
 * **Rnnn** Driver enable polarity: 0 = active low, 1 = active high, -1 = driver is always disabled and is not monitored (default 0)
 * **Tnnn** (firmware 1.14 and later) Minimum driver step pulse width and interval in microseconds
-* **Taa:bb:cc:dd** (firmware 1.21 and later) Minimum driver step pulse width, step pulse interval, direction setup time and direction hold time, in microseconds
+* **Taa:bb:cc:dd** (firmware 1.21 and later) Minimum driver step pulse width, step pulse interval, direction setup time and direction hold time, in microseconds (only applies to Duet 2, Duet 3 Mainboards and the Duet 3 Expansion 1XD)
 * **Dnn** (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160, TMC5160 and TMC5161 stepper drivers) Driver mode: 0=constant off time, 1=random off time, 2=spread cycle, 3=stealthChop or stealthChop2 (mode 3 for TMC22xx/TMC2160/TMC516x only), 4 = Closed Loop (only for [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL)). The default is spreadCycle for TMC2660, TMC2160 and TMC516x drivers, and stealthChop2 for TMC22xx. In stealthChop mode the drivers will switch over to spreadCycle automatically at high speeds, see the V parameter.
 * **Fnn** (firmware 2.02 and later) Off-time in the chopper control register, 1 to 15
 * **Cnnnn** (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160 and TMC516x stepper drivers) Lowest 17 bits of the chopper control register value.
