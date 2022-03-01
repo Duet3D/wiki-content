@@ -2,7 +2,7 @@
 title: Configuration Five Bar Parallel Scara Printer
 description: Explanation and setup of a five bar parallel scara printer.
 published: true
-date: 2022-03-01T06:35:57.337Z
+date: 2022-03-01T06:39:32.880Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-01T06:21:20.414Z
@@ -12,6 +12,10 @@ dateCreated: 2022-03-01T06:21:20.414Z
 This printer type uses two actuators to rotate the arms and one for Z movement. Parallel kinematics are told to have good precision.
 
 A 5 Bar SCARA has 5 bars: one between the actuators (mostly implicit by the frame), and two arms on each side left and right.
+
+> The documentation is currently moved from https://duet3d.dozuki.com/Guide/Five+Bar+Parallel+SCARA/24#s88 , for information which is still missing here please look into the old source.
+{.is-info}
+
 
 # Construction and Naming
 ![5barparallelscara.jpg](/5barparallelscara.jpg)
