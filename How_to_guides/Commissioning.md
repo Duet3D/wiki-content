@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: true
-date: 2022-02-28T11:55:35.780Z
+date: 2022-03-01T17:01:45.140Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -40,7 +40,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 > To get accurate temperatures, you must configure temperature sensing correctly for the type of temperature sensor you are using. The default values in the RepRapFirmware Configuration Tool are unlikely to be correct!
 {.is-warning}
 
-On the 'Control > Dashboard' page of DWC, in the Tools section, check the 'Current' temperature reading on each heater. Each heater is configured to be either a Tool, Bed or Chamber, eg "T0", "Bed". 
+[![dwc23_12_tool_states.png](/manual/dwc/dwc23_12_tool_states.png =50%x){.align-right}](/manual/dwc/dwc23_12_tool_states.png){target=_blank}On the 'Control > Dashboard' page of DWC, in the Tools section, check the 'Current' temperature reading on each heater. Each heater is configured to be either a Tool, Bed or Chamber, eg "T0", "Bed". 
 * It should be around room temperature if the heaters have not recently been on. 
 * It is OK if there's a few degrees of error as thermistor readings have better resolution at higher temperatures.
 * If you get a temperature reading of "-273°C", this indicates an open circuit, i.e. nothing is connected to the defined pins.
