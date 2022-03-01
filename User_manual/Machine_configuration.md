@@ -2,7 +2,7 @@
 title: User manual: Machine configuration
 description: 
 published: true
-date: 2022-03-01T06:18:31.830Z
+date: 2022-03-01T06:44:13.937Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:58:06.577Z
