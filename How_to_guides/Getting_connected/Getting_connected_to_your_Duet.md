@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-01T16:42:02.439Z
+date: 2022-03-01T16:43:22.807Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -197,6 +197,8 @@ If you get an error, *"Sorry, could not find a PTY."* unplug the USB, plug it ba
 {.is-info}
 
 ## Linux
+
+### Add user to dialout
 
 Most likely, the first thing you will need to do on a Linux installation is to add the user to the 'dialout' group, to allow permission to connect to the Duet. Do this by opening a Terminal window and sending `sudo adduser [your_username] dialout`. Following this, you will need to log out and back in, or possibly restart, to enable this.
 
