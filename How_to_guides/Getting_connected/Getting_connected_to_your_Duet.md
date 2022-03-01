@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-01T16:37:26.995Z
+date: 2022-03-01T16:42:02.439Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -115,14 +115,11 @@ If you have any problems with your Duet when using this guide, rather than posti
 * To check the Duet is recognised open Applications > Utilities > System Information, under Hardware > USB for a 'Duet' entry. 
 * For the Serial Port name, open Applications > Utilities > Terminal, then run `ls /dev/tty.*` The Duet uses a port with USB in the name, e.g. `/dev/tty.usbmodem1411`
 
-
+<p style="clear:both"></p>
 
 ### Linux
 
-**Linux** users have no drivers to install. 
-
-![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =50%x){.align-right}
-
+![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =50%x){.align-right}**Linux** users have no drivers to install. 
 * To check the Duet is recognised open a Terminal window and send lsusb, which should show an entry for the Duet. 
 * For the Serial Port name, send `ls /dev/tty*` which should show an entry `/dev/ttyACM[number]`. This is the port the Duet is using.
 
@@ -141,9 +138,9 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Install YAT
 
-We recommend downloading YAT. Other terminal emulation programs may work, eg PuTTY, but we've found YAT the most reliable. 
+![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}We recommend downloading YAT. Other terminal emulation programs may work, eg PuTTY, but we've found YAT the most reliable. 
 
-![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}[Download YAT here](https://sourceforge.net/projects/y-a-terminal/){target=_blank}. Install YAT using default options, then open it. If the "Terminal Settings" screen doesn't open automatically, select "Terminal" menu, then "Settings".
+[Download YAT here](https://sourceforge.net/projects/y-a-terminal/){target=_blank}. Install YAT using default options, then open it. If the "Terminal Settings" screen doesn't open automatically, select "Terminal" menu, then "Settings".
 
 <p style="clear:both"></p>
 
@@ -244,6 +241,7 @@ To check the Duet's firmware version, send command `M115` to the Duet board (see
 
 ![Windows YAT](/guides/getting_connected/04_check_firmware_01.jpg =50%x){.align-right}YAT (shown right)
 
+<p style="clear:both"></p>
 
 ### macOS
 
@@ -253,7 +251,7 @@ To check the Duet's firmware version, send command `M115` to the Duet board (see
 
 Copy `M115` and paste into terminal and then hit enter. You will see OK when a succesful command is received. Wait a few moments and the firmware version will be displayed.
 
-
+<p style="clear:both"></p>
 
 ### Linux
 
@@ -262,6 +260,8 @@ Copy `M115` and paste into terminal and then hit enter. You will see OK when a s
 ![Screen Linux](/guides/getting_connected/03_connect_to_duet_lin_03.png =50%x){.align-right}**Linux** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
 
 Copy `M115` and paste into terminal and then hit enter. You will see OK when a succesful command is received. Wait a few moments and the firmware version will be displayed.
+
+<p style="clear:both"></p>
 
 # 5 Connect Duet to Network
 
@@ -327,7 +327,6 @@ At this point your Duet should be on the WiFi network. To connect to the Duet We
 You can safely close Terminal at this point.
 {.is-info}
 
-
 ### Ethernet Duets
 
 > For **Duets with Ethernet**: Duet 3 Mainboard 6HC, Duet 3 Mini 5+ Ethernet, Duet 2 Ethernet, Duet Maestro.
@@ -352,6 +351,7 @@ Plug an ethernet cable into the Duet's ethernet port and connect the other end o
 
 In both cases, after 10-30 seconds the board should reply with Network running and the IP address the Duet is using. Send M552 to check the settings.
 
+<p style="clear:both"></p>
 
 > These network settings are temporary! They will be lost when you restart and will have to be re-entered. Step 7 will explain how to set it up permanently.
 {.is-warning}
