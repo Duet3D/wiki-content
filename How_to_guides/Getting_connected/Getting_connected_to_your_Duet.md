@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-01-21T23:59:43.824Z
+date: 2022-03-01T16:16:41.208Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -17,9 +17,9 @@ dateCreated: 2021-05-06T11:40:14.664Z
 **Difficulty:** Moderate
 **Time Required:** 10 to 15 minutes
 
-This guide covers getting a basic USB connection to your Duet, setting it up to be connected to your network, and connecting to the Duet Web Console using a browser. If you are setting up a **Duet 3** with connected **Single Board Computer** (SBC, eg Raspberry Pi), please see [SBC setup for Duet 3](https://duet3d.dozuki.com/Wiki/SBC_Setup_for_Duet_3) documentation.
+This guide covers getting a basic USB connection to your Duet, setting it up to be connected to your network, and connecting to the Duet Web Console using a browser. If you are setting up a **Duet 3** with connected **Single Board Computer** (SBC, eg Raspberry Pi), please see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank} documentation.
 
-If you have any problems with your Duet when using this guide, rather than posting comments, **please use our support forum: [https://forum.duet3d.com/](https://forum.duet3d.com/)**
+If you have any problems with your Duet when using this guide, rather than posting comments, **please use our support forum: [https://forum.duet3d.com/](https://forum.duet3d.com/){target=_blank}**
 
 # 1 Unboxing
 
@@ -102,9 +102,9 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 **Windows** users:
 
-![02_connect_via_usb_02.jpg](/guides/getting_connected/02_connect_usb_02.jpg =600x){.align-right} 
+![02_connect_via_usb_02.jpg](/guides/getting_connected/02_connect_usb_02.jpg =50%x){.align-right} 
 
-* Download the [USB drivers for Duet here](https://github.com/Duet3D/RepRapFirmware/blob/dev/Driver/WindowsDriverFiles.zip) and extract the files to a suitable location. 
+* Download the [USB drivers for Duet here](https://github.com/Duet3D/RepRapFirmware/blob/dev/Driver/WindowsDriverFiles.zip){target=_blank} and extract the files to a suitable location. 
 * To install drivers, open Device Manager by pressing Windows Key + R and type devmgmt.msc, or launch from the Start menu by typing "Device Manager". On Windows 10, you can right-click on the Start icon and click on "Device Manager".
 * Look for any devices with a yellow triangle, or for any "Generic USB" devices which would indicate that the Duet driver is not installed.
 * If a USB device does show the yellow triangle, or as a Generic USB device, right click on the device. Click Install Driver and browse to the location of the driver that was downloaded at the beginning of this step. Continue setup by clicking "Next" until the device driver has been installed.
@@ -116,7 +116,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 **macOS** users have no drivers to install. 
 
-![02_connect_via_usb_03.jpg](/guides/getting_connected/02_connect_usb_03.jpg =600x){.align-right} 
+![02_connect_via_usb_03.jpg](/guides/getting_connected/02_connect_usb_03.jpg =50%x){.align-right} 
 
 * To check the Duet is recognised open Applications > Utilities > System Information, under Hardware > USB for a 'Duet' entry. 
 * For the Serial Port name, open Applications > Utilities > Terminal, then run `ls /dev/tty.*` The Duet uses a port with USB in the name, e.g. `/dev/tty.usbmodem1411`
@@ -128,7 +128,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 **Linux** users have no drivers to install. 
 
-![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =600x){.align-right}
+![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =50%x){.align-right}
 
 * To check the Duet is recognised open a Terminal window and send lsusb, which should show an entry for the Duet. 
 * For the Serial Port name, send `ls /dev/tty*` which should show an entry `/dev/ttyACM[number]`. This is the port the Duet is using.
@@ -150,52 +150,48 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 We recommend downloading YAT. Other terminal emulation programs may work, eg PuTTY, but we've found YAT the most reliable. 
 
-![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =600x)
+![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}[Download YAT here](https://sourceforge.net/projects/y-a-terminal/){target=_blank}. Install YAT using default options, then open it. If the "Terminal Settings" screen doesn't open automatically, select "Terminal" menu, then "Settings".
 
-[Download YAT here](https://sourceforge.net/projects/y-a-terminal/). Install YAT using default options, then open it. If the "Terminal Settings" screen doesn't open automatically, select "Terminal" menu, then "Settings".
+<p style="clear:both"></p>
 
-> Some users have reported issues with YAT under Windows 8 not connecting properly. If YAT does not work, try [Pronterface](http://www.pronterface.com/) to confirm the computer can talk to the Duet
+> Some users have reported issues with YAT under Windows 8 not connecting properly. If YAT does not work, try [Pronterface](http://www.pronterface.com/){target=_blank} to confirm the computer can talk to the Duet
 {.is-info}
 
 ### Select the COM port
 
-Select the correct COM port as the Serial Port.
-
-![YAT](/guides/getting_connected/03_connect_to_duet_win_02.jpg =600x) 
+![YAT](/guides/getting_connected/03_connect_to_duet_win_02.jpg =50%x){.align-right}Select the correct COM port as the Serial Port. 
 
 If unsure of the COM port number, press **Windows Key + R** on your keyboard and type `devmgmt.msc`
 Your Duet will be listed under Ports (COM & LPT) as USB Serial Device (COM#) or similar. Use COM# as the Serial Port in YAT.
 
 ### YAT settings
 
-Set YAT to use \<LF> as the end of line character. This will improve the readability of the messages coming from the Duet. Click "Text Settings" in the "Terminal Settings" and change "EOL sequence:" to \<LF>. Click "OK" to close Text Settings. Click "OK" again to close Terminal Settings. 
 
-![YAT](/guides/getting_connected/03_connect_to_duet_win_03.jpg =600x)
-  
+![YAT](/guides/getting_connected/03_connect_to_duet_win_03.jpg =50%x){.align-right}Set YAT to use \<LF> as the end of line character. This will improve the readability of the messages coming from the Duet. Click "Text Settings" in the "Terminal Settings" and change "EOL sequence:" to \<LF>. Click "OK" to close Text Settings. Click "OK" again to close Terminal Settings. 
+
 ### Connect to Duet
 
-Select "Terminal" menu, then "Open/Start" to connect to your Duet. Or click the green tick in the tool bar. 
+![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}Select "Terminal" menu, then "Open/Start" to connect to your Duet. Or click the green tick in the tool bar.
+
+<p style="clear:both"></p>
 
 > If you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of *"WiFi reported error: no known networks found"* messages. Don't worry, that's normal, and it means that the Duet is working! 
 {.is-info}
 
-![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =600x) 
+
   
 ## macOS
 
 ### SerialTools
 
-We recommend using SerialTools from the AppStore. You can also connect to your Duet using the built-in 'screen' command.
-
-![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =600x)
+![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =50%x){.align-right}We recommend using SerialTools from the AppStore. You can also connect to your Duet using the built-in 'screen' command.
 
 Install SerialTools and run it. Select the Duet from the 'Serial Port' drop down; it will be named something like "usbmodem1411". Baud rate should be 115200, and Local Echo should be ticked. Click 'Connect' to connect.
 
 ### Screen
 
-It is also possible to use the built-in 'screen' terminal application. However, you cannot see the commands you type in, and the responses from the Duet are not formatted nicely on the screen. 
+![Screen Mac](/guides/getting_connected/03_connect_to_duet_mac_02.jpg =50%x){.align-right}![Screen Mac](/guides/getting_connected/03_connect_to_duet_mac_03.jpg =50%x){.align-right}It is also possible to use the built-in 'screen' terminal application. However, you cannot see the commands you type in, and the responses from the Duet are not formatted nicely on the screen. 
 
-![Screen Mac](/guides/getting_connected/03_connect_to_duet_mac_02.jpg =400x) ![Screen Mac](/guides/getting_connected/03_connect_to_duet_mac_03.jpg =400x)
 
 If you want to use 'screen', open Applications > Utilities > Terminal. Run `screen /dev/tty.usbmodem1411 115200`, replacing "usbmodem1411" with the Serial Port name for your Mac, if different (see Step 2).
 
@@ -249,7 +245,7 @@ To check the Duet's firmware version, send command `M115` to the Duet board (see
 
 ## Tabs {.tabset}
 
-> Once you know the firmware version your Duet is using, check for the latest version of the firmware in our [Github repository here](https://github.com/Duet3D/RepRapFirmware/releases). Use the 'Latest release', not any 'pre-release', 'beta' or 'RC' version until you are familiar with Duet.
+> Once you know the firmware version your Duet is using, check for the latest version of the firmware in our [Github repository here](https://github.com/Duet3D/RepRapFirmware/releases){target=_blank}. Use the 'Latest release', not any 'pre-release', 'beta' or 'RC' version until you are familiar with Duet.
 > If your Duet is using an old firmware version, we recommend upgrading. See [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware) documentation.
 {.is-info}
 
@@ -401,7 +397,7 @@ Open your browser and type the IP address assigned to the Duet, eg **192.168.1.9
 
 ![](/guides/getting_connected/06_dwc_01.jpg =600x) 
 
-You may also be able to access the Duet by typing `http://duettest.local/` into your address bar. This is the easiest way to connect to your Duet if you are using a dynamic IP address (via DHCP). See [this note about mDNS support](https://docs.duet3d.com/User_manual/Machine_configuration/Networking#a-note-about-mdns-local-network-discovery) if it doesn't work.
+You may also be able to access the Duet by typing `http://duettest.local/` into your address bar. This is the easiest way to connect to your Duet if you are using a dynamic IP address (via DHCP). See [this note about mDNS support](User_manual/Machine_configuration/Networking#a-note-about-mdns-local-network-discovery) if it doesn't work.
 
 ![](/guides/getting_connected/06_dwc_02.jpg =600x)
 
