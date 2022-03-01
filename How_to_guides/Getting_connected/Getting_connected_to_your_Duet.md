@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-01T16:47:39.407Z
+date: 2022-03-01T17:00:56.808Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -27,7 +27,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Duet 3 Mini 5+
 
-![duet_3_mini_5+_getting_started_03.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_getting_started_03.jpg =50%x){.align-right}
+[![duet_3_mini_5+_getting_started_03.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_getting_started_03.jpg =50%x){.align-right}](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_getting_started_03.jpg){target=_blank}
 
 * 1 x **Duet 3 Mini 5+** (WiFi or Ethernet)
 * 1 x Connector kit, including:
@@ -44,7 +44,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Duet 3 MB6HC
 
-![duet_3_mb6hc_getting_started_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg =50%x){.align-right}
+[![duet_3_mb6hc_getting_started_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg =50%x){.align-right}](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg){target=_blank}
 
 * 1 x **Duet 3 MB6HC**
 * 1 x Connector kit, including:
@@ -60,7 +60,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Duet 2 WiFi and Ethernet
 
-![01_unboxing.jpg](/guides/getting_connected/01_unboxing.jpg =50%x){.align-right}
+[![01_unboxing.jpg](/guides/getting_connected/01_unboxing.jpg =50%x){.align-right}](/guides/getting_connected/01_unboxing.jpg){target=_blank}
 
 * 1 x **Duet 2 WiFi / Ethernet**
 * 1 x Connector kit, including:
@@ -91,7 +91,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 {.is-info}
 
 ## Plug in USB lead
-![Duet 2 Wifi showing a USB lead connected](/guides/getting_connected/02_connect_usb_01.jpg =50%x){.align-right}
+[![Duet 2 Wifi showing a USB lead connected](/guides/getting_connected/02_connect_usb_01.jpg =50%x){.align-right}](/guides/getting_connected/02_connect_usb_01.jpg){target=_blank}
 
 * Connect the Duet to your PC with the USB cable provided. Do not connect other power supplies at this stage.
 
@@ -100,7 +100,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 ## {.tabset}
 ### Windows 
 
-![02_connect_via_usb_02.jpg](/guides/getting_connected/02_connect_usb_02.jpg =50%x){.align-right} **Windows** users:
+[![02_connect_via_usb_02.jpg](/guides/getting_connected/02_connect_usb_02.jpg =50%x){.align-right}](/guides/getting_connected/02_connect_usb_02.jpg){target=_blank}**Windows** users:
 * Download the [USB drivers for Duet here](https://github.com/Duet3D/RepRapFirmware/blob/dev/Driver/WindowsDriverFiles.zip){target=_blank} and extract the files to a suitable location. 
 * To install drivers, open Device Manager by pressing Windows Key + R and type devmgmt.msc, or launch from the Start menu by typing "Device Manager". On Windows 10, you can right-click on the Start icon and click on "Device Manager".
 * Look for any devices with a yellow triangle, or for any "Generic USB" devices which would indicate that the Duet driver is not installed.
@@ -111,7 +111,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### macOS
 
-![02_connect_via_usb_03.jpg](/guides/getting_connected/02_connect_usb_03.jpg =50%x){.align-right} **macOS** users have no drivers to install. 
+[![02_connect_via_usb_03.jpg](/guides/getting_connected/02_connect_usb_03.jpg =50%x){.align-right}](/guides/getting_connected/02_connect_usb_03.jpg){target=_blank}**macOS** users have no drivers to install. 
 * To check the Duet is recognised open Applications > Utilities > System Information, under Hardware > USB for a 'Duet' entry. 
 * For the Serial Port name, open Applications > Utilities > Terminal, then run `ls /dev/tty.*` The Duet uses a port with USB in the name, e.g. `/dev/tty.usbmodem1411`
 
@@ -119,7 +119,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Linux
 
-![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =50%x){.align-right}**Linux** users have no drivers to install. 
+[![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =50%x){.align-right}](/guides/getting_connected/02_connect_usb_04.png){target=_blank}**Linux** users have no drivers to install. 
 * To check the Duet is recognised open a Terminal window and send lsusb, which should show an entry for the Duet. 
 * For the Serial Port name, send `ls /dev/tty*` which should show an entry `/dev/ttyACM[number]`. This is the port the Duet is using.
 
@@ -138,7 +138,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Install YAT
 
-![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}We recommend downloading YAT. Other terminal emulation programs may work, eg PuTTY, but we've found YAT the most reliable. 
+[![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_01.jpg){target=_blank}We recommend downloading YAT. Other terminal emulation programs may work, eg PuTTY, but we've found YAT the most reliable. 
 
 [Download YAT here](https://sourceforge.net/projects/y-a-terminal/){target=_blank}. Install YAT using default options, then open it. If the "Terminal Settings" screen doesn't open automatically, select "Terminal" menu, then "Settings".
 
@@ -149,7 +149,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Select the COM port
 
-![YAT](/guides/getting_connected/03_connect_to_duet_win_02.jpg =50%x){.align-right}Select the correct COM port as the Serial Port. 
+[![YAT](/guides/getting_connected/03_connect_to_duet_win_02.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_02.jpg){target=_blank}Select the correct COM port as the Serial Port. 
 
 If unsure of the COM port number, press **Windows Key + R** on your keyboard and type `devmgmt.msc`
 Your Duet will be listed under Ports (COM & LPT) as USB Serial Device (COM#) or similar. Use COM# as the Serial Port in YAT.
@@ -157,30 +157,28 @@ Your Duet will be listed under Ports (COM & LPT) as USB Serial Device (COM#) or 
 ### YAT settings
 
 
-![YAT](/guides/getting_connected/03_connect_to_duet_win_03.jpg =50%x){.align-right}Set YAT to use \<LF> as the end of line character. This will improve the readability of the messages coming from the Duet. Click "Text Settings" in the "Terminal Settings" and change "EOL sequence:" to \<LF>. Click "OK" to close Text Settings. Click "OK" again to close Terminal Settings. 
+[![YAT](/guides/getting_connected/03_connect_to_duet_win_03.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_03.jpg){target=_blank}Set YAT to use \<LF> as the end of line character. This will improve the readability of the messages coming from the Duet. Click "Text Settings" in the "Terminal Settings" and change "EOL sequence:" to \<LF>. Click "OK" to close Text Settings. Click "OK" again to close Terminal Settings. 
 
 ### Connect to Duet
 
-![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}Select "Terminal" menu, then "Open/Start" to connect to your Duet. Or click the green tick in the tool bar.
+[![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_01.jpg){target=_blank}Select "Terminal" menu, then "Open/Start" to connect to your Duet. Or click the green tick in the tool bar.
 
 <p style="clear:both"></p>
 
 > If you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of *"WiFi reported error: no known networks found"* messages. Don't worry, that's normal, and it means that the Duet is working! 
 {.is-info}
 
-
-  
 ## macOS
 
 ### SerialTools
 
-![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =50%x){.align-right}We recommend using SerialTools from the AppStore. You can also connect to your Duet using the built-in 'screen' command.
+[![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_mac_01.jpg){target=_blank}We recommend using SerialTools from the AppStore. You can also connect to your Duet using the built-in 'screen' command.
 
 Install SerialTools and run it. Select the Duet from the 'Serial Port' drop down; it will be named something like "usbmodem1411". Baud rate should be 115200, and Local Echo should be ticked. Click 'Connect' to connect.
 
 ### Screen
 
-![Screen Mac](/guides/getting_connected/03_connect_to_duet_mac_02.jpg =50%x){.align-right}![Screen Mac](/guides/getting_connected/03_connect_to_duet_mac_03.jpg =50%x){.align-right}It is also possible to use the built-in 'screen' terminal application. However, you cannot see the commands you type in, and the responses from the Duet are not formatted nicely on the screen. 
+[![Screen Mac](/guides/getting_connected/03_connect_to_duet_mac_02.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_mac_02.jpg){target=_blank}[![Screen Mac](/guides/getting_connected/03_connect_to_duet_mac_03.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_mac_03.jpg){target=_blank}It is also possible to use the built-in 'screen' terminal application. However, you cannot see the commands you type in, and the responses from the Duet are not formatted nicely on the screen. 
 
 If you want to use 'screen', open Applications > Utilities > Terminal. Run `screen /dev/tty.usbmodem1411 115200`, replacing "usbmodem1411" with the Serial Port name for your Mac, if different (see Step 2).
 
@@ -204,20 +202,19 @@ Most likely, the first thing you will need to do on a Linux installation is to a
 
 ### CuteCom
 
-![Cutecom](/guides/getting_connected/03_connect_to_duet_lin_01.jpg =50%x){.align-right}There are many options to connect using Linux. Our favourite is to use CuteCom, which is a GUI serial terminal.
+[![Cutecom](/guides/getting_connected/03_connect_to_duet_lin_01.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_lin_01.jpg){target=_blank}There are many options to connect using Linux. Our favourite is to use CuteCom, which is a GUI serial terminal.
 
 It's available in most package repositories, or install with `sudo apt install cutecom`. It should automatically detect the correct port (usually /dev/ttyACM0), and is configured correctly out of the box. Click 'Open' to connect.
 
 ### Minicom
 
-![Minicom](/guides/getting_connected/03_connect_to_duet_lin_02.png =50%x){.align-right}Alternatively, you can use a text-based serial terminal application such as Minicom. Install with `sudo apt install minicom`, and run from a Terminal window with `minicom -s`, which starts it in setup mode. Select 'Serial port setup', then 'A', and change the port to '/dev/ttyACM0' (or the port name from step 2). Press return twice, then 'Exit'. The terminal will start. 
+[![Minicom](/guides/getting_connected/03_connect_to_duet_lin_02.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_lin_02.png){target=_blank}Alternatively, you can use a text-based serial terminal application such as Minicom. Install with `sudo apt install minicom`, and run from a Terminal window with `minicom -s`, which starts it in setup mode. Select 'Serial port setup', then 'A', and change the port to '/dev/ttyACM0' (or the port name from step 2). Press return twice, then 'Exit'. The terminal will start. 
 
 Press CTRL-A then W for linewrap, CTRL-A then U for CR at end of line, and CTRL-A then E for local echo. CTRL-A then X quits Minicom, releasing the port.
 
 ### Screen
 
-![Screen Linux](/guides/getting_connected/03_connect_to_duet_lin_03.png =50%x){.align-right}
-Finally, you can use the built-in 'screen' terminal. However, you cannot see the commands you type in, and the responses from the Duet are not formatted nicely on the screen. If you want to use 'screen', do this:
+[![Screen Linux](/guides/getting_connected/03_connect_to_duet_lin_03.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_lin_03.png){target=_blank}Finally, you can use the built-in 'screen' terminal. However, you cannot see the commands you type in, and the responses from the Duet are not formatted nicely on the screen. If you want to use 'screen', do this:
 
 Run `screen /dev/ttyACM0 115200`. (Replace "ttyACM0" with the port name if it's different.) You should see a blank screen, but see note on Duets with WiFi below.
 
@@ -243,7 +240,7 @@ To check the Duet's firmware version, send command `M115` to the Duet board (see
 
 #### YAT
 
-![Windows YAT](/guides/getting_connected/04_check_firmware_01.jpg =50%x){.align-right}
+[![Windows YAT](/guides/getting_connected/04_check_firmware_01.jpg =50%x){.align-right}](/guides/getting_connected/04_check_firmware_01.jpg){target=_blank}
 
 <p style="clear:both"></p>
 
@@ -251,11 +248,11 @@ To check the Duet's firmware version, send command `M115` to the Duet board (see
 
 #### SerialTools
 
-![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =50%x){.align-right}
+[![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_mac_01.jpg){target=_blank}
 
 #### Screen
 
-![Screen](/guides/getting_connected/04_check_firmware_03.jpg =50%x){.align-right}**macOS** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
+[![Screen](/guides/getting_connected/04_check_firmware_03.jpg =50%x){.align-right}](/guides/getting_connected/04_check_firmware_03.jpg){target=_blank}**macOS** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
 
 Copy `M115` and paste into terminal and then hit enter. You will see OK when a succesful command is received. Wait a few moments and the firmware version will be displayed.
 
@@ -265,11 +262,11 @@ Copy `M115` and paste into terminal and then hit enter. You will see OK when a s
 
 #### CuteCom
 
-![](/guides/getting_connected/04_check_firmware_02.jpg =50%x){.align-right}CuteCom (shown right)
+[![](/guides/getting_connected/04_check_firmware_02.jpg =50%x){.align-right}](/guides/getting_connected/04_check_firmware_02.jpg){target=_blank}
 
 #### Screen
 
-![Screen Linux](/guides/getting_connected/03_connect_to_duet_lin_03.png =50%x){.align-right}**Linux** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
+[![Screen Linux](/guides/getting_connected/03_connect_to_duet_lin_03.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_lin_03.png){target=_blank}**Linux** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
 
 Copy `M115` and paste into terminal and then hit enter. You will see OK when a succesful command is received. Wait a few moments and the firmware version will be displayed.
 
