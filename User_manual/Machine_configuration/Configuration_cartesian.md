@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Cartesian printer
 description: This page describes how to set up the configuration files for Cartesian printers, and forms the basis for setting up all printer types. However, the same firmware binary also supports Delta, CoreXY and other printers kinematics.
 published: true
-date: 2022-02-25T22:52:21.260Z
+date: 2022-03-01T07:05:35.502Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-16T20:09:06.405Z
@@ -34,6 +34,7 @@ For the changes you need to make for other types of machine, see:
 [Configuring RepRapFirmware for a Polar printer](/User_manual/Machine_configuration/Configuration_Polar)
 [Configuring RepRapFirmware for a Rotary Delta](/User_manual/Machine_configuration/Configuration_rotary_delta)
 [Configuring RepRapFirmware for a Serial SCARA printer](/User_manual/Machine_configuration/Configuration_SCARA)
+[Configuring RepRapFirmware for a 5 bar parallel scara](/User_manual/Machine_configuration/Configuration_five_bar_parallel_scara)
 [Configuring RepRapFirmware for a CNC machine](/User_manual/Machine_configuration/Configuration_CNC)
 [Configuring RepRapFirmware for a Laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser)
 [Configuring RepRapFirmware for OpenPnP](/User_manual/Machine_configuration/Configuration_OpenPnP)
