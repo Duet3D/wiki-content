@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-01T16:43:22.807Z
+date: 2022-03-01T16:47:39.407Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -241,13 +241,19 @@ To check the Duet's firmware version, send command `M115` to the Duet board (see
 
 ### Windows
 
-![Windows YAT](/guides/getting_connected/04_check_firmware_01.jpg =50%x){.align-right}YAT (shown right)
+#### YAT
+
+![Windows YAT](/guides/getting_connected/04_check_firmware_01.jpg =50%x){.align-right}
 
 <p style="clear:both"></p>
 
 ### macOS
 
-![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =50%x){.align-right}SerialTools (shown right)
+#### SerialTools
+
+![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =50%x){.align-right}
+
+#### Screen
 
 ![Screen](/guides/getting_connected/04_check_firmware_03.jpg =50%x){.align-right}**macOS** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
 
@@ -257,7 +263,11 @@ Copy `M115` and paste into terminal and then hit enter. You will see OK when a s
 
 ### Linux
 
+#### CuteCom
+
 ![](/guides/getting_connected/04_check_firmware_02.jpg =50%x){.align-right}CuteCom (shown right)
+
+#### Screen
 
 ![Screen Linux](/guides/getting_connected/03_connect_to_duet_lin_03.png =50%x){.align-right}**Linux** users using 'screen': You will not see characters appear on the screen as you type. For this reason, it is easiest to copy and paste the commands to ensure correct syntax.
 
