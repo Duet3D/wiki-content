@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-01T17:00:56.808Z
+date: 2022-03-02T14:16:39.302Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -21,7 +21,7 @@ This guide covers getting a basic USB connection to your Duet, setting it up to 
 
 If you have any problems with your Duet when using this guide, rather than posting comments, **please use our support forum: [https://forum.duet3d.com/](https://forum.duet3d.com/){target=_blank}**
 
-# 1 Unboxing
+# 1. Unboxing
 
 ## Tabs {.tabset}
 
@@ -85,7 +85,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 * 3 ft. USB Cable
 * 1 x micro SD Card
 
-# 2 Connect your Duet via USB
+# 2. Connect your Duet via USB
 
 > This guide applies to all **Duet 2 Wifi / Ethernet / Maestro** boards, and **Duet 3** boards running in standalone mode (no connected Raspberry Pi). The picture of the board may be different from yours.
 {.is-info}
@@ -125,7 +125,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 <p style="clear:both"></p>
 
-# 3 Connect to Duet
+# 3. Connect to Duet
 
 > To set up the network connection on the Duet, we must use a terminal emulation program to talk to the Duet via the USB cable.
 {.is-info}
@@ -223,7 +223,7 @@ Run `screen /dev/ttyACM0 115200`. (Replace "ttyACM0" with the port name if it's 
 > No matter which connection method you use, if you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of "WiFi reported error: no known networks found" messages. Don't worry, that's normal, and it means that the Duet is working!
 {.is-info}
 
-# 4 Check your Firmware Version
+# 4. Check your Firmware Version
 By this point, your computer should be connected and talking to your Duet. You may have received a number of messages from the Duet already; it's generally safe to ignore these for now. The Duet uses 'GCodes' to communicate and for all configuration. See the [GCode dictionary here](/User_manual/Reference/Gcodes) for a description and full list.
 
 If you have a **Duet 2 Wifi** or **Duet 3 Mini 5+ WiFi**, you may find you are getting a lot of messages like *"WiFi reported error: no known networks found"*. The default configuration turns on the WiFi, but it is not finding a network to connect to. To stop the WiFi, send `M552 S-1` (see [M552](/User_manual/Reference/Gcodes/M552) in the GCode dictionary).
@@ -272,7 +272,7 @@ Copy `M115` and paste into terminal and then hit enter. You will see OK when a s
 
 <p style="clear:both"></p>
 
-# 5 Connect Duet to Network
+# 5. Connect Duet to Network
 
 ## {.tabset}
 
@@ -287,17 +287,17 @@ Your Duet WiFi will either have a blue LED on the WiFi module, or a green LED ne
 
 #### Set WiFi to idle mode
 
-![YAT](/guides/getting_connected/05_network_01.jpg =50%x){.align-right}![YAT](/guides/getting_connected/05_network_02.jpg =50%x){.align-right}If you didn't turn off WiFi in Step 4, you may find you are getting a lot of messages like *"WiFi reported error: no known networks found"*. The default configuration turns on the WiFi, but it is not finding a known network to connect to. The GCode command [M552](/User_manual/Reference/Gcodes/M552) controls the network interface.
+[![YAT](/guides/getting_connected/05_network_01.jpg =50%x){.align-right}](/guides/getting_connected/05_network_01.jpg){target=_blank}[![YAT](/guides/getting_connected/05_network_02.jpg =50%x){.align-right}](/guides/getting_connected/05_network_02.jpg){target=_blank}If you didn't turn off WiFi in Step 4, you may find you are getting a lot of messages like *"WiFi reported error: no known networks found"*. The default configuration turns on the WiFi, but it is not finding a known network to connect to. The GCode command [M552](/User_manual/Reference/Gcodes/M552) controls the network interface.
 * To stop the WiFi, send `M552 S-1`. 
 * Send `M552` to check the status. It should say *"WiFi module is disabled"*. 
 * Now put it into idle mode by sending command `M552 S0`. The response should be *"WiFi module is started"*. 
 * Send `M552` again, and the Duet should reply with *"WiFi module is idle"*.
 
-![Screen](/guides/getting_connected/05_network_03.jpg =50%x){.align-right}**macOS** and **Linux** users using 'screen': send the same commands as above, you just won't be able to see what you have sent.
+[![Screen](/guides/getting_connected/05_network_03.jpg =50%x){.align-right}](/guides/getting_connected/05_network_03.jpg){target=_blank}**macOS** and **Linux** users using 'screen': send the same commands as above, you just won't be able to see what you have sent.
 
 #### Configure network SSID and password
 
-![YAT M587](/guides/getting_connected/05_network_04.jpg =50%x){.align-right}The [**M587**](/User_manual/Reference/Gcodes/M587) GCode command stores the network SSID and password, so the Duet can connect to it each time it is turned on. 
+[![YAT M587](/guides/getting_connected/05_network_04.jpg =50%x){.align-right}](/guides/getting_connected/05_network_04.jpg){target=_blank}The [**M587**](/User_manual/Reference/Gcodes/M587) GCode command stores the network SSID and password, so the Duet can connect to it each time it is turned on. 
 
 Use the **M587** as shown below. Substitute the SSID and WiFi password for those of your network. Enter the exact characters of your network SSID and password, in the correct case. The simple double quote characters (not curly quotes) are needed. Once you press enter, wait for the 'ok' response.
 
@@ -317,7 +317,7 @@ For workarounds, see the note in the Gcode dictionary entry for [M587](/User_man
 
 #### Enable networking
 
-![](/guides/getting_connected/05_network_05.jpg =50%x){.align-right}![](/guides/getting_connected/05_network_06.jpg =50%x){.align-right}Send command `M552 S1` to connect to WiFi. After a moment, the Duet will confirm the connection and the IP address of the Duet controller. The blue LED on the WiFi module will flash as it connects, then should be on constantly once connected.
+[![/guides/getting_connected/05_network_05.jpg](/guides/getting_connected/05_network_05.jpg =50%x){.align-right}](/guides/getting_connected/05_network_05.jpg){target=_blank}[![/guides/getting_connected/05_network_06.jpg](/guides/getting_connected/05_network_06.jpg =50%x){.align-right}](/guides/getting_connected/05_network_06.jpg){target=_blank}Send command `M552 S1` to connect to WiFi. After a moment, the Duet will confirm the connection and the IP address of the Duet controller. The blue LED on the WiFi module will flash as it connects, then should be on constantly once connected.
 
 **macOS** and **Linux** users using 'screen': send the same commands as above, you just won't be able to see what you have sent.
 
@@ -354,7 +354,7 @@ Plug an ethernet cable into the Duet's ethernet port and connect the other end o
 > The Duet may come with a factory-configured fixed IP address for testing. This is unlikely to work for your setup!
 {.is-warning}
 
-![](/guides/getting_connected/05_network_07.jpg =50%x){.align-right}So you need to change the network settings. There are two options:
+[![](/guides/getting_connected/05_network_07.jpg =50%x){.align-right}](/guides/getting_connected/05_network_07.jpg){target=_blank}So you need to change the network settings. There are two options:
 * **DHCP**: Most home routers are setup to assign IP addresses by DHCP. Send `M552 S0` to disable networking, then `M552 S1 P0.0.0.0` to enable networking and have your router assign an IP address.
 * **Fixed Address**: You can set the Duet to use a fixed IP address. Note that if you use a fixed address, care should be taken that it does not conflict with other devices on the network. Send `M552 S0` to disable networking, then `M552 S1 Px.x.x.x` to enable networking, where "x.x.x.x" is the IP address you want to use, eg 192.168.1.15.
 
@@ -370,12 +370,12 @@ In both cases, after 10-30 seconds the board should reply with Network running a
 You can safely close Terminal at this point.
 {.is-info}
 
-# 6 Check Access to Duet Web Control
+# 6. Check Access to Duet Web Control
 
 > Duet Web Control (also known as DWC) is the user interface used over a network connection in a browser to configure and control a Duet. The manual for the use of the DWC is here: [Duet Web Control Manual](/User_manual/Reference/Duet_Web_Control_Manual)
 {.is-info}
 
-![](/guides/getting_connected/06_dwc_01.jpg =50%x){.align-right}![](/guides/getting_connected/06_dwc_02.jpg =50%x){.align-right}Open your browser and type the IP address assigned to the Duet, eg **192.168.1.90**
+[![](/guides/getting_connected/06_dwc_01.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_01.jpg){target=_blank}[![](/guides/getting_connected/06_dwc_02.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_02.jpg){target=_blank}Open your browser and type the IP address assigned to the Duet, eg **192.168.1.90**
 
 You may also be able to access the Duet by typing `http://duettest.local/` into your address bar. This is the easiest way to connect to your Duet if you are using a dynamic IP address (via DHCP). See [this note about mDNS support](User_manual/Machine_configuration/Networking#a-note-about-mdns-local-network-discovery) if it doesn't work.
 
@@ -386,14 +386,14 @@ You should now see the main control page for the Duet!
 > Your Duet may have shipped with older firmware and DWC version. We recommend updating to the latest available version as soon as possible. A screenshot of DWC v1 is below.
 {.is-info}
 
-![](/guides/getting_connected/06_dwc_03.jpg =50%x){.align-right}
+[![](/guides/getting_connected/06_dwc_03.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_03.jpg){target=_blank}
 
-# 7 Ensure Future Connectivity
+# 7. Ensure Future Connectivity
 
 > We need to be sure the networking is configured properly for the future.
 {.is-info}
 
-![](/guides/getting_connected/07_config_01.jpg =50%x){.align-right}![](/guides/getting_connected/07_config_02.jpg =50%x){.align-right}![](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}Navigate to **config.g** (which is the Duet configuration file) by clicking:
+[![](/guides/getting_connected/07_config_01.jpg =50%x){.align-right}](/guides/getting_connected/07_config_01.jpg){target=_blank}[![](/guides/getting_connected/07_config_02.jpg =50%x){.align-right}](/guides/getting_connected/07_config_02.jpg){target=_blank}[![](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}Navigate to **config.g** (which is the Duet configuration file) by clicking:
 * System > config.g
 * In the older version of DWC, click Settings > System Editor > config.g
 
@@ -420,7 +420,7 @@ If you need to assign a **static IP address**, use M587 with the I parameter whe
 > For **Duets with Ethernet**: Duet 3 Mainboard 6HC, Duet 3 Mini 5+ Ethernet, Duet 2 Ethernet, Duet Maestro.
 {.is-info}
 
-![](/guides/getting_connected/07_config_04.jpg =50%x){.align-right}These Ethernet-enabled Duets come with a factory-configured fixed IP address for testing. In the last few steps you set up network access temporarily. For these Duets you now need to change the config.g so you can access the Duet Web Console (DWC) following a power cycle.
+[![](/guides/getting_connected/07_config_04.jpg =50%x){.align-right}](/guides/getting_connected/07_config_04.jpg){target=_blank}These Ethernet-enabled Duets come with a factory-configured fixed IP address for testing. In the last few steps you set up network access temporarily. For these Duets you now need to change the config.g so you can access the Duet Web Console (DWC) following a power cycle.
 
 
 #### For DHCP
