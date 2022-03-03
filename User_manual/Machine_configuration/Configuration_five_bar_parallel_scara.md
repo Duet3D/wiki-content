@@ -2,7 +2,7 @@
 title: Configuration Five Bar Parallel Scara Printer
 description: Explanation and setup of a five bar parallel scara printer.
 published: true
-date: 2022-03-03T09:18:14.555Z
+date: 2022-03-03T09:19:58.779Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-01T06:21:20.414Z
@@ -150,9 +150,7 @@ The two actuator axes are at the same x,y position. This can be achieved by step
 
 If the arms lengths are same, calculation is easy: the arms form a rhombus. The kinematics can be calculated by the middle angle and radius, see image.
 
-Instead of two turning steppers, the Scara could be built with a turning stepper and a linear actuator which changes the radius. (todo: how can M669 be defined?)
-
-This build allows exact G2/G3 circles.
+Instead of two turning steppers, the Scara could be built with a turning stepper and a linear actuator which changes the radius.
 # Working modes technically explained
 
 ![5barparscara_workmodedetail1_small.jpg](/5barparscara_workmodedetail1_small.jpg)
