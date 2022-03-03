@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: Currently for 4 to 6 axis robots
 published: true
-date: 2022-03-03T14:00:08.872Z
+date: 2022-03-03T14:15:02.923Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -49,17 +49,18 @@ alpha, which is the X axis rotation and is as high as the Z and former Z angle d
 theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
 d offset in Z direction
 home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
-Example: M669 K14 A1:1:200:0:-90:0:0:-90:90
 
-axis1's parameters
-1 is rotational
-200 is arm length (Z axis distance)
-0 alpha=0, so no rotation around the X axis
--90 theta correction (e.g. axis2 0 degree will be vertical instead of horizontal)
-0 d, displacement in Z axis direction is 0
-0 theta angle set when homing the axis
--90 minimun theta angle
-90 maximum theta angle
+**Example**: M669 K14 A1:1:200:0:-90:0:0:-90:90
+
+axis1's parameters:
+* 1 means axis is rotational
+* 200 is arm length (Z axis distance)
+* 0 alpha=0, so no rotation around the X axis
+* -90 theta correction (e.g. axis2 0 degree will be vertical instead of horizontal)
+* 0 d, displacement in Z axis direction is 0
+* 0 theta angle set when homing the axis
+* -90 minimun theta angle
+* 90 maximum theta angle
 
 **Bn[:S]** defines the calculation strategy
 
