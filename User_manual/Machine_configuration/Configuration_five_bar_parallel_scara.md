@@ -2,7 +2,7 @@
 title: Configuration Five Bar Parallel Scara Printer
 description: Explanation and setup of a five bar parallel scara printer.
 published: true
-date: 2022-03-03T09:27:54.123Z
+date: 2022-03-03T13:29:20.231Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-01T06:21:20.414Z
@@ -14,7 +14,7 @@ This printer type uses two rotational actuators to rotate the arms and one linea
 The name 5 bar origins from one bar between the actuators (mostly implicit by the frame) and two arms each left and right.
 
 # Construction and Naming
-![5barparallelscara.jpg](/5barparallelscara.jpg)
+![5barparscara_main.jpg](/manual/configuration/5barparscara_main.jpg)
 
 The names of the image are used in this documentation and in the firmware.
 
@@ -31,7 +31,7 @@ constr is a constraint angle: if the angle is too flat, the SCARA cannot be move
 x0,y0 is the hotend point, xL,yL and xR,yR the left and right hinges.
 
 # Working Modes
-![5barparscara_workingmode.jpg](/5barparscara_workingmode.jpg)
+![5barparscara_workingmode.jpg](/manual/configuration/5barparscara_workingmode.jpg)
 
 A point x0, y0 can be accessed with up to 4 different constellations for the proximal and distal arms. Every arm pair proximal + distal can be bent "inside" and "outside". The 4 possibilities are called working modes. The printer has to stay in one working mode. Supported modes are 1, 2 and 4, default being 1.
 
@@ -42,7 +42,7 @@ Care must be taken to avoid areas called singularity, which are unprintable area
 The print area can be tested in GeoGebra: [EUurHEUE](https://www.geogebra.org/m/EUurHEUE) (untested and no warranty)
 
 The print area depends on the arms lengths, the distance between the Actuators and the constraints. Roughly, the print area looks like this (mode 4 is mirrored to mode 1 by y axis):
-![5barparscara_area.jpg](/5barparscara_area.jpg)
+![5barparscara_area.jpg](/manual/configuration/5barparscara_area.jpg)
 
 # M669 configuration
 
@@ -122,7 +122,7 @@ The x and y position differences of the two proximal arms must be measured from 
 
 # Cantilevered arm 1
 
-![5barparscara_cantilevered1.jpg](/5barparscara_cantilevered1.jpg)
+![5barparscara_cantilevered1.jpg](/manual/configuration/5barparscara_cantilevered1.jpg)
 If the top joint shall not contain the hotend, a cantilevered construction can be used.
 
 cantL is the prolongation of the left distal arm. Length is from middle joint to middle hotend.
@@ -131,7 +131,7 @@ M669 D is changed to Dnnn:mmm:ppp:0. ppp is set to cantL, qqq must be 0. Example
 
 # Cantilevered arm 2
 
-![5barparscara_cantilevered2.jpg](/5barparscara_cantilevered2.jpg)
+![5barparscara_cantilevered2.jpg](/manual/configuration/5barparscara_cantilevered2.jpg)
 In the second cantilevered configuration, the right distal is prolongued by cantR.
 
 Syntax of M669 is Dnnn:mmm:0:qqq, where qqq is the cantR length.
@@ -143,7 +143,7 @@ Placing hotends inside the distal arm maybe possible (by setting a negative cant
 
 # Proximal distance 0
 
-![5barparscara_proximal0.jpg](/5barparscara_proximal0.jpg)
+![5barparscara_proximal0.jpg](/manual/configuration/5barparscara_proximal0.jpg)
 A Scara can be built setting proximalDistance to 0.
 
 The two actuator axes are at the same x,y position. This can be achieved by stepper bottom-up and top-down, or by harmonic drives (using the hole in one drive to put through the other axis), or other means.
@@ -153,14 +153,14 @@ If the arms lengths are same, calculation is easy: the arms form a rhombus. The 
 Instead of two turning steppers, the Scara could be built with a turning stepper and a linear actuator which changes the radius.
 # Working modes technically explained
 
-![5barparscara_workmodedetail1_small.jpg](/5barparscara_workmodedetail1_small.jpg)
+![5barparscara_workmodedetail1_small.jpg](/manual/configuration/5barparscara_workmodedetail1_small.jpg)
 Image 1: If red is one of the XY actuators (stepper axis) and black the hotend, then the proximal and distal arm can be in the blue or green position. The same is true for the other actuator. Together there are 4 possibilities. Those are the 4 working modes.
 
 Actuator 1 using green and actuator 2 using green also is working mode 1 e.g.
 
 If calculating the inverse kinematics, i. e. calculating from the hotend position back to the actuators, the firmware has to know which of the 4 possibilities to take. The user tells the firmware with the M669 L1, L2, L3 or L4 parameter the working mode.
 
-![5barparscara_workmodedetail2_small.jpg](/5barparscara_workmodedetail2_small.jpg)
+![5barparscara_workmodedetail2_small.jpg](/manual/configuration/5barparscara_workmodedetail2_small.jpg)
 Image 2: changing working modes is only possible when the proximal + distal arms of an actuator are in line. *)Then an actuator rotation counterclockwise selects the blue mode, clockwise the green. The points of this situation is called singularity type 2 and is the print area limit also.
 
 *) Being in line can also be, if the distal arm is 180 degree opposite direction to the proximal arm. It looks a bit strange.
