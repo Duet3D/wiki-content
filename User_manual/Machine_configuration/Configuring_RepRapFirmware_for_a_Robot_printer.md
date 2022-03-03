@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: Currently for 4 to 6 axis robots
 published: true
-date: 2022-03-03T13:57:27.357Z
+date: 2022-03-03T14:00:08.872Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -10,6 +10,9 @@ dateCreated: 2022-03-03T13:05:06.424Z
 
 # Configuring a Robot printer
 Following is a description how to setup a 6 axis robot for 3D printing. Removing the 4th and 3rd axis are optionally supported to allow setup of robots with less actuators. The RepRapFirmware firmware is in development, binaries for testing will be provided.
+The robot is dicussed in the Duet forum at:
+https://forum.duet3d.com/topic/17421/robotic-kinematics/285
+
 # Construction
 ![robot_main.jpg](/manual/configuration/robot_main.jpg)
 The firmware can be configured to run a typical industrial 6 axis robot with 6 rotational axes, but other types with mixed rotational and prismatic axes as well, e. g. Stanford manipulator. Robots with more or less than 6 axes will be possible also.
