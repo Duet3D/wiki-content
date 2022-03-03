@@ -2,7 +2,7 @@
 title: Configuration Five Bar Parallel Scara Printer
 description: Explanation and setup of a five bar parallel scara printer.
 published: true
-date: 2022-03-03T09:05:46.642Z
+date: 2022-03-03T09:08:26.055Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-01T06:21:20.414Z
@@ -43,7 +43,7 @@ Care must be taken to avoid areas called singularity, which are unprintable area
 
 # Print area, depending on working mode
 
-The print area can be tested in https://www.geogebra.org/m/EUurHEUE
+The print area can be tested in GeoGebra: [EUurHEUE](/https://www.geogebra.org/m/EUurHEUE)
 
 The print area depends on the arms lengths, the distance between the Actuators and the constraints.
 
