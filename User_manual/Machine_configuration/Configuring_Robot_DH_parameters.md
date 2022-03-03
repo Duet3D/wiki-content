@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-03-03T14:41:07.769Z
+date: 2022-03-03T14:41:42.814Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -13,7 +13,7 @@ Denavit-Hartenberg (DH) are often used in robotics to describe the configuration
 # Introduction
 Denavit-Hartenberg is shortened to DH in the following document. RPY is shortened for roll-pitch-yaw, J stands for Jacobian matrix, the 4 DH parameters are called theta, d, alpha and a. DOF stands for degrees of freedom.
 
-The following images are based on video https://www.youtube.com/watch?v=nwj0xR21ldo
+The following images are based on video (https://www.youtube.com/watch?v=nwj0xR21ldo)
 The following 6 axis robot is used to explain the DH parameters:
 ![robot_main.jpg](/manual/configuration/robot_main.jpg)
 
