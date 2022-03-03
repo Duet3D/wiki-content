@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for you machine
 description: 
 published: true
-date: 2022-02-21T15:19:35.128Z
+date: 2022-03-03T13:10:09.253Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:25:14.342Z
@@ -46,6 +46,8 @@ A full explanation of the configuration files that the configuration tool produc
 [Configuring RepRapFirmware for a **Polar** printer](/User_manual/Machine_configuration/Configuration_Polar)
 [Configuring RepRapFirmware for a **Rotary Delta** printer](/User_manual/Machine_configuration/Configuration_rotary_delta)
 [Configuring RepRapFirmware for a **Serial SCARA** printer](/User_manual/Machine_configuration/Configuration_SCARA)
+[Configuration RepRapFirmware for a **Five bar parallel SCARA** printer](/User_manual/Machine_configuration/Configuration_five_bar_parallel_scara)
+[Configuring RepRapFirmware for a **Robot** printer](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)
 
 While RepRapFirmware was originally written for 3D printers, it has evolved to be a very capable controller for other kinds of machines. See:
 [Configuring RepRapFirmware for a **CNC** machine](/User_manual/Machine_configuration/Configuration_CNC)
