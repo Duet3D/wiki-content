@@ -2,7 +2,7 @@
 title: Configuration Five Bar Parallel Scara Printer
 description: Explanation and setup of a five bar parallel scara printer.
 published: true
-date: 2022-03-03T09:16:07.229Z
+date: 2022-03-03T09:18:14.555Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-01T06:21:20.414Z
@@ -84,7 +84,7 @@ E.g. 128 microsteps, 1.8 degree steppers, 90 teeth at hinges, 20 teeth at steppe
 
 Example 2: M350 X128 Y128 , 1.8 Stepper, 16 Stepper teeth, 300 mm diameter wheel: 128/1.8*471/16=2093, results in M92 X2093 Y2093...
 
-# example config file
+# Example config file
 
 M569 P0 S1 ; Drive 0 (X) goes forwards M569 P1 S1 ; Drive 1 (Y) goes forwards M569 P2 S1 ; Drive 2 (Z) goes forwards M569 P3 S1 ; Drive 3 (E0) goes forwards
 
@@ -104,7 +104,7 @@ When starting the printer, the axes shall be roughly near the endstops to avoid 
 
 The endstops and M669 B parameter define the theta angles (proximal arm's angles). With e.g. M669 B90:90, when reaching both endstops, both steppers are at position 90 degree each for thetaL and thetaR.
 
-# stepper individual testing
+# Stepper individual testing
 
 Stepper can be rotated freely with G1 H2 g-code, e.g. with G91 G1 H2 X10 rotates the first actuator relatively by 10 degree in the counterclock direction. Endstops are ignored, be careful not to damage anything, start with low values and low speed (e.g. F100).
 
@@ -141,7 +141,7 @@ While printing, the normal and two cantilevered properties can be switched by ap
 
 Placing hotends inside the distal arm maybe possible (by setting a negative cantilever value). It will be tested.
 
-# proximal distance 0
+# Proximal distance 0
 
 ![5barparscara_proximal0.jpg](/5barparscara_proximal0.jpg)
 A Scara can be built setting proximalDistance to 0.
@@ -153,7 +153,7 @@ If the arms lengths are same, calculation is easy: the arms form a rhombus. The 
 Instead of two turning steppers, the Scara could be built with a turning stepper and a linear actuator which changes the radius. (todo: how can M669 be defined?)
 
 This build allows exact G2/G3 circles.
-# working modes technically explained
+# Working modes technically explained
 
 ![5barparscara_workmodedetail1_small.jpg](/5barparscara_workmodedetail1_small.jpg)
 Image 1: If red is one of the XY actuators (stepper axis) and black the hotend, then the proximal and distal arm can be in the blue or green position. The same is true for the other actuator. Together there are 4 possibilities. Those are the 4 working modes.
