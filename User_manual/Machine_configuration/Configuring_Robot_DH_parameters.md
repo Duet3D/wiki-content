@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-03-03T14:11:52.981Z
+date: 2022-03-03T14:37:17.914Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -76,3 +76,75 @@ The calculation of the DH parameters for joint 1 is:
 *) it is recommended to do warm-up exercises before trying. Take right hand, thumb to the X direction, middle finger which is 90 degree snapped off to the direction of Z, then index finger which is straight points to the Y direction. (BTW a minute ago I got wrong results with the rule - then I became aware that I used the left hand....)
 
 ![robot_dh_ex1j1_4handrule.jpg](/manual/configuration/robot_dh_ex1j1_4handrule.jpg)
+# Example 1 joint 2
+Let's analyze DH for joint 2 of the above robot:
+
+![robot_dh_ex1j2.jpg](/manual/configuration/robot_dh_ex1j2.jpg)
+The following steps are processed:
+
+* for joint 2, coordinate system 1 is at the position of joint 2
+* the result of the DH transformations (theta, d, alpha and a) is visuable in coordinate system 2, drawed at the position of joint 3
+* first theta, rotation around Z axis, by q2-pi/2, which means rotating the variable and additionally by -90 degrees. (pi/2 is 1/4 of the circumfence 2*pi in rad). Looked from rigth to the blue arrow, minus means clockwise, so X axis rotates from right to top and Y from down to right. Theta is always the axis where the variable rotation is around. Z must be correctly set from the joint before. The direction of the axis is important, here arrow is pointing to the back. Adding a fixed -90 degrees to the variable theta rotation angle results in the unusual fact that 0 degree means the arm 2 pointing vertical to the top instead of 0 degree being a horizontal arm 2. DH allows this flexibility, the resulting complete kinematics calculation does not change (hopefully...).
+* d is displacement in Z direction by 0. The displacement is in respect to i-1 coordinate system, so no offset between axis 2 and axis 3 (arms 2 and 3 are in one line)
+* alpha would be rotation around X axis, but is 0. Z2 is already in the direction of the next axis, so no rotation is needed.
+* a is the distance between Zi-1 and Zi axis, perpedicular to both straights. If alpha is 0, 180, 90 or -90 angles, it is the arm length.
+# Example 1 joint 3
+Joint 3 has DH parameters theta=q3, d=0, alpha=-pi/2 (-90 degrees), a=0.
+
+![robot_dh_ex1j3.jpg](/manual/configuration/robot_dh_ex1j3.jpg)
+The following calculations are made to convert the coordinate system from O2 to O3 (the coordinate systems are abbreviated to Oi):
+
+* theta is unchanged. Theta is the variable axis rotation, which is axis 3 and horizontal, direction to the back, so positive angles are counterclockwise and mean lowering the arm.
+* d=0 means no displacement in Z direction (of old Z2)
+* alpha=-90 degree means rotating clockwise by X axis looking from above to the arrow. This results in Z axis to rotate from back to right, and Y2 from right to front Y3.
+* a=0 sets the arm length to next joint to 0. The length between joint 3 and joint 4 are added to joint 4 later (as d parameter, because arms direction is axis Z now), because joint 4 doesn't change the angle between both arms. This is not optimal, because later the joint 3 and 4 parameters could be changed later to account for buidings imperfections and the addition of arm lengths is an error then.
+
+In reality, arm 2 and arm 3 are not at the same offset. But the construction of axis 1 to arm 2 in one direction and arm 3 back the same distance makes possible to set d=0 for joints 2 and 3. This is possible, because axis 2 and 3 are parallel to each other. Arm 3 is directly above axis 1 in respect to Z1, Z2 direction. But joint 3 has 70 offset (right of in the image) of axis 1 in respect to Y2, Z3 direction. Those combining of parameter values intend to ease calculations and parallel axes don't have d values, but when there are corrections for building imperfections later (e. g. joints 2 and 3 not perfectly parallel), the d parameters must be set to nonzero.
+# Example 1 joint 4
+The DH parameters for joint 4 are theta q4, d=380, alpha 90 degrees and a = 0.
+
+![robot_dh_ex1j4.jpg](/manual/configuration/robot_dh_ex1j4.jpg)
+Joint 4 is the nice roll component in the middle of the image.
+
+The calculation of the coordinate system is:
+
+* starting from coordinate system 3, O3, with Z3 to the right, X3 to top, Y3 to the front. Placed at joint 4 (not in the image, the reason being d)
+* theta q4 means the variable is to rotate around the Z axis later. This axis is called roll in the RPY (roll-pitch-yaw)
+* d=380 displayment includes the length from joint 3 to joint 5, which is possible, because joint 4 is straight.
+* alpha 90 means counterclockwise rotation around X axis viewed from above. This rotates Z3 to Z4 direction to behind now, and Y4 with direction to right now.
+* a=0 means there is no displacement in X axis direction.
+# Example 1 joint 5
+Joint 5 is also called pitch and has DH parameters theta variable, d=0, alpha=-90 (- pi/2), a=0.
+
+![robot_dh_ex1j5.jpg](/manual/configuration/robot_dh_ex1j5.jpg)
+The coordination axes are calculated as follows:
+
+* theta is the rotation around Z axis, where the Oi-1, i.e. Z4, is used, pointing to behind. The rotation is called pitch, coming from airplane roll-pitch-yaw terminology.
+* d=0 means the Z axis has no displacement between axis 5 and 6
+* alpha=-90 means rotation around X4 axis clockwise, i. e. resulting in Z axis rotating from behind Z4 to right Z5, and Y4 from right to front Y5.
+* a=0, because there is no displacment in the X axis direction.
+# Example 1 joint 6
+The DH parameters are theta variable, d=65, alpha=0 and a =0.
+
+![robot_dh_ex1j6.jpg](/manual/configuration/robot_dh_ex1j6.jpg)
+The following changes are made
+
+* theta is 0, so there is no coordinate system change between X, Y from i-1 to i (5 to 6) axes due to Z rotation. X5, Y5 and X6, Y6 stay at their orientations
+* d=65 means displacement by 65 in Z direction, which is the displacement of the coordinate systems in the image, being the O6 a bit right from O5. (O stands for origin, the origin of the coordinate system).
+* alpha=0 means no rotation around X axis, so no additional change for the direction of Y or Z axis.
+* a=0 means there is no displacement between Z5 and Z6 (arm length).
+
+If joint 6 is revolute, then Z is directed to the direction of the end effector. For additional guidelines for DH parameter settings, please see Siciliano et al Robotics Modelling..., chapter 2.8.2, pages 62 f.
+# Example 2
+The same robot in homing position with all theta angles being set to 0 with exception of 1 and 3. The DH parameters of example 1 are used for construction setup, but now additionally with a set of actuator/stepper (theta) angles.
+
+![robot_dh_ex2a.jpg](/manual/configuration/robot_dh_ex2a.jpg)
+
+![robot_dh_ex2b.jpg](/manual/configuration/robot_dh_ex2b.jpg)
+I abbreviate explanation, as example 1 was detailed. The following remarks:
+
+* theta of link1 being 90 and link3 being -90, the whole robot was turned left and link 3 pointing upward, because in the 0 position, the robot is snapped off.
+* the image is rotated, the direction of the coordinated systems is changed (only in the image)
+* as is shown later in the video (time 8:20), the homing position is in a singularity with two lost ranks (6 joints, 4 ranks). This position must be avoided for normal operation. One effect of being near or at singularity is, that some actuators have very high acceleration/deleceration rates. The inverse kinematics cannot be calculated from inverse Jacobian matrix. Instead, Moore-Penrose must be used to find a way out of the singularity, which means higher calculation time.
+# Public examples
+A good page is https://automaticaddison.com/homogeneous... with some examples, the last one a 6 axis Fanuc LR Mate 200iD robot.
