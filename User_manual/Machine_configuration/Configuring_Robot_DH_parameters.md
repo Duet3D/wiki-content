@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-03-03T14:37:17.914Z
+date: 2022-03-03T14:39:48.069Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -55,7 +55,9 @@ Example: if the end effector shall be directed vertically to the bottom e.g., li
 
 Following are robot examples, explaining DH parameters and some specifics like singularities.
 # Example 1 joint 1
-For the following examples, the DH parameter table from the video https://www.youtube.com/watch?v=nwj0xR21... are used.
+For the following examples, the DH parameter table from the video
+https://www.youtube.com/watch?v=nwj0xR21ldo is used.
+
 ![robot_main.jpg](/manual/configuration/robot_main.jpg)
 
 The example 1 is from the video, in position where all angles are 0, time 0:29 of video. Axis 1 is rotated left 90 degrees and axis 3 is rotated by 90 degree, so from arm the robot arm are horizontal.
