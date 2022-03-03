@@ -2,7 +2,7 @@
 title: Configuration Five Bar Parallel Scara Printer
 description: Explanation and setup of a five bar parallel scara printer.
 published: true
-date: 2022-03-03T09:02:17.738Z
+date: 2022-03-03T09:05:46.642Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-01T06:21:20.414Z
@@ -158,14 +158,14 @@ Instead of two turning steppers, the Scara could be built with a turning stepper
 This build allows exact G2/G3 circles.
 # working modes technically explained
 
-![5barparscara_workmodedetail1.jpg](/5barparscara_workmodedetail1.jpg)
+![5barparscara_workmodedetail1_small.jpg](/5barparscara_workmodedetail1_small.jpg)
 Image 1: If red is one of the XY actuators (stepper axis) and black the hotend, then the proximal and distal arm can be in the blue or green position. The same is true for the other actuator. Together there are 4 possibilities. Those are the 4 working modes.
 
 Actuator 1 using green and actuator 2 using green also is working mode 1 e.g.
 
 If calculating the inverse kinematics, i. e. calculating from the hotend position back to the actuators, the firmware has to know which of the 4 possibilities to take. The user tells the firmware with the M669 L1, L2, L3 or L4 parameter the working mode.
 
-![5barparscara_workmodedetail2.jpg](/5barparscara_workmodedetail2.jpg)
+![5barparscara_workmodedetail2_small.jpg](/5barparscara_workmodedetail2_small.jpg)
 Image 2: changing working modes is only possible when the proximal + distal arms of an actuator are in line. *)Then an actuator rotation counterclockwise selects the blue mode, clockwise the green. The points of this situation is called singularity type 2 and is the print area limit also.
 
 *) Being in line can also be, if the distal arm is 180 degree opposite direction to the proximal arm. It looks a bit strange.
