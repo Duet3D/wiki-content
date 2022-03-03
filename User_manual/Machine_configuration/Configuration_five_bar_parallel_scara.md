@@ -2,7 +2,7 @@
 title: Configuration Five Bar Parallel Scara Printer
 description: Explanation and setup of a five bar parallel scara printer.
 published: true
-date: 2022-03-03T08:44:09.963Z
+date: 2022-03-03T09:02:17.738Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-01T06:21:20.414Z
@@ -125,20 +125,49 @@ The x and y position differences of the two proximal arms must be measured from 
 
 # Cantilevered arm 1
 
-tbd
+![5barparscara_cantilevered1.jpg](/5barparscara_cantilevered1.jpg)
+If the top joint shall not contain the hotend, a cantilevered construction can be used.
+
+cantL is the prolongation of the left distal arm. Length is from middle joint to middle hotend.
+
+M669 D is changed to Dnnn:mmm:ppp:0. ppp is set to cantL, qqq must be 0. Example: D300:300:100:0
 
 # Cantilevered arm 2
 
-tbd
+![5barparscara_cantilevered2.jpg](/5barparscara_cantilevered2.jpg)
+In the second cantilevered configuration, the right distal is prolongued by cantR.
 
+Syntax of M669 is Dnnn:mmm:0:qqq, where qqq is the cantR length.
 # Combined cantilevered
 
-tbd
+While printing, the normal and two cantilevered properties can be switched by applying the M669 command. This allows multiple hotends, if they are located on the left or right cantilever.
+
+Placing hotends inside the distal arm maybe possible (by setting a negative cantilever value). It will be tested.
 
 # proximal distance 0
 
-tbd
+![5barparscara_proximal0.jpg](/5barparscara_proximal0.jpg)
+A Scara can be built setting proximalDistance to 0.
 
+The two actuator axes are at the same x,y position. This can be achieved by stepper bottom-up and top-down, or by harmonic drives (using the hole in one drive to put through the other axis), or other means.
+
+If the arms lengths are same, calculation is easy: the arms form a rhombus. The kinematics can be calculated by the middle angle and radius, see image.
+
+Instead of two turning steppers, the Scara could be built with a turning stepper and a linear actuator which changes the radius. (todo: how can M669 be defined?)
+
+This build allows exact G2/G3 circles.
 # working modes technically explained
 
-tbd
+![5barparscara_workmodedetail1.jpg](/5barparscara_workmodedetail1.jpg)
+Image 1: If red is one of the XY actuators (stepper axis) and black the hotend, then the proximal and distal arm can be in the blue or green position. The same is true for the other actuator. Together there are 4 possibilities. Those are the 4 working modes.
+
+Actuator 1 using green and actuator 2 using green also is working mode 1 e.g.
+
+If calculating the inverse kinematics, i. e. calculating from the hotend position back to the actuators, the firmware has to know which of the 4 possibilities to take. The user tells the firmware with the M669 L1, L2, L3 or L4 parameter the working mode.
+
+![5barparscara_workmodedetail2.jpg](/5barparscara_workmodedetail2.jpg)
+Image 2: changing working modes is only possible when the proximal + distal arms of an actuator are in line. *)Then an actuator rotation counterclockwise selects the blue mode, clockwise the green. The points of this situation is called singularity type 2 and is the print area limit also.
+
+*) Being in line can also be, if the distal arm is 180 degree opposite direction to the proximal arm. It looks a bit strange.
+
+Changing working mode while printing would mean to move the hotend to a position on singularity type 2, and then "choosing blue or green". But this extra move may corrupt a print process by the hotend move and the required time , and the move must be without extrusion. For this reasons, it's currently not implemented in the firmware.
