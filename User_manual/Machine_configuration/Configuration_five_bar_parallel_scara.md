@@ -2,16 +2,16 @@
 title: Configuration Five Bar Parallel Scara Printer
 description: Explanation and setup of a five bar parallel scara printer.
 published: true
-date: 2022-03-03T09:19:58.779Z
+date: 2022-03-03T09:25:15.734Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-01T06:21:20.414Z
 ---
 
 # 5 Bar Parallel Scara Printer
-This printer type uses two actuators to rotate the arms and one for Z movement. Parallel kinematics are told to have good precision.
+This printer type uses two rotational actuators to rotate the arms and one linear actuator for the Z movement. Parallel kinematics are told to have good precision due to its closed loop kinematics.
 
-A 5 Bar SCARA has 5 bars: one between the actuators (mostly implicit by the frame), and two arms on each side left and right.
+The name 5 bar origins from one bar between the actuators (mostly implicit by the frame) and two arms on each side left and right.
 
 # Construction and Naming
 ![5barparallelscara.jpg](/5barparallelscara.jpg)
