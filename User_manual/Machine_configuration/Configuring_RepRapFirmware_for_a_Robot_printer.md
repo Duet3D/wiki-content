@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: Currently for 4 to 6 axis robots
 published: true
-date: 2022-03-03T13:56:45.978Z
+date: 2022-03-03T13:57:27.357Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -94,3 +94,4 @@ The homing angles are specified in the M669 A parameter and can be impemented e.
 For mesh compensation to work, the print head must be in a specific orientation in respect to the XY axis while measuring. This can be done by choosing the P2:0 mode of M669, which is orienting the hotend along the X axis. While printing, other P modes can be used, because the probe offset is not important anymore.
 # Firmware details
 To describe and for documentation for later maintenance, the details of the used firmware code is described in the following document. It is however not necessary to use the robot kinematics.
+[robot_firmware_internals](/User_manual/Machine_configuration/robot_firmware_internals)
