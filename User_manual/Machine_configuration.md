@@ -2,7 +2,7 @@
 title: User manual: Machine configuration
 description: 
 published: true
-date: 2022-03-01T06:44:13.937Z
+date: 2022-03-03T13:06:19.333Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:58:06.577Z
@@ -23,9 +23,7 @@ Configuration (General Cartesian) -->
 [Configuring RepRapFirmware for a Rotary Delta](/User_manual/Machine_configuration/Configuration_rotary_delta)
 [Configuring RepRapFirmware for a Serial SCARA printer](/User_manual/Machine_configuration/Configuration_SCARA)
 [Configuring RepRapFirmware for a Five Bar Parallel SCARA printer](/User_manual/Machine_configuration/Configuration_five_bar_parallel_scara)
-<!--- 
-Configuring RepRapFirmware for a FiveAxisRobot
--->
+[Configuring RepRapFirmware for a Robot printer](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)
 
 # CNC/Laser configuration
 
