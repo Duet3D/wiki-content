@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: Currently for 4 to 6 axis robots
 published: true
-date: 2022-03-03T14:15:02.923Z
+date: 2022-03-03T14:16:37.698Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -95,7 +95,7 @@ The homing angles are specified in the M669 A parameter and can be impemented e.
 
 **Restricition**: currently, inverse kinematics is calculated by inverse Jacobian matrices, which means, singularities cannot be resolved. Some homing positions (like the mentioned video with all angles 0) have homing positions in a singularity, so movements cannot be calculated. A solution is, to home first, then rotate the steppers away from this position with G1 H2 commands into a non-singularity area, then start moving from there.
 # Mesh compensation
-For mesh compensation to work, the print head must be in a specific orientation in respect to the XY axis while measuring. This can be done by choosing the P2:0 mode of M669, which is orienting the hotend along the X axis. While printing, other P modes can be used, because the probe offset is not important anymore.
+For mesh compensation to work, the print head must be in a specific orientation in respect to the XY axis while measuring. This can be done by choosing the P2 mode of M669, which is orienting the hotend along the X axis. While printing, other P modes can be used, because the probe offset is not important anymore.
 # Firmware details
 To describe and for documentation for later maintenance, the details of the used firmware code is described in the following document. It is however not necessary to use the robot kinematics.
 [robot_firmware_internals](/User_manual/Machine_configuration/robot_firmware_internals)
