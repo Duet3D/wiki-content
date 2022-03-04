@@ -2,13 +2,13 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2022-01-17T11:59:48.494Z
+date: 2022-03-04T13:29:02.863Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
 ---
 
-![magnetic_fm_top.jpg](/hardware/magnetic_filament_monitor/magnetic_fm_top.jpg =400x)
+![magnetic_fm_top.jpg](/hardware/magnetic_filament_monitor/magnetic_fm_top.jpg =300x)
 
 # Introduction
 
@@ -18,7 +18,7 @@ The Duet3D filament monitors sense filament movement and so can indicate a that 
 
 The filament monitor consists of a PCB which senses the rotation of a diametrically magnetised magnet. That magnet is in turn rotated by the filament motion via a hobbed part. The angle is reported to the Duet (see section on Technical details for how this is done). This diagram shows the general principle.
 
-![magnetic_fm_how_it_works.png](/hardware/magnetic_filament_monitor/magnetic_fm_how_it_works.png =600x)
+![magnetic_fm_how_it_works.png](/hardware/magnetic_filament_monitor/magnetic_fm_how_it_works.png =500x)
 
 # Hardware
 
@@ -65,7 +65,7 @@ The filament monitor PCB can be used to detect the movement of any appropriate d
 
 ## Dimensions
 
-![magnetic_fm_dimensions.png](/hardware/magnetic_filament_monitor/magnetic_fm_dimensions.png =400x)
+[![magnetic_fm_dimensions.png](/hardware/magnetic_filament_monitor/magnetic_fm_dimensions.png =400x)](/hardware/magnetic_filament_monitor/magnetic_fm_dimensions.png){target=_blank}
 
 ## Assembly
 
@@ -130,6 +130,8 @@ It is important that the PTFE guide tube does not move during retraction and the
 
 On systems that use a bowden tube it is also possible to mount the filament monitor after the extruder. In this case filament out will not be detected until the end of the filament is in the extruder. The second two-pin header on the PCB is connected a separate filament sensing switch if you want to detect filament out before the extruder, but detect movement after the extruder.
 
+Note that when mounting after the extruder, ensure that the dust from the entruder teeth on the filament does not end up in the MFM as it can clogg the hobbed teeth in the MFM causing it to slip.
+
 
 # Wiring
 
@@ -137,13 +139,13 @@ On systems that use a bowden tube it is also possible to mount the filament moni
 
 ### PCB v1.7a, 1.7b
 
-![Wiring for the Rotating Magnet Filament monitor version 1.7a and v1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_wiring_d1.0.png =500x)
+[![Wiring for the Rotating Magnet Filament monitor version 1.7a and v1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_wiring_d1.0.png =500x)](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_wiring_d1.0.png){target=_blank}
 
 **Note:** on board revision v1.7a and later, the 'Switch' and 'Output' header is rotated 180 degrees, ie the connector tab is on the outside edge, compared with v1.7.
 
 ### PCB v1.7 
 
-![magnetic_fm_v1.7_wiring.png](/hardware/magnetic_filament_monitor/magnetic_fm_v1.7_wiring.png =500x)
+[![magnetic_fm_v1.7_wiring.png](/hardware/magnetic_filament_monitor/magnetic_fm_v1.7_wiring.png =500x)](/hardware/magnetic_filament_monitor/magnetic_fm_v1.7_wiring.png){target=_blank}
 
 ## 5V Operation
 
@@ -251,9 +253,9 @@ This is the original version, only produced in small numbers.
 
 #### PCB Dimensions
 
-The **beta** PCBs have the following dimensions, showing the key component locations:
-
-![magnetic_fm_prototype_dimensions.png](/hardware/magnetic_filament_monitor/magnetic_fm_prototype_dimensions.png =400x)
+The **beta** PCBs have these dimensions andkey component locations:
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[Beta Magnetic Filament Monitor PCB dimensions and Key Component Locations](/hardware/magnetic_filament_monitor/magnetic_fm_prototype_dimensions.png){target=_blank}
 
 #### 3d printable parts
 
@@ -271,7 +273,7 @@ Different mounts will be required to mount the sensor to different extruders, ef
 
 **Download**
 
-The OpenSCAD source file and STLs are available on Youmagine: [https://www.youmagine.com/designs/duet3d-filament-monitor](https://www.youmagine.com/designs/duet3d-filament-monitor)
+The OpenSCAD source file and STLs are available on Youmagine: [https://www.youmagine.com/designs/duet3d-filament-monitor](https://www.youmagine.com/designs/duet3d-filament-monitor){target=_blank}
 
 #### Hardware Assembly
 
