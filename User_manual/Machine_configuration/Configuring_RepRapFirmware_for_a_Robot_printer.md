@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: Currently for 4 to 6 axis robots
 published: true
-date: 2022-03-04T08:24:06.648Z
+date: 2022-03-04T08:25:14.823Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -42,13 +42,13 @@ An defines how many joints are used.
 
 `An:[1|0]:a:alpha:theta:d:home:min:max`
 
-n is the number of the axis, starting with 1
-1 means the joint is rotational, 0 is prismatic
-a is the distance between Z and former Z axis. If alpha is 0, 90 or -90, it is the arm length
-alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
-theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
-d offset in Z direction
-home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
+* n is the number of the axis, starting with 1
+* 1 means the joint is rotational, 0 is prismatic
+* a is the distance between Z and former Z axis. If alpha is 0, 90 or -90, it is the arm length
+* alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
+* theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
+* d offset in Z direction
+* home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
 
 **Example**: M669 K14 A1:1:200:0:-90:0:0:-90:90
 
