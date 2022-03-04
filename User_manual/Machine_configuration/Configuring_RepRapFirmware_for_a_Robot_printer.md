@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: Currently for 4 to 6 axis robots
 published: true
-date: 2022-03-04T08:20:27.753Z
+date: 2022-03-04T08:24:06.648Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -40,7 +40,7 @@ For the explanation how to set the parameters, please see the last chapter.
 
 An defines how many joints are used.
 
-An:[1|0]:a:alpha:theta:d:home:min:max
+`An:[1|0]:a:alpha:theta:d:home:min:max`
 
 n is the number of the axis, starting with 1
 1 means the joint is rotational, 0 is prismatic
