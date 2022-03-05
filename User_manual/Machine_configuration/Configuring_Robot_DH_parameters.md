@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-03-03T14:42:48.334Z
+date: 2022-03-05T08:36:31.581Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -150,4 +150,6 @@ I abbreviate explanation, as example 1 was detailed. The following remarks:
 * the image is rotated, the direction of the coordinated systems is changed (only in the image)
 * as is shown later in the video (time 8:20), the homing position is in a singularity with two lost ranks (6 joints, 4 ranks). This position must be avoided for normal operation. One effect of being near or at singularity is, that some actuators have very high acceleration/deleceration rates. The inverse kinematics cannot be calculated from inverse Jacobian matrix. Instead, Moore-Penrose must be used to find a way out of the singularity, which means higher calculation time.
 # Public examples
-A good page is https://automaticaddison.com/homogeneous... with some examples, the last one a 6 axis Fanuc LR Mate 200iD robot.
+A good page is
+https://automaticaddison.com/homogeneous-transformation-matrices-using-denavit-hartenberg/
+with some examples, the last one a 6 axis Fanuc LR Mate 200iD robot.
