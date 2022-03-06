@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-03-05T08:36:31.581Z
+date: 2022-03-06T10:36:58.631Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -17,7 +17,7 @@ The following images are based on video [watch?v=nwj0xR21ldo](https://www.youtub
 The following 6 axis robot is used to explain the DH parameters:
 ![robot_main.jpg](/manual/configuration/robot_main.jpg)
 
-To configure the properties of the 6 axes, the Denavit-Hartenberg (DH) parametes are used, see https://en.wikipedia.org/wiki/Denavit%E2... and https://en.wikipedia.org/wiki/Robotics_c... The german wiki explains the matrices differently, please also check https://de.wikipedia.org/wiki/Denavit-Ha... . The Denavit-Harternberg parameter are explained in a separate chapter at the end of the documentation.
+To configure the properties of the 6 axes, the Denavit-Hartenberg (DH) parametes are used, Wikipedia has good intructions.
 
 A good introduction to kinematics and inverse kinematics is https://www.rosroboticslearning.com, Jacobian method 2 will be used for inverse kinematics.
 # Denavit-Hartenberg (DH)
