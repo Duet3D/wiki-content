@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-02-28T16:03:40.684Z
+date: 2022-03-07T11:21:45.032Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6080,7 +6080,7 @@ Positive endstop adjustments move the head closer to the bed when it is near the
 
 ## M667: Select CoreXY or related mode
 
-*This command is deprecated in RRF 2.03 and later.* Use [M669](/User_manual/Reference/Gcodes/M669) instead.
+*This command is deprecated from RRF 2.03, and removed from RRF 3.5 and later.* Use [M669](/User_manual/Reference/Gcodes/M669) instead.
 
 ### Parameters
 
