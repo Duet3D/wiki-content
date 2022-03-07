@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-07T12:42:59.990Z
+date: 2022-03-07T12:43:41.486Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -400,6 +400,8 @@ You should now see the main control page for the Duet!
 * In the older version of DWC, click Settings > System Editor > config.g
 
 Check that there is a command `M552 S1` without a semicolon in the beginning. This enables the WiFi or ethernet module at power on.
+
+<p style="clear:both"></p>
 
 ## Tabs {.tabset}
 
