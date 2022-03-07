@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-07T12:43:41.486Z
+date: 2022-03-07T13:52:49.129Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -395,11 +395,11 @@ You should now see the main control page for the Duet!
 
 [![](/guides/getting_connected/07_config_01.jpg =49%x)](/guides/getting_connected/07_config_01.jpg){target=_blank} [![](/guides/getting_connected/07_config_02.jpg =49%x)](/guides/getting_connected/07_config_02.jpg){target=_blank}
 
-[![](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}Navigate to **config.g** (which is the Duet configuration file) by clicking:
+Navigate to **config.g** (which is the Duet configuration file) by clicking:
 * System > config.g
 * In the older version of DWC, click Settings > System Editor > config.g
 
-Check that there is a command `M552 S1` without a semicolon in the beginning. This enables the WiFi or ethernet module at power on.
+Then...
 
 <p style="clear:both"></p>
 
@@ -407,7 +407,12 @@ Check that there is a command `M552 S1` without a semicolon in the beginning. Th
 
 ### WiFi Duets
 
-If you have a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, setting `M552 S1` in the config.g is sufficient to enable networking and let your network router assign an IP address via **DHCP**. 
+> For **Duets with WiFi**: Duet 3 Mini 5+ WiFi, Duet 2 WiFi.
+{.is-info}
+
+[![](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}Check that there is a command `M552 S1` without a semicolon at the beginning of the line. This enables the WiFi module at power on.
+
+Setting `M552 S1` in the config.g is sufficient to enable networking and let your network router assign an IP address via **DHCP**. 
 
 If you need to assign a **static IP address**, use M587 with the I parameter when setting up the SSID in Step 5. See [M587 in the GCode dictionary](/User_manual/Reference/Gcodes/M587).
 
@@ -416,7 +421,9 @@ If you need to assign a **static IP address**, use M587 with the I parameter whe
 > For **Duets with Ethernet**: Duet 3 Mainboard 6HC, Duet 3 Mini 5+ Ethernet, Duet 2 Ethernet, Duet Maestro.
 {.is-info}
 
-[![](/guides/getting_connected/07_config_04.jpg =50%x){.align-right}](/guides/getting_connected/07_config_04.jpg){target=_blank}These Ethernet-enabled Duets come with a factory-configured fixed IP address for testing. In the last few steps you set up network access temporarily. For these Duets you now need to change the config.g so you can access the Duet Web Console (DWC) following a power cycle.
+[![](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}[![](/guides/getting_connected/07_config_04.jpg =50%x){.align-right}](/guides/getting_connected/07_config_04.jpg){target=_blank}Check that there is a command `M552 S1` without a semicolon at the beginning of the line. This enables the ethernet module at power on.
+
+Ethernet-enabled Duets come with a factory-configured fixed IP address for testing. In the last few steps you set up network access temporarily. For these Duets you now need to change the config.g so you can access the Duet Web Console (DWC) following a power cycle.
 
 
 #### For DHCP
