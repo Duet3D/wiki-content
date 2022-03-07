@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: true
-date: 2022-03-01T17:01:45.140Z
+date: 2022-03-07T15:16:59.792Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -55,11 +55,16 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 # 4. Check fans 
 
+[![dwc23_14_machine_control_10.png](/manual/dwc/dwc23_14_machine_control_10.png =50%x){.align-right}](/manual/dwc/dwc23_14_machine_control_10.png){target=_blank}[![commissioning_04_fans_01.png](/guides/commissioning/commissioning_04_fans_01.png =50%x){.align-right}](/guides/commissioning/commissioning_04_fans_01.png){target=_blank}Next, check the fans are operating correctly.
 * Always On fans should already be on. Check them at this time.
-* If you have a fan that is connected as FAN 0 (usually the part cooling fan), you can use the Fan Control slider to check it works. You can also enter GCode commands directly in the 'Control > Console' page:
-  * Turn it on by sending GCode command `M106 P0 S1`. 
+* Test fans in DWC with the Control > Dashboard > Fan Control slider:
+  * If you have a fan that is connected as FAN 0 (usually the part cooling fan), you can use the Fan Control slider to check it works. 
+  * 'TOOL FAN' is the currently-activated tool's part cooling fan. It will only show when a tool is active.
+* Test fans by entering GCode commands directly:
+  * In DWC, go to Control > Console.
+  * In the box under Status section, enter the following command then press return to send it to the Duet: `M106 P0 S1`. The S parameter sets the fan speed, where 0 is off and 1 is on 100%. 
   * Turn it off by sending `M106 P0 S0`. 
-* For thermostatically controlled fans, we can check them by temporarily changing the temperature at which they activate.
+* Thermostatically controlled fans are not displayed on the Fan Control slider. But we can check them by temporarily changing the temperature at which they activate.
   * In DWC, go to Control > Console.
   * In the box under Status section, enter the following command then press return to send it to the Duet: `M106 P1 T1 H1`. The T parameter sets the temperature the fan comes on at. 
   * To turn it off, send `M106 P1 T50 H1`
@@ -71,7 +76,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 # 5. Check heater functionality
 
-Since we have checked for proper operation of our thermistors, we may now check our heaters.
+[![dwc23_12_tool_states.png](/manual/dwc/dwc23_12_tool_states.png =50%x){.align-right}](/manual/dwc/dwc23_12_tool_states.png){target=_blank}With thermistors and fans checked for proper operation, heaters can now be tested.
 * On the Dashboard page, the Tools section lists the tools, bed heaters and chamber heaters.
 * The firmware allows one tool to be selected/active at a time. The associated heater(s) is/are set to 'active' when the tool is selected, and set to 'standby' when the tool is deselected. However, tool heaters can also be manually controlled, independently of tools.
 * Enter a number in the "Active" box for the first tool. Start off with a low number such as 35°C. 
