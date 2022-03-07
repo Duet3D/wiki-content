@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-02T14:16:39.302Z
+date: 2022-03-07T12:34:36.019Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -377,7 +377,7 @@ You can safely close Terminal at this point.
 
 [![](/guides/getting_connected/06_dwc_01.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_01.jpg){target=_blank}[![](/guides/getting_connected/06_dwc_02.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_02.jpg){target=_blank}Open your browser and type the IP address assigned to the Duet, eg **192.168.1.90**
 
-You may also be able to access the Duet by typing `http://duettest.local/` into your address bar. This is the easiest way to connect to your Duet if you are using a dynamic IP address (via DHCP). See [this note about mDNS support](User_manual/Machine_configuration/Networking#a-note-about-mdns-local-network-discovery) if it doesn't work.
+You may also be able to access the Duet by typing `http://duettest.local/` into your address bar. This is the easiest way to connect to your Duet if you are using a dynamic IP address (via DHCP). See [this note about mDNS support](/User_manual/Machine_configuration/Networking#a-note-about-mdns-local-network-discovery) if it doesn't work.
 
 You should now see the main control page for the Duet!
 
