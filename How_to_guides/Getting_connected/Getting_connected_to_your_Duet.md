@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-07T13:52:49.129Z
+date: 2022-03-07T13:53:50.719Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -415,6 +415,8 @@ Then...
 Setting `M552 S1` in the config.g is sufficient to enable networking and let your network router assign an IP address via **DHCP**. 
 
 If you need to assign a **static IP address**, use M587 with the I parameter when setting up the SSID in Step 5. See [M587 in the GCode dictionary](/User_manual/Reference/Gcodes/M587).
+
+<p style="clear:both"></p>
 
 ### Ethernet Duets
 
