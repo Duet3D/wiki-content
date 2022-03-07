@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-07T12:34:36.019Z
+date: 2022-03-07T12:42:59.990Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -393,12 +393,13 @@ You should now see the main control page for the Duet!
 > We need to be sure the networking is configured properly for the future.
 {.is-info}
 
-[![](/guides/getting_connected/07_config_01.jpg =50%x){.align-right}](/guides/getting_connected/07_config_01.jpg){target=_blank}[![](/guides/getting_connected/07_config_02.jpg =50%x){.align-right}](/guides/getting_connected/07_config_02.jpg){target=_blank}[![](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}Navigate to **config.g** (which is the Duet configuration file) by clicking:
+[![](/guides/getting_connected/07_config_01.jpg =49%x)](/guides/getting_connected/07_config_01.jpg){target=_blank} [![](/guides/getting_connected/07_config_02.jpg =49%x)](/guides/getting_connected/07_config_02.jpg){target=_blank}
+
+[![](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}Navigate to **config.g** (which is the Duet configuration file) by clicking:
 * System > config.g
 * In the older version of DWC, click Settings > System Editor > config.g
 
 Check that there is a command `M552 S1` without a semicolon in the beginning. This enables the WiFi or ethernet module at power on.
-
 
 ## Tabs {.tabset}
 
@@ -407,13 +408,6 @@ Check that there is a command `M552 S1` without a semicolon in the beginning. Th
 If you have a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, setting `M552 S1` in the config.g is sufficient to enable networking and let your network router assign an IP address via **DHCP**. 
 
 If you need to assign a **static IP address**, use M587 with the I parameter when setting up the SSID in Step 5. See [M587 in the GCode dictionary](/User_manual/Reference/Gcodes/M587).
-
-> Commands in config.g are processed from top to bottom, so a command at the bottom supersedes a command at the top of the file.
-{.is-info}
-
-> This version of the config.g configuration file will be replaced in the next section of the instructions. This version will be used for now, so making these changes will enable you to access the Duet until you do replace the config.g with a version that is more tailored for your machine.
-{.is-info}
-
 
 ### Ethernet Duets
 
@@ -435,6 +429,8 @@ Most home routers are setup to assign IP addresses by DHCP. Change the M552 P192
 You can set the Duet to use a fixed IP address. Note that if you use a fixed address, care should be taken that it does not conflict with other devices on the network. Change the M552 P192.168.1.14 line to the IP address you want to use, eg `M552 P192.168.0.15`
 
 You may also need to change the [**M554**](/User_manual/Reference/Gcodes/M554) (Gateway) and [**M553**](/User_manual/Reference/Gcodes/M553) (Netmask) commands to match your network.
+
+## Note
 
 > Commands in config.g are processed from top to bottom, so a command at the bottom supersedes a command at the top of the file.
 {.is-info}
