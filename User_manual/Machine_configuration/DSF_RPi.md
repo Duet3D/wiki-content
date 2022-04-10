@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2022-02-23T12:49:38.808Z
+date: 2022-04-10T20:42:25.151Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -41,7 +41,9 @@ sudo apt upgrade
 
 This will automatically install the latest DSF components. You may achieve the same remotely using [SSH](https://www.raspberrypi.com/documentation/computers/remote-access.html).
 
-## Upgrade to unstable packages
+## Switch to unstable packages
+
+This assumes that the unstable packages are a later version than the currently installed stable packages.
 
 1. Change stable to unstable in /etc/apt/sources.list.d/duet3d.list:
    ```
@@ -55,9 +57,25 @@ This will automatically install the latest DSF components. You may achieve the s
    sudo apt upgrade
    ```
 
-## Downgrade to stable packages
+## Switch to stable packages
 
-To downgrade from an installed unstable version to a stable release requires a few extra steps, to remove files newer than the release version. Follow the following steps:
+In a similar process to the above, this assumes that the stable packages are a later version than the currently installed unstable packages.
+
+1. Change stable to unstable in /etc/apt/sources.list.d/duet3d.list:
+   ```
+   sudo rm -f /etc/apt/sources.list.d/duet3d-unstable.list
+   sudo bash -c "echo 'deb https://pkg.duet3d.com/ stable armv7' > /etc/apt/sources.list.d/duet3d.list"
+   ```
+   
+1. Update your system:
+   ```
+   sudo apt update
+   sudo apt upgrade
+   ```
+
+## Downgrade packages
+
+To downgrade from an installed version to a earlier release requires a few extra steps to remove files newer than the release version. This example demonstates downgrading from an unstable release to a stable release, the process is similar for downgrading to an unstable release.  Follow these steps:
 
 1. Change back unstable to stable in /etc/apt/sources.list.d/duet3d.list:
    ```
