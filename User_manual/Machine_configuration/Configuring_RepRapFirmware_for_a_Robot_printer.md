@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-12T08:42:05.580Z
+date: 2022-04-12T08:43:47.187Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -55,7 +55,7 @@ Example for first M669 line: M669 K14 A6
 
 For the explanation how to set the parameters, please see the last chapter.
 
-Atext defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (linear) joint.
+Atext defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint.
 * ARRRRRR means 6 axis robot with rotational axes
 * ARRP means serial scara with Z axis being prismatic (prismatic means linear movement)
 
