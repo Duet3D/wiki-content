@@ -2,14 +2,14 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-12T08:43:47.187Z
+date: 2022-04-12T10:07:30.961Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
 ---
 
 # Configuring a Robot printer
-Following is a description how to setup a 2 to 10 axis robot for 3D printing, with primary focus on an industrial 6 axis robot. The RepRapFirmware **robot firmware is in development**, binaries for testing will be provided.
+Following is a description how to setup a 3 to 7 axis robot for 3D printing, with primary focus on an industrial 6 axis robot. The RepRapFirmware **robot firmware is in development**, binaries for testing will be provided.
 
 The kinematics is developed for RRF 3.4.0 in a github fork at: [robot RRF fork](https://github.com/JoergS5/RepRapFirmware/tree/3.4.0)
 
