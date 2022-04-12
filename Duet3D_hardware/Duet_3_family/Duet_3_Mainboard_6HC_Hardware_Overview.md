@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-01-24T17:08:38.996Z
+date: 2022-04-12T15:04:20.131Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -93,7 +93,7 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a featu
 
 ## Dimensions
 
-![duet_3_mb6hc_dimensions.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png =500x)
+[![duet_3_mb6hc_dimensions.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png =500x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png){target=_blank}
 
 ## Mounting
 
@@ -125,15 +125,15 @@ The STEP file for the Duet 3 Mainboard 6HC is shared on the [Duet3D github here]
 
 ### Revision v1.0 and v1.01
 
-![duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png =745x)
+[![duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png =745x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png){target=_blank}
 
 ### Revision v0.6
 
-![duet_3_mb6hc_wiring_diagram_v0.6.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v0.6.png =500x)
+[![duet_3_mb6hc_wiring_diagram_v0.6.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v0.6.png =500x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v0.6.png){target=_blank}
 
 ### Revision v0.5
-
-![duet_3_mb6hc_wiring_diagram_v0.5.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v0.5.png =500x)
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[duet_3_mb6hc_wiring_diagram_v0.5.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v0.5.png){target=_blank}
 
 **Caution!** On v0.5 boards the GND and V_FUSED legends on the underside of the board are the wrong way round! The ones in the wiring diagram above are correct. This is the same for the jumper block OUT7 - OUT9 that provides power to these connectors respectively (see below).
 
@@ -385,7 +385,7 @@ The Duet 3 Mainboard 6HC has 10 PWM controlled outputs. These can be configured 
 | OUT4-6 | 2A | Select between VIN and 12V for this bank of 3 fans. Headers compatible with 4 wire fans, including tacho feedback |
 | OUT7-9 | 2A | Select between VIN and 12V for this bank of 3 fans. Standard 2 wire fans |
 
-Note: maximum total output from the on-board 12V regulator is 1A.
+Note: maximum total output from the on-board 12V regulator is 1A. Because the stepper drivers require 12V as well, the current drawn from external devices must not exceed 800mA.
 
 ## CAN-FD Bus expansion
 
