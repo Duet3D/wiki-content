@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-13T09:37:31.682Z
+date: 2022-04-13T20:42:32.310Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -53,9 +53,10 @@ M669 must set kinematics type to robot by caling M669 K13. After the type is sel
 
 For the explanation how to set the parameters, please see the last chapter.
 
-Atext defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint.
-* ARRRRRR means 6 axis robot with rotational axes
-* ARRP means serial scara with Z axis being prismatic (prismatic means linear movement)
+A"[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint.
+* A"RRRRRR" means 6 axis robot with rotational axes
+* A"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
+* A"PPP" means 3 axis cartesian printer.
 
 An:a:alpha:theta:d:home:min:max
 
