@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-13T09:36:39.177Z
+date: 2022-04-13T09:37:31.682Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -66,7 +66,7 @@ An:a:alpha:theta:d:home:min:max
 * d offset in Z direction
 * home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
 
-**Example**: M669 K13 ARRRRRR A1:200:0:-90:0:0:-90:90
+**Example**: M669 A1:200:0:-90:0:0:-90:90
 
 axis1's parameters:
 * 200 is arm length (Z axis distance)
