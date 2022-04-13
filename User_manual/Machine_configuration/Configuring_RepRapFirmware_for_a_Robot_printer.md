@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-13T20:42:32.310Z
+date: 2022-04-13T21:21:54.179Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -89,13 +89,7 @@ P2 sixth axis is vertical and headed parallel to the x axis. Default
 
 Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time needed to calculate depends on the processor speed. Slow and high quality means the algorithms takes more time to calculate exact results. Default is Q1. Quality can be changed anytime, e. g. to print specific object details with higher quality.
 
-**R[diverse]** reporting mode
-
-R reports statistics about the current configuration:
-
-RS creates a report about all singularities and the types of them
-RPA creates a report about a safe print area without singularities or near singularities
-RT:j1:j2:j3:j4:j5:j6 reports DH on-the-fly: j1 to j6 are the variables (angles for rotational joints, mm for prismatic joints), resulting in a report of xyz and orientation and Jacobian matrix.
+**R** currently not used
 
 **Sn** Segments per second (because smooth XYZ motion is approximated by means of segmentation)
 
