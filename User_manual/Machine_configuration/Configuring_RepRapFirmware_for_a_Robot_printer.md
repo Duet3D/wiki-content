@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-12T10:07:30.961Z
+date: 2022-04-13T09:36:39.177Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -45,11 +45,9 @@ To avoid printing in a singularity, M208 can be set accordingly. Please see the 
 
 Singularities will be solved by adding Moore-Penrose inverse calculation in the next release.
 # M669 configuration
-M669 settings can and should be split into a main parameter line and separate lines to define the A properties to avoid a too long single line. The K parameter must be set in every line. The first M669 line should specify the kinematics type and the number of joints.
+M669 must set kinematics type to robot by caling M669 K13. After the type is selected, the parameters values can be set. It is recommended to set the first line to define kinematics type and types of axes like: M669 K13 ARRRRRR, and then the parameters for the axes, one line per axis.
 
-Example for first M669 line: M669 K14 A6
-
-**K** needs to be defined. While beta, K14 is used.
+**K13** needs to be defined.
 
 **A** defines the Denavit-Hartenberg parameters for n joints, starting numbering by 1.
 
@@ -68,7 +66,7 @@ An:a:alpha:theta:d:home:min:max
 * d offset in Z direction
 * home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
 
-**Example**: M669 K14 ARRRRRR A1:200:0:-90:0:0:-90:90
+**Example**: M669 K13 ARRRRRR A1:200:0:-90:0:0:-90:90
 
 axis1's parameters:
 * 200 is arm length (Z axis distance)
