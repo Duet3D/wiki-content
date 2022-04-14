@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-13T21:21:54.179Z
+date: 2022-04-14T07:38:52.688Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -57,6 +57,11 @@ A"[R]|[P]*" defines the overall configuration and number of axes. R mean revolut
 * A"RRRRRR" means 6 axis robot with rotational axes
 * A"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
 * A"PPP" means 3 axis cartesian printer.
+
+A"Mn" defines G-Code modes and whether orientation is used:
+* M0 means X, Y, Z, A, B, C G-Code, where A, B, C are rotations around X, Y, Z in degrees. Default.
+* M1 means X, Y, Z, I, J, K, U, V, W for G-Code based on IJKUVW.
+* M2 means X, Y, Z without orientation information. Forward and inverse kinematics calculate only coordinates and ignore endpoint's orientation.
 
 An:a:alpha:theta:d:home:min:max
 
