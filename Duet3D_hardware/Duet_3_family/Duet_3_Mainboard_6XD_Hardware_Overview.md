@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-02-25T07:39:20.508Z
+date: 2022-04-14T09:00:10.017Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -118,6 +118,7 @@ STEP file to follow.
 
 
 [![Duet3 Mainboard 6XD prototype v0.1 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_wiring.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_wiring.png){target=_blank}
+
 
 
 #### Errata
