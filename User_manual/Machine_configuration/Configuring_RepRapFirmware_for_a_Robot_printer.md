@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-14T07:38:52.688Z
+date: 2022-04-14T07:40:46.655Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -45,7 +45,7 @@ To avoid printing in a singularity, M208 can be set accordingly. Please see the 
 
 Singularities will be solved by adding Moore-Penrose inverse calculation in the next release.
 # M669 configuration
-M669 must set kinematics type to robot by caling M669 K13. After the type is selected, the parameters values can be set. It is recommended to set the first line to define kinematics type and types of axes like: M669 K13 ARRRRRR, and then the parameters for the axes, one line per axis.
+M669 must set kinematics type to robot by caling M669 K13. After the type is selected, the parameters values can be set. It is recommended to set the first line to define kinematics type and types of axes like: M669 K13 ARRRRRR. Every additional A setting needs a separate line.
 
 **K13** needs to be defined.
 
