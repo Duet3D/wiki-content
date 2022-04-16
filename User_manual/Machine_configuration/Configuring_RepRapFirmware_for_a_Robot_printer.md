@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-16T06:48:48.609Z
+date: 2022-04-16T08:02:43.383Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -103,8 +103,6 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 **Tn** Minimum segment length (mm) (because smooth XYZ motion is approximated by means of segmentation)
 
 The higher S and lower T are, the better (more straight) straight line moves are, but at the cost of processing and time needed to calculate kinematics. The simulation B1:S will give information about the qualitity of the settings.
-
-**Xn Yn Zn** are cartesian coordinates of the robot stand, the DH X0Y0Z0 origin.
 # Drive configuration
 The 6 axes are named XYZUVW. Additional axes for 7 and more axis robots will be named ABC... M92 values are steps per degree for rotational axes and steps per mm for prismatic axes.
 # G10 tool offset
