@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-14T07:46:53.330Z
+date: 2022-04-16T06:48:48.609Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -94,7 +94,9 @@ P2 sixth axis is vertical and headed parallel to the x axis. Default
 
 Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time needed to calculate depends on the processor speed. Slow and high quality means the algorithms takes more time to calculate exact results. Default is Q1. Quality can be changed anytime, e. g. to print specific object details with higher quality.
 
-**R** currently not used
+**R** Reporting modes (this parameter will change often)
+* R0 no reporting, default.
+* R1 prints out time information and calculation precision to the console about running core methods of robot kinematics. Helps to find the best Q value.
 
 **Sn** Segments per second (because smooth XYZ motion is approximated by means of segmentation)
 
