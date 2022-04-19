@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-03-07T11:21:45.032Z
+date: 2022-04-19T07:54:37.047Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1055,7 +1055,6 @@ Allows manual specification of the axis positions by specifying the current posi
 ### Parameters
 
 * *This command can be used without any additional parameters.*
-* **Hnnn** Keep heaters on
 
 ### Examples
 <br>
@@ -2438,6 +2437,8 @@ This command is only supported on controllers that have an output connector for 
 
 The specified RGB values will be sent to the number of LEDs in the LED strip as specified by the S parameter, pushing the existing colours along the strip. To set all the LEDs the same colour, make the S parameter equal to or a little longer than the number of LEDs in the strip.
 
+Caution: if the S parameter is omitted then as many LEDs as can be set in a single chunk  will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2, many more on Duet 3). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
+
 Оn **Fysetc 12864mini** you can configure all three LEDs separately. For display and for encoder illumination:
 
 ### Examples
@@ -3022,7 +3023,7 @@ Note the lack of H parameter.
 * **Tnnn** (RRF 3.2 and later, optional) Tool whose primary heater is to be tuned
 * **Annn** (RRF 3.2 and later, optional) ambient temperature - use this parameter if you want to tune a heater that has been on and has not cooled down to ambient temperature yet
 * **Ynn** (RRF 3.3beta3 and later optional) Tuning cycle hysteresis, default 5C. When tuning bed heaters that are slow to cool down, tuning will be faster if you use a lower value, provided that there is no noise in the temperature readings.
-* **F**nn (RRF 3.3beta3 and later) Fan PWM to use when the print cooling fan is turned on (ignored if the T parameter is not present), default 1.0. Use a lower value if your printer uses a powerful print cooling fan that you do not normally run at full PWM.
+* **F**nn (RRF 3.3beta3 and later) Fan PWM to use when the print cooling fan is turned on (ignored if the T parameter is not present), default 0.7 in RRF 3.4.0. Use a lower value if your printer uses a powerful print cooling fan that you do not normally run at full PWM.
 
 ### Examples
 <br>
@@ -5513,12 +5514,14 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 
 ### Parameters
 
-* **T** Trigger number to poll
+* **Tnn** Trigger number to poll
+* **Sn** (optional, RRF 3.5 and later only) 0 = only trigger if the onput states are at the correct level (default), 1 = trigger unconditionally
 
 ### Examples
 <br>
 <pre class="cblock">
-M582 T2 ; check levels of inputs that give rise to trigger #2
+M582 T2    ; check levels of inputs that give rise to trigger #2
+M582 T3 S1 ; set trigger #3 pending unconditionally
 </pre>
 
 ### Notes
@@ -6010,6 +6013,18 @@ Different features of motion control firmware may have competing demands on micr
 ### Notes
 
 M595 without any parameters reports the length of the movement queue and the number of per-motor movement objects allocated.
+
+## M596: Select movement queue number
+
+### Parameters
+* **Pnn** Required movement queue number. Queues are numbered 0 (the default queue), 1, ...
+
+### Notes
+This command is supported in RepRapFirmware 3.5 and later builds that can execute moves on different axis systems asynchronously, for example for concurrent printing of two or more different objects. It specifies that subsequent GCode commands should be routed to the specified movement queue and the tool associated with that queue.
+
+The number of available queues is firmware-dependent but will typically be 2. Before using a movement queue other than queue 0 it may be necessary to use M595 to increase the length of that queue, because the default length of movement queues other than the primary one may be quite short.
+
+At the start of a file print, queue 0 is selected automatically.
 
 ## M600: Filament change pause
 
@@ -6646,7 +6661,11 @@ When the supply voltage falls below the auto save threshold while a print from S
 * If possible, use M913 to reduce the motor current in order to conserve power. For example, on most printers except deltas you can probably set the X and Y motor currents to zero.
 * Retract a little filament and raise the head a little. Ideally the retraction should happen first, but depending on the power reserve when low voltage is detected, it may be best to do both simultaneously.
 
+For Duet + SBC, a solid external 5V supply is recommended for the Duet + SBC for this feature to work. When power to the Duet + SBC is cut, the SBC may turn off before the Duet can inform the SBC about the content of resurrect.g, or the SBC may lose power while it's trying to write the content of resurrect.g to the microSD card. An external 5V buck regulator may be sufficient to keep a Duet 3 Mini 5+ and SBC on long enough. For Duet 3 MB6HC, the on-board 5V regulator might not endure long enough for resurrect.g to be written to persistent storage if the Duet powers an SBC as well. Hence we recommend using an external 5V PSU if this feature is configured.
+
 M911 with no parameters displays the current enable/disable state, and the threshold voltages if enabled.
+
+See this page for more details: [Setting up to resume a print after a power failure or planned power down](/User_manual/Tuning/Resume)
 
 #### RepRapFirmware 1.19
 
@@ -6664,7 +6683,7 @@ M911 S12.0:19.5:22.0
 
 Enables auto-pause if the power voltage drops below the pause threshold. The firmware records the current state of the print so that it can be resumed when power is restored and executes the pause procedure to attempt to park the print head using the residual energy in the power supply capacitors. If the supply voltage continues to drop below the shutdown threshold, the firmware disables all heaters and motors and goes into the shutdown state until either the voltage exceeds the resume threshold or the board is reset. In either case, it may be possible to resume the paused print. If the supply voltage does not fall below the shutdown threshold but recovers and exceeds the resume threshold, then the print is resumed automatically.
 
-If any of the three values is zero or negative, or the three values are not in ascending order, then auto-save is disabled.
+If any of the three values for the S parameter are zero or negative, or the three values are not in ascending order, then auto-save is disabled.
 
 M911 with no parameters displays the current enable/disable state, and the threshold voltages if enabled.
 
@@ -6831,13 +6850,13 @@ When event logging is enabled, important events such as power up, start/finish p
 ### Parameters
 
 * **P"filename"** The name of the file to log to. Only used if the S1 parameter is present. A default filename will be used if this parameter is missing.
-* **Sn** S1 = start logging, S0 = stop logging (RRF <= 3.2.0-beta2)
-* **Sn** S0 = stop logging, S1 = log level WARN, S2 = log level INFO, S3 = log level DEBUG (RRF >= 3.2.0-beta3)
+* **Sn** S1 = start logging, S0 = stop logging (RRF <= 3.2.0)
+* **Sn** S0 = stop logging, S1 = log level WARN, S2 = log level INFO, S3 = log level DEBUG (RRF >= 3.2.0)
 
 ### Examples
 <br>
 <pre class="cblock">
-M929 P"eventlog.txt" S1 ; start logging to file eventlog.txt
+M929 P"eventlog.txt" S1 ; start logging warnings to file eventlog.txt
 M929 S0 ; stop logging
 </pre>
 
@@ -7042,11 +7061,11 @@ This command causes the specified number of accelerometer samples to be collecte
 
 The **P** parameter selects which accelerometer to use and is mandatory. To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**.
 
-## M957: Raise event
+## M957: Raise event or Trigger
 
-*Supported in RepRapFirmware 3.4 and later.*
+*Supported in RepRapFirmware 3.4 and later for raising events, 3.5 and later for raising triggers.*
 
-This command is used to raise an event internally as if the event had actually occurred, and execute any related handler macro for that event. Its main use is to test event handler macros.
+This command is used to raise an event or trigger internally as if the event had actually occurred, and execute any related handler macro for that event or trigger. Its main use is to test event handler and trigger macros.
 
 ### Parameters
 
@@ -7059,14 +7078,14 @@ This command is used to raise an event internally as if the event had actually o
 ### Examples
 <br>
 <pre class="cblock">
-M957 E"heaterFault" D1 B2
+M957 E"heater_fault" D1 B2
 </pre>
 
 Raise a heater fault from expansion board at CAN address 2 on heater 1
 
 ### Notes
 
-The event type names are firmware-dependent. In RepRapFirmware they are: mainBoardPowerFail, heaterFault, driverError, filamentError, driverWarning, mcuTemperatureWarning.
+The event type names are firmware-dependent. In RepRapFirmware they are: heater-fault, driver-error, filament-error, driver-warning. However, in RRF 3.4.0 it is necessary to use underscore "\_" in place of dash "-" when using these event names in M957. Future versions of RRF will allow the dash character to be used instead but will still allow underscore for backwards compatibility.
 
 The meaning of the device number depends on the event type. For a driver error it is the driver number. For a heater fault it is the heater number. For a filament error it is the extruder number.
 
