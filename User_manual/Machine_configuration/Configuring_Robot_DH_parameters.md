@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-04-20T08:51:34.968Z
+date: 2022-04-20T08:58:09.264Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -54,14 +54,6 @@ Every robot joint is connected with its own coordinate system. The coordinate sy
 The coordinate systems are numbered O0 to O6, from O0 being the starting, base coordinated system, to O6, which is attached to the end-effector. The coordinate systems are located at joints +1, i.e. O1 is attached to joint 2 etc. This will be explained in the examples.
 # DH parameters
 There are 4 DH parameters, defining Z rotation and displacment, X rotation and displacement. The missing Y rotation and displacement is solved by a combined Z and X rotations with displaments when needed, so defining all 6 DOF are possible for every joint.
-# Positions and orientations
-The end effector's position is expressed as XYZ coordinate and is summed up by the DH parameters and tool's xyz offsets.
-
-Orientation means how the end effector is directed in respect to the base coordination system. The DH parameters are calculated by Z and X rotations and transformations. The resulting orientation is based on Euler ZYX angles. Euler angles express an orientation by three angles. The order of angles (ZYZ and several others) is important, here we use ZYX (called RPY roll-pitch-yaw or Tait-Bryan angles, also used for describing airplane behaviour).
-
-Example: if the end effector shall be directed vertically to the bottom e.g., like is preferred for a 3D printing hotend, the Z axis vector must be directed vertically to vector, the Euler angles are (0,0,-90).
-
-Following are robot examples, explaining DH parameters and some specifics like singularities.
 # Example 1 joint 1
 For the following examples, the DH parameter table from [this video](https://www.youtube.com/watch?v=nwj0xR21ldo){target=_blank} is used.
 
