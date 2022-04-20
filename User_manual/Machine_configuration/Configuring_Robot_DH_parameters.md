@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-03-06T10:38:28.795Z
+date: 2022-04-20T08:50:46.767Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -13,7 +13,7 @@ Denavit-Hartenberg (DH) parameters are often used in robotics to describe proper
 # Introduction
 Denavit-Hartenberg is shortened to DH in the following document. RPY is shortened for roll-pitch-yaw, J stands for Jacobian matrix, the 4 DH parameters are called theta, d, alpha and a. DOF stands for degrees of freedom.
 
-The following images are based on video [watch?v=nwj0xR21ldo](https://www.youtube.com/watch?v=nwj0xR21ldo)
+The following images are based on [this Youtube video](https://www.youtube.com/watch?v=nwj0xR21ldo){target=_blank}
 The following 6 axis robot is used to explain the DH parameters:
 ![robot_main.jpg](/manual/configuration/robot_main.jpg)
 
@@ -41,6 +41,13 @@ if axis horizontal with direction to front: counterclockwise when watched from f
 Searching for a commercial robot (e. g. Kuka KR5) which resembles to robot which is planned, together with "DH, Denavit-Hartenberg, pdf" keywords result in good scientific article examples. If example values are given, they can be validated by calling B1:T, because a pitfall can be if Craig numbering of the coordinate system is used.
 
 For the usage of the DH see M669 A parameter.
+# Euler Angles, Orientation
+Robot's endpoints have an orientation which is described as follows:
+* every rotation can be described by the combination of three rotation matrices by three main axes. The order of the rotation is important. There are 12 rotations which make sense. They are called by the axis they are rotated by, e.g. ZYZ means rotation by Z axis first, then Y axis, then the newly created Z axis.
+* the rotations of the robot system, using DH parameters, are rotations in the order of ZYX, where Y is not rotated, so effectively only a rotation by ZX. ZYX is an order which is also used in aviation and is called RPY (roll pitch yaw).
+* Rotation calculations can be calculated back: from rotation matrix to three angles. The angles are called Euler angles. In robot configuration, calculations and statistics, those Euler angles, based on ZYX/RPY, are used.
+
+Documentation sources are wiki and e.g. https://homes.cs.washington.edu/~todorov/courses/cseP590/05_Kinematics.pdf
 # Coordinate system
 Every robot joint is connected with its own coordinate system. The coordinate system XYZ is right hand based. It's easiest to positon Z to the direction of the axis, then X, then Y by the right hand rule. Although physical axes don't have direction, the coordinate system has, and it's important to be aware of the direction. The axis' direction defines which rotation is positive or negative degrees. From looking in front at the arrow, counterclockwise are positiv degrees.
 
@@ -56,8 +63,7 @@ Example: if the end effector shall be directed vertically to the bottom e.g., li
 
 Following are robot examples, explaining DH parameters and some specifics like singularities.
 # Example 1 joint 1
-For the following examples, the DH parameter table from the video
-https://www.youtube.com/watch?v=nwj0xR21ldo is used.
+For the following examples, the DH parameter table from [this video](https://www.youtube.com/watch?v=nwj0xR21ldo){target=_blank} is used.
 
 ![robot_main.jpg](/manual/configuration/robot_main.jpg)
 
@@ -151,5 +157,5 @@ I abbreviate explanation, as example 1 was detailed. The following remarks:
 * as is shown later in the video (time 8:20), the homing position is in a singularity with two lost ranks (6 joints, 4 ranks). This position must be avoided for normal operation. One effect of being near or at singularity is, that some actuators have very high acceleration/deleceration rates. The inverse kinematics cannot be calculated from inverse Jacobian matrix. Instead, Moore-Penrose must be used to find a way out of the singularity, which means higher calculation time.
 # Public examples
 A good page is
-https://automaticaddison.com/homogeneous-transformation-matrices-using-denavit-hartenberg/
+[https://automaticaddison.com/homogeneous-transformation-matrices-using-denavit-hartenberg/](https://automaticaddison.com/homogeneous-transformation-matrices-using-denavit-hartenberg/)
 with some examples, the last one a 6 axis Fanuc LR Mate 200iD robot.
