@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-04-20T08:50:46.767Z
+date: 2022-04-20T08:51:34.968Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -43,7 +43,7 @@ Searching for a commercial robot (e. g. Kuka KR5) which resembles to robot which
 For the usage of the DH see M669 A parameter.
 # Euler Angles, Orientation
 Robot's endpoints have an orientation which is described as follows:
-* every rotation can be described by the combination of three rotation matrices by three main axes. The order of the rotation is important. There are 12 rotations which make sense. They are called by the axis they are rotated by, e.g. ZYZ means rotation by Z axis first, then Y axis, then the newly created Z axis.
+* every rotation can be described by the combination of three rotation matrices by three main axes. The order of the rotation is important. There are 12 rotation combinations which make sense. They are called by the axis they are rotated by, e.g. ZYZ means rotation by Z axis first, then Y axis, then the newly created Z axis.
 * the rotations of the robot system, using DH parameters, are rotations in the order of ZYX, where Y is not rotated, so effectively only a rotation by ZX. ZYX is an order which is also used in aviation and is called RPY (roll pitch yaw).
 * Rotation calculations can be calculated back: from rotation matrix to three angles. The angles are called Euler angles. In robot configuration, calculations and statistics, those Euler angles, based on ZYX/RPY, are used.
 
