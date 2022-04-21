@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-16T08:02:43.383Z
+date: 2022-04-21T06:41:43.068Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -119,3 +119,13 @@ The homing angles are specified in the M669 A parameter and can be impemented e.
 If the homing position is in a singularity or near it, after homing the robot arms should be rotated away from it (this can be done with G1 H2 moves), before starting normal operation. The arm positions shall remain in this work mode for all following operation if possible.
 # Mesh compensation
 For mesh compensation to work, the print head must be in a specific orientation in respect to the XY axis while measuring. This can be done by choosing the P2 mode of M669, which means the probe stays in the same orienting in respect to the hotend and XY coordinates. While printing, other P modes can be used, because the probe offset is not important anymore. Collisions of the probe should be avoided, if the endpoint doesn't stay vertical.
+# Firmware development and compilation
+For installation and running robot kinematics, taking the binaries is the easiest solution. The following is only interesting if one wishes to compile or change something static inside the firmware code (e.g. using more than 6 axes).
+
+For indidivual compilation of source, the guide https://github.com/Duet3D/RepRapFirmware/wiki/Building-RepRapFirmware should be followed. For the robot, the official Duet3D is based on the 3.4.0inputshaper branch, changed by:
+* Kinematics.h and .cpp the variables robot and include RobotKinematics are added. robot is used instead of robot5axis to use K13
+* Config/Pins.h set all other Kinematics SUPPORT_... to 0
+* disabled delta code in ... (tbd where)
+* RobotKinematics.h and .cpp in folder Movement/Kinematics
+
+There is an additional page, describing kinematic explanation and how it is implemented in firmware: [Robot kinematic details](https://docs.duet3d.com/en/User_manual/Machine_configuration/Robot_kinematic_details)
