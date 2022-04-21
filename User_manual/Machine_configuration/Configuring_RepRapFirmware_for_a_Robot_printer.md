@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-21T06:41:43.068Z
+date: 2022-04-21T11:25:13.242Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -127,5 +127,3 @@ For indidivual compilation of source, the guide https://github.com/Duet3D/RepRap
 * Config/Pins.h set all other Kinematics SUPPORT_... to 0
 * disabled delta code in ... (tbd where)
 * RobotKinematics.h and .cpp in folder Movement/Kinematics
-
-There is an additional page, describing kinematic explanation and how it is implemented in firmware: [Robot kinematic details](https://docs.duet3d.com/en/User_manual/Machine_configuration/Robot_kinematic_details)
