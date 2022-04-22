@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2022-02-22T15:25:04.843Z
+date: 2022-04-22T13:22:03.545Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -165,7 +165,7 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 
 NOTE: on **Duet 2** with only 2-pin fan connectors, the recommended connections are:
 * Negative (black) wires: connect to the - pin of an always-on fan connector.
-* Positive (red or yellow): connect to the + pin of an always-on fan connector. 
+* Positive (red or yellow): connect to the + pin of an always-on fan connector; or if VIN is 24V and you are using a 12V fan, to the +12V output of a buck converter fed from VIN.
 * Tacho wire (yellow or green): optionally, connect the tacho wire of a 4-wire fan to the cathode of a small signal diode (1N4148 should be OK) and connect the anode of the diode to any available digital input pin, to provide a reading of the fan RPM. For example, on Duet 2 WiFi/Ethenet connect it to pin PB6, and on Duet 2 Maestro use one of the four expansion pins. In RRF 2.x, only Duet 2 WiFi/Ethernet expansion pin PB6 supports tacho, and is defined by default. Or you can leave it not connected. 
 * PWM control (blue) wire: connect it to the FAN- pin of your chosen controlled fan connector.
 * Configure the fan with the PWM signal inverted and define the pin the tacho wire is connected to with pullup resistor enabled (see section below for firmware configuration)
