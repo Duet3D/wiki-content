@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards. 
 published: true
-date: 2022-01-25T15:58:14.252Z
+date: 2022-04-23T19:01:35.935Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -148,8 +148,9 @@ The Duet 3 Mini 5+ supports an easy mechanism for updating the firmware directly
 ## All other Duet boards
 
 You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).  
-* Download the main firmware file from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases)
+* Download the main firmware file from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases){target=blank}
 * Verify that the downloaded firmware file has the correct size, as shown on the page you downloaded it from.
+* Duet 3 MB6XD only: if the Driver Enable Polarity Select jumper is fitted and in the position closest to the microcontroller, temporarily move it to the other position (the positoin closest to the edge of the board)
 * Connect the Duet to your PC via USB.
 * Verify that the 5V and 3.3V LED are on before continuing.
 * Erase the firmware on the Duet by either:
@@ -157,11 +158,11 @@ You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).
   * Jumpering the erase jumper
   
   ![firmware_update_02_erase_pins.jpg](/manual/configuration/firmware_update_02_erase_pins.jpg =400x)
-* Remove the erase jumper once the Diag LED lights up. This means you are successfully in programming mode.
+* Remove the erase jumper once the Diag LED lights up. This means you are successfully in programming mode. On the MB6HC board it will light up very dimly. On the MB6XD board it will not light up at all, so just wait a few seconds before removing it.
 ![firmware_update_01_reset_switch.jpg](/manual/configuration/firmware_update_01_reset_switch.jpg =400x)
-* then press the **Reset** button (if one is present).
-
-Now use either Bossa or SAM-BA to flash the firmware to the Duet.
+* Then press the **Reset** button (if one is present).
+* Now use either Bossa or SAM-BA to flash the firmware to the Duet (see below).
+* Duet 3 MB6XD only: if you moved the Driver Enable Polarity Select jumper, move it back to the original position.
 
 ## {.tabset}
 
@@ -171,13 +172,15 @@ Bossa is available for Windows, Apple macOS and Linux.
 
 **macOS users:** please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x) to resolve some issues with Bossa.
 
-**Duet 3 MB6HC:** When BOSSA is used to flash the SAME70 processor in the MB6HC, the processor uses the USB port in high speed mode (unlike the processors used in other Duets). This means that the length and quality of the USB cable is especially important. USB cables that can be used to send GCode commands and receive replies to/from a Duet MB6HC that is running RepRapFirmware may not be suitable for flashing the firmware using BOSSA.
+**Duet 3 MB6HC and MB6XD:** When BOSSA is used to flash the SAME70 processor in the MB6HC, the processor uses the USB port in high speed mode (unlike the processors used in other Duets). This means that the length and quality of the USB cable is especially important. USB cables that can be used to send GCode commands and receive replies to/from a Duet MB6HC/MB6XD that is running RepRapFirmware may not be suitable for flashing the firmware using BOSSA.
+
+**Duet 3 MB6XD:** You must use the Duet3D version of BOSSA. If the Bossa port does not appear on the PC, check that the Driver Enable Polarity jumper is not in the wrong position (see earlier).
 
 #### Tabs {.tabset}
 
 ##### Windows and macOS
 
-* Download and install Bossa 1.9.1 from [ShumaTech](https://github.com/shumatech/BOSSA/releases).
+* Download and install Bossa 1.9.1 from [ShumaTech](https://github.com/Duet3D/BOSSA/releases/tag/1.9.1a-duet3d).
 * Load Bossa. It usually detects the correct COM port automatically.
 * Check boxes *Erase all*, *Lock*, and *Boot to flash*
 * Browse to the firmware binary file to be installed, then press Write.
