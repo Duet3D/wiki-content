@@ -2,7 +2,7 @@
 title: Installing and Updating PanelDue Firmware
 description: This page describes how to update the PanelDue Firmware.
 published: true
-date: 2021-11-30T13:25:27.904Z
+date: 2022-04-26T13:19:34.198Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:21:58.270Z
@@ -21,35 +21,57 @@ This page describes how to update the PanelDue Firmware.
 
 ## PanelDue firmware versions
 
-For all versions of RepRapFirmware up to RRF 3.1.1, and all versions of PanelDue, use [PanelDue firmware version 1.24](https://github.com/Duet3D/PanelDueFirmware/releases/tag/1.24)
+For all versions of RepRapFirmware up to RRF 3.1.1, and all versions of PanelDue, use [PanelDue firmware version 1.25.0](https://github.com/Duet3D/PanelDueFirmware/releases/tag/1.25.0)
 
 From RepRapFirmware 3.1.1, late V2/V3/5i/7i PanelDue can use the improved [PanelDue firmware version 3.2.x and later](https://github.com/Duet3D/PanelDueFirmware/releases/). 
 Unfortunately, due to the lack of RAM, these versions will not run on V1 or early V2 PanelDue boards that use the ATSAM3S2B chip. See [PanelDue firmware notes](https://github.com/Duet3D/PanelDueFirmware/blob/master/whatsnew.md) for details.
 
 ## Find the correct file
 
-Locate and download PanelDue firmware for your display (see table below) from [Duet3D PanelDue Github](https://github.com/Duet3D/PanelDueFirmware/releases).
+Locate and download PanelDue firmware for your display from [Duet3D PanelDue Github](https://github.com/Duet3D/PanelDueFirmware/releases).
 
-| PanelDue version | Screen size | Firmware file |
+The following table shows the filenames for the PanelDue Firmware 3.4 release.
+
+| PanelDue version | Screen size | Firmware file (Duet3D logo) | Firmware file (no logo) |
 |:---|:---|
-| PanelDue 5i | 5" | PanelDue-5.0i-7.0i.bin |
-| PanelDue 7i | 7" | PanelDue-5.0i-7.0i.bin |
-| PanelDue v3.0 | 4.3" | PanelDue-v3-4.3.bin |
-| ^^ | 5" | PanelDue-v3-5.0.bin |
-| ^^ | 7" | PanelDue-v3-7.0.bin |
-| ^^ | 7"C | PanelDue-v3-7.0C.bin |
-| PanelDue v1.0, v1.1, v2.0 | 4.3" | PanelDue-v2-4.3.bin |
-| ^^ | 5" | PanelDue-v2-5.0.bin |
-| ^^ | 7" | PanelDue-v2-7.0.bin |
-| ^^ | 7"C | PanelDue-v2-7.0C.bin |
+| PanelDue 5i | 5" | PanelDueFirmware-logo-3.4.0-5.0i.bin | PanelDueFirmware-3.4.0-5.0i.bin |
+| PanelDue 7i | 7" | PanelDueFirmware-logo-3.4.0-7.0i.bin | PanelDueFirmware-3.4.0-7.0i.bin |
+| PanelDue v3.0 | 4.3" | PanelDueFirmware-logo-3.4.0-v3-4.3.bin | PanelDueFirmware-3.4.0-v3-4.3.bin |
+| ^^ | 5" | PanelDueFirmware-logo-3.4.0-v3-5.0.bin | PanelDueFirmware-3.4.0-v3-5.0.bin |
+| ^^ | 7" | PanelDueFirmware-logo-3.4.0-v3-7.0.bin | PanelDueFirmware-3.4.0-v3-7.0.bin |
+| ^^ | 7"C | PanelDueFirmware-logo-3.4.0-v3-7.0c.bin | PanelDueFirmware-3.4.0-v3-7.0c.bin |
+| PanelDue v1.0, v1.1, v2.0 | 4.3" | PanelDueFirmware-logo-3.4.0-v2-4.3.bin | PanelDueFirmware-3.4.0-v2-4.3.bin |
+| ^^ | 5" | PanelDueFirmware-logo-3.4.0-v2-5.0.bin | PanelDueFirmware-3.4.0-v2-5.0.bin |
+| ^^ | 7" | PanelDueFirmware-logo-3.4.0-v2-7.0.bin | PanelDueFirmware-3.4.0-v2-7.0.bin |
+| ^^ | 7"C | PanelDueFirmware-logo-3.4.0-v2-7.0c.bin | PanelDueFirmware-3.4.0-v2-7.0c.bin |
 
 ## Choosing the correct firmware binary
 
-For the 5" and 7" integrated versions of PanelDue, use file PanelDue-5.0i-7.0i.bin. Or use PanelDue-5.0i-7.0i-nologo.bin and add your own logo to it.
+The naming scheme is:
+PanelDueFirmware\[-\<ext>]-\<major>.\<minor>.\<patch>\[-\<suffix>]-\<hardware>.bin
 
-For versions of PanelDue with a separate controller board that plugs into the back of the display, choose the file name with -v3- in it if you have a version 3 PanelDue controller, or the one with -v2- in it if you have a version 1 or 2 PanelDue controller; and the file name that ends with the screen size you are using. The -v3- files are also available in -nologo versions to allow you to add your own splash screen.
+ext - optional name extension; usually blank, 'logo' or 'nologo' (see note below)
+major - major version
+minor - minor version
+patch - patchlevel version
+suffix - optional suffix version, specifies pre-release, rc versions
+hardware - hardware version
 
-The files ending in -7.0C are for 7" displays using a CPLD controller (not sold by Duet3D or their distributors).
+Examples are PanelDueFirmware-3.4.1-pre1-5.0i.bin or PanelDueFirmware-logo-3.4.1-pre1-7.0i.bin.
+
+For the 5" and 7" integrated versions of PanelDue, use file PanelDue firmware versions ending in -5.0i.bin or -7.0i.bin.
+
+For versions of PanelDue with a separate controller board that plugs into the back of the display, choose the file name with -v3- in it if you have a version 3 PanelDue controller, or the one with -v2- in it if you have a version 1 or 2 PanelDue controller, and the file name that ends with the screen size you are using.
+
+The files ending in -7.0c are for 7" displays using a CPLD controller (not sold by Duet3D or their distributors).
+
+### Logo and nologo versions
+
+From PanelDue firmware version 3.4, firmware filenames that have 'logo' in the name, eg PanelDueFirmware-logo-3.4.0-5.0i.bin, have a Duet3D logo splash screen on startup. Firmware filenames that have do not have 'logo' have no logo. 
+
+For PanelDue firmware versions up to 3.3, firmware filenames that DO NOT have logo in the name have the Duet3D splash screen. Firmware filenames that have 'nologo' in them have... no logo.
+
+You can create your own splash screen images; see readme on the [PanelDue firmware GitHub page](https://github.com/Duet3D/PanelDueFirmware#splash-screen) for instructions.
 
 ## Check current PanelDue firmware version
 
