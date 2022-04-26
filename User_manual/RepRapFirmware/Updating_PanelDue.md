@@ -2,7 +2,7 @@
 title: Installing and Updating PanelDue Firmware
 description: This page describes how to update the PanelDue Firmware.
 published: true
-date: 2022-04-26T13:22:11.503Z
+date: 2022-04-26T13:36:47.048Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:21:58.270Z
@@ -25,14 +25,14 @@ With the PanelDue connected to the Duet, and powered up, click on "Setup" on the
 
 ## PanelDue firmware versions
 
-For all versions of RepRapFirmware up to RRF 3.1.1, and all versions of PanelDue, use [PanelDue firmware version 1.25.0](https://github.com/Duet3D/PanelDueFirmware/releases/tag/1.25.0)
+For all versions of RepRapFirmware up to RRF 3.1.1, and all versions of PanelDue, use [PanelDue firmware version 1.25.0](https://github.com/Duet3D/PanelDueFirmware/releases/tag/1.25.0){target=_blank}.
 
-From RepRapFirmware 3.1.1, late V2/V3/5i/7i PanelDue can use the improved [PanelDue firmware version 3.2.x and later](https://github.com/Duet3D/PanelDueFirmware/releases/). 
-Unfortunately, due to the lack of RAM, these versions will not run on V1 or early V2 PanelDue boards that use the ATSAM3S2B chip. See [PanelDue firmware notes](https://github.com/Duet3D/PanelDueFirmware/blob/master/whatsnew.md) for details.
+From RepRapFirmware 3.1.1, late V2/V3/5i/7i PanelDue can use the improved [PanelDue firmware version 3.2.x and later](https://github.com/Duet3D/PanelDueFirmware/releases/){target=_blank}. 
+Unfortunately, due to the lack of RAM, these versions will not run on V1 or early V2 PanelDue boards that use the ATSAM3S2B chip. See [PanelDue firmware notes](https://github.com/Duet3D/PanelDueFirmware/blob/master/whatsnew.md){target=_blank} for details.
 
 ## Find the correct file
 
-Locate and download PanelDue firmware for your display from [Duet3D PanelDue Github](https://github.com/Duet3D/PanelDueFirmware/releases).
+Locate and download PanelDue firmware for your display from [Duet3D PanelDue Github](https://github.com/Duet3D/PanelDueFirmware/releases){target=_blank}.
 
 The following table shows the filenames for the PanelDue Firmware 3.4 release.
 
@@ -75,7 +75,7 @@ From PanelDue firmware version 3.4, firmware filenames that have 'logo' in the n
 
 For PanelDue firmware versions up to 3.3, firmware filenames that DO NOT have logo in the name have the Duet3D splash screen. Firmware filenames that have 'nologo' in them have... no logo.
 
-You can create your own splash screen images; see readme on the [PanelDue firmware GitHub page](https://github.com/Duet3D/PanelDueFirmware#splash-screen) for instructions.
+You can create your own splash screen images; see readme on the [PanelDue firmware GitHub page](https://github.com/Duet3D/PanelDueFirmware#splash-screen){target=_blank} for instructions.
 
 # Firmware update via Duet
 
