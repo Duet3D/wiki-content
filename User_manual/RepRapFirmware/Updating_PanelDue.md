@@ -2,7 +2,7 @@
 title: Installing and Updating PanelDue Firmware
 description: This page describes how to update the PanelDue Firmware.
 published: true
-date: 2022-04-26T13:19:34.198Z
+date: 2022-04-26T13:22:11.503Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:21:58.270Z
@@ -18,6 +18,10 @@ This page describes how to update the PanelDue Firmware.
 * For earlier RepRapFirmware versions, and earlier PanelDue, flash the firmware via the USB connector on the PanelDue.
 
 # Download PanelDue firmware
+
+## Check current PanelDue firmware version
+
+With the PanelDue connected to the Duet, and powered up, click on "Setup" on the display. Current firmware version is at the top of the 'Setup' screen.
 
 ## PanelDue firmware versions
 
@@ -65,17 +69,13 @@ For versions of PanelDue with a separate controller board that plugs into the ba
 
 The files ending in -7.0c are for 7" displays using a CPLD controller (not sold by Duet3D or their distributors).
 
-### Logo and nologo versions
+## Logo and nologo versions
 
 From PanelDue firmware version 3.4, firmware filenames that have 'logo' in the name, eg PanelDueFirmware-logo-3.4.0-5.0i.bin, have a Duet3D logo splash screen on startup. Firmware filenames that have do not have 'logo' have no logo. 
 
 For PanelDue firmware versions up to 3.3, firmware filenames that DO NOT have logo in the name have the Duet3D splash screen. Firmware filenames that have 'nologo' in them have... no logo.
 
 You can create your own splash screen images; see readme on the [PanelDue firmware GitHub page](https://github.com/Duet3D/PanelDueFirmware#splash-screen) for instructions.
-
-## Check current PanelDue firmware version
-
-With the PanelDue connected to the Duet, and powered up, click on "Setup" on the display. Current firmware version is at the top of the 'Setup' screen. Compare version with releases above. Make sure you use a version compatible with your Duet firmware version.
 
 # Firmware update via Duet
 
