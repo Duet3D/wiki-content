@@ -1,8 +1,8 @@
 ---
 title: GCode meta commands
-description:  RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation. 
+description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2022-02-28T14:58:08.440Z
+date: 2022-04-26T13:53:33.302Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -153,7 +153,7 @@ may be used in place of any numeric or quoted string operand within a GCode comm
 G1 X{move.axes[0].max-10} Y{move.axes[1].min+10}
 ```
 
-Using an expression to replace a parameter latter, or to replace the command number after the initial G or M, is not supported. (so  for example *G1 {global.extruder_axis}^2* is not supported)
+Using an expression to replace a parameter letter, or to replace the command number after the initial G or M, is not supported. (so  for example *G1 {global.extruder_axis}^2* is not supported)
 
 If a parameter of a G- or M-command requires multiple values and you want to use expressions for some or all of them, then when using RRF 3.3 and later the parameter must be expressed like this:
 
@@ -219,7 +219,7 @@ Expressions may use the values of any properties in the RepRapFirmware Object Mo
 
 ## Variables
 
-*These are supported in RRF 3.3 running in standalone mode.*
+*These are supported in RRF 3.3 in standalone mode and from 3.4 in SBC mode*
 
 The values of global variables that have been created using the '*global*' command can be retrieved using the syntax *global.\<variable name>*. Example:
 
@@ -231,7 +231,7 @@ G1 X0 Y0 F{global.defaultSpeed}
 
 Similarly, the values of local variables created using the **var** command can be retrieved using the syntax *var.\<variable name>*
 
-Use exists{\<variable>} to check if a variable is defined (not yet implemented in SBC mode). e.g.
+Use exists{\<variable>} to check if a variable is defined. e.g.
 ```
 exists(global.defaultSpeed)
 ```
@@ -322,6 +322,10 @@ The following functions are supported, with their conventional meanings:
 | sin | float->float | Argument must be in radians |
 | sqrt | float->float |  |
 | tan | float->float | Argument must be in radians |
+
+# Notes
+
+* If you are writing macros in a windows OS, set the EOL to be Linux-style (LF only). Windows default (CR LF) written macros work, but error messages count the CR and LF as two lines, so all line numbers were multiplied by 2.
 
 # Examples of use
 
