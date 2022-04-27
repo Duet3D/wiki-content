@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-04-19T07:54:37.047Z
+date: 2022-04-27T12:44:23.536Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6277,6 +6277,8 @@ M670 T5 P220:221:222 ; RRF 2.x
 
 ## M671: Define positions of Z leadscrews or bed levelling screws
 
+Informs the firmware of the positions of the leadscrews used to raise/lower the bed or gantry. 
+
 ### Parameters
 
 * **Xnn:nn:nn...** List of between 2 and 4 X coordinates of the leadscrews that drive the Z axis or the bed levelling screws
@@ -6297,13 +6299,17 @@ M671 X-15.0:100.0:215.0 Y220.0:-20.0:220.0 ; Z leadscrews are at (-15,220), (100
 
 ### Notes
 
-Informs the firmware of the positions of the leadscrews used to raise/lower the bed or gantry. When this command is used to define the leadscrew positions, the numbers of X and Y coordinates must both be equal to the number of drivers used for the Z axis (see the M584 command). This allows the firmware to perform bed levelling by adjusting the leadscrew motors individually after bed probing. See the G32 command.
+* When this command is used to define the leadscrew positions, the numbers of X and Y coordinates must both be equal to the number of drivers used for the Z axis (see the [M584](/User_manual/Reference/Gcodes/M584) command). This allows the firmware to perform bed levelling by adjusting the leadscrew motors individually after bed probing. See the [G32](/User_manual/Reference/Gcodes/G32) command.
 
-For machines without multiple independently-driven Z leadscrews, this command can also be used to define the positions of the bed levelling screws instead. Then bed probing can be used to calculate and display the adjustment required to each screw to level the bed. The thread pitch (P parameter) is used to translate the height adjustment needed to the number of turns of the levelling screws.
+* The X and Y coordinates in M671 is measured from the origin X0,Y0 set by [M208](/User_manual/Reference/Gcodes/M208). Measure to the pivot point of the bed where it connects to the Z axis. This is often each leadscrew, but may also be offset from the leadscrew if the bed rests on a carriage extending out from the leadscrew.
 
-For printers that print directly onto a desktop and have levelling feet, this command can be used to define the coordinates of the levelling feet, so that bed probing can be used to calculate and display the adjustments needed to the feet. In this case the displayed corrections must be reversed. For example, "0.2 turn down" means the bed needs to be lowered or the printer raised by 0.2 turn lower at that screw position.
+* The order of the X and Y coordinates is important; they relate to the order the motor drivers are defined in the [M584](/User_manual/Reference/Gcodes/M584) command. The first defined motor in M584 should be the first defined coordinates for X and Y in M671. For example, if you have M584 Z3:4:5 and M671 X[a]:[b]:[c] Y[a]:[b]:[c], the positions of X and Y for the motor on Z3 are defined by X[a],Y[a], Z4 by X[b],Y[b], and Z5 by X[c],Y[c].
 
-The firmware algorithm assumes perfect gimbal joints between the bed and the leadscrews, so that the bed is completely free to adopt the plane (or the twisted plane if there are 4 leadscrews) defined by the leadscrews. In real printers this is rarely the case and the corrections are insufficient to level the bed, so multiple G32 commands need to be sent if the bed is a long way off level. The F parameter allows for the corrections calculated by the firmware to be multiplied by a factor so as to achieve faster convergence in this situation.
+* The firmware algorithm assumes perfect gimbal joints between the bed and the leadscrews, so that the bed is completely free to adopt the plane (or the twisted plane if there are 4 leadscrews) defined by the leadscrews. In real printers this is rarely the case and the corrections are insufficient to level the bed, so multiple G32 commands need to be sent if the bed is a long way off level. The F parameter allows for the corrections calculated by the firmware to be multiplied by a factor so as to achieve faster convergence in this situation.
+
+* For machines without multiple independently-driven Z leadscrews, this command can also be used to define the positions of the bed levelling screws instead. Then bed probing can be used to calculate and display the adjustment required to each screw to level the bed. The thread pitch (P parameter) is used to translate the height adjustment needed to the number of turns of the levelling screws. See [Manual Bed Levelling Assistant](/User_manual/Connecting_hardware/Z_probe_manual_levelling).
+
+* For printers that print directly onto a desktop and have levelling feet, this command can be used to define the coordinates of the levelling feet, so that bed probing can be used to calculate and display the adjustments needed to the feet. In this case the displayed corrections must be reversed. For example, "0.2 turn down" means the bed needs to be lowered or the printer raised by 0.2 turn lower at that screw position. See [Manual Bed Levelling Assistant](/User_manual/Connecting_hardware/Z_probe_manual_levelling).
 
 ## M672: Program Z probe
 
