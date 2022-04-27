@@ -2,7 +2,7 @@
 title: Pressure advance
 description: Pressure advance aims to compensate for the elasticity of the filament and the extruder system.
 published: true
-date: 2021-12-16T22:29:56.506Z
+date: 2022-04-27T14:04:20.083Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:23:22.545Z
@@ -34,11 +34,13 @@ Pressure advance is configured on a per-extruder-drive basis. Different extruder
 M572 D0 S0.1
 ```
 
-The D parameter is the extruder drive number, and the S parameter is the amount of pressure advance you want for that extruder drive. If you have more than one extruder, you can specify the value for multiple extruders by seperating the values for D/S with a :
+The D parameter is the extruder drive number, and the S parameter is the amount of pressure advance you want for that extruder drive. To set the same S parameter for multiple extruders, list each extruders D value, separated by colons:
 
 ```
-M572 D0:1 S0.3:0.1
+M572 D0:1 S0.1
 ```
+
+To assign different values to different extruders, you need to use separate M572 commands.
 
 # How much pressure advance to use?
 
