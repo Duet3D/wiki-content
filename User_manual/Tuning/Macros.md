@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2022-04-27T11:58:29.560Z
+date: 2022-04-27T12:20:04.435Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -135,8 +135,12 @@ In RepRapFirmware 3.2 and later, **mesh.g** is run in response to a [G29](/User_
 
 ## Errors and Events
 
-* **heater-fault.g** (RRF 3.4 and later) When a heater fault occurs, an [Event](/User_manual/RepRapFirmware/Events){target=_blank} is created. To handle the event, RRF runs macro file heater-fault.g without pausing the print first. The heater number is passed as param.D along with some other parameters. If file heater-fault.g is not found then the print is paused and the user is notified. Currently, RRF does not attempt to turn off power to the whole machine if the user does not respond to the heater fault. We plan to reinstate this or a similar function in release 3.5.0.
-* **filament-error.g** (RRF 3.4 and later) When a filament error occurs, an [Event](/User_manual/RepRapFirmware/Events){target=_blank} is created. To handle the event, RRF runs macro file filament-error.g without appending the extruder number to the file name and without pausing the print first. The extruder number is passed as param.D along with some other parameters. If filament-error.g is not found then the print is paused (running pause.g) and the error is reported.
+With RRF 3.4, a new 'Events' system allows for more granular control of errors. See the [Events](/User_manual/RepRapFirmware/Events){target=_blank} page for more details. The following macros can be created for control of specific events.
+* **heater-fault.g** (RRF 3.4 and later) When a heater fault occurs, an event is created. To handle the event, RRF runs macro file heater-fault.g without pausing the print first. The heater number is passed as param.D along with some other parameters. If file heater-fault.g is not found then the print is paused and the user is notified. Currently, RRF does not attempt to turn off power to the whole machine if the user does not respond to the heater fault. We plan to reinstate this or a similar function in release 3.5.0.
+* **filament-error.g** (RRF 3.4 and later) When a filament error occurs, an event is created. To handle the event, RRF runs macro file filament-error.g without appending the extruder number to the file name and without pausing the print first. The extruder number is passed as param.D along with some other parameters. If filament-error.g is not found then the print is paused (running pause.g) and the error is reported.
+* **driver-error.g** (RRF 3.4 and later) When a stepper driver error occurs, an event is created. To handle the event, RRF runs the driver-error.g macro file, if it exists. The driver number and CAN address (if Duet 3) is passed as parameters. If driver-error.g is not found, then the job is paused without running pause.g and user informed via message box. 
+* **driver-stall.g** (RRF 3.4 and later) When a stepper driver stall occurs, an event is created. To handle the event, RRF runs the driver-stall.g macro file, if it exists. The driver number and CAN address (if Duet 3) is passed as parameters. If driver-stall.g is not found, then the stall is reported and the job continues. 
+* **driver-warning.g** (RRF 3.4 and later) When a stepper driver warning occurs, an event is created. To handle the event, RRF runs the driver-warning.g macro file, if it exists. The driver number and CAN address (if Duet 3) is passed as parameters. If driver-warning.g is not found, then the warning is reported and the job continues.
 
 ## Tool change
 
