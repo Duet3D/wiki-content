@@ -2,7 +2,7 @@
 title: DueX2 and DueX5
 description: The DueX5 is an expansion board for the Duet 2 WiFi and Ethernet. The DueX2 was a similar board with only 2 drivers that is now discontinued.
 published: true
-date: 2021-12-13T12:16:12.968Z
+date: 2022-04-27T09:37:54.832Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-03T14:27:58.735Z
@@ -77,7 +77,7 @@ Importantly Duets are Open:
 
 The DueX2 and DueX5 is dimensionally the same as Duet 2 WiFi/Ethernet.
 
-![duex5&2_dimentions.png](/duet_boards/duet_2_expansion/duex5&2_dimensions.png =600x)
+[![duex5&2_dimentions.png](/duet_boards/duet_2_expansion/duex5&2_dimensions.png =600x)](/duet_boards/duet_2_expansion/duex5&2_dimensions.png){target=_blank}
 
 ## Mounting
 
@@ -154,13 +154,13 @@ Solder a 3-pin header to the 'E# STEP DIR EN' vias and connect the external driv
 
 ### Revision 0.11
 
-![duex_wiring_v0.11_d1.0.png](/duet_boards/duet_2_expansion/duex_wiring_v0.11_d1.0.png =600x)
+[![duex_wiring_v0.11_d1.0.png](/duet_boards/duet_2_expansion/duex_wiring_v0.11_d1.0.png =600x)](/duet_boards/duet_2_expansion/duex_wiring_v0.11_d1.0.png){target=_blank}
 
 ### Revision 0.8a, 0.9, 0.9a, 0.10
 
 For these revisions forward the only difference between the DueX2 and DueX5 is only two stepper drivers are populated on the DueX2.
 
-![duex5&2_wiring_v0.9_v0.10.png](/duet_boards/duet_2_expansion/duex5&2_wiring_v0.9_v0.10.png =600x)
+[![duex5&2_wiring_v0.9_v0.10.png](/duet_boards/duet_2_expansion/duex5&2_wiring_v0.9_v0.10.png =600x)](/duet_boards/duet_2_expansion/duex5&2_wiring_v0.9_v0.10.png){target=_blank}
 
 The .svg version of this diagram is [available on github](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Wiring%20Diagrams).
 
@@ -171,12 +171,12 @@ The .svg version of this diagram is [available on github](https://github.com/Due
 ##### 0.8
 
 Version 0.8 had a 6th fan MOSFET and Header added
-
-![duex5_wiring_v0.8.png](/duet_boards/duet_2_expansion/duex5_wiring_v0.8.png =600x)
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[Duex5 wiring v0.8](/duet_boards/duet_2_expansion/duex5_wiring_v0.8.png){target=_blank}
 
 ##### 0.6 and 0.7
-
-![duex5_wiring_v0.6_v0.7.png](/duet_boards/duet_2_expansion/duex5_wiring_v0.6_v0.7.png =600x)
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[Duex5 wiring v0.6,v0.7](/duet_boards/duet_2_expansion/duex5_wiring_v0.6_v0.7.png){target=_blank}
 
 ### DueX2 (Revision 0.8 and earlier)
 
@@ -187,12 +187,12 @@ For these revisions the DueX2 had only the first two stepper and heater channels
 ##### 0.8
 
 Version 0.8 had a 6th fan MOSFET and Header added
-
-![duex2_wiring_v0.8.png](/duet_boards/duet_2_expansion/duex2_wiring_v0.8.png =600x)
-
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[Duex2 wiring v0.8](/duet_boards/duet_2_expansion/duex2_wiring_v0.8.png){target=_blank}
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
 ##### 0.6 and 0.7
 
-![duex2_wiring_v0.6_v0.7.png](/duet_boards/duet_2_expansion/duex2_wiring_v0.6_v0.7.png =600x)
+[Duex2 wiring v0.6,v0.7](/duet_boards/duet_2_expansion/duex2_wiring_v0.6_v0.7.png){target=_blank}
 
 ## Description of connections
 
@@ -269,17 +269,17 @@ LEDs are provided to indicate the following:
 
 To see where these pins are, see the *Wiring diagram* section above.
 
-| Pin name (RRF 3.x)| Logical pin (RRF 2.x) | Location | PWM capable? | Servo capable? | Notes |
+| Pin name (RRF 3.x)| Logical pin (RRF 2.x) | Location/PCB label | Input/Output? | PWM capable? | Servo capable? | Notes |
 |:---|:---|
-| duex.e[2-6]heat, duex.pwm[1-5] | 3-7 | Heater/PWM headers | yes | yes | Heater channels 3-7 are available as 5V active-high signals on the PWM1 - PWM5 connectors respectively. On the DueX2 versions before 0.8a, only heater channels 3-5 are available on PWM1 - PWM3. Caution: the heater output terminals will also be driven by the PWM signal or servo pulses. |
-| duex.fan[3-8] | 23-28 | Fan headers | yes | no | Fans 3-8 on DueX2/5 |
-| duex.e[2-6]stop | 45-49 | Endstops headers | no | no | Endstop connectors on DueX2/5 are input-only. |
-| duex.cs5 | 60 | Temp DB CS5 (pin 3) | no | no | See notes below. Signal name: CS5 |
-| duex.cs6 | 61 | Temp DB CS6 (pin 1) | no | no | See notes below. Signal name: CS6 |
-| duex.cs7 | 62 | Temp DB CS7 (pin 7) | no | no | See notes below. Signal name: CS7 |
-| duex.cs8 | 63 | Temp DB CS8 (pin 9) | no | no | See notes below. Signal name: CS8 |
-| duex.gp[1-4] | 100-103 | GPIO pins 1-4 | yes | no | |
-| exp.pb6 | - | GPIO (pin PB6) | no | no | Dedicated in RRF 2.x to fan tacho |
+| duex.e[2-6]heat, duex.pwm[1-5] | 3-7 | Heater/PWM headers | output only | yes | yes | Heater channels 3-7 are available as 5V active-high signals on the PWM1 - PWM5 connectors respectively. On the DueX2 versions before 0.8a, only heater channels 3-5 are available on PWM1 - PWM3. Caution: the heater output terminals will also be driven by the PWM signal or servo pulses. |
+| duex.fan[3-8] | 23-28 | Fan headers | output only | yes | no | Fans 3-8 on DueX2/5 |
+| duex.e[2-6]stop | 45-49 | Endstops headers | yes | no | no | Endstop connectors on DueX2/5 are input-only. |
+| duex.cs5 | 60 | Temp DB CS5 (pin 3) | yes | no | no | See notes below. Signal name: CS5 |
+| duex.cs6 | 61 | Temp DB CS6 (pin 1) | yes | no | no | See notes below. Signal name: CS6 |
+| duex.cs7 | 62 | Temp DB CS7 (pin 7) | yes | no | no | See notes below. Signal name: CS7 |
+| duex.cs8 | 63 | Temp DB CS8 (pin 9) | yes | no | no | See notes below. Signal name: CS8 |
+| duex.gp[1-4] | 100-103 | GPIO pins 1-4 | yes | yes | no | |
+| exp.pb6 | - | GPIO (pin PB6) | yes | no | no | Dedicated in RRF 2.x to fan tacho |
 
 **Notes:**
 
