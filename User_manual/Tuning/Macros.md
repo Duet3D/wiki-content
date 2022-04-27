@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2021-12-18T22:18:45.726Z
+date: 2022-04-27T11:58:29.560Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -133,6 +133,11 @@ If you are running RepRapFirmware 3.1 or later and you have more than one Z prob
 
 In RepRapFirmware 3.2 and later, **mesh.g** is run in response to a [G29](/User_manual/Reference/Gcodes/G29) command with no parameters. If file mesh.g is not found then it behaves like G29 S0 instead.
 
+## Errors and Events
+
+* **heater-fault.g** (RRF 3.4 and later) When a heater fault occurs, an [Event](/User_manual/RepRapFirmware/Events){target=_blank} is created. To handle the event, RRF runs macro file heater-fault.g without pausing the print first. The heater number is passed as param.D along with some other parameters. If file heater-fault.g is not found then the print is paused and the user is notified. Currently, RRF does not attempt to turn off power to the whole machine if the user does not respond to the heater fault. We plan to reinstate this or a similar function in release 3.5.0.
+* **filament-error.g** (RRF 3.4 and later) When a filament error occurs, an [Event](/User_manual/RepRapFirmware/Events){target=_blank} is created. To handle the event, RRF runs macro file filament-error.g without appending the extruder number to the file name and without pausing the print first. The extruder number is passed as param.D along with some other parameters. If filament-error.g is not found then the print is paused (running pause.g) and the error is reported.
+
 ## Tool change
 
 There are normally three specified tool change macros (any of which can contain no commands if desired) that execute in this order:
@@ -143,7 +148,7 @@ There are normally three specified tool change macros (any of which can contain 
 
 See [Selecting a tool](/User_manual/Reference/Gcodes/T) for more details.
 
-## Start, pause, stop  and power fail
+## Start, pause, stop and power fail
 
 * **start.g** is run when you start a print from SD card. Runs immediately before any slicer created gcode.
 * **pause.g** is run when you pause a print.
