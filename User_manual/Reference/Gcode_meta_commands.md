@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2022-04-26T13:53:33.302Z
+date: 2022-04-29T15:31:17.264Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -231,7 +231,7 @@ G1 X0 Y0 F{global.defaultSpeed}
 
 Similarly, the values of local variables created using the **var** command can be retrieved using the syntax *var.\<variable name>*
 
-Use exists{\<variable>} to check if a variable is defined. e.g.
+Use exists(\<variable>) to check if a variable is defined. e.g.
 ```
 exists(global.defaultSpeed)
 ```
