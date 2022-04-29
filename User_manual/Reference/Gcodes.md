@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-04-29T15:22:42.368Z
+date: 2022-04-29T15:28:47.347Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -558,10 +558,10 @@ G10 L1 P2 X17.8 Y-19.3 Z0.0 ; sets the offset for tool 2 to the X, Y, and Z valu
 
 **Coordinate Offset Example**
 
-Suppose the current machine coordinates are **X110 Y110 Z20** and you want to make this the origin (i.e. **X0 Y0 Z0**) of the second coordinate system (accessible via G55) then there are two options:
+Suppose the current machine coordinates are `X110 Y110 Z20` and you want to make this the origin (i.e. `X0 Y0 Z0`) of the second coordinate system (accessible via G55) then there are two options:
 
-1. G10 L2 P2 X110 Y110 Z20
-1. G10 L20 P2 X0 Y0 Z0
+1. `G10 L2 P2 X110 Y110 Z20`
+1. `G10 L20 P2 X0 Y0 Z0`
 
 The first example will set offsets to be subtracted from the current machine coordinates.
 
