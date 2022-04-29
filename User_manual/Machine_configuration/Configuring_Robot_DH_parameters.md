@@ -2,11 +2,13 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-04-20T09:03:31.722Z
+date: 2022-04-29T10:24:37.568Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
 ---
+
+The following description and DH parameters are difficult. I decided to develop a DWC plugin to visually check the parameters, so it will be much easier to set them.
 
 # Denavit-Hartenberg parameters
 Denavit-Hartenberg (DH) parameters are often used in robotics to describe properties of a specific robot setup like axis orientations, arm lenghts and other properties. It is used by M669 G-Codes to describe the kinematics.
