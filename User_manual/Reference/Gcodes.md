@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-04-27T12:46:00.107Z
+date: 2022-04-29T15:22:42.368Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -533,9 +533,9 @@ This form of the G10 command is recognised by having either or both of the L and
 
 **Modes**
 
-* L=1: this sets the tool offset, as if the L parameter was not present
-* L=2: this sets the origin of the coordinate system number specified by the P parameter (1 to 9) to the specified X, Y, X... values
-* L=20: this is similar to L=2 except that the origin is specified relative to the current position of the tool.
+* L1: this sets the tool offset, as if the L parameter was not present
+* L2: this sets the origin of the coordinate system number specified by the P parameter (1 to 9) to the specified X, Y, X... values
+* L20: this is similar to L2 except that the origin is specified relative to the current position of the tool.
 
 ### Notes
 
@@ -558,13 +558,7 @@ G10 L1 P2 X17.8 Y-19.3 Z0.0 ; sets the offset for tool 2 to the X, Y, and Z valu
 
 **Coordinate Offset Example**
 
-Suppose the current machine coordinates are
-
-* X=110
-* Y=110
-* Z=20
-
-and you want to make this the origin (i.e. X=0, Y=0, Z=0) of the second coordinate system (accessible via G55) then there are two options:
+Suppose the current machine coordinates are **X110 Y110 Z20** and you want to make this the origin (i.e. **X0 Y0 Z0**) of the second coordinate system (accessible via G55) then there are two options:
 
 1. G10 L2 P2 X110 Y110 Z20
 1. G10 L20 P2 X0 Y0 Z0
