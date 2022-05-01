@@ -2,7 +2,7 @@
 title: DueX2 and DueX5
 description: The DueX5 is an expansion board for the Duet 2 WiFi and Ethernet. The DueX2 was a similar board with only 2 drivers that is now discontinued.
 published: true
-date: 2022-04-27T09:37:54.832Z
+date: 2022-05-01T11:02:37.264Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-03T14:27:58.735Z
@@ -91,7 +91,9 @@ As with the Duet 2, the stepper motor drivers are cooled via the PCB. To improve
 
 ## 3D models
 
-The DueX CAD file is here, thanks to Morten Nielsen for making this version, [available here](https://grabcad.com/library/duex5-1).
+The DueX v0.11 CAD file is here: https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet_Expansion/Duex5v0.11  (downloaf the STEP file)
+
+Morten Nielsen has also shared a model of the earlier versions, [available here](https://grabcad.com/library/duex5-1).
 
 ## Using a DueX5 with External drivers
 
