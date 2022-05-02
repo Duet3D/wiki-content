@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-04-29T10:24:37.568Z
+date: 2022-05-02T09:14:56.205Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -103,7 +103,9 @@ The following calculations are made to convert the coordinate system from O2 to 
 * alpha=-90 degree means rotating clockwise by X axis looking from above to the arrow. This results in Z axis to rotate from back to right, and Y2 from right to front Y3.
 * a=0 sets the arm length to next joint to 0. The length between joint 3 and joint 4 are added to joint 4 later (as d parameter, because arms direction is axis Z now), because joint 4 doesn't change the angle between both arms. This is not optimal, because later the joint 3 and 4 parameters could be changed later to account for buidings imperfections and the addition of arm lengths is an error then.
 
-In reality, arm 2 and arm 3 are not at the same offset. But the construction of axis 1 to arm 2 in one direction and arm 3 back the same distance makes possible to set d=0 for joints 2 and 3. This is possible, because axis 2 and 3 are parallel to each other. Arm 3 is directly above axis 1 in respect to Z1, Z2 direction. But joint 3 has 70 offset (right of in the image) of axis 1 in respect to Y2, Z3 direction. Those combining of parameter values intend to ease calculations and parallel axes don't have d values, but when there are corrections for building imperfections later (e. g. joints 2 and 3 not perfectly parallel), the d parameters must be set to nonzero.
+In reality, arm 2 and arm 3 are not at the same offset. But the construction of axis 1 to arm 2 in one direction and arm 3 back the same distance makes possible to set d=0 for joints 2 and 3. This is possible, because axis 2 and 3 are parallel to each other. Arm 3 is directly above axis 1 in respect to Z1, Z2 direction. But joint 3 has 70 offset (right of in the image) of axis 1 in respect to Y2, Z3 direction. Those combining of parameter values intend to ease calculations and parallel axes don't have d values, but I recommend so set the values, so the axes coordinates are where the axes are in reality. For two reasons:
+* saving calcuation effect is no argument, as there are hundreds of trigonometric calculation and 4 more is really not important
+* a later introduced method to calculate back from a measured endpoint to calculation of true axis and arm lenght values is only working, if the DH parameters are placed to axes where they are in reality
 # Example 1 joint 4
 The DH parameters for joint 4 are theta q4, d=380, alpha 90 degrees and a = 0.
 
