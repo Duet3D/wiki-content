@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-04-29T15:28:47.347Z
+date: 2022-05-02T19:42:27.917Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3294,7 +3294,7 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 
 **Additional parameters for MAX31856-based thermocouple sensors**
 
-* **T"c"** The thermistor type letter, default K
+* **K"c"** The thermistor type letter, default K
 * **Fnn** (where nn is 50 or 60) The local mains frequency. Readings will be timed to optimise rejection of interference at this frequency.
 
 **Additional parameters for MAX31865-based PT100 sensors**
