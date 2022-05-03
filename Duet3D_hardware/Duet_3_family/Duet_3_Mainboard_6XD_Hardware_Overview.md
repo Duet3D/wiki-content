@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-04-14T09:00:10.017Z
+date: 2022-05-03T14:45:52.679Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
