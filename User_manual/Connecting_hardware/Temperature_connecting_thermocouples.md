@@ -2,7 +2,7 @@
 title: Connecting thermocouples
 description: 
 published: true
-date: 2021-12-15T15:05:16.863Z
+date: 2022-05-04T07:19:49.713Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-13T14:16:06.389Z
@@ -31,7 +31,8 @@ Each daughterboard supports 2 channels, ie two thermocouples per daughterboard. 
 
 | Duet board | Number of boards supported | Pin names (RRF 3) | MAX31856 Channel (RRF 2) | MAX31855 Channel (RRF 2) |
 |---|---|
-| Duet 3 Mainboard 6HC | 2, stacked | spi.cs0 to spi.cs3 | - | - |
+| Duet 3 Mainboard 6HC | 2, stacked | spi.cs0 to spi.cs3 | - |
+| Duet 3 Mainboard 6XD | 2, stacked | spi.cs0 to spi.cs3 | - |
 | Duet 3 Mini 5+ | 1 | spi.cs1 to spi.cs2 | - | - |
 | Duet 3 Expansion 3HC | 2, stacked | spi.cs0 to spi.cs3 | - | - |
 | Duet 3 Toolboard 1LC | 0 | - | - | - |
@@ -102,7 +103,7 @@ For example:
 M308 S1 P"spi.cs1" Y"thermocouple-max31856"  ; create sensor number 1 as a thermocouple, defaulting to type K in the first position on the Duet 2 daughter board connector
 
 ;Duet 3
-M308 S3 P"3.spi.cs1"Y"thermocouple-max31856" T"J"; define temperature sensor number 3 as a J Type thermocouple on the first port of a temperature daughter board plugged into the expansion board with CAN bus address 3.
+M308 S3 P"3.spi.cs1"Y"thermocouple-max31856" K"J"; define temperature sensor number 3 as a J Type thermocouple on the first port of a temperature daughter board plugged into the expansion board with CAN bus address 3.
 ```
 
 ## RepRapFirmware 2.x
