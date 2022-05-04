@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for CoreXY Printer
 description: This page describes how to set up the configuration files for CoreXY printers, the same firmware binary also supports Cartesian, Delta and other printers kinematics .
 published: true
-date: 2022-01-19T14:43:19.179Z
+date: 2022-05-04T12:33:03.061Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T16:28:00.743Z
@@ -34,13 +34,29 @@ To switch the firmware to CoreXY mode, add this command to the General preferenc
 ```
 M669 K1 ; switch to CoreXY mode
 ```
+This gives a movement matrix of:
+```
+M669
+Kinematics is CoreXY, no segmentation, matrix:
+1.00 1.00 0
+1.00 -1.00 0
+0 0 1.00
+```
 
 See here for specifics: [M669 Set kinematics type and kinematics parameters](/User_manual/Reference/Gcodes/M669)
 
 By default, the firmware assumes that the paired axes (e.g. X and Y for a CoreXY machine) move equal amounts when just one motor turns. This is not always the case, for example a CoreXZ machine typically uses additional pulleys so that the Z axis moves only 1/3 of the amount of the X axis. To allow for this, you can use X, Y and Z parameters to specify that the motor movements should be multiplied by the given factor when moving the specified axis. So the typical CoreXZ machine should be configured like this:
 
 ```
-M669 K2 Z3 ; switch to CoreXZ mode and multiply motor movements by 3 for the Z axis
+M669 K2 Z3:0:-3 ; switch to CoreXZ mode and multiply motor movements by 3 for the Z axis
+```
+This gives a movement matrix of:
+```
+M669
+Kinematics is CoreXZ, no segmentation, modified matrix:
+1.00 0 1.00
+0 1.00 0
+3.00 0 -3.00
 ```
 
 #### RepRapFirmware earlier than 2.03
