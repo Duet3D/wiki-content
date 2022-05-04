@@ -1,8 +1,8 @@
 ---
-title: Connecting external stepper motor and servo drivers
+title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-05-04T15:05:18.545Z
+date: 2022-05-04T15:10:16.666Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
