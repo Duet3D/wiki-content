@@ -2,7 +2,7 @@
 title: Connecting external stepper motor drivers
 description: 
 published: true
-date: 2022-05-04T14:57:31.066Z
+date: 2022-05-04T14:58:21.580Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -10,7 +10,7 @@ dateCreated: 2021-10-05T15:57:39.091Z
 
 # Introduction
 
-If your motors are rated above the current limit of your Duet, or if they need higher voltage than the Duet can provide, then you need external stepper motor drivers. These generally have optically isolated step/dir/enable inputs. For example, stepper motor drivers rated at up to 5A using the TB6600 stepper driver chip are widely available on eBay. External stepper drivers are also available to drive large servo motors, and these can usually be controlled with step/direction pulses from Duet 
+If your motors are rated above the current limit of your Duet, or if they need higher voltage than the Duet can provide, then you need external stepper motor drivers. These generally have optically isolated step/dir/enable inputs. For example, stepper motor drivers rated at up to 5A using the TB6600 stepper driver chip are widely available on eBay. External stepper drivers are also available to drive large servo motors, and these can usually be controlled with step/direction pulses from Duet board.
 
 Duet3D sell expansion boards to connect external drivers to Duet mainboards; see Connection options below. This page mainly deals with connecting an external stepper driver to the external driver pins (Duet 3 Mini 5+, Duet 2 Maestro) or the expansion connector or CONN_LCD pins (Duet 2 WiFi/Ethernet).
 
