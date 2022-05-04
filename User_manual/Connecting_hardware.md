@@ -2,7 +2,7 @@
 title: User manual: Connecting hardware
 description: 
 published: true
-date: 2022-01-28T14:34:21.750Z
+date: 2022-05-04T15:09:54.289Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:51:46.990Z
@@ -38,7 +38,7 @@ dateCreated: 2021-06-08T13:51:46.990Z
 [Choosing stepper motors](/User_manual/Connecting_hardware/Motors_choosing)
 [Choosing an extruder drive](/User_manual/Connecting_hardware/Motors_choosing#choosing-an-extruder-drive)
 [Connecting stepper motors](/User_manual/Connecting_hardware/Motors_connecting)
-[Connecting external stepper drivers](/User_manual/Connecting_hardware/Motors_connecting_external)
+[Connecting external stepper and servo motor drivers](/User_manual/Connecting_hardware/Motors_connecting_external)
 [Configuring stepper motors](/User_manual/Connecting_hardware/Motors_configuring)
 [Testing stepper motors](/User_manual/Connecting_hardware/Motors_testing)
 [Tuning stepper motor drivers](/User_manual/Connecting_hardware/Motors_tuning)
