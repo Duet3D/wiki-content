@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-05-04T09:02:36.776Z
+date: 2022-05-04T09:22:14.293Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -63,25 +63,16 @@ A"Mn" defines G-Code modes and whether orientation is used:
 * M1 means X, Y, Z, I, J, K, U, V, W G-Code (tool vectors)
 * M2 means X, Y, Z without orientation information. Forward and inverse kinematics calculate only coordinates and ignore endpoint's orientation.
 
-An:a:alpha:theta:d:home:min:max
-
-* n is the number of the axis, starting with 1
-* a is the distance between Z and former Z axis. If alpha is 0, 90 or -90, it is the arm length
-* alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
-* theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
-* d offset in Z direction
+Ajoint:ztrans:zrot:xtrans:xrot:home:minangle:maxangle
+* joint 1 is describing the transformations, so that the resulting coordinate system at axis 2
+* ztrans = d offset in Z direction
+* zrot = theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
+* xtrans = a is the distance between Z and former Z axis. If alpha is 0, 90 or -90, it is the arm length
+* xrot = alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
 * home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
 
-**Example**: M669 A1:200:0:-90:0:0:-90:90
-
-axis1's parameters:
-* 200 is arm length (Z axis distance)
-* 0 alpha=0, so no rotation around the X axis
-* -90 theta correction (e.g. axis2 0 degree will be vertical instead of horizontal)
-* 0 d, displacement in Z axis direction is 0
-* 0 theta angle set when homing the axis
-* -90 minimun theta angle
-* 90 maximum theta angle
+**Example**: tbd
+...
 
 **B** alternative to DH parameters, defining all 3 axes
 
