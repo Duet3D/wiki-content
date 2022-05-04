@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-05-04T09:22:14.293Z
+date: 2022-05-04T20:00:24.520Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -49,9 +49,7 @@ M669 must set kinematics type to robot by caling M669 K13. After the type is sel
 
 **K13** needs to be defined.
 
-**A** defines the Denavit-Hartenberg parameters for n joints, starting numbering by 1.
-
-For the explanation how to set the parameters, please see the last chapter.
+**A** is used to define the properties of the robot.
 
 A"[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint.
 * A"RRRRRR" means 6 axis robot with rotational axes
@@ -63,6 +61,8 @@ A"Mn" defines G-Code modes and whether orientation is used:
 * M1 means X, Y, Z, I, J, K, U, V, W G-Code (tool vectors)
 * M2 means X, Y, Z without orientation information. Forward and inverse kinematics calculate only coordinates and ignore endpoint's orientation.
 
+
+DH (Denavit-Hartenberg) parameters are defined by:
 Ajoint:ztrans:zrot:xtrans:xrot:home:minangle:maxangle
 * joint 1 is describing the transformations, so that the resulting coordinate system at axis 2
 * ztrans = d offset in Z direction
@@ -71,16 +71,14 @@ Ajoint:ztrans:zrot:xtrans:xrot:home:minangle:maxangle
 * xrot = alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
 * home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
 
-**Example**: tbd
-...
-
-**B** alternative to DH parameters, defining all 3 axes
+Instead of DH parameters, all 6 translations and rotations can be defined by:
+Aaxisnr:ztrans:zrot:ytrans:yrot:xtrans:xrot:home:minangle:maxangle
 
 Adding the possibility to define Y axes' parameters rotation and translation to give full flexibility to define the coordinates. The Z axis is rotated and translated first, then Y, then X, according to the roll-pitch-yaw (RPY) order.
 
-Baxisnr:ztrans:zrot:ytrans:yrot:xtrans:xrot:home:minangle:maxangle
+A1 to A6 are the equivalent to DH parameters. A0 allows a displacement of the first axis and axis rotations.
 
-B1 to B6 are the equivalent to DH parameters. B0 allows a displacement of the first axis.
+**B** reserved
 
 **Pn** defines 6th axis behaviour
 
