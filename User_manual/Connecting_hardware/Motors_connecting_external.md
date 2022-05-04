@@ -2,7 +2,7 @@
 title: Connecting external stepper motor drivers
 description: 
 published: true
-date: 2021-12-15T22:08:05.042Z
+date: 2022-05-04T14:52:55.590Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -10,7 +10,7 @@ dateCreated: 2021-10-05T15:57:39.091Z
 
 # Introduction
 
-If your motors are rated above the current limit of your Duet, or if they need higher voltage than the Duet can provide, then you need external stepper motor drivers. These generally have optically isolated step/dir/enable inputs. For example, stepper motor drivers rated at up to 5A using the TB6600 stepper driver chip are widely available on eBay.
+If your motors are rated above the current limit of your Duet, or if they need higher voltage than the Duet can provide, then you need external stepper motor drivers. These generally have optically isolated step/dir/enable inputs. For example, stepper motor drivers rated at up to 5A using the TB6600 stepper driver chip are widely available on eBay. External stepper drivers are also available to drive large servo motors, and these can usually be controlled with step/direction pulses from Duet 
 
 Duet3D sell expansion boards to connect external drivers to Duet mainboards; see Connection options below. This page mainly deals with connecting an external stepper driver to the external driver pins (Duet 3 Mini 5+, Duet 2 Maestro) or the expansion connector or CONN_LCD pins (Duet 2 WiFi/Ethernet).
 
@@ -21,34 +21,45 @@ Ideally, motors should be run at between 60% and 85% of their rated current. The
 | | Max motor current | Max motor voltage | 
 |---|---|
 | Duet 3 Mainboard 6HC | 6.3A | 32V | 
-| Deut 3 Mini 5+ | 2.0A | 25V | 
+| Duet 3 Mainboard 6XD | NA | NA | 
+| Duet 3 Mini 5+ | 2.0A | 25V | 
 | Duet 2 WiFi/Ethernet | 2.4A | 25V | 
 | Duet 2 Maestro | 1.6A | 25V | 
 
 # Connection options
 
-There are a number of options available to connect external drivers.
+There are a number of options available to connect external stepper/servo drivers.
 
 | | Pins for direct connection | Provision for external drivers |
 |---|---|
-| Duet 3 Mainboard 6HC | None | CAN bus |
-| Deut 3 Mini 5+ | External driver pins (2 drives, 3V signalling) | CAN bus |
-| Duet 2 WiFi/Ethernet | Expansion connector (5 drives, 3V signalling), CONN_LCD (2 drives, 3V signalling) | DueX2/5 (3 drives, 3V signalling), Duet Expansion Breakout Board (5 drives, 5V signalling) |
-| Duet 2 Maestro | External driver pins (2 drives, 3V signalling) | None |
+| [Duet 3 Mainboard 6HC](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | None | CAN bus |
+| [Duet 3 Mainboard 6XD](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | Headers for six external drivers with 5V signalling (no on-board drivers) | CAN bus |
+| [Duet 3 Mini 5+](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | External driver pins (2 drives, 3V signalling) | CAN bus |
+| [Duet 2 WiFi/Ethernet](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | Expansion connector (5 drives, 3V signalling), CONN_LCD (2 drives, 3V signalling) | [DueX2/5](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) (3 drives, 3V signalling), [Duet Expansion Breakout Board](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_Expansion_Breakout_Board) (5 drives, differential signalling -3.6V to +3.6V, or 5V) |
+| [Duet 2 Maestro](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro) | External driver pins (2 drives, 3V signalling) | None |
+
+There are two options for Duet 3 CAN-connected expansion boards:
+
+| | Provision for external drivers |
+|---|---|
+| [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) | Single-ended or differential 5V signalling for one external driver. Multiple 1XD boards can be daisy-chained to support as many external drivers as you need. |
+| [Duet 3 Expansion 1HCL](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL) | Stepper driver (6.3A peak, 4.45A RMS) driving a single stepper motor (up to 48V) with encoder. |
 
 # Tabs {.tabset}
 
 ## Duet 3 Mainboard 6HC
 
-The **Duet 3 Mainboard 6HC** has no on-board external driver pins. Use a CAN bus connected expansion board to provide signalling for the external driver, such as the [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD).
-<!--or [Duet 3 Expansion 1HCL **UPDATE LINK**]()-->
+The **Duet 3 Mainboard 6HC** has no on-board external driver pins. Use a CAN bus connected expansion board to provide signalling for the external driver, such as the [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) or [Duet 3 Expansion 1HCL](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL).
 
 ## Duet 3 Mini 5+
 
 If the drivers require no more than about 2mA @ 3V on the step and dir inputs (there is no enable signal), then you can drive them directly from the **Duet 3 Mini 5+** external driver pins. See the [Duet 3 Mini 5+ wiring diagram](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview#wiring-diagram) for pin locations.
 
-Otherwise, use a CAN bus connected expansion board to provide signalling for the external driver, such as the [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD).
-<!--or [Duet 3 Expansion 1HCL **UPDATE LINK**]()-->
+Otherwise, use a CAN bus connected expansion board to provide signalling for the external driver, such as the [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) or [Duet 3 Expansion 1HCL](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL).
+
+## Duet 3 6XD
+
+The Duet 3 6XD supports up to 6 external drivers, see the [Duet 3 6XD Documentation](Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) for more details. Additional CAN bus connected expansion boards can provide signalling for further external drivers; see [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) or [Duet 3 Expansion 1HCL](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL).
 
 ## Duet 2 WiFi/Ethernet
 
@@ -107,7 +118,7 @@ Even though the stepsticks are nominally 5V boards, nearly all stepper driver ch
 
 ## Stepper driver breakout boards
 
-A simple way of connecting an external is to use a stepper driver breakout board such as [this one](http://hobbycomponents.com/motor-drivers/892-breakout-board-for-a4988-stepper-motor-driver). 
+A simple way of connecting an external is to use a stepper driver breakout board such as [this one](http://hobbycomponents.com/motor-drivers/892-breakout-board-for-a4988-stepper-motor-driver){target=_blank}. 
 
 Wire as follows: 
 * 3.3V and GND (Note: The pin labelled 5V on the breakout board must be connected to 3.3V on the Duet, not 5V!)
@@ -116,7 +127,7 @@ Wire as follows:
 
 **Note:** It’s strongly recommend clearly marking your wires, so as not to short out something or otherwise plug them in improperly!
 
-![motor_external_10.jpg](/manual/motors/motor_external_10.jpg =500x)
+[![motor_external_10.jpg](/manual/motors/motor_external_10.jpg =500x)](/manual/motors/motor_external_10.jpg){target=_blank}
 
 Next, install the Drivers to the breakout board
 
@@ -125,7 +136,7 @@ Next, install the Drivers to the breakout board
 * The DRV8825 is inserted with trimpot facing towards the dipswitches.
 * SilentStepStick TMC2100 is inserted with trimpot facing towards the dipswitches.
 
-![motor_external_11.jpg](/manual/motors/motor_external_11.jpg =500x)
+[![motor_external_11.jpg](/manual/motors/motor_external_11.jpg =500x)](/manual/motors/motor_external_11.jpg){target=_blank}
 
 Measure vRef - good practice
 
@@ -134,7 +145,7 @@ Measure vRef - good practice
 * Attach the red one to a small screw-driver fitting for your trimpot.
 * This way you have your hands free to actually adjust the trimpot and not having to hold multiple wires and worry about something slipping and making a short circuit somewhere:
 
-![motor_external_12.jpg](/manual/motors/motor_external_12.jpg =500x)
+[![motor_external_12.jpg](/manual/motors/motor_external_12.jpg =500x)](/manual/motors/motor_external_12.jpg){target=_blank}
 
 ## External driver using RAMPS board
 
@@ -142,30 +153,30 @@ This example shows how to add one external stepper driver to drive a third extru
 
 At the Duet 2 Wifi end, connections are made to the GND, +3.3V, E2_STEP, E2_DIR and E2_EN pins on the expansion connector (see table and pinout diagram earlier). A custom cable is made up that connects these pins to the Stepstick.
 
-![motor_external_04.png](/manual/motors/motor_external_04.png =300x)
+[![motor_external_04.png](/manual/motors/motor_external_04.png =300x)](/manual/motors/motor_external_04.png){target=_blank}
 
 In this example the Stepstick is mounted on on a RAMPS 1.3 pcb, just adding the minimal components needed to support 1 more driver. It was much quicker to use a RAMPS pcb that was spare than to use stripboard to make a custom stepper driver carrier for the stepstick driver, however that is all that the pcb is doing so directly connecting to the stepstick or using a stripboard will also work. It is important to connect a bulk capacitor of ~100uF between power and ground close to the stepstick.
 
 At the RAMPS pcb end:
 
-![motor_external_05.png](/manual/motors/motor_external_05.png =300x)
+[![motor_external_05.png](/manual/motors/motor_external_05.png =300x)](/manual/motors/motor_external_05.png){target=_blank}
 
 And the RAMPS PCB with the other components fitted:
 
-![motor_external_06.png](/manual/motors/motor_external_06.png =300x)
+[![motor_external_06.png](/manual/motors/motor_external_06.png =300x)](/manual/motors/motor_external_06.png){target=_blank}
 
 
 ## TMC2130 Example
 
-![motor_external_07.png](/manual/motors/motor_external_07.png =300x)
+[![motor_external_07.png](/manual/motors/motor_external_07.png =300x)](/manual/motors/motor_external_07.png){target=_blank}
 
 It is possible to use Trinamic stepper drivers in the so called "standalone mode". Since as for now the logic allowing to control the SPI features are not implemented one needs to configure the stepper driver with the CFG pins, those are the pins that would otherwise be used for the SPI interface and are configured with different states: pull up (to VIN), pull down (to GND) or open.
 
-Refer to [this wiring diagram](https://www.trinamic.com/fileadmin/assets/Products/Eval_Drawings/SilentStepStick-TMC2130_v10.pdf) to identify the CFG pins and follow the tables "CFG0", "CFG1 and CFG2" and "CFG3  to set the desired mode [pages 85-86 of TMC2130 data sheet](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2130_datasheet_Rev1.11.pdf).
+Refer to [this wiring diagram](https://www.trinamic.com/fileadmin/assets/Products/Eval_Drawings/SilentStepStick-TMC2130_v10.pdf){target=_blank} to identify the CFG pins and follow the tables "CFG0", "CFG1 and CFG2" and "CFG3  to set the desired mode [pages 85-86 of TMC2130 data sheet](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2130_datasheet_Rev1.11.pdf){target=_blank}.
 
 **Notice that the order from the top is CFG0, CFG3, CFG2, CFG1**
 
-**CFG0** - controls the *TOFF setting* which can help with noise reduction, to achieve the recommended by the datasheet setting this pin needs to be pulled down. On a step stick breakout board like the one [from the picture](https://www.aliexpress.com/item/32838869245.html)  that pin in open, so has to be pulled down to ground, a pin can be soldered up on the step stick.
+**CFG0** - controls the *TOFF setting* which can help with noise reduction, to achieve the recommended by the datasheet setting this pin needs to be pulled down. On a step stick breakout board like the one [from the picture](https://www.aliexpress.com/item/32838869245.html){target=_blank}  that pin in open, so has to be pulled down to ground, a pin can be soldered up on the step stick.
 
 **CFG1 and CFG2** - those two allows to choose the mode of operation - between the StealthChop and SpreadCycle, microsteps and step interpolation. **Note that the CFG1 pin is most likely pulled down to ground on your breakout board** (with a 10k ohm resistor).
 
