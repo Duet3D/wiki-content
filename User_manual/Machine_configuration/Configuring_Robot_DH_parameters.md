@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-05-02T09:14:56.205Z
+date: 2022-05-04T09:49:07.702Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -106,6 +106,8 @@ The following calculations are made to convert the coordinate system from O2 to 
 In reality, arm 2 and arm 3 are not at the same offset. But the construction of axis 1 to arm 2 in one direction and arm 3 back the same distance makes possible to set d=0 for joints 2 and 3. This is possible, because axis 2 and 3 are parallel to each other. Arm 3 is directly above axis 1 in respect to Z1, Z2 direction. But joint 3 has 70 offset (right of in the image) of axis 1 in respect to Y2, Z3 direction. Those combining of parameter values intend to ease calculations and parallel axes don't have d values, but I recommend so set the values, so the axes coordinates are where the axes are in reality. For two reasons:
 * saving calcuation effect is no argument, as there are hundreds of trigonometric calculation and 4 more is really not important
 * a later introduced method to calculate back from a measured endpoint to calculation of true axis and arm lenght values is only working, if the DH parameters are placed to axes where they are in reality
+
+DH parameters do not allow to set joint 3 to the location of axis 4, because a translation in the direction of the y axis (Y2) would be needed, and DH parameters allow only rotations and translations around Z and X axes. To solve it, additional M669 B parameters were added to define all 6 parameters to define all possible axis translations and rotations.
 # Example 1 joint 4
 The DH parameters for joint 4 are theta q4, d=380, alpha 90 degrees and a = 0.
 
