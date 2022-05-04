@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-05-04T20:00:24.520Z
+date: 2022-05-04T20:19:39.325Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -62,8 +62,8 @@ A"Mn" defines G-Code modes and whether orientation is used:
 * M2 means X, Y, Z without orientation information. Forward and inverse kinematics calculate only coordinates and ignore endpoint's orientation.
 
 
-DH (Denavit-Hartenberg) parameters are defined by:
-Ajoint:ztrans:zrot:xtrans:xrot:home:minangle:maxangle
+**DH: Ajoint:ztrans:zrot:xtrans:xrot:home:minangle:maxangle**
+* DH (Denavit-Hartenberg) parameters are defined by:
 * joint 1 is describing the transformations, so that the resulting coordinate system at axis 2
 * ztrans = d offset in Z direction
 * zrot = theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
@@ -72,7 +72,9 @@ Ajoint:ztrans:zrot:xtrans:xrot:home:minangle:maxangle
 * home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
 
 Instead of DH parameters, all 6 translations and rotations can be defined by:
-Aaxisnr:ztrans:zrot:ytrans:yrot:xtrans:xrot:home:minangle:maxangle
+**Aaxisnr:ztrans:zrot:ytrans:yrot:xtrans:xrot:home:minangle:maxangle**
+
+When 8 values are defined, DH parameters are expected. When 10 values are defined, it is interpreted as general setting of all transformations.
 
 Adding the possibility to define Y axes' parameters rotation and translation to give full flexibility to define the coordinates. The Z axis is rotated and translated first, then Y, then X, according to the roll-pitch-yaw (RPY) order.
 
