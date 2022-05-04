@@ -2,7 +2,7 @@
 title: Setting up macro files for common tasks
 description: You can use macro files to automate common tasks. A macro file is simply a text file on the SD card containing a sequence of GCode commands.
 published: true
-date: 2021-12-16T22:50:35.979Z
+date: 2022-05-04T15:59:09.993Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:28:44.097Z
@@ -43,6 +43,13 @@ On
 Note: versions of PanelDue prior to 1.20beta2 do not implement this feature.
 
 # Running Macros
+
+## What happens when a macro is run?
+
+The following values in GCodeMachineState get saved/restored when a macro is called, or by push/pop: 
+drivesRelative, axesRelative, volumetricExtrusion, g53Active, usingInches, macroRestartable
+
+When a system macros is run (see [Macros](/User_manual/Tuning/Macros)), they ignore workplace coordinate offsets.
 
 ## From gcode
 
