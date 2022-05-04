@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on other boards
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2022-05-04T13:54:10.516Z
+date: 2022-05-04T13:56:38.957Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-15T10:49:14.406Z
@@ -104,8 +104,10 @@ Please be aware that the unstable repository is meant for beta testers and that 
 
 ### Installation/updating from .deb packages
 
+If your SBC is not connected to the internet, you can download the .deb packages for DSF and install them offline.
+
 * Download all the .deb packages for the version of DSF you want to install from [the DSF package repository](http://pkg.duet3d.com/dists/stable/armv7/binary-armhf/) (navigate the folder structure for unstable and/or x64 versions). 
-* Put the .deb files on a USB drive. Make sure these are the only .deb files in the installation folder, so you don't install old versions or other software by mistake. 
+* Put the .deb files on a USB drive, and plug it into your SBC. Make sure these are the only .deb files in the installation folder, so you don't install old versions or other software by mistake. 
 * Install them with `dpkg -i *.deb` from the directory where the .deb files are located. 
 * Alternatively copy them to the first partition of your microSD card and install them using `sudo dpkg -i /boot/*.deb`.
 * If there are any missing dependencies, `dpkg` will tell you. 
