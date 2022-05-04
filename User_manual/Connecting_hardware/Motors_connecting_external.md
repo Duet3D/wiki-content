@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-05-04T15:10:16.666Z
+date: 2022-05-04T15:34:00.297Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -217,7 +217,9 @@ To use external drivers to drive an axis instead of an internal driver, you need
 
 ## Configuring the Enable polarity
 
-Only relevant for Duet 3 Expansion 1XD and Duet 2 WiFi/Ethernet/Maestro. All other boards do not have enable signals.
+Only relevant for Duet 3 MB6XD, Duet 3 Expansion 1XD and Duet 2 WiFi/Ethernet/Maestro. All other boards do not have enable signals.
+
+**Duet 3 Mainboard 6XD:** See [Duet 3 Mainboard 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) documentation.
 
 **Duet 3 Expansion 1XD:** See [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) documentation.
 
