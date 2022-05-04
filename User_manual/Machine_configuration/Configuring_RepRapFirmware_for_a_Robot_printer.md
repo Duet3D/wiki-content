@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-04-21T11:25:13.242Z
+date: 2022-05-04T09:02:36.776Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -83,7 +83,13 @@ axis1's parameters:
 * -90 minimun theta angle
 * 90 maximum theta angle
 
-**B** special functions
+**B** alternative to DH parameters, defining all 3 axes
+
+Adding the possibility to define Y axes' parameters rotation and translation to give full flexibility to define the coordinates. The Z axis is rotated and translated first, then Y, then X, according to the roll-pitch-yaw (RPY) order.
+
+Baxisnr:ztrans:zrot:ytrans:yrot:xtrans:xrot:home:minangle:maxangle
+
+B1 to B6 are the equivalent to DH parameters. B0 allows a displacement of the first axis.
 
 **Pn** defines 6th axis behaviour
 
