@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-05-04T20:19:39.325Z
+date: 2022-05-05T07:34:05.423Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -29,15 +29,13 @@ To describe the robot setup like properties of the axes, arm lenghts and other p
 
 The parameters and examples are described in a separate document:
 [Robot Denavit-Hartenberg parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)
-# Singularities
-Singularities are unreachable robot positions or positions where movement results are undefined. Approaching singularities is also probelmatic, because some angle velocities are approaching infinity. See a good overview of [singularities for 6 axis robots here](https://www.mecademic.com/en/what-are-singularities-in-a-six-axis-robot-arm){target=_blank}.
-
-Trying to move to a singularity or near a singularity will result in a forbidden movement and stop the printing process.
-
-Corresponding to singularities is being aware of the workspace, the printable area. A typical 6 axis robot has a workspace which resembles a donut, with the cross-section of a top-down nautilus.
+# Workspace and Singularities
+Workspace is the space where an object can be reached by the robot. Calculation is a combination of position and orientation. Positions near the edges should be avoided, because rotations of axes become critical and movement precision is reduced.
 
 ![robotworkspace.jpg](/manual/configuration/robotworkspace.jpg)
 (image from https://www.mdpi.com/2218-6581/9/2/27/htm)
+
+Singularities are unreachable robot positions or positions where movement results are undefined. Approaching singularities is also probelmatic, because some angle velocities are approaching infinity. See a good overview of [singularities for 6 axis robots here](https://www.mecademic.com/en/what-are-singularities-in-a-six-axis-robot-arm){target=_blank}.
 
 Being in a singularity may be necessary when homing. In Example 2 of the DH parameter explanation, the homing position is in a singularity (a small movement of most of the axes result in massive X movement and minimal Z movement). Setting the stepper positions by homing may be a necessity. A solution is to home and set the positions, then moving specific axes with G1 H2 to a position where the robots positions are outside the singularity, then proceed. Those G1 H2 moves can be placed into the homing file.
 
