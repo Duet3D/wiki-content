@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-05-05T07:20:10.764Z
+date: 2022-05-05T07:22:05.145Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -39,7 +39,7 @@ A typical industrial robot has axis 4 to 6 according to roll pitch yaw configura
 
 (image from https://en.wikipedia.org/wiki/Aircraft_principal_axes)
 
-Axis 4 is the roll axis, axis 5 is pitch, 6 is yaw. If axis5 is in a 0 degree position, axis 4 and 6 are in line, which results in a singularity situation (also called gimbal lock).
+Axis 4 is the roll axis, axis 5 is pitch, 6 is yaw. If axis5 is in a 0 degree position, axis 4 and 6 are parallel, which results in a singularity situation (also called gimbal lock).
 
 Documentation sources are wiki and e.g. https://homes.cs.washington.edu/~todorov/courses/cseP590/05_Kinematics.pdf
 # Coordinate system
