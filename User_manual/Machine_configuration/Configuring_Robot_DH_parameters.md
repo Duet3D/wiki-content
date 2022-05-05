@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-05-05T06:56:35.184Z
+date: 2022-05-05T07:09:03.759Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -11,39 +11,21 @@ dateCreated: 2022-03-03T13:41:15.633Z
 There are different methods to describe a robot configuration. Following is described the most often used method by describing each joint with 4 parameters, called Denavit-Hartenberg parameters. To describe rotation and translation in all dimensions, 6 parameters are needed, so the DH parameters cannot describe all possibilities. For this reason, a different method to define all 6 parameters is implemented. The following explanation is valid for this enhancement as well, only adding Y translations and rotations in the middle.
 
 A visual tool to check the current configuration is currently in development.
-# Denavit-Hartenberg parameters
-Denavit-Hartenberg (DH) parameters are often used in robotics to describe properties of a specific robot setup like axis orientations, arm lenghts and other properties. It is used by M669 G-Codes to describe the kinematics.
-# Introduction
+# Denavit-Hartenberg (DH) parameters
+Denavit-Hartenberg (DH) parameters are often used in robotics to describe properties of a specific robot setup like axis orientations, arm lenghts and other properties.
+
 Denavit-Hartenberg is shortened to DH in the following document. RPY is shortened for roll-pitch-yaw, J stands for Jacobian matrix, the 4 DH parameters are called theta, d, alpha and a. DOF stands for degrees of freedom.
 
 The following images are based on [this Youtube video](https://www.youtube.com/watch?v=nwj0xR21ldo){target=_blank}
 The following 6 axis robot is used to explain the DH parameters:
 ![robot_main.jpg](/manual/configuration/robot_main.jpg)
 
-To configure the properties of the 6 axes, the Denavit-Hartenberg (DH) parametes are used, Wikipedia has good intructions.
+Please check Wikipedia for an introduction of DH. In brevity:
+* coordination axes are used to describe where the robot actuators are placed
+* the Z axis is the rotation axis for a rotational actuator and prismatic axis for a linear one
+* the DH parameters describe 4 of the 6 degrees of freedom to transform one coordinate system to the next: Z translate and rotate, then X translate and rotate. Not all transformations are possible (Y translate and rotate).
+* the DH parameters are defined in M669 A parameter.
 
-A good introduction to kinematics and inverse kinematics is https://www.rosroboticslearning.com, Jacobian method 2 will be used for inverse kinematics.
-# Denavit-Hartenberg (DH)
-Denavit-Hartenberg (DH) is an often used method to define robot axes by 4 parameters. There are new methods to define all 6 parameters, but DH is used because it is the most used method. If it proves to be insufficient, an alternative method may be implemented additionally. DH doesn't allow parameters for rotations by the Y axis, this may be too restrictive. The underlying matrix calculations support all 6 parameters (XYZ and rotations by XYZ).
-
-The kinematics are calculated by vector based matrix calculations, where the coordinate system is changed by the joint parameters. The classic DH convention is used where Oi-1 is at Joint i (not Craig naming)
-
-![robot_dh_main.jpg](/manual/configuration/robot_dh_main.jpg)
-(image is from the wiki about DH)
-
-The common labels theta, d, a and alpha are used in documentation and firmware. For each joint (axis), a coordinate system is defined, where the 4 parameters are applied and a matrix calculated. The total kinematics is calculated by matrix multiplication. The result is the cartesian coordinate of the endeffector and its orientation.
-
-For a 6 axis robot with 6 rotational joints theta is variable and the other 3 DH parameters are fixed.
-
-For prismatic joints, d is variable. Theta/a/alpha are set.
-
-The angles are positive (right hand rule)
-
-if axis vertical, direction to top: counterclockwise when watched from top
-if axis horizontal with direction to front: counterclockwise when watched from front
-Searching for a commercial robot (e. g. Kuka KR5) which resembles to robot which is planned, together with "DH, Denavit-Hartenberg, pdf" keywords result in good scientific article examples. If example values are given, they can be validated by calling B1:T, because a pitfall can be if Craig numbering of the coordinate system is used.
-
-For the usage of the DH see M669 A parameter.
 # Euler Angles, Orientation
 Robot's endpoints have an orientation which is described as follows:
 * every rotation can be described by the combination of three rotation matrices by three main axes. The order of the rotation is important. There are 12 rotation combinations which make sense. They are called by the axis they are rotated by, e.g. ZYZ means rotation by Z axis first, then Y axis, then the newly created Z axis.
@@ -155,9 +137,11 @@ I abbreviate explanation, as example 1 was detailed. The following remarks:
 * theta of link1 being 90 and link3 being -90, the whole robot was turned left and link 3 pointing upward, because in the 0 position, the robot is snapped off.
 * the image is rotated, the direction of the coordinated systems is changed (only in the image)
 * as is shown later in the video (time 8:20), the homing position is in a singularity with two lost ranks (6 joints, 4 ranks). This position must be avoided for normal operation. One effect of being near or at singularity is, that some actuators have very high acceleration/deleceration rates. The inverse kinematics cannot be calculated from inverse Jacobian matrix. Instead, Moore-Penrose must be used to find a way out of the singularity, which means higher calculation time.
-# Public examples
+# Links and additional examples
 A good page is
 [https://automaticaddison.com/homogeneous-transformation-matrices-using-denavit-hartenberg/](https://automaticaddison.com/homogeneous-transformation-matrices-using-denavit-hartenberg/)
 with some examples, the last one a 6 axis Fanuc LR Mate 200iD robot.
 
 A nice video for visual explanation of DH parameters is https://www.youtube.com/watch?v=rA9tm0gTln8
+
+A good introduction to kinematics and inverse kinematics is https://www.rosroboticslearning.com, Jacobian method 2 will be used for inverse kinematics.
