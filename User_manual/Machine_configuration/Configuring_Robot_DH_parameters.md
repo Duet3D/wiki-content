@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-05-05T07:09:03.759Z
+date: 2022-05-05T07:19:31.920Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -32,6 +32,12 @@ Robot's endpoints have an orientation which is described as follows:
 * the rotations of the robot system, using DH parameters, are rotations in the order of ZYX, where Y is not rotated, so effectively only a rotation by ZX. ZYX is an order which is also used in aviation and is called RPY (roll pitch yaw).
 * Rotation calculations can be calculated back: from rotation matrix to three angles. The angles are called Euler angles. In robot configuration, calculations and statistics, those Euler angles, based on ZYX/RPY, are used.
 * a vertical endpoint, i. e. Z pointing downward, X and Y being parallel to the original X, Y axes, have the Euler angles (X=180,Y=0,Z=0), i. e. a rotation by 180 degree of the X axis.
+
+A typical industrial robot has axis 4 to 6 according to roll pitch yaw configuration, which originates from aviation:
+
+![rollpitchyaw.png](/manual/configuration/rollpitchyaw.png)
+
+Axis 4 is the roll axis, axis 5 is pitch, 6 is yaw. If axis5 is in a 0 degree position, axis 4 and 6 are in line, which results in a singularity situation (also called gimbal lock).
 
 Documentation sources are wiki and e.g. https://homes.cs.washington.edu/~todorov/courses/cseP590/05_Kinematics.pdf
 # Coordinate system
