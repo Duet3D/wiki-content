@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-05-04T20:24:54.999Z
+date: 2022-05-05T06:56:35.184Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -159,3 +159,5 @@ I abbreviate explanation, as example 1 was detailed. The following remarks:
 A good page is
 [https://automaticaddison.com/homogeneous-transformation-matrices-using-denavit-hartenberg/](https://automaticaddison.com/homogeneous-transformation-matrices-using-denavit-hartenberg/)
 with some examples, the last one a 6 axis Fanuc LR Mate 200iD robot.
+
+A nice video for visual explanation of DH parameters is https://www.youtube.com/watch?v=rA9tm0gTln8
