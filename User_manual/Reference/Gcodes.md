@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-05-02T19:42:27.917Z
+date: 2022-05-06T13:49:15.998Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -238,6 +238,13 @@ counts as 30 characters
 
 As a general rule, any G or M command can be sent at any time. This means all settings can be changed 'on the fly', i.e. while printing. This does not take into account logical considerations, or individual pre-requisites for individual commands. For example, sending new values for M566 'jerk', M201 'acceleration', or M203 'max speed' while printing is a great way to tune these values. However, while it is theoretically possible to change M563 'define a tool' *while* printing, it's probably *not a good idea*.
 
+## GCodes not implemented
+
+For a list of GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware, see [GCodes not implemented](https://docs.duet3d.com/User_manual/Reference/Gcodes_not_implemented).
+
+## Custom GCodes
+
+In RepRapFirmware 2.03 and later, you can create custom GCodes, so long as the GCode is not already implemented. If you try to execute a G- or M-command that RRF does not implement, it will execute a system macro of that name if it exists. For example, if you send G40 then it will execute /sys/G40.g if it exists; and if you send M5000 then it will execute /sys/M5000.g if it exists.
 
 # G-commands
 
