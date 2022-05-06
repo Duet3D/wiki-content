@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards. 
 published: true
-date: 2022-05-06T11:47:32.910Z
+date: 2022-05-06T11:49:17.039Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -55,20 +55,20 @@ Each Duet board needs up to four files to fully update the firmware and software
 
 Below is the firmware files, and file names, required for each Duet board. Filenames are correct for RRF 3.3 and 3.4. Older versions of the firmware will have similar file names, but they have changed over time. Note that these files are for Standalone mode, NOT SBC mode (except for Duet 2 WiFi/Ethernet in SBC mode). See [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup) for updating a Duet with connected SBC.
 
-| | Firmware binary | IAP binary | WiFi firmware binary | Duet Web Control zip |
+| | **Firmware binary** | **IAP binary** | **WiFi firmware binary** | **Duet Web Control zip** |
 |---|---|
-| Firmware .zip | Duet2and3Firmware-[X.X.X].zip | Large .zip file that contains all the files needed to update all Duet boards. [X.X.X] is the firmware version, e.g. '3.4.0'. Upload direct to Duet, which will use only the files it needs. ||||
-| Duet 3 Mainboard 6HC | Duet3Firmware_MB6HC.bin | Duet3_SDiap32_MB6HC.bin |  | DuetWebControl-SD.zip |
-| Duet 3 Mainboard 6XD | Duet3Firmware_MB6XD.bin | Duet3_SDiap32_MB6XD.bin |  | DuetWebControl-SD.zip |
-| Duet 3 Mini 5+ | Duet3Firmware_Mini5plus.uf2 | Duet3_SDiap32_Mini5plus.bin | DuetWiFiServer.bin | DuetWebControl-SD.zip |
-| Duet 3 Expansion 1HCL | Duet3Firmware_EXP1HCL.bin |  |  |  |
-| Duet 3 Expansion 1XD | Duet3Firmware_EXP1XD.bin |  |  |  |
-| Duet 3 Expansion 3HC | Duet3Firmware_EXP3HC.bin |  |  |  |
-| Duet 3 Toolboard 1LC | Duet3Firmware_TOOL1LC.bin |  |  |  |
-| SAMMY C21 | Duet3Firmware_SAMMYC21.bin |  |  |  |
-| Duet 2 WiFi/Ethernet | Duet2CombinedFirmware.bin | Duet2_SDiap32_WiFiEth.bin | DuetWiFiServer.bin | DuetWebControl-SD.zip |
-| Duet 2 WiFi/Ethernet - SBC | Duet2Firmware_SBC.bin | | | |
-| Duet 2 Maestro | DuetMaestroFirmware.bin | Duet2_SDiap32_Maestro.bin |  | DuetWebControl-SD.zip |
+| **Firmware .zip** | Duet2and3Firmware-[X.X.X].zip | Large .zip file that contains all the files needed to update all Duet boards. [X.X.X] is the firmware version, e.g. '3.4.0'. Upload direct to Duet, which will use only the files it needs. ||||
+| **Duet 3 Mainboard 6HC** | Duet3Firmware_MB6HC.bin | Duet3_SDiap32_MB6HC.bin |  | DuetWebControl-SD.zip |
+| **Duet 3 Mainboard 6XD** | Duet3Firmware_MB6XD.bin | Duet3_SDiap32_MB6XD.bin |  | DuetWebControl-SD.zip |
+| **Duet 3 Mini 5+** | Duet3Firmware_Mini5plus.uf2 | Duet3_SDiap32_Mini5plus.bin | DuetWiFiServer.bin | DuetWebControl-SD.zip |
+| **Duet 3 Expansion 1HCL** | Duet3Firmware_EXP1HCL.bin |  |  |  |
+| **Duet 3 Expansion 1XD** | Duet3Firmware_EXP1XD.bin |  |  |  |
+| **Duet 3 Expansion 3HC** | Duet3Firmware_EXP3HC.bin |  |  |  |
+| **Duet 3 Toolboard 1LC** | Duet3Firmware_TOOL1LC.bin |  |  |  |
+| **SAMMY C21** | Duet3Firmware_SAMMYC21.bin |  |  |  |
+| **Duet 2 WiFi/Ethernet** | Duet2CombinedFirmware.bin | Duet2_SDiap32_WiFiEth.bin | DuetWiFiServer.bin | DuetWebControl-SD.zip |
+| **Duet 2 WiFi/Ethernet - SBC** | Duet2Firmware_SBC.bin | | | |
+| **Duet 2 Maestro** | DuetMaestroFirmware.bin | Duet2_SDiap32_Maestro.bin |  | DuetWebControl-SD.zip |
 
 ## Updating from older firmware versions
 
