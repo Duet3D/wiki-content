@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards. 
 published: true
-date: 2022-04-23T20:20:26.936Z
+date: 2022-05-06T11:47:32.910Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -20,6 +20,25 @@ dateCreated: 2021-11-30T12:57:13.348Z
 * For RepRapFirmware 3, please ensure you read the [RepRapFirmware 3.x Changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x) notices for the new version of the firmware as it will contain information on changes that affect your configuration.
 * For RepRapFirmware 2, please ensure you read the [RepRapFirmware 1.x and 2.x Changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-1.x-&-2.x) notices for the new version of the firmware as it will contain information on changes that affect your configuration.
 
+## Duet boards and supported firmware versions
+
+Duet 3 MB6HC - RepRapFirmware 3.x
+Duet 3 MB6XD - RepRapFirmware 3.4 and later
+Duet 3 Mini 5+) - RepRapFirmware 3.2 and later
+Duet 2 (WiFi, Ethernet, Maestro) - RepRapFirmware 1.x, 2.x, 3.x
+
+Currently, the latest version of RepRapFirmware 2.x is v2.05.1. The latest version of RepRapFirmware 1.x is v1.26.1. These are available [here](https://github.com/Duet3D/RepRapFirmware/releases/tag/2.05.1).
+
+## Downloading RepRapFirmware files
+
+The latest release, along with beta, release candidates (RC) and previous versions of RepRapFirmware are available at [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases)
+
+Our general advice is to use the [‘Latest release‘ version from GitHub](https://github.com/Duet3D/RepRapFirmware/releases/latest), unless you have a specific reason to use a 'beta' or 'RC' release. Beta and RC versions are marked ‘Pre-release’ on GitHub.
+
+Each 'release' version has a large zip file that contains all the files needed to update all Duet boards, e.g. in RRF 3.3 it is 'Duet2and3Firmware-3.3.zip'. Download this, without unzipping it. Individual binary files can also be downloaded, as needed. 
+
+'Beta' and 'RC' releases are supplied as individual files, not as a convenient zip file, and need to be downloaded and installed individually.
+
 ## Required files
 
 Each Duet board needs up to four files to fully update the firmware and software. These are:
@@ -32,23 +51,24 @@ Each Duet board needs up to four files to fully update the firmware and software
 
 **Duet Web Control (DWC) zip** - Web-browser-based user interface for communicating and controlling all Duet boards. Use the same version that is supplied with the firmware you are flashing.
 
-## Duet boards and supported firmware versions
+## Firmware file naming
 
-Duet 3 MB6HC - RepRapFirmware 3.x
-Duet 3 Mini 5+) - RepRapFirmware 3.2 and later
-Duet 2 (WiFi, Ethernet, Maestro) - RepRapFirmware 1.x, 2.x, 3.x
+Below is the firmware files, and file names, required for each Duet board. Filenames are correct for RRF 3.3 and 3.4. Older versions of the firmware will have similar file names, but they have changed over time. Note that these files are for Standalone mode, NOT SBC mode (except for Duet 2 WiFi/Ethernet in SBC mode). See [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup) for updating a Duet with connected SBC.
 
-Currently, the latest version of RepRapFirmware 2.x is v2.05.1. The latest version of RepRapFirmware 1.x is v1.26.1. These are available [here](https://github.com/Duet3D/RepRapFirmware/releases/tag/2.05.1).
-
-## Downloading RepRapFirmware files
-
-The latest beta, release and previous versions of RepRapFirmware are available at [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases)
-
-Our general advice is to use the [‘Latest release‘ version from GitHub](https://github.com/Duet3D/RepRapFirmware/releases/latest), unless you have a specific reason to use a 'beta' or 'RC' (release candidate) release. Beta and RC versions are marked ‘Pre-release’ on GitHub.
-
-Each 'release' version has a large zip file that contains all the files needed to update all Duet boards, e.g. in RRF 3.3 it is 'Duet2and3Firmware-3.3.zip'. Download this, without unzipping it. Individual binary files can also be downloaded, as needed. 
-
-'Beta' and 'RC' releases are supplied as individual files, not as a convenient zip file, and need to be downloaded and installed individually.
+| | Firmware binary | IAP binary | WiFi firmware binary | Duet Web Control zip |
+|---|---|
+| Firmware .zip | Duet2and3Firmware-[X.X.X].zip | Large .zip file that contains all the files needed to update all Duet boards. [X.X.X] is the firmware version, e.g. '3.4.0'. Upload direct to Duet, which will use only the files it needs. ||||
+| Duet 3 Mainboard 6HC | Duet3Firmware_MB6HC.bin | Duet3_SDiap32_MB6HC.bin |  | DuetWebControl-SD.zip |
+| Duet 3 Mainboard 6XD | Duet3Firmware_MB6XD.bin | Duet3_SDiap32_MB6XD.bin |  | DuetWebControl-SD.zip |
+| Duet 3 Mini 5+ | Duet3Firmware_Mini5plus.uf2 | Duet3_SDiap32_Mini5plus.bin | DuetWiFiServer.bin | DuetWebControl-SD.zip |
+| Duet 3 Expansion 1HCL | Duet3Firmware_EXP1HCL.bin |  |  |  |
+| Duet 3 Expansion 1XD | Duet3Firmware_EXP1XD.bin |  |  |  |
+| Duet 3 Expansion 3HC | Duet3Firmware_EXP3HC.bin |  |  |  |
+| Duet 3 Toolboard 1LC | Duet3Firmware_TOOL1LC.bin |  |  |  |
+| SAMMY C21 | Duet3Firmware_SAMMYC21.bin |  |  |  |
+| Duet 2 WiFi/Ethernet | Duet2CombinedFirmware.bin | Duet2_SDiap32_WiFiEth.bin | DuetWiFiServer.bin | DuetWebControl-SD.zip |
+| Duet 2 WiFi/Ethernet - SBC | Duet2Firmware_SBC.bin | | | |
+| Duet 2 Maestro | DuetMaestroFirmware.bin | Duet2_SDiap32_Maestro.bin |  | DuetWebControl-SD.zip |
 
 ## Updating from older firmware versions
 
@@ -86,6 +106,8 @@ The version 3.01 and later binaries are too large to be installed by the IAP pro
 * From RRF v3.3beta1, to avoid too many files in this folder, all firmware update files are stored in ‘0:/firmware/’ directory. 
 
 This means if you have upgraded from, for example, RRF v3.2.2 to RRF v3.3beta1 (the firmware, IAP and DWC files will be put in the ‘sys’ directory), then update to RRF v3.3beta2 by just uploading the firmware binary (which it will put in the ‘firmware’ directory), you’ll get a message that the IAP file is missing, because it expects to find it in ‘firmware’. Upload the IAP file from the v3.2.2 release, and it should put it in the ‘firmware’ folder.
+
+Should you need to recreate the SD card see the [SD card page](https://docs.duet3d.com/User_manual/RepRapFirmware/SD_card) for a full description of the structure and contents, .
 
 # Usual procedure
 
