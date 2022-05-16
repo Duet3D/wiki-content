@@ -2,7 +2,7 @@
 title: Setting up macro files for common tasks
 description: You can use macro files to automate common tasks. A macro file is simply a text file on the SD card containing a sequence of GCode commands.
 published: true
-date: 2022-05-04T15:59:09.993Z
+date: 2022-05-16T11:46:08.134Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:28:44.097Z
@@ -50,6 +50,8 @@ The following values in GCodeMachineState get saved/restored when a macro is cal
 drivesRelative, axesRelative, volumetricExtrusion, g53Active, usingInches, macroRestartable
 
 When a system macros is run (see [Macros](/User_manual/Tuning/Macros)), they ignore workplace coordinate offsets.
+
+Note that if a pause ([M25](/User_manual/Reference/Gcodes/M25)) is commanded while a macro is being executed, the pause will be deferred until the macro has completed.
 
 ## From gcode
 
