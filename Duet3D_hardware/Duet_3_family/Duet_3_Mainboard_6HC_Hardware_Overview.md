@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-04-12T15:04:20.131Z
+date: 2022-05-16T13:41:27.123Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -28,45 +28,42 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 |---|---|
 | **Processor** | [ATSAME70Q20B](https://www.microchip.com/en-us/product/ATSAME70Q20) |
 | **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
-| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port |
-| **On-board stepper drivers** | 6 x  [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/) or [TMC5160](https://www.trinamic.com/products/integrated-circuits/details/tmc5160/) |
+| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port; CAN-FD bus |
+| **On-board stepper drivers** | 6 x  [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/) |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 |
-| **Heater outputs** | Bed heater (up to 18A)^1^, 3 x extruder heater (up to 6A each) |
-| **Thermistor/PT1000 inputs** | 4, optimised for 100K thermistors and PT1000 sensors |
-| **Fan outputs** | 6 PWM-controlled fans, of which 3 support 4-wire fans with PWM and tacho wires. Voltage selectable between VIN / 12V / external power, in 2 banks. One VIN-voltaege, always-on fan connector. |
-| **Inputs/Outputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe, servo or PanelDue connection. Inputs are 30V-tolerant. Almost unlimited expansion via CAN-connected expansion boards. |
-| **Endstop or filament monitor inputs** | See under Inputs/Outputs |
-| **Z probe connector** | See under Inputs/Outputs |
+| **High current outputs** | 1 x 15A^1^, 3 x 6A each |
+| **Thermistor/PT1000 inputs** | 4 x inputs, optimised for 100K thermistors and PT1000 sensors |
+| **Medium current outputs** | 6 x PWM-controlled outputs, of which 3 support tacho input. Voltage selectable between VIN / 12V / external power, in 2 banks. One VIN-voltage, always-on output. |
+| **Inputs/Outputs** | 9 x on-board I/O connectors for endstop, filament monitor, Z-probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Also one output with 5V signal level for hobby servo, laser control or VFD. |
 | **Power monitoring** | VIN voltage monitoring allows for state save on power failure.12V regulator output voltage also monitored |
-| **SD card interface** | On-board high speed (25Mbytes/sec) SD card socket. |
+| **SD card interface** | On-board high speed SD card socket. |
 
 
 | **EXPANSION** ||
 |---|---|
 | **Support for attached Raspberry Pi or other Single Board Computer (SBC)** | Yes |
 | **External stepper driver support** | Via CAN bus |
-| **Stepper driver expansion** | Almost unlimited expansion using CAN-connected expansion boards |
-| **Heater/thermistor expansion** | Almost unlimited via CAN-connected expansion boards |
-| **PT100 and thermocouple daughter board support** | 2 boards (4 channels) |
-| **Servo support** | See under Inputs/Outputs. Also one output with 5V signal level for servo, laser or VFD converter (shared control signal with one of the 2-wire fan outputs). |
+| **Stepper driver expansion** | 20+ via CAN-FD-connected expansion boards |
+| **High current output and/or thermistor expansion** | 20+ via CAN-FD-connected expansion boards |
+| **PT100 and thermocouple daughterboard support** | Supports 2 x daughterboards (4 channels) on board. 50+ via CAN-FD-connected expansion boards. |
 | **LCD support** | Typically provided by HDMI touch screen attached to the SBC. PanelDue also supported. |
 | **LED strip support** | RGB Neopixel (max. 60 LEDs) or DotStar |
-| **Other expansion** | Almost unlimited expansion via CAN-connected expansion boards |
+| **Other expansion** | A huge variety supported via CAN-FD-connected expansion boards |
 
 
 | **NOTES** |
 |---|---|
-| ^1^ Note that the board is rated to 18A on the bed heater channel; however it is supplied with a 15A fuse fitted (18A are difficult to source). If you need 18A on the bed heater channel then you need to fit a 20A fuse and take further precautions against over-current. |
+| ^1^ Note that the board is rated to 18A on the '15A high current output'; however it is supplied with a 15A fuse fitted (18A are difficult to source). If you need 18A on the this output then you need to fit a 20A fuse and take further precautions against over-current. |
 
 ## Operating limits
 
 |:--|:--|
 | **Stepper drivers** | Up to 6.3A peak current |
-| **Heater outputs** | Bed heater up to 18A, 3 x extruder heater up to 6A each |
+| **High current outputs** | OUT0 up to 18A (see note above), OUT1/2/3 up to 6A each |
 | **Input power voltage** | 11V to 32V |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
-| **Fuses** | 15A for V_Fused, 15A for bed. |
+| **Fuses** | 15A for V_Fused, 15A for OUT0. |
 | **5V current limit** | 3A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power, and any connected SBC powered by the Duet. |
 | **12V current limit** | 800ma (fan pins only, when 12V selected) |
 
@@ -329,8 +326,6 @@ External 5V power can be provided to the board by removing the jumper on 'Int 5V
 Previous versions of the Duet 3 Mainboard 6HC allowed for the Duet to power the SBC, or the SBC to power the Duet. More modern SBCs (e.g. RPi 4) needs too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarly the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give an under voltage warning.
 
 Due to this, the jumpers for 5V power between the Duet and SBC ('5V -> SBC' and 'SBC -> 5V*') are not populated on this board revision.
-
-![duet_3_mb6hc_5v_options_01_v1.01a.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_5v_options_01_v1.01a.png =200x)
 
 #### v1.01, v1.0, v0.6
 
