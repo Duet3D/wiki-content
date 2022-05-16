@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2022-04-29T15:31:17.264Z
+date: 2022-05-16T11:50:03.416Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -73,7 +73,7 @@ while <boolean-expression>
 
 The body must be indented from the while keyword. The body ends just before the first line that is not indented.
 
-Within the while-part and the body, the named constant *iterations *is the number of loop iterations already completed. So it is zero during the first iteration, 1 during the second, and so on.
+Within the while-part and the body, the named constant *iterations* is the number of loop iterations already completed. So it is zero during the first iteration, 1 during the second, and so on.
 
 A loop may contain one or more break statements, which would normally be inside if-constructs:
 
@@ -98,6 +98,34 @@ while <boolean-expression>
 ```
 
 The continue statement increments the iteration counter and transfers control back to the start of the loop, ready to evaluate the while-condition again.
+
+If a while loop is used in a GCode job file (not in a macro), it should have [M400](/User_manual/Reference/Gcodes/M400) at the end, and immediately before any uses of 'continue' within the loop.
+
+### Nested loops
+
+Loops of this form
+
+```
+while <boolean-expression>
+  ...
+  while <boolean-expression>
+    ...
+```
+
+Have an *iterations* counter at each nested level of the loop. Only the *iterations* counter of the loop that is being executed is accessible within that loop. If you want to access the iterations counter for an enclosing loop within an inner loop, you need to use a variable to save and retrieve that counter. For example:
+
+```
+var loopCounterOuter = 0
+while <boolean-expression>
+  ; outer loop
+  ...
+  set var.loopCounterOuter = iterations
+  while <boolean-expression>
+    ; inner loop
+    ...
+    echo iterations ; iterations for the inner loop
+    echo var.loopCounterOuter ; iterations for the outer loop
+```
 
 ## Variables
 
