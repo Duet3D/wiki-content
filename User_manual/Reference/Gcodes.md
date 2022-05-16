@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-05-06T13:49:15.998Z
+date: 2022-05-16T11:43:24.331Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1355,11 +1355,13 @@ M25 attempts to execute as quickly as possible and follows the following logic:
 
 * When RRF receives M25 it will look for a move in the current queue after which it can stop without violating the configured jerk limits.
 * If it finds one it stops after that move without decelerating (because the jerk limits allow that)
-* If it can't find one it will plan and execute a deceleration. in this case the pause will occur 1 move+2 seconds after M25 is sent.
+* If it can't find one it will plan and execute a deceleration. In this case the pause will occur 1 move + 2 seconds after M25 is sent.
 
-That means the longest it will take to pause is 1 move+2 seconds. In most situations pause occurs much quicker than that.
+That means the longest it will take to pause is 1 move + 2 seconds. In most situations pause occurs much quicker than that.
 
 After movement is halted as described above but prior to the pause operation completing, the macro file **pause.g** is run. This allows the head to be moved away from the print, filament to be retracted, etc.
+
+Note that if a pause is commanded while a macro is being executed, the pause will be deferred until the macro has completed.
 
 ## M26: Set SD position
 
@@ -3395,6 +3397,10 @@ If the P parameter is not provided, the current tool is assumed. If the S parame
 
 The units of S are PWM fraction (on a scale of 0 to 1) per mm/sec of filament forward movement.
 
+### Calibration
+
+Heat the nozzle and let the temperature stabilise. Then commence extrusion at a fast rate (as fast as the extruder can reasonable manage without skipping) and watch the temperature. If there is an initial drop, then increase the feedforward. What you are looking for is either the temperature remaining steady, or rising by a small amount followed by a drop below target of a similar amount. When extrusion stops the reverse will happen, i.e. with no feedforward the temperature will rise and then gradually return to target.
+
 ## M350: Set microstepping mode
 
 ### Usage
@@ -4295,7 +4301,8 @@ M556 S100 X0.7 Y-0.2 Z0.6
 
 This tells software the tangents of the angles between the axes of the machine obtained by printing then measuring a test part. The S parameter is the length of a triangle along each axis in mm. The X, Y and Z figures are the number of millimeters of the short side of the triangle that represents how out of true a pair of axes is. The X figure is the error between X and Y, the Y figure is the error between Y and Z, and the Z figure is the error between X and Z. Positive values indicate that the angle between the axis pair is obtuse, negative acute.
 
-Printable parts for calibrating the deviation from orthogonality can be found on the [RepRapPro Github repository](https://github.com/reprappro/RepRapFirmware/tree/master/STL). For a fuller explanation of the measuring process, see the [RepRap Ltd documentation](https://reprapltd.com/reprappro/documentation/ormerod-2/axis-compensation/index.html#Orthogonal_Axis_Compensation)
+Printable parts for calibrating the deviation from orthogonality can be found on the [RepRapPro Github repository](https://github.com/reprappro/RepRapFirmware/tree/master/STL). 
+For an explanation of the measuring process, see [Orthogonal axis compensation with M556](/User_manual/Tuning/Orthogonal_axis_compensation).
 
 ## M557: Set Z probe point or define probing grid
 
@@ -6891,14 +6898,14 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 
 * **Hnn** Heater number
 * **Fnn** Fan number
-* **Jnn** Input pin number (RRF 3.01RC2 and later only)
+* **Jnn** Input pin number (RRF 3.01 and later only)
 * **Pnn** or **Snn** Output/servo pin number. Servo pins are just GpOut pins with a different default PWM frequency.
-* **Rnn** Spindle number (RRF 3.3beta2 and later only)
+* **Rnn** Spindle number (RRF 3.3 and later only)
 * **Dn** SD slot number (the only value supported is 1) (Duet 3 MB6HC running RRF 3.4 or later only)
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names). Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters
 * **T** Temperature sensor number, required only when creating a heater. See M308.
-* **Lbbb** or **Laaa:bbb** RPM values that are achieved at zero PWM and at maximum RPM. (optional and for spindles only - RRF 3.3beta2 and later)
+* **Lbbb** or **Laaa:bbb** (optional, for spindles only, RRF 3.3 and later) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 
 ^1^ Check the individual hardware pages, some IO pins have permanent pullups.
 
