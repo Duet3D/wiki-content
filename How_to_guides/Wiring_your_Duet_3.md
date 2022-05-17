@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: false
-date: 2022-05-17T12:06:26.305Z
+date: 2022-05-17T12:32:10.776Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -219,12 +219,11 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 
 [![wiring_d3_5v_02.png](/guides/wiringd3/wiring_d3_5v_02.png =50%x){.align-right}](/guides/wiringd3/wiring_d3_5v_02.png){target=_blank}
 
-* <span style="background-color:#FF0000">EXT_5V</span> is an optional 5V power input and is not required for operation.
-* The Duet has an on-board 5V regulator that gets its source from the VIN input (12-36V).
+* The Duet has an on-board 5V regulator which is powered by the VIN input (12-36V).
 * Unless you plan to provide an external 5V source, you should at this time check that there is a jumper on <span style="background-color:#00FF00">Int 5V EN</span>.
-* External 5V power can be provided to the board by removing the jumper on 'Int 5V EN' and supplying 5V power to the 'EXT 5V' connector.
-* Duet 3 Mainboard 6HC v1.01 and earlier had jumpers below the "Int 5V EN" jumper to allow the Duet to supply power to the SBC, or vice versa. Current SBCs (eg Raspberry Pi 4) draw too much power, and we now recommend for both Duet and SBC to be powered separately. 6HC v1.01a boards and later do not have these jumper pins populated. See [MB6HC hardware overview: 5V](https://docs.duet3d.com/en/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v) for more details.
-* The EXT_5V header also has a pin for controlling an external power supply, `pson`. This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. For more details, see [User manual: Power wiring](/User_manual/Connecting_hardware/Power_wiring)
+* Optionally, external 5V power can be provided to the board by removing the jumper on <span style="background-color:#00FF00">Int 5V EN</span> and supplying 5V power to the '5V IN' pin of the <span style="background-color:#FF0000">EXT_5V</span> connector.
+* Duet 3 Mainboard 6HC v1.01 and earlier had jumpers below the 'Int 5V EN' jumper to allow the Duet to supply power to the SBC, or vice versa. Current SBCs (eg Raspberry Pi 4) draw too much power, and we now recommend for both Duet and SBC to be powered separately. 6HC v1.01a boards and later do not have these jumper pins populated. See [MB6HC hardware overview: 5V](https://docs.duet3d.com/en/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v) for more details.
+* The centre pin of the <span style="background-color:#FF0000">EXT_5V</span> header, labelled `pson`, can control an external power supply. The board can be powered from external 5V, with an external supply for VIN turned on and off as required. For more details, see [User manual: Power wiring](/User_manual/Connecting_hardware/Power_wiring)
 
 <p style="clear:both"></p>
 
@@ -232,16 +231,12 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 
 [![wiring_d3_5v_01.png](/guides/wiringd3/wiring_d3_5v_01.png =50%x){.align-right}](/guides/wiringd3/wiring_d3_5v_01.png){target=_blank}
 
-* EXT_5V is an optional 5V power input and is not required for operation.
-* The Duet has an on-board 5V regulator that gets its source from the VIN input (12-24V).
-* Unless you plan to provide an external 5V source, you should at this time check that there is NO jumper on "Internal 5V Disable" or "+5V Select".
-* External 5V power can be supplied to:
-  * "5V_EXT_IN" pin on "EXT_5V" connector. In this case, add a jumper to the "+5V Select" jumper between "5V_EXT_IN" and "5V_COM" pins, and add a jumper to "Internal 5V Disable".
-  * In some cases you may want to power the Duet from the 5V output of an SBC connected to the SBC header. Note that the total power of the Duet+ peripherals must be factored into the SBC power budget, and should not exceed 1A. Powering the SBC from the duet is not supported. In this case, add a jumper to the "+5V Select" jumper between "5V_SBC" and "5V_COM" pins, and add a jumper to "Internal 5V Disable".
-* The EXT_5V header also has a pin for controlling an external power supply, `pson` (note signal shared with io4.out). This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. For more details, see [User manual: Power wiring](/User_manual/Connecting_hardware/Power_wiring)
-
-  * <span style="background-color:#00FF00">INT 5V EN</span>
-  * <span style="background-color:#FFFF00">EXT 5V EN</span>
+* The Duet has an on-board 5V regulator which is powered by the VIN input (12-24V).
+* Unless you plan to provide an external 5V source, you should at this time check that there is no jumper on <span style="background-color:#00FF00">Int 5V Disable</span> or <span style="background-color:#FFFF00">5V Select</span>.
+* Optionally, external 5V power can be supplied to:
+  * '5V IN' pin on <span style="background-color:#FF0000">EXT_5V</span> connector. In this case, add a jumper to the <span style="background-color:#FFFF00">5V Select</span> jumper between '5V_EXT_IN' and '5V_COM' pins, and add a jumper to <span style="background-color:#00FF00">Int 5V Disable</span>.
+  * In some cases you may want to power the Duet from the 5V output of an SBC connected to the SBC header. Note that the total power of the Duet and peripherals must be factored into the SBC power budget, and should not exceed 1A. Powering the SBC from the duet is not supported. In this case, add a jumper to the <span style="background-color:#FFFF00">5V Select</span> jumper between '5V_SBC' and '5V_COM' pins, and add a jumper to <span style="background-color:#00FF00">Int 5V Disable</span>.
+* The centre pin of the <span style="background-color:#FF0000">EXT_5V</span> header, labelled `pson`, can control an external power supply (note signal shared with io4.out). The board can be powered from external 5V, with an external supply for VIN turned on and off as required. For more details, see [User manual: Power wiring](/User_manual/Connecting_hardware/Power_wiring)
 
 <p style="clear:both"></p>
 
