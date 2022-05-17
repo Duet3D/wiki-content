@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: false
-date: 2022-05-16T14:15:06.967Z
+date: 2022-05-17T11:54:35.683Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -217,11 +217,15 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 
 ### Duet 3 Mainboard 6HC
 
+[![wiring_d3_5v_02.png](/guides/wiringd3/wiring_d3_5v_02.png =50%x){.align-right}](/guides/wiringd3/wiring_d3_5v_02.png){target=_blank}
+
 * EXT_5V is an optional 5V power input and is not required for operation.
 * The Duet has an on-board 5V regulator that gets its source from the VIN input (12-36V).
 * Unless you plan to provide an external 5V source, you should at this time check that there is a jumper on 'Int 5V EN'.
 * External 5V power can be provided to the board by removing the jumper on 'Int 5V EN' and supplying 5V power to the 'EXT 5V' connector.
 * The EXT_5V header also has a pin for controlling an external power supply, `pson`. This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. For more details, see [User manual: Power wiring](/User_manual/Connecting_hardware/Power_wiring)
+
+<p style="clear:both"></p>
 
 ### Duet 3 Mini 5+
 
@@ -235,6 +239,8 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 
   * <span style="background-color:#00FF00">INT 5V EN</span>
   * <span style="background-color:#FFFF00">EXT 5V EN</span>
+
+<p style="clear:both"></p>
 
 # 12. Fans
 
