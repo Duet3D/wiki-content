@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: false
-date: 2022-05-17T11:54:35.683Z
+date: 2022-05-17T12:06:26.305Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -219,15 +219,18 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 
 [![wiring_d3_5v_02.png](/guides/wiringd3/wiring_d3_5v_02.png =50%x){.align-right}](/guides/wiringd3/wiring_d3_5v_02.png){target=_blank}
 
-* EXT_5V is an optional 5V power input and is not required for operation.
+* <span style="background-color:#FF0000">EXT_5V</span> is an optional 5V power input and is not required for operation.
 * The Duet has an on-board 5V regulator that gets its source from the VIN input (12-36V).
-* Unless you plan to provide an external 5V source, you should at this time check that there is a jumper on 'Int 5V EN'.
+* Unless you plan to provide an external 5V source, you should at this time check that there is a jumper on <span style="background-color:#00FF00">Int 5V EN</span>.
 * External 5V power can be provided to the board by removing the jumper on 'Int 5V EN' and supplying 5V power to the 'EXT 5V' connector.
+* Duet 3 Mainboard 6HC v1.01 and earlier had jumpers below the "Int 5V EN" jumper to allow the Duet to supply power to the SBC, or vice versa. Current SBCs (eg Raspberry Pi 4) draw too much power, and we now recommend for both Duet and SBC to be powered separately. 6HC v1.01a boards and later do not have these jumper pins populated. See [MB6HC hardware overview: 5V](https://docs.duet3d.com/en/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v) for more details.
 * The EXT_5V header also has a pin for controlling an external power supply, `pson`. This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. For more details, see [User manual: Power wiring](/User_manual/Connecting_hardware/Power_wiring)
 
 <p style="clear:both"></p>
 
 ### Duet 3 Mini 5+
+
+[![wiring_d3_5v_01.png](/guides/wiringd3/wiring_d3_5v_01.png =50%x){.align-right}](/guides/wiringd3/wiring_d3_5v_01.png){target=_blank}
 
 * EXT_5V is an optional 5V power input and is not required for operation.
 * The Duet has an on-board 5V regulator that gets its source from the VIN input (12-24V).
