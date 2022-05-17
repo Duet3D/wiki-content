@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: false
-date: 2022-05-17T12:32:10.776Z
+date: 2022-05-17T14:17:07.515Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -242,9 +242,20 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 
 # 12. Fans
 
-**Rewrite for Duet 3**
-
 ## Tabs {.tabset}
+
+### Duet 3 Mainboard 6HC
+
+The 6HC has three 4-wire PWM-controlled outputs with tacho input: OUT4, OUT5 and OUT6. It has three 2-wire PWM-controlled outputs: OUT7, OUT8 and OUT9. Voltage is selectable between VIN / 12V / external power, in 2 banks. There is also one VIN-voltage, always-on output, and one 12V, always-on ouput.
+* A PWM (Pulse Width Modulation) fan connection is for fans you wish to control the speed of, for example a print cooling fan.
+* An always on fan is for something like an electronics fan - always on when the printer is on.
+* Some fans are more compatible with PWM control than others. If you have trouble varying the speed of a fan, check the documentation for changing PWM frequency.
+* The polarity of the fans is important - don't connect them backwards.
+* For more details, see [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting)
+
+
+### Duet 3 Mini 5+
+
 
 ### Duet 2 WiFi and Ethernet
 
