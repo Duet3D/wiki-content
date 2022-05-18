@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: false
-date: 2022-05-17T14:17:07.515Z
+date: 2022-05-18T14:34:48.555Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -246,34 +246,34 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 
 ### Duet 3 Mainboard 6HC
 
-The 6HC has three 4-wire PWM-controlled outputs with tacho input: OUT4, OUT5 and OUT6. It has three 2-wire PWM-controlled outputs: OUT7, OUT8 and OUT9. Voltage is selectable between VIN / 12V / external power, in 2 banks. There is also one VIN-voltage, always-on output, and one 12V, always-on ouput.
+[![wiring_d3_fans_02.png](/guides/wiringd3/wiring_d3_fans_02.png =50%x){.align-right}](/guides/wiringd3/wiring_d3_fans_02.png){target=_blank}
+
+* The 6HC provides:
+  * 3 x 4-wire PWM-controlled outputs with tacho input: OUT4, OUT5 and OUT6.<br>Voltage is selectable between VIN / 12V / external power (provide required voltage to centre pin), using the <span style="background-color:#FF0000">OUT4-OUT6 Select V</span> jumper.
+  * 3 x 2-wire PWM-controlled outputs: OUT7, OUT8 and OUT9.<br>Voltage is selectable between VIN / 12V / external power (provide required voltage to centre pin), using the <span style="background-color:#00FF00">OUT4-OUT6 Select V</span> jumper.
+  * 1 x <span style="background-color:#00FFFF">VIN-voltage, always-on</span> output
+  * 1 x <span style="background-color:#FFFF00">12V, always-on</span> ouput
 * A PWM (Pulse Width Modulation) fan connection is for fans you wish to control the speed of, for example a print cooling fan.
 * An always on fan is for something like an electronics fan - always on when the printer is on.
 * Some fans are more compatible with PWM control than others. If you have trouble varying the speed of a fan, check the documentation for changing PWM frequency.
-* The polarity of the fans is important - don't connect them backwards.
+* The polarity of the fans is important - don't connect them backwards, or you may damage the Duet board.
+* When using the onboard 12V regulator (i.e. 12V has been selected and/or using 12V always on ouput), the TOTAL 12V current draw must not exceed 800mA.
 * For more details, see [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting)
 
 
 ### Duet 3 Mini 5+
 
+[![wiring_d3_fans_01.png](/guides/wiringd3/wiring_d3_fans_01.png =50%x){.align-right}](/guides/wiringd3/wiring_d3_fans_01.png){target=_blank}
 
-### Duet 2 WiFi and Ethernet
-
-![wiring_d2we_10_fans.jpg](/guides/wiring/wiring_d2we_10_fans.jpg =49%x) ![wiring_d2we_11_fans.jpg](/guides/wiring/wiring_d2we_11_fans.jpg =49%x) 
-* The Duet has three PWM controlled fan headers (<span style="background-color:#FFFF00">outlined yellow</span> in the image above) and two Always On fan headers (<span style="background-color:#FF0000">outlined red</span>).
+* The Mini 5+ provides:
+  * 2 x 4-wire PWM-controlled outputs with tacho input: OUT3 and OUT4.<br>Voltage is selectable between VIN / 12V / external power (provide required voltage to centre pin), using the <span style="background-color:#FF0000">OUT3&4 Select V</span> jumper.
+  * 3 x 2-wire PWM-controlled outputs: OUT5 and OUT6.<br>Voltage is selectable between VIN / 12V / external power (provide required voltage to centre pin), using the <span style="background-color:#00FF00">OUT5&6 Select V</span> jumper.
+  * 1 x <span style="background-color:#FFFF00">12V, always-on</span> ouput
 * A PWM (Pulse Width Modulation) fan connection is for fans you wish to control the speed of, for example a print cooling fan.
 * An always on fan is for something like an electronics fan - always on when the printer is on.
 * Some fans are more compatible with PWM control than others. If you have trouble varying the speed of a fan, check the documentation for changing PWM frequency.
-* The polarity of the fans is important - don't connect them backwards.
-* For more details, see [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting)
-
-### Duet 2 Maestro
-
-* There are three PWM controlled fan headers and one Always On fan header. Voltage is selectable between VIN, 5V or external supply, in 2 banks. See the wiring diagram for details.
-* A PWM (Pulse Width Modulation) fan connection is for fans you wish to control the speed of, for example a print cooling fan.
-* An always on fan is for something like an electronics fan - always on when the printer is on.
-* Some fans are more compatible with PWM control than others. If you have trouble varying the speed of a fan, check the documentation for changing PWM frequency.
-* The polarity of the fans is important - don't connect them backwards.
+* The polarity of the fans is important - don't connect them backwards, or you may damage the Duet board.
+* When using the onboard 12V regulator (i.e. 12V has been selected and/or using 12V always on ouput), the TOTAL 12V current draw must not exceed 800mA.
 * For more details, see [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting)
 
 # 13. Bed Heater
