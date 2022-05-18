@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-05-18T13:05:24.055Z
+date: 2022-05-18T13:11:21.985Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6768,7 +6768,7 @@ This sets the stall detection parameters and optionally the low-load current red
 * **Fn** Stall detection filter mode, 1 = filtered (one reading per 4 full steps), 0 = unfiltered (default, 1 reading per full step)
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200
 * **Tnnn** (optional) Coolstep control register, 16-bit unsigned integer
-* **Rn** Action to take on detecting a stall from any of these drivers: 0 = no action (default), 1 = just log it, 2 = pause print, 3 = pause print, execute /sys/rehome.g, and resume print
+* **Rn** Action to take on detecting a stall from any of these drivers: 0 = no action (default), 1 = just log it, 2 = pause print, 3 = pause print, execute /sys/rehome.g, and resume print. See notes for RRF v3.4.
 
 ### Order dependency
 
@@ -6783,13 +6783,11 @@ M915 X Y S5 R2
 
 ### Notes
 
-If any of the S, F, T and R parameters are absent, the previous values for those parameters associated with the specified drivers will continue to be used. 
-
-If all the parameters are absent, the existing settings for the specified drive(s) will be reported.
-
-See the Trinamic TMC2660 and TMC2130 datasheets for more information about the operation and limitations of motor stall detection.
-
-See here for more detailed information on [Stall Detection and Sensorless Homing](/User_manual/Connecting_hardware/Sensors_stall_detection).
+* In RRF v3.4 and later there is no longer a distinction between R2 and R3; both cause an event to be created when the driver stalls. To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. File rehome.g is no longer used. If file driver-stall.g is not found then the print is paused without running pause.g and the error is reported.
+* If any of the S, F, T and R parameters are absent, the previous values for those parameters associated with the specified drivers will continue to be used. 
+* If all the parameters are absent, the existing settings for the specified drive(s) will be reported.
+* See the Trinamic TMC2660 and TMC2130 datasheets for more information about the operation and limitations of motor stall detection.
+* See here for more detailed information on [Stall Detection and Sensorless Homing](/User_manual/Connecting_hardware/Sensors_stall_detection).
 
 ## M916: Resume print after power failure
 
