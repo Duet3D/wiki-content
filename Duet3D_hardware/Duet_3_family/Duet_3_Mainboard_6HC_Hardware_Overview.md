@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-05-16T13:41:27.123Z
+date: 2022-05-18T15:53:08.111Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -60,7 +60,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 |:--|:--|
 | **Stepper drivers** | Up to 6.3A peak current |
 | **High current outputs** | OUT0 up to 18A (see note above), OUT1/2/3 up to 6A each |
-| **Input power voltage** | 11V to 32V |
+| **Input power voltage** | 11V to 32V for VIN, 0V to 32V for OUT0 |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **Fuses** | 15A for V_Fused, 15A for OUT0. |
@@ -156,8 +156,8 @@ Duet 3 Mainboard 6HC provides the following connectors:
 
 | Header | PCB label | Function |
 |---|---|---|
-| **1 x 6-way barrier strip** | POWER IN, GND, VIN | Two pins for main VIN and GND |
-| ^^ | OUT 0 POWER IN, GND, V_OUT0 | Two pins for the VIN and GND supply for the OUT_0 terminals |
+| **1 x 6-way barrier strip** | POWER IN, GND, VIN | Two pins for main VIN and GND. VIN min/max: 11V to 32V |
+| ^^ | OUT 0 POWER IN, GND, V_OUT0 | Two pins for the VIN and GND supply for the OUT_0 terminals. OUT0 voltage min/max: 0V to 32V |
 | ^^ | OUT 0, V_OUT0, OUT0- | Positive and negative OUT_0 terminals. OUT_0 is intended to drive a bed heater. The ground side of OUT_0 is switched by the mosfet and the positive side is protected by a 15A fuse. If using the OUT0 terminal to drive a SSR, take note that their polarity is opposite to the polarity of the VIN terminals. There is no flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
 | **1 x 3-pin KK connector** | EXT 5V | Open drain mosfet output for controlling an ATX-style power supply or a SSR. The +5V pin can also be used to provide external 5V power. A small amount of 5V power can be drawn from this pin (through an internal 220 ohm resistor), so that the control terminals of an SSR can be connected directly between the +5V and PS_ON pins. |
 | ^^ | ^^ | **Note:** on the v0.5 board this connector is rotated 180 degrees compared to the intended orientation on later version boards. |
