@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: false
-date: 2022-05-18T14:36:18.573Z
+date: 2022-05-18T15:57:24.426Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -276,12 +276,25 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 * When using the onboard 12V regulator (i.e. 12V has been selected and/or using 12V always on ouput), the TOTAL 12V current draw must not exceed 800mA.
 * For more details, see [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting)
 
-# 13. Bed Heater
+# 13. Thermistor(s)
 
 **Rewrite for Duet 3**
 
-![wiring_d2we_12_bed_heater.jpg](/guides/wiring/wiring_d2we_12_bed_heater.jpg =50%x){.align-right}
-* The Duet is able to power a heated bed, and is fused at 15A. This should be well above the requirement for most heated beds.
+![wiring_d2we_13_bed_thermistor.jpg](/guides/wiring/wiring_d2we_13_bed_thermistor.jpg =50%x){.align-right}![wiring_d2we_26_thermistors.jpg](/guides/wiring/wiring_d2we_26_thermistors.jpg =50%x){.align-right}
+
+* Connect the bed thermistor to BED_TEMP (<span style="background-color:#FFFF00">outlined yellow</span>).
+* Connect your hotend thermistors to <span style="background-color:#FFFF00">E0_TEMP</span> and/or <span style="background-color:#FFFF00">E1_TEMP</span>.
+* The polarity of thermistors does not matter.
+* A thermistor can read up to 290°C. If you wish to print at a higher temperature than this, you should upgrade to a thermocouple or PT100 temperature sensor (see step XX). A PT100 also provides a more consistent reading between multiple sensors and resists noise interference in 4-wire mode.
+* **Duet 2 Maestro** has an additional temperature input, C_TEMP. It is electrically identical to the other temperature inputs, so can be used in the same way. 
+* For more details, see [User manual: Connecting thermistors and PT1000 temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000).
+
+# 14. Bed Heater
+
+[![wiring_d3_bed_02.png](/guides/wiringd3/wiring_d3_bed_02.png =50%x){.align-right}](/guides/wiringd3/wiring_d3_bed_02.png){target=_blank}[![wiring_d3_bed_01.png](/guides/wiringd3/wiring_d3_bed_01.png =50%x){.align-right}](/guides/wiringd3/wiring_d3_bed_01.png){target=_blank}The Duet is able to power a heated bed, and is fused at 15A. This should be well above the requirement for most heated beds.
+
+**Rewrite for Duet 3**
+
 * If your heater has an integrated LED, then the polarity will matter as the LED will not light with reverse polarity. Otherwise, a heater's polarity doesn't matter.
 * **WARNING:** It is HIGHLY recommended to use the included ferrules, by crimping them to the wires before putting the wires in the terminal block. Failure to do so could allow the wires to creep over time, become loose, and could possibly short circuit and start a fire.
 * Do not tin (add solder to) these wires.
@@ -289,14 +302,7 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 * Check the screws after a few days/weeks of operation to ensure they are still snug.
 * For more details, see [User manual: Connecting and configuring a bed heater](/User_manual/Connecting_hardware/Heaters_bed).
 
-# 14. Bed Thermistor
 
-**Rewrite for Duet 3**
-
-![wiring_d2we_13_bed_thermistor.jpg](/guides/wiring/wiring_d2we_13_bed_thermistor.jpg =50%x){.align-right}
-* Connect the bed thermistor to BED_TEMP (<span style="background-color:#FFFF00">outlined yellow</span>).
-* The polarity of a thermistor does not matter.
-* For more details, see [User manual: Connecting thermistors and PT1000 temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000).
 
 # 15. CONN_SD and CONN_LCD - Duet 2 WiFi and Etherenet
 
@@ -374,17 +380,6 @@ The red LED labelled "STATUS" (Mini 5+, MB6XD) or "DIAG" (MB6HC) indicates the s
 * The WiFi or Ethernet Module supports a connection over a web interface. It is responsible for a network connection as well as the web-based user interface.
 * The WiFi module has a blue LED that flashes only when the firmware is being changed.
 * The Ethernet module has two LEDs on the RJ45 housing; Link, which is on when an ethernet connection is established, and Activity, which flashed whenever data is being actively transferred.
-
-# 22. Hotend Thermistor(s)
-
-**Rewrite for Duet 3**
-
-<!--![wiring_d2we_26_thermistors.jpg](/guides/wiring/wiring_d2we_26_thermistors.jpg =50%x){.align-right}-->
-* Connect your hotend thermistors to <span style="background-color:#FFFF00">E0_TEMP</span> and/or <span style="background-color:#FFFF00">E1_TEMP</span>.
-* The polarity of thermistors does not matter.
-* A thermistor can read up to 290°C. If you wish to print at a higher temperature than this, you should upgrade to a thermocouple or PT100 temperature sensor (see step 18). A PT100 also provides a more consistent reading between multiple sensors and resists noise interference in 4-wire mode.
-* **Duet 2 Maestro** has an additional temperature input, C_TEMP. It is electrically identical to the other temperature inputs, so can be used in the same way. 
-* For more details, see [User manual: Connecting thermistors and PT1000 temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000).
 
 # 23. Wiring Complete!
 * Congratulations! Your Duet is wired and is ready to configure. 
