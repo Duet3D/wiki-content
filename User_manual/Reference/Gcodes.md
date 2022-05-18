@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-05-18T13:11:21.985Z
+date: 2022-05-18T13:21:28.159Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2440,7 +2440,7 @@ This command is only supported on controllers that have an output connector for 
 
 The specified RGB values will be sent to the number of LEDs in the LED strip as specified by the S parameter, pushing the existing colours along the strip. To set all the LEDs the same colour, make the S parameter equal to or a little longer than the number of LEDs in the strip.
 
-Caution: if the S parameter is omitted then as many LEDs as can be set in a single chunk  will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2, many more on Duet 3). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
+Caution: if the S parameter is omitted then as many LEDs as can be set in a single chunk will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2, many more on Duet 3). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
 
 Оn **Fysetc 12864mini** you can configure all three LEDs separately. For display and for encoder illumination:
 
