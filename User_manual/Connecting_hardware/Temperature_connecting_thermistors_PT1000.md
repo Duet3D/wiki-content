@@ -2,7 +2,7 @@
 title: Connecting thermistors and PT1000 temperature sensors
 description: 
 published: true
-date: 2021-12-15T14:59:14.018Z
+date: 2022-05-20T12:48:42.705Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T16:02:20.373Z
@@ -52,9 +52,13 @@ In RepRapFirmware 3 you first create a sensor using [M308](/User_manual/Referenc
 **Thermistor** and heater example:
 
 ```
-;Duet 3
+;Duet 3 
+M308 S0 P"temp0" Y"thermistor" T100000 B4725 C7.06e-8 ; sensor 0
+M950 H0 C"out1" T0 ; create heater 0 and map sensor 0
+
+;Duet 3 with CAN-connected toolbard
 M308 S1 P"121.temp0" Y"thermistor" T100000 B4725 C7.06e-8 ; sensor 1 (toolboard)
-M950 H1 C"121.out0" T1 ; create heater and map sensor 1 (toolboard)
+M950 H1 C"121.out0" T1 ; create heater 1 and map sensor 1 (toolboard)
 
 ;Duet 2
 M308 S1 P"e0temp" Y"thermistor" T100000 B4092 ; sensor 1
@@ -64,6 +68,10 @@ M950 H1 C"e0heat" T1 ; create heater and map sensor 1
 **PT1000** and heater example:
 
 ```
+;Duet 3 with PT1000
+M308 S1 P"temp1" Y"pt1000" ; configure sensor 1 as PT1000 on pin temp1
+M950 H1 C"out1" T1 ; create heater 1 and map sensor 1
+
 ;Duet 3
 M308 S1 P"121.temp0" Y"pt1000" ; sensor 1 (toolboard)
 M950 H1 C"121.out0" T1 ; create heater and map sensor 1 (toolboard)
