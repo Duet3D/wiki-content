@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2022-05-30T21:33:41.554Z
+date: 2022-05-30T21:47:44.134Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -287,9 +287,9 @@ On the Duet 3 Mini 5+ connect the CAN_FD socket to the 2 CAN pins on the Toolboa
 
 [![duet_3_1lc_v1.0_connection_02.jpg](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_connection_02.jpg =600x)](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_connection_02.jpg){target=_blank}
 
-The image above shows Duet 3 Toolboard 1LC v1.0. See below for termination of v1.1.
+The image above shows Duet 3 Toolboard 1LC v1.0. V1.1 and later have a built in termination resistor that is jumper selectable, see below.
 
-This image shows a cable made to connect a Duet 3 Mini 5+ to a Duet 3 ToolBoard 1LC.
+This image shows a cable made to connect a Duet 3 Mini 5+ to a Duet 3 ToolBoard 1LC. red to red black to black and while/yellow unconnected.
 
 ![duet_3_1lc_v1.0_connection_03.jpg](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_connection_03.jpg =400x)
 
@@ -403,11 +403,11 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 ### Firmware Support
 
-There is limited support for the integrated accelerometer in RRF v3.3, further support is planned for v3.4
+Full support for using an accelerometer with input shaping is implemented in RRF 3.4. It is recommended that the [input shaping plugin](/User_manual/Tuning/Input_shaping_plugin) is used to help select and turne the best input shaper for a specific application.
 
 Accelerometer data can be captured and written to a file using [M956](/User_manual/Reference/Gcodes/M956). There is a plugin for RRF in 3.3RC1 that will display the data:
 
-![duet_3_1lc_v1.1_accelerometer_02.png](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.1_accelerometer_02.png =600x)
+![duet_3_1lc_v1.1_accelerometer_02.png](/manual/inputshaping/profile1.png =800x)
 
 ### Orientation
 
@@ -420,6 +420,13 @@ Forum user [Nuramori](https://forum.duet3d.com/user/nuramori) has produced [a gr
 # PCB Revision History
 
 # Tabs{.tabset}
+
+## PCB revision v1.3
+
+* Changed the mounting holes to the Hemera XS dimensions, the overall board diemnstions are unchanged.
+* Provided a path to ground, via 100K resistors from the mounting holes to make it easier for static charge build up on the exstruder to dissapate if the Toolboard is mounted on the Hemera XS
+* Changed to higher power protection resistors for the thermistor inputs to better resist ESD/short from thermistor to 24V.
+* Changed the circuit around the VSSA fuse to make it more robust to ESD events.
 
 ## PCB revision v1.2
 
