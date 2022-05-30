@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2022-05-30T17:33:10.855Z
+date: 2022-05-30T20:41:39.307Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -35,7 +35,7 @@ To make it easy to connect multiple direct driver extruders in a tool changer or
 | **High current outputs** | 1 x 5A, VIN voltage only |
 | **Thermistor/PT1000 inputs** | 2 x inputs, optimised for 100K thermistors and PT1000 sensors |
 | **Medium current outputs** | 1 x 4-pin and 1 x 3-pin PWM-controlled output with tacho input. Voltage selectable between VIN and 12V. |
-| **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. Two push buttons. 1 x footprint for a switch (v1.1) or switch or optical proximity sensor (v1.2) |
+| **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. Two push buttons. 1 x footprint for a switch (v1.1) or switch or optical proximity sensor (v1.2 and later) |
 | **Accelerometer** | Integrated LIS3DH accelerometer (v1.1 and later) |
 | **Power monitoring** | VIN voltage reporting |
 
@@ -70,7 +70,17 @@ Importantly Duets are Open:
 
 ## Dimensions
 
+There are two mounting hole patterns for the Duet3 Toolboard. Versions up to and including v1.2 have hole pattersn sized to for the original E3D Hemera. V1.3 has mounting hole patterns sized for the E3D Hemera XS. The overall dimensions of the board have not changed and no functionality is removed in v1.3
+
 ## Tabs {.tabset}
+
+### Revision v1.3
+
+[![Diagram showing the outer dimensions, mounting holes and center point of connectors for the Duet 3D Toolboard 1LC v1.3](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.3_d1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.3_d1.0_dimensions.png){target=_blank}
+
+The power in screw terminal projects 8.5mm from the top of the PCB. When the JST power connector is fitted, the highest part is the latch on that connector, which at its highest point is nearly 10mm above the PCB surface, although the latch could be cut off if space was critical.
+
+The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/Toolboard_1LC_v1.3/Duet3_TB_1LC_v1.3_STEP.zip){target=_blank}.
 
 ### Revision v1.2
 
@@ -78,7 +88,7 @@ Importantly Duets are Open:
 
 The power in screw terminal projects 8.5mm from the top of the PCB. When the JST power connector is fitted, the highest part is the latch on that connector, which at its highest point is nearly 10mm above the PCB surface, although the latch could be cut off if space was critical.
 
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/ToolBoard_1LC_v1.2/Duet3_TB_1LC_v1.2_step.zip).
+The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/ToolBoard_1LC_v1.2/Duet3_TB_1LC_v1.2_step.zip){target=_blank}.
 
 ### Revision v1.1
 
@@ -94,7 +104,7 @@ Note there is a SOD123 diode soldered on the back of the v1.1 toolboards which s
 
 this is included in the STEP file linked below.
 
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/raw/master/ToolBoard_1LC_v1.1/Duet3_TB_1LC_v1.1_STEP.zip).
+The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/raw/master/ToolBoard_1LC_v1.1/Duet3_TB_1LC_v1.1_STEP.zip){target=_blank}.
 
 
 ### Revision v1.0
@@ -409,11 +419,11 @@ Forum user [Nuramori](https://forum.duet3d.com/user/nuramori) has produced [a gr
 
 ## PCB revision v1.2
 
-* Changed to a slightly shorted JST VH power input header - makes plugging and unplugging it easier on a Toolboard mounted on a Hermera.
+* Changed to a slightly shorted JST VH power input header - makes plugging and unplugging it easier on a Toolboard mounted on a Hemera.
 * 2 more footprints for either an ITR20001/T or TCRT1000/1010 reflective optical sensor to be added to the board as an alternative to the IO3 microswitch. Note all these footprints overlap so only one can be fitted.
 * There are now 2.54mm spaced through hole pads under all JST PH connectors. The connectors could be de-soldered and replaced with screw terminals (note doing this would void any warranty).
 * SWD programming header removed due to lack of space. Pads are available under the PCB.
-* Accelerometer moved to the edge of the board that would be at the bottom if the board was mounted on an e3d Hermera.
+* Accelerometer moved to the edge of the board that would be at the bottom if the board was mounted on an E3D Hemera.
 * The driver and IO0 connector have moved slightly (see the v1.2 dimension diagram above)
 
 ## PCB revision v1.1
