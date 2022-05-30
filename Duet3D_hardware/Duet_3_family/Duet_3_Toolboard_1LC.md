@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2022-05-30T20:41:39.307Z
+date: 2022-05-30T21:33:41.554Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -141,6 +141,9 @@ A STEP 3D model of each revision of the board is available [on github here](http
 
 ### Revision v1.2
 
+[![diagram showing the pinout for each of the headers on the Duet 3 toolboard 1LC v1.3](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.3_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.3_d1.0_wiring.png){target=_blank}
+### Revision v1.2
+
 [![diagram showing the pinout for each of the headers on the Duet 3 toolboard 1LC v1.2](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.2_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.2_d1.0_wiring.png){target=_blank}
 
 ### Revision v1.1
@@ -160,19 +163,20 @@ A STEP 3D model of each revision of the board is available [on github here](http
 * **JST ZH:** (CAN, v1.0 headers) These are difficult to crimp because they are so small, so Duet3D supply pre-terminated connectors. You can connect longer wires to them by hand soldering or using small size (white) solder sleeves.
 * **Screw terminals:** These are not high current so fitting the wires directly into the screw terminals is fine. Using small ferrules is also fine; Duet3D supply 0.5mm^2 white ferrules.
 * We recommend connecting the hot end metalwork to ground on the toolboard via a resistor (10k to 1M Ohm), if it is not grounded through its mounting system. This will prevent the hot end building up static charge, which might otherwise occur as filament is extruded and may then flash over to the tool board thermistor input, causing damage.
+* On the v1.3 toolboard the mounting screw holes are all grounded via 100K resistors to provide a path to ground for any static build up in the extruders, assuming the toolboard is mounted to the extruder.
 
 ## Description of Connections
 
 Duet 3 Toolboard 1LC provides the following connectors:
 
 | Connector (board revision) ||| Label | Function |
-| v1.1 | v1.0 | v0.6 | ^^ | ^^ |
+| v1.1-v1.3 | v1.0 | v0.6 | ^^ | ^^ |
 |--
 | 1 x 2-pin JST VH ||| POWER IN, VIN, GND | Two pins for main VIN and GND. VIN power is fused at 5A. |
 | 4-pin JST PH | Screw terminal || IO_0 | Input/output with +5V power, for endstops, Z-probes.<br>Input is 30V-tolerant |
 | 3-pin JST PH | 3-pin JST ZH | Screw terminal | IO_1 | Input only with +3.3V power, intended for filament monitors.<br>**Note:** Input is 3.3V-tolerant |
 | 3-pin JST PH | 3-pin JST ZH | Screw terminal | IO_2 | Input only with +5V power, for endstops or tool pickup detection switch.<br>Input is 30V-tolerant |
-| 1 x 3-pin footprint | N/A || IO_3 | (v1.1 board) Footprint to mount an Omron D2FD-1L30-1T ultra subminiture switch or similar.<br>Example use case is a tool docking confirmation switch. |
+| 1 x 3-pin footprint | N/A || IO_3 | (v1.1 board) Footprint to mount an Omron D2FD-1L30-1T ultra subminiture switch or similar.<br> In v1.2 and v1.3 the footprints for an ITR20001/T or TCRT1000/1010 reflective optical sensor are also added. <br> Example use case is a tool docking confirmation switch. |
 | 4-pin JST PH ||| DRIVER_0 | Stepper motor connection |
 | 1 x 6-pin JST ZH ||| SWD | This is for firmware debugging and also provides a backup mechanism to program firmware. |
 | 2-pin JST PH | Screw terminal || TEMP_0 | Thermistor or PT1000 input.<br>TEMP_0 uses a 16-bit ADC for high resolution reading of PT1000 sensors. |
@@ -216,7 +220,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | io0.in | 30V tolerant |
 | ^^ | IO_1 | io1.in | 3.3V tolerant |
 | ^^ | IO_2 | io2.in | 30V tolerant |
-| ^^ | IO_3 | io3.in | 30V tolerant |
+| ^^ | IO_3 | io3.in | 30V tolerant. Only available on v1.1 and later revisions|
 | ^^ | TEMP_0 | temp0 |  |
 | ^^ | TEMP_1 | temp1 |  |
 | ^^ | Button 0 | button0 |  |
@@ -259,7 +263,7 @@ See "Set the CAN address" below.
 
 ### Connecting WITHOUT Duet 3 Tool Distribution Board
 
-It is also possible to connect a Toolboard directly to the Duet 3 Mainboard 6HC, or Duet 3 Mini 5+.
+It is also possible to connect a Toolboard directly to the Duet 3 Mainboard 6HC, 6XD, or Duet 3 Mini 5+.
 
 #### Power connection
 
@@ -269,13 +273,13 @@ Supply between 12V and 32V to the 2-pin JST VH VIN power connector on the Toolbo
 
 #### Tabs {.tabset}
 
-##### Duet 3 Mainboard 6HC
+##### Duet 3 Mainboard 6HC & 6XD
 
-Connect the RJ11 socket on the Duet 3 Mainboard 6HC to the correct 2 CAN pins on the Toolboard, and terminate the other 2 CAN pins on the Toolboard. If using one Toolboard, connect pins 3 and 4 (the middle 2 pins) of the RJ11 connector on the Duet to pins 4 and 3 of the Toolboard, making sure you get them the right way round i.e. CAN1_H in the Duet to CANH on the Toolboard. (Pins 2 and 4 of the Toolboard are interchangeable, as are pins 1 and 3.) Don't connect anything to pins 2 and 5 of the RJ11 connector on the Duet.
+Connect the RJ11 socket on the Duet 3 Mainboard 6HC or 6XD to the correct 2 CAN pins on the Toolboard, and terminate the other 2 CAN pins on the Toolboard. If using one Toolboard, connect pins 3 and 4 (the middle 2 pins) of the RJ11 connector on the Duet to pins 4 and 3 of the Toolboard, making sure you get them the right way round i.e. CAN1_H in the Duet to CANH on the Toolboard. (Pins 2 and 4 of the Toolboard are interchangeable, as are pins 1 and 3.) Don't connect anything to pins 2 and 5 of the RJ11 connector on the Duet.
 
-[![duet_3_1lc_v1.0_connection_01.png](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_connection_01.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_connection_01.png){target=_blank}
+[The image above shows Duet 3 Toolboard 1LC v1.0. ](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_connection_01.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_connection_01.png){target=_blank}
 
-The image above shows Duet 3 Toolboard 1LC v1.0. See below for termination of v1.1.
+The image above shows Duet 3 Toolboard 1LC v1.0. V1.1 and later have a built in termination resistor that is jumper selectable, see below.
 
 ##### Duet 3 Mini 5+
 
