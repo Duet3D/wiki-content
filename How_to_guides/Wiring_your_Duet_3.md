@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-05-31T16:10:25.087Z
+date: 2022-05-31T16:10:35.354Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -66,7 +66,7 @@ Here is a good guide to crimping: [Teaching Tech on YouTube](https://youtu.be/GZ
 
 ## Tabs {.tabset}
 
-### Power supply and otehr spade connectors
+### Power supply and other spade connectors
 
 ![wiring_crimp_tool_manual.jpg](/guides/wiring/wiring_crimp_tool_manual.jpg =50%x){.align-right}![wiring_crimp_tool_ratchet.jpg](/guides/wiring/wiring_crimp_tool_ratchet.jpg =50%x){.align-right}Duet 3 mainboards have a barrier strip with screw terminals to connect power supply wires, and are supplied with insulated spade crimps.
 * **Duet 3 Mainboard 6HC** uses a 6-way barrier strip for Power in (VIN), OUT0 power in, OUT0 (high current output, eg heated bed, max 15A, can be different voltage than main power in.)
