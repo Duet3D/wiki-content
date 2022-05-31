@@ -2,7 +2,7 @@
 title: Calibrating your Duet-based machine
 description: 
 published: false
-date: 2022-05-31T11:29:16.792Z
+date: 2022-05-31T11:58:21.572Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
@@ -59,9 +59,22 @@ While this guide uses the example of calibrating an Ender 3, the procedures show
 * Later in the guide we will go through using mesh compensation to verify the flatness of your bed and mechanically account for any warp or skew.
 * A later step in this guide will go through a test print to check the surface of the bed for warping and leveling, but first we must calibrate the extruder.
 
-## Mesh compensation
+## Bed plane levelling
 
 * Insert wisdom here.
+
+* Running the [G32](/User_manual/Reference/Gcodes/G32){target=_blank} command causes the firmware to execute macro file /sys/bed.g. This macro normally uses G30 commands to define the probe points individually, including an optional Z probe trigger height adjustment for each point, and probe the bed, then:
+  * on a Delta printer, perform auto calibration. See [Calibrating a Delta printer](/User_manual/Tuning/Delta_calibration){target=_blank}
+  * on a Cartesian or CoreXY printer, perform bed plane levelling by moving the Z leadscrews independently. See [Bed levelling using multiple independent Z motors](/User_manual/Connecting_hardware/Z_probe_auto_levelling){target=_blank}
+  * display the manual corrections needed to the bed levelling screws. See [Using the Manual Bed Levelling Assistant](/User_manual/Connecting_hardware/Z_probe_manual_levelling){target=_blank}
+
+## Mesh bed compensation
+
+* Mesh bed compensation allows the printer to adjust the nozzle height during printing to compensate for an uneven bed or for sag in the gantry. 
+* [G29](/User_manual/Reference/Gcodes/G29){target=_blank} probing uses a grid of points. [M557](/User_manual/Reference/Gcodes/M557){target=_blank} defines the size and spacing between points. It is only used for mesh bed compensation.
+  * On a Delta printer, you can if you wish use G32 to perform [auto calibration](/User_manual/Tuning/Delta_calibration){target=_blank} followed by G29 to compensate for any residual bed height errors. 
+  * On a Cartesian or CoreXY printer you can use G32 bed probing for [Bed levelling using multiple independent Z motors](/User_manual/Connecting_hardware/Z_probe_auto_levelling){target=_blank}, followed by G29 probing to do bed compensation.
+* For full details, see [Using mesh bed compensation](/User_manual/Connecting_hardware/Z_probe_mesh_bed){target=_blank}
 
 # 3. Calibrating Extruder E Steps per MM
 
