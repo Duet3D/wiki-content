@@ -2,7 +2,7 @@
 title: Calibrating your Duet-based machine
 description: 
 published: false
-date: 2022-05-30T12:48:59.385Z
+date: 2022-05-31T11:22:41.570Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
@@ -19,7 +19,7 @@ While this guide uses the example of calibrating an Ender 3, the procedures show
 ## Hot end heater
 
 * Heater tuning allows RepRapFirmware to find the ideal parameters for the heater model, allowing for quick heat up times, and stable temperatures, with little overshoot.
-* For full details, see: [Tuning the heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning)
+* For full details, see: [Tuning the heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning){target=_blank}
 * Ensure the test is started with the heaters at room temperature. Ideally this should be done with no filament loaded. For most accurate results, move the nozzle so it is within 1mm of the bed surface, and set the part cooling fan speed to match normal print fan speeds. For the Ender 3 and PLA that would be 75-100%
 * Next send `M303 H1 S210` to start the heater tuning process for the hot end. Wait for the process to complete. It should only take a few minutes. Save the results by sending `M500` so that they are loaded automatically at startup.
 * If you followed the configuration guide, automatic loading of the config-override file should be enabled. If you get an error message saying otherwise, add `M501` to the end of config.g
@@ -155,7 +155,7 @@ While this guide uses the example of calibrating an Ender 3, the procedures show
 
 ## Extrusion Factor Test Print (Method 1)
 
-* Download this [calibration cube](https://www.thingiverse.com/thing:3670991) created specifically for this test from Thingiverse.
+* Download this [calibration cube](https://www.thingiverse.com/thing:3670991){target=_blank} created specifically for this test from Thingiverse.
 * Using the slicer of your choice, slice the cube with the following settings: 0.2 layer height, 2 perimeters, 0% infill, 0 top layers, 0 bottom layers, 30mm/s inner and outer perimeter speed, 100% flow rate/extrusion factor, extrusion width = nozzle width. Use a wide brim as well to ensure adhesion.
 * Let the print progress for several layers to allow any first layer inaccuracies dissipate.
 * When the print reaches 10mm z height carefully check for the separation of the 2 walls. Ideally, the walls should be fused together with no gap between them. Under extrusion will show as a gap between the walls, and over extrusion will show as messy walls or an uneven, rough surface.
@@ -185,21 +185,49 @@ While this guide uses the example of calibrating an Ender 3, the procedures show
 * If a Z probe is not an option, you can work around this by using baby stepping during the first layer, or by increasing the first layer flow rate to extrude a thicker line to fill the gap in the dipped area, and reduce it again for the outer area.
 * Another solution is to replace the bed with a flat sheet of glass or aluminum.
 
-# 7. Tuning motion
+# 6. Tuning motion
+
+* A set of macros to help tuning motion can be found on [this forum post](https://forum.duet3d.com/post/56174){target=_blank}
+
+## Speeds, jerk and acceleration
+
+Insert wisdom here. (Text below added by Ian from [forum post](https://forum.duet3d.com/post/276309){target=_blank})
+
+* **M203** is maximum speed. See gcode dictionary [M203](/User_manual/Reference/Gcodes/M203). Even if you send a GCode command with a feed rate faster than this, the firmware will limit the speed to this setting.
+* **M566** is 'instantaneous speed change', also known as 'jerk'. See gcode dictionary [M566](/User_manual/Reference/Gcodes/M566). If the axis is not moving, then you command movement, it will try to start moving at this speed. All machines will skip steps if you set this too high. Because you try to move the axis at high speed immediately. Usual setting for M566 is between 300 and 900. if you set it too high, it can limit acceleration, and will cause a lot of shake in your machine from violent starts. If your axis is heavy, it will have to be lower. Generally, it is better to set M566 low (eg 300) and set acceleration (M201) higher. This should reduce violent movement of the machine, but still give good speed. **Add note on jerk policy, P parameter.**
+* **M201** is acceleration. See gcode dictionary [M201](/User_manual/Reference/Gcodes/M201). Increase this for the axis to achieve high speed quicker. 2000 is quite low. Some machines can reach 20000.
+
+For tuning these three, it is dependent on the machine what can be set, and you will need to experiment to find the best values, for each axis (X, Y and Z). The usual procedure to tune these settings is to:
+* Find a value for each that works, eg M566 X300, M201 X2000, M203 X5000
+* Change one value, find where there is step loss, eg M201 X10000
+* Halve the difference between the values, eg M201 X6000, then test
+  * If it works, halve the difference with the higher number, and test again, eg M201 X8000
+  * If it doesn't work, halve the difference with the lower number and test, eg M201 X4000
+* Repeat using the highest value that works, and lowest value that does not work.
+* When you find the highest value that works, eg M201 X5000, set to 80% of this value, eg M201 X4000. This gives you some flexibility.
+
+This technique is called a 'binary search'. You can use it to tune all the settings, for each axis.
 
 ## Retraction
 
 * Insert wisdom here.
-
-## Jerk and acceleration
-
-* Insert wisdom here.
+* Hardware retraction: [G10](/User_manual/Reference/Gcodes/G10){target=_blank}, [G11](/User_manual/Reference/Gcodes/G11){target=_blank}, [M207](/User_manual/Reference/Gcodes/M207){target=_blank}
 
 ## Pressure advance
 
 * Insert wisdom here.
+* [M572](/User_manual/Reference/Gcodes/M572){target=_blank}
+* See [Tuning pressure advance](/User_manual/Tuning/Pressure_advance){target=_blank}
 
-# 8 Optimal slicer settings
+## Input shaping
+
+* Insert wisdom here.
+* [M593](/User_manual/Reference/Gcodes/M593){target=_blank}
+* [Connect an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer){target=_blank}
+* [Input shaping](/User_manual/Tuning/Input_shaping){target=_blank}
+* Keep in mind that you have to retune Pressure Advance after you have configured Input Shaping. The Pressure Advance will differ from shaper to shaper and from frequency to frequency.
+
+# 7. Optimal slicer settings
 
 * Default slicer profiles are available for the Ender 3 Pro and Duet 3 Mini 5+:
 * Cura:
