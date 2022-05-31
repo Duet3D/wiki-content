@@ -2,7 +2,7 @@
 title: Hardware overview
 description: 
 published: true
-date: 2022-05-18T13:30:32.993Z
+date: 2022-05-31T22:17:00.955Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T11:36:08.818Z
@@ -10,7 +10,7 @@ dateCreated: 2021-12-06T11:36:08.818Z
 
 # The Duet family of motion controllers
 
-## Current production Duets
+## Current production Duet mainboards
 
 | Feature | [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | [Duet 3 Mini 5+ WiFi](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 3 Mini 5+ Ethernet](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 2 WiFi](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | [Duet 2 Ethernet](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) |
 |:---|:---|:---|:---|:---|:---|
