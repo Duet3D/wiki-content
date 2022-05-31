@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-05-31T11:16:53.396Z
+date: 2022-05-31T22:04:24.744Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4834,7 +4834,7 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 * **Pnn** Motor driver number
 * **Tn** Encoder type: 0=none, 1=linear quadrature encoder on axis, 2=quadrature encoder on motor shaft, 3=Duet closed loop magnetic sensor (based on the AS5047D)
 * **Cn.n** Encoder counts per full step (when using a quadrature encoder on motor shaft) [count per mm will become available as support for linear encoders is implemented]
-* **En.n:m.m** Error thresholds. Closed loop errors greater than m will be treated as a stall. Closed loop errors greater than n will be treated as a pre-stall. The action that is taken on a stall/pre-stall can be configured using M915. Note: Although this is supported on the 1HCL closed loop boards, it is not yet supported in the main RepRap Firmware.
+* **En.n:m.m** Error thresholds. Closed loop errors greater than m will be treated as a stall. Closed loop errors greater than n will be treated as a pre-stall. The action that is taken on a stall/pre-stall can be configured using the [event system](/User_manual/RepRapFirmware/Events)
 * **Rn.n** Proportional constant
 * **In.n** Integral constant
 * **Dn.n** Derivative constant
@@ -4845,6 +4845,8 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 Sets the configuration parameters of a closed loop driver. See the [M569](/User_manual/Reference/Gcodes/M569){target=_blank} D parameter for switching a driver to closed loop after it has been configured.
 
 Encoder counts per step (Cn.n) can be found from the datasheet of the encoder being used. If the value is stated as counts per revolution (CPR), divide by the steps per revolution of the stepper motor to get the count per step. For example, a 1000 CPR encoder attached to a 200 step/rev motor will have a count per step of 1000 ÷ 200 = 5.
+
+
 
 ### Notes
 
