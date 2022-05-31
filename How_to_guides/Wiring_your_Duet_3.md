@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-05-31T16:10:35.354Z
+date: 2022-05-31T16:18:52.507Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -276,6 +276,9 @@ The red LED labelled "STATUS" (Mini 5+, 6XD) or "DIAG" (6HC) indicates the state
 * For the **Mini 5+** there is also a 2x stepper driver expansion board that connects directly to the Mini 5+; for more details see [Duet_3_Expansion_Mini_2+](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_Mini_2+).
 * For more details, see [User manual: Choosing stepper motors](/User_manual/Connecting_hardware/Motors_choosing)
 * If you want to run external drivers, see [User manual: Connecting external stepper motor drivers](/User_manual/Connecting_hardware/Motors_connecting_external).
+
+Here is an exmaple of a JST_VH connector:
+![wiring_d3_jst_vh.jpg](/guides/wiringd3/wiring_d3_jst_vh.jpg =30%x)
 
 # 15. Connecting a display
 
