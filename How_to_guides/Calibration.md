@@ -2,7 +2,7 @@
 title: Calibrating your Duet-based machine
 description: 
 published: false
-date: 2022-05-31T11:22:41.570Z
+date: 2022-05-31T11:29:16.792Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
@@ -188,6 +188,7 @@ While this guide uses the example of calibrating an Ender 3, the procedures show
 # 6. Tuning motion
 
 * A set of macros to help tuning motion can be found on [this forum post](https://forum.duet3d.com/post/56174){target=_blank}
+* All of [Teaching Tech's Calibration Guide](https://teachingtechyt.github.io/calibration.html){target=_blank} seems pretty good, too.
 
 ## Speeds, jerk and acceleration
 
@@ -211,6 +212,7 @@ This technique is called a 'binary search'. You can use it to tune all the setti
 ## Retraction
 
 * Insert wisdom here.
+* [Teaching Tech retraction tuning guide](https://teachingtechyt.github.io/calibration.html#retraction){target=_blank}
 * Hardware retraction: [G10](/User_manual/Reference/Gcodes/G10){target=_blank}, [G11](/User_manual/Reference/Gcodes/G11){target=_blank}, [M207](/User_manual/Reference/Gcodes/M207){target=_blank}
 
 ## Pressure advance
