@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Linear Delta printer
 description: This page describes how to set up the configuration files for Delta printers, the same firmware binary also supports Cartesian, CoreXY and other printers kinematics .
 published: true
-date: 2021-12-15T22:30:56.218Z
+date: 2022-06-01T20:25:16.102Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T16:48:42.130Z
@@ -228,11 +228,11 @@ After this, a single auto calibration run should be sufficient. It is quick enou
 
 # Testing the motors and endstops individually
 
-You can test the three tower motors individually by putting the printer in relative mode (G91 command) and then using the G1 command with H2 parameter. For example, sending G1 S2 X10 should move the X carriage up 10mm, and sending G1 H2 X-10 should move the X carriage down 10mm. Similarly for Y and Z. If a motor moves the wrong way, you can reverse it by changing the corresponding M569 command in config.g. For example, if the X motor moves the wrong way, change M569 P0 S1 to M569 P0 S0.
+You can test the three tower motors individually by putting the printer in relative mode (G91 command) and then using the G1 command with H2 parameter. For example, sending G1 H2 X10 should move the X carriage up 10mm, and sending G1 H2 X-10 should move the X carriage down 10mm. Similarly for Y and Z. If a motor moves the wrong way, you can reverse it by changing the corresponding M569 command in config.g. For example, if the X motor moves the wrong way, change M569 P0 S1 to M569 P0 S0.
 
 When you have the motors moving the right way, test the endstops. See Connecting endstop switches, [Test endstop switches section](/User_manual/Connecting_hardware/Sensors_endstops#test-endstop-switches).
 
-**It is essential that the endstop switch connected to the X endstop input is on the same tower as the motor connected to the X motor output that drives the carriage on the X tower**. A common mistake is to have endstop or motor connections swapped. So check this carefully. Make sure that the carriage that moves when you send a G1 S2 X command is on the same tower as the endstop that when triggered shows as X triggered in M119 or in the Machine Properties page of DWC.
+**It is essential that the endstop switch connected to the X endstop input is on the same tower as the motor connected to the X motor output that drives the carriage on the X tower**. A common mistake is to have endstop or motor connections swapped. So check this carefully. Make sure that the carriage that moves when you send a G1 H2 X command is on the same tower as the endstop that when triggered shows as X triggered in M119 or in the Machine Properties page of DWC.
 
 After that you can check the combined effects of endstop switches and motors. Send G91 as before, but use H1 instead of H2 in the G1 commands. Each motor should stop early when you trigger the corresponding endstop.
 
