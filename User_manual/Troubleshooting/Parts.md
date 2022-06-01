@@ -2,7 +2,7 @@
 title: Connector and spare part numbers
 description: This is a growing list of connectors and spare part numbers. If a spare part is required that is not on the list please check the source on github or ask on the forums 
 published: true
-date: 2022-06-01T07:36:51.356Z
+date: 2022-06-01T07:45:43.090Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:43:02.549Z
@@ -65,9 +65,11 @@ The fork connectors for the power supply are a generic "blue" max  2.5mm^2 like 
 | Duet 3 | 3.3V internal | 3.3V external | 5V | 12V |
 |:---|:---|
 | Mainboard 6HC | AP7361C-33E-13 | AP2127K-ADJTRG1 | AOZ1284PI | TS30041-M000QFNR |
-| Expansion 3HC | AP2127K-ADJTRG1 | AP2127K-ADJTRG1 | TS30041-M000QFNR | TS30041-M000QFNR |
+| Mainboard 6XD | AP7361C-33E-13 | AP2127K-ADJTRG1 | AOZ1284PI | TS30041-M000QFNR |
+| Expansion 3HC | AP2127K-ADJTRG1 | AP2127K-ADJTRG1 | TS30041-M000QFNR | TS30041-M000QFNR (up to version 1.01a) |
 | Toolboard 1LC | AP7366-W5-7 || SPX1117M3-L-5-0/TR | TS30041-M000QFNR |
 | Expansion 1XD | - | - | MAX15062CATA+T | - |
+| Expansion 1HCL | - | - | TS30041-M000QFNR | MAX15062CATA+T |
 | Mini 5+ | AP7366-W5-7 || TS30041-M000QFNR | TS30041-M000QFNR |
 
 # Duet 2
