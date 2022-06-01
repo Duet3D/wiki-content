@@ -2,7 +2,7 @@
 title: Connector and spare part numbers
 description: This is a growing list of connectors and spare part numbers. If a spare part is required that is not on the list please check the source on github or ask on the forums 
 published: true
-date: 2022-06-01T07:35:23.768Z
+date: 2022-06-01T07:36:51.356Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:43:02.549Z
@@ -194,10 +194,10 @@ The backlight inverter of the integrated PanelDues rarely fails, but if it does 
 
 ## SD card socket
 
-Used on all Duet 2 and 3 models. The recommended part is Würth Elektronik 693071020811
+Used on all Duet 2 and 3 main boards. The recommended part is Würth Elektronik 693071020811
 
 ## Micro USB socket
 
-Used on all Duet 2 and 3 models, and PanelDue v2 and v3 (but not 5i and 7i). The recommended part is Amphenol FCI 10103594-0001LF
+Used on all Duet 2 and 3 main boards except MB6XD, and PanelDue v2 and v3 (but not 5i and 7i). The recommended part is Amphenol FCI 10103594-0001LF
 
 For PanelDue 5i and 7i, a compatible part is Würth Elektronik 614105150721
