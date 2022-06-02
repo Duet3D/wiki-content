@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-02T05:27:25.375Z
+date: 2022-06-02T05:28:53.342Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -13,6 +13,6 @@ It's a bit confusing sometimes to configure a robot configuration. The main reas
 
 RobotViewer allows to start from scratch, from a template, from an existing robot.g or by a guided procedure (button desig new).
 
-The designed configuration are G-Code lines which can directly be used in config.g or included with macro command from config.g, importing robot.g. The G10 tool configuration line may need modification or removal if using a tool changer or multiple extruders.
+The designed configuration are G-Code lines which can directly be used in config.g or included with macro command from config.g, importing robot.g. The G10 tool configuration line may need modification or removal if using a tool changer or multiple extruders. The designed G-Code lines can be stored in robot.g or copied by clipboard and inserted into the config.g file.
 
 **work in progress, please watch for changes the next days**
