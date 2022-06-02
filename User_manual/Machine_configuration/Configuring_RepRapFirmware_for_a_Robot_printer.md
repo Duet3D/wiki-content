@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-05-05T07:34:05.423Z
+date: 2022-06-02T04:48:40.601Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -11,15 +11,14 @@ dateCreated: 2022-03-03T13:05:06.424Z
 # Configuring a Robot printer
 Following is a description how to setup a 3 to 7 axis robot for 3D printing, with primary focus on an industrial 6 axis robot. The RepRapFirmware **robot firmware is in development**, binaries for testing will be provided.
 
-The kinematics is developed for RRF 3.4.0 in a github fork at: [robot RRF fork](https://github.com/JoergS5/RepRapFirmware/tree/3.4.0)
+Explanation and examples of Denavit-Hartenberg parameters:
+[Robot Denavit-Hartenberg parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)
 
-Binaries and sample config files will be provided at: [binaries, config samples](https://github.com/JoergS5/RobotBinariesAndConfig)
+The DWC plugin to create and visualize robot configurations is [RobotViewer](https://docs.duet3d.com/en/User_manual/Machine_configuration/RobotViewer_DWC_plugin)
 
-The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285)
+The kinematics is developed for Duet3Ds RepRapFirmware and is hosted at: [RepRapFirmware_Robot](https://github.com/JoergS5/RepRapFirmware_Robot) See the readme files how to compile. There are also example config files and binaries.
 
-Status and current limitations:
-* first release of firmware will be available in second half of April '22, tested for 3 and 6 axis robot
-* in first release, robot being in a singularity cannot be solved, solution to come out are G1 H2 moves (see chapter about singularities)
+The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
 # Construction
 ![robot_main.jpg](/manual/configuration/robot_main.jpg)
@@ -27,8 +26,7 @@ The firmware can be configured to run a typical industrial 6 axis robot with 6 r
 # Denavit-Hartenberg parameters
 To describe the robot setup like properties of the axes, arm lenghts and other properties, the Denavit-Hartenberg parameters are used to describe most of the properties.
 
-The parameters and examples are described in a separate document:
-[Robot Denavit-Hartenberg parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)
+
 # Workspace and Singularities
 Workspace is the space where an object can be reached by the robot. Calculation is a combination of position and orientation. Positions near the edges should be avoided, because rotations of axes become critical and movement precision is reduced.
 
@@ -49,32 +47,46 @@ M669 must set kinematics type to robot by caling M669 K13. After the type is sel
 
 **A** is used to define the properties of the robot.
 
-A"[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint.
-* A"RRRRRR" means 6 axis robot with rotational axes
-* A"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
-* A"PPP" means 3 axis cartesian printer.
+* AT:... defines the actuator type, rotary or prismatic and how they are assembled
+* AL:... defines the letters of the actuators
+* AM:... defines handling of orientation
+* A0...n:parameters define DH parameters with optional Y
 
-A"Mn" defines G-Code modes and whether orientation is used:
+
+AT:"[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, T is where the tool is attached, O is where the object to be printed is attached. Branches are marked by parantheses.
+* AT:"RRRRRR" means 6 axis robot with rotational axes
+* AT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
+* AT:"PPP" means 3 axis cartesian printer.
+* AT:
+
+AL:"[X-Z,U-W,A-D*]" defines the order of axis letters assigned to the AT parameters. Example: AT:"PRR" AL:"ZXY" means the prismatic actuator is the Z axis, the two rotary ones are X and Y. The order of joint connection is PRR/ZXY, the Z axis being first. (Don't confuse ZXY axis letters with cartesian XYZ coordinates).
+
+AM:n defines G-Code modes and whether orientation is used:
 * M0 means X, Y, Z, A, B, C G-Code (axis rotation angles)
 * M1 means X, Y, Z, I, J, K, U, V, W G-Code (tool vectors)
 * M2 means X, Y, Z without orientation information. Forward and inverse kinematics calculate only coordinates and ignore endpoint's orientation.
 
 
-**DH: Ajoint:ztrans:zrot:xtrans:xrot:home:minangle:maxangle**
+**DH: Ajoint:d:theta:a:alpha:home:minangle:maxangle**
+
 * DH (Denavit-Hartenberg) parameters are defined by:
 * joint 1 is describing the transformations, so that the resulting coordinate system at axis 2
-* ztrans = d offset in Z direction
-* zrot = theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
-* xtrans = a is the distance between Z and former Z axis. If alpha is 0, 90 or -90, it is the arm length
-* xrot = alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
+* d offset in Z direction
+* theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
+* a is the distance between Z and former Z axis. If alpha is 0, 90 or -90, it is the arm length
+* alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
 * home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
 
 Instead of DH parameters, all 6 translations and rotations can be defined by:
-**Aaxisnr:ztrans:zrot:ytrans:yrot:xtrans:xrot:home:minangle:maxangle**
+**Aaxisnr:d:theta:ytr:yrot:a:alpha:home:minangle:maxangle**
+
+ytr is transformation in direction of Y axis, yrot is a rotation for a rotational axis and translation for a prismatic axis.
 
 When 8 values are defined, DH parameters are expected. When 10 values are defined, it is interpreted as general setting of all transformations.
 
 Adding the possibility to define Y axes' parameters rotation and translation to give full flexibility to define the coordinates. The Z axis is rotated and translated first, then Y, then X, according to the roll-pitch-yaw (RPY) order.
+
+8- and 10-parameter settings can be mixed, using Y translation and rotation only where needed.
 
 A1 to A6 are the equivalent to DH parameters. A0 allows a displacement of the first axis and axis rotations.
 
