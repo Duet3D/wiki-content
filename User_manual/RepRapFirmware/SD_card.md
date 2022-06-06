@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2022-01-19T12:32:25.770Z
+date: 2022-06-06T11:33:46.464Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -39,7 +39,7 @@ If you need to reformat the micro SDHC card:
 * If the capacity is more than 4GB (up to 32GB) then you will have to use FAT32 format
 * All cards should be formatted with 512 byte sectors
 * For best upload speed choose the largest cluster size available, which is normally 64kb for FAT16 and 32kb for FAT32
-* Use the [official SD Card formatting tool](https://www.sdcard.org/downloads/formatter/index.html) for best results
+* Use the [official SD Card formatting tool](https://www.sdcard.org/downloads/formatter/index.html){target=_blank} for best results
 * **DO NOT** use Windows 'Quick Erase'. This generally does not create a clean FAT32 partition.
 
 # SD card structure
@@ -47,6 +47,8 @@ If you need to reformat the micro SDHC card:
 ## Duet 3, Duet 2 WiFi / Ethernet / Maestro
 
 These Duets use the following folder structure:
+
+`/filaments` holds the profiles for any user-defined filaments. See [User manual: Filaments](/User_manual/Reference/DWC_filaments)
 
 `/firmware` RepRapFirmware v3.3 and later. This holds firmware files ready for installation, and the in-app programmer (IAP) binary. In RRF v3.2 and earlier, firmware and IAP files are stored in /sys.
 
@@ -72,16 +74,16 @@ These Duets use the following folder structure:
 
 `/www` folder and its subfolders hold the files served by the web server. If you are setting up a new SD card, populate the **/www** folder by extracting the contents of the DuetWebControl.zip file to it.
 
-NOTE: the folders **/firmware**, **/gcodes**, **/macros**, **/menu**, **/sys**, and **/www** must be named exactly as shown. Sometimes the distribution of configuration files for a specific printer platform will come with the folder named **/sys-<printer_type>** , so the **-<printer_type>** must be removed.
+NOTE: the folders **/filaments**, **/firmware**, **/gcodes**, **/macros**, **/menu**, **/sys**, and **/www** must be named exactly as shown. Sometimes the distribution of configuration files for a specific printer platform will come with the folder named **/sys-<printer_type>** , so the **-<printer_type>** must be removed.
 
-### Duet 2 WiFi with firmware 1.18.2 or earlier
+### Duet 2 with firmware 1.18.2 or earlier
 
 The Duet 2 WiFi **with pre-1.19 firmware** requires only /gcodes, /macros and /sys folders on the internal SD card. These folders have the same function as described earlier on this page. The web server files are stored in file DuetWebControl.bin which is uploaded to the WiFi module.
 
 ## Creating the file structure
 
 * To create a new SD card that will act as the Duet's primary card, first format a suitable SD card as above.
-* Use the [RepRapFirmware configuration tool](https://configtool.reprapfirmware.org/Start) to create a configuration for your printer.
+* Use the [RepRapFirmware configuration tool](https://configtool.reprapfirmware.org/Start){target=_blank} to create a configuration for your printer.
 * On the 'Finish' page, if you select "Get the latest stable Duet Web Control version" the config.zip file you download will have a /www folder with the latest version of DWC in it.
 * On the 'Finish' page, if you select "Get the latest stable RepRapFirmware version", the config.zip file you download will have the latest versions of the firmware and IAP file (In-App Programmer, needed to update the firmware) for your board in it. Note that you do not need these files on the SD card to run the Duet, only to update it. The Firmware Version you selected in the Config Tool > General page will determine where these are stored:
   * 3.3 or later - a /firmware folder is created and firmware and IAP files placed in it.
@@ -90,10 +92,12 @@ The Duet 2 WiFi **with pre-1.19 firmware** requires only /gcodes, /macros and /s
 * If you didn't get the latest DWC version, or are creating a new SD card for a Duet running older firmware, get a compatible version of DWC for the firmware you are using and place that in /www/, see [Firmware Overview](/User_manual/RepRapFirmware/RepRapFirmware_overview) for more details on the firmware versions.
 * Add a /gcodes folder for your print files. These can be uploaded over the web interface.
 * Add a /macros folder for scripts to automate tasks. See [Macros](/User_manual/Tuning/Macros) for some inspiration.
+* Add /filaments and /menu folders, if needed.
 * This should give you a basic config.g and web interface files. The SD card structure should be similar to this, though the exact file names may vary:
 
 ```
 .
+├── filaments
 ├── firmware
 │   ├── Duet2CombinedFirmware.bin
 │   └── Duet2_SDiap32_WiFiEth.bin
@@ -183,6 +187,13 @@ SD card longest block write time: 5.1ms, max retries 0
 If it responds with "SD card detected" in M122, it indicates that the Card Detect pin of the SD card is working (this is also the pin whose soldering causes the most trouble; see below).
 
 The interface speed in the same line gives an indication of whether the processor is able to communicate with the SD card at all. It should be 20Mbytes/sec on a Duet WiFi/Ethernet, 15Mbytes/sec on a Duet Maestro, and 25Mbytes/sec on Duet 3 in standalone mode. Other numbers, eg 12Mbytes/sec, are odd and suggest an issue with the SD card. If the socket or processor is faulty but the card is detected, it usually drops to 0.2Mbytes/sec.
+
+Check you have space on the SD card. A card with very little space will cause file fragmentation, and make reading the card slow. Send [`M39`](/User_manual/Reference/Gcodes/M39) to report the SD card information:
+
+```
+M39
+SD card in slot 0: capacity 3.97Gb, free space 3.81Gb, speed 20.00MBytes/sec, cluster size 32kb
+```
 
 You can run a speed test on the SD card by sending:
 
