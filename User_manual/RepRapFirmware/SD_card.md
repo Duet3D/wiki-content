@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2022-06-06T12:46:58.248Z
+date: 2022-06-06T12:57:28.849Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -177,7 +177,9 @@ The Duet 2 WiFi **with pre-1.19 firmware** requires only /gcodes, /macros and /s
 
 A faulty SD card can cause a wide range of strange behaviour: inaccessible DWC, config.g not run at startup, slow downs printing, network disconnections, slow file transfer, corrupted files and almost any other problem that relies on accessing the SD card.
 
-To test the SD card, send `M122` to the Duet (via the web console, or connect via USB using YAT or similar serial terminal software) and look for the 'SD Card' entries. A normal response should look something like:
+### Check the SD card interface
+
+Send `M122` to the Duet (via the web console, or connect via USB using YAT or similar serial terminal software) and look for the 'SD Card' entries. A normal response should look something like:
 
 ```
 SD card 0 detected, interface speed: 20.0MBytes/sec
@@ -188,12 +190,16 @@ If it responds with "SD card detected" in M122, it indicates that the Card Detec
 
 The interface speed in the same line gives an indication of whether the processor is able to communicate with the SD card at all. It should be 20Mbytes/sec on a Duet WiFi/Ethernet, 15Mbytes/sec on a Duet Maestro, and 25Mbytes/sec on Duet 3 in standalone mode. Other numbers, eg 12Mbytes/sec, are odd and suggest an issue with the SD card. If the socket or processor is faulty but the card is detected, it usually drops to 0.2Mbytes/sec.
 
-Check you have space on the SD card. A card with very little space will cause file fragmentation, and make reading the card slow. Send [`M39`](/User_manual/Reference/Gcodes/M39) to report the SD card information:
+### Check you have space on the SD card
+
+A card with very little space will cause file fragmentation, and make reading the card slow. Send [`M39`](/User_manual/Reference/Gcodes/M39) to report the SD card information:
 
 ```
 M39
 SD card in slot 0: capacity 3.97Gb, free space 3.81Gb, speed 20.00MBytes/sec, cluster size 32kb
 ```
+
+### Run a speed test
 
 You can run a speed test on the SD card by sending:
 
@@ -201,7 +207,9 @@ You can run a speed test on the SD card by sending:
 
 Speeds reported should usually be between 2 and 2.5Mbytes/sec. For example, Duet 2 WiFi - 2.23Mbytes/sec, Duet Maestro 2.42Mbytes/sec for a 10MB file.
 
-Stuttering during printing can be caused by the SD card not supplying the motion planner with data quickly enough, another sign that the SD card may be under-performing. Run `M122` from the console, and look for "underruns" on this line:
+### Stuttering during printing
+
+Stuttering during printing can be caused by the SD card not supplying the motion planner with data quickly enough, another sign that the SD card may be under-performing. Run `M122` from the console during a print, and look for "Underruns" in this line:
 
 ```
 ## DDARing
@@ -210,9 +218,9 @@ Scheduled moves: 1295584, completed moves: 1295544, StepErrors: 0, LaErrors: 0, 
 
 The first value isn't a warning, just an indication that the lookahead function couldn't do something with the time given. It doesn't slow down the print, but is likely not ideal. The second number is a 'prepare move' underrun, which means that the move could not be prepared in time and so the movement must wait. This is much worse than the first one. Try replacing the SD card if you get these.
 
-If those tests do not work, you can also attempt to force the SD card to unmount and mount. Any error message generated may be helpful in determining if the card is being read at all or not.
+### Force unmount and mount
 
-M22 to unmount, M21 to mount.
+You can force the SD card to unmount and mount, using [M22](/User_manual/Reference/Gcodes/M22) to unmount, [M21](/User_manual/Reference/Gcodes/M21) to mount. Any error message generated may be helpful in determining if the card is being read at all or not.
 
 ## SD Card Diagnostic Test
 
