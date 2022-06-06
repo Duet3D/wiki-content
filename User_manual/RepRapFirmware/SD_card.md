@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2022-06-06T11:33:46.464Z
+date: 2022-06-06T12:46:58.248Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -56,7 +56,7 @@ These Duets use the following folder structure:
 
 `/macros` is used to hold used-defined macro files. The names of these files appear as menu entries in DuetWebControl and on PanelDue. You can use subfolders of /macros to organize these files. See [Macros](/User_manual/Tuning/Macros) for examples of useful user macros.
 
-`/menu` This holds the files that define the menu layouts for 128x64 pixel monochrome displays. Compatible with Duet 3 mini 5+ and Duet 2 Maestro
+`/menu` This holds the files that define the menu layouts for 128x64 pixel monochrome displays. Compatible with Duet 3 mini 5+ and Duet 2 Maestro. For details, see [User manual: 12864 display menu system](/User_manual/Connecting_hardware/Display_12864_menu)
 
 `/sys` is used to hold system configuration files and, in all firmware versions before RRF 3.3, firmware update files ready for installation. It should contain at least the following files:
 
