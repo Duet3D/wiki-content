@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-06T07:54:22.069Z
+date: 2022-06-06T07:55:30.672Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -17,7 +17,7 @@ The designed configuration are G-Code lines which can directly be used in config
 
 **work in progress, please watch for changes the next days**
 
-# compilation for DWC
+# running in dev mode inside DWC
 The main releases will be available as zip to upload by DWC in the dist subdirectory in github. But if someone wants to compile in DWC and run in DWC development mode, proceed as follows:
 
 * download DWC 3.4.0 and unpack
