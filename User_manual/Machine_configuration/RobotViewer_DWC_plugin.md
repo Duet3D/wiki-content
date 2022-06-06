@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-06T07:56:55.192Z
+date: 2022-06-06T09:27:43.085Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -17,6 +17,35 @@ The designed configuration are G-Code lines which can directly be used in config
 
 **work in progress, please watch for changes the next days**
 
+# plugin overview
+
+After plugin installation and starting the plugin, a new menu item ...(tbd where) will be displayed with the following view:
+
+![robotviewer_overview.png](/manual/configuration/robotviewer_overview.png)
+
+The items mean:
+* Empty, All: show no element or all elements
+* Gitter: 100 points gitters at botton and left plane
+* Coords: for every joint the coordinate system in the order RGB: red is x-Axis, green the Y ayis, blue the Z-Axis. The rotation of the actuator is always around (for rotational axis) or in the direction (for prismatic, linear axis) of the Z-Axis.
+* Axes: symbolic representation of the joint
+* Pie, Bar: pie for rotational, bar for prismatic joints. Red are for negative, green for positive values. The values are from min, max angles or linear axes. Between red and green is 0 degree or 0 mm. Rotational green is always counterclockwise.
+* Arms: symbolie representation of the arms and the base element.
+
+* Angles: comma separated list of joint angles for rotational joints or mm position for prismatic joints. The model will be updated immediately
+* Animate: axis movements can be animtated and endpoints painted as cloud to show the workspace
+* Height, Width: main screen's dimensions can be changed
+* DH Paramters: Denavit-Hartenberg parameters, home, min and max angles or mm lenght
+* Design New: guided procedure to setup the joints
+* Set & Refresh: when DH parameters are changed manually, the model is not updated automatically, but after clicking on this button
+* load, save robot.g: loading or saving 0:/sys/robot.g, if DWC is used with active connection to a Duet.
+
+Example of a 6 axis robot:
+
+![robotviewer_6axis.png](/manual/configuration/robotviewer_6axis.png)
+
+At the left is the DH configuration (will be explained later in detail). AT:RPRRRR means all actuators are rotational with exception of the second one, being prismatic. The first joint can e.g. rotate from -150 to +150.
+
+The tool is 100 mm long and is the white endpoint, being specified with G10 on the left.
 # running in dev mode inside DWC
 The main releases will be available as zip to upload by DWC in the dist subdirectory in github. But if someone wants to compile in DWC and run in DWC development mode, proceed as follows:
 
