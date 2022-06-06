@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-06T07:29:38.880Z
+date: 2022-06-06T07:31:56.434Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -28,7 +28,7 @@ The main releases will be available as zip to upload by DWC in the dist subdirec
 
 
 # local installation
-RobotViewer can be installed like every 3rd party plugin by uploading the zip file with DWC. It can be installed as an isolated application also which can run locally. Load and Save robot.g will not work.
+RobotViewer can be installed as an isolated local application. Load and Save robot.g will not work (I try to reroute 0:/sys to local file system, but without success until now).
 
 * install npm
 * npm init vue@2
