@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-06T07:55:30.672Z
+date: 2022-06-06T07:56:55.192Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -32,7 +32,7 @@ RobotViewer can be installed as an isolated local application. Load and Save rob
 
 * install npm
 * npm init vue@2
-* cd into projektname
+* cd into projectname folder
 * npm install vue@2.6.14
 * npm install @babylonjs/core@4.2.2
 * npm install @babylonjs/gui@4.2.2
