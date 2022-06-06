@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-06T09:27:43.085Z
+date: 2022-06-06T09:51:53.948Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -21,7 +21,7 @@ The designed configuration are G-Code lines which can directly be used in config
 
 After plugin installation and starting the plugin, a new menu item ...(tbd where) will be displayed with the following view:
 
-![robotviewer_overview.png](/manual/configuration/robotviewer_overview.png)
+![robotviewer_overview_small.png](/manual/configuration/robotviewer_overview_small.png)
 
 The items mean:
 * Empty, All: show no element or all elements
