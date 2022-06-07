@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-06-07T19:11:46.608Z
+date: 2022-06-07T19:13:13.291Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5807,7 +5807,7 @@ M589 S"DuetSSID" P"password" I192.168.0.1 C1
 
 This command configures a given pin to read a filament sensor and configures filament monitoring for its corresponding extruder. The filament sensor may be a simple switch that detects the presence of filament, or a sensor that measures filament motion (e.g. laser, magnetic or pulsed filament monitor), or both.
 
-In **RRF 3.4 and later** the action on a filament error is to raise an event. See [Events](/User_manual/RepRapFirmware/Events){target=_blank}.
+In **RRF 3.4 and later** the action on a filament error is to raise a filament-error event. See [Events](/User_manual/RepRapFirmware/Events){target=_blank}.
 
 In **RRF 3.3 and 3.2** the action on a filament error is to.
 
