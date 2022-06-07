@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-05-31T22:04:24.744Z
+date: 2022-06-07T15:57:21.953Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6925,6 +6925,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters
 * **T** Temperature sensor number, required only when creating a heater. See M308.
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only, RRF 3.3 and later) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
+* **Kaaa(:bbb[:ccc])** (optional, for spindles only, RRF 3.5 and later) Optional PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
 
 ^1^ Check the individual hardware pages, some IO pins have permanent pullups.
 
