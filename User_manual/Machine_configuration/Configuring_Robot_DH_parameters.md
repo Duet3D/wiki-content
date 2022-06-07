@@ -2,8 +2,8 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-06-07T17:25:06.219Z
-tags: 
+date: 2022-06-07T18:26:54.745Z
+tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
 ---
