@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-05-05T07:22:05.145Z
+date: 2022-06-07T17:25:06.219Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -46,8 +46,32 @@ Documentation sources are wiki and e.g. https://homes.cs.washington.edu/~todorov
 Every robot joint is connected with its own coordinate system. The coordinate system XYZ is right hand based. It's easiest to positon Z to the direction of the axis, then X, then Y by the right hand rule. Although physical axes don't have direction, the coordinate system has, and it's important to be aware of the direction. The axis' direction defines which rotation is positive or negative degrees. From looking in front at the arrow, counterclockwise are positiv degrees.
 
 The coordinate systems are numbered O0 to O6, from O0 being the starting, base coordinated system, to O6, which is attached to the end-effector. The coordinate systems are located at joints +1, i.e. O1 is attached to joint 2 etc. This will be explained in the examples.
-# DH parameters
-There are 4 DH parameters, defining Z rotation and displacment, X rotation and displacement. The missing Y rotation and displacement is solved by a combined Z and X rotations with displaments when needed, so defining all 6 DOF are possible for every joint.
+# DH parameters, 6 DOF parameters
+There are 4 DH parameters, defining Z rotation and displacment, X rotation and displacement. The missing Y rotation and displacement is solved by a combined Z and X rotations with displaments when needed, so defining all 6 DOF are possible for every joint. But there are combinations like the example axis 4, replacing Y is not possible. So the DH model is enhanced to use all 6 DOF. The order of transformations is important:
+* first translation by Z axis
+* then rotation by Z axis
+* then translation by Y axis
+* then rotation by Y axis
+* then translation by X axis
+* then rotation by X axis
+
+(NB translation and rotation by Z could be exchanged, as they are independent from each other, same with X and Y. But in general, matrix multiplation order play a role, i. e. they are not commutative).
+
+Translations and rotations can be chained and calculated with 4x4 matrices, including position and orientation. The starting point is called origin, the result is called endpoint and is the hotend position.
+
+The traditional DH parameters start with joint 1 and assumes the first axis being vertical (like the 3D printing coordinate system with X to right, Y behind, Z to top). The model includes the base coordinate in A0 and can turn the first axis and displace it, so the robot's origin can have X, Y, Z offsets.
+
+# Finding the parameters
+To find the correct coordinate system of an axis, those steps are necessary:
+* set the direction of the Z axis, which is the actuator's rotation or prismatic (linear) axis. The direction includes not only the angle, but also the direction (arrow)
+* decide where the 0 angle is placed. This is the X axis position, corrected by a fixed theta angle. Theta and the actuator angle are added
+* the Y axis is given by the right hand rule and perpendicular to the Z and X axes
+* finding the displacements
+
+The DWC plugin RobotViewer helps with the configuration.
+
+Contrary to some examples like the example below (moving the coordinate system of axis 4 to 3), reducing some values by aggregating them is not necessary and is disadvantageous. It is planned to support a calibration mode to calculate back from a measured endpoint to the parameters. This only makes sense if the DH parameters reflect reality. In the past, performance and memory consumption were important parameters, but not so much today.
+
 # Example 1 joint 1
 For the following examples, the DH parameter table from [this video](https://www.youtube.com/watch?v=nwj0xR21ldo){target=_blank} is used.
 
