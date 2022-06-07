@@ -2,8 +2,8 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-06-02T04:48:40.601Z
-tags: 
+date: 2022-06-07T18:26:19.650Z
+tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
 ---
