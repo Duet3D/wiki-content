@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-05-18T15:53:08.111Z
+date: 2022-06-07T13:44:41.487Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -259,11 +259,15 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 
 ## Input/Output
 
-There are 9 IO headers on board. Each has an input and output along with 3.3V, 5V and Gnd supplied. This enables them to support a wide range of endstops, probes, filament monitors and future low bandwidth devices.
+### OUT headers
+
+OUT_0 to OUT_9 are all PWM-capable. OUT_9 is shared with LASER/VFD. See tables above for notes on voltage selection and current limits.
+
+### IO headers
+
+There are 9 IO headers on board. Each has pins for input, output, 3.3V, 5V and Gnd. This enables support for a wide range of endstops, probes, filament monitors and future low bandwidth devices. RepRapFirmware 3 can be configured to map these ports to the appropriate functions as required.
 
 ![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =282x)
-
-RepRapFirmware 3 can be configured to map these ports to the appropriate functions as required.
 
 Except as noted in the table below, an IO_x_IN pin can always be used to provide a digital input (e.g. for endstop inputs or filament monitors), and an IO_x_OUT pin can always be used to provide a digital output.
 
