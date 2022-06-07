@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-06T09:51:53.948Z
+date: 2022-06-07T04:09:30.646Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -43,9 +43,20 @@ Example of a 6 axis robot:
 
 ![robotviewer_6axis.png](/manual/configuration/robotviewer_6axis.png)
 
-At the left is the DH configuration (will be explained later in detail). AT:RPRRRR means all actuators are rotational with exception of the second one, being prismatic. The first joint can e.g. rotate from -150 to +150.
+At the left is the DH configuration. AT:RPRRRR means all actuators are rotational with exception of the second one, being prismatic. The first joint can e.g. rotate from -150 to +150.
 
 The tool is 100 mm long and is the white endpoint, being specified with G10 on the left.
+
+# DH configuration textarea
+The G-Code lines in this field are used to build the model and can be used as code in config.g or stored as robot.g and included as macro into config.g. If using tool changer or dualextruder, the G10 command may need change or removal. The firmware calculates kinematics with the currently selected tool properties.
+
+The parameters are described in the main documentation 
+[Configuring_RepRapFirmware_for_a_Robot_printer](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)
+and DH parameters are explained in the DH page [Configuring_Robot_DH_parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)
+
+# Animate
+This section is work in progress and will be enhanced to visualize G1 commands and other ideas. Currently it animates random moves and puts points at the robot's endpoints.
+
 # running in dev mode inside DWC
 The main releases will be available as zip to upload by DWC in the dist subdirectory in github. But if someone wants to compile in DWC and run in DWC development mode, proceed as follows:
 
