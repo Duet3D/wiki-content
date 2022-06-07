@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-07T04:09:30.646Z
+date: 2022-06-07T04:12:08.654Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -47,7 +47,10 @@ At the left is the DH configuration. AT:RPRRRR means all actuators are rotationa
 
 The tool is 100 mm long and is the white endpoint, being specified with G10 on the left.
 
-# DH configuration textarea
+# Angles
+Depending on the number of joints (axes), which is viewable by the number of letters of the AT and AL parameter, this field contains comma separated angles (rotational) or mm positions (prismatic). The model will be updated immediately.
+
+# DH Parameters
 The G-Code lines in this field are used to build the model and can be used as code in config.g or stored as robot.g and included as macro into config.g. If using tool changer or dualextruder, the G10 command may need change or removal. The firmware calculates kinematics with the currently selected tool properties.
 
 The parameters are described in the main documentation 
