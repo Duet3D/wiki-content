@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-07T04:12:08.654Z
+date: 2022-06-07T18:21:33.638Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -26,7 +26,7 @@ After plugin installation and starting the plugin, a new menu item ...(tbd where
 The items mean:
 * Empty, All: show no element or all elements
 * Gitter: 100 points gitters at botton and left plane
-* Coords: for every joint the coordinate system in the order RGB: red is x-Axis, green the Y ayis, blue the Z-Axis. The rotation of the actuator is always around (for rotational axis) or in the direction (for prismatic, linear axis) of the Z-Axis.
+* Coords: for every joint the coordinate system in the order RGB: red is x-Axis, green the Y ayis, blue the Z-Axis (following ros.org colors, which are often used). The rotation of the actuator is always around (for rotational axis) or in the direction (for prismatic, linear axis) of the Z-Axis.
 * Axes: symbolic representation of the joint
 * Pie, Bar: pie for rotational, bar for prismatic joints. Red are for negative, green for positive values. The values are from min, max angles or linear axes. Between red and green is 0 degree or 0 mm. Rotational green is always counterclockwise.
 * Arms: symbolie representation of the arms and the base element.
