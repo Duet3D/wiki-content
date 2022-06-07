@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: 
 published: true
-date: 2022-02-19T04:30:51.933Z
+date: 2022-06-07T13:44:13.568Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -27,42 +27,38 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 |  | **Duet 3 Mini 5+ WiFi** | **Duet 3 Mini 5+ Ethernet** |
 | **Processor** | [ATSAME54P20A](https://www.microchip.com/wwwproducts/en/ATSAME54P20A) ||
 | **Processor features** | 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache ||
-| **Networking/Comms** | 2.4GHz WiFi; USB port; serial port | 10BaseT/100BaseTX Ethernet; USB port; serial port. |
+| **Networking/Comms** | 2.4GHz WiFi; USB port; serial port; CAN-FD bus | 10BaseT/100BaseTX Ethernet; USB port; serial port; CAN-FD bus |
 | **On-board stepper drivers** | 5 x [TMC2209](https://www.trinamic.com/products/integrated-circuits/details/tmc2209-la/) ||
-| **Stepper driver features** | Up to 2.0A peak current (TBC), microstep interpolation from any setting to x256, stall detection, stealthChop2 ||
-| **Heater outputs** | Bed heater (up to 15A), 2 x extruder heater (up to 5A each) ||
-| **Thermistor/PT1000 inputs** | 3, optimised for 100K thermistors and PT1000 sensors ||
-| **Fan outputs** | 4 controlled fans of which 2 support 4-wire fans with PWM and tacho wires, voltage selectable between VIN and 12V in 2 banks ||
-| **Inputs/Outputs** | 5 on-board I/O connectors plus 2 input-only connectors for endstop, filament monitor, Z probe, servo or PanelDue connection. Inputs are 30V-tolerant. Further expansion via CAN-connected expansion boards. ||
-| **Endstop or filament monitor inputs** | See under Inputs/Outputs ||
-| **Z probe connector** | See under Inputs/Outputs ||
+| **Stepper driver features** | Up to 2.0A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 ||
+| **High current outputs** | 1 x 15A, 2 x 5A each ||
+| **Thermistor/PT1000 inputs** | 3 x inputs, optimised for 100K thermistors and PT1000 sensors ||
+| **Medium current outputs** | 4 x PWM-controlled outputs, of which 2 support tacho input. Voltage selectable between VIN and 12V in 2 banks ||
+| **Inputs/Outputs** | 5 x on-board I/O connectors plus 2 x input-only connectors for endstop, filament monitor, Z probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Also one output with 5V signal level for hobby servo, laser control or VFD. ||
 | **Power monitoring** | VIN voltage monitoring allows for state save on power failure. ||
-| **SD card interface** | On-board high speed (22.5Mbytes/sec) SD card socket. ||
+| **SD card interface** | On-board high speed SD card socket. ||
 
 
 | EXPANSION ||
 |:---|:---|
 | **Support for attached Raspberry Pi or other Single Board Computer (SBC)** | Yes ||
-| **External stepper driver support** | 2 external stepper drivers from stepper driver expansion connector. Multiple expansion via the CAN bus including 1XD external driver boards. ||
-| **Stepper driver expansion** | 2 additional TMC2209 stepper drivers using a mini 2+, further expansion via CAN ||
-| **Heater/thermistor expansion** | Expansion via CAN using 3HC or toolboard 1XD. ||
-| **PT100 and thermocouple daughter board support** | 1 board (2 channels) ||
-| **Servo support** | See under Inputs/Outputs. Also one output with 5V signal level for servo, laser or VFD converter (shared control signal with one of the 2-wire fan outputs). ||
+| **External stepper driver support** | 2 x external stepper drivers from stepper driver expansion connector. Multiple expansion via the CAN-FD bus. ||
+| **Stepper driver expansion** | 2 x additional TMC2209 stepper drivers using a Duet 3 Expansion Mini 2+. Further expansion via CAN-FD bus ||
+| **PT100 and thermocouple daughterboard support** | Supports 1 x daughterboard (2 channels) on board. More via CAN-FD-connected expansion boards. ||
 | **LCD support** | PanelDue colour touch screen, mini 12864 mono graphics display using ST7567 controller (3.3V signal levels) ||
 | **LED strip support** | RGB Neopixel (max. 60 LEDs, external 5V power required) ||
-| **Other expansion** | Via I/O ports and CAN bus ||
+| **Other expansion** | Via I/O ports and CAN-FD bus ||
 
 ## Operating limits
 
 |:---|:---|
-| **Stepper drivers** | Up to 2.0A peak current (TBC) |
-| **Heater outputs** | Bed heater up to 15A, 2 x extruder heater up to 5A each |
+| **Stepper drivers** | Up to 2.0A peak current |
+| **High current outputs** | OUT0 up to 15A, OUT1/2 up to 5A each |
 | **Input power voltage** | 11V to 25V |
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **Fuses** | 10A for V_FUSED, 15A for OUT0 (e.g. for a heated bed). |
 | **5V current limit** | 1.0A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power. |
-| **12V current limit** | 800mA (only used for fan outputs OUT_3 thru OUT_6, when selected) |
+| **12V current limit** | 800mA (only used for outputs OUT_3 thru OUT_6, when selected) |
 
 ## Firmware notes
 
@@ -171,7 +167,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **1 x 2-pin KK connectors** | 12V | Always on 12V supply (*see note 1 below*) |
 | **Network** | **Ethernet** | 1 x RJ45 100BaseT Port. *non MDIX* connect to an Ethernet switch, hub or MDIX enabled laptop port. If connecting to a non MDIX enabled port use a crossover cable. Orange LED on Ethernet port indicates Ethernet enabled, green LED indicates network activity |
 | ^^ | **Wifi** | U.FL/IPEX push on connector for external antenna. *Note this connector is delicate, take care when plugging and unplugging*. "LED ESP": green LED indicates Wifi connection status |
-| **Reset** |  | Single push to reset the board. Double push to put the board into UF2 bootloader upload mode. See [Duet 3 Mini 5 + Firmware, Updating firmware via USB](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Firmware#updating-firmware-via-usb) |
+| **Reset** |  | Single push to reset the board. Double push to put the board into UF2 bootloader upload mode. See [User manual: Updating firmware - Duet 3 Mini 5+ via USB](/User_manual/RepRapFirmware/Updating_firmware#duet-3-mini-5-wifiethernet) |
 | **1 x JST ZH 6-pin connectors** | SWD | Connection for an SWD programming device such as an Atmel-ICE |
 | **1 x 2-pin KK connectors** | CAN | CAN-FD Bus connection for Duet 3 CAN-FD expansion boards. |
 | **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signals levels with 470R series resistors. IO_1,2,3 are PWM capable. |
@@ -265,11 +261,23 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | LASER/VFD | laser, vfd, out6 | Pin shared with OUT 6 and LASER/VFD connectors |
 | EXT 5V | pson, io4.out | For controlling an external PSU or SSR, shared with io4.out |
 
-## IO port pin capabilities
+## Input/Output
 
-OUT_0 to OUT_6 are all PWM-capable. OUT_6 is shared with LASER/VFD.
+### OUT headers
 
-Capabilities of IO_0 to IO_6 are shown below.
+OUT_0 to OUT_6 are all PWM-capable. OUT_6 is shared with LASER/VFD. See tables above for notes on voltage selection and current limits.
+
+### IO headers
+
+There are 7 IO headers on board. IO_0 to IO_4 have pins for input, output, 3.3V, 5V and Gnd supplied. IO_5 and IO_6 have an input, 3.3V and Gnd supplied. This enables support for a wide range of endstops, probes, filament monitors and future low bandwidth devices. RepRapFirmware 3 can be configured to map these ports to the appropriate functions as required.
+
+![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =282x)
+
+Except as noted in the table below, an IO_x_IN pin can always be used to provide a digital input (e.g. for endstop inputs or filament monitors), and an IO_x_OUT pin can always be used to provide a digital output.
+
+IO output pins can be used as inputs, but are only 3.3V tolerant. IO input pins can be used as outputs, but have 10K protection resistors in series with them, so you would need to bypass these to use them as outputs. On board revision v1.01 and later only, jumpers allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C.
+
+The individual IO_x connectors have the following capabilities:
 
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|
