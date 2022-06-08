@@ -2,7 +2,7 @@
 title: Using triggers to control the Duet
 description: 
 published: false
-date: 2022-06-08T16:03:39.157Z
+date: 2022-06-08T23:48:04.712Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
@@ -17,26 +17,30 @@ Below is an example, where Duet user Clinton Thomas builds a control panel, with
 # Required hardware
 
 * Some kind of push button or switch (eg Idec and Allen-Bradley brand push buttons with Normally Open contact blocks)
-* Dupont connectors
+* Molex KK (for endstop/IO connectors) or Dupont connectors (Duet 2 expansion header)
 * Wire
 
 # Wiring
 
-Connect one side of your switch to GND or the negative coming from your power supply. The other side of the switch will go to an input pin on an IO or endstop connector on the Duet, using Dupont connectors.
+Connect one side of the switch to GND or the negative coming from your power supply. The other side of the switch will go to an input pin on an IO or endstop connector on the Duet.
 
 ## Tabs {.tabset}
 
 ### Duet 3
 
-Wire the switch in the same way as an endstop, ie 
+Wire the switch in the same way as an endstop, ie connect the switch between the IN and GND pins of your chosen IO_x connector.
+
+It is worth noting that IO output pins can be used as inputs, but are only 3.3V tolerant.
 
 ### Duet 2
 
+Connect the switch between GND and STP/IN/E#_STOP pin. In the example below, the E#_STOP pins of the expansion header are used.
+
 | [image 1703 **UPDATE LINK**]() | [image 1704 **UPDATE LINK**]() |
 
-If you look closely you'll see that I used 2P Dupont connectors but only one of the pins has a wire going to it. This is because 1P connectors kept falling off so I put a wire in one side of a 2P connector with just an empty pin in the other side.
+In the image above, 2P Dupont connectors were used, but only one of the pins has a wire going to it. This is because 1P connectors kept falling off so I put a wire in one side of a 2P connector with just an empty pin in the other side.
 
-I used the following pins:
+In the example, the following pins are used:
 
 * Pin 4 = E2_STOP
 * Pin 9 = E3_STOP
