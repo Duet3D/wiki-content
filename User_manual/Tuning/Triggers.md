@@ -2,7 +2,7 @@
 title: Using triggers to control the Duet
 description: 
 published: false
-date: 2022-06-07T14:15:58.397Z
+date: 2022-06-08T16:03:39.157Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
@@ -12,7 +12,7 @@ dateCreated: 2022-05-31T14:19:20.035Z
 
 RepRapFirmware allows you to define external 'triggers' (such as a button press) that will run an associated system macro. This could be for an [emergency stop](/User_manual/Connecting_hardware/IO_E_stop){target=_blank}, but can be used for many other purposes, as the GCode commands that are run are held in a macro file for each trigger.
 
-Below is an example, where Duet user Clinton Thomas builds a control panel . This originally appeared here, using a Duet 2 and RRF 2.x: [Duet Dozuki wiki](https://duet3d.dozuki.com/Wiki/Using_M581_-_External_Triggers_and_Building_a_Control_Panel){target=_blank}
+Below is an example, where Duet user Clinton Thomas builds a control panel, with a number of buttons which control various actions. This originally appeared here, using a Duet 2 and RRF 2.x: [Duet Dozuki wiki](https://duet3d.dozuki.com/Wiki/Using_M581_-_External_Triggers_and_Building_a_Control_Panel){target=_blank}
 
 # Required hardware
 
@@ -22,11 +22,13 @@ Below is an example, where Duet user Clinton Thomas builds a control panel . Thi
 
 # Wiring
 
-Connect one side of your switch to GND or the negative coming from your power supply. The other side of the switch will go to a pin on the Duet, using Dupont connectors.
+Connect one side of your switch to GND or the negative coming from your power supply. The other side of the switch will go to an input pin on an IO or endstop connector on the Duet, using Dupont connectors.
 
 ## Tabs {.tabset}
 
 ### Duet 3
+
+Wire the switch in the same way as an endstop, ie 
 
 ### Duet 2
 
