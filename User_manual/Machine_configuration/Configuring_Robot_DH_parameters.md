@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-06-09T08:32:27.043Z
+date: 2022-06-09T09:42:11.342Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -51,7 +51,7 @@ The coordinate systems are numbered O0 to O6, from O0 being the starting, base c
 (This is a technical section, not absoutely necessary)
 Translations and rotations are chained mathematically through 4x4 matrix multiplications. At every stage, the position and orientation (intermediate) endpoint can be seen:
 ![robot_coordinates.png](/manual/configuration/robot_coordinates.png)
-The red column marks the X axis, the green the Y axis, the blue the Z axis, the yellow the position. Each have 3 numbers for cartesian X, Y, Z direction. If the red would be 0/0/1, it would mean the X axis points to the Z direction, straight up.
+The red column marks the X axis, the green the Y axis, the blue the Z axis, the yellow the position. Each have 3 numbers for cartesian X, Y, Z direction. If the red would be 0/0/1, it would mean the X axis points to the Z direction, straight up. The numbers are orthomormal, i. e. x² + y² + z² = 1.
 
 The axis information has redundancy, because only 3 parameters are necessary to describe a rotation. Often an alternative representation is used, Euler angles, being three angle rotations. The order of the angle rotations is important. Often used ones are ZYX and ZYZ, named after around which axis they are rotated. ZYX is the roll-pitch-yaw order and the same order, how DH transformations are calculated (Z axis translation and rotation first). Another system is using quaternions. To calculate inverse kinematics, Euler angles are used. Unfortunaly, ZYX has a singularity, called gimbal lock, which is when e. g. at a 6 axis robot axis 4 and 6 are parallel (axis 5 at 0 degree position). This will be solved in a special way.
 
