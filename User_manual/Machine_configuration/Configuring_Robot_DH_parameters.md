@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-06-07T18:26:54.745Z
+date: 2022-06-09T08:19:33.273Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -46,6 +46,13 @@ Documentation sources are wiki and e.g. https://homes.cs.washington.edu/~todorov
 Every robot joint is connected with its own coordinate system. The coordinate system XYZ is right hand based. It's easiest to positon Z to the direction of the axis, then X, then Y by the right hand rule. Although physical axes don't have direction, the coordinate system has, and it's important to be aware of the direction. The axis' direction defines which rotation is positive or negative degrees. From looking in front at the arrow, counterclockwise are positiv degrees.
 
 The coordinate systems are numbered O0 to O6, from O0 being the starting, base coordinated system, to O6, which is attached to the end-effector. The coordinate systems are located at joints +1, i.e. O1 is attached to joint 2 etc. This will be explained in the examples.
+
+# Coordinate system in matrix
+(This is a technical section, not absoutely necessary)
+Translations and rotations are chained mathematically through 4x4 matrix multiplications. At every stage, the position and orientation (intermediate) endpoint can be seen:
+![robot_coordinates.png](/manual/configuration/robot_coordinates.png)
+The red column marks the X axis, the green the Y axis, the blue the Z axis, the yellow the position. Each have 3 numbers for cartesian X, Y, Z direction. If the red would be 0/0/1, it would mean the X axis points to the Z direction, straight up.
+
 # DH parameters, 6 DOF parameters
 There are 4 DH parameters, defining Z rotation and displacment, X rotation and displacement. The missing Y rotation and displacement is solved by a combined Z and X rotations with displaments when needed, so defining all 6 DOF are possible for every joint. But there are combinations like the example axis 4, replacing Y is not possible. So the DH model is enhanced to use all 6 DOF. The order of transformations is important:
 * first translation by Z axis
