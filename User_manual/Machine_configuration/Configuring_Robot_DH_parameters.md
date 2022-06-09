@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-06-09T08:19:33.273Z
+date: 2022-06-09T08:23:46.428Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -52,6 +52,8 @@ The coordinate systems are numbered O0 to O6, from O0 being the starting, base c
 Translations and rotations are chained mathematically through 4x4 matrix multiplications. At every stage, the position and orientation (intermediate) endpoint can be seen:
 ![robot_coordinates.png](/manual/configuration/robot_coordinates.png)
 The red column marks the X axis, the green the Y axis, the blue the Z axis, the yellow the position. Each have 3 numbers for cartesian X, Y, Z direction. If the red would be 0/0/1, it would mean the X axis points to the Z direction, straight up.
+
+The axis information is redundant. Often an alternative representation is used, Euler angles, being three angle rotations. The order or the angle rotations is important, often used ones are ZYX and ZYZ, named after around which axis they are rotated. Another system is using quaternions. To calculate inverse kinematics, Euler angles are used.
 
 # DH parameters, 6 DOF parameters
 There are 4 DH parameters, defining Z rotation and displacment, X rotation and displacement. The missing Y rotation and displacement is solved by a combined Z and X rotations with displaments when needed, so defining all 6 DOF are possible for every joint. But there are combinations like the example axis 4, replacing Y is not possible. So the DH model is enhanced to use all 6 DOF. The order of transformations is important:
