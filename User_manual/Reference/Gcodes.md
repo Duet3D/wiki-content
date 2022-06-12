@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-06-10T14:35:09.720Z
+date: 2022-06-12T17:47:44.344Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -532,16 +532,16 @@ This form of the G10 command is recognised by having either or both of the L and
 ### Parameters
 
 * **Ln** (Default L1) Mode (see below)
-* **Pnnn** Tool number (default: current tool) if L=1, coordinate system number (default: current coordinate system) if L=2 or L=20
+* **Pnn** Tool number (default: current tool) if L=1, coordinate system number (default: current coordinate system) if L=2 or L=20
 * **Xnnn** X offset
 * **Ynnn** Y offset
-* **U,V,Wnnn** U, V and W axis offsets^1^
+* **U,V,W,A,B,C,D,...nnn** other axis offsets^1^
 * **Znnn** Z offset^2^
 
 **Modes**
 
 * L1: this sets the tool offset, as if the L parameter was not present
-* L2: this sets the origin of the coordinate system number specified by the P parameter (1 to 9) to the specified X, Y, X... values
+* L2: this sets the origin of the coordinate system number specified by the P parameter (1 to 9) to the specified X, Y, Z... values
 * L20: this is similar to L2 except that the origin is specified relative to the current position of the tool.
 
 ### Notes
