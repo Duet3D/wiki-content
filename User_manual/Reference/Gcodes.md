@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-06-12T17:47:44.344Z
+date: 2022-06-12T17:50:17.500Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2335,7 +2335,7 @@ On the Duet 3 MB6HC you can configure up to 4 chamber heaters; on Duet 3 Mini 5+
 
 ### {.tabset}
 
-#### M143 in RRF 3.01RC2 and later
+#### M143 in RRF 3.01 and later
 
 ##### Parameters
 
@@ -2357,7 +2357,7 @@ M143 H1 P0 S275 A2 ; switch off heater 1 temporarily if it exceeds 275°C
 M143 H1 P1 S285 A0 ; raise a heater fault if it exceeds 285C
 </pre>
 
-#### M143 in RRF 3.01RC1 and earlier
+#### M143 in RRF 3.0 and earlier
 
 ##### Parameters
 
