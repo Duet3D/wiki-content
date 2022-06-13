@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspian OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2022-02-18T16:11:05.387Z
+date: 2022-06-13T09:58:14.797Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -10,11 +10,21 @@ dateCreated: 2021-11-30T22:13:44.507Z
 
 # Introduction
 
-This guide describes how to setup a Single Board Computer (SBC) with Duet 3. It assumes you are using Raspian (the operating system that runs on the Raspberry Pi) and are using the SD card image specifically setup for Duet 3. In the future other SBCs may be officially supported. Most of the time you can start at Step 2 as you will receive a SD card pre-flashed with the image of Raspian, however If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, start at step 1.
+SBC mode allows part of the functionality to be handled by the SBC. This offers a number of benefits:
+- Faster network transfer speeds
+- Support of plugins requiring more than RRF/DWC
+- Usage of external HDMI or DSI screens
+- Easy software and firmware update via package manager
+- Optional webcam integration
+- Optional HTTPS support
+
+This guide describes how to setup a Single Board Computer (SBC) with Duet 3. It assumes you are using Raspian (the operating system that runs on the Raspberry Pi) and are using the SD card image specifically setup for Duet 3. In the future other SBCs may be officially supported. Most of the time you can start at Step 2 as you will receive a SD card pre-flashed with the image of Raspian. However, if your SD card supplied with the Duet 3 mainboard becomes damaged or lost, start at step 1.
 
 # 1. Flash the image file
 
 1. You will need at least an 8Gb class 10 SD card.
+
+   > If you are planning to use the SBC for more than plain 3D printing or if you have an SBC with little RAM + external display, it is HIGHLY recommended to obtain a **class A1- or A2-rated microSD** card instead of the shipped SD card. If your SD card speed is insufficient, you may experience occasional problems when data between the SBC and Duet is exchanged. {.is-warning}
 
 1. There are multiple programs to write an image file to an SD card. If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/)
 
@@ -57,7 +67,7 @@ network={
 
 ### Duet 3 MB6HC
 [![sbc_setup_02.jpg](/manual/configuration/sbc_setup_02.jpg =49%x)](/manual/configuration/sbc_setup_02.jpg){target=_blank} [![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =49%x)](/manual/configuration/sbc_setup_03.jpg){target=_blank}
-1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, connect a USB cable to the Duet 3 for power and connect a . Ensure there is NO SD card in the Duet itself.
+1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, and connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
 
 1. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
 
