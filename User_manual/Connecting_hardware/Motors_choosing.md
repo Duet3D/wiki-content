@@ -2,7 +2,7 @@
 title: Choosing stepper motors
 description: This page provides in depth consideration for choosing stepper motors
 published: true
-date: 2021-10-05T12:30:54.023Z
+date: 2022-06-13T16:48:33.577Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T11:49:00.204Z
@@ -125,7 +125,7 @@ If you have a target travel speed for your printer, you can work out at least ap
 
 In my example, this gives 32.5V, which is above the 25V recommended input voltage for the Duet 2. But at least we know that for a worst-case delta move with 200mm/sec travel speed, if I use a 24V supply then that is more than 2/3 of the theoretical value, so the torque available for that move should not drop off by more than about 1/3 of the usual torque available. On the other hand, a 12V supply would clearly be inadequate - which explains why I was only able to achieve 150mm/sec before I upgraded the printer to 24V.
 
-There is an online calculator to do this the other way round (i.e. work out the speed at which torque starts to drop off) at [https://www.reprapfirmware.org/](https://www.reprapfirmware.org/).
+There is an online calculator to do this the other way round (i.e. work out the speed at which torque starts to drop off): [EMF Calculator](https://www.reprapfirmware.org/emf.html).
 
 # Choosing an extruder drive
 
