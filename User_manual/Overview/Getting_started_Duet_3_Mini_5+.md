@@ -2,7 +2,7 @@
 title: Getting Started with Duet 3 Mini 5+
 description: This page contains a step by step guide and links to using your Duet 3 Mini 5+ Wifi or Ethernet.
 published: true
-date: 2022-02-17T13:44:53.083Z
+date: 2022-06-13T09:59:15.497Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:21:27.557Z
@@ -35,9 +35,15 @@ First, read the warnings! See [Warnings](/User_manual/Overview/Warnings), [Fire 
 
 ## Standalone mode vs SBC mode
 
-The Duet 3 mini 5+ is designed to either be directly connected to a network, or to connect to a Single Board Computer (SBC) like a Raspberry Pi. All standard printer functions, different kinematics, the network UI ([Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual)) etc work in both modes.
+The Duet 3 Mini 5+ is designed to either be directly connected to a network, or to connect to a Single Board Computer (SBC) like a Raspberry Pi. All standard printer functions, different kinematics, the network UI ([Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual)) etc work in both modes.
 
-SBC mode allows part of the functionality to be handled by the SBC. For example an HDMI or Pi touch screen can be used as the UI, The Pi can act as the network server and plugins for Duet Software Framework on the Pi allow for adding custom features for more advanced control and monitoring.
+SBC mode allows part of the functionality to be handled by the SBC. This offers a number of benefits:
+- Faster network transfer speeds
+- Support of plugins requiring more than RRF/DWC
+- Usage of external HDMI or DSI screens
+- Easy software and firmware update via package manager
+- Optional webcam integration
+- Optional HTTPS support
 
 # Minimum configuration
 
@@ -88,7 +94,7 @@ After following this guide, you should be able to connect to your Duet 3 Mini 5+
 
 #### Update firmware
 
-Update to the latest release firmware. Follow the guide here: [Updating Firmware](User_manual/RepRapFirmware/Updating_firmware). Note that if the normal method over DWC does not work intially then the [fallback method for the mini 5+ is straightforward](https://docs.duet3d.com/en/User_manual/RepRapFirmware/Updating_firmware#duet-3-mini-5-wifiethernet)
+Update to the latest release firmware. Follow the guide here: [Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware). Note that if the normal method over DWC does not work intially then the [fallback method for the mini 5+ is straightforward](/User_manual/RepRapFirmware/Updating_firmware#duet-3-mini-5-wifiethernet)
 
 ### SBC mode
 
