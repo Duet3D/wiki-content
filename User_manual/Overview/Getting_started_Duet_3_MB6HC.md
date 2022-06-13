@@ -2,7 +2,7 @@
 title: Getting Started With Duet 3 MB6HC
 description: 
 published: true
-date: 2022-01-25T16:03:44.230Z
+date: 2022-06-13T09:51:46.091Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:18:25.164Z
@@ -37,7 +37,13 @@ First, read the warnings! See [Warnings](/User_manual/Overview/Warnings), [Fire 
 
 The Duet 3 MB6HC is designed to either be directly connected to a network, or to connect to a Single Board Computer (SBC) like a Raspberry Pi. All standard printer functions, different kinematics, the network UI ([Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual)) etc work in both modes.
 
-SBC mode allows part of the functionality to be handled by the SBC. For example an HDMI or Pi touch screen can be used as the UI, The Pi can act as the network server and plugins for Duet Software Framework on the Pi allow for adding custom features for more advanced control and monitoring.
+SBC mode allows part of the functionality to be handled by the SBC. This offers a number of benefits:
+- Faster network transfer speeds
+- Support of plugins requiring more than RRF/DWC
+- Usage of external HDMI or DSI screens
+- Easy software and firmware update via package manager
+- Optional webcam integration
+- Optional HTTPS support
 
 # Minimum configuration
 
@@ -47,7 +53,7 @@ SBC mode allows part of the functionality to be handled by the SBC. For example 
 
 * Duet 3 MB6HC mainboard
 * Raspberry Pi or other compatible Single Board Computer (SBC). Initially this has to be Model 3B or 4 but we may support some other models in the future.
-* Ribbon cable to connect the Raspberry Pi to the Duet. If using the version 0.5 Duet 3 main board, this must be 40-pin. If using a version 0.6 and later Duet main board, use 26-pin to 40-pin. Recommended length is 100 to 150mm. Longer cables will degrade the SPI signal between the Raspberry Pi and the Duet.
+* Ribbon cable to connect the Raspberry Pi to the Duet. If using the version 0.5 Duet 3 main board, this must be 40-pin. If using a version 0.6 and later Duet main board, use 26-pin to 40-pin. Recommended length is 100 to 200mm. Longer cables will degrade the SPI signal between the Raspberry Pi and the Duet, however it may be still possible to drive them either at reduced SPI transfer speeds or with extra shielding against external EMI sources (foil wrap)
 * Power supply (min. 12V. max 32V, recommended 24V) and cables
 * Stepper motors, heaters, thermistors, endstop switches etc. as required
 * Supplied SD card with Duet Pi image in the Raspberry Pi
