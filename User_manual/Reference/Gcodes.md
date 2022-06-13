@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-06-12T17:50:17.500Z
+date: 2022-06-13T13:30:21.773Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2226,6 +2226,10 @@ The 'P' parameter is used to report specific information. The details vary betwe
 * P103 print how long it takes to evaluate sine and cosine
 * P104 print how long it takes to write a file to the SD card (specify the file size in Mbytes in the S parameter, default 10)
 * P105 print the sizes of various objects used by RepRapFirmware
+
+The following 'P' parameters are supported by the **LPC and STM32 Port  of RepRapFirmware Only**
+
+* P200 - Lists all of the pins allocated by the firmware and/or board.txt
 
 Note: do not use M122 with a P parameter of 1000 or greater. There are a few values that deliberately cause the firmware to crash, which are used to test the error reporting facilities. As at firmware 2.03 these are:
 
