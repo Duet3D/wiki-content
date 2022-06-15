@@ -2,7 +2,7 @@
 title: Using triggers to control the Duet
 description: 
 published: false
-date: 2022-06-08T23:48:04.712Z
+date: 2022-06-15T15:56:40.523Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
@@ -16,42 +16,59 @@ Below is an example, where Duet user Clinton Thomas builds a control panel, with
 
 # Required hardware
 
+[![triggers_01.jpg](/manual/sensors/triggers_01.jpg =x400)](/manual/sensors/triggers_01.jpg){target=_blank}
+
 * Some kind of push button or switch (eg Idec and Allen-Bradley brand push buttons with Normally Open contact blocks)
 * Molex KK (for endstop/IO connectors) or Dupont connectors (Duet 2 expansion header)
 * Wire
 
 # Wiring
 
-Connect one side of the switch to GND or the negative coming from your power supply. The other side of the switch will go to an input pin on an IO or endstop connector on the Duet.
+Buttons for pause, ATX on, disable steppers, home all and reset were required.
 
 ## Tabs {.tabset}
 
 ### Duet 3
 
-Wire the switch in the same way as an endstop, ie connect the switch between the IN and GND pins of your chosen IO_x connector.
+![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =282x)
+
+Wire the switch in the same way as an endstop. Connect one side of the switch to the GND pin of your chosen IO_x connector (or the negative coming from your power supply), and the other to the IN pin of the IO_x connector.
 
 It is worth noting that IO output pins can be used as inputs, but are only 3.3V tolerant.
 
+For a reset button, on Duet 3 mainboard 6HC there is a 'reset' header near the USB port, with reset and GND pins. On the Duet 3 Mini 5+, the reset pin is on the 12864_EXP2 header, pin 3.
+
+In the example, the following pins could be used :
+
+* Reset - reset pin on header
+* Pause - io1.in
+* ATX on - io1.out
+* Home all - io2.in
+* Pin 26 - io2.out
+* (spare) = io5.in
+
 ### Duet 2
 
-Connect the switch between GND and STP/IN/E#_STOP pin. In the example below, the E#_STOP pins of the expansion header are used.
+Connect one side of the switch to a GND pin (or the negative coming from your power supply), and the other to the chosen STP/IN/E#_STOP pin. In the example below, the E#_STOP pins of the expansion header are used.
 
-| [image 1703 **UPDATE LINK**]() | [image 1704 **UPDATE LINK**]() |
+[![triggers_02.jpg](/manual/sensors/triggers_02.jpg =x400)](/manual/sensors/triggers_02.jpg){target=_blank} - [![triggers_03.jpg](/manual/sensors/triggers_03.jpg =x400)](/manual/sensors/triggers_03.jpg){target=_blank}
 
 In the image above, 2P Dupont connectors were used, but only one of the pins has a wire going to it. This is because 1P connectors kept falling off so I put a wire in one side of a 2P connector with just an empty pin in the other side.
 
 In the example, the following pins are used:
 
-* Pin 4 = E2_STOP
-* Pin 9 = E3_STOP
-* Pin 14 = E4_STOP
-* Pin 19 = E5_STOP
-* Pin 26 = E6_STOP
-* Pin 44 = RESET
+* Pin 4 / E2_STOP = pause
+* Pin 9 / E3_STOP = ATX on
+* Pin 14 / E4_STOP = home all
+* Pin 19 / E5_STOP = disable steppers
+* Pin 26 / E6_STOP = spare
+* Pin 44 / RESET = reset
+
+Pin 44 forces a reset when shorted to ground, no additional configuration is needed.
 
 # Firmware configuration
 
-Triggers are configured in the firmware using [M581](/User_manual/Reference/Gcodes/M581). The parameters for RRF 3.01 and later (see GCode dictionary for earlier versions) are:
+In RRF 3.x, triggers pins are configured with [M950](/User_manual/Reference/Gcodes/M950), and are configured in the firmware using [M581](/User_manual/Reference/Gcodes/M581). The parameters for RRF 3.01 and later (see GCode dictionary for earlier versions) are:
 
 * **P** Specify one or more input pin numbers that you created using M950 with the J parameter, or -1 to delete the trigger
 * **Tnn** Logical trigger number to associate the input(s) with, from zero up to a firmware-specific maximum
@@ -67,37 +84,71 @@ Note that:
 
 ## Tabs {.tabset}
 
-### Duet 3
+### RepRapFirmware v3.x
 
-### Duet 2
+M950 is used to define each pin, then M581 configures the trigger. In order to get buttons for pause, home, ATX on, and disable steppers, the following were added to config.g:
 
-Pin 44 forces a reset when shorted to ground so that button was easy enough. For the rest, I had to make changes to the config file. I found the following digging around RepRap.org:
+Duet 3
+```
+; Input/Output
+M950 J1 C"!io1.in"  ; Input 1 uses io1.in pin, inverted
+M581 P1 S0 T1 R1    ; Pause - built-in, no trigger.g needed
+
+M950 J2 C"!io1.out" ; Input 2 uses io1.out pin, inverted
+M581 E3 S0 T2 R0    ; ATX On - trigger2.g
+
+M950 J3 C"!io2.in"  ; Input 3 uses io2.in pin, inverted
+M581 E4 S0 T3 R0    ; Home All - trigger3.g
+
+M950 J4 C"!io2.out" ; Input 4 uses io2.out pin, inverted
+M581 E5 S0 T4 R0    ; Disable Steppers - trigger4.g
+```
+
+Duet 2
+```
+; Input/Output
+M950 J1 C"!^e2stop" ; Input 1 uses e2stop pin, inverted, pullup enabled
+M581 P1 S0 T1 R1    ; Pause - built-in, no trigger.g needed
+
+M950 J2 C"!^e3stop" ; Input 2 uses e3stop pin, inverted, pullup enabled
+M581 E3 S0 T2 R0    ; ATX On - trigger2.g
+
+M950 J3 C"!^e4stop" ; Input 3 uses e4stop pin, inverted, pullup enabled
+M581 E4 S0 T3 R0    ; Home All - trigger3.g
+
+M950 J4 C"!^e5stop" ; Input 4 uses e5stop pin, inverted, pullup enabled
+M581 E5 S0 T4 R0    ; Disable Steppers - trigger4.g
+```
+
+### RepRapFirmware v2.x
+
+In RRF 2.x, only M581 is required to set up a trigger. Triggers can only be connected to endstops (X, Y, Z, E#).
 
 In order to get buttons for pause, home, ATX on, and disable steppers, the following were added to config.g:
 
 ```
 ; Input/Output
-M581 E2 S1 T1 C1         ; Pause - PIN4
-M581 E5 S1 T3 C0         ; Disable Steppers - PIN19 - trigger3.g
-M581 E4 S1 T4 C0         ; Home All - PIN14 - trigger4.g
+M581 E2 S1 T1 C1         ; Pause - PIN4/E2_STOP
 M581 E3 S1 T2 C0         ; ATX On - PIN9 - trigger2.g
+M581 E4 S1 T3 C0         ; Home All - PIN14 - trigger3.g
+M581 E5 S1 T4 C0         ; Disable Steppers - PIN19 - trigger4.g
 ```
 
-Finally, I had to add macro trigger files. Which are just text files containing the respective commands saved as trigger#.gcode.
+## Triggers
+
+Finally, add macro trigger files to the /sys folder. These are just text files containing the respective commands saved as trigger#.gcode.
 
 ```
 ;tigger2.g
 M80            ; ATX ON
 ```
-
 ```
 ;trigger3.g
-M400            ; Finish Current Moves
-M18            ; Disable Steppers
-```
-
-```
-;trigger4.g
 M400            ; Finish current moves
 G28            ; Home all axes
+```
+```
+;trigger4.g
+M400            ; Finish Current Moves
+M18            ; Disable Steppers
 ```
