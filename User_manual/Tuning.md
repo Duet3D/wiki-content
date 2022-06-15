@@ -2,7 +2,7 @@
 title: User manual: Tuning
 description: 
 published: true
-date: 2022-01-18T13:47:20.151Z
+date: 2022-06-15T15:58:05.316Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:58:18.971Z
@@ -11,6 +11,7 @@ dateCreated: 2021-06-08T13:58:18.971Z
 # Printer setup
 
 [Centering the bed or setting the bed origin](/User_manual/Tuning/Bed_origin)
+[Orthogonal axis compensation with M556](/User_manual/Tuning/Orthogonal_axis_compensation)
 [Setting up to resume a print after a power failure or planned power down](/User_manual/Tuning/Resume)
 [Calibrating a delta printer](/User_manual/Tuning/Delta_calibration)
 [Filaments](/User_manual/Reference/DWC_filaments)
@@ -18,7 +19,7 @@ dateCreated: 2021-06-08T13:58:18.971Z
 
 # Motor configuration tuning
 
-See [this forum thread](https://forum.duet3d.com/topic/6181/) for	Tuning Macros Menus (Acceleration, Jerk, Retraction, Pressure Advance)
+See [this forum thread](https://forum.duet3d.com/topic/6181/){target=_blank} for	Tuning Macros Menus (Acceleration, Jerk, Retraction, Pressure Advance)
 [Pressure advance](/User_manual/Tuning/Pressure_advance)
 [Input shaping](/User_manual/Tuning/Input_shaping)
 
@@ -30,3 +31,4 @@ Homing a FiveAxisRobot-->
 [Setting up macro files for common tasks](/User_manual/Tuning/Macros_tasks)
 [Macros](/User_manual/Tuning/Macros)
 [Multiple tools and Tool change macros](/User_manual/Tuning/Tool_changing)
+[Using triggers](/User_manual/Tuning/Triggers)
