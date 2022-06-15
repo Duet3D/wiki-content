@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-06-15T11:03:56.717Z
+date: 2022-06-15T11:06:24.325Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1946,7 +1946,7 @@ The B parameter sets the time for which the fan will be operated at full PWM whe
 
 The L parameter defines the minimum PWM value that is usable with this fan. If a lower value is commanded that is not zero, it will be rounded up to this value.
 
-The X parameter defines the maximum PWM value that is usable with this fan. The requested PWM value (S parameter) is scaled to be between 0 and X parameter value, and rounded up to the minimum if defined (L parameter. e.g. if X128 is set, S255 will set PWM to 128; S128 will set PWM to 64.
+The X parameter defines the maximum PWM value that is usable with this fan. The requested PWM value (S parameter) is scaled to be between 0 and X parameter value, and rounded up to the minimum if defined (L parameter). e.g. if X128 is set, S255 will set PWM to 128; S128 will set PWM to 64.
 
 ## M107: Fan Off
 
