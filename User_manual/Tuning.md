@@ -2,7 +2,7 @@
 title: User manual: Tuning
 description: 
 published: true
-date: 2022-06-15T15:58:05.316Z
+date: 2022-06-15T15:59:39.563Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:58:18.971Z
@@ -31,4 +31,4 @@ Homing a FiveAxisRobot-->
 [Setting up macro files for common tasks](/User_manual/Tuning/Macros_tasks)
 [Macros](/User_manual/Tuning/Macros)
 [Multiple tools and Tool change macros](/User_manual/Tuning/Tool_changing)
-[Using triggers](/User_manual/Tuning/Triggers)
+[Using triggers to control the Duet](/User_manual/Tuning/Triggers)
