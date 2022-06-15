@@ -1,8 +1,8 @@
 ---
 title: Using triggers to control the Duet
 description: 
-published: false
-date: 2022-06-15T15:56:40.523Z
+published: true
+date: 2022-06-15T15:57:22.658Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
