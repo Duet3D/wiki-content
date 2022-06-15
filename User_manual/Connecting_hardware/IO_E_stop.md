@@ -2,7 +2,7 @@
 title: Connecting an Emergency Stop
 description: 
 published: true
-date: 2021-11-15T12:39:23.076Z
+date: 2022-06-15T11:56:33.172Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T14:19:50.302Z
@@ -25,9 +25,11 @@ The most definite way to stop a robot is to cut all power to it. Yanking the plu
 
 ## Cut the 12/24V supply
 
-If your power supply supports the PS_ON pin of the Duet, then executing the G-code [M112](/User_manual/Reference/Gcodes/M112) will cancel all executing G-code and shut down the 12/24V circuit. Even if you don't support PS_ON, it still commands all heaters and motors to shut down.
+Executing GCode [M112](/User_manual/Reference/Gcodes/M112) causes any moves in progress to be immediately terminated, then Duet shuts down. All motors and heaters are turned off. However, your PSU will continue to run.
 
-Note that this will make your "always-on" fans turn off even though your hot end may be hot, and it also leaves the head wherever it was when you stopped the machine. The former might produce a hot end jam, and the latter might heat the bed. Also, if your axes are smooth enough, turning off the stepper motors entirely may allow the machine to fall. On the other hand, one of the ways for the MOSFETs controlling the heaters to fail is for them to fail shorted, so that the heaters are on 100% regardless of what the MCU commands; shutting off the 12/24V supply will shut them off in spite of this.
+If your power supply is controlled by the PS_ON pin of the Duet, executing M112 does NOT shut down the 12/24V circuit. If you want to turn off the PS_ON pin using an external trigger, consider writing a macro that turns it off via [M81](/User_manual/Reference/Gcodes/M81) before it calls M112; see "Making a button do what you want" below.
+
+Note that turning off the PSU will make your "always-on" fans turn off even though your hot end may be hot, and it also leaves the head wherever it was when you stopped the machine. The former might produce a hot end jam, and the latter might heat the bed. Also, if your axes are smooth enough, turning off the stepper motors entirely may allow the machine to fall. On the other hand, one of the ways for the MOSFETs controlling the heaters to fail is for them to fail shorted, so that the heaters are on 100% regardless of what the MCU commands; shutting off the 12/24V supply will shut them off in spite of this.
 
 ## Just stop doing what you're doing
 
