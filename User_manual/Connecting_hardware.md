@@ -2,7 +2,7 @@
 title: User manual: Connecting hardware
 description: 
 published: true
-date: 2022-05-04T15:09:54.289Z
+date: 2022-06-15T16:00:09.316Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:51:46.990Z
@@ -67,6 +67,7 @@ dateCreated: 2021-06-08T13:51:46.990Z
 [Connecting an Emergency Stop](/User_manual/Connecting_hardware/IO_E_stop)
 [Adding additional output ports](/User_manual/Connecting_hardware/IO_additional_IO)
 [Controlling unused IO pins](/User_manual/Connecting_hardware/IO_GPIO)
+[Using triggers to control the Duet](/User_manual/Tuning/Triggers)
 [Neopixel and DotStar LEDs](/User_manual/Connecting_hardware/IO_Neopixel_DotStar)
 [CNC Pendant](/User_manual/Connecting_hardware/IO_CNC_Pendant)
 <!--
