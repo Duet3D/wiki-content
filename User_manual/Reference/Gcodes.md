@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-06-15T11:06:24.325Z
+date: 2022-06-15T11:56:49.228Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1070,7 +1070,7 @@ The effect of M0 depends on the state of the machine.
 1. All motors are put into idle mode.
 1. If there is no stop.g or cancel.g file (as appropriate) then all heaters are turned off too. In RRF versions prior to 3.4 you can prevent heaters being turned off using parameter H1.
 
-See also M1, M112.
+See also [M1 - sleep or conditional stop](/User_manual/Reference/Gcodes/M1){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
 
 ## M1: Sleep or Conditional stop
 
@@ -1086,7 +1086,7 @@ The effect of M1 depends on the state of the machine.
 1. **Either**: if the axes are homed and if a print is being cancelled (M25), it executes the macro file **cancel.g** if present. **Or**: if M1 is sent at any other time, **sleep.g** is run if present.
 1. All motors and heaters are are turned off.
 
-G and M codes can still be sent, the first of which will wake it up again. See also M0, M112.
+G and M codes can still be sent, the first of which will wake it up again. See also [M0 - stop or unconditional stop](/User_manual/Reference/Gcodes/M0){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
 
 If Marlin is emulated in RepRapFirmware, this does the same as [M25](/User_manual/Reference/Gcodes/M25){target=_blank} if the code was read from a serial or Telnet connection, else the macro file **sleep.g** is run before all heaters and drives are turned off.
 
@@ -2020,7 +2020,7 @@ The details of what debugging information is output when debugging is enabled va
 M112
 </pre>
 
-Any moves in progress are immediately terminated, then RepRap shuts down. All motors and heaters are turned off. It can be started again by pressing the reset button or power cycling the board. See also M0 and M1.
+Any moves in progress are immediately terminated, then Duet shuts down. All motors and heaters are turned off. PSU power (if controlled by the Duet via the PS_ON pin) is NOT turned off, to allow any always-on fans to continue to run. The Duet can be started again by pressing the reset button or power cycling the board. See also [M0 - stop or unconditional stop](/User_manual/Reference/Gcodes/M0){target=_blank} and [M1 - sleep or conditional stop](/User_manual/Reference/Gcodes/M1){target=_blank}. To turn off PSU power via the PS_ON pin in an emergency stop, make a trigger macro that includes M81 before M112; see [User manual: Connecting an emergency stop](/User_manual/Connecting_hardware/IO_E_stop){target=_blank}.
 
 ## M114: Get Current Position
 
