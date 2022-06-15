@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-03-07T13:55:30.067Z
+date: 2022-06-15T14:58:44.275Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -90,12 +90,12 @@ If you have any problems with your Duet when using this guide, rather than posti
 > This guide applies to all **Duet 2 Wifi / Ethernet / Maestro** boards, and **Duet 3** boards running in standalone mode (no connected Raspberry Pi). The picture of the board may be different from yours.
 {.is-info}
 
-## Plug in USB lead
+### Plug in USB lead
 [![Duet 2 Wifi showing a USB lead connected](/guides/getting_connected/02_connect_usb_01.jpg =50%x){.align-right}](/guides/getting_connected/02_connect_usb_01.jpg){target=_blank}
 
 * Connect the Duet to your PC with the USB cable provided. Do not connect other power supplies at this stage.
 
-## Install drivers
+### Install drivers
 
 ## {.tabset}
 ### Windows 
@@ -383,29 +383,25 @@ You should now see the main control page for the Duet!
 
 <p style="clear:both"></p>
 
-> Your Duet may have shipped with older firmware and DWC version. We recommend updating to the latest available version as soon as possible. A screenshot of DWC v1 is below.
-{.is-info}
-
-[![](/guides/getting_connected/06_dwc_03.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_03.jpg){target=_blank}
+[![](/guides/getting_connected/06_dwc_03.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_03.jpg){target=_blank}Your Duet may have shipped with older firmware and DWC version. We recommend updating to the latest available version as soon as possible; see [User manual: Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware). A screenshot of DWC v1 is shown on the right.
 
 # 7. Ensure Future Connectivity
 
 > We need to be sure the networking is configured properly for the future.
 {.is-info}
 
-[![](/guides/getting_connected/07_config_01.jpg =49%x)](/guides/getting_connected/07_config_01.jpg){target=_blank} [![](/guides/getting_connected/07_config_02.jpg =49%x)](/guides/getting_connected/07_config_02.jpg){target=_blank}
+[![](/guides/getting_connected/07_config_01.jpg =50%x){.align-right}](/guides/getting_connected/07_config_01.jpg){target=_blank}Navigate to **config.g** (which is the Duet configuration file) by clicking 'System' then 'config.g'.
+<p style="clear:both"></p>
 
-Navigate to **config.g** (which is the Duet configuration file) by clicking:
-* System > config.g
-* In the older version of DWC, click Settings > System Editor > config.g
-
-Then...
+[![](/guides/getting_connected/07_config_02.jpg =50%x){.align-right}](/guides/getting_connected/07_config_02.jpg){target=_blank}In the older version of DWC (v1), click Settings > System Editor > config.g 
 
 <p style="clear:both"></p>
 
-## Tabs {.tabset}
+Then...
 
-### WiFi Duets
+### Tabs {.tabset}
+
+#### WiFi Duets
 
 > For **Duets with WiFi**: Duet 3 Mini 5+ WiFi, Duet 2 WiFi.
 {.is-info}
@@ -418,7 +414,7 @@ If you need to assign a **static IP address**, use M587 with the I parameter whe
 
 <p style="clear:both"></p>
 
-### Ethernet Duets
+#### Ethernet Duets
 
 > For **Duets with Ethernet**: Duet 3 Mainboard 6HC, Duet 3 Mini 5+ Ethernet, Duet 2 Ethernet, Duet 2 Maestro.
 {.is-info}
@@ -427,21 +423,19 @@ If you need to assign a **static IP address**, use M587 with the I parameter whe
 
 Ethernet-enabled Duets come with a factory-configured fixed IP address for testing. In the last few steps you set up network access temporarily. For these Duets you now need to change the config.g so you can access the Duet Web Console (DWC) following a power cycle.
 
+**For DHCP**
 
-#### For DHCP
+Most home routers are setup to assign IP addresses by DHCP. Change the `M552 P192.168.1.14` line in config.g to `M552 P0.0.0.0` to have your router assign an IP address via DHCP. This is standard for most network devices. Any other network settings are set automatically.
 
-Most home routers are setup to assign IP addresses by DHCP. Change the M552 P192.168.1.14 line in config.g to `M552 P0.0.0.0` to have your router assign an IP address via DHCP. This is standard for most network devices. Any other network settings are set automatically.
+If you are not familiar with networking, you should change this setting to `M552 P0.0.0.0`
 
-> If you are not familiar with networking, you should change this setting to **M552 P0.0.0.0**
-{.is-warning}
+**For Fixed IP address**
 
-#### For Fixed IP address
-
-You can set the Duet to use a fixed IP address. Note that if you use a fixed address, care should be taken that it does not conflict with other devices on the network. Change the M552 P192.168.1.14 line to the IP address you want to use, eg `M552 P192.168.0.15`
+You can set the Duet to use a fixed IP address. Note that if you use a fixed address, care should be taken that it does not conflict with other devices on the network. Change the `M552 P192.168.1.14` line to the IP address you want to use, eg `M552 P192.168.0.15`
 
 You may also need to change the [**M554**](/User_manual/Reference/Gcodes/M554) (Gateway) and [**M553**](/User_manual/Reference/Gcodes/M553) (Netmask) commands to match your network.
 
-## Note
+### Note
 
 > Commands in config.g are processed from top to bottom, so a command at the bottom supersedes a command at the top of the file.
 {.is-info}
