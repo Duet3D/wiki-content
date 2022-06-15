@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2022-04-27T12:20:04.435Z
+date: 2022-06-15T16:00:43.818Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -167,6 +167,8 @@ The Duet can be [configured to detect a power failure](/User_manual/Tuning/Resum
 ## Triggers
 
 [M581](/User_manual/Reference/Gcodes/M581) can be used to setup the external triggers (switches etc). These triggers carry out actions defined in **trigger#.g**
+
+See [User manual: Using triggers to control the Duet](/User_manual/Tuning/Triggers) for an example of usage.
 
 ## 3D scanner control
 
