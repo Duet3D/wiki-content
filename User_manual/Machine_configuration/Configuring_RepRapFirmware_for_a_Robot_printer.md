@@ -2,14 +2,14 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-06-07T18:26:19.650Z
+date: 2022-06-17T09:58:40.389Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
 ---
 
 # Configuring a Robot printer
-Following is a description how to setup a 3 to 7 axis robot for 3D printing, with primary focus on an industrial 6 axis robot. The RepRapFirmware **robot firmware is in development**, binaries for testing will be provided.
+Following is a description how to setup a 1 to 6 axis robot for 3D printing, with primary focus on an industrial 6 axis robot. The RepRapFirmware **robot firmware is in development**, binaries for testing will be provided.
 
 Explanation and examples of Denavit-Hartenberg parameters:
 [Robot Denavit-Hartenberg parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)
