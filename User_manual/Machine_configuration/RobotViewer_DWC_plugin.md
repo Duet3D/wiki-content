@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-18T05:45:53.813Z
+date: 2022-06-18T05:47:27.226Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -61,10 +61,12 @@ and DH parameters are explained in the DH page [Configuring_Robot_DH_parameters]
 This section is work in progress and will be enhanced to visualize G1 commands and other ideas. Currently it animates random moves and puts points at the robot's endpoints.
 
 # Using as plugin with DWC
+This is the usual installation method.
+
 The plugin can be installed as 3rd party plugin by uploading the zip file from the dist directory in the github repository. The current plugin is tested with DWC 3.4.0.
 
 # Running in dev mode inside DWC
-The main releases will be available as zip to upload by DWC in the dist subdirectory in github. But if someone wants to compile in DWC and run in DWC development mode, proceed as follows:
+If someone wants to compile in DWC and run in DWC development mode, proceed as follows:
 
 * download DWC 3.4.0 and unpack
 * add a RobotViewer subdirectory into the plugins subdirectory and copy the src files from github into it. main.js can be excluded from copy
