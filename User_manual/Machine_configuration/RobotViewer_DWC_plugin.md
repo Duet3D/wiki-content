@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-07T18:24:00.970Z
+date: 2022-06-18T05:45:53.813Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -60,7 +60,10 @@ and DH parameters are explained in the DH page [Configuring_Robot_DH_parameters]
 # Animate
 This section is work in progress and will be enhanced to visualize G1 commands and other ideas. Currently it animates random moves and puts points at the robot's endpoints.
 
-# running in dev mode inside DWC
+# Using as plugin with DWC
+The plugin can be installed as 3rd party plugin by uploading the zip file from the dist directory in the github repository. The current plugin is tested with DWC 3.4.0.
+
+# Running in dev mode inside DWC
 The main releases will be available as zip to upload by DWC in the dist subdirectory in github. But if someone wants to compile in DWC and run in DWC development mode, proceed as follows:
 
 * download DWC 3.4.0 and unpack
@@ -70,7 +73,7 @@ The main releases will be available as zip to upload by DWC in the dist subdirec
 * open browser and open localhost:8080 (or what npm run serve tells). Don't connect to a Duet, run plugin RobotViewer, which is visible as standard plugin. (I could not connect to Mini 5 WiFi (maybe AP mode would work), but Mini 5 Eth was possible in npm run serve mode).
 
 
-# local installation
+# Local installation
 RobotViewer can be installed as an isolated local application. Load and Save robot.g will not work (I try to reroute 0:/sys to local file system, but without success until now).
 
 * install npm
