@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-18T05:47:27.226Z
+date: 2022-06-18T05:49:39.471Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
@@ -72,7 +72,7 @@ If someone wants to compile in DWC and run in DWC development mode, proceed as f
 * add a RobotViewer subdirectory into the plugins subdirectory and copy the src files from github into it. main.js can be excluded from copy
 * in plugins/index.js add a section new DwcPlugin for RobotViewer, I took GCodeViewer as template and changed id, name etc.
 * run dev mode by calling npm run serve, running from the DWC root directory. This will probably take a few minutes.
-* open browser and open localhost:8080 (or what npm run serve tells). Don't connect to a Duet, run plugin RobotViewer, which is visible as standard plugin. (I could not connect to Mini 5 WiFi (maybe AP mode would work), but Mini 5 Eth was possible in npm run serve mode).
+* open browser and open localhost:8080 (or what npm run serve tells). Connection to a Duet is optional. Start the plugin by clicking on Run, which is visible as standard plugin. (I could not connect to Mini 5 WiFi (maybe AP mode would work), but Mini 5 Eth was possible in npm run serve mode).
 
 
 # Local installation
