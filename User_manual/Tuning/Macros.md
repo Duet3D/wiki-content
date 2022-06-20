@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2022-06-15T16:00:43.818Z
+date: 2022-06-20T08:42:27.172Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -176,11 +176,11 @@ See [User manual: Using triggers to control the Duet](/User_manual/Tuning/Trigge
 
 ## daemon.g
 
-From RRF3.1.0 and later the file /sys/daemon.g can be used to execute regular tasks. The firmware looks for the file, if the file exists it executes it and once the end of file is reached it waits. If the file is not found it waits and then looks for it again. In RRF 3.3 The wait time was increased form 1 second to 10 seconds. If you want a shorter update time then put a while loop inside the deamon.g with G4 S1 in it for 1 second repeats.
+From RRF3.1.0 and later the file /sys/daemon.g can be used to execute regular tasks. The firmware looks for the file, if the file exists it executes it and once the end of file is reached it waits. If the file is not found it waits and then looks for it again. In RRF 3.3 The wait time was increased form 1 second to 10 seconds. If you want a shorter update time then put a while loop inside the daemon.g with `G4 S1` in it for 1 second repeats.
 
 This can be used in combination with [Conditional Gcode](/User_manual/Reference/Gcode_meta_commands) to check the object model to look for a particular condition, and then take an action.
 
-Caution must be taken not to start a loop that takes a long time to complete, without having a G4 P500 or similar command to hand control back to the main process every half a second or so.
+Caution must be taken not to start a loop that takes a long time to complete, without having a `G4 P500` or similar command to hand control back to the main process every half a second or so.
 
 ## runonce.g
 
