@@ -2,7 +2,7 @@
 title: Connector and spare part numbers
 description: This is a growing list of connectors and spare part numbers. If a spare part is required that is not on the list please check the source on github or ask on the forums 
 published: true
-date: 2022-06-01T07:45:43.090Z
+date: 2022-06-22T09:47:32.348Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:43:02.549Z
@@ -12,7 +12,7 @@ dateCreated: 2021-12-05T22:43:02.549Z
 
 # Duet 3
 
-## Connectors used on 6HC Mainboard and 3HC Expansion
+## Connectors used on main and expansion boards
 
 2.54mm Molex compatible connectors are used for everything except stepper motor and medium-current outputs. These are widely available from the usual electronic component distributors, and on eBay.
 
@@ -30,7 +30,7 @@ Stepper motor (4-pin) and medium-current (2-pin) outputs: JST VH series or compa
 * 4 way shell VHR-4N (JST) or VH396-04H (Valcon)
 * Crimps for the above: BVH-21T-P1.1B (JST) or VH396T-L (Valcon)
 
-6-pin SWD connector (JST ZH) : ZHR-6 *note it is normally easier to buy a pre crimped tail and JST ZH are quite fiddly to crimp)*
+6-pin SWD connector (JST ZH) : ZHR-6 (note it is normally easier to buy a pre crimped tail and JST ZH are quite fiddly to crimp)
 
 The fork connectors for the power supply are a generic "blue" max  2.5mm^2 like [this version from RS](https://uk.rs-online.com/web/p/fork-terminals/0534626/)  (many alternatives are available, for example from suppliers on eBay).
 
