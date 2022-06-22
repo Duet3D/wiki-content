@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-06-22T09:27:53.589Z
+date: 2022-06-22T11:18:41.286Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -36,8 +36,10 @@ Forward kinematics calculates from actuators' (steppers) positions to cartesian 
 
 The robot is a chain of joints/actucators and links. The end position and orientation can be calculated by matrix multiplications of translation and rotations. The result is a position of X, Y, Z cartesian coordinates and three axis vectors of X, Y, Z directions, which describe endpoint's orientation.
 # Jacobian matrix and Inverse
+Forward calculation can be gathered in a Jacobian matrix of 6 lines and number of columns equal to actuator count. Three lines represent X, Y, Z change by an actuator, the last three lines represent angular change by three axes X, Y, Z. For a 6 axis robot, the result is a 6x6 matrix, which can be inversed, if not being in a singularity (lost rank). The resulting inverse allows direct calculation back from cartesian coordinates to actuator angles, i. e. inverse kinematics.
 
 # Generalized inverse, Moore-Penrose
+When a Jacobian matrix is not quadratic, which is always the case if less or more than 6 actuators are used or near and for situations of reduced - less than 6 - rank at a singularity, the so-called generalized inverse must be calculated instead. Research has developed different methods for calculation. As starting point Moore-Penrose is used. The algorithms are based on Matrix calculations by Gene Golub, Van Loan 4th ed. The results are double checked by comparing with Eigen and Matlab calculations.
 
 # Degrees of freedom, rank
 
