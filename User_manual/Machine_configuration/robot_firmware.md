@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-06-22T11:18:41.286Z
+date: 2022-06-22T11:23:53.792Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -39,7 +39,7 @@ The robot is a chain of joints/actucators and links. The end position and orient
 Forward calculation can be gathered in a Jacobian matrix of 6 lines and number of columns equal to actuator count. Three lines represent X, Y, Z change by an actuator, the last three lines represent angular change by three axes X, Y, Z. For a 6 axis robot, the result is a 6x6 matrix, which can be inversed, if not being in a singularity (lost rank). The resulting inverse allows direct calculation back from cartesian coordinates to actuator angles, i. e. inverse kinematics.
 
 # Generalized inverse, Moore-Penrose
-When a Jacobian matrix is not quadratic, which is always the case if less or more than 6 actuators are used or near and for situations of reduced - less than 6 - rank at a singularity, the so-called generalized inverse must be calculated instead. Research has developed different methods for calculation. As starting point Moore-Penrose is used. The algorithms are based on Matrix calculations by Gene Golub, Van Loan 4th ed. The results are double checked by comparing with Eigen and Matlab calculations.
+When a Jacobian matrix is not quadratic, which is always the case if less or more than 6 actuators are used or near and for situations of reduced - less than 6 - rank at a singularity, the so-called generalized inverse must be calculated instead. Research has developed different methods for calculation. As starting point Moore-Penrose is used. The algorithms are based on iterative Matrix calculations by Gene Golub, Van Loan 4th ed. The results are double checked by comparing with Eigen and Matlab calculations. A high number of iterations and high precision takes time which may be long for MCUs processing power, so the quality setting parameter M669 allows the user to decide about required time/precision. The kinematics calculates all segments of a G0, G1, G2, G3 move in advance of the move and caches it, so it will not interrupt the print during a move.
 
 # Degrees of freedom, rank
 
