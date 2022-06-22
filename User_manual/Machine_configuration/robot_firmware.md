@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-06-22T09:26:05.900Z
+date: 2022-06-22T09:27:53.589Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -51,4 +51,5 @@ Types of singularities and their implemented solutions:
 # Speed and Acceleration control
 
 # Tool offsets and orientation
+Currently only X, Y, Z position information from G10 is used, later the orientation can be set by using U, V, W (or A, B, C) also. I'm aware that there are different possibilites in CNC to define tool endpoints, so this part will be enhanced.
 
