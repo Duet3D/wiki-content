@@ -2,7 +2,7 @@
 title: Using triggers to control the Duet
 description: 
 published: true
-date: 2022-06-15T15:57:22.658Z
+date: 2022-06-24T15:40:53.379Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
@@ -12,9 +12,13 @@ dateCreated: 2022-05-31T14:19:20.035Z
 
 RepRapFirmware allows you to define external 'triggers' (such as a button press) that will run an associated system macro. This could be for an [emergency stop](/User_manual/Connecting_hardware/IO_E_stop){target=_blank}, but can be used for many other purposes, as the GCode commands that are run are held in a macro file for each trigger.
 
-Below is an example, where Duet user Clinton Thomas builds a control panel, with a number of buttons which control various actions. This originally appeared here, using a Duet 2 and RRF 2.x: [Duet Dozuki wiki](https://duet3d.dozuki.com/Wiki/Using_M581_-_External_Triggers_and_Building_a_Control_Panel){target=_blank}
+Below are two examples:
+1. User Clinton Thomas builds a control panel, with a number of buttons which control various actions. This originally appeared on the  [Duet Dozuki wiki](https://duet3d.dozuki.com/Wiki/Using_M581_-_External_Triggers_and_Building_a_Control_Panel){target=_blank}, using a Duet 2 and RRF 2.x
+2. User Nick Lindenmuth builds a water flow sensor failsafe, to add a flow sensor to trigger a reset using an arduino nano. This originally appeared on the  [Duet Dozuki wiki](https://duet3d.dozuki.com/Guide/Water+flow+sensor+failsafe/49){target=_blank}, using a Duet 2 and RRF 2.x
 
-# Required hardware
+# Control Panel
+
+## Required hardware
 
 [![triggers_01.jpg](/manual/sensors/triggers_01.jpg =x400)](/manual/sensors/triggers_01.jpg){target=_blank}
 
@@ -22,7 +26,7 @@ Below is an example, where Duet user Clinton Thomas builds a control panel, with
 * Molex KK (for endstop/IO connectors) or Dupont connectors (Duet 2 expansion header)
 * Wire
 
-# Wiring
+## Wiring
 
 Buttons for pause, ATX on, disable steppers, home all and reset were required.
 
@@ -66,7 +70,7 @@ In the example, the following pins are used:
 
 Pin 44 forces a reset when shorted to ground, no additional configuration is needed.
 
-# Firmware configuration
+## Firmware configuration
 
 In RRF 3.x, triggers pins are configured with [M950](/User_manual/Reference/Gcodes/M950), and are configured in the firmware using [M581](/User_manual/Reference/Gcodes/M581). The parameters for RRF 3.01 and later (see GCode dictionary for earlier versions) are:
 
@@ -152,3 +156,42 @@ G28            ; Home all axes
 M400            ; Finish Current Moves
 M18            ; Disable Steppers
 ```
+
+# Water flow sensor failsafe
+
+A spare IO header (Duet 3) or endstop (Duet 2) can be used to trigger a full system reset. Here, an arduino is used to convert the flow sensor signal into an on or off state, for flow or no flow.
+
+## Required hardware
+
+* 1 × Arduino Nano
+* 1 × uxcell Hall Effect Flow Sensor SEN-HW06K
+
+## Programming and wiring the arduino 
+
+[![triggers_04.jpg](/manual/sensors/triggers_04.jpg =x400)](/manual/sensors/triggers_04.jpg){target=_blank}
+* Upload [this code](https://github.com/deltajegga/linden-tech){target=_blank} to your arduino nano. Refer to the diagram on how everything is connected. The hardest part is crimping the pins for the endstop connector.
+
+* Duet 2 WiFi/Ethernet boards prior to version 1.04 cannot tolerate voltages on endstop pins of more than 3.3V. Add 4 diodes in series to drop the voltage to 3 ish volts.
+
+* All other Duets (Duet 3, Duet 2 WiFi/Ethernet v1.04 and later, Duet 2 Maestro) tolerate voltages of at least 5V on IO/endstop connectors.
+
+* [Here](https://pinshape.com/items/54223-3d-printed-arduino-nano-case){target=_blank} is a simple case I made for the nano.
+
+## Configuration
+
+* Now we have to tell the duet what to do with the on/off signal using the [M581](/User_manual/Reference/Gcodes/M581) command. Insert the following, as approriate into your config file:
+
+```
+Duet 3, RRF 3
+M950 J1 C"io1.in"  ; Arduino is connected to io1.in pin
+M581 P1 S1 T0 C0
+
+Duet 2, RRF 3
+M950 J1 C"^e1stop" ; Arduino is connected to e1stop pin, pullup enabled
+M581 P1 S1 T0 C0
+
+Duet 2, RRF 2
+M581 E1 S1 T0 C0 ; Arduino is connected to endstop E1
+```
+
+And thats it!!! You can test by unpluging your pump or pinching a line, it should reset within a few seconds.
