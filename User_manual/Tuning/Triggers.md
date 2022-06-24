@@ -2,7 +2,7 @@
 title: Using triggers to control the Duet
 description: 
 published: true
-date: 2022-06-24T15:41:12.388Z
+date: 2022-06-24T15:41:59.505Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
@@ -168,7 +168,7 @@ A spare IO header (Duet 3) or endstop (Duet 2) can be used to trigger a full sys
 
 ## Programming and wiring the arduino 
 
-[![triggers_04.jpg](/manual/sensors/triggers_04.jpg =x400)](/manual/sensors/triggers_04.jpg){target=_blank}
+[![triggers_04.jpg](/manual/sensors/triggers_04.jpg)](/manual/sensors/triggers_04.jpg){target=_blank}
 * Upload [this code](https://github.com/deltajegga/linden-tech){target=_blank} to your arduino nano. Refer to the diagram above on how everything is connected. The hardest part is crimping the pins for the endstop connector.
 
 * Duet 2 WiFi/Ethernet boards prior to version 1.04 cannot tolerate voltages on endstop pins of more than 3.3V. Add 4 diodes in series to drop the voltage to 3 ish volts.
