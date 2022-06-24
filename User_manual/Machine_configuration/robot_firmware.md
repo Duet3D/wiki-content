@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-06-24T09:10:02.368Z
+date: 2022-06-24T09:10:32.012Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -18,8 +18,6 @@ The following description gives detailed information about how the firmware for 
 I am sure that a deep understanding of "what's under the hood" gives better results in using the firmware and hardware, for example to balance parameter settings for precision versus performance.
 
 I try to not repeat information I provided in the other robot articles (especially about DH) and will give cross links if useful.
-
-**This document is under construction, please come back to see updates.**
 
 # Configuration setup
 
