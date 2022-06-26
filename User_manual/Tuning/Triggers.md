@@ -2,7 +2,7 @@
 title: Using triggers to control the Duet
 description: 
 published: true
-date: 2022-06-24T15:41:59.505Z
+date: 2022-06-26T13:25:40.456Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
@@ -34,7 +34,7 @@ Buttons for pause, ATX on, disable steppers, home all and reset were required.
 
 ### Duet 3
 
-![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =282x)
+[![wiring_d3_endstops_02.png](/guides/wiringd3/wiring_d3_endstops_02.png =49%x)](/guides/wiringd3/wiring_d3_endstops_02.png){target=_blank} [![wiring_d3_endstops_01.png](/guides/wiringd3/wiring_d3_endstops_01.png =49%x)](/guides/wiringd3/wiring_d3_endstops_01.png){target=_blank}
 
 Wire the switch in the same way as an endstop. Connect one side of the switch to the GND pin of your chosen IO_x connector (or the negative coming from your power supply), and the other to the IN pin of the IO_x connector.
 
@@ -99,13 +99,13 @@ M950 J1 C"!io1.in"  ; Input 1 uses io1.in pin, inverted
 M581 P1 S0 T1 R1    ; Pause - built-in, no trigger.g needed
 
 M950 J2 C"!io1.out" ; Input 2 uses io1.out pin, inverted
-M581 E3 S0 T2 R0    ; ATX On - trigger2.g
+M581 P2 S0 T2 R0    ; ATX On - trigger2.g
 
 M950 J3 C"!io2.in"  ; Input 3 uses io2.in pin, inverted
-M581 E4 S0 T3 R0    ; Home All - trigger3.g
+M581 P3 S0 T3 R0    ; Home All - trigger3.g
 
 M950 J4 C"!io2.out" ; Input 4 uses io2.out pin, inverted
-M581 E5 S0 T4 R0    ; Disable Steppers - trigger4.g
+M581 P4 S0 T4 R0    ; Disable Steppers - trigger4.g
 ```
 
 Duet 2
@@ -115,13 +115,13 @@ M950 J1 C"!^e2stop" ; Input 1 uses e2stop pin, inverted, pullup enabled
 M581 P1 S0 T1 R1    ; Pause - built-in, no trigger.g needed
 
 M950 J2 C"!^e3stop" ; Input 2 uses e3stop pin, inverted, pullup enabled
-M581 E3 S0 T2 R0    ; ATX On - trigger2.g
+M581 P2 S0 T2 R0    ; ATX On - trigger2.g
 
 M950 J3 C"!^e4stop" ; Input 3 uses e4stop pin, inverted, pullup enabled
-M581 E4 S0 T3 R0    ; Home All - trigger3.g
+M581 P3 S0 T3 R0    ; Home All - trigger3.g
 
 M950 J4 C"!^e5stop" ; Input 4 uses e5stop pin, inverted, pullup enabled
-M581 E5 S0 T4 R0    ; Disable Steppers - trigger4.g
+M581 P4 S0 T4 R0    ; Disable Steppers - trigger4.g
 ```
 
 ### RepRapFirmware v2.x
@@ -133,9 +133,9 @@ In order to get buttons for pause, home, ATX on, and disable steppers, the follo
 ```
 ; Input/Output
 M581 E2 S1 T1 C1         ; Pause - PIN4/E2_STOP
-M581 E3 S1 T2 C0         ; ATX On - PIN9 - trigger2.g
-M581 E4 S1 T3 C0         ; Home All - PIN14 - trigger3.g
-M581 E5 S1 T4 C0         ; Disable Steppers - PIN19 - trigger4.g
+M581 E3 S1 T2 C0         ; ATX On - PIN9/E3_STOP - trigger2.g
+M581 E4 S1 T3 C0         ; Home All - PIN14/E4_STOP - trigger3.g
+M581 E5 S1 T4 C0         ; Disable Steppers - PIN19/E5_STOP - trigger4.g
 ```
 
 ## Triggers
