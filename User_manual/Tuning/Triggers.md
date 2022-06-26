@@ -2,7 +2,7 @@
 title: Using triggers to control the Duet
 description: 
 published: true
-date: 2022-06-26T13:25:40.456Z
+date: 2022-06-26T13:27:23.788Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
@@ -143,7 +143,7 @@ M581 E5 S1 T4 C0         ; Disable Steppers - PIN19/E5_STOP - trigger4.g
 Finally, add macro trigger files to the /sys folder. These are just text files containing the respective commands saved as trigger#.gcode.
 
 ```
-;tigger2.g
+;trigger2.g
 M80            ; ATX ON
 ```
 ```
