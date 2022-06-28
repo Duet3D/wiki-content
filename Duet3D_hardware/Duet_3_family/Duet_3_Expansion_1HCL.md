@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-02-28T16:20:05.322Z
+date: 2022-06-28T12:27:53.668Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -16,28 +16,55 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 
 ![Photograph of a Duet 3 1HCL board shown from above](/duet_boards/duet_3_can_expansion/duet_3_1hcl/1hcl_overhead_wb_sm.png =x500)
 
+# Features
 
-# Specification
+## Hardware specification
 
-* ARM Cortex-M4F microcontroller running at 120MHz.
-* An advanced TMC2160A stepper driver: SPI controlled, can be run in open loop or closed loop mode. Maximum motor current 6.3A peak per phase (4.45A RMS).
-* Two medium-current (2.5A max recommended) outputs at VIN or VBRAKE voltage with PWM capability and built-in flyback diodes: **out0**, **out1**
-  * Optionally provide VBRAKE at a different voltage from VIN to allow (for example) to run the stepper motor at 48V and the brake at 24V.
-  * Note the flyback diodes are connected to the voltage being used (VBRAKE or VIN as selected)
-* Two 3.3V-level PWM capable output (3mA max), through 470R series resistor: **io0.out**, **io1.out**.
-* Two digital inputs with permanent 27K pullup resistors, protected against over-voltage: **io0.in**, **io1.in**
-  * Example Use: endstop switches.  
-* One thermistor/PT1000 input: **temp0**
-  * This is intended to allow for motor temperature monitoring (potentially couple with a cooling system controlled by one of the outputs)
-* RJ11 CAN In and CAN Out connectors to connect to the Duet 3 CAN-FD bus.
-* Optional on-board CAN bus termination
-* VIN: 12V-48V nominal (the absolute maximum VIN rating is somewhat higher to allow for the overshoot that occurs when the stepper motor is turned off)
-* Jumper to force bootloader to request firmware update from Duet 3 main board - marked CAN_RST
-* 5V and 3.3V available on IO headers for low current external devices, Maximum 300mA at 5V (3.3V is converted from 5V so if using 3.3V externally the 5V limit is reduced).
+|---|---|
+| **Processor** | Atmel ATSAME51G |
+| **Prosessor features** | 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM |
+| **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard. Optional on-board CAN bus termination. |
+| **On-board stepper driver** | 1 x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
+| **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. Maximum motor current 6.3A peak per phase (4.45A RMS). |
+| **Encoder Inputs** | Quadrature or SPI bus |
+| **Thermistor/PT1000 inputs** | 2 x thermistor/PT1000 inputs. This is intended to allow for motor temperature monitoring, potentially coupled with a cooling system controlled by one of the outputs. |
+| **Medium current outputs** | 2 x medium-current (2.5A max recommended) outputs at V_FUSED or V_BRAKE voltage, with PWM capability and built-in flyback diodes. Optionally provide V_BRAKE at a different voltage from V_FUSED, to allow (for example) running the stepper motor at 48V and the brake at 24V. |
+| **Inputs/Outputs** | 2 x 3.3V-level PWM capable output (3mA max), 2 x digital inputs, protected against over-voltage. Example use: endstop switches. |
 
-# Dimensions
+## Operating limits
+
+|:--|:--|
+| **Input voltage** | 12V to 48V |
+| **VIN connector rated current** | 25A maximum, or fused limit (whichever is lower) |
+| **Fuses** | 5A for V_FUSED (max 10A), 5A for V_BRAKE |
+| **Stepper driver** | Up to 6.3A peak current per phase (4.45A RMS) |
+| **Medium current outputs** | OUT0/1 up to 2.5A each |
+| **Inputs/Outputs** | Inputs are 30V-tolerant |
+| **12V current limit** | 200mA |
+| **5V and 3.3V current limit** | 100mA total on 5V and 3.3V |
+
+## Firmware notes
+
+* Compatible RepRapFirmware versions: RRF 3.x
+* Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
+
+## Open source
+
+Importantly Duets are Open:
+
+* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Expansion-1HCL/blob/main/LICENSE).
+* All hardware [source files](https://github.com/Duet3D/Duet3-Expansion-1HCL/) are available on Github.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+
+# Physical properties
+
+## Dimensions
 
 [![Image showing the key dimensions of the Duet 3 1HCL](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_dimensions.png  =500x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_dimensions.png){target=_blank}
+
+## 3D model
+
+A STEP 3D model of the Duet 3 Expansion 1HCL is available [on github](https://github.com/Duet3D/Duet3-Expansion-1HCL/blob/main/v1.0/Duet3_Exp_1HCL.step){target=_blank}.
 
 # Wiring
 
@@ -49,7 +76,7 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 
 ## Quadrature encoder
 
-The 1HCL supports a quadrature encoder connected to the Quadrature Input interface. This works with common 5V, 1000CPR-2500CPR optical encoders that are frequently supplied with closed loop stepper motors.   (One example is the [17E1K-05](https://www.omc-stepperonline.com/closed-loop-stepper-motor/p-series-nema-17-closed-loop-stepper-motor-48ncm-67-99oz-in-with-encoder-1000cpr.html)), however there are many other examples).
+The 1HCL supports a quadrature encoder connected to the Quadrature Input interface. This works with common 5V, 1000CPR-2500CPR optical encoders that are frequently supplied with closed loop stepper motors.   (One example is the [17E1K-05](https://www.omc-stepperonline.com/closed-loop-stepper-motor/p-series-nema-17-closed-loop-stepper-motor-48ncm-67-99oz-in-with-encoder-1000ppr-4000cpr-17e1k-05)), however there are many other examples).
 
 ### Connecting a Quadrature Encoder
 
