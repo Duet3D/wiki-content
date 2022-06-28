@@ -2,7 +2,7 @@
 title: Duet3D Thermocouple daughterboard
 description: Overview of the Duet 3D Thermocouple daughter board.
 published: true
-date: 2021-12-13T14:23:38.677Z
+date: 2022-06-28T11:52:19.638Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T12:01:36.003Z
@@ -43,12 +43,16 @@ There have been two versions of the thermocouple board.
 
 ## MAX31856 sensor IC details
 
-The MAX31856 performs cold-junction compensation and digitizes the signal from any type of thermocouple. The output data is formatted in degrees Celsius. This converter resolves temperatures to 0.0078125°C, allows readings as high as +1800°C and as low as -210°C (depending on thermocouple type), and exhibits thermocouple voltage measurement accuracy of ±0.15%.  See the [Maxim integrated website for more details on the MAX31856](https://www.maximintegrated.com/en/products/sensors/MAX31856.html).
+The MAX31856 performs cold-junction compensation and digitizes the signal from any type of thermocouple. The output data is formatted in degrees Celsius. This converter resolves temperatures to 0.0078125°C, allows readings as high as +1800°C and as low as -210°C (depending on thermocouple type), and exhibits thermocouple voltage measurement accuracy of ±0.15%.  See the [Maxim integrated website for more details on the MAX31856](https://www.maximintegrated.com/en/products/sensors/MAX31856.html){target=_blank}.
 
 ## Open source
 
-* Hardware [source files](https://github.com/Duet3D/TempDaughterboards) are available on Github.
-* Duet hardware is built with Open tools: designed in [KiCad](http://kicad.org/). Using open tools means the barrier to getting involved is as low as possible.
+* Hardware [source files](https://github.com/Duet3D/TempDaughterboards/tree/master/MAXTempTC){target=_blank} are available on Github.
+* Duet hardware is built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank}. Using open tools means the barrier to getting involved is as low as possible.
+
+## 3D model
+
+The STEP file for the Duet3D Thermocouple daughterboard is shared on the [Duet3D github here](https://github.com/Duet3D/TempDaughterboards/blob/master/MAXTempTC/MAXTempTC.step){target=_blank}.
 
 # Installation and configuration
 
