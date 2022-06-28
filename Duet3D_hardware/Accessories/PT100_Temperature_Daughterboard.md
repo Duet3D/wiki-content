@@ -2,7 +2,7 @@
 title: Duet3D PT100 temperature sensor daughterboard
 description: Overview of the Duet3D PT100 daughterboard
 published: true
-date: 2021-12-13T14:22:54.652Z
+date: 2022-06-28T11:50:01.810Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T11:12:36.201Z
@@ -39,12 +39,16 @@ The PT100 daughterboard uses the Maxim Integrated MAX31865 RTD sensor IC.  This 
 
 ## MAX31865 sensor IC details
 
-An external resistor sets the sensitivity for the RTD being used (in the case of the Duet3D daughterboard this is a PT100) and a precision delta-sigma ADC converts the ratio of the RTD resistance to the reference resistance into digital form. High Accuracy: 15-Bit ADC Resolution; Nominal Temperature Resolution 0.03125°C (Varies Due to RTD Nonlinearity). Total Accuracy Over All Operating Conditions: 0.5°C (0.05% of Full Scale) max. For more information see the [Maxim Integrated MAX31865 product page](https://www.maximintegrated.com/en/products/sensors/MAX31865.html).
+An external resistor sets the sensitivity for the RTD being used (in the case of the Duet3D daughterboard this is a PT100) and a precision delta-sigma ADC converts the ratio of the RTD resistance to the reference resistance into digital form. High Accuracy: 15-Bit ADC Resolution; Nominal Temperature Resolution 0.03125°C (Varies Due to RTD Nonlinearity). Total Accuracy Over All Operating Conditions: 0.5°C (0.05% of Full Scale) max. For more information see the [Maxim Integrated MAX31865 product page](https://www.maximintegrated.com/en/products/sensors/MAX31865.html){target=_blank}.
 
 ## Open source
 
-* Hardware [source files](https://github.com/Duet3D/TempDaughterboards) are available on Github.
-* Duet hardware is built with Open tools: designed in [KiCad](http://kicad.org/). Using open tools means the barrier to getting involved is as low as possible.
+* Hardware [source files](https://github.com/Duet3D/TempDaughterboards/tree/master/MAXTempRTD){target=_blank} are available on Github.
+* Duet hardware is built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank}. Using open tools means the barrier to getting involved is as low as possible.
+
+## 3D model
+
+The STEP file for the Duet3D PT100 temperature sensor daughterboard is shared on the [Duet3D github here](https://github.com/Duet3D/TempDaughterboards/blob/master/MAXTempRTD/MAXTempRTD.step){target=_blank}.
 
 # Installation and configuration
 
