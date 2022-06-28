@@ -2,7 +2,7 @@
 title: Using triggers to control the Duet
 description: 
 published: true
-date: 2022-06-26T13:27:23.788Z
+date: 2022-06-28T12:07:48.049Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
@@ -166,16 +166,25 @@ A spare IO header (Duet 3) or endstop (Duet 2) can be used to trigger a full sys
 * 1 × Arduino Nano
 * 1 × uxcell Hall Effect Flow Sensor SEN-HW06K
 
-## Programming and wiring the arduino 
+## Programming the arduino 
+
+* Upload [this code](https://github.com/deltajegga/linden-tech){target=_blank} to your arduino nano. Refer to the diagram above on how everything is connected. The hardest part is crimping the pins for the endstop connector.
+* [Here](https://pinshape.com/items/54223-3d-printed-arduino-nano-case){target=_blank} is a simple case I made for the nano.
+
+## Wiring
+
+* **Duet 3**: Connect Arduino Nano 'status' pin (D3) to the IN pin of your chosen IO connector (eg io1.in), and the Arduino 'GND' pin to the 'GND' pin of the IO connector.
+
+* **Duet 2**: See image below. Connect Arduino Nano 'status' pin (D3) to STP/IN pin of your chosen endstop connector, and the Arduino 'GND' pin to the 'GND' pin of the endstop connector. These are the outer 2 pins of the 3-pin connector.
 
 [![triggers_04.jpg](/manual/sensors/triggers_04.jpg)](/manual/sensors/triggers_04.jpg){target=_blank}
-* Upload [this code](https://github.com/deltajegga/linden-tech){target=_blank} to your arduino nano. Refer to the diagram above on how everything is connected. The hardest part is crimping the pins for the endstop connector.
+
+**NOTE:**
 
 * Duet 2 WiFi/Ethernet boards prior to version 1.04 cannot tolerate voltages on endstop pins of more than 3.3V. Add 4 diodes in series to drop the voltage to 3 ish volts.
 
 * All other Duets (Duet 3, Duet 2 WiFi/Ethernet v1.04 and later, Duet 2 Maestro) tolerate voltages of at least 5V on IO/endstop connectors.
 
-* [Here](https://pinshape.com/items/54223-3d-printed-arduino-nano-case){target=_blank} is a simple case I made for the nano.
 
 ## Configuration
 
