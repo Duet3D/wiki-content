@@ -2,7 +2,7 @@
 title: Duet Web Control Manual
 description: Duet Web Control is a browser based user interface for RepRapFirmware that runs in most modern browsers that support HTML 5.
 published: true
-date: 2022-01-18T14:26:26.084Z
+date: 2022-06-29T20:42:51.587Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T14:41:33.290Z
@@ -442,7 +442,7 @@ Shows the current tool’s Tool Fan (print cooling fan) slider, with the current
 
 ![dwc23_17_status_14.png](/manual/dwc/dwc23_17_status_14.png)
 
-This shows the setting for, and allows the override of, the [extrusion factor **UPDATE LINK**](), per extruder. Click ‘Change Visibility’ to show other Extruders as well as the one currently in use.
+This shows the setting for, and allows the override of, the extrusion factor ([M221](/User_manual/Reference/Gcodes/M221)), per extruder. Click ‘Change Visibility’ to show other Extruders as well as the one currently in use.
 
 # Display
 
