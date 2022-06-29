@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-06-15T14:58:44.275Z
+date: 2022-06-29T21:13:25.941Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -262,7 +262,7 @@ Copy `M115` and paste into terminal and then hit enter. You will see OK when a s
 
 #### CuteCom
 
-[![](/guides/getting_connected/04_check_firmware_02.jpg =50%x){.align-right}](/guides/getting_connected/04_check_firmware_02.jpg){target=_blank}
+[![CuteCom](/guides/getting_connected/04_check_firmware_02.jpg =50%x){.align-right}](/guides/getting_connected/04_check_firmware_02.jpg){target=_blank}
 
 #### Screen
 
@@ -354,7 +354,7 @@ Plug an ethernet cable into the Duet's ethernet port and connect the other end o
 > The Duet may come with a factory-configured fixed IP address for testing. This is unlikely to work for your setup!
 {.is-warning}
 
-[![](/guides/getting_connected/05_network_07.jpg =50%x){.align-right}](/guides/getting_connected/05_network_07.jpg){target=_blank}So you need to change the network settings. There are two options:
+[![05_network_07.jpg](/guides/getting_connected/05_network_07.jpg =50%x){.align-right}](/guides/getting_connected/05_network_07.jpg){target=_blank}So you need to change the network settings. There are two options:
 * **DHCP**: Most home routers are setup to assign IP addresses by DHCP. Send `M552 S0` to disable networking, then `M552 S1 P0.0.0.0` to enable networking and have your router assign an IP address.
 * **Fixed Address**: You can set the Duet to use a fixed IP address. Note that if you use a fixed address, care should be taken that it does not conflict with other devices on the network. Send `M552 S0` to disable networking, then `M552 S1 Px.x.x.x` to enable networking, where "x.x.x.x" is the IP address you want to use, eg 192.168.1.15.
 
@@ -375,7 +375,7 @@ You can safely close Terminal at this point.
 > Duet Web Control (also known as DWC) is the user interface used over a network connection in a browser to configure and control a Duet. The manual for the use of the DWC is here: [Duet Web Control Manual](/User_manual/Reference/Duet_Web_Control_Manual)
 {.is-info}
 
-[![](/guides/getting_connected/06_dwc_01.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_01.jpg){target=_blank}[![](/guides/getting_connected/06_dwc_02.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_02.jpg){target=_blank}Open your browser and type the IP address assigned to the Duet, eg **192.168.1.90**
+[![06_dwc_01.jpg](/guides/getting_connected/06_dwc_01.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_01.jpg){target=_blank}[![06_dwc_02.jpg](/guides/getting_connected/06_dwc_02.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_02.jpg){target=_blank}Open your browser and type the IP address assigned to the Duet, eg **192.168.1.90**
 
 You may also be able to access the Duet by typing `http://duettest.local/` into your address bar. This is the easiest way to connect to your Duet if you are using a dynamic IP address (via DHCP). See [this note about mDNS support](/User_manual/Machine_configuration/Networking#a-note-about-mdns-local-network-discovery) if it doesn't work.
 
@@ -383,17 +383,17 @@ You should now see the main control page for the Duet!
 
 <p style="clear:both"></p>
 
-[![](/guides/getting_connected/06_dwc_03.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_03.jpg){target=_blank}Your Duet may have shipped with older firmware and DWC version. We recommend updating to the latest available version as soon as possible; see [User manual: Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware). A screenshot of DWC v1 is shown on the right.
+[![06_dwc_03.jpg](/guides/getting_connected/06_dwc_03.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_03.jpg){target=_blank}Your Duet may have shipped with older firmware and DWC version. We recommend updating to the latest available version as soon as possible; see [User manual: Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware). A screenshot of DWC v1 is shown on the right.
 
 # 7. Ensure Future Connectivity
 
 > We need to be sure the networking is configured properly for the future.
 {.is-info}
 
-[![](/guides/getting_connected/07_config_01.jpg =50%x){.align-right}](/guides/getting_connected/07_config_01.jpg){target=_blank}Navigate to **config.g** (which is the Duet configuration file) by clicking 'System' then 'config.g'.
+[![07_config_01.jpg](/guides/getting_connected/07_config_01.jpg =50%x){.align-right}](/guides/getting_connected/07_config_01.jpg){target=_blank}Navigate to **config.g** (which is the Duet configuration file) by clicking 'System' then 'config.g'.
 <p style="clear:both"></p>
 
-[![](/guides/getting_connected/07_config_02.jpg =50%x){.align-right}](/guides/getting_connected/07_config_02.jpg){target=_blank}In the older version of DWC (v1), click Settings > System Editor > config.g 
+[![07_config_02.jpg](/guides/getting_connected/07_config_02.jpg =50%x){.align-right}](/guides/getting_connected/07_config_02.jpg){target=_blank}In the older version of DWC (v1), click Settings > System Editor > config.g 
 
 <p style="clear:both"></p>
 
@@ -406,7 +406,7 @@ Then...
 > For **Duets with WiFi**: Duet 3 Mini 5+ WiFi, Duet 2 WiFi.
 {.is-info}
 
-[![](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}Check that there is a command `M552 S1` without a semicolon at the beginning of the line. This enables the WiFi module at power on.
+[![07_config_03.jpg](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}Check that there is a command `M552 S1` without a semicolon at the beginning of the line. This enables the WiFi module at power on.
 
 Setting `M552 S1` in the config.g is sufficient to enable networking and let your network router assign an IP address via **DHCP**. 
 
@@ -419,7 +419,7 @@ If you need to assign a **static IP address**, use M587 with the I parameter whe
 > For **Duets with Ethernet**: Duet 3 Mainboard 6HC, Duet 3 Mini 5+ Ethernet, Duet 2 Ethernet, Duet 2 Maestro.
 {.is-info}
 
-[![](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}[![](/guides/getting_connected/07_config_04.jpg =50%x){.align-right}](/guides/getting_connected/07_config_04.jpg){target=_blank}Check that there is a command `M552 S1` without a semicolon at the beginning of the line. This enables the ethernet module at power on.
+[![07_config_03.jpg](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}[![07_config_04.jpg](/guides/getting_connected/07_config_04.jpg =50%x){.align-right}](/guides/getting_connected/07_config_04.jpg){target=_blank}Check that there is a command `M552 S1` without a semicolon at the beginning of the line. This enables the ethernet module at power on.
 
 Ethernet-enabled Duets come with a factory-configured fixed IP address for testing. In the last few steps you set up network access temporarily. For these Duets you now need to change the config.g so you can access the Duet Web Console (DWC) following a power cycle.
 
