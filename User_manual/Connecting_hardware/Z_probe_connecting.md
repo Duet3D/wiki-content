@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2021-11-22T12:44:54.388Z
+date: 2022-06-29T20:47:46.839Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -208,7 +208,7 @@ Most Piezo kits come with a number of sensors that connect to a small controller
 
 **Duet WiFi/Ethernet revision 1.03 or earlier:** Connect the output wire of the sensor to the cathode of a diode, and the anode of the diode to the Z probe IN pin. The diode should preferably be a small-signal Schottky diode such as BAT43 or BAT85, but a small signal silicon diode such as 1N4148 works for some people.
 
-![sensors_probe_npn.jpg](/manual/sensors/sensors_probe_npn.jpg =500x)
+[![sensors_probe_npn.jpg](/manual/sensors/sensors_probe_npn.jpg =500x)](/manual/sensors/sensors_probe_npn.jpg){target=_blank}
 
 **All Duets:**  Connect the sensor ground wire to a ground pin on the Duet, and the sensor's + power wire to a suitable voltage (typically to VIN because these sensors usually need between 6 and 30V power).
 
@@ -231,7 +231,7 @@ Select mode 5 in the M558 command. The signal should not need to be inverted.
 
 ## BLTouch
 
-See also: [BLTouch Troubleshooting]()
+See also: [BLTouch Troubleshooting](/User_manual/Troubleshooting/BLTouch_troubleshooting)
 
 **NOTE:** CHECK YOUR WIRING! If using a clone BLTouch, or one supplied with a manufacturer's kit, the wiring colours may not match those listed below, which are correct for genuine BLTouch from [www.antclabs.com](http://www.antclabs.com).
 
@@ -275,7 +275,7 @@ Connect the BLTouch as follows:
 
 Duet Z Probe connector pin | Duet expansion connector pin | BLTouch pin | Colour || 
  :------------------------ | :--------------------------- | :---------- | :----- |
-IN | | Out | White | ![sensors_probe_bltouch_d2we.png](/manual/sensors/sensors_probe_bltouch_d2we.png =500x) |
+IN | | Out | White | [![sensors_probe_bltouch_d2we.png](/manual/sensors/sensors_probe_bltouch_d2we.png =500x)](/manual/sensors/sensors_probe_bltouch_d2we.png){target=_blank} |
 GND | | GND | Black | ^^ |
 | | 5V (pin 1) | +5V | Red | ^^ |
 | | Heater3 (pin 8) | Control | Orange or Yellow | ^^ |
@@ -296,7 +296,7 @@ The Z probe input on the Duet 2 WiFi/Ethernet rev 1.04 and later is 30V tolerant
 
 First, you need to allocate an unused heater expansion channel to reconfigure as the servo control for the BLTouch. For example, if the E2Heat output is unused, you can use heater 3 which corresponds to the PWM1 connector.
 
-If you have a Duex v0.9 or v0.9a board, check that you have a jumper on the "5V AUX JUMPER SELECT PINS" between the 5V AUX and 5V INT pins. See [this thread](https://forum.duet3d.com/topic/10654/bl-touch-and-the-duex-5/64) on the forum for details.
+If you have a Duex v0.9 or v0.9a board, check that you have a jumper on the "5V AUX JUMPER SELECT PINS" between the 5V AUX and 5V INT pins. See [this thread](https://forum.duet3d.com/topic/10654/bl-touch-and-the-duex-5/64){target=_blank} on the forum for details.
 
 Connect the BLTouch as follows:
 
@@ -325,7 +325,7 @@ Connect the BLTouch to the Z probe connector as follows:
 
 | Duet Z Probe connector pin | BLTouch pin | Colour ||
 |:--|:--|:--|:--|
-| IN | Out | White | ![sensors_probe_bltouch_d2m.png](/manual/sensors/sensors_probe_bltouch_d2m.png =300x) |
+| IN | Out | White | [![sensors_probe_bltouch_d2m.png](/manual/sensors/sensors_probe_bltouch_d2m.png =300x)](/manual/sensors/sensors_probe_bltouch_d2m.png){target=_blank} |
 | GND | GND | Black + (Brown or Blue) | ^^ |
 | MOD | Control | Orange or Yellow | ^^ |
 | 3.3V | - | - | ^^ |
@@ -477,7 +477,7 @@ Before trying to home (and smashing your hot end into the bed repeatedly when it
 
 The Touch-Mi  is based on an IR end stop with a metal pin for probing in the z direction. While the probe is documented to run at 5v, it can also be run at 3.3v (this has been confirmed with hotends.fr, the manufacturer of the Touch MI). As such, the Touch MI can be connected to the z probe headers of the duet board as shown below.
 
-![sensors_probe_touchmi.jpg](/manual/sensors/sensors_probe_touchmi.jpg =400x)
+[![sensors_probe_touchmi.jpg](/manual/sensors/sensors_probe_touchmi.jpg =400x)](/manual/sensors/sensors_probe_touchmi.jpg){target=_blank}
 
 Alternately, you can connect the Touch-Mi to a 5V pin (from the PanelDue header or from the expansion header) for VCC and to the E0 endstop for GND and IN (use the outer pins of the E0 endstop header).
 
