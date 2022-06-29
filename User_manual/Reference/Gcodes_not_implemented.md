@@ -2,7 +2,7 @@
 title: GCodes not implemented
 description:  This page lists GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware. 
 published: true
-date: 2021-12-03T21:45:43.497Z
+date: 2022-06-29T21:18:44.016Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:45:16.729Z
@@ -10,7 +10,7 @@ dateCreated: 2021-12-03T21:45:16.729Z
 
 This page lists GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware.
 
-For the detail on implemented GCodes see the [GCode](/User_manual/Reference/Gcodes) page. Some will be implemented in future firmware releases (see [this forum category](https://www.duet3d.com/forum/viewforum.php?id=8) for more details). Other features are covered by existing RepRapFirmware GCodes, are obsolete, or deprecated.
+For the detail on implemented GCodes see the [GCode](/User_manual/Reference/Gcodes) page. Some will be implemented in future firmware releases (see [this forum category](https://forum.duet3d.com/category/8/firmware-wishlist) for more details). Other features are covered by existing RepRapFirmware GCodes, are obsolete, or deprecated.
 
 Note, in RepRapFirmware 2.03 and later, if you try to execute a G- or M-command that RRF does not implement, it will execute a system macro of that name if it exists. For example, if you send G40 then it will execute /sys/G40.g if it exists; and if you send M48 then it will execute /sys/M48.g if it exists.
 
@@ -107,8 +107,8 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M322: Reset autolevel matrix
 * M323: Distortion correction on/off
 * M340: Control the servos (use M280)
-* M355: Turn case lights on/off (use M42)
-* M360: Report firmware configuration (look at config.g)
+* M355: Turn case lights on/off (use M42 or M150)
+* M360: Report firmware configuration (use M503)
 * M360-M364: SCARA calibration codes (not required, use G1 S2 moves commands instead)
 * M365 SCARA scaling factor (use M579)
 * M371: Move to next calibration position
@@ -118,7 +118,7 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M381: Disable all solenoids (use M42)
 * M405: Filament Sensor on (This and M406 are a subset of the functionality of [M591](/User_manual/Reference/Gcodes/M591)) 
 * M406: Filament Sensor off 
-* M420: Set RGB Colors as PWM (use M42)
+* M420: Set RGB Colors as PWM (use M150)
 * M420/M421: Enable/Disable Mesh Leveling (use bed probing, levelling Gcodes G29-G32)
 * M460: Define temperature range for thermistor controlled fan (use M106 to set a fan in thermostatic mode)
 * M530: Enable printing mode (not required)
@@ -127,7 +127,6 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M540: Enable/Disable "Stop SD Print on Endstop Hit" (No demand)
 * M565: Set Z probe offset (see G31)
 * M600: Set line cross section (volume extrusion not supported)
-* M600: Filament change pause (use pause.g macro to define what happens on pause)
 * M605: Set dual x-carriage movement mode (no requirement use M563)
 * M700: Level plate (See G32)
 * M703: Get Board Type (use M115/M122)
