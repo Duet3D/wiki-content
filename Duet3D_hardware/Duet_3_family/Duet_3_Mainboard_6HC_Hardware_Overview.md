@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-06-29T14:04:42.097Z
+date: 2022-06-29T19:57:18.212Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -367,7 +367,7 @@ The Duet 3 Mainboard 6HC can also be run in standalone mode (without the SBC) by
 
 ## Motion
 
-The Duet 3 Mainboard 6HC has 6 TMC 5160 stepper drivers on board. Until further testing including detailed thermal analysis is conducted these are limited to 4A RMS. The [initial testing of the TMC5160s](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_3HC_Hardware_Overview#thermal-tests) in this configuration, conducted on the Expansion board looks very promising. 4A per phase will allow driving stepper motors rated to up to 5A RMS (it is recommended to drive stepper motors at around 80% of rated maximum current).
+The Duet 3 Mainboard 6HC has 6 TMC 5160 stepper drivers on board. Until further testing including detailed thermal analysis is conducted these are limited to 4A RMS. The [initial testing of the TMC5160s](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC#thermal-tests) in this configuration, conducted on the Expansion board looks very promising. 4A per phase will allow driving stepper motors rated to up to 5A RMS (it is recommended to drive stepper motors at around 80% of rated maximum current).
 
 RepRapFirmware configures these drivers over the SPI bus: dynamic setting of microstepping, current and many other features can be achieved through firmware. The drivers can be combined together to use multiple drivers on one axis (for example a 3 motor Z levelling system).
 
