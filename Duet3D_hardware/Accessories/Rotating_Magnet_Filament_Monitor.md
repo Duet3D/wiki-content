@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2022-03-04T13:29:02.863Z
+date: 2022-06-29T10:47:38.137Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -43,13 +43,15 @@ There are two versions of the body stl part, 1 with clearance M3 holes and one w
 
 The v1 housing can be 3d printed using an FDM printer using a fairly high resolution (e.g. 0.1 layer height); however some tweaking will  be required to get the magnet distance just right.
 
-CAD models of the housing are [available on our GitHub](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic_v1.7/enclosure).
+CAD models of the housing are [available on our GitHub](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic/enclosure).
 
 ### Hobbed assembly
 
 This consists of a custom machined hobbed part, a bearing and a 6mm diametrically magnetised magnet. Together with the idler this acts to closely couple the movement of the magnet to the movement of the filament.
 
-The v2 hobbed assembly has a 2mm thick magnet (vs the 1mm thick magnet in the v1 design). 
+The v2 hobbed assembly has a 2mm thick magnet (vs the 1mm thick magnet in the v1 design).
+
+![v1vsv2_magnet_assembly.png](/hardware/magnetic_filament_monitor/v1vsv2_magnet_assembly.png)
 
 ### Idler assembly
 
