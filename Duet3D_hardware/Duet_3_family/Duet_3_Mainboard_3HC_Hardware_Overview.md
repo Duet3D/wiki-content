@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-01-15T17:21:38.371Z
+date: 2022-06-29T19:43:13.614Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -16,27 +16,24 @@ The Duet 3 Expansion 3HC v1.0 supports the following:
 
 ## Hardware specification
 
-| HARDWARE SPECIFICATION ||
-|--
+|---|---|
 | **Processor** | [Atmel ATSAME51N](https://www.microchip.com/wwwproducts/en/ATSAME51N19A) |
 | **Prosessor features** | 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM and many peripherals |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard | 
-| **On-board stepper drivers** | 3 x [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/) or [TMC5160](https://www.trinamic.com/products/integrated-circuits/details/tmc5160/) |
+| **On-board stepper drivers** | 3 x [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/) |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 | 
-| **Heater outputs** | 3 x extruder heater (up to 6A each) | 
-| **Thermistor/PT1000 inputs** | 3, optimised for 100K thermistors and PT1000 sensors  | 
-| **Fan outputs** | 6 PWM-controlled fans, of which 3 support 4-wire fans with PWM and tacho wires. Voltage selectable between VIN / 12V / external power, in 2 banks. One VIN-voltage, always-on fan connector. | 
-| **Inputs/Outputs** | 6 on-board I/O connectors for endstop, filament monitor, Z probe or servo connection. Inputs are 30V-tolerant. | 
-| **Endstop or filament monitor inputs** | See under Inputs/Outputs | 
-| **Z probe connector** | See under Inputs/Outputs | 
-| **PT100 and thermocouple daughterboard support** | 2 boards (4 channels) |
+| **High current outputs** | 3 x 6A each | 
+| **Thermistor/PT1000 inputs** | 3 x inputs, optimised for 100K thermistors and PT1000 sensors | 
+| **Medium current outputs** | 6 x PWM-controlled outputs, of which 3 support tacho input. Voltage selectable between VIN / 12V / external power, in 2 banks. One VIN-voltage, always-on output. | 
+| **Inputs/Outputs** | 6 x on-board I/O connectors for endstop, filament monitor, Z-probe or hobby servo connection. Inputs are 30V-tolerant. | 
+| **PT100 and thermocouple daughterboard support** | Supports 2 x daughterboards (4 channels) on board. |
 | **Power monitoring** | VIN and 12V voltage reporting |
 
 ## Operating limits
 
 |:--|:--|
 | **Stepper drivers** | Up to 6.3A peak current |
-| **Heater outputs** | 3 x extruder heater up to 6A each |
+| **High current outputs** | OUT0/1/2 up to 6A each |
 | **Input power voltage** | 12V to 32V |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
@@ -62,13 +59,13 @@ Importantly Duets are Open:
 
 ## Dimensions
 
-![duet_3_3hc_v0.9_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_dimensions.png =500x)
+[![duet_3_3hc_v0.9_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_dimensions.png){target=_blank}
 
 ## Thermal tests
 
 DC42 [conducted thermal tests](https://forum.duet3d.com/topic/11487/duet-3-expansion-board-stepper-driver-thermal-tests) on the drivers running at 4.45A RMS (6.3A Peak) per phase:
 
-![duet_3_3hc_v0.9_thermal_01.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_thermal_01.jpg =x400) ![duet_3_3hc_v0.9_thermal_02.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_thermal_02.jpg =x400) ![duet_3_3hc_v0.9_thermal_03.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_thermal_03.jpg =x400)
+![duet_3_3hc_v0.9_thermal_01.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_thermal_01.jpg =32%x)![duet_3_3hc_v0.9_thermal_02.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_thermal_02.jpg =32%x)![duet_3_3hc_v0.9_thermal_03.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_thermal_03.jpg =32%x)
 
 **First image:** Test setup. 
 **Second image:** FLIR image after 10 minutes, with no fan cooling, and the reported MCU temperature was 62.4C. 
@@ -86,11 +83,11 @@ Duet 3 Expansion 3HC [STEP File on github](https://github.com/Duet3D/Duet3-Expan
 
 ### Revision v1.01
 
-![duet3_eb_3hc_v1.01_d1.4_wiring.png](/duet_boards/duet_3_can_expansion/duet3_eb_3hc_v1.01_d1.4_wiring.png =x600)
+[![duet3_eb_3hc_v1.01_d1.4_wiring.png](/duet_boards/duet_3_can_expansion/duet3_eb_3hc_v1.01_d1.4_wiring.png =x600)](/duet_boards/duet_3_can_expansion/duet3_eb_3hc_v1.01_d1.4_wiring.png){target=_blank}
 
 ### Revision v1.0, v1.0a
 
-![duet_3_3hc_v1.0_v1.0a_wiring.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v1.0_v1.0a_wiring.jpg =x600)
+[![duet_3_3hc_v1.0_v1.0a_wiring.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v1.0_v1.0a_wiring.jpg =x600)](/duet_boards/duet_3_can_expansion/duet_3_3hc_v1.0_v1.0a_wiring.jpg){target=_blank}
 
 ### Revision v0.9
 
