@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2021-12-10T16:02:34.683Z
+date: 2022-06-29T19:55:29.688Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -12,29 +12,27 @@ dateCreated: 2021-07-14T12:07:32.465Z
 
 # Introduction
 
-The Duet 3 Expansion 1XD board provides step, direction and enable outputs to interface a Duet 3 system with a motor controller that takes those inputs. In addition it has a number of peripheral inputs and outputs for functions such as sensing driver alarms, temperature and controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview), [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview), [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_3HC_Hardware_Overview), and the [Duet 3 Tool Distribution Board](/Duet3D_hardware/Duet_3_family/Duet_3_Tool_Distribution_Board)). Multiple drivers can be daisy chained on the bus, with power (up to 48V) provided locally to the Duet 3 Expansion 1XD board. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
+The Duet 3 Expansion 1XD board provides step, direction and enable outputs to interface a Duet 3 system with a motor controller that takes those inputs. In addition it has a number of peripheral inputs and outputs for functions such as sensing driver alarms, temperature and controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview), [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview), [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC), and the [Duet 3 Tool Distribution Board](/Duet3D_hardware/Duet_3_family/Duet_3_Tool_Distribution_Board)). Multiple drivers can be daisy chained on the bus, with power (up to 48V) provided locally to the Duet 3 Expansion 1XD board. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
 
 # Features
 
 ## Hardware specification
 
-| HARDWARE SPECIFICATION ||
 |---|---|
 | **Processor** | [ATSAMC21G18A](https://www.microchip.com/en-us/product/ATSAMC21G18A) |
 | **Processor features** | 48MHz ARM Cortex M0+, 256KB Flash, 32KB RAM |
 | **Networking/Comms** | RJ11 CAN In and CAN Out connectors to connect to the Duet 3 CAN-FD bus; serial port |
 | **External stepper driver support** | 1 x  5V differential Step, Dir and Enable output, plus two common +5V pin. |
-| **Outputs** | 2 x medium current output, up to 2A |
-| **Temperature inputs** | 1, optimised for thermistors (reduced accuracy compared to other Duet 3 boards) |
-| **Inputs/Outputs** | 2 x 5V PWM outputs through 470R series resistor, 3 x digital inputs with permanent 27K pullup resistors. Inputs are 30V-tolerant. |
-| **Endstop inputs** | See under Inputs/Outputs |
+| **Medium current output** | 2 x 2A |
+| **Temperature inputs** | 1 x output, optimised for thermistors (reduced accuracy compared to other Duet 3 boards) |
+| **Inputs/Outputs** | 2 x 5V PWM outputs, 3 x digital inputs. Inputs are 30V-tolerant. |
 | **Power monitoring** | VIN voltage reporting |
 
 ## Operating limits
 
 |---|---|
 | External stepper driver output | Each pin can source/sink a max of 10mA. |
-| Outputs | 2 x medium current output, up to 2A |
+| Medium current outputs | OUT0/1 up to 2A each |
 | Input power voltage | 12V to 48V |
 | Power input connector rated current | 10A maximum, or fused limit (whichever is lower)
 | Inputs/Outputs | All inputs are 30V-tolerant |
@@ -61,7 +59,7 @@ Importantly Duets are Open:
 
 ## Dimensions
 
-![duet_3_1xd_v1.0_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_1xd_v1.0_dimensions.png =500x)
+[![duet_3_1xd_v1.0_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_1xd_v1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_1xd_v1.0_dimensions.png){target=_blank}
 
 ## 3D model
 
@@ -89,7 +87,7 @@ The default step pulse timing on the Duet 3 Expansion 1XD is ~2.6µs (equivalent
 
 ## Wiring diagram
 
-![duet_3_1xd_v1.0_wiring_01.png](/duet_boards/duet_3_can_expansion/duet_3_1xd_v1.0_wiring_01.png =500x)
+[![duet_3_1xd_v1.0_wiring_01.png](/duet_boards/duet_3_can_expansion/duet_3_1xd_v1.0_wiring_01.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_1xd_v1.0_wiring_01.png){target=_blank}
 
 The .svg version of this diagram is available [on github](https://github.com/Duet3D/Duet3-Expansion-1XD/tree/master/Expansion_1XD_v1.0).
 
@@ -157,7 +155,7 @@ The individual IO_x connectors have the following capabilities:
 | IO # | UART/I2C? | Analog in? | PWM out? | Notes |
 |:---|:---|
 | 0 | No | No | Yes |  |
-| 1 | No | Yes | Yes | Input only, no ouput pin.  |
+| 1 | No | Yes | No | Input only, no ouput pin.  |
 | 2 | No | No | Yes |   |
 
 ## External Stepper Connection
@@ -165,6 +163,20 @@ The individual IO_x connectors have the following capabilities:
 The Duet 3 Expansion 1XD v1.0 offers two methods of connecting to external stepper and servo drivers that accept a 5V step/dir/enable signal. Many drivers will work fine in single ended mode, which requires less wiring. Differential mode should be more resistant to electrical noise. Some drivers will only work with differential mode.
 
 ## Tabs {.tabset}
+
+### Single Ended Connection
+
+In this mode the +5V wire from the 5-pin connector on the Duet 3 Expansion 1XD is daisy chained to Step+, Dir+ and Enable+ on the external driver.
+
+| Duet 3 Expansion 1XD Pin | Driver Pin |
+|:---|:---|
+| D0_STEP(-) | STEP-* |
+| D0_DIR(-) | DIR- |
+| D0_EN(-) | EN- |
+
+**Note on some drivers the Step pin is called the Pulse or PUL pin.*
+
+[![duet_3_1xd_v1.0_wiring_03.png](/duet_boards/duet_3_can_expansion/duet_3_1xd_v1.0_wiring_03.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_1xd_v1.0_wiring_03.png){target=_blank}
 
 ### Differential Connection
 
@@ -181,21 +193,7 @@ In this mode both the Step/Dir/En (-) and Step/Dir/En (+) signals are connected 
 
 **Note on some drivers the Step pin is called the Pulse or PUL pin.*
 
-![duet_3_1xd_v1.0_wiring_02.png](/duet_3_can_expansion/duet_3_1xd_v1.0_wiring_02.png =500x)
-
-### Single Ended Connection
-
-In this mode the +5V wire from the 5-pin connector on the Duet 3 Expansion 1XD is daisy chained to Step+, Dir+ and Enable+ on the external driver.
-
-| Duet 3 Expansion 1XD Pin | Driver Pin |
-|:---|:---|
-| D0_STEP(-) | STEP-* |
-| D0_DIR(-) | DIR- |
-| D0_EN(-) | EN- |
-
-**Note on some drivers the Step pin is called the Pulse or PUL pin.*
-
-![duet_3_1xd_v1.0_wiring_03.png](/duet_3_can_expansion/duet_3_1xd_v1.0_wiring_03.png =500x)
+[![duet_3_1xd_v1.0_wiring_02.png](/duet_boards//duet_3_can_expansion/duet_3_1xd_v1.0_wiring_02.png =500x)](/duet_boards//duet_3_can_expansion/duet_3_1xd_v1.0_wiring_02.png){target=_blank}
 
 ## CAN
 
