@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: 
 published: true
-date: 2022-06-07T13:44:13.568Z
+date: 2022-06-29T10:27:07.399Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -74,7 +74,7 @@ Importantly Duets are Open:
 * The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mini5plus/blob/main/LICENSE)
 * All hardware [source files](https://github.com/Duet3D/Duet3-Mini5plus) are available on Github.
 * Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad-pcb.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
 
 ## Feature Comparison
 
