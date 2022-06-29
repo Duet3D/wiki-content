@@ -2,7 +2,7 @@
 title: Getting Started with Duet 2 WiFi / Ethernet
 description: This page contains a step by step guide and links to using your Duet 2 Wifi or Ethernet.
 published: true
-date: 2022-01-17T14:27:14.950Z
+date: 2022-06-29T20:56:18.089Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:10:28.657Z
@@ -114,4 +114,4 @@ More detailed specifics are found below:
 
 * See the [FAQ](/User_manual/Troubleshooting/FAQ).
 * See the [troubleshooting](/User_manual/Troubleshooting) section.
-* Come and ask on the [forum](https://www.duet3d.com/forum/).
+* Come and ask on the [forum](https://forum.duet3d.com/).
