@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2022-05-30T21:47:44.134Z
+date: 2022-06-29T10:41:29.229Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -88,7 +88,7 @@ The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Tool
 
 The power in screw terminal projects 8.5mm from the top of the PCB. When the JST power connector is fitted, the highest part is the latch on that connector, which at its highest point is nearly 10mm above the PCB surface, although the latch could be cut off if space was critical.
 
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/ToolBoard_1LC_v1.2/Duet3_TB_1LC_v1.2_step.zip){target=_blank}.
+The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/ToolBoard_1LC_v1.2/Duet3_TB_1LC_step_v1.2.zip){target=_blank}.
 
 ### Revision v1.1
 
