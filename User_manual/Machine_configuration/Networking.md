@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2022-01-18T12:10:53.550Z
+date: 2022-06-29T14:00:02.877Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z
@@ -104,4 +104,4 @@ The machine name is also used as the NetBIOS name, which can help to identify th
 
 Note: Both the mDNS and NetBIOS name are limited to 15 characters. If you use a longer name, the mDNS name will be the first 15 characters, e.g. if the Duet name is "3DPrinterWithVeryLongName", you should still be able to connect to "3DPrinterWithVe.local".
 
-If you still have trouble identifying your Duet on your network, Christian Hammacher's [Android app](https://play.google.com/store/apps/details?id=com.chham.FindMyDuet&hl=en_GB) may help.
+If you still have trouble identifying your Duet on your network, Christian Hammacher's **FindMyDuet** Android app may help. (As of June 2022, this is currently unavailable on the Google Play store, and awaiting updating.)
