@@ -2,7 +2,7 @@
 title: Adding additional output ports
 description: 
 published: true
-date: 2021-11-15T12:40:06.447Z
+date: 2022-06-29T21:31:24.687Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T21:19:55.566Z
@@ -14,7 +14,7 @@ If you need additional input or output ports, there are a number of options depe
 
 # Duet 3
 
-Additional output ports are provided by connecting CAN-bus expansion ports, for example the [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_3HC_Hardware_Overview), which provides an additional 3x extruder heater outputs (up to 6A each),6x PWM-controlled fan outputs, and 6x on-board I/O connectors.
+Additional output ports are provided by connecting CAN-bus expansion ports, for example the [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC), which provides an additional 3x extruder heater outputs (up to 6A each),6x PWM-controlled fan outputs, and 6x on-board I/O connectors.
 
 # Duet 2
 
