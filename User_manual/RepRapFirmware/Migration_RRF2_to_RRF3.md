@@ -2,7 +2,7 @@
 title: Migration from RRF2 to RRF3
 description: RepRapFirmware 3 is the next generation of the leading 32-bit 3D printer firmware, developed by Duet3D and derived from the RepRapFirmware code base developed by Adrian Bowyer.
 published: true
-date: 2021-12-14T15:26:49.544Z
+date: 2022-06-29T19:48:50.886Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T20:21:14.611Z
@@ -195,7 +195,7 @@ For each Duet board, see the hardware pages for a list of pin names and function
 
 [Duet 3 MB6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#pin-names)
 [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview#pin-names)
-[Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_3HC_Hardware_Overview#pin-names)
+[Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC)
 [Duet 3 Tool Board 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC#pin-names)
 [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD#pin-names)
 [Duet 2 WiFi and Ethernet](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview#pin-names)
