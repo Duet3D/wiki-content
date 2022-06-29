@@ -2,7 +2,7 @@
 title: Input shaping plugin
 description: Description about the input shaping plugin for DWC 3.4 and later
 published: true
-date: 2022-05-30T21:38:40.541Z
+date: 2022-06-29T13:43:44.579Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-31T16:06:54.645Z
@@ -12,11 +12,14 @@ dateCreated: 2022-03-31T16:06:54.645Z
 
 Input shaping describes a set of algorithms to reduce ringing frequencies that inevitably occur due to hardware factors in 3D printers. In order to isolate what frequencies affect a machine the most, an [accelerometer](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Sensors_Accelerometer) may be used. Note that revision 1.1 and newer of the [TOOL1LC](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) boards also come with an embedded accelerometer.
 
-Starting from DWC 3.4 the [Input Shaping plugin](https://github.com/Duet3D/DSF-Plugins/tree/dev/InputShaping) can be installed to fine-tune input shaper parameters using an accelerometer.
+Starting from DWC 3.4 the [Input Shaping plugin](
+https://github.com/Duet3D/DSF-Plugins/tree/dev/InputShaping
+https://github.com/Duet3D/DSF-Plugins/tree/master/InputShapingPlugin
+) can be installed to fine-tune input shaper parameters using an accelerometer.
 
 # Plugin installation
 
-To install the Input Shaping plugin, download it from [here](https://github.com/Duet3D/DSF-Plugins/releases/download/v3.4.0/InputShaping-3.4.0-b1.zip) and upload it using the `Upload&Start` button on DWC *without* unpacking the file first. After this, you should see the `Plugins` category with a new `Input Shaping` item in the main menu on the left:
+To install the Input Shaping plugin, download the latest release version for you RepRapFirmware version from [here](https://github.com/Duet3D/DSF-Plugins/releases) as a .zip file, without unpacking it, and upload it using the `Upload&Start` button on DWC *without* unpacking the file first. After this, you should see the `Plugins` category with a new `Input Shaping` item in the main menu on the left:
 
 ![menu.png](/manual/inputshaping/menu.png)
 
