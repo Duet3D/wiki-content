@@ -2,14 +2,13 @@
 title: Connecting an accelerometer
 description: This is a description of the experimental accelerometer support in RRF 3.3 and later.
 published: true
-date: 2021-12-15T22:47:17.303Z
+date: 2022-06-29T12:39:22.180Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
 ---
 
 ![accelerometer_03.jpg](/manual/sensors/accelerometer_03.jpg =800x)
-
 # Introduction
 
 RepRapFirmware 3.3 and later include support for connecting accelerometers. The primary purpose is to identify the ringing frequencies of the mechanics so that DAA and in future other forms of input shaping can be used to reducing ringing.
@@ -28,7 +27,7 @@ RRF 3.3 and 3.4beta1 support one type of accelerometer, the LIS3DH. We chose thi
 
 RRF 3.4beta2 and later support the LIS3DH and the LIS3DSH (note the extra S). Connection via SPI and configuration are exactly the same as for the LIS3DH. Compared to the LIS3DH, the LIS3DSH has higher resolution, more convenient sampling rates, and produces a cleaner signal.
 
-Breakout boards using the LIS3DH are readily available, for example [SparkFun SEN-13963](https://www.sparkfun.com/products/13963) and [Adafruit 2809](https://www.adafruit.com/product/2809). UK resellers of these boards include [The Pi Hut](https://thepihut.com/products/adafruit-lis3dh-triple-axis-accelerometer-2g-4g-8g-16g), [HobbyTronics](https://www.hobbytronics.co.uk/lis3dh-accelerometer?search=lis3dh) and [Pimoroni](https://shop.pimoroni.com/products/adafruit-lis3dh-triple-axis-accelerometer-2g-4g-8g-16g). The Adafruit and SparkFun boards are also available from Digikey. There are two different versions of the Adafruit board; either can be used.
+Breakout boards using the LIS3DH or LIS3DSH are readily available from eBay, Amazon and other retailers such as [SparkFun](https://www.sparkfun.com/){target=_blank}, [Adafruit](https://www.adafruit.com/){target=_blank}, [Digikey](https://www.digikey.com/) [The Pi Hut (UK)](https://thepihut.com/){target=_blank}, [HobbyTronics (UK)](https://www.hobbytronics.co.uk/){target=_blank} and [Pimoroni (UK)](https://shop.pimoroni.com/){target=_blank}. The Adafruit and SparkFun boards are also available from Digikey. There are two different versions of the Adafruit LIS3DH board; either can be used.
 
 Accelerometer boards using the LIS3DSH are readily available via eBay, Amazon and other retailers.
 
@@ -61,9 +60,15 @@ Both cables are wired as follows:
 | 4 | SCL | SPI_SCK |
 | 5 | SDA | SPI_MOSI |
 | 6 | SDO | SPI_MISO |
-| 7 | INT1 | IO_3.IN (Duet 3 Mini) or TWCK0 (Maestro) or SPI.CS3 |
+| 7 | INT1 | IO_3.IN (Duet 3 Mini)|
+| ^^ | ^^ | SPI.CS2 (MB6HC)|
+| ^^ | ^^ | SPI.CS3 (Duet 2, MB6XD)|
+| ^^ | ^^ | TWCK0 (Maestro)|
 | 8 | 3V3 or VCC | +3V3 |
-| 9 | CS | IO_3.OUT (Duet 3 Mini) or TWD0 (Maestro) or SPI.CS4 |
+| 9 | CS | IO_3.OUT (Duet 3 Mini) |
+| ^^ | ^^ | SPI.CS3 (MB6HC)|
+| ^^ | ^^ | SPI.CS4 (Duet 2, MB6XD)|
+| ^^ | ^^ | TWD0 (Maestro)|
 | 10 | not connected | not connected |
 
 #### Tabs {.tabset}
@@ -209,7 +214,7 @@ The last line of the file will report the average data rate and the number of ov
 
 Duet Web Control 3.3 includes an Accelerometer plugin that can be used to display the accelerometer data and its Fourier transform. To enable it, first go to Settings/General/Built-in Plugins and start it. Then go to Settings/Machine Specific/Accelerometer.
 
-![accelerometer_03.jpg](/manual/sensors/accelerometer_03.jpg =800x)
+[![accelerometer_03.jpg](/manual/sensors/accelerometer_03.jpg =800x)](/manual/sensors/accelerometer_03.jpg){target=_blank}
 
 ## Configure the Input Shaper
 
