@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2021-12-15T10:39:03.221Z
+date: 2022-06-29T11:42:08.874Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -348,8 +348,6 @@ The process is repeated with the model rotated 90 degrees for the Y axis.
 ![configure_idex_02.jpg](/manual/configuration/configure_idex_02.jpg =300x)
 
 The STL files and OpenScad document are available on the [Think3dPrint3d Github](https://github.com/T3P3/BigBox_Mods/tree/master/calibration%20objects) as IDEXcalibration_reg.stl and IDEXcalibration_var.stl. Print the 'reg' one with the X axis and the 'var' one with the U axis.
-
-Note: This process is similar to that used by [BCN3D with their SIGMA printer](https://www.bcn3dtechnologies.com/en/sigma-getting-started/).
 
 # Miscellaneous
 
