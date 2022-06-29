@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2022-04-22T13:22:03.545Z
+date: 2022-06-29T21:21:48.061Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -30,7 +30,7 @@ The rotation speed of most commonly-available fans is usually voltage-controlled
 |  | Always-on | 2-pin | 3-pin | 4-pin | | |
 | [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | 1 | 3 | - | 3 | 800ma @ 12V, 10A @ VIN (fuse) | 12V / VIN / external power, in 2 banks |
 | [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | - | 2 | - | 2 | 800ma @ 12V, 7.5A @ VIN (fuse) | 12V / VIN / external power, in 2 banks |
-| [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_3HC_Hardware_Overview) | 1 | 3 | - | 3 | 800ma @ 12V, 7.5A @ VIN (fuse) | 12V / VIN / external power, in 2 banks |
+| [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC) | 1 | 3 | - | 3 | 800ma @ 12V, 7.5A @ VIN (fuse) | 12V / VIN / external power, in 2 banks |
 | [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) | - | - | 1 | 1 | (v1.0 board) 800ma @ 12V | 12V |
 | ^^ | ^^ | ^^ | ^^ | ^^ | (v1.1 board) 800ma @ 12V, 2A @ VIN | 12V / VIN |
 | [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) | - | 2 | - | - | 4A @ VIN | VIN |
