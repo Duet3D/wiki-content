@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-05-04T15:34:00.297Z
+date: 2022-06-29T13:54:05.509Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -61,7 +61,7 @@ Otherwise, use a CAN bus connected expansion board to provide signalling for the
 
 ## Duet 3 6XD
 
-The Duet 3 6XD supports up to 6 external drivers, see the [Duet 3 6XD Documentation](Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) for more details. Additional CAN bus connected expansion boards can provide signalling for further external drivers; see [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) or [Duet 3 Expansion 1HCL](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL).
+The Duet 3 6XD supports up to 6 external drivers, see the [Duet 3 6XD Documentation](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) for more details. Additional CAN bus connected expansion boards can provide signalling for further external drivers; see [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) or [Duet 3 Expansion 1HCL](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL).
 
 ## Duet 2 WiFi/Ethernet
 
@@ -174,11 +174,11 @@ And the RAMPS PCB with the other components fitted:
 
 It is possible to use Trinamic stepper drivers in the so called "standalone mode". Since as for now the logic allowing to control the SPI features are not implemented one needs to configure the stepper driver with the CFG pins, those are the pins that would otherwise be used for the SPI interface and are configured with different states: pull up (to VIN), pull down (to GND) or open.
 
-Refer to [this wiring diagram](https://www.trinamic.com/fileadmin/assets/Products/Eval_Drawings/SilentStepStick-TMC2130_v10.pdf){target=_blank} to identify the CFG pins and follow the tables "CFG0", "CFG1 and CFG2" and "CFG3  to set the desired mode [pages 85-86 of TMC2130 data sheet](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2130_datasheet_Rev1.11.pdf){target=_blank}.
+Refer to [the TMC2130 board schematics](https://www.trinamic.com/support/eval-kits/details/tmc2130-eval/){target=_blank} to identify the CFG pins and follow the tables "CFG0", "CFG1 and CFG2" and "CFG3" to set the desired mode as outlined on [pages 85-86 of TMC2130 data sheet](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2130_datasheet_Rev1.11.pdf){target=_blank}.
 
 **Notice that the order from the top is CFG0, CFG3, CFG2, CFG1**
 
-**CFG0** - controls the *TOFF setting* which can help with noise reduction, to achieve the recommended by the datasheet setting this pin needs to be pulled down. On a step stick breakout board like the one [from the picture](https://www.aliexpress.com/item/32838869245.html){target=_blank}  that pin in open, so has to be pulled down to ground, a pin can be soldered up on the step stick.
+**CFG0** - controls the *TOFF setting* which can help with noise reduction, to achieve the recommended by the datasheet setting this pin needs to be pulled down. On a step stick breakout board like the one [from the picture](https://www.aliexpress.com/item/32838869245.html){target=_blank} that pin in open, so has to be pulled down to ground, a pin can be soldered up on the step stick.
 
 **CFG1 and CFG2** - those two allows to choose the mode of operation - between the StealthChop and SpreadCycle, microsteps and step interpolation. **Note that the CFG1 pin is most likely pulled down to ground on your breakout board** (with a 10k ohm resistor).
 
@@ -235,7 +235,7 @@ Refer to the documentation for your stepper driver to determine settings for ste
 **Taa:bb:cc:dd** Minimum driver step pulse width, step pulse interval, direction setup time and direction hold time, in microseconds
 
 ```
-M569 P5 R1 T5:5:10:10 ; driver 5 requires an active high enable, 5us minimum step pulse, 5us minimum step interval, 10us DIR setup time and no hold time
+M569 P5 R1 T5:5:10:0 ; driver 5 requires an active high enable, 5us minimum step pulse, 5us minimum step interval, 10us DIR setup time and no hold time
 ```
 
 > Note that microstepping mode (M350) and driver currents (M906) is not controlled by firmware configuration; it is set by the external stepper driver. Steps per mm (M92), speeds (M566, M203) and acceleration (M201) are controlled by the firmware. 
