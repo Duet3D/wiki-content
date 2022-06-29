@@ -2,7 +2,7 @@
 title: Duet3D Laser Filament Monitor
 description: 
 published: true
-date: 2022-06-29T10:43:44.768Z
+date: 2022-06-29T10:59:48.365Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T10:48:43.726Z
@@ -14,7 +14,7 @@ dateCreated: 2021-08-18T10:48:43.726Z
 
 The Duet3D filament monitors sense filament movement and so can indicate that filament has run out, jammed or has been ground away in the extruder. This version uses a laser sensor to detect movement.
 
-> The Duet3D Laser filament monitor is no longer under production as better results across filament types and colours are achieved using the [Rotating Magnet Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor). {.is-info}
+> The Duet3D Laser filament monitor is no longer under production as better results across filament types and colours are achieved using the [Rotating Magnet Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor){target=_blank}. {.is-info}
 
 # How it works
 
@@ -46,7 +46,7 @@ Both revisions have the same Laser sensor position, PCB dimensions and mounting 
 
 The Laser Filament Monitor uses two printed parts to constrain the filament so that it passes over the centre of the the optical sensor at the correct height. Inlet and outlet PTFE tubes are clamped between these two parts. They must be printed in **black filament**.
 
-OpenSCAD source and STLs from DC42's reference housing design [can be found here on GitHub](https://github.com/T3P3/FilamentMonitors/tree/master/Filament_Monitor_Laser_v2.0).
+OpenSCAD source and STLs from DC42's reference housing design [can be found here on GitHub](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Laser/Filament_Monitor_Laser_v2.0){target=_blank}.
 
 ### Revision 1.7
 
@@ -58,7 +58,7 @@ OpenSCAD source and STLs from DC42's reference housing design [can be found here
 
 The Laser Filament Monitor uses two printed parts to constrain the filament so that it passes over the centre of the the optical sensor at the correct height. Inlet and outlet PTFE tubes are clamped between these two parts. They must be printed in **black filament**.
 
-The OpenSCAD source file and STL for these parts is available [on Thingiverse](https://www.thingiverse.com/thing:2746340).
+The OpenSCAD source file and STL for these parts is available [on Github here](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Laser/Filament_Monitor_Laser_v1.7){target=_blank}.
 
 **Base plate** / **Filament Block**
 
@@ -72,7 +72,7 @@ This fits on top of the base plate, The PTFE inlet and outlet tubes are clamped 
 
 ## Open Source
 
-The hardware source files are [on Github here](https://github.com/Duet3D/FilamentMonitors).
+The hardware source files are [on Github here](https://github.com/Duet3D/FilamentMonitors){target=_blank}.
 
 ## Other parts
 
@@ -123,13 +123,13 @@ If you need to place anything close to or on top of the rectangular aperture in 
 
 # Connecting and configuration
 
-For connecting, firmware configuration, commissioning and troubleshooting, see [Connecting and configuring filament-out sensors](/User_manual/Connecting_hardware/Sensors_filament).
+For connecting, firmware configuration, commissioning and troubleshooting, see [Connecting and configuring filament-out sensors](/User_manual/Connecting_hardware/Sensors_filament){target=_blank}.
 
 # Housing variations
 
-The laser sensor shows different performance based on the type of filament being used, and potentially some other variables such as the material the housing is printed from and ambient infrared light.  See [this forum thread](https://forum.duet3d.com/topic/6092/laser-filament-monitor-test-results) for examples from testing.
+The laser sensor shows different performance based on the type of filament being used, and potentially some other variables such as the material the housing is printed from and ambient infrared light.  See [this forum thread](https://forum.duet3d.com/topic/6092/laser-filament-monitor-test-results){target=_blank} for examples from testing.
 
-Other than determining which filaments work well and which ones work less well, areas for experimentation to determine what improvements can be made relate to housing design. Some of these options have been added to an extended version of the housing design referenced above, [available here](https://www.youmagine.com/designs/duet3d-laser-filament-monitor-housing-v2).
+Other than determining which filaments work well and which ones work less well, areas for experimentation to determine what improvements can be made relate to housing design. Some of these options have been added to an extended version of the housing design referenced above, [available here](https://www.youmagine.com/designs/duet3d-laser-filament-monitor-housing-v2){target=_blank}.
 
 # Tabs {.tabset}
 
@@ -168,7 +168,7 @@ For 2.85mm filament, we suggest you use 3mm ID PTFE tubing (**not** 1/8") and ad
 
 ## Indirect reading
 
-Some people have had success using the laser filament monitor to read a bearing or steel ball which the filament is turning. [See this form thread](https://forum.duet3d.com/topic/10042/indirect-bearing-laser-filament-monitor-concept/) for an example.
+Some people have had success using the laser filament monitor to read a bearing or steel ball which the filament is turning. [See this form thread](https://forum.duet3d.com/topic/10042/indirect-bearing-laser-filament-monitor-concept/){target=_blank} for an example.
 
 # Technical details
 
