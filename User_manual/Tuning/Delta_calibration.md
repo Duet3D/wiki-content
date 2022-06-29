@@ -2,7 +2,7 @@
 title: Calibrating a delta printer
 description: Delta printers are mechanically simpler than most other types of 3D printer. They also take up very little desk space for a given build volume. However, in order to produce good prints, they need to be accurately built and calibrated.
 published: true
-date: 2021-12-03T16:16:51.918Z
+date: 2022-06-29T21:00:36.465Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:16:48.607Z
@@ -111,7 +111,7 @@ Your can run auto calibration without a Z probe if you tell RepRapFirmware that 
 The most popular types of Z probe for delta printers are:
 
 * [Duet3D Smart Effector](/Duet3D_hardware/Accessories/Smart_Effector). This has a built-in strain gauge to detect contact between the nozzle and the bed.
-* [Piezo based sensors](https://www.duet3d.com/forum/thread.php?id=752#p15875)
+* [Piezo based sensors](/User_manual/Connecting_hardware/Z_probe_connecting#piezoelectric-sensors)
 * Three force sensitive resistors (FSRs) mounted in the bed supports. The nozzle itself is used to push the bed and the FSRs detect the force. The design of the bed supports is critical, because the bed must be constrained not to move sideways yet the weight must be taken by the FSRs; and the FSRs must be protected from the heat of the bed heater. A small piece of electronics is generally used to measure the resistance of the FSRs and provide a trigger signal to the Duet or other electronics.
 * [Mini differential IR sensor by dc42](/Duet3D_hardware/Accessories/IR_Probe). It is small enough to mount close to the nozzle, below the heatsink of the popular E3Dv6 hot end. Not suitable for transparent beds with variable or highly-reflective surfaces below them, e.g. borosilicate glass plates with Kapton heaters glued directly to them. Like any Z probe that is offset from the nozzle, if you have effector tilt that varies with the XY position of the effector, this will give rise to a corresponding variation in trigger height.
 
