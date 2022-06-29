@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2022-05-16T11:50:03.416Z
+date: 2022-06-29T10:50:22.596Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -129,17 +129,15 @@ while <boolean-expression>
 
 ## Variables
 
-### Local variable declaration
+*Supported from RRF 3.3. Array-valued variables are supported from RRF 3.5*
 
-*Implemented in RRF 3.3 and later*
+### Local variable declaration
 
 `var <new-variable-name> = <expression>`
 
 This creates a new variable called *var.\<new-variable-name>* and initializes it to *\<expression>*. The name must not already be in use. The scope of a local name is the remainder of the block in which it is declared.
 
 ### Global variable declaration
-
-*Implemented in RRF 3.3 and later*
 
 `global <new-variable-name> = <expression>`
 
@@ -150,8 +148,6 @@ Example:
 `set global.T1heat=0`
 
 ### Variable assignment
-
-*Implemented in RRF 3.3 and later*
 
 `set <existing-variable-name> = <expression>`
 
@@ -247,7 +243,7 @@ Expressions may use the values of any properties in the RepRapFirmware Object Mo
 
 ## Variables
 
-*These are supported in RRF 3.3 in standalone mode and from 3.4 in SBC mode*
+*These are supported from RRF 3.3 in standalone mode and from 3.4 in SBC mode*
 
 The values of global variables that have been created using the '*global*' command can be retrieved using the syntax *global.\<variable name>*. Example:
 
@@ -267,7 +263,7 @@ exists(global.defaultSpeed)
 
 ## Macro parameters
 
-*These are supported in RRF 3.3*
+*These are supported from RRF 3.3*
 
 It is possible to add additional parameters when calling a macro using M98 or using a macro as a custom gcode.
 
@@ -286,6 +282,20 @@ echo {param.Y}
 ```
 
 When using a macro as custom gcode, do not use G, M, N or T as parameters in a custom 'G' gcode file. Do not use G, M or N as parameter in a custom 'M' gcode file.  There are no standard G or M commands that use these parameters and RRF will treat the parameter as being the start of the next command.
+
+## Array expressions
+
+*These are supported from RRF 3.5*
+
+A sequence of expressions exclosed in { } and separated by commas is an array expression. A trailing comma before the closing } is required when constructing a 1-element array and optional when there are two or more elements. The types of the elements do not all need to be the same. Examples:
+
+`{1,2,3}` is an array of three elements
+`{1,2,3,}` is an array of three elements with the same value as the previous example
+`{pi,}` is an array of one element
+`{pi}` is not an array, it is a simple value
+`{1,{2,3,4},5}` is an array of three elements, whose second value is itself an array
+
+The unary prefix operator `#` can be applied to a value of array type to get the number of elements, and the indexing operator `[ ]` can be applied to extract a single element.
 
 ## Unary prefix operators
 
