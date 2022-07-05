@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-05-03T14:45:52.679Z
+date: 2022-07-05T07:00:57.165Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -32,7 +32,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port |
 | **External Driver Support** | 6 ports with step/direction/enable outputs, and fault inputs. signalling is 5V single ended. |
 | **High current outputs** | 3 x High current outputs (up to 6A each) |
-| **medium current outputs** | 6 x medium current outputs for PWM fans and similar devices, of which 3 support 4-wire fans with PWM and tacho wires. Arranged in two banks, each bank is individually fused with voltage selectable between VIN / 12V.|
+| **Medium current outputs** | 6 x medium current outputs for PWM fans and similar devices, of which 3 support 4-wire fans with PWM and tacho wires. Arranged in two banks, each bank is individually fused with voltage selectable between VIN / 12V.|
 | **Thermistor/PT1000 inputs** | 4, optimised for 100K thermistors and PT1000 sensors |
 | **Inputs/Outputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo, or PanelDue connection. Inputs are 30V-tolerant. 4 of the 9 pairs of IO also have alternative Opto Isolated connectors.
 | **Power monitoring** | VIN voltage monitoring allows for state save on power failure.12V regulator output voltage also monitored |
@@ -56,8 +56,8 @@ The main hardware features of the Duet 3 6XD are listed below.
 |:---|:---|
 | **Input power voltage** | 11V to 30V (14V-30V to use onboard 12V regulator)|
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
-| **high current outputs** | 3 x high current outputs up to 6A each, total high current heater limit fused at 15A |
-| **medium current outputs** | 3 x medium current outputs up to 1A each, each bank of medium current outputs fused at 2A (note when set to 12V there is a total 800mA limit) |
+| **High current outputs** | 3 x high current outputs up to 6A each, total high current heater limit fused at 15A |
+| **Medium current outputs** | 3 x medium current outputs up to 1A each, each bank of medium current outputs fused at 2A (note when set to 12V there is a total 800mA limit) |
 | **External Driver Signal voltage** | 5V nominal (min. 4.2V @ 20mA) |
 | **External Driver Signal current** | 20mA maximum |
 | **Non opto isolated Inputs** | Permanent 27K pullup resistor to +3.3V included. Input voltage limits: -1V to +30V. |
@@ -241,18 +241,24 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | io7.out | ^^ |
 | ^^ | IO_8 | io8.in | ^^ |
 | ^^ | ^^ | io8.out | ^^ |
-| Opto Isolated Inputs/Outputs | IO_5 | io5.in | These signals are available as differential signals, e.g. IO5 In Pos(+) and IO5 In Neg(-), IO5 Out Pos(+) and IO5 Out Neg(-) |
-| ^^ | ^^ | io5.out | ^^ |
-| ^^ | IO_6 | io6.in | ^^ |
-| ^^ | ^^ | io6.out | ^^ |
-| ^^ | IO_7 | io7.in | ^^ |
-| ^^ | ^^ | io7.out | ^^ |
-| ^^ | IO_8 | io8.in | ^^ |
-| ^^ | ^^ | io8.out | ^^ |
+| Opto Isolated Inputs/Outputs | IO_5 | !io5.in.iso | These signals are available as differential signals, e.g. IO5 In Pos(+) and IO5 In Neg(-), IO5 Out Pos(+) and IO5 Out Neg(-) |
+| ^^ | ^^ | !io5.out.iso | ^^ |
+| ^^ | IO_6 | !io6.in.iso | ^^ |
+| ^^ | ^^ | !io6.out.iso | ^^ |
+| ^^ | IO_7 | !io7.in.iso | ^^ |
+| ^^ | ^^ | !io7.out.iso | ^^ |
+| ^^ | IO_8 | !io8.in.iso | ^^ |
+| ^^ | ^^ | !io8.out.iso | ^^ |
 | SPI CS | TEMPDB | spi.cs1 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
 | ^^ | ^^ | spi.cs4 | ^^ |
+| Driver error inputs | DRIVER 0| driver0.err | For receiving error signals from external drivers. These generate events, so you do not normally need to read them. |
+| ^^ | DRIVER 1| driver1.err | ^^ |
+| ^^ | DRIVER 2| driver2.err | ^^ |
+| ^^ | DRIVER 3| driver3.err | ^^ |
+| ^^ | DRIVER 4| driver4.err | ^^ |
+| ^^ | DRIVER 5| driver5.err | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
 | ^^ | LASER/VFD | laser, vfd | Pin shared with OUT 6 and LASER/VFD connectors |
 
