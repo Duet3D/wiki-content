@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-07-05T07:00:57.165Z
+date: 2022-07-05T07:03:27.388Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -253,7 +253,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
 | ^^ | ^^ | spi.cs4 | ^^ |
-| Driver error inputs | DRIVER 0| driver0.err | For receiving error signals from external drivers. These generate events, so you do not normally need to read them. |
+| Driver error inputs | DRIVER 0| driver0.err | For receiving error signals from external drivers. These generate [events](/User_manual/RepRapFirmware/Events), so you do not normally need to read them. |
 | ^^ | DRIVER 1| driver1.err | ^^ |
 | ^^ | DRIVER 2| driver2.err | ^^ |
 | ^^ | DRIVER 3| driver3.err | ^^ |
