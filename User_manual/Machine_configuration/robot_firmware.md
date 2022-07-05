@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-05T07:09:52.088Z
+date: 2022-07-05T07:11:12.478Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -42,7 +42,7 @@ When a Jacobian matrix is not quadratic, which is always the case if less or mor
 # Orientation, Quaternions
 I've described orientation in the rotation matrix in https://docs.duet3d.com/en/User_manual/Machine_configuration/Configuring_Robot_DH_parameters already.
 
-Starting from this information, a common approach is to calculate Euler angles of type ZYX or ZYZ and the first approach was to use it for inverse kinematics calculations. But for using it to interpolate orientations for segmentation of moves, the result was poor. Sometimes there are jerks, resulting in infinite angle speeds.
+Starting from this information, a common approach is to calculate Euler angles of type ZYX or ZYZ and the first approach was to use it for inverse kinematics calculations. But for using it to interpolate orientations for segmentation of moves, the result was poor. Sometimes there are jerks (when approaching singularities, e. g. gimbal lock), resulting in infinite angle speeds.
 
 The approach is changed to quaternions. Quaternions describe orientations with 4 parameters each and are geomatrically points on a 4 dimensional sphere. Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemaker https://dl.acm.org/doi/pdf/10.1145/325165.325242
 Interpolation is unambigious and the orientation change has constant velocity, which is andvantageous for constant extrusion. Slerp is much used in 3D gaming also to calculate smooth rotations.
