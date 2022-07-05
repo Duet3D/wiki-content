@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-06-24T09:10:32.012Z
+date: 2022-07-05T07:09:52.088Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -39,9 +39,17 @@ Forward calculation can be gathered in a Jacobian matrix of 6 lines and number o
 # Generalized inverse, Moore-Penrose
 When a Jacobian matrix is not quadratic, which is always the case if less or more than 6 actuators are used or near and for situations of reduced - less than 6 - rank at a singularity, the so-called generalized inverse must be calculated instead. Research has developed different methods for calculation. The Moore-Penrose inverse is calculated. The algorithms are based on the article "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970. A high number of iterations and high precision takes time which may be long for MCUs processing power, so the quality setting parameter M669 allows the user to decide about required time/precision. The kinematics calculates all segments of a G0, G1, G2, G3 move in advance of the move and caches it, so it will not interrupt the print during a move.
 
+# Orientation, Quaternions
+I've described orientation in the rotation matrix in https://docs.duet3d.com/en/User_manual/Machine_configuration/Configuring_Robot_DH_parameters already.
+
+Starting from this information, a common approach is to calculate Euler angles of type ZYX or ZYZ and the first approach was to use it for inverse kinematics calculations. But for using it to interpolate orientations for segmentation of moves, the result was poor. Sometimes there are jerks, resulting in infinite angle speeds.
+
+The approach is changed to quaternions. Quaternions describe orientations with 4 parameters each and are geomatrically points on a 4 dimensional sphere. Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemaker https://dl.acm.org/doi/pdf/10.1145/325165.325242
+Interpolation is unambigious and the orientation change has constant velocity, which is andvantageous for constant extrusion. Slerp is much used in 3D gaming also to calculate smooth rotations.
+
 # Degrees of freedom, rank
 
-Forward kinematics result in X, Y, Z and orientation, which is described by three coordination axes. Together they result in 6 parameters, which correspond to 6 degrees of freedom (DOF). A 6 axis robot can create those 6 DOFs. Every configuration of less than 6 actuators is limited in the creation of the result. A cartesian printer with three prismatic joints cannot change orientation of the endpoint, e.g., but has control over the X, Y, Z coordinates only, so it has 3 DOFs. A 4 or 5 axis CNC machine cannot use all 6 DOF and is restricted in the workspace (workspace in the sense of position and endpoint orientation).
+Forward kinematics result in X, Y, Z and orientation. Together they result in 6 parameters, which correspond to 6 degrees of freedom (DOF). A 6 axis robot can create those 6 DOFs. Every configuration of less than 6 actuators is limited in the creation of the result. A cartesian printer with three prismatic joints cannot change orientation of the endpoint, e.g., but has control over the X, Y, Z coordinates only, so it has 3 DOFs. A 4 or 5 axis CNC machine cannot use all 6 DOF and is restricted in the workspace (workspace in the sense of position and endpoint orientation).
 
 # Singularities
 Singularities are areas which can be reached be the robot arms, but the movement at this position is not possible or not determined. The reasons are different and the implemented solutions are different also.
