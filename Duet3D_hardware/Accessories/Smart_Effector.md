@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2022-07-06T17:48:50.020Z
+date: 2022-07-06T17:49:26.152Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -197,7 +197,7 @@ You can use a 4-wire PT100 connection from the Smart Effector back to the Duet e
 * The heatsink must be accurately centred in the Smart Effector. Production versions of the E3D heatsink have a shoulder to make it self-centering. If you have a prototype heatsink, use either the plastic split washer or the spacer, so that the PCB traces on the underside are clear of the heatsink. 
 * ***On revision 2.0 and earlier take care not to damage the fine traces on the PCB during assembly!*** If you use the 3 extra mounting holes to attach anything to the Smart Effector, there must be no metal or abrasive parts next to the PCB on either side. So use nylon washers under any screw heads or nuts.
 * Once you have inserted the crimp pins into the black Molex shells, they are impossible to remove without an expensive tool. So make quite sure that the crimp connection is secure, and make sure you have it in the correct hole before pushing it home. We supply 1 spare 6-way shell and some spare crimp pins.
-* Ensure the cables going to both connectors on the Smart Effector have adequate strain relief to prevent wire fatigue when the effector moves. For example, one method would be to mount a pillar in the hole next to the connector and zip tie the cable to it, or greater rigidity if using printed parts, a bridge that attaches to the 2 holes near the connectors, and tie both cables to it.
+* Ensure the cables going to both connectors on the Smart Effector have adequate strain relief to prevent wire fatigue when the effector moves. For example, one method would be to mount a pillar in the hole next to the connector and zip tie the cable to it, or for greater rigidity if using printed parts, a bridge that attaches to the 2 holes near the connectors, and tie both cables to it.
 
 
 ## Smart Effector and hot end
