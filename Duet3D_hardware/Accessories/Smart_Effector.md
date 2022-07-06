@@ -2,15 +2,15 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2022-01-05T12:22:39.737Z
+date: 2022-07-06T17:47:11.697Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
 ---
 
-![smart_effector_intro_01.jpg](/hardware/smart_effector/smart_effector_intro_01.jpg =x250) ![smart_effector_intro_02.jpg](/hardware/smart_effector/smart_effector_intro_02.jpg =x250) ![smart_effector_intro_03.jpg](/hardware/smart_effector/smart_effector_intro_03.jpg =x250) 
+![smart_effector_intro_01.jpg](/hardware/smart_effector/smart_effector_intro_01.jpg =37%x) ![smart_effector_intro_02.jpg](/hardware/smart_effector/smart_effector_intro_02.jpg =22%x) ![smart_effector_intro_03.jpg](/hardware/smart_effector/smart_effector_intro_03.jpg =37%x) 
 
-Note: the metal carriage and belt tensioner in the middle image is not part of the kit.
+Note: the metal carriage and belt tensioner on the carriage adaptor plate is not part of the kit.
 
 # Features
 
@@ -38,9 +38,9 @@ Note: the metal carriage and belt tensioner in the middle image is not part of t
 
 ## Open source
 
-The firmware source files are published here: [https://github.com/Duet3D/SmartEffectorFirmware](https://github.com/Duet3D/SmartEffectorFirmware)
+The firmware source files are published here: [https://github.com/Duet3D/SmartEffectorFirmware](https://github.com/Duet3D/SmartEffectorFirmware){target=_blank}
 
-The electronic hardware source files are available here: [https://github.com/Duet3D/SmartEffector](https://github.com/Duet3D/SmartEffector)
+The electronic hardware source files are available here: [https://github.com/Duet3D/SmartEffector](https://github.com/Duet3D/SmartEffector){target=_blank}
 
 # Physical properties
 
@@ -50,18 +50,17 @@ The electronic hardware source files are available here: [https://github.com/Due
 
 ### Smart Effector Dimensions
 
-![smarteffector_dimensions_v2.0_v3.0_d1.1.png](/hardware/smart_effector/smarteffector_dimensions_v2.0_v3.0_d1.1.png =600x)
+[![smarteffector_dimensions_v2.0_v3.0_d1.1.png](/hardware/smart_effector/smarteffector_dimensions_v2.0_v3.0_d1.1.png =600x)](/hardware/smart_effector/smarteffector_dimensions_v2.0_v3.0_d1.1.png){target=_blank}
 
 The STEP files are available on github:
 
-[https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v3.0/SmartEffector_v3.0.step](https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v3.0/SmartEffector_v3.0.step)
+[https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v3.0/SmartEffector_v3.0.step](https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v3.0/SmartEffector_v3.0.step){target=_blank}
 
-[https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v2.0/SmartEffector_v2.0.step
-](https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v2.0/SmartEffector_v2.0.step)
+[https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v2.0/SmartEffector_v2.0.step](https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v2.0/SmartEffector_v2.0.step){target=_blank}
 
 ### Carriage Adapter Dimensions
 
-![carriageadapter_dimensions_v1.0_d1.1.png](/hardware/smart_effector/carriageadapter_dimensions_v1.0_d1.1.png =600x)
+[![carriageadapter_dimensions_v1.0_d1.1.png](/hardware/smart_effector/carriageadapter_dimensions_v1.0_d1.1.png =600x)](/hardware/smart_effector/carriageadapter_dimensions_v1.0_d1.1.png){target=_blank}
 
 The PCB thickness for the Carriage Adapters is 2 mm.
 
@@ -69,7 +68,7 @@ The PCB thickness for the Carriage Adapters is 2 mm.
 
 For those people who want to make parts that fit flush with the underside of the board this gives the approximate clearances for SMT components on the bottom of the board, for PCB revision 1.3. Revision 2.0 and 3.0 have similar clearances with some parts moved slightly.
 
-![smart_effector_smt_components.png](/hardware/smart_effector/smart_effector_smt_components.png =600x)
+[![smart_effector_smt_components.png](/hardware/smart_effector/smart_effector_smt_components.png =600x)](/hardware/smart_effector/smart_effector_smt_components.png){target=_blank}
 
 ## Hardware
 
@@ -90,8 +89,8 @@ For those people who want to make parts that fit flush with the underside of the
 | 1 | M12 plastic or fibre washer |  |
 | 1 | 18mm or 20mm round spirit level |  |
 | 1 | E3Dv6 threaded heatsink | Note this was produced for Duet3D by e3d, originally with a 1.0 pitch, the more recent e3dv6 threaded heatsinks are 1.5mm pitch. |
-| 6 | Magnetic ball studs with M3 tails | Optional depending on which kit you purchase, Also available from [https://www.magballarms.com/](https://www.magballarms.com/) |
-| 6 | Delta printer arms with magnets in the end and socket to fit the ball studs. The ones with machined Delrin ends are best. | Optional depending on which kit you purchase, Different lengths available from [https://www.magballarms.com/](https://www.magballarms.com/) |
+| 6 | Magnetic ball studs with M3 tails | Optional depending on which kit you purchase, Also available from [https://www.magballarms.com/](https://www.magballarms.com/){target=_blank} |
+| 6 | Delta printer arms with magnets in the end and socket to fit the ball studs. The ones with machined Delrin ends are best. | Optional depending on which kit you purchase, Different lengths available from [https://www.magballarms.com/](https://www.magballarms.com/){target=_blank} |
 
 ### Parts you need to obtain elsewhere
 
@@ -109,9 +108,9 @@ If you use our design for a print cooling fan attachment, then you will also nee
 | 2 | M3 nuts | eBay |
 | 2 | M3 threaded brass inserts | eBay |
 | 1 | 40x10mm print cooling fan, 12V or 24V as applicable | eBay |
-| 1 | Printed fan bracket | Print it yourself, see [https://www.thingiverse.com/thing:2467663](https://www.thingiverse.com/thing:2467663) |
-| 1 | Printed fan duct | Print it yourself, see [https://www.thingiverse.com/thing:2467663](https://www.thingiverse.com/thing:2467663) |
-| 1 | Printed fan duct - alternative circular version | Print it yourself, see [https://www.thingiverse.com/thing:2808152](https://www.thingiverse.com/thing:2808152) |
+| 1 | Printed fan bracket | Print it yourself, see [https://www.thingiverse.com/thing:2467663](https://www.thingiverse.com/thing:2467663){target=_blank} |
+| 1 | Printed fan duct | Print it yourself, see [https://www.thingiverse.com/thing:2467663](https://www.thingiverse.com/thing:2467663){target=_blank} |
+| 1 | Printed fan duct - alternative circular version | Print it yourself, see [https://www.thingiverse.com/thing:2808152](https://www.thingiverse.com/thing:2808152){target=_blank} |
 
 ### Tools needed
 
@@ -131,13 +130,13 @@ If you use our design for a print cooling fan attachment, then you will also nee
 
 ### V3.0
 
-![smarteffector_wiring_v3.0_d1.0.png](/hardware/smart_effector/smarteffector_wiring_v3.0_d1.0.png =800x)
+[![smarteffector_wiring_v3.0_d1.0.png](/hardware/smart_effector/smarteffector_wiring_v3.0_d1.0.png =800x)](/hardware/smart_effector/smarteffector_wiring_v3.0_d1.0.png){target=_blank}
 
 *Note: when using a thermistor or 2 wire PT100 you should use the centre two pins*
 
 ### V2.0
 
-![smart_effector_v2_wiring.png](/hardware/smart_effector/smart_effector_v2_wiring.png =800x)
+[![smart_effector_v2_wiring.png](/hardware/smart_effector/smart_effector_v2_wiring.png =800x)](/hardware/smart_effector/smart_effector_v2_wiring.png){target=_blank}
 
 *Note: when using a thermistor  or 2 wire PT100 you should use the centre two pins*
 
@@ -198,6 +197,7 @@ You can use a 4-wire PT100 connection from the Smart Effector back to the Duet e
 * The heatsink must be accurately centred in the Smart Effector. Production versions of the E3D heatsink have a shoulder to make it self-centering. If you have a prototype heatsink, use either the plastic split washer or the spacer, so that the PCB traces on the underside are clear of the heatsink. 
 * ***On revision 2.0 and earlier take care not to damage the fine traces on the PCB during assembly!*** If you use the 3 extra mounting holes to attach anything to the Smart Effector, there must be no metal or abrasive parts next to the PCB on either side. So use nylon washers under any screw heads or nuts.
 * Once you have inserted the crimp pins into the black Molex shells, they are impossible to remove without an expensive tool. So make quite sure that the crimp connection is secure, and make sure you have it in the correct hole before pushing it home. We supply 1 spare 6-way shell and some spare crimp pins.
+* Ensure the cables going to both connectors on the Smart Effector have adequate strain relief to prevent wire fatigue when the effector moves. For example, one method would be to mount a pillar in the hole next to the connector and zip tie the cable to it.
 
 
 ## Smart Effector and hot end
@@ -207,7 +207,7 @@ You can use a 4-wire PT100 connection from the Smart Effector back to the Duet e
 1. If you will be using a 12V supply for the hot end fan, fit the jumper supplied across the pins labelled "on for 12V". Leave the jumper off for 24V.
 1. If the thermistor or PT100 sensor does not already have a short cable terminating in a black 2-pin Molex Microfit plug, cut the cable to 60mm to 80mm length and fit the plug.
 1. If your hot end fan does not already have a short cable terminating in a black 2-pin Molex Microfit plug, cut the cable to 60mm to 80mm length and fit the plug.
-1. Assemble the E3D hot end heatsink, heat break, heater block, nozzle, heater cartridge and temperature sensor; or replace the heatsink on your existing one. Don't clip the hot end fan assembly on to the heatsink yet. Remember to put a collet in the top of the heatsink if it doesn't already have one fitted. Please follow [e3d's instructions here](https://e3d-online.zendesk.com/hc/en-us/articles/360017013257-V6-Assembly-Guide-Edition-2-) for this.
+1. Assemble the E3D hot end heatsink, heat break, heater block, nozzle, heater cartridge and temperature sensor; or replace the heatsink on your existing one. Don't clip the hot end fan assembly on to the heatsink yet. Remember to put a collet in the top of the heatsink if it doesn't already have one fitted. Please follow [e3d's instructions here](https://e3d-online.zendesk.com/hc/en-us/articles/360017013257-V6-Assembly-Guide-Edition-2-){target=_blank} for this.
 1. Put the top of the heatsink through the hole in the bottom of the Smart Effector, all the way until the Smart Effector is against the the top heatsink fin (which is smaller than the other heatsink fins). Make sure that the heatsink is centred in the Smart Effector. You can optionally print a spacer, 16mm outside diameter x 12mm inside diameter by up to about 4mm long to fit between the heatsink and the Smart Effector, to allow more room below the Smart Effector.
 1. Put the fibre washer above the PCB over the heatsink thread, then secure the Smart Effector to the heatsink using the nut. Do not tighten it yet.
 1. If you are using our print cooling fan design, rotate the hot end so that the protruding end of the heater block faces towards the edge of the Smart Effector that carries the two white 2-pin Molex KK connectors (see photo later). This is to leave room for the print cooling fan, which will be attached to the opposite corner.
@@ -221,12 +221,12 @@ You can use a 4-wire PT100 connection from the Smart Effector back to the Duet e
 
 At this stage your effector should look like this, viewed from the underside. Note that the hot end heatsink fan is on the left hand side for PCB revision 3.0 and 2.0:
 
-![smart_effector_v2_assembly_01.jpg](/hardware/smart_effector/smart_effector_v2_assembly_01.jpg =x250) ![smart_effector_v2_assembly_02.jpg](/hardware/smart_effector/smart_effector_v2_assembly_02.jpg =x250)
+[![smart_effector_v2_assembly_01.jpg](/hardware/smart_effector/smart_effector_v2_assembly_01.jpg =47%x)](/hardware/smart_effector/smart_effector_v2_assembly_01.jpg){target=_blank} [![smart_effector_v2_assembly_02.jpg](/hardware/smart_effector/smart_effector_v2_assembly_02.jpg =50%x)](/hardware/smart_effector/smart_effector_v2_assembly_02.jpg){target=_blank}
 
 
 Note that the hot end heatsink fan is on the right hand side for PCB revision 1.3.
 
-![smart_effector_v1.3_assembly_01.jpg](/hardware/smart_effector/smart_effector_v1.3_assembly_01.jpg =x250) ![smart_effector_v1.3_assembly_02.jpg](/hardware/smart_effector/smart_effector_v1.3_assembly_02.jpg =x250)
+[![smart_effector_v1.3_assembly_01.jpg](/hardware/smart_effector/smart_effector_v1.3_assembly_01.jpg =49%x)](/hardware/smart_effector/smart_effector_v1.3_assembly_01.jpg){target=_blank} [![smart_effector_v1.3_assembly_02.jpg](/hardware/smart_effector/smart_effector_v1.3_assembly_02.jpg =49%x)](/hardware/smart_effector/smart_effector_v1.3_assembly_02.jpg){target=_blank}
 
 ## Print cooling fan assembly
 
@@ -246,7 +246,7 @@ Your print cooling fan assembly should look like this. The fan duct was printed 
 
 Here are some images showing the placement of the print cooling fan on a revision 1.3 Smart Effector. The fan duct was printed green and the fan bracket was printed red. If you have the revision 2.0 Smart Effector, the hot end heatsink fan will be on the other side.
 
-![smart_effector_final_assembly_01.jpg](/hardware/smart_effector/smart_effector_final_assembly_01.jpg =x250) ![smart_effector_final_assembly_02.jpg](/hardware/smart_effector/smart_effector_final_assembly_02.jpg =x250) ![smart_effector_final_assembly_03.jpg](/hardware/smart_effector/smart_effector_final_assembly_03.jpg =x250)
+![smart_effector_final_assembly_01.jpg](/hardware/smart_effector/smart_effector_final_assembly_01.jpg =26%x) ![smart_effector_final_assembly_02.jpg](/hardware/smart_effector/smart_effector_final_assembly_02.jpg =28%x) ![smart_effector_final_assembly_03.jpg](/hardware/smart_effector/smart_effector_final_assembly_03.jpg =39%x)
 
 ## Carriage Adapters
 
@@ -260,7 +260,7 @@ In final assembly arms should be parallel to each other. So, each pair of arms c
 
 Fit the arms so that N and S magnetic poles alternate around the effector. This maximises the strength of the magnetic joints, and makes it less likely that the magnets will interfere with the fans.
 
-![smart_effector_final_assembly_04.jpg](/hardware/smart_effector/smart_effector_final_assembly_04.jpg =400x)
+[![smart_effector_final_assembly_04.jpg](/hardware/smart_effector/smart_effector_final_assembly_04.jpg =500x)](/hardware/smart_effector/smart_effector_final_assembly_04.jpg){target=_blank}
 
 # Configuring firmware
 
@@ -271,7 +271,7 @@ The following instructions assume you are using the Smart Effector with Duet ele
 1. Double-check that you have made the right connections
 1. In your config.g file set Z probe type 8, feed rate 1200mm/min and recovery time 0.4 seconds in your M558 command (`M558 P8 R0.4 F1200` + whatever other parameters you want)
 1. Note that RRF3 requires the pin names defined in M558 as well, so add `C"io3.in+io3.out"` for Duet 3 (change 'io3' as appropriate) or `C"zprobe.in+zprobe.mod"` for Duet 2 to the M558 command above.
-1. When in doubt, generate an example config with the [RepRapFirmware online configuration tool](https://configtool.reprapfirmware.org/Start) for your firmware version. 
+1. When in doubt, generate an example config with the [RepRapFirmware online configuration tool](https://configtool.reprapfirmware.org/Start){target=_blank} for your firmware version. 
 1. In your config.g file select probe threshold 100, trigger height -0.1, and zero XY offsets in your G31 command (`G31 P100 X0 Y0 Z-0.1`). You can tune the trigger height later to get a more accurate Z=0 position for that perfect first layer.
 1. Power up your printer electronics using 5V or USB power only. Three seconds after power up, the green LED located on the top of Smart Effector (next to unpopulated programming header)  should flash twice. See troubleshooting below for information on other LED flashing error codes. 
 1. Give the hot end nozzle a gentle but sharp tap upwards (if the nozzle is cold, you can use your finger for this). The green LED should flash each time you tap it, indicating that the nozzle contact sensor has triggered and a pulse has been sent to the electronics.
@@ -309,7 +309,7 @@ Pin 5 (the Output pin) has a 1K series resistor to help protect the Smart Effect
 
 ### Sensitivity
 
-Recent versions of Marlin (v2.0.2 and later) allow the programming of the Smart Effector's sensitivity. See the [Marlin Gcode dictionary here](https://marlinfw.org/docs/gcode/M672.html) for details.
+Recent versions of Marlin (v2.0.2 and later) allow the programming of the Smart Effector's sensitivity. See the [Marlin Gcode dictionary here](https://marlinfw.org/docs/gcode/M672.html){target=_blank} for details.
 
 If you use the Smart Effector with any other firmware, you will have to use the default sensitivity. This sensitivity works well using the standard E3D hot end fan and Duet 2 electronics, which provide very smooth motion due to the use of x256 microstepping. If your electronics and firmware do not use high microstepping, then the vibration during a Z probing move may cause spurious triggering at the default sensitivity. If you use a different hot end fan, it may cause interference, requiring a reduction in sensitivity.
 
