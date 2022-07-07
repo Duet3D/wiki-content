@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-01-21T16:42:36.445Z
+date: 2022-07-07T22:07:30.281Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -12,7 +12,7 @@ dateCreated: 2021-12-17T14:38:19.042Z
 
 # Introduction
 
-The Duet 3 Expansion 1HCL (*"closed-loop expansion board"*) provides a high current stepper motor driver that can be controlled in closed loop mode. This document provides a background in closed loop control (which may be skipped if the reader is already familiar with the concept) in addition to details on how to tune the closed loop system to operate optimally. For more details on the Duet 3 Expansion 1HCL, please see it's [dedicated page](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1HCL).
+The Duet 3 Expansion 1HCL (*"closed-loop expansion board"*) provides a high current stepper motor driver that can be controlled in closed loop mode. This document provides a background in closed loop control (which may be skipped if the reader is already familiar with the concept) in addition to details on how to tune the closed loop system to operate optimally. For more details on the Duet 3 Expansion 1HCL, please see the [1HCL hardware overview page](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL).
 
 **If you are just interested in the bare minimum required to get closed-loop functioning, skip ahead to the two 'What do I need to do?' sections below.**
 
@@ -97,43 +97,41 @@ Running this command should make the drive move slightly (tuning manoeuvres will
 The table below lists the available tuning manoeuvres:
 
 
-| Manoeuvre Name | Description | Required? || Manoeuvre ID |
-| ^^ | ^^ | Quadrature | Magnetic | ^^ |
-|:---|:---|:---:|:---:|:---:|
-| Polarity Detection | Detects in which orientation the stepper motor coils are connected. | Yes | Yes | 1 |
-| Zeroing | Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. | Yes | Once* | 2 |
-| Polarity Check | Checks that the polarity has been detected correctly by the polarity detection manoeuvre to a high degree of accuracy. This will also detect if a motor's wiring is faulty or it is not plugged in. | Yes | Yes | 4 |
-| Control Check | [Coming Soon!] Checks that the motor is controllable. For instance, if the PID parameters are set such that they push the motor away from the target instead of towards it (the P term is negative), this check will fail. | Yes | Yes | 8 |
-| Encoder Steps Check | [Coming Soon!] Checks that the encoder is sending the correct count per revolution, as set by M569.1. | Yes | Yes | 16 |
-| Continuous Increase Manoeuvre | [Coming Soon!] Applies a continuous sin/cos wave to the motor inputs to move the motor continuously in 1 direction. Stops after 8 steps. | No | No | 32 |
-| Step Manoeuvre | Applies a step change to the PID target to view the step response of the PID controller. | No | No | 64 |
-| Ziegler-Nichols Manoeuvre | [Coming Soon!] Attempts to find the ultimate gain and oscillation period of the motor for use in Ziegler-Nichols tuning | No | No | 128 |
 
-In order to combine multiple moves, add the manoeuvre IDs. For example, to perform polarity detection and zeroing, use 1+2=**3** as the V parameter to M569.6. The manoeuvres will be performed in ascending order of ID - so in the above example, polarity detection would occur first, followed by zeroing.
+| Manoeuvre Name | Description | Required? | Manoeuvre ID |
+|:---|:---|
+| Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. | Yes for all encoder types. This needs to be done after each power on and reset, and ideally should be part of the homing files for axis with closed loop drivers. | 1 |
+| Absolute SPI Encoder Calibration | Calibrates the encoder positions to the motor. | Yes for Absolute SPI connected (magnetic) encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board as the results are stored in the 1HCL memory. | 2 |
 
 ### What do I Need to Do?
 
 This depends on what type of encoder you are using. Read the appropriate section below and then advance to 'Running Tuning on Power On'.
 
-**Quadrature Encoders**
+#### Quadrature Encoders
 
-If you are using a quadrature encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1 or T2), then from the table above, manoeuvres 1, 2, 4, 8 and 16 are required - this means that they must be run every time the printer is powered on.  This can be achieved by using the following command:
+If you are using a quadrature encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1 or T2), then from the table above, manoeuvres 1 is required and it must be run every time the printer is powered on.  This can be achieved by using the following command:
 
-`M569.6 P##.# V31    ; Where P##.# is the driver address to tune`
+`M569.6 P##.# V1    ; Where P##.# is the driver address to tune`
 
-**Magnetic Encoders**
+Ideally this is put in the home#.g file for the axis that the motor is associated with, until the motor has had the Polarity Detection and Zeroing tuning move carried out it will not move in closed loop mode. The normal procedure would be to home in open loop mode, then switch to close loop mode, then run the Polarity Detection and Zeroing move. See the [Running Tuning on Power On](/User_manual/Tuning/Duet_3_1HCL_tuning#running-tuning-on-power-on) section below.
 
-If you are using a magnetic encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T3), then from the table above, manoeuvres 1, 4, 8 and 16 are required - this means that they must be run every time the printer is powered on.  This can be achieved by using the following command:
+#### Magnetic Encoders
 
-`M569.6 P##.# V29    ; Where P##.# is the driver address to tune`
+If you are using a magnetic encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T3), then from the table above, manoeuvres 1 and 2 are required. The Polarity Detection and Zeroing move must be run every time the printer is powered on.  This can be achieved by using the following command:
+
+`M569.6 P##.# V1    ; Where P##.# is the driver address to tune`
+
+As for quadrature encoders the normal place to run this move would be in the home#.g, see the [Running Tuning on Power On](/User_manual/Tuning/Duet_3_1HCL_tuning#running-tuning-on-power-on) section below
 
 In addition, manoeuvre 2 must be run at least once. The procedure for this is detailed in the 'Caveats for Magnetic Encoders' section below. Follow the instructions here, and then read the instructions in that section.
 
-**Running Tuning on Power On**
+### Running Tuning on Power On
 
-The most suitable way to ensure tuning is run every time the printer is powered on is to modify the homing moves to include tuning. A suitable new homing procedure is as follows:
+The most suitable way to ensure tuning is run every time the printer is powered on is to modify the homing moves to include tuning. This is because the motors make a small movement when they run the tuning move, and if the axis are homed before the move is made the printer can be in a known safe place to run the move.
 
-1. Home, as usual, in open-loop mode
+A suitable new homing procedure is as follows:
+
+1. Home in open-loop mode
 1. Move to a known-safe position to perform tuning
 1. Switch to closed-loop mode
 1. Perform the tuning manoeuvres
@@ -158,7 +156,7 @@ G1 X50 F3000            ; Move to a known-safe position
 M400                    ; Wait for the move to complete
 G4 P500                 ; Wait for the motor to settle
 M569 P50.0 D4           ; Turn closed loop back on
-M569.6 P50.0 V31        ; Perform the tuning manoeuvres for a quadrature encoder
+M569.6 P50.0 V1         ; Perform the tuning manoeuvres for a quadrature encoder
 G1 X0                   ; Move back to X0
 
 G1 H2 Z0 F6000          ; lower Z again
@@ -170,17 +168,17 @@ If tuning fails, the M569.6 command will report an error. In this case, check th
 
 ## PID Tuning
 
-As discussed in the above 'PID Control Systems' section, the PID controller can be tuned by setting it's P, I and D parameters. This is often considered more of an art than a science, and many methods exist for choosing parameters that lead to desirable characteristics.
+As discussed in the above 'PID Control Systems' section, the PID controller can be tuned by setting it's P, I and D parameters. Many methods exist for choosing parameters that lead to desirable characteristics for tuning PID loops in general. This is one example that is shown to work with the 1HCL boards with 48Ncm, 1.8degree, Nema 17 motors coupled with 1000ppr/4000cpr encoders.
 
 ### What do I Need to Do?
 
-Nothing! The 1HCL expansion board comes with good-enough PID parameters out of the box for most basic use cases (P=100, I=0, D=0). However, the real power of closed-loop control comes when the PID controller is tuned for your specific setup. The sections below contain more details on how to tune your PID controller to achieve better results.
+Possibly nothing! The 1HCL expansion board comes with PID parameters out of the box which may work sufficiently well for a basic use cases (P=100, I=0, D=0). However, the real power of closed-loop control comes when the PID controller is tuned for your specific setup. The sections below contain more details on how to tune your PID controller to achieve better results.
 
-On average, tuning a PID controller results in an order of magnitude better performance, so whilst the factory default will work out of the box, tuning is very much recommended!
+On average, tuning a PID controller results in an order of magnitude better performance, so whilst the factory default may work out of the box, tuning is very much recommended!
 
 ### Automatic Tuning
 
-Coming soon!
+This feature will be added in a future release.
 
 ### Manual Tuning
 
