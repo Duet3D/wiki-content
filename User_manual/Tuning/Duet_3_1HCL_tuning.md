@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-07-07T22:07:30.281Z
+date: 2022-07-07T22:17:28.682Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
