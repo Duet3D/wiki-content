@@ -2,11 +2,17 @@
 title: Configuring RepRapFirmware for OpenPnP
 description: RepRapFirmware running on Duet can be used in conjunction with OpenPnP to control movement of a pick-and-place machine.
 published: true
-date: 2022-01-26T17:18:09.270Z
+date: 2022-07-08T12:38:25.389Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T17:18:06.032Z
 ---
+
+# Introduction
+
+RepRapFirmware support OpenPnP, for the control of pick-and-place machines. Below is a user-submitted example of an OpenPnP setup.
+
+There is also a Duet configuration example in the official OpenPnP documentation; see the [OpenPnP wiki here](https://github.com/openpnp/openpnp/wiki/Duet3D-Openpnp-Example){target=_blank} for details.
 
 # Configuring RepRapFirmware
 
@@ -16,7 +22,7 @@ Need to configure the following components.
 * Setting actuators
 * Setting sensors
 
-# Setting axes
+## Setting axes
 
 The X axis to control the movement of the PnP head right and left. Right is positive.
 
@@ -122,7 +128,7 @@ G92 C0
 G90               ; absolute positioning
 ```
 
-# Setting actuators
+## Setting actuators
 
 Actuators are generic devices that perform additional tasks.
 
@@ -141,9 +147,9 @@ M950 P5 C"e0heat"                 ; Down camera lights output
 M950 P6 C"e1heat"                 ; Up camera lights output
 ```
 
-# Setting sensors
+## Setting sensors
 
-Some machines control the vacuum in the head to confirm the pick of a component, for this we use vacuum sensors like [MPXV6115V](https://www.nxp.com/docs/en/data-sheet/MPXV6115V.pdf).
+Some machines control the vacuum in the head to confirm the pick of a component, for this we use vacuum sensors like [MPXV6115V](https://www.nxp.com/docs/en/data-sheet/MPXV6115V.pdf){target=_blank}.
 
 ```
 ; Sensors
@@ -153,7 +159,7 @@ M308 S2 P"e1temp" Y"linear-analog" A"V_Sen_H2" F1 B0 C4095
 
 # Wiring
 
-![configure_openpnp_01.png](/manual/configuration/configure_openpnp_01.png =600x)
+[![configure_openpnp_01.png](/manual/configuration/configure_openpnp_01.png =600x)](/manual/configuration/configure_openpnp_01.png){target=_blank}
 
 # Configuring OpenPnP
 
