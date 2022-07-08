@@ -2,7 +2,7 @@
 title: Input shaping
 description: This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. 
 published: true
-date: 2022-07-08T12:51:54.656Z
+date: 2022-07-08T12:53:16.447Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:33:14.384Z
@@ -25,6 +25,12 @@ Typically, the lower the ringing frequency and the higher the acceleration used,
 # What is input shaping?
 
 Each time the acceleration of the tool head changes, any resonances are excited. Input shaping adjusts the period of acceleration and/or breaks the acceleration up into a number of steps of different sizes, so that later acceleration changes induce ringing equal and opposite to the ringing induces by earlier acceleration changes.
+
+For the technically minded, here are smoe references to academic papers about input shaping:
+
+https://www.researchgate.net/publication/316556412_INPUT_SHAPING_CONTROL_TO_REDUCE_RESIDUAL_VIBRATION_OF_A_FLEXIBLE_BEAM
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.465.1337&rep=rep1&type=pdf
+
 
 # How do i use it?
 
