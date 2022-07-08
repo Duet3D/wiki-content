@@ -2,7 +2,7 @@
 title: Input shaping
 description: This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. 
 published: true
-date: 2021-12-03T19:33:16.983Z
+date: 2022-07-08T12:51:54.656Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:33:14.384Z
@@ -10,7 +10,7 @@ dateCreated: 2021-12-03T19:33:14.384Z
 
 # Introduction
 
-This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware.
+This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. Note, as at firmware version 3.4, input shaping is only applied to axis motors driven directly from the Duet3 main board, not to axis motors driven from CAN-connected expansion boards.
 
 # What is ringing?
 
@@ -29,6 +29,8 @@ Each time the acceleration of the tool head changes, any resonances are excited.
 # How do i use it?
 
 Install and configure your accelerometer and capture some data as described here: [Accelerometers](/User_manual/Connecting_hardware/Sensors_Accelerometer)
+
+There is an DWC plugin that will help signifcantly in tuning input shaping to match your specific mahcine, see: [Input shaping plugin](/User_manual/Tuning/Input_shaping_plugin)
 
 Configure the input shaper using the M593 gcode command and do some test prints that elicit ringing patterns. M593 details and usage: [M593 Configure Input Shaping](/User_manual/Reference/Gcodes/M593)
 
