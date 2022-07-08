@@ -2,7 +2,7 @@
 title: Input shaping
 description: This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. 
 published: true
-date: 2022-07-08T12:53:37.320Z
+date: 2022-07-08T12:54:38.386Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:33:14.384Z
@@ -14,7 +14,7 @@ This page describes the reasons for using input shaping and the support for inpu
 
 # What is ringing?
 
-Motion systems typically involve a component having significant mass (e.g. a tool head) driven by a system having significant elasticity. In a 3D printer the most obvious sources of elasticity are the belts; however the stepper motor driving the belts or leadscrews also have elasticity. The combination of a mass driven or supported by an elastic medium  forms a simple harmonic oscillator. The greater the mass and the more elastic the medium, the lower will be the resonant frequency.
+Motion systems typically involve a component having significant mass (e.g. a tool head) driven by a system having significant elasticity. In a 3D printer the most obvious sources of elasticity are the belts; however the stepper motors driving the belts or leadscrews also have elasticity. The combination of a mass driven or supported by an elastic medium  forms a simple harmonic oscillator. The greater the mass and the more elastic the medium, the lower will be the resonant frequency.
 
 When the mass is accelerated, this resonance will be excited. After reaching the commanded position, the mass (e.g. tool head) will oscillate slightly about the commanded position. This phenomenon is called ringing. The oscillations will subside over a period of time.
 
