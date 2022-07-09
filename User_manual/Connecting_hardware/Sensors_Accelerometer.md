@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the experimental accelerometer support in RRF 3.3 and later.
 published: true
-date: 2022-06-29T12:39:22.180Z
+date: 2022-07-09T12:26:38.144Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -168,7 +168,7 @@ Forum user [Nuramori](https://forum.duet3d.com/user/nuramori) has produced a [gr
 
 ## Sampling rate and resolution
 
-For most purposes the default sampling rate and resolution (10 bit resolution, 1344Hz sampling rate) should suffice. You can add R and S parameters to M955 if you want to change them. See [M955](/User_manual/Reference/Gcodes/M955) for details.
+For most purposes the default sampling rate and resolution should suffice. The default is 1344Hz with 10 bit resolution for the LIS3DH, or 1600Hz with 16-bit resolution for the LIS3DSH. You can add R and S parameters to M955 if you want to change them. See [M955](/User_manual/Reference/Gcodes/M955) for details.
 
 # Using accelerometers
 
