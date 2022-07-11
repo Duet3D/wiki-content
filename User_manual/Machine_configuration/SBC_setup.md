@@ -2,13 +2,17 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspian OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2022-06-13T09:58:14.797Z
+date: 2022-07-11T13:13:40.452Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
 ---
 
 # Introduction
+
+[![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_03.jpg){target=_blank}**This guide describes how to setup a Single Board Computer (SBC) with Duet 3, allowing the Duet to run in 'SBC mode'.**
+
+Duet 3 mainboards support connecting a Single Board Computer (SBC) such as a Raspberry Pi. The SBC runs its operating system (Raspberry Pi OS in the case of Raspberry Pi), with the Duet Software Framework (DSF) running on the Raspberry Pi OS. DSF is the bundle of software programs that connects to and controls the Duet 3.
 
 SBC mode allows part of the functionality to be handled by the SBC. This offers a number of benefits:
 - Faster network transfer speeds
@@ -18,25 +22,26 @@ SBC mode allows part of the functionality to be handled by the SBC. This offers 
 - Optional webcam integration
 - Optional HTTPS support
 
-This guide describes how to setup a Single Board Computer (SBC) with Duet 3. It assumes you are using Raspian (the operating system that runs on the Raspberry Pi) and are using the SD card image specifically setup for Duet 3. In the future other SBCs may be officially supported. Most of the time you can start at Step 2 as you will receive a SD card pre-flashed with the image of Raspian. However, if your SD card supplied with the Duet 3 mainboard becomes damaged or lost, start at step 1.
+Duet 3 mainboards are supplied with an SD card pre-loaded with the Raspberry Pi OS + DSF, suitable for use with Raspberry Pi 3 or 4. This guide assumes you are using a Raspberry Pi and the SD card image specifically set up for Duet 3. In the future other SBCs may be officially supported. 
+
+Most of the time you can start at Step 2 below, as you will receive an SD card pre-flashed with the Raspberry Pi OS + DSF. If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, start at step 1.
+
+If you want to install DSF on an existing Raspberry Pi OS installation, or on a custom Debian board/installation, please see this page: [Duet Software Framework (DSF) on other boards](/User_manual/Machine_configuration/DSF_Other){target=_blank}
 
 # 1. Flash the image file
 
+> If you are planning to use the SBC for more than plain 3D printing or if you have an SBC with little RAM + external display, it is HIGHLY recommended to obtain a **class A1- or A2-rated microSD** card instead of the shipped SD card. If your SD card speed is insufficient, you may experience occasional problems when data between the SBC and Duet is exchanged. 
+{.is-warning}
+
+![sbc_setup_01.png](/manual/configuration/sbc_setup_01.png =50%x){.align-right}
+
 1. You will need at least an 8Gb class 10 SD card.
-
-   > If you are planning to use the SBC for more than plain 3D printing or if you have an SBC with little RAM + external display, it is HIGHLY recommended to obtain a **class A1- or A2-rated microSD** card instead of the shipped SD card. If your SD card speed is insufficient, you may experience occasional problems when data between the SBC and Duet is exchanged. {.is-warning}
-
-1. There are multiple programs to write an image file to an SD card. If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/)
-
-1. You need to use the latest Raspian image **setup for Duet 3** that is available from the Duet 3D software site. You may choose the lite image for a GUI-less setup and the full variant for setups where a display is attached:
-[https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip)
-[https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip)
-
-1. Under Windows, MacOS and Linux, flash the file using  using [balenaEtcher](https://www.balena.io/etcher/)
-![sbc_setup_01.png](/manual/configuration/sbc_setup_01.png)
-
+1. There are multiple programs to write an image file to an SD card. If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/){target=_blank}
+1. You need to use the latest Raspberry Pi image **setup for Duet 3** that is available from the Duet 3D software site. You may choose the lite image for a GUI-less setup and the full variant for setups where a display is attached:
+[https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
+[https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip){target=_blank}
+1. Under Windows, MacOS and Linux, flash the file using  using [balenaEtcher](https://www.balena.io/etcher/){target=_blank}
 1. Select the image, select the SD card. Click flash. Will take about 5 minutes.
-
 1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
 
 # 2. Setup wifi
@@ -66,25 +71,23 @@ network={
 ## Tabs {.tabset}
 
 ### Duet 3 MB6HC
-[![sbc_setup_02.jpg](/manual/configuration/sbc_setup_02.jpg =49%x)](/manual/configuration/sbc_setup_02.jpg){target=_blank} [![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =49%x)](/manual/configuration/sbc_setup_03.jpg){target=_blank}
+[![sbc_setup_02.jpg](/manual/configuration/sbc_setup_02.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_02.jpg){target=_blank}[![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_03.jpg){target=_blank}
 1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, and connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
-
 1. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
-
 1. It is acceptable, especially with longer ribbon cables than shown here, to route the cable around the back of the SBC, however pin 1 must connect as shown.
-
 1. Ensure the USB supply is sufficient to power the peripherals attached to the Pi, especially screens that do not have a separate power supply. [See here for more details on 5v power jumper position selection](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v). 
-
 1. Using a Pi4 may require a separate power supply for both the Duet and Pi4 due to power draw. The same holds true if using peripherals that draw power via USB.
+
+<p style="clear:both"></p>
 
 ### Duet 3 Mini 5+
 
-[![sbc_setup_09.jpg](/manual/configuration/sbc_setup_09.jpg =49%x)](/manual/configuration/sbc_setup_09.jpg){target=_blank}
+[![sbc_setup_09.jpg](/manual/configuration/sbc_setup_09.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_09.jpg){target=_blank}
 1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
-
 1. The Duet 3 Mini+ cannot power the Pi. You must power the Pi separately. The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers or other USB power supplies cannot supply sufficient voltage. Therefore, we strongly recommend that you use the official Raspberry Pi PSU, or another PSU specifically designed to power a Raspberry Pi. If the red LED on the Pi is not continuously illuminated, the power supply is insufficient.
-
 1. Connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
+
+<p style="clear:both"></p>
 
 # 4. First Boot
 
