@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-05-31T16:18:52.507Z
+date: 2022-07-11T14:00:48.556Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -305,7 +305,7 @@ Here is an exmaple of a JST_VH connector:
 
 # 16. Connecting a Single Board Computer (SBC)
 
-[![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_03.jpg){target=_blank}[![sbc_setup_09.jpg](/manual/configuration/sbc_setup_09.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_09.jpg){target=_blank}Duet 3 mainboards support connecting a Single Board Computer (SBC) such as a Raspberry Pi.
+[![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_03.jpg){target=_blank}[![sbc_setup_09.jpg](/manual/configuration/sbc_setup_09.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_09.jpg){target=_blank}Duet 3 mainboards optionally support connecting a Single Board Computer (SBC) such as a Raspberry Pi.
 
 * Connect an SBC to the 26-pin SBC header, using the supplied ribbon cable
 * Connect the other end to the SBC's GPIO header. 
