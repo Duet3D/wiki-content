@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-07-11T14:00:48.556Z
+date: 2022-07-12T07:54:28.013Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -293,7 +293,7 @@ Here is an exmaple of a JST_VH connector:
 * The [PanelDue](/Duet3D_hardware/Accessories/PanelDue), an optional accessory sold separately, is a touchscreen display which gives a user the ability to control the Duet with an intuitive interface directly at the printer.
 * The PanelDue can be connected in two ways (both cables are supplied with the PanelDue), depending on Duet board:
   * A 4-wire cable that contains power and serial signals. This has a maximum recommended length of 1 meter. It plugs into the 5-pin <span style="background-color:#FFFF00">IO_0</span> header. The supplied 4-wire cable may need to be rewired using the supplied 5-way connector shell; see  [User manual: Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue) for details.
-  * a 10-way flat cable with a maximum recommended length of 400mm. It plugs into the 10-pin <span style="background-color:#00FF00">PanelDue_SD</span> header. It has extra pins that allow the Duet to access the PanelDue's SD card reader. 
+  * a 10-way flat cable with a maximum recommended length of 400mm. It plugs into the 10-pin <span style="background-color:#00FF00">PanelDue_SD</span> header. It has extra pins that allow the Duet to access the PanelDue's SD card reader. The IO_0 connector cannot be used for other purposes when using the PanelDue_SD header because they share connections.
 * For more details, including using the PanelDue_SD header to connect an external SD card reader, see [User manual: Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue).
 
 **Connecting a 12864 display**
