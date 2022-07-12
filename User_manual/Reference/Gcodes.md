@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-07-12T13:48:34.046Z
+date: 2022-07-12T13:58:06.232Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -690,7 +690,7 @@ The way in which each axis is homed is completely configurable using the homing 
 
 * If there are no G28 parameters that correspond to axes that exist, or if the printer is a delta, then all axes are to be homed. Otherwise, the axes to be homed are determined by enumerating parameters of the G28 command.
 * Each axis or delta tower to be homed is flagged as "position not known".
-* If all axes or towers are to be homed, the file **homeall.g** is processed, except that on a delta printer **homedelta.g** is processed. If this process results in some but not all axes become flagged as "position known", an attempt will be made to home the remaining axes as if the G28 command had listed those axes.
+* If **ALL** axes or towers are to be homed, the file **homeall.g** is processed, except that on a delta printer **homedelta.g** is processed. If this process results in at least one axis, but not all axes, becoming flagged as "position known", an attempt will be made to home the remaining axes as if the G28 command had listed those axes.
 * For each remaining axis flagged as "to be homed" the appropriate homing file is executed (**homex.g**, **homey.g**, **homez.g** etc.).
 
 For Cartesian printers that use a Z probe to home Z instead of an endstop it is sensible to setup the **homeall.g** with the XY axes to home first, then move the carriage to a safe position –usually the middle of the bed– where it can safely probe downward to home Z. For an example see [Configuring RepRapFirmware for a Cartesian printer](/User_manual/Machine_configuration/Configuration_cartesian){target=_blank}.
