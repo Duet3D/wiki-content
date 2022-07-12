@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: 
 published: true
-date: 2022-06-29T10:27:07.399Z
+date: 2022-07-12T10:57:27.196Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -240,9 +240,9 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | TEMP_1 | temp1 | |
 | TEMP_2 | temp2 | |
 | **Inputs/Output** |||
-| IO_0 | io0.in | Endstops, Z probes, filament monitors etc |
+| IO_0 | io0.in | PanelDue, endstops, Z probes, filament monitors etc. Shares io0.out and io0.in pins with PanelDue_SD connector. |
 | ^^ | io0.out | ^^ |
-| IO_1 | io1.in | ^^ |
+| IO_1 | io1.in | endstops, Z probes, filament monitors etc |
 | ^^ | io1.out | ^^ |
 | IO_2 | io2.in | ^^ |
 | ^^ | io2.out | ^^ |
@@ -281,7 +281,7 @@ The individual IO_x connectors have the following capabilities:
 
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|
-| 0 | yes | no | no | AUX0 port, can be used to connect a PanelDue. Configure using M575 P1. |
+| 0 | yes | no | no | AUX0 port, can be used to connect a PanelDue. Configure using M575 P1. Shares io0.out and io0.in pins with PanelDue_SD connector. |
 | 1 | yes | no | yes | AUX1 port. Configure using M575 P2. |
 | 2 | yes | no | yes | The  standard firmware does not support this UART |
 | 3 | no | yes | yes | Shared with  backlight control on 12864 displays having Neopixel backlights |
@@ -359,7 +359,9 @@ You can adjust the M150 command to change the backlight colours. Please note, in
 
 A [PanelDue](/Duet3D_hardware/Accessories/PanelDue) can be connected to IO_0 using a 4-wire cable. See [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#option-1-4-way-cable)
 
-Alternatively, it can be connected using a ribbon cable plugged into the socket labelled PanelDue_SD, which enables access to the PanelDue SD card socket. However, there are some caveats; see note on Duet 3 Mini 5+ on [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#duet-3-mini-5-wifiethernet).
+Alternatively, it can be connected using a ribbon cable plugged into the socket labelled PanelDue_SD, which enables access to the PanelDue SD card socket. However, there are some caveats:
+* The PanelDue connector shares the io0.out and io0.in pins, so IO_0 cannot be used at the same time.
+* Duet 3 boards support the card detect signal. Newer versions of the PanelDue 5i and 7i (v1.01 and later of the 5i and v2.01 and later of the 7i) provide this signal, but older versions will need to be modified. See [Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue#card-detect-signal)
 
 ## Connecting a Raspberry Pi
 
