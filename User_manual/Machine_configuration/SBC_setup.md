@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2022-07-11T13:38:01.467Z
+date: 2022-07-12T11:17:38.023Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -112,10 +112,7 @@ If [`http://duet3.local/`](http://duet3.local/) does not show Duet Web Control (
 
 ### Duet 3/SBC not on the network (http://duet3.local does not work)
 
-* If you do not have a screen/keyboard attached to your SBC and your browser cannot connect over wifi all, you will get something that looks like this:
-
-![sbc_setup_04.png](/manual/configuration/sbc_setup_04.png =500x)
-
+![sbc_setup_04.png](/manual/configuration/sbc_setup_04.png =50%x){.align-right}If you do not have a screen/keyboard attached to your SBC and your browser cannot connect over wifi all, you will get a message in your browser similar to the one on the right.
 * Log into your router and confirm that the SBC has received an IP address. If it is not shown at all move to the next section: wifi not working at all.
 * If an IP address is shown for the SBC the enter that address in the browser e.g. http://192.168.1.123 If this works then its possible that your network or PC does not like the mDNS service used to provide the http://nnnnnn.local names. The best way around this is to reserve the IP address in your router so the SBC always receives the same address.
 
@@ -128,11 +125,7 @@ If [`http://duet3.local/`](http://duet3.local/) does not show Duet Web Control (
 
 ### DWC does not appear correctly (500 error)
 
-If you get a "HTTP ERROR 500 - This page is not working" response
-
-![sbc_setup_05.png](/manual/configuration/sbc_setup_05.png)
-
-either when going to [`http://duet3.local/`](http://duet3.local/) or to the IP address, then the SBC is on the network, but Duet Software Framework (the Duet3 software that runs on the SBC) is not operating correctly.
+![sbc_setup_05.png](/manual/configuration/sbc_setup_05.png =50%x){.align-right}If you get a "HTTP ERROR 500 - This page is not working" response either when going to [`http://duet3.local/`](http://duet3.local/) or to the IP address, then the SBC is on the network, but Duet Software Framework (the Duet3 software that runs on the SBC) is not operating correctly.
 
 * The most likely cause of this is that it cannot connect to the Duet 3 Mainboard. 
 * Check the ribbon cable is installed correctly.
