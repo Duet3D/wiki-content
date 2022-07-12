@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-06-17T14:13:13.466Z
+date: 2022-07-12T13:48:34.046Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6793,7 +6793,7 @@ This sets the stall detection parameters and optionally the low-load current red
 
 * **Pnnn:nnn:...** Drive number(s) to configure
 * **X,Y,Z,U,V,W,A,B,C** Axes to configure (alternative to using the P parameter)
-* **Snnn** Stall detection threshold (-64 to +63, values below -10 not recommended). Lower values make stall detection more sensitive. S3 is a good starting point for many motors.
+* **Snnn** Stall detection threshold (see notes below)
 * **Fn** Stall detection filter mode, 1 = filtered (one reading per 4 full steps), 0 = unfiltered (default, 1 reading per full step)
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200
 * **Tnnn** (optional) Coolstep control register, 16-bit unsigned integer
@@ -6813,6 +6813,7 @@ M915 X Y S5 R2
 ### Notes
 
 * In RRF v3.4 and later there is no longer a distinction between R2 and R3; both cause an event to be created when the driver stalls. To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. File rehome.g is no longer used. If file driver-stall.g is not found then the print is paused without running pause.g and the error is reported.
+* **S parameter** For most drivers, values range from -64 to +63. For TMC2209 drivers (Duet 3 Mini 5+, Duet 3 Toolboard 1LC) values range from -128 to +127. Lower values make stall detection more sensitive. Values below -10 are not recommended. S3 is a good starting point for many motors.
 * If any of the S, F, T and R parameters are absent, the previous values for those parameters associated with the specified drivers will continue to be used. 
 * If all the parameters are absent, the existing settings for the specified drive(s) will be reported.
 * See the Trinamic TMC2660 and TMC2130 datasheets for more information about the operation and limitations of motor stall detection.
