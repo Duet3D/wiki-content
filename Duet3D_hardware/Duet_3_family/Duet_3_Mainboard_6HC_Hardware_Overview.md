@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-06-29T19:57:18.212Z
+date: 2022-07-13T14:28:53.243Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -346,6 +346,8 @@ Alternatively, the SBC can provide 5V for the Duet using the "SBC -> 5V" jumper.
 ![duet_3_mb6hc_5v_options_02.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_5v_options_04.png)
 
 If you wish to power the Duet and SBC separately, fit just one jumper, to "Int 5V EN". The Duet will be powered by it's internal 5V regulator and the SBC from it's own 5V power supply.
+
+If you wish to power the Duet and SBC separately, both from external 5V power supplies, remove all the jumpers. Supply 5V power to the Duet via the 'EXT 5V' connector.
 
 **Note:** No other jumper configuration is recommended or supported.
 
