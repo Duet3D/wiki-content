@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-07-14T15:19:46.608Z
+date: 2022-07-14T15:24:53.777Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6367,7 +6367,7 @@ M672 S105:50:205
 
 For the Duet3d smart effector:
 * The programming pin has to be defined in the [M558](/User_manual/Reference/Gcodes/M558){target=_blank} command
-* To program the sensitivity, send command M672 S105:aaa:bbb replacing aaa by the desired sensitivity and bbb by 255 - aaa. The green LED will flash 4 times if the command is accepted. When you subsequently power up the effector, the green LED will flash three times instead of twice to indicate that a custom sensitivity is being used.
+* To program the sensitivity threshold, send command M672 S105:*aaa*:*bbb* replacing *aaa* by the desired threshold and *bbb* by 255 - *aaa*. The green LED will flash 4 times if the command is accepted. When you subsequently power up the effector, the green LED will flash three times instead of twice to indicate that a custom sensitivity is being used. Higher values make the sensor less sensitive. The default threshold for the Duet3D Smart Effector is 50.
 * To revert to factory sensitivity, send command M672 S131:131. The green LED will flash 5 times if the command is accepted. When you subsequently power up the effector, the green LED will flash twice to indicate that default settings are being used.
 
 See the [Smart effector and carriage adapters for delta printer](/Duet3D_hardware/Accessories/Smart_Effector){target=_blank} documentation for more details.
