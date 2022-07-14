@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-06T18:07:59.663Z
+date: 2022-07-14T12:44:40.158Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -34,19 +34,23 @@ Forward kinematics calculates from actuators' (steppers) positions to cartesian 
 
 The robot is a chain of joints/actucators and links. The end position and orientation can be calculated by matrix multiplications of translation and rotations. The result is a position of X, Y, Z cartesian coordinates and three axis vectors of X, Y, Z directions, which describe endpoint's orientation.
 # Jacobian matrix and Inverse
-Forward calculation can be gathered in a Jacobian matrix of 6 lines and number of columns equal to actuator count. Three lines represent X, Y, Z change by an actuator, the last three lines represent angular change by three axes X, Y, Z. For a 6 axis robot, the result is a 6x6 matrix, which can be inversed, if not being in a singularity (lost rank). The resulting inverse allows direct calculation back from cartesian coordinates to actuator angles, i. e. inverse kinematics.
+Forward calculation can be gathered in a Jacobian matrix of 6 or 7 lines and number of columns equal to actuator count. Three lines represent X, Y, Z change by an actuator, the last three lines represent angular change by three axes X, Y, Z, or four lines if using quaternion values. For a 6 axis robot, the result is a 6x6 or 7x6 matrix. Often it is not possible to calculate the inverse, so the generalized inverse is calculated.
 
 # Generalized inverse, Moore-Penrose
-When a Jacobian matrix is not quadratic, which is always the case if less or more than 6 actuators are used or near and for situations of reduced - less than 6 - rank at a singularity, the so-called generalized inverse must be calculated instead. Research has developed different methods for calculation. The Moore-Penrose inverse is calculated. The algorithms are based on the article "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970. A high number of iterations and high precision takes time which may be long for MCUs processing power, so the quality setting parameter M669 allows the user to decide about required time/precision. The kinematics calculates all segments of a G0, G1, G2, G3 move in advance of the move and caches it, so it will not interrupt the print during a move.
+When a Jacobian matrix is not quadratic or or has reduced rank, the so-called generalized inverse must be calculated instead. Research has developed different methods for calculation. The Moore-Penrose inverse is calculated. The algorithms are based on the article "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf . The kinematics calculates all segments of a G0, G1, G2, G3 move in advance of the move and caches it, so it will not interrupt the print during a move.
 
 # Orientation, Quaternions
 I've described orientation in the rotation matrix in https://docs.duet3d.com/en/User_manual/Machine_configuration/Configuring_Robot_DH_parameters already.
 
-Starting from this information, a common approach is to calculate Euler angles of type ZYX or ZYZ and the first approach was to use it for inverse kinematics calculations. But for using it to interpolate orientations for segmentation of moves, the result was poor. Sometimes there are jerks (when approaching singularities, e. g. gimbal lock), resulting in infinite angle speeds.
+For full orientation 6 axis robot the followign is valid:
 
-The singularities cannot be avoided, but some jerks in the calculation of Euler angles can be avoided by changing to Quaternions:
-Quaternions describe orientations with 4 parameters each and are geomatrically points on a 4 dimensional sphere. Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemaker https://dl.acm.org/doi/pdf/10.1145/325165.325242
-Interpolation is unambigious and the orientation change has constant velocity, which is andvantageous for constant extrusion. Slerp is much used in 3D gaming also to calculate smooth rotations.
+To void limitations of Euler angles, quaternions are used for calculations.
+Quaternions describe orientations with 4 parameters each (a rotation angle and a vector describing the rotation axis) and are geomatrically points on a 4 dimensional sphere. Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemaker https://dl.acm.org/doi/pdf/10.1145/325165.325242
+Interpolation is unambigious and the orientation change has constant velocity, which is andvantageous for constant extrusion. Slerp is much used in 3D gaming.
+
+For robots with less than 6 degrees of freedom (DOF):
+
+CNC 5 axis or Open5x use 5 actuators and have 3 linear and 2 rotational actuators. The endpoint's orientation is described by the vector of the Z axis alone, which corresponds to IJK (or ABC) values of G-Code. Calculations are done by a 6 line jacobian matrix. Robots with only 3 axes have no control over the orientation of the endpoint. Calculations will ignore orientation.
 
 # Degrees of freedom, rank
 
