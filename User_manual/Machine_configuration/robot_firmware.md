@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-14T12:45:34.176Z
+date: 2022-07-16T04:07:14.409Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -48,9 +48,17 @@ To void limitations of Euler angles, quaternions are used for calculations.
 Quaternions describe orientations with 4 parameters each (a rotation angle and a vector describing the rotation axis) and are geomatrically points on a 4 dimensional sphere. Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemake https://dl.acm.org/doi/pdf/10.1145/325165.325242
 Interpolation is unambigious and the orientation change has constant velocity, which is andvantageous for constant extrusion. Slerp is much used in 3D gaming.
 
-For robots with less than 6 degrees of freedom (DOF):
+For CNC 5 axis, 3D printers like Open5x:
 
-CNC 5 axis or Open5x use 5 actuators and have 3 linear and 2 rotational actuators. The endpoint's orientation is described by the vector of the Z axis alone, which corresponds to IJK (or ABC) values of G-Code. Calculations are done by a 6 line jacobian matrix. Robots with only 3 axes have no control over the orientation of the endpoint. Calculations will ignore orientation.
+CNC has a spindle with only one orientation in Z direction. X and Y directions are not important, so not all 6 DOFs are necessary. The kinematics are calculated for position and Z direction. The Z direction is described by two of ABC axes or vector based two of IJK letters. Internally a 6xn jacobian matrix is used for 3 position lines and 3 vector lines. Open5x is built like a CNC 5 axis, so it can print similar to CNC abrasive, if hotend orientation in XY plane needs not to be changed.
+
+For robots with less than 5 axes:
+
+Robots with only 3 axes have no control over the orientation of the endpoint. Calculations will ignore orientation.
+
+5 axis robots, closed chain kinematics:
+
+tbd
 
 # Degrees of freedom, rank
 
