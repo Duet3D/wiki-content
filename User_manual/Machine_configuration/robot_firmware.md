@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-16T04:07:14.409Z
+date: 2022-07-16T04:08:56.381Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -44,7 +44,7 @@ I've described orientation in the rotation matrix in https://docs.duet3d.com/en/
 
 For full orientation 6 axis robot the followign is valid:
 
-To void limitations of Euler angles, quaternions are used for calculations.
+To avoid limitations of Euler angles, quaternions are used for calculations.
 Quaternions describe orientations with 4 parameters each (a rotation angle and a vector describing the rotation axis) and are geomatrically points on a 4 dimensional sphere. Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemake https://dl.acm.org/doi/pdf/10.1145/325165.325242
 Interpolation is unambigious and the orientation change has constant velocity, which is andvantageous for constant extrusion. Slerp is much used in 3D gaming.
 
