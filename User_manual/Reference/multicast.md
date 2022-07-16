@@ -1,8 +1,8 @@
 ---
-title: multicast
-description: description of a multicast protocol implemented in RRF
+title: Multicast
+description: A multicast protocol implemented in RRF
 published: true
-date: 2022-07-16T10:54:55.878Z
+date: 2022-07-16T10:55:29.190Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-16T10:54:55.878Z
