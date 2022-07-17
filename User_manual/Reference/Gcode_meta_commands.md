@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2022-07-17T16:12:27.929Z
+date: 2022-07-17T16:14:09.885Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -368,7 +368,7 @@ The following functions are supported, with their conventional meanings:
 
 ## daemon.g
 
-The file /sys/daemon.g can be used to execute regular tasks. The firmware looks for the file, if the file exists it executes it and once the end of file is reached it waits. If the file is not found it waits for 10s and then looks for it again. 
+The [macro file /sys/daemon.g](/User_manual/Tuning/Macros#daemong) can be used to execute regular tasks. The firmware looks for the file, if the file exists it executes it and once the end of file is reached it waits. If the file is not found it waits for 10s and then looks for it again. 
 
 
 Ir is recommended to use a while loop inside the daemon.g file if you are using it to prevent the firmware having to open it every 10 seconds. E.g if you want a shorter update time then put a while loop inside the daemon.g with G4 S1 in it for 1 second repeats.
