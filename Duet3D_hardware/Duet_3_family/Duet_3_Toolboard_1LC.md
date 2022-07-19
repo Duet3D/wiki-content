@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2022-06-29T10:41:29.229Z
+date: 2022-07-19T16:03:45.705Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -139,7 +139,7 @@ A STEP 3D model of each revision of the board is available [on github here](http
 
 ## Tabs {.tabset}
 
-### Revision v1.2
+### Revision v1.3
 
 [![diagram showing the pinout for each of the headers on the Duet 3 toolboard 1LC v1.3](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.3_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.3_d1.0_wiring.png){target=_blank}
 ### Revision v1.2
