@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-16T04:08:56.381Z
+date: 2022-07-20T11:55:37.439Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -39,26 +39,27 @@ Forward calculation can be gathered in a Jacobian matrix of 6 or 7 lines and num
 # Generalized inverse, Moore-Penrose
 When a Jacobian matrix is not quadratic or or has reduced rank, the so-called generalized inverse must be calculated instead. Research has developed different methods for calculation. The Moore-Penrose inverse is calculated. The algorithms are based on the article "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf . The kinematics calculates all segments of a G0, G1, G2, G3 move in advance of the move and caches it, so it will not interrupt the print during a move.
 
-# Orientation, Quaternions
+# Orientation 6 axis robot, Quaternions
 I've described orientation in the rotation matrix in https://docs.duet3d.com/en/User_manual/Machine_configuration/Configuring_Robot_DH_parameters already.
-
-For full orientation 6 axis robot the followign is valid:
 
 To avoid limitations of Euler angles, quaternions are used for calculations.
 Quaternions describe orientations with 4 parameters each (a rotation angle and a vector describing the rotation axis) and are geomatrically points on a 4 dimensional sphere. Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemake https://dl.acm.org/doi/pdf/10.1145/325165.325242
 Interpolation is unambigious and the orientation change has constant velocity, which is andvantageous for constant extrusion. Slerp is much used in 3D gaming.
 
-For CNC 5 axis, 3D printers like Open5x:
+# Orientation 5 axis CNC, Open5x:
 
-CNC has a spindle with only one orientation in Z direction. X and Y directions are not important, so not all 6 DOFs are necessary. The kinematics are calculated for position and Z direction. The Z direction is described by two of ABC axes or vector based two of IJK letters. Internally a 6xn jacobian matrix is used for 3 position lines and 3 vector lines. Open5x is built like a CNC 5 axis, so it can print similar to CNC abrasive, if hotend orientation in XY plane needs not to be changed.
+CNC has a spindle with only one orientation in Z direction. Two rotational axes are used to describe the orientation. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis.
 
-For robots with less than 5 axes:
+G-Code can be described with AB, BC, AC code. The orientation is described by two angles. The calculation of the jacobian matrix is with 5 rows, 3 for position and 2 for the angles. Segmentation is calculated by interpolation of the angles.
 
-Robots with only 3 axes have no control over the orientation of the endpoint. Calculations will ignore orientation.
+An alternative is to use G-Code with IJK tool vectors. Internally it is converted to the AB, BC, AC angles.
 
-5 axis robots, closed chain kinematics:
+# Orientation 4 axis palletized robot
+Through parallelogram construction of the arms, the endpoint always stays in one plane, often horizontal and the assembled tool is installed vertical. 3 Axes define the position and the fourth axis rotates around the vertical Z axis. The jacobian matrix has 4 rows, 3 for positon and one for the Z angle.
 
-tbd
+# Orientation for 2 or 3 axis robot:
+
+Robots no control over the orientation of the endpoint. Calculations will ignore orientation.
 
 # Degrees of freedom, rank
 
