@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-06-29T19:43:13.614Z
+date: 2022-07-20T14:19:45.128Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -12,7 +12,7 @@ dateCreated: 2021-07-14T12:57:32.828Z
 
 # Features
 
-The Duet 3 Expansion 3HC v1.0 supports the following:
+The Duet 3 Expansion 3HC supports the following:
 
 ## Hardware specification
 
@@ -34,7 +34,7 @@ The Duet 3 Expansion 3HC v1.0 supports the following:
 |:--|:--|
 | **Stepper drivers** | Up to 6.3A peak current |
 | **High current outputs** | OUT0/1/2 up to 6A each |
-| **Input power voltage** | 12V to 32V |
+| **Input power voltage** | 12V - 48V (12V to 32V <v1.02) |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **Fuses** | 10A for V_Fused. |
@@ -46,20 +46,13 @@ The Duet 3 Expansion 3HC v1.0 supports the following:
 * Compatible RepRapFirmware versions: RRF 3.x
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
-## Open source
-
-Importantly Duets are Open:
-
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Expansion-3HC/blob/master/LICENSE).
-* All hardware [source files](https://github.com/Duet3D/Duet3-Expansion-3HC) are available on Github.
-* Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
-
 # Physical properties
 
 ## Dimensions
 
 [![duet_3_3hc_v0.9_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_3hc_v0.9_dimensions.png){target=_blank}
+
+Note for v1.02, the large 60V capacitors on the board are now slightly higher than previous versions, they are now the same height as the fuse in the fuse holder.
 
 ## Thermal tests
 
@@ -81,13 +74,14 @@ Duet 3 Expansion 3HC [STEP File on github](https://github.com/Duet3D/Duet3-Expan
 
 ## Tabs {.tabset}
 
+### Revision v1.02
+
+[![duet3_eb_3hc_v1.02_d1.0_wiring.png](/duet_boards/duet_3_can_expansion/duet3_eb_3hc_v1.02_d1.0_wiring.png =x600)](/duet_boards/duet_3_can_expansion/duet3_eb_3hc_v1.02_d1.0_wiring.png){target=_blank}
+
+
 ### Revision v1.01
 
 [![duet3_eb_3hc_v1.01_d1.4_wiring.png](/duet_boards/duet_3_can_expansion/duet3_eb_3hc_v1.01_d1.4_wiring.png =x600)](/duet_boards/duet_3_can_expansion/duet3_eb_3hc_v1.01_d1.4_wiring.png){target=_blank}
-
-### Revision v1.0, v1.0a
-
-[![duet_3_3hc_v1.0_v1.0a_wiring.jpg](/duet_boards/duet_3_can_expansion/duet_3_3hc_v1.0_v1.0a_wiring.jpg =x600)](/duet_boards/duet_3_can_expansion/duet_3_3hc_v1.0_v1.0a_wiring.jpg){target=_blank}
 
 ### Revision v0.9
 
@@ -214,7 +208,7 @@ Except as noted in the table below, an IO_x_IN pin can always be used to provide
 
 ## Power distribution
 
-VIN in the range 12V-32V must be provided to the Duet expansion board. The board produces onboard 12V, 5V and 3.3V, from VIN  (12V will not be produced if only 12V is provided as VIN).
+VIN in the range 12V-48V  (12V-32V v1.01 and earlier) must be provided to the Duet expansion board. The board produces onboard 12V, 5V and 3.3V, from VIN  (12V will not be produced if only 12V is provided as VIN).
 
 These voltages are divided for internal and external use, with external 3.3V and 5V going to IO and other headers, and external 12V if provided to the low current fan voltage selection pins.
 
@@ -286,6 +280,13 @@ Ensure you have can communication (the status light is flashing in sync with the
 # Revision History
 
 # Tabs{.tabset}
+## Revision v1.02
+
+* Changed the voltage input and other components to support 48V operation.
+* Added flyback diodes to the high current outputs
+* Improved the noise performance of the CAN-FD connection
+* Added protection diodes to tacho inputs
+* The large 60V capacitors on the board are now slightly higher, they are now the same height as the fuse in the fuse holder.
 
 ## Revision v1.01
 
@@ -293,7 +294,7 @@ Ensure you have can communication (the status light is flashing in sync with the
 * Add Programming pads so the SWD header does not need to be used for initial programming.
 * Enlarged the VFUSED trace to the three high current outputs so its capable of handling 15A@40C rise.
 * Added bypass jumper to IO_0_IN to bypass the 10K protection resistor to allow for I2C to be used on IO_0
-* Many changes to components to work arround supply chain issues that do not impact the functionality of the baord.
+* Many changes to components to work around supply chain issues that do not impact the functionality of the board.
 
 ## Revision v1.0a
 
