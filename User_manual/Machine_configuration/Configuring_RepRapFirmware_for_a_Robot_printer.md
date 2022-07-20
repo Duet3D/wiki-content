@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-06-17T09:58:40.389Z
+date: 2022-07-20T05:46:12.436Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -111,7 +111,18 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 
 The higher S and lower T are, the better (more straight) straight line moves are, but at the cost of processing and time needed to calculate kinematics. The simulation B1:S will give information about the qualitity of the settings.
 # Drive configuration
+**For a 6 axis robot the following naming will be used:**
+
 The 6 axes are named XYZUVW. Additional axes for 7 and more axis robots will be named ABC... M92 values are steps per degree for rotational axes and steps per mm for prismatic axes.
+
+**For a 5 axis CNC and 3D printers like Open5x the following naming will be used:**
+
+For rotational axes around the X axis A will be used, around Y B and around Z C. 5 axis CNC uses three linear axes XYZ and two rotational ones AB, AC or BC. The rotational axes can be installed at the spindle, called head/head, at the workpiece, called table/table, or mixed head/table. Open5x uses UV for rotational axes, support for this alternative naming (instead of BC) will be checked.
+
+**For a 4 axis palletized robot (closed chain) this naming is used:**
+
+The letters X, Y, Z, U are used. The axes need to be declared as rotational with the M584 R parameter.
+
 # G10 tool offset
 At the end of the last axis, a tool is attached. The robot's kinematics is calculation with the G10 offsets of the currently selected tool:
 * X, Y, Z are the tool's offsets in mm. Default is 0, 0, 0.
