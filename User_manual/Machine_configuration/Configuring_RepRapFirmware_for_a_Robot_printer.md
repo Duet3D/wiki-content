@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-07-20T05:46:12.436Z
+date: 2022-07-20T05:49:15.131Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -120,6 +120,7 @@ The 6 axes are named XYZUVW. Additional axes for 7 and more axis robots will be 
 For rotational axes around the X axis A will be used, around Y B and around Z C. 5 axis CNC uses three linear axes XYZ and two rotational ones AB, AC or BC. The rotational axes can be installed at the spindle, called head/head, at the workpiece, called table/table, or mixed head/table. Open5x uses UV for rotational axes, support for this alternative naming (instead of BC) will be checked.
 
 **For a 4 axis palletized robot (closed chain) this naming is used:**
+(like ABB IRB 460, Kuka KR 700, Fanuc M-410)
 
 The letters X, Y, Z, U are used. The axes need to be declared as rotational with the M584 R parameter.
 
