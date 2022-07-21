@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-07-20T05:49:15.131Z
+date: 2022-07-21T04:25:10.550Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -41,23 +41,22 @@ To avoid printing in a singularity, M208 can be set accordingly. Please see the 
 
 Singularities will be solved by adding Moore-Penrose inverse calculation in the next release.
 # M669 configuration
-M669 must set kinematics type to robot by caling M669 K13. After the type is selected, the parameters values can be set. It is recommended to set the first line to define kinematics type and types of axes like: M669 K13 ARRRRRR. Every additional A setting needs a separate line.
+M669 must set kinematics type to robot by caling M669 K13. After the type is selected, the parameters values can be set. It is recommended to set the first line to define kinematics type and types of axes or robot type like: M669 K13 AT:"RRRRRR". Every additional A setting needs a separate line.
 
 **K13** needs to be defined.
 
 **A** is used to define the properties of the robot.
 
-* AT:... defines the actuator type, rotary or prismatic and how they are assembled
+* AT:string defines the actuator type, rotary or prismatic and how they are assembled
 * AL:... defines the letters of the actuators
 * AM:... defines handling of orientation
 * A0...n:parameters define DH parameters with optional Y
 
-
-AT:"[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, T is where the tool is attached, O is where the object to be printed is attached. Branches are marked by parantheses.
+AT:"name|[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, T is where the tool is attached, O is where the object to be printed is attached. Branches are marked by parantheses.
 * AT:"RRRRRR" means 6 axis robot with rotational axes
 * AT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
 * AT:"PPP" means 3 axis cartesian printer.
-* AT:
+* AT:"5axisCNC_AC" means CNC 3 linear axes and two rotary axes AC
 
 AL:"[X-Z,U-W,A-D*]" defines the order of axis letters assigned to the AT parameters. Example: AT:"PRR" AL:"ZXY" means the prismatic actuator is the Z axis, the two rotary ones are X and Y. The order of joint connection is PRR/ZXY, the Z axis being first. (Don't confuse ZXY axis letters with cartesian XYZ coordinates).
 
@@ -124,10 +123,12 @@ For rotational axes around the X axis A will be used, around Y B and around Z C.
 
 The letters X, Y, Z, U are used. The axes need to be declared as rotational with the M584 R parameter.
 
-# G10 tool offset
+# G10 tool
 At the end of the last axis, a tool is attached. The robot's kinematics is calculation with the G10 offsets of the currently selected tool:
 * X, Y, Z are the tool's offsets in mm. Default is 0, 0, 0.
-* U, V, W are the tool's roll, pitch, yaw in degrees. Default is 0, 0, 0. I'll provide an example.
+
+It is planned to add tool orientation by using e.g. UVW parameters later. This may be needed to support a 90 degree rotated tool changer assembly.
+
 # M208 configuration
 M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). M208 setting can follow two strategies:
 * defining a secure area where printing is always possible
