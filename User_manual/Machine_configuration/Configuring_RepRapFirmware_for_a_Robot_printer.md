@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-07-21T06:20:05.312Z
+date: 2022-07-21T13:00:51.517Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -135,7 +135,17 @@ The homing angles are specified in the M669 A parameter and can be impemented e.
 
 If the homing position is in a singularity or near it, after homing the robot arms should be rotated away from it (this can be done with G1 H2 moves), before starting normal operation. The arm positions shall remain in this work mode for all following operation if possible.
 # Mesh compensation
-For mesh compensation to work, the print head must be in a specific orientation in respect to the XY axis while measuring. This can be done by choosing the P2 mode of M669, which means the probe stays in the same orienting in respect to the hotend and XY coordinates. While printing, other P modes can be used, because the probe offset is not important anymore. Collisions of the probe should be avoided, if the endpoint doesn't stay vertical.
+Mesh compensation is a feature to handle uneven print beds und allow printing with good adhesion by printing the first layers in sync to the unevenness of the bed. It is used a probe to record the unevenness data, which has in most cases an XYZ offset from the hotend. The offset may not change while measuring, because the firmware calculates the hotend position from the probe offset and stores the hotend positions in the mesh file.
+
+Some robot setups can assure the constant XYZ offset between probe and hotend, some not:
+
+* 6 axis robot can use M669 P2 mode to change the hotend orientation to stay parallel to XY axes
+* a mechanical solution of a horizontal parallelogram or other means can fix orientation
+* the probe can be installed at XY 0,0 position, e. g. under the hotend
+* a toolchanger can load a probe instead of a tool and measure at 0,0
+
+After the mesh is measured and stored, the probe is not needed anymore. To avoid collision with the print object later when the hotend tilts (and with it the probe), a mechanical removal of the probe or a save distance in Z direction should be considered.
+
 # Firmware development and compilation
 For installation and running robot kinematics, taking the binaries is the easiest solution. The following is only interesting if one wishes to compile or change something static inside the firmware code (e.g. using more than 6 axes).
 
@@ -143,4 +153,4 @@ For indidivual compilation of source, the guide https://github.com/Duet3D/RepRap
 * Kinematics.h and .cpp the variables robot and include RobotKinematics are added. robot is used instead of robot5axis to use K13
 * Config/Pins.h set all other Kinematics SUPPORT_... to 0
 * disabled delta code in ... (tbd where)
-* RobotKinematics.h and .cpp in folder Movement/Kinematics
+* all .h and .cpp files with names starting with Robot in folder src/Movement/Kinematics
