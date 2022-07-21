@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-21T04:54:13.125Z
+date: 2022-07-21T06:46:46.348Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -51,8 +51,9 @@ The robot is a chain of joints/actucators and links. The end position and orient
 # Jacobian matrix and Inverse
 Forward calculation can be gathered in a Jacobian matrix of 6 or 7 lines and number of columns equal to actuator count. Three lines represent X, Y, Z change by an actuator, the last three lines represent angular change by three axes X, Y, Z, or four lines if using quaternion values. For a 6 axis robot, the result is a 6x6 or 7x6 matrix. Often it is not possible to calculate the inverse, so the generalized inverse is calculated.
 
-# Generalized inverse, Moore-Penrose
-When a Jacobian matrix is not quadratic or or has reduced rank, the so-called generalized inverse must be calculated instead. Research has developed different methods for calculation. The Moore-Penrose inverse is calculated. The algorithms are based on the article "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf . The kinematics calculates all segments of a G0, G1, G2, G3 move in advance of the move and caches it, so it will not interrupt the print during a move.
+When a Jacobian matrix is not quadratic or or has reduced rank, the so-called generalized inverse must be calculated instead. A generalized inverse calculates a solution which has minimal quadratic square difference.
+
+Research has developed different methods for calculation. Currently, the Moore-Penrose inverse is calculated with the method described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf which uses Householder transformation, QR transformation, calcuating singular values and singular vectors and an iterative process to reach the desired precision. The resulting generalized inverse allows calculation of actuator angles from cartesian position and endpoint orientation.
 
 # Orientation 6 axis robot, Quaternions
 I've described orientation in the rotation matrix in https://docs.duet3d.com/en/User_manual/Machine_configuration/Configuring_Robot_DH_parameters already.
