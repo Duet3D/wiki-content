@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-20T11:55:37.439Z
+date: 2022-07-21T04:54:13.125Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -27,6 +27,21 @@ The robot configurations are defined by M669 settings and described in the main 
 * maybe support other actuator types than prismatic and rotational
 
 The parameters are read in the Config() method, stored in variables and reported by using the object model.
+
+# Methods of calculation
+Forward and inverse kinematics can be calculated with different methods. The first two are used in robot kinematics where reasonable:
+
+* jacobian - generalized inverse - iterative
+* direct
+* neuronal network learning
+* others like using evolutionary, random, lookup methods
+
+The first is discussed below in detail.
+
+The direct method needs to know some core configuration in advance and can only be used for this configuration. It is the fastest and most precise forward and inverse kinematics method. Some of the implemented robot types are implemented in this manner.
+The following kinematics are implemented with the direct method:
+* tbd a list
+
 
 # Forward kinematics
 
