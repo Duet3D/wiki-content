@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-07-21T04:31:44.387Z
+date: 2022-07-21T06:20:05.312Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -114,7 +114,11 @@ For rotational axes around the X axis A will be used, around Y B and around Z C.
 **For a 4 axis palletized robot (closed chain) this naming is used:**
 (like ABB IRB 460, Kuka KR 700, Fanuc M-410)
 
-The letters X, Y, Z, U are used. The axes need to be declared as rotational with the M584 R parameter.
+The letters X, Y, Z, U are used.
+
+# M584 R
+
+In RRF, XYZUVW are linear axes by default and ABC rotational axes. This corresponds to CNC conventions. The defined axes for robot kinematics should be clarified as prismatic or rotational with the M584 settings, R meaning rotational. The reason is, RRF uses this information for some calculations like the distance calculation and uses different algorithms for prismatic and rotational axes. This clarification is only needed if the used letters differ from the default assignment.
 
 # G10 tool
 At the end of the last axis, a tool is attached. The robot's kinematics is calculation with the G10 offsets of the currently selected tool:
