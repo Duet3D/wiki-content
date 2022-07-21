@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-21T06:46:46.348Z
+date: 2022-07-21T13:16:49.716Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -92,3 +92,18 @@ Near and at a singularity, the angular speed of a single or few actuators would 
 # Tool offsets and orientation
 Currently only X, Y, Z position information from G10 is used, later the orientation can be set by using U, V, W (or A, B, C) also. I'm aware that there are different possibilites in CNC to define tool endpoints, so this part will be enhanced.
 
+# Letters cartesian vs axis
+
+Some Drive and G-Code Letters have different meanings, depending on context:
+* cartesian coordinates of XYZUVW in mm position or distance
+* orientation AB, BC, AC in degrees, IJK tool vector in radians
+* drive letters like XYZUVWABC as reference for a specific actuator/stepper
+
+In G-Code the two meanings are mixed unhappily, some examples:
+
+* normal G1 X Y Z A B => X, Y, Z movements with A B rotations (5 axis CNC) or IJK for using vector tools
+* G1 H2 X Y Z U V W => movements of single motors
+* G31 X Y Z => X, Y, Z distances
+* G10 X Y Z => offsets from reference
+* M92, M203, M566, M201, M906 XYZUVW => stepper letter related
+* M574 X, Y, Z => stepper letter related
