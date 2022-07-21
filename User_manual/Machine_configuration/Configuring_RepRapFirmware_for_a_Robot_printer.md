@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-07-21T04:28:49.477Z
+date: 2022-07-21T04:31:44.387Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -49,7 +49,6 @@ M669 must set kinematics type to robot by caling M669 K13. After the type is sel
 
 * AT:string defines the actuator type, rotary or prismatic and how they are assembled
 * AL:... defines the letters of the actuators
-* AM:... defines handling of orientation
 * A0...n:parameters define DH parameters with optional Y
 
 AT:"name|[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, T is where the tool is attached, O is where the object to be printed is attached. Branches are marked by parantheses.
@@ -58,13 +57,7 @@ AT:"name|[R]|[P]*" defines the overall configuration and number of axes. R mean 
 * AT:"PPP" means 3 axis cartesian printer.
 * AT:"5axisCNC_AC" means CNC 3 linear axes and two rotary axes AC
 
-AL:"[X-Z,U-W,A-D*]" defines the order of axis letters assigned to the AT parameters. Example: AT:"PRR" AL:"ZXY" means the prismatic actuator is the Z axis, the two rotary ones are X and Y. The order of joint connection is PRR/ZXY, the Z axis being first. (Don't confuse ZXY axis letters with cartesian XYZ coordinates). AL needs not to be defined if the default letters are used, e.g. XYZAC for a 5 axis CNC AC configuration with A parallel to X axis and C to Z axis.
-
-AM:n defines G-Code modes and whether orientation is used:
-* M0 means X, Y, Z, A, B, C G-Code (axis rotation angles)
-* M1 means X, Y, Z, I, J, K, U, V, W G-Code (tool vectors)
-* M2 means X, Y, Z without orientation information. Forward and inverse kinematics calculate only coordinates and ignore endpoint's orientation.
-
+AL:"[X-Z,U-W,A-D*]" defines the order of axis letters assigned to the AT parameters. The letters are used in the G-Code file, e.g. in the G1 moves. Example: AT:"PRR" AL:"ZXY" means the prismatic actuator is the Z axis, the two rotary ones are X and Y. The order of joint connection is PRR/ZXY, the Z axis being first. (Don't confuse ZXY axis letters with cartesian XYZ coordinates). AL needs not to be defined if the default letters are used, e.g. XYZAC for a 5 axis CNC AC configuration with A parallel to X axis and C to Z axis.
 
 **DH: Ajoint:d:theta:a:alpha:home:minangle:maxangle**
 
