@@ -2,7 +2,7 @@
 title: Duet3D PanelDue
 description: 
 published: true
-date: 2021-12-13T12:51:40.087Z
+date: 2022-07-21T12:56:12.470Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-17T14:02:21.351Z
@@ -52,7 +52,7 @@ The PanelDue is a colour touch screen controller for the Duet and other 3D print
 
 The original version of the PanelDue was a controller board that plugged into a separate LCD. It has gone through a number of revisions, with versions 1.0, 1.1, 2.0 and 3.0.
 
-* The control board and firmware support 3 screen sizes: 4.2", 5" and 7", at two resolutions: 480×272 (4.3-inch displays) or 800×480 pixels (5- and 7-inch displays).
+* The control board and firmware support 3 screen sizes: 4.3", 5" and 7", at two resolutions: 480×272 (4.3-inch displays) or 800×480 pixels (5- and 7-inch displays).
 * Compatible screens:
 	* TFT displays using a SSD1963 controller,
 	* Resistive touch panel using a XPT2046 or compatible chip
@@ -79,35 +79,35 @@ PanelDue v2 with a 7" screen:
 
 #### Front
 
-![paneldue_5i_dimensions_01.png](/hardware/paneldue/paneldue_5i_dimensions_01.png =600x)
+[![paneldue_5i_dimensions_01.png](/hardware/paneldue/paneldue_5i_dimensions_01.png =600x)](/hardware/paneldue/paneldue_5i_dimensions_01.png){target=_blank}
 
 #### Side
 
-![paneldue_5i_dimensions_02.png](/hardware/paneldue/paneldue_5i_dimensions_02.png =600x)
+[![paneldue_5i_dimensions_02.png](/hardware/paneldue/paneldue_5i_dimensions_02.png =600x)](/hardware/paneldue/paneldue_5i_dimensions_02.png){target=_blank}
 
 #### Back
 
-![paneldue_5i_dimensions_03.png](/hardware/paneldue/paneldue_5i_dimensions_03.png =600x)
+[![paneldue_5i_dimensions_03.png](/hardware/paneldue/paneldue_5i_dimensions_03.png =600x)](/hardware/paneldue/paneldue_5i_dimensions_03.png){target=_blank}
 
 ### PanelDue 7i
 
 #### Front
 
-![paneldue_7i_dimensions_01.png](/hardware/paneldue/paneldue_7i_dimensions_01.png =600x)
+[![paneldue_7i_dimensions_01.png](/hardware/paneldue/paneldue_7i_dimensions_01.png =600x)](/hardware/paneldue/paneldue_7i_dimensions_01.png){target=_blank}
 
 #### Side
 
-![paneldue_7i_dimensions_02.png](/hardware/paneldue/paneldue_7i_dimensions_02.png =600x)
+[![paneldue_7i_dimensions_02.png](/hardware/paneldue/paneldue_7i_dimensions_02.png =600x)](/hardware/paneldue/paneldue_7i_dimensions_02.png){target=_blank}
 
 #### Back
 
-![paneldue_7i_dimensions_03.png](/hardware/paneldue/paneldue_7i_dimensions_03.png =600x)
+[![paneldue_7i_dimensions_03.png](/hardware/paneldue/paneldue_7i_dimensions_03.png =600x)](/hardware/paneldue/paneldue_7i_dimensions_03.png){target=_blank}
 
 ### PanelDue Controller
 
 The version 2.0 and v3.0 dimensions are shown below
 
-![paneldue_controller_dimensions.png](/hardware/paneldue/paneldue_controller_dimensions.png =400x)
+[![paneldue_controller_dimensions.png](/hardware/paneldue/paneldue_controller_dimensions.png =400x)](/hardware/paneldue/paneldue_controller_dimensions.png){target=_blank}
 
 #### LCDs
 
@@ -118,29 +118,29 @@ Check the documentation for the specific screen you purchase if you do not get i
 
 ##### 4.3 Inch
 
-![lcd_4.3_dimensions.png](/hardware/paneldue/lcd_4.3_dimensions.png =600x)
+[![lcd_4.3_dimensions.png](/hardware/paneldue/lcd_4.3_dimensions.png =600x)](/hardware/paneldue/lcd_4.3_dimensions.png){target=_blank}
 
 ##### 5.0 Inch
 
-![lcd_4.3_dimensions.png](/hardware/paneldue/lcd_5_dimensions.png =600x)
+[![lcd_4.3_dimensions.png](/hardware/paneldue/lcd_5_dimensions.png =600x)](/hardware/paneldue/lcd_5_dimensions.png){target=_blank}
 
 ##### 7.0 Inch
 
-![lcd_4.3_dimensions.png](/hardware/paneldue/lcd_7_dimensions.png =600x)
+[![lcd_4.3_dimensions.png](/hardware/paneldue/lcd_7_dimensions.png =600x)](/hardware/paneldue/lcd_7_dimensions.png){target=_blank}
 
 ## Enclosures
 
 ### PanelDue 5i and 7i
 
-User "LumberjackEngineering" has published an enclosures on thingiverse [for both 5i and 7i](https://www.thingiverse.com/thing:2799628).
+User "LumberjackEngineering" has published an enclosures on thingiverse [for both 5i and 7i](https://www.thingiverse.com/thing:2799628){target=_blank}.
 
-[Mark Rehorst](https://forum.duet3d.com/user/mrehorstdmd) has [this enclosure](https://a360.co/2JiZ44H) for the 7i which includes a model of the 7i itself.
+[Mark Rehorst](https://forum.duet3d.com/user/mrehorstdmd){target=_blank} has [this enclosure](https://a360.co/2JiZ44H){target=_blank} for the 7i which includes a model of the 7i itself.
 
 ### PanelDue Controller
 
-DC42's OpenSCAD enclosure design that is configurable for the different options [is available on Thingiverse here](https://www.thingiverse.com/thing:656884).
+DC42's OpenSCAD enclosure design that is configurable for the different options [is available on Thingiverse here](https://www.thingiverse.com/thing:656884){target=_blank}.
 
-Forum user [cyoung](https://forum.duet3d.com/user/cyoung) made this model [of the PanelDue 3.0 + 7 inch screen](https://forum.duet3d.com/assets/uploads/files/1534103902883-7in-panel.step)
+Forum user [cyoung](https://forum.duet3d.com/user/cyoung) made this model [of the PanelDue 3.0 + 7 inch screen](https://forum.duet3d.com/assets/uploads/files/1534103902883-7in-panel.step){target=_blank}
 
 # Connecting a PanelDue
 
@@ -152,7 +152,7 @@ Caution! Do not use an SD extender cable from the SD socket on the PanelDue. Som
 
 Below is a brief description to show connecting a PanelDue to a Duet mainboard. There is more detailed information here, including using a ribbon cable to allow access to the PanelDue SD card socket: [Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue).
 
-Information for connecting older versions of the PanelDue is available here: [DC42's PanelDue web page](https://miscsolutions.wordpress.com/paneldue/).
+Information for connecting older versions of the PanelDue is available here: [DC42's PanelDue web page](https://miscsolutions.wordpress.com/paneldue/){target=_blank}.
 
 ## Tabs {.tabset}
 
@@ -164,7 +164,7 @@ A PanelDue can be connected to connector IO_0 using a 4-core cable wired like th
 
 | PanelDue pin | Wire colour | Duet 3 IO_0 pin | |
 |---|---|
-| +5V | Red | 5V_EXT (pin 5) | ![duet_3_mb6hc_input_output.jpg](/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =200x) |
+| +5V | Red | 5V_EXT (pin 5) | ![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =200x)|
 | GND | Black/yellow | GND (pin 3) | ^^ |
 | URXD0 | Blue | IO_0_IN (pin 2) | ^^ |
 | UTXD0 | Green | IO_0_OUT (pin 4) | ^^ |
