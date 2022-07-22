@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-07-22T06:53:32.976Z
+date: 2022-07-22T07:09:05.462Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -110,9 +110,10 @@ The P can be changed and is effective at any time between moves.
 
 **6 axis robot with 6 rotary axes**
 
-P0 axes have no preference. Only when an axis touches a limit, kinematics tries to find an alternative solution.
+P0 axes have no preference. Only when an axis touches a limit, kinematics tries to find an alternative solution. Default
 P1 endpoint is always vertical, but orientation around the Z axis is not controlled. Only when angle limit are reached, kinematics tries to find an alternative solution.
-P2 endpoint is always vertical and XY endpoint axes are parallel to XY cartesian coordinates. Default
+P2 endpoint is always vertical and XY endpoint axes are parallel to XY cartesian coordinates. This setting is valuable for probing for mesh compensation, because the probe offset stays at the same values
+P3 endpoint is vertical and axes 4 and 6 are rotated as little as possible.
 
 # Drive configuration
 **For a 6 axis robot the following naming will be used:**
