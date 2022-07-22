@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-07-21T13:00:51.517Z
+date: 2022-07-22T06:53:32.976Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -84,10 +84,7 @@ A1 to A6 are the equivalent to DH parameters. A0 allows a displacement of the fi
 
 **B** reserved
 
-**Pn** defines 6th axis behaviour
-
-P0 sixth axis is vertical and always in 0 degree position
-P2 sixth axis is vertical and headed parallel to the x axis. Default
+**P** see next chapter
 
 **Qn** quality of calculation
 
@@ -102,6 +99,21 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 **Tn** Minimum segment length (mm) (because smooth XYZ motion is approximated by means of segmentation)
 
 The higher S and lower T are, the better (more straight) straight line moves are, but at the cost of processing and time needed to calculate kinematics. The simulation B1:S will give information about the qualitity of the settings.
+
+# M669 P parameter
+
+The P parameter changes the behaviour of the axes. The behaviour is different, depending on the robot type.
+
+When a behaviour cannot be met, the kinematics throws an unreachable error and outputs an explanation to the console.
+
+The P can be changed and is effective at any time between moves.
+
+**6 axis robot with 6 rotary axes**
+
+P0 axes have no preference. Only when an axis touches a limit, kinematics tries to find an alternative solution.
+P1 endpoint is always vertical, but orientation around the Z axis is not controlled. Only when angle limit are reached, kinematics tries to find an alternative solution.
+P2 endpoint is always vertical and XY endpoint axes are parallel to XY cartesian coordinates. Default
+
 # Drive configuration
 **For a 6 axis robot the following naming will be used:**
 
