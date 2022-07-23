@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-23T05:27:18.663Z
+date: 2022-07-23T05:27:57.597Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -57,7 +57,7 @@ Research has developed different methods for calculation. Currently, the Moore-P
 
 # Orientation types
 
-Besides the position of the endpoint, orientation is also important. 3D printing mostly use a vertical hotends without regard to rotation around the Z axis. But that does not have to be: a concrete printer needs a hotend which rotates into the direction of movement, e.g., to print nearly vertical walls. Non planar 3D printing need hotends with different rotation.
+Besides the position of the endpoint, orientation is also important. 3D printing mostly use vertical hotends without regard to rotation around the Z axis. But that does not have to be: a concrete printer needs a hotend which rotates into the direction of movement, e.g., to print nearly vertical walls. Non planar 3D printing need hotends with different rotation.
 
 The following different types of orientation description are used in internal robot kinematics code for diffferent tasks:
 
