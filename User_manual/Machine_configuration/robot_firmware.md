@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-21T13:16:49.716Z
+date: 2022-07-23T05:27:18.663Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -54,6 +54,19 @@ Forward calculation can be gathered in a Jacobian matrix of 6 or 7 lines and num
 When a Jacobian matrix is not quadratic or or has reduced rank, the so-called generalized inverse must be calculated instead. A generalized inverse calculates a solution which has minimal quadratic square difference.
 
 Research has developed different methods for calculation. Currently, the Moore-Penrose inverse is calculated with the method described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf which uses Householder transformation, QR transformation, calcuating singular values and singular vectors and an iterative process to reach the desired precision. The resulting generalized inverse allows calculation of actuator angles from cartesian position and endpoint orientation.
+
+# Orientation types
+
+Besides the position of the endpoint, orientation is also important. 3D printing mostly use a vertical hotends without regard to rotation around the Z axis. But that does not have to be: a concrete printer needs a hotend which rotates into the direction of movement, e.g., to print nearly vertical walls. Non planar 3D printing need hotends with different rotation.
+
+The following different types of orientation description are used in internal robot kinematics code for diffferent tasks:
+
+* three rotation vectors in rotation matrix: orthonormal vectors, describing XYZ axis vectors of coordinate system. Used for position and orientation calculation of the actuator chain.
+* quaternions: four values, describing the vector where an object rotates around and the angle or rotation. Used internally to calculate rotation from source to target with slerp method. Abbreviation to efficiently store the three rotation vectors. Better than Euler angles, because no jerks for specific values.
+* Euler angles: description of a rotation by rotating around three axes in a specific order. 12 Euler angles possible, named by the axes of rotation. E. g. ZYX to describe RPY (roll-pitch-yaw) rotation, ZYZ is also common. Euler angles have limits like lock situations (gimbal lock in ZYX), but they are well understood by people, so for human interfaces they are used sometimes.
+* two angles for 5 axis CNC, Open5x and similar: description of the Z axis vector by three values, without value of rotation around Z axis. A CNC spindle and in most cases 3D printer hotend don't care about Z axis rotation, so two angles are sufficient to describe the direction of the Z axis. In G-Code, they are described by AB, BC or AC parameters in G1 commands.
+* three values for 5 axis CNC: description of the Z axis orientation by using vector values instead of the angles. The advantage is that the description is independent of the machine implementation (can be used for AB, BC, AC unchanged). In G-Code, they are described by IJK parameters for G1 commands.
+* no orientation: often there is no description of orientation and the orientation is implicit through machine setup.
 
 # Orientation 6 axis robot, Quaternions
 I've described orientation in the rotation matrix in https://docs.duet3d.com/en/User_manual/Machine_configuration/Configuring_Robot_DH_parameters already.
