@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-23T05:50:37.739Z
+date: 2022-07-23T05:53:16.574Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -61,7 +61,7 @@ Besides the position of the endpoint, orientation is also important. 3D printing
 
 The following different types of orientation description are used in internal robot kinematics code for diffferent tasks:
 
-* three rotation vectors in rotation matrix: orthonormal vectors, describing XYZ axis vectors of coordinate system. Used for position and orientation calculation of the actuator chain.
+* three vectors in rotation matrix: orthonormal vectors, describing XYZ axis vectors of coordinate system. Used for position and orientation calculations.
 * quaternions: four values, describing the vector where an object rotates around and the angle or rotation. Used internally to calculate rotation from source to target with slerp method. Abbreviation to efficiently store the three rotation vectors. Better than Euler angles, because no jerks for specific values.
 * Euler angles: description of a rotation by rotating around three axes in a specific order. 12 Euler angles possible, named by the axes of rotation. E. g. ZYX to describe RPY (roll-pitch-yaw) rotation, ZYZ is also common. Euler angles have limits like lock situations (gimbal lock in ZYX), but they are well understood by people and often used.
 * two angles for 5 axis CNC, Pentarod, Open5x and similar: description of the Z axis vector by three values, without value of rotation around Z axis. A CNC spindle and in most cases 3D printer hotend don't care about Z axis rotation, so two angles are sufficient to describe the direction of the Z axis. In G-Code, they are described by AB, BC or AC parameters in G1 commands.
