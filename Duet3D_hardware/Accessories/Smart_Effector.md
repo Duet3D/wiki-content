@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2022-07-25T08:06:41.902Z
+date: 2022-07-25T08:12:16.834Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -321,20 +321,21 @@ Sudden acceleration at the start of a Z probing move may cause spurious triggeri
 
 ### Z probe recovery time
 
-A fast travel move before or between Z probing moves may cause the strain gauge sensor to trigger. To avoid this, you need to configure a delay between the end of a travel move and the start of a Z probing move. There are builds of most of the common firmwares that offer this facility, but the stable versions of these firmwares may not provide it yet.
+A fast travel move before or between Z probing moves may cause the strain gauge sensor to trigger. To avoid this, you need to configure a delay between the end of a travel move and the start of a Z probing move. There are builds of most of the common firmwares that offer this facility.
 
 # Troubleshooting - LED flash codes
 
-The version 2 Smart Effector performs an additional self-test at power up to check that the strain gauge output is within the expected range. This test may fail during the first few seconds after power up as the voltages settle, so it is repeated until it passes. Therefore, if your sensor flashes 6 or 7 times once or twice before it flashes twice, this is normal.  However, if it continues to flash 6 or more times, the sensor is faulty:
+The version 2 and later Smart Effectors perform an additional self-test at power up to check that the strain gauge output is within the expected range. This test may fail during the first few seconds after power up as the voltages settle, so it is repeated until it passes. Therefore, if your sensor flashes 6 or 7 times once or twice before it flashes twice, this is normal.  However, if it continues to flash 6 or more times, the sensor is faulty:
 
-* 1 flash - normal startup in test mode (MOD pin hasn't seen been grounded yet by the firmware) - For initial programming only
+* 1 flash - normal startup in test mode - for factory testing only
 * 2 flashes - normal startup in user mode
 * 3 flashes - normal startup in user mode with custom sensitivity set
 * 6 flashes - strain gauge output out of tolerance (too low)
 * 7 flashes - strain gauge output out of tolerance (too high)
-* 9 flashes - 1.0V regulator output reading out of tolerance
+* 9 flashes - 1.0V regulator output reading out of tolerance (verson 2) or Vcc too low (version 3 and later)
+* 10 flashes = Vcc too high (version 3 and later)
 
-Codes 6 and 7 should normally indicate damage to the strain gauge traces.
+Code 6 or 7 may occur once or twice during startup. If they persist then they normally indicate damage to the Smart Effector.
 
 # Revision History
 
