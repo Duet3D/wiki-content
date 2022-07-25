@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2022-07-06T17:49:26.152Z
+date: 2022-07-25T08:01:17.299Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -296,6 +296,8 @@ The force needed to trigger the sensor is programmable on a scale of 0 to 255. T
 To program the sensor, send command `M672 S105:aaa:bbb` replacing *aaa* by the desired sensitivity and *bbb* by 255 - *aaa*. The green LED will flash 4 times if the command is accepted. When you subsequently power up the Smart Effector, the green LED will flash three times instead of twice to indicate that a custom sensitivity is being used.
 
 To revert to factory settings, send command `M672 S131:131`. The green LED will flash 5 times if the command is accepted. When you subsequently power up the Smart Effector, the green LED will flash twice to indicate that default settings are being used.
+
+Some additional programmimg functions are available as follows. `M672 S65:65` reverts the effector to factory settings. In this mode, the permitted variation in resistance between the two bridge arms is reduced. `M672 S99:99` responds with two or three flashes of the LED according to whether default or custom sensitivity has been set. On version 4 and later hardware, two additional functions are available for checking the noise level. `M672 S47:47` measures the maximum reading over several seconds and reports it as a number of LED flashes. This value should normally be below 20 if the effector is not moving and is not subject to any vibration or varying magnmetic fields. `M672 S56:56` is similar but compares the maximum reading with a permitted maximum and reports with a short flash for Pass and a long flash for Fail.
 
 ## Compatibility with other electronics and firmware
 
