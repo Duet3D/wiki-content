@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-07-25T17:03:30.940Z
+date: 2022-07-25T17:06:38.167Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -144,6 +144,7 @@ STEP file to follow.
 | **1 x 3-pin KK connector** | LASER/VFD | 5V buffered output, along with 5V and ground supply (*see note 2 below*). Provides a 5V PWM signal to drive hobby servos, and PWM->analog controls for VFDs or Lasers. |
 | **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*).|
 | ^^ | ^^ | **Note** The PanelDue UART is shared with io0.in and io0.out pins on the IO_0 header. |
+| **1 x 2-pin Jumper** |  PD_CD_OVERRIDE | v1.0 and later. Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
 | **1 x RJ11 CAN connector** | CAN_1_OUT | CAN-FD connection for Duet 3 expansion boards. This has a permanent termination resistor, so it must be at one end of the CAN bus |
 | **1 x 2-pin KK connector** | CAN_0_OUT | CAN-FD Bus connection for future expansion. bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
 | **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface boards.|
