@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2022-07-25T08:01:17.299Z
+date: 2022-07-25T08:06:41.902Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -311,7 +311,7 @@ Pin 5 (the Output pin) has a 1K series resistor to help protect the Smart Effect
 
 ### Sensitivity
 
-Recent versions of Marlin (v2.0.2 and later) allow the programming of the Smart Effector's sensitivity. See the [Marlin Gcode dictionary here](https://marlinfw.org/docs/gcode/M672.html){target=_blank} for details.
+Recent versions of Marlin (v2.0.2 and later) and Klipper allow the programming of the Smart Effector's sensitivity. See the [Marlin Gcode dictionary](https://marlinfw.org/docs/gcode/M672.html){target=_blank} or [Klipper documentation](https://www.klipper3d.org/G-Codes.html?h=smart#set_smart_effector) for details.
 
 If you use the Smart Effector with any other firmware, you will have to use the default sensitivity. This sensitivity works well using the standard E3D hot end fan and Duet 2 electronics, which provide very smooth motion due to the use of x256 microstepping. If your electronics and firmware do not use high microstepping, then the vibration during a Z probing move may cause spurious triggering at the default sensitivity. If you use a different hot end fan, it may cause interference, requiring a reduction in sensitivity.
 
