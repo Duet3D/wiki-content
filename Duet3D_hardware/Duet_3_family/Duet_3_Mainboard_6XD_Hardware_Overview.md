@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-07-25T16:47:36.681Z
+date: 2022-07-25T16:50:00.211Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -83,9 +83,7 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a featu
 
 ## Dimensions
 
-[![Diagram showing the critical dimensions of the Duet3 6XD v0.1 prototype](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dimensions_d1.0.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dimensions_d1.0.png){target=_blank}
-[![Diagram showing the critical dimensions of the Duet3 6XD v1.0 and v0.1](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_dimensions_d1.1.png =500x)]
-(/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_dimensions_d1.1.png){target=_blank}
+[![Diagram showing the critical dimensions of the Duet3 6XD v1.0 and v0.1](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_dimensions_d1.1.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_dimensions_d1.1.png){target=_blank}
 
 ## Mounting
 
