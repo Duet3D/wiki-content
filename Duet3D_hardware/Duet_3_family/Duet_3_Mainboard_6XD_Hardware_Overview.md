@@ -2,21 +2,19 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-07-05T07:03:27.388Z
+date: 2022-07-25T16:47:36.681Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
 ---
 
-![Render of the Duet 3 Mainboard 6XD v0.1](/duet_boards/duet_3_mb6xd/6xd_v0.1_proto_render400.png)
-
-## This page is still in draft
+![Duet 3 Mainboard 6XD v1.0](/duet_boards/duet_3_mb6xd/mb6xd_5_small.png =500x)
 
 # Introduction
 
-The Duet 3 Mainboard 6XD is designed to allow interfacing with the most common external stepper and servo motor drivers using step and direction signals, with support for 6 external drivers. In addition it provides Opto Isolated Input and Output connections for some of the GPIO functions to allow easier interfacing with PLC control systems.
+The Duet 3 Mainboard 6XD is designed to allow interfacing with the most common external stepper and servo motor drivers using step and direction signals, with support for 6 external drivers. In addition it provides opto-isolated Input and Output connections for some of the GPIO functions to allow easier interfacing with PLC control systems.
 
-Like the other Duet 3 mainboards it can be accessed directly over the network in stand alone mode (via the Ethernet post) or it has the option of using an SBC (Single Board Computer, e.g. Raspberry Pi) for control. Using the Duet 3 CAN-FD bus it is expandable with the range of Duet 3 expansion and tool boards.
+Like the other Duet 3 mainboards it can be accessed directly over the network in stand alone mode (via the Ethernet port) or it has the option of using an SBC (Single Board Computer, e.g. Raspberry Pi) for control. Using the Duet 3 CAN-FD bus it is expandable with the range of Duet 3 expansion and tool boards.
 
 # Features
 
@@ -34,7 +32,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **High current outputs** | 3 x High current outputs (up to 6A each) |
 | **Medium current outputs** | 6 x medium current outputs for PWM fans and similar devices, of which 3 support 4-wire fans with PWM and tacho wires. Arranged in two banks, each bank is individually fused with voltage selectable between VIN / 12V.|
 | **Thermistor/PT1000 inputs** | 4, optimised for 100K thermistors and PT1000 sensors |
-| **Inputs/Outputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo, or PanelDue connection. Inputs are 30V-tolerant. 4 of the 9 pairs of IO also have alternative Opto Isolated connectors.
+| **Inputs/Outputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo, or PanelDue connection. Inputs are 30V-tolerant. 4 of the 9 pairs of IO also have alternative opto-isolated connectors.
 | **Power monitoring** | VIN voltage monitoring allows for state save on power failure.12V regulator output voltage also monitored |
 | **SD card interface** | On-board high speed (25Mbytes/sec) SD card socket. External SD card socket (e.g. on attached PanelDue) also supported.|
 
@@ -86,6 +84,8 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a featu
 ## Dimensions
 
 [![Diagram showing the critical dimensions of the Duet3 6XD v0.1 prototype](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dimensions_d1.0.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dimensions_d1.0.png){target=_blank}
+[![Diagram showing the critical dimensions of the Duet3 6XD v1.0 and v0.1](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_dimensions_d1.1.png =500x)]
+(/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_dimensions_d1.1.png){target=_blank}
 
 ## Mounting
 
@@ -95,13 +95,10 @@ The board should be mounted on standoffs, ensuring the back of the board cannot 
 
 ## Cooling
 
-In many applications passive cooling will be sufficient, especially if the board is mounted vertically in a well ventilated position. If active cooling is needed then a fan blowing across the back of the board will cool the high current mosfet heat sinking and onboard power supply heatsinking.
+In many applications passive cooling will be sufficient, especially if the board is mounted vertically in a well ventilated position. If active cooling is needed then a fan blowing across the back of the board will cool the high current MOSFET heat sinking and onboard power supply heatsinking.
 
 The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is dissipated via the PCB so heatsinks on the FETs or other ICs are largely ineffective.
 
-### MCU Temp
-
-TBC
 
 ## 3D Model
 
@@ -145,7 +142,7 @@ STEP file to follow.
 | **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*).|
 | ^^ | ^^ | **Note** The PanelDue UART is shared with io0.in and io0.out pins on the IO_0 header. |
 | **1 x RJ11 CAN connector** | CAN_1_OUT | CAN-FD connection for Duet 3 expansion boards. This has a permanent termination resistor, so it must be at one end of the CAN bus |
-| **1 x 2-pin KK connector** | CAN_0_OUT | CAN-FD Bus connection for future expansion. bus termination resistors can be disconnected with drillable/solderable jumpers underneath the board |
+| **1 x 2-pin KK connector** | CAN_0_OUT | CAN-FD Bus connection for future expansion. bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
 | **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface boards.|
 | **6 x 6-pin KK connectors** | DRIVER_0-DRIVER_5 | External stepper or servo motor driver connections. 5V, GND, single ended outputs for Step, Dir and Enable along with a fault input provided per driver. See "Connecting External Drivers" section below. |
 | **1 x 3-pin Jumper** |  Driver Enable Polarity | A jumper in the "left" position is used for external drivers which are enabled when a voltage is applied to the enable connection (Active Enable). A jumper in the "right" position is used for external drivers which are disabled when a voltage is applied to the enable connection (Active Disable) (*Note the v0.1 boards have the silkscreen reversed*). |
@@ -156,10 +153,10 @@ STEP file to follow.
 | **1 x USB C** | USB | USB 2.0 for initial firmware installation and USB power. Up to 1A max current allowed, do not power high current 5V loads through this USB port (e.g. SBC with screen or large strings of LEDs) |
 | **4 x 2-pin KK connectors** | TEMP_0,-TEMP_3 | Connections for thermistor or PT1000 sensors. |
 | **9 x 5-pin KK connectors** | IO_0-IO_8 | Duet 3 standard GPIO ports. These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option for IO2). The outputs are 3.3V signals levels with 470R series resistors. See IO capabilities table below for specifics of each IO. |
-| ^^ | ^^ | **Note** IO_5-IO_8 are also provided as opto isolated outputs on separate connectors. See below |
+| ^^ | ^^ | **Note** IO_5-IO_8 are also provided as opto-isolated outputs on separate connectors. See below |
 | **1 x 2-pin Jumper** | IO2_I2C_Byp | Jumper to allow the 10K resistors on IO2.in to be bypassed with 470R resistors. This is required to use IO2 for I2C. |
-| **4 x 2-pin KK connectors** | IO_5_ISO_IN-IO_8_ISO_IN | Differential signal, opto isolated inputs for IO5.in - IO8.in, rated to 30V. |
-| **4 x 4-pin KK connectors** | IO_5_ISO_OUT-IO_8_ISO_OUT | Differential signal, opto isolated outputs for IO5.in - IO8.in. Each output is fused at 50mA |
+| **4 x 2-pin KK connectors** | IO_5_ISO_IN-IO_8_ISO_IN | Differential signal, opto-isolated inputs for IO5.in - IO8.in, rated to 30V. |
+| **4 x 4-pin KK connectors** | IO_5_ISO_OUT-IO_8_ISO_OUT | Differential signal, opto-isolated outputs for IO5.in - IO8.in. Each output is fused at 50mA |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
 | **3 x 2-pin Jumpers for 5V selection** | Int 5V EN | Enable the on board 5V regulator  |
 | ^^ | 5V_EXT-5V_INT | Bridge internal 5V to External 5V. **Caution** This removes the protection for the internal 5V circuit from overvoltage on the external 5V.
@@ -264,7 +261,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 
 ## Input/Output Port capabilities
 
-There are 9 IO headers on board, IO_0-IO_8. Each has an input and output along with 3.3V, 5V and Gnd supplied. This enables them to support a wide range of endstops, probes, filament monitors and future low bandwidth devices.
+There are 9 IO headers on board, IO_0-IO_8. Each has an input and output along with 3.3V, 5V and GND supplied. This enables them to support a wide range of endstops, probes, filament monitors and future low bandwidth devices.
 
 ![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =282x)
 
@@ -289,30 +286,30 @@ Capabilities of IO_0 to IO_8 are shown below.
 | 7 | no | yes | yes |  |
 | 8 | no | yes | no |  |
 
-### Opto Isolated IO
+### Opto-isolated IO
 
-IO_5-IO_8 are also available as opto isolated inputs and outputs
+IO_5-IO_8 are also available as opto-isolated inputs and outputs
 
-#### Opto Isolated Inputs
+#### Opto-isolated Inputs
 
-The opto isolated inputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
+The opto-isolated inputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
 
-![Diagram showing the connection of the Duet 3 MB6XD opto isolated inputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_opto_in.png)
+![Diagram showing the connection of the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_opto_in.png)
 
-on the Duet 3 Mainboard 6XD the optoisolated IO 5 input port schematic is as follows, IO6-8 are the same:
+on the Duet 3 Mainboard 6XD the opto-isolated IO 5 input port schematic is as follows, IO6-8 are the same:
 
-![6xd_opto_input_schematic.png](/duet_boards/duet_3_mb6xd/6xd_opto_input_schematic.png)
+![schematic showing the circuit for the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/6xd_opto_input_schematic.png)
 
 
-#### Opto Isolated Outputs
+#### Opto-isolated Outputs
 
-The opto isolated outputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
+The opto-isolated outputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
 
 ![Diagram showing the connection of the Duet 3 MB6XD opto isolated outputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_opto_out.png)
 
-on the Duet 3 Mainboard 6XD the optoisolated IO 5 output port schematic is as follows, IO6-8 are the same:
+on the Duet 3 Mainboard 6XD the opto-isolated IO 5 output port schematic is as follows, IO6-8 are the same:
 
-![Schematic of the opto isolated output circuit on the Duet3 Mainboard 6XD](/duet_boards/duet_3_mb6xd/6xd_opto_output_schematic.png)
+![Schematic of the opto-isolated output circuit on the Duet3 Mainboard 6XD](/duet_boards/duet_3_mb6xd/6xd_opto_output_schematic.png)
 
 
 
@@ -330,7 +327,7 @@ VLC1_FUSE: 3A :  OUT3-OUT5 when the select jumper is on VIN
 
 VLC2_FUSE: 3A :  OUT6-OUT8 when the select jumper is on VIN
 
-VFUSED_IO: 300mA: VIN current for the OptoIsolated Output headers IO_5-IO_8
+VFUSED_IO: 300mA: VIN current for the Opto-isolated Output headers IO_5-IO_8
 
 V_FUSED is distributed across the board as follows:
 
@@ -374,7 +371,7 @@ There is an array of jumpers to customise the 5V power setup as required:
 
 ![render of the area of the PCB showing the three 5V selection jumpers](/duet_boards/duet_3_mb6xd/6xd_5v_options.png =300x)
 
-> On the prototpye v0.1 Duet 3 Mainboard 6XD only the Int 5V En jumper header is fitted {.is-info}
+> As standard only the Int 5V En jumper header is fitted {.is-info}
 
 **Internal 5V only**
 ![jumper positions for using internal 5V regulator only](/duet_boards/duet_3_mb6xd/6xd_5v_option_int_en.png =200x)
@@ -384,11 +381,15 @@ The default configuration has a jumper on the "Int 5V EN" only. This means the i
 ![jumper positions for using internal 5V regulator and powering the SBC](/duet_boards/duet_3_mb6xd/6xd_5v_option_int_power_sbc.png =200x)
 With jumpers on the "Int 5V EN" and "5V_EXT - SBC" pins the internal 5V is enabled and the SBC is powered by the Duet's 5V. The Duet can supply up to 3.0A to all 5V loads including the SBC ^1^.
 
+> This requires the 5V_EXT- SBC jumper header to be fitted to the board as its not fitted as standard. {.is-info}
+
 >**^1^** Newer SBCs (e.g. RPi 4) need too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarly the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give an under voltage warning. {.is-info}
 
 **SBC supplying 5V to the Duet 3 6XD**
 ![jumper positions for powering the Duet 5V from the SBC](/duet_boards/duet_3_mb6xd/6xd_5v_option_sbc_power.png =200x)
 In some, limited, cases it may be desirable to power the board from the 5V output of a SBC connected to the SBC header. Note that the total power of the Duet 3 6XD and  peripherals must be factored into the SBC power budget. Jumpers are fitted on the "5V_EXT-5V_SBC" and the "5V_EXT-5V_INT" jumpers.
+
+> This requires the 5V_EXT-SBC and 5V_EXT-5V_INT jumper header to be fitted to the board as its not fitted as standard. {.is-info}
 
 >**CAUTION** With the "5V_EXT-5V_INT" fitted the Duet 3 6XD in-built protection for the 5V_INT supply is bypassed. {.is-warning}
 
@@ -396,7 +397,7 @@ In some, limited, cases it may be desirable to power the board from the 5V outpu
 ![6xd_5v_option_ext_only.png](/duet_boards/duet_3_mb6xd/6xd_5v_option_ext_only.png =200x)
 If 5V is being supplied via the 5V_EXT_IN header then disable the onboard 5V regulator. It is possible to fit the 5V_EXT-5V_SBC jumper to pass this power through to the SBC but it is not recommended because of the drop in voltage on the Duet due to protection circuits. It is better to provide a separate 5V connection to the SBC.
 
-> **Caution! No other jumper configuration is recommended or supported. {.is-warning}
+> **Caution**! Due to the range of SBC current requirements, along with other external 5V current draws such as Screens, LEDS. It is highly recommended to not use the internal supply on the Duet to power SBCs, hence the jumper headers are not fitted as standard. {.is-warning}
 
 #### SBC 5V considerations
 
@@ -433,7 +434,7 @@ When using an attached Raspberry Pi or other SBC the Ethernet interface on the D
 
 ## Connecting External Motor Drivers
 
-The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have optoisolated or similar inputs. The Step, Dir and Enable outputs from the 6XD are either low (when "on") or floating/high impedence when "off". To connect a Pololu/StepStick/similar driver to the 6XD a 10K pullup resistor is needed from the Step/Dir/En lines to +5V.
+The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. The Step, Dir and Enable outputs from the 6XD are either low (when "on") or floating/high impedence when "off". To connect a Pololu/StepStick/similar driver to the 6XD a 10K pullup resistor is needed from the Step/Dir/En lines to +5V.
 
 This diagram shows connection to a "typical" optoisolated stepper motor driver
 
@@ -448,6 +449,13 @@ See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_conn
 # Revision History
 
 # Tabs{.tabset}
+## Revision 1.0
+
+* Added a Jumper to connect the external SD card on the PanelDue header to GND (allows older versions of PanelDue with out a card detect pin to be used.
+* fixed labelling error with the ACTIVE ENABLE and ACTIVE DISABLE legends on the enable polarity selection jumper, on both sides of the PCB
+* Board can now be programmed with BOSSA even when Driver enable polarity select is Enable Active.
+* Updated CAN common mode chokes for better performance
+* Added termination disconnection cuttable jumpers for CAN 1 to allow the board to not be at the end of the CAN bus.
 
 ## Revision 0.1
 
