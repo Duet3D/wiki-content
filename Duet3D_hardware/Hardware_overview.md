@@ -2,7 +2,7 @@
 title: Hardware overview
 description: 
 published: true
-date: 2022-05-31T22:17:00.955Z
+date: 2022-07-26T14:22:16.024Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T11:36:08.818Z
@@ -12,34 +12,34 @@ dateCreated: 2021-12-06T11:36:08.818Z
 
 ## Current production Duet mainboards
 
-| Feature | [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | [Duet 3 Mini 5+ WiFi](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 3 Mini 5+ Ethernet](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 2 WiFi](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | [Duet 2 Ethernet](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) |
+| Feature | [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | [Duet 3 Mainboard 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | [Duet 3 Mini 5+ WiFi](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 3 Mini 5+ Ethernet](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 2 WiFi](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | [Duet 2 Ethernet](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) |
 |:---|:---|:---|:---|:---|:---|
-| **Board image** | ![duet_3_mb6hc_v0.6_top.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_v0.6_top.jpg =200x){.align-center} | ![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =150x){.align-center} || ![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top.jpg =200x){.align-center} ||
-| **Processor** | ATSAME70Q20B | ATSAME54P20A || ATSAM4E8E ||
-| **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache | 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache || 120MHz ARM Cortex M4F, 512Kb flash, 128Kb RAM, hardware floating point (single precision), DMA, 2Kb cache ||
-| **Networking** | 100BaseTX Ethernet, or via attached SBC | 2.4GHz WiFi with external antenna, or via attached SBC | 100BaseTX Ethernet, or via attached SBC | 2.4GHz WiFi (internal and external antenna versions available) | 100BaseTX Ethernet |
-| **Support for attached Raspberry Pi or other Single Board Computer (SBC)** | Yes | Yes || Yes, from RRF 3.2 (requires hardware modification) ||
-| **Stepper drivers on-board** | 6 x TMC2160 or TMC5160 | 5 x TMC2209 || 5 x TMC2660 ||
-| **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 | Up to 2.0A peak current (TBC), microstep interpolation from any setting to x256, stall detection, stealthChop2 || Up to 2.5A peak current, microstep interpolation from x16 to x256, stall detection ||
-| **Stepper driver expansion** | Almost unlimited expansion using CAN-connected expansion boards | 2 additional TMC2209 stepper drivers; further expansion via CAN || Up to 7 additional stepper drivers, of which up to 5 can be TMC2660 ||
-| **External stepper driver support** | Via CAN bus | Possibility of driving 2 external stepper drivers from stepper driver expansion connector, or via CAN bus || Up to 7 external stepper drivers when not using DueX expansion board. Signal levels are 3.3V. A 4-channel expansion breakout board is available to level shift them to 5V. ||
-| **Heater outputs** | Bed heater (up to 18A TBC), 3 x extruder heater (up to 6A each) | Bed heater (up to 18A TBC), 2 x extruder heater (up to 5A each) || Bed heater (up to 18A), 2 x extruder heater (up to 6A each) ||
-| **Thermistor/PT1000 inputs** | 4, optimised for 100K thermistors and PT1000 sensors | 3, optimised for 100K thermistors and PT1000 sensors || 3, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy ||
-| **PT100 and thermocouple daughter board support** | 2 boards (4 channels) | 1 board (2 channels) || 2 boards (4 channels) ||
-| **Heater/thermistor expansion** | Via CAN-connected expansion boards | Limited expansion via CAN || 5 more extruder heater outputs and thermistor inputs, 2 more PT100/thermocouple daughter boards (4 channels) ||
-| **Endstop or filament monitor inputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe or PanelDue connection. Inputs are 30V-tolerant. Almost unlimited expansion via CAN-connected expansion boards. | 5 on-board I/O connectors, 2 input-only connectors = 7  in total for endstop, filament monitor, Z probe or PanelDue connection. Inputs are 30V-tolerant. Further expansion via CAN-connected expansion boards. || 5 on-board (STP pins are 8V-tolerant on revision 1.04 and later), 7 expansion ||
-| **Endstop status LEDs** | No | No || Yes ||
-| **Z probe connector** | See under Endstop or filament monitor inputs | See under Endstop or filament monitor inputs || 4-pin with IN/GND/MOD/3V3 pins (IN pin is 30V-tolerant in revision 1.04 and later) ||
-| **Fan outputs** | 6 controlled fans of which 3 support 4-wire fans with PWM and tacho wires, voltage selectable between VIN and 12V in 2 banks | 4 controlled fans of which 2 support 4-wire fans with PWM and tacho wires, voltage selectable between VIN and 12V in 2 banks || 3 controlled fans, 2 always-on fan connectors, voltage selectable between VIN, 5V or external supply (all fans together); 6 more controlled fans on expansion board ||
-| **Servo support** | See under Endstop and filament monitor inputs. Also one output with 5V signal level for servo, laser or VFD converter (shared control signal with one of the 2-wire  fan outputs). | See under Endstop and filament monitor inputs. Also one output with 5V signal level for servo, laser or VFD converter (shared control signal with one of the 2-wire  fan outputs). || Up to 5 via expansion connector (3.3V drive unless expansion board used) ||
-| **Input power voltage** | 11V to 32V | 11V to 25V || 11V to 25V ||
-| **Power monitoring** | VIN voltage and 12V regulator output voltage | VIN voltage || VIN voltage and input to on-board 5V regulator ||
-| **LCD support** | Typically provided by HDMI touch screen attached to the SBC. PanelDue also supported. | PanelDue colour touch screen, mini 12864 mono graphics display using ST7567 controller (3.3V signal levels) || PanelDue colour touch screen ||
-| **LED strip support** | Neopixel (max. 240 RGBW or 320 RGB in RRF 3.4) or DotStar | Neopixel (max. 80 RGBW or 106 RGB in RRF 3.4, external 5V power required) || Neopixel (max. 60 RGBW or 80 RGB in RRF 3.4, external 5V power required) ||
-| **Other expansion** | Almost unlimited expansion via CAN-connected expansion boards | Via I/O ports and CAN bus || 4 GPIO pins on Duex 2/Duex 5 expansion board, 16 GPIO pins on third-party SX1509B-based I/O expansion board ||
-| **SD card interface speed** | 25Mbytes/sec | 22.5Mbytes/sec || 20Mbytes/sec ||
-| **RepRapFirmware versions available** | 3.0 series | 3.0 series || 2.0 series, 3.0 series ||
-| **Dimensions** | 140x134mm | 120x100mm || 120x100mm ||
+| **Board image** | ![duet_3_mb6hc_v0.6_top.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_v0.6_top.jpg =150x) | ![Duet 3 Mainboard 6XD v1.0](/duet_boards/duet_3_mb6xd/mb6xd_5_small.png =150x) | ![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =150x) || ![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top.jpg =200x){.align-center} ||
+| **Processor** | ATSAME70Q20B || ATSAME54P20A || ATSAM4E8E ||
+| **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache || 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache || 120MHz ARM Cortex M4F, 512Kb flash, 128Kb RAM, hardware floating point (single precision), DMA, 2Kb cache ||
+| **Networking** | 100BaseTX Ethernet, or via attached SBC || 2.4GHz WiFi with external antenna, or via attached SBC | 100BaseTX Ethernet, or via attached SBC | 2.4GHz WiFi (internal and external antenna versions available) | 100BaseTX Ethernet |
+| **Support for attached Raspberry Pi or other Single Board Computer (SBC)** | Yes || Yes || Yes, from RRF 3.2 (requires hardware modification) ||
+| **Stepper drivers on-board** | 6 x TMC2160 or TMC5160 | NA | 5 x TMC2209 || 5 x TMC2660 ||
+| **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 | NA | Up to 2.0A peak current (TBC), microstep interpolation from any setting to x256, stall detection, stealthChop2 || Up to 2.5A peak current, microstep interpolation from x16 to x256, stall detection ||
+| **Stepper driver expansion** | Almost unlimited expansion using CAN-connected expansion boards || 2 additional TMC2209 stepper drivers; further expansion via CAN || Up to 7 additional stepper drivers, of which up to 5 can be TMC2660 ||
+| **External stepper driver support** | Via CAN bus | 6 ports with step/direction/enable outputs, and fault inputs. Signalling is 5V single ended. Also via CAN bus | Possibility of driving 2 external stepper drivers from stepper driver expansion connector, or via CAN bus || Up to 7 external stepper drivers when not using DueX expansion board. Signal levels are 3.3V. A 4-channel expansion breakout board is available to level shift them to 5V. ||
+| **High current outputs** | 1 x 15A, 3 x 6A each | 3 x 6A each | 1 x 15A, 2 x 5A each || 1 x 15A, 2 x 6A each ||
+| **Thermistor/PT1000 inputs** | 4, optimised for 100K thermistors and PT1000 sensors || 3, optimised for 100K thermistors and PT1000 sensors || 3, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy ||
+| **PT100 and thermocouple daughter board support** | 2 boards (4 channels) || 1 board (2 channels) || 2 boards (4 channels) ||
+| **Heater/thermistor expansion** | Via CAN-FD expansion boards || Limited expansion via CAN || 5 more extruder heater outputs and thermistor inputs, 2 more PT100/thermocouple daughter boards (4 channels) ||
+| **Endstop or filament monitor inputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Almost unlimited expansion via CAN-connected expansion boards. | 9 on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. 4 of the 9 pairs of IO also have alternative opto-isolated connectors. | 5 on-board I/O connectors, 2 input-only connectors = 7  in total for endstop, filament monitor, Z probe or PanelDue connection. Inputs are 30V-tolerant. Further expansion via CAN-connected expansion boards. || 5 on-board (STP pins are 8V-tolerant on revision 1.04 and later), 7 expansion ||
+| **Endstop status LEDs** | No |||| Yes ||
+| **Z probe connector** | See under Endstop or filament monitor inputs |||| 4-pin with IN/GND/MOD/3V3 pins (IN pin is 30V-tolerant in revision 1.04 and later) ||
+| **Medium current outputs** | 6 x PWM-controlled outputs, of which 3 support tacho input. Voltage selectable between VIN / 12V / external power, in 2 banks. 1 x VIN-voltage, always-on output. 1 x 12V, always-on output || 4 controlled fans of which 2 support 4-wire fans with PWM and tacho wires, voltage selectable between VIN and 12V in 2 banks || 3 controlled fans, 2 always-on fan connectors, voltage selectable between VIN, 5V or external supply (all fans together); 6 more controlled fans on expansion board ||
+| **Servo support** | See under Endstop and filament monitor inputs. Also one output with 5V signal level for servo, laser or VFD converter (shared control signal with one of the 2-wire  fan outputs). || See under Endstop and filament monitor inputs. Also one output with 5V signal level for servo, laser or VFD converter (shared control signal with one of the 2-wire  fan outputs). || Up to 5 via expansion connector (3.3V drive unless expansion board used) ||
+| **Input power voltage** | 11V to 32V | 11V to 30V | 11V to 25V || 11V to 25V ||
+| **Power monitoring** | VIN voltage and 12V regulator output voltage || VIN voltage || VIN voltage and input to on-board 5V regulator ||
+| **LCD support** | Typically provided by HDMI touch screen attached to the SBC. PanelDue also supported. || PanelDue colour touch screen, mini 12864 mono graphics display using ST7567 controller (3.3V signal levels) || PanelDue colour touch screen ||
+| **LED strip support** | Neopixel (max. 240 RGBW or 320 RGB in RRF 3.4) or DotStar || Neopixel (max. 80 RGBW or 106 RGB in RRF 3.4, external 5V power required) || Neopixel (max. 60 RGBW or 80 RGB in RRF 3.4, external 5V power required) ||
+| **Other expansion** | Almost unlimited expansion via CAN-connected expansion boards || Via I/O ports and CAN bus || 4 GPIO pins on Duex 2/Duex 5 expansion board, 16 GPIO pins on third-party SX1509B-based I/O expansion board ||
+| **SD card interface speed** | 25Mbytes/sec || 22.5Mbytes/sec || 20Mbytes/sec ||
+| **RepRapFirmware versions available** | 3.0 series |||| 2.0 series, 3.0 series ||
+| **Dimensions** | 140x134mm | 140x115mm | 120x100mm || 120x100mm ||
 <!---
 ## Legacy Duets
 
