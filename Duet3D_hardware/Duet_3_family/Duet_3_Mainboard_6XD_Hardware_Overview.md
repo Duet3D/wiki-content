@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-07-25T17:06:38.167Z
+date: 2022-07-26T12:41:08.964Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -442,7 +442,8 @@ The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers t
 
 This diagram shows connection to a "typical" optoisolated stepper motor driver
 
-[![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_dvr_conn.png){target=_black}
+[![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png){target=_black}
+
 
 
 
