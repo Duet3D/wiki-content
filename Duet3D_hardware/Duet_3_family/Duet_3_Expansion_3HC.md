@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-07-26T15:45:00.328Z
+date: 2022-07-26T15:45:28.930Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -33,7 +33,7 @@ The Duet 3 Expansion 3HC supports the following:
 |:--|:--|
 | **Stepper drivers** | Up to 6.3A peak current |
 | **High current outputs** | OUT0/1/2 up to 6A each |
-| **Input power voltage** | Version 1.01 and earlier: 12V to 32V, version 1.02: 12V to 50V |
+| **Input power voltage** | Version 1.01 and earlier: 12V to 32V, version 1.02: 12V to 48V |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **Fuses** | 10A for V_Fused. |
