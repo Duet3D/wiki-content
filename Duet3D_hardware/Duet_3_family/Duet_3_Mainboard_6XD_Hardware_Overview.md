@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-07-26T13:10:44.296Z
+date: 2022-07-26T13:12:50.634Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -68,7 +68,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 
 ## Firmware notes
 
-* Compatible RepRapFirmware versions: RRF 3.4 and later
+* Compatible RepRapFirmware versions: RRF 3.4.1 and later
 
 For firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
 
@@ -145,7 +145,7 @@ STEP file to follow.
 | **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*).|
 | ^^ | ^^ | **Note** The PanelDue UART is shared with io0.in and io0.out pins on the IO_0 header. |
 | **1 x 2-pin Jumper** |  PD_CD_OVERRIDE | v1.0 and later. Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
-| **1 x RJ11 CAN connector** | CAN_1_OUT | CAN-FD connection for Duet 3 expansion boards. This has a permanent termination resistor, so it must be at one end of the CAN bus |
+| **1 x RJ11 CAN connector** | CAN_1_OUT | CAN-FD connection for Duet 3 expansion boards. Without modification, it must be at one end of the CAN bus, however the bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
 | **1 x 2-pin KK connector** | CAN_0_OUT | CAN-FD Bus connection for future expansion. bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
 | **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface boards.|
 | **6 x 6-pin KK connectors** | DRIVER_0-DRIVER_5 | External stepper or servo motor driver connections. 5V, GND, single ended outputs for Step, Dir and Enable along with a fault input provided per driver. See "Connecting External Drivers" section below. |
