@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: 
 published: true
-date: 2022-07-26T12:41:08.964Z
+date: 2022-07-26T13:10:44.296Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -298,7 +298,7 @@ IO_5-IO_8 are also available as opto-isolated inputs and outputs
 
 The opto-isolated inputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
 
-![Diagram showing the connection of the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_opto_in.png)
+![Diagram showing the connection of the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_opto_in.png)
 
 on the Duet 3 Mainboard 6XD the opto-isolated IO 5 input port schematic is as follows, IO6-8 are the same:
 
@@ -309,7 +309,8 @@ on the Duet 3 Mainboard 6XD the opto-isolated IO 5 input port schematic is as fo
 
 The opto-isolated outputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
 
-![Diagram showing the connection of the Duet 3 MB6XD opto isolated outputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_opto_out.png)
+![Diagram showing the connection of the Duet 3 MB6XD opto isolated outputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_opto_out.png)
+
 
 on the Duet 3 Mainboard 6XD the opto-isolated IO 5 output port schematic is as follows, IO6-8 are the same:
 
