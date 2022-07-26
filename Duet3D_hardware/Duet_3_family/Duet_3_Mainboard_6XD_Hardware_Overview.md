@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-07-26T13:39:48.893Z
+date: 2022-07-26T13:51:05.855Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -28,7 +28,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **Processor** | [ATSAMV71Q20B](https://www.microchip.com/en-us/product/ATSAMV71Q20) alternatively the ATSAME70Q20B will be used. They are functionally equivalent in this design |
 | **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
 | **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port |
-| **External Driver Support** | 6 ports with step/direction/enable outputs, and fault inputs. signalling is 5V single ended. |
+| **External Driver Support** | 6 ports with step/direction/enable outputs, and fault inputs. Signalling is 5V single ended. |
 | **High current outputs** | 3 x High current outputs (up to 6A each) |
 | **Medium current outputs** | 6 x medium current outputs for PWM fans and similar devices, of which 3 support 4-wire fans with PWM and tacho wires. Arranged in two banks, each bank is individually fused with voltage selectable between VIN / 12V.|
 | **Thermistor/PT1000 inputs** | 4, optimised for 100K thermistors and PT1000 sensors |
