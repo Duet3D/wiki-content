@@ -1,8 +1,8 @@
 ---
 title: Duet 3 Mini 5+
-description: 
+description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2022-07-12T10:57:27.196Z
+date: 2022-07-26T13:40:42.520Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
