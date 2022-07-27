@@ -2,7 +2,7 @@
 title: Connecting a web camera to Duet Web Control
 description: Duet 2 and Duet 3 mainboards do not support a directly-connected web camera. However, you can buy a suitable Wifi or Ethernet IP camera and then configure Duet Web Control to include an image from the camera on the Print page.
 published: true
-date: 2022-06-29T11:30:21.702Z
+date: 2022-07-27T22:17:29.633Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T15:12:46.132Z
@@ -84,7 +84,7 @@ The cameras will also work, generally, in low to no light, I forgot where i got 
 
 # Motion on a Raspberry Pi Running DSF
 
-From 3.4 the Duet 3D provided Raspberry Pi images for Duet Software Framework come with the [motion](https://github.com/Motion-Project/motion){target=_blank} streaming service installed. A compatible camera can be connected to the Rapsberry Pi can the be used through DWC and controlled through the [Motion Webcam Plugin](/User_manual/Reference/Community_projects)https://github.com/Duet3D/DSF-Plugins/tree/dev/MotionWebcamServer){target=_blank}
+From 3.4 the Duet3D-provided Raspberry Pi images for Duet Software Framework come with the [motion](https://github.com/Motion-Project/motion){target=_blank} streaming service installed. A compatible camera can be connected to the Rapsberry Pi, and can then be used through DWC and controlled through the [Motion Webcam Plugin](https://github.com/Duet3D/DSF-Plugins/tree/dev/MotionWebcamServer){target=_blank}.
 
 ## Description
 
