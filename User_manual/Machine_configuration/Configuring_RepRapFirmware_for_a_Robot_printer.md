@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-07-22T07:09:05.462Z
+date: 2022-07-28T06:24:37.580Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -45,6 +45,25 @@ M669 must set kinematics type to robot by caling M669 K13. After the type is sel
 
 **K13** needs to be defined.
 
+**A** and **B** define the properties of the robot, please see next sections for details
+
+**P** see section below
+
+**Qn** quality of calculation
+
+Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time needed to calculate depends on the processor speed. Slow and high quality means the algorithms takes more time to calculate exact results. Default is Q1. Quality can be changed anytime, e. g. to print specific object details with higher quality.
+
+**R** Reporting modes (this parameter will change often)
+* R0 no reporting, default.
+* R1 prints out time information and calculation precision to the console about running core methods of robot kinematics. Helps to find the best Q value.
+
+**Sn** Segments per second (because smooth XYZ motion is approximated by means of segmentation)
+
+**Tn** Minimum segment length (mm) (because smooth XYZ motion is approximated by means of segmentation)
+
+The higher S and lower T are, the better (more straight) straight line moves are, but at the cost of processing and time needed to calculate kinematics. The simulation B1:S will give information about the qualitity of the settings.
+
+# M669 A parameter
 **A** is used to define the properties of the robot.
 
 * AT:string defines the actuator type, rotary or prismatic and how they are assembled
@@ -82,23 +101,16 @@ Adding the possibility to define Y axes' parameters rotation and translation to 
 
 A1 to A6 are the equivalent to DH parameters. A0 allows a displacement of the first axis and axis rotations.
 
-**B** reserved
 
-**P** see next chapter
+# M669 B parameter
+B defines robot properties as well, but with a different logic. A and B parameters can be mixed. For configurations with defined axis orientations it is easier to just define arm lengts, homing angles and some additional information. AT must be defined in advance so that firmware knows to to interprete the parameters.
 
-**Qn** quality of calculation
+BA:a1:a2:... define arm lengths
 
-Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time needed to calculate depends on the processor speed. Slow and high quality means the algorithms takes more time to calculate exact results. Default is Q1. Quality can be changed anytime, e. g. to print specific object details with higher quality.
+BH:h1:h2:... define homing angles
 
-**R** Reporting modes (this parameter will change often)
-* R0 no reporting, default.
-* R1 prints out time information and calculation precision to the console about running core methods of robot kinematics. Helps to find the best Q value.
+BM:min1:max1:min2:max2... define min max angles
 
-**Sn** Segments per second (because smooth XYZ motion is approximated by means of segmentation)
-
-**Tn** Minimum segment length (mm) (because smooth XYZ motion is approximated by means of segmentation)
-
-The higher S and lower T are, the better (more straight) straight line moves are, but at the cost of processing and time needed to calculate kinematics. The simulation B1:S will give information about the qualitity of the settings.
 
 # M669 P parameter
 
