@@ -2,7 +2,7 @@
 title: User manual: Overview
 description: 
 published: true
-date: 2022-07-11T11:50:26.643Z
+date: 2022-07-29T15:45:50.770Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:46:34.769Z
@@ -25,7 +25,8 @@ dateCreated: 2021-06-08T13:46:34.769Z
 
 # Getting Started
 
-[Getting Started with Duet 3 MB6HC](/User_manual/Overview/Getting_started_Duet_3_MB6HC)
+[Getting Started with Duet 3 Mainboard 6HC](/User_manual/Overview/Getting_started_Duet_3_MB6HC)
+[Getting Started with Duet 3 Mainboard 6XD](/User_manual/Overview/Getting_started_Duet_3_MB6XD)
 [Getting Started with Duet 3 Mini 5+](/User_manual/Overview/Getting_started_Duet_3_Mini_5+)
 [Getting Started with Duet 2 WiFi / Ethernet](/User_manual/Overview/Getting_started_Duet_2_WiFi_Ethernet)
 
