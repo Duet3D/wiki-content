@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-23T06:06:11.743Z
+date: 2022-07-29T07:16:31.441Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -53,7 +53,9 @@ Forward calculation can be gathered in a Jacobian matrix of 6 or 7 lines and num
 
 When a Jacobian matrix is not quadratic or or has reduced rank, the so-called generalized inverse must be calculated instead. A generalized inverse calculates a solution which has minimal quadratic square difference.
 
-Research has developed different methods for calculation. Currently, the Moore-Penrose inverse is calculated with the method described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf which uses Householder transformation, QR transformation, calcuating singular values and singular vectors and an iterative process to reach the desired precision. The resulting generalized inverse allows calculation of actuator angles from cartesian position and endpoint orientation.
+Research has developed different methods for calculation. Currently, the Moore-Penrose inverse is calculated with the method described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf which uses Householder transformation and Givens rotation to calculate singular values and singular vectors. An iterative process results in the generalized inverse with given precision. The resulting generalized inverse allows calculation of actuator angles from cartesian position and endpoint orientation.
+
+This jacobian and inverse values is most exact if using small steps, i. e. small segments. Tests result in 0.5 mm long segments is a good candidate to calculate long distances (e.g. calculate LimitPosition to check whether the goal is reachable). For the move itself, the shortest segments are best, because rotational axes produce curves instead of straight lines, so a balance between precision and performance cost (the MCU has limited capabilities) must be found. The default is 0.1 segment lengths.
 
 # Orientation types
 
