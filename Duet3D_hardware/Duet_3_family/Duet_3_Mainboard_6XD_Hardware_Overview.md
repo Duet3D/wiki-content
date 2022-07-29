@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-07-29T19:03:23.910Z
+date: 2022-07-29T19:07:22.398Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -25,7 +25,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 
 | HARDWARE SPECIFICATION ||
 |---|---|
-| **Processor** | [ATSAMV71Q20B](https://www.microchip.com/en-us/product/ATSAMV71Q20). Alternatively the ATSAME70Q20B will be used. They are functionally equivalent in this design |
+| **Processor** | [ATSAMV71Q20B](https://www.microchip.com/en-us/product/ATSAMV71Q20){target=_blank}. Alternatively the ATSAME70Q20B will be used. They are functionally equivalent in this design |
 | **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
 | **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port; CAN-FD bus |
 | **External Driver Support** | 6 ports with step/direction/enable outputs, and fault inputs. Signalling is 5V single ended. |
@@ -70,18 +70,18 @@ The main hardware features of the Duet 3 6XD are listed below.
 
 * Compatible RepRapFirmware versions: RRF 3.4.1 and later
 
-For firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
+For firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}.
 
-If running from an SBC, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
+If running from an SBC, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
 
 ## Open Source
 
 Importantly Duets are Open:
 
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6XD/blob/master/LICENSE).
-* All hardware [source files](https://github.com/Duet3D/Duet3-Mainboard-6XD/) are available on Github.
-* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6XD/blob/master/LICENSE){target=_blank}.
+* All hardware [source files](https://github.com/Duet3D/Duet3-Mainboard-6XD/){target=_blank} are available on Github.
+* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl){target=_blank} web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware){target=_blank} are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank} and [Eclipse](https://eclipse.org/){target=_blank} using open tools means the barrier to getting involved is as low as possible.
 
 ## Feature Comparison
 
@@ -109,7 +109,7 @@ The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is 
 
 ## 3D Model
 
-A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainboard-6XD/blob/master/v1.0/Duet3_MB_6XD_STEP.zip).
+A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainboard-6XD/blob/master/v1.0/Duet3_MB_6XD_STEP.zip){target=_blank}.
 
 # Physical connections
 
@@ -121,14 +121,9 @@ A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainbo
 
 [![Duet3 Mainboard 6XD v1.0 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.0_wiring.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.0_wiring.png){target=_blank}
 
-
-
 ### Revision 0.1
 
-
 [![Duet3 Mainboard 6XD prototype v0.1 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_wiring.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_wiring.png){target=_blank}
-
-
 
 #### Errata
 
@@ -448,21 +443,21 @@ This diagram shows connection to a "typical" optoisolated stepper motor driver
 
 ## Connecting a PanelDue
 
-A [PanelDue](/Duet3D_hardware/Accessories/PanelDue) can be connected to IO_0 using a 4-wire cable. See [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#option-1-4-way-cable)
+A [PanelDue](/Duet3D_hardware/Accessories/PanelDue){target=_blank} can be connected to IO_0 using a 4-wire cable. See [Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue#option-1-4-way-cable){target=_blank}
 
-Alternatively, it can be connected using a ribbon cable plugged into the socket labelled PanelDue_SD, which enables access to the PanelDue SD card socket. However, there are some caveats; see note on Duet 3 MB6XD on [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#notes).
+Alternatively, it can be connected using a ribbon cable plugged into the socket labelled PanelDue_SD, which enables access to the PanelDue SD card socket. However, there are some caveats; see note on Duet 3 MB6XD on [Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue#notes){target=_blank}.
 
 ## Connecting a Raspberry Pi
 
 The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers or other USB power supplies cannot supply sufficient voltage. Therefore, we strongly recommend that you use the official Raspberry Pi PSU, or another PSU specifically designed to power a Raspberry Pi. If the red LED on the Pi is not continuously illuminated, the power supply is insufficient.
 
-In other respects, SBC connection to the Duet and configuration is the same as for the Duet 3 Mainboard 6HC. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
+In other respects, SBC connection to the Duet and configuration is the same as for the Duet 3 Mainboard 6HC. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
 
 When using an attached Raspberry Pi or other SBC the Ethernet interface on the Duet 3 6XD is disabled.
 
 ## Connecting Fans
 
-See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting).
+See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting){target=_blank}.
 
 # Revision History
 
