@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-07-26T13:51:05.855Z
+date: 2022-07-29T12:05:27.836Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -25,12 +25,12 @@ The main hardware features of the Duet 3 6XD are listed below.
 
 | HARDWARE SPECIFICATION ||
 |---|---|
-| **Processor** | [ATSAMV71Q20B](https://www.microchip.com/en-us/product/ATSAMV71Q20) alternatively the ATSAME70Q20B will be used. They are functionally equivalent in this design |
+| **Processor** | [ATSAMV71Q20B](https://www.microchip.com/en-us/product/ATSAMV71Q20). Alternatively the ATSAME70Q20B will be used. They are functionally equivalent in this design |
 | **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
-| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port |
+| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port; CAN-FD bus |
 | **External Driver Support** | 6 ports with step/direction/enable outputs, and fault inputs. Signalling is 5V single ended. |
-| **High current outputs** | 3 x High current outputs (up to 6A each) |
-| **Medium current outputs** | 6 x medium current outputs for PWM fans and similar devices, of which 3 support 4-wire fans with PWM and tacho wires. Arranged in two banks, each bank is individually fused with voltage selectable between VIN / 12V.|
+| **High current outputs** | 3 x 6A each |
+| **Medium current outputs** | 6 x PWM-controlled outputs, of which 3 support tacho input. Voltage selectable between VIN / 12V / external power, in 2 individually-fused banks. 1 x VIN-voltage, always-on output. 1 x 12V, always-on output. |
 | **Thermistor/PT1000 inputs** | 4, optimised for 100K thermistors and PT1000 sensors |
 | **Inputs/Outputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo, or PanelDue connection. Inputs are 30V-tolerant. 4 of the 9 pairs of IO also have alternative opto-isolated connectors.
 | **Power monitoring** | VIN voltage monitoring allows for state save on power failure.12V regulator output voltage also monitored |
