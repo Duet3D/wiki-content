@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-07-13T14:28:53.243Z
+date: 2022-07-29T10:56:29.037Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -42,7 +42,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **EXPANSION** ||
 |---|---|
 | **Support for attached Raspberry Pi or other Single Board Computer (SBC)** | Yes |
-| **External stepper driver support** | Via CAN bus |
+| **External stepper driver support** | Via CAN-FD bus |
 | **Stepper driver expansion** | 20+ via CAN-FD-connected expansion boards |
 | **High current output and/or thermistor expansion** | 20+ via CAN-FD-connected expansion boards |
 | **PT100 and thermocouple daughterboard support** | Supports 2 x daughterboards (4 channels) on board. 50+ via CAN-FD-connected expansion boards. |
