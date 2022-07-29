@@ -2,7 +2,7 @@
 title: Duet 3 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-07-29T12:05:27.836Z
+date: 2022-07-29T14:11:19.183Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -73,11 +73,23 @@ The main hardware features of the Duet 3 6XD are listed below.
 For firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
 
 If running from an SBC, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
-<!--- #restore once the feature comparison tale is updated
+<!--- #update and restore once 6XD files on GitHub.
+
+## Open Source
+
+Importantly Duets are Open:
+
+* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE).
+* All hardware [source files](https://github.com/Duet3D/Duet3-Mainboard-6HC) are available on Github.
+* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+
+-->
+
 ## Feature Comparison
 
 See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a feature comparison table between different versions of the Duet.
--->
+
 
 # Physical properties
 
@@ -190,11 +202,13 @@ LEDs are provided to indicate the following:
 | **OUT_1** | Red | Next to the OUT 1 connector, indicates when on |
 | **OUT_2** | Red | Next to the OUT 2 connector, indicates when on |
 
-The red LED next to the Reset button, labelled "STATUS" indicates the state of the board, as follows:
+The red LED labelled "STATUS", next to the Reset button, indicates the state of the board, as follows.
 
 | LED | Meaning |
 |:---|:---|
-| Flashing steadily, about half a second off and half a second on | Normal operation, RepRapFirmware is running |
+| Flashing steadily, about half a second off and half a second on | Normal operation, RepRapFirmware is running.  |
+| ^^ | Any connected expansion board also has a diagnostic LED. When the expansion board starts up this LED will blank rapidly. If the expansion board is connected to a Mainboard running compatible firmware, the LED on the expansion board will switch to blinking synchronously with the Mainboard LED once time sync has been established across the CAN bus. |
+| Glowing dimly, or off | Firmware has been erased |
 | Flashing three times, then off for a while | Firmware CRC check failed |
 
 
@@ -265,6 +279,12 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 
 ## Input/Output Port capabilities
 
+### OUT headers
+
+OUT_0 to OUT_8 are all PWM-capable. OUT_6 is shared with LASER/VFD. See tables above for notes on voltage selection and current limits.
+
+### IO headers
+
 There are 9 IO headers on board, IO_0-IO_8. Each has an input and output along with 3.3V, 5V and GND supplied. This enables them to support a wide range of endstops, probes, filament monitors and future low bandwidth devices.
 
 ![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =282x)
@@ -275,7 +295,7 @@ Except as noted in the table below, an IO_x_IN pin can always be used to provide
 
 Some ports have further capabilities as shown in this table
 
-### Specific capabilities
+#### Specific capabilities
 Capabilities of IO_0 to IO_8 are shown below.
 
 | IO # | UART? | Analog in? | PWM out? | Notes |
@@ -290,7 +310,7 @@ Capabilities of IO_0 to IO_8 are shown below.
 | 7 | no | yes | yes |  |
 | 8 | no | yes | no |  |
 
-### Opto-isolated IO
+### Opto-isolated IO headers
 
 IO_5-IO_8 are also available as opto-isolated inputs and outputs
 
@@ -298,23 +318,23 @@ IO_5-IO_8 are also available as opto-isolated inputs and outputs
 
 The opto-isolated inputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
 
-![Diagram showing the connection of the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_opto_in.png)
+![Diagram showing the connection of the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_opto_in.png =600x)
 
 on the Duet 3 Mainboard 6XD the opto-isolated IO 5 input port schematic is as follows, IO6-8 are the same:
 
-![schematic showing the circuit for the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/6xd_opto_input_schematic.png)
+![schematic showing the circuit for the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/6xd_opto_input_schematic.png =600x)
 
 
 #### Opto-isolated Outputs
 
 The opto-isolated outputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
 
-![Diagram showing the connection of the Duet 3 MB6XD opto isolated outputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_opto_out.png)
+![Diagram showing the connection of the Duet 3 MB6XD opto isolated outputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_opto_out.png =600x)
 
 
 on the Duet 3 Mainboard 6XD the opto-isolated IO 5 output port schematic is as follows, IO6-8 are the same:
 
-![Schematic of the opto-isolated output circuit on the Duet3 Mainboard 6XD](/duet_boards/duet_3_mb6xd/6xd_opto_output_schematic.png)
+![Schematic of the opto-isolated output circuit on the Duet3 Mainboard 6XD](/duet_boards/duet_3_mb6xd/6xd_opto_output_schematic.png =600x)
 
 
 
@@ -421,9 +441,15 @@ Power overdraw conditions may result in poor communication between the Pi and Du
  * External SD card on PanelDue header
 
 
-## Connecting Displays
+## Connecting External Motor Drivers
 
-### Connecting a PanelDue
+The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. The Step, Dir and Enable outputs from the 6XD are either low (when "on") or floating/high impedence when "off". To connect a Pololu/StepStick/similar driver to the 6XD a 10K pullup resistor is needed from the Step/Dir/En lines to +5V.
+
+This diagram shows connection to a "typical" optoisolated stepper motor driver
+
+[![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png){target=_blank} [![duet_3_mb6xd_ext_driver.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg =400x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg){target=_blank}
+
+## Connecting a PanelDue
 
 A [PanelDue](/Duet3D_hardware/Accessories/PanelDue) can be connected to IO_0 using a 4-wire cable. See [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#option-1-4-way-cable)
 
@@ -436,17 +462,6 @@ The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers
 In other respects, SBC connection to the Duet and configuration is the same as for the Duet 3 Mainboard 6HC. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
 
 When using an attached Raspberry Pi or other SBC the Ethernet interface on the Duet 3 6XD is disabled.
-
-## Connecting External Motor Drivers
-
-The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. The Step, Dir and Enable outputs from the 6XD are either low (when "on") or floating/high impedence when "off". To connect a Pololu/StepStick/similar driver to the 6XD a 10K pullup resistor is needed from the Step/Dir/En lines to +5V.
-
-This diagram shows connection to a "typical" optoisolated stepper motor driver
-
-[![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png){target=_black}
-
-
-
 
 ## Connecting Fans
 
