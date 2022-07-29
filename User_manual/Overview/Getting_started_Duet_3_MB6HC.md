@@ -1,8 +1,8 @@
 ---
-title: Getting Started With Duet 3 MB6HC
+title: Getting Started With Duet 3 Mainboard 6HC
 description: 
 published: true
-date: 2022-06-13T09:51:46.091Z
+date: 2022-07-29T14:48:46.985Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:18:25.164Z
@@ -15,7 +15,7 @@ dateCreated: 2021-11-29T15:18:25.164Z
 
 # Introduction
 
-Congratulations on your new Duet 3 MB6HC! This page will guide you through getting connected, updating firmware, setting up initial configuration.
+Congratulations on your new Duet 3 Mainboard 6HC! This page will guide you through getting connected, updating firmware, setting up initial configuration.
 
 First, read the warnings! See [Warnings](/User_manual/Overview/Warnings), [Fire safety](/User_manual/Overview/Fire_safety) and [USB ground loops](/User_manual/Overview/USB_ground_loops) for precautions you must take.
 
@@ -23,7 +23,7 @@ First, read the warnings! See [Warnings](/User_manual/Overview/Warnings), [Fire 
 
 ![duet_3_mb6hc_getting_started_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg =50%x){.align-right}
 
-* 1 x **Duet 3 MB6HC**
+* 1 x **Duet 3 Mainboard 6HC**
 * 1 x Connector kit, including:
   * Würth Elektronic WR-WTB series connectors (Molex-KK compatible)
   * Fork crimps for power input and bed heater
@@ -35,7 +35,7 @@ First, read the warnings! See [Warnings](/User_manual/Overview/Warnings), [Fire 
 
 ## Standalone mode vs SBC mode
 
-The Duet 3 MB6HC is designed to either be directly connected to a network, or to connect to a Single Board Computer (SBC) like a Raspberry Pi. All standard printer functions, different kinematics, the network UI ([Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual)) etc work in both modes.
+The Duet 3 Mainboard 6HC is designed to either be directly connected to a network, or to connect to a Single Board Computer (SBC) like a Raspberry Pi. All standard printer functions, different kinematics, the network UI ([Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual)) etc work in both modes.
 
 SBC mode allows part of the functionality to be handled by the SBC. This offers a number of benefits:
 - Faster network transfer speeds
@@ -51,7 +51,7 @@ SBC mode allows part of the functionality to be handled by the SBC. This offers 
 
 ### With Raspberry Pi (SBC)
 
-* Duet 3 MB6HC mainboard
+* Duet 3 Mainboard 6HC
 * Raspberry Pi or other compatible Single Board Computer (SBC). Initially this has to be Model 3B or 4 but we may support some other models in the future.
 * Ribbon cable to connect the Raspberry Pi to the Duet. If using the version 0.5 Duet 3 main board, this must be 40-pin. If using a version 0.6 and later Duet main board, use 26-pin to 40-pin. Recommended length is 100 to 200mm. Longer cables will degrade the SPI signal between the Raspberry Pi and the Duet, however it may be still possible to drive them either at reduced SPI transfer speeds or with extra shielding against external EMI sources (foil wrap)
 * Power supply (min. 12V. max 32V, recommended 24V) and cables
@@ -61,7 +61,7 @@ SBC mode allows part of the functionality to be handled by the SBC. This offers 
 
 ### Standalone mode (no SBC)
 
-* Duet 3 MB6HC mainboard
+* Duet 3 Mainboard 6HC
 * Power supply (min. 12V. max 32V, recommended 24V) and cables
 * Stepper motors, heaters, thermistors, endstop switches etc. as required
 * Supplied SD card in the Duet 3
