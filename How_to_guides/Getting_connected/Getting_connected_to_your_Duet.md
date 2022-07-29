@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-06-29T21:13:25.941Z
+date: 2022-07-29T14:16:41.813Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -42,17 +42,33 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 <p style="clear:both"></p>
 
-### Duet 3 MB6HC
+### Duet 3 Mainboard 6HC
 
 [![duet_3_mb6hc_getting_started_01.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg =50%x){.align-right}](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_getting_started_01.jpg){target=_blank}
 
-* 1 x **Duet 3 MB6HC**
+* 1 x **Duet 3 Mainboard 6HC**
 * 1 x Connector kit, including:
   * Würth Elektronic WR-WTB series connectors (Molex-KK compatible)
   * Fork crimps for power input and bed heater
   * JST VH connectors and crimps for stepper motors and hotend heaters.
   * Plastic washers for isolation when mounting.
 * 100 x crimps for connectors (Molex-KK compatible)
+* 1 x micro SD Card
+* 1 x 26/40 Single Board Computer (SBC) ribbon cable
+
+<p style="clear:both"></p>
+
+### Duet 3 Mainboard 6XD
+
+[![duet_3_mb6xd_box_contents.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_box_contents.jpg =50%x){.align-right}](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_box_contents.jpg){target=_blank}
+
+* 1 x **Duet 3 Mainboard 6XD**
+* 1 x Connector kit, including:
+  * Würth Elektronic WR-WTB series connectors (Molex-KK compatible)
+  * Fork crimps for power input and bed heater
+  * JST VH connectors and crimps for hotend heaters.
+  * Plastic washers for isolation when mounting.
+* 200 x crimps for connectors (Molex-KK compatible)
 * 1 x micro SD Card
 * 1 x 26/40 Single Board Computer (SBC) ribbon cable
 
