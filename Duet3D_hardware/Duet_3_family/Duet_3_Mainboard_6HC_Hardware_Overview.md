@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-07-29T12:05:24.939Z
+date: 2022-07-29T13:27:52.155Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -203,7 +203,15 @@ LEDs are provided to indicate the following:
 | **OUT_3** | Red | Next to the OUT 3 connector, indicates when on |
 | **DIAG** | Red | Diagnostic LED. See description below |
 
-**Diagnostic LED** This blinks continuously when the Duet 3 Mainboard 6HC is running normally, about half a second on and half a second off. Any expansion board also has a diagnostic LED. When the expansion board starts up this LED will blank rapidly. If the expansion board is connected to a Mainboard running compatible firmware, the LED on the expansion board will switch to blinking synchronously with the Mainboard LED once time sync has been established across the CAN bus.
+The red LED labelled "DIAG" indicates the state of the board, as follows.
+
+| LED | Meaning |
+|:---|:---|
+| Flashing steadily, about half a second off and half a second on | Normal operation, RepRapFirmware is running.  |
+| ^^ | Any connected expansion board also has a diagnostic LED. When the expansion board starts up this LED will blank rapidly. If the expansion board is connected to a Mainboard running compatible firmware, the LED on the expansion board will switch to blinking synchronously with the Mainboard LED once time sync has been established across the CAN bus. |
+| Glowing dimly, or off | Firmware has been erased |
+| Flashing three times, then off for a while | Firmware CRC check failed |
+
 
 ## Pin names
 
