@@ -2,7 +2,7 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2022-02-28T16:49:36.963Z
+date: 2022-07-29T11:04:02.994Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z
@@ -31,9 +31,9 @@ The feature diagram for v1.03 and earlier is below.
 | **Networking/Comms** | 2.4GHz WiFi, WPA-2 encryption; USB port; serial port | 10BaseT/100BaseTX Ethernet; USB port; serial port |
 | **On-board Stepper drivers** | 5 x [TMC2660](https://www.trinamic.com/products/integrated-circuits/details/tmc2660c-pa/){target=_blank} ||
 | **Stepper driver features** | Up to 2.4A peak current, up to x256 microstepping, optional x16 interpolation on x16 microstepping, stall detection ||
-| **Heater outputs** | Bed heater (up to 18A^1^), 2 x extruder heater (up to 6A each) ||
+| **High current outputs** | 1 x 15A^1^, 2 x 6A each ||
+| **Medium current outputs** | 3 x PWM-controlled outputs, 2 x always-on outputs, voltage selectable between VIN, 5V or external supply (all outputs together); 6 more PWM-controlled outputs on expansion board ||
 | **Thermistor/PT1000 inputs** | 3, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy ||
-| **Fan outputs** | 3 controlled fans, 2 always-on fan connectors, voltage selectable between VIN, 5V or external supply (all fans together); 6 more controlled fans on expansion board ||
 | **Inputs/Outputs** | 5 on-board I/O connectors for endstop and filament monitors (STP pins are 8V-tolerant on revision 1.04 and later), 7 more on expansion header ||
 | **Endstop or filament monitor inputs** | See under Inputs/Outputs ||
 | **Z probe connector** | 4-pin with IN/GND/MOD/3V3 pins (IN pin is 30V-tolerant in revision 1.04 and later) ||
