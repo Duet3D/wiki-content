@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-07-29T15:31:57.342Z
+date: 2022-07-29T19:02:07.558Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -73,18 +73,15 @@ The main hardware features of the Duet 3 6XD are listed below.
 For firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
 
 If running from an SBC, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
-<!--- #update and restore once 6XD files on GitHub.
 
 ## Open Source
 
 Importantly Duets are Open:
 
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE).
-* All hardware [source files](https://github.com/Duet3D/Duet3-Mainboard-6HC) are available on Github.
+* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6XD/blob/master/LICENSE).
+* All hardware [source files](https://github.com/Duet3D/Duet3-Mainboard-6XD/) are available on Github.
 * Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
 * The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
-
--->
 
 ## Feature Comparison
 
