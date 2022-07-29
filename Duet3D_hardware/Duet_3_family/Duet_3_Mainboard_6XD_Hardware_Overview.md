@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-07-29T19:02:07.558Z
+date: 2022-07-29T19:03:23.910Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -109,7 +109,7 @@ The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is 
 
 ## 3D Model
 
-STEP file to follow.
+A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainboard-6XD/blob/master/v1.0/Duet3_MB_6XD_STEP.zip).
 
 # Physical connections
 
