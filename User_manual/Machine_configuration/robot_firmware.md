@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-29T07:19:31.768Z
+date: 2022-07-29T07:21:36.293Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -55,7 +55,7 @@ When a Jacobian matrix is not quadratic or or has reduced rank, the so-called ge
 
 Research has developed different methods for calculation. The method described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf ist used, which uses Householder transformation and Givens rotation to calculate singular values and singular vectors. An iterative process results in the generalized inverse with given precision. The results were tested by comparing it with SVD calculations of the Eigen library, differences are below 1e-10. The resulting generalized inverse allows calculation of actuator angles from cartesian position and endpoint orientation.
 
-This jacobian and inverse values is most exact if using small steps, i. e. small segments. Tests result in 0.5 mm long segments is a good candidate to calculate long distances (e.g. calculate LimitPosition to check whether the goal is reachable). For the move itself, the shortest segments are best, because rotational axes produce curves instead of straight lines, so a balance between precision and performance cost (the MCU has limited capabilities) must be found. The default is 0.1 segment lengths.
+The jacobian and inverse values are almost exact if using small steps, i. e. small segments. Tests result in 0.5 mm long segments is a good candidate to calculate long distances (e.g. calculate LimitPosition to check whether the goal is reachable). For the move itself, the shortest segments are best, because rotational axes produce curves instead of straight lines, so a balance between precision and performance cost (the MCU has limited capabilities) must be found. The default is 0.1 segment lengths.
 
 # Orientation types
 
