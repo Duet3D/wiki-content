@@ -2,7 +2,7 @@
 title: Getting started with Duet 3 Mainboard 6XD
 description: 
 published: true
-date: 2022-07-29T15:35:43.090Z
+date: 2022-07-29T15:42:26.720Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-29T15:35:43.090Z
@@ -49,8 +49,8 @@ SBC mode allows part of the functionality to be handled by the SBC. This offers 
 ### With Raspberry Pi (SBC)
 
 * Duet 3 Mainboard 6XD
-* Raspberry Pi or other compatible Single Board Computer (SBC). Initially this has to be Model 3B or 4 but we may support some other models in the future.
-* Ribbon cable to connect the Raspberry Pi to the Duet. If using the version 0.5 Duet 3 main board, this must be 40-pin. If using a version 0.6 and later Duet main board, use 26-pin to 40-pin. Recommended length is 100 to 200mm. Longer cables will degrade the SPI signal between the Raspberry Pi and the Duet, however it may be still possible to drive them either at reduced SPI transfer speeds or with extra shielding against external EMI sources (foil wrap)
+* Raspberry Pi or other compatible Single Board Computer (SBC). Currently this has to be Model 3B or 4; other models may be supported in the future.
+* Ribbon cable to connect the Raspberry Pi to the Duet. A 26-pin to 40-pin ribbon cable is supplied with the board. Recommended length is 100 to 200mm. Longer cables will degrade the SPI signal between the Raspberry Pi and the Duet, however it may be still possible to drive them either at reduced SPI transfer speeds or with extra shielding against external EMI sources (foil wrap)
 * Power supply (min. 12V. max 30V, recommended 24V) and cables
 * External stepper drivers, stepper motors, heaters, thermistors, endstop switches etc. as required
 * Supplied SD card with Duet Pi image in the Raspberry Pi
@@ -66,7 +66,7 @@ SBC mode allows part of the functionality to be handled by the SBC. This offers 
 ## Optional extras
 
 * Duet 3 expansion board(s) and/or tool boards
-* RJ11 twisted pair cables to connect the expansion board(s).  When connecting a Duet 3 main board to an expansion board, or connecting two expansion boards together, the cable wiring must be straight-through. Only a single twisted pair is required, connected to pins 3 and 4 (the middle 2 pins) of the connector. Pins 2 and 6 on the version 0.6  Duet 3 main board are the connections for the secondary CAN bus, but the firmware does not use this yet.
+* RJ11 twisted pair cables to connect the expansion board(s).  When connecting a Duet 3 main board to an expansion board, or connecting two expansion boards together, the cable wiring must be straight-through. Only a single twisted pair is required, connected to pins 3 and 4 (the middle 2 pins) of the connector. There are pins on the Duet 3 mainboard for the secondary CAN bus, but the firmware does not use this yet.
 * 2-core red/black cable to daisy chain power to the expansion board(s)
 
 # Getting started
@@ -75,7 +75,7 @@ SBC mode allows part of the functionality to be handled by the SBC. This offers 
 
 ### Running with SBC
 
-Here is a photo showing a bench setup  Duet 3 Mainboard 6XD and Raspberry Pi 3B+. **Caution! Note the orientation of the 40-pin ribbon cable.** The connector on the Raspberry Pi is not keyed, so be very careful to connect the ribbon cable the right way round and in the correct position.
+Here is a photo showing a Duet 3 Mainboard 6XD and Raspberry Pi 3B+ connected. **Caution! Note the orientation of the 40-pin ribbon cable.** The connector on the Raspberry Pi is not keyed, so be very careful to connect the ribbon cable the right way round and in the correct position.
 
 [![duet_3_mb6xd_getting_connected_sbc.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_getting_connected_sbc.jpg =600x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_getting_connected_sbc.jpg){target=_blank}
 1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, and connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
