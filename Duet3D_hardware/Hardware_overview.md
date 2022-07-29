@@ -2,7 +2,7 @@
 title: Hardware overview
 description: 
 published: true
-date: 2022-07-29T09:32:11.800Z
+date: 2022-07-29T09:37:41.978Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T11:36:08.818Z
@@ -14,7 +14,7 @@ dateCreated: 2021-12-06T11:36:08.818Z
 
 | Feature | [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | [Duet 3 Mainboard 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | [Duet 3 Mini 5+ WiFi](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 3 Mini 5+ Ethernet](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 2 WiFi](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | [Duet 2 Ethernet](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) |
 |:---|:---|:---|:---|:---|:---|
-| **Board image** | ![duet_3_mb6hc_v0.6_top.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_v0.6_top.jpg =200x){.align-center} | ![Duet 3 Mainboard 6XD v1.0](/duet_boards/duet_3_mb6xd/mb6xd_5_small.png =175x){.align-center} | ![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =150x){.align-center} || ![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top.jpg =180x){.align-center} ||
+| **Board image** | ![duet_3_mb6hc_v0.6_top.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_v0.6_top.jpg =200x){.align-center} | ![Duet 3 Mainboard 6XD v1.0](/duet_boards/duet_3_mb6xd/mb6xd_5_small.png =175x){.align-center} | ![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =150x){.align-center} || ![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top_90.jpg =150x){.align-center} ||
 | **Processor** | ATSAME70Q20B || ATSAME54P20A || ATSAM4E8E ||
 | **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache || 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache || 120MHz ARM Cortex M4F, 512Kb flash, 128Kb RAM, hardware floating point (single precision), DMA, 2Kb cache ||
 | **Networking** | 100BaseTX Ethernet, or via attached SBC || 2.4GHz WiFi with external antenna, or via attached SBC | 100BaseTX Ethernet, or via attached SBC | 2.4GHz WiFi (internal and external antenna versions available) | 100BaseTX Ethernet |
