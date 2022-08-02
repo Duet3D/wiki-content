@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-02T20:43:25.598Z
+date: 2022-08-02T20:51:15.462Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -13,7 +13,7 @@ The robot kinematics supports different types. Roughly, they can be separated in
 * serial robots: the joints and arms are connected in one serial chain, called open chain kinematics. Industrial robots are serial robots with 6 axes, CNC 5 axis (3 prismatic, two rotanial axes), cartesian robots/printers/CNC (three prismatic axes), serial scara (one prismatic and two rotational axes) and polar (two prismatic and one rotational axes) printers are examples. Configuration allows mixing any prismatic and rotational axes.
 * parallel robots: the joints and arms are completely or partially conntected in parallel. Often some joints are without an actuator. The kinematics is more difficult to calculate and need dedicated formulae, so only defined types are supported. Examples are delta, 5 arm parallel scara, stewart/hexapod, 4 axis palletized robot. Delta is not supported in robot kinematics, because RepRapFirmware has dedicated delta support. 4 axis palletized is supported, stewart is planned, 5 arm parallel scara has dedicated RepRapFirmware support.
 
-The following configuration is focues on 6 axis robot, but is applicable to the other types.
+The following configuration is focused on 6 axis robot, but is applicable to the other types.
 
 # Configuring a Robot printer
 Following is a description how to setup a 1 to 6 axis robot for 3D printing, with primary focus on an industrial 6 axis robot. The RepRapFirmware **robot firmware is in development**, binaries for testing will be provided.
