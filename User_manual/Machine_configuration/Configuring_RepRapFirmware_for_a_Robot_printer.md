@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-02T20:54:16.815Z
+date: 2022-08-05T08:00:51.895Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -110,14 +110,16 @@ A1 to A6 are the equivalent to DH parameters. A0 allows a displacement of the fi
 
 
 # M669 B parameter
-B defines robot properties as well, but with a different logic. A and B parameters can be mixed. For configurations with defined axis orientations it is easier to just define arm lengts, homing angles and some additional information. AT must be defined in advance so that firmware knows to to interprete the parameters.
+B defines robot properties as well, but with a different logic. B allows setting all parameters directly, which can be easier than defining DH parameters with A. For example, for some robot configurations it is sufficient to define arm lengths, homing angles and angle restrictions. Parameters A and B can be mixed.
 
-BA:a1:a2:... define arm lengths
+To use B, it is necessary to know the internal parameters. They are documented in the firmware document https://docs.duet3d.com/en/User_manual/Machine_configuration/robot_firmware in chapter parameters (=> tbd, doesn't exist yet)
 
-BH:h1:h2:... define homing angles
+The syntax for using B is:
 
-BM:min1:max1:min2:max2... define min max angles
+B"parametername:value"
 
+E. g. B"arm_1:100.0" and B"home_1:0.0" and B"min_1:-150.0"
+The numbers start with 1, so _1 means first axis.
 
 # M669 P parameter
 
