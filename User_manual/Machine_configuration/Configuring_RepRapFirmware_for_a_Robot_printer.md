@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-05T08:00:51.895Z
+date: 2022-08-05T08:35:56.255Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -118,8 +118,9 @@ The syntax for using B is:
 
 B"parametername:value"
 
-E. g. B"arm_1:100.0" and B"home_1:0.0" and B"min_1:-150.0"
-The numbers start with 1, so _1 means first axis.
+E. g. B"arms:100.0:200.0:250.0"
+B"homing:0.0:150.0:0.0"
+B"minangles:-150.0:-80.0:-180.0"
 
 # M669 P parameter
 
