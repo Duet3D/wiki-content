@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-06T08:20:51.558Z
+date: 2022-08-06T08:34:29.419Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -20,6 +20,17 @@ The following description gives detailed information about how the firmware for 
 I am sure that a deep understanding of "what's under the hood" gives better results in using the firmware and hardware, for example to balance parameter settings for precision versus performance.
 
 I try to not repeat information I provided in the other robot articles (especially about DH) and will give cross links if useful.
+
+# File structure
+
+All robot related functionality is stored in the src/Movement/Kinematics folder of RepRapFirmware. The files all start with the name Robot:
+* RobotKinematics: main starting point with all methods which RRF need to operate, like configuration reader and forward/inverse kinematics
+* Robot0: debugging and testing methods (not included in RRF)
+* Robot1: methods to calculate forward and segments for inverse kinematics. Matrix calcuations
+* Robot2: SVD to calculate generalized inverse
+* Robot3: calculations for parallel, closed chain kinematics, like 4 axis palletized and stewart
+
+Design goal was to have minimal functionality in RobotKinematics and maximum in Robotn files, so they can be tested isolated outside RRF.
 
 # Configuration setup
 
