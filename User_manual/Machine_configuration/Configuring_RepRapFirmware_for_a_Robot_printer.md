@@ -2,12 +2,13 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-05T08:35:56.255Z
+date: 2022-08-06T07:37:20.491Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
 ---
 
+This page is part of multiple pages about robot configuration and usage. Please click on the robot tag in the middle column to see an overview.
 # Types of Robots
 The robot kinematics supports different types. Roughly, they can be separated into
 * serial robots: the joints and arms are connected in one serial chain, called open chain kinematics. Industrial robots (6 rotational axes), CNC 5 axis (3 prismatic, two rotational axes), cartesian (three prismatic axes), serial scara (one prismatic and two rotational axes) and polar (two prismatic and one rotational axes) printers are examples. Configuration allows mixing any prismatic and rotational axes, e.g. a cartesian with spheric head (3 prismatic and 3 rotational axes).
