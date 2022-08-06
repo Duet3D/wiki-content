@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-07-14T15:24:53.777Z
+date: 2022-08-06T13:26:58.055Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2217,21 +2217,25 @@ Sending an M122 causes the RepRap to transmit diagnostic information.
 
 ### Notes
 
-The 'P' parameter is used to report specific information. The details vary between releases. As at RepRapFirmware version 2.03 they are:
+The 'P' parameter is used to report specific information. The details vary between releases. As at RepRapFirmware version 3.41 they are:
 
 * P1 print summary test report (additional parameters: Taa:bb = min/max accepted MCU temperature reading, Vaa:bb = min/max VIN voltage reading, Waa:bb = min/max 12V regulator voltage reading if applicable)
 * P100 print a summary of recent moves (only if move logging is enabled in the firmware build)
-* P101 print the status of an attached DueX expansion board
+* P101 print the status of an attached DueX expansion board (Duet 2 only)
 * P102 print how long it takes to evaluate the square root of a 62-bit unsigned integer
 * P103 print how long it takes to evaluate sine and cosine
 * P104 print how long it takes to write a file to the SD card (specify the file size in Mbytes in the S parameter, default 10)
 * P105 print the sizes of various objects used by RepRapFirmware
+* P106 print the addresses of various objects used by RepRapFirmware
+* P107 time a CRC-32 operation
+* P108 time how long it takes to read the step clock
+* P109 generate an under-voltage event to test the pause-on-low-power function
 
 The following 'P' parameters are supported by the **LPC and STM32 Port  of RepRapFirmware Only**
 
 * P200 - Lists all of the pins allocated by the firmware and/or board.txt
 
-Note: do not use M122 with a P parameter of 1000 or greater. There are a few values that deliberately cause the firmware to crash, which are used to test the error reporting facilities. As at firmware 2.03 these are:
+Note: do not use M122 with a P parameter of 1000 or greater. Most of these values are used to test the error reporting facilities and deliberately cause the firmware to crash . As at firmware 3.41 these are:
 
 * P1001 cause a watchdog reset
 * P1002 test what happens when a module gets stuck in a spin loop
@@ -2239,6 +2243,7 @@ Note: do not use M122 with a P parameter of 1000 or greater. There are a few val
 * P1004 test integer division by zero
 * P1005 test the response to an unaligned memory access
 * P1006 test the response to accessing an invalid region of memory
+* P1007 read/write 32-bit words: A = address, R = number of 32-bit words (optional, default 1), V = value to write (optional)
 
 The 'B' parameter is used in RepRapFirmware 3 on Duet 3 only, to report diagnostic information from connected boards. The B (board number) parameter is the CAN address of the board to be queried, default 0 (i.e. main board). Example:
 <br>
