@@ -2,11 +2,13 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-07-29T07:21:36.293Z
+date: 2022-08-06T08:20:51.558Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
 ---
+
+This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
 # Robot firmware
 The following description gives detailed information about how the firmware for robot kinematics is implemented, for the following reasons
