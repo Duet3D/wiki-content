@@ -2,7 +2,7 @@
 title: Installing and Updating PanelDue Firmware
 description: This page describes how to update the PanelDue Firmware.
 published: true
-date: 2022-04-26T13:36:47.048Z
+date: 2022-08-08T13:24:39.020Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:21:58.270Z
@@ -84,17 +84,19 @@ From RepRapFirmware version 3.2 (beta 4.1), you can flash the PanelDue firmware 
 ## Requirements
 
 * Only works for V3/5i/7i PanelDue running firmware versions 3.2.2 or later 
-* Filename must be renamed to PanelDueFirmware.bin (future versions of DWC will rename uploaded PanelDue firmware files automatically), and reside in 0:/firmware (RRF 3.3 and later) or 0:/sys (RRF 3.2)
+* The firmware file (ending  must reside in 0:/firmware (RRF 3.3 and later) or 0:/sys (RRF 3.2)
 * Flashing requires a baud rate of 115200. RRF will automatically change to this baud rate (and back at the end) if it is a different value but the wiring must provide stable communication at that speed
 * Automatic erase and reset is only supported from PanelDueFirmware 3.2.2 (earlier versions require manual erase and reset)
 
 ## Update firmware
 
-Upload the PanelDue firmware file to the Duet via the System > Upload system files button in Duet Web Control. Check it is in the Duet's '0:/firmware' (RRF 3.3 and later) or '0:/sys' (RRF 3.2) folder. If necessary, rename the firmware file (not the .zip file download)  to 'PanelDueFirmware.bin'.
+Upload the PanelDue firmware file to the Duet via the System > Upload system files button in Duet Web Control. Check it is in the Duet's '0:/firmware' (RRF 3.3 and later) or '0:/sys' (RRF 3.2) folder.
 
-To update the PanelDue firmware, send:
+To update the PanelDue firmware, do one of the following:
 
-`M997 S4 P"PanelDueFirmware-3.4.0-pre3-v3-7.0.bin"`
+* in DWC, navigate to the '0:/firmware' (RRF 3.3 and later) or '0:/sys' (RRF 3.2) folder. Right click on the firmware file. If the firmware file name starts with "PanelDue" and ends in ".bin", an option to 'Install firmware file' will be offered. Select this to install the firmware on the PanelDue.
+* send `M997 S4`. This will install the PanelDue firmware, so long as the firmware file is named 'PanelDueFirmware.bin' If necessary, rename the PanelDue firmware file to 'PanelDueFirmware.bin'.
+* send, for example, `M997 S4 P"PanelDueFirmware-3.4.0-pre3-v3-7.0.bin"`. Use M997 with the P parameter to update the PanelDue firmware with a specific binary firmware file.
 
 Your Duet will attempt to Erase the PanelDue flash memory, and upload the PanelDue firmware. If you are updating from an old PanelDue version, you may need to press the 'erase' button on the PanelDue, followed by the 'reset' button first.
 
