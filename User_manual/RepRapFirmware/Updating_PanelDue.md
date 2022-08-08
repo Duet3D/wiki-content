@@ -2,7 +2,7 @@
 title: Installing and Updating PanelDue Firmware
 description: This page describes how to update the PanelDue Firmware.
 published: true
-date: 2022-08-08T13:24:39.020Z
+date: 2022-08-08T13:33:14.591Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:21:58.270Z
@@ -84,7 +84,7 @@ From RepRapFirmware version 3.2 (beta 4.1), you can flash the PanelDue firmware 
 ## Requirements
 
 * Only works for V3/5i/7i PanelDue running firmware versions 3.2.2 or later 
-* The firmware file (ending  must reside in 0:/firmware (RRF 3.3 and later) or 0:/sys (RRF 3.2)
+* The firmware file must reside in 0:/firmware (RRF 3.3 and later) or 0:/sys (RRF 3.2)
 * Flashing requires a baud rate of 115200. RRF will automatically change to this baud rate (and back at the end) if it is a different value but the wiring must provide stable communication at that speed
 * Automatic erase and reset is only supported from PanelDueFirmware 3.2.2 (earlier versions require manual erase and reset)
 
