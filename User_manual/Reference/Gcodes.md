@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-08-09T09:52:56.915Z
+date: 2022-08-09T14:05:58.180Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2979,6 +2979,10 @@ M301 H1 ; Report PID values
 M301 H1 P20 I0.5 D100 ; Set PID values
 </pre>
 
+### Order dependency
+
+* **RRF 3.x**: The M301 command must come later in config.g than the M950 command that created the heater number it refers to.
+
 ### Notes
 
 Sets Proportional (P), Integral (I) and Derivative (D) values for hot end. See also M303
@@ -3277,6 +3281,10 @@ M950 H0 C"bed_heat" Q100 T0 ; heater 0 uses the bed_heat pin, sensor 0, PWM freq
 ##### Notes (RRF 2.x and 1.20 and later 1.x)
 
 * RepRapFirmware 1.16 and later allow the PID controller for a heater to be disabled by setting the A, C and D parameters to -1. This frees up the corresponding heater control pin for use as a general purpose I/O pin to use with the M42 or M280 command. Example: `M307 H2 A-1 C-1 D-1`.
+
+### Order dependency
+
+* **RRF 3.x**: The M307 command must come later in config.g than the M950 command that created the heater number it refers to.
 
 ### Notes
 
