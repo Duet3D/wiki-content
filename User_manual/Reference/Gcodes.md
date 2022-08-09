@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-08-06T13:26:58.055Z
+date: 2022-08-09T09:45:27.341Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -86,7 +86,7 @@ G92 E0
 G28
 </pre>
 
-Alternatively, comments can be enclosed in brackets, but they must start and end on the same line:
+Alternatively, comments can be enclosed in a **single** set of parentheses, i.e. no double or nested brackets such as `(comment (a bit more comment))`, and they must start and end on the same line:
 <br>
 <pre class="cblock">
 G28 (here come the axes to be homed) X Y
