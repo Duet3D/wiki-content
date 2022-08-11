@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-07-26T15:45:28.930Z
+date: 2022-08-11T12:45:50.568Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -117,7 +117,7 @@ Duet 3 Expansion 3HC provides the following connectors:
 | **1 x 4-way DIP switch** | CAN ADDR | Used for setting the CAN address. See CAN section below. |
 | Reset | | Single push to reset the board. |
 | **2 x RJ11 CAN connectors** | CAN_IN CAN_OUT | RJ11 CAN connectors. See CAN section below. |
-| **1 x 4-pin KK header** | TERM_R | CAN bus termination. See CAN section below. |
+| **1 x 4-pin jumper header** | TERM_R | CAN bus termination. See CAN section below. |
 
 ## LED indications
 
