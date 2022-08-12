@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2022-06-06T12:57:28.849Z
+date: 2022-08-12T13:45:17.928Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -205,7 +205,17 @@ You can run a speed test on the SD card by sending:
 
 `M122 P104 S[file size in MB]`
 
-Speeds reported should usually be between 2 and 2.5Mbytes/sec. For example, Duet 2 WiFi - 2.23Mbytes/sec, Duet Maestro 2.42Mbytes/sec for a 10MB file.
+For example (Duet 3 Mini 5+ using RRF 3.4.2):
+
+```
+M122 P104 S10
+Testing SD card write speed...
+SD write speed for 10.0Mbyte file was 2.91Mbytes/sec
+Testing SD card read speed...
+SD read speed for 10.0Mbyte file was 1.58Mbytes/sec
+```
+
+Speeds reported should usually be between 2 and 2.5Mbytes/sec for the write speed, and lower for the read speed. For example, Duet 2 WiFi - 2.23Mbytes/sec, Duet Maestro 2.42Mbytes/sec for a 10MB file. The read speed is expected to be lower than the write speed. This is because RRF uses a large write buffer (usually 8kb) to speed up file uploading. Reading doesn't normally need to be as fast, so the buffer is only 512b.
 
 ### Stuttering during printing
 
