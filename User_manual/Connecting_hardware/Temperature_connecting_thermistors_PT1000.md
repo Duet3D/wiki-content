@@ -2,7 +2,7 @@
 title: Connecting thermistors and PT1000 temperature sensors
 description: 
 published: true
-date: 2022-05-20T12:48:42.705Z
+date: 2022-08-12T14:40:25.723Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T16:02:20.373Z
@@ -257,12 +257,13 @@ The **R** parameter is the value (in ohms) of the series resistor, which is part
 
 The default values for Duet boards are:
 
-| Duet version | R value |
-|:---|:---|
-| Duet 3 | 2200 |
-| Duet 2 WiFi / Ethernet | 4700 |
-| Duex 2 and Duex 5 expansion boards | 4700 |
-| Duet 2 Maestro | 2200 |
+| Duet version | R value | Notes |
+|:---|:---|:---|
+| Duet 3 | 2200 | |
+| Duet 2 WiFi / Ethernet | 4700 | |
+| DueX 2 and DueX 5 expansion boards (up to v0.10) | 4700 | |
+| DueX 5 expansion board (from v0.11)  | 2200 | Automatically detected by RRF 3.4 and later. |
+| Duet 2 Maestro | 2200 | |
 
 # Testing temperature sensors
 
