@@ -2,7 +2,7 @@
 title: Connecting thermistors and PT1000 temperature sensors
 description: 
 published: true
-date: 2022-08-12T14:40:25.723Z
+date: 2022-08-12T14:41:41.825Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T16:02:20.373Z
@@ -261,8 +261,8 @@ The default values for Duet boards are:
 |:---|:---|:---|
 | Duet 3 | 2200 | |
 | Duet 2 WiFi / Ethernet | 4700 | |
-| DueX 2 and DueX 5 expansion boards (up to v0.10) | 4700 | |
-| DueX 5 expansion board (from v0.11)  | 2200 | Automatically detected by RRF 3.4 and later. |
+| DueX2 and DueX5 expansion boards (up to v0.10) | 4700 | |
+| DueX5 expansion board (from v0.11)  | 2200 | See [PCB revision notes](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5#pcb-revision-history). |
 | Duet 2 Maestro | 2200 | |
 
 # Testing temperature sensors
