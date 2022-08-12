@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2022-08-12T13:22:18.526Z
+date: 2022-08-12T13:30:41.404Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -128,22 +128,23 @@ Follow the process for [Updating the bootloader on Duet 3 expansion and tool boa
 
 # LED behaviour and error codes
 
-All expansion and tool boards have a red LED. Some also have a green LED. On more recent boards, the red LED is labelled STATUS and the green on is labelled ACT (for Activity). On older boards the red LED is labelled DIAG.
+All Duet 3 main boards, expansion and tool boards have a red LED. Some also have a green LED. On more recent boards, the red LED is labelled STATUS and the green on is labelled ACT (for Activity). On older boards the red LED is labelled DIAG.
 
 The red LED behaviour is:
 
 * Flashing once per second, in time with the red STATUS or DIAG LED on the main board: operating normally, in CAN communication with the main board
 * Flashing continuously and rapidly: board is running but does not have CAN communication with the main board
+* Not lighting up at all: board is not running. On some tool boards and 3HC expansion boards with old bootloader firmware installed, this may occur under certain conditions of VIN voltage and temperature. If you leave the board powered up for long enough, it may eventually start up, and at that point you can update the bootloader to avoid the problem in future.
 * Flashing a number of times, pausing, and repeating: the bootloader is reporting a problem and the number of flashes represents an error code. Sometimes it may alternate between two error codes. The table below gives the meaning.
 
 | Number of flashes | Meaning |
 |:---|:---|
 | 2 | Invalid firmware |
 | 3 | Bad firmware CRC |
-| 4 | The bootloader requested a firmware data block from the main board, but the main board didn't respond in time |
-| 5 | The main board reported that it didn't have the correct firmware file |
-| 6 | The main board reported that the file offset requested by the bootloader was beyond the length of the file |
-| 7 | The main board encountered some other error in trying to fetch and return a block of firmware data |
+| 4 | The bootloader requested a firmware data block from the main board, but the main board didn't respond in time. Check that the main board is powered and flashing its STATUS LED once per second, then check the CAN connection between the main board and the expansion board. |
+| 5 | The bootloader requested firmware but the main board reported that it didn't have the correct firmware file |
+| 6 | The bootloader requested firmware but the main board reported that the file offset requested by the bootloader was beyond the length of the file |
+| 7 | The bootloader requested firmware but the main board encountered some other error in trying to fetch and return a block of firmware data |
 | 8 | Bootloader internal error (no buffer available) |
 | 9 | Bootloader was unable to initialise the flash memory controller |
 | 10 | Bootloader was unable to unlock flash memory |
