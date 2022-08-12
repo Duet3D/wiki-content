@@ -1,8 +1,8 @@
 ---
 title: Calibrating your Duet-based machine
 description: 
-published: false
-date: 2022-08-12T11:25:48.974Z
+published: true
+date: 2022-08-12T11:26:04.152Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
