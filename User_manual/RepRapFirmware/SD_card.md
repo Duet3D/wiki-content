@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2022-08-12T13:54:06.123Z
+date: 2022-08-12T14:05:34.256Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -274,5 +274,14 @@ A workaround is to reformat the SD card to use a larger cluster size. Here's how
 1. Copy all files and subfolders on the SD card into your temporary folder
 1. Reformat the SD card, see [SD card page here](/User_manual/RepRapFirmware/SD_card#formatting). If it is 4Gb or smaller, specify FAT16 format, with cluster size 64kb if you are given a choice. If it is larger than 4Gb then FAT16 will not be available, so use FAT32 and specify 64kb cluster size.
 1. Copy all the files and folders form your temporary folder back on to the SD card
-1. Eject or safely remove the SD card form the PC and put it back in the Duet
+1. Eject or safely remove the SD card from the PC and put it back in the Duet
 1. Restart the Duet
+
+## Slow network upload of GCode job files to the SD card
+
+The speed of uploading to the SD card over the network depends on both the network speed and the SD card write speed. If upload speeds are slower than expected:
+
+1. Run a speed test on the SD card using M122 P104 (see "Run a speed test" above).
+1. To test the network upload speed, take a large (at least 10Mb) GCode file on your PC, rename the extension to ".dummy", and upload it on the Jobs page of Duet Web Control. RepRapFirmware will accept the upload but omit writing it to the SD card, so that the speed reported by Duet Web Control reflects just the time taken to send the file to the Duet.
+
+The results will tell you whether the SD card or the network is the bottleneck. With a strong WiFi signal, the WiFi upload speed should be around 0.7Mbytes/sec or a little better. Using Ethernet, the speed may be in excess of 4Mbytes/sec on Duet 3 boards.
