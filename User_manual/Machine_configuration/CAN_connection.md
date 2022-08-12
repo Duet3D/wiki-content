@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2022-08-12T11:31:20.865Z
+date: 2022-08-12T13:22:18.526Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -156,10 +156,9 @@ The red LED behaviour is:
 
 The green ACT LED behaviour is as follows:
 
-Duet 3 Mainboard with one fitted (6XD, Mini 5+, 6HC v1.02 or later): flashing sending motion commands, when sending configuration commands, and when receiving non-broadcast messages.
+Duet 3 Mainboard with one fitted (6XD, Mini 5+, 6HC v1.02 or later): flashes when sending messages other than time sync messages, and when receiving messages other than regular status messages.
 
-Duet 3 expansion board: Flashes when it receives a non-broadcast command (e.g. when the main board is running config.g to set it up). Also flashes when it receives motion messages.
-
+Duet 3 expansion board: flashes when it receives any message, other than a time sync message or a broadcast status message.
 
 # Factory resetting a tool or expansion board
 
