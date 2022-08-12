@@ -2,13 +2,18 @@
 title: Calibrating your Duet-based machine
 description: 
 published: false
-date: 2022-05-31T11:58:21.572Z
+date: 2022-08-12T11:25:48.974Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
 ---
 
 # Introduction
+
+> **PLEASE NOTE THIS GUIDE IS A WORK IN PROGRESS!**
+> Please post any queries or comments for improvement on the [Duet3D forum](https://forum.duet3d.com/){target=_blank}. 
+{.is-warning}
+
 
 This guide covers the initial calibration of a 3D printer to ensure reliable print quality. It covers tuning the heaters, bed leveling, calibrating the extruder, and finding the optimal settings for the slicer.
 
