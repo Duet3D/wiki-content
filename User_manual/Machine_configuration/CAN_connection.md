@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2022-07-12T13:23:37.115Z
+date: 2022-08-12T11:18:41.939Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -153,6 +153,8 @@ The red LED behaviour is:
 | 14 | The VIN voltage was too low to to be considered safe to flash the bootloader |
 
 *Note: continuous rapid flashing indicated that the CAN connection is lost.*
+
+The green ACT LED behaviour is flashing to indicate bus activity or off when the bus is disconnected.
 
 # Factory resetting a tool or expansion board
 
