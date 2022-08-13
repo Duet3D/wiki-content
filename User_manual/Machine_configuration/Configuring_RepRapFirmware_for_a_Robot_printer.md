@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-06T07:39:10.550Z
+date: 2022-08-13T06:42:12.409Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -50,13 +50,22 @@ To avoid printing in a singularity, M208 can be set accordingly. Please see the 
 
 Singularities will be solved by adding Moore-Penrose inverse calculation in the next release.
 # M669 configuration
-M669 must set kinematics type to robot by caling M669 K13. After the type is selected, the parameters values can be set. It is recommended to set the first line to define kinematics type and types of axes or robot type like: M669 K13 AT:"RRRRRR". Every additional A setting needs a separate line.
+M669 and its parameters are used to define the robot properties like arm lengths and type of axes. M669 K13 sets the robot kinematics and the following settings define the properties. Best is to use separate lines for every parameter.
 
-**K13** needs to be defined.
+Most of the parameters are described in the next sections in detail.
 
-**A** and **B** define the properties of the robot, please see next sections for details
+A and B parameters are differently well suited for different robot types and can be mixed.
 
-**P** see section below
+Overview
+* K13 defines robot kinematics and must be defined first
+* A defines robot type, axes types, axes and arm properties by using Denavit-Hartenberg parameters
+* B defines axes and arms by using parameters like arm lenghts. It allows to set some parameters directly also
+* P behaviour of axes, specific for a robot type
+* Q quality of calculation to allow balance between precision and time needed for calculation
+* R reporting mode to get information about current configuration or recommendations about good parameter settings
+* S segments per second
+* T minimum segment length in mm
+
 
 **Qn** quality of calculation
 
@@ -66,9 +75,9 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 * R0 no reporting, default.
 * R1 prints out time information and calculation precision to the console about running core methods of robot kinematics. Helps to find the best Q value.
 
-**Sn** Segments per second (because smooth XYZ motion is approximated by means of segmentation)
+**Sn** Segments per second
 
-**Tn** Minimum segment length (mm) (because smooth XYZ motion is approximated by means of segmentation)
+**Tn** Minimum segment length (mm)
 
 The higher S and lower T are, the better (more straight) straight line moves are, but at the cost of processing and time needed to calculate kinematics. The simulation B1:S will give information about the qualitity of the settings.
 
