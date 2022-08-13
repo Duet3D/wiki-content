@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-06T08:34:29.419Z
+date: 2022-08-13T07:50:39.378Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -137,3 +137,12 @@ In G-Code the two meanings are mixed unhappily, some examples:
 * G10 X Y Z => offsets from reference
 * M92, M203, M566, M201, M906 XYZUVW => stepper letter related
 * M574 X, Y, Z => stepper letter related
+
+# Firmware development and compilation
+For installation and running robot kinematics, taking the binaries is the easiest solution. The following is only interesting if one wishes to compile or change something static inside the firmware code (e.g. using more than 6 axes).
+
+For indidivual compilation of source, the guide https://github.com/Duet3D/RepRapFirmware/wiki/Building-RepRapFirmware should be followed. For the robot, the official Duet3D is based on the 3.4.0inputshaper branch, changed by:
+* Kinematics.h and .cpp the variables robot and include RobotKinematics are added. robot is used instead of robot5axis to use K13
+* Config/Pins.h set all other Kinematics SUPPORT_... to 0
+* disabled delta code in ... (tbd where)
+* all .h and .cpp files with names starting with Robot in folder src/Movement/Kinematics
