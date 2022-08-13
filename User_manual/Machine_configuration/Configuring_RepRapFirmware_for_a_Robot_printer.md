@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-13T07:18:19.354Z
+date: 2022-08-13T07:38:19.053Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -82,7 +82,7 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 
 **Tn** Minimum segment length (mm)
 
-The higher S and lower T are, the better (more straight) straight line moves are, but at the cost of processing and time needed to calculate kinematics. The simulation B1:S will give information about the qualitity of the settings.
+G1, G, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
 
 # M669 A parameter
 **A** is used to define the properties of the robot.
