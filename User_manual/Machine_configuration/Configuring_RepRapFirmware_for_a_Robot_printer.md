@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-13T07:46:14.195Z
+date: 2022-08-13T07:50:57.781Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -31,13 +31,6 @@ The DWC plugin to create and visualize robot configurations is [RobotViewer](htt
 The kinematics is developed for Duet3Ds RepRapFirmware and is hosted at: [RepRapFirmware_Robot](https://github.com/JoergS5/RepRapFirmware_Robot) See the readme files how to compile. There are also example config files and binaries.
 
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
-
-# Construction
-![robot_main.jpg](/manual/configuration/robot_main.jpg)
-The firmware can be configured to run a typical industrial 6 axis robot with 6 rotational axes, but other types with mixed rotational and prismatic axes as well, e. g. Stanford manipulator. Robots with more or less than 6 axes will be possible also.
-# Denavit-Hartenberg parameters
-To describe the robot setup like properties of the axes, arm lenghts and other properties, the Denavit-Hartenberg parameters are used to describe most of the properties.
-
 
 # Workspace and Singularities
 Workspace is the space where an object can be reached by the robot. Calculation is a combination of position and orientation. Positions near the edges should be avoided, because rotations of axes become critical and movement precision is reduced.
@@ -194,12 +187,3 @@ Some robot setups can assure the constant XYZ offset between probe and hotend, s
 * a toolchanger can load a probe instead of a tool and measure at 0,0
 
 After the mesh is measured and stored, the probe is not needed anymore. To avoid collision with the print object later when the hotend tilts (and with it the probe), a mechanical removal of the probe or a save distance in Z direction should be considered.
-
-# Firmware development and compilation
-For installation and running robot kinematics, taking the binaries is the easiest solution. The following is only interesting if one wishes to compile or change something static inside the firmware code (e.g. using more than 6 axes).
-
-For indidivual compilation of source, the guide https://github.com/Duet3D/RepRapFirmware/wiki/Building-RepRapFirmware should be followed. For the robot, the official Duet3D is based on the 3.4.0inputshaper branch, changed by:
-* Kinematics.h and .cpp the variables robot and include RobotKinematics are added. robot is used instead of robot5axis to use K13
-* Config/Pins.h set all other Kinematics SUPPORT_... to 0
-* disabled delta code in ... (tbd where)
-* all .h and .cpp files with names starting with Robot in folder src/Movement/Kinematics
