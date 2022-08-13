@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-13T07:16:17.740Z
+date: 2022-08-13T07:18:19.354Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -16,7 +16,7 @@ The robot kinematics supports different types. Roughly, they can be separated in
 * parallel robots: the joints and arms are completely or partially connected in parallel. Often some joints are without an actuator. The kinematic is more difficult to calculate and need dedicated formulae, so only defined types are supported. Examples are delta, 5 arm parallel scara, stewart/hexapod, 4 axis palletized robot. Delta is not supported in robot kinematics, because RepRapFirmware has dedicated delta support. 4 axis palletized is supported, stewart is planned, 5 arm parallel scara has dedicated RepRapFirmware support.
 
 The configuration parameters allow many open robot configurations, but a limited number is tested:
-* 6 axis robot
+* 6 axis industrial robot (like Kuka KR 30, Meca500)
 * CNC 5 axis (like Open5x, Pentarod)
 * 4 axis palletized robot (like ABB IRB 460)
 
