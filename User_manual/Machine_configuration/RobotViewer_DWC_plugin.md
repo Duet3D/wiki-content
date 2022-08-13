@@ -2,11 +2,13 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-06-18T05:49:39.471Z
+date: 2022-08-13T08:06:05.660Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z
 ---
+
+This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
 # Introduction
 It's a bit confusing sometimes to create a robot configuration. The main reason is that every actuator has 6 degrees of freedom (6 DOF) and the description of this position is done by describing coordinate systems of every actuator. The traditional method to describe is to use 4 parameters, using Denavit-Hartenberg DH parameters. Robot kinematics and RobotViewer is enhanced to use all 6 DOF.
