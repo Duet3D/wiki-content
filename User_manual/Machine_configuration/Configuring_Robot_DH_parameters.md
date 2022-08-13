@@ -2,11 +2,15 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-07-14T11:08:36.592Z
+date: 2022-08-13T08:05:40.966Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
 ---
+
+This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
+
+# Introduction
 
 There are different methods to describe a robot configuration. Following is described the most often used method by describing each joint with 4 parameters, called Denavit-Hartenberg parameters. To describe rotation and translation in all dimensions, 6 parameters are needed, so the DH parameters cannot describe all possibilities. For this reason, a different method to define all 6 parameters is implemented. The following explanation is valid for this enhancement as well, only adding Y translations and rotations in the middle.
 
