@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-13T07:38:32.146Z
+date: 2022-08-13T07:42:20.336Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -80,7 +80,7 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 
 **Sn** Segments per second
 
-**Tn** Minimum segment length (mm)
+**Tn** Minimum segment length (mm). Default is 0.1 mm
 
 G1, G2, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
 
