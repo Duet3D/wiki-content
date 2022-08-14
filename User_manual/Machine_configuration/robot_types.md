@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-14T06:59:05.328Z
+date: 2022-08-14T07:06:14.090Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -24,12 +24,12 @@ Especially important is the identification of singularity areas, which must be a
 
 Care must be taken when the robot is powered off: the arms need protection against falling down with damaging result. The following possibilities avoid it
 * using brakes at the joints
-* weight balance of every joint, e.g. by using counterweights
+* weight balance of every joint, e.g. by using counterweights, so the force downward is below the detent torque of the steppers (servos don't have much detent torque and cannot be used for this method)
 * protection by using springs or dampers
 
 # 5 axis CNC
 
-5 axis CNC have subtypes head/head, head/table, table/table and AC, AB, BC.
+5 axis CNC has subtypes head/head, head/table, table/table and AC, AB, BC.
 
 # 4 axis palletized robot
 
