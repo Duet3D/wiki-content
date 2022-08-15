@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2022-08-12T14:05:34.256Z
+date: 2022-08-15T14:22:49.941Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -29,17 +29,19 @@ It is possible to connect a second, low-speed SD card socket to most Duets (but 
 If you need to replace the micro SDHC card, we recommend you choose:
 
 * a branded card with a speed rating of Class 4 or higher
-* of up to 32GB capacity, formatted as below. RepRapFirmware does not support SD cards formatted in exFAT format.
+* of up to 32GB capacity, formatted as below. RepRapFirmware does not support SD cards formatted in exFAT format. 
+* Larger capacity cards can be used, but RepRapFirmware can only read the first volume on the card, and this must be no larger than 32GB, or it will be formatted in exFAT format.
 
 # Formatting
 
 If you need to reformat the micro SDHC card:
 
 * If the capacity of the card is 4GB or lower, use FAT16 format
-* If the capacity is more than 4GB (up to 32GB) then you will have to use FAT32 format
+* If the capacity is more than 4GB (up to 32GB), use FAT32 format
 * All cards should be formatted with 512 byte sectors
-* For best upload speed choose the largest cluster size available, which is normally 64kb for FAT16 and 32kb for FAT32
-* Use the [official SD Card formatting tool](https://www.sdcard.org/downloads/formatter/index.html){target=_blank} for best results
+* For best upload speed choose the largest cluster size available, which is normally 64kB for FAT16 and 32kB for FAT32.
+* Use the [official SD Card formatting tool](https://www.sdcard.org/downloads/formatter/index.html){target=_blank} for best results with cards up to 32GB.
+* For SD cards larger than 32GB, or to format a FAT32 partition with 64kB clusters, use Windows Disk Management to format the card with a 32GB FAT32 partition as its first partition. (See [this forum thread](https://forum.duet3d.com/topic/29544/){target=_blank}.)
 * **DO NOT** use Windows 'Quick Erase'. This generally does not create a clean FAT32 partition.
 
 # SD card structure
@@ -188,7 +190,7 @@ SD card longest block write time: 5.1ms, max retries 0
 
 If it responds with "SD card detected" in M122, it indicates that the Card Detect pin of the SD card is working (this is also the pin whose soldering causes the most trouble; see below).
 
-The interface speed in the same line gives an indication of whether the processor is able to communicate with the SD card at all. It should be 20Mbytes/sec on a Duet WiFi/Ethernet, 15Mbytes/sec on a Duet Maestro, 25Mbytes/sec on Duet 3 MB6HX or MB6XD in standalone mode, and 22.5Mbytes/sec on a Duet 3 Mini in standalone mode. Other numbers, eg 12Mbytes/sec, are odd and suggest an issue with the SD card. If the socket or processor is faulty but the card is detected, it usually drops to 0.2Mbytes/sec.
+The interface speed in the same line gives an indication of whether the processor is able to communicate with the SD card at all. It should be 20MB/sec on a Duet WiFi/Ethernet, 15MB/sec on a Duet Maestro, 25MB/sec on Duet 3 MB6HX or MB6XD in standalone mode, and 22.5MB/sec on a Duet 3 Mini in standalone mode. Other numbers, eg 12MBs/sec, are odd and suggest an issue with the SD card. If the socket or processor is faulty but the card is detected, it usually drops to 0.2MB/sec.
 
 ### Check you have space on the SD card
 
@@ -196,7 +198,7 @@ A card with very little space will cause file fragmentation, and make reading th
 
 ```
 M39
-SD card in slot 0: capacity 3.97Gb, free space 3.81Gb, speed 20.00MBytes/sec, cluster size 32kb
+SD card in slot 0: capacity 3.97GB, free space 3.81GB, speed 20.00MB/sec, cluster size 32kB
 ```
 
 ### Run a speed test
@@ -210,12 +212,12 @@ For example (Duet 3 Mini 5+ using RRF 3.4.2):
 ```
 M122 P104 S10
 Testing SD card write speed...
-SD write speed for 10.0Mbyte file was 2.91Mbytes/sec
+SD write speed for 10.0MByte file was 2.91MBytes/sec
 Testing SD card read speed...
-SD read speed for 10.0Mbyte file was 1.58Mbytes/sec
+SD read speed for 10.0MByte file was 1.58MBytes/sec
 ```
 
-Speeds reported should usually be between 2 and 2.5Mbytes/sec for the write speed, and lower for the read speed. For example, Duet 2 WiFi - 2.23Mbytes/sec, Duet Maestro 2.42Mbytes/sec for a 10MB file. The read speed is expected to be lower than the write speed. This is because RRF uses a large write buffer (usually 8kb) to speed up file uploading. Reading doesn't normally need to be as fast, so the buffer is only 512b.
+Speeds reported should usually be between 2 and 2.5MBytes/sec for the write speed, and lower for the read speed. For example, Duet 2 WiFi - 2.23MBytes/sec, Duet Maestro 2.42MBytes/sec for a 10MB file. The read speed is expected to be lower than the write speed. This is because RRF uses a large write buffer (usually 8kB) to speed up file uploading. Reading doesn't normally need to be as fast, so the buffer is only 512b.
 
 ### Stuttering during printing
 
@@ -268,11 +270,11 @@ This issue is triggered by the combination of a large GCode file with a small cl
 A workaround is to reformat the SD card to use a larger cluster size. Here's how:
 
 1. Check the existing cluster size. If you are running firmware 1.21 or later, then you can run [M39](/User_manual/Reference/Gcodes/M39) from the command line to find this. Otherwise, move the card to a PC and examine the disk properties.
-1. If the cluster size is already 64Kb then the following won't help; although defragmenting the large file that is causing the problem may help.
+1. If the cluster size is already 64kB (for cards smaller than 4GB) or 32kB (for cards larger than 4GB) then the following won't help; although defragmenting the large file that is causing the problem may help.
 1. Move the SD card to a PC
 1. Create a temporary folder on your PC to hold the contents of the card
 1. Copy all files and subfolders on the SD card into your temporary folder
-1. Reformat the SD card, see [SD card page here](/User_manual/RepRapFirmware/SD_card#formatting). If it is 4Gb or smaller, specify FAT16 format, with cluster size 64kb if you are given a choice. If it is larger than 4Gb then FAT16 will not be available, so use FAT32 and specify 64kb cluster size.
+1. Reformat the SD card, see [SD card page here](/User_manual/RepRapFirmware/SD_card#formatting). If it is 4GB or smaller, specify FAT16 format, with cluster size 64kB if you are given a choice. If it is larger than 4GB then FAT16 will not be available, so use FAT32 and specify 32kB (or 64kB if available) cluster size.
 1. Copy all the files and folders form your temporary folder back on to the SD card
 1. Eject or safely remove the SD card from the PC and put it back in the Duet
 1. Restart the Duet
@@ -284,4 +286,4 @@ The speed of uploading to the SD card over the network depends on both the netwo
 1. Run a speed test on the SD card using M122 P104 (see "Run a speed test" above).
 1. To test the network upload speed, take a large (at least 10Mb) GCode file on your PC, rename the extension to ".dummy", and upload it on the Jobs page of Duet Web Control. RepRapFirmware will accept the upload but omit writing it to the SD card, so that the speed reported by Duet Web Control reflects just the time taken to send the file to the Duet.
 
-The results will tell you whether the SD card or the network is the bottleneck. With a strong WiFi signal, the WiFi upload speed should be around 0.7Mbytes/sec or a little better. Using Ethernet, the speed may be in excess of 4Mbytes/sec on Duet 3 boards.
+The results will tell you whether the SD card or the network is the bottleneck. With a strong WiFi signal, the WiFi upload speed should be around 0.7MBytes/sec or a little better. Using Ethernet, the speed may be in excess of 4MBytes/sec on Duet 3 boards.
