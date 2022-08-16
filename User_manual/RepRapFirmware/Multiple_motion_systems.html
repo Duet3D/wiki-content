@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2022-07-01T11:05:27.660Z
+date: 2022-08-16T10:47:02.341Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -25,14 +25,16 @@ dateCreated: 2022-03-22T10:08:15.620Z
   <li>Another M596 command is encountered</li>
   <li>The current macro ends. The motion system selected immediately prior to calling the macro is selected.</li>
   <li>A M121 (pop stack) command is executed. The motion system selected immediately prior to executing the corresponding M120 (push stack) command is selected.</li>
-  <li>The job is terminated by end-of file or by a M0 or M1 command. Motion system 0 is selected.</li>
+  <li>The job is terminated by end-of file or by a M0, M1 or M2 command. Motion system 0 is selected.</li>
   <li>M32 or M23 is executed to start a new file or to prepare to start a file. Motion system 0 is selected.</li>
 </ul>
+<h1>Avoiding collisions</h1>
+<p>Use the <a href="https://docs.duet3d.com/en/User_manual/Reference/Gcodes#m597-collision-avoidance">M597</a> command to set up a restriction on how close together the positions of two axes can get. For example, if you machine has separate Y and V gantries that move independently, use M597 to prevent them from coming too close together. Only one pair of axes can be restricted in this way.</p>
 <h1>Command execution using multiple motion queues</h1>
 <p>The way that command streams that use multiple motion systems are processed depends on the source of the command stream.</p>
 <p>For command streams from USB, async serial input (including PanelDue) and the DWC console, the commands are processed by a single GCode processor. This means that the ability of the system to execution motion of both systems concurrently will be limited, because when there is a long block of motion commands for one system, the GCode processor must wait until it has queued all those commands before it can process subsequent commands that are targeted at another motion system.</p>
 <p>For command streams that originate from file, each motion system uses a separate GCode processor to process commands targeted at that motion system, skipping commands that are targeted at other motion systems. This is when there is a need to synchronise the motion systems at particular points in the file. For example, there may be blocks of motion commands for each motion system that can execute concurrently because each motion system operates within its own defined area, such that collisions will not occur. Subsequently it may be necessary to change these defined areas so that parts of the job that were not not accessible using the previous areas can be accessed. Or, where the motion systems share a common Z axis, it may be necessary for them to both complete the current layer of a 3D print before Z can be moved ready for the next layer.</p>
-<p>The commands streams can be synchronised using a M400 command, or any other command that locks motion and waits for queued motion to complete. Each GCode processor that reaches the M400 command will pause until all other processors have caught up. Note, the G4 command will only wait for motion in the <i>current </i>motion system to complete, therefore it cannot be used for perform synchronisation.</p>
+<p>The commands streams can be synchronised using a M400 command, or another command that locks motion and waits for queued motion to complete (except for G4, see later). Each GCode processor that reaches the M400 command will pause until all other processors have caught up. Note, the G4 command will only wait for motion in the <i>current </i>motion system to complete, therefore it cannot be used for perform synchronisation.</p>
 <h1>Notes on particular commands when multiple GCode processors are used</h1>
 <p>In the following table, the “primary processor” means the GCode processor whose motion system is current.</p>
 <p>All implemented G-commands are listed here. For M-commands not listed here, and for all G- and M-commands implemented by user-defined macros, the action is that only the primary processor executes the command.</p>
