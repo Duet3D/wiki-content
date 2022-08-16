@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-14T07:07:08.696Z
+date: 2022-08-16T06:56:42.399Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -34,3 +34,7 @@ Care must be taken when the robot is powered off: the arms need protection again
 # 4 axis palletized robot
 
 The endpoint's horizontal orientation is ensured by mechanical parallelogram (often two connected parallelograms) based parallel arms, which are differently implemented.
+
+Currently, two subtypes are defined
+* endpoint like a hotend is assembled at the end of the robot arms
+* endpoint is used as print bed or workpiece bed and moved by the robot arms, the hotend/drill is in fixed position. The XYZ movements of the robot are reverse to the G-Code movements. The bed thickness must be subtracted from tool's Z length
