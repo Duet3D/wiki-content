@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-16T06:56:42.399Z
+date: 2022-08-17T06:42:38.963Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -37,4 +37,4 @@ The endpoint's horizontal orientation is ensured by mechanical parallelogram (of
 
 Currently, two subtypes are defined
 * endpoint like a hotend is assembled at the end of the robot arms
-* endpoint is used as print bed or workpiece bed and moved by the robot arms, the hotend/drill is in fixed position. The XYZ movements of the robot are reverse to the G-Code movements. The bed thickness must be subtracted from tool's Z length
+* endpoint is used as print bed or workpiece bed and moved by the robot arms, the hotend/drill is in fixed position. The XYZ movements of the robot are reverse to the G-Code movements.
