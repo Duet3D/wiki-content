@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-08-17T12:51:54.725Z
+date: 2022-08-17T14:07:33.989Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -710,7 +710,7 @@ This command uses a probe to measure the bed height at 4 or more points to deter
 * G29 S1 [P"filename"]
 * G29 S2
 * G29 S3 P"filename"
-* G29 S4 P"filename" *(only supported in Duet 3 MB6HC and MB6XD builds of RRF 3.5 and later)*
+* G29 S4 P"filename" *(only supported in Duet 3 builds of RRF 3.5 and later)*
 
 ### Parameters
 
@@ -718,7 +718,7 @@ This command uses a probe to measure the bed height at 4 or more points to deter
 * **S1** Load the height map from file and activate mesh bed compensation. The default filename is as for S0 but a different filename can be specified using the P parameter.
 * **S2** Disable mesh bed compensation and clear the height map (also clears the map of invalid probe points in builds that support it)
 * **S3** Save height map to the specified file (supported in RRF 2.04 and later)
-* **S4** Load the grid definition and map of invalid probe points from the specified file, default */sys/probePoints.csv* *(this subfunction is only supported in Duet 3 MB6HC and MB6XD builds of RRF 3.5 and later)*
+* **S4**  (supported in Duet 3 builds of RRF 3.5 and later) Load the grid definition and map of invalid probe points from the specified file, default */sys/probePoints.csv*
 * **P"file.csv"** Optional file name for height map file or probe points file to save with **S3** or load with **S1** or **S4**.
 * **Kn** (supported in RRF 3.01 and later only, default 0) Z probe number
 
@@ -738,6 +738,10 @@ G29 S1 P"usual.csv" ; Load height map file "usual.csv" and enable mesh bed compe
 * To define the probe grid, see [M557](/User_manual/Reference/Gcodes/M557){target=_blank}.
 * You can define a height to taper off the compensation using [M376](/User_manual/Reference/Gcodes/M376){target=_blank}
 * You can find more detailed information about setting up [Mesh Bed Compensation here](/User_manual/Connecting_hardware/Z_probe_mesh_bed){target=_blank}.
+* To see the format of a height map file, generatre one and then download it in DWC
+* The S4 subfunction supports selective probing, such as probing a grid with holes in it. The format of a probe points file is similar to the format of a height map except for the following:
+  * The first line must start with "RepRapFirmware probe points file v2" instead of "RepRapFirmware height map file v2" (the rest of the line is not processed)
+  * The fourth and subsequent lines should have the value 1 at points that are to be probed if they are reachable and 0 in points that are to be omitted.
 
 ## G30: Single Z-Probe
 
