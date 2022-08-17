@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-08-17T14:07:33.989Z
+date: 2022-08-17T14:12:29.775Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -739,9 +739,9 @@ G29 S1 P"usual.csv" ; Load height map file "usual.csv" and enable mesh bed compe
 * You can define a height to taper off the compensation using [M376](/User_manual/Reference/Gcodes/M376){target=_blank}
 * You can find more detailed information about setting up [Mesh Bed Compensation here](/User_manual/Connecting_hardware/Z_probe_mesh_bed){target=_blank}.
 * To see the format of a height map file, generatre one and then download it in DWC
-* The S4 subfunction supports selective probing, such as probing a grid with holes in it. The format of a probe points file is similar to the format of a height map except for the following:
+* The S4 subfunction supports selective probing, such as probing a grid with holes in it. When G29 S0 is called subsequently, the grid definition defined in the probe points file is used instead of the grid defined by M557, and reachable points are probed or not as indicated in the file. The format of a probe points file is similar to a height map file except for the following:
   * The first line must start with "RepRapFirmware probe points file v2" instead of "RepRapFirmware height map file v2" (the rest of the line is not processed)
-  * The fourth and subsequent lines should have the value 1 at points that are to be probed if they are reachable and 0 in points that are to be omitted.
+  * The fourth and subsequent lines have the value 1 at points that are to be probed if they are reachable and 0 in points that are to be omitted.
 
 ## G30: Single Z-Probe
 
