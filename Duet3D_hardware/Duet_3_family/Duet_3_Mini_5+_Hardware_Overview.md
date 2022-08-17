@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2022-07-26T13:40:42.520Z
+date: 2022-08-17T14:40:14.423Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -396,6 +396,12 @@ You will need to remove the bootloader protection by doing Erase Chip first and 
 # Revision History
 
 # Tabs{.tabset}
+
+## Revision 1.02
+
+* (Wifi only) Changed to the BGA package for the processor. This is functionally identical to the TQFP package and will be reverted one supplied to the TQFP package become available.
+* Added input protection diodes to the Tacho inputs
+* Minor silkscreen tidying up.
 
 ## Revision 1.01
 
