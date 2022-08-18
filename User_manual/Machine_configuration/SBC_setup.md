@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2022-08-18T13:42:01.854Z
+date: 2022-08-18T13:44:48.371Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -62,7 +62,8 @@ ctrl_interface=/var/run/wpa_supplicant
 
 network={
  ssid="SSID_OF_NETWORK"
- psk="PASSWORD_OF_NETWORK" |e
+ psk="PASSWORD_OF_NETWORK" 
+ }
 ```
 5. Replacing the SSID_OF_NETWORK with your wifi SSID and PASSWORD_OF_NETWORK with your password.
 
