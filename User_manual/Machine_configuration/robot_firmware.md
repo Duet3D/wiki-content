@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-19T07:00:14.113Z
+date: 2022-08-19T07:02:15.317Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -44,7 +44,7 @@ The direct method needs to know some core configuration in advance and can only 
 The following kinematics are implemented with the direct method:
 * tbd a list
 
-# Jacobian - Generalized Inverse method
+# Jacobian - Generalized Inverse
 
 This method is used if direction calculation is not used:
 
