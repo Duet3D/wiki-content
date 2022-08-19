@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-14T06:40:17.091Z
+date: 2022-08-19T06:50:15.746Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -44,20 +44,23 @@ The direct method needs to know some core configuration in advance and can only 
 The following kinematics are implemented with the direct method:
 * tbd a list
 
+# Jacobian - Generalized Inverse method
 
-# Forward kinematics
+This method is used if direction calculation is not used:
 
-Forward kinematics calculates from actuators' (steppers) positions to cartesian coordinates. MotorStepsToCartesian() in RobotKinematics calls Robot2 methods where all methods are located. All calculations are done with double precision. 
+![jacobian_geninverse.png](/manual/configuration/jacobian_geninverse.png)
 
-The robot is a chain of joints/actucators and links. The end position and orientation can be calculated by matrix multiplications of translation and rotations. The result is a position of X, Y, Z cartesian coordinates and three axis vectors of X, Y, Z directions, which describe endpoint's orientation.
-# Jacobian matrix and Inverse
-Forward calculation can be gathered in a Jacobian matrix of 6 or 7 lines and number of columns equal to actuator count. Three lines represent X, Y, Z change by an actuator, the last three lines represent angular change by three axes X, Y, Z, or four lines if using quaternion values. For a 6 axis robot, the result is a 6x6 or 7x6 matrix. Often it is not possible to calculate the inverse, so the generalized inverse is calculated.
+The kinematics classes have two methods as core functionality: calculation of cartesian coordinates from stepper's position, called forward kinematics. And the opposite direction, called inverse kinematics.
 
-When a Jacobian matrix is not quadratic or or has reduced rank, the so-called generalized inverse must be calculated instead. A generalized inverse calculates a solution which has minimal quadratic square difference.
+For 6 axis robot and most other robot kinematics, forward kinematics is calculated by matrix multiplication of the axes, which contain translations and rotations. The result is a position and an orientation of the endpoint (hotend, CNC drill etc.). Internally, XYZ values are used for position and 4 parameters of quaternions are used for orientation.
 
-Research has developed different methods for calculation. The method described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf ist used, which uses Householder transformation and Givens rotation to calculate singular values and singular vectors. An iterative process results in the generalized inverse with given precision. The results were tested by comparing it with SVD calculations of the Eigen library, differences are below 1e-10. The resulting generalized inverse allows calculation of actuator angles from cartesian position and endpoint orientation.
+The Jacobian matrix is a calculation of the correlation between stepper position and cartesian coordinate/orientation, when single steppers are changed.
 
-The jacobian and inverse values are almost exact if using small steps, i. e. small segments. Tests result in 0.5 mm long segments is a good candidate to calculate long distances (e.g. calculate LimitPosition to check whether the goal is reachable). For the move itself, the shortest segments are best, because rotational axes produce curves instead of straight lines, so a balance between precision and performance cost (the MCU has limited capabilities) must be found. The default is 0.1 segment lengths.
+An Inverse must be calculated to get the inverse kinematics: calculating from cartesian coordinates back to stepper positions. In inverse can only calculation, if the Jacobian is quadratic and not singular (lost rank). In most cases, a generalized inverse must be calculated to get a similar result.
+
+For calculation of the generalized inverse, several methods exist. Here, the method described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf is used.
+
+The jacobian and inverse values are almost exact if using small steps, i. e. small segments. Tests result in 0.5 mm long segments is a good candidate to calculate long distances (e.g. calculate LimitPosition to check whether the goal is reachable). For the move itself, the shortest segments are best, because rotational axes produce curves instead of straight lines, so a balance between precision and performance cost must be found. The default is 0.1 segment lengths.
 
 # Orientation types
 
