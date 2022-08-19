@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-19T07:05:33.664Z
+date: 2022-08-19T07:12:35.981Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -92,7 +92,9 @@ CNC has a spindle with only one orientation in Z direction. Two rotational axes 
 
 G-Code can be described with AB, BC, AC code. The orientation is described by two angles. The calculation of the jacobian matrix is with 5 rows, 3 for position and 2 for the angles. Segmentation is calculated by interpolation of the angles.
 
-An alternative is to use G-Code with IJK tool vectors. Internally it is converted to the AB, BC, AC angles.
+An alternative is to use G-Code with IJK tool vectors, which can be used with G0/G1.
+
+There is a singularity, e.g. in AC mode for A at 0 degrees. This angle must be avoided, because at 0 degrees the C axis "wants" to rotate by 180 degrees instantly for specific movements, which is not possible (infinite velocity). Often, the choosen solution is to A remain in the negative degree range.
 
 # Orientation 4 axis palletized robot
 Through parallelogram construction of the arms, the endpoint always stays in one plane, often horizontal and the assembled tool is installed vertical. 3 Axes define the position and the fourth axis rotates around the vertical Z axis. The jacobian matrix has 4 rows, 3 for positon and one for the Z angle.
