@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-19T07:02:15.317Z
+date: 2022-08-19T07:05:33.664Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -61,6 +61,8 @@ An Inverse must be calculated to get the inverse kinematics: calculating from ca
 For calculation of the generalized inverse, several methods exist. Here, the method described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf is used.
 
 The jacobian and inverse values are almost exact if using small steps, i. e. small segments. Tests result in 0.5 mm long segments is a good candidate to calculate long distances (e.g. calculate LimitPosition to check whether the goal is reachable). For the move itself, the shortest segments are best, because rotational axes produce curves instead of straight lines, so a balance between precision and performance cost must be found. The default is 0.1 segment lengths.
+
+Calculation of inverse kinematics by using Jacobian/Gen. Inverse is calculated in iterations to get the required precision. Settings a lower required precision result in lower needed iterations.
 
 # Orientation types
 
