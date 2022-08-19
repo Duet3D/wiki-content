@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2022-08-17T15:57:26.457Z
+date: 2022-08-19T19:39:27.927Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -116,8 +116,7 @@ The STEP files for both boards are available [on Github here](https://github.com
 
 ### Revision v0.5 to v1.02
 
-[![An image showing the connections for the Duet 3 Mini 5+ board](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.4_wiring.png =x500)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.4_wiring.png){target=_blank}
-
+[![An image showing the connections for the Duet 3 Mini 5+ board](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.5_wiring.png =x500)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.5_wiring.png){target=_blank}
 
 ### Revision 0.4
 <!--removed the picture, just have the link for this very old board to speed up page loading -->
