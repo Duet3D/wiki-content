@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-20T07:57:28.378Z
+date: 2022-08-20T08:02:55.377Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -34,6 +34,11 @@ Care must be taken when the robot is powered off: the arms need protection again
 # 4 axis palletized robot
 
 The endpoint's horizontal orientation is ensured by mechanical parallelogram (often two connected parallelograms) based parallel arms, which are differently implemented.
+
+Advantages and disadvantes probably are
+* higher stiffness and precision than a pure serial scara, probably higher payload
+* three actuators are near the base, so less weight toward the endpoint
+* parallel is more difficult to calculate (but that's not your problem)
 
 Currently, 2 * 2 subtypes are defined
 * endpoint like a hotend is assembled at the end of the robot arms
