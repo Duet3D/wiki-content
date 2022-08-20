@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-19T07:12:35.981Z
+date: 2022-08-20T20:17:31.630Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -133,6 +133,9 @@ In G-Code the two meanings are mixed unhappily, some examples:
 * G10 X Y Z => offsets from reference
 * M92, M203, M566, M201, M906 XYZUVW => stepper letter related
 * M574 X, Y, Z => stepper letter related
+
+# double vs float variables
+Tests with forward, inverse kinematics and angle calculations resulted in differences of e-04 at worst between float and double precision variables for 6 axis robot calculations of positions and orientations. It looks acceptable to use float, because it needs less memory and can run on all newer Duet hardware with single and double precision Cortex chips.
 
 # Firmware development and compilation
 For installation and running robot kinematics, taking the binaries is the easiest solution. The following is only interesting if one wishes to compile or change something static inside the firmware code (e.g. using more than 6 axes).
