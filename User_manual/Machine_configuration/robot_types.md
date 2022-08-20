@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-20T08:02:55.377Z
+date: 2022-08-20T09:02:11.405Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -30,6 +30,14 @@ Care must be taken when the robot is powered off: the arms need protection again
 # 5 axis CNC
 
 5 axis CNC has subtypes head/head, head/table, table/table and AC, AB, BC.
+
+A 5 axis CNC is built from three cartesian axes (including the possibility to double axes, like optionally for gantry) and two rotary axes.
+
+The rotary axes can be installed at the spindle or at the table, resulting in 4 combinations (both at spindle, both at table, first at spindle and second at table, first at table and second at spindle).
+
+It is common practice to name the rotary axes ABC matching XYZ coordinates, so if AC is used, A is parallel to the X axis and C is parallel to the Z axis when they are in 0 degree positions.
+
+In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) are the rotary angles, i. e. different units of measurement is used. An alternative G-Code uses IJK tool vectors. They are converted into AC/BC/AB angles internally by firmware.
 
 # 4 axis palletized robot
 
