@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-13T07:50:57.781Z
+date: 2022-08-21T18:39:16.116Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -20,15 +20,10 @@ The configuration parameters allow many open robot configurations, but a limited
 * CNC 5 axis (like Open5x, Pentarod)
 * 4 axis palletized robot (like ABB IRB 460)
 
+There is an additional document about configuration specifics for the different robot types for additional information of the following parameters.
+
 # Configuring a Robot printer
-Following is a description how to setup a 1 to 6 axis robot for 3D printing, with primary focus on an industrial 6 axis robot. The RepRapFirmware **robot firmware is in development**, it is planned to be integrated into RRF 3.5.
-
-Explanation and examples of Denavit-Hartenberg parameters:
-[Robot Denavit-Hartenberg parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)
-
-The DWC plugin to create and visualize robot configurations is [RobotViewer](https://docs.duet3d.com/en/User_manual/Machine_configuration/RobotViewer_DWC_plugin)
-
-The kinematics is developed for Duet3Ds RepRapFirmware and is hosted at: [RepRapFirmware_Robot](https://github.com/JoergS5/RepRapFirmware_Robot) See the readme files how to compile. There are also example config files and binaries.
+The kinematics is developed for Duet3Ds RepRapFirmware and will be included in 3.5. The **robot firmware is currently in development**.
 
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
@@ -46,9 +41,11 @@ To avoid printing in a singularity, M208 can be set accordingly. Please see the 
 
 Singularities will be solved by adding Moore-Penrose inverse calculation in the next release.
 # M669 configuration
-M669 and its parameters are used to define the robot properties like arm lengths and type of axes. M669 K13 sets the robot kinematics and the following settings define the properties. Best is to use separate lines for every parameter.
+M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-Most of the parameters are described in the next sections in detail.
+M669 K13 AT"type|R|P" should be the first line to set robot kinematics and define roughly the configuration.
+
+Most parameters are described in separate sections below.
 
 A and B parameters are differently well suited for different robot types and can be mixed.
 
@@ -84,11 +81,17 @@ G1, G2, and G3 moves are separated into segments, which are executed as straight
 * AL:... defines the letters of the actuators
 * A0...n:parameters define DH parameters with optional Y
 
-AT:"name|[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, T is where the tool is attached, O is where the object to be printed is attached. Branches are marked by parantheses.
+AT:"name|[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint (maybe obsolete: T is where the tool is attached, O is where the object to be printed is attached. Branches are marked by parantheses.)
 * AT:"RRRRRR" means 6 axis robot with rotational axes
 * AT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
 * AT:"PPP" means 3 axis cartesian printer.
-* AT:"5axisCNC_AC" means CNC 3 linear axes and two rotary axes AC
+* AT:"5axisCNC_tAtC" means CNC 3 linear axes and two rotary axes AC, both located at the table
+* AT:"5axisCNC_hAhC" means CNC 3 linear axes and two rotary axes AC which are located at head/head
+* AT:"5axisCNC_hAtC" means CNC 3 linear axes and two rotary axes AC with A located at the head and C at the table
+* AT:"4axisPall" means 4 axis palletized
+* AT:"4axisPallReverse" means 4 axis palletized reversed when the object is printed on the robot
+* AT:"3axisPall" means like 4 axis palletized, but without 4th actuator
+* AT:"3axisPallReverse" means like 4 axis palletized reversed when the object is printed on the robot, but without 4th actuator
 
 AL:"[X-Z,U-W,A-D*]" defines the order of axis letters assigned to the AT parameters. The letters are used in the G-Code file, e.g. in the G1 moves. Example: AT:"PRR" AL:"ZXY" means the prismatic actuator is the Z axis, the two rotary ones are X and Y. The order of joint connection is PRR/ZXY, the Z axis being first. (Don't confuse ZXY axis letters with cartesian XYZ coordinates). AL needs not to be defined if the default letters are used, e.g. XYZAC for a 5 axis CNC AC configuration with A parallel to X axis and C to Z axis.
 
