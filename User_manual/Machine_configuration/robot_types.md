@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-21T14:59:32.020Z
+date: 2022-08-21T15:15:56.702Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -41,7 +41,7 @@ In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) ar
 
 # 4 axis palletized robot
 
-The endpoint's horizontal orientation is ensured by mechanical parallelogram (often two connected parallelograms) based parallel arms, which are differently implemented.
+The endpoint's horizontal orientation is ensured by mechanical parallelogram (often two connected parallelograms) based parallel arms. ABB IRB 460, EEZYbotARM (thingiverse 1454048), MK2 plus (thingiverse 2520572) and R290 3 axis are constructions following this principle.
 
 Advantages and disadvantes probably are
 * higher stiffness and precision than a pure serial scara, probably higher payload
