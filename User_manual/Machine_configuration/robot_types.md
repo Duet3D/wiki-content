@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-21T19:02:31.322Z
+date: 2022-08-21T19:06:26.691Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -81,4 +81,4 @@ Default is axis 1 being vertical, axes 2 to 4 (hidden 4) being horizontal and pa
 
 ### Mesh compensation
 
-When no 4th axis is installed, the endpoint rotates when axis 1 rotates, so mesh compensation with a probe with XY offset <> 0 is not possible by default. A solution is to define the probe as 0,0 by cheating the tool offset, measuring and storing the results with the correct coordinates, and for normal operation with mesh compensation to change tool offset back to the tool.
+When no 4th (in reality 5th) axis is installed, the endpoint rotates when axis 1 rotates, so mesh compensation with a probe with XY offset <> 0 is not possible by default. A solution is to define the probe as 0,0 by cheating the tool offset, measuring and storing the results with the correct coordinates, and for normal operation with mesh compensation to change tool offset back to the tool.
