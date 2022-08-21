@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-20T09:11:24.819Z
+date: 2022-08-21T14:52:59.672Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -52,3 +52,23 @@ Currently, 2 * 2 subtypes are defined
 * endpoint like a hotend is assembled at the end of the robot arms
 * endpoint is used as print bed or workpiece bed and moved by the robot arms, the hotend/drill is in fixed position. The XYZ movements of the robot are reverse to the G-Code movements.
 * each of the two types can be with or without the 4th axis at the endpoint. Without the 4th axis, the hotend cannot be rotated, but for most tasks it may be sufficient. Should be called 3 axis palletized then, but the kinematics are very similar, so they are described (and implemented) together.
+
+### Homing, measurement:
+
+As example a 3 axis palletize robot which can be found as R290 3 axis robot (a 4th actuator can be installed at the endpoint to be able to rotate the hotend):
+
+![robot_3axispallet_measure_v2.png](/manual/configuration/robot_3axispallet_measure_v2.png)
+
+The first stepper drives axis 1 and results in the polar direction. Stepper 2 drives the first big arm. Stepper 3 changes the second big arm by small arms inside the first big arm. Stepper 4, if it exists, allow rotation of the endpoint around the Z axis. A parallelogram based arm construction assures that the endpoint platform is always parallel to the base.
+
+Axis 1 and if it exists axis 4 is configured as usual: homing and setting the angle to the correct value in respect to the choosen coordinate system.
+
+When being homed, axis 2 and axis 3 references are the two red long lines: the lines between the joints, not the arms themselves.
+
+The short red line is the distance between the last joint and the assembly plate in Z direction. The same offsets can be set for X and Y direction. The offsets can be set at the G10 tool offsets alternatively. When using a tool changer, it will be easier to set them separately.
+
+The arm lengths are the lengths of the red lines also, i. e. the distance of the joints, not the physical arm lengths. The arms could have different forms (e. g. curved), this doesn't change the configured values. Curved arms could have the advantage to give bigger min&max angles.
+
+### Mesh compensation
+
+When no 4th axis is installed, the endpoint rotates when axis 1 rotates, so mesh compensation with a probe with XY offset <> 0 is not possible by default. A solution is to define the probe as 0,0 by cheating the tool offset, measuring and storing the results with the correct coordinates, and for normal operation with mesh compensation to change tool offset back to the tool.
