@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2022-08-16T10:47:02.341Z
+date: 2022-08-21T11:26:46.969Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -266,7 +266,7 @@ dateCreated: 2022-03-22T10:08:15.620Z
       </tr>
       <tr>
         <td>T</td>
-        <td>Only the processor for the current motion system shall process this command and run any applicable tool change files. The tool selection of other motion systems does not change.</td>
+        <td>Only the processor for the current motion system shall process this command and run any applicable tool change files. The tool selection of other motion systems does not change. The other motion system can continue operating while the tool change is in process. A check is made that the requested tool is not already in use by the other motion system.</td>
         <td>yes</td>
       </tr>
     </tbody>
