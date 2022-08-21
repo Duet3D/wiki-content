@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-21T15:15:56.702Z
+date: 2022-08-21T19:02:31.322Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -59,7 +59,7 @@ As example a 3 axis palletize robot which can be found as R290 3 axis robot (a 4
 
 ![robot_3axispallet_measure_v2.png](/manual/configuration/robot_3axispallet_measure_v2.png)
 
-The first stepper drives axis 1 and results in the polar direction. Stepper 2 drives the first big arm. Stepper 3 changes the second big arm by small arms inside the first big arm. Stepper 4, if it exists, allow rotation of the endpoint around the Z axis and will change polar direction also if the tool has an XY offset from axis 4. A parallelogram based arm construction assures that the endpoint platform is always parallel to the base.
+The first stepper drives axis 1 and results in the polar direction. Stepper 2 drives the first big arm. Stepper 3 changes the second big arm by a parallelogram construction, so arm 3 is rotated remotely. Stepper 4, if it exists, allows rotation of the endpoint around the Z axis and will change polar direction also if the tool has an XY offset from axis 4. A 2-stage parallelogram based arm construction assures that the endpoint platform is always parallel to the base.
 
 Axis 1 and if it exists axis 4 is configured as usual: homing and setting the angle to the correct value in respect to the choosen coordinate system.
 
@@ -68,6 +68,16 @@ When being homed, axis 2 and axis 3 references are the two red long lines: the l
 The short red line is the distance between the last joint and the assembly plate in Z direction. The same offsets can be set for X and Y direction. The offsets can be set at the G10 tool offsets alternatively. When using a tool changer, it will be easier to set them separately.
 
 The arm lengths are the lengths of the red lines also, i. e. the distance of the joints, not the physical arm lengths. The arms could have different forms (e. g. curved), this doesn't change the configured values. Curved arms could have the advantage to give bigger min&max angles.
+
+### configuration
+
+The 4 axis palletized is handled internally as 5 axis, with the 4th axis automatically rotated by the parallelogram. The setup can be made with A parameters, describing Denavit-Hartenberg (DH) parameters, or with B parameters. DH parameters allow finetuning axes, if they are not assembled perfectly.
+
+M669 K13 A"4axisPall" defines the type with 4 actuators.
+M669 K13 A"4axisPallReverse" defines the type with 4 actuators with the print object placed on the robot endpoint platform and the hotend stationary above. X, Y and Z movements will be reversed, hence the name.
+Without the 4th stepper, the name is 3axis... each.
+
+Default is axis 1 being vertical, axes 2 to 4 (hidden 4) being horizontal and parallel, axis 5 vertical again. Positive angles are CCW from above for axes 1 and 5, 0 degrees being in the X direction. For axes 2 to 4, positive angles are CCW seen from front, 0 degrees being the horizontal position (this can all be overritten by DH parameters).
 
 ### Mesh compensation
 
