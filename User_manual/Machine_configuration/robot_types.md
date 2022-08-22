@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-22T07:20:17.321Z
+date: 2022-08-22T07:34:17.908Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -67,7 +67,13 @@ Axis 2 and 3 (steppers 2 and 3) are connected to their arms and the angles are i
 
 Steppers 2 and 3 axes have the same axial position and right is a parallogram. Then a stepper 2 / arm2 angle changed doesn't change the arm3 angle and vice versa: from black with stepper 2 rotating to the red position, the angle3 doesn't change.
 
-Axis 1 and if it exists axis 4 is configured as usual: homing and setting the angle to the correct value in respect to the choosen coordinate system.
+The endpoint plate stays horizontal by a construction as well:
+
+![robot_3axispallet_plate_parall_v2.png](/manual/configuration/robot_3axispallet_plate_parall_v2.png)
+
+The right supporting arm is fix assembled to the base. The red endpoint plate stays parallel to the base, i. e. horizontal.
+
+Axis 1 and if it exists axis 5 (4) is configured as usual: homing and setting the angle to the correct value in respect to the choosen coordinate system.
 
 When being homed, axis 2 and axis 3 references are the two red long lines: the lines between the joints, not the arms themselves.
 
