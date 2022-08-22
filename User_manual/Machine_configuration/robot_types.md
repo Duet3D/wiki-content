@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-21T19:32:45.739Z
+date: 2022-08-22T06:17:01.913Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -60,6 +60,12 @@ As example a 3 axis palletize robot which can be found as R290 3 axis robot (a 4
 ![robot_3axispallet_measure_v2.png](/manual/configuration/robot_3axispallet_measure_v2.png)
 
 The first stepper drives axis 1 and results in the polar direction. Stepper 2 drives the first big arm. Stepper 3 changes the second big arm by a parallelogram construction, so arm 3 is rotated remotely. Stepper 4, if it exists, allows rotation of the endpoint around the Z axis and will change polar direction also if the tool has an XY offset from axis 4. A 2-stage parallelogram based arm construction assures that the endpoint platform is always parallel to the base.
+
+Axis 2 and 3 (steppers 2 and 3) are connected to their arms and the angles are independent, because the following construction is used:
+
+![robot_3axispallet_axis2_3_parall_v2.png](/manual/configuration/robot_3axispallet_axis2_3_parall_v2.png)
+
+To work correctly, the stepper 2 and 3 axis must be at the same axial position and the opposite lengths of the parallelogram must be same lengths. A stepper 2 / arm2 angle changed doesn't change the arm3 and vice versa: from black with arm 2 vertical rotating to red with arm 2 rotated CCW, the angle3 doesn't change.
 
 Axis 1 and if it exists axis 4 is configured as usual: homing and setting the angle to the correct value in respect to the choosen coordinate system.
 
