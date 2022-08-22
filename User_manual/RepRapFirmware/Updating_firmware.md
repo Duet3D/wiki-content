@@ -1,8 +1,8 @@
 ---
 title: Installing and Updating Firmware
-description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards. 
+description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2022-05-06T11:51:47.160Z
+date: 2022-08-22T15:30:40.132Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -202,7 +202,9 @@ Bossa is available for Windows, Apple macOS and Linux.
 
 ##### Windows and macOS
 
-* Download and install Bossa 1.9.1 from here: [Duet3D version for Windows](https://github.com/Duet3D/BOSSA/releases/tag/1.9.1a-duet3d) or here: [ShumaTech version for MacOS](https://github.com/shumatech/BOSSA/releases/tag/1.9.1).
+* Download one of:
+  * [Duet3D version of Bossa](https://github.com/Duet3D/BOSSA/releases/tag/1.9.1a-duet3d) (Windows only .exe file; supports 6HC/6XD)
+  * [ShumaTech Bossa v1.9.1](https://github.com/shumatech/BOSSA/releases/tag/1.9.1) (Windows/Mac installer, does not support 6HC/6XD).
 * Load Bossa. It usually detects the correct COM port automatically.
 * Check boxes *Erase all*, *Lock*, and *Boot to flash*
 * Browse to the firmware binary file to be installed, then press Write.
