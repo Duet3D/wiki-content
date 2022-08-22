@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-08-17T14:12:29.775Z
+date: 2022-08-22T15:50:00.389Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1054,6 +1054,43 @@ G92 X10 E90
 </pre>
 
 Allows manual specification of the axis positions by specifying the current position to the values given. This example would set the machine's X coordinate to 10, and the extrude coordinate to 90. No physical motion will occur. In RepRapFirmware, a G92 without coordinates does nothing.
+
+## G93: Feed Rate Mode (Inverse Time Mode) 
+
+*CNC specific. Supported from firmware version 3.5*
+
+### Parameters
+
+* No additional parameters
+
+### Examples
+<br>
+<pre class="cblock">
+G93
+</pre>
+
+### Notes
+
+* G93 is Inverse Time Mode. In inverse time feed rate mode, an F word means the move should be completed in (one divided by the F number) minutes. For example, F2.0 means the move should be completed in a half a minute.
+* When the inverse time feed rate mode is active, an F word must appear on every line which has a G1, G2, or G3 motion, and an F word on a line that does not have G1, G2, or G3 is ignored. Being in inverse time feed rate mode does not affect G0 (rapid move) motions.
+
+## G94: Feed Rate Mode (Units per Minute)
+
+*CNC specific. Supported from firmware version 3.5*
+
+### Parameters
+
+* No additional parameters
+
+### Examples
+<br>
+<pre class="cblock">
+G94
+</pre>
+
+### Notes
+
+* G94 is Units per Minute Mode. In units per minute feed mode, an F word is interpreted to mean the controlled point should move at a certain number of inches per minute, millimeters per minute, or degrees per minute, depending upon what length units are being used and which axis or axes are moving. 
 
 # M-commands
 
