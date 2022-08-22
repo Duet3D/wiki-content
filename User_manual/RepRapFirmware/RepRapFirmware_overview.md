@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2022-01-17T14:19:25.805Z
+date: 2022-08-22T15:04:42.887Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -36,13 +36,13 @@ RepRapFirmware supports the following machine kinematics:
 
 * [Cartesian](/User_manual/Machine_configuration/Configuration_cartesian)
 * [CoreXY](/User_manual/Machine_configuration/Configuration_coreXY), CoreXZ, CoreXYU, CoreXYUV
-* [Linear delta](/User_manual/Machine_configuration/Configuration_linear_delta), rotary delta
+* [Linear delta](/User_manual/Machine_configuration/Configuration_linear_delta), [rotary delta](/User_manual/Machine_configuration/Configuration_rotary_delta)
 * [Multiple independent axes (IDEX)](/User_manual/Machine_configuration/Configuration_IDEX)
 * Markforged
-* Serial SCARA, five-bar parallel SCARA
-* Hangprinter
-* Polar
-* Additionally, RepRapFirmware can support any kinematics for which the movement of each axis is a linear combination of the movement of the motors. The relationship between axis movement and motor movement is defined by a matrix.
+* [Serial SCARA](/User_manual/Machine_configuration/Configuration_SCARA), five-bar parallel SCARA
+* [Hangprinter](/User_manual/Machine_configuration/Configuration_Hangprinter)
+* [Polar](/User_manual/Machine_configuration/Configuration_Polar)
+* Additionally, RepRapFirmware can support any kinematics for which the movement of each axis is a linear combination of the movement of the motors. The relationship between axis movement and motor movement is defined by a matrix; see GCode [M669](/User_manual/Reference/Gcodes/M669).
 
 # Checking firmware versions
 
@@ -73,6 +73,34 @@ Duet boards are shipped with RepRapFirmware installed, however users are advised
 # SD card structure
 
 See the wiki page on the [SD card](/User_manual/RepRapFirmware/SD_card).
+
+# Firmware configuration limits
+
+RepRapFirmware has some configuration limits. Note that the total system limits are set by the mainboard. Expansion boards can be configured within the full capabilities of their hardware, subject to the overall system limits. As of RRF 3.4 these are:
+
+| | Duet 3 MB6HC | Duet 3 Mini: | Duet 2 WiFi/Ethernet | Duet Maestro | Notes |
+|---|---|
+| MaxSensors | 56 | 56 | 32 | 32 | The maximum number of sensors |
+| MaxHeaters | 32 | 32 | 10 | 4 | The maximum number of heaters |
+| MaxPortsPerHeater | 3 | 2 | 2 | 2 | The maximum number of output ports per heater |
+| MaxMonitorsPerHeater | 3 | 3 | 3 | 3 | The maximum number of monitors per heater |
+| MaxBedHeaters | 12 | 2 | 4 | 2 | The maximum number of bed heaters |
+| MaxChamberHeaters | 4 | 2 | 4 | 2 | The maximum number of chamber heaters |
+| MaxZProbes | 4 | 4 | 4 | 2 | The maximum number of probes |
+| MaxGpInPorts | 32 (16 in RRF3.3) | 32 (16 in RRF3.3) | 20 | 10 | The maximum number of general purpose input ports. |
+| MaxGpOutPorts | 32 | 32 | 20 | 10 | The maximum number of general purpose output ports |
+| MaxAxes | 15 | 10 | 10 | 6 | The maximum number of movement axes |
+| MaxDriversPerAxis | 8 | 4 | 6 (5 in RRF3.3) | 4 | The maximum number of stepper drivers assigned to one axis |
+| MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
+| MaxAxesPlusExtruders | 25 | 12 | 12 | 7 | The maximum number of axes + extruders |
+| MaxHeatersPerTool | 8 | 2 | 8 | 2 | The maximum number of heaters per tool |
+| MaxExtrudersPerTool | 8 | 5 | 8 | 4 | The maximum number of extruders per tool |
+| MaxFans | 20 | 20 | 12 | 6 | The maximum number of fans |
+| MaxTriggers | 32 | 16 | 16 | 16 | The maximum number of triggers |
+| MaxSpindles | 2 | 2 | 4 | 2 | Maximum number of configurable spindles |
+| MaxZProbeProgramBytes | 8 | 8 |  |  | Maximum number of bytes in a Z probe program |
+| MaxCanDrivers | 20 | 7 |  |  | The maximum number of CAN connected stepper drivers |
+| MaxCanBoards | 20 | 4 |  |  | The maximum number of CAN connected boards |
 
 # Firmware differences from other firmwares
 
