@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2022-08-22T22:02:13.511Z
+date: 2022-08-22T22:03:16.480Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -46,7 +46,7 @@ Each Duet board needs up to four files to fully update the firmware and software
 
 **Firmware binary** - This is the main firmware for the Duet boards, and there is a specific version for each Duet board. The main firmware for all boards except Duet 3 Mini 5+ is supplied as a .bin file; for the Duet 3 Mini 5+ it is a .uf2 file.
 
-**In-App programmer (IAP) binary** - This file is needed on the SD card and does the job of programming the firmware. There is a specific version for each Duet board. They don’t change with every firmware release, but new versions often accompany major firmware releases. You will get a message if it is missing, with the filename it expects, and (in DWC 3.3b1 and later) the location it expects to find it. Download the correct file from the matching firmware release, don't just rename an existing IAP file.
+**In-App programmer (IAP) binary** - This file is needed on the SD card and does the job of programming the firmware. There is a specific version for each Duet board. They don’t change with every firmware release, but new versions often accompany major firmware releases. You will get a message if it is missing, with the filename it expects, and (in DWC 3.3 and later) the location it expects to find it. Download the correct file from the matching firmware release, don't just rename an existing IAP file.
 
 **WiFi firmware binary** - Required for the ESP8266-based WiFi board on the Duet 2 WiFi and Duet 3 Mini 5+ WiFi. Use the same version that is supplied with the firmware you are flashing.
 
