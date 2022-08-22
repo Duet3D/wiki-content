@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-22T08:37:52.084Z
+date: 2022-08-22T08:39:41.616Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -41,7 +41,7 @@ In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) ar
 
 # 4 axis palletized robot
 
-The endpoint's horizontal orientation is ensured by mechanical parallelogram (often two connected parallelograms) based parallel arms. ABB IRB 460, Fanuc M-410, EEZYbotARM (thingiverse 1454048), MK2 plus (thingiverse 2520572) and R290 3 axis are constructions following this principle. A similar construction, but with the stepper 3 directly connected with the arm, are handled with this construction as well, like the Kuka KR 700 and Borunte BRTIRPZ. The important property is axis 4, which is parallel to the base plate by mechanical means. The 4 axis robot is in fact 5 axis with actuators at axes 1, 2, 3 and 5. A robot like ABB IRB 8700 has only a parallelogram to place the motor far from arm 3 and can be modeled with the normal robot configuration.
+The endpoint's horizontal orientation is ensured by mechanical parallelogram (often two connected parallelograms) based parallel arms. ABB IRB 460, Fanuc M-410, EEZYbotARM (thingiverse 1454048), MK2 plus (thingiverse 2520572) and R290 3 axis are constructions following this principle. A similar construction, but with the stepper 3 directly connected with the arm, are handled with this construction as well, like the Kuka KR 700 and Borunte BRTIRPZ. The important property is axis 4, which is parallel to the base plate by mechanical means. The 4 axis robot is in fact 5 axis with actuators at axes 1, 2, 3 and 5. A robot like ABB IRB 8700 has only a parallelogram to place the motor far from arm 3 and can be modeled with the normal robot configuration (i. e. like a 6 axis robot, but maybe less axes configured).
 
 Advantages and disadvantes probably are
 * higher stiffness and precision than a pure serial scara, probably higher payload
