@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-08-22T13:37:56.051Z
+date: 2022-08-22T13:43:26.628Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -31,13 +31,19 @@ Take a moment to familiarise yourself with the wiring diagram. Click on the imag
 
 [![duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png =800x)](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.5_v1.0_v1.01.png){target=_blank}
 
+For wiring diagrams of older board versions, see [Duet 3 Mini 5+ hardware overview](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview).
+
 ### Duet 3 Mainboard 6HC
 
 [![duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png =800x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png){target=_blank}
 
+For wiring diagrams of older board versions, see [Duet 3 Mainboard 6HC hardware overview](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview).
+
 ### Duet 3 Mainboard 6XD
 
 [![duet3_mb_6xd_v0.1_wiring.png](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_wiring.png =800x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_wiring.png){target=_blank}
+
+For wiring diagrams of older board versions, see [Duet 3 Mainboard 6XD hardware overview](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview).
 
 # 2. Fire safety
 
