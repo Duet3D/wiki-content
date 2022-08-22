@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2022-08-22T21:57:59.670Z
+date: 2022-08-22T21:58:24.550Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -172,7 +172,7 @@ The Duet 3 Mini 5+ supports an easy mechanism for updating the firmware directly
 You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).  
 * Download the main firmware file from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases){target=blank}
 * Verify that the downloaded firmware file has the correct size, as shown on the page you downloaded it from.
-* Duet 3 MB6XD pre-production (green) boards only: if the Driver Enable Polarity Select jumper is fitted and in the position closest to the microcontroller, temporarily move it to the other position (the positoin closest to the edge of the board)
+* Duet 3 MB6XD pre-production (green) boards only: if the Driver Enable Polarity Select jumper is fitted and in the position closest to the microcontroller, temporarily move it to the other position (the position closest to the edge of the board)
 * Connect the Duet to your PC via USB.
 * Verify that the 5V and 3.3V LED are on before continuing.
 * Erase the firmware on the Duet by either:
