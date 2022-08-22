@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2022-08-22T21:58:24.550Z
+date: 2022-08-22T22:01:27.092Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -25,9 +25,10 @@ dateCreated: 2021-11-30T12:57:13.348Z
 Duet 3 MB6HC - RepRapFirmware 3.x
 Duet 3 MB6XD - RepRapFirmware 3.4 and later
 Duet 3 Mini 5+) - RepRapFirmware 3.2 and later
-Duet 2 (WiFi, Ethernet, Maestro) - RepRapFirmware 1.x, 2.x, 3.x
+Duet 2 (WiFi, Ethernet, Maestro) - RepRapFirmware 2.x, 3.x
+Legacy Duet 0.6 and 0.85 - RepRapFirmware 1.x
 
-Currently, the latest version of RepRapFirmware 2.x is v2.05.1. The latest version of RepRapFirmware 1.x is v1.26.1. These are available [here](https://github.com/Duet3D/RepRapFirmware/releases/tag/2.05.1).
+Currently, the latest version of RepRapFirmware 2.x is v2.05.1. These files and the RepRapFirmware 1.x files for legacy Duets are available [here](https://github.com/Duet3D/RepRapFirmware/releases/tag/2.05.1).
 
 ## Downloading RepRapFirmware files
 
