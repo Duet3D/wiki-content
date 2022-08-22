@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-07-07T22:17:28.682Z
+date: 2022-08-22T14:48:59.754Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -63,7 +63,7 @@ It is useful to have physical interpretations of the PID constants and control s
 
 As described above, a PID controller outputs a torque control signal. This means that our electronics must be able to then induce this torque in the stepper motor, however this is not classically the way in which stepper motors operate. In order to understand how a torque can be applied, it is useful to revisit how a stepper motor works. A stepper motor has 2 coils that can have varying amounts of current running through them. Shown below left is a diagram of the current in these coils whilst the motor is taking four steps. Each time the current changes, the shaft 'snaps' to the next position. If we wanted to move more continuously instead of snapping, we could half each step (microstepping) - this is shown below middle. We can continue halving these steps as shown below right.
 
-![duet_3_1hcl_tuning_02.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_02.png =32%x) ![duet_3_1hcl_tuning_03.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_03.png =32%x) ![duet_3_1hcl_tuning_03.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_03.png =32%x)
+![Image of coil currents when a stepper driver is full stepping](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_02.png =32%x) ![Image of coil currents when a stepper driver is half stepping](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_03.png =32%x) ![Image of coil currents when a stepper driver is microstepping](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_04.png =32%x)
 
 We can see that this approximates a sine and cosine wave. This means that if we applied a sine and cosine signal to the input coils, the motor would rotate continuously - i.e. experience a constant torque - let’s call this torque Tmax.
 
@@ -71,9 +71,9 @@ Therefore, to induce a torque of Tmax at any instance, we need to assert the val
 
 # Tuning
 
-The 1HCL closed loop driver requires two types of tuning to perform optimally:
+The 1HCL closed loop driver requires two types of tuning:
 
-1. **Runtime Tuning** - Small manoeuvres that the closed loop drive must perform before it can operate to force the drive into a known state (similar to homing, where you move an axis until an endstop is hit to force the axis into the 0 state)
+1. **Runtime Tuning** - Moves that the closed loop drive must perform before it can operate to force the drive into a known state (similar to homing, where you move an axis until an endstop is hit to determine the actual axis position)
 1. **PID Tuning** - Adjusting the parameters of the PID control system to provide better response characteristics (e.g. reducing the steady-state error and preventing oscillation - see 'PID Control Systems' above)
 
 ## Runtime Tuning
@@ -84,15 +84,16 @@ The following example is for quadrature-style motors. Zeroing works slightly dif
 
 As described in 'Closing the Loop on Stepper Motors' above, the closed loop system needs to know that a feedback reading of 0 corresponds to the position the motor is in when the first coil is fully energised. Because the printer has no guarantee of this at start-up, it must perform a small manoeuvre, similar to a homing move, that ensures this is the case.
 
-In order to perform a tuning manoeuvre, the [M569.6](/User_manual/Reference/Gcodes/M569_6) command is used. As per the GCODE dictionary, this command takes a driver address (P) and a manoeuvre number (V as in manoeu**V**re). The manoeuvre number of a zeroing move is 2, so to run a zeroing manoeuvre on drive 0 of a 1HCL board at CAN address 50, one would run:
+In order to perform a tuning manoeuvre, the [M569.6](/User_manual/Reference/Gcodes/M569_6) command is used. As per the GCODE dictionary, this command takes a driver address (P) and a manoeuvre number (V as in manoeu**V**re). The manoeuvre number of a zeroing move is 1, so to run a zeroing manoeuvre on drive 0 of a 1HCL board at CAN address 50, one would run:
 
-`M569.6 P50.0 V2`
+`M569.6 P50.0 V1`
 
 *Note that the drive must be in closed-loop mode before this command can be run. See [M569 D4](/User_manual/Reference/Gcodes/M569) for putting a drive in closed-loop mode.*
 
 Running this command should make the drive move slightly (tuning manoeuvres will at most make the motor move 10 steps). You may get a warning at this stage, but this is nothing to worry about.
 
-**Warning: Duet firmware currently only supports tuning one driver at a time. This means that when tuning a multi-driver axis, one driver will move and the other(s) will not. If attempting to tune a multi-driver axis, please take appropriate mitigation to ensure the axis doesn't become stressed/misaligned when only one one driver moves.**
+> Duet firmware currently only supports tuning one driver at a time. This means that when tuning a multi-driver axis, one driver will move and the other(s) will not. If attempting to tune a multi-driver axis, please take appropriate mitigation to ensure the axis doesn't become stressed/misaligned when only one one driver moves.
+{.is-warning}
 
 The table below lists the available tuning manoeuvres:
 
@@ -165,6 +166,29 @@ G1 H2 Z0 F6000          ; lower Z again
 Currently the RRF configuration tool will not generate these homing GCODE files so they will need to be modified manually.
 
 If tuning fails, the M569.6 command will report an error. In this case, check the troubleshooting section below.
+
+### Caveats for Magnetic Encoders
+
+Magnetic encoders have a number of caveats that must be noted. Please read the following sections if you are using a magnetic encoder such as the Duet closed loop magnetic sensor, based on the AS5047D.
+
+**Motivation**
+
+The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is incredibly difficult to align the centre of the magnet with the centre of rotation, so instead of requiring sub-mm precision assembly, the zeroing move measures how offset the magnet is, and then corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this tuning move.
+
+**Running the move**
+
+To measure the offset, a full rotation of the motor is used. Unlike other tuning moves, you would be fine to disconnect the motor from the axis - the magnet offset isn't affected by load on the motor, unlike some other tuning parameters.
+
+Once you are satisfied that the motor can freely make up to 2 rotations (the motor first rotates to find the zero position, then makes 1 full rotation), run the following command:
+
+`M569.6 P##.# V2    ; Where P##.# is the driver address to tune`
+
+> This tuning move turns the motor very slowly to ensure eahc position is captured so will take a 5-10 minutes to complete.
+{.is-info}
+
+Once this has been performed once, the values should be written to non-volatile memory, and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V3 command again.
+
+From RRF 3.4.2 the firmware will output the highest deviation of expected positon vs encoder postion recorded. This is useful as a proxy for how centered the magnet is.
 
 ## PID Tuning
 
@@ -289,34 +313,6 @@ In order to reduce this noise, the D term can be set to zero, however this will 
 
 When a G1 command is run on the Ender 3 example above, a tuned D value gives a maximum error of ± 0.07 steps. When using D=0, that error is increased to ± 0.1 steps, however the motor runs much quieter. This is still an order of magnitude better than the factory-default parameters, and is a matter of personal preference weighing up the sound of the motors against the decreased accuracy.
 
-# Caveats for Magnetic Encoders
-
-Magnetic encoders have a number of caveats that must be noted. Please read the following sections if you are using a magnetic encoder such as the Duet closed loop magnetic sensor, based on the AS5047D.
-
-## Runtime Tuning
-
-As mentioned above, the zeroing runtime manoeuvre must only be performed once. This means it doesn't need to be done every time the printer is powered on. Read below how to perform this.
-
-**Motivation**
-
-The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is incredibly difficult to align the centre of the magnet with the centre of rotation, so instead of requiring sub-mm precision gluing skills, the zeroing move measures how offset the magnet is, and then corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, it is a good idea to re-run this tuning move.
-
-**Running the move**
-
-To measure the offset, a full rotation of the motor is used. Unlike other tuning moves, you would be fine to disconnect the motor from the axis - the magnet offset isn't affected by load on the motor, unlike some other tuning parameters.
-
-Once you are satisfied that the motor can freely make up to 2 rotations (the motor first rotates to find the zero position, then makes 1 full rotation), run the following command:
-
-`M569.6 P##.# V3    ; Where P##.# is the driver address to tune`
-
-*Note: Some older firmware versions may include a bug whereby sending the tuning command does not 'wake' drivers, so they do not move. As a workaround, cycle the power, move the axis in open-loop mode to wake it, and then run*
-
-```
-M569 P##.# D4      ; Put the drive in closed loop mode
-M569.6 P##.# V3    ; Perform the manoeuvre
-```
-
-Once this has been performed once, the values should be written to non-volatile memory, and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V3 command again.
 
 # Troubleshooting
 
