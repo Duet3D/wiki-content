@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-07-12T07:54:28.013Z
+date: 2022-08-22T13:37:56.051Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -23,7 +23,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 # 1. Board Diagram
 
-Take a moment to familiarize yourself with the wiring diagram. Click on the image to open the full resolution version in a new browser window/tab.
+Take a moment to familiarise yourself with the wiring diagram. Click on the image to open the full resolution version in a new browser window/tab.
 
 ## Tabs {.tabset}
 
@@ -55,7 +55,7 @@ Take a moment to familiarize yourself with the wiring diagram. Click on the imag
 # 3. Tools required
 
 To complete the wiring of your Duet, you will usually need:
-* Screwdrivers (flat blade and Pozidrive)
+* Screwdrivers (flat blade and Pozidriv)
 * Wire stripper/cutter
 * Crimping tool(s) (see tabs below)
 * Pliers
@@ -84,7 +84,7 @@ Standard red/blue/yellow automotive crimp tools will crimp these terminals. Ther
 * **Duet 3 Mini 5+**: used for OUT1 and OUT2
 * **Duet 3 Mainboard 6XD**: used for OUT0, OUT1 and OUT2
 
-JST-VH crimps require a minimum of 22AWG wire (20AWG or 0.5mm2 recommended. Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way, but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heatshrink sleeving over the insulation to bulk up the insulation. 
+JST-VH crimps require a minimum of 22AWG wire (20AWG or 0.5mm2 recommended. Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way, but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heat shrink sleeving over the insulation to bulk up the insulation. 
 
 You will need a suitable crimping tool for the crimp pins, for example Engineer PA21. The PA21 is designed to handle the longer flanges of the VH crimps that grip the insulation. Use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation. The large side of a ratchet crimping tool, such as the HT-225D, may also be able to crimp the VH series. Alternatively you can solder the wire to the crimp pin.
 
@@ -185,7 +185,7 @@ The red LED labelled "STATUS" (Mini 5+, 6XD) or "DIAG" (6HC) indicates the state
 
 * Connect a probe to an appropriate IO connector (see above). You can have multiple probes, if necessary.
 * There are many different kinds of probe, and the wiring will be different for each one.
-* Some probes may need specific capabilities, e.g. analog input or PWM output, that may only be supported by specific IO connectors; see the hardware overview for your board for IO connector capabilities.
+* Some probes may need specific capabilities, e.g. analogue input or PWM output, that may only be supported by specific IO connectors; see the hardware overview for your board for IO connector capabilities.
 * See [User manual: Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing), which will help you choose a suitable Z probe if you have not already.
 * See [User manual: Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting), which contains guidance for wiring your Z probe to the Duet.
 
@@ -201,12 +201,12 @@ The red LED labelled "STATUS" (Mini 5+, 6XD) or "DIAG" (6HC) indicates the state
   * 3 x 4-wire PWM-controlled outputs with tacho input: OUT4, OUT5 and OUT6.<br>Voltage is selectable between VIN / 12V / external power (provide required voltage to centre pin), using the <span style="background-color:#FF0000">OUT4-OUT6 Select V</span> jumper.
   * 3 x 2-wire PWM-controlled outputs: OUT7, OUT8 and OUT9.<br>Voltage is selectable between VIN / 12V / external power (provide required voltage to centre pin), using the <span style="background-color:#00FF00">OUT7-OUT9 Select V</span> jumper.
   * 1 x <span style="background-color:#00FFFF">VIN-voltage, always-on</span> output
-  * 1 x <span style="background-color:#FFFF00">12V, always-on</span> ouput
+  * 1 x <span style="background-color:#FFFF00">12V, always-on</span> output
 * A PWM (Pulse Width Modulation) fan connection is for fans you wish to control the speed of, for example a print cooling fan.
 * An always on fan is for something like an electronics fan - always on when the printer is on.
 * Some fans are more compatible with PWM control than others. If you have trouble varying the speed of a fan, check the documentation for changing PWM frequency.
 * The polarity of the fans is important - don't connect them backwards, or you may damage the Duet board.
-* When using the onboard 12V regulator (i.e. 12V has been selected and/or using 12V always on ouput), the TOTAL 12V current draw must not exceed 800mA.
+* When using the onboard 12V regulator (i.e. 12V has been selected and/or using 12V always on output), the TOTAL 12V current draw must not exceed 800mA.
 * For more details, see [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting)
 
 
@@ -217,12 +217,12 @@ The red LED labelled "STATUS" (Mini 5+, 6XD) or "DIAG" (6HC) indicates the state
 * The Mini 5+ provides:
   * 2 x 4-wire PWM-controlled outputs with tacho input: OUT3 and OUT4.<br>Voltage is selectable between VIN / 12V / external power (provide required voltage to centre pin), using the <span style="background-color:#FF0000">OUT3&4 Select V</span> jumper.
   * 3 x 2-wire PWM-controlled outputs: OUT5 and OUT6.<br>Voltage is selectable between VIN / 12V / external power (provide required voltage to centre pin), using the <span style="background-color:#00FF00">OUT5&6 Select V</span> jumper.
-  * 1 x <span style="background-color:#FFFF00">12V, always-on</span> ouput
+  * 1 x <span style="background-color:#FFFF00">12V, always-on</span> output
 * A PWM (Pulse Width Modulation) fan connection is for fans you wish to control the speed of, for example a print cooling fan.
 * An always on fan is for something like an electronics fan - always on when the printer is on.
 * Some fans are more compatible with PWM control than others. If you have trouble varying the speed of a fan, check the documentation for changing PWM frequency.
 * The polarity of the fans is important - don't connect them backwards, or you may damage the Duet board.
-* When using the onboard 12V regulator (i.e. 12V has been selected and/or using 12V always on ouput), the TOTAL 12V current draw must not exceed 800mA.
+* When using the onboard 12V regulator (i.e. 12V has been selected and/or using 12V always on output), the TOTAL 12V current draw must not exceed 800mA.
 * For more details, see [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting)
 
 # 11. Temperature sensors
@@ -277,7 +277,7 @@ The red LED labelled "STATUS" (Mini 5+, 6XD) or "DIAG" (6HC) indicates the state
 * For more details, see [User manual: Choosing stepper motors](/User_manual/Connecting_hardware/Motors_choosing)
 * If you want to run external drivers, see [User manual: Connecting external stepper motor drivers](/User_manual/Connecting_hardware/Motors_connecting_external).
 
-Here is an exmaple of a JST_VH connector:
+Here is an example of a JST_VH connector:
 ![wiring_d3_jst_vh.jpg](/guides/wiringd3/wiring_d3_jst_vh.jpg =30%x)
 
 # 15. Connecting a display
@@ -375,7 +375,7 @@ Here is an exmaple of a JST_VH connector:
 * The WiFi or Ethernet Module supports a connection over a web interface. It is responsible for the network connection when not using an attached Single Board Computer.
 * The WiFi module has a green LED (LED ESP) which indicates WiFi activity; flashing for searching/connecting, on for connected.
 * The WiFi module also has a U.FL external antenna connection; don't forget to plug in the external antenna!
-* The Ethernet module has two LEDs on the RJ45 housing; Link, which is on when an ethernet connection is established, and Activity, which flashed whenever data is being actively transferred.
+* The Ethernet module has two LEDs on the RJ45 housing; Link, which is on when an Ethernet connection is established, and Activity, which flashed whenever data is being actively transferred.
 
 # 21. Troubleshooting
 
