@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-08-22T14:13:56.929Z
+date: 2022-08-22T14:15:12.860Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -29,11 +29,11 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Duet 2 WiFi and Ethernet
 
-![Diagram showing the Duet 2 board with the pins labelled to aid wiring.](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_wiring_latest.png =800x){target=_blank}
+[![Diagram showing the Duet 2 board with the pins labelled to aid wiring.](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_wiring_latest.png =800x)](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_wiring_latest.png){target=_blank}
 
 ### Duet 2 Maestro
 
-![duet_2_maestro_v1.0_wiring.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_v1.0_wiring.png =800x){target=_blank}
+[![duet_2_maestro_v1.0_wiring.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_v1.0_wiring.png =800x)](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_v1.0_wiring.png){target=_blank}
 
 # 2. Fire safety
 
