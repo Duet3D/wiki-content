@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-08-12T11:41:48.577Z
+date: 2022-08-22T22:58:16.583Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -129,9 +129,9 @@ Send M997 B## to carry out a firmware update, the bootloader will request the Du
 ## Set the CAN address
 
 * Send command M115 B## to verify that the main board can communicate with the 1HCL board, where ## is the default address of 123 if it has not been changed already.
-* Send command M952 B# A## where ## is the new address you want to use. Allowed CAN addresses for normal use are 1 to 119. We suggest you use addresses starting at 40 for 1HCLs. So for the first 1HCL board, if your new CAN board was at address 123, send M952 B123 A40.
+* Send command M952 B# A## where ## is the new address you want to use. Allowed CAN addresses for normal use are 1 to 119. We suggest you use addresses starting at 50 for 1HCLs. So for the first 1HCL board, if your new CAN board was at address 123, send M952 B123 A50.
 * Power the system down and up again, or send M999 B123. This will cause the 1HCL board to restart with the new address.
-* Send command M122 B40 (or whatever address you chose) to verify that you can communicate with the 1HCL board at its new address
+* Send command M122 B50 (or whatever address you chose) to verify that you can communicate with the 1HCL board at its new address
 * You can now power up the next 1HCL board and commission it in the same way, **choosing a different CAN address for it**.
 
 # Firmware
