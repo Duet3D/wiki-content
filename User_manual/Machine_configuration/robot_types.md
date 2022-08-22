@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-22T08:37:08.242Z
+date: 2022-08-22T08:37:52.084Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -46,7 +46,6 @@ The endpoint's horizontal orientation is ensured by mechanical parallelogram (of
 Advantages and disadvantes probably are
 * higher stiffness and precision than a pure serial scara, probably higher payload
 * three actuators are near the base, so less weight toward the endpoint
-* parallel is more difficult to calculate (but that's not your problem)
 
 Currently, 2 * 2 subtypes are defined
 * endpoint like a hotend is assembled at the end of the robot arms
