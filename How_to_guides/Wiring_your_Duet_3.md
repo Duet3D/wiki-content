@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-08-22T14:42:01.414Z
+date: 2022-08-22T14:47:29.077Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -29,7 +29,7 @@ Take a moment to familiarise yourself with the wiring diagram. Click on the imag
 
 ### Duet 3 Mini 5+
 
-[![duet_3_mini5+_wiring_latest.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini5+_wiring_latest.png =800x)](/duet_boards/duet_3_mini_5_plus/duet_3_mini5+_wiring_latest.png){target=_blank}
+[![duet_3_mini_5+_wiring_latest.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_latest.png =800x)](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_latest.png){target=_blank}
 
 For wiring diagrams of older board versions, see [Duet 3 Mini 5+ hardware overview](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview).
 
