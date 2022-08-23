@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-23T07:03:30.516Z
+date: 2022-08-23T07:12:47.829Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -33,7 +33,7 @@ Care must be taken when the robot is powered off: the arms need protection again
 
 A 5 axis CNC is built from three cartesian axes (including the possibility to double axes, like optionally for gantry) and two rotary axes.
 
-Each of thehe rotary axes can be installed at the spindle or at the table, resulting in 4 combinations. The possibilities have different results in respect to workpiece size, stability etc., but it is not discussed here.
+Each of the rotary axes can be installed at the spindle or at the table, resulting in 4 combinations. The possibilities have different results in respect to workpiece size, stability etc., but it is not discussed here.
 
 It is common practice to name the rotary axes ABC matching XYZ coordinates, so if AC is used, A is parallel to the X axis and C is parallel to the Z axis when they are in 0 degree positions.
 
