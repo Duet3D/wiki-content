@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-23T08:10:52.932Z
+date: 2022-08-23T18:05:51.679Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -66,11 +66,23 @@ Axis 2 and 3 (steppers 2 and 3) are connected to their arms and the angles are i
 
 ![robot_3axispallet_axis2_3_parall_v2.png](/manual/configuration/robot_3axispallet_axis2_3_parall_v2.png)
 
+Or a different image from the IRB 460: (copyright notice see below)
+
+![4axisparallarm3_v3.png](/manual/configuration/4axisparallarm3_v3.png)
+
 Steppers 2 and 3 axes have the same axial position and right is a parallogram. Then a stepper 2 / arm2 angle changed doesn't change the arm3 angle and vice versa: from black with stepper 2 rotating to the red position, the angle3 doesn't change.
 
 The endpoint plate stays horizontal by the following construction:
 
 ![robot_3axispallet_plate_parall_v2.png](/manual/configuration/robot_3axispallet_plate_parall_v2.png)
+
+And for IRB 460:
+
+![4axisparallplate_v3.png](/manual/configuration/4axisparallplate_v3.png)
+
+(ABB Product specification IRB460; Document ID: 3HAC039611-001;Copyright 2010-2017 ABB;
+www.abb.com/robotics)
+
 
 The right supporting arm is fix assembled to the base. The red endpoint plate stays parallel to the base, i. e. horizontal.
 
