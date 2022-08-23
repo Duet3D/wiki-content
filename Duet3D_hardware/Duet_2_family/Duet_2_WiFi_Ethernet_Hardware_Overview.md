@@ -2,7 +2,7 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2022-07-29T11:04:02.994Z
+date: 2022-08-23T11:05:39.105Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z
@@ -299,8 +299,9 @@ To see where these pins are, see the *Wiring diagram* section above.
 | sx1509b.[0-15] | 120-135 | SX1509B expansion I/O pins | yes | yes | no | On an SX1509B-based expander board at I2C address 0x71 connected to a Duet 2 WiFi/Ethernet. See [Adding additional output ports](/User_manual/Connecting_hardware/IO_additional_IO) |
 
 **Notes:**
-* Logical pin numbers for RRF 2.x are not the physical pin numbers on the expansion header, or the internal pin numbering within the firmware.
-* Logical pins 64 and 65 are supported in firmware 2.01 and later only. Note that the Z_PROB_MOD pin is driven automatically when some Z probe modes are selected.
+* RRF 3.x - Pull up resistors on Duet 2/DueX5 inputs should be configured for connecting a digital input (like a switch, BLtouch, etc) only on inputs not labelled "n"Stop (xstop, ystop etc).
+* RRF 2.x - Logical pin numbers for RRF 2.x are not the physical pin numbers on the expansion header, or the internal pin numbering within the firmware.
+* RRF 2.x - Logical pins 64 and 65 are supported in firmware 2.01 and later only. Note that the Z_PROB_MOD pin is driven automatically when some Z probe modes are selected.
 * RRF 2.x - Disable a heater using M307 H# A-1 C-1 D-1 to make the pin available, where # is the heater number, and make sure that no tool is configured to use that heater.
 * RRF 2.x - Disable a fan using M106 P# I-1 to make the pin available, where # is the fan number. 
 
