@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-23T08:09:47.977Z
+date: 2022-08-23T08:10:52.932Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -102,4 +102,4 @@ When no 4th (in reality 5th) axis is installed, the endpoint rotates when axis 1
 
 ### Documentation
 
-A very good explanation if the IRB 460 robot is the article "17. Cristoiu and Nicolescu, New Approach For Forward Kinematics Modeling of Industrial Robots with Closed Kinematic Chain", which can be found as pdf. Firmware uses a simpler method for calculation than described in the document, assuming that the endpoint platform is parallel to the base.
+A very good explanation of the IRB 460 robot is the article "17. Cristoiu and Nicolescu, New Approach For Forward Kinematics Modeling of Industrial Robots with Closed Kinematic Chain", which can be found as pdf. Firmware uses a simpler method for calculation than described in the document, assuming that the endpoint platform is parallel to the base.
