@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-23T18:19:09.412Z
+date: 2022-08-23T18:20:56.034Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -79,7 +79,7 @@ And for IRB 460:
 
 ![4axisparallplate_v4.png](/manual/configuration/4axisparallplate_v4.png)
 
-The right supporting arm is fix assembled to the base. The red endpoint plate stays parallel to the base, i. e. horizontal.
+The endpoint plate stays parallel to the base, i. e. horizontal.
 
 ### Homing, arm lenghts
 
