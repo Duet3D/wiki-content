@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-08-23T11:31:47.117Z
+date: 2022-08-23T15:46:24.836Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2541,28 +2541,28 @@ Set the temperature of the build chamber to 60C and wait for the temperature to 
 
 ## M200: Set filament diameter
 
+*Supported in RRF 1.19 and later*
+
 ### Parameters
 
 * **Daaa:bbb:ccc...** Sets filament diameter to aaa for extruder 0, bbb for extruder 1 and so on. If any of aaa, bbb etc. are zero then volumetric extrusion is disabled for that extruder.
 * **Daaa** Sets filament diameter (or disables volumetric extrusion) for all extruders
+* **S[bool]** Enable or disable volumetric extrusion for this input channel (RepRapFirmware 3.5 and later)
 
 ### Examples
 <br>
 <pre class="cblock">
-M200 D0 ; disable volumetric extrusion on all extruders
-M200 D1.75 ; set all extruder filament diameters to 1.75mm
+M200 D0             ; disable volumetric extrusion on all extruders
+M200 S0             ; Disable volumetric extrusion for tis input channel (RRF 3.5 and later)
+M200 D1.75          ; set all extruder filament diameters to 1.75mm
 M200 D1.75:3.0:1.75 ; set extruder 0 to 1.75mm, extruder 1 to 3.0mm and all remaining extruders to 1.75mm
 </pre>
 
 ### Notes
 
-Volumetric extrusion is an option you can set in some slicers whereby all extrusion amounts are specified in mm^3^ (cubic millimetres) of filament instead of mm of filament. This makes the GCode independent of the filament diameter, potentially allowing the same GCode to run on different printers. The purpose of the M200 command is to inform the firmware that the GCode input files have been sliced for volumetric extrusion, and to provide the filament diameter so that the firmware can adjust the requested extrusion amount accordingly.
-
-Sending M200 without parameters reports the current volumetric extrusion state and (where appropriate) filament diameter for each extruder.
-
-Note that if you use slicer-commanded retraction, the retraction amounts must be specified in mm^3^ too. If instead you use firmware retraction, then the firmware retraction amounts specified using the M207 command are still interpreted as mm.
-
-This command is supported in RepRapFirmware 1.19beta10 and later.
+* Volumetric extrusion is an option you can set in some slicers whereby all extrusion amounts are specified in mm^3^ (cubic millimetres) of filament instead of mm of filament. This makes the GCode independent of the filament diameter, potentially allowing the same GCode to run on different printers. The purpose of the M200 command is to inform the firmware that the GCode input files have been sliced for volumetric extrusion, and to provide the filament diameter so that the firmware can adjust the requested extrusion amount accordingly.
+* Sending M200 without parameters reports the current volumetric extrusion state and (where appropriate) filament diameter for each extruder.
+* Note that if you use slicer-commanded retraction, the retraction amounts must be specified in mm^3^ too. If instead you use firmware retraction, then the firmware retraction amounts specified using the M207 command are still interpreted as mm.
 
 ## M201: Set max acceleration
 
