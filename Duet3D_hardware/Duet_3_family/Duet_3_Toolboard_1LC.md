@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2022-08-23T11:17:11.119Z
+date: 2022-08-23T11:18:06.210Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -161,7 +161,7 @@ A STEP 3D model of each revision of the board is available [on github here](http
 ## Wiring notes
 
 * **JST ZH:** (CAN, v1.0 headers) These are difficult to crimp because they are so small, so Duet3D supply pre-terminated connectors. You can connect longer wires to them by hand soldering or using small size (white) solder sleeves.
-* **NOTE:** Some of the supplied JST ZH pre-terminated connectors may have a different order for the colours of the wires! Please check your wiring before powering on.
+**NOTE:** Some of the supplied JST ZH pre-terminated connectors may have a different order for the colours of the wires! Please check your wiring before powering on.
 * **Screw terminals:** These are not high current so fitting the wires directly into the screw terminals is fine. Using small ferrules is also fine; Duet3D supply 0.5mm^2 white ferrules.
 * We recommend connecting the hot end metalwork to ground on the toolboard via a resistor (10k to 1M Ohm), if it is not grounded through its mounting system. This will prevent the hot end building up static charge, which might otherwise occur as filament is extruded and may then flash over to the tool board thermistor input, causing damage.
 * On the v1.3 toolboard the mounting screw holes are all grounded via 100K resistors to provide a path to ground for any static build up in the extruders, assuming the toolboard is mounted to the extruder.
