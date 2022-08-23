@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-08-23T09:18:23.206Z
+date: 2022-08-23T09:19:07.445Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6111,7 +6111,7 @@ M595 without any parameters reports the length of the movement queue and the num
 * **Pnn** Movement queue number. Queues are numbered 0 (the default queue), 1, ...
 
 ### Notes
-This command is supported in RepRapFirmware 3.5 and later builds that can execute moves on different axis systems asynchronously, for example for concurrent printing of two or more different objects. It specifies that subsequent GCode commands from this input channel should be routed to the specified movement queue and the tool associated with that queue.
+This command is supported in RepRapFirmware 3.5 and later builds that can execute moves on different axis systems asynchronously, for example for concurrent processing of two or more actions. It specifies that subsequent GCode commands from this input channel should be routed to the specified movement queue and the tool associated with that queue.
 
 The number of available queues is firmware-dependent but will typically be 2. Before using a movement queue other than queue 0 it may be necessary to use M595 to increase the length of that queue, because the default length of movement queues other than the primary one may be quite short.
 
