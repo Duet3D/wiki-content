@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-23T18:39:27.840Z
+date: 2022-08-23T19:05:11.171Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -86,7 +86,7 @@ To avoid limitations of Euler angles, quaternions are used for calculations.
 Quaternions describe orientations with 4 parameters each (a rotation angle and a vector describing the rotation axis) and are geomatrically points on a 4 dimensional sphere. Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemake https://dl.acm.org/doi/pdf/10.1145/325165.325242
 Interpolation is unambigious and the orientation change has constant velocity, which is andvantageous for constant extrusion. Slerp is much used in 3D gaming.
 
-The nicest online tranlator between rotation matrix and quaternion I currently know is https://www.andre-gaschler.com/rotationconverter/ (but: real part is mentioned last, this is unusual)
+Online translator to convert between rotation matrix and quaternion I use are https://www.andre-gaschler.com/rotationconverter/ and https://www.energid.com/resources/orientation-calculator (both show real number last for quaternions).
 
 # Orientation 5 axis CNC, Open5x:
 
