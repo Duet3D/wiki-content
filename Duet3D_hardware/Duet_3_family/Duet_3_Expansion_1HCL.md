@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-08-22T22:58:16.583Z
+date: 2022-08-23T21:11:33.652Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -159,11 +159,11 @@ Microsteps must be set in powers of 2, in the same manner as open loop drivers (
 
 So in the case of a 4000CPR encoder on a 1.8 degree/step motor microstepping should be set to 32. Note steps/mm should be adjusted to match the microstep setting chosen.
 
-## Sample configuration examples
+# Sample configuration examples
 
 **CAUTION** before using these examples check the datasheet and user manual of the motor, encoder (and optionally brake) you are using. Especially: check compatibility of signal voltages.
 
-### Adding a closed loop motor
+## Adding a closed loop motor
 
 [M569.1](/User_manual/Reference/Gcodes/M569_1) is used to configure the closed loop driver.
 
@@ -189,11 +189,11 @@ Note the initial PID values show will need to be tuned to the particular motor.
 
 In contrast to usual drivers, the closed loop axes can have their holding current set to zero using M917, with negligible detrimental effect. Whilst a normal driver may slip if it's holding current is set to zero, a closed loop driver will notice that it has slipped an apply a current to return the drive to it's intended position. Setting a holding current of zero will also mean less current is used, so the motor runs cooler. However, a holding current can still be set using M917 if desired.
 
-### Tuning the PID for the closed loop
+## Tuning the PID for the closed loop
 
 See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning) for details on tuning.
 
-### Temperature sensor
+## Temperature sensor
 
 The following code could be used in config.g to set the sensor as a thermistor:
 
@@ -216,7 +216,7 @@ G4 P1000
 
 Where the "motorovertemp.g" macro can have whatever actions are appropriate. This logic can be extended to take different actions at different temperatures ( e.g. log at 70, sound alarm at 80, pause print at 100)
 
-### Motor Brake Control
+## Motor Brake Control
 
 Some motors have a motor brake fitted for an holding brake solenoid. As long as the solenoid max current draw is <2.5A it can be directly controlled by out 0 or out 1. If the Brake needs a different voltage from the VIN voltage used for the motor then that can supplied on the VBRAKE connector.
 
