@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-24T07:23:22.898Z
+date: 2022-08-24T07:29:01.025Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -60,7 +60,7 @@ In my current understanding, the 4th actuator (if the passive 4th axis is counte
 
 ![4axis_actuatorroles.png](/manual/configuration/4axis_actuatorroles.png)
 
-The optional 4th actuator (axis 5) position change (by rotating, XY is changing) is not taken into account to reach the G-Code cartesian coordinates. Instead, the middle axis coordinate of the 4th actuator is taken as endpoint, with additional G10 offsets of the tool (hotend, drill). This behaviour can be expanded in a future release, if necessary. The 4th actuator can be controlled by it's drive letter, but it (in this release) doesn't change XYZ cartesian coordinates in the firmware.
+The optional 4th actuator (axis 5) position change (by rotating, XY is changing) is not taken into account to reach the G-Code cartesian coordinates. Instead, the middle axis coordinate of the 4th actuator is taken as endpoint, with additional G10 offsets of the tool (hotend, drill). This behaviour can be expanded in a future release, if necessary. The 4th actuator can be controlled by it's drive letter, but it (in this release) doesn't change XYZ cartesian coordinates in the firmware. If the tool has 0,0 XY offset from the 4th actuator, rotating it will not change the XY position, but only the orientation of the endpoint (rotation by Z axis).
 
 ### Construction
 
