@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-24T07:21:53.801Z
+date: 2022-08-24T07:23:22.898Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -56,7 +56,7 @@ Currently, 2 * 2 subtypes are defined
 
 ### Role of the 4th actuator
 
-In my current understanding, the 4th actuator (if the passive 4th axis is counted, it is axis 5), is meant to rotate a gripper or other endpoint tool. I. e., it is not meant to be used for positioning. The first three actuators are sufficient for positioning: axis 1 for the angle of a polar, axis 2 and 3 to define the radius and Z height:
+In my current understanding, the 4th actuator (if the passive 4th axis is counted, it is axis 5), is meant to rotate a gripper or other endpoint tool. I. e., it is not meant to be used for positioning. The first three actuators are sufficient for positioning: axis 1 for the angle of a circle, axis 2 and 3 to define the distance from axis 1 and Z height:
 
 ![4axis_actuatorroles.png](/manual/configuration/4axis_actuatorroles.png)
 
