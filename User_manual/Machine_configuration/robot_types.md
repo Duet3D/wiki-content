@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-24T07:15:08.507Z
+date: 2022-08-24T07:17:03.343Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -89,7 +89,7 @@ And for IRB 460:
 
 Changing arm 2 will change the lower parallelgram, changing arm 3 will change the right parallelogram. Both parallelgrams are connected by the triangle, so the angle of base is transmitted to the endpoint plate, which remains parallel to the base.
 
-The workspace is like:
+The workspace is like, being like a donut by rotating by axis 1:
 
 ![4axisparall_workspace.png](/manual/configuration/4axisparall_workspace.png)
 
