@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-24T07:18:21.535Z
+date: 2022-08-24T07:21:53.801Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -52,7 +52,7 @@ Advantages and disadvantes probably are
 Currently, 2 * 2 subtypes are defined
 * endpoint like a hotend is assembled at the end of the robot arms
 * endpoint is used as print bed or workpiece bed and moved by the robot arms, the hotend/drill is in fixed position. The XYZ movements of the robot are reverse to the G-Code movements.
-* each of the two types can be with or without the 4th axis at the endpoint. Without the 4th axis, the hotend cannot be rotated, but for most tasks it may be sufficient. Should be called 3 axis palletized then, but the kinematics are very similar, so they are described (and implemented) together.
+* each of the two types can be with or without the 4th actuator, assembled at the horizontal endpoint plate. Without the 4th actuator, the hotend cannot be rotated.
 
 ### Role of the 4th actuator
 
