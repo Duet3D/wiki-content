@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-23T22:28:46.798Z
+date: 2022-08-24T07:11:26.914Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -53,6 +53,14 @@ Currently, 2 * 2 subtypes are defined
 * endpoint like a hotend is assembled at the end of the robot arms
 * endpoint is used as print bed or workpiece bed and moved by the robot arms, the hotend/drill is in fixed position. The XYZ movements of the robot are reverse to the G-Code movements.
 * each of the two types can be with or without the 4th axis at the endpoint. Without the 4th axis, the hotend cannot be rotated, but for most tasks it may be sufficient. Should be called 3 axis palletized then, but the kinematics are very similar, so they are described (and implemented) together.
+
+### Role of the 4th actuator
+
+In my current understanding, the 4th actuator (if the passive 4th axis is counted, it is axis 5), is meant to rotate a gripper or other endpoint tool. I. e., it is not meant to be used for positioning. The first three actuators are sufficient for positioning: axis 1 for the angle of a polar, axis 2 and 3 to define the radius and Z height:
+
+![4axis_actuatorroles.png](/manual/configuration/4axis_actuatorroles.png)
+
+The optional 4th actuator (axis 5) position change (by rotating, XY is changing) is not taken into account to reach the G-Code cartesian coordinates. Instead, the middle axis coordinate of the 4th actuator is taken as endpoint, with additional G10 offsets of the tool (hotend, drill). This behaviour can be expanded in a future release, if necessary.
 
 ### Construction
 
