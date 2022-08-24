@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-24T07:17:03.343Z
+date: 2022-08-24T07:18:21.535Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -97,7 +97,7 @@ The workspace is like, being like a donut by rotating by axis 1:
 
 Axis 1 and if it exists axis 5 (4) is configured as usual: homing and setting the angle to the correct value in respect to the choosen coordinate system.
 
-When being homed, axis 2 and axis 3 references are the two red long lines in the first image: the lines between the joints, not the arms themselves.
+When being homed, axis 2 and axis 3 references are the two red long lines in the R290 image: the lines between the joints, not the arms themselves.
 
 The short red line is the distance between the last joint and the assembly plate in Z direction. The same offsets can be set for X and Y direction. The offsets can be set at the G10 tool offsets alternatively. When using a tool changer, it will be easier to set them separately.
 
