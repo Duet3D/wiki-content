@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-08-13T08:05:40.966Z
+date: 2022-08-24T13:21:03.990Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -50,6 +50,10 @@ Documentation sources are wiki and e.g. https://homes.cs.washington.edu/~todorov
 Every robot joint is connected with its own coordinate system. The coordinate system XYZ is right hand based. It's easiest to positon Z to the direction of the axis, then X, then Y by the right hand rule. Although physical axes don't have direction, the coordinate system has, and it's important to be aware of the direction. The axis' direction defines which rotation is positive or negative degrees. From looking in front at the arrow, counterclockwise are positiv degrees.
 
 The coordinate systems are numbered O0 to O6, from O0 being the starting, base coordinated system, to O6, which is attached to the end-effector. The coordinate systems are located at joints +1, i.e. O1 is attached to joint 2 etc. This will be explained in the examples.
+
+In most cases, specific colors are linked to the coordinate letter, red to X, green to Y, blue to Z (RGB), so I'll follow to this convention. It's helpful to visualize the coordinate system for every joint, and chemistry kit helps, sulfur or boron as the middle element for 90 degree angles:
+
+![robot_coordsystem_smaller.png](/manual/configuration/robot_coordsystem_smaller.png)
 
 # Coordinate system in matrix
 (This is a technical section, not absoutely necessary)
