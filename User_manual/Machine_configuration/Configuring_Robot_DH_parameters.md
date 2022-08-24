@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-08-24T13:34:12.483Z
+date: 2022-08-24T13:37:54.402Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -51,7 +51,7 @@ Every robot joint is connected with its own coordinate system. The coordinate sy
 
 The coordinate systems are numbered b for base, 1 to 6, and e for endpoint.
 
-In most cases, specific colors are linked to the coordinate letter, red to X, green to Y, blue to Z (RGB), so I'll follow to this convention. It's helpful to visualize the coordinate system for every joint, and chemistry kit helps, sulfur or boron as the middle element for 90 degree angles: (if you like DIY, there is thingiverse 1327007 plus drill some holes)
+In most cases, specific colors are linked to the coordinate letter, red to X, green to Y, blue to Z (RGB), so I'll follow to this convention. It's helpful to visualize the coordinate system for every joint, and chemistry kit helps, sulfur or boron as the middle element for 90 degree angles (if you like DIY, there are some kits on thingiverse):
 
 ![robot_coordsystem_smaller.png](/manual/configuration/robot_coordsystem_smaller.png)
 
