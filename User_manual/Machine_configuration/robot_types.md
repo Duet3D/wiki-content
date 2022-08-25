@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-25T10:45:00.811Z
+date: 2022-08-25T11:04:08.964Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -47,10 +47,6 @@ When A, B, C rotational changes are required, the XYZ positions change, if there
 
 The endpoint's horizontal orientation is ensured by mechanical parallelogram (often two connected parallelograms) based parallel arms. ABB IRB 460, Fanuc M-410, EEZYbotARM (thingiverse 1454048), MK2 plus (thingiverse 2520572) and R290 3 axis are constructions following this principle. A similar construction, but with the stepper 3 directly connected with the arm, are handled with this construction as well, like the Kuka KR 700 and Borunte BRTIRPZ. The important property is axis 4, which is parallel to the base plate by mechanical means. The 4 axis robot is in fact 5 axis with actuators at axes 1, 2, 3 and 5. Robots like ABB IRB 8700 and Stäubli TX340 SH have only a parallelogram to place the motor far from arm 3 and can be modeled with the normal robot configuration (i. e. like a 6 axis robot, but less axes configured).
 
-Advantages and disadvantes probably are
-* higher stiffness and precision than a pure serial scara, probably higher payload
-* three actuators are near the base, so less weight toward the endpoint
-
 Currently, 2 * 2 subtypes are defined
 * endpoint like a hotend is assembled at the end of the robot arms
 * endpoint is used as print bed or workpiece bed and moved by the robot arms, the hotend/drill is in fixed position. The XYZ movements of the robot are reverse to the G-Code movements.
@@ -58,24 +54,24 @@ Currently, 2 * 2 subtypes are defined
 
 ### Role of the 4th actuator
 
-In my current understanding, the 4th actuator (if the passive 4th axis is counted, it is axis 5), is meant to rotate a gripper or other endpoint tool. I. e., it is not meant to be used for positioning. The first three actuators are sufficient for positioning: axis 1 for the angle of a circle, axis 2 and 3 to define the distance from axis 1 and Z height:
+An optional 4th actuator (if the passive 4th axis is counted, it is axis 5), is meant to rotate a gripper or other endpoint tool. I. e., it is not meant to be used for positioning. The first three actuators are sufficient for positioning: axis 1 for the angle of a circle, axis 2 and 3 to define the distance from axis 1 and Z height:
 
 ![4axis_actuatorroles.png](/manual/configuration/4axis_actuatorroles.png)
 
-The optional 4th actuator (axis 5) position change (by rotating, XY is changing) is not taken into account to reach the G-Code cartesian coordinates. Instead, the middle axis coordinate of the 4th actuator is taken as endpoint, with additional G10 offsets of the tool (hotend, drill). This behaviour can be expanded in a future release, if necessary. The 4th actuator can be controlled by it's drive letter, but it (in this release) doesn't change XYZ cartesian coordinates in the firmware. If the tool has 0,0 XY offset from the 4th actuator, rotating it will not change the XY position, but only the orientation of the endpoint (rotation by Z axis).
+The optional 4th actuator (axis 5) position change (by rotating, XY is changing) is not taken into account to reach the G-Code cartesian coordinates. Instead, the middle axis coordinate of the 4th actuator is taken as endpoint, with additional G10 offsets of the tool (hotend, drill). The 4th actuator can be controlled by it's drive letter, but it (in this release) doesn't change XYZ cartesian coordinates in the firmware. If the tool has 0,0 XY offset from the 4th actuator, rotating it will not change the XY position, but only the orientation of the endpoint (rotation by Z axis).
 
 ### Construction
 
-As example a 3 axis palletize robot which can be found as R290 3 axis robot (a 4th actuator can be installed at the endpoint to be able to rotate the hotend):
+As example a 4 axis palletize robot which can be found as R290 3 axis robot (3 axes with actuators, 4 th passive axis):
 
 ![robot_3axispallet_measure_v2.png](/manual/configuration/robot_3axispallet_measure_v2.png)
 
-The first stepper drives axis 1 and results in the polar direction. Stepper 2 drives the first big arm. Stepper 3 changes the second big arm by a parallelogram construction, so arm 3 is rotated remotely. Stepper 4, if it exists, allows rotation of the endpoint around the Z axis and will change polar direction also if the tool has an XY offset from axis 4. A 2-stage parallelogram based arm construction assures that the endpoint platform is always parallel to the base.
+The first stepper drives axis 1 and decides about the direction angle. Stepper 2 drives the first big arm. Stepper 3 changes the second big arm by a parallelogram construction, so arm 3 is rotated remotely. Stepper 4, if it exists, allows rotation of the endpoint around a 5th Z axis. A 2-stage parallelogram based arm construction assures that the endpoint platform is always parallel to the base.
 
-Axis 2 and 3 (steppers 2 and 3) are connected to their arms and the angles are independent, because the following construction is used:
+Axis 2 and 3 are constructed as follows:
 
 ![4axisparallarm3_v4.png](/manual/configuration/4axisparallarm3_v4.png)
-Steppers 2 and 3 axes have the same axial position and form a parallogram with the arm2-arm3 joint and the thin supporting arm on the left. A stepper 2 / arm 2 angle changed doesn't change the arm3 angle and vice versa.
+Steppers 2 and 3 axes have the same axial position and form a parallogram with the arm2-arm3 joint and the thin supporting arm on the left. A stepper 2 / arm 2 angle changed doesn't change the arm3 angle and vice versa. The focus of the motors is low, below the arm construction, which is advantagous.
 
 The endpoint plate stays horizontal by the following construction :
 
@@ -99,11 +95,15 @@ The arm lengths are the lengths of the red lines also, i. e. the distance of the
 
 ### Configuration
 
-The 4 axis palletized is handled internally as 5 axis, with the 4th axis automatically rotated by the parallelogram. The setup can be made with A parameters, describing Denavit-Hartenberg (DH) parameters, or with B parameters. DH parameters allow finetuning axes, if they are not assembled perfectly.
+The setup can be made with A parameters, describing Denavit-Hartenberg (DH) parameters, or with B parameters.
 
-M669 K13 A"4axisPall" defines the type with 4 actuators.
-M669 K13 A"4axisPallReverse" defines the type with 4 actuators with the print object placed on the robot endpoint platform and the hotend stationary above. X, Y and Z movements will be reversed, hence the name.
-Without the 4th stepper, the name is 3axis... each.
+|--------|------|
+|M669 K13 A"4axisPalletized"|3 actuators
+|M669 K13 A"4axisPalletizedReverse"|3 actuators in reverse mode
+|M669 K13 A"5axisPalletized"|4 actuators
+|M669 K13 A"5axisPalletizedReverse"|4 actuators in reverse mode
+
+Reverse mode means: the robots plate is used to place the object and the endpoint (hotend, drill) is installed above stationary.
 
 Default is axis 1 being vertical, axes 2 to 4 (hidden 4) being horizontal and parallel, axis 5 vertical again. Positive angles are CCW from above for axes 1 and 5, 0 degrees being in the X direction. For axes 2 to 4, positive angles are CCW seen from front, 0 degrees being the horizontal position (this can all be overritten by DH parameters).
 
