@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-08-24T13:37:54.402Z
+date: 2022-08-25T07:08:52.376Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -56,8 +56,9 @@ In most cases, specific colors are linked to the coordinate letter, red to X, gr
 ![robot_coordsystem_smaller.png](/manual/configuration/robot_coordsystem_smaller.png)
 
 # Coordinate system in matrix
-(This is a technical section, not absoutely necessary)
-Translations and rotations are chained mathematically through 4x4 matrix multiplications. At every stage, the position and orientation (intermediate) endpoint can be seen:
+Translations and rotations are chained mathematically through 4x4 matrix multiplications. The left upper 3x3 matrix represents rotations and the result is the orientation of the result. The right column 1x3 vector is the translation and the result is the position.
+
+At every stage, the position and orientation (intermediate) endpoint can be seen:
 ![robot_coordinates.png](/manual/configuration/robot_coordinates.png)
 The red column marks the X axis, the green the Y axis, the blue the Z axis, the yellow the position. Each have 3 numbers for cartesian X, Y, Z direction. If the red would be 0/0/1, it would mean the X axis points to the Z direction, straight up. The numbers are orthonormal, i. e. for every vector x² + y² + z² = 1 and the three vectors are perpendicular to each other.
 
