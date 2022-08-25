@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-08-25T07:21:30.747Z
+date: 2022-08-25T07:22:46.332Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -30,10 +30,12 @@ Please check Wikipedia for an introduction of DH. In brevity:
 * the DH parameters describe 4 of the 6 degrees of freedom to transform one coordinate system to the next: Z translate and rotate, then X translate and rotate. Not all transformations are possible (Y translate and rotate).
 * the DH parameters are defined in M669 A parameter.
 
-# Euler Angles, Orientation
+# Orientation, (Euler angles)
 I changed from Euler angles to Quaternions, so here is only a short description:
 
 Euler angles are 12 possible different methods to describe a rotation. The RPY method (roll-pitch-yaw) from aviation is often used, which describes a rotation by ZYX axis rotations (in this order. Rotation order is not commutative).
+
+I've written much more about orientation in the document about firmware.
 
 # Coordinate system
 Every robot joint is connected with its own coordinate system. The coordinate system XYZ is right hand based. It's easiest to positon Z to the direction of the axis, then X, then Y by the right hand rule. Although physical axes don't have direction, the coordinate system has, and it's important to be aware of the direction. The axis' direction defines which rotation is positive or negative degrees. From looking in front at the arrow, counterclockwise are positiv degrees.
