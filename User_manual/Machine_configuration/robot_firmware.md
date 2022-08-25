@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-24T07:39:42.790Z
+date: 2022-08-25T06:30:11.281Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -87,6 +87,8 @@ Quaternions describe orientations with 4 parameters each (a rotation angle and a
 Interpolation is unambigious and the orientation change has constant velocity, which is andvantageous for constant extrusion. Slerp is much used in 3D gaming.
 
 Online translator to convert between rotation matrix and quaternion I use are https://www.andre-gaschler.com/rotationconverter/ and https://www.energid.com/resources/orientation-calculator (both show real number last for quaternions).
+
+A nice introduction video to quaternions is https://www.youtube.com/watch?v=mHVwd8gYLnI
 
 # Orientation 5 axis CNC, Open5x:
 
