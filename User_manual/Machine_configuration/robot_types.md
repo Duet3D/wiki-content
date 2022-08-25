@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-25T11:04:08.964Z
+date: 2022-08-25T11:06:26.705Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -107,7 +107,7 @@ Reverse mode means: the robots plate is used to place the object and the endpoin
 
 Default is axis 1 being vertical, axes 2 to 4 (hidden 4) being horizontal and parallel, axis 5 vertical again. Positive angles are CCW from above for axes 1 and 5, 0 degrees being in the X direction. For axes 2 to 4, positive angles are CCW seen from front, 0 degrees being the horizontal position (this can all be overritten by DH parameters).
 
-The automatically set 4th axis can be simply calculated from axes 2 and 3: angle 2 + angle 3 + angle 4 = 0.
+The 4th axis is calculated from axes 2 and 3: angle 2 + angle 3 + angle 4 = 0.
 
 ### Mesh compensation
 
