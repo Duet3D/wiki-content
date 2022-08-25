@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-08-25T07:15:17.066Z
+date: 2022-08-25T07:21:30.747Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -31,21 +31,10 @@ Please check Wikipedia for an introduction of DH. In brevity:
 * the DH parameters are defined in M669 A parameter.
 
 # Euler Angles, Orientation
-Robot's endpoints have an orientation which is described as follows:
-* every rotation can be described by the combination of three rotation matrices by three main axes. The order of the rotation is important. There are 12 rotation combinations which make sense. They are called by the axis they are rotated by, e.g. ZYZ means rotation by Z axis first, then Y axis, then the newly created Z axis.
-* the rotations of the robot system, using DH parameters, are rotations in the order of ZYX, where Y is not rotated, so effectively only a rotation by ZX. ZYX is an order which is also used in aviation and is called RPY (roll pitch yaw).
-* Rotation calculations can be calculated back: from rotation matrix to three angles. The angles are called Euler angles. In robot configuration, calculations and statistics, those Euler angles, based on ZYX/RPY, are used.
-* a vertical endpoint, i. e. Z pointing downward, X and Y being parallel to the original X, Y axes, have the Euler angles (X=180,Y=0,Z=0), i. e. a rotation by 180 degree of the X axis.
+I changed from Euler angles to Quaternions, so here is only a short description:
 
-A typical industrial robot has axis 4 to 6 according to roll pitch yaw configuration, which originates from aviation:
+Euler angles are 12 possible different methods to describe a rotation. The RPY method (roll-pitch-yaw) from aviation is often used, which describes a rotation by ZYX axis rotations (in this order. Rotation order is not commutative).
 
-![rollpitchyaw.png](/manual/configuration/rollpitchyaw.png)
-
-(image from https://en.wikipedia.org/wiki/Aircraft_principal_axes)
-
-Axis 4 is the roll axis, axis 5 is pitch, 6 is yaw. If axis5 is in a 0 degree position, axis 4 and 6 are parallel, which results in a singularity situation (also called gimbal lock).
-
-Documentation sources are wiki and e.g. https://homes.cs.washington.edu/~todorov/courses/cseP590/05_Kinematics.pdf
 # Coordinate system
 Every robot joint is connected with its own coordinate system. The coordinate system XYZ is right hand based. It's easiest to positon Z to the direction of the axis, then X, then Y by the right hand rule. Although physical axes don't have direction, the coordinate system has, and it's important to be aware of the direction. The axis' direction defines which rotation is positive or negative degrees. From looking in front at the arrow, counterclockwise are positiv degrees.
 
