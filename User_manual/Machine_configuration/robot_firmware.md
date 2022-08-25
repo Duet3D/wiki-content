@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-25T06:30:11.281Z
+date: 2022-08-25T07:27:36.601Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -101,7 +101,7 @@ An alternative is to use G-Code with IJK tool vectors, which can be used with G0
 There is a singularity, e.g. in AC mode for A at 0 degrees. This angle must be avoided, because at 0 degrees the C axis "wants" to rotate by 180 degrees instantly for specific movements, which is not possible (infinite velocity). Often, the choosen solution is to A remain in the negative degree range.
 
 # Orientation 4 axis palletized robot
-Through parallelogram construction of the arms, the endpoint always stays in one horizontal plane, often with a vertically installed tool. Orientation is a rotation around the Z axis and one value is sufficient to describe the orientation with a Z direction indicator added.
+Through parallelogram construction of the arms, the endpoint always stays in one horizontal plane, often with a vertically installed tool. Orientation is a rotation around the Z axis and one value is sufficient to describe the orientation with a Z direction indicator added. Orientation around the Z axis changes with every axis 1 rotation, and additionally by the 4th actuator, if it exists.
 
 # Orientation for 2 or 3 axis robot:
 
