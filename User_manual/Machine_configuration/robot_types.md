@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-24T07:45:56.508Z
+date: 2022-08-25T10:45:00.811Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -74,18 +74,10 @@ The first stepper drives axis 1 and results in the polar direction. Stepper 2 dr
 
 Axis 2 and 3 (steppers 2 and 3) are connected to their arms and the angles are independent, because the following construction is used:
 
-![robot_3axispallet_axis2_3_parall_v2.png](/manual/configuration/robot_3axispallet_axis2_3_parall_v2.png)
-
-Or a different image from the IRB 460:
-
 ![4axisparallarm3_v4.png](/manual/configuration/4axisparallarm3_v4.png)
-Steppers 2 and 3 axes have the same axial position and right is a parallogram. Then a stepper 2 / arm2 angle changed doesn't change the arm3 angle and vice versa: from black with stepper 2 rotating to the red position, the angle3 doesn't change.
+Steppers 2 and 3 axes have the same axial position and form a parallogram with the arm2-arm3 joint and the thin supporting arm on the left. A stepper 2 / arm 2 angle changed doesn't change the arm3 angle and vice versa.
 
-The endpoint plate stays horizontal by the following construction (the R290 has an additional passive joint at the back):
-
-![robot_3axispallet_plate_parall_v2.png](/manual/configuration/robot_3axispallet_plate_parall_v2.png)
-
-And for IRB 460:
+The endpoint plate stays horizontal by the following construction :
 
 ![4axisparallplate_v4.png](/manual/configuration/4axisparallplate_v4.png)
 
