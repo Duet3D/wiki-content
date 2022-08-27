@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-08-25T07:22:46.332Z
+date: 2022-08-27T08:00:31.783Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -82,7 +82,7 @@ To find the correct coordinate system of an axis, those steps are necessary:
 
 The DWC plugin RobotViewer helps with the configuration.
 
-Contrary to some examples like the example below (moving the coordinate system of axis 4 to 3), reducing some values by aggregating them is not necessary and is disadvantageous. It is planned to support a calibration mode to calculate back from a measured endpoint to the parameters. This only makes sense if the DH parameters reflect reality. In the past, performance and memory consumption were important parameters, but not so much today.
+Contrary to some examples like the example below (moving the coordinate system of axis 4 to 3), reducing some values by aggregating them is not necessary and is disadvantageous. It is planned to support a calibration mode to calculate back from a measured endpoint to the parameters. This only makes sense if the DH parameters reflect reality. In the past, performance and memory consumption were important parameters and for this reason calculation values were merged, but not so much today.
 
 # Example 1 joint 1
 For the following examples, the DH parameter table from [this video](https://www.youtube.com/watch?v=nwj0xR21ldo){target=_blank} is used.
