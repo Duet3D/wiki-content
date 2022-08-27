@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-27T07:48:30.297Z
+date: 2022-08-27T17:23:17.551Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -45,14 +45,14 @@ M669 and its parameters are used to define the robot properties like arm lengths
 
 M669 K13 AT"type|R|P" should be the first line to set robot kinematics and define roughly the configuration.
 
-Most parameters are described in separate sections below.
+M669 without parameters will output the current settings to the console.
 
-A and B parameters are differently well suited for different robot types and can be mixed.
+Most parameters are described in separate sections below.
 
 Overview
 * K13 defines robot kinematics and must be defined first
 * A defines robot type, axes types, axes and arm properties by using Denavit-Hartenberg parameters
-* B defines axes and arms by using parameters like arm lenghts. It allows to set some parameters directly also
+* B allows setting specific parameters directly
 * P behaviour of axes, specific for a robot type
 * Q quality of calculation to allow balance between precision and time needed for calculation
 * R reporting mode to get information about current configuration or recommendations about good parameter settings
@@ -120,17 +120,7 @@ A1 to A6 are the equivalent to DH parameters. A0 allows a displacement of the fi
 
 
 # M669 B parameter
-B defines robot properties as well, but with a different logic. B allows setting all parameters directly, which can be easier than defining DH parameters with A. For example, for some robot configurations it is sufficient to define arm lengths, homing angles and angle restrictions. Parameters A and B can be mixed.
-
-To use B, it is necessary to know the internal parameters. They are documented in the firmware document https://docs.duet3d.com/en/User_manual/Machine_configuration/robot_firmware in chapter parameters (=> tbd, doesn't exist yet)
-
-The syntax for using B is:
-
-B"parametername:value"
-
-E. g. B"arms:100.0:200.0:250.0"
-B"homing:0.0:150.0:0.0"
-B"minangles:-150.0:-80.0:-180.0"
+B allows setting some parameters directly. tbd a list
 
 # M669 P parameter
 
