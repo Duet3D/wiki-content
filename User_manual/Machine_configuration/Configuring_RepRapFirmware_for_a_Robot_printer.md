@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-21T18:39:16.116Z
+date: 2022-08-27T07:48:30.297Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -81,17 +81,17 @@ G1, G2, and G3 moves are separated into segments, which are executed as straight
 * AL:... defines the letters of the actuators
 * A0...n:parameters define DH parameters with optional Y
 
-AT:"name|[R]|[P]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint (maybe obsolete: T is where the tool is attached, O is where the object to be printed is attached. Branches are marked by parantheses.)
+AT:"name|[R]|[P]|[Rp]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, Rp means revolute parallelogram closed chain without actuator.
+(maybe obsolete: T is where the tool is attached, O is where the object to be printed is attached. Branches are marked by parantheses.)
 * AT:"RRRRRR" means 6 axis robot with rotational axes
 * AT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
 * AT:"PPP" means 3 axis cartesian printer.
 * AT:"5axisCNC_tAtC" means CNC 3 linear axes and two rotary axes AC, both located at the table
 * AT:"5axisCNC_hAhC" means CNC 3 linear axes and two rotary axes AC which are located at head/head
 * AT:"5axisCNC_hAtC" means CNC 3 linear axes and two rotary axes AC with A located at the head and C at the table
-* AT:"4axisPall" means 4 axis palletized
-* AT:"4axisPallReverse" means 4 axis palletized reversed when the object is printed on the robot
-* AT:"3axisPall" means like 4 axis palletized, but without 4th actuator
-* AT:"3axisPallReverse" means like 4 axis palletized reversed when the object is printed on the robot, but without 4th actuator
+* AT:"RRRRp" means 4 axis palletized
+* AT:"RRRRpR" means 4 axis palletized with 4th actuator
+* AT:"PRRRRp" means 4 axis palletized on a linear rail
 
 AL:"[X-Z,U-W,A-D*]" defines the order of axis letters assigned to the AT parameters. The letters are used in the G-Code file, e.g. in the G1 moves. Example: AT:"PRR" AL:"ZXY" means the prismatic actuator is the Z axis, the two rotary ones are X and Y. The order of joint connection is PRR/ZXY, the Z axis being first. (Don't confuse ZXY axis letters with cartesian XYZ coordinates). AL needs not to be defined if the default letters are used, e.g. XYZAC for a 5 axis CNC AC configuration with A parallel to X axis and C to Z axis.
 
