@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-25T11:06:26.705Z
+date: 2022-08-27T07:54:15.218Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -98,12 +98,11 @@ The arm lengths are the lengths of the red lines also, i. e. the distance of the
 The setup can be made with A parameters, describing Denavit-Hartenberg (DH) parameters, or with B parameters.
 
 |--------|------|
-|M669 K13 A"4axisPalletized"|3 actuators
-|M669 K13 A"4axisPalletizedReverse"|3 actuators in reverse mode
-|M669 K13 A"5axisPalletized"|4 actuators
-|M669 K13 A"5axisPalletizedReverse"|4 actuators in reverse mode
+|M669 K13 A"RRRRp"|3 actuators
+|M669 K13 A"RRRRpR"|4 actuators
+|M669 K13 A"PRRRRp"|3 actuators version on linear rail
 
-Reverse mode means: the robots plate is used to place the object and the endpoint (hotend, drill) is installed above stationary.
+Reverse mode means: the robots plate is used to place the object and the endpoint (hotend, drill) is installed above stationary. tbd: how to configure => DH parameters
 
 Default is axis 1 being vertical, axes 2 to 4 (hidden 4) being horizontal and parallel, axis 5 vertical again. Positive angles are CCW from above for axes 1 and 5, 0 degrees being in the X direction. For axes 2 to 4, positive angles are CCW seen from front, 0 degrees being the horizontal position (this can all be overritten by DH parameters).
 
