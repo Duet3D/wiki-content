@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-29T05:27:21.343Z
+date: 2022-08-29T05:28:44.817Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -12,13 +12,11 @@ This page is part of multiple pages about robot configuration and usage. Please 
 
 Robot kinematics is based on different concepts and mathematical methods, which are described as follows. Denavit-Hartenberg has a separate dedicated document.
 
-# Jacobian - Generalized Inverse
-
-This method is used to calculate forward and inverse kinematics.
-
-![jacobian_geninverse.png](/manual/configuration/jacobian_geninverse.png)
+# Forward and inverse kinematics
 
 The kinematics classes have two methods as core functionality: calculation of cartesian coordinates from stepper's position, called forward kinematics. And the opposite direction, called inverse kinematics.
+
+![jacobian_geninverse.png](/manual/configuration/jacobian_geninverse.png)
 
 For 6 axis robot and most other robot kinematics, forward kinematics is calculated by matrix multiplication of the axes, which contain translations and rotations. The result is a position and an orientation of the endpoint (hotend, CNC drill etc.). Internally, XYZ values are used for position and 4 parameters of quaternions are used for orientation.
 
