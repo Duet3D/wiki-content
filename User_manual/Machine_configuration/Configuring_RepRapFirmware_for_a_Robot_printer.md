@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-29T04:25:42.052Z
+date: 2022-08-29T04:27:15.596Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -65,6 +65,8 @@ AT:"name|[R]|[P]|[Rp]|[htabc]*" defines the overall configuration and number of 
 * AT:"PPPRhbRtc" means CNC 5 axis with B axis on head and C on table
 * AT:"RRRRp" means 4 axis palletized
 * AT:"RRRRpR" means 4 axis palletized with 4th actuator
+
+There is a separate document, explaining the robot types and their specifics.
 
 **DH: Ajoint:d:theta:a:alpha:home:minangle:maxangle**
 
