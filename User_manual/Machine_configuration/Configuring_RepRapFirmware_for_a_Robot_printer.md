@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-29T05:07:05.813Z
+date: 2022-08-29T05:14:00.974Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -147,9 +147,9 @@ The robotic print area is not cubic in most cases, so the workspace differs from
 * setting too big around the workspace. Kinematics does two check: whether desired print is inside M208 limits and whether it is reachable by the arm lengths and allowed angles. If M208 is possible, but not according to the true workspace, an error will be reported. Whether a partial print will be done, depends on the printer type (3D printing mode will print partially, CNC mode not).
 
 # Homing
-The homing angles are specified in the M669 A parameter and can be impemented e. g. by endstops between joint's axes or by reading absolute encoder positions. G1 H2 addressing specific axes (joints). Setting the position with G1 H1 is not possible, because M208 X, Y, Z values do not match any stepper positions. When an endstop is triggered, the homing position is set by firmware code to the A value. If necessary, the value can be changed later by G92, the 6 axes being XYZUVW. For a rotational axis, the value the stepper angle * microsteps * gear ratio must be taken. The current stepper position is the nth count value when running M122.
+The homing angles are specified in the M669 A parameter and can be impemented e. g. by endstops between joint's axes or by reading absolute encoder positions. G1 H2 addressing specific axes (joints). Setting the position with G1 H1 is not possible in most cases,, because it only makes sense for linear axes. When an endstop is triggered, the homing position is set by firmware code to the home value, defined as port of the A parameter. If necessary, the value can be changed later by G92. For a rotational axis, the value the stepper angle * microsteps * gear ratio must be taken. The current stepper position can be checked by calling M122, it is the nth count value.
 
-If the homing position is in a singularity or near it, after homing the robot arms should be rotated away from it (this can be done with G1 H2 moves), before starting normal operation. The arm positions shall remain in this work mode for all following operation if possible.
+If the homing position is in a singularity or near it, after homing the robot arms should be rotated away from it (this can be done with G1 H2 moves), before starting normal operation.
 # Mesh compensation
 Mesh compensation is a feature to handle uneven print beds und allow printing with good adhesion by printing the first layers in sync to the unevenness of the bed. It is used a probe to record the unevenness data, which has in most cases an XYZ offset from the hotend. The offset may not change while measuring, because the firmware calculates the hotend position from the probe offset and stores the hotend positions in the mesh file.
 
