@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-29T04:14:00.905Z
+date: 2022-08-29T05:24:35.272Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -24,11 +24,9 @@ For 6 axis robot and most other robot kinematics, forward kinematics is calculat
 
 The Jacobian matrix is a calculation of the correlation between stepper position and cartesian coordinate/orientation, when single steppers are changed (the steppers are not changed in reality, but only mathematically, as if).
 
-An Inverse must be calculated to get the inverse kinematics: calculating from cartesian coordinates back to stepper positions. In inverse can only be calculated if the Jacobian is quadratic and not singular (lost rank). In most cases, a generalized inverse must be calculated to get a similar result.
+An inverse must be calculated to get the inverse kinematics: calculating from cartesian coordinates back to stepper positions. In inverse can only be calculated if the Jacobian is quadratic and not singular (lost rank). In most cases, a generalized inverse must be calculated to get a similar result. The method which is described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf is used.
 
-For calculation of the generalized inverse, several methods exist. Here, the method described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf is used.
-
-The jacobian and inverse values are almost exact if using small steps, i. e. small segments. Tests result in 0.5 mm long segments is a good candidate to calculate long distances (e.g. calculate LimitPosition to check whether the goal is reachable). For the move itself, the shortest segments are best, because rotational axes produce curves instead of straight lines, so a balance between precision and performance cost must be found. The default is 0.1 segment lengths.
+The jacobian and inverse values are almost exact if using small steps, i. e. small segments. The default is 0.1 segment lengths.
 
 Calculation of inverse kinematics by using Jacobian/Gen. Inverse is calculated in iterations to get the required precision. Settings a lower required precision result in lower needed iterations.
 
