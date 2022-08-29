@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-29T04:24:46.801Z
+date: 2022-08-29T04:25:42.052Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -56,7 +56,7 @@ G1, G2, and G3 moves are separated into segments, which are executed as straight
 * AT:string defines the actuator type, rotary or prismatic and how they are assembled
 * A0...n:parameters define DH parameters with optional Y
 
-AT:"name|[R]|[P]|[Rp]|[htabc]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, Rp means revolute parallelogram closed chain without actuator.
+AT:"name|[R]|[P]|[Rp]|[htabc]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, Rp means revolute parallelogram closed chain without actuator, htabc are used for CNC 5 axis flavours.
 * AT:"RRRRRR" means 6 axis robot with rotational axes
 * AT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
 * AT:"PPP" means 3 axis cartesian printer.
