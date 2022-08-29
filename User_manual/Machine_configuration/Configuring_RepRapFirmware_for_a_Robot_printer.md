@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-29T04:59:57.122Z
+date: 2022-08-29T05:07:05.813Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -140,9 +140,12 @@ If the tool has rotational elements, which may be necessary when e. g. using too
 Offsets are included in the calculation of the XYZ position. The signs of the offsets are important and depend on tool's coordinate system (explained in the DH document).
 
 # M208 configuration
-M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). M208 setting can follow two strategies:
-* defining a secure area where printing is always possible
-* defining an area surrounding and using all "donut" shaped area. This will result in a possibility to address coordinates which are inside M208, but not reachable. The Kinematics will mention it and throw an error, because it checks M208, whether the position is reachable by arm lengths and restrictions (e. g. allowed angles), and whether it is near a singularity.
+M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). 
+
+The robotic print area is not cubic in most cases, so the workspace differs from the M208 setting. Configuration can set M208 too small or too big:
+* setting too small to a safe, always printable area
+* setting too big around the workspace. Kinematics does two check: whether desired print is inside M208 limits and whether it is reachable by the arm lengths and allowed angles. If M208 is possible, but not according to the true workspace, an error will be reported. Whether a partial print will be done, depends on the printer type (3D printing mode will print partially, CNC mode not).
+
 # Homing
 The homing angles are specified in the M669 A parameter and can be impemented e. g. by endstops between joint's axes or by reading absolute encoder positions. G1 H2 addressing specific axes (joints). Setting the position with G1 H1 is not possible, because M208 X, Y, Z values do not match any stepper positions. When an endstop is triggered, the homing position is set by firmware code to the A value. If necessary, the value can be changed later by G92, the 6 axes being XYZUVW. For a rotational axis, the value the stepper angle * microsteps * gear ratio must be taken. The current stepper position is the nth count value when running M122.
 
