@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-29T04:49:32.362Z
+date: 2022-08-29T04:50:14.902Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -16,7 +16,7 @@ The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.
 
 # Configuring a Robot printer
 
-When Duet starts after power on, it needs to know how to behave. Reading the file config.g and some associated files, the firmware is set to specific configurations like setup of the steppers, arm lengths, endstops, heaters etc. M669 is at the core to define robot kinematics behaviour, accompanied by other settings, which are described in this document.
+When Duet starts after power on, it needs to know how to behave. Reading the file config.g and some associated files, the firmware is set to specific configurations like setup of the steppers, arm lengths, endstops and homing positions, heaters etc. M669 is at the core to define robot kinematics behaviour, accompanied by other settings, which are described in this document.
 
 # M669 configuration
 
