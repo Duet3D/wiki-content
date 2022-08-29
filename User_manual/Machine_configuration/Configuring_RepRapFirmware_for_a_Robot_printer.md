@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-29T04:27:15.596Z
+date: 2022-08-29T04:49:32.362Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -10,13 +10,16 @@ dateCreated: 2022-03-03T13:05:06.424Z
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
-
-# Configuring a Robot printer
 The kinematics is developed for Duet3Ds RepRapFirmware and will be included in 3.5. The **robot firmware is currently in development**.
 
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
+# Configuring a Robot printer
+
+When Duet starts after power on, it needs to know how to behave. Reading the file config.g and some associated files, the firmware is set to specific configurations like setup of the steppers, arm lengths, endstops, heaters etc. M669 is at the core to define robot kinematics behaviour, accompanied by other settings, which are described in this document.
+
 # M669 configuration
+
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
 M669 K13 AT"type|R|P" should be the first line to set robot kinematics and define roughly the configuration.
@@ -117,12 +120,12 @@ The 6 axes are named XYZUVW. Additional axes for 7 and more axis robots will be 
 
 **For a 5 axis CNC and 3D printers like Open5x the following naming will be used:**
 
-For rotational axes around the X axis A will be used, around Y B and around Z C. 5 axis CNC uses three linear axes XYZ and two rotational ones AB, AC or BC. The rotational axes can be installed at the spindle, called head/head, at the workpiece, called table/table, or mixed head/table. Open5x uses UV for rotational axes, support for this alternative naming (instead of BC) will be checked.
+For rotational axes around the X axis A will be used, around Y B and around Z C. 5 axis CNC uses three linear axes XYZ and two rotational ones AB, AC or BC. The rotational axes can be installed at the spindle, called head/head, at the workpiece, called table/table, or mixed head/table. Open5x uses UV for rotational axes in G-Code, it is converted to the AT parameters. UV must be defined to rotational by M584 R1 in this case.
 
 **For a 4 axis palletized robot (closed chain) this naming is used:**
 (like ABB IRB 460, Kuka KR 700, Fanuc M-410)
 
-The letters X, Y, Z, U are used.
+The letters X, Y, Z when using 3 actuators, and the next defined letter if a 4th actuator is used.
 
 # M584 R
 
@@ -132,7 +135,7 @@ In RRF, XYZUVW are linear axes by default and ABC rotational axes. This correspo
 At the end of the last axis, a tool is attached. The robot's kinematics is calculation with the G10 offsets of the currently selected tool:
 * X, Y, Z are the tool's offsets in mm. Default is 0, 0, 0.
 
-It is planned to add tool orientation by using e.g. UVW parameters later. This may be needed to support a 90 degree rotated tool changer assembly.
+If the tool has rotational elements, which may be necessary when e. g. using tool changers, there is no parameter to set them with G10 (a possibility would be to define IJK tool vectors). As workaround, they can be defined at the corresponding DH parameter with the B parameter. An example will be provided in the DH document.
 
 # M208 configuration
 M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). M208 setting can follow two strategies:
