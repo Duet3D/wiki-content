@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-29T04:01:38.803Z
+date: 2022-08-29T04:24:46.801Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -16,19 +16,6 @@ The kinematics is developed for Duet3Ds RepRapFirmware and will be included in 3
 
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
-# Workspace and Singularities
-Workspace is the space where an object can be reached by the robot. Calculation is a combination of position and orientation. Positions near the edges should be avoided, because rotations of axes become critical and movement precision is reduced.
-
-![robotworkspace.jpg](/manual/configuration/robotworkspace.jpg)
-(image from https://www.mdpi.com/2218-6581/9/2/27/htm)
-
-Singularities are unreachable robot positions or positions where movement results are undefined. Approaching singularities is also probelmatic, because some angle velocities are approaching infinity. See a good overview of [singularities for 6 axis robots here](https://www.mecademic.com/en/what-are-singularities-in-a-six-axis-robot-arm){target=_blank}.
-
-Being in a singularity may be necessary when homing. In Example 2 of the DH parameter explanation, the homing position is in a singularity (a small movement of most of the axes result in massive X movement and minimal Z movement). Setting the stepper positions by homing may be a necessity. A solution is to home and set the positions, then moving specific axes with G1 H2 to a position where the robots positions are outside the singularity, then proceed. Those G1 H2 moves can be placed into the homing file.
-
-To avoid printing in a singularity, M208 can be set accordingly. Please see the chapter about M208 for details.
-
-Singularities will be solved by adding Moore-Penrose inverse calculation in the next release.
 # M669 configuration
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
@@ -67,22 +54,17 @@ G1, G2, and G3 moves are separated into segments, which are executed as straight
 **A** is used to define the properties of the robot.
 
 * AT:string defines the actuator type, rotary or prismatic and how they are assembled
-* AL:... defines the letters of the actuators
 * A0...n:parameters define DH parameters with optional Y
 
-AT:"name|[R]|[P]|[Rp]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, Rp means revolute parallelogram closed chain without actuator.
-(maybe obsolete: T is where the tool is attached, O is where the object to be printed is attached. Branches are marked by parantheses.)
+AT:"name|[R]|[P]|[Rp]|[htabc]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, Rp means revolute parallelogram closed chain without actuator.
 * AT:"RRRRRR" means 6 axis robot with rotational axes
 * AT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
 * AT:"PPP" means 3 axis cartesian printer.
-* AT:"5axisCNC_tAtC" means CNC 3 linear axes and two rotary axes AC, both located at the table
-* AT:"5axisCNC_hAhC" means CNC 3 linear axes and two rotary axes AC which are located at head/head
-* AT:"5axisCNC_hAtC" means CNC 3 linear axes and two rotary axes AC with A located at the head and C at the table
+* AT:"PPPRRR" means cartesian printer with additional spheric 3 axis head
+* AT:"PPPRtaRtc" means CNC 5 axis with A as main rotary axis on table and C as dependent (installed on A) on table also
+* AT:"PPPRhbRtc" means CNC 5 axis with B axis on head and C on table
 * AT:"RRRRp" means 4 axis palletized
 * AT:"RRRRpR" means 4 axis palletized with 4th actuator
-* AT:"PRRRRp" means 4 axis palletized on a linear rail
-
-AL:"[X-Z,U-W,A-D*]" defines the order of axis letters assigned to the AT parameters. The letters are used in the G-Code file, e.g. in the G1 moves. Example: AT:"PRR" AL:"ZXY" means the prismatic actuator is the Z axis, the two rotary ones are X and Y. The order of joint connection is PRR/ZXY, the Z axis being first. (Don't confuse ZXY axis letters with cartesian XYZ coordinates). AL needs not to be defined if the default letters are used, e.g. XYZAC for a 5 axis CNC AC configuration with A parallel to X axis and C to Z axis.
 
 **DH: Ajoint:d:theta:a:alpha:home:minangle:maxangle**
 
