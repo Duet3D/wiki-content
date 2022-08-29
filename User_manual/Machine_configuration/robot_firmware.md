@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-08-25T07:27:36.601Z
+date: 2022-08-29T04:14:00.905Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -10,43 +10,11 @@ dateCreated: 2022-06-18T05:20:44.359Z
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
-# Robot firmware
-The following description gives detailed information about how the firmware for robot kinematics is implemented, for the following reasons
-* for the curious to know what's behind the curtain, giving confidence over what the printer does
-* for other developers who want to help remove bugs or enhance the kinematics
-* explain design decisions
-* know the reasons for inherent limitations like printing near or at singularities
-
-I am sure that a deep understanding of "what's under the hood" gives better results in using the firmware and hardware, for example to balance parameter settings for precision versus performance.
-
-I try to not repeat information I provided in the other robot articles (especially about DH) and will give cross links if useful.
-
-# Configuration setup
-
-The robot configurations are defined by M669 settings and described in the main article. They are not finished yet, the following is missing yet
-* support closed chain setups like parallel scara, delta, parallel arms, stewart
-* multiple chain support with one base like Open5x, rotating both the endpoint and object, or as another example a robot hand with fingers
-* maybe support other actuator types than prismatic and rotational
-
-The parameters are read in the Config() method, stored in variables and reported by using the object model.
-
-# Methods of calculation
-Forward and inverse kinematics can be calculated with different methods. The first two are used in robot kinematics where reasonable:
-
-* jacobian - generalized inverse - iterative
-* direct
-* neuronal network learning
-* others like using evolutionary, random, lookup methods
-
-The first is discussed below in detail.
-
-The direct method needs to know some core configuration in advance and can only be used for this configuration. It is the fastest and most precise forward and inverse kinematics method. Some of the implemented robot types are implemented in this manner.
-The following kinematics are implemented with the direct method:
-* tbd a list
+Robot kinematics is based on different concepts and mathematical methods, which are described as follows. Denavit-Hartenberg has a separate dedicated document.
 
 # Jacobian - Generalized Inverse
 
-This method is used if direction calculation is not used:
+This method is used to calculate forward and inverse kinematics.
 
 ![jacobian_geninverse.png](/manual/configuration/jacobian_geninverse.png)
 
@@ -111,10 +79,19 @@ Robots no control over the orientation of the endpoint. Calculations will ignore
 
 Forward kinematics result in X, Y, Z and orientation. Together they result in 6 parameters, which correspond to 6 degrees of freedom (DOF). A 6 axis robot can create those 6 DOFs. Every configuration of less than 6 actuators is limited in the creation of the result. A cartesian printer with three prismatic joints cannot change orientation of the endpoint, e.g., but has control over the X, Y, Z coordinates only, so it has 3 DOFs. A 4 or 5 axis CNC machine cannot use all 6 DOF and is restricted in the workspace (workspace in the sense of position and endpoint orientation).
 
-# Singularities
-Singularities are areas which can be reached be the robot arms, but the movement at this position is not possible or not determined. The reasons are different and the implemented solutions are different also.
-Types of singularities and their implemented solutions:
-* reduced rank: if e. g. two actuators are moving with their axes being parallel, the rank is reduced. The robot cannot move to all 6 DOF anymore. The implemented solution is to calculate the generalized inverse (also called pseudo-invers, Moore-Penrose inverse), which approximates the exact solution by using least square methods. An example of this singularity is gimbal lock, which is known from aviation and can occur at a 6 axis robot with axis 5 at 0 degrees. Axis 4 and 6 are parallel then.
+# Workspace and Singularities
+Workspace is the space where an object can be reached by the robot. Calculation is a combination of position and orientation. Positions near the edges should be avoided, because rotations of axes become critical and movement precision is reduced.
+
+![robotworkspace.jpg](/manual/configuration/robotworkspace.jpg)
+(image from https://www.mdpi.com/2218-6581/9/2/27/htm)
+
+Singularities are unreachable robot positions or positions where movement results are undefined. Approaching singularities is also probelmatic, because some angle velocities are approaching infinity. See a good overview of [singularities for 6 axis robots here](https://www.mecademic.com/en/what-are-singularities-in-a-six-axis-robot-arm){target=_blank}.
+
+Being in a singularity may be necessary when homing. In Example 2 of the DH parameter explanation, the homing position is in a singularity (a small movement of most of the axes result in massive X movement and minimal Z movement). Setting the stepper positions by homing may be a necessity. A solution is to home and set the positions, then moving specific axes with G1 H2 to a position where the robots positions are outside the singularity, then proceed. Those G1 H2 moves can be placed into the homing file.
+
+To avoid printing in a singularity, M208 can be set accordingly. Please see the chapter about M208 for details.
+
+Singularities will be solved by adding Moore-Penrose inverse calculation in the next release.
 
 # Speed and Acceleration control
 Near and at a singularity, the angular speed of a single or few actuators would grow to infinity and stop printing. The solution is to avoid singularities or to set those angular speed to 0 and accept some inaccuracy. The affected segments are corrected and the surrounding ones smoothing down to velocity values approaching 0 to avoid jerks. The M203 and M201 (and maybe M566) settings are used as upper angular velocity limits for each actuator.
