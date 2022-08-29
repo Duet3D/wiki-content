@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-29T04:56:10.551Z
+date: 2022-08-29T04:59:57.122Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -136,6 +136,8 @@ At the end of the last axis, a tool is attached. The robot's kinematics is calcu
 * X, Y, Z are the tool's offsets in mm. Default is 0, 0, 0.
 
 If the tool has rotational elements, which may be necessary when e. g. using tool changers, there is no parameter to set them with G10. As solution is to define it at the corresponding DH parameter with the B parameter. An example will be provided in the DH document.
+
+Offsets are included in the calculation of the XYZ position. The signs of the offsets are important and depend on tool's coordinate system (explained in the DH document).
 
 # M208 configuration
 M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). M208 setting can follow two strategies:
