@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-31T07:33:16.507Z
+date: 2022-08-31T07:41:53.143Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -121,11 +121,11 @@ A3:0.0:0.0:0.0:0.0:100.0:0.0:-100.0:0.0:0.0
 A4:0.0:0.0:0.0:0.0:0.0:90.0:0.0:0.0:0.0
 A5:100.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0
 
-A0 is the base, unchanged here.
-A1 is 200 mm height, Z direction, of start of axis2 and 70 mm in X direction. Axis1 can rotate between -180 and +180 degrees, the homing angle (the angle which is set when the endstop is triggered) is 0 degrees.
-A2 defines the arm which is attached to axis2, min angle 0, home angle 0 and max angle 120 degrees.
-A3 defines next main arm as 100 mm, min angle -100, home 0, max 0.
-A4 defines to rotate X axis by 90 to prepare correct orientation of the tool. The angle by Z axis is automatically set by the parallelogram, but if an angle is set here, it will be added to this value
+A0 is the base, unchanged here. Coordinate system is X right, Y back, Z top.
+A1 is 200 mm height, Z direction, of start of axis2 and 70 mm in X direction. Axis1 can rotate between -180 and +180 degrees, the homing angle (the angle which is set when the endstop is triggered) is 0 degrees. Xrot is 90 degree, which changes the coordinate system for axis 2 to Z front, X right, Y top.
+A2 defines the arm which is attached to axis2, min angle 0, home angle 0 and max angle 120 degrees. Coordinate system is unchanged, i. e. axis 3 was same direction like axis 2.
+A3 defines next main arm as 100 mm, min angle -100, home 0, max 0. Coordinate system is changend, because axis4 has same orientation like axis2 and 3.
+A4 defines to rotate X axis by 90 to prepare correct orientation of the tool. The angle by Z axis is automatically set by the parallelogram, but if an angle is set here, it will be added to this value.
 A5 is the tool setting, 100 is the ztrans value, the tool length. The XYZ values will be overwritten by the G10 XYZ values of the currently selected tool.
 
 ### Mesh compensation
