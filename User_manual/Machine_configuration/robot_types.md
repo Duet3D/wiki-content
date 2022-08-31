@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-31T07:41:53.143Z
+date: 2022-08-31T22:35:42.086Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -114,23 +114,33 @@ The 4th axis is calculated from axes 2 and 3: angle 2 + angle 3 + angle 4 = 0.
 ### An example DH definition looks like this:
 
 M669 K13 A"RRRRp"
-A0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0
-A1:200.0:0.0:0.0:0.0:70.0:90.0:-180.0:0.0:180.0
-A2:0.0:0.0:0.0:0.0:100.0:0.0:0.0:0.0:120.0
-A3:0.0:0.0:0.0:0.0:100.0:0.0:-100.0:0.0:0.0
-A4:0.0:0.0:0.0:0.0:0.0:90.0:0.0:0.0:0.0
-A5:100.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0
 
-A0 is the base, unchanged here. Coordinate system is X right, Y back, Z top.
-A1 is 200 mm height, Z direction, of start of axis2 and 70 mm in X direction. Axis1 can rotate between -180 and +180 degrees, the homing angle (the angle which is set when the endstop is triggered) is 0 degrees. Xrot is 90 degree, which changes the coordinate system for axis 2 to Z front, X right, Y top.
-A2 defines the arm which is attached to axis2, min angle 0, home angle 0 and max angle 120 degrees. Coordinate system is unchanged, i. e. axis 3 was same direction like axis 2.
-A3 defines next main arm as 100 mm, min angle -100, home 0, max 0. Coordinate system is changend, because axis4 has same orientation like axis2 and 3.
-A4 defines to rotate X axis by 90 to prepare correct orientation of the tool. The angle by Z axis is automatically set by the parallelogram, but if an angle is set here, it will be added to this value.
-A5 is the tool setting, 100 is the ztrans value, the tool length. The XYZ values will be overwritten by the G10 XYZ values of the currently selected tool.
+; DH parameters:
+D0:0.0:0.0:0.0:0.0:0.0:0.0
+D1:200.0:0.0:0.0:0.0:70.0:90.0
+D2:0.0:0.0:0.0:0.0:100.0:0.0
+D3:0.0:0.0:0.0:0.0:100.0:0.0
+D4:0.0:0.0:0.0:0.0:0.0:90.0
+D5:100.0:0.0:0.0:0.0:0.0:0.0
+
+; Angles:
+A1:-180.0:0.0:180.0
+A2:0.0:0.0:120.0
+A3:-100.0:0.0:0.0
+A4:0.0:0.0:0.0
+
+A"RRRRp" means 4 rotational axes, where the 4th one is an axis with automatic angle by parallelogram.
+
+D0 is the base, unchanged here. Coordinate system is X right, Y back, Z top.
+D1 is 200 mm height, Z direction, of start of axis2 and 70 mm in X direction. Axis1 can rotate between -180 and +180 degrees, the homing angle (the angle which is set when the endstop is triggered) is 0 degrees. Xrot is 90 degree, which changes the coordinate system for axis 2 to Z front, X right, Y top.
+D2 defines the arm which is attached to axis2, min angle 0, home angle 0 and max angle 120 degrees. Coordinate system is unchanged, i. e. axis 3 was same direction like axis 2.
+D3 defines next main arm as 100 mm, min angle -100, home 0, max 0. Coordinate system is changend, because axis4 has same orientation like axis2 and 3.
+D4 defines to rotate X axis by 90 to prepare correct orientation of the tool. The angle by Z axis is automatically set by the parallelogram, but if an angle is set here, it will be added to this value.
+D5 is the tool setting, 100 is the ztrans value, the tool length. The XYZ values will be overwritten by the G10 XYZ values of the currently selected tool.
 
 ### Mesh compensation
 
-When no 4th (in reality 5th) axis is installed, the endpoint rotates when axis 1 rotates, so mesh compensation with a probe with XY offset <> 0 is not possible by default. A solution is to define the probe as if it is a tool and the probe being at tool's position: defining G10 to point to the probe, and setting probe properties to XY 0,0 offset. Then measuring and storing the results with the correct coordinates. Then setting back the G10 properties to the true tool offsets, then print with mesh compensation activated.
+When no 5th axis is installed, the endpoint rotates when axis 1 rotates, so mesh compensation with a probe with XY offset <> 0 is not possible by default. A solution is to define the probe as if it is a tool and the probe being at tool's position: defining G10 to point to the probe, and setting probe properties to XY 0,0 offset. Then measuring and storing the results with the correct coordinates. Then setting back the G10 properties to the true tool offsets, then print with mesh compensation activated.
 
 ### Documentation
 
