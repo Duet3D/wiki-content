@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-31T13:55:22.149Z
+date: 2022-08-31T13:58:39.662Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -81,24 +81,21 @@ The joint parameters are pairwise descriptions of tranlate in mm and rotate in d
 Original set of DH parameters:
 **Djoint:d:theta:a:alpha**
 
-* DH (Denavit-Hartenberg) parameters are defined by:
-* joint 1 is describing the transformations, so that the resulting coordinate system at axis 2
+* D0 defines the base properties and allow change of default setup. D1 to DnumberOfAxes are the equivalent to DH parameters. DnumberOfAxesPlusOne are properties of the tool.
 * d offset in Z direction
 * theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
 * a is the distance between Z and former Z axis. If alpha is 0, 90 or -90, it is the arm length
 * alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
-* home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
 
 Extended set with addition Y parameters:
 **Djoint:d:theta:ytr:yrot:a:alpha**
 
 Additionally to the DH parameters, ytr is transformation in direction of Y axis, yrot is a rotation for a rotational axis and translation for a prismatic axis.
 
-Adding the possibility to define Y axes' parameters rotation and translation to give full flexibility to define the coordinates. The Z axis is rotated and translated first, then Y, then X, according to the roll-pitch-yaw (RPY) order.
+Adding the possibility to define Y axes' parameters rotation and translation to give full flexibility to define the coordinates.
 
-8- and 10-parameter settings can be mixed, using Y translation and rotation only where needed.
+DH parameters with and without Y settings can be mixed.
 
-D1 to DnumberOfAxes are the equivalent to DH parameters. D0 allows changing the properties of the base. DnumberOfAxesPlusOne are properties of the tool.
 
 # M669 A parameter: angles
 
