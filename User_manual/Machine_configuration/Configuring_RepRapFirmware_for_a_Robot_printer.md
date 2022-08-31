@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-31T13:59:47.763Z
+date: 2022-08-31T22:21:37.431Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -17,6 +17,8 @@ The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.
 # Configuring a Robot printer
 
 When Duet starts after power on, it needs to know how to behave. Reading the file config.g and some associated files, the firmware is set to specific configurations like setup of the steppers, arm lengths, endstops and homing positions, heaters etc. M669 is at the core to define robot kinematics behaviour, accompanied by other settings, which are described in this document.
+
+For specific robot types, example configurations and explanation of specific settings, please see the document about robot types.
 
 # M669 configuration
 
@@ -67,14 +69,11 @@ DT:"name|[R]|[P]|[Rp]|[htabc]*" defines the overall configuration and number of 
 * DT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
 * DT:"PPP" means 3 axis cartesian printer.
 * DT:"PPPRRR" means cartesian printer with additional spheric 3 axis head
-* DT:"PPPRtaRtc" means CNC 5 axis with A as main rotary axis on table and C as dependent (installed on A) on table also
-* DT:"PPPRhbRtc" means CNC 5 axis with B axis on head and C on table
+* DT:"PPPRR" means CNC 5 axis with three linear and two rotary axes
 * DT:"RRRRp" means 4 axis palletized
 * DT:"RRRRpR" means 4 axis palletized with 4th actuator
 
-There is a separate document, explaining the robot types and their specifics.
-
-The DH parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles. The gimbal lock is no problem, because the values are only used for description, internally it is avoided.
+The DH parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles.
 
 The joint parameters are pairwise descriptions of tranlate in mm and rotate in degrees for the Z[Y]X coordinate axis:
 
@@ -105,10 +104,10 @@ Defining minimun and maximum angles of the joint. They are also the homing angle
 
 **Ajoint:min:max:home**
 
-Set an explicit homing angle, which can be outside min and max. Min and max are assured while normal operation, but while homing, rotary movements can be outside this limits with some commands like G1 H1.
+Set an explicit homing angle, which can be outside min and max. Min and max are assured while normal operation, but while homing, rotary movements can be outside this limits with some commands like G1 H1. Home angle will be set with either high or low end endstop.
 
 # M669 B parameter
-B allows setting or overriding some parameters directly. tbd a list
+B allows setting or overriding some parameters directly, e.g. which subtype of CNC 5 axis (AC etc.) is set. tbd a list
 
 # M669 P parameter
 
