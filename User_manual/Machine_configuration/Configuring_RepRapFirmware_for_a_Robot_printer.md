@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-29T05:14:00.974Z
+date: 2022-08-31T13:47:13.038Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -20,9 +20,11 @@ When Duet starts after power on, it needs to know how to behave. Reading the fil
 
 # M669 configuration
 
+**I've split the old A parameter into D and A, because it was very easy to use track with 10 values in one string. D are the DH parameters and A are angle definitions, with added  options for short versions.**
+
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-M669 K13 AT"type|R|P" should be the first line to set robot kinematics and define roughly the configuration.
+M669 K13 DT"type|R|P" should be the first line to set robot kinematics and define roughly the configuration.
 
 M669 without parameters will output the current settings to the console.
 
@@ -30,7 +32,8 @@ Most parameters are described in separate sections below.
 
 Overview
 * K13 defines robot kinematics and must be defined first
-* A defines robot type, axes types, axes and arm properties by using Denavit-Hartenberg parameters
+* D defines the Denavit-Hartenberg parameters
+* A defines the minimum, maximum and home angles
 * B allows setting specific parameters directly
 * P behaviour of axes, specific for a robot type
 * Q quality of calculation to allow balance between precision and time needed for calculation
@@ -53,25 +56,26 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 
 G1, G2, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
 
-# M669 A parameter
-**A** is used to define the properties of the robot.
+# M669 D: Denavit-Hartenberg parameters
+**D** is used to define the properties of the robot.
 
-* AT:string defines the actuator type, rotary or prismatic and how they are assembled
-* A0...n:parameters define DH parameters with optional Y
+* DT:string defines the actuator type, rotary or prismatic and how they are assembled
+* D0...n:parameters define DH parameters with optional Y
 
-AT:"name|[R]|[P]|[Rp]|[htabc]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, Rp means revolute parallelogram closed chain without actuator, htabc are used for CNC 5 axis flavours.
-* AT:"RRRRRR" means 6 axis robot with rotational axes
-* AT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
-* AT:"PPP" means 3 axis cartesian printer.
-* AT:"PPPRRR" means cartesian printer with additional spheric 3 axis head
-* AT:"PPPRtaRtc" means CNC 5 axis with A as main rotary axis on table and C as dependent (installed on A) on table also
-* AT:"PPPRhbRtc" means CNC 5 axis with B axis on head and C on table
-* AT:"RRRRp" means 4 axis palletized
-* AT:"RRRRpR" means 4 axis palletized with 4th actuator
+DT:"name|[R]|[P]|[Rp]|[htabc]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, Rp means revolute parallelogram closed chain without actuator, htabc are used for CNC 5 axis flavours.
+* DT:"RRRRRR" means 6 axis robot with rotational axes
+* DT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
+* DT:"PPP" means 3 axis cartesian printer.
+* DT:"PPPRRR" means cartesian printer with additional spheric 3 axis head
+* DT:"PPPRtaRtc" means CNC 5 axis with A as main rotary axis on table and C as dependent (installed on A) on table also
+* DT:"PPPRhbRtc" means CNC 5 axis with B axis on head and C on table
+* DT:"RRRRp" means 4 axis palletized
+* DT:"RRRRpR" means 4 axis palletized with 4th actuator
 
 There is a separate document, explaining the robot types and their specifics.
 
-**DH: Ajoint:d:theta:a:alpha:home:minangle:maxangle**
+Original set of DH parameters:
+**Djoint:d:theta:a:alpha**
 
 * DH (Denavit-Hartenberg) parameters are defined by:
 * joint 1 is describing the transformations, so that the resulting coordinate system at axis 2
@@ -81,22 +85,29 @@ There is a separate document, explaining the robot types and their specifics.
 * alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
 * home, min, max angles of theta if rotatioal axis. Home, min and max position in mm for a prismatic axis.
 
-Instead of DH parameters, all 6 translations and rotations can be defined by:
-**Aaxisnr:d:theta:ytr:yrot:a:alpha:home:minangle:maxangle**
+Extended set with addition Y parameters:
+**Djoint:d:theta:ytr:yrot:a:alpha**
 
-ytr is transformation in direction of Y axis, yrot is a rotation for a rotational axis and translation for a prismatic axis.
-
-When 8 values are defined, DH parameters are expected. When 10 values are defined, it is interpreted as general setting of all transformations.
+Additionally to the DH parameters, ytr is transformation in direction of Y axis, yrot is a rotation for a rotational axis and translation for a prismatic axis.
 
 Adding the possibility to define Y axes' parameters rotation and translation to give full flexibility to define the coordinates. The Z axis is rotated and translated first, then Y, then X, according to the roll-pitch-yaw (RPY) order.
 
 8- and 10-parameter settings can be mixed, using Y translation and rotation only where needed.
 
-A1 to A6 are the equivalent to DH parameters. A0 allows a displacement of the first axis and axis rotations.
+D1 to DnumberOfAxes are the equivalent to DH parameters. D0 allows changing the properties of the base. DnumberOfAxesPlusOne are properties of the tool.
 
+# M669 A parameter: angles
+
+**Ajoint:min:max**
+
+Defining minimun and maximum angles of the joint. They are also the homing angles when homing switches are triggered.
+
+**Ajoint:min:max:home**
+
+Set an explicit homing angle, which can be outside min and max. Min and max are assured while normal operation, but while homing, rotary movements can be outside this limits with some commands like G1 H1.
 
 # M669 B parameter
-B allows setting some parameters directly. tbd a list
+B allows setting or overriding some parameters directly. tbd a list
 
 # M669 P parameter
 
@@ -135,7 +146,7 @@ In RRF, XYZUVW are linear axes by default and ABC rotational axes. This correspo
 At the end of the last axis, a tool is attached. The robot's kinematics is calculation with the G10 offsets of the currently selected tool:
 * X, Y, Z are the tool's offsets in mm. Default is 0, 0, 0.
 
-If the tool has rotational elements, which may be necessary when e. g. using tool changers, there is no parameter to set them with G10. As solution is to define it at the corresponding DH parameter with the B parameter. An example will be provided in the DH document.
+If the tool has rotational elements, which may be necessary when e. g. using tool changers, there is no parameter to set them with G10. As solution is to define it at the corresponding DH parameter with the D parameter. An example will be provided in the DH document.
 
 Offsets are included in the calculation of the XYZ position. The signs of the offsets are important and depend on tool's coordinate system (explained in the DH document).
 
@@ -147,7 +158,7 @@ The robotic print area is not cubic in most cases, so the workspace differs from
 * setting too big around the workspace. Kinematics does two check: whether desired print is inside M208 limits and whether it is reachable by the arm lengths and allowed angles. If M208 is possible, but not according to the true workspace, an error will be reported. Whether a partial print will be done, depends on the printer type (3D printing mode will print partially, CNC mode not).
 
 # Homing
-The homing angles are specified in the M669 A parameter and can be impemented e. g. by endstops between joint's axes or by reading absolute encoder positions. G1 H2 addressing specific axes (joints). Setting the position with G1 H1 is not possible in most cases,, because it only makes sense for linear axes. When an endstop is triggered, the homing position is set by firmware code to the home value, defined as port of the A parameter. If necessary, the value can be changed later by G92. For a rotational axis, the value the stepper angle * microsteps * gear ratio must be taken. The current stepper position can be checked by calling M122, it is the nth count value.
+The homing angles are specified in the M669 A parameter and can be impemented e. g. by endstops between joint's axes or by reading absolute encoder positions. G1 H1 will set to the homing angle which is defined with the A parameter when the endstop is triggered. If necessary, the value can be changed later by G92. For a rotational axis, the value the stepper angle * microsteps * gear ratio must be taken. The current stepper position can be checked by calling M122, it is the nth count value.
 
 If the homing position is in a singularity or near it, after homing the robot arms should be rotated away from it (this can be done with G1 H2 moves), before starting normal operation.
 # Mesh compensation
