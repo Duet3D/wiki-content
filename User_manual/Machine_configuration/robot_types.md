@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-29T04:03:27.176Z
+date: 2022-08-31T07:33:16.507Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -110,6 +110,23 @@ Reverse mode means: the robots plate is used to place the object and the endpoin
 Default is axis 1 being vertical, axes 2 to 4 (4 is without actuator) being horizontal and parallel, axis 5 vertical again. Positive angles are CCW from above for axes 1 and 5, 0 degrees being in the X direction. For axes 2 to 4, positive angles are CCW seen from front, 0 degrees being the horizontal position (this can all be overritten by DH parameters).
 
 The 4th axis is calculated from axes 2 and 3: angle 2 + angle 3 + angle 4 = 0.
+
+### An example DH definition looks like this:
+
+M669 K13 A"RRRRp"
+A0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0
+A1:200.0:0.0:0.0:0.0:70.0:90.0:-180.0:0.0:180.0
+A2:0.0:0.0:0.0:0.0:100.0:0.0:0.0:0.0:120.0
+A3:0.0:0.0:0.0:0.0:100.0:0.0:-100.0:0.0:0.0
+A4:0.0:0.0:0.0:0.0:0.0:90.0:0.0:0.0:0.0
+A5:100.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0
+
+A0 is the base, unchanged here.
+A1 is 200 mm height, Z direction, of start of axis2 and 70 mm in X direction. Axis1 can rotate between -180 and +180 degrees, the homing angle (the angle which is set when the endstop is triggered) is 0 degrees.
+A2 defines the arm which is attached to axis2, min angle 0, home angle 0 and max angle 120 degrees.
+A3 defines next main arm as 100 mm, min angle -100, home 0, max 0.
+A4 defines to rotate X axis by 90 to prepare correct orientation of the tool. The angle by Z axis is automatically set by the parallelogram, but if an angle is set here, it will be added to this value
+A5 is the tool setting, 100 is the ztrans value, the tool length. The XYZ values will be overwritten by the G10 XYZ values of the currently selected tool.
 
 ### Mesh compensation
 
