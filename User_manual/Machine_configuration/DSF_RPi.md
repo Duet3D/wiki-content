@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2022-04-10T20:42:25.151Z
+date: 2022-08-31T09:33:06.828Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -36,7 +36,7 @@ Since DSF is provided as a standard Debian package feed, the update is quite tri
 
 ```
 sudo apt update
-sudo apt upgrade
+sudo apt dist-upgrade
 ```
 
 This will automatically install the latest DSF components. You may achieve the same remotely using [SSH](https://www.raspberrypi.com/documentation/computers/remote-access.html).
@@ -54,7 +54,7 @@ This assumes that the unstable packages are a later version than the currently i
 1. Update your system:
    ```
    sudo apt update
-   sudo apt upgrade
+   sudo apt dist-upgrade
    ```
 
 ## Switch to stable packages
@@ -70,7 +70,7 @@ In a similar process to the above, this assumes that the stable packages are a l
 1. Update your system:
    ```
    sudo apt update
-   sudo apt upgrade
+   sudo apt dist-upgrade
    ```
 
 ## Downgrade packages
