@@ -2,7 +2,7 @@
 title: Robot types and their specifics
 description: Supported robot types with description of properties and how to configure them, prototype recommendations
 published: true
-date: 2022-08-31T22:35:42.086Z
+date: 2022-08-31T22:36:38.519Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-14T06:59:05.328Z
@@ -124,8 +124,8 @@ D4:0.0:0.0:0.0:0.0:0.0:90.0
 D5:100.0:0.0:0.0:0.0:0.0:0.0
 
 ; Angles:
-A1:-180.0:0.0:180.0
-A2:0.0:0.0:120.0
+A1:-180.0:180.0:0.0
+A2:0.0:120.0:0.0
 A3:-100.0:0.0:0.0
 A4:0.0:0.0:0.0
 
