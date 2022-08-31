@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-31T13:58:39.662Z
+date: 2022-08-31T13:59:47.763Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -56,7 +56,7 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 
 G1, G2, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
 
-# M669 D: Denavit-Hartenberg parameters
+# M669 D parameter: DH, Denavit-Hartenberg
 **D** is used to define the properties of the robot.
 
 * DT:string defines the actuator type, rotary or prismatic and how they are assembled
