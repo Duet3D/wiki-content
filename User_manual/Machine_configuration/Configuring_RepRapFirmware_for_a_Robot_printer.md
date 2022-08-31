@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-31T13:47:13.038Z
+date: 2022-08-31T13:50:50.400Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -73,6 +73,8 @@ DT:"name|[R]|[P]|[Rp]|[htabc]*" defines the overall configuration and number of 
 * DT:"RRRRpR" means 4 axis palletized with 4th actuator
 
 There is a separate document, explaining the robot types and their specifics.
+
+The DH parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles. The gimbal lock is no problem, because the values are only used for description, internally it is avoided.
 
 Original set of DH parameters:
 **Djoint:d:theta:a:alpha**
