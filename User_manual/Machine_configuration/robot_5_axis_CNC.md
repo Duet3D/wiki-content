@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-08-31T23:29:01.743Z
+date: 2022-09-01T05:36:25.433Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -28,6 +28,10 @@ When A, B, C rotational changes are required, the XYZ positions change, if there
 
 A CAD, CAM program, slicer or postprocessor will create G-Code which can be executed and is used to control the 5 axis CNC axes. There are two common addressing modes:
 * using XYZ and AB or AC or BC, XYZ being mm positions and AB... being degrees
-* using XYZ and IJK, XYZ being mm positions and IJK being tool vectors, the numbers are real numbers between -1.0 to +1.0. The tool vector desribes the tilt of the tool with respect to the Z axis.
+* using XYZ and IJK, XYZ being mm positions and IJK being tool vectors, the numbers are real numbers between -1.0 to +1.0 and normalized to I²+J²+K²=1. The tool vector desribes the tilt of the tool with respect to the Z axis.
 
-The IJK is more machine independent, but less often used. It is possible to convert the system with postprocessor or alike into the other system.
+The IJK is more machine independent, but less often used. It is possible to convert the system with postprocessor or alike into the other system. For example,
+G1 X10 Y10 Z10 I0.5 J0.5 K0.707106
+is the same as
+G1 X10 Y10 Z10 B45 C45
+on a BC system.
