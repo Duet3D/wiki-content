@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-01T10:00:20.532Z
+date: 2022-09-01T10:10:48.688Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -46,7 +46,7 @@ If AC or BC in table/table mode are used, the calculation is in workpiece mode, 
 
 Starting from the base of the C axis plate, the coordinate system is translated d up to be in line with the A/B axis. Then changing by the A/B angle and then translating down to the base again by -d. Then rotaing by C axis, and then adding XYZ of the linear axes and some tool offsets to get the endpoint position and orientation. Because it is in workpiece mode, which means the transformation shall start from the workpiece and not the plate, the matrix transformations between workpiece and plate must be inverted before multiplications to calculate forward and inverse kinematics.
 
-* d translate and rotate of coordinate system so the Z axis is in the A/B axis direction: for A axis: D0:d:0.0:0:90:0.0:0.0 rotating 90 degrees by Y axis, for B axis: D0:d:0.0:0.0:90.0 rotating by 90 around the X axis
+* d translate and rotate of coordinate system so the Z axis is in the A/B axis direction: for A axis: D0:d:0.0:0:90:0.0:0.0 rotating 90 degrees by Y axis, for B axis: D0:d:0.0:0.0:90.0 rotating by 90 around the X axis. The goal of the coordinate system rotation is to get the Z axis into the direction of the A/B axis: the arrow for the A axis to the right, for B axis to the front. This defines positive angles for the A axis to be CCW if looking from right to the axis and for B axis positive angle to be CCW when looking from front to the axis.
 * rotate A/B around the Z axis and change back coordinate system for case B: for A axis: D1:0:0:0:-90:0:0 and for B axis: D1:0:0:0:-90
 * translate coordinate system back to plate, then rotate C axis: D2:-d:0:0:0
 * D3 to D5 are the linear axes movements
