@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-01T10:10:48.688Z
+date: 2022-09-01T10:14:09.563Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -36,7 +36,7 @@ is the same as
 G1 X10 Y10 Z10 B45 C45
 on a BC system.
 
-With AC and BC, one should be aware of the gimbal lock at A = 0 degrees and B = 0 degrees position. At this position, the C axis is parallel to the Z axis, which means lost rank. A solution is to restrict movements to all negative or all positive angles for A or B, in most cases negative one, because the angle range is often the greatest for negative angles. E. g. a typical A angle range is -120 to +30 degrees, so negative angles are preferred.
+With AC and BC, one should be aware of the gimbal lock at A = 0 degrees and B = 0 degrees position. At this position, the C axis is parallel to the Z axis, which means lost rank. A solution is to restrict movements to all negative or all positive angles for A or B, in most cases negative one, because the angle range is often the greatest for negative angles. E. g. a typical A angle range is -120 to +30 degrees, so negative angles are preferred. In the CAM program there is often a setting to prefer positive or negative angles.
 
 # DH parameters
 
