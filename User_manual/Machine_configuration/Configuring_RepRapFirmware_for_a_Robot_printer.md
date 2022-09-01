@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-08-31T22:21:37.431Z
+date: 2022-09-01T06:23:27.883Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -95,6 +95,15 @@ Adding the possibility to define Y axes' parameters rotation and translation to 
 
 DH parameters with and without Y settings can be mixed.
 
+# World coordinate or workpiece mode
+
+For forward and inverse kinematics calculations it is important to set world or workpiece mode. Default is world mode.
+
+In world mode, the starting point is stationary and ends at the spindle or hotend endpoint. The to be printed or drilled object doesn't change position and orientation.
+
+Setting to workpiece mode instead means that the DH parameters are transforming the coordinates from the view of the workpiece. The starting point is the workpiece. This mode is important for kinematics where the printed or drilled object is rotated or moved.
+
+Examples for workpiece mode is CNC 5 axis with rotary axes on the table like Open5x and 4 axis palletized with the print object installed on the robot endpoint and the hotend stationary outside the robot. Example configurations are provided in the robot type documents about CNC 5 axis and 4 axis palletized.
 
 # M669 A parameter: angles
 
