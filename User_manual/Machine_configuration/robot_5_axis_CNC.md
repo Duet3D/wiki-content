@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-01T05:36:25.433Z
+date: 2022-09-01T09:25:01.790Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -35,3 +35,13 @@ G1 X10 Y10 Z10 I0.5 J0.5 K0.707106
 is the same as
 G1 X10 Y10 Z10 B45 C45
 on a BC system.
+
+# DH parameters
+
+If AC or BC in table/table mode are used, the calculation is in workpiece mode, the transformations are as follows:
+
+![cnc5axisactransform.png](/manual/configuration/cnc5axisactransform.png)
+
+Starting from the base of the C axis plate, the coordinate system is translated d up to be in line with the A/B axis. Then changing by the A/B angle and then tranlating down to the base again by -d. Then rotaing by C axis, and then adding XYZ of the linear axes and some tool offsets to get the endpoint position and orientation. Because it is in workpiece mode, which means the transformation shall start from the workpiece and not the base, most matrix transformations must be inverted must take place to calculate forward and inverse kinematics.
+
+Forward calculates A/C or B/C to XYZ IJK position and orientation, while inverse kinematics can be calculated from XYZ IJK, resulting in XYZ AC or XYZ BC values. IJK is the tool vector with orientation vertical on the workpiece surface.
