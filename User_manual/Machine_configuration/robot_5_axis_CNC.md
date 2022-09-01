@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-01T10:14:09.563Z
+date: 2022-09-01T18:39:09.289Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -22,7 +22,11 @@ If for some reason the rotational axes are named UVW, the default firmware behav
 
 In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) are the rotary angles, i. e. different units of measurement is used. An alternative G-Code uses IJK tool vectors. They are converted into AC/BC/AB angles internally by firmware.
 
-When A, B, C rotational changes are required, the XYZ positions change, if there is no change of the three linear/prismatic actuators. To stay at the XYZ positions while rotating, a method called RTCP is used. The required recalculation and change of the three linear actuators is achieved by segmentation of the rotation and caculation of the segment's positions.
+# Segmentation
+
+A move is segmented into small straight lines. The segmentation is calculated and planned in the main process of RRF and is not part of the kinematics. The kinematics calculates forward and inverse information for the true XYZ positions, so this is equal to which is named RTCP mode.
+
+RTCP means, that when rotating AB/AC/BC without XYZ correction, the movement would be wrong (because rotary angle changes change the XYZ position). XYZ actuators must be changed also, which is achieved by recalculation of the inverse kinematics for every segment's correct position. The smaller the segments, the better the approach to the true line. But at a cost, more processing time needed.
 
 # G-Code
 
