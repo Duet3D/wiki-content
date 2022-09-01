@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-01T22:34:03.196Z
+date: 2022-09-01T22:35:42.871Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -29,6 +29,10 @@ The jacobian and inverse values are almost exact if using small steps, i. e. sma
 Calculation of inverse kinematics by using Jacobian/Gen. Inverse is calculated in iterations to get the required precision. Settings a lower required precision result in lower needed iterations.
 
 # World coordinate or workpiece mode
+
+This chapter is relevant if using
+* CNC 5 axis
+* 4 axis palletized with object on the robot plate
 
 For forward and inverse kinematics calculations it is important to set world or workpiece mode. Default is world mode.
 
