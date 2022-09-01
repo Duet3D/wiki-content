@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-01T09:53:12.052Z
+date: 2022-09-01T09:54:06.440Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -46,7 +46,7 @@ If AC or BC in table/table mode are used, the calculation is in workpiece mode, 
 
 Starting from the base of the C axis plate, the coordinate system is translated d up to be in line with the A/B axis. Then changing by the A/B angle and then translating down to the base again by -d. Then rotaing by C axis, and then adding XYZ of the linear axes and some tool offsets to get the endpoint position and orientation. Because it is in workpiece mode, which means the transformation shall start from the workpiece and not the plate, the matrix transformations between workpiece and plate must be inverted before multiplications to calculate forward and inverse kinematics.
 
-* d translate and rotate of coordinate system so the Z axis is in the A/B axis direction: for A axis: D0:d:0.0:0.0:0.0, for B axis: D0:d:0.0:0.0:90.0, i. e. only for case B a coordinate axis change is needed
+* d translate and rotate of coordinate system so the Z axis is in the A/B axis direction: for A axis: D0:d:0.0:0.0:0.0, for B axis: D0:d:0.0:0.0:90.0, i. e. only for case B a coordinate axis change is needed by rotating by 90 around the X axis
 * rotate A/B around the Z axis and change back coordinate system for case B: for A axis: D1:0:0:0:0 and for B axis: D1:0:0:0:-90
 * translate coordinate system back to plate, then rotate C axis: D2:-d:0:0:0
 * D2 to D4 are the linear axes movements
