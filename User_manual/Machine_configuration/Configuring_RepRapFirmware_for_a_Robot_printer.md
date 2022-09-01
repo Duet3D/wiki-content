@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-01T06:24:50.619Z
+date: 2022-09-01T06:28:48.648Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -104,6 +104,8 @@ In world mode, the starting point is stationary and ends at the spindle or hoten
 Setting to workpiece mode instead means that the DH parameters are transforming the coordinates from the view of the workpiece. The starting point is the workpiece and the endpoint is the tip of the drill or nozzle. This mode is important for kinematics where the printed or drilled object is rotated or moved.
 
 Examples for workpiece mode is CNC 5 axis with rotary axes on the table like Open5x and 4 axis palletized with the print object installed on the robot endpoint and the hotend stationary outside the robot. Example configurations are provided in the robot type documents about CNC 5 axis and 4 axis palletized.
+
+Additional information about the mathematics of world and workpiece mode is described in the firmware document. (tbd)
 
 # M669 A parameter: angles
 
