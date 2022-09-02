@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-02T07:05:21.888Z
+date: 2022-09-02T07:06:12.048Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -118,7 +118,7 @@ means process the translations from 0 to 5 for forward kinematics. A -1 means th
 chain="2-1:1-1:0-1:3:4:5:6"
 means for CNC 5 axis BC: process 2 inverse (C axis), 1 inverse (B axis), 0 inverse (base), then 3-5 (XYZ) and then 6 (tool). The numbers refer to D0 to D6 parameters. Default is ascending by numbers.
 
-B"revertCoordinates=XYZ"
+B"revertCoordinates=X:Y:Z"
 means revert axis movement, needed for 4 axis palletized, if the object is on the robot plate. A positive G1 X movement prints to the left on the object. Default is revertAxes being empty string value. Reverting is the same result as changing from world mode to workpiece mode by inverting the matrices, but the revertAxes is a simpler syntax.
 
 # M669 P parameter
