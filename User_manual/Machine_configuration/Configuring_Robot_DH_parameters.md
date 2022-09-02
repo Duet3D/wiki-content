@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-08-27T08:00:31.783Z
+date: 2022-09-02T08:27:29.021Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -30,13 +30,6 @@ Please check Wikipedia for an introduction of DH. In brevity:
 * the DH parameters describe 4 of the 6 degrees of freedom to transform one coordinate system to the next: Z translate and rotate, then X translate and rotate. Not all transformations are possible (Y translate and rotate).
 * the DH parameters are defined in M669 A parameter.
 
-# Orientation, (Euler angles)
-I changed from Euler angles to Quaternions, so here is only a short description:
-
-Euler angles are 12 possible different methods to describe a rotation. The RPY method (roll-pitch-yaw) from aviation is often used, which describes a rotation by ZYX axis rotations (in this order. Rotation order is not commutative).
-
-I've written much more about orientation in the document about firmware.
-
 # Coordinate system
 Every robot joint is connected with its own coordinate system. The coordinate system XYZ is right hand based. It's easiest to positon Z to the direction of the axis, then X, then Y by the right hand rule. Although physical axes don't have direction, the coordinate system has, and it's important to be aware of the direction. The axis' direction defines which rotation is positive or negative degrees. From looking in front at the arrow, counterclockwise are positiv degrees.
 
@@ -58,27 +51,29 @@ The axis information has redundancy, because only 3 parameters are necessary to 
 
 The four numbers (0 0 0 1) in the last line make sure that rotations and translations stay at their positions. They don't change.
 
-# DH parameters, 6 DOF parameters
-There are 4 DH parameters, defining Z rotation and displacment, X rotation and displacement. The missing Y rotation and displacement is solved by a combined Z and X rotations with displaments when needed, so defining all 6 DOF are possible for every joint. But there are combinations like the example axis 4, replacing Y is not possible. So the DH model is enhanced to use all 6 DOF. The order of transformations is important:
-* first translation by Z axis
-* then rotation by Z axis
-* then translation by Y axis
-* then rotation by Y axis
-* then translation by X axis
-* then rotation by X axis
+# Transformation parameters
+DH is using 4 parameters:
+* rotation by Z axis
+* translate by Z axis
+* rotation by X axis
+* translate by X axis
 
-(NB translation and rotation by Z could be exchanged, as they are independent from each other, same with X and Y. But in general, matrix multiplation order play a role, i. e. they are not commutative).
+To give maximum flexibility, robot kinematics allows two additional parameters:
+* rotation by Y axis
+* translate by Y axis
 
-Translations and rotations can be chained and calculated with 4x4 matrices, including position and orientation. The starting point is called origin, the result is called endpoint and is the hotend position.
+The order of transformations is important, because matrix multiplications' orders are not commutative. DH transformations are in the order ZX, the extended version ZYX (which is the same order like RPY in aviation).
+
+The transformations are 4x4 matrices and are chained to calculate the complete transformation from base to endpoint. The result is a position and orientation.
 
 The traditional DH parameters start with joint 1 and assumes the first axis being vertical (like the 3D printing coordinate system with X to right, Y behind, Z to top). The model includes the base coordinate in A0 and can turn the first axis and displace it, so the robot's origin can have X, Y, Z offsets.
 
 # Finding the parameters
 To find the correct coordinate system of an axis, those steps are necessary:
 * set the direction of the Z axis, which is the actuator's rotation or prismatic (linear) axis. The direction includes not only the angle, but also the direction (arrow)
-* decide where the 0 angle is placed. This is the X axis position, corrected by a fixed theta angle. Theta and the actuator angle are added
+* for a rotary axis, decide where the 0 angle is placed. This is the X axis position, corrected by a fixed theta angle. Theta and the actuator angle are added. For a prismatic axis, the 0 position is defined by the coordinate origin, the X axis orientation is not important for defining the 0 position
 * the Y axis is given by the right hand rule and perpendicular to the Z and X axes
-* finding the displacements
+* measuring and setting the displacements
 
 The DWC plugin RobotViewer helps with the configuration.
 
