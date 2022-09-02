@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-02T00:12:36.239Z
+date: 2022-09-02T00:14:15.074Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -13,7 +13,7 @@ This page is part of multiple pages about robot configuration and usage. Please 
 # 5 axis CNC
 
 A 5 axis CNC is built from three cartesian axes (including the possibility to double axes, like optionally for gantry) and two rotary axes:
-* the rotary axis which is parallel to the X axis is called A axis, to Y is the B axis and to Z is the C axis when they are in 0 degree position. Two of them are used, AC, AB or BC. For AC, AB, BC there are 2 different assemblies possible, e.g. A with C assembled on it (traditionally A is called master or 4th axis and C slave or 5th axis), or C with A assembled on it.
+* the rotary axis which is parallel to the X axis is called A axis, to Y is the B axis and to Z is the C axis when they are in 0 degree position. Two of them are used, AC, AB or BC. For AC, AB, BC there are 2 different assemblies possible, e.g. A with C assembled on it (in this case, traditionally A is called master or 4th axis and C slave or 5th axis because C is linked and depends on A), or C with A assembled on it.
 * a rotating spindle has only one important orientation, the Z axis. Two rotations are sufficient to describe it's orientation.
 * the rotary axes can be installed at the spindle ("head") or table, resulting in subtypes head/head, head/table, table/table
 * the possibilities have different results in respect to workpiece size, stability etc., but it is not discussed here.
