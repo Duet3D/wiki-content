@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-02T07:01:11.113Z
+date: 2022-09-02T07:05:21.888Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -110,15 +110,15 @@ Set an explicit homing angle, which can be outside min and max. Min and max are 
 # M669 B parameter
 B allows setting for some special kinematics. The code is like scripting, defining configuration on the fly. The reason was, that there are so many CNC 5 axis variants, so it is difficult or impossible to test all combinations. Enabling a configuration change in the following manner allows change of kinematic behaviour. Maybe it can be enhanced for closed kinematics in a future release.
 
-B"driveMappings=3A1:4C2:0X3:1Y4:2Z4"
+B"driveMappingToDn=3A1:4C2:0X3:1Y4:2Z4"
 means third stepper driver axis named A is mapped to DH parameter D1:4dhparameters. The letter drives the Dn Z axis (in the example: C axis changes the rotation matrix defined by D2). This allows deviating from the default "base is D0, first axis is D1, second D2 etc.". Letters IJK have a special meaning as tool vector, definition is by two letters of drive number and I/J/K. For 4 axis palletized, the parallel axis is defined special with a p + single number for the Dn definition, e.g. "p3". Default is 0X1:1Y2:2Z3:3A4:4B5:5C6 of a 6 axis robot and abbreviated for less axes.
 
-B"forwardKinematics=0:1:2:3:4:5"
+B"DnOrder=0:1:2:3:4:5"
 means process the translations from 0 to 5 for forward kinematics. A -1 means that the transformation matrix must be inversed before it is multiplied with the others.
 chain="2-1:1-1:0-1:3:4:5:6"
 means for CNC 5 axis BC: process 2 inverse (C axis), 1 inverse (B axis), 0 inverse (base), then 3-5 (XYZ) and then 6 (tool). The numbers refer to D0 to D6 parameters. Default is ascending by numbers.
 
-B"revertAxes=XYZ"
+B"revertCoordinates=XYZ"
 means revert axis movement, needed for 4 axis palletized, if the object is on the robot plate. A positive G1 X movement prints to the left on the object. Default is revertAxes being empty string value. Reverting is the same result as changing from world mode to workpiece mode by inverting the matrices, but the revertAxes is a simpler syntax.
 
 # M669 P parameter
