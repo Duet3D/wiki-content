@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-02T22:48:01.611Z
+date: 2022-09-02T22:49:35.099Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -58,7 +58,7 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 
 G1, G2, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
 
-Most of the parameters can be changed by accessing the object model also. Most changes don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
+Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
 # M669 D parameter: DH, Denavit-Hartenberg
 **D** is used to define the properties of the robot.
