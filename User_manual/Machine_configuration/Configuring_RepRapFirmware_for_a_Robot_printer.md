@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-02T23:24:54.530Z
+date: 2022-09-02T23:26:09.049Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -113,7 +113,7 @@ B allows setting for some special kinematics. In most cases, setting B parameter
 The code is like scripting, defining configuration on the fly. The reason was, that there are so many CNC 5 axis variants, it is difficult or impossible to test all combinations. Enabling a configuration change in the following manner allows change of kinematic behaviour. Maybe it can be enhanced for closed kinematics in a future release. Using B parameters allow remapping drives as well, when unusual drive assignments or order are used.
 
 B"driveMappingToDn=3A1:4C2:0X3:1Y4:2Z4"
-means third stepper driver axis named A is mapped to DH parameter D1:4dhparameters etc. The letter drives the Dn Z axis (in the example: C axis changes the rotation matrix defined by D2). This allows deviating from the default "base is D0, first axis is D1, second D2 etc.". Letters IJK have a special meaning as tool vector, definition is by two letters of drive number and I/J/K. For 4 axis palletized, the parallel axis is defined special with a p + single number for the Dn definition, e.g. "p3". Default is 0X1:1Y2:2Z3:3A4:4B5:5C6 of a 6 axis robot and abbreviated for less axes. The n of Dn can be freely choosen, but must be unique and nonnegative integer (i.e. N0+).
+means third stepper driver axis named A is mapped to DH parameter D1:4dhparameters etc. The letter drives the Dn Z axis (in the example: C axis changes the rotation matrix defined by D2). This allows deviating from the default "base is D0, first axis is D1, second D2 etc.". Letters IJK have a special meaning as tool vector, definition is by two letters of drive number and I/J/K. For 4 axis palletized, the parallel axis is defined special with a p + single number for the Dn definition, e.g. "p3". Default is 0X1:1Y2:2Z3:3A4:4B5:5C6 of a 6 axis robot and abbreviated for less axes. The n of Dn must be unique and nonnegative integer.
 
 B"DnOrder=0:1:2:3:4:5"
 means process the translations from 0 to 5 for forward kinematics. -1 means that the transformation matrix must be inversed before it is multiplied with the others.
