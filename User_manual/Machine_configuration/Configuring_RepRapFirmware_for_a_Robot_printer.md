@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-01T23:53:32.352Z
+date: 2022-09-02T00:20:38.941Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -111,7 +111,7 @@ Set an explicit homing angle, which can be outside min and max. Min and max are 
 B allows setting for some special kinematics.
 
 B"driveMappings=3A1:4C2:0X3:1Y4:2Z4"
-means third stepper driver axis named A is mapped to DH parameter D1:4dhparameters. The letter drives the Dn Z axis. This allows deviating from the default "base is D0, first axis is D1, second D2 etc." also.
+means third stepper driver axis named A is mapped to DH parameter D1:4dhparameters. The letter drives the Dn Z axis. This allows deviating from the default "base is D0, first axis is D1, second D2 etc." also. The letter is the meaning for the kinematics. If e. g. U is used by Open5x instead of the default B letter, B should be used as letter. This will map G-Code U to interpretation as B axis. Checking is by G1 H2 U10, it should rotate the U(B) axis.
 
 B"forwardKinematics=0:1:2:3:4:5"
 means process the translations from 0 to 5 for forward kinematics.
