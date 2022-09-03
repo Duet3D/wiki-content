@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-03T08:23:47.565Z
+date: 2022-09-03T13:48:37.235Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -172,9 +172,9 @@ In RRF, XYZUVW are linear axes by default and ABC rotational axes. This correspo
 At the end of the last axis, a tool is attached. The robot's kinematics is calculation with the G10 offsets of the currently selected tool:
 * X, Y, Z are the tool's offsets in mm. Default is 0, 0, 0.
 
-If the tool has rotational elements, which may be necessary when e. g. using tool changers, there is no parameter to set them with G10. As solution is to define it at the corresponding DH parameter with the D parameter. An example will be provided in the DH document.
-
 Offsets are included in the calculation of the XYZ position. The signs of the offsets are important and depend on tool's coordinate system (explained in the DH document).
+
+Tool tilt or rotated tool can be defined through the DH parameters. The last DH definition is the tool definition, the tool tip is called endpoint. G10 XYZ offsets are added to the DH values.
 
 # M208: limits
 M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). 
