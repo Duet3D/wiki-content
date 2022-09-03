@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-03T06:03:58.312Z
+date: 2022-09-03T08:23:47.565Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -54,7 +54,7 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 
 Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
-# M669 D parameter: DH, Denavit-Hartenberg
+# M669 D parameter: Denavit-Hartenberg
 **DT specifies the actuator types**
 
 * DT:string defines the actuator type, rotary, prismatic or passive parallelogram and how they are assembled
@@ -102,7 +102,7 @@ Defining minimun and maximum angles of the joint. They are also the homing angle
 
 Set an explicit homing angle, which can be outside min and max. Min and max are assured while normal operation, but while homing, rotary movements can be outside this limits with some commands like G1 H1. Home angle will be set with either high or low end endstop.
 
-# M669 B parameter
+# M669 B parameter: special
 B allows setting for some special kinematics. In most cases, setting B parameters is not necessary.
 
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes.
@@ -127,7 +127,7 @@ B=dnOrder=!2:!1:!0:3:4:5:6"
 B"revertCoordinates=X:Y:Z"
 * revert axis movement, for cases where the robot moved the object instead of the hotend. Same result can be achieved by inverting some matrices
 
-# M669 P parameter
+# M669 P parameter: preferences
 
 The P parameter changes the behaviour of the axes. The behaviour is different, depending on the robot type.
 
@@ -142,7 +142,7 @@ P1 endpoint is always vertical, but orientation around the Z axis is not control
 P2 endpoint is always vertical and XY endpoint axes are parallel to XY cartesian coordinates. This setting is valuable for probing for mesh compensation, because the probe offset stays at the same values
 P3 endpoint is vertical and axes 4 and 6 are rotated as little as possible.
 
-# M669 S, T parameters
+# M669 S, T parameters: segmentation
 
 **Sn** Segments per second
 
@@ -164,11 +164,11 @@ For rotational axes around the X axis A will be used, around Y B and around Z C.
 
 The letters X, Y, Z when using 3 actuators, and the next defined letter if a 4th actuator is used.
 
-# M584 R0, R1
+# M584 R0, R1: axis type
 
 In RRF, XYZUVW are linear axes by default and ABC rotational axes. This corresponds to CNC conventions. The defined axes for robot kinematics should be clarified as prismatic or rotational with the M584 settings, R0 meaning prismatic/linear and R1 meaning revolute/rotational. The reason is, RRF uses this information for some calculations like the distance calculation and uses different algorithms for prismatic and rotational axes. This clarification is only needed if the used letters differ from the default assignment.
 
-# G10 tool
+# G10: tool offset
 At the end of the last axis, a tool is attached. The robot's kinematics is calculation with the G10 offsets of the currently selected tool:
 * X, Y, Z are the tool's offsets in mm. Default is 0, 0, 0.
 
@@ -176,7 +176,7 @@ If the tool has rotational elements, which may be necessary when e. g. using too
 
 Offsets are included in the calculation of the XYZ position. The signs of the offsets are important and depend on tool's coordinate system (explained in the DH document).
 
-# M208 configuration
+# M208: limits
 M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). 
 
 The robotic print area is not cubic in most cases, so the workspace differs from the M208 setting. Configuration can set M208 too small or too big:
