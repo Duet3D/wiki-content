@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-09-03T09:24:15.880Z
+date: 2022-09-03T09:26:31.870Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z
@@ -17,7 +17,7 @@ For palletizing, it is advantageous if the endpoint stays horizontal to move the
 
 The endpoint's horizontal orientation is ensured by mechanical parallelogram (often two connected parallelograms) based parallel arms. ABB IRB 460, Fanuc M-410, EEZYbotARM (thingiverse 1454048), MK2 plus (thingiverse 2520572) and R290 3 axis are examples. A similar construction, but with the stepper 3 directly connected with the arm, are handled with this construction as well, like the Kuka KR 700 and Borunte BRTIRPZ. The important property is axis 4 without actuator, which is parallel to the base plate by mechanical means.
 
-Robots like ABB IRB 8700 and Stäubli TX340 SH use a parallelogram as well and seem to be type 4 axis palletized, but they have only a parallelogram to place the motor of arm 3 to the base. They can be modeled with the normal industrial 6 axis robot configuration.
+Robots like ABB IRB 8700 and Stäubli TX340 SH use a parallelogram as well and seem to be type 4 axis palletized, but they have only a parallelogram to place the motor of arm 3 to the axis 1 plate. They can be modeled with the normal industrial 6 axis robot configuration.
 
 If an endpoint is assembled vertical to the horizontal plate at the end, the Z axis (hotend, drill) stays vertical. However, the Z axis rotation angle changes when position changes with respect to the coordinate system. This may be a disadvantage. The option is to install a 4th actuator at the plate.
 
