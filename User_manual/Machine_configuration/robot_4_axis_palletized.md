@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-08-31T22:56:49.658Z
+date: 2022-09-03T00:08:29.687Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z
@@ -66,6 +66,8 @@ The setup can be made with A parameters, describing Denavit-Hartenberg (DH) para
 |M669 K13 A"RRRRp"|3 actuators
 |M669 K13 A"RRRRpR"|4 actuators
 |M669 K13 A"PRRRRp"|3 actuators version on linear rail
+
+(p must be lowercase. Uppercase P would mean prismatic joint)
 
 Reverse mode means: the robots plate is used to place the object and the endpoint (hotend, drill) is installed above stationary. tbd: how to configure => DH parameters
 
