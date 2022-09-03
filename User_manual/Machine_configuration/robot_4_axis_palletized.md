@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-09-03T00:08:29.687Z
+date: 2022-09-03T00:09:04.290Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z
@@ -17,7 +17,7 @@ Currently, 2 * 2 subtypes are defined
 * endpoint is used as print bed or workpiece bed and moved by the robot arms, the hotend/drill is in fixed position. The XYZ movements of the robot are reverse to the G-Code movements.
 * each of the two types can be with or without the 4th actuator, assembled at the horizontal endpoint plate. Without the 4th actuator, the hotend cannot be rotated.
 
-### Role of the 4th actuator
+## Role of the 4th actuator
 
 An optional 4th actuator (if the passive 4th axis is counted, it is axis 5), is meant to rotate a gripper or other endpoint tool. I. e., it is not meant to be used for positioning. The first three actuators are sufficient for positioning: axis 1 for the angle of a circle, axis 2 and 3 to define the distance from axis 1 and Z height:
 
