@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-09-03T00:21:06.319Z
+date: 2022-09-03T00:25:28.004Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -43,7 +43,7 @@ At every stage, the position and orientation (intermediate) endpoint can be seen
 
 Every column of three numbers mean X, Y and Z element. The red column marks the X axis, the green the Y axis, the blue the Z axis, the yellow the position. Red 1/0/0 means X axis is in the direction X=1 and Y=0, Z=0, i. e. as the original coordinate system with X axis pointing to the right. If the red would be 0/0/1, it would mean the X axis points to the Z direction, straight up. The orientation numbers are orthonormal, i. e. for every vector x² + y² + z² = 1 and the three vectors are perpendicular to each other.
 
-The axis information has redundancy, because only 3 parameters are necessary to describe an orientation. One method is to use Euler angles, being three rotations. The order of the rotations is important. Often used ones are ZYX and ZYZ, named after around which axis they are rotated. ZYX is the roll-pitch-yaw order and the same order, how DH transformations are calculated (Z axis translation and rotation first). Another system is using quaternions. Euler angles have weaknesses, so quaternions are used for internal calculations, which is based on 4 numbers.
+The axis information has redundancy, because only 3 parameters are necessary to describe an orientation and 4 to describe a coordinate system. One method is to use Euler angles, being three rotations. The order of the rotations is important. Often used ones are ZYX and ZYZ', named after around which axis they are rotated. ZYX is the roll-pitch-yaw order and the same order, how DH transformations are calculated (Z axis translation and rotation first). Another system is using quaternions. Euler angles have weaknesses, so quaternions are used for internal calculations, which is based on 4 numbers.
 
 The four numbers (0 0 0 1) in the last line make sure that rotations and translations stay at their positions. They don't change.
 
