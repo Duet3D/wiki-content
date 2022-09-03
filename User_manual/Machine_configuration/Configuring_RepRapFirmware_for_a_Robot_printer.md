@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-03T05:23:55.140Z
+date: 2022-09-03T05:36:59.741Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -110,15 +110,16 @@ Set an explicit homing angle, which can be outside min and max. Min and max are 
 # M669 B parameter
 B allows setting for some special kinematics. In most cases, setting B parameters is not necessary.
 
-The code is like scripting, defining configuration on the fly. The reason was, that there are so many CNC 5 axis variants, it is difficult or impossible to test all combinations. Enabling a configuration change in the following manner allows change of kinematic behaviour. Maybe it can be enhanced for closed kinematics in a future release. Using B parameters allow remapping drives as well, when unusual drive assignments or order are used.
+CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes.
 
 B"mapDriveToDn=3A1:4C2:0X3:1Y4:2Z4"
 B"mapDriveToDn=0X1:1Y2:2Z3:p4"
-* maps RRF driver number to drive letter to the Dn n number.
+* maps drive number with drive letter with Dn
 * letters IJK have a special meaning as tool vector
 * the parallel axis of the 4 axis palletized robot is named pn, e.g. second example
-* default is 0X1:1Y2:2Z3:3A4:4B5:5C6 and abbreviated for less axes
-* the second number must be unique and nonnegative integer
+* default is 0X1:1Y2:2Z3:3A4:4B5:5C6 or abbreviated for less defined axes
+* every Dn number may be used only once
+* different drive numbers may not point to the same Dn
 * the order of the elements is not important
 
 B"dnOrder=0:1:2:3:4:5"
@@ -126,6 +127,7 @@ B=dnOrder=!2:!1:!0:3:4:5:6"
 * transformation matrix multiplications in the given order of Dn
 * ! means to invert the matrix before multiplication. Needed for workpiece mode
 * first example is the default order, second is an example for CNC 5 axis BC mode table/table
+* the list may have holes, but every number must be unique and integer nonnegative, and a corresponding Dn must exist
 
 B"revertCoordinates=X:Y:Z"
 * revert axis movement, for cases where the robot moved the object instead of the hotend. Same result can be achieved by inverting some matrices
