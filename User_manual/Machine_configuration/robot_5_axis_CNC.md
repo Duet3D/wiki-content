@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-03T23:34:22.846Z
+date: 2022-09-03T23:35:53.678Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -69,7 +69,7 @@ The following settings were deduced from the article "Transformation of CAM Data
 After describing how to get from the base to the workpiece by DH transformations which can be described by D0, D1 and D2, the view must be changed to workpiece view, because the tool orientation is measured against the workpiece surface. D0, D1 and D2 transformations must be inverted, order is important. Starting from D2 back to D0, the chain is from base to tool through D3, D4, D5 being movements of X, Y, Z axes, and D6 being tool offsets and length. The complete chain can be described by the M669 B parameter:
 
 B"dnOrder=!2:!1:!0:3:4:5:6"
-where ! means transformation matrix is inverted for workpiece mode.
+where ! means transformation matrix is inverted for workpiece mode and the DH transformations are processed in the order 2,1....6.
 The D0 to D6 parameters describe physical setup and coordinate systems of base, joints and tool. The G10 offsets are added to D6, so after a tool change the calculation will still be correct.
 
 From this transformation, the forward kinematics can be calculated: starting from G-Code XYZBC (XYZ are in mm, BC in degrees) can be calculated XYZ cartesian and IJK tool vector.
