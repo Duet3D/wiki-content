@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-03T05:36:59.741Z
+date: 2022-09-03T06:03:58.312Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -26,7 +26,7 @@ For specific robot types, example configurations and explanation of specific set
 
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-M669 K13 DT"type|R|P" should be the first line to set robot kinematics and define roughly the configuration.
+M669 K13 DT"R|P|p" must be the first M669 line.
 
 M669 without parameters will output the current settings to the console.
 
@@ -52,50 +52,45 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 * R0 no reporting, default.
 * R1 prints out time information and calculation precision to the console about running core methods of robot kinematics. Helps to find the best Q value.
 
-**Sn** Segments per second
-
-**Tn** Minimum segment length (mm). Default is 0.1 mm
-
-G1, G2, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
-
 Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
 # M669 D parameter: DH, Denavit-Hartenberg
-**D** is used to define the properties of the robot.
+**DT specifies the actuator types**
 
-* DT:string defines the actuator type, rotary or prismatic and how they are assembled
-* D0...n:parameters define DH parameters with optional Y
+* DT:string defines the actuator type, rotary, prismatic or passive parallelogram and how they are assembled
+* D0...n:parameters define DH parameters with optional Y transformations
 
-DT:"name|[R]|[P]|[Rp]|[htabc]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, Rp means revolute parallelogram closed chain without actuator, htabc are used for CNC 5 axis flavours.
+DT:"name|[R]|[P]|[p]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, p means revolute parallelogram without actuator
+* by default, the first DT axis type is assigned to D1, the second to D2 etc. This can be changed with the B parameter
+* the number of letters should match the number of defined drives. If letters are missing, R is expected. If DT is not defined, R for every actuators is expected
 * DT:"RRRRRR" means 6 axis robot with rotational axes
-* DT:"RRP" means serial scara with Z axis being prismatic (prismatic means linear movement)
-* DT:"PPP" means 3 axis cartesian printer.
+* DT:"RRP" means serial scara with third axis being prismatic
+* DT:"PPP" means 3 axis cartesian printer with three prismatic axes
 * DT:"PPPRRR" means cartesian printer with additional spheric 3 axis head
 * DT:"PPPRR" means CNC 5 axis with three linear and two rotary axes
-* DT:"RRRRp" means 4 axis palletized
-* DT:"RRRRpR" means 4 axis palletized with 4th actuator
+* DT:"RRRp" means 4 axis palletized
+* DT:"RRRpR" means 4 axis palletized with 4th actuator
 
-The DH parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles.
+**Dn specifies the parameter values for DH transformations**
 
-The joint parameters are pairwise descriptions of tranlate in mm and rotate in degrees for the Z[Y]X coordinate axis:
+The DH parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles. The joint parameters are pairwise descriptions of tranlate in mm and rotate in degrees for the Z[Y]X coordinate axis.
 
 Original set of DH parameters:
-**Djoint:d:theta:a:alpha**
+**Dn:d:theta:a:alpha**
 
-* D0 defines the base properties and allow change of default setup. D1 to DnumberOfAxes are the equivalent to DH parameters. DnumberOfAxesPlusOne are properties of the tool.
-* d offset in Z direction
+* default is to use D0 for base, D1 to Dn for actuators and Dn+1 for tool
+* d displacement in Z direction
 * theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
-* a is the distance between Z and former Z axis. If alpha is 0, 90 or -90, it is the arm length
+* a is the shortest distance between Z and former Z axis. If alpha is 0, +-90 or +-180 degrees, the distance is the arm length
 * alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
 
 Extended set with addition Y parameters:
-**Djoint:d:theta:ytr:yrot:a:alpha**
+**Dn:d:theta:ytr:yrot:a:alpha**
 
-Additionally to the DH parameters, ytr is transformation in direction of Y axis, yrot is a rotation for a rotational axis and translation for a prismatic axis.
+* values meaning as above
+* additionally, ytr and yrot define displacement and rotation/translate around the Y axis
 
-Adding the possibility to define Y axes' parameters rotation and translation to give full flexibility to define the coordinates.
-
-DH parameters with and without Y settings can be mixed.
+The two versions can be mixed in one configuration, e.g. using the Y extended verison for D2 and the short DH version for the other Dn definitions.
 
 # M669 A parameter: angles
 
@@ -146,6 +141,14 @@ P0 axes have no preference. Only when an axis touches a limit, kinematics tries 
 P1 endpoint is always vertical, but orientation around the Z axis is not controlled. Only when angle limit are reached, kinematics tries to find an alternative solution.
 P2 endpoint is always vertical and XY endpoint axes are parallel to XY cartesian coordinates. This setting is valuable for probing for mesh compensation, because the probe offset stays at the same values
 P3 endpoint is vertical and axes 4 and 6 are rotated as little as possible.
+
+# M669 S, T parameters
+
+**Sn** Segments per second
+
+**Tn** Minimum segment length (mm). Default is 0.1 mm
+
+G1, G2, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
 
 # Drive configuration
 **For a 6 axis robot the following naming will be used:**
