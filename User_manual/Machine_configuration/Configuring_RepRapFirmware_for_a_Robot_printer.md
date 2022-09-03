@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-03T13:48:37.235Z
+date: 2022-09-03T16:46:57.367Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -73,7 +73,9 @@ DT:"name|[R]|[P]|[p]*" defines the overall configuration and number of axes. R m
 
 **Dn specifies the parameter values for DH transformations**
 
-The DH parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles. The joint parameters are pairwise descriptions of tranlate in mm and rotate in degrees for the Z[Y]X coordinate axis.
+DH parameters are numbered from 0 to <numberofAxes+1>, so e.g. for a 6 axis robot, D0 is the base, D1 to D6 are DH parameters for the 6 axes and D7 are the tool DH properties. This default can be changed with the B parameter.
+
+The DH parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles. The joint parameters are pairwise descriptions of translate in mm and rotate in degrees for the Z[Y]X coordinate axis.
 
 Original set of DH parameters:
 **Dn:d:theta:a:alpha**
