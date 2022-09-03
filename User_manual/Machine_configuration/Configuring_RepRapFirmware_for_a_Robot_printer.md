@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-03T17:20:20.049Z
+date: 2022-09-03T23:11:08.603Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -122,8 +122,8 @@ B"mapDriveToDn=0X1:1Y2:2Z3:p4"
 B"dnOrder=0:1:2:3:4:5"
 B=dnOrder=!2:!1:!0:3:4:5:6"
 * transformation matrix multiplications in the given order of Dn
-* ! means to invert the matrix before multiplication. Needed for workpiece mode
-* first example is the default order, second is an example for CNC 5 axis BC mode table/table
+* first example is the default order
+* ! means to invert the matrix before multiplication. Needed for workpiece mode for CNC 5 axis. Second example is for CNC 5 axis BC mode table/table. For an example of inverting see documentation page of CNC 5 axis
 * the list may have holes, but every number must be unique and integer nonnegative, and a corresponding Dn must exist. n is between 0 and 9.
 
 B"revertCoordinates=X:Y:Z"
