@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-09-03T09:26:31.870Z
+date: 2022-09-03T09:27:13.020Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z
@@ -21,7 +21,7 @@ Robots like ABB IRB 8700 and Stäubli TX340 SH use a parallelogram as well and s
 
 If an endpoint is assembled vertical to the horizontal plate at the end, the Z axis (hotend, drill) stays vertical. However, the Z axis rotation angle changes when position changes with respect to the coordinate system. This may be a disadvantage. The option is to install a 4th actuator at the plate.
 
-Another variant is to install the workpiece on the robot and have hotend or spindle stationary.
+Another variant is to install the workpiece on the robot and have hotend or spindle stationary. An example configuration will be provided => tbd
 
 # Role of the 4th actuator
 
