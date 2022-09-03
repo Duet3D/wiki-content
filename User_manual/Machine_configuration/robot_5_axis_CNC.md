@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-02T00:14:15.074Z
+date: 2022-09-03T23:30:59.456Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -59,3 +59,21 @@ Starting from the base of the C axis plate, the coordinate system is translated 
 When calculating the chain, D0, D1 and D2 must be inverted.
 
 Forward calculates A/C or B/C to XYZ IJK position and orientation, while inverse kinematics can be calculated from XYZ IJK, resulting in XYZ AC or XYZ BC values. IJK is the tool vector with orientation vertical on the workpiece surface.
+
+# BC table/table example
+
+B means the B axis is parallel to the Y axis and is master, C is parallel to the Z axis and is slave, i. e. it is assembled on top of the B axis.
+
+The following settings were deduced from the article "Transformation of CAM Data for 5-Axis CNC Machine Spinner U5-620" by My, Cong, Hong and Bohez.
+
+After describing how to get from the base to the workpiece by DH transformations which can be described by D0, D1 and D2, the view must be changed to workpiece view, because the tool orientation is measured against the workpiece surface. D0, D1 and D2 transformations must be inverted, order is important. Starting from D2 back to D0, the chain is from base to tool through D3, D4, D5 being movements of X, Y, Z axes, and D6 being tool offsets and length. The complete chain can be described by the M669 B parameter:
+
+B"dnOrder=!2:!1:!0:3:4:5:6"
+
+where ! means transformation matrix is inverted for workpiece mode.
+
+From this transformation, the forward kinematics can be calculated: starting from G-Code XYZBC (XYZ are in mm, BC in degrees) can be calculated XYZ cartesian and IJK tool vector.
+
+The inverse kinematics is calculated by the jacobian, generalized inverse method and gets from XYZ position and IJK orientation the XYZ machine position of the linear axes and the BC angles.
+
+The calculations allow correct positions and orientations for every segment of a move, like RTCP. It is however important to have a good path planner on the CAM side.
