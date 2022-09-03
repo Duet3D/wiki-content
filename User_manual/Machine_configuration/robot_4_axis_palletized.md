@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-09-03T09:16:52.272Z
+date: 2022-09-03T09:18:18.660Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z
@@ -107,7 +107,7 @@ D3 defines next main arm as 100 mm, min angle -100, home 0, max 0. Coordinate sy
 D4 defines to rotate X axis by 90 to prepare correct orientation of the tool. The angle by Z axis is automatically set by the parallelogram, but if an angle is set here, it will be added to this value.
 D5 is the tool setting, 100 is the ztrans value, the tool length. The XYZ values will be overwritten by the G10 XYZ values of the currently selected tool.
 
-A1 to A3 define min, max and optionally home angles. A4 can be defined for min and max, if there are technical angle restrictions to the angle. Angle violations will be reported with a G1 error message and the planned move will fail partly or completely (depending on whether it is a 3D print or CNC/Laser mode).
+A1 to A3 define min, max and optionally home angles. A4 can be defined for min and max, if there are technical angle restrictions to the angle. Angle violations will be reported with a G1 error message and the planned move will fail partly or completely (depending on whether it is a 3D print or CNC/Laser mode. Both will probably ruin the workpiece).
 
 # Mesh compensation
 
