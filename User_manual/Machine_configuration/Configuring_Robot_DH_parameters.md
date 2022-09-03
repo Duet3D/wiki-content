@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-09-02T08:27:29.021Z
+date: 2022-09-03T00:17:59.098Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -64,9 +64,9 @@ To give maximum flexibility, robot kinematics allows two additional parameters:
 
 The order of transformations is important, because matrix multiplications' orders are not commutative. DH transformations are in the order ZX, the extended version ZYX (which is the same order like RPY in aviation).
 
-The transformations are 4x4 matrices and are chained to calculate the complete transformation from base to endpoint. The result is a position and orientation.
+The transformations are 4x4 matrices as described above and are chained to calculate the complete transformation from base to endpoint. The result is a position and orientation of the endpoint (e. g. hotend nozzle, drill tip).
 
-The traditional DH parameters start with joint 1 and assumes the first axis being vertical (like the 3D printing coordinate system with X to right, Y behind, Z to top). The model includes the base coordinate in A0 and can turn the first axis and displace it, so the robot's origin can have X, Y, Z offsets.
+The traditional DH parameters start with joint 1 and assumes the first axis being vertical (like the 3D printing coordinate system with X to right, Y behind, Z to top). The model includes the base coordinate in A0 and can turn the first axis and displace it, so the robot's origin can have X, Y, Z offsets. Using the M669 B parameter gives unlimited DH parameters.
 
 # Finding the parameters
 To find the correct coordinate system of an axis, those steps are necessary:
@@ -76,8 +76,6 @@ To find the correct coordinate system of an axis, those steps are necessary:
 * measuring and setting the displacements
 
 The DWC plugin RobotViewer helps with the configuration.
-
-Contrary to some examples like the example below (moving the coordinate system of axis 4 to 3), reducing some values by aggregating them is not necessary and is disadvantageous. It is planned to support a calibration mode to calculate back from a measured endpoint to the parameters. This only makes sense if the DH parameters reflect reality. In the past, performance and memory consumption were important parameters and for this reason calculation values were merged, but not so much today.
 
 # Example 1 joint 1
 For the following examples, the DH parameter table from [this video](https://www.youtube.com/watch?v=nwj0xR21ldo){target=_blank} is used.
