@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-09-03T08:41:11.931Z
+date: 2022-09-03T08:45:58.593Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z
@@ -50,7 +50,7 @@ The endpoint plate stays horizontal by the following construction :
 
 Changing arm 2 will change the lower parallelgram, changing arm 3 will change the right parallelogram. Both parallelgrams are connected by the triangle, so the angle of base is transmitted to the endpoint plate, which remains parallel to the base.
 
-The workspace is like, being like a donut by rotating by axis 1:
+The workspace looks like a donut:
 
 ![4axisparall_workspace.png](/manual/configuration/4axisparall_workspace.png)
 
