@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-09-03T00:09:04.290Z
+date: 2022-09-03T00:10:41.205Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z
@@ -17,7 +17,7 @@ Currently, 2 * 2 subtypes are defined
 * endpoint is used as print bed or workpiece bed and moved by the robot arms, the hotend/drill is in fixed position. The XYZ movements of the robot are reverse to the G-Code movements.
 * each of the two types can be with or without the 4th actuator, assembled at the horizontal endpoint plate. Without the 4th actuator, the hotend cannot be rotated.
 
-## Role of the 4th actuator
+# Role of the 4th actuator
 
 An optional 4th actuator (if the passive 4th axis is counted, it is axis 5), is meant to rotate a gripper or other endpoint tool. I. e., it is not meant to be used for positioning. The first three actuators are sufficient for positioning: axis 1 for the angle of a circle, axis 2 and 3 to define the distance from axis 1 and Z height:
 
@@ -25,7 +25,7 @@ An optional 4th actuator (if the passive 4th axis is counted, it is axis 5), is 
 
 The optional 4th actuator (axis 5) position change (by rotating, XY is changing) is not taken into account to reach the G-Code cartesian coordinates. Instead, the middle axis coordinate of the 4th actuator is taken as endpoint, with additional G10 offsets of the tool (hotend, drill). The 4th actuator can be controlled by it's drive letter, but it (in this release) doesn't change XYZ cartesian coordinates in the firmware. If the tool has 0,0 XY offset from the 4th actuator, rotating it will not change the XY position, but only the orientation of the endpoint (rotation by Z axis).
 
-### Construction
+# Construction
 
 As example a 4 axis palletize robot which can be found as R290 3 axis robot (3 axes with actuators, 4 th passive axis):
 
@@ -48,7 +48,7 @@ The workspace is like, being like a donut by rotating by axis 1:
 
 ![4axisparall_workspace.png](/manual/configuration/4axisparall_workspace.png)
 
-### Homing, arm lenghts
+# Homing, arm lenghts
 
 Axis 1 and if it exists axis 5 (4) is configured as usual: homing and setting the angle to the correct value in respect to the choosen coordinate system.
 
@@ -58,7 +58,7 @@ The short red line is the distance between the last joint and the assembly plate
 
 The arm lengths are the lengths of the red lines also, i. e. the distance of the joints, not the physical arm lengths. The arms could have different forms (e. g. curved), this doesn't change the configured values. Curved arms could have the advantage to give bigger min&max angles.
 
-### Configuration
+# Configuration
 
 The setup can be made with A parameters, describing Denavit-Hartenberg (DH) parameters, or with B parameters.
 
@@ -75,7 +75,7 @@ Default is axis 1 being vertical, axes 2 to 4 (4 is without actuator) being hori
 
 The 4th axis is calculated from axes 2 and 3: angle 2 + angle 3 + angle 4 = 0.
 
-### An example DH definition looks like this:
+# An example DH definition looks like this:
 
 M669 K13 A"RRRRp"
 
@@ -102,10 +102,10 @@ D3 defines next main arm as 100 mm, min angle -100, home 0, max 0. Coordinate sy
 D4 defines to rotate X axis by 90 to prepare correct orientation of the tool. The angle by Z axis is automatically set by the parallelogram, but if an angle is set here, it will be added to this value.
 D5 is the tool setting, 100 is the ztrans value, the tool length. The XYZ values will be overwritten by the G10 XYZ values of the currently selected tool.
 
-### Mesh compensation
+# Mesh compensation
 
 When no 5th axis is installed, the endpoint rotates when axis 1 rotates, so mesh compensation with a probe with XY offset <> 0 is not possible by default. A solution is to define the probe as if it is a tool and the probe being at tool's position: defining G10 to point to the probe, and setting probe properties to XY 0,0 offset. Then measuring and storing the results with the correct coordinates. Then setting back the G10 properties to the true tool offsets, then print with mesh compensation activated.
 
-### Documentation
+# More information
 
 A very good explanation of the IRB 460 robot is the article "17. Cristoiu and Nicolescu, New Approach For Forward Kinematics Modeling of Industrial Robots with Closed Kinematic Chain", which can be found as pdf. Firmware uses a simpler method for calculation than described in the document, assuming that the endpoint platform is parallel to the base.
