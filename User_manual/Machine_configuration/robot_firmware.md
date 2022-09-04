@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-03T00:28:36.088Z
+date: 2022-09-04T08:27:26.886Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -42,7 +42,7 @@ Setting to workpiece mode instead means that the DH parameters are transforming 
 
 Examples for workpiece mode is CNC 5 axis with rotary axes on the table like Open5x and 4 axis palletized with the print object installed on the robot endpoint and the hotend stationary outside the robot. Example configurations are provided in the robot type documents about CNC 5 axis and 4 axis palletized.
 
-Additional information about the mathematics of world and workpiece mode is described in the firmware document. (tbd)
+Workpiece mode means that the transformation matrices need to be multiplied in back order. I was a bit suprised, that I could invert the ZYX rotation matrix directly by inverting it. I expected that I have to change rotation/transformation order from ZYX to XYZ before inverting, but it is not the case, as A-1B-1 = (BA)-1, so X-1Y-1Z-1=(ZYX)-1, so it's sufficient to invert ZYX.
 
 # Orientation types
 
