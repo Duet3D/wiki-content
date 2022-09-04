@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-03T23:21:39.175Z
+date: 2022-09-04T09:20:56.245Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -26,7 +26,7 @@ For specific robot types, example configurations and explanation of specific set
 
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-M669 K13 DT"R|P|p" must be the first M669 line.
+M669 K13 D"T=R|P|p" must be the first M669 line.
 
 M669 without parameters will output the current settings to the console.
 
@@ -34,7 +34,7 @@ Most parameters are described in separate sections below.
 
 Overview
 * K13 defines robot kinematics and must be defined first
-* D defines the Denavit-Hartenberg parameters
+* D defines the actuator types and Denavit-Hartenberg parameters
 * A defines the minimum, maximum and home angles
 * B allows setting specific parameters directly
 * P behaviour of axes, specific for a robot type
@@ -57,19 +57,19 @@ Most of the parameters can be changed by accessing the object model also. Most c
 # M669 D parameter: Denavit-Hartenberg
 **DT specifies the actuator types**
 
-* DT:string defines the actuator type, rotary, prismatic or passive parallelogram and how they are assembled
+* D"T=string" defines the actuator type, rotary, prismatic or passive parallelogram and how they are assembled
 * D0...n:parameters define DH parameters with optional Y transformations
 
-DT:"name|[R]|[P]|[p]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, p means revolute parallelogram without actuator
+D"T=name|[R]|[P]|[p]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, p means revolute parallelogram without actuator
 * by default, the first DT axis type is assigned to D1, the second to D2 etc. This can be changed with the B parameter
 * the number of letters should match the number of defined drives. If letters are missing, R is expected. If DT is not defined, R for every actuators is expected
-* DT:"RRRRRR" means 6 axis robot with rotational axes
-* DT:"RRP" means serial scara with third axis being prismatic
-* DT:"PPP" means 3 axis cartesian printer with three prismatic axes
-* DT:"PPPRRR" means cartesian printer with additional spheric 3 axis head
-* DT:"PPPRR" means CNC 5 axis with three linear and two rotary axes
-* DT:"RRRp" means 4 axis palletized
-* DT:"RRRpR" means 4 axis palletized with 4th actuator
+* D"T=RRRRRR" means 6 axis robot with rotational axes
+* D"T=RRP" means serial scara with third axis being prismatic
+* D"T=PPP" means 3 axis cartesian printer with three prismatic axes
+* D"T=PPPRRR" means cartesian printer with additional spheric 3 axis head
+* D"T=PPPRR" means CNC 5 axis with three linear and two rotary axes
+* D"T=RRRp" means 4 axis palletized
+* D"T=RRRpR" means 4 axis palletized with 4th actuator
 
 **Dn specifies the parameter values for DH transformations**
 
@@ -98,11 +98,11 @@ The two versions can be mixed in one configuration, e.g. using the Y extended ve
 
 **Ajoint:min:max**
 
-Defining minimun and maximum angles of the joint. They are also the homing angles when homing switches are triggered.
+Defining minimun and maximum angles of the joint. They are also the homing angles when low or high homing switch is triggered.
 
 **Ajoint:min:max:home**
 
-Set an explicit homing angle, which can be outside min and max. Min and max are assured while normal operation, but while homing, rotary movements can be outside this limits with some commands like G1 H1. Home angle will be set with either high or low end endstop.
+Set an explicit homing angle, which can be even outside min and max. Min and max are assured while normal operation, but while homing, rotary movements can be outside this limits with some commands like G1 H1.
 
 # M669 B parameter: special
 B allows setting for some special kinematics. In most cases, setting B parameters is not necessary.
