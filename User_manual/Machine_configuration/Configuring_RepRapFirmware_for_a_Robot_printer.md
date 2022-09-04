@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T10:17:19.772Z
+date: 2022-09-04T10:54:56.496Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -26,7 +26,7 @@ For specific robot types, example configurations and explanation of specific set
 
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-M669 K13 D"T=R|P|p" must be the first M669 line.
+M669 K13 B"actuatorTypes=R|P|p" must be the first M669 line.
 
 M669 without parameters will output the current settings to the console.
 
@@ -36,7 +36,7 @@ Overview
 * K13 defines robot kinematics and must be defined first
 * D defines the actuator types and Denavit-Hartenberg parameters
 * A defines the minimum, maximum and home angles
-* B allows setting specific parameters directly
+* B defines actuator types and specific other settings
 * P behaviour of axes, specific for a robot type
 * Q quality of calculation to allow balance between precision and time needed for calculation
 * R reporting mode to get information about current configuration or recommendations about good parameter settings
@@ -55,31 +55,14 @@ Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time n
 Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
 # M669 D parameter: Denavit-Hartenberg
-**DT specifies the actuator types**
-
-* D"T=string" defines the actuator type, rotary, prismatic or passive parallelogram and how they are assembled
-* D0...n:parameters define DH parameters with optional Y transformations
-
-D"T=name|[R]|[P]|[p]*" defines the overall configuration and number of axes. R mean revolute (rotational), P is prismatic (translational, linear) joint, p means revolute parallelogram without actuator
-* by default, the first DT axis type is assigned to D1, the second to D2 etc. This can be changed with the B parameter
-* the number of letters should match the number of defined drives. If letters are missing, R is expected. If DT is not defined, R for every actuators is expected
-* D"T=RRRRRR" means 6 axis robot with rotational axes
-* D"T=RRP" means serial scara with third axis being prismatic
-* D"T=PPP" means 3 axis cartesian printer with three prismatic axes
-* D"T=PPPRRR" means cartesian printer with additional spheric 3 axis head
-* D"T=PPPRR" means CNC 5 axis with three linear and two rotary axes
-* D"T=RRRp" means 4 axis palletized
-* D"T=RRRpR" means 4 axis palletized with 4th actuator
-
-**Dn specifies the parameter values for DH transformations**
-
 DH parameters are numbered from 0 to <numberofAxes+1>, so e.g. for a 6 axis robot, D0 is the base, D1 to D6 are DH parameters for the 6 axes and D7 are the tool DH properties. This default can be changed with the B parameter.
 
-The DH parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles. The joint parameters are pairwise descriptions of translate in mm and rotate in degrees for the Z[Y]X coordinate axis.
+The D parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles. The joint parameters are pairwise descriptions of translate in mm and rotate in degrees for the Z[Y]X coordinate axis.
 
 Original set of DH parameters:
 **Dn:d:theta:a:alpha**
 
+* n are values between 0 and 9
 * default is to use D0 for base, D1 to Dn for actuators and Dn+1 for tool
 * d displacement in Z direction
 * theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
@@ -92,24 +75,39 @@ Extended set with addition Y parameters:
 * values meaning as above
 * additionally, ytr and yrot define displacement and rotation/translate around the Y axis
 
-The two versions can be mixed in one configuration, e.g. using the Y extended verison for D2 and the short DH version for the other Dn definitions.
+The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0 each.
 
 # M669 A parameter: angles
 
-**Ajoint:min:max**
+**Ajoint:min:max[:home]**
 
 Defining minimun and maximum angles of the joint. They are also the homing angles when low or high homing switch is triggered.
 
-**Ajoint:min:max:home**
+The option home sets an explicit homing angle which can even be outside min and max.
 
-Set an explicit homing angle, which can be even outside min and max. Min and max are assured while normal operation, but while homing, rotary movements can be outside this limits with some commands like G1 H1.
+# M669 B parameter: axisTypes, special
+**B"axisTypes=[R]|[P]|[p]*"**
+defines the type of the axes.
 
-# M669 B parameter: special
-B allows setting for some special kinematics. In most cases, setting B parameters is not necessary.
+* R means rotational/revolute, units are degrees, speeds e.g. degrees/min
+* P means prismatic/linear, units are mm
+* p (lower case p) means passive joint without actuator with parallelogram (see 4 axis palletized robot type)
+* if the parameter is not set or types missing, R is expected
+* default is R for all axes
 
-CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes.
+Examples:
 
-B"mapDriveToDn=3A1:4C2:0X3:1Y4:2Z4"
+* B"axisTypes=RRRRRR" means 6 axis robot with rotational axes
+* B"axisTypes=RRP" means serial scara with third axis being prismatic
+* B"axisTypes=PPP" means 3 axis cartesian printer with three prismatic axes
+* B"axisTypes=PPPRRR" means cartesian printer with additional spheric 3 axis head
+* B"axisTypes=PPPRR" means CNC 5 axis with three linear and two rotary axes
+* B"axisTypes=RRRp" means 4 axis palletized
+* B"axisTypes=RRRpR" means 4 axis palletized with 4th actuator
+
+CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
+
+**B"mapDriveToDn=3A1:4C2:0X3:1Y4:2Z4"**
 B"mapDriveToDn=0X1:1Y2:2Z3:p4"
 * maps drive number with drive letter with Dn
 * letters IJK have a special meaning as tool vector
@@ -119,14 +117,14 @@ B"mapDriveToDn=0X1:1Y2:2Z3:p4"
 * different drive numbers may not point to the same Dn
 * the order of the elements is not important
 
-B"dnOrder=0:1:2:3:4:5"
+**B"dnOrder=0:1:2:3:4:5"**
 B"dnOrder=!2:!1:!0:3:4:5:6"
 * transformation matrix multiplications in the given order of Dn
 * first example is the default order
 * ! means to invert the matrix before multiplication. Needed for workpiece mode for CNC 5 axis. Second example is for CNC 5 axis BC mode table/table. For an example of inverting see documentation page of CNC 5 axis
 * the list may have holes, but every number must be unique and integer nonnegative, and a corresponding Dn must exist. n is between 0 and 9.
 
-B"revertCoordinates=X:Y:Z"
+**B"revertCoordinates=X:Y:Z"**
 * revert axis movement, for cases where the robot moved the object instead of the hotend. Same result can be achieved by inverting some matrices
 
 # M669 P parameter: preferences
