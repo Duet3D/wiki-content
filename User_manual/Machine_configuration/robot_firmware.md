@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-04T08:32:17.948Z
+date: 2022-09-04T08:33:49.377Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -44,6 +44,7 @@ Examples for workpiece mode is CNC 5 axis with rotary axes on the table like Ope
 
 Workpiece mode means that the transformation matrices need to be multiplied in back order. I was a bit suprised, that I could invert the ZYX rotation matrix directly by inverting it. I expected that I have to change rotation/transformation order from ZYX to XYZ before inverting, but it is not the case, as A-1B-1 = (BA)-1, so X-1Y-1Z-1=(ZYX)-1, so it's sufficient to invert ZYX. Inversion of tranformation matrix is different from invert of a matrix:
 ![transfmatrixinvert_small.png](/manual/configuration/transfmatrixinvert_small.png)
+T are transposes, R is the rotation matrix, t is the position matrix.
 
 # Orientation types
 
