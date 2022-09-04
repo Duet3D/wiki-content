@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T10:57:25.566Z
+date: 2022-09-04T10:59:48.117Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -27,7 +27,9 @@ M669 K13 B"axisTypes=R|P|p" must be the first M669 line.
 
 M669 without parameters will output the current settings to the console.
 
-Most parameters are described in separate sections below.
+> tbd check: maybe D1 D2 ... must be in separate lines.
+{.is-warning}
+
 
 Overview
 * K13 set robot kinematics and must be defined first
