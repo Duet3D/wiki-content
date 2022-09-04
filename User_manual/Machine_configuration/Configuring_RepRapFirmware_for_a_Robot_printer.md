@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T11:06:46.121Z
+date: 2022-09-04T11:29:57.654Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -86,7 +86,7 @@ The option home sets an explicit homing angle which can even be outside min and 
 
 # M669 B parameter: axisTypes, special
 **B"axisTypes=[R]|[P]|[p]*"**
-defines the type of the axes.
+defines the type of the axes. (Robot experts avoid the name axis and talk of joints and robot arms are similar to links)
 
 * R means rotational/revolute, units are degrees, speeds e.g. degrees/min
 * P means prismatic/linear, units are mm
