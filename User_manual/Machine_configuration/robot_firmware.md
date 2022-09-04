@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-04T08:33:49.377Z
+date: 2022-09-04T08:40:17.876Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -112,7 +112,7 @@ Singularities will be solved by adding Moore-Penrose inverse calculation in the 
 Near and at a singularity, the angular speed of a single or few actuators would grow to infinity and stop printing. The solution is to avoid singularities or to set those angular speed to 0 and accept some inaccuracy. The affected segments are corrected and the surrounding ones smoothing down to velocity values approaching 0 to avoid jerks. The M203 and M201 (and maybe M566) settings are used as upper angular velocity limits for each actuator.
 
 # Tool offsets and orientation
-Tool offsets are defined by G10 X, Y, Z offsets. If the tool changes orientation, this can be defined by direcly changing DH parameters. This is explained in the DH document.
+Tool offsets are defined by G10 X, Y, Z offsets. There are no parameters for tool orientation in G10 (a proposal would be to add IJK), so a modification of the DH parameters directly is needed, if the tool itself is not vertical. When changing tools with a toolchanger, each tool could have it's own tilt values.
 
 # Letters cartesian vs axis
 
