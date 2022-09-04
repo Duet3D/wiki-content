@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T11:31:45.295Z
+date: 2022-09-04T11:38:01.567Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -76,6 +76,9 @@ Extended set with addition Y parameters:
 
 The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0 each.
 
+Example:
+* D1:100.0:0.0:0.0:90.0 means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
+
 # M669 A parameter: angles
 
 **Ajoint:min:max[:home]**
@@ -83,6 +86,9 @@ The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0
 Defining minimun and maximum angles of the joint. They are also the homing angles when low or high homing switch is triggered.
 
 The option home sets an explicit homing angle which can even be outside min and max.
+
+Example:
+* A-180.0:180.0:0.0 means the axis can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
 
 # M669 B parameter: axisTypes, special
 **B"axisTypes=[R]|[P]|[p]*"**
