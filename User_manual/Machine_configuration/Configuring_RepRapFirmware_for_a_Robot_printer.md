@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T09:20:56.245Z
+date: 2022-09-04T10:11:14.480Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -200,3 +200,9 @@ Some robot setups can assure the constant XYZ offset between probe and hotend, s
 * a toolchanger can load a probe instead of a tool and measure at 0,0
 
 After the mesh is measured and stored, the probe is not needed anymore. To avoid collision with the print object later when the hotend tilts (and with it the probe), a mechanical removal of the probe or a save distance in Z direction should be considered.
+
+# Configuration first testing
+When configuration is stored and Duet rebooted, the following procedure shall avoid damages:
+* G91 G1 H2 X1 to check whether first axis rotates into the expected direction and it is the correct axis. Use low values in case the M92 setting is wrong. Repeat with the other axes. Check letter assignments, positive and negative angles interpreted as expected, and whether rotation degrees are correct
+* G91 G1 H2 Xn with bigger values to assure that the M92 settings are correct
+* home the individual axes and assure that the endstops are triggered. M114 Count values can be used to check the stored motor position value for the homing position.
