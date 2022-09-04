@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T10:54:56.496Z
+date: 2022-09-04T10:57:25.566Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -21,22 +21,19 @@ When Duet starts after power on, it needs to know how to behave. Reading the fil
 For specific robot types, example configurations and explanation of specific settings, please see the document about robot types.
 
 # M669 configuration
-
-**I've split the old A parameter into D and A, because it was very easy to use track with 10 values in one string. D are the DH parameters and A are angle definitions, with added  options for short versions.**
-
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-M669 K13 B"actuatorTypes=R|P|p" must be the first M669 line.
+M669 K13 B"axisTypes=R|P|p" must be the first M669 line.
 
 M669 without parameters will output the current settings to the console.
 
 Most parameters are described in separate sections below.
 
 Overview
-* K13 defines robot kinematics and must be defined first
-* D defines the actuator types and Denavit-Hartenberg parameters
-* A defines the minimum, maximum and home angles
-* B defines actuator types and specific other settings
+* K13 set robot kinematics and must be defined first
+* D Denavit-Hartenberg (DH) parameters
+* A minimum, maximum and home angles
+* B axis types, specific settings
 * P behaviour of axes, specific for a robot type
 * Q quality of calculation to allow balance between precision and time needed for calculation
 * R reporting mode to get information about current configuration or recommendations about good parameter settings
