@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T11:41:43.816Z
+date: 2022-09-04T11:51:58.363Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -30,26 +30,16 @@ M669 without parameters will output the current settings to the console.
 > tbd check: maybe D1 D2 ... must be in separate lines.
 {.is-warning}
 
-
 Overview
 * K13 set robot kinematics and must be defined first
 * D Denavit-Hartenberg (DH) parameters
 * A minimum, maximum and home angles
 * B axis types, specific settings
-* P behaviour of axes, specific for a robot type
-* Q quality of calculation to allow balance between precision and time needed for calculation
-* R reporting mode to get information about current configuration or recommendations about good parameter settings
+* P (preferences)
+* Q quality
+* R (reporting)
 * S segments per second
 * T minimum segment length in mm
-
-
-**Qn** quality of calculation
-
-Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time needed to calculate depends on the processor speed. Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality. Default is Q3
-
-**R** Reporting modes (this parameter will change often)
-* R0 no reporting, default.
-* R1 prints out time information and calculation precision to the console about running core methods of robot kinematics. Helps to find the best Q value.
 
 Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
@@ -133,20 +123,17 @@ B"dnOrder=!2:!1:!0:3:4:5:6"
 **B"revertCoordinates=X:Y:Z"**
 * revert axis movement, for cases where the robot moved the object instead of the hotend. Same result can be achieved by inverting some matrices
 
+The upper limit of 10 values for Dn is artificial to be able to use fixed sized arrays. It can be changed by changing MAXNUMOFAXES in source code and recompiling RRF.
+
 # M669 P parameter: preferences
+P is currently not used.
 
-The P parameter changes the behaviour of the axes. The behaviour is different, depending on the robot type.
+# M669 Q parameter: quality
 
-When a behaviour cannot be met, the kinematics throws an unreachable error and outputs an explanation to the console.
+Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time needed to calculate depends on the processor speed. Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality. Default is Q3
 
-The P can be changed and is effective at any time between moves.
-
-**6 axis robot with 6 rotary axes**
-
-P0 axes have no preference. Only when an axis touches a limit, kinematics tries to find an alternative solution. Default
-P1 endpoint is always vertical, but orientation around the Z axis is not controlled. Only when angle limit are reached, kinematics tries to find an alternative solution.
-P2 endpoint is always vertical and XY endpoint axes are parallel to XY cartesian coordinates. This setting is valuable for probing for mesh compensation, because the probe offset stays at the same values
-P3 endpoint is vertical and axes 4 and 6 are rotated as little as possible.
+# M669 R parameter: reporting
+R is currently not used. Maybe reporting fits better and will be implemented in RobotViewer, a DWC plugin.
 
 # M669 S, T parameters: segmentation
 
