@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T18:44:15.529Z
+date: 2022-09-04T19:17:52.471Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -71,15 +71,12 @@ Example:
 
 # M669 A parameter: angles
 
-**Ajoint:min:max[:home]**
+**Ajoint:min:max:home**
 
-Defining minimun and maximum angles of the joint. They are also the homing angles when low or high homing switch is triggered.
-
-The option home sets an explicit homing angle which can even be outside min and max.
+Defining minimun and maximum angles of the joint. Home is the angle which is set when the endstop is triggered. The home angle can be outside min and max.
 
 Example:
 * A1:-180.0:180.0:0.0 means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
-* A1:-180.0:180.0 means the motor position of axis 1 is set to -180 if the endstop is triggered and was defined as low endstop, and to 180 if the endstop is trigggered and was defined as high endstop
 
 # M669 B parameter: axisTypes, special
 **B"axisTypes=[R]|[P]|[p]*"**
