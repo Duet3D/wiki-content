@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T11:51:58.363Z
+date: 2022-09-04T18:44:15.529Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -103,7 +103,7 @@ Examples:
 
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
 
-**B"mapDriveToDn=3A1:4C2:0X3:1Y4:2Z4"**
+**B"mapDriveToDn=3A1:4C2:0X3:1Y4:2Z5"**
 B"mapDriveToDn=0X1:1Y2:2Z3:p4"
 * maps drive number with drive letter with Dn
 * letters IJK have a special meaning as tool vector
