@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T11:29:57.654Z
+date: 2022-09-04T11:31:45.295Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -102,7 +102,7 @@ Examples:
 * B"axisTypes=PPPRRR" means cartesian printer with additional spheric 3 axis head
 * B"axisTypes=PPPRR" means CNC 5 axis with three linear and two rotary axes
 * B"axisTypes=RRRp" means 4 axis palletized
-* B"axisTypes=RRRpR" means 4 axis palletized with 4th actuator
+* B"axisTypes=RRRpR" means 4 axis palletized with 4th actuator, so 5 axes in total
 
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
 
