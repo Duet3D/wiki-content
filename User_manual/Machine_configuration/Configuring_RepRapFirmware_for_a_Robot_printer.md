@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-05T07:21:35.804Z
+date: 2022-09-05T07:42:01.507Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -35,7 +35,6 @@ Overview
 * D Denavit-Hartenberg (DH) parameters
 * A minimum, maximum and home angles
 * B axis types, specific settings
-* P preferences
 * Q quality
 * S segments per second
 * T minimum segment length in mm
@@ -113,14 +112,6 @@ B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 
 **B"revertCoordinates=X:Y:Z"**
 * revert axis movement, for cases where the robot moved the object instead of the hotend. This will be explained in detail on the page about 4 axis palletized robots.
-
-# M669 P parameter: preferences
-P sets preferences
-* P0 no endpoint preference, default
-* P1 sets endpoint to be parallel to X axis
-* P2 sets endpoint to the direction of print/drill path
-
-Endpoint orientations can only be set when the robot is able to rotate its endpoint with actuator(s), otherwise an error will be reported when it shall be applied first time.
 
 # M669 Q parameter: quality
 
