@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2022-09-02T13:27:48.069Z
+date: 2022-09-05T13:26:26.816Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -66,6 +66,10 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 For firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
 If running from an SBC, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
+
+There are some limits on firmware and hardware configuration. See:
+* [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits)
+* [CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations)
 
 ## Open Source
 
