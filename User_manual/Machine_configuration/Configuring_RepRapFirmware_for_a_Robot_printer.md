@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-05T07:42:01.507Z
+date: 2022-09-05T12:02:10.039Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -66,6 +66,7 @@ The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0
 
 Example:
 * D1:100.0:0:0:90.0 means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
+* D6 clears the definitions of D6 and removes D6 from the chain
 
 # M669 A parameter: angles
 
