@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-05T00:47:58.874Z
+date: 2022-09-05T06:33:23.770Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -35,28 +35,27 @@ Overview
 * D Denavit-Hartenberg (DH) parameters
 * A minimum, maximum and home angles
 * B axis types, specific settings
-* P (preferences)
+* P preferences
 * Q quality
-* R (reporting)
 * S segments per second
 * T minimum segment length in mm
 
 Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
 # M669 D parameter: Denavit-Hartenberg
-DH parameters are numbered from 0 to <numberofAxes+1>, so e.g. for a 6 axis robot, D0 is the base, D1 to D6 are DH parameters for the 6 axes and D7 are the tool DH properties. The Transformations are processed in the order starting from 0 to highest number.
+Dn define DH parameters and are numbered from 0 to maximum 9. In most cases, D0 is the base, D1 to Dx are DH parameters for the x axes and D(x+1) are the tool DH properties. The Transformations are processed in the order starting from 0 to highest number, the numbers may not have gaps.
 
 Every Dn contains three translates and three rotations by Z, Y, X axis in this order. The joint parameters are pairwise descriptions of translate in mm and rotate in degrees for the Z[Y]X coordinate axis.
 
 Original set of DH parameters:
 **Dn:d:theta:a:alpha**
 
+* the original DH definition define Z axis and X axis translate and rotate each, but no Y axis change
 * n are unique integer numbers starting from 0
-* default is to use D0 for base, D1 to Dn for actuators and Dn+1 for tool
 * d displacement in Z direction
-* theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
+* theta rotation by Z axis, added to the variable theta angle
 * a is the shortest distance between Z and former Z axis. If alpha is 0, +-90 or +-180 degrees, the distance is the arm length
-* alpha, which is the X axis rotation and is as high as the Z and former Z angle difference. Often 0, 180, 90 or -90 degrees
+* alpha is the X axis rotation
 
 Extended set with addition Y parameters:
 **Dn:d:theta:ytr:yrot:a:alpha**
@@ -67,7 +66,7 @@ Extended set with addition Y parameters:
 The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0 each.
 
 Example:
-* D1:100.0:0.0:0.0:90.0 means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
+* D1:100.0:0:0:90.0 means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
 
 # M669 A parameter: angles
 
@@ -80,7 +79,7 @@ Example:
 
 # M669 B parameter: axisTypes, special
 **B"axisTypes=[R]|[P]|[p]*"**
-defines the type of the axes. (Robot experts avoid the name axis and talk of joints and robot arms are similar to links)
+defines the type of the axes
 
 * R means rotational/revolute, units are degrees, speeds e.g. degrees/min
 * P means prismatic/linear, units are mm
@@ -110,20 +109,17 @@ B"mapDriveToDn=0X1:1Y2:2Z3:p4"
 * the order of the elements is not important
 
 **B"dnInvert=0:1:2"**
-* the specified Dn DH transformations will be transformation matrix inverted. This is not the matrix inverse, but translate and rotate back, i. e. changing the direction of the transformation. It is needed when changing from world to workpiece mode. This will be explained in detail on the page about CNC 5 axis.
+* the specified Dn transformations will be inverted. It is needed when changing from world to workpiece mode. This will be explained in detail on the page about CNC 5 axis.
 
 **B"revertCoordinates=X:Y:Z"**
-* revert axis movement, for cases where the robot moved the object instead of the hotend. Same result can be achieved by inverting some matrices
+* revert axis movement, for cases where the robot moved the object instead of the hotend. This will be explained in detail on the page about 4 axis palletized robots.
 
 # M669 P parameter: preferences
-P is currently not used.
+currently not implemented
 
 # M669 Q parameter: quality
 
 Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time needed to calculate depends on the processor speed. Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality. Default is Q3
-
-# M669 R parameter: reporting
-R is currently not used. Maybe reporting fits better and will be implemented in RobotViewer, a DWC plugin.
 
 # M669 S, T parameters: segmentation
 
@@ -132,20 +128,6 @@ R is currently not used. Maybe reporting fits better and will be implemented in 
 **Tn** Minimum segment length (mm). Default is 0.1 mm
 
 G1, G2, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
-
-# Drive configuration
-**For a 6 axis robot the following naming will be used:**
-
-The 6 axes are named XYZUVW. Additional axes for 7 and more axis robots will be named ABC... M92 values are steps per degree for rotational axes and steps per mm for prismatic axes.
-
-**For a 5 axis CNC and 3D printers like Open5x the following naming will be used:**
-
-For rotational axes around the X axis A will be used, around Y B and around Z C. 5 axis CNC uses three linear axes XYZ and two rotational ones AB, AC or BC. The rotational axes can be installed at the spindle, called head/head, at the workpiece, called table/table, or mixed head/table. Open5x uses UV for rotational axes in G-Code, it is converted to the AT parameters. UV must be defined to rotational by M584 R1 in this case.
-
-**For a 4 axis palletized robot (closed chain) this naming is used:**
-(like ABB IRB 460, Kuka KR 700, Fanuc M-410)
-
-The letters X, Y, Z when using 3 actuators, and the next defined letter if a 4th actuator is used.
 
 # M584 R0, R1: axis type
 
