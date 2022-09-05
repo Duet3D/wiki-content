@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-09-05T13:28:37.779Z
+date: 2022-09-05T13:33:41.815Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -68,13 +68,13 @@ The main hardware features of the Duet 3 6XD are listed below.
 
 ## Firmware notes
 
-* Compatible RepRapFirmware versions: RRF 3.4.1 and later
-
-For firmware update instructions, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. If running from an SBC, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
-
-There are some limits on firmware and hardware configuration. See:
-* [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits)
-* [CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations)
+* **Duet 3 Mainboard 6XD** is compatible with RepRapFirmware version RRF 3.4.1 and later.
+* For **firmware update instructions**:
+  * Standalone mode - [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. 
+  * SBC mode - [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
+* There are some **limits on firmware and hardware configuration**. See:
+  * [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits){target=_blank}
+  * [CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations){target=_blank}
 
 ## Source
 
