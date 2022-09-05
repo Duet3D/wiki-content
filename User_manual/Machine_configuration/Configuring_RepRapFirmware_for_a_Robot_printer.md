@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-04T19:17:52.471Z
+date: 2022-09-05T00:22:36.774Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -44,14 +44,14 @@ Overview
 Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
 # M669 D parameter: Denavit-Hartenberg
-DH parameters are numbered from 0 to <numberofAxes+1>, so e.g. for a 6 axis robot, D0 is the base, D1 to D6 are DH parameters for the 6 axes and D7 are the tool DH properties. This default can be changed with the B parameter.
+DH parameters are numbered from 0 to <numberofAxes+1>, so e.g. for a 6 axis robot, D0 is the base, D1 to D6 are DH parameters for the 6 axes and D7 are the tool DH properties. The Transformations are processed in the order starting from 0 to highest number.
 
-The D parameters are defined in the order Z[Y]X to reflect the order in which the transformations are calculated, same as roll-pitch-yaw from aviation and Euler ZYX angles. The joint parameters are pairwise descriptions of translate in mm and rotate in degrees for the Z[Y]X coordinate axis.
+Every Dn contains three translates and three rotations by Z, Y, X axis in this order. The joint parameters are pairwise descriptions of translate in mm and rotate in degrees for the Z[Y]X coordinate axis.
 
 Original set of DH parameters:
 **Dn:d:theta:a:alpha**
 
-* n are values between 0 and 9
+* n are nonegative integer values, each used unique
 * default is to use D0 for base, D1 to Dn for actuators and Dn+1 for tool
 * d displacement in Z direction
 * theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
@@ -110,17 +110,11 @@ B"mapDriveToDn=0X1:1Y2:2Z3:p4"
 * different drive numbers may not point to the same Dn
 * the order of the elements is not important
 
-**B"dnOrder=0:1:2:3:4:5"**
-B"dnOrder=!2:!1:!0:3:4:5:6"
-* transformation matrix multiplications in the given order of Dn
-* first example is the default order
-* ! means to invert the matrix before multiplication. Needed for workpiece mode for CNC 5 axis. Second example is for CNC 5 axis BC mode table/table. For an example of inverting see documentation page of CNC 5 axis
-* the list may have holes, but every number must be unique and integer nonnegative, and a corresponding Dn must exist. n is between 0 and 9.
+**B"dnInvert=0:1:2"**
+* the specified Dn DH transformations will be transformation matrix inverted. This is not the matrix inverse, but translate and rotate back, i. e. changing the direction of the transformation. It is needed when changing from world to workpiece mode. This will be explained in detail on the page about CNC 5 axis.
 
 **B"revertCoordinates=X:Y:Z"**
 * revert axis movement, for cases where the robot moved the object instead of the hotend. Same result can be achieved by inverting some matrices
-
-The upper limit of 10 values for Dn is artificial to be able to use fixed sized arrays. It can be changed by changing MAXNUMOFAXES in source code and recompiling RRF.
 
 # M669 P parameter: preferences
 P is currently not used.
