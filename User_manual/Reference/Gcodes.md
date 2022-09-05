@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-08-30T09:36:51.376Z
+date: 2022-09-05T14:17:47.349Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -204,13 +204,13 @@ RepRapFirmware allows multiple G- and M-commands to be included in a single line
 
 **Important**: a command that invokes a macro file must be the last command in that line of GCode, because any following commands on the same line will not be executed.
 
-## Buffering
+## Command queueing
 
-RepRapFirmware stores some commands in a ring buffer internally for execution. This means that there is no (appreciable) delay while a command is acknowledged and the next transmitted. In turn, this means that sequences of line segments can be plotted without a dwell between one and the next. As soon as one of these buffered commands is received it is acknowledged and stored locally. If the local buffer is full, then the acknowledgement is delayed until space for storage in the buffer is available. PC host programs rely on this for flow control when the controller electronics does not support device level flow control.
+When commands are executed from a job file or a macro, RepRapFirmware stores some commands in a queue internally for execution. This means that there is no (appreciable) delay while a command is acknowledged and the next transmitted. In turn, this means that sequences of line segments can be plotted without a dwell between one and the next. As soon as one of these commands is received it is acknowledged and stored locally in a queue (the 'queue' is equivalent to a look-ahead buffer). If the queue is full, then the acknowledgement is delayed until space for storage in the queue is available. PC host programs rely on this for flow control when the controller electronics does not support device level flow control.
 
-Only the G0 to G3 movement commands are buffered by RepRapFirmware. All other G, M or T commands are not buffered. When M555 P6 is used to select nanoDLP compatibility mode, no commands are buffered.
+Only the G0 to G3 movement commands are queued by RepRapFirmware. All other G, M or T commands are not buffered. When M555 P6 is used to select nanoDLP compatibility mode, no commands are queued.
 
-When an unbuffered command is received it is stored, but it is not acknowledged to the host until the buffer is exhausted and then the command has been executed.
+When an unbuffered command is received it is stored, but it is not acknowledged to the host until the queue is exhausted and then the command has been executed.
 
 ## Filenames and Paths
 
