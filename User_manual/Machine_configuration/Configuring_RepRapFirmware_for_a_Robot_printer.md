@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-05T07:20:15.312Z
+date: 2022-09-05T07:21:35.804Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -116,7 +116,7 @@ B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 
 # M669 P parameter: preferences
 P sets preferences
-* P0 sets defaults
+* P0 no endpoint preference, default
 * P1 sets endpoint to be parallel to X axis
 * P2 sets endpoint to the direction of print/drill path
 
