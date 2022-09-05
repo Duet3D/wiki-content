@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-05T00:22:36.774Z
+date: 2022-09-05T00:47:58.874Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -51,7 +51,7 @@ Every Dn contains three translates and three rotations by Z, Y, X axis in this o
 Original set of DH parameters:
 **Dn:d:theta:a:alpha**
 
-* n are nonegative integer values, each used unique
+* n are unique integer numbers starting from 0
 * default is to use D0 for base, D1 to Dn for actuators and Dn+1 for tool
 * d displacement in Z direction
 * theta rotation by Z axis, added to the variable theta angle (so the position of 0 degrees can be altered)
@@ -85,8 +85,7 @@ defines the type of the axes. (Robot experts avoid the name axis and talk of joi
 * R means rotational/revolute, units are degrees, speeds e.g. degrees/min
 * P means prismatic/linear, units are mm
 * p (lower case p) means passive joint without actuator with parallelogram (see 4 axis palletized robot type)
-* if the parameter is not set or types missing, R is expected
-* default is R for all axes
+* the number of letters define the number of actuator or parallelogram axes
 
 Examples:
 
@@ -100,9 +99,9 @@ Examples:
 
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
 
-**B"mapDriveToDn=3A1:4C2:0X3:1Y4:2Z5"**
+**B"mapDriveToDn=0X3:1Y4:2Z5:3A1:4C2"**
 B"mapDriveToDn=0X1:1Y2:2Z3:p4"
-* maps drive number with drive letter with Dn
+* maps drive number with drive letter with Dn, in the first example the first drive called X is mapped to D3 DH setting
 * letters IJK have a special meaning as tool vector
 * the parallel axis of the 4 axis palletized robot is named pn, e.g. second example
 * default is 0X1:1Y2:2Z3:3A4:4B5:5C6 or abbreviated for less defined axes
