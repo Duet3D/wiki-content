@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-05T06:33:23.770Z
+date: 2022-09-05T06:43:05.824Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -98,11 +98,11 @@ Examples:
 
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
 
-**B"mapDriveToDn=0X3:1Y4:2Z5:3A1:4C2"**
-B"mapDriveToDn=0X1:1Y2:2Z3:p4"
+**B"mapDriveLetterDn=0X3:1Y4:2Z5:3A1:4C2"**
+B"mapDriveLetterDn=0X1:1Y2:2Z3:-1p4"
 * maps drive number with drive letter with Dn, in the first example the first drive called X is mapped to D3 DH setting
 * letters IJK have a special meaning as tool vector
-* the parallel axis of the 4 axis palletized robot is named pn, e.g. second example
+* the parallel axis of the 4 axis palletized robot is named pn with -1 no drive assigned (the axis is set automatically), e.g. second example
 * default is 0X1:1Y2:2Z3:3A4:4B5:5C6 or abbreviated for less defined axes
 * every Dn number may be used only once
 * different drive numbers may not point to the same Dn
