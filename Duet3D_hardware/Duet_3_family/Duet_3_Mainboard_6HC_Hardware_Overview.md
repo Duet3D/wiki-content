@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-09-05T13:25:52.235Z
+date: 2022-09-05T13:35:21.329Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -69,13 +69,13 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 
 ## Firmware notes
 
-* Compatible RepRapFirmware versions: RRF 3.x
-
-For firmware update instructions when running in stand-alone mode, see [Installing_and_Updating_Firmware](/User_manual/RepRapFirmware/Updating_firmware). If running from an SBC, see the 'Updating Duet 3 mainboard firmware' on this page: [Getting Started With Duet 3 MB6HC](/User_manual/Overview/Getting_started_Duet_3_MB6HC).
-
-There are some limits on firmware and hardware configuration. See:
-* [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits)
-* [CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations)
+* **Duet 3 Mainboard 6HC** is compatible RepRapFirmware version 3.0 and later
+* For **firmware update instructions**:
+  * Standalone mode - [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. 
+  * SBC mode - [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
+* There are some **limits on firmware and hardware configuration**. See:
+  * [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits){target=_blank}
+  * [CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations){target=_blank}
 
 ## Open Source
 
