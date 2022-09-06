@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-06T10:21:38.124Z
+date: 2022-09-06T10:24:10.310Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -218,7 +218,7 @@ As soon as one of these commands is received it is acknowledged and stored local
 * All moves are always queued, except for homing/probing moves which are special.
 * M400 or G4 P0 finishes all current moves and thus clears the queue.
 * M595 sets the move queue length.
-* When an non-queued command is received, it is stored but not acknowledged to the host until the queue is exhausted and then the command has been executed.
+* When a non-queued command is received, it is stored but not acknowledged to the host until the queue is exhausted and then the command has been executed.
 * If a command that is usually queued contains a parameter that is an OM expression enclosed in `{ }` then the command is not queued because the value of the OM expression is liable to change, and there isn't a suitable context to evaluate it in if it were to be queued.
 * Meta commands such as echo are never queued.
 * When M555 P6 is used to select nanoDLP compatibility mode, no commands are queued.
