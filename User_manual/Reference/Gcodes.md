@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-06T10:16:05.752Z
+date: 2022-09-06T10:21:38.124Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -225,25 +225,14 @@ As soon as one of these commands is received it is acknowledged and stored local
 
 ## Filenames and Paths
 
-System macro GCode files are expected in '0:/sys/'. See M505 for how to switch between multiple configurations
-
-User macro GCode files are expected in '0:/macros/'
-
-Job GCode files are expected in '0:/gcodes/' or a sub directory of that.
-
-'0:/' is root of the on board SD card in stand alone mode; the equivalent folder in SBC mode is '/opt/dsf/sd/'.
-
-Long file names (e.g. longer than 8.3 format) are supported, file names with spaces are supported.
-
-Full paths, including all directories and subdirectories are limited to 120 characters.
-
-e.g.:
-<br>
-<pre class="cblock">
-0:/gcodes/0123456789/012.gcode
-</pre>
-
-counts as 30 characters
+* '0:/' is root of the on board SD card in stand alone mode; the equivalent folder in SBC mode is '/opt/dsf/sd/'.
+* Long file names (e.g. longer than 8.3 format) are supported, file names with spaces are supported.
+* Full paths, including all directories and subdirectories are limited to 120 characters. e.g.:
+  <pre class="cblock">
+  0:/gcodes/0123456789/012.gcode
+  </pre>
+  counts as 30 characters
+* See [SD card](/User_manual/RepRapFirmware/SD_card) for a full explanation of the SD card structure.
 
 ## Live editing
 
