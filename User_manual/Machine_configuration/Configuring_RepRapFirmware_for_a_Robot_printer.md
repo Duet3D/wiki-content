@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-05T12:02:10.039Z
+date: 2022-09-06T08:25:09.459Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -42,7 +42,7 @@ Overview
 Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
 # M669 D parameter: Denavit-Hartenberg
-Dn define DH parameters and are numbered from 0 to maximum 9. In most cases, D0 is the base, D1 to Dx are DH parameters for the x axes and D(x+1) are the tool DH properties. The Transformations are processed in the order starting from 0 to highest number, the numbers may not have gaps.
+Dn define DH parameters and are numbered from 0 to maximum 9. The numbers can have holes (e.g. start by 1), but every number only used once. In most cases, D0 is the base, D1 to Dx are DH parameters for the x axes and D(x+1) are the tool DH properties. The Transformations are processed in the order starting from 0 to highest number, the numbers may not have gaps. The last used Dn number is used as tool, G10 offsets are added to the Dn values.
 
 Every Dn contains three translates and three rotations by Z, Y, X axis in this order. The joint parameters are pairwise descriptions of translate in mm and rotate in degrees for the Z[Y]X coordinate axis.
 
@@ -55,6 +55,7 @@ Original set of DH parameters:
 * theta rotation by Z axis, added to the variable theta angle
 * a is the shortest distance between Z and former Z axis. If alpha is 0, +-90 or +-180 degrees, the distance is the arm length
 * alpha is the X axis rotation
+* the internally used ytr and yrot values are set to 0.0 each
 
 Extended set with addition Y parameters:
 **Dn:d:theta:ytr:yrot:a:alpha**
