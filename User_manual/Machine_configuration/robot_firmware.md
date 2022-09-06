@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-04T08:43:24.231Z
+date: 2022-09-06T08:41:20.331Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -114,7 +114,9 @@ Near and at a singularity, the angular speed of a single or few actuators would 
 # Tool offsets and orientation
 Tool offsets are defined by G10 X, Y, Z offsets. There are no parameters for tool orientation in G10 (a proposal would be to add IJK)*), so a modification of the DH parameters directly is needed, if the tool itself is not vertical. When changing tools with a toolchanger, each tool could have it's own tilt values.
 
-*) maybe UVW could be used for IJK, but this would be changing the meaning of the parameters. I hesitate.
+The X, Y, Z offset values are added to the tool's coordinate system. A positive Z offset with a coordinate system pointing down (coordinate system's Z axis is vector (0 0 -1), pointing down) will lower the distance between hotend and bed e.g.
+
+The tool offset is added to the kinematics chain (the last Dn transformation matrix) before a forward kinematics is calculated. Every change of G10, a tool change eg., is immediately effective.
 
 # Letters cartesian vs axis
 
