@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-06T10:13:59.479Z
+date: 2022-09-06T10:16:05.752Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -210,7 +210,7 @@ When commands are executed from a job file or a macro, RepRapFirmware stores G0,
 
 Some non-movement commands are also queued when executed from a job file or a macro, in a 'deferred command queue'. This operates in parallel to the 'move queue', and together the two queues operate as a single logical queue, and generally can be considered as one queue. M3, M4, M5, M42, M104, M106, M107, M117, M140, M141, M144, M280, M300 and M568 commands are all queued.
 
-As soon as one of these commands is received it is acknowledged and stored locally in it's queue. If the queue is full, then the acknowledgement is delayed until space for storage in the queue is available. PC host programs rely on this for flow control when the controller electronics does not support device level flow control.
+As soon as one of these commands is received it is acknowledged and stored locally in the queue. If the queue is full, then the acknowledgement is delayed until space for storage in the queue is available. PC host programs rely on this for flow control when the controller electronics does not support device level flow control.
 
 **Notes**
 
