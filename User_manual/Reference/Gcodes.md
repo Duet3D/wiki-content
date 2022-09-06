@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-05T14:17:47.349Z
+date: 2022-09-06T09:59:05.553Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -206,11 +206,20 @@ RepRapFirmware allows multiple G- and M-commands to be included in a single line
 
 ## Command queueing
 
-When commands are executed from a job file or a macro, RepRapFirmware stores some commands in a queue internally for execution. This means that there is no (appreciable) delay while a command is acknowledged and the next transmitted. In turn, this means that sequences of line segments can be plotted without a dwell between one and the next. As soon as one of these commands is received it is acknowledged and stored locally in a queue (the 'queue' is equivalent to a look-ahead buffer). If the queue is full, then the acknowledgement is delayed until space for storage in the queue is available. PC host programs rely on this for flow control when the controller electronics does not support device level flow control.
+When commands are executed from a job file or a macro, RepRapFirmware stores G0, G1, G2 and G3 movement commands in a 'move queue' internally for execution, equivalent to a look-ahead buffer. This means that there is no (appreciable) delay while a command is acknowledged and the next transmitted. In turn, this means that sequences of line segments can be plotted without a dwell between one and the next. 
 
-Only the G0 to G3 movement commands are queued by RepRapFirmware. All other G, M or T commands are not buffered. When M555 P6 is used to select nanoDLP compatibility mode, no commands are queued.
+Some non-movement commands are also queued when executed from a job file or a macro, in a 'deferred command queue'. This operates in parallel to the 'move queue', and operate as a single logical queue; generally the two queues can be considered as one queue. M3, M4, M5, M42, M104, M106, M107, M117, M140, M141, M144, M280, M300 and M568 commands are all queued.
 
-When an unbuffered command is received it is stored, but it is not acknowledged to the host until the queue is exhausted and then the command has been executed.
+As soon as one of these commands is received it is acknowledged and stored locally in it's queue. If the queue is full, then the acknowledgement is delayed until space for storage in the queue is available. PC host programs rely on this for flow control when the controller electronics does not support device level flow control.
+
+### Notes
+
+* Commands are queued when executed from a job file or a macro.
+* All moves are always queued, except for homing/probing moves which are special.
+* When an non-queued command is received, it is stored but not acknowledged to the host until the queue is exhausted and then the command has been executed.
+* If a command that is usually queued contains a parameter that is an OM expression enclosed in `{ }` then the command is not queued because the value of the OM expression is liable to change, and there isn't a suitable context to evaluate it in if it were to be queued.
+* Meta commands such as echo are never queued.
+* When M555 P6 is used to select nanoDLP compatibility mode, no commands are queued.
 
 ## Filenames and Paths
 
