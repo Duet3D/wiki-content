@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-06T10:12:03.128Z
+date: 2022-09-06T10:13:59.479Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -216,7 +216,7 @@ As soon as one of these commands is received it is acknowledged and stored local
 
 * Commands are queued when executed from a job file or a macro.
 * All moves are always queued, except for homing/probing moves which are special.
-* M400 or G4 P0 finishes all current moves and thus clears the buffer.
+* M400 or G4 P0 finishes all current moves and thus clears the queue.
 * M595 sets the move queue length.
 * When an non-queued command is received, it is stored but not acknowledged to the host until the queue is exhausted and then the command has been executed.
 * If a command that is usually queued contains a parameter that is an OM expression enclosed in `{ }` then the command is not queued because the value of the OM expression is liable to change, and there isn't a suitable context to evaluate it in if it were to be queued.
