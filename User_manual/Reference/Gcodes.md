@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-06T10:08:27.880Z
+date: 2022-09-06T10:09:53.249Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -212,7 +212,7 @@ Some non-movement commands are also queued when executed from a job file or a ma
 
 As soon as one of these commands is received it is acknowledged and stored locally in it's queue. If the queue is full, then the acknowledgement is delayed until space for storage in the queue is available. PC host programs rely on this for flow control when the controller electronics does not support device level flow control.
 
-### Notes
+**Notes**
 
 * Commands are queued when executed from a job file or a macro.
 * All moves are always queued, except for homing/probing moves which are special.
