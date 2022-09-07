@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-07T22:36:19.970Z
+date: 2022-09-07T22:40:04.928Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -121,6 +121,7 @@ ZAxis means, only the orientation of the Z axis is controlled, e.g. z axis alway
 no means, the orientation is not controlled.
 If the zaxis is vertical by mechanical means, it is not necessary to set ZAxis mode, no is also possible.
 Examples: CNC 5 axis is ZAxis mode. 6 axis robot with endpoint always vertical is ZAxis mode also. 6 axis robot with free endpoint orientation is Quaternion mode.
+Technically, Quaterion uses all three rotation matrix columns, ZAxis the third axis and no doesn't use it, for rotation matrix orientation, see explanation on the robot firmware document page.
 
 # M669 Q parameter: quality
 
