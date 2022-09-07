@@ -2,7 +2,7 @@
 title: Connecting thermistors and PT1000 temperature sensors
 description: 
 published: true
-date: 2022-09-07T14:49:15.198Z
+date: 2022-09-07T15:13:45.435Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T16:02:20.373Z
@@ -331,7 +331,6 @@ If you find the auto-calibration is not accurate enough for your requirements, w
 * For **Duet 3** and **Duet Maestro** boards, the semi-automatic calibration procedure (see below) can be done, which involves using the M308 H999 and L999 parameters with the thermistor input open and shorted respectively. 
 * **Duet 3** boards have that calibration procedure run during initial factory testing, and the results are stored in flash memory to provide the default L and H parameters. Those values get overwritten if you re-run the calibration procedure.
 * For **Duet 2 WiFi/Ethernet** we recommend the manual calibration procedure (see below), that uses resistors to calibrate if greater accuracy is needed.
-* In all cases, using M305/M308 with L and/or H parameters overrides any previously stored calibration.
 
 ## Semi-automatic calibration
 
