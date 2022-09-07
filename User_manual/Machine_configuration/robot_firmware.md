@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-06T08:59:19.311Z
+date: 2022-09-07T23:44:36.402Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -35,14 +35,16 @@ This chapter is relevant if using
 * 4 axis palletized with object on the robot plate
 
 For forward and inverse kinematics calculations it is important to set world or workpiece mode. Default is world mode.
+* workpiece mode (in gaming also called model space, object space) desribes transformations from the view of the workpiece
+* world mode (in gaming called world space) describes transformations with world coordinates
 
-In world mode, the starting point is stationary and ends at the spindle or hotend endpoint. The to be printed or drilled object doesn't change position and orientation.
-
-Setting to workpiece mode instead means that the DH parameters are transforming the coordinates from the view of the workpiece. The starting point is the workpiece and the endpoint is the tip of the drill or nozzle. This mode is important for kinematics where the printed or drilled object is rotated or moved.
+When the workpiece is rotated or moved itself, calculating in workpiece mode for a part of the chain is necessary.
 
 Examples for workpiece mode is CNC 5 axis with rotary axes on the table like Open5x and 4 axis palletized with the print object installed on the robot endpoint and the hotend stationary outside the robot. Example configurations are provided in the robot type documents about CNC 5 axis and 4 axis palletized.
 
-Workpiece mode means that the transformation matrices need to be multiplied in back order. I was a bit suprised, that I could invert the ZYX rotation matrix directly by inverting it. I expected that I have to change rotation/transformation order from ZYX to XYZ before inverting, but it is not the case, as A-1B-1 = (BA)-1, so X-1Y-1Z-1=(ZYX)-1, so it's sufficient to invert ZYX. Inversion of tranformation matrix looks like this:
+Workpiece mode means that the transformation matrices need to be multiplied in back order. I was a bit suprised, that I could invert the ZYX rotation matrix (which is represented by one Dn definition) directly by inverting it. I expected that I have to change rotation/transformation order from ZYX to XYZ before inverting, but it is not the case, as A-1B-1 = (BA)-1, so X-1Y-1Z-1=(ZYX)-1, so it's sufficient to invert ZYX.
+
+The inversion of a tranformation matrix looks like this:
 ![transfmatrixinvert_small.png](/manual/configuration/transfmatrixinvert_small.png)
 T are transposes, R is the rotation matrix, t is the position matrix.
 
