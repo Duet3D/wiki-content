@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-07T22:31:38.991Z
+date: 2022-09-07T22:35:09.878Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -120,6 +120,7 @@ Orientation type controls how orientation of the tool is handled. Quaternion mea
 ZAxis means, only the orientation of the Z axis is controlled, e.g. z axis always being vertical. This is the case for most 3D printer hotends and CNC drills. The orientation is represented by a vector similar to the IJK parameters.
 no means, the orientation is not controlled.
 If the zaxis is vertical by mechanical means, it is not necessary to set ZAxis mode, no is also possible.
+Examples: CNC 5 axis is ZAxis mode. 6 axis robot with endpoint always vertical is ZAxis mode also. 6 axis robot with free endpoint orientation is Quaternion mode.
 
 # M669 Q parameter: quality
 
