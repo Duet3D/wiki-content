@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-06T13:55:32.661Z
+date: 2022-09-07T12:03:24.006Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3352,14 +3352,14 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 * **Bnnn** Beta value, or the reciprocal of the Steinhart-Hart thermistor model B coefficient
 * **Cnnn** Steinhart-Hart C coefficient, default 0
 * **Rnnn** Series resistor value. Leave blank to use [the default for your board](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000#the-m305m308-r-parameter){target=_blank}.
-* **Lnnn** ADC low offset correction, default 0 (ignored if the hardware supports automatic ADC gain and offset calibration)
-* **Hnnn** ADC high offset correction, default 0 (ignored if the hardware supports automatic ADC gain and offset calibration)
+* **Lnnn** ADC low offset correction, default 0
+* **Hnnn** ADC high offset correction, default 0
 
 **Additional parameters for PT1000 sensors**
 
 * **Rnnn** Series resistor value. Leave blank to use [the default for your board](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000#the-m305m308-r-parameter){target=_blank}.
-* **Lnnn** ADC low offset correction, default 0 (ignored if the hardware supports automatic ADC gain and offset calibration)
-* **Hnnn** ADC high offset correction, default 0 (ignored if the hardware supports automatic ADC gain and offset calibration)
+* **Lnnn** ADC low offset correction, default 0
+* **Hnnn** ADC high offset correction, default 0
 
 **Additional parameters for MAX31856-based thermocouple sensors**
 
@@ -3406,37 +3406,29 @@ Note that from RRF 3.4.0 beta 8, "drivertemp" will be changed to "drivers" to ma
 
 ### Notes
 
-This code replaces M305 in RepRapFirmware 3. In earlier versions of RepRapFirmware, sensors only existed in combination with heaters, which necessitated the concept of a "virtual heater" to represent a sensor with no associated heater (e.g. MCU temperature sensor). RepRapFirmware 3 allows sensors to be defined independently of heaters, up to a max of 32 sensors. The association between heaters and sensors is defined using M950.
-
-M308 can be used in the following ways:
-* **M308 Snn Y"type" [other parameters]**: delete sensor nn if it exists, create a new one with default settings, and configure it using the other parameters. At least the pin name must also be provided, unless the sensor doesn't use a pin (e.g. MCU temperature sensor).
-* **M308 Snn**: report the settings of sensor nn, this will also report the last error on that sensor if applicable
-* **M308 A"name"**: report the settings of the first sensor named "name"
-* **M308 Snn [any other parameters except Y]**: amend the settings of sensor nn
-
-Sensor type names obey the same rules as [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}, i.e. case is not significant, neither are hyphen and underscore characters.
-
-The Trinamic drivers used on Duets do not report temperature, rather they report one of: temperature OK, temperature overheat warning, and temperature overheat error. RRF translates these three states into readings of 0C, 100C and 130C.
-
-mcu-temp on Duet 3 Mini 5+: The SAME54P20A chip used in the Duet 3 Mini 5+ does not have a functioning temperature sensor. In theory it does have an on-chip temperature sensor, but the errata document for the chip says it doesn't work. However, experimental support for the Duet 3 Mini 5+ on-chip MCU temperature sensor has been added in RepRapFirmware 3.3 beta 3. As the chip manufacturer advises that it is not supported and should not be used, we can't promise that it will give useful readings on all boards. It will be removed if it causes significant support issues. Please report any issues in the [Duet3D support forum](https://forum.duet3d.com/){target=_blank}.
-
-When converting from older versions of RRF to RRF3 you must replace each M305 command by a similar M308 command, which must be earlier in config.g than any M950 command that uses it. You must also use M950 to define each heater that you use, because there are no default heaters.
-
-Example - old code:
-<br>
-<pre class="cblock">
-M305 P0 T100000 B3950 ; bed heater uses a B3950 thermistor
-M305 P1 T100000 B4725 C7.06e-8 ; E0 heater uses E3D thermistor
-</pre>
-
-New code:
-<br>
-<pre class="cblock">
-M308 S0 P"bed_temp" Y"thermistor" T100000 B3950 ; define bed temperature sensor
-M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.06e-8 ; define E0 temperature sensor
-M950 H0 C"bed_heat" T0 ; heater 0 uses the bed_heat pin, sensor 0
-M950 H1 C"e0heat" T1 ; heater 1 uses the e0heat pin and sensor 1
-</pre>
+* This code replaces M305 in RepRapFirmware 3. In earlier versions of RepRapFirmware, sensors only existed in combination with heaters, which necessitated the concept of a "virtual heater" to represent a sensor with no associated heater (e.g. MCU temperature sensor). RepRapFirmware 3 allows sensors to be defined independently of heaters, up to a max of 32 sensors. The association between heaters and sensors is defined using M950.
+* M308 can be used in the following ways:
+  * **M308 Snn Y"type" [other parameters]**: delete sensor nn if it exists, create a new one with default settings, and configure it using the other parameters. At least the pin name must also be provided, unless the sensor doesn't use a pin (e.g. MCU temperature sensor).
+  * **M308 Snn**: report the settings of sensor nn, this will also report the last error on that sensor if applicable
+  * **M308 A"name"**: report the settings of the first sensor named "name"
+  * **M308 Snn [any other parameters except Y]**: amend the settings of sensor nn
+* Sensor type names obey the same rules as [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}, i.e. case is not significant, neither are hyphen and underscore characters.
+* All Duets have some degree of auto-calibration to measure and cancel gain and offset errors in the analog-to-digital converters (ADC). The L and H parameters override auto-calibration. For more information on tuning Duet ADCs, see [Connecting thermistors and PT1000 temperature sensors - When to calibrate](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000#when-to-calibrate).
+* The Trinamic drivers used on Duets do not report temperature, rather they report one of: temperature OK, temperature overheat warning, and temperature overheat error. RRF translates these three states into readings of 0C, 100C and 130C.
+* mcu-temp on Duet 3 Mini 5+: The SAME54P20A chip used in the Duet 3 Mini 5+ does not have a functioning temperature sensor. In theory it does have an on-chip temperature sensor, but the errata document for the chip says it doesn't work. However, experimental support for the Duet 3 Mini 5+ on-chip MCU temperature sensor has been added in RepRapFirmware 3.3 beta 3. As the chip manufacturer advises that it is not supported and should not be used, we can't promise that it will give useful readings on all boards. It will be removed if it causes significant support issues. Please report any issues in the [Duet3D support forum](https://forum.duet3d.com/){target=_blank}.
+* When converting from older versions of RRF to RRF3 you must replace each M305 command by a similar M308 command, which must be earlier in config.g than any M950 command that uses it. You must also use M950 to define each heater that you use, because there are no default heaters.
+  Example - old code:
+  <pre class="cblock">
+  M305 P0 T100000 B3950 ; bed heater uses a B3950 thermistor
+  M305 P1 T100000 B4725 C7.06e-8 ; E0 heater uses E3D thermistor
+  </pre>
+  New code:
+  <pre class="cblock">
+  M308 S0 P"bed_temp" Y"thermistor" T100000 B3950 ; define bed temperature sensor
+  M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.06e-8 ; define E0 temperature sensor
+  M950 H0 C"bed_heat" T0 ; heater 0 uses the bed_heat pin, sensor 0
+  M950 H1 C"e0heat" T1 ; heater 1 uses the e0heat pin and sensor 1
+  </pre>
 
 ## M309: Set or report heater feedforward
 
