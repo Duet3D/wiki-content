@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-07T22:35:09.878Z
+date: 2022-09-07T22:36:19.970Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -116,7 +116,7 @@ B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 * revert axis movement, for cases where the robot moved the object instead of the hotend. This will be explained in detail on the page about 4 axis palletized robots.
 
 **B"orientationType=Quaternion|ZAxis|no"**
-Orientation type controls how orientation of the tool is handled. Quaternion means full control over all 3 coordinate axes and their orientation. Quaternion based rotations have constant velocity by using slerp method for calculation.
+Orientation type controls how orientation of the tool is handled. Quaternion means full control over all 3 coordinate axes and their orientation (but still right handed). Quaternion based rotations have constant velocity by using slerp method for calculation.
 ZAxis means, only the orientation of the Z axis is controlled, e.g. z axis always being vertical. This is the case for most 3D printer hotends and CNC drills. The orientation is represented by a vector similar to the IJK parameters.
 no means, the orientation is not controlled.
 If the zaxis is vertical by mechanical means, it is not necessary to set ZAxis mode, no is also possible.
