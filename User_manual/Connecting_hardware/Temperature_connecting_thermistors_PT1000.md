@@ -2,7 +2,7 @@
 title: Connecting thermistors and PT1000 temperature sensors
 description: 
 published: true
-date: 2022-08-12T14:41:41.825Z
+date: 2022-09-07T14:49:15.198Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T16:02:20.373Z
@@ -306,30 +306,42 @@ It is recommended that you tune your heaters after ensuring their functionality;
 
 # Temperature calibration and ADC tuning
 
-Some Duets may need their analog-to-digital converters (ADCs) calibrated to report accurate temperatures. Using M305/M308 H and L parameters, it is possible to tune the Duet's analogue-to-digital converter's (ADC's) high and low gain offset to improve readings from thermistors and/or PT1000 temperature sensors. 
+The analog-to-digital converters (ADCs) in microcontrollers have gain and offset errors that vary between one chip and another. These errors in turn introduce errors in the temperature readings taken from thermistors and PT1000 sensors that are connected to the thermistor input pins.
+
+Duets may need their analog-to-digital converters (ADCs) calibrated to report accurate temperatures. Using M305 (RRF 2.x) or M308 (RRF 3.x) H and L parameters, it is possible to tune the Duet's ADCs high and low gain offset to improve readings from thermistors and/or PT1000 temperature sensors. 
 
 There has also been discussion of a number of workarounds; a search of the forum may yield some good suggestions. For really satisfactory results you may need to switch to a thermocouple, PT100  or PT1000 sensor.
 
 ## When to calibrate
 
-The analog-to-digital converters (ADCs) in microcontrollers have gain and offset errors that vary between one chip and another. These errors in turn introduce errors in the temperature readings taken from thermistors and PT1000 sensors that are connected to the thermistor input pins.
-
-All Duets have some degree of self-calibration to measure and cancel these errors, either in the ADC itself or in external hardware. However, under some conditions the residual errors may be high enough to warrant correction. In particular:
+Duets provide automatic, semi-automatic (in some cases) and manual methods of calibration. Under some conditions the residual errors may be high enough to warrant correction. In particular:
 
 * When high resistance thermistors are used (e.g. the ones sold by Dyze Design and Slice Engineering), the readings at room temperature may be wildly inaccurate and cause heater faults unless the high-end ADC error is corrected.
-* Duet 3 MB6HC boards sometimes exhibit different errors on different ADC channels. As a result, the hardware self-calibration isn't perfect.
+* Duet 3 Mainboard 6HC and 6XD have two banks of ADC inputs, and sometimes exhibit different errors on different ADC banks. The on-board hardware can only apply the same compensation to both banks. As a result, the hardware self-calibration isn't perfect.
 
-RepRapFirmware provides manual and (in some cases) semi-automatic methods of calibration.
+## Auto-calibration
+
+All Duets have some degree of self-calibration to measure and cancel out gain and offset errors, either in the ADC itself or in external hardware.
+
+* **Duet 3** and **Duet Maestro** boards have auto-calibration hardware built into the board. This is quite effective, but not perfect (see note above on 6HC/6XD).
+* **Duet 2 WiFi/Ethernet** has auto-calibration built into the chip, but the lack of calibration hardware built into the board makes this less accurate.
+
+If you find the auto-calibration is not accurate enough for your requirements, we suggest:
+
+* For **Duet 3** and **Duet Maestro** boards, the semi-automatic calibration procedure (see below) can be done, which involves using the M308 H999 and L999 parameters with the thermistor input open and shorted respectively. 
+* **Duet 3** boards have that calibration procedure run during initial factory testing, and the results are stored in flash memory to provide the default L and H parameters. Those values get overwritten if you re-run the calibration procedure.
+* For **Duet 2 WiFi/Ethernet** we recommend the manual calibration procedure (see below), that uses resistors to calibrate if greater accuracy is needed.
+* In all cases, using M305/M308 with L and/or H parameters overrides any previously stored calibration.
 
 ## Semi-automatic calibration
 
-This facility is supported in RepRapFirmware 3.2 and later for Duet 3 MB6HC, Duet 3 Mini 5+ and Duet Maestro main boards, and for Duet 3 EXP3HC and TOOL1LC boards. The procedure is:
+This facility is supported in RepRapFirmware 3.2 and later for Duet 3 and Duet Maestro main boards, and for Duet 3 EXP3HC and TOOL1LC boards. The procedure is:
 
 1. Configure the inputs to be calibrated as thermistors or PT1000 sensors
 1. Disconnect the thermistors and PT1000 sensors from all thermistor inputs on the Duet main board or Duet expansion board to be calibrated
-1. For each  input to be calibrated send **M308 Snn H999** where nn is the sensor number. RepRapFirmware will report the measured H correction and store it in nonvolatile memory.
+1. For each input to be calibrated send **M308 Snn H999** where nn is the sensor number. RepRapFirmware will report the measured H correction and store it in nonvolatile memory.
 1. Place a jumper across each thermistor input to be calibrated
-1. For each  input to be calibrated send **M308 Snn L999** where nn is the sensor number. RepRapFirmware  will report the measured L correction and store it in nonvolatile memory.
+1. For each input to be calibrated send **M308 Snn L999** where nn is the sensor number. RepRapFirmware  will report the measured L correction and store it in nonvolatile memory.
 1. You can now remove the jumpers and reconnect the thermistors or PT1000 sensors. When you use M308 commands to configure thermistors or PT1000 sensors, RepRapFirmware will default the L and H parameters to the values that were stored in nonvolatile memory.
 
 ## Manual calibration
