@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-08T17:37:07.641Z
+date: 2022-09-08T17:45:11.307Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -141,7 +141,12 @@ An example is a 4 axis palletized robot without 4th actuator. The orientation of
 
 # Degrees of freedom, rank
 
-Forward kinematics result in X, Y, Z and orientation. Together they result in 6 parameters, which correspond to 6 degrees of freedom (DOF). A 6 axis robot can create those 6 DOFs. Every configuration of less than 6 actuators is limited in the creation of the result. A cartesian printer with three prismatic joints cannot change orientation of the endpoint, e.g., but has control over the X, Y, Z coordinates only, so it has 3 DOFs. A 4 or 5 axis CNC machine cannot use all 6 DOF and is restricted in the workspace (workspace in the sense of position and endpoint orientation).
+Forward kinematics result in X, Y, Z and orientation. Together they result in 6 parameters, which correspond to 6 degrees of freedom (DOF). A 6 axis robot can create those 6 DOFs. Every configuration of less than 6 actuators is limited in the creation of the result.
+
+Examples of reduced rank:
+* a cartesian printer has 3 DOFs: control over X, Y, Z positions, but no control about the orientation of the endpoint. By mechanical means, the endpoint is always vertical.
+* CNC 5 axis has a limited 6 DOFs: X, Y, Z positions and control over the orientation of the Z axis, but no control over the orientation of the X and Y axes. A CNC spindle doesn't need X, Y axis orientation control (they constantly change), so it's no problem.
+* singularity situations of a 6 axis robot: in one of the singularity situations, position and orientation changes are limited. For singularity types, see singularity section.
 
 # Workspace and Singularities
 Workspace is the space where an object can be reached by the robot. Calculation is a combination of position and orientation. Positions near the edges should be avoided, because rotations of axes become critical and movement precision is reduced.
@@ -155,7 +160,7 @@ Being in a singularity may be necessary when homing. In Example 2 of the DH para
 
 To avoid printing in a singularity, M208 can be set accordingly. Please see the chapter about M208 for details.
 
-Singularities will be solved by adding Moore-Penrose inverse calculation in the next release.
+Singularities are solved by calculating generalized inverses.
 
 # Speed and Acceleration control
 Near and at a singularity, the angular speed of a single or few actuators would grow to infinity and stop printing. The solution is to avoid singularities or to set those angular speed to 0 and accept some inaccuracy. The affected segments are corrected and the surrounding ones smoothing down to velocity values approaching 0 to avoid jerks. The M203 and M201 (and maybe M566) settings are used as upper angular velocity limits for each actuator.
