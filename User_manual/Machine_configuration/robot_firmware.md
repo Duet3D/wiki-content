@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-08T17:24:26.804Z
+date: 2022-09-08T17:37:07.641Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -10,7 +10,16 @@ dateCreated: 2022-06-18T05:20:44.359Z
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
-Robot kinematics is based on different concepts and mathematical methods, which are described as follows. Denavit-Hartenberg has a separate dedicated document.
+This document is about:
+* how forward and inverse kinematics are calculated
+* how positions and orientations are calculated
+* orientation types and for which robot types they are applicable
+* mathematical details how algorithms are implemented and on which knowledge they are based
+* explanations of workpiece mode, workspace, singularities
+* special topics like information about tool, speed control
+* how to compile the firmware if necessary
+
+The Denavit-Hartenberg parameters which are closely linked to the topics of this document are described in a separate document.
 
 # Forward and inverse kinematics
 
