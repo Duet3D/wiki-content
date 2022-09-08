@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-08T17:16:16.574Z
+date: 2022-09-08T17:19:06.562Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -123,7 +123,7 @@ G-Code can be described with AB, BC, AC code. The orientation is described by tw
 
 An alternative is to use G-Code with IJK tool vectors, which can be used with G0/G1.
 
-There is a singularity, e.g. in AC mode for A at 0 degrees. This angle must be avoided, because at 0 degrees the C axis "wants" to rotate by 180 degrees instantly for specific movements, which is not possible (infinite velocity). In practice, the choosen solution is to A remain in the bigger degree range without crossing 0, often being negative angles.
+There is a singularity, e.g. in AC mode for A at 0 degrees. This angle must be avoided, because at 0 degrees the C axis "wants" to rotate by 180 degrees instantly for specific movements, which is not possible (infinite velocity). In practice, the choosen solution is to A remain in the bigger degree range without crossing 0. Usually, there is a selection box in the CAM to choose angle preference positive/negative.
 
 # no orientation
 Every object has an orientation, but it is meant here that the orienation is not controlled by firmware, because the robot endpoint has an orientation which cannot be changed.
