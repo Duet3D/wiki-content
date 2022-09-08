@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-08T10:42:48.337Z
+date: 2022-09-08T10:47:24.005Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -84,6 +84,9 @@ For segmentation of a rotation, simply dividing angles (e. g. Euler angles) is n
 
 The simple method would be to divide the line between p0 and p1 for segmentation (secant). With slerp, the curve of the circle is divided instead.
 
+Slerp is used in Kinematics for
+* segmentation of a long move to avoid snapping into different work modes
+* calculating jacobian matrix of the lower orientation rows
 
 # Orientation 5 axis CNC, Open5x:
 
