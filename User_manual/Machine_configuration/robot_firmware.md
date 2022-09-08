@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-08T17:19:06.562Z
+date: 2022-09-08T17:24:26.804Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -119,7 +119,7 @@ For robots where only Z axis orientation is needed, orientationType is set to za
 
 CNC 5 axis has a spindle with only one orientation in Z direction. Two rotational axes are used to change the angle of the spindle in respect to the workpiece surface. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis. The angle of the spindle in respect to the workpiece surface is described as tool vector IJK values. IJK values are coordinates in XYZ direction respectively, are values between -1 and +1 for IJ, between 0 and 1 for K and are I²+J²+K²=1 normalized.
 
-G-Code can be described with AB, BC, AC code. The orientation is described by two angles. The calculation of the jacobian matrix is with 6 rows, 3 for position and 3 for IJK orientation change. Segmentation is calculated by interpolation of the angles, but segmentation is the task of the core RRF and not part of the kinematics code.
+G-Code can be described with AB, BC, AC code. The orientation is described by two angles. The calculation of the jacobian matrix is with 6 rows, 3 for position and 3 for IJK orientation of the Z axis. Segmentation is calculated by interpolation of the angles. Segmentation and how it's calculated is the task of the core RRF and not part of the kinematics code. Especially for CNC it is important to have high segmentation for better routing quality.
 
 An alternative is to use G-Code with IJK tool vectors, which can be used with G0/G1.
 
