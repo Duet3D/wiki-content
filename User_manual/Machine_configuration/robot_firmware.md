@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-08T10:47:24.005Z
+date: 2022-09-08T11:13:17.830Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -82,7 +82,7 @@ For segmentation of a rotation, simply dividing angles (e. g. Euler angles) is n
 
 (from Wikipedia https://en.wikipedia.org/wiki/Slerp).
 
-The simple method would be to divide the line between p0 and p1 for segmentation (secant). With slerp, the curve of the circle is divided instead.
+The simple method would be to divide the line between p0 and p1 for segmentation (tendon). With slerp, the curve of the circle is divided instead.
 
 Slerp is used in Kinematics for
 * segmentation of a long move to avoid snapping into different work modes
