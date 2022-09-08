@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-09-03T00:25:28.004Z
+date: 2022-09-08T16:24:28.760Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -34,18 +34,6 @@ The coordinate systems are numbered b for base, 1 to 6, and e for endpoint.
 In most cases, specific colors are linked to the coordinate letter, red to X, green to Y, blue to Z (RGB), so I'll follow to this convention. It's helpful to visualize the coordinate system for every joint, and chemistry kit helps, sulfur or boron as the middle element for 90 degree angles (if you like DIY, there are some kits on thingiverse):
 
 ![robot_coordsystem_smaller.png](/manual/configuration/robot_coordsystem_smaller.png)
-
-# Coordinate system in matrix
-Translations and rotations are chained mathematically through 4x4 matrix multiplications. The left upper 3x3 matrix represents rotations and the result is the orientation of the result. The right column 1x3 vector is the translation and the result is the position.
-
-At every stage, the position and orientation (intermediate) endpoint can be seen:
-![robot_coordinates.png](/manual/configuration/robot_coordinates.png)
-
-Every column of three numbers mean X, Y and Z element. The red column marks the X axis, the green the Y axis, the blue the Z axis, the yellow the position. Red 1/0/0 means X axis is in the direction X=1 and Y=0, Z=0, i. e. as the original coordinate system with X axis pointing to the right. If the red would be 0/0/1, it would mean the X axis points to the Z direction, straight up. The orientation numbers are orthonormal, i. e. for every vector x² + y² + z² = 1 and the three vectors are perpendicular to each other.
-
-The axis information has redundancy, because only 3 parameters are necessary to describe an orientation and 4 to describe a coordinate system. One method is to use Euler angles, being three rotations. The order of the rotations is important. Often used ones are ZYX and ZYZ', named after around which axis they are rotated. ZYX is the roll-pitch-yaw order and the same order, how DH transformations are calculated (Z axis translation and rotation first). Another system is using quaternions. Euler angles have weaknesses, so quaternions are used for internal calculations, which is based on 4 numbers.
-
-The four numbers (0 0 0 1) in the last line make sure that rotations and translations stay at their positions. They don't change.
 
 # Transformation parameters
 DH is using 4 parameters:
