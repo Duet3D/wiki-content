@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-08T16:47:58.031Z
+date: 2022-09-08T16:54:05.405Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -42,12 +42,14 @@ The four numbers (0 0 0 1) in the last line make sure that rotations and transla
 The single transformation matrix is built from one Dn set of Denavit-Hartenberg parameters. Multiplying them in the correct order results in a matrix which is the complete transformation. This matrix is the endpoint position and orientation of the tool tip.
 Example: in a robot with tool pointing down vertical, the third column, the Z axis, is (0 0 -1)T.
 
-The 3x3 rotation submatrix has redundancy, because only 3 parameters are necessary to describe an orientation and 4 to describe a coordinate system. Among others, the following storage methods are used, part of them are losing information:
+The 3x3 rotation submatrix has redundancy, because only 3 parameters are necessary to describe an orientation of one axis and 4 to describe the complete 3-axis coordinate system. Among others, the following storage methods are used, part of them are losing information:
 * quaternions with 4 values to store vector (3 values) and rotation angle
 * vector with 3 values to store Z axis direction in case the X and Y axis directions are not important. E.g. a CNC spindle constantly rotated, i. e. X and Y axis directions are changing, and Z direction stays (hopefully) vertical. On CNC 5 axis, the Z direction in respect to the surface changes, but X, Y still change fast.
 * no direction storage
 
-An alternative to quaternion storage to store all orientation information is to use Euler angles, which define three axis rotations around specific angles. There are 12 subtypes like ZYX or ZYZ'. Euler angles have weaknesses compared to Quaternions (gimbal lock, nonlinear segmentation), so Quaternions are used.
+Quaternions and zaxis mode can be directly set with the B"orientationType=..." parameter, resulting in different calculations.
+
+An alternative to quaternion storage to store all orientation information is to use Euler angles, which define three axis rotations around specific angles. There are 12 subtypes like ZYX (RPY) or ZYZ'. Euler angles have weaknesses compared to Quaternions (gimbal lock, nonlinear segmentation of rotations), so Quaternions are used.
 
 # World coordinate or workpiece mode
 
