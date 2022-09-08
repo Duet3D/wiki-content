@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-08T16:54:05.405Z
+date: 2022-09-08T17:16:16.574Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -86,12 +86,11 @@ The following different types of orientation description are used in internal ro
 
 Of course, every object has a position and full orientation at any time, so describing it with less information means the object is not fully described. This is no problem, as long as the application doesn't need the information.
 
-# Orientation 6 axis robot, Quaternions
-I've described orientation in the rotation matrix in https://docs.duet3d.com/en/User_manual/Machine_configuration/Configuring_Robot_DH_parameters already.
+# Quaternions
+Quaternions are numbers of one real and three imaginary numbers, developed by Hamilton in 19th century, and can describe spatial rotations.
+* the real number describes the rotation angle around an axis
+* the three imaginary numbers describe the axis
 
-To avoid limitations of Euler angles, quaternions are used for calculations. Quaternions are numbers of one real and three imaginary numbers, developed by Hamilton in 19th century, and can describe spatial rotations.
-
-Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemake https://dl.acm.org/doi/pdf/10.1145/325165.325242
 Interpolation is unambigious and the orientation change has constant velocity, which is advantageous for constant extrusion, contrary to Euler angles. Slerp is often used in 3D gaming development.
 
 Online translator to convert between rotation matrix and quaternion I use are https://www.andre-gaschler.com/rotationconverter/ and https://www.energid.com/resources/orientation-calculator (both show real number last for quaternions).
@@ -111,22 +110,25 @@ Slerp is used in Kinematics for
 * segmentation of a long move to avoid snapping into different work modes
 * calculating jacobian matrix of the lower orientation rows
 
-# Orientation 5 axis CNC, Open5x:
+Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemake https://dl.acm.org/doi/pdf/10.1145/325165.325242
+Firmware code follows the code of https://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/index.htm
 
-CNC has a spindle with only one orientation in Z direction. Two rotational axes are used to describe the orientation. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis.
 
-G-Code can be described with AB, BC, AC code. The orientation is described by two angles. The calculation of the jacobian matrix is with 5 rows, 3 for position and 2 for the angles. Segmentation is calculated by interpolation of the angles.
+# Z axis orientation
+For robots where only Z axis orientation is needed, orientationType is set to zaxis and calculations of Jacobian and generalized inverse are based on positions and orientation of the Z axis only.
+
+CNC 5 axis has a spindle with only one orientation in Z direction. Two rotational axes are used to change the angle of the spindle in respect to the workpiece surface. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis. The angle of the spindle in respect to the workpiece surface is described as tool vector IJK values. IJK values are coordinates in XYZ direction respectively, are values between -1 and +1 for IJ, between 0 and 1 for K and are I²+J²+K²=1 normalized.
+
+G-Code can be described with AB, BC, AC code. The orientation is described by two angles. The calculation of the jacobian matrix is with 6 rows, 3 for position and 3 for IJK orientation change. Segmentation is calculated by interpolation of the angles, but segmentation is the task of the core RRF and not part of the kinematics code.
 
 An alternative is to use G-Code with IJK tool vectors, which can be used with G0/G1.
 
-There is a singularity, e.g. in AC mode for A at 0 degrees. This angle must be avoided, because at 0 degrees the C axis "wants" to rotate by 180 degrees instantly for specific movements, which is not possible (infinite velocity). Often, the choosen solution is to A remain in the negative degree range.
+There is a singularity, e.g. in AC mode for A at 0 degrees. This angle must be avoided, because at 0 degrees the C axis "wants" to rotate by 180 degrees instantly for specific movements, which is not possible (infinite velocity). In practice, the choosen solution is to A remain in the bigger degree range without crossing 0, often being negative angles.
 
-# Orientation 4 axis palletized robot
-Through parallelogram construction of the arms, the endpoint always stays in one horizontal plane, often with a vertically installed tool. Orientation is a rotation around the Z axis and one value is sufficient to describe the orientation with a Z direction indicator added. Orientation around the Z axis changes with every axis 1 rotation, and additionally by the 4th actuator, if it exists.
+# no orientation
+Every object has an orientation, but it is meant here that the orienation is not controlled by firmware, because the robot endpoint has an orientation which cannot be changed.
 
-# Orientation for 2 or 3 axis robot:
-
-Robots no control over the orientation of the endpoint. Calculations will ignore orientation.
+An example is a 4 axis palletized robot without 4th actuator. The orientation of the endpoint cannot be changed, only the position. By mechanical construction, the endpoint remains vertical. In reality, the X and Y axis axes change orientation with the result that probes change their offsets in respect to the hotend, so mesh compensation in the traditional manner cannot be made.
 
 # Degrees of freedom, rank
 
