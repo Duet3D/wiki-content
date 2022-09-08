@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-07T23:44:36.402Z
+date: 2022-09-08T10:42:48.337Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -74,6 +74,16 @@ Interpolation is unambigious and the orientation change has constant velocity, w
 Online translator to convert between rotation matrix and quaternion I use are https://www.andre-gaschler.com/rotationconverter/ and https://www.energid.com/resources/orientation-calculator (both show real number last for quaternions).
 
 A nice introduction video to quaternions is https://www.youtube.com/watch?v=mHVwd8gYLnI
+
+# Slerp
+For segmentation of a rotation, simply dividing angles (e. g. Euler angles) is not the correct way, because the resulting segmented rotations have nonlinear velocity. The method called Slerp, which is based on quaternions, assures constant angle change and velocity of rotation.
+
+![330px-slerp_factor_explanation.png](/manual/configuration/330px-slerp_factor_explanation.png)
+
+(from Wikipedia https://en.wikipedia.org/wiki/Slerp).
+
+The simple method would be to divide the line between p0 and p1 for segmentation (secant). With slerp, the curve of the circle is divided instead.
+
 
 # Orientation 5 axis CNC, Open5x:
 
