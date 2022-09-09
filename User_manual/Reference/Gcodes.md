@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-09T14:12:27.251Z
+date: 2022-09-09T14:45:50.230Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -718,7 +718,7 @@ This command uses a probe to measure the bed height at 4 or more points to deter
 * **S1** Load the height map from file and activate mesh bed compensation. The default filename is as for S0 but a different filename can be specified using the P parameter.
 * **S2** Disable mesh bed compensation and clear the height map (also clears the map of invalid probe points in builds that support it)
 * **S3** Save height map to the specified file (supported in RRF 2.04 and later)
-* **S4**  (supported in Duet 3 builds of RRF 3.5 and later) Load the grid definition and map of invalid probe points from the specified file, default */sys/probePoints.csv*
+* **S4**  (supported in Duet 3 builds of RRF 3.5 and later) Load the grid definition and map of valid probe points from the specified file, default */sys/probePoints.csv*
 * **P"file.csv"** Optional file name for height map file or probe points file to save with **S3** or load with **S1** or **S4**.
 * **Kn** (supported in RRF 3.01 and later only, default 0) Z probe number
 
