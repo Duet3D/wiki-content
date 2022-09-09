@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-09T12:07:59.798Z
+date: 2022-09-09T13:24:39.165Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2337,6 +2337,7 @@ In RRF3 a M140 command with H parameter (other than H-1) must come after the M95
 <br>
 <pre class="cblock">
 M140 H0      ; bed heater 0 uses heater 0
+M140 P1 H1   ; bed heater 1 uses heater 1
 M140 H-1     ; disable bed heater
 M140 S55     ; set bed temperature to 55C
 M140 S65 R40 ; set bed temperature to 65C and bed standby temperature to 40C
@@ -2344,15 +2345,17 @@ M140 S-273.1 ; switch off bed heater
 </pre>
 
 The first example informs the firmware that bed heater 0 (implied, because no P parameter is provided) uses heater 0.
-The second example sets the temperature of the bed heater to 55^o^C and returns control to the host immediately (*i.e.* before that temperature has been reached by the bed).
-The third example sets the bed temperature to 65^o^C and the bed standby temperature to 40^o^C.
-The fourth example sets the active/target bed temperature to absolute negative temperature (-273 or lower). This switches off the bed heater.
+The second example informs the firmware that bed heater 1 (P1) uses heater 1.
+The third example disables the bed heater. No bed heaters will be shown in DWC.
+The fourth example sets the temperature of the bed heater to 55^o^C and returns control to the host immediately (*i.e.* before that temperature has been reached by the bed).
+The fifth example sets the bed temperature to 65^o^C and the bed standby temperature to 40^o^C.
+The sixth example sets the active/target bed temperature to absolute negative temperature (-273 or lower). This switches off the bed heater.
 
 ### Notes
 
 * If a temperature close to absolute zero is set (strictly less than -273°C in RRF 3.3 and earlier, less than or equal to -273°C in RRF 3.4.0 and later), the bed heater will be switched off.
 * The 'H' parameter sets the heated bed heater number(s). If no heated bed is present, a negative value may be specified to disable it. M140 commands with H parameters would normally be used only in the config.g file.
-* On the Duet 3 MB6HC you can configure up to 12 bed heaters; on Duet 3 Mini 5+, 2 bed heaters; on Duet 2 WiFi/Ethernet, 4 bed heaters; on Duet 2 Maestro, 2 bed heaters.
+* On the Duet 3 MB6HC and MB6XD you can configure up to 12 bed heaters; on Duet 3 Mini 5+, 2 bed heaters; on Duet 2 WiFi/Ethernet, 4 bed heaters; on Duet 2 Maestro, 2 bed heaters.
 
 ## M141: Set Chamber Temperature (Fast) or Configure Chamber Heater
 
@@ -2372,16 +2375,17 @@ In RRF3 a M141 command with H parameter (other than H-1) must come after the M95
 <pre class="cblock">
 M141 S30
 M141 H3
+M141 P1 H4
 </pre>
 
 The first example sets the temperature of the chamber to 30^o^C and return control to the host immediately (*i.e.* before that temperature has been reached by the chamber).
-The second example specifies that chamber heater 0 uses heater 3.
+The second example specifies that chamber heater 0 (the default if no P parameter is given) uses heater 3.
+The third example specifies that chamber heater 1 uses heater 4.
 
 ### Notes
 
-M141 commands with H parameters would normally be used only in the config.g file.
-
-On the Duet 3 MB6HC you can configure up to 4 chamber heaters; on Duet 3 Mini 5+, 2 chamber heaters; on Duet 2 WiFi/Ethernet, 4 chamber heaters; on Duet 2 Maestro, 2 chamber heaters.
+* M141 commands with H parameters would normally be used only in the config.g file.
+* On the Duet 3 MB6HC and MB6XD you can configure up to 4 chamber heaters; on Duet 3 Mini 5+, 2 chamber heaters; on Duet 2 WiFi/Ethernet, 4 chamber heaters; on Duet 2 Maestro, 2 chamber heaters.
 
 ## M143: Maximum heater temperature
 
