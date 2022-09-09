@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-09T11:45:57.086Z
+date: 2022-09-09T12:06:44.820Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3368,7 +3368,8 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 
 **Additional parameters for MAX31865-based PT100 sensors**
 
-* **Rnnn** Series resistor value. Leave blank to use [the default for your board](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000#the-m305m308-r-parameter){target=_blank}.
+* **Rnnn** Series resistor value. Leave blank to use the default for your SPI daughterboard.
+* **Wnnn** Number of wires used to connect the PT100 sensor (2, 3, or 4).
 * **Fnn** (where nn is 50 or 60) The local mains frequency. Readings will be timed to optimise rejection of interference at this frequency.
 
 **Additional parameters for linear analog sensors**
