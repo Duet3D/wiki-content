@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-07T12:03:24.006Z
+date: 2022-09-09T11:45:57.086Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5125,7 +5125,7 @@ Supported for drivers attached to:
 ### Parameters
 
 * **Pn.n** Motor CAN board address (if applicable) and driver number
-* **C"port"** Port name of the brake control port. The port must be on the same CAN board as the driver. The CAN address does not need to be specified in the port name, but if it is then it must be the same as the driver address.
+* **C"port"** Port name of the brake control port. **The port must be on the same CAN board as the driver.** The CAN address does not need to be specified in the port name, but if it is then it must be the same as the driver address.
 
 ### Examples
 <br>
