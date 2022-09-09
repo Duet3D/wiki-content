@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-08-22T14:48:59.754Z
+date: 2022-09-09T13:46:49.214Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -313,6 +313,11 @@ In order to reduce this noise, the D term can be set to zero, however this will 
 
 When a G1 command is run on the Ender 3 example above, a tuned D value gives a maximum error of ± 0.07 steps. When using D=0, that error is increased to ± 0.1 steps, however the motor runs much quieter. This is still an order of magnitude better than the factory-default parameters, and is a matter of personal preference weighing up the sound of the motors against the decreased accuracy.
 
+# Reporting failure to maintain position
+
+If you want failure to maintain the desired position to be reported, you must use the E parameter of the M569.1 command to set a suitable error threshold. This must obviously be higher than the maximum error that you get in mormal use. Therefore you will first need to run PID tuning so as to minimise the position errors, then you can take the highest residual error reported by the input shaping plugin and use an error threshold somewhat greater than that.
+
+With the M569.1 E parameter correctly specified, failure to maintain position will be reported via the event system.
 
 # Troubleshooting
 
