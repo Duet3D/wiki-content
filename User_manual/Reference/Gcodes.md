@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-09T13:36:51.652Z
+date: 2022-09-09T14:12:27.251Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -727,10 +727,11 @@ If G29 is commanded with no S parameter, then file **sys/mesh.g** is run if it e
 ### Examples
 <br>
 <pre class="cblock">
-G29 S0              ; Probe the bed, save height map to "heightmap.csv" and enable mesh bed compensation
-G29 S3 P"usual.csv" ; Save the current height map to file "usual.csv"
-G29 S2              ; Disable mesh bed compensation)
-G29 S1 P"usual.csv" ; Load height map file "usual.csv" and enable mesh bed compensation
+G29 S0                    ; Probe the bed, save height map to "heightmap.csv" and enable mesh bed compensation
+G29 S3 P"usual.csv"       ; Save the current height map to file "usual.csv"
+G29 S2                    ; Disable mesh bed compensation
+G29 S1 P"usual.csv"       ; Load height map file "usual.csv" and enable mesh bed compensation
+G29 S4 P"probePoints.csv" ; Load probe points file "probePoints.csv"
 </pre>
 
 ### Notes
@@ -738,10 +739,13 @@ G29 S1 P"usual.csv" ; Load height map file "usual.csv" and enable mesh bed compe
 * To define the probe grid, see [M557](/User_manual/Reference/Gcodes/M557){target=_blank}.
 * You can define a height to taper off the compensation using [M376](/User_manual/Reference/Gcodes/M376){target=_blank}
 * You can find more detailed information about setting up [Mesh Bed Compensation here](/User_manual/Connecting_hardware/Z_probe_mesh_bed){target=_blank}.
-* To see the format of a height map file, generatre one and then download it in DWC
-* The S4 subfunction supports selective probing, such as probing a grid with holes in it. When G29 S0 is called subsequently, the grid definition defined in the probe points file is used instead of the grid defined by M557, and reachable points are probed or not as indicated in the file. The format of a probe points file is similar to a height map file except for the following:
-  * The first line must start with "RepRapFirmware probe points file v2" instead of "RepRapFirmware height map file v2" (the rest of the line is not processed)
-  * The fourth and subsequent lines have the value 1 at points that are to be probed if they are reachable and 0 in points that are to be omitted.
+* To see the format of a height map file, generate one and then download it in DWC
+* The S4 subfunction supports selective probing, such as probing a grid with holes in it. The probe points file (default */sys/probePoints.csv*) needs to be manually created. To use:
+  1. Create a valid probe points file; the default file name is */sys/probePoints.csv*. The format of a probe points file is similar to a height map file except for the following:
+  - The first line must start with "RepRapFirmware probe points file v2" instead of "RepRapFirmware height map file v2" (the rest of the line is not processed)
+  - The fourth and subsequent lines have the value 1 at points that are to be probed if they are reachable and 0 in points that are to be omitted.
+  2. Send an appropriate G29 S4 command, eg `G29 S4 P"probePoints.csv"`.
+  3. When G29 S0 is called subsequently, the grid definition defined in the probe points file is used instead of the grid defined by M557, and reachable points are probed or not as indicated in the file.
 
 ## G30: Single Z-Probe
 
