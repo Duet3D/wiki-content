@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-09T15:02:31.542Z
+date: 2022-09-09T15:16:41.794Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3825,15 +3825,12 @@ M452 C"!exp.heater3" F100 ; laser uses heater3 pin inverted, PWM frequency 100Hz
 
 ##### Notes
 
-Switches to laser mode. This mode enables handling of a laser pin and makes sure that the laser is only activated during G1 moves if laser was enabled (using G1 Snn moves) or E is increasing (using [M571](/User_manual/Reference/Gcodes/M571){target=_blank}). G0 moves should never enable the laser.
-
-**Very important!** If you use M452 to put your machine into Laser mode and are upgrading from RepRapFirmware **v2.01 or earlier**, you must replace all S parameters in G0/G1 commands in homing files etc. with H parameters. This is because S is now used to control laser power.
-
-In RRF3, the P and I parameters are removed. Use the C parameter to select the laser control pin instead.
-
-M3 and M5 no longer turn the laser on and off; use G1 Snn moves to control laser power.
-
-See also [Configuring RepRapFirmware for a laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser){target=_blank}.
+* Switches to laser mode. This mode enables handling of a laser pin and makes sure that the laser is only activated during G1 moves if laser was enabled (using G1 Snn moves) or E is increasing (using [M571](/User_manual/Reference/Gcodes/M571){target=_blank}). G0 moves should never enable the laser.
+* **Very important!** If you use M452 to put your machine into Laser mode and are upgrading from RepRapFirmware **v2.01 or earlier**, you must replace all S parameters in G0/G1 commands in homing files etc. with H parameters. This is because S is now used to control laser power.
+* In laser mode, it is valid in a Gcode file to send G0 or G1 on one line, and then just send co-ordinates on the following lines.
+* In RRF3, the P and I parameters are removed. Use the C parameter to select the laser control pin instead.
+* M3 and M5 no longer turn the laser on and off; use G1 Snn moves to control laser power.
+* See also [Configuring RepRapFirmware for a laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser){target=_blank}.
 
 #### RepRapFirmware 2.x
 
@@ -3853,15 +3850,11 @@ M452 P2 R255 F200 ; switch to laser mode using the heater 2 (E1 heater) output p
 
 ##### Notes
 
-Switches to laser mode. This mode enables handling of a laser pin and makes sure that the laser is only activated during G1 moves if laser was enabled (using M3 Snn or G1 Snn moves) or E is increasing (using [M571](/User_manual/Reference/Gcodes/M571){target=_blank}). G0 moves should never enable the laser. 
-
-M3/M5 can be used to enable/disable the laser for moves. 
-
-Logical pin numbers for the P parameter are as defined for the M42 and M208 commands. If a heater or fan output is used to control the laser, you must disable the corresponding heater (see M307) or fan (see M106) first.
-
-**Very important!** If you use M452 to put your machine into Laser mode and are upgrading from RepRapFirmware **v2.01 or earlier**, you must replace all S parameters in G0/G1 commands in homing files etc. with H parameters. This is because S is now used to control laser power.
-
-See also [Configuring RepRapFirmware for a laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser){target=_blank}.
+* Switches to laser mode. This mode enables handling of a laser pin and makes sure that the laser is only activated during G1 moves if laser was enabled (using M3 Snn or G1 Snn moves) or E is increasing (using [M571](/User_manual/Reference/Gcodes/M571){target=_blank}). G0 moves should never enable the laser. 
+* M3/M5 can be used to enable/disable the laser for moves. 
+* Logical pin numbers for the P parameter are as defined for the M42 and M208 commands. If a heater or fan output is used to control the laser, you must disable the corresponding heater (see M307) or fan (see M106) first.
+* **Very important!** If you use M452 to put your machine into Laser mode and are upgrading from RepRapFirmware **v2.01 or earlier**, you must replace all S parameters in G0/G1 commands in homing files etc. with H parameters. This is because S is now used to control laser power.
+* See also [Configuring RepRapFirmware for a laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser){target=_blank}.
 
 ## M453: Select CNC Device Mode
 
@@ -3869,11 +3862,11 @@ See also [Configuring RepRapFirmware for a laser engraver/cutter](/User_manual/M
 
 #### M453 in RepRapFirmware 3.3beta2 and later
 
+Switches to CNC mode. All other parameters have been removed and moved into M950.
+
 ##### Parameters
 
 none
-
-Switches to CNC mode. All other parameters have been removed and moved into M950.
 
 ##### Examples
 <br>
@@ -3949,9 +3942,11 @@ Logical pin numbers for the P parameters are as defined for the M42 and M208 com
 
 ### Notes
 
-Switches to CNC mode. In this mode M3/M4/M5 control the pins defined for the milling device. By default, no output is assigned to a spindle motor, so it must be configured. 
-
-See also [Configuring RepRapFirmware for a CNC machine](/User_manual/Machine_configuration/Configuration_CNC){target=_blank}.
+* Switches to CNC mode. In this mode M3/M4/M5 control the pins defined for the milling device. By default, no output is assigned to a spindle motor, so it must be configured.
+* In CNC mode, it is valid in a Gcode file to send G0 or G1 on one line, and then just send co-ordinates on the following lines.
+* In CNC mode, comments can be enclosed in a **single** pair of parentheses, e.g. `(comment)`. Comments cannot include double or nested parentheses, e.g. `(comment (a bit more comment))`, and they must start and end on the same line. This complies with NIST Gcode interpreter guidelines. e.g. `G28 (here come the axes to be homed) X Y`
+* When using [Gcode meta commands](/User_manual/Reference/Gcode_meta_commands), sub-expressions may be enclosed in { } or in ( ). However, standard CNC GCode uses ( ) to enclose comments (see note above). So in CNC mode, RepRapFirmware treats ( ) as enclosing subexpressions when they appear inside { } and as enclosing comments when they do not. Therefore, when RepRapFirmware is running in CNC mode, any use of ( ) to enclose a subexpression or function parameter list must be within an expression enclosed in { }.
+* See also [Configuring RepRapFirmware for a CNC machine](/User_manual/Machine_configuration/Configuration_CNC){target=_blank}.
 
 ## M470: Create Directory on SD-Card
 
