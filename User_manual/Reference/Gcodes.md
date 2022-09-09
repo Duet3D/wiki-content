@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-09T13:24:39.165Z
+date: 2022-09-09T13:32:40.819Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4891,7 +4891,7 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 * **Pnn** Motor driver number
 * **Tn** Encoder type: 0=none, 1=linear quadrature encoder on axis, 2=quadrature encoder on motor shaft, 3=Duet closed loop magnetic sensor (based on the AS5047D)
 * **Cn.n** Encoder counts per full step (when using a quadrature encoder on motor shaft) [count per mm will become available as support for linear encoders is implemented]
-* **En.n:m.m** Error thresholds. Closed loop errors greater than m will be treated as a stall. Closed loop errors greater than n will be treated as a pre-stall. The action that is taken on a stall/pre-stall can be configured using the [event system](/User_manual/RepRapFirmware/Events)
+* **En.n:m.m** Error thresholds. If m.m is nonzero then whenever the actual position is more than m.m full motor steps of the desired position, this will be reported as a driver error. If n.n is nonzero and n.n < m.m then whenever the actual position is more than n.n full steps of the desired position but is less than m.m full steps, this will be reported as a pre-stall. The action that is taken on a stall/pre-stall can be configured using the [event system](/User_manual/RepRapFirmware/Events)
 * **Rn.n** Proportional constant
 * **In.n** Integral constant
 * **Dn.n** Derivative constant
