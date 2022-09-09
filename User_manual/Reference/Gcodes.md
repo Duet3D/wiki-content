@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-09T13:32:40.819Z
+date: 2022-09-09T13:36:51.652Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4909,6 +4909,8 @@ Encoder counts per step (Cn.n) can be found from the datasheet of the encoder be
 
 Supported for drivers attached to:
 * [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL){target=_blank}
+
+The E parameter defaulta to 0.0:0.0. **If you do not override this default, then failure to maintain position will not be reported.**
 
 See '[Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_blank}' for further details on setting the proportional/integral/derivative constants.
 
