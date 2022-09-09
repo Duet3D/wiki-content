@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-09T14:45:50.230Z
+date: 2022-09-09T15:02:31.542Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -86,13 +86,13 @@ G92 E0
 G28
 </pre>
 
-Alternatively, comments can be enclosed in a **single** pair of parentheses, e.g. `(comment)`. Comments cannot include double or nested parentheses, e.g. `(comment (a bit more comment))`, and they must start and end on the same line.
+In CNC mode only ([M453](/User_manual/Reference/Gcodes/M453){target=_blank}), comments can be enclosed in a **single** pair of parentheses, e.g. `(comment)`. Comments cannot include double or nested parentheses, e.g. `(comment (a bit more comment))`, and they must start and end on the same line. This complies with NIST Gcode interpreter guidelines.
 <br>
 <pre class="cblock">
 G28 (here come the axes to be homed) X Y
 </pre>
 
-Comments and white space will be ignored by RepRapFirmware when executing the GCode
+Comments and white space will be ignored by RepRapFirmware when executing the GCode.
 
 ## Fields
 
