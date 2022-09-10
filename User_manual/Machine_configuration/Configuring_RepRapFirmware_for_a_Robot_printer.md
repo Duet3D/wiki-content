@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-10T16:56:42.096Z
+date: 2022-09-10T17:04:25.231Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -47,7 +47,7 @@ Dn define DH parameters and are numbered from 0 to maximum 9. The numbers can ha
 Every Dn contains three translates and three rotations by Z, Y, X axis in this order. The joint parameters are pairwise descriptions of translate in mm and rotate in degrees for the Z[Y]X coordinate axis.
 
 Original set of DH parameters:
-**Dn:d:theta:a:alpha**
+**D"n:d:theta:a:alpha"**
 
 * the original DH definition define Z axis and X axis translate and rotate each, but no Y axis change
 * n are unique integer numbers starting from 0
@@ -58,21 +58,21 @@ Original set of DH parameters:
 * the internally used ytr and yrot values are set to 0.0 each
 
 Extended set with addition Y parameters:
-**Dn:d:theta:ytr:yrot:a:alpha**
+**D"n:d:theta:ytr:yrot:a:alpha"**
 
 * values meaning as above
 * additionally, ytr and yrot define displacement and rotation/translate around the Y axis
 
 The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0 each.
 
-**Dn!:...**
+**D"n!:..."**
 Same as above, but inverts the transformation. Inverts rotations and translations. This is used for workpiece mode and explained in a world mode vs. workpiece mode chapter.
 
 Example:
-* D1:100.0:0:0:90.0 means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
-* D6 without values clears the definitions of D6 and removes D6 from the chain
-* D7:0:0:0:0 if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
-* D1!:100.0:0:0:0 inverts the transformation matrix.
+* D"1:100.0:0:0:90.0" means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
+* D"6" without values clears the definitions of D6 and removes D6 from the chain
+* D"7:0:0:0:0" if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
+* D"1!:100.0:0:0:0" inverts the transformation matrix.
 
 # M669 A parameter: angles
 
