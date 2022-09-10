@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-10T16:54:28.587Z
+date: 2022-09-10T16:56:42.096Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -65,7 +65,8 @@ Extended set with addition Y parameters:
 
 The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0 each.
 
-Dn!:... inverts the transformation. This is used for workpiece mode.
+**Dn!:...**
+Same as above, but inverts the transformation. Inverts rotations and translations. This is used for workpiece mode and explained in a world mode vs. workpiece mode chapter.
 
 Example:
 * D1:100.0:0:0:90.0 means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
