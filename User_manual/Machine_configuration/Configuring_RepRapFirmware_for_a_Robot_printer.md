@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-07T22:41:36.085Z
+date: 2022-09-10T05:12:05.260Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -67,7 +67,8 @@ The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0
 
 Example:
 * D1:100.0:0:0:90.0 means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
-* D6 clears the definitions of D6 and removes D6 from the chain
+* D6 without values clears the definitions of D6 and removes D6 from the chain
+* D7:0:0:0:0 if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
 
 # M669 A parameter: angles
 
@@ -140,12 +141,11 @@ G1, G2, and G3 moves are separated into segments, which are executed as straight
 In RRF, XYZUVW are linear axes by default and ABC rotational axes. This corresponds to CNC conventions. The defined axes for robot kinematics should be clarified as prismatic or rotational with the M584 settings, R0 meaning prismatic/linear and R1 meaning revolute/rotational. The reason is, RRF uses this information for some calculations like the distance calculation and uses different algorithms for prismatic and rotational axes. This clarification is only needed if the used letters differ from the default assignment.
 
 # G10: tool offset
-At the end of the last axis, a tool is attached. The robot's kinematics is calculation with the G10 offsets of the currently selected tool:
+At the end of the last axis, a tool is attached. The tool is defined as last Dn setting. The Dn values are taken and G10 offsets of the currently selected tool is added to it:
 * X, Y, Z are the tool's offsets in mm. Default is 0, 0, 0.
 
-Offsets are included in the calculation of the XYZ position. The signs of the offsets are important and depend on tool's coordinate system (explained in the DH document).
-
-Tool tilt or rotated tool can be defined through the DH parameters. The last DH definition is the tool definition, the tool tip is called endpoint. G10 XYZ offsets are added to the DH values.
+The signs of the offsets are important and depend on tool's coordinate system (explained in the DH document).
+Example: Z is positive and Z axis of the coordinate system of last Dn points to (0 0 -1) downwards with a common head-table configuration, then Z will lower the distance between head and table.
 
 # M208: limits
 M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). 
