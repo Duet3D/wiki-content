@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-08T17:45:11.307Z
+date: 2022-09-10T05:19:22.999Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -79,6 +79,10 @@ Workpiece mode means that the transformation matrices need to be multiplied in b
 The inversion of a tranformation matrix looks like this:
 ![transfmatrixinvert_small.png](/manual/configuration/transfmatrixinvert_small.png)
 T are transposes, R is the rotation matrix, t is the position matrix.
+
+It is important to get the transformation matrix order for multiplication correct, i. e. the order of the Dn definitions, because matrix multiplication order is not commutative, i. e. A * B is different from B * A. In case of changing from world mode to workpiece mode, the transformation matrix must
+* be inverted by setting the B"dnInvert" value to -1 for this Dn
+* change the Dn order to be reversed for the workpiece Dn-s
 
 # Orientation types
 
