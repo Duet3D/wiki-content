@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-10T17:04:25.231Z
+date: 2022-09-10T17:05:43.910Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -65,14 +65,14 @@ Extended set with addition Y parameters:
 
 The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0 each.
 
-**D"n!:..."**
+**D"!n:..."**
 Same as above, but inverts the transformation. Inverts rotations and translations. This is used for workpiece mode and explained in a world mode vs. workpiece mode chapter.
 
 Example:
 * D"1:100.0:0:0:90.0" means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
 * D"6" without values clears the definitions of D6 and removes D6 from the chain
 * D"7:0:0:0:0" if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
-* D"1!:100.0:0:0:0" inverts the transformation matrix.
+* D"!1:100.0:0:0:0" inverts the transformation matrix.
 
 # M669 A parameter: angles
 
