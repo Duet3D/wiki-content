@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-10T05:12:05.260Z
+date: 2022-09-10T16:54:28.587Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -65,10 +65,13 @@ Extended set with addition Y parameters:
 
 The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0 each.
 
+Dn!:... inverts the transformation. This is used for workpiece mode.
+
 Example:
 * D1:100.0:0:0:90.0 means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
 * D6 without values clears the definitions of D6 and removes D6 from the chain
 * D7:0:0:0:0 if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
+* D1!:100.0:0:0:0 inverts the transformation matrix.
 
 # M669 A parameter: angles
 
@@ -110,19 +113,21 @@ B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 * different drive numbers may not point to the same Dn
 * the order of the elements is not important
 
-**B"dnInvert=0:1:2"**
-* the specified Dn transformations will be inverted. It is needed when changing from world to workpiece mode. This will be explained in detail on the page about CNC 5 axis.
+**B"orientationType=full|zaxis|no"**
+The parameter handles, how orientation is handled:
+* full means the all 3 coordination axes are used to control endpoint position
+* zaxis means the endpoint vector orientation of the zaxis is used
+* no means only position, not orientation is used
 
+The actuators and/or mechanic of the robot must be able to change orientation if zaxis or full are set.
+Examples: 6 axis robot can control full. CNC 5 axis uses zaxis orientation by using IJK and AC/BC/AB rotary axes. A cartesian printer and 4 axis palletized robot cannot control endstop orientation and is orientation type no.
+
+(maybe not necessary, because workpiece mode sufficient:
 **B"revertCoordinates=X:Y:Z"**
 * revert axis movement, for cases where the robot moved the object instead of the hotend. This will be explained in detail on the page about 4 axis palletized robots.
 
-**B"orientationType=Quaternion|ZAxis|no"**
-Orientation type controls how orientation of the tool is handled. Quaternion means full control over all 3 coordinate axes and their orientation (but still right handed). Quaternion based rotations have constant velocity by using slerp method for calculation.
-ZAxis means, only the orientation of the Z axis is controlled, e.g. z axis always being vertical. This is the case for most 3D printer hotends and CNC drills. The orientation is represented by a vector similar to the IJK parameters.
-no means, the orientation is not controlled.
-If the zaxis is vertical by mechanical means, it is not necessary to set ZAxis mode, no is also possible.
-Examples: CNC 5 axis is ZAxis mode. 6 axis robot with endpoint always vertical is ZAxis mode also. 6 axis robot with free endpoint orientation is Quaternion mode.
-Technically, Quaterion uses all three rotation matrix columns, ZAxis the third axis and no doesn't use it, for rotation matrix orientation, see explanation on the DH page.
+)
+
 
 # M669 Q parameter: quality
 
