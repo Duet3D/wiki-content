@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-11T22:59:38.969Z
+date: 2022-09-11T23:02:19.397Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -43,7 +43,7 @@ Calculation of inverse kinematics by using Jacobian/Gen. Inverse is calculated i
 
 The CAM creates a G-Code file, which uses letters like G1 XYZAC or G1 XYZIJK with different meaning. XYZ are cartesian coordinates, while AC (or BC, AB) are degrees of rotary axes and IJK are tool vector values.
 
-The firmware interpretes the letters in kinematics as input values. Kinematics can translate it at it's will, can combine, calculate with them, ignore them etc. For a meaningful interpretation, it needs to know what the CAM means by A letter e.g. The match is often done by convenience, but it is more safe to define the match explicitly.
+The firmware interpretes the letters in kinematics as input values. Kinematics can translate it at it's will, can combine, calculate with them, ignore them etc. For a meaningful interpretation, it needs to know what the CAM means by A letter e.g. The match is often done by convenience, but it is more safe to define the match explicitly. It is also possible that the match is not 1:1, but more motors used than letters in G-Code used.
 
 Firmware kinematics than outputs its calculation results into machine positions and the main firmware positions the motors and prints or drills at the commanded motor positions.
 
