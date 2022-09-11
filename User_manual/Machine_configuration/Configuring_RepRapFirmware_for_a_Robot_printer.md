@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-10T17:44:42.948Z
+date: 2022-09-11T21:07:51.301Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -42,9 +42,20 @@ Overview
 Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
 # M669 D parameter: Denavit-Hartenberg
-Dn define DH parameters and are numbered from 0 to maximum 9. The numbers can have holes (e.g. start by 1), but every number only used once. In most cases, D0 is the base, D1 to Dx are DH parameters for the x axes and D(x+1) are the tool DH properties. The Transformations are processed in the order starting from 0 to highest number, the numbers may not have gaps. The last used Dn number is used as tool, G10 offsets are added to the Dn values.
+Dn define DH parameters and are numbered from 0 to maximum 9.
 
-Every Dn contains three translates and three rotations by Z, Y, X axis in this order. The joint parameters are pairwise descriptions of translate in mm and rotate in degrees for the Z[Y]X coordinate axis.
+The standard usage is:
+* D0 is the definition of the base, often omitted, because the first axis is vertical in most cases with original coordinate system
+* D1 to D6 are DH parameters with actuators assigned
+* D7 placeholder for tool
+
+The last defined Dn is always the tool.
+
+For less actuators, less D-s are used. The p (parallelogram 4 axis) has its own Dn and if it has values, they are added to the parallelogram angles.
+
+The standard can be changed with the B parameter and Dn numbers can have holes, e.g. start by 1 without 0. The last used Dn number is used as tool, G10 offsets are added to the Dn values.
+
+Every Dn contains three translates and three rotations by Z, Y, X axis in this order. The parameters are explained in detail on the DH Parameter documentation page.
 
 Original set of DH parameters:
 **D"n:d:theta:a:alpha"**
@@ -76,29 +87,34 @@ Example:
 
 # M669 A parameter: angles
 
-**An:min:max:home**
+**Aactnr:min:max:home**
 
-Defining minimun and maximum angles of the actuator. Home is the angle which is set when the endstop is triggered. The home angle can be outside min and max. The endstop can be low or high.
+* actnr is the actuator number, starting with 1
+* min is the minium angle for rotary axis and minimum position in mm for prismatic axis
+* max is the maximum angle or position
+* home is the home position in degrees or mm. The value can be outside min and max, the endstop can be low or high type
 
 Example:
 * A1:-180.0:180.0:0.0 means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
 
 # M669 B parameter: axisTypes, special
 **B"axisTypes=[R]|[P]|[p]*"**
-defines the type of the axes
+
+defines the type of the axes. This **parameter is mandatory**.
 
 * R means rotational/revolute, units are degrees, speeds e.g. degrees/min
 * P means prismatic/linear, units are mm
 * p (lower case p) means passive joint without actuator with parallelogram (see 4 axis palletized robot type)
-* the number of letters define the number of actuator or parallelogram axes
+
+The parameter must be set correct, otherwise kinematics will not calculate correctly.
 
 Examples:
 
 * B"axisTypes=RRRRRR" means 6 axis robot with rotational axes
-* B"axisTypes=RRP" means serial scara with third axis being prismatic
+* B"axisTypes=RRP" means serial scara with third axis being prismatic, i. e. two rotary arms and one linear Z axis
 * B"axisTypes=PPP" means 3 axis cartesian printer with three prismatic axes
 * B"axisTypes=PPPRRR" means cartesian printer with additional spheric 3 axis head
-* B"axisTypes=PPPRR" means CNC 5 axis with three linear and two rotary axes
+* B"axisTypes=PPPRR" means CNC 5 axis with three linear and two rotary axes. With a rotary axis at the head, the order will be different like RPPPR
 * B"axisTypes=RRRp" means 4 axis palletized
 * B"axisTypes=RRRpR" means 4 axis palletized with 4th actuator, so 5 axes in total
 
@@ -106,6 +122,7 @@ CNC 5 axis allows many variants. The following dynamic mapping allows to configu
 
 **B"mapDriveLetterDn=0X3:1Y4:2Z5:3A1:4C2"**
 B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
+* if this parameter is not set, it is expected that the first drive is used at D1, second at D2 etc. and the letters are standard XYZABC (or XYZUVW) for 6 axis, XYZ for 4 axis pallet, XYZAC for CNC 5 axis AC type.
 * maps drive number with drive letter with Dn, in the first example the first drive called X is mapped to D3
 * letters IJK have a special meaning as tool vector
 * the parallel axis of the 4 axis palletized robot is named pn, e.g. second example p is assigned to D4
@@ -116,23 +133,21 @@ B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 
 **B"orientationType=full|zaxis|no"**
 The parameter handles, how orientation is handled:
-* full means the all 3 coordination axes are used to control endpoint position
-* zaxis means the endpoint vector orientation of the zaxis is used
-* no means only position, not orientation is used
+* default if the parameter is not set: if three actuators are defined with axisType, no is set. With 5, zaxis is set and for 6 or 7, full is set.
+* full means the all 3 coordination axes are used to control endpoint position. It uses mainly quaternion calculation methods
+* zaxis means the endpoint vector orientation of the zaxis is used. It uses vector angles for calculation. This is often used for 3D printers and a 3 axis CNC machine with spindle.
+* no means only position, not orientation is used. The endpoint has an orientation by mechanics, but it cannot be controlled by firmware.
 
 The actuators and/or mechanic of the robot must be able to change orientation if zaxis or full are set.
 Examples: 6 axis robot can control full. CNC 5 axis uses zaxis orientation by using IJK and AC/BC/AB rotary axes. A cartesian printer and 4 axis palletized robot cannot control endstop orientation and is orientation type no.
 
-(maybe not necessary, because workpiece mode sufficient:
-**B"revertCoordinates=X:Y:Z"**
-* revert axis movement, for cases where the robot moved the object instead of the hotend. This will be explained in detail on the page about 4 axis palletized robots.
-
-)
-
-
 # M669 Q parameter: quality
 
 Q1 is fast but lowest, Q5 is slow but highest quality of calculation. The time needed to calculate depends on the processor speed. Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality. Default is Q3
+
+The following properties will be changed by Q:
+* allowed maximum number of iterations to achieve the precision goal. When it aborts, firmware takes the best result achieved (lowest position and orientation error)
+* required precision for position and orientation
 
 # M669 S, T parameters: segmentation
 
@@ -167,14 +182,7 @@ If the homing position is in a singularity or near it, after homing the robot ar
 # Mesh compensation
 Mesh compensation is a feature to handle uneven print beds und allow printing with good adhesion by printing the first layers in sync to the unevenness of the bed. It is used a probe to record the unevenness data, which has in most cases an XYZ offset from the hotend. The offset may not change while measuring, because the firmware calculates the hotend position from the probe offset and stores the hotend positions in the mesh file.
 
-Some robot setups can assure the constant XYZ offset between probe and hotend, some not:
-
-* 6 axis robot can use M669 P2 mode to change the hotend orientation to stay parallel to XY axes
-* a mechanical solution of a horizontal parallelogram or other means can fix orientation
-* the probe can be installed at XY 0,0 position, e. g. under the hotend
-* a toolchanger can load a probe instead of a tool and measure at 0,0
-
-After the mesh is measured and stored, the probe is not needed anymore. To avoid collision with the print object later when the hotend tilts (and with it the probe), a mechanical removal of the probe or a save distance in Z direction should be considered.
+After the mesh is measured and stored, the probe is not needed anymore. To avoid collision with the print object later when the hotend tilts (and with it the probe), a mechanical removal of the probe or a save distance in Z direction should be considered when nonplanar printing or drilling is used.
 
 # Configuration first testing
 When configuration is stored and Duet rebooted, the following procedure shall avoid damages:
