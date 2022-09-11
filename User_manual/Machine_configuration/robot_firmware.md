@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-11T23:02:19.397Z
+date: 2022-09-11T23:03:46.349Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -47,7 +47,7 @@ The firmware interpretes the letters in kinematics as input values. Kinematics c
 
 Firmware kinematics than outputs its calculation results into machine positions and the main firmware positions the motors and prints or drills at the commanded motor positions.
 
-The M669 B parameters can define some of those properties
+The M669 B"mapDriveLetterDn=..." parameters can define some of those properties
 * drive number is the internal number of the used G-Code letters, starting by 0. In most cases X is 0, Y is 1, Z is 2, A is 3, C is 4 for a CNC 5 axis configuration, or XYZABC being 0 to 5 for a 6 axis robot. Internally, the next drive numbers are used for the extruder(s) E, E1... letters, so firmware can use them the same way.
 * letter names can be changed, but this has no influence about how main firmware assigns them to the drive numbers. Drive number to letter assignment is done by M584. The B letter assignment is for readability, which drive number is assigned to which Dn DH parameter setting: 3A5 means drive the 4th drive named A is assigned to the D5 DH paramters and transformation matrix.
 
