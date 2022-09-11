@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-10T05:25:35.113Z
+date: 2022-09-11T22:46:51.957Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -36,6 +36,20 @@ An inverse must be calculated to get the inverse kinematics: calculating from ca
 The jacobian and inverse values are almost exact if using small steps, i. e. small segments. The default is 0.1 segment lengths.
 
 Calculation of inverse kinematics by using Jacobian/Gen. Inverse is calculated in iterations to get the required precision. Settings a lower required precision result in lower needed iterations.
+
+# G-Code to machine position
+
+![robot_cam_to_machine.png](/manual/configuration/robot_cam_to_machine.png)
+
+The CAM creates a G-Code file, which uses letters like G1 XYZAC or G1 XYZIJK with different meaning. XYZ are cartesian coordinates, while AC (or BC, AB) are degrees of rotary axes and IJK are tool vector values.
+
+The firmware interpretes the letters in kinematics as input values. Kinematics can translate it at it's will, can combine, calculate with them, ignore them etc. For a meaningful interpretation, it needs to know what the CAM means by A letter e.g. The match is often done by convenience, but it is more safe to define the match explicitly.
+
+Firmware kinematics than outputs its calculation results into machine positions and the main firmware positions the motors and prints or drills at the commanded motor positions.
+
+The M669 B parameters can define some of those properties
+* drive number is the internal number of the used G-Code letters, starting by 0. In most cases X is 0, Y is 1, Z is 2, A is 3, C is 4 for a CNC 5 axis configuration, or XYZABC being 0 to 5 for a 6 axis robot. Internally, the next drive numbers are used for the extruder(s) E, E1... letters, so firmware can use them the same way.
+* letter names can be changed, but this has no influence about how main firmware assigns them to the drive numbers. Drive number to letter assignment is done by 
 
 # Transformation rotation matrix
 Each object can be translated (displacement) in X, Y, Z and rotated around an arbitrary axis. Both can be described together in a 4x4 transformation matrix.
