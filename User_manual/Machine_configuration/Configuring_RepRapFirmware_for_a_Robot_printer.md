@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-11T21:07:51.301Z
+date: 2022-09-11T23:09:46.371Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -186,7 +186,7 @@ After the mesh is measured and stored, the probe is not needed anymore. To avoid
 
 # Configuration first testing
 When configuration is stored and Duet rebooted, the following procedure shall avoid damages:
-* when Duet reboots, the motors lose current and the arms may fall down
+* when Duet reboots or is powered off, the motors lose current and the arms may fall down (for protection, consider brakes, weight balance, gear friction, detention torque, springs, counterweights)
 * G91 G1 H2 X1 to check whether first axis rotates into the expected direction and it is the correct axis. Use low values in case the M92 setting is wrong. Repeat with the other axes. Check letter assignments, positive and negative angles interpreted as expected, and whether rotation degrees are correct.
 * G91 G1 H2 Xn with bigger values to assure that the M92 settings are correct
 * home the individual axes and assure that the endstops are triggered. M114 Count values can be used to check the stored motor position value for the homing position.
