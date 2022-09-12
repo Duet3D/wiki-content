@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-09-12T12:31:06.659Z
+date: 2022-09-12T12:32:04.296Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -106,6 +106,12 @@ See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
 
 All boards in the system must have different CAN addresses. 1HCL boards are shipped set to a default CAN address of 123. They will also revert to 123 if you use the jumper to force the bootloader to request new firmware. Therefore, if you have more than one new 1HCL board, only one of them must be powered up and connected to the CAN bus. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that board, you can connect the next one; and so on.
 
+## Startup Time
+
+It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards
+
+`G4 S1   ;wait for expansion boards to start`
+
 ## Testing communication
 
 Check that you can communicate with the 1HCL board, by sending:
@@ -147,12 +153,6 @@ The default CAN address is 123. It can be changed as described above.
 Please see the current RepRapFirmware limitations, especially Z probing with drivers drivers on external boards:
 
 [Duet 3 firmware with CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations)
-
-## Startup Time
-
-It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards
-
-`G4 S1   ;wait for expansion boards to start`
 
 ## Microstepping
 While in closed loop mode step pulses are not sent to the stepper motor driver in the same manner as an open loop driver, however the firmware still uses microsteps internally to represent moves.
