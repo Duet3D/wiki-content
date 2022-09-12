@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-09-12T12:22:39.261Z
+date: 2022-09-12T13:34:20.851Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -260,6 +260,14 @@ It is recommended to add the following to config.g, before any commands that ref
 
 `G4 S2 ; wait for expansion boards to start`
 
+## Testing communication
+
+Check that you can communicate with the Duet 3 Expansion 3HC board, by sending:
+
+`M115 B1`
+
+If that fails, check the CAN address set by the 4-bank DIP switch. Check that the DIAG LED is blinking synchronously with the main board LED, which shows if synchronisation has been established on the CAN bus.
+
 ## Update the bootloader
 
 Duet 3 expansion boards and tool boards have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
@@ -267,7 +275,7 @@ Duet 3 expansion boards and tool boards have a bootstrap loader written to the s
 ## Updating the firmware
 The 3HC board will be shipped with firmware loaded during production. You can check the version loaded by sending
 
-M115 B1
+`M115 B1`
 (or B## where ## is the new CAN address of the board if you have changed it already)
 
 To update the firmware get the [latest version from the RepRapFirmware github](https://github.com/Duet3D/RepRapFirmware/releases). It is recommended to upgrade all the firmware in your Duet 3 system together so that the versions do not get out of sync.
