@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2022-06-29T19:55:29.688Z
+date: 2022-09-12T12:33:43.175Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -225,6 +225,12 @@ See also [CAN connection basics](/User_manual/Machine_configuration/CAN_connecti
 
 All boards in the system must have different CAN addresses. Duet 3 Expansion 1XD boards are shipped set to a default CAN address of 122. They will also revert to 122 if you use the jumper to force the bootloader to request new firmware. Therefore, if you have more than one new Duet 3 Expansion 1XD board, only one of them must be powered up and connected to the CAN bus. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that board, you can connect the next one; and so on.
 
+## Startup Time
+
+It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards
+
+`G4 S2 ; wait for expansion boards to start`
+
 ## Testing communication
 
 Check that you can communicate with the Duet 3 Expansion 1XD board, by sending:
@@ -232,6 +238,10 @@ Check that you can communicate with the Duet 3 Expansion 1XD board, by sending:
 `M115 B122`
 
 If that fails try placing a jumper on the CAN_RST pins and powering up, then power down and remove the jumper before powering up again, this will reset the CAN-FD bus settings to the default (address 122, bus speed 1Mbps)
+
+## Update the bootloader
+
+Duet 3 expansion boards and tool boards have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
 
 ## Updating the firmware
 
@@ -252,12 +262,6 @@ Send `M997 B##` to carry out a firmware update, the bootloader will request the 
 * Power the system down and up again, or send `M999 B122`. This will cause the 1XD board to restart with the new address.
 * Send command `M122 B40` (or whatever address you chose) to verify that you can communicate with the 1XD board at its new address
 * You can now power up the next 1XD board and commission it in the same way, **choosing a different CAN address for it**.
-
-## Startup Time
-
-It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards
-
-`G4 S2 ; wait for expansion boards to start`
 
 ## Configuration examples
 
