@@ -2,7 +2,7 @@
 title: Updating the bootloader on Duet 3 expansion and tool boards
 description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
 published: true
-date: 2021-11-30T13:04:33.982Z
+date: 2022-09-12T12:30:14.384Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:04:31.062Z
@@ -14,7 +14,7 @@ Duet 3 expansion boards and tool boards have  a bootstrap loader written to the 
 
 # Download the bootloader
 
-The bootloader can be downloaded from [GitHub](https://github.com/Duet3D/Duet3Bootloader/releases)
+The bootloader can be downloaded from [GitHub](https://github.com/Duet3D/Duet3Bootloader/releases){target=blank}
 
 **.bin** files are used when performing updates via CAN
 **.elf** files are used when performing updates via Atmel ICE
@@ -23,7 +23,7 @@ Here is a list of expansion boards and corresponding bootloader files:
 
 | Board | Bootloader file |
 |:---|:---|
-| Expansion 3HC | Duet3Bootloader-SAME5x.* |
+| Expansion 3HC, 1HCL | Duet3Bootloader-SAME5x.* |
 | Expansion 1XD, Toolboard 1LC | Duet3Bootloader-SAMC21.* |
 | Sammy-C21 development board | Duet3Bootloader-SAMMYC21.* |
 
@@ -80,7 +80,7 @@ If it reports **Bootloader ID: not available** then your board is using a versio
 * Load Atmel Studio on the PC
 * Select Tools->Device Programming
 * Select the ICE tool
-* Select MCU type ATSAME51N19A for a EXP3HX expansion board, or ATSAMC21G18A for a TOOL1LC or EXP1XD board
+* Select MCU type ATSAME51N19A for a EXP3HC expansion board, or ATSAMC21G18A for a TOOL1LC or EXP1XD board
 * Press the Read button next to the Device Signature box and check that it reads the ID
 * Select Memories
 * Press the Erase Now button next to Erase Chip. 
