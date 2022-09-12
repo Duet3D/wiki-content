@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2022-09-12T12:25:08.925Z
+date: 2022-09-12T13:28:02.447Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -336,7 +336,11 @@ It is recommended to add the following to config.g, before any commands that ref
 
 ## Testing communication
 
-Check that you can communicate with the Toolboard, by sending M115 B121 (if that fails, try M115 B10).
+Check that you can communicate with the Toolboard, by sending 
+
+`M115 B121`
+
+(if that fails, try `M115 B10`).
 
 You can reset the CAN-FD bus back to defaults (CAN Address 121, Bus speed 1Mbps) by holding down both buttons and powering up the board).
 
