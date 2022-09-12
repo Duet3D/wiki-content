@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2022-09-12T12:05:58.539Z
+date: 2022-09-12T13:59:15.197Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -255,7 +255,7 @@ G1 X0 Y0 F{global.defaultSpeed}
 
 Similarly, the values of local variables created using the **var** command can be retrieved using the syntax *var.\<variable name>*
 
-Use exists(\<variable>) to check if a variable is defined. e.g.
+Use `exists(\<variable>)` to check if a variable is defined. e.g.
 ```
 exists(global.defaultSpeed)
 ```
@@ -279,6 +279,15 @@ e.g. (using the macro call from above)
 ;macro.g
 G1 X{param.S}
 echo {param.Y}
+```
+
+If you need the macro to handle situations where parameters that are expected are not passed, use the 'exists' function. E.g.
+```
+;macro.g
+if exists(param.S)
+    G1 X{param.S}
+else
+    echo "no move passed to macro.g"
 ```
 
 When using a macro as custom gcode, do not use G, M, N or T as parameters in a custom 'G' gcode file. Do not use G, M or N as parameter in a custom 'M' gcode file.  There are no standard G or M commands that use these parameters and RRF will treat the parameter as being the start of the next command.
@@ -339,27 +348,27 @@ The following functions are supported, with their conventional meanings:
 
 (Please check the [changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x) to determine when a particular function was implemented, some functions are implemented in RRF3.1, or 3.2, or later)
 
-| Function name | Signature | Example | Notes |
+| Function name | Signature | Notes |
 |:---|:---|
-| abs | float->float or int->int | | |
-| acos | float->float | | Result is in radians |
-| asin | float->float | | Result is in radians |
-| atan | float->float | | Result is in radians |
-| atan2 | (float, float)->float | | Result is in radians |
-| cos | float->float | | Argument must be in radians |
-| datetime | int->DateTime or string->DateTime | | Converts a number of seconds from the datum to a DateTime, or a string with format "yyyy-mm-ddThh:mm:ss" to a DateTime. Available in RRF 3.4 and later. |
-| degrees | float->float | | Converts radians to degrees |
-| exists | name  -> bool | echo exists (param.C) | Yields true if 'name' is a valid variable or object model element name and is not null (available in RRF 3.3beta3 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
-| floor | float->int or float->float | | Result is int if it fits in a 32-bit signed integer, else float |
-| isnan | float->bool | |  |
-| max | (float, ...)->float or (int, ...)->int | | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
-| min | (float, ...)->float or (int, ...)->int | | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
-| mod | (int, int)->int or (float, float)->float | |  |
-| radians | float->float | | Converts degrees to radians |
-| random | int->int | | Operand must >= 1. Returns a pseudo-random integer in the range 0 to one less than the operand. |
-| sin | float->float | | Argument must be in radians |
-| sqrt | float->float | | |
-| tan | float->float | | Argument must be in radians |
+| abs | float->float or int->int | |
+| acos | float->float | Result is in radians |
+| asin | float->float | Result is in radians |
+| atan | float->float | Result is in radians |
+| atan2 | (float, float)->float | Result is in radians |
+| cos | float->float | Argument must be in radians |
+| datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a DateTime, or a string with format "yyyy-mm-ddThh:mm:ss" to a DateTime. Available in RRF 3.4 and later. |
+| degrees | float->float | Converts radians to degrees |
+| exists | name  -> bool | Yields true if 'name' is a valid variable or object model element name and is not null (available in RRF 3.3beta3 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
+| floor | float->int or float->float | Result is int if it fits in a 32-bit signed integer, else float |
+| isnan | float->bool | |
+| max | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
+| min | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
+| mod | (int, int)->int or (float, float)->float | |
+| radians | float->float | Converts degrees to radians |
+| random | int->int | Operand must >= 1. Returns a pseudo-random integer in the range 0 to one less than the operand. |
+| sin | float->float | Argument must be in radians |
+| sqrt | float->float | |
+| tan | float->float | Argument must be in radians |
 
 # Notes
 
