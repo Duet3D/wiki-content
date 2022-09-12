@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-12T08:56:26.437Z
+date: 2022-09-12T09:16:17.773Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -161,6 +161,15 @@ The following properties will be changed by Q:
 **Tn** Minimum segment length (mm). Default is 0.1 mm
 
 G1, G2, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
+
+# M584 drive assignment
+
+For CNC 5 axis, it is common to use XYZAC (or AB, BC) as drive letters, AC being the rotary axes. RRF's default is to use XYZUVWABCD in this order, so to use AC instead, an explicit drive letter assignment is needed, see documentation for M584.
+Example:
+M584 X0 Y1 Z2
+M584 A3
+M584 C4
+To be sure that the drives are created in the correct order (the order of motorPos), it is best to create them on separate lines.
 
 # M584 R0, R1: axis type
 
