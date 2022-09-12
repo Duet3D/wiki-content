@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-11T23:12:13.744Z
+date: 2022-09-12T01:48:49.707Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -124,22 +124,24 @@ CNC 5 axis allows many variants. The following dynamic mapping allows to configu
 B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 * if this parameter is not set, it is expected that the first drive is used at D1, second at D2 etc. and the letters are standard XYZABC (or XYZUVW) for 6 axis, XYZ for 4 axis pallet, XYZAC for CNC 5 axis AC type.
 * maps drive number with drive letter with Dn, in the first example the first drive called X is mapped to D3
-* letters IJK have a special meaning as tool vector
 * the parallel axis of the 4 axis palletized robot is named pn, e.g. second example p is assigned to D4
 * default is 0X1:1Y2:2Z3:3A4:4B5:5C6 or abbreviated for less defined axes
 * every Dn number may be used only once
 * different drive numbers may not point to the same Dn
 * the order of the elements is not important
 
-**B"orientationType=full|zaxis|no"**
+**B"orientationType=full|quat|zaxis|no"**
 The parameter handles, how orientation is handled:
 * default if the parameter is not set: if three actuators are defined with axisType, no is set. With 5, zaxis is set and for 6 or 7, full is set.
 * full means the all 3 coordination axes are used to control endpoint position. It uses mainly quaternion calculation methods
+* quat means full also, but using ABCD letters from G-Code as input for orientation, ABC being the three imaginary vector values and D being the real part of rotation angle. ABC is reused for machinePos output of axes 4 to 6.
 * zaxis means the endpoint vector orientation of the zaxis is used. It uses vector angles for calculation. This is often used for 3D printers and a 3 axis CNC machine with spindle.
 * no means only position, not orientation is used. The endpoint has an orientation by mechanics, but it cannot be controlled by firmware.
 
 The actuators and/or mechanic of the robot must be able to change orientation if zaxis or full are set.
-Examples: 6 axis robot can control full. CNC 5 axis uses zaxis orientation by using IJK and AC/BC/AB rotary axes. A cartesian printer and 4 axis palletized robot cannot control endstop orientation and is orientation type no.
+Examples: 6 axis robot can control full. CNC 5 axis uses zaxis orientation by using AC/BC/AB rotary axes. A cartesian printer and 4 axis palletized robot cannot control endstop orientation and is orientation type no.
+
+IJK tool vector which is used by Fanuc to provide CNC 5 axis machine independence is not implemented, because it conflicts with G2/G3 IJ parameters. IJK can be postprocessed into AC/BC/AB.
 
 # M669 Q parameter: quality
 
