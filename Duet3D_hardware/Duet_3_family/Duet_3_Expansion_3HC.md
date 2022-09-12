@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-08-11T12:45:50.568Z
+date: 2022-09-12T12:22:39.261Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -252,9 +252,19 @@ The Duet 3 Expansion 3HC has a 4-bank DIP switch to set the address. The CAN add
 | off | on | on | on | 14 |
 | on | on | on | on | 15 |
 
-## Commissioning
+# Commissioning
 
-### Updating the firmware
+## Startup Time
+
+It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards
+
+`G4 S2 ; wait for expansion boards to start`
+
+## Update the bootloader
+
+Duet 3 expansion boards and tool boards have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
+
+## Updating the firmware
 The 3HC board will be shipped with firmware loaded during production. You can check the version loaded by sending
 
 M115 B1
@@ -266,7 +276,7 @@ Send M997 B## to carry out a firmware update, the bootloader will request the Du
 
 Once the update is complete restart the mainboard and 3HC, then send M115 B## (where B## is the address set with the dip switches) to check the firmware is updated.
 
-### Forcing a firmware update
+## Forcing a firmware update
 
 If the 3HC is unresponsive, or the firmware update is not working, set all the dip switches to "off", then reset the 3HC. This will force the 3HC bootloader to request a firmware update over CAN when it starts up. Once the firmware update had completed and the sync light is flashing in time with the Duet 3 mainboard then set the dip switches back to the address being used for this board and reset the Duet 3 mainboard and the 3HC.
 
