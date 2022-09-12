@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-12T01:48:49.707Z
+date: 2022-09-12T01:53:44.565Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -27,8 +27,7 @@ M669 K13 B"axisTypes=R|P|p" must be the first M669 line.
 
 M669 without parameters will output the current settings to the console.
 
-> tbd check: maybe D1 D2 ... must be in separate lines.
-{.is-warning}
+Multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. But different letters can be combined, e.g. D and A settings which belong together.
 
 Overview
 * K13 set robot kinematics and must be defined first
