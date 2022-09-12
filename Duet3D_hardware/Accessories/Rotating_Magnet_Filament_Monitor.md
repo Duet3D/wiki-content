@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2022-06-29T10:47:38.137Z
+date: 2022-09-12T12:19:47.443Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -52,6 +52,8 @@ This consists of a custom machined hobbed part, a bearing and a 6mm diametricall
 The v2 hobbed assembly has a 2mm thick magnet (vs the 1mm thick magnet in the v1 design).
 
 ![v1vsv2_magnet_assembly.png](/hardware/magnetic_filament_monitor/v1vsv2_magnet_assembly.png)
+
+
 
 ### Idler assembly
 
