@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-12T01:53:44.565Z
+date: 2022-09-12T02:03:34.741Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -133,7 +133,7 @@ B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 The parameter handles, how orientation is handled:
 * default if the parameter is not set: if three actuators are defined with axisType, no is set. With 5, zaxis is set and for 6 or 7, full is set.
 * full means the all 3 coordination axes are used to control endpoint position. It uses mainly quaternion calculation methods
-* quat means full also, but using ABCD letters from G-Code as input for orientation, ABC being the three imaginary vector values and D being the real part of rotation angle. ABC is reused for machinePos output of axes 4 to 6.
+* quat means full also, but using ABCD letters from G-Code as input for orientation, A being the real part rotation angle and BCD being the three imaginary vector values. ABC(D) is reused for machinePos output of axes 4 to 6 (or 7).
 * zaxis means the endpoint vector orientation of the zaxis is used. It uses vector angles for calculation. This is often used for 3D printers and a 3 axis CNC machine with spindle.
 * no means only position, not orientation is used. The endpoint has an orientation by mechanics, but it cannot be controlled by firmware.
 
