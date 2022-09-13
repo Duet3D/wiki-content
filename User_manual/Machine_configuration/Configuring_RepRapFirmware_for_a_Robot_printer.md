@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-13T11:35:48.745Z
+date: 2022-09-13T11:46:12.737Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -18,7 +18,10 @@ The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.
 
 When Duet starts after power on, it needs to know how to behave. Reading the file config.g and some associated files, the firmware is set to specific configurations like setup of the steppers, arm lengths, endstops and homing positions, heaters etc. M669 is at the core to define robot kinematics behaviour, accompanied by other settings, which are described in this document.
 
-For specific robot types, example configurations and explanation of specific settings, please see the document about robot types.
+For specific robot types, example configurations and explanation of specific settings, please see the document about robot types. The following robot types are described in separate documents (call the robot tag to see the links):
+* 6 axis industrial robot
+* CNC 5 axis
+* 4 axis palletized robot
 
 # M669 configuration
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
