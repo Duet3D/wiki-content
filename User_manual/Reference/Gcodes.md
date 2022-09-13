@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-12T13:40:43.964Z
+date: 2022-09-13T09:54:14.212Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -592,9 +592,11 @@ This form of the G10 command is recognised by having no parameters.
 G10
 </pre>
 
-Retracts filament then performs any zlift/hop according to settings of M207.
+### Notes
 
-RepRapFirmware recognizes G10 as a command to set tool offsets and/or temperatures if the P parameter is present, and as a retraction command if it is absent.
+* Retracts filament then performs any zlift/hop according to settings of M207.
+* RepRapFirmware recognizes G10 as a command to set tool offsets and/or temperatures if the P parameter is present, and as a retraction command if it is absent.
+* G10 will retract all extruders associated with a tool as defined by M563, regardless of the mixing ratio set in M567
 
 ## G11: Unretract
 
@@ -608,7 +610,10 @@ RepRapFirmware recognizes G10 as a command to set tool offsets and/or temperatur
 G11
 </pre>
 
-Unretracts/recovers filament after undoing any zlift/hop according to settings of M207.
+### Notes
+
+* Unretracts/recovers filament after undoing any zlift/hop according to settings of M207.
+* G11 will unretract all extruders associated with a tool as defined by M563, regardless of the mixing ratio set in M567
 
 ## G17: Select XY plane for arc moves
 
