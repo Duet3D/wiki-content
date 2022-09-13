@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-13T08:59:47.195Z
+date: 2022-09-13T11:34:18.835Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -129,20 +129,17 @@ B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 * different drive numbers may not point to the same Dn
 * the order of the elements is not important
 
-**B"orientationType=full|zaxis|no"**
+**B"orientationType=full|zaxis|no|verticalUpRot:value|verticalDownRot:value"**
 The parameter handles, how orientation is handled:
 * default if the parameter is not set: if three actuators are defined with axisType, no is set. With 5, zaxis is set and for 6 or 7, full is set if there are definitions for ABCD letters, otherwise zaxis.
 * full means that all 3 coordination axes are used to control endpoint position by using ABCD letters from G-Code as input for orientation, A being the real part rotation angle and BCD being the three imaginary vector values. For D to be available for 6 axis robot, a D drive must be created with M584 with a drive assignment, but without being used as motor position.
 * zaxis means the endpoint vector orientation of the zaxis is used and uses vector angles for calculation. The Z axis may be tilted and the tilt can be changed, but the direction of the X axis and Y axis of the coordinate system is arbitrary.
 * no means only position, not orientation information is used.
-
-> It's open how to tell the firmare that Z axis shall be vertical and be rotated by a specific angle, useful for mesh compensation, or an angle in print path direction. Maybe an additional orientationType setting like verticalRot?
-{.is-info}
-
+* verticalUpRot:value or verticalDownRot:value means, the Z axis is always vertical up (0 0 1)T or down (0 0 -1)T and the orientation of the X axis is set to value. A number will mean a rotation angle, with positive or negative defined by axis direction, or path means following the print path.
 
 Examples:
 * 4 axis palletized RRRp is no, because orientation is not controllable
-* 4 axis palletized RRRpR with 4th actuator can be set to full with three coordination axes set to a specific value. The direction of the tool / Z axis is given. This allows e. g. fixed probe offset for mesh compensation measurement by setting the endpoint to be parallel to the X axis.
+* 4 axis palletized RRRpR with 4th actuator can be set to verticalDown:path for the endpoint orientation being vertical and following the print path
 * CNC 5 axis e. g. PPPRR is zaxis, because the 2 rotary axes control the Z axis orientation
 * 3 axis cartesian PPP is no, because the endpoint is always vertical
 * robot 6 axis RRRRRR is often zaxis, because endpoint's Z axis orientation can be controlled
