@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-13T11:50:41.275Z
+date: 2022-09-13T11:53:33.457Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -178,7 +178,7 @@ Example:
 M584 X0 Y1 Z2
 M584 A3
 M584 C4
-To be sure that the drives are created in the correct order (the order of motorPos), it is best to create them on separate lines.
+To be sure that the drives are created in the correct order (the order of motorPos), it is best to create the drives which are out of default order on separate lines. Default order is XYZUVWABCD.
 
 # M584 R0, R1: axis type
 
