@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-12T12:30:45.266Z
+date: 2022-09-13T08:59:47.195Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -135,6 +135,10 @@ The parameter handles, how orientation is handled:
 * full means that all 3 coordination axes are used to control endpoint position by using ABCD letters from G-Code as input for orientation, A being the real part rotation angle and BCD being the three imaginary vector values. For D to be available for 6 axis robot, a D drive must be created with M584 with a drive assignment, but without being used as motor position.
 * zaxis means the endpoint vector orientation of the zaxis is used and uses vector angles for calculation. The Z axis may be tilted and the tilt can be changed, but the direction of the X axis and Y axis of the coordinate system is arbitrary.
 * no means only position, not orientation information is used.
+
+> It's open how to tell the firmare that Z axis shall be vertical and be rotated by a specific angle, useful for mesh compensation, or an angle in print path direction. Maybe an additional orientationType setting like verticalRot?
+{.is-info}
+
 
 Examples:
 * 4 axis palletized RRRp is no, because orientation is not controllable
