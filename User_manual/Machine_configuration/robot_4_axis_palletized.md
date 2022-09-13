@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-09-13T14:17:20.950Z
+date: 2022-09-13T14:18:47.715Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z
@@ -73,9 +73,9 @@ The arm lengths are the lengths of the red lines also, i. e. the distance of the
 The setup can be made with A parameters, describing Denavit-Hartenberg (DH) parameters, or with B parameters.
 
 |--------|------|
-|M669 K13 A"RRRp"|3 actuators with 4 axes
-|M669 K13 A"RRRpR"|4 actuators with 5 axes
-|M669 K13 A"PRRRp"|3 actuators version on linear rail
+|M669 K13 B"axisTypes=RRRp"|3 actuators with 4 axes
+|M669 K13 B"axisTypes=RRRpR"|4 actuators with 5 axes
+|M669 K13 B"axisTypes=PRRRp"|3 actuators version on linear rail
 
 (p must be lowercase. Uppercase P would mean prismatic joint)
 
@@ -87,7 +87,7 @@ The 4th axis is calculated from axes 2 and 3: angle 2 + angle 3 + angle 4 = 0.
 
 # An example DH definition looks like this:
 
-M669 K13 A"RRRp"
+M669 K13 B"axisTypes=RRRp"
 
 ; DH parameters:
 D"0:0.0:0.0:0.0:0.0"
