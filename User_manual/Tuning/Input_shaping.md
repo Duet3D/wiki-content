@@ -2,7 +2,7 @@
 title: Input shaping
 description: This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. 
 published: true
-date: 2022-09-13T15:02:47.311Z
+date: 2022-09-13T16:15:27.753Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:33:14.384Z
@@ -48,4 +48,4 @@ Two reasons:
 
 1. Supporitng different input shapin frequencoes and/or algorithms on the X and Y axes means that if input shaping is applied to printing moves, the tool path no longer follows the path commanded by the slicer during acceleration and deceleration. As a result, artefacts will occur in the print, especially around corners. The artefacts can be reduced by a smoothing process, but this of crouse reduces detail, for example by rounding corners that are supposed to be sharp.
 
-2. It isn't necessary, because a single input shaper can suppress a wide range of resonance frequencies. [more to be added]
+2. It is rarely if ever necessary, because a single input shaper can suppress a wide range of resonance frequencies. The EI3 shaper suppresses ringing over a frequency range of 3:1. Resonant frequencies vary in proportion to the square root of the mass being moved and the compliance of the belt or other elastic medium; so you would need these elements to differ by a factor of more than 9:1 between the X and Y axes to exceed a 3:1 difference in resonant frequencies. In parctice, the resonant frequencies to be suppressed are usually in the range 35Hz to 60Hz.
