@@ -2,7 +2,7 @@
 title: Input shaping
 description: This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. 
 published: true
-date: 2022-07-08T12:54:38.386Z
+date: 2022-09-13T15:02:47.311Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:33:14.384Z
@@ -41,3 +41,11 @@ There is an DWC plugin that will help signifcantly in tuning input shaping to ma
 Configure the input shaper using the M593 gcode command and do some test prints that elicit ringing patterns. M593 details and usage: [M593 Configure Input Shaping](/User_manual/Reference/Gcodes/M593)
 
 A ringing test print works well and you can change the shaper being used every several layers on the fly by sending a new M593. A good test print STL can be [found here](https://www.klipper3d.org/prints/ringing_tower.stl),
+
+# Why don't we different shaping for the X and Y axes?
+
+Two reasons:
+
+1. Supporitng different input shapin frequencoes and/or algorithms on the X and Y axes means that if input shaping is applied to printing moves, the tool path no longer follows the path commanded by the slicer during acceleration and deceleration. As a result, artefacts will occur in the print, especially around corners. The artefacts can be reduced by a smoothing process, but this of crouse reduces detail, for example by rounding corners that are supposed to be sharp.
+
+2. It isn't necessary, because a single input shaper can suppress a wide range of resonance frequencies. [more to be added]
