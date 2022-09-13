@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-09-04T09:00:56.763Z
+date: 2022-09-13T14:17:20.950Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z
@@ -90,12 +90,12 @@ The 4th axis is calculated from axes 2 and 3: angle 2 + angle 3 + angle 4 = 0.
 M669 K13 A"RRRp"
 
 ; DH parameters:
-D0:0.0:0.0:0.0:0.0
-D1:200.0:0.0:70.0:90.0
-D2:0.0:0.0:100.0:0.0
-D3:0.0:0.0:100.0:0.0
-D4:0.0:0.0:0.0:90.0
-D5:100.0:0.0:0.0:0.0
+D"0:0.0:0.0:0.0:0.0"
+D"1:200.0:0.0:70.0:90.0"
+D"2:0.0:0.0:100.0:0.0"
+D"3:0.0:0.0:100.0:0.0"
+D"4:0.0:0.0:0.0:90.0"
+D"5:100.0:0.0:0.0:0.0"
 
 ; Angles:
 A1:-180.0:180.0:0.0
@@ -109,7 +109,7 @@ D1 is 200 mm height, Z direction, of start of axis2 and 70 mm in X direction. Ax
 D2 defines the arm which is attached to axis2, min angle 0, home angle 0 and max angle 120 degrees. Coordinate system is unchanged, i. e. axis 3 was same direction like axis 2.
 D3 defines next main arm as 100 mm, min angle -100, home 0, max 0. Coordinate system is changend, because axis4 has same orientation like axis2 and 3.
 D4 defines to rotate X axis by 90 to prepare correct orientation of the tool. The angle by Z axis is automatically set by the parallelogram, but if an angle is set here, it will be added to this value.
-D5 is the tool setting, 100 is the ztrans value, the tool length. The XYZ values will be overwritten by the G10 XYZ values of the currently selected tool.
+D5 is the tool setting. G10 offsets will be added to the values.
 
 A1 to A3 define min, max and optionally home angles. A4 can be defined for min and max, if there are technical angle restrictions to the angle. Angle violations will be reported with a G1 error message and the planned move will fail partly or completely (depending on whether it is a 3D print or CNC/Laser mode. Both will probably ruin the workpiece).
 
