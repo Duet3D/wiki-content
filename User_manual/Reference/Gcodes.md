@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-14T11:48:37.865Z
+date: 2022-09-14T16:06:40.884Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2953,6 +2953,10 @@ Supported in firmware version 1.19 and later.
 * **Sn** Message box mode (see below), default 1
 * **Tn** Timeout in seconds, ignored if S=2 or S=3. The message will be cancelled after this amount of time, if the user does not cancel it before then. A zero or negative value means that the message does not time out (it may still be cancelled by the user if it has a Close button). The default value is 10 seconds (this applies to modes 0 and 1 only).
 * **X, Y, Zn** 0 = no special action (default), 1 = display jog buttons alongside the message to allow the user to adjust the head position on the specified axis. Only valid in conjunction with S2 or S3.
+* **Jn** (RRF 3.5 and later only, optional) If message box mode >= 4: 0 = no cancel button (default), 1 = display Cancel button.
+* **Lnnn** (RRF 3.5 and later only, optional) Minimum accepted value (S=5 or S=6), or minimum number of characters (S=7).
+* **Hnnn** (RRF 3.5 and later only, optional) Maximum accepted value (S=5 or S=6), or maximum number of characters (S=7).
+* **Fnnn** or **F"text"** (RRF 3.5 and later only, optional) default choice number (counting from 0) when S=4, or default value when S=5, 6 or 7.
 
 ### Description
 
@@ -2965,6 +2969,10 @@ Allowed message box modes (S parameter) are:
 1. Only "Close" is displayed (non-blocking)
 2. Only "OK" is displayed (blocking, send M292 to resume the execution)
 3. "OK" and "Cancel" are displayed (blocking, send M292 to resume the execution or M292 P1 to cancel the operation in progress)
+4. (RRF 3.5 and later only) Display a number of choices. The names of the choices are given by the K parameter as a single string with the vertical bar character separating the choices.
+5. (RRF 3.5 and later) Prompt for an integer value. L is the minimum accepted value (default 0), H is the maximum accepted value (default unlimited), and F is the default value.
+6. (RRF 3.5 and later) Prompt for a floating point value. L is the minimum accepted value (default 0.0), H is the maximum accepted value, and F is the default value.
+7. Prompt for a string value. L is the minimum number of characters (default 1), H is the maximum number of characters (default 10), and F is the default value.
 </pre>
 
 ### Notes
@@ -2983,9 +2991,11 @@ The limit in RRF3 is 200 characters in the entire GCode command. In RRF2 it's 16
 
 ### Parameters
 
-* **Pnnn** Whether the current operation shall be cancelled (P=1) or continued (P=0).
+* **Pnnn** Whether the current operation shall be cancelled (P=1) or continued (P=0). This parameter is ignored by RRF 3.5 and later if the R parameter is present.
+* **Rnnn** (RRF 3.5 and later) The choice the took: -1 = cancel, 0 = OK or the first choice, 1 = the second choice, and so on.
+* **Snnn** (RRF 3.5 and later) The sequence number of the message being acknowledged
 
-This command is sent by the user interface when the user acknowledges a message that was displayed because of a M291 command with parameter S=2 or S=3. The P parameter is ignored unless M291 was called with S=3.
+This command is sent by the user interface when the user acknowledges a message that was displayed because of a M291 command with parameter S=2 or S=3.  DWC and PanelDue 3.5 and later also use thie command to acknowledge a non-blocking message (M291 command with parameter S=0 or S=1) but in that case the S parameter must match the sequence number of the messsge being acknowledged. The P parameter is ignored unless M291 was called with S=3, and always ignored by RRF 3.5 and later if the R parameter is present.
 
 Supported in firmware version 1.19 and later.
 
