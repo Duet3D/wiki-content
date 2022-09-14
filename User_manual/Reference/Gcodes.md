@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-13T09:54:14.212Z
+date: 2022-09-14T11:45:07.065Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3219,15 +3219,15 @@ After that, if you go to the "Extra" tab in DWC (where is says Tools/Heaters/Ext
 
 ### {.tabset}
 
-#### RRF 3.4.0beta7 and later
+#### RRF 3.4 and later
 
 ##### Parameters
 
 * **Hn** Heater number (0 is usually the bed heater)
 * **Rnnn** Heating rate in degC/sec at full power when the heater temperature is close to ambient (RRF 3.2 and later)
 * **Dnnn** Dead time in seconds
-* **Ennn** (RRF 3.4.0beta7 and later) Exponent of the cooling rate curve, default 1.35. Used in conjunction with the K parameter.
-* **Knnn** or **Knnn:nnn** (RRF 3.4.0beta7 and later) Cooling rate when the heater is 100C above ambient. If one value is given then the cooling rate is calculated as K*((Th-Ta)/100)^E where Th is the heater temperature and Ta is the ambient temperature. If two values are given then the cooling rate is calculated as K[0]\*((Th-Ta)/100)^E + K[1]\*((Th-Ta)/100)\*F where F is the fan PWM in the range 0 to 1.
+* **Ennn** Exponent of the cooling rate curve, default 1.35. Used in conjunction with the K parameter (RRF 3.4.0beta7 and later) 
+* **Knnn** or **Knnn:nnn** Cooling rate when the heater is 100C above ambient. If one value is given then the cooling rate is calculated as K*((Th-Ta)/100)^E where Th is the heater temperature and Ta is the ambient temperature. If two values are given then the cooling rate is calculated as K[0]\*((Th-Ta)/100)^E + K[1]\*((Th-Ta)/100)\*F where F is the fan PWM in the range 0 to 1. (RRF 3.4.0beta7 and later)
 
 **Additional parameters to help control the heating process:**
 
@@ -3236,16 +3236,16 @@ After that, if you go to the "Extra" tab in DWC (where is says Tools/Heaters/Ext
 * **Snnn** maximum PWM to be used used with this heater on a scale of 0 to 1. Default 1.0.
 * **Vnnn** VIN supply voltage at which the R parameter was calibrated. This allows the PID controller to compensate for changes in supply voltage. A value of zero disables compensation for changes in VIN voltage. Supply voltage compensation is applied to hot end heaters only, not to bed or chamber heaters.
 
-##### Examples (RRF 3.4.0beta7 and later)
+##### Examples (RRF 3.4 and later)
 <br>
 <pre class="cblock">
 M307 H0 ; report the process parameters for heater 0
 M307 H1 R2.186 K0.17:0.11 D5.67 S1.00 V24.0 ; set the process parameters for heater 1
 </pre>
 
-##### Notes (RRF 3.4.0beta7 and later)
+##### Notes (RRF 3.4 and later)
 
-* The C parameter is deprecated in RRF 3.4.0beta7 and later in favour of the K and E parameters.
+* The C parameter is deprecated in RRF 3.4.0beta7 and later in favour of the K and E parameters, however existing M307 commands using C and A parameters will continue to work.
 * See notes on previous RRF 3.x tabs for all changes since RRF 2.x.
 
 #### RRF 3.3 and 3.2
@@ -3273,7 +3273,7 @@ M307 H1 R2.186 C202.1:155.0 D5.67 S1.00 V24.0 ; set the process parameters for h
 
 ##### Notes (RRF 3.2 and 3.3)
 
-* The A parameter is deprecated in RRF 3.2 and later in favour of the R parameter.
+* The A parameter is deprecated in RRF 3.2 and later in favour of the R parameter, however existing M307 commands using the A parameter will continue to work.
 * See notes on previous RRF 3.x tabs for all changes since RRF 2.x.
 
 #### RRF 3.1 and 3.0
