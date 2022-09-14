@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-13T11:53:33.457Z
+date: 2022-09-14T09:00:52.456Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -136,24 +136,22 @@ B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 * different drive numbers may not point to the same Dn
 * the order of the elements is not important
 
-**B"orientationType=full|zaxis|no|verticalUpRot:value|verticalDownRot:value"**
-The parameter handles, how orientation is handled:
-* the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
-* default if the parameter is not set: if three actuators are defined with axisType, no is set. With 5, zaxis is set and for 6 or 7, full is set if there are definitions for ABCD letters, otherwise zaxis.
-* full means that all 3 coordination axes are used to control endpoint position by using ABCD letters from G-Code as input for orientation, A being the real part rotation angle and BCD being the three imaginary vector values. For D to be available for 6 axis robot, a D drive must be created with M584 with a drive assignment, but without being used as motor position.
-* zaxis means the endpoint vector orientation of the zaxis is used and uses vector angles for calculation. The Z axis may be tilted and the tilt can be changed, but the direction of the X axis and Y axis of the coordinate system is arbitrary.
-* no means only position, not orientation information is used.
-* verticalUpRot:value or verticalDownRot:value means, the Z axis is always vertical up (0 0 1)T or down (0 0 -1)T and the orientation of the X axis is set to value. A number will mean a rotation angle, with positive or negative defined by axis direction, or path means following the print path.
+**B"orientationType=zaxis[:I:J:K]|no|verticalUp[:angle|path]|verticalDown[:angle|path]|full[:qw:qi:qj:qk]"**
+The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
+* default is zaxis, where only the Z axis is relevant and is optionally tilted by IJK vector values. IJK vector values are explained on the orientation page. If no IJK values are set, (0 0 1) is used, which means vertical down without XY orientation information.
+* no means, there is no control about orientation
+* verticalUp:angle means the endpoint points up with optional rotation by angle degrees in respect to the X axis. path means, the angle follows the print path
+* verticalDown:angle repectively pointing down
+* full:values gives full control over the orientation with quaternion values. The values are the default values, they can be change by G-Code ABCD values
 
 Examples:
 * 4 axis palletized RRRp is no, because orientation is not controllable
 * 4 axis palletized RRRpR with 4th actuator can be set to verticalDown:path for the endpoint orientation being vertical and following the print path
 * CNC 5 axis e. g. PPPRR is zaxis, because the 2 rotary axes control the Z axis orientation
-* 3 axis cartesian PPP is no, because the endpoint is always vertical
-* robot 6 axis RRRRRR is often zaxis, because endpoint's Z axis orientation can be controlled
-* robot 6 axis RRRRRR can also be set to full to control all three coordination axes. There is no G-Code standard to set full orientation, so ABCD is used as described.
+* 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
+* robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important. verticalUp or Down with angle or path is possible as well.
 
-G-Code for CNC 5 axis is sometimes based on IJK tool vector, which is used by Fanuc. It is not implemented, because it conflicts with G2/G3 IJ parameters. IJK can be postprocessed into AC/BC/AB.
+G-Code for CNC 5 axis is sometimes based on IJK tool vector, which is used by Fanuc. It is not implemented, because it conflicts with G2/G3 IJ parameters. IJK can be postprocessed into AC/BC/AB. But IJK is described as value for tool tilt with in zaxis mode.
 
 # M669 Q parameter: quality
 
