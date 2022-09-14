@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-14T11:45:07.065Z
+date: 2022-09-14T11:48:37.865Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3245,7 +3245,7 @@ M307 H1 R2.186 K0.17:0.11 D5.67 S1.00 V24.0 ; set the process parameters for hea
 
 ##### Notes (RRF 3.4 and later)
 
-* The C parameter is deprecated in RRF 3.4.0beta7 and later in favour of the K and E parameters, however existing M307 commands using C and A parameters will continue to work.
+* The C parameter is deprecated in RRF 3.4.0beta7 and later in favour of the K and E parameters, however existing M307 commands using C and/or A parameters will continue to work.
 * See notes on previous RRF 3.x tabs for all changes since RRF 2.x.
 
 #### RRF 3.3 and 3.2
