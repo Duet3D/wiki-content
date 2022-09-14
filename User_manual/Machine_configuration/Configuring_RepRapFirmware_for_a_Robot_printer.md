@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-14T09:00:52.456Z
+date: 2022-09-14T09:14:31.139Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -138,7 +138,7 @@ B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
 
 **B"orientationType=zaxis[:I:J:K]|no|verticalUp[:angle|path]|verticalDown[:angle|path]|full[:qw:qi:qj:qk]"**
 The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
-* default is zaxis, where only the Z axis is relevant and is optionally tilted by IJK vector values. IJK vector values are explained on the orientation page. If no IJK values are set, (0 0 1) is used, which means vertical down without XY orientation information.
+* default is zaxis, where only the Z axis is relevant and is optionally tilted by IJK vector values. IJK vector values are explained on the orientation page. If no IJK values are set, (0 0 1) is used, which means the tool points into the direction of the Z axis without XY orientation information (i. e. the XY axes may or may not be rotated).
 * no means, there is no control about orientation
 * verticalUp:angle means the endpoint points up with optional rotation by angle degrees in respect to the X axis. path means, the angle follows the print path
 * verticalDown:angle repectively pointing down
@@ -147,11 +147,11 @@ The parameter defines how the robot shall behave in respect to orientation infor
 Examples:
 * 4 axis palletized RRRp is no, because orientation is not controllable
 * 4 axis palletized RRRpR with 4th actuator can be set to verticalDown:path for the endpoint orientation being vertical and following the print path
-* CNC 5 axis e. g. PPPRR is zaxis, because the 2 rotary axes control the Z axis orientation
+* CNC 5 axis e. g. PPPRR is zaxis, because the 2 rotary axes control the Z axis orientation. XY constantly changes because the drill rotates.
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important. verticalUp or Down with angle or path is possible as well.
 
-G-Code for CNC 5 axis is sometimes based on IJK tool vector, which is used by Fanuc. It is not implemented, because it conflicts with G2/G3 IJ parameters. IJK can be postprocessed into AC/BC/AB. But IJK is described as value for tool tilt with in zaxis mode.
+G-Code for CNC 5 axis is sometimes based on IJK tool vector, which is used by Fanuc. It is not implemented, because it conflicts with G2/G3 IJ parameters. IJK can be postprocessed into AC/BC/AB. IJK is used as value for tool tilt with in zaxis mode.
 
 # M669 Q parameter: quality
 
