@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-14T11:47:24.901Z
+date: 2022-09-14T12:38:52.148Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -106,7 +106,7 @@ Example:
 # M669 B parameter: axisTypes, special
 **B"axisTypes=[R]|[P]|[p]*"**
 
-defines the type of the axes. This **parameter is mandatory**.
+Defines the type of the axes. This **parameter is mandatory** and it is important that it matches the number of actuators plus optional parallelogram axis.
 
 * R means rotational/revolute, units are degrees, speeds e.g. degrees/min
 * P means prismatic/linear, units are mm
@@ -127,7 +127,8 @@ Examples:
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
 
 **B"mapDriveLetterDn=0X3:1Y4:2Z5:3A1:4C2"**
-B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"
+**B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"**
+The first number is the drive number, the second drive letter and the third the Dn number. A parallelogram axis has no actuator, so the first number is omitted and pn is used.
 * if this parameter is not set, it is expected that the first drive is used at D1, second at D2 etc. and the letters are standard XYZABC (or XYZUVW) for 6 axis, XYZ for 4 axis pallet, XYZAC for CNC 5 axis AC type.
 * maps drive number with drive letter with Dn, in the first example the first drive called X is mapped to D3
 * the parallel axis of the 4 axis palletized robot is named pn, e.g. second example p is assigned to D4
