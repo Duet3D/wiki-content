@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2021-09-22T13:50:09.624Z
+date: 2022-09-14T15:32:15.870Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -10,7 +10,7 @@ dateCreated: 2021-09-22T13:50:06.140Z
 
 # Introduction
 
-Guidance on using [M303](/User_manual/Reference/Gcodes/M303) to auto tune hot end and bed heaters, how to set PID values in [M307](/User_manual/Reference/Gcodes/M307) manually, and troubleshooting advice.
+Guidance on using [M303](/User_manual/Reference/Gcodes/M303){target=_blank} to auto tune hot end and bed heaters, how to set PID values in [M307](/User_manual/Reference/Gcodes/M307){target=_blank} manually, and troubleshooting advice.
 
 # Scope
 
@@ -24,7 +24,7 @@ Each heating controller in RepRapFirmware 1.15 and later can work either in bang
 
 * Use two sets of PID parameters computed from a first-order + delay time (FOPDT) model of the heating system. The FOPDT model parameters may be derived using auto-tuning, or configured manually using M307.
 
-* Use one set of legacy PID parameters configured manually using M301. This provides backwards-compatibility with previous versions, and provides a fallback if the behaviour of your heating system cannot be approximated well enough by a FOPDT model.
+* Use one set of legacy PID parameters configured manually using [M301](/User_manual/Reference/Gcodes/M301){target=_blank}. This provides backwards-compatibility with previous versions, and provides a fallback if the behaviour of your heating system cannot be approximated well enough by a FOPDT model.
 
 PID parameters are set in config.g manually, or in config_override.g when saved with M500. If there are no heater definitions or parameters in config.g:
 
@@ -36,7 +36,7 @@ If you use the M301 command to set the legacy PID parameters, the controller for
 
 To see which set of parameters is being used, run M307 H# where H is the heater number, and that will tell you either that the model is in use (so model-based PID parameters are being used for that heater), or not in use (so legacy PID parameters are being used).
 
-Each heating controller performs temperature monitoring to try to detect fault conditions such as a heater of thermistor falling out of an extruder heating block. The temperature monitor relies on the model parameters to decide what is reasonable behaviour. Therefore, even if you decide to use legacy PID parameters or bang-bang control, you should still define an approximate model of the heater to provide good heater monitoring without false alarms.
+Each heating controller performs temperature monitoring to try to detect fault conditions such as a heater or temperature sensor falling out of an extruder heating block. The temperature monitor relies on the model parameters to decide what is reasonable behaviour. Therefore, even if you decide to use legacy PID parameters or bang-bang control, you should still define an approximate model of the heater to provide good heater monitoring without false alarms.
 
 # Setting the model parameters by auto tuning
 
@@ -72,9 +72,11 @@ There is also an optional P parameter, which is the PWM value to use. Unless you
 
 ## Notes on auto-tuning
 
-**Warning!** During auto tuning there is minimal protection against heating faults. Therefore you should not leave the printer unattended during auto tuning.
+> **Warning!** During auto tuning there is minimal protection against heating faults. Therefore you should not leave the printer unattended during auto tuning.
+{.is-warning}
 
-**Warning!** Tuning will always overshoot the target temperature. You need to be aware of this when choosing the target temperature. The heater itself is switched off when the target temperature is reached, so the overshoot is purely due to excess thermal mass in the heater and poor coupling to the thermistor.
+> **Warning!** Tuning will always overshoot the target temperature. You need to be aware of this when choosing the target temperature. The heater itself is switched off when the target temperature is reached, so the overshoot is purely due to excess thermal mass in the heater and poor coupling to the thermistor.
+{.is-warning}
 
 ### RepRapFirmware v3.2 and later
 
@@ -88,7 +90,7 @@ Only one heater may be auto tuned at a time.
 
 Send M303 with an H parameter (and optionally P and S parameters) to start the auto tune process. A message will be generated when auto tuning is completed or abandoned. You can also run M303 with no parameters to see the current status of auto tuning.
 
-If auto tuning is successful, new model parameters are set (but not saved) and the PID parameters computed from them are used. You can see these parameters by running the M307 H# command, where # is the heater number M307 will also indicate that the model is in use, meaning that the PID parameters displayed by M307 are used, not the PID parameters displayed by M301.
+If auto tuning is successful, new model parameters are set (but not saved) and the PID parameters computed from them are used. You can see these parameters by running the M307 H# command, where # is the heater number. M307 will also indicate that the model is in use, meaning that the PID parameters displayed by M307 are used, not the PID parameters displayed by M301.
 
 Tuning a hot end heater typically takes between five and ten minutes. Tuning a bed heater may take more than half an hour, depending on the thermal capacity of the bed. You can cancel tuning by sending M0.
 
@@ -128,44 +130,95 @@ When a heater goes into the fault state, an error message is generated giving th
 
 # Setting the model parameters manually
 
-Model parameters can be changed and reported using the M307 command. Examples:
+Model parameters can be changed and reported using the [M307](/User_manual/Reference/Gcodes/M307){target=_blank} command. There have been some changes to M307 over the various versions of RepRapFirmware.
+
+## Tabs {.tabset}
+
+### RepRapFirmware v3.4 and later
+
+#### Examples
 
 ```
-M307 H1 A350 C139 D5.5 B0 ; set model parameters for heater 1 and use PID mode
-
+M307 H1 R2.186 K0.17:0.11 D5.67 S1.00 V24.0 ; set the process parameters for heater 1
 M307 H1 ; report model parameters for heater 1, and whether the model is being used
 ```
 
-The H parameter specifies the heater.
+#### Parameters
 
-The A parameter is the model gain, which is the ultimate temperature rise divided by the PWM fraction. For example, a gain of 350 means that at a constant 50% PWM, the temperature would eventually reach ambient temperature plus 350 * 0.5 degC.
+* **H parameter**: specifies the heater.
+* **R parameter**: heating rate in degC/sec at full power when the heater temperature is close to ambient.
+* **K (and E, if needed) parameter**: The heater model in RepRapFirmware 3.4 and later includes non-Newtonian cooling to predict the variation of cooling rate with temperature and the maximum temperature that would be reached at continuous full power. This is represented by the E and K parameters in M307. (Replaces C parameter in RRF 3.2 and 3.3)
+* **D parameter**: dead time, which is the delay between a change in PWM and an appreciable effect on the rate of temperature change.
+* **S parameter**: used to limit the PWM, for example S0.8 will limit the PWM to 80%.
+* **B parameter**: To use bang-bang mode instead of PID, change B0 to B1. In bang-bang mode, the S parameter is still used to limit the PWM when the heater is turned on.
+* **V parameter**: VIN supply voltage at which the R parameter was calibrated.
 
-In RRF 3.3 and later, the A parameter is replaced by the R parameter, which is the heating rate in degC/sec at full power when the heater temperature is close to ambient.
+#### Measuring the heating rate (M307 R parameter)
 
-The D parameter is the dead time, which is the delay between a change in PWM and an appreciable effect on the rate of temperature change.
+Turn the heater on from cold, wait a few seconds for the temperature to start rising, then time how long it takes for the temperature to rise by a further amount e.g. 10C (for a slow bed heater you might wish to use a smaller amount e.g. 5C). Divide that temperature rise by the time in seconds to get the heating rate.
 
-The C parameter is the model time constant. This may be thought of as the time taken for the temperature rise to reach 63.2% of its ultimate value after the heater is switched on from cold at constant PWM, less the dead time.
+### RepRapFirmware v3.2 and 3.3
 
-You can limit the PWM by adding a suitable S parameter, for example S0.8 will limit the PWM to 80%.
+#### Examples
 
-To use bang-bang mode instead of PID, change B0 to B1. In bang-bang mode, the S parameter is still used to limit the PWM when the heater is turned on.
+```
+M307 H1 R2.186 C202.1:155.0 D5.67 S1.00 V24.0 ; set the process parameters for heater 1
+M307 H1 ; report model parameters for heater 1, and whether the model is being used
+```
 
-## Measuring the gain (RRF 3.2 and earlier, M307 A parameter)
+#### Parameters
+
+* **H parameter**: specifies the heater.
+* **R parameter**: heating rate in degC/sec at full power when the heater temperature is close to ambient.
+* **C parameter**: time constant. This may be thought of as the time taken for the temperature rise to reach 63.2% of its ultimate value after the heater is switched on from cold at constant PWM, less the dead time.
+* **D parameter**: dead time, which is the delay between a change in PWM and an appreciable effect on the rate of temperature change.
+* **S parameter**: used to limit the PWM, for example S0.8 will limit the PWM to 80%.
+* **B parameter**: To use bang-bang mode instead of PID, change B0 to B1. In bang-bang mode, the S parameter is still used to limit the PWM when the heater is turned on.
+* **V parameter**: VIN supply voltage at which the R parameter was calibrated.
+
+#### Measuring the heating rate (M307 R parameter)
+
+Turn the heater on from cold, wait a few seconds for the temperature to start rising, then time how long it takes for the temperature to rise by a further amount e.g. 10C (for a slow bed heater you might wish to use a smaller amount e.g. 5C). Divide that temperature rise by the time in seconds to get the heating rate.
+
+#### Measuring the cooling time constant (M307 C parameter)
+
+With the heater hot at a steady temperature Tstart, calculate the following target temperature:
+
+`Ttarget = Tstart * 0.37 + Tambient * 0.63`
+
+Turn the heater off and time how many seconds it takes for the temperature to drop to Ttarget. That is the time constant.
+
+### RepRapFirmware v3.1 and earlier
+
+#### Examples
+
+```
+M307 H1 A350 C139 D5.5 B0 ; set model parameters for heater 1 and use PID mode
+M307 H1 ; report model parameters for heater 1, and whether the model is being used
+```
+
+#### Parameters
+
+* **H parameter**: specifies the heater.
+* **A parameter**: gain, which is the ultimate temperature rise divided by the PWM fraction. For example, a gain of 350 means that at a constant 50% PWM, the temperature would eventually reach ambient temperature plus 350 * 0.5 degC.
+* **C parameter**: time constant. This may be thought of as the time taken for the temperature rise to reach 63.2% of its ultimate value after the heater is switched on from cold at constant PWM, less the dead time.
+* **D parameter**: dead time, which is the delay between a change in PWM and an appreciable effect on the rate of temperature change.
+* **S parameter**: used to limit the PWM, for example S0.8 will limit the PWM to 80%.
+* **B parameter**: To use bang-bang mode instead of PID, change B0 to B1. In bang-bang mode, the S parameter is still used to limit the PWM when the heater is turned on.
+* **V parameter**: VIN supply voltage at which the R parameter was calibrated.
+
+#### Measuring the gain (M307 A parameter)
 
 * If necessary, use M307 to set some parameters that let you achieve a steady temperature. The default ones may work.
 * Set the heater to a temperature you typically use and wait until the temperature is stable. It doesn't matter if it is still creeping up slowly, but it must not be oscillating (if it oscillates, increase the M307 D parameter).
 * Send M573 P# (where # is the heater number) to report the average PWM.
 * The gain is: (actual_heater_temperature - ambient_temperature)/average_pwm.
 
-## Measuring the heating rate (RRF 3.3 and later, M307 R parameter)
-
-Turn the heater on from cold, wait a few seconds for the temperature to start rising, then time how long it takes for the temperature to rise by a further amount e.g. 10C (for a slow bed heater you might wish to use a smaller amount e.g. 5C). Divide that temperature rise by the time in seconds to get the heating rate.
-
-## Measuring the cooling time constant (M307 C parameter)
+#### Measuring the cooling time constant (M307 C parameter)
 
 With the heater hot at a steady temperature Tstart, calculate the following target temperature:
 
-Ttarget = Tstart * 0.37 + Tambient * 0.63
+`Ttarget = Tstart * 0.37 + Tambient * 0.63`
 
 Turn the heater off and time how many seconds it takes for the temperature to drop to Ttarget. That is the time constant.
 
@@ -173,9 +226,17 @@ Turn the heater off and time how many seconds it takes for the temperature to dr
 
 If necessary you can make manual adjustments to the M307 model parameters, as follows:
 
-* If during initial heating the temperature undershoots the target, reduce the A parameter (RRF 3.2 and earlier) or increase the R parameter (RRF 3.3 and later). If it overshoots the target, increase the A parameter or reduce the R parameter. Try increasing/reducing it by 5% or 10%.
+* If during initial heating the temperature undershoots the target:
+  * RRF 3.3 and later: increase the R parameter by 5% or 10%
+  * RRF 3.2 and earlier: reduce the A parameter by 5% or 10%
+* If during initial heating the temperature overshoots the target:
+  * RRF 3.3 and later: reduce the R parameter by 5% or 10%
+  * RRF 3.2 and earlier: increase the A parameter by 5% or 10%
+* Adjusting dead time (M307 D parameter):
+  * If the response to temperature changes caused externally (e.g. the print cooling fan turning on) is too slow, reduce the D parameter. 
+  * If the temperature is not stable but oscillates around the target temperature even when the print head is stationary, increase the D parameter. 
+  * In both cases, try increasing/decreasing it by 30%.
 
-* If the response to temperature changes caused externally (e.g. the print cooling fan turning on) is too slow, reduce the D parameter. If the temperature is not stable but oscillates around the target temperature even when the print head is stationary, increase the D parameter. Try increasing/decreasing it by 30%.
 
 # Setting legacy PID parameters
 
