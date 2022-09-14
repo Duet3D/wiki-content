@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-14T09:54:56.929Z
+date: 2022-09-14T11:47:24.901Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -142,6 +142,8 @@ The parameter defines how the robot shall behave in respect to orientation infor
 * no means, there is no control about orientation
 * vertical:angle means the tool stays vertical and X axis is in angle direction in respect to the origin. path means, the X axis follows the print path. up and down specify the direction of the Z axis. Default is vertical without angle, without path and pointing down.
 * full:values gives full control over the orientation with quaternion values. The values are the default values, they can be change by G-Code ABCD values
+
+The IJK and qwqiqjqk values are only the initial orientation values. By G-Code, they will be changed, e.g. AC values for a CNC 5 axis will change the tool vector orientation of the Z axis.
 
 Examples:
 * 4 axis palletized RRRp is no, because orientation is not controllable
