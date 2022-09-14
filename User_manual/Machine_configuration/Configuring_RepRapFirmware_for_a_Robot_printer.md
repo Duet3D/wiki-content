@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-14T12:38:52.148Z
+date: 2022-09-14T12:44:35.132Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -140,7 +140,7 @@ The first number is the drive number, the second drive letter and the third the 
 **B"orientationType=zaxis[:I:J:K]|no|vertical[:angle|path|up|down]|full[:qw:qi:qj:qk]"**
 The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
 * default is zaxis, where only the Z axis is relevant and is optionally tilted by IJK vector values. IJK vector values are explained on the orientation page. If no IJK values are set, (0 0 1) is used, which means the tool points into the direction of the Z axis without XY orientation information (i. e. the XY axes may or may not be rotated).
-* no means, there is no control about orientation
+* no means, there is no control about orientation. Orientation will change by the mechanical properties and can be changed by actuator changes, but it is not managed by firmware. Forward and inverse kinematics ignore orientation values with the exception of angle violations.
 * vertical:angle means the tool stays vertical and X axis is in angle direction in respect to the origin. path means, the X axis follows the print path. up and down specify the direction of the Z axis. Default is vertical without angle, without path and pointing down.
 * full:values gives full control over the orientation with quaternion values. The values are the default values, they can be change by G-Code ABCD values
 
