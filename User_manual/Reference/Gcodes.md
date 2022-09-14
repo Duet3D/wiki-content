@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-14T16:06:40.884Z
+date: 2022-09-14T16:08:04.129Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2953,10 +2953,10 @@ Supported in firmware version 1.19 and later.
 * **Sn** Message box mode (see below), default 1
 * **Tn** Timeout in seconds, ignored if S=2 or S=3. The message will be cancelled after this amount of time, if the user does not cancel it before then. A zero or negative value means that the message does not time out (it may still be cancelled by the user if it has a Close button). The default value is 10 seconds (this applies to modes 0 and 1 only).
 * **X, Y, Zn** 0 = no special action (default), 1 = display jog buttons alongside the message to allow the user to adjust the head position on the specified axis. Only valid in conjunction with S2 or S3.
-* **Jn** (RRF 3.5 and later only, optional) If message box mode >= 4: 0 = no cancel button (default), 1 = display Cancel button.
+* **Jn** (RRF 3.5 and later only, optional) If message box mode >= 4: 0 = no Cancel button (default), 1 = display a Cancel button.
 * **Lnnn** (RRF 3.5 and later only, optional) Minimum accepted value (S=5 or S=6), or minimum number of characters (S=7).
 * **Hnnn** (RRF 3.5 and later only, optional) Maximum accepted value (S=5 or S=6), or maximum number of characters (S=7).
-* **Fnnn** or **F"text"** (RRF 3.5 and later only, optional) default choice number (counting from 0) when S=4, or default value when S=5, 6 or 7.
+* **Fnnn** or **F"text"** (RRF 3.5 and later only, optional) default choice number (counting from 0) when S=4, or default value when S>=5.
 
 ### Description
 
