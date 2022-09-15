@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-15T07:29:26.853Z
+date: 2022-09-15T07:33:32.862Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -126,7 +126,7 @@ The simple method would be to divide the line between p0 and p1 for segmentation
 
 Slerp is used in Kinematics for
 * segmentation of a long move to avoid snapping into different work modes
-* calculating jacobian matrix of the lower orientation rows
+* calculating jacobian matrix in full orientationType mode
 
 Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemake https://dl.acm.org/doi/pdf/10.1145/325165.325242
 Firmware code follows the code of https://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/index.htm
