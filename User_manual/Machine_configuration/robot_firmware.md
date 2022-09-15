@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-15T00:02:31.647Z
+date: 2022-09-15T00:03:22.544Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -121,11 +121,11 @@ If only the orientation of the Z axis is important, only the information of the 
 
 A CNC 5 axis robot describes a Z axis vector direction with the help of its two rotary axes.
 
-** Case vertical with angle:**
+**Case vertical with angle:**
 
 If the Z axis is vertical (up or down), it can have an angle in the XY plane. This is useful for mesh compensation, so the probe can have a fixed offset. It is also useful for concrete printers, who have delimiters at the sides of the nozzle.
 
-** Case no orientation:**
+**Case no orientation:**
 
 This means, that there is no explicit orientation. An endpoint has always full orientation, but in this case through mechanical construction and maybe changed by the actuators, but it cannot be changed independent of position.
 
