@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-15T00:03:22.544Z
+date: 2022-09-15T06:58:52.972Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -53,7 +53,7 @@ The M669 B"mapDriveLetterDn=..." parameters can define some of those properties
 
 To control the assignments, there are instructions on the configuration page about first steps.
 
-# Transformation rotation matrix
+# Orientation
 Each object can be translated (displacement) in X, Y, Z and rotated around an arbitrary axis. Both can be described together in a 4x4 transformation matrix.
 
 The left upper 3x3 part represents X axis (red), Y axis (green) and Z axis (blue) coordinates of the orientation change. The example below is the unchanged origin with red being (1 0 0)T, where the X axis is directing into X=1, Y=0 and Z=0. If the left column would be (0 0 1)T, the X axis would be directed upwards. The yellow box are the (X Y Z)T translate values. (T means transform of matrix)
@@ -101,35 +101,6 @@ It is important to get the transformation matrix order for multiplication correc
 * change the Dn order to be reversed for the workpiece Dn-s
 
 Example: D0 to D2 are BC settings for the rotary axes of CNC 5 axis BC. The workpiece is assembled on the C plate, then changing to workpiece mode means setting B"dnInvert=0:1:2" and reversing D0 to D2 values, i. e. using the original D2 values for D0 etc. For the other Dn values of the linear axes and tool Dn, the normal order is used, D3 to D6 in this example.
-
-# Orientation types
-
-Besides the position of the endpoint, orientation is also important. 
-
-
-![robot_coordinates.png](/manual/configuration/robot_coordinates.png)
-
-**Case full:**
-
-When all three coordinate systems (X red, Y axis green, Z axis blue) are evaluated, the full orientation information is used.
-
-The 9 values are redundant, to describe them, 4 parameters are sufficient. A common method is to use quaternions, described in the next chapter.
-
-**Case Z axis:**
-
-If only the orientation of the Z axis is important, only the information of the 3rd column of the transformation matrix (blue) is important. Examples are "normal" 3D printers and spindles of CNC. Only whether the tool or hotend is vertical or tilted is important, not whether they are rotated by Z axis.
-
-A CNC 5 axis robot describes a Z axis vector direction with the help of its two rotary axes.
-
-**Case vertical with angle:**
-
-If the Z axis is vertical (up or down), it can have an angle in the XY plane. This is useful for mesh compensation, so the probe can have a fixed offset. It is also useful for concrete printers, who have delimiters at the sides of the nozzle.
-
-**Case no orientation:**
-
-This means, that there is no explicit orientation. An endpoint has always full orientation, but in this case through mechanical construction and maybe changed by the actuators, but it cannot be changed independent of position.
-
-A 4 axis palletized robot doesn't have control over the endpoint orientation. Mechanically, it is always vertical. Therefor orientationType is no.
 
 # Quaternions
 Quaternions are numbers of one real and three imaginary numbers, developed by Hamilton in 19th century, and can describe spatial rotations.
