@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-11T23:05:40.118Z
+date: 2022-09-15T00:02:31.647Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -104,25 +104,41 @@ Example: D0 to D2 are BC settings for the rotary axes of CNC 5 axis BC. The work
 
 # Orientation types
 
-Besides the position of the endpoint, orientation is also important. 3D printing mostly use vertical hotends without regard to rotation around the Z axis. But that does not have to be: a concrete printer needs a hotend which rotates into the direction of movement, e.g., to print nearly vertical walls. Non planar 3D printing need hotends with changing orientation.
+Besides the position of the endpoint, orientation is also important. 
 
-The following different types of orientation description are used in internal robot kinematics code for diffferent tasks:
 
-* three vectors in rotation matrix: orthonormal vectors, describing XYZ axis vectors of coordinate system. Used for position and orientation calculations.
-* quaternions: four values, describing the vector where an object rotates around and the angle or rotation. Used internally to calculate rotation from source to target with slerp method. Abbreviation to efficiently store the three rotation vectors. Better than Euler angles, because no jerks for specific values.
-* Euler angles: description of a rotation by rotating around three axes in a specific order. 12 Euler angles possible, named by the axes of rotation. E. g. ZYX to describe RPY (roll-pitch-yaw) rotation, ZYZ is also common. Euler angles have limits like lock situations (gimbal lock in ZYX), but they are well understood by people and often used.
-* two angles for 5 axis CNC, Pentarod, Open5x and similar: two rotation axes are described by the two angles. A CNC spindle and in most cases 3D printer hotend don't care about Z axis rotation, so two angles are sufficient to describe the orientation. In G-Code, they are described by AB, BC or AC parameters in G1 commands. A are rotations around X axis, B around Y, C around Z.
-* three values for 5 axis CNC: description of the Z axis orientation by using vector values instead of the angles. The advantage is that the description is independent of the machine implementation (can be used for AB, BC, AC unchanged). In G-Code, they are described by IJK parameters for G1 commands. It is used less often than the ABC method.
-* no explicit orientation: often there is no description of orientation and the orientation is implicit through machine setup.
+![robot_coordinates.png](/manual/configuration/robot_coordinates.png)
 
-Of course, every object has a position and full orientation at any time, so describing it with less information means the object is not fully described. This is no problem, as long as the application doesn't need the information.
+**Case full:**
+
+When all three coordinate systems (X red, Y axis green, Z axis blue) are evaluated, the full orientation information is used.
+
+The 9 values are redundant, to describe them, 4 parameters are sufficient. A common method is to use quaternions, described in the next chapter.
+
+**Case Z axis:**
+
+If only the orientation of the Z axis is important, only the information of the 3rd column of the transformation matrix (blue) is important. Examples are "normal" 3D printers and spindles of CNC. Only whether the tool or hotend is vertical or tilted is important, not whether they are rotated by Z axis.
+
+A CNC 5 axis robot describes a Z axis vector direction with the help of its two rotary axes.
+
+** Case vertical with angle:**
+
+If the Z axis is vertical (up or down), it can have an angle in the XY plane. This is useful for mesh compensation, so the probe can have a fixed offset. It is also useful for concrete printers, who have delimiters at the sides of the nozzle.
+
+** Case no orientation:**
+
+This means, that there is no explicit orientation. An endpoint has always full orientation, but in this case through mechanical construction and maybe changed by the actuators, but it cannot be changed independent of position.
+
+A 4 axis palletized robot doesn't have control over the endpoint orientation. Mechanically, it is always vertical. Therefor orientationType is no.
 
 # Quaternions
 Quaternions are numbers of one real and three imaginary numbers, developed by Hamilton in 19th century, and can describe spatial rotations.
 * the real number describes the rotation angle around an axis
 * the three imaginary numbers describe the axis
 
-Interpolation is unambigious and the orientation change has constant velocity, which is advantageous for constant extrusion, contrary to Euler angles. Slerp is often used in 3D gaming development.
+A typical number looks like q0 + q1i + q2j + q3k, where ijk are imaginary numbers.
+
+By using a calculation named Slerp, interpolation between two quaternions is unambigious and the orientation change has constant velocity, which is advantageous for constant extrusion, contrary to Euler angles. Slerp is often used in 3D gaming development.
 
 Online translator to convert between rotation matrix and quaternion I use are https://www.andre-gaschler.com/rotationconverter/ and https://www.energid.com/resources/orientation-calculator (both show real number last for quaternions).
 
@@ -144,22 +160,6 @@ Slerp is used in Kinematics for
 Interpolations to calculate segments are implemented by using Slerp with introduction see https://en.wikipedia.org/wiki/Slerp and implementation based on Shoemake https://dl.acm.org/doi/pdf/10.1145/325165.325242
 Firmware code follows the code of https://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/index.htm
 
-
-# Z axis orientation
-For robots where only Z axis orientation is needed, orientationType is set to zaxis and calculations of Jacobian and generalized inverse are based on positions and orientation of the Z axis only.
-
-CNC 5 axis has a spindle with only one orientation in Z direction. Two rotational axes are used to change the angle of the spindle in respect to the workpiece surface. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis. The angle of the spindle in respect to the workpiece surface is described as tool vector IJK values. IJK values are coordinates in XYZ direction respectively, are values between -1 and +1 for IJ, between 0 and 1 for K and are I²+J²+K²=1 normalized.
-
-G-Code can be described with AB, BC, AC code. The orientation is described by two angles. The calculation of the jacobian matrix is with 6 rows, 3 for position and 3 for IJK orientation of the Z axis. Segmentation is calculated by interpolation of the angles. Segmentation and how it's calculated is the task of the core RRF and not part of the kinematics code. Especially for CNC it is important to have high segmentation for better routing quality.
-
-An alternative is to use G-Code with IJK tool vectors, which can be used with G0/G1.
-
-There is a singularity, e.g. in AC mode for A at 0 degrees. This angle must be avoided, because at 0 degrees the C axis "wants" to rotate by 180 degrees instantly for specific movements, which is not possible (infinite velocity). In practice, the choosen solution is to A remain in the bigger degree range without crossing 0. Usually, there is a selection box in the CAM to choose angle preference positive/negative.
-
-# no orientation
-Every object has an orientation, but it is meant here that the orienation is not controlled by firmware, because the robot endpoint has an orientation which cannot be changed.
-
-An example is a 4 axis palletized robot without 4th actuator. The orientation of the endpoint cannot be changed, only the position. By mechanical construction, the endpoint remains vertical. In reality, the X and Y axis axes change orientation with the result that probes change their offsets in respect to the hotend, so mesh compensation in the traditional manner cannot be made.
 
 # Degrees of freedom, rank
 
