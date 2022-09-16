@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-15T06:57:33.969Z
+date: 2022-09-16T07:22:03.395Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -148,6 +148,14 @@ Examples:
 * CNC 5 axis e. g. PPPRR is zaxis, because the 2 rotary axes control the Z axis orientation. XY constantly changes because the drill rotates.
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
+
+**B"closedKinematics=CoreXY:0:1"**
+Defines part of the actuators as connected by a closed kinematics chain.
+* CoreXY is the CoreXY kinematics where two steppers are connected by the formula X=1/2(dA + dB) Y=1/2(dA-dB) for forward kinematics and AB are the motors.
+* the two numbers are the drive numbers, often steppers X and Y (not be be confused with the XY coordinates)
+
+More supported closed chains to come.
+
 
 # M669 Q parameter: quality
 
