@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-14T16:08:04.129Z
+date: 2022-09-16T15:20:07.370Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3236,8 +3236,8 @@ After that, if you go to the "Extra" tab in DWC (where is says Tools/Heaters/Ext
 * **Hn** Heater number (0 is usually the bed heater)
 * **Rnnn** Heating rate in degC/sec at full power when the heater temperature is close to ambient (RRF 3.2 and later)
 * **Dnnn** Dead time in seconds
-* **Ennn** Exponent of the cooling rate curve, default 1.35. Used in conjunction with the K parameter (RRF 3.4.0beta7 and later) 
-* **Knnn** or **Knnn:nnn** Cooling rate when the heater is 100C above ambient. If one value is given then the cooling rate is calculated as K*((Th-Ta)/100)^E where Th is the heater temperature and Ta is the ambient temperature. If two values are given then the cooling rate is calculated as K[0]\*((Th-Ta)/100)^E + K[1]\*((Th-Ta)/100)\*F where F is the fan PWM in the range 0 to 1. (RRF 3.4.0beta7 and later)
+* **Ennn** Exponent of the cooling rate curve, default 1.35. Used in conjunction with the K parameter (RRF 3.4 and later) 
+* **Knnn** or **Knnn:nnn** Cooling rate in degC/sec when the heater is 100C above ambient. If one value is given then the cooling rate is calculated as K/((Th-Ta)/100)^E where Th is the heater temperature and Ta is the ambient temperature. If two values are given then the cooling rate is calculated as K[0]/((Th-Ta)/100)^E + K[1]/((Th-Ta)/100)^E\*F where F is the fan PWM in the range 0 to 1. (RRF 3.4 and later)
 
 **Additional parameters to help control the heating process:**
 
@@ -3255,6 +3255,11 @@ M307 H1 R2.186 K0.17:0.11 D5.67 S1.00 V24.0 ; set the process parameters for hea
 
 ##### Notes (RRF 3.4 and later)
 
+* The K parameter is the rate of cooling in degC/sec when the heater is turned off and the temperature is falling through 100C above ambient temperature. The K parameter is calculated as:
+  `K = ( temperature change / time in seconds ) / (( heater temperature - ambient temperature ) / 100 )^E parameter`
+  The K parameter can take a second value to allow RRF to calculate the heater cooling rate with the cooling fan on.
+  `K[fan] = ( temperature change / time in seconds ) / (( heater temperature - ambient temperature ) / 100)^E parameter * F (fan PWM in the range 0 to 1)`
+  The second K value is the additional cooling rate due to the fan running at full PWM. 
 * The C parameter is deprecated in RRF 3.4.0beta7 and later in favour of the K and E parameters, however existing M307 commands using C and/or A parameters will continue to work.
 * See notes on previous RRF 3.x tabs for all changes since RRF 2.x.
 
