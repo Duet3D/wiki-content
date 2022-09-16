@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2022-09-16T10:31:56.537Z
+date: 2022-09-16T15:00:11.201Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -159,13 +159,18 @@ Turn the heater on from cold, wait a few seconds for the temperature to start ri
 
 #### Measuring the rate of cooling (M307 K and E parameter)
 
-Cooling rate when the heater is 100C above ambient. If one value is given then the cooling rate is calculated as K*((Th-Ta)/100)^E where Th is the heater temperature and Ta is the ambient temperature. If two values are given then the cooling rate is calculated as K[0]\*((Th-Ta)/100)^E + K[1]*((Th-Ta)/100)*F where F is the fan PWM in the range 0 to 1.
+The K parameter is the rate of cooling in degC/sec when the heater is turned off and the temperature is falling through 100C above ambient temperature. It should be possible to measure this for a hot end. The K parameter is calculated as:
+`K = ( temperature change / time in seconds ) / (( heater temperature - ambient temperature ) / 100 )^E parameter`
+For example, if the ambient temperature is 20C, set the heater temperature to 140C. Then turn the heater off, and time how long it takes the heater to cool from 130C to 110C. This gives an average heater temperature of 120C, or 100C over ambient, so the second part of the formula cancels itself out. Let's say it takes 54 seconds:
+`K= (20/54)/((120-20)/100)^1.35 = 0.370/(100/100)^1.35 = 0.370/1 = 0.370`
 
-The K parameter is the rate of cooling in degC/sec when the heater is off and the temperature is falling through 100C. For a hot end it should be possible to measure that.
+The K parameter can take a second value to allow RRF to calculate the heater cooling rate with the cooling fan on. Do as above, with the cooling fan on at 100%. The cooling time should be faster, depending on how well insulated your hot end is. Then multiply the resulting cooling value by the fan PWM, eg:
+`K[fan] = ( temperature change / time in seconds ) / (( heater temperature - ambient temperature ) / 100)^E parameter * F (fan PWM in the range 0 to 1)`
+The second K value is the *additional* cooling rate due to the fan running at full PWM. So, for example, if the fan cooling rate = 0.5, the actual K parameters would be `K0.370:0.130`, where 0.5-0.370 = 0.130.
 
-For a bed or chamber you could measure the rate of temperature drop when falling through 50C above ambient, then multiply by 2 to the power of the E parameter.
+For a bed or chamber that can't reach 100C above ambient, you can measure the rate of temperature drop when falling through 50C above ambient, then multiply by 2 to the power of the E parameter. 
 
-The E parameter should not normally need to be measured, just use the default. M303 does not currently tune it.
+The E parameter should not normally need to be measured, just use the default of 1.35. M303 does not currently tune it.
 
 #### Measuring the dead time (M307 D parameter)
 
