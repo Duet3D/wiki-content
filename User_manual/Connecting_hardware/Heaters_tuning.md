@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2022-09-14T15:32:15.870Z
+date: 2022-09-16T10:31:56.537Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -157,6 +157,20 @@ M307 H1 ; report model parameters for heater 1, and whether the model is being u
 
 Turn the heater on from cold, wait a few seconds for the temperature to start rising, then time how long it takes for the temperature to rise by a further amount e.g. 10C (for a slow bed heater you might wish to use a smaller amount e.g. 5C). Divide that temperature rise by the time in seconds to get the heating rate.
 
+#### Measuring the rate of cooling (M307 K and E parameter)
+
+Cooling rate when the heater is 100C above ambient. If one value is given then the cooling rate is calculated as K*((Th-Ta)/100)^E where Th is the heater temperature and Ta is the ambient temperature. If two values are given then the cooling rate is calculated as K[0]\*((Th-Ta)/100)^E + K[1]*((Th-Ta)/100)*F where F is the fan PWM in the range 0 to 1.
+
+The K parameter is the rate of cooling in degC/sec when the heater is off and the temperature is falling through 100C. For a hot end it should be possible to measure that.
+
+For a bed or chamber you could measure the rate of temperature drop when falling through 50C above ambient, then multiply by 2 to the power of the E parameter.
+
+The E parameter should not normally need to be measured, just use the default. M303 does not currently tune it.
+
+#### Measuring the dead time (M307 D parameter)
+
+Turn the heater on from cold and time how long it takes for an obvious change to the temperature. For a hot end this would be a change of a couple of degrees before it increases more rapidly. For a heated bed or chamber this could be a consistent 0.1C increase above the cold temperature. The D parameter will generally be a couple of seconds on a hot end, but longer (eg 10 seconds) on a bed and potentially much longer on a chamber.
+
 ### RepRapFirmware v3.2 and 3.3
 
 #### Examples
@@ -187,6 +201,10 @@ With the heater hot at a steady temperature Tstart, calculate the following targ
 `Ttarget = Tstart * 0.37 + Tambient * 0.63`
 
 Turn the heater off and time how many seconds it takes for the temperature to drop to Ttarget. That is the time constant.
+
+#### Measuring the dead time (M307 D parameter)
+
+Turn the heater on from cold and time how long it takes for an obvious change to the temperature. For a hot end this would be a change of a couple of degrees before it increases more rapidly. For a heated bed or chamber this could be a consistent 0.1C increase above the cold temperature. The D parameter will generally be a couple of seconds on a hot end, but longer (eg 10 seconds) on a bed and potentially much longer on a chamber.
 
 ### RepRapFirmware v3.1 and earlier
 
@@ -221,6 +239,10 @@ With the heater hot at a steady temperature Tstart, calculate the following targ
 `Ttarget = Tstart * 0.37 + Tambient * 0.63`
 
 Turn the heater off and time how many seconds it takes for the temperature to drop to Ttarget. That is the time constant.
+
+#### Measuring the dead time (M307 D parameter)
+
+Turn the heater on from cold and time how long it takes for an obvious change to the temperature. For a hot end this would be a change of a couple of degrees before it increases more rapidly. For a heated bed or chamber this could be a consistent 0.1C increase above the cold temperature. The D parameter will generally be a couple of seconds on a hot end, but longer (eg 10 seconds) on a bed and potentially much longer on a chamber.
 
 # Manual adjustments to the heater model parameters
 
