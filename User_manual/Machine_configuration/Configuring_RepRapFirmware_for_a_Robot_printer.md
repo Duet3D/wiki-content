@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-16T19:56:56.524Z
+date: 2022-09-16T19:57:51.302Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -41,7 +41,6 @@ Overview
 * D Denavit-Hartenberg (DH) parameters
 * A minimum, maximum and home angles
 * B axis types, specific settings
-* Q quality
 * S segments per second
 * T minimum segment length in mm
 
