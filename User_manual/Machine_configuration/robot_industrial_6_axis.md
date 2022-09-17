@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2022-09-13T12:55:16.819Z
+date: 2022-09-17T21:19:05.335Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -32,3 +32,6 @@ Care must be taken when the robot is powered off: the arms need protection again
 * weight balance of every joint, e.g. by using counterweights, so the force downward is below the detent torque and friction of the steppers/gears (servos don't have much detent torque and cannot be used for this method)
 * protection by using springs or dampers
 
+# G10 tool offsets
+
+It is an advantage to have XY offsets, otherwise a rotation of the 6th axis doesn't have an effect on the XY positions in respect of tool's coordinate system, loosing a rank and limited orientation control.
