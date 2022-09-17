@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-17T20:11:56.732Z
+date: 2022-09-17T20:50:37.667Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -152,10 +152,10 @@ Examples:
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
 
-**B"closedChain=CoreXY:0:1"**
+**B"closedChain=CoreXY[:0:1]"**
 Defines part of the actuators as connected by a closed kinematics chain.
 * CoreXY is the CoreXY kinematics where two steppers are connected by the formula X=1/2(dA + dB) Y=1/2(dA-dB) for forward kinematics and AB are the motors.
-* the two numbers are the drive numbers, often steppers X and Y (not be be confused with the XY coordinates)
+* the two numbers are the drive numbers, often steppers X and Y (not be be confused with the XY coordinates). If the number are not set, the default is :0:1, as XY are the letters most often used. Drive 2 is Z then, also the default.
 
 More supported closed chains to come.
 
