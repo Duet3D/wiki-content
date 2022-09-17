@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-17T21:05:06.588Z
+date: 2022-09-17T21:16:55.932Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -53,16 +53,18 @@ Most of the parameters can be changed by accessing the object model also (I post
 # M669 D parameter: Denavit-Hartenberg
 Dn define DH parameters and are numbered from 0 to maximum 9.
 
+There is a separate document about DH parameters with examples. The DWC plugin RobotViewer shall help with configuration.
+
 The standard usage is:
 * D0 is the definition of the base, often omitted, because the first axis is vertical in most cases with original coordinate system
-* D1 to D6 are DH parameters with actuators assigned
-* D7 placeholder for tool
+* D1 to D6 are DH parameters with actuators assigned (or less numbers for less actuators)
+* D7 placeholder for tool. G10 XYZ offsets of the current tool will be added to the values when calculating forward kinematics
 
 The last defined Dn is always the tool.
 
 For less actuators, less D-s are used. The p (parallelogram 4 axis) has its own Dn and if it has values, they are added to the parallelogram angles.
 
-The standard can be changed with the B parameter and Dn numbers can have holes, e.g. start by 1 without 0. The last used Dn number is used as tool, G10 offsets are added to the Dn values.
+The standard can be changed with the B parameter and Dn numbers can have holes, e.g. start by 1 without 0.
 
 Every Dn contains three translates and three rotations by Z, Y, X axis in this order. The parameters are explained in detail on the DH Parameter documentation page.
 
@@ -106,6 +108,10 @@ Example:
 Example:
 * A1:-180.0:180.0:0.0 means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
 
+> tbd open how to configure a continuous axis
+{.is-info}
+
+
 # M669 B parameter: axisTypes, special
 **B"axisTypes=[R]|[P]|[p]*"**
 
@@ -144,7 +150,7 @@ The first number is the drive number, the second drive letter and the third the 
 The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
 * zaxis means, only the orientation of the Z axis is important. That's the case with most 3D printers and CNC machines, including 5 axis CNC. The tool may get tilted, but the orientation with respect of X and Y axis is not controlled.
 * no means, there is no control about orientation. Orientation will change by the mechanical properties and can be changed by actuator changes, but it is not managed by firmware. Forward and inverse kinematics ignore orientation values with the exception of angle violations.
-* full:values gives full control over the orientation with quaternion values. There is no G-Code standard to set orientation, an experimental setup is to use quaternion values for ABCD.
+* full gives full control over the orientation with quaternion values. There is no G-Code standard to set full orientation, an experimental setup is to use quaternion values for ABCD.
 
 Examples:
 * 4 axis palletized RRRp is no, because orientation is not controllable
@@ -170,6 +176,8 @@ Slow and high quality means the algorithms takes more time to calculate exact re
 The following properties will be changed:
 * allowed maximum number of iterations to achieve the precision goal. When it aborts, firmware takes the best result achieved (lowest position and orientation error)
 * required precision for position and orientation
+
+Testing so far has shown, that altering iterations has nearly no effect. After 5 iterations, all tests have approached the target, with the exception of singularity areas, where the iterations is interrupted, because angles go havoc. Changing precision requirement has some effect on time required to calculate.
 
 # M669 S, T parameters: segmentation
 
