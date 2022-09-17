@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-17T20:50:37.667Z
+date: 2022-09-17T21:05:06.588Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -48,7 +48,7 @@ Overview
 * S segments per second
 * T minimum segment length in mm
 
-Most of the parameters can be changed by accessing the object model also. Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
+Most of the parameters can be changed by accessing the object model also (I postpone it to the next release. Changing values directly is risky, as some parameters are cached). Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
 # M669 D parameter: Denavit-Hartenberg
 Dn define DH parameters and are numbered from 0 to maximum 9.
