@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-16T19:57:51.302Z
+date: 2022-09-17T20:11:56.732Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -11,6 +11,10 @@ dateCreated: 2022-03-03T13:05:06.424Z
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
 The kinematics is developed for Duet3Ds RepRapFirmware and will be included in 3.5. The **robot firmware is currently in development**.
+
+> I've currently removed the github repository to transfer it all to a new fork. It will be available soon again.
+> 
+{.is-info}
 
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
