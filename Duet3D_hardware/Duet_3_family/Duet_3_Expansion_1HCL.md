@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-09-12T12:32:04.296Z
+date: 2022-09-17T13:55:48.381Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -179,8 +179,8 @@ Two general types of encoder can be used for feedback:
 Here's an sample excerpt from a config.g file to drive the X and Y motors from 1HCL  boards configured at CAN addresses 50 and 51, with quadrature encoders.
 
 ```
-M569.1 P50.0 T2 C20 R100 I0 D0 ; Configure the 1HCL board at CAN address 50 with a quadrature encoder on the motor shaft that has 20 steps per motor full step. 
-M569.1 P51.0 T2 C20 R100 I0 D0  ; Configure the 1HCL board at CAN address 51 with a quadrature encoder on the motor shaft that has 20 steps per motor full step. 
+M569.1 P50.0 T2 C5 R100 I0 D0 ; Configure the 1HCL board at CAN address 50 with a quadrature encoder on the motor shaft that has 5 steps per motor full step. 
+M569.1 P51.0 T2 C5 R100 I0 D0  ; Configure the 1HCL board at CAN address 51 with a quadrature encoder on the motor shaft that has 5 steps per motor full step. 
 M569 P50.0 D4 S1 ; Configure the motor on the 1HCL at can address 50 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M569 P51.0 D4 S1 ; Configure the motor on the 1HCL at can address 51 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M584 X50.0 Y51.0 ; set X and Y drivers
