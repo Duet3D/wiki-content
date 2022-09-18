@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-16T15:20:07.370Z
+date: 2022-09-18T18:02:19.155Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2407,13 +2407,13 @@ The third example specifies that chamber heater 1 uses heater 4.
 * **H** Heater number to monitor (default 1 which is normally the first hot end)
 * **S** Maximum permitted temperature
 * **P** Heater monitor number, default 0
-* **T** Sensor number used to monitor the heater. It default to the sensor that controls the heater (as was specified in the M305 command when the heater was created).
+* **T** Sensor number used to monitor the heater. It defaults to the sensor that controls the heater (as was specified in the M308 command when the heater was created).
 * **A** Action to trigger (0: Generate heater fault [default] 1: Switch off permanently 2: Switch off temporarily 3: Shut down the printer)^1^
 * **C** Condition for temperature event (0: Temperature too high [default] 1: Temperature too low, -1: Monitor is disabled)
 
 Each heater supports a certain number (3 in most builds of RRF) of monitors for that heater. The P parameter allows you to choose which monitor to configure.
 
-By default, monitor 0 is set up to generate a heater fault if a temperature limit is exceeded, and monitors 1 and 2 are disabled.
+By default, monitor 0 is set up to generate a heater fault if a temperature limit is exceeded according to the sensor that controls the heater, and monitors 1 and 2 are disabled.
 
 ##### Examples
 <br>
