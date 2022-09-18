@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-17T21:16:55.932Z
+date: 2022-09-18T16:33:01.754Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -165,11 +165,10 @@ Defines part of the actuators as connected by a closed kinematics chain.
 
 More supported closed chains to come.
 
-**B"quality=n:[nofpu|fpu]:[log|logoff]"**
+**B"quality=n[:log|logoff]"**
 * 1 is lowest quality, 5 highest, default is 3
-* nofpu will replace trigonometric function by approximations of Taylor series. n=1 with few series, more with 5
 * log will log performance measure like time and iterations needed and will be reported by calling M669 without parameters while the log setting is activated
-* fpu and logoff will turn off the options nofpu and log
+* logoff will turn off logging
 
 Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality.
 
