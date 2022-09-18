@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-18T08:20:01.613Z
+date: 2022-09-18T08:31:15.221Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -195,6 +195,8 @@ For indidivual compilation of source, the guide https://github.com/Duet3D/RepRap
 
 # Literature
 An sublist of documents which were used to implement firmware algorithms. Documents of special topics will be created in the other specialized robot documents. I only list documents or links that I think are excellent.
+
+* Wikipedia is always a great source. I use english and my own language page about a specific topic, because they often differ in details and comprehensibility.
 
 Rotation calculations:
 * "Metrics for 3D Rotations: Comparison and Analysis" by Du Q. Hyunh. Helped me understand rotation matrix, quaternions and distances between
