@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-17T20:10:16.501Z
+date: 2022-09-18T09:17:41.119Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -77,6 +77,16 @@ From this transformation, the forward kinematics can be calculated: starting fro
 The inverse kinematics is calculated by the jacobian, generalized inverse method and gets from XYZ position and IJK orientation the XYZ machine position of the linear axes and the BC angles.
 
 The calculations allow correct positions and orientations for every segment of a move, like RTCP. It is however important to have a good path planner on the CAM side.
+
+# CoreXY in CNC 5 axis mode
+
+CoreXY with 2 rotary axes is supported by the M669 parameter
+* B"closedChain=CoreXY[0:1]"
+* the two connected steppers define X and Y coordinates. The Dn parameters define the properties of the X and Y axis, not of the steppers.
+* default is XYZAC or XYZBC with driver numbers 0 to 4 with A being parallel to the X axis (or B parallel to Y axis) and C parallel to the Z axis. AC and BC differ in the Dn definitions.
+
+Example configuration:
+tbd
 
 # unsorted
 
