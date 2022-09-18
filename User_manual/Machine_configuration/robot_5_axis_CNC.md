@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-18T09:45:52.405Z
+date: 2022-09-18T09:51:20.612Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -38,7 +38,9 @@ A CAD, CAM program, slicer or postprocessor will create G-Code which can be exec
 * using XYZ and AB or AC or BC, XYZ being mm positions and AB... being degrees
 * IJK is not used, because it conflicts with G2/G3 IJ
 
-With AC and BC, one should be aware of the gimbal lock at A = 0 degrees and B = 0 degrees position. At this position, the C axis is parallel to the Z axis, which means lost rank. A solution is to restrict movements to all negative or all positive angles for A or B, in most cases negative one, because the angle range is often the greatest for negative angles. E. g. a typical A angle range is -120 to +30 degrees, so negative angles are preferred. In the CAM program there is often a setting to prefer positive or negative angles.
+With AC and BC, one should be aware of the gimbal lock at A = 0 degrees and B = 0 degrees position. At this position, the C axis is parallel to the Z axis, which means lost rank. For some movements, the C axis wants to rotate 180 degree with infinite speed, which is not possible.
+* one solution is to restrict movements to all negative or all positive angles for A or B, in most cases negative one, because the angle range is often the greatest for negative angles. E. g. a typical A angle range is -120 to +30 degrees, so negative angles are preferred. In the CAM program there is often a setting to prefer positive or negative angles.
+* another solution can be to set the C rotation speed to 0 while being in the 0 degree area. But the result will be an inexact movement. This may or may not be acceptable
 
 # DH parameters
 
@@ -89,9 +91,3 @@ tbd
 # unsorted
 
 CNC 5 axis has a spindle with only one orientation in Z direction. Two rotational axes are used to change the angle of the spindle in respect to the workpiece surface. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis. The angle of the spindle in respect to the workpiece surface is described as tool vector IJK values. IJK values are coordinates in XYZ direction respectively, are values between -1 and +1 for IJ, between 0 and 1 for K and are I²+J²+K²=1 normalized.
-
-G-Code can be described with AB, BC, AC code. The orientation is described by two angles. The calculation of the jacobian matrix is with 6 rows, 3 for position and 3 for IJK orientation of the Z axis. Segmentation is calculated by interpolation of the angles. Segmentation and how it's calculated is the task of the core RRF and not part of the kinematics code. Especially for CNC it is important to have high segmentation for better routing quality.
-
-An alternative is to use G-Code with IJK tool vectors, which can be used with G0/G1.
-
-There is a singularity, e.g. in AC mode for A at 0 degrees. This angle must be avoided, because at 0 degrees the C axis "wants" to rotate by 180 degrees instantly for specific movements, which is not possible (infinite velocity). In practice, the choosen solution is to A remain in the bigger degree range without crossing 0. Usually, there is a selection box in the CAM to choose angle preference positive/negative.
