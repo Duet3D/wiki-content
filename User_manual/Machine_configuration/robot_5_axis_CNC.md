@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-18T09:28:53.202Z
+date: 2022-09-18T09:30:48.240Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -24,7 +24,7 @@ Properties:
 
 If for some reason the rotational axes are named UVW, the default firmware behaviour is to handle them as linear. To change it to rotational, use M485 R1 for the letters. ABCD are handled by firmware as rotational by default. The firmware must know whether its rotational to calculate speed limits and distances correctly, e. g.
 
-In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) are the rotary angles, i. e. different units of measurement is used. An alternative G-Code uses IJK tool vectors, used e. g. by Fanuc. The letters IJ conflict with G2/G3 commands, where they have a different meaning, so IJK is not used until there is a standardized solution.
+In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) are rotary angles, i. e. different units of measurement are used. An alternative G-Code uses IJK tool vectors, used e. g. by Fanuc. The letters IJ conflict with G2/G3 commands, where they have a different meaning, so IJK is not used until there is a standardized solution.
 
 # Segmentation
 
