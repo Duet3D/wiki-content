@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2022-09-16T15:00:11.201Z
+date: 2022-09-19T11:45:53.840Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -93,6 +93,8 @@ Send M303 with an H parameter (and optionally P and S parameters) to start the a
 If auto tuning is successful, new model parameters are set (but not saved) and the PID parameters computed from them are used. You can see these parameters by running the M307 H# command, where # is the heater number. M307 will also indicate that the model is in use, meaning that the PID parameters displayed by M307 are used, not the PID parameters displayed by M301.
 
 Tuning a hot end heater typically takes between five and ten minutes. Tuning a bed heater may take more than half an hour, depending on the thermal capacity of the bed. You can cancel tuning by sending M0.
+
+# Making new heater parameters persistent
 
 After you have run auto tuning and checked that the heater control is working well, save the heater parameters. There are two ways to do this:
 
