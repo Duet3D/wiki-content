@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-18T18:02:19.155Z
+date: 2022-09-19T09:55:49.974Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5775,11 +5775,11 @@ M585 X100 F600 E3 L0 S0 ; probe X until E0 endstop goes low
 
 ### Parameters
 
-* **Pnn** Protocol: 0 = HTTP or HTTPS, 1 = FTP or SFTP, 2 = Telnet or SSH (which of the two choices depends on the T parameter)
+* **Pnn** Protocol: 0 = HTTP or HTTPS, 1 = FTP or SFTP, 2 = Telnet or SSH (which of the two choices depends on the T parameter), 3 = multicast discovery (OEM-specific)
 * **Snn** 0 = disable this protocol, 1 = enable this protocol
 * **Rnn** TCP port number to use for the specified protocol. Ignored unless S = 1. If this parameter is not provided then the default port for that protocol and TLS setting is used.
 * **Tnn** 0 = don't use TLS, 1 = use TLS. Ignored unless S = 1. If this parameter is not provided, then TLS will be used if the firmware supports it and a security certificate has been configured. If T1 is given but the firmware does not support TLS or no certificate is available, then the protocol will not be enabled and an error message will be returned.
-* **C"\<site>"** Set or reset allowed site for cross-orgin HTTP requests (RRF > 3.2-b4.1)
+* **C"\<site>"** (RRF 3.2 and later only) Set or reset allowed site for cross-origin HTTP requests
 
 **Note**: TLS has not yet been implemented in RepRapFirmware, therefore T1 will not work.
 
