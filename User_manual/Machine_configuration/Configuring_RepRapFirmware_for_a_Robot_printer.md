@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-18T16:33:01.754Z
+date: 2022-09-19T02:03:14.884Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -56,11 +56,9 @@ Dn define DH parameters and are numbered from 0 to maximum 9.
 There is a separate document about DH parameters with examples. The DWC plugin RobotViewer shall help with configuration.
 
 The standard usage is:
-* D0 is the definition of the base, often omitted, because the first axis is vertical in most cases with original coordinate system
+* D0 is optional the definition of the base. If the first axis is vertical starting in 0,0,0, D0 can be omitted
 * D1 to D6 are DH parameters with actuators assigned (or less numbers for less actuators)
-* D7 placeholder for tool. G10 XYZ offsets of the current tool will be added to the values when calculating forward kinematics
-
-The last defined Dn is always the tool.
+* the tool is appended to the Dn paramters with the orientation of the last defined coordinate system
 
 For less actuators, less D-s are used. The p (parallelogram 4 axis) has its own Dn and if it has values, they are added to the parallelogram angles.
 
