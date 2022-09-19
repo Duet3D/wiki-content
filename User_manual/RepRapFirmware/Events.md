@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2021-12-17T14:46:20.949Z
+date: 2022-09-19T16:39:05.371Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -12,7 +12,11 @@ dateCreated: 2021-12-17T14:46:17.569Z
 
 Prior to RRF 3.4, conditions that now trigger an event on a mainboard were handled in a range of ways, depending on the issue. similar conditions on CAN-FD connected expansion boards did not cause the same handling to be invoked. The event system is designed to unify the handling of these (often erroneous) conditions across Duet 2 and Duet3 mainboards, and CAN-FD expansion boards.
 
-*Note that the event system is still under development,  Currently, RRF does not attempt to turn off power to the whole machine if the user does not respond to the heater fault. We plan to reinstate this or a similar function in release 3.4.0RC1.*
+*Note that the event system is still under development.*
+
+*In the case of a heater fault the heater is turned off before the event is raised, **so a faulty heater is aways turned off***
+
+*Currently, RRF does not attempt to turn off power to the whole machine in the case of machines with firmware controlled power supplies if the user does not respond to the heater fault. We plan to reinstate this or a similar function in release 3.5*
 
 # Events
 
@@ -35,7 +39,7 @@ The following are not currently treated as events:
 
 An event has the following properties:
 
-* The type of the event, e.g. heater_fault, filament_error.
+* The type of the event, e.g. heater-fault, filament-error.
 * The device number concerned, e.g. the heater number, extruder number, or driver number.
 * The CAN address of the board that detected the event .
 * For some event types, an additional parameter that may indicate the event subtype, for example the type of heater fault.
@@ -62,11 +66,11 @@ If the macro file is not found then default processing occurs as shown in the ta
 
 | Event type & macro file name | D macro parameter | P macro parameter | B macro parameter | Default action if macro file not found | Log level |
 |:---|:---|
-| heater_fault | Heater # | Heater fault type code | CAN address of board controlling the heater | Pause print using pause.g and inform user via message box | Error |
-| driver_error | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Pause print without running pause.g and inform user vis message box | Error |
-| filament_error | Extruder # | Filament error type code | CAN address of board hosting the filament monitor | Pause print using pause.g and inform user via message box | Error |
-| driver_stall | Local driver # | 0 | CAN address of board with driver | Inform user via console and continue | Warning |
-| driver_warning | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Inform user via console and continue | Warning |
+| heater-fault | Heater # | Heater fault type code | CAN address of board controlling the heater | Faulty heater turned off (before event is raised). Pause print using pause.g and inform user via message box | Error |
+| driver-error | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Pause print without running pause.g and inform user vis message box | Error |
+| filament-error | Extruder # | Filament error type code | CAN address of board hosting the filament monitor | Pause print using pause.g and inform user via message box | Error |
+| driver-stall | Local driver # | 0 | CAN address of board with driver | Inform user via console and continue | Warning |
+| driver-warning | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Inform user via console and continue | Warning |
 
 Once processing is completed the event is removed from the queue. If an event of a particular type in in the queue and that condition happens again on the same device, a second event of the same type/device is not added to the queue.
 
