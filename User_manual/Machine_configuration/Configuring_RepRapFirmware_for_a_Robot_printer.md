@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-19T23:50:42.870Z
+date: 2022-09-20T07:06:02.254Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -160,7 +160,7 @@ Examples:
 Defines part of the actuators as connected by a closed kinematics chain.
 * CoreXY is the CoreXY kinematics where two steppers are connected by the formula X=1/2(dA + dB) Y=1/2(dA-dB) for forward kinematics and AB are the motors.
 * the second parameter is the K parameter used by Cartesian kinematics to define the CoreXY type: K1 = CoreXY, K2 = CoreXZ, K5 = CoreXYU, K8 = CoreXYUV
-* the two (or more, depending on subtype) numbers are the drive numbers, often steppers X and Y (not be be confused with the XY coordinates). If the numbers are not set and type is K1, the default is :0:1
+* the two (or more, depending on subtype) numbers are the drive numbers, often steppers X and Y (not be be confused with the XY coordinates). The Dn numbers must be consecutive for drives which belong together in respect to closed chain. If the numbers are not set and type is K1, the default is :0:1
 * tbd: define, store and apply the matrix like Cartesian kinematics does
 
 **B"closedChain=FiveBarParallelScara[0:1]"**
