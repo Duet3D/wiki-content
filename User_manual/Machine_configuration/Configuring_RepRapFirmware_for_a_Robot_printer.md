@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-20T07:06:02.254Z
+date: 2022-09-21T23:30:26.357Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -58,9 +58,9 @@ There is a separate document about DH parameters with examples. The DWC plugin R
 The standard usage is:
 * D0 is optional the definition of the base. If the first axis is vertical starting in 0,0,0, D0 can be omitted
 * D1 to D6 are DH parameters with actuators assigned (or less numbers for less actuators)
-* the tool is appended to the Dn paramters with the orientation of the last defined coordinate system
+* D7 for tool. Offset values of the current selected tool G10 will be added
 
-For less actuators, less D-s are used. The p (parallelogram 4 axis) has its own Dn and if it has values, they are added to the parallelogram angles.
+For less (more) actuators, less (more) D-s are used. The p (parallelogram 4 axis) has its own Dn and if it has values, they are added to the parallelogram angles.
 
 The standard can be changed with the B parameter and Dn numbers can have holes, e.g. start by 1 without 0.
 
@@ -143,6 +143,9 @@ The first number is the drive number, the second drive letter and the third the 
 * every Dn number may be used only once
 * different drive numbers may not point to the same Dn
 * the order of the elements is not important
+
+Example:
+* 4C2 means, drive number 4 from config.g with letter C is assigned to D2 . An example for CNC 5 axis AC table/table configuration.
 
 **B"orientationType=zaxis|no|full"**
 The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
