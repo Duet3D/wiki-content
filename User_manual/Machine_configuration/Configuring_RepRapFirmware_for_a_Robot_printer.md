@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-21T23:30:26.357Z
+date: 2022-09-21T23:32:31.391Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -133,7 +133,7 @@ Examples:
 
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
 
-**B"mapDriveLetterDn=0X3:1Y4:2Z5:3A1:4C2"**
+**B"mapDriveLetterDn=0X3:1Y4:2Z5:3A1:4C0"**
 **B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"**
 The first number is the drive number, the second drive letter and the third the Dn number. A parallelogram axis has no actuator, so the first number is omitted and pn is used.
 * if this parameter is not set, it is expected that the first drive is used at D1, second at D2 etc. and the letters are standard XYZABC (or XYZUVW) for 6 axis, XYZ for 4 axis pallet, XYZAC for CNC 5 axis AC type.
@@ -145,7 +145,7 @@ The first number is the drive number, the second drive letter and the third the 
 * the order of the elements is not important
 
 Example:
-* 4C2 means, drive number 4 from config.g with letter C is assigned to D2 . An example for CNC 5 axis AC table/table configuration.
+* 4C0 means, drive number 4 from config.g with letter C is assigned to D!0 . An example for CNC 5 axis AC table/table configuration.
 
 **B"orientationType=zaxis|no|full"**
 The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
