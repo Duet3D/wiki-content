@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2022-09-21T09:02:44.969Z
+date: 2022-09-21T09:05:16.567Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -115,7 +115,7 @@ In tests using standard 28awg 1.27mm spaced ribbon cable, 400mm worked reliably 
 
 ## Duet 3 MB6HC using ribbon cable
 
-> **NOTE:** SD cards attached to the Duet are only supported in standalone mode, and are not supported in SBC mode (i.e. using a Raspberry Pi). If using SBC mode, you could use a USB stick attached to the Pi instead. Make sure you are running DSF + DWC v3.42 or later to enable external storage access in DWC.
+> **NOTE:** SD cards attached to the Duet and/or PanelDue are only supported in standalone mode, and are not supported in SBC mode (i.e. using a Raspberry Pi). If using SBC mode, you could use a USB stick attached to the Pi instead. Make sure you are running DSF + DWC v3.42 or later to enable external storage access in DWC.
 {.is-info}
 
 Although the Duet 3 MB6HC does not have a connector for the PanelDue ribbon cable, if access to the SD card on PanelDue is required then this is possible using a special wiring arrangement. You must use RepRapFirmware 3.4 or later, and you must enable the external SD card using this command:
