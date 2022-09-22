@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-22T06:25:02.337Z
+date: 2022-09-22T06:32:35.761Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -76,15 +76,10 @@ It contains the following information:
 * Z axis (blue) is the orientation of the Z axis
 * position XYZ (yellow) is the information about the tool tip's position
 
-Whether the orientation information is included in inverse kinematics calculations, depends on the orientationType:
-* zaxis uses Z axis information (3rd column)
-* no doesn't use the first three columns
-* full uses all three orientation columns
-
 Some technical information about the transformation matrix:
 * for every orientation vector, x² + y² + z² = 1
-* each orientation vector is vertical to the other ones (orthonormal)
-* full can be uniquely translated into quaternions. Quaternions are used for storage efficiency, using 4 instead of 9 values
+* each orientation vector is vertical to the other ones (orthonormal) and the axes are organized righthanded
+* full can be uniquely translated into quaternions and reverse. Quaternions are used for storage efficiency, using 4 instead of 9 values. They can also be translated into angle-axis mode with 4 parameters, where angle is a Euler axis (not to be confused with Euler angles).
 * The four numbers (0 0 0 1) in the last line make sure that rotations and translations stay at their positions. They don't change.
 * the transformation matrices are created by the Dn Denavit-Hartenberg parameters and multiplied to get forward kinematics
 
