@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-22T06:24:01.727Z
+date: 2022-09-22T06:25:02.337Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -54,7 +54,7 @@ The M669 B"mapDriveLetterDn=..." parameters can define some of those properties
 To control the assignments, there are instructions on the configuration page about first steps.
 
 # orientationType
-The M669 B"orientationType" parameter specifies one of three possible orientation modes. It specifies how the robot behaves.
+The M669 B"orientationType" parameter specifies one of three possible orientation modes. It specifies whether and how the robot controls orientation of the endpoint.
 
 ![robot_coordinate_systems_small.jpg](/manual/configuration/robot_coordinate_systems_small.jpg)
 
