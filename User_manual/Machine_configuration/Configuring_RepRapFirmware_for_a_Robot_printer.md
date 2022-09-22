@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-21T23:33:42.930Z
+date: 2022-09-22T05:41:54.772Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -147,11 +147,11 @@ The first number is the drive number, the second drive letter and the third the 
 Example:
 * 4C0 means, drive number 4 from config.g with letter C is assigned to D!0 . An example for CNC 5 axis AC table/table configuration, where the chain starts with C axis inverted in workpiece mode.
 
-**B"orientationType=zaxis|no|full"**
+**B"orientationType=zaxis|no|full[:naming:rad|degrees]"**
 The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
 * zaxis means, only the orientation of the Z axis is important. That's the case with most 3D printers and CNC machines, including 5 axis CNC. The tool may get tilted, but the orientation with respect of X and Y axis is not controlled.
 * no means, there is no control about orientation. Orientation will change by the mechanical properties and can be changed by actuator changes, but it is not managed by firmware. Forward and inverse kinematics ignore orientation values with the exception of angle violations.
-* full gives full control over the orientation with quaternion values. There is no G-Code standard to set full orientation, an experimental setup is to use quaternion values for ABCD.
+* full gives full control over the orientation by using the full three orientation vectors. There is no G-Code standard, different options are offered: quat is ABCD specifying Quaternions where ABC are the imaginary and D the real part. axisangle is ABC the Z axis vector analogue to IJK and D is the angle in reference to the X axis. So the options are full:quat and full:axisangle. axisangle mode is normalized without magnitude. rad or degrees can be specified for the numbers being in radians or degrees respectively for full:axisangle mode.
 
 Examples:
 * 4 axis palletized RRRp is no, because orientation is not controllable
