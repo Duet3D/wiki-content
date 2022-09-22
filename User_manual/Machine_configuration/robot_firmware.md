@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-22T06:33:39.227Z
+date: 2022-09-22T06:36:07.144Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -108,6 +108,11 @@ It is important to get the transformation matrix order for multiplication correc
 * change the Dn order to be reversed for the workpiece Dn-s
 
 Example: D0 to D2 are BC settings for the rotary axes of CNC 5 axis BC. The workpiece is assembled on the C plate, then changing to workpiece mode means setting B"dnInvert=0:1:2" and reversing D0 to D2 values, i. e. using the original D2 values for D0 etc. For the other Dn values of the linear axes and tool Dn, the normal order is used, D3 to D6 in this example.
+
+# Angle-Axis
+Full orientation can be described by Euler axis and an angle around this axis.
+
+Please see https://en.wikipedia.org/wiki/Euler%27s_rotation_theorem
 
 # Quaternions
 Quaternions are numbers of one real and three imaginary numbers, developed by Hamilton in 19th century, and can describe spatial rotations.
