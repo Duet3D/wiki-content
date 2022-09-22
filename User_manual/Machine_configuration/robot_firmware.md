@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-22T06:36:07.144Z
+date: 2022-09-22T06:42:54.653Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -64,8 +64,6 @@ If red is the direction of the X axis, green of Y axis and blue of the Z axis, w
 * full orientation: all axes' orientations are under control. The axes vectors are orthonormal and righthanded, i. e. vector lengths are 1 each and all vertical on each other. A result is, that describing two vectors are sufficient to describe the orientation of all three vectors. angleaxis mode e.g. describes the Z axis by specifying 3 values for the Z axis vector and 1 value to specify the rotation around the Z axis, i. e. specifying the position of the X axis. quat(ernion) mode describes Z axis and rotation by 4 values also, but with a different method. A 0 degree angle means X axis direction and the rotation direction is specified by the direction of the Z axis vector.
 
 # Rotation matrix
-This chapter is technical meant for understanding the internals and not necessary for usage of the robot or G-Code.
-
 After calculation of forward inverse kinematics, the result is a 4x4 transformation matrix with information about position and orientation:
 
 ![robot_coordinates.png](/manual/configuration/robot_coordinates.png)
