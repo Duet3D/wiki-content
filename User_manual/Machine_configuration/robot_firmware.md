@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-22T06:17:11.414Z
+date: 2022-09-22T06:19:37.386Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -58,10 +58,10 @@ The M669 B"orientationType" parameter specifies one of three possible orientatio
 
 ![robot_coordinate_systems_small.jpg](/manual/configuration/robot_coordinate_systems_small.jpg)
 
-If red is the direction of the X axis, green of Y axis and blue of the Z axis, the possibilities of orientation are from left to right:
+If red is the direction of the X axis, green of Y axis and blue of the Z axis, with Z pointing down as is usual for 3D printers and CNC, the possibilities of orientation are from left to right:
 * no orientation: only position is specified. An example is a cartesian printer
 * Z axis orientation: only Z axis orientation is specified. The direction of X and Y axis is unspecified and can change and is out of control for the printer/CNC. Examples are normal 3D printers and CNC 3 axis.
-* full orientation: all axes' orientations are under control. The axes are stored orthonormal, i. e. vector lengths are 1 each and all vertical on each other. A result is, that describing two vectors are sufficient to describe the orientation of all three vectors. angleaxis mode e.g. describes the Z axis by specifying 3 values for the Z axis vector and 1 value to specify the rotation around the Z axis, i. e. specifying the position of the X axis. A 0 degree angle means X axis direction and the rotation direction is specified by the direction of the Z axis vector.
+* full orientation: all axes' orientations are under control. The axes vectors are orthonormal and righthanded, i. e. vector lengths are 1 each and all vertical on each other. A result is, that describing two vectors are sufficient to describe the orientation of all three vectors. angleaxis mode e.g. describes the Z axis by specifying 3 values for the Z axis vector and 1 value to specify the rotation around the Z axis, i. e. specifying the position of the X axis. A 0 degree angle means X axis direction and the rotation direction is specified by the direction of the Z axis vector.
 
 # Rotation matrix
 This chapter is technical meant for understanding the internals and not necessary for usage of the robot or G-Code.
