@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-23T08:16:36.975Z
+date: 2022-09-23T08:20:53.572Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -31,11 +31,11 @@ For 6 axis robot and most other robot kinematics, forward kinematics is calculat
 
 The Jacobian matrix is a calculation of the correlation between stepper position and cartesian coordinate/orientation, when single steppers are changed (the steppers are not changed in reality, but only mathematically, as if).
 
-An inverse must be calculated to get the inverse kinematics: calculating from cartesian coordinates back to stepper positions. In inverse can only be calculated if the Jacobian is quadratic and not singular (lost rank). In most cases, a generalized inverse must be calculated to get a similar result. The method which is described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf is used.
+An inverse must be calculated to get the inverse kinematics:
+* if the Jacobian is quadratic and non-singular, an inverse can be calculated. This is fastest
+*  if the Jacobian is nonquadratic or singular, a so-called generalized inverse must be calculated. The method used is described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf and is based on Singular Value Decomposition (SVD) method.
 
-The jacobian and inverse values are almost exact if using small steps, i. e. small segments. The default is 0.1 segment lengths.
-
-Calculation of inverse kinematics by using Jacobian/Gen. Inverse is calculated in iterations to get the required precision. Settings a lower required precision result in lower needed iterations.
+The jacobian and inverse values are almost exact if using small steps, i. e. small segments. The default is 0.1 segment lengths. The precision achieved is below 1e-3 mm.
 
 # G-Code to machine position
 
