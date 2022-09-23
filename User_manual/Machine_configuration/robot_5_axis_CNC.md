@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Description of configuration specifics, examples, axis flavours, G-Code variants
 published: true
-date: 2022-09-18T09:51:20.612Z
+date: 2022-09-23T10:46:57.942Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -90,4 +90,4 @@ tbd
 
 # unsorted
 
-CNC 5 axis has a spindle with only one orientation in Z direction. Two rotational axes are used to change the angle of the spindle in respect to the workpiece surface. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis. The angle of the spindle in respect to the workpiece surface is described as tool vector IJK values. IJK values are coordinates in XYZ direction respectively, are values between -1 and +1 for IJ, between 0 and 1 for K and are I²+J²+K²=1 normalized.
+CNC 5 axis has a spindle with only one orientation in Z direction (orientationType=zaxis). Two rotational axes are used to change the angle of the spindle in respect to the workpiece surface. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis. The angle of the spindle in respect to the workpiece surface is described as tool vector values. In the documentation about firmware is a detailed description about orientation types.
