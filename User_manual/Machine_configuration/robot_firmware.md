@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-23T08:20:53.572Z
+date: 2022-09-23T08:27:59.295Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -57,7 +57,7 @@ The M669 B"orientationType" parameter specifies one of three possible orientatio
 If red is the direction of the X axis, green of Y axis and blue of the Z axis, with Z pointing down as is usual for 3D printers and CNC, the possibilities of orientation are from left to right:
 * no orientation: only position is specified. An example is a cartesian printer
 * Z axis orientation: only Z axis orientation is specified. The direction of X and Y axis is unspecified and can change and is out of control for the printer/CNC. Examples are normal 3D printers and CNC 3 axis.
-* full orientation: all axes' orientations are under control. The axes vectors are orthonormal and righthanded, i. e. vector lengths are 1 each and all vertical on each other. A result is, that describing two vectors are sufficient to describe the orientation of all three vectors. angleaxis mode e.g. describes the Z axis by specifying 3 values for the Z axis vector and 1 value to specify the rotation around the Z axis, i. e. specifying the position of the X axis. quat(ernion) mode describes Z axis and rotation by 4 values also, but with a different method. A 0 degree angle means X axis direction and the rotation direction is specified by the direction of the Z axis vector.
+* full orientation: all axes' orientations are under control. The axes vectors are orthonormal and righthanded, i. e. vector lengths are 1 each and all vertical on each other. A result is, that describing one vectors and an angle is sufficient to describe the orientation of all three vectors. angleaxis mode e.g. describes the Z axis by specifying 3 values for the Z axis vector and 1 value to specify the rotation around the Z axis, i. e. specifying the position of the X axis. The position of the X axis defines where the 0 degree position of the angle is located. quat(ernion) mode describes Z axis and rotation by 4 values also, but with a different calculation method.
 
 # Rotation matrix
 After calculation of forward inverse kinematics, the result is a 4x4 transformation matrix with information about position and orientation:
