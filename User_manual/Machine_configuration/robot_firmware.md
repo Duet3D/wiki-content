@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details how the firmware is implemented
 published: true
-date: 2022-09-22T06:42:54.653Z
+date: 2022-09-23T08:14:33.817Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -41,17 +41,13 @@ Calculation of inverse kinematics by using Jacobian/Gen. Inverse is calculated i
 
 ![robot_cam_to_machine.png](/manual/configuration/robot_cam_to_machine.png)
 
-The CAM creates a G-Code file, which uses letters like G1 XYZAC or G1 XYZIJK with different meaning. XYZ are cartesian coordinates, while AC (or BC, AB) are degrees of rotary axes and IJK are tool vector values.
+The CAM creates a G-Code file, which uses letters like G1 XYZAC or G1 XYZABCD with different meaning. XYZ are cartesian coordinates in mm, while AC (or BC, AB, ABCD) are degrees values.
+
+**Note: IJK mode is avoided**, because it conflicts with G2/G3 IJ parameters. Instead, ABCD is used with ABC being the rotary information of a vector and D an angle, if used (zaxis mode uses ABC, full uses ABCD). Fanuc uses IJK sometimes, but the have the conflict with G2/G3 also, so they introduced special modes.
 
 The firmware interpretes the letters in kinematics as input values. Kinematics can translate it at it's will, can combine, calculate with them, ignore them etc. For a meaningful interpretation, it needs to know what the CAM means by A letter e.g. The match is often done by convenience, but it is more safe to define the match explicitly. It is also possible that the match is not 1:1, but more motors used than letters in G-Code used.
 
 Firmware kinematics than outputs its calculation results into machine positions and the main firmware positions the motors and prints or drills at the commanded motor positions.
-
-The M669 B"mapDriveLetterDn=..." parameters can define some of those properties
-* drive number is the internal number of the used G-Code letters, starting by 0. In most cases X is 0, Y is 1, Z is 2, A is 3, C is 4 for a CNC 5 axis configuration, or XYZABC being 0 to 5 for a 6 axis robot. Internally, the next drive numbers are used for the extruder(s) E, E1... letters, so firmware can use them the same way.
-* letter names can be changed, but this has no influence about how main firmware assigns them to the drive numbers. Drive number to letter assignment is done by M584. The B letter assignment is for readability, which drive number is assigned to which Dn DH parameter setting: 3A2 means drive the 4th drive named A is assigned to the D2 DH parameters and transformation matrix.
-
-To control the assignments, there are instructions on the configuration page about first steps.
 
 # orientationType
 The M669 B"orientationType" parameter specifies one of three possible orientation modes. It specifies whether and how the robot controls orientation of the endpoint.
