@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-24T09:02:36.747Z
+date: 2022-09-24T09:03:24.590Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6501,7 +6501,7 @@ This code is intended to determine the Z center point of a stash that is mounted
 
 ## M675: Find center of cavity
 
-This code is intended to find the center of a cavity that can be measured using the configured axis endstop. It probes towards the minimum end of the specified axis to find one side of the cavity, backs off a little, and then pprobes towars the maximum end of the specified axis to finds the other side. 
+This code is intended to find the center of a cavity that can be measured using the configured axis endstop. It probes towards the minimum end of the specified axis to find one side of the cavity, backs off a little, and then probes towards the maximum end of the same axis to find the other side. 
 
 ### Parameters
 
