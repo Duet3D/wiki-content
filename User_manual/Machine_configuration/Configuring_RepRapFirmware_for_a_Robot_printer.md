@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-22T05:47:05.736Z
+date: 2022-09-24T06:08:46.544Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -160,12 +160,14 @@ Examples:
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
 
-**B"closedChain=CoreXY:Kn[:0:1]"**
+**B"closedChain=CoreXY:Kn:m:o[:p][:q]"**
 Defines part of the actuators as connected by a closed kinematics chain.
 * CoreXY is the CoreXY kinematics where two steppers are connected by the formula X=1/2(dA + dB) Y=1/2(dA-dB) for forward kinematics and AB are the motors.
 * the second parameter is the K parameter used by Cartesian kinematics to define the CoreXY type: K1 = CoreXY, K2 = CoreXZ, K5 = CoreXYU, K8 = CoreXYUV
-* the two (or more, depending on subtype) numbers are the drive numbers, often steppers X and Y (not be be confused with the XY coordinates). The Dn numbers must be consecutive for drives which belong together in respect to closed chain. If the numbers are not set and type is K1, the default is :0:1
-* tbd: define, store and apply the matrix like Cartesian kinematics does
+* the two (or more, depending on subtype) numbers are the Dn numbers, where the two depending steppers are attached to. The Dn numbers must be consecutive for drives which belong together in respect to closed chain.
+
+Example:
+* B"closedChain=CoreXY:K1:1:2" defines CoreXY with the first of the two connected steppers controlling the axis being attached to the D1 definition and the second one attached to D2. The definition, which drive number is the first and second connected stepper, is defined in  B"mapDriveLetterDn", which should be defined also to be clear for the firmware. If mapDriveLetterDn is not defined, the default is using drive numbers 0 and 1 for XY CoreXYX. There is no default for the Dn number assignment.
 
 **B"closedChain=FiveBarParallelScara[0:1]"**
 * two steppers define the XY position by closed chain, one actuator the linear Z axis
