@@ -2,25 +2,13 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-09-24T06:31:57.605Z
+date: 2022-09-24T06:32:43.279Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
 ---
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
-
-This document is about:
-* how forward and inverse kinematics are calculated
-* how positions and orientations are calculated
-* orientation types and for which robot types they are applicable
-* mathematical details how algorithms are implemented and on which knowledge they are based
-* explanations of workpiece mode, workspace, singularities
-* special topics like information about tool, speed control
-* how to compile the firmware if necessary
-
-The Denavit-Hartenberg parameters which are closely linked to the topics of this document are described in a separate document.
-
 # Forward and inverse kinematics
 
 The kinematics classes have two methods as core functionality: calculation of cartesian coordinates from stepper's position, called forward kinematics. And the opposite direction, called inverse kinematics.
