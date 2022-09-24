@@ -1,8 +1,8 @@
 ---
 title: Robot CNC 5 axis
-description: Description of configuration specifics, examples, axis flavours, G-Code variants
+description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-09-23T10:46:57.942Z
+date: 2022-09-24T06:11:27.710Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
