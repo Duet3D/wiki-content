@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-19T09:55:49.974Z
+date: 2022-09-24T08:59:50.285Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6507,7 +6507,7 @@ This code is intended to find the center of a cavity that can be measured using 
 
 * **X,Y,Z** Axis to probe on
 * **Fnnnn** Probing feedrate
-* **Rnnn** Distance to move away from the lower endstop before the next probing move starts
+* **Rnnn** Distance to move away from the lower endstop before the next probing move starts, sufficient to ensure that the probe stops registering contact
 * **Pnnn** Use probe with the given number instead of endstop (RRF3.x and later)
 
 ### Examples
