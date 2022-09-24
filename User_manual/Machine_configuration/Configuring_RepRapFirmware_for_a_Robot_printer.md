@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-24T20:48:26.025Z
+date: 2022-09-24T21:20:34.951Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -170,6 +170,7 @@ Example:
 * B"closedChain=CoreXY:K1:1:2" defines CoreXY with the first of the two connected steppers controlling the axis being attached to the D1 definition and the second one attached to D2. The definition, which drive number is the first and second connected stepper, is defined in  B"mapDriveLetterDn", which should be defined also to be clear for the firmware. If mapDriveLetterDn is not defined, the default is using drive numbers 0 and 1 for XY CoreXYX. There is no default for the Dn number assignment.
 
 **B"closedChain=FiveBarParallelScara[:1:2:options]"**
+postponed for next releae
 * two steppers define the XY position by closed chain, one actuator the linear Z axis
 * the numbers define to which Dn numbers the two close chain steppers are conntected.
 * options are tbd, but they will specify cantilevered type and selected work mode
