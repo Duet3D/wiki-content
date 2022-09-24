@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-24T21:20:34.951Z
+date: 2022-09-24T21:22:07.090Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -28,7 +28,7 @@ The robot kinematics supports different types. Roughly, they can be separated in
 
 For specific robot types, example configurations and explanation of specific settings, please see the document about robot types. The following robot types are described in separate documents (call the robot tag to see the links):
 * 6 axis industrial robot
-* CNC 5 axis
+* CNC 5 axis including CoreXY 5 axis
 * 4 axis palletized robot
 
 # M669 configuration
