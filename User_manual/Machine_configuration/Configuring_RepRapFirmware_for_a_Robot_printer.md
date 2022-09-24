@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-24T06:08:46.544Z
+date: 2022-09-24T07:10:03.999Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -169,14 +169,16 @@ Defines part of the actuators as connected by a closed kinematics chain.
 Example:
 * B"closedChain=CoreXY:K1:1:2" defines CoreXY with the first of the two connected steppers controlling the axis being attached to the D1 definition and the second one attached to D2. The definition, which drive number is the first and second connected stepper, is defined in  B"mapDriveLetterDn", which should be defined also to be clear for the firmware. If mapDriveLetterDn is not defined, the default is using drive numbers 0 and 1 for XY CoreXYX. There is no default for the Dn number assignment.
 
-**B"closedChain=FiveBarParallelScara[0:1]"**
+**B"closedChain=FiveBarParallelScara[:1:2:options]"**
 * two steppers define the XY position by closed chain, one actuator the linear Z axis
-* the numbers define the closed chain drives. Default is 0:1, i. e. steppers X and Y, the linear Z axis being the Z axis.
+* the numbers define to which Dn numbers the two close chain steppers are conntected.
+* options are tbd, but they will specify cantilevered type and selected work mode
 
 **B"quality=n[:log|logoff]"**
 * 1 is lowest quality, 5 highest, default is 3
-* log will log performance measure like time and iterations needed and will be reported by calling M669 without parameters while the log setting is activated
+* log will log performance measure like time and iterations needed and will be reported by calling M669 without parameters while the log setting is activated. Log itself will change performance to the worse. For this reason, the results will be only an approximation
 * logoff will turn off logging
+* default is B"quality=3:logoff"
 
 Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality.
 
