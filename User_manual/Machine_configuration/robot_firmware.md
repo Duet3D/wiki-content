@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-09-24T06:13:28.499Z
+date: 2022-09-24T06:31:57.605Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -198,11 +198,3 @@ For indidivual compilation of source, the guide https://github.com/Duet3D/RepRap
 * Config/Pins.h set all other Kinematics SUPPORT_... to 0
 * disabled delta code in ... (tbd where)
 * all .h and .cpp files with names starting with Robot in folder src/Movement/Kinematics
-
-# Literature
-An sublist of documents which were used to implement firmware algorithms. Documents of special topics will be created in the other specialized robot documents. I only list documents or links that I think are excellent.
-
-* Wikipedia is always a great source. I use english and my own language page about a specific topic, because they often differ in details and understandability.
-
-Rotation calculations:
-* "Metrics for 3D Rotations: Comparison and Analysis" by Du Q. Hyunh. Helped me understand rotation matrix, quaternions and distances between
