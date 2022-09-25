@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-25T09:20:23.198Z
+date: 2022-09-25T09:22:57.121Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -65,7 +65,7 @@ Currently, valid values for the type and parameters are:
 * 6Axis:full and 6Axis:zaxis
 * CNC5Axis:AC and CNC5Axis:BC
 * CoreXY:K1:AC and CoreXY:K1:BC
-* 4AxisPall
+* 4AxisPall and 4AxisPall:inverted
 
 The robot types are described in detail on dedicated pages, please see the robot tag overview.
 
