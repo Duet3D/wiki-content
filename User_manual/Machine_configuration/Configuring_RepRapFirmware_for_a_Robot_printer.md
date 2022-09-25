@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-25T09:22:57.121Z
+date: 2022-09-25T09:26:04.452Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -70,7 +70,7 @@ Currently, valid values for the type and parameters are:
 The robot types are described in detail on dedicated pages, please see the robot tag overview.
 
 Example:
-* B"robotType=CoreXY:K1:AC" specifies CoreXY subtype K1 as used in Cartesian kinematics and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. The axis configurations are the common used ones: reference is X0Y0Z0, two parallel Y axis to behind, X to the right, Z positive means more bed-nozzle distance. A is assembled on the Z, C is on A, and the bed is mounted on C. The print object is printed on the Z-moving and AC-rotating bed. The nozzle is moved by steppers XY. Those defaults are preset, but can be overwritten with P parameters. A parameters and M208 set movement and rotation limits.
+* B"robotType=CoreXY:K1:AC" specifies CoreXY subtype K1 as used in Cartesian kinematics and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. The axis configurations are the common used ones: reference is X0Y0Z0, steppers are configured to be drive mappings X0 Y1 Z2 A3 C4. XYZ directions are as usually used: two parallel Y axis to behind, X to the right, Z positive means more bed-nozzle distance. A is assembled on the Z, C is on A, and the bed is mounted on C. The print object is printed on the Z-moving and AC-rotating bed. The nozzle is moved by steppers XY. Those defaults are preset, but can be overwritten with P parameters. A parameters and M208 set movement and rotation limits.
 
 
 # M669 A parameter: angles
