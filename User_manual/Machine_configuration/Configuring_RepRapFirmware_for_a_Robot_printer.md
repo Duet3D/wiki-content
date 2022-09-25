@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-25T09:26:04.452Z
+date: 2022-09-25T10:39:31.714Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -133,6 +133,9 @@ Example:
 * D"!1:100.0:0:0:0" inverts the transformation matrix.
 
 # M669 P parameter: axisTypes, special
+
+P commands will overwrite the default settings of B"robotType", so it makes sense to set P after the B parameter.
+
 **P"axisTypes=[R]|[P]|[p]*"**
 
 Defines the type of the axes. It is important that it matches the number of actuators plus optional parallelogram axis.
