@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-24T21:22:07.090Z
+date: 2022-09-25T09:13:14.414Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -34,21 +34,59 @@ For specific robot types, example configurations and explanation of specific set
 # M669 configuration
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-M669 K13 B"axisTypes=R|P|p" must be the first M669 line.
+The first M669 line must specify the K type and robot type, e.g.:
+M669 K13 B"robotType=CNC5Axis:AC"
+
+This will set defaults for the other settings.
 
 M669 without parameters will output the current settings to the console.
 
 Multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. But different letters can be combined, e.g. D and A settings which belong together.
 
 Overview
+required: the three following settings:
 * K13 set robot kinematics and must be defined first
-* D Denavit-Hartenberg (DH) parameters
+* B specify robot type
 * A minimum, maximum and home angles
-* B axis types, specific settings
+
+optional: the next settings:
+* D Denavit-Hartenberg (DH) parameters
+* P specific settings to add to or derivate from B setting
 * S segments per second
 * T minimum segment length in mm
 
-Most of the parameters can be changed by accessing the object model also (I postpone it to the next release. Changing values directly is risky, as some parameters are cached). Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
+Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
+
+# M669 B parameter: robot type
+
+**B"robotType=type[:parameters]"**
+
+Currently, valid values for the type and parameters are:
+* 6Axis:full and 6Axis:zaxis
+* CNC5Axis:AC and CNC5Axis:BC
+* CoreXY:K1:AC and CoreXY:K1:BC
+* 4AxisPall
+
+The robot types are described in detail on dedicated pages, please see the robot tag overview.
+
+Example:
+* B"robotType=CoreXY:K1:AC" specifiec CoreXY subtype K1 as used in Cartesian kinematics and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. The axis configurations are the common used ones.
+
+
+# M669 A parameter: angles
+
+**Aactnr:min:max:home**
+
+* actnr is the actuator number, starting with 1
+* min is the minium angle for rotary axis and minimum position in mm for prismatic axis
+* max is the maximum angle or position
+* home is the home position in degrees or mm. The value can be outside min and max, the endstop can be low or high type
+
+Example:
+* A1:-180.0:180.0:0.0 means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
+
+> tbd open how to configure a continuous axis
+{.is-info}
 
 # M669 D parameter: Denavit-Hartenberg
 Dn define DH parameters and are numbered from 0 to maximum 9.
@@ -94,26 +132,10 @@ Example:
 * D"7:0:0:0:0" if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
 * D"!1:100.0:0:0:0" inverts the transformation matrix.
 
-# M669 A parameter: angles
+# M669 P parameter: axisTypes, special
+**P"axisTypes=[R]|[P]|[p]*"**
 
-**Aactnr:min:max:home**
-
-* actnr is the actuator number, starting with 1
-* min is the minium angle for rotary axis and minimum position in mm for prismatic axis
-* max is the maximum angle or position
-* home is the home position in degrees or mm. The value can be outside min and max, the endstop can be low or high type
-
-Example:
-* A1:-180.0:180.0:0.0 means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
-
-> tbd open how to configure a continuous axis
-{.is-info}
-
-
-# M669 B parameter: axisTypes, special
-**B"axisTypes=[R]|[P]|[p]*"**
-
-Defines the type of the axes. This **parameter is mandatory** and it is important that it matches the number of actuators plus optional parallelogram axis.
+Defines the type of the axes. It is important that it matches the number of actuators plus optional parallelogram axis.
 
 * R means rotational/revolute, units are degrees, speeds e.g. degrees/min
 * P means prismatic/linear, units are mm
@@ -123,18 +145,18 @@ The parameter must be set correct, otherwise kinematics will not calculate corre
 
 Examples:
 
-* B"axisTypes=RRRRRR" means 6 axis robot with rotational axes
-* B"axisTypes=RRP" means serial scara with third axis being prismatic, i. e. two rotary arms and one linear Z axis
-* B"axisTypes=PPP" means 3 axis cartesian printer with three prismatic axes
-* B"axisTypes=PPPRRR" means cartesian printer with additional spheric 3 axis head
-* B"axisTypes=PPPRR" means CNC 5 axis with three linear and two rotary axes. With a rotary axis at the head, the order will be different like RPPPR
-* B"axisTypes=RRRp" means 4 axis palletized
-* B"axisTypes=RRRpR" means 4 axis palletized with 4th actuator, so 5 axes in total
+* P"axisTypes=RRRRRR" means 6 axis robot with rotational axes
+* P"axisTypes=RRP" means serial scara with third axis being prismatic, i. e. two rotary arms and one linear Z axis
+* P"axisTypes=PPP" means 3 axis cartesian printer with three prismatic axes
+* P"axisTypes=PPPRRR" means cartesian printer with additional spheric 3 axis head
+* P"axisTypes=PPPRR" means CNC 5 axis with three linear and two rotary axes. With a rotary axis at the head, the order will be different like RPPPR
+* P"axisTypes=RRRp" means 4 axis palletized
+* P"axisTypes=RRRpR" means 4 axis palletized with 4th actuator, so 5 axes in total
 
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
 
-**B"mapDriveLetterDn=0X3:1Y4:2Z5:3A1:4C0"**
-**B"mapDriveLetterDn=0X1:1Y2:2Z3:p4"**
+**P"mapDriveLetterDn=0X3:1Y4:2Z5:3A1:4C0"**
+**P"mapDriveLetterDn=0X1:1Y2:2Z3:p4"**
 The first number is the drive number, the second drive letter and the third the Dn number. A parallelogram axis has no actuator, so the first number is omitted and pn is used.
 * if this parameter is not set, it is expected that the first drive is used at D1, second at D2 etc. and the letters are standard XYZABC (or XYZUVW) for 6 axis, XYZ for 4 axis pallet, XYZAC for CNC 5 axis AC type.
 * maps drive number with drive letter with Dn, in the first example the first drive called X is mapped to D3
@@ -147,7 +169,7 @@ The first number is the drive number, the second drive letter and the third the 
 Example:
 * 4C0 means, drive number 4 from config.g with letter C is assigned to D!0 . An example for CNC 5 axis AC table/table configuration, where the chain starts with C axis inverted in workpiece mode.
 
-**B"orientationType=zaxis|no|full:quat|full:axisangle"**
+**P"orientationType=zaxis|no|full:quat|full:axisangle"**
 The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
 * zaxis means, only the orientation of the Z axis is important. That's the case with most 3D printers and CNC machines, including 5 axis CNC. The tool may get tilted, but the orientation with respect of X and Y axis is not controlled.
 * no means, there is no control about orientation. Orientation will change by the mechanical properties and can be changed by actuator changes, but it is not managed by firmware. Forward and inverse kinematics ignore orientation values with the exception of angle violations.
@@ -160,22 +182,22 @@ Examples:
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
 
-**B"closedChain=CoreXY:Kn:m:o[:p][:q]"**
+**P"closedChain=CoreXY:Kn:m:o[:p][:q]"**
 Defines part of the actuators as connected by a closed kinematics chain.
 * CoreXY is the CoreXY kinematics where two steppers are connected by the formula X=1/2(dA + dB) Y=1/2(dA-dB) for forward kinematics and AB are the motors.
 * the second parameter is the K parameter used by Cartesian kinematics to define the CoreXY type: K1 = CoreXY, (K2 = CoreXZ, K5 = CoreXYU, K8 = CoreXYUV. K2 to K8 not supported in first release, but will be implemented)
 * the two (or more, depending on subtype) numbers are the Dn numbers, where the two depending steppers are attached to. The Dn numbers must be consecutive for drives which belong together in respect to closed chain.
 
 Example:
-* B"closedChain=CoreXY:K1:1:2" defines CoreXY with the first of the two connected steppers controlling the axis being attached to the D1 definition and the second one attached to D2. The definition, which drive number is the first and second connected stepper, is defined in  B"mapDriveLetterDn", which should be defined also to be clear for the firmware. If mapDriveLetterDn is not defined, the default is using drive numbers 0 and 1 for XY CoreXYX. There is no default for the Dn number assignment.
+* P"closedChain=CoreXY:K1:1:2" defines CoreXY with the first of the two connected steppers controlling the axis being attached to the D1 definition and the second one attached to D2. The definition, which drive number is the first and second connected stepper, is defined in  P"mapDriveLetterDn", which should be defined also to be clear for the firmware. If mapDriveLetterDn is not defined, the default is using drive numbers 0 and 1 for XY CoreXYX. There is no default for the Dn number assignment.
 
-**B"closedChain=FiveBarParallelScara[:1:2:options]"**
+**P"closedChain=FiveBarParallelScara[:1:2:options]"**
 postponed for next releae
 * two steppers define the XY position by closed chain, one actuator the linear Z axis
 * the numbers define to which Dn numbers the two close chain steppers are conntected.
 * options are tbd, but they will specify cantilevered type and selected work mode
 
-**B"quality=n[:log|logoff]"**
+**P"quality=n[:log|logoff]"**
 * 1 is lowest quality, 5 highest, default is 3
 * log will log performance measure like time and iterations needed and will be reported by calling M669 without parameters while the log setting is activated. Log itself will change performance to the worse. For this reason, the results will be only an approximation
 * logoff will turn off logging
