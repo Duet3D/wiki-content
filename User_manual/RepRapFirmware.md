@@ -2,7 +2,7 @@
 title: User manual: RepRapFirmware
 description: 
 published: true
-date: 2021-12-17T14:51:01.651Z
+date: 2022-09-26T09:56:38.416Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:40:48.493Z
@@ -15,6 +15,7 @@ dateCreated: 2021-11-29T15:40:48.493Z
 [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations)
 [SD Card](/User_manual/RepRapFirmware/SD_card)
 [Events](/User_manual/RepRapFirmware/Events)
+[Multiple motion systems](/User_manual/RepRapFirmware/Multiple_motion_systems)
 
 # Firmware updating
 
@@ -30,4 +31,5 @@ dateCreated: 2021-11-29T15:40:48.493Z
 
 # Developer information
 
-[Contributing to development](/User_manual/Reference/Developers)
+[APIs](/User_manual/Reference/APIs)
+[Contributing to development](/User_manual/Reference/Developers) (Needs updating)
