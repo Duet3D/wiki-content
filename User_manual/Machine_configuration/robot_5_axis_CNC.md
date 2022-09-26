@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-09-26T23:15:06.648Z
+date: 2022-09-26T23:19:00.381Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -34,7 +34,7 @@ The following calculation is done by firmware:
 
 * when G-Code arrives, it is interpreted as tool tip position and orientation. I. e. specific implementations like rotary axis offsets  and where the Z distance come from (tool length, print bed thickness) do not play a role. Forward kinematics transfers this machine independent information to motor positions by calculating using the transformation matrices and tool offsets. Important is, that the G-Code AC values often do not match the AC rotary angles. They match only, if the rotary axes are spheric, i. e. without any displacements and the C axis is directly below the endpoint midpoint.
 * the inverse kinematics starts from the motor positions and calculates the XYZAC tool tip positions and orientations, once again XYZAC has nothing to do with the concrete AC angles. Even XYZ do not match, because through rotation of the AC axes, they differ from the XYZ motor positions.
-* a planned move is segmented into smaller straight lines with XYZAC positions. The kinematics will calculated the true motor positions for every segment. This is called RTCP.
+* a planned move is segmented into smaller straight lines with XYZAC positions. The kinematics will calculate the true motor positions for every segment. This is called RTCP.
 # Segmentation
 
 A move is segmented into small straight lines. The segmentation is calculated and planned in the main process of RRF and is not part of the kinematics. The kinematics calculates forward and inverse information for the true XYZ positions, so this is equal to which is named RTCP mode.
