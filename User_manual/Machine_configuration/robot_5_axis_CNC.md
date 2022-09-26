@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-09-26T23:05:28.427Z
+date: 2022-09-26T23:15:06.648Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -28,12 +28,12 @@ In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) ar
 
 # Calculation
 
-The following calculation is done by firmware. If there is an error in my understanding, please tell me in the forum. 5 axis CNC is new to me and there is not much documentation, so I may have made errors.
+The following calculation is done by firmware:
 
-![cnc5axis_forware_inverse.jpg](/manual/configuration/cnc5axis_forware_inverse.jpg)
+![cnc5axis_forware_inverse2.jpg](/cnc5axis_forware_inverse2.jpg)
 
-* when G-Code arrives, it is interpreted as tool tip position and orientation. I. e. specific implementations like rotary axis offsets  and where the Z distance come from (tool length, print bed thickness) do not play a role. Forward kinematics transfers this machine independent information to motor positions by calculating using the transformation matrices and tool offsets. Important is, that the G-Code AC values often do not match the AC rotary angles. They match only, if the axes are spheric, i. e. without any displacements and the C axis is directly below the endpoint.
-* the inverse kinematics starts from the motor positions and calculates the XYZAC tool tip positions and orientations, once again XYZAC has nothing to do with the concrete AC angles. Even XYZ do not match, because through rotation, they differ from the prismatic XYZ positions.
+* when G-Code arrives, it is interpreted as tool tip position and orientation. I. e. specific implementations like rotary axis offsets  and where the Z distance come from (tool length, print bed thickness) do not play a role. Forward kinematics transfers this machine independent information to motor positions by calculating using the transformation matrices and tool offsets. Important is, that the G-Code AC values often do not match the AC rotary angles. They match only, if the rotary axes are spheric, i. e. without any displacements and the C axis is directly below the endpoint midpoint.
+* the inverse kinematics starts from the motor positions and calculates the XYZAC tool tip positions and orientations, once again XYZAC has nothing to do with the concrete AC angles. Even XYZ do not match, because through rotation of the AC axes, they differ from the XYZ motor positions.
 * a planned move is segmented into smaller straight lines with XYZAC positions. The kinematics will calculated the true motor positions for every segment. This is called RTCP.
 # Segmentation
 
