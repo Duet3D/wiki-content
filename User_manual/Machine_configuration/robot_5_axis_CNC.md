@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-09-24T06:11:27.710Z
+date: 2022-09-26T23:05:28.427Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -26,6 +26,15 @@ If for some reason the rotational axes are named UVW, the default firmware behav
 
 In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) are rotary angles, i. e. different units of measurement are used. An alternative G-Code uses IJK tool vectors, used e. g. by Fanuc. The letters IJ conflict with G2/G3 commands, where they have a different meaning, so IJK is not used until there is a standardized solution.
 
+# Calculation
+
+The following calculation is done by firmware. If there is an error in my understanding, please tell me in the forum. 5 axis CNC is new to me and there is not much documentation, so I may have made errors.
+
+![cnc5axis_forware_inverse.jpg](/manual/configuration/cnc5axis_forware_inverse.jpg)
+
+* when G-Code arrives, it is interpreted as tool tip position and orientation. I. e. specific implementations like rotary axis offsets  and where the Z distance come from (tool length, print bed thickness) do not play a role. Forward kinematics transfers this machine independent information to motor positions by calculating using the transformation matrices and tool offsets. Important is, that the G-Code AC values often do not match the AC rotary angles. They match only, if the axes are spheric, i. e. without any displacements and the C axis is directly below the endpoint.
+* the inverse kinematics starts from the motor positions and calculates the XYZAC tool tip positions and orientations, once again XYZAC has nothing to do with the concrete AC angles. Even XYZ do not match, because through rotation, they differ from the prismatic XYZ positions.
+* a planned move is segmented into smaller straight lines with XYZAC positions. The kinematics will calculated the true motor positions for every segment. This is called RTCP.
 # Segmentation
 
 A move is segmented into small straight lines. The segmentation is calculated and planned in the main process of RRF and is not part of the kinematics. The kinematics calculates forward and inverse information for the true XYZ positions, so this is equal to which is named RTCP mode.
