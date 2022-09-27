@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-09-27T16:16:50.515Z
+date: 2022-09-27T16:19:32.702Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -97,6 +97,7 @@ or
 M669 K13 B"robotType=CoreXY:K1:BC"
 if the rotary axis B is parallel to the Y axis.
 The rotary axis C is parallel to the Z axis.
+The C rotary table is mounted on top of the A/B axis, this one is mounted on the Z axis. Z is connected to the base, as are XY axes, which are CoreXY connected. The base is a fixpoint (0,0,0), which doesn't change position and orientation and is a reference.
 
 sets some parameters already:
 * axisTypes=PPPRR is set for prismatic axes XYZ and rotary axes AC
