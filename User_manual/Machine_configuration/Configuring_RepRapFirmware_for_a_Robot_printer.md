@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-25T22:12:54.593Z
+date: 2022-09-27T23:43:26.729Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -188,14 +188,16 @@ Examples:
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
 
-**P"closedChain=CoreXY:Kn:m:o[:p][:q]"**
+**P"closedChain=CoreXY:K1:m:o"**
 Defines part of the actuators as connected by a closed kinematics chain.
 * CoreXY is the CoreXY kinematics where two steppers are connected by the formula X=1/2(dA + dB) Y=1/2(dA-dB) for forward kinematics and AB are the motors.
-* the second parameter is the K parameter used by Cartesian kinematics to define the CoreXY type: K1 = CoreXY, (K2 = CoreXZ, K5 = CoreXYU, K8 = CoreXYUV. K2 to K8 not supported in first release, but will be implemented)
-* the two (or more, depending on subtype) numbers are the Dn numbers, where the two depending steppers are attached to. The Dn numbers must be consecutive for drives which belong together in respect to closed chain.
+* the second parameter is the same K parameter used by Cartesian kinematics to define the CoreXY type: K1 = CoreXY
+* the two numbers are the Dn numbers, where the two depending steppers are attached to. The Dn numbers must be consecutive for drives which belong together in respect to closed chain.
+
+Other K values could be implemented in the future, if it makes sense.
 
 Example:
-* P"closedChain=CoreXY:K1:1:2" defines CoreXY with the first of the two connected steppers controlling the axis being attached to the D1 definition and the second one attached to D2. The definition, which drive number is the first and second connected stepper, is defined in  P"mapDriveLetterDn", which should be defined also to be clear for the firmware. If mapDriveLetterDn is not defined, the default is using drive numbers 0 and 1 for XY CoreXYX. There is no default for the Dn number assignment.
+* P"closedChain=CoreXY:K1:4:5" defines CoreXY with the first of the two connected steppers controlling the axis being attached to the D1 definition and the second one attached to D2. The definition, which drive number is the first and second connected stepper, is defined in  P"mapDriveLetterDn", which should be defined also to be clear for the firmware. If mapDriveLetterDn is not defined, the default is using drive numbers 0 and 1 for XY CoreXYX. There is no default for the Dn number assignment and is often 4 and 5 for CoreXY.
 
 **P"closedChain=FiveBarParallelScara[:1:2:options]"**
 postponed for next releae
