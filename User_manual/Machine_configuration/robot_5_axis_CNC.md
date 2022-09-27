@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-09-26T23:24:59.779Z
+date: 2022-09-27T16:16:50.515Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -89,13 +89,24 @@ The calculations allow correct positions and orientations for every segment of a
 
 # CoreXY in CNC 5 axis mode
 
-CoreXY with 2 rotary axes is supported by the M669 parameter
-* B"closedChain=CoreXY[0:1]"
-* the two connected steppers define X and Y coordinates. The Dn parameters define the properties of the X and Y axis, not of the steppers.
-* default is XYZAC or XYZBC with driver numbers 0 to 4 with A being parallel to the X axis (or B parallel to Y axis) and C parallel to the Z axis. AC and BC differ in the Dn definitions.
+A new configuration option allows to set most configuration settings fast:
 
-Example configuration:
-tbd
+M669 K13 B"robotType=CoreXY:K1:AC"
+if the rotary axis A is parallel to the X axis
+or
+M669 K13 B"robotType=CoreXY:K1:BC"
+if the rotary axis B is parallel to the Y axis.
+The rotary axis C is parallel to the Z axis.
+
+sets some parameters already:
+* axisTypes=PPPRR is set for prismatic axes XYZ and rotary axes AC
+* Dn chain, starting from the workpiece, C, A, Z inverted to the base, up to Y and X connected axes to the tool.
+* orientationType is set to zaxis
+* default drivers are configured for XYZAC axes
+
+What should be added:
+* A axis min, max and home angle/position settings
+* Dn parameters if the rotary axes have displacements of the axes and displacements between the linear axes, so the distance between hotend and print bed is correct
 
 # unsorted
 
