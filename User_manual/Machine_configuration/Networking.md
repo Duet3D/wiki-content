@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2022-06-29T14:00:02.877Z
+date: 2022-09-27T13:55:13.877Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z
@@ -84,6 +84,8 @@ If you are unable to directly cable the Duet to your network router, you can con
 # Duet 3 with Single Board Computer (SBC)
 
 The connected Raspberry Pi (or similar) should already be set up for wired Ethernet access. See this guide for setting up a Duet 3 with connected SBC (Raspberry Pi or similar) on WiFi: [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
+
+If you have a display and input peripherals connected to your Raspberry Pi, you can use the same network configuration M-codes as above to configure LAN and/or WiFi. However, an index parameter (`I`, e.g. `M552 I0 S1` for interface #0) may be required to set up the correct network interface.
 
 # A note about mDNS local network discovery
 
