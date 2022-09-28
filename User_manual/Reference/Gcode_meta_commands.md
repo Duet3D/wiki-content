@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2022-09-12T13:59:15.197Z
+date: 2022-09-28T13:26:24.215Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -220,11 +220,12 @@ The following names constants are provided:
 | Name | Type | Meaning |
 |:---|:---|
 | false | bool | Boolean false |
+| input | (variable) | The most recent input from a message box with mode 4, 5, 6 or 7 (see M291 command)
 | iterations | int | The number of completed iterations of the innermost loop |
 | line | int | The current line number in the file being executed |
 | null | object | The null object |
 | pi | float | Pi (3.14159265...) |
-| result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 if it returned an error. Meta commands do not change 'result'. |
+| result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 if it returned an error, or -1 if it was a blocking M291 message box command that had a Close button, and either the Close button was pressed or the message box timed out. Meta commands do not change 'result'. |
 | true | bool | Boolean true |
 
 ## Literals
