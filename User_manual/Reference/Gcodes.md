@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-27T11:11:15.134Z
+date: 2022-09-28T08:24:56.477Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2992,8 +2992,8 @@ The limit in RRF3 is 200 characters in the entire GCode command. In RRF2 it's 16
 
 ### Parameters
 
-* **Pnnn** Whether the current operation shall be cancelled (P=1) or continued (P=0). This parameter is ignored by RRF 3.5 and later if the R parameter is present.
-* **Rnnn** (RRF 3.5 and later) The choice the took: -1 = cancel, 0 = OK or the first choice, 1 = the second choice, and so on.
+* **Pnnn** Whether the current operation shall be cancelled (P=1) or continued (P=0)
+* **R{expression}** (RRF 3.5 and later, only present if P=0 and the message box mode was 4 or greater) The returned value. For message box mode 4 this is an integer representing the choice that was selected, counting from 0. For message box modes 5/6/7 this is the integer/float/string value that was entered.
 * **Snnn** (RRF 3.5 and later) The sequence number of the message being acknowledged
 
 This command is sent by the user interface when the user acknowledges a message that was displayed because of a M291 command with parameter S=2 or S=3.  DWC and PanelDue 3.5 and later also use thie command to acknowledge a non-blocking message (M291 command with parameter S=0 or S=1) but in that case the S parameter must match the sequence number of the messsge being acknowledged. The P parameter is ignored unless M291 was called with S=3, and always ignored by RRF 3.5 and later if the R parameter is present.
