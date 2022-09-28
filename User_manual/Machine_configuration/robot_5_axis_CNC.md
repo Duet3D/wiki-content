@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-09-27T16:19:32.702Z
+date: 2022-09-28T08:32:53.610Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -68,6 +68,14 @@ Starting from the base of the C axis plate, the coordinate system is translated 
 When calculating the chain, D0, D1 and D2 must be inverted.
 
 Forward calculates A/C or B/C to XYZ IJK position and orientation, while inverse kinematics can be calculated from XYZ IJK, resulting in XYZ AC or XYZ BC values. IJK is the tool vector with orientation vertical on the workpiece surface.
+
+# Configuration procedure
+
+In my experience, the best procedure is
+- start at base Z and find the parameters for the chain Z-A-C
+- invert the settings and set ! for the Dns. If using D0 to D3, this will become D!0 to D!3 with D!0 being the original D3 content
+- add Dns for X and Y axes with D4 and D5
+- add Dn for tool D6
 
 # BC table/table example
 
