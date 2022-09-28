@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-09-28T08:32:53.610Z
+date: 2022-09-28T08:39:26.734Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -76,6 +76,8 @@ In my experience, the best procedure is
 - invert the settings and set ! for the Dns. If using D0 to D3, this will become D!0 to D!3 with D!0 being the original D3 content
 - add Dns for X and Y axes with D4 and D5
 - add Dn for tool D6
+
+The B"robotType=..." parameter already sets this Dn structure. This default can be modified with Dn parameters afterwards.
 
 # BC table/table example
 
