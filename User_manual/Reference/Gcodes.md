@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-28T09:01:26.889Z
+date: 2022-09-28T10:54:43.992Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7311,9 +7311,9 @@ M999
 
 ### Notes
 
-The **P** parameter can also put the board into firmware upload mode (as if the Erase button had been pressed) if parameter P"ERASE" is present.
+The **P** parameter can also put the board into firmware upload mode (as if the Erase button had been pressed) if parameter `P"ERASE"` is present.
 
-Starting from v3.3 the **B** parameter may be set to -1 to reboot the attached SBC (DuetPi + SBC)
+Starting from v3.3 the **B** parameter may be set to -1 to reboot the attached SBC (DuetPi + SBC). DSF v3.5 also supports `P"OFF"` to shut down the SBC.
 
 # T-commands
 
