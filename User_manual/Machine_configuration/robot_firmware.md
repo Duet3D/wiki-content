@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-09-29T07:45:53.805Z
+date: 2022-09-29T07:47:54.504Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -33,7 +33,7 @@ The CAM creates a G-Code file, which uses letters like G1 XYZAC or G1 XYZABCD wi
 
 **Note: IJK mode is avoided**, because it conflicts with G2/G3 IJ parameters. Instead, ABCD is used with ABC being the rotary information of a vector and D an angle, if used (zaxis mode uses ABC, full uses ABCD). Fanuc uses IJK sometimes, but the have the conflict with G2/G3 also, so they introduced special modes.
 
-The firmware interpretes the letters in kinematics as input values. Kinematics can translate it at it's will, can combine, calculate with them, ignore them etc. For a meaningful interpretation, it needs to know what the CAM means by A letter e.g. The match is often done by convenience, but it is more safe to define the match explicitly. It is also possible that the match is not 1:1, but more motors used than letters in G-Code used.
+The firmware interpretes the letters in kinematics as input values. Kinematics can translate it at it's will, can combine, calculate with them, ignore them etc. For a meaningful interpretation, it needs to know what the CAM means by A letter e.g. The match is often done by convenience, but it is more safe to define the match explicitly by specifying P"mapDriveLetterDn=...". It is also possible that the match is not 1:1, but more motors used than letters in G-Code used.
 
 Firmware kinematics than outputs its calculation results into machine positions and the main firmware positions the motors and prints or drills at the commanded motor positions.
 
