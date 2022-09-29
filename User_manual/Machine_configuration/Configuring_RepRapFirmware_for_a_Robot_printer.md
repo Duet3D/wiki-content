@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-27T23:43:26.729Z
+date: 2022-09-29T05:58:58.210Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -206,7 +206,7 @@ postponed for next releae
 * options are tbd, but they will specify cantilevered type and selected work mode
 
 **P"quality=n[:log|logoff]"**
-* 1 is lowest quality, 5 highest, default is 3
+* n can be 1, 3 or 5. 1 is lowest quality, 5 highest, default is 3.
 * log will log performance measure like time and iterations needed and will be reported by calling M669 without parameters while the log setting is activated. Log itself will change performance to the worse. For this reason, the results will be only an approximation
 * logoff will turn off logging
 * default is B"quality=3:logoff"
