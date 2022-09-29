@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-09-24T06:32:43.279Z
+date: 2022-09-29T07:45:53.805Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -64,6 +64,16 @@ Some technical information about the transformation matrix:
 * full can be uniquely translated into quaternions and reverse. Quaternions are used for storage efficiency, using 4 instead of 9 values. They can also be translated into angle-axis mode with 4 parameters, where axis is a Euler axis (not to be confused with Euler angles) and angle is the rotation around this axis.
 * The four numbers (0 0 0 1) in the last line make sure that rotations and translations stay at their positions. They don't change.
 * the transformation matrices are created by the Dn Denavit-Hartenberg parameters and multiplied to get forward kinematics
+
+# Forward: chain of rotation matrices
+
+The parameters for a rotation matrix are the Dn parameter values of the Denavit-Hartenberg values. For the tool Dn, G10 tool offsets are added. The Dn parameters are numbered from D0 to D8 and are executed in this order. Not defined Dn-s are omitted.
+
+Starting from the origin coordinate system (X right, Y back, Z top at position 0,0,0) or from the workpiece in workpiece mode, the Dn rotation matrices are multiplied until the endpoint tool is reached. The result is a position (X, Y, Z cartesian coordinates) and orientation (X, Y, Z coordinate system axes).
+
+If orientationType is set to full, all three orientation axes are used by calculation of the next steps. If it is zaxis, only the orientation of the Z axis is used. In no is set, only position information is used.
+
+Sometimes it is necessary to invert the rotation matrix before multiplication with the other matrices, this is explained in the section about workpiece mode.
 
 # World coordinate or workpiece mode
 
