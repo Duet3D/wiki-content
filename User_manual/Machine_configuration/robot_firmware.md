@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-09-29T14:46:01.924Z
+date: 2022-09-29T14:48:57.637Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -211,7 +211,7 @@ Long unsegmented moves happen
 * G0 moves
 * segmentation is turned off
 
-The long unsegmented moves are calculated in chunks of large segments to avoid "snap of angles" into different work modes.
+The long unsegmented moves are calculated in chunks of large segments to avoid "snap of angles" into different work modes and because the Jacobian - Inverse method is working for small angle changes only.
 
 Short segmented moves happen
 * G1, G2, G3 moves with segmentation activated
