@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-29T07:56:25.036Z
+date: 2022-09-29T14:26:17.383Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -205,11 +205,12 @@ postponed for next releae
 * the numbers define to which Dn numbers the two close chain steppers are conntected.
 * options are tbd, but they will specify cantilevered type and selected work mode
 
-**P"quality=n[:log|logoff]"**
+**P"quality=n[:log|logDetailed|logoff]"**
 * n can be 1, 3 or 5. 1 is lowest quality, 5 highest, default is 5.
-* log will log performance measure like time and iterations needed and will be reported by calling M669 without parameters while the log setting is activated. Log itself will change performance to the worse. For this reason, the results will be only an approximation
-* logoff will turn off logging
-* default is B"quality=3:logoff"
+* log will log performance measure like time and iterations needed and will be reported on the console. Log will change performance a bit.
+* logDetailed will log detailed information like all rotation matrix results and outputs it to the console. This will reduce performance.
+* logoff will turn off log and logDetailed.
+* default is B"quality=5:logoff"
 
 Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality.
 
