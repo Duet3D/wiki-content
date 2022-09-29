@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-09-29T07:52:55.334Z
+date: 2022-09-29T14:38:42.810Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -198,3 +198,9 @@ For indidivual compilation of source, the guide https://github.com/Duet3D/RepRap
 * Config/Pins.h set all other Kinematics SUPPORT_... to 0
 * disabled delta code in ... (tbd where)
 * all .h and .cpp files with names starting with Robot in folder src/Movement/Kinematics
+
+# setup analysis, logDetailed
+
+If the results of calculations are not as expected, the reason can be a wrong Dn setup of angles or distances. To check every Dn's result, the log level can be set to logDetailed. Every move result will be output to the console with detailed information about the rotation matrices: positions and orientations. This allows to check whether the joint angle results are as expected. The Jacobian and Generalized inverse will be logged also, so unusual angle verlocities can be detected.
+
+Calculation starts at a cached matrix of the last move. If the new move is segmented and a short segment, only a few iterations are needed and will be logged, until the target is reached. Long moves will be segmented into large segments with reduced precision and only the last segment is with high precision. Long moves may log too many details to be informative.
