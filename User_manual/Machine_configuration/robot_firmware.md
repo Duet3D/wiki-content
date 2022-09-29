@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-09-29T14:38:42.810Z
+date: 2022-09-29T14:44:03.859Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -204,3 +204,15 @@ For indidivual compilation of source, the guide https://github.com/Duet3D/RepRap
 If the results of calculations are not as expected, the reason can be a wrong Dn setup of angles or distances. To check every Dn's result, the log level can be set to logDetailed. Every move result will be output to the console with detailed information about the rotation matrices: positions and orientations. This allows to check whether the joint angle results are as expected. The Jacobian and Generalized inverse will be logged also, so unusual angle verlocities can be detected.
 
 Calculation starts at a cached matrix of the last move. If the new move is segmented and a short segment, only a few iterations are needed and will be logged, until the target is reached. Long moves will be segmented into large segments with reduced precision and only the last segment is with high precision. Long moves may log too many details to be informative.
+
+Long unsegmented moves happen
+* when in simulation mode
+* first check of firmware by calling LimitPosition to check whether the target is reachable
+* G0 moves
+* segmentation is turned off
+
+The long unsegmented moves are calculated in chunks of large segments to avoid "snap of angles" into different work modes.
+
+Short segmented moves happen
+* G1, G2, G3 moves with segmentation activated
+* the move itself is short
