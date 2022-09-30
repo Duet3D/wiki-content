@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-30T16:10:40.316Z
+date: 2022-09-30T16:12:22.028Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5217,7 +5217,7 @@ M570 H1 P4 T15 ; An anomaly on heater 1 must persist for 4 seconds, and must be 
 
 **Warning!** Heating fault detection is provided to reduce the risk of starting a fire if a dangerous fault occurs, for example if the heater cartridge or thermistor falls out of the heater block. You should carefully consider sensible values for the detection time or permitted temperature excursion, setting them incorrectly will reduce the protection. Also note that this protection should not be relied upon exclusively. Protection against fire should be provided external to the operation of the firmware as well (fuses, fire detection, do not print unattended etc)
 
-For further details of the heater fault handling see [Heater faults and how to avoid them](/User_manual/Troubleshooting/Heater_faults)
+For further details about heater fault handling see [Heater faults and how to avoid them](/User_manual/Troubleshooting/Heater_faults)
 
 ## M571: Set output on extrude
 
