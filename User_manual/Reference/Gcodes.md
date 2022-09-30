@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-30T08:27:31.548Z
+date: 2022-09-30T09:49:26.748Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2970,7 +2970,7 @@ Allowed message box modes (S parameter) are:
 1. Only "Close" is displayed (non-blocking)
 2. Only "OK" is displayed (blocking, send M292 to resume the execution)
 3. "OK" and "Cancel" are displayed (blocking, send M292 to resume the execution or M292 P1 to cancel the operation in progress)
-4. (RRF 3.5 and later only) Display a number of choices. The names of the choices are given by the K parameter as a single string with the vertical bar character separating the choices.
+4. (RRF 3.5 and later only) Display a number of choices. The names of the choices are given by the K parameter as an array of strings.
 5. (RRF 3.5 and later) Prompt for an integer value. L is the minimum accepted value (default 0), H is the maximum accepted value (default unlimited), and F is the default value.
 6. (RRF 3.5 and later) Prompt for a floating point value. L is the minimum accepted value (default 0.0), H is the maximum accepted value, and F is the default value.
 7. Prompt for a string value. L is the minimum number of characters (default 1), H is the maximum number of characters (default 10), and F is the default value.
