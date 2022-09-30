@@ -2,7 +2,7 @@
 title: Heater faults and how to avoid them
 description: RepRapFirmware monitors heater temperatures to check they are behaving as expected, to detect situations that might pose a danger. Sometimes, the firmware may mistakenly think there is a heater fault in certain situations. 
 published: true
-date: 2022-09-30T16:29:24.426Z
+date: 2022-09-30T16:37:14.428Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:56:18.764Z
@@ -38,9 +38,11 @@ After the immediate action of raising a fault and shutting down the heater, what
 
 *Notes:*
 
- 1) RRF prior to 3.5.0b1: Sensor faults raise a heater fault in approximately 2s, irrespective of M570 settings. RRF 3.5.0b1 and later: the M570 Rn command can be used to set the number of consecutive erroneous readings allowed before a fault is raised. The default is 3 which guarantees that a fault will be raised within one second of a sensor becoming disconnected or shorted. Using R0 will result in a heater fault being raised immediately when a sensor fails to deliver a sensible reading, but will make the system more likely to report spurious failures if the sensor or its wiring is subjected to electrical interference or ESD.
+ 1) RRF prior to 3.5.0b1: Out-of-spec readings raise a heater fault in approximately 2s (6 readings), irrespective of M570 settings. RRF 3.5.0b1 and later: the M570 Rn command can be used to set the number of consecutive out-of-spec readings allowed before a fault is raised. The default is 3 readings which guarantees that a fault will be raised within one second of a sensor becoming disconnected or shorted. Using R0 will result in a heater fault being raised immediately when a sensor delivers an out-of-spec reading, but will make the system more likely to report spurious failures if the sensor or its wiring is subjected to electrical interference or ESD.
+ 
+2) Multiple, short, out-of-spec readings of less than the limit referenced in point 1 are accumulated by the heater model and will also cause a fault if frequent enough. How many short out-of-spec readings in a given period of time cause a fault depends on the specific parameters of the heater model.
 
-2) If the error is a partial short/open circuit that indicates as a higher temperature than M143 limits but not as an open or short circuit then this protection could apply, however the heater model protection would also apply as this partial short/open circuit would still be anomalous. Fully open/short circuits over the time limit will always cause a fault regardless of M143 settings.
+3) If the error is a partial short/open circuit that indicates as a higher temperature than M143 limits but not as an open or short circuit then this protection could apply, however the heater model protection would also apply as this partial short/open circuit would still be anomalous. Fully open/short circuits over the time limit will always cause a fault regardless of M143 settings. 
 
 
 ## Faults when heating up
