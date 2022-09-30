@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-30T10:58:54.111Z
+date: 2022-09-30T14:56:10.547Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5196,7 +5196,7 @@ This command is available on boards running the STM32 port of RepRapFirmware (ve
 * **Pnnn** Time in seconds for which a temperature anomaly must persist on this heater before raising a heater fault (default 5 seconds)
 * **Tnnn** Permitted temperature excursion from the setpoint for this heater (default 15C)
 * **Snnn** Integer timeout in minutes (can be set to 0) for print to be cancelled after heater fault (Firmware 1.20 and later). If the S parameter timeout occurs (which only happens if a SD print is in progress), RRF will also try to turn off power via the PS_ON pin.
-* **Rn** (RRF 3.5 and later only) Maximum number of consecutive temperature reading failures before a heater fault is raised. The default is 3 which guarantees that a fault will be raised within one second of a second becoming disconnected or shorted. Using R0 will result in a heater fault being raised immediately when a sensor fails to deliver a sensible reading, but will make the system more likely to report spurious failures if the sensor or its wiring is subjected to electrical interference or ESD.
+* **Rn** (RRF 3.5 and later only) Maximum number of consecutive temperature reading failures before a heater fault is raised. The default is 3 which guarantees that a fault will be raised within one second of a sensor becoming disconnected or shorted. Using R0 will result in a heater fault being raised immediately when a sensor fails to deliver a sensible reading, but will make the system more likely to report spurious failures if the sensor or its wiring is subjected to electrical interference or ESD.
 
 **Parameters for RepRapFirmware 1.14 and earlier**
 
