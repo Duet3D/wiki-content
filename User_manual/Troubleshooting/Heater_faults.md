@@ -2,7 +2,7 @@
 title: Heater faults and how to avoid them
 description: RepRapFirmware monitors heater temperatures to check they are behaving as expected, to detect situations that might pose a danger. Sometimes, the firmware may mistakenly think there is a heater fault in certain situations. 
 published: true
-date: 2022-09-30T17:27:07.636Z
+date: 2022-09-30T17:35:09.628Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:56:18.764Z
@@ -17,7 +17,7 @@ Starting at firmware version 1.15, RepRapFirmware monitors the heater temperatur
 There are a range of reasons why a heater fault could occur however in all these cases the heater is shut down and a heater fault is raised:
 - **Case 1**: The heater or temperature sensor becomes detached from the hotend heater block/bed/chamber heater unit.
 - **Case 2**: The heater model, including its environment, is not correct or something changes so the heater model is not correct. For example, the heater model is not tuned, the print cooling fan blows on the heater block, or a chamber heater is used with the chamber doors open instead of closed.
-  - in both Case 1 and Case 2 A temperature reading is present, that is not an obvious short or open circuit error, but it deviates from what the temperature should be according to the heater model. The amount and length of time that the deviation is tolerated is set by M570, the default is 15C and 5s. This should be tuned to the heater type, for example the hotend temperature should closely track the set temperature, but the chamber temperature may not be able to closely track the set temperature (for example the doors get opened).
+  - In both Case 1 and Case 2 a temperature reading is present, that is not an obvious short or open circuit error, but it deviates from what the temperature should be according to the heater model. The amount and length of time that the deviation is tolerated is set by M570, the default is 15C and 5s. This should be tuned to the heater type, for example the hotend temperature should closely track the set temperature, but the chamber temperature may not be able to closely track the set temperature (for example the doors get opened).
 - **Case 3**: The heater or temperature sensor wiring breaks/becomes disconnected.
   - This manifests as an out-of-spec reading, frequently an open circuit/short circuit reading. After ~2s the heater is shut down and a fault is raised. From RRF 3.5.0b1 the 2s setting will be able to be set by the user using M570 Rn. the default will be reduced to 1s.
 - **Case 4**: The temperature sensor is subject to excessive noise or ESD events.
