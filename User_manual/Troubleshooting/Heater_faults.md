@@ -2,7 +2,7 @@
 title: Heater faults and how to avoid them
 description: RepRapFirmware monitors heater temperatures to check they are behaving as expected, to detect situations that might pose a danger. Sometimes, the firmware may mistakenly think there is a heater fault in certain situations. 
 published: true
-date: 2022-09-30T16:43:52.362Z
+date: 2022-09-30T16:52:23.628Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:56:18.764Z
@@ -30,7 +30,7 @@ How heater faults are handled after the heater is shutdown changed in RRF 3.4.0 
 
 ## Temperature sensor faults
 
-A mis-wired or failing temperature sensor can present as an out-of-spec reading, or an open circuit/short circuit fault. For example if the temperature sensor wire is breaking in a cable chain. 
+A mis-wired or failing temperature sensor can present as an out-of-spec reading, frequently an open circuit/short circuit fault. For example if the temperature sensor wire is breaking in a cable chain. 
 
 RRF allows and ignores a small number^1^ of out-of-spec readings (including apparent open and short circuit readings) from temperature sensors before it registers an error, shuts down the heater and raises a heater fault. This is managed by the heater control task on the board that the heater is connected to.
 
