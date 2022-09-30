@@ -2,7 +2,7 @@
 title: Heater faults and how to avoid them
 description: RepRapFirmware monitors heater temperatures to check they are behaving as expected, to detect situations that might pose a danger. Sometimes, the firmware may mistakenly think there is a heater fault in certain situations. 
 published: true
-date: 2022-09-30T16:10:43.460Z
+date: 2022-09-30T16:15:04.503Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:56:18.764Z
@@ -24,17 +24,17 @@ Starting at firmware version 1.15, RepRapFirmware monitors the heater temperatur
 How heater faults are handled after the heater is shutdown changed in RRF 3.4.0 with the introduction of the [event system](/User_manual/RepRapFirmware/Events):
 
 * RRF3.4.0 and later: a heater fault is raised through the event system so heater-fault.g is run, or if not present then the default action is taken (the print is paused and the user is alerted with a message box. 
-* Prior to RRF 3.4.0: The print is paused the user is alerted with a message box. If the message box is not acknowledge after a period of the(configurable with M570) a full power off of the macine is attempted.
+* Prior to RRF 3.4.0: The print is paused the user is alerted with a message box. If the message box is not acknowledge after a period of the(configurable with M570) a full power off of the machine is attempted.
 
 # Heater Fault Types
 
 ## Temperature sensor faults
 
-A miswired or failing temperature sensor can present as an out-of-spec reading, or an open circuit/short circuit fault. For example if the temperature sensor wire is breaking in a cable chain. 
+A mis-wired or failing temperature sensor can present as an out-of-spec reading, or an open circuit/short circuit fault. For example if the temperature sensor wire is breaking in a cable chain. 
 
 RRF allows and ignores a small number^1^ of out-of-spec readings (including apparent open and short circuit readings) from temperature sensors before it registers an error, shuts down the heater and raises a heater fault. This is managed by the heater control task on the board that the heater is connected to.
 
-After the immediate action of raising a fualt and shutting down the heater, what happend next depends of the firmware version (see event system section above).
+After the immediate action of raising a fault and shutting down the heater, what happens next depends of the firmware version (see event system section above).
 
 *Notes:*
 
@@ -50,14 +50,14 @@ The message in this case is "temperature rising much more slowly than the expect
 * Run tuning on that heater if you have not already done so, and copy the resulting values into a [M307](/User_manual/Reference/Gcodes/M307) command in config.g. See [Tuning the heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning).
 * If the expected temperature rise in the message is 0.0C/sec then check if the heater is heating at all.
 * Check that there is not an excessive amount of noise in the temperature reading. The temperature graph shown in DuetWebControl should be smooth.
-* The defaults for rasing a fault can be configured using [M570](/User_manual/Reference/Gcodes/M570) however it is best to resolve issues for why the faults are occurring first.
+* If all else fails you can use the [M570](/User_manual/Reference/Gcodes/M570) command to extend the allowed temperature excursion and/or the fault trigger time.
 
 ## Faults when maintaining temperature
 
 The message in this case is "temperature excursion too large" or "temperature excursion exceeded XX.XC". This fault occurs if the temperature came to within 2.5C of the setpoint temperature, but subsequently departed from the setpoint temperature by more than 10C for more than 5 seconds. To avoid these faults:
 
 * Check that the heater maintains a stable temperature with no large excursions. If you are using manual PID parameters, you may need to change them. Or you can let auto tuning set the PID settings for you.
-* A very strong print cooling fan may cause the nozzle temperature to drop suddenly, either when it turns on at the end of the first layer, or subsequently if the print deflects the air on to the nozzle heater block. A drop of 10C is likely to cause extrusion difficulties as well as heater faults. Make sure that the print cooling fan is directed at the print, not at the heater block. Try insulating the heater block with a silicone sleeve or Kapton tape, and/or use a lower fan speed in your [M106](/User_manual/Reference/Gcodes/M106) settings. When running heater tuning, if you tune the tool, rthat than the heater then the imact of the print cooling fan associated with that tool will be taken into account. See M303 Tnnn command.
+* A very strong print cooling fan may cause the nozzle temperature to drop suddenly, either when it turns on at the end of the first layer, or subsequently if the print deflects the air on to the nozzle heater block. A drop of 10C is likely to cause extrusion difficulties as well as heater faults. Make sure that the print cooling fan is directed at the print, not at the heater block. Try insulating the heater block with a silicone sleeve or Kapton tape, and/or use a lower fan speed in your [M106](/User_manual/Reference/Gcodes/M106) settings. When running heater tuning, if you tune the tool, rather than the heater, then the impact of the print cooling fan associated with that tool will be taken into account. See [M303 Tnnn](/User_manual/Reference/Gcodes/M303) command.
 * Check that there is not an excessive amount of noise in the temperature reading. The temperature graph shown in DuetWebControl should be smooth.
 * If all else fails you can use the [M570](/User_manual/Reference/Gcodes/M570) command to extend the allowed temperature excursion and/or the fault trigger time.
 
