@@ -2,7 +2,7 @@
 title: Heater faults and how to avoid them
 description: RepRapFirmware monitors heater temperatures to check they are behaving as expected, to detect situations that might pose a danger. Sometimes, the firmware may mistakenly think there is a heater fault in certain situations. 
 published: true
-date: 2022-09-30T16:37:14.428Z
+date: 2022-09-30T16:43:52.362Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:56:18.764Z
@@ -56,7 +56,7 @@ The message in this case is "temperature rising much more slowly than the expect
 
 ## Faults when maintaining temperature
 
-The message in this case is "temperature excursion too large" or "temperature excursion exceeded XX.XC". This fault occurs if the temperature came to within 2.5C of the setpoint temperature, but subsequently departed from the setpoint temperature by more than 10C for more than 5 seconds. To avoid these faults:
+The message in this case is "temperature excursion too large" or "temperature excursion exceeded XX.XC". This fault occurs if the temperature came to within 2.5C of the setpoint temperature, but subsequently departed from the setpoint temperature by more than 15C for more than 5 seconds (defaults). To avoid these faults:
 
 * Check that the heater maintains a stable temperature with no large excursions. If you are using manual PID parameters, you may need to change them. Or you can let auto tuning set the PID settings for you.
 * A very strong print cooling fan may cause the nozzle temperature to drop suddenly, either when it turns on at the end of the first layer, or subsequently if the print deflects the air on to the nozzle heater block. A drop of 10C is likely to cause extrusion difficulties as well as heater faults. Make sure that the print cooling fan is directed at the print, not at the heater block. Try insulating the heater block with a silicone sleeve or Kapton tape, and/or use a lower fan speed in your [M106](/User_manual/Reference/Gcodes/M106) settings. When running heater tuning, if you tune the tool, rather than the heater, then the impact of the print cooling fan associated with that tool will be taken into account. See [M303 Tnnn](/User_manual/Reference/Gcodes/M303) command.
