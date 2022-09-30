@@ -2,7 +2,7 @@
 title: Heater faults and how to avoid them
 description: RepRapFirmware monitors heater temperatures to check they are behaving as expected, to detect situations that might pose a danger. Sometimes, the firmware may mistakenly think there is a heater fault in certain situations. 
 published: true
-date: 2022-09-30T16:52:23.628Z
+date: 2022-09-30T17:27:07.636Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:56:18.764Z
@@ -11,6 +11,19 @@ dateCreated: 2021-12-05T22:56:18.764Z
 # Introduction
 
 Starting at firmware version 1.15, RepRapFirmware monitors the heater temperatures to check that they are behaving as expected. The purpose is to detect situations that might pose a fire hazard, such as a thermistor becoming detached mechanically from the heater block or bed, or a heater cartridge falling out. The downside of having this protection is that the firmware may mistakenly think there is a heater fault in certain situations such as excessive electrical noise picked up by a temperature sensor.
+
+# Summary
+
+There are a range of reasons why a heater fault could occur however in all these cases the heater is shut down and a heater fault is raised:
+- **Case 1**: The heater or temperature sensor becomes detached from the hotend heater block/bed/chamber heater unit.
+- **Case 2**: The heater model, including its environment, is not correct or something changes so the heater model is not correct. For example, the heater model is not tuned, the print cooling fan blows on the heater block, or a chamber heater is used with the chamber doors open instead of closed.
+  - in both Case 1 and Case 2 A temperature reading is present, that is not an obvious short or open circuit error, but it deviates from what the temperature should be according to the heater model. The amount and length of time that the deviation is tolerated is set by M570, the default is 15C and 5s. This should be tuned to the heater type, for example the hotend temperature should closely track the set temperature, but the chamber temperature may not be able to closely track the set temperature (for example the doors get opened).
+- **Case 3**: The heater or temperature sensor wiring breaks/becomes disconnected.
+  - This manifests as an out-of-spec reading, frequently an open circuit/short circuit reading. After ~2s the heater is shut down and a fault is raised. From RRF 3.5.0b1 the 2s setting will be able to be set by the user using M570 Rn. the default will be reduced to 1s.
+- **Case 4**: The temperature sensor is subject to excessive noise or ESD events.
+  -  Depending on the impact of the noise this could look like Case 1/3 or a Case 2 and will be handled according to those cases. The impact of noise, especially on thermocouple sensors, is one of the reasons for requiring 6 out of spec readings (~2s) in RRF 3.4.2 and earlier.
+- **Case 5**: The heater exceeds a preconfigured limit. For example, setting a heater to 289C with a 290C limit configured, would be likely to trigger the 290C limit as the temperature would go slightly past 290C, depending on the heater model parameters.
+  - This is configurable with M143. This limit also prevents setting the temperature of a heater to higher than it is configured.
 
 # Symptoms of a heater fault
 
@@ -30,7 +43,7 @@ How heater faults are handled after the heater is shutdown changed in RRF 3.4.0 
 
 ## Temperature sensor faults
 
-A mis-wired or failing temperature sensor can present as an out-of-spec reading, frequently an open circuit/short circuit fault. For example if the temperature sensor wire is breaking in a cable chain. 
+A mis-wired or failing temperature sensor can present as an out-of-spec reading, frequently an open circuit/short circuit reading. For example if the temperature sensor wire is breaking in a cable chain. 
 
 RRF allows and ignores a small number^1^ of out-of-spec readings (including apparent open and short circuit readings) from temperature sensors before it registers an error, shuts down the heater and raises a heater fault. This is managed by the heater control task on the board that the heater is connected to.
 
