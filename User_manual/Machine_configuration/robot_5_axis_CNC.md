@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-09-28T08:39:26.734Z
+date: 2022-10-01T07:26:21.955Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -25,6 +25,10 @@ Properties:
 If for some reason the rotational axes are named UVW, the default firmware behaviour is to handle them as linear. To change it to rotational, use M485 R1 for the letters. ABCD are handled by firmware as rotational by default. The firmware must know whether its rotational to calculate speed limits and distances correctly, e. g.
 
 In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) are rotary angles, i. e. different units of measurement are used. An alternative G-Code uses IJK tool vectors, used e. g. by Fanuc. The letters IJ conflict with G2/G3 commands, where they have a different meaning, so IJK is not used until there is a standardized solution.
+
+# Denavit-Hartenberg (DH)
+
+CNC 5 axis properties are defined by DH parameters: the direction of the axes, where the 0 degree angle is located and in which direction the rotation is a positive angle, axes offsets and positional offsets of linear axes. There is a dedicated document to describe DH parameters and give examples.
 
 # Calculation
 
