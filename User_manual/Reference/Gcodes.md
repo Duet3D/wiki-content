@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-03T09:37:25.643Z
+date: 2022-10-03T09:58:54.106Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5190,17 +5190,38 @@ This command is available on boards running the STM32 port of RepRapFirmware (ve
 
 ## M570: Configure heater fault detection
 
-**Parameters for RepRapFirmware 1.15e and later**
+### {.tabset}
+
+#### RRF 3.3 and earlier 
+**Parameters for RepRapFirmware 1.15e to 3.3**
 
 * **Hnnn** Heater number
 * **Pnnn** Time in seconds for which a temperature anomaly must persist on this heater before raising a heater fault (default 5 seconds)
 * **Tnnn** Permitted temperature excursion from the setpoint for this heater (default 15C)
 * **Snnn** (RRF versions between 1.20 and 3.3 inclusive only) Integer timeout in minutes (can be set to 0) for print to be cancelled after heater fault. If the S parameter timeout occurs (which only happens if a SD print is in progress), RRF will also try to turn off power via the PS_ON pin.
-* **Rn** (RRF 3.5 and later only) Maximum number of consecutive temperature reading failures before a heater fault is raised. The default is 3 which guarantees that a fault will be raised within one second of a sensor becoming disconnected or shorted. Using R0 will result in a heater fault being raised immediately when a sensor fails to deliver a sensible reading, but will make the system more likely to report spurious failures if the sensor or its wiring is subjected to electrical interference or ESD.
+
 
 **Parameters for RepRapFirmware 1.14 and earlier**
 
 * **Snnn** Heater timeout (in seconds)
+
+#### RRF 3.4.0 to 3.4.3 
+
+* **Hnnn** Heater number
+* **Pnnn** Time in seconds for which a temperature anomaly must persist on this heater before raising a heater fault (default 5 seconds)
+* **Tnnn** Permitted temperature excursion from the setpoint for this heater (default 15C)
+
+The actions taken on a heater fault, after the heater is shutdown, are now handled by the [event system](/User_manual/RepRapFirmware/Events). 
+
+#### RRF 3.5 and later
+
+* **Hnnn** Heater number
+* **Pnnn** Time in seconds for which a temperature anomaly must persist on this heater before raising a heater fault (default 5 seconds)
+* **Tnnn** Permitted temperature excursion from the setpoint for this heater (default 15C)
+* **Rn** (RRF 3.5 and later only) Maximum number of consecutive temperature reading failures before a heater fault is raised. The default is 3 which guarantees that a fault will be raised within one second of a sensor becoming disconnected or shorted. Using R0 will result in a heater fault being raised immediately when a sensor fails to deliver a sensible reading, but will make the system more likely to report spurious failures if the sensor or its wiring is subjected to electrical interference or ESD.
+
+The actions taken on a heater fault, after the heater is shutdown, are now handled by the [event system](/User_manual/RepRapFirmware/Events). 
+
 
 ### Order dependency
 
