@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-09-30T16:12:22.028Z
+date: 2022-10-03T09:37:25.643Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5195,7 +5195,7 @@ This command is available on boards running the STM32 port of RepRapFirmware (ve
 * **Hnnn** Heater number
 * **Pnnn** Time in seconds for which a temperature anomaly must persist on this heater before raising a heater fault (default 5 seconds)
 * **Tnnn** Permitted temperature excursion from the setpoint for this heater (default 15C)
-* **Snnn** Integer timeout in minutes (can be set to 0) for print to be cancelled after heater fault (Firmware 1.20 and later). If the S parameter timeout occurs (which only happens if a SD print is in progress), RRF will also try to turn off power via the PS_ON pin.
+* **Snnn** (RRF versions between 1.20 and 3.3 inclusive only) Integer timeout in minutes (can be set to 0) for print to be cancelled after heater fault. If the S parameter timeout occurs (which only happens if a SD print is in progress), RRF will also try to turn off power via the PS_ON pin.
 * **Rn** (RRF 3.5 and later only) Maximum number of consecutive temperature reading failures before a heater fault is raised. The default is 3 which guarantees that a fault will be raised within one second of a sensor becoming disconnected or shorted. Using R0 will result in a heater fault being raised immediately when a sensor fails to deliver a sensible reading, but will make the system more likely to report spurious failures if the sensor or its wiring is subjected to electrical interference or ESD.
 
 **Parameters for RepRapFirmware 1.14 and earlier**
@@ -5209,7 +5209,6 @@ When using RepRapFirmware 3 the M570 command must come later in config,g than th
 ### Examples
 <br>
 <pre class="cblock">
-M570 S120 ; After a heater has been switched on, wait 120 seconds for it to get close to the set temperature. If it takes longer than this, raise a heater fault.
 M570 H1 P4 T15 ; An anomaly on heater 1 must persist for 4 seconds, and must be greater or less than 15C from the setpoint, to raise a heater fault.
 </pre>
 
