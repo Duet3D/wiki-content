@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-04T11:04:40.904Z
+date: 2022-10-04T16:21:02.007Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7081,7 +7081,7 @@ M950 H1 C"3.out0+out2" Q100 T1 ; create heater 1 using ports OUT0 and OUT1 on CA
 M950 H2 C"nil" ; disable heater 2 and free up the associated pin
 M950 F3 C"heater2" Q100 ; Fan 3 is connected to heater 2 pin, PWM at 100Hz
 M950 P0 C"exp.heater3" ; create output/servo port 0 attached to heater 3 pin on expansion connector
-M950 F2 C"!fan2+^pb6" ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
+M950 F2 C"!fan2+^exp.pb6" ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
 M950 J1 C"!^e1stop" ; Input 1 uses e1Stop pin, inverted, pullup enabled
 M950 R0 C"!exp.heater3" L12000 ; Spindle 0 uses exp.heater3 as RPM pin and has a max RPM of 12000
 M950 D1 C"spi.cs0+spi.cs2" ; on Duet 3 MB6HC support external SD card using pins spi.cs0 and spi.cs2 for the CS and Card Detect pins respectively
