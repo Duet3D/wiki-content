@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-03T10:00:27.729Z
+date: 2022-10-04T11:04:40.904Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5156,7 +5156,8 @@ Supported for drivers attached to:
 ### Parameters
 
 * **Pn.n** Motor CAN board address (if applicable) and driver number
-* **C"port"** Port name of the brake control port. **The port must be on the same CAN board as the driver.** The CAN address does not need to be specified in the port name, but if it is then it must be the same as the driver address.
+* **C"port"** Port name of the brake control port. **The port must be on the same CAN board as the driver.** The CAN address does not need to be specified in the port name, but if it is then it must be the same as the driver CAN address.
+* **Snnn** (RRF 3.5 and later only) Delay in milliseconds between de-energising the brake solenoid (to activate the brake) and disabling the driver when M18 or M84 is used to turn off the motor. This is to allow the brake to engage fully before the motor curent is turned off.
 
 ### Examples
 <br>
