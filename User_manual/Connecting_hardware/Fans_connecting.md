@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2022-06-29T21:21:48.061Z
+date: 2022-10-04T16:19:09.113Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -285,10 +285,10 @@ M950 F1 C"fan1" Q500 ; create fan 1 on pin fan1 and set its frequency
 M106 P1 S1 H1 T45    ; set fan 1 value. Thermostatic control is turned on
 
 : 3-wire fan with tacho
-M950 F2 C"fan2+^pb6" ; Fan 2 uses the Fan2 output, and using PB6 as a tacho input with pullup resistor enabled
+M950 F2 C"fan2+^exp.pb6" ; Fan 2 uses the Fan2 output, and using PB6 as a tacho input with pullup resistor enabled
 
 : 4-wire PWM fan and tacho
-M950 F2 C"!fan2+^pb6" ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
+M950 F2 C"!fan2+^exp.pb6" ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
 ```
 ### RepRapFirmware 2x and earlier
 
