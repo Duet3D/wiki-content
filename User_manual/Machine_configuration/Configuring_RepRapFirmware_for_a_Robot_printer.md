@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-09-29T14:26:17.383Z
+date: 2022-10-06T07:16:33.425Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -78,14 +78,16 @@ Example:
 **A"axis:min:max:home"**
 **A"axis:cont:home"**
 
-* axis is the axis number, starting with 1
+**I've changed to start from 0 now. This is analogue to the drive number often.**
+
+* axis is the axis number, starting with 0
 * min is the minium angle for rotary axis and minimum position in mm for prismatic axis
 * max is the maximum angle or position
 * cont means the axis is continuous and has no min/max angles
 * home is the home position in degrees or mm. The value can be outside min and max, the endstop can be low or high type
 
 Example:
-* A"1:-180.0:180.0:0.0" means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
+* A"0:-180.0:180.0:0.0" means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
 * A"5:cont:0" means the axis is continuous. In most cases, this is only possible if no electronics or filament is attached to the rotating element. The C rotary axis of CNC 5 axis could be cont e.g.
 
 > tbd open how to configure a continuous axis
