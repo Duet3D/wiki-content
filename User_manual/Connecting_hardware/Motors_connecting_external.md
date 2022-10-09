@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-10-09T00:37:30.568Z
+date: 2022-10-09T00:38:46.349Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -257,7 +257,7 @@ Where a main board or expansion board drives more than one motor (either directl
 
 ### Determining the correct timings to use
 
-To determine the correct timings to use, the minnmum step pulse width *aa* can be found from the driver datasheet. If the driver datasheet does not specify the minimum step pulse interval bb then it normally specified the maxium step rate *f* and you can calculate *bb = (1/f) - aa*.
+To determine the correct timings to use, the minnmum step pulse width *aa* can be found from the driver datasheet. If the driver datasheet does not specify the minimum step pulse interval bb then it normally specified the maxium step rate *f* and you can calculate *bb = (1/f) - aa*. For example, if *aa* is specified as 2.5us and the *f* is specified as 200kHz (0.2MHz), then *bb* = 1/0.2 - 2.5 = 2.5us.
 
 
 
