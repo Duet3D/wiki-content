@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-06-29T13:54:05.509Z
+date: 2022-10-09T00:28:28.420Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -20,10 +20,14 @@ See the linked pages for connecting external stepper/servo drivers to [Duet 3 Ma
 
 Ideally, motors should be run at between 60% and 85% of their rated current. The table below shows the maximum current and voltage each Duet board can supply to its on-board drivers.
 
-| | Max motor current | Max motor voltage | 
+| | Max motor current (peak) | Max motor voltage | 
 |---|---|
 | Duet 3 Mainboard 6HC | 6.3A | 32V | 
-| Duet 3 Mainboard 6XD | NA | NA | 
+| Duet 3 Mainboard 6XD | NA | NA |
+| Duet 3 Expansion 3HC v1.02 | 6.3A | 50V (v1.01 and earier 32V)
+| Duet 3 Expansion 1HCL | 6.3A | 50V
+| Duet 3 Tool Board 1LC | 1.6A | 32V
+| Duet 3 Expansion 1XD | NA | NA
 | Duet 3 Mini 5+ | 2.0A | 25V | 
 | Duet 2 WiFi/Ethernet | 2.4A | 25V | 
 | Duet 2 Maestro | 1.6A | 25V | 
@@ -32,13 +36,13 @@ Ideally, motors should be run at between 60% and 85% of their rated current. The
 
 There are a number of options available to connect external stepper/servo drivers.
 
-| | Pins for direct connection | Provision for external drivers |
+| | Pins for direct connection | Provision for additional external drivers |
 |---|---|
 | [Duet 3 Mainboard 6HC](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | None | CAN bus |
 | [Duet 3 Mainboard 6XD](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | Headers for six external drivers with 5V signalling (no on-board drivers) | CAN bus |
-| [Duet 3 Mini 5+](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | External driver pins (2 drives, 3V signalling) | CAN bus |
-| [Duet 2 WiFi/Ethernet](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | Expansion connector (5 drives, 3V signalling), CONN_LCD (2 drives, 3V signalling) | [DueX2/5](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) (3 drives, 3V signalling), [Duet Expansion Breakout Board](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_Expansion_Breakout_Board) (5 drives, differential signalling -3.6V to +3.6V, or 5V) |
-| [Duet 2 Maestro](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro) | External driver pins (2 drives, 3V signalling) | None |
+| [Duet 3 Mini 5+](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | External driver pins (2 drives, 3.3V single-ended signalling) | CAN bus |
+| [Duet 2 WiFi/Ethernet](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | Expansion connector (5 drives, 3.3V single-ended signalling), CONN_LCD (2 drives, 3.3V single-ended signalling) | [DueX2/5](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) (3 drives, 3.3V single-ended signalling), [Duet Expansion Breakout Board](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_Expansion_Breakout_Board) (5 drives, differential signalling -3.6V to +3.6V, or 5V single-ended) |
+| [Duet 2 Maestro](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro) | External driver pins (2 drives, 3.3V single-ended signalling) | None |
 
 There are two options for Duet 3 CAN-connected expansion boards:
 
@@ -232,11 +236,28 @@ M569 P5 R1 ; driver 5 requires an active high enable
 
 Refer to the documentation for your stepper driver to determine settings for step timing. The default step timing used for the onboard drivers may be too fast for your external driver. You can set a minimum step pulse width and other timings in the [M569](/User_manual/Reference/Gcodes/M569) command using the T parameter, and configure the direction with the S parameter.
 
-**Taa:bb:cc:dd** Minimum driver step pulse width, step pulse interval, direction setup time and direction hold time, in microseconds
+**Taa:bb:cc:dd** Minimum driver step pulse width, step pulse interval, direction to ste leadomg edge setup time, and direction hold time from trailing edge of step, all in microseconds
 
 ```
 M569 P5 R1 T5:5:10:0 ; driver 5 requires an active high enable, 5us minimum step pulse, 5us minimum step interval, 10us DIR setup time and no hold time
 ```
+
+### Notes on step timing
+
+Where a main board or expansion board drives more than one motor (either directly or via an external driver) and M569 T parameters are applied to more than one motor attached to that board, the M569 T parameter are not indepedently settable. Here's how it works:
+* Any driver for which the M569 T parameters are all 0.2 or less is a 'fast' driver and will be driven at full speed (with timings not less than 0.2us)
+* For the remaining drivers, RRF takes the maximum of each of the four T values, and the resulting set of four T values is applied to **all** those drivers. RRF does this to speed up the code, because when external drivers are used they are almost always of the same type and so have the same timing requirements.
+* On all boards except the MB6XD, when a new M569 T command is processed, RRF updates those maximum values if the T values in the new M569 command are greater. So the set of maximum T values can only increase, not decrease. If you want to reduce the T values, you needs to reboot.
+* On the MB6XD the T values are stored independently for each output, and the maximum T vales are recalculated whenever a M569 command with T parameter is processed. So you do not need to reboot if you want to reduce the T values.
+* The set of maximum T values is rounded up to the next highest values that RRF can implement. The rounding depends on which board you are using.
+* On all Duet 3 boards except the MB6XD and EXP1XD, all four maximum T values are rounded up to the next multiple of 1.33us.
+* On Duet 3 MB6XD, if we represent the T parameter as T*aa:bb:cc:dd* then *aa* is rounded up to the next multiple of 0.053us, *aa+bb* is rounded up to the next multiple of 1.33us, *cc* is rounded up to the next multiple of 1.33us, and *aa+dd* is rounded to the next multiple of 1.33us.
+* Duet 3 1XD is the same as for the 6XD except that *aa* is rounded up to the next multiple of 0.083us.
+* On Duet 2 boards each value is rounded up to the next multple of 1.07us.
+
+### Determining the correct timings to use
+
+To determine the correct timings to use, the minnmum step pulse width *aa* can be found from the driver datasheet. If the driver datasheet does not specify the minimum step pulse interval bb then it normally specified the maxium step rate *f* and you can calculate *bb = (1/f) - aa*.
 
 > Note that microstepping mode (M350) and driver currents (M906) is not controlled by firmware configuration; it is set by the external stepper driver. Steps per mm (M92), speeds (M566, M203) and acceleration (M201) are controlled by the firmware. 
 See [Configuring stepper motors](/User_manual/Connecting_hardware/Motors_configuring) for examples.
