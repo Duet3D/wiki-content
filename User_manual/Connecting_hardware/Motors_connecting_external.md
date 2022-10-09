@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-10-09T00:41:51.817Z
+date: 2022-10-09T00:43:26.521Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -244,7 +244,7 @@ M569 P5 R1 T5:5:10:0 ; driver 5 requires an active high enable, 5us minimum step
 
 ### Notes on step timing
 
-Where a main board or expansion board drives more than one motor (either directly or via an external driver) and M569 T parameters are applied to more than one motor attached to that board, the M569 T parameter are not indepedently settable. Here's how it works:
+Where a main board or expansion board drives more than one motor (either directly or via an external driver) and M569 T parameters are applied to more than one motor attached to that board, the M569 T parameters are not settable independently for each motor. Here's how it works:
 * Any driver for which the M569 T parameters are all 0.2 or less is a 'fast' driver and will be driven at full speed (with timings not less than 0.2us)
 * For the remaining drivers, RRF takes the maximum of each of the four T values, and the resulting set of four T values is applied to **all** those drivers. RRF does this to speed up the code, because when external drivers are used they are almost always of the same type and so have the same timing requirements.
 * On all boards except the MB6XD, when a new M569 T command is processed, RRF updates those maximum values if the T values in the new M569 command are greater. So the set of maximum T values can only increase, not decrease. If you want to reduce the T values, you needs to reboot.
@@ -259,9 +259,9 @@ You can use M569 with just a P parameter to report the actual timings in use for
 
 ### Determining the correct timings to use
 
-To determine the correct timings to use, the minnmum step pulse width *aa* can be found from the driver datasheet. If the driver datasheet does not specify the minimum step pulse interval bb then it normally specified the maxium step rate *f* and you can calculate *bb = (1/f) - aa*. For example, if *aa* is specified as 2.5us and the *f* is specified as 200kHz (0.2MHz), then *bb* = (1/0.2) - 2.5 = 2.5us.
+To determine the correct timings to use, the minimum step pulse width *aa* can be found from the driver datasheet. If the driver datasheet does not specify the minimum step pulse interval *bb* then it normally specifies the maximum step rate *f* and you can calculate *bb = (1/f) - aa*. For example, if *aa* is specified as 2.5us and the *f* is specified as 200kHz (0.2MHz), then *bb* = (1/0.2) - 2.5 = 2.5us.
 
-If the cables between the Duet and the driver are long and the driver uses standar opto-coupled inputs, then the capacitance of the cable may delay the trailing edge of the step pulse, which increases the effective value of *aa* and reduces the effective value of *bb*. You may need to increase the value of *bb* in the M569 command to compensate for this.
+If the cables between the Duet and the driver are long and the driver has standard opto-coupled inputs, then the capacitance of the cable may delay the trailing edge of the step pulse, which increases the effective value of *aa* and reduces the effective value of *bb*. You may need to increase the value of *bb* in the M569 command to compensate for this.
 
 
 
