@@ -2,7 +2,7 @@
 title: Migration from RRF2 to RRF3
 description: RepRapFirmware 3 is the next generation of the leading 32-bit 3D printer firmware, developed by Duet3D and derived from the RepRapFirmware code base developed by Adrian Bowyer.
 published: true
-date: 2022-10-09T10:09:42.362Z
+date: 2022-10-09T10:10:23.705Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T20:21:14.611Z
@@ -31,7 +31,7 @@ The  primary benefits of RRF 3 are:
 * RRF 3 supports multiple endstop switches on axes (one per motor) natively. You no longer need to split axes during homing.
 * RRF 3 allows any fan to have an associated tacho input.
 * RRF 3 supports multiple tool probes. As well as a standard Z probe, you can define additional probes for use with the [M558](/User_manual/Reference/Gcodes/M558) command.
-* RRF 3 supports the large amount of expansion available with Duet 3 boards.
+* RRF 3 supports the large amount of CAN bus based expansion available with Duet 3 boards.
 
 The primary configuration differences compared to RRF 2 are:
 
