@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-10-09T00:28:28.420Z
+date: 2022-10-09T00:37:30.568Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -258,6 +258,8 @@ Where a main board or expansion board drives more than one motor (either directl
 ### Determining the correct timings to use
 
 To determine the correct timings to use, the minnmum step pulse width *aa* can be found from the driver datasheet. If the driver datasheet does not specify the minimum step pulse interval bb then it normally specified the maxium step rate *f* and you can calculate *bb = (1/f) - aa*.
+
+
 
 > Note that microstepping mode (M350) and driver currents (M906) is not controlled by firmware configuration; it is set by the external stepper driver. Steps per mm (M92), speeds (M566, M203) and acceleration (M201) are controlled by the firmware. 
 See [Configuring stepper motors](/User_manual/Connecting_hardware/Motors_configuring) for examples.
