@@ -2,7 +2,7 @@
 title: Migration from RRF2 to RRF3
 description: RepRapFirmware 3 is the next generation of the leading 32-bit 3D printer firmware, developed by Duet3D and derived from the RepRapFirmware code base developed by Adrian Bowyer.
 published: true
-date: 2022-06-29T19:48:50.886Z
+date: 2022-10-09T10:09:42.362Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T20:21:14.611Z
@@ -35,13 +35,12 @@ The  primary benefits of RRF 3 are:
 
 The primary configuration differences compared to RRF 2 are:
 
-* Logical pin numbers are no longer used in [M42](/User_manual/Reference/Gcodes/M42) and [M280](/User_manual/Reference/Gcodes/M280). GPIO pin numbers replace them. Before using M42 or M280, the GPIO pin must have been assigned using [M950](/User_manual/Reference/Gcodes/M950).
+* Logical pin numbers are no longer used in [M42](/User_manual/Reference/Gcodes/M42) and [M280](/User_manual/Reference/Gcodes/M280). GPIO port numbers replace them. Before using M42 or M280, the GPIO pin must have been assigned using [M950](/User_manual/Reference/Gcodes/M950).
 * Endstop numbers are no longer used in [M591](/User_manual/Reference/Gcodes/M591). Pin names replace them.
 * [M585](/User_manual/Reference/Gcodes/M585) now uses either an axis endstop or a probe
 * The frequency and pin inversion status of fans and heaters can no longer be set in [M106](/User_manual/Reference/Gcodes/M106) or [M307](/User_manual/Reference/Gcodes/M307). These functions are moved to [M950](/User_manual/Reference/Gcodes/M950).
-* RRF 3 allows sensors to be defined independently of heaters. Sensors are now configured using the new [M308](/User_manual/Reference/Gcodes/M308) command, this replaces [M305](/User_manual/Reference/Gcodes/M305) used in earlier versions of RRF. When defining a heater, you must specify the sensor that it uses to control temperature.  The association between heaters and sensors is defined using M950.
-* RRF 3.0 and earlier only: On Duet 2 boards, only 3 fans, 3 endstop inputs and 2 extruder drives are configured by default. Any additional devices (for examples, all heaters, and any fans or extruder drives connected to a DueX expansion board) must be configured explicitly using [M950](/User_manual/Reference/Gcodes/M950) and/or [M574](/User_manual/Reference/Gcodes/M574). By contrast on Duet 3 boards there are no pre-configured heater ports, fan ports, or endstop inputs. You must assign the heater, fan and endstop switch ports you require using M950 and M574.
-* All RRF versions from 3.01beta1 onwards have no pre-configured devices, on all Duet boards.
+* RRF 3 requires sensors to be defined independently of heaters. Sensors are configured using the new [M308](/User_manual/Reference/Gcodes/M308) command, this replaces [M305](/User_manual/Reference/Gcodes/M305) used in earlier versions of RRF. When defining a heater, you must specify the sensor that it uses to control its temperature. The association between heaters and sensors is defined using [M950](/User_manual/Reference/Gcodes/M950).
+* All RRF versions from 3.01 onwards have no pre-configured heaters, fans or endstop switches. You must assign all the heater, fan and endstop switch ports you require using [M950](/User_manual/Reference/Gcodes/M950) and [M574](/User_manual/Reference/Gcodes/M574).
 
 RRF3 always uses a real time operating system (RTOS). It does not support legacy version 0.6 or 0.8.5 Duets.
 
