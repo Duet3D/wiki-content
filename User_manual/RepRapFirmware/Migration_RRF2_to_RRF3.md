@@ -2,7 +2,7 @@
 title: Migration from RRF2 to RRF3
 description: RepRapFirmware 3 is the next generation of the leading 32-bit 3D printer firmware, developed by Duet3D and derived from the RepRapFirmware code base developed by Adrian Bowyer.
 published: true
-date: 2022-10-09T10:10:23.705Z
+date: 2022-10-09T10:15:07.836Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T20:21:14.611Z
@@ -52,19 +52,19 @@ The latest releases are on github here:
 
 Do read the whole of this guide to understand the configuration changes required if migrating from RRF2.
 
-**Note:** it is not possible to upgrade a Duet WiFi, Ethernet or Maestro directly from firmware 1.x or 2.x to 3.01 or later. You must upgrade to firmware 3.0 as an intermediate step.
+**Note:** it is not possible to upgrade a Duet WiFi, Ethernet or Maestro directly from firmware 1.x or 2.x to 3.01 or later by uploading the new firmware file over the network. You must upgrade to firmware 3.0 as an intermediate step. Alternatively, you can erase the existing firmware using the erase button or jumper, and then install your chosen RRF 3.x firmware directly using Bossa.
 
 # Conversion summary
 
 ## Heaters and temperature sensors
 
 * You must **convert** your [M305](/User_manual/Reference/Gcodes/M305) commands to equivalent [M308](/User_manual/Reference/Gcodes/M308) commands to define the temperature sensors you use.
-* You must **add** [M950](/User_manual/Reference/Gcodes/M950) commands to define the heaters you use, and associate them with temperature sensors. These M950 commands should come later in config,g than the M308 commands that create the temperature sensors, but before any M307 or M301 command that refer to that heater number.
+* You must **add** [M950](/User_manual/Reference/Gcodes/M950) commands to define the heaters you use, and associate them with temperature sensors. These M950 commands should come later in config.g than the M308 commands that create the temperature sensors, but before any M307 or M301 command that refer to that heater number.
 * If your machine has a bed heater, you must **add** a [M140](/User_manual/Reference/Gcodes/M140) command to declare which heater is your bed heater, unless your config.g file already has one. Normally this will be M140 H0.
 
 ## Fans
 
-* You must **add** [M950](/User_manual/Reference/Gcodes/M950) commands to define the fans you use. (RRF 3.0 on Duet 2 series created fans by default, but 3.01 and later do not.)
+* You must **add** [M950](/User_manual/Reference/Gcodes/M950) commands to define the fans you use.
 
 ## Z probe
 
