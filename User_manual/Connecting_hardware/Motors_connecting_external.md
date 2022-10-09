@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-10-09T00:43:26.521Z
+date: 2022-10-09T00:45:07.540Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -263,7 +263,7 @@ To determine the correct timings to use, the minimum step pulse width *aa* can b
 
 If the cables between the Duet and the driver are long and the driver has standard opto-coupled inputs, then the capacitance of the cable may delay the trailing edge of the step pulse, which increases the effective value of *aa* and reduces the effective value of *bb*. You may need to increase the value of *bb* in the M569 command to compensate for this.
 
-
+Note, the maximum possible step rate is limited to 1/(*aa* + *bb*) MHz. Therefore in order to achieve high step rates, you should not increase the values of *aa* or *bb* above the values required by your driver more than necessary.
 
 > Note that microstepping mode (M350) and driver currents (M906) is not controlled by firmware configuration; it is set by the external stepper driver. Steps per mm (M92), speeds (M566, M203) and acceleration (M201) are controlled by the firmware. 
 See [Configuring stepper motors](/User_manual/Connecting_hardware/Motors_configuring) for examples.
