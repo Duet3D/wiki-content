@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-10-09T00:51:09.298Z
+date: 2022-10-09T00:54:07.165Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -259,13 +259,13 @@ You can use M569 with just a P parameter to report the actual timings in use for
 
 ### Determining the correct timings to use
 
-The minimum step pulse width *aa* can be found from the driver datasheet. If the driver datasheet does not specify the minimum step pulse interval *bb* then it normally specifies the maximum step rate *f* and you can calculate *bb = (1/f) - aa*. For example, if *aa* is specified as 2.5us and the *f* is specified as 200kHz (0.2MHz), then *bb* = (1/0.2) - 2.5 = 2.5us.
+The minimum step pulse width *aa* can be found from the driver datasheet. If the datasheet does not specify the minimum step pulse interval *bb* then it normally specifies the maximum step rate *f* and you can calculate *bb = (1/f) - aa* where *f* is in MHz. For example, if *aa* is specified as 2.5us and *f* is specified as 200kHz (0.2MHz), then *bb* = (1/0.2) - 2.5 = 2.5us.
 
-If the cables between the Duet and the driver are long and the driver has standard opto-coupled inputs, then the capacitance of the cable may delay the trailing edge of the step pulse, which increases the effective value of *aa* and reduces the effective value of *bb*. You may need to increase the value of *bb* in the M569 command to compensate for this.
+If the cables between the Duet and the driver are long and the driver has standard opto-coupled inputs, then the capacitance of the cable may delay the trailing edge of the step pulse, which increases the effective value of *aa* and reduces the effective value of *bb*. You may need to increase the value of *bb* in the M569 command to compensate for this. It's unlikely that you will need to increase *aa*.
 
-Note, the maximum possible step rate is limited to 1/(*aa* + *bb*) MHz. Therefore in order to achieve high step rates, you should not increase the values of *aa* or *bb* above the values required by your driver more than necessary.
+Note, the maximum possible step rate is limited to 1/(*aa* + *bb*) MHz. Therefore in order to achieve high step rates, you should not increase the values of *aa* or *bb* above the values required by your driver and cabling.
 
-The value required for *cc* is the direction-change-to-step-pulse setup time specified in the datasheet. If you use a value that is too low for your driver then you may see layer shifts, where the whole layer shifts by one microstep on each direction change. You may need to use a value higher than specified in the datasheet of the cable capacitance is high. Using a value that is higher than needed is less critical because RRF will only need to insert delays when the direction changes.
+The value required for *cc* is the direction-change-to-step-pulse setup time specified in the datasheet. If you use a value that is too low for your driver then you may see small layer shifts, where the whole layer shifts by one microstep on each direction change. You may need to use a value higher than specified in the datasheet if the cable capacitance is high. Using a value that is higher than needed is less critical, because RRF will only need to insert delays when the direction changes.
 
 Most drivers do not require a direction hold time from the trailing edge of the step pulse, so *cc* can be zero unless the datasheet specifies otherwise.
 
