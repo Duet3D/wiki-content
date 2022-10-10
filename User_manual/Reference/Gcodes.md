@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-10T10:05:03.463Z
+date: 2022-10-10T10:11:22.559Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -204,7 +204,7 @@ A line that does not start with one of these keywords must start with command le
 
 RepRapFirmware allows multiple G- and M-commands to be included in a single line. Each occurrence of G or M on the line that is preceded by a space or tab character and is not inside a quoted string or a meta command starts a new command. In RRF 3.2 and later, the space or tab character is not required.
 
-**Important**: a command that invokes a macro file must be the last command in that line of GCode, because any following commands on the same line will not be executed.
+**Important**: a command that invokes a macro file (such as G28, G29, G32 and M98) must be the last command in that line of GCode, because any following commands on the same line will not be executed. A T (tool change) command must be the last command on the line.
 
 ## Command queueing
 
@@ -228,6 +228,7 @@ As soon as one of these commands is received it is acknowledged and stored local
 ## Filenames and Paths
 
 * '0:/' is root of the on board SD card in stand alone mode; the equivalent folder in SBC mode is '/opt/dsf/sd/'.
+* If there is a second SD card slot in the machine then its root is '1:/'.
 * Long file names (e.g. longer than 8.3 format) are supported, file names with spaces are supported.
 * Full paths, including all directories and subdirectories are limited to 120 characters. e.g.:
   <pre class="cblock">
@@ -247,6 +248,8 @@ For a list of GCodes that may be found in other firmwares/CNC control software w
 ## Custom GCodes
 
 In RepRapFirmware 2.03 and later, you can create custom GCodes, so long as the GCode is not already implemented. If you try to execute a G- or M-command that RRF does not implement, it will execute a system macro of that name if it exists. For example, if you send G40 then it will execute /sys/G40.g if it exists; and if you send M5000 then it will execute /sys/M5000.g if it exists.
+
+In RRF 3.4 and later this extends to G- and M-commands with fractional numbers, for example if you send M55.6 then RRF will look for file "0:/sys/M55.6.g".
 
 # G-commands
 
