@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-10T10:02:23.227Z
+date: 2022-10-10T10:05:03.463Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -188,11 +188,13 @@ cs &= 0xff; // Defensive programming...
 
 and the value is appended as a decimal integer to the command after the * character.
 
+Checksums provide poor protection against data corruption. RRF 3.4 and later allow a 16-bit CRC to be used instead.
+
 ## Conditional execution, loops, and other command words
 
 In RepRapFirmware 3.01 and later, if the line begins with a recognised keyword (optionally preceded by N and a line number, and/or space or tab characters) then that whole line of GCode is interpreted as a meta-command. Recognised keywords are:
 
-**abort elif else if set var while**
+**abort echo elif else global if set var while**
 
 See [GCode Meta Commands](/User_manual/Reference/Gcode_meta_commands){target=_blank} for details of these commands.
 
