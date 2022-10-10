@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-10T09:55:17.264Z
+date: 2022-10-10T09:58:48.447Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -71,9 +71,9 @@ For example:
 
 * Don't refer to any axis letter or extruder number that you haven't created using M584 (except that XYZ already exist by default)
 * Don't refer to any temperature sensor in M950 or M106 before you create it using M308
-* Don't refer to a heater in M307, M140, M141, M143 or m563 before you create it using M950
+* Don't refer to a heater in M307, M140, M141, M143 or M563 before you create it using M950
 * Don't refer to a fan in M106 before you create it using M950
-* Don't refer to a tool in G10/M568 before you create it using M563
+* Don't refer to a tool in G10, M567 or M568 before you create it using M563
 
 ## Comments
 
