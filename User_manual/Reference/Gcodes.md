@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-06T07:41:38.055Z
+date: 2022-10-10T09:55:17.264Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3109,7 +3109,7 @@ Note the lack of H parameter.
 * **Snnn** target temperature
 * **Tnnn** (RRF 3.2 and later, optional) Tool whose primary heater is to be tuned
 * **Annn** (RRF 3.2 and later, optional) ambient temperature - use this parameter if you want to tune a heater that has been on and has not cooled down to ambient temperature yet
-* **Ynn** (RRF 3.3beta3 and later optional) Tuning cycle hysteresis, default 5C. When tuning bed heaters that are slow to cool down, tuning will be faster if you use a lower value, provided that there is no noise in the temperature readings.
+* **Ynn** (RRF 3.3 and later, optional) Tuning cycle hysteresis, default 5C. When tuning bed heaters that are slow to cool down, tuning will be faster if you use a lower value, provided that there is no noise in the temperature readings.
 * **F**nn (RRF 3.3 and later) Fan PWM to use when the print cooling fan is turned on (ignored if the T parameter is not present), default 0.7 in RRF 3.4.0. Use a lower value if your printer uses a powerful print cooling fan that you do not normally run at full PWM.
 * **Qn** (RRF 3.5 and later) Q0 (default) = display M307 parameters and suggestion to edit config.g or run M500 when tuning completes, Q1 = Quiet mode (do not display those messages). Use Q1 if you run M303 as part of a macro that saves the tuning result.
 
