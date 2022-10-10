@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-10T09:58:48.447Z
+date: 2022-10-10T10:02:23.227Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -175,9 +175,9 @@ Example: N123 [...G Code in here...] *71
 
 The firmware checks the line number and the checksum.
 
-You can leave both of these out - RepRapFirmware will still work, but it won't do checking. You have to have both or neither though. If only one appears, it produces an error. See [this forum thread](https://forum.duet3d.com/topic/15134/){target=_blank} for an example of usage, in this case sending GCode to the PanelDue port without disabling cheksums.
+You can leave both of these out - RepRapFirmware will still work, but it won't do checking. You have to have both or neither though. If only one appears, it produces an error. See [this forum thread](https://forum.duet3d.com/topic/15134/){target=_blank} for an example of usage, in this case sending GCode to the PanelDue port without disabling checksums.
 
-The checksum "cs" for a GCode string "cmd" (including its line number) is computed by exor-ing the bytes in the string up to and not including the * character as follows:
+The checksum "cs" for a GCode string "cmd" (including its line number) is computed by xor-ing the bytes in the string up to and not including the * character as follows:
 <br>
 <pre class="cblock">
 int cs = 0;
