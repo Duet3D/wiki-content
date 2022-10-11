@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-10T10:46:56.618Z
+date: 2022-10-11T16:33:46.538Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5606,7 +5606,7 @@ M581 T2 P-1 ; don't invoke trigger 2 on any input change any more
 * A maximum of 32 triggers can be configured on Duet 3, a maximum of 16 on Duet 2.
 * **Warning**: if executed during a job, and more than one line long the GCode within the trigger file may be executed between later commands from the job. Bounding the trigger file with M25 and M24 may help, but this will cause warnings if the trigger happens outside of a job. The use of M25/M24 will cause the execution of pause and resume system macros.
 
-#### RepRapFirmware 3.0 to 3.01RC1
+#### RepRapFirmware 3.0
 
 ##### Parameters
 
@@ -5681,7 +5681,7 @@ For example, if you use M581 to support an out-of-filament sensor, then M582 all
 * **Ynnn** Driver number(s) for Y motor(s)
 * **Znnn** Driver number(s) for Z motor(s)
 * **Ennn** Driver number(s) for E motor(s)
-* **U, V, W, A, B, Cnnn** Driver number(s) for additional axes U, V, W, A, B and C (UVW available in RepRapFirmware 1.16 and later; UVWABC available in RepRapFirmware 1.19 and later; UVWABCD available in RepRapFirmware 3.0 and later; UVWABCDabcdefghijkl available in RepRapFirmware 3.3 and later, Duet 3 MB6HC and MB6XD only).
+* **U, V, W, A, B, Cnnn** Driver number(s) for additional axes U, V, W, A, B and C (UVW available in RepRapFirmware 1.16 and later; UVWABC available in RepRapFirmware 1.19 and later; UVWABCD available in RepRapFirmware 3.0 and later; UVWABCDabcdefghijkl available in RepRapFirmware 3.3 and 3.4, Duet 3 MB6HC and MB6XD only; UVWABCDabcdef available in RepRapFirmware 3.5 and later, Duet 3 MB6HC and MB6XD only).
 * **Rn** (optional, supported in RRF 3.2beta1 and later) 0 = axes creates in this command are linear, 1 = axes created are rotational. If not present, then RRF 3.2beta3 and later assume UVW are linear and ABCD are rotational.
 * **Sn** (optional, supported in RRF 3.2beta3 and later) 0 = axes created in this command are treated as linear in feedrate calculations, 1 = axes created are treated as rotational in feedrate calculations. See section 2.1.2.5 of the NIST GCode standard for how the feedrate is interpreted. Default is S0 for linear axes and S1 for rotational axes (see the R parameter).
 * **Pnnn** Number of visible axes, defaults to the total number of axes configured, excluding extruder drives.
