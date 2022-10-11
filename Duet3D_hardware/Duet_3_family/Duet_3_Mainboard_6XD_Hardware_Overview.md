@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-09-05T13:36:43.465Z
+date: 2022-10-11T10:58:27.285Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -55,7 +55,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **Input power voltage** | 11V to 30V (14V-30V to use onboard 12V regulator)|
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **High current outputs** | 3 x high current outputs up to 6A each, total high current heater limit fused at 15A |
-| **Medium current outputs** | 3 x medium current outputs up to 1A each, each bank of medium current outputs fused at 2A (note when set to 12V there is a total 800mA limit) |
+| **Medium current outputs** | 6 x medium current outputs up to 1A each, each bank of medium current outputs fused at 2A (note when set to 12V there is a total 800mA limit) |
 | **External Driver Signal voltage** | 5V nominal (min. 4.2V @ 20mA) |
 | **External Driver Signal current** | 20mA maximum |
 | **Non opto isolated Inputs** | Permanent 27K pullup resistor to +3.3V included. Input voltage limits: -1V to +30V. |
