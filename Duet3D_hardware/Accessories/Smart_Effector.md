@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2022-07-25T08:13:17.611Z
+date: 2022-10-12T06:43:05.296Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -27,7 +27,9 @@ Note: the metal carriage and belt tensioner on the carriage adaptor plate is not
 
 ## Compatibility
 
-* Compatible with E3Dv6 hot end using custom heatsink (heatsink available as part of the kit). If you already own a E3D Lite6 hot end, you will need to order a [heat break](https://e3d-online.com/v6-heat-break) to upgrade to a full V6 hotend using the custom heat sink.
+* Compatible with e3d Revo Micro with the screw top heatsink
+* Compatible with E3Dv6 hot end using custom heatsink (heatsink available as part of the kit).
+* If you already own a E3D Lite6 hot end, you will need to order a [heat break](https://e3d-online.com/v6-heat-break) to upgrade to a full V6 hotend using the custom heat sink.
 * Smart Effector and Carriage adapters suit magnetic ball studs with M3 tails
 * Carriage Adapters suit carriages with 4 x M3 fixing holes in a 20mm square 
 * Compatible with 12V and 24V heaters, and 12V and 24V hot end fan power (jumper selectable, see note below)
@@ -39,8 +41,6 @@ Note: the metal carriage and belt tensioner on the carriage adaptor plate is not
 ## Open source
 
 The firmware source files are published here: [https://github.com/Duet3D/SmartEffectorFirmware](https://github.com/Duet3D/SmartEffectorFirmware){target=_blank}
-
-The electronic hardware source files are available here: [https://github.com/Duet3D/SmartEffector](https://github.com/Duet3D/SmartEffector){target=_blank}
 
 # Physical properties
 
@@ -58,6 +58,8 @@ The STEP files are available on github:
 
 [https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v2.0/SmartEffector_v2.0.step](https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v2.0/SmartEffector_v2.0.step){target=_blank}
 
+Note the v4.0 is very similar but the 8 way Molex KK is replaced with a 6 wal JST PH. the 2 way Molex KK is replaced with a 2 way JST PH. these connectors are slightly smaller.
+
 ### Carriage Adapter Dimensions
 
 [![carriageadapter_dimensions_v1.0_d1.1.png](/hardware/smart_effector/carriageadapter_dimensions_v1.0_d1.1.png =600x)](/hardware/smart_effector/carriageadapter_dimensions_v1.0_d1.1.png){target=_blank}
@@ -72,7 +74,29 @@ For those people who want to make parts that fit flush with the underside of the
 
 ## Hardware
 
-### Parts supplied
+## Tabs {.tabset}
+
+### Parts supplied v4.0
+
+| Qty | Item | Remarks |
+|:---|:---|
+| 1 | Assembled and tested PCB Smart Effector |  |
+| 3 | PCB Carriage Adapter |  |
+| 2 | 6- way Molex Microfit 3 shell (black) |  |
+| 2 | 2-way Molex Microfit 3 shell (black) |  |
+| 1 | 8-way JST PH shell (white) |  |
+| 1 | 2-way JST PH shell (white) |  |
+| 16 | Crimp pins for Microfit shells |  |
+| 12 | Crimp pins for JST PH shells |  |
+| 2 | Small ferrules for terminating heater wires | not needed if your Smart Effector uses a 2-pin Microfit connector for the heater instead of a terminal block - They are supplied with a terminal block by default |
+| 1 | M12 half nut | pitch is either 1.5 or 1.0, see the note on the heatsink |
+| 1 | M12 plastic or fibre washer, see the note on the heatsink |  |
+| 1 | 18mm or 20mm round spirit level |  |
+| 1 | E3Dv6 threaded heatsink | Note this was produced for Duet3D by e3d, originally with a 1.0 pitch, the more recent e3dv6 threaded heatsinks are 1.5mm pitch. If supplied with a plastic nut the fibre washer is not required |
+| 6 | Magnetic ball studs with M3 tails | Optional depending on which kit you purchase, Also available from [https://www.magballarms.com/](https://www.magballarms.com/){target=_blank} |
+| 6 | Delta printer arms with magnets in the end and socket to fit the ball studs. The ones with machined Delrin ends are best. | Optional depending on which kit you purchase, Different lengths available from [https://www.magballarms.com/](https://www.magballarms.com/){target=_blank} |
+
+### Parts supplied v3.0, v2.0
 
 | Qty | Item | Remarks |
 |:---|:---|
@@ -128,11 +152,13 @@ If you use our design for a print cooling fan attachment, then you will also nee
 
 ## Tabs {.tabset}
 
-### V3.0
+### V3.0, V4.0
 
 [![smarteffector_wiring_v3.0_d1.0.png](/hardware/smart_effector/smarteffector_wiring_v3.0_d1.0.png =800x)](/hardware/smart_effector/smarteffector_wiring_v3.0_d1.0.png){target=_blank}
 
 *Note: when using a thermistor or 2 wire PT100 you should use the centre two pins*
+
+*Note in v4.0 the 8 way and 2 way Molex KK are replaced with JST PH equivalents*
 
 ### V2.0
 
@@ -159,7 +185,7 @@ The power connector (Input 1) is a 2 x 3 pin black Molex Microfit 3 connector. T
 
 The HF+ and HF- pins also power the illumination LEDs.
 
-The signal connector (Input 2) is an 8-way white Molex KK connector. The pins are labelled on the underside and should be connected as follows:
+The signal connector (Input 2) is an 8-way JST PH connector (v4.0) or 8-way  Molex KK connector (v3.0,v2.0). The pins are labelled on the underside and should be connected as follows:
 
 | Label | Pin function | Duet 2 suggested connection | Duet 3 suggested connection |
 |:---|:---|
@@ -183,7 +209,7 @@ The 4 connections for the Z probe are in the same order as the Z probe connector
 | TEMP | 2- or 4-pin black Microfit 3 | Thermistor or PT100 sensor |
 | HEATER | 2-way terminal block or 2-pin black Microfit 3 | Hot end heater cartridge |
 | Hotend fan | 2-pin black Microfit 3 (Molex KK on prototypes) | E3D heatsink fan (red to +, black to -) |
-| Print fan | 2-pin white Molex KK | Print cooling fan. ***Important!*** On the ***prototypes only*** the + and - labels are swapped, so you need to connect red to - and, black to +. |
+| Print fan | 2-pin JST PH (v4.0), 2-pin  Molex KK (v3.0, v2.0) | Print cooling fan.|
 | on for 12V | 2-pin header | Place a jumper over this if using 12V hot end fan power. Leave off for 24V. |
 | Heatsink thermistor (prototypes only) | 2-pin black Microfit 3 | Leave unconnected |
 | P2 | 2x3 pads | Do not connect (these are used to program the microcontroller) |
@@ -209,7 +235,7 @@ You can use a 4-wire PT100 connection from the Smart Effector back to the Duet e
 1. If your hot end fan does not already have a short cable terminating in a black 2-pin Molex Microfit plug, cut the cable to 60mm to 80mm length and fit the plug.
 1. Assemble the E3D hot end heatsink, heat break, heater block, nozzle, heater cartridge and temperature sensor; or replace the heatsink on your existing one. Don't clip the hot end fan assembly on to the heatsink yet. Remember to put a collet in the top of the heatsink if it doesn't already have one fitted. Please follow [e3d's instructions here](https://e3d-online.zendesk.com/hc/en-us/articles/360017013257-V6-Assembly-Guide-Edition-2-){target=_blank} for this.
 1. Put the top of the heatsink through the hole in the bottom of the Smart Effector, all the way until the Smart Effector is against the the top heatsink fin (which is smaller than the other heatsink fins). Make sure that the heatsink is centred in the Smart Effector. You can optionally print a spacer, 16mm outside diameter x 12mm inside diameter by up to about 4mm long to fit between the heatsink and the Smart Effector, to allow more room below the Smart Effector.
-1. Put the fibre washer above the PCB over the heatsink thread, then secure the Smart Effector to the heatsink using the nut. Do not tighten it yet.
+1. Put the fibre washer above the PCB over the heatsink thread, then secure the Smart Effector to the heatsink using the nut. Do not tighten it yet. (Note with heatsinks supplied with a plastic nut the fibre washer may not be supplied and is not needed.
 1. If you are using our print cooling fan design, rotate the hot end so that the protruding end of the heater block faces towards the edge of the Smart Effector that carries the two white 2-pin Molex KK connectors (see photo later). This is to leave room for the print cooling fan, which will be attached to the opposite corner.
 1. Clip the hot end fan assembly on to the heatsink. The overhang must be at the nozzle end of the heatsink.
 1. Rotate the plastic hot end fan mount about the heatsink to be in the correct orientation. The orientation depends on the the PCB revision of the Smart Effector - see the images below.
@@ -219,7 +245,7 @@ You can use a 4-wire PT100 connection from the Smart Effector back to the Duet e
 1. Check the routing of all cables. The fan and heater cables should be kept away from the sensitive electronics next to the temperature sensor connector. They must also be kept away from the spills on the back of the 8-way connector, to prevent the spills abrading the insulation and causing a short circuit.
 1. Tighten the nut against the heater block. Do not over-tighten or you risk snapping the heat break.  A small amount of thread locking compound or superglue on the threads will prevent the nut from vibrating loose over time.
 
-At this stage your effector should look like this, viewed from the underside. Note that the hot end heatsink fan is on the left hand side for PCB revision 3.0 and 2.0:
+At this stage your effector should look like this, viewed from the underside. Note that the hot end heatsink fan is on the left hand side for PCB revision 4.0, 3.0 and 2.0:
 
 [![smart_effector_v2_assembly_01.jpg](/hardware/smart_effector/smart_effector_v2_assembly_01.jpg =47%x)](/hardware/smart_effector/smart_effector_v2_assembly_01.jpg){target=_blank} [![smart_effector_v2_assembly_02.jpg](/hardware/smart_effector/smart_effector_v2_assembly_02.jpg =50%x)](/hardware/smart_effector/smart_effector_v2_assembly_02.jpg){target=_blank}
 
@@ -340,6 +366,11 @@ Code 6 or 7 may occur once or twice during startup. If they persist then they no
 # Revision History
 
 # Tabs {.tabset}
+
+## v4.0
+
+* Now uses built in traces in a custom PCB manufacturing process. Significantly finer straces allow for a higher noise margin.
+* Changed the 8 pin connector on the top of the board to a JST PH which is more robust. The Molex KK 2 pin header on the bottom has also been changed to JST PH
 
 ## v3.0
 
