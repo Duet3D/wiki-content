@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-06T07:16:33.425Z
+date: 2022-10-13T18:59:03.127Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -78,7 +78,7 @@ Example:
 **A"axis:min:max:home"**
 **A"axis:cont:home"**
 
-**I've changed to start from 0 now. This is analogue to the drive number often.**
+**I've changed to start from 0 now. This is analogue to the drive number.**
 
 * axis is the axis number, starting with 0
 * min is the minium angle for rotary axis and minimum position in mm for prismatic axis
