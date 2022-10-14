@@ -2,7 +2,7 @@
 title: Connecting thermistors and PT1000 temperature sensors
 description: 
 published: true
-date: 2022-10-14T11:27:20.808Z
+date: 2022-10-14T11:32:23.313Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T16:02:20.373Z
@@ -312,7 +312,7 @@ The analog-to-digital converters (ADCs) in microcontrollers have gain and offset
 
 Duets may need their analog-to-digital converters (ADCs) calibrated to report accurate temperatures. Using M305 (RRF 2.x) or M308 (RRF 3.x) H and L parameters, it is possible to tune the Duet's ADCs high and low gain offset to improve readings from thermistors and/or PT1000 temperature sensors. 
 
-There has also been discussion of a number of workarounds; a search of the forum may yield some good suggestions. For really satisfactory results you may need to switch to a thermocouple, PT100  or PT1000 sensor.
+Thermistors with very high resistance when cold (typically sold as "high temperature thermistors") are particuarly difficult to read at low temperatures, so when they are at room temperature it is not uncommon for them to read inaccurately or even to show as open circuit. There has been discussion of a number of workarounds; a search of the forum may yield some good suggestions. For really satisfactory results you may need to switch to a thermocouple, PT100  or PT1000 sensor. The accuracy of readings taken from these thermistors improves substantially at normal printing temperatures.
 
 ## When to calibrate
 
