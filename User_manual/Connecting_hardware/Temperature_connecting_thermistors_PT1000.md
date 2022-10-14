@@ -2,7 +2,7 @@
 title: Connecting thermistors and PT1000 temperature sensors
 description: 
 published: true
-date: 2022-10-14T11:19:54.980Z
+date: 2022-10-14T11:25:30.897Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T16:02:20.373Z
@@ -213,9 +213,9 @@ The **Y** parameter defines the sensor type, "thermistor" or "pt1000".
 
 The **T** parameter (T100000) means that the resistance at 25C is 100Kohms.
 
-The **B** parameter (B4725) means that the thermistor B value over the temperature range of interest is 4725.
+The **B** parameter (B4725) means that the thermistor B value *over the temperature range of interest* is 4725. The B values quoted in thermistor datasheets are typically quoted over a range 25 to 75C, which may be OK for bed thermistor but is too low a range for a hot end thermistor. That's why the B values recommended by RRF differ from the values in the datasheet. Also, if the C parameter is used then the B value has to be adjusted.
 
-The **C** parameter (C7.06e-8) is optional. Using the correct value widens the temperature ranges over which the accuracy is good. So it's not normally needed for bed or chamber thermistors, which don't operate over a large temperature range in typical 3D printers, but it's a good idea to use it for hot end thermistors. Note, the B and C values work togetyer to define the resistance variation with temperature; so the correct B value to use with no C parameter is different from the B value to use with the optimum C parameter.
+The **C** parameter (C7.06e-8) is optional. Using the correct value widens the temperature ranges over which the accuracy is good. So it's not normally needed for bed or chamber thermistors, which don't operate over a large temperature range in typical 3D printers; but it's a good idea to use it for hot end thermistors if appropriate B and C values are known.
 
 Technical note: when the C paramter is present, RRF uses the Steinhart-Hart thermistor model. The RRF C parameter is equal to the Stenhart-Hart C coefficient; but the RRF B parameter is the reciprocal of the Steinhart-Hart B coefficient.
 
@@ -232,9 +232,9 @@ The **P** parameter identifies the heater/thermistor channel that the command ap
 
 The **T** parameter (T100000) means that the resistance at 25C is 100Kohms.
 
-The **B** parameter (B4725) means that the thermistor B value over the temperature range of interest is 4725.
+The **B** parameter (B4725) means that the thermistor B value *over the temperature range of interest* is 4725. The B values quoted in thermistor datasheets are typically quoted over a range 25 to 75C, which may be OK for bed thermistor but is too low a range for a hot end thermistor. That's why the B values recommended by RRF differ from the values in the datasheet. Also, if the C parameter is used then the B value has to be adjusted.
 
-The **C** parameter (RRF v1.17 and later) is optional. Using the correct value widens the temperature ranges over which the accuracy is good. So it's not normally needed for bed or chamber thermistors, which don't operate over a large temperature range in typical 3D printers, but it's a good idea to use it for hot end thermistors. Note, the B and C values work togetyer to define the resistance variation with temperature; so the correct B value to use with no C parameter is different from the B value to use with the optimum C parameter.
+The **C** parameter (RRF v1.17 and later) is optional. Using the correct value widens the temperature ranges over which the accuracy is good. So it's not normally needed for bed or chamber thermistors, which don't operate over a large temperature range in typical 3D printers, but it's a good idea to use it for hot end thermistors if appropriate B and C values are known.
 
 ## Typical parameter values 
 
