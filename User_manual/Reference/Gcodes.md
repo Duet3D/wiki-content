@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-14T14:08:52.159Z
+date: 2022-10-14T15:54:59.852Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5104,7 +5104,7 @@ The following manoeuvres are available:
 |:---|:---|
 | Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. Note this move would normally be carried out using M569.6 prior to PID loop tuning. | 1 |
 | Absolute SPI Encoder Calibration | Calibrates the encoder positions to the motor. Note this move would normally be carried out using M569.6 prior to PID loop tuning and only needs to be done once per Motor,encoder and 1HCL combination. | 2 |
-| Step Manoeuvre | Applies a step change to the PID target to view the step response of the PID controller. | 64 |
+| Step Manoeuvre | Applies a sudden change of 4 full steps to the PID target to view the step response of the PID controller. | 64 |
 
 ### Examples
 <br>
@@ -5131,7 +5131,7 @@ Perform a [runtime tuning manoeuvre](/User_manual/Tuning/Duet_3_1HCL_tuning#runt
 ### Parameters
 
 * **Pnn** Motor driver number
-* **Vnn** Tuning move(s) to perform. See below for usage details.
+* **Vnn** Tuning move to perform. See below for usage details.
 
 ### Description
 
@@ -5139,10 +5139,10 @@ Perform a [runtime tuning manoeuvre](/User_manual/Tuning/Duet_3_1HCL_tuning#runt
 
 The table below lists the available tuning manoeuvres. For more information see the dedicated [closed-loop tuning page](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_blank}.
 
-| Manoeuvre Name | Description | Required? | Manoeuvre ID |
+| Manoeuvre ID | Manoeuvre Name | Description | Required? | Movement performed | Time taken |
 |:---|:---|
-| Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. | Yes for all encoder types. This needs to be done after each power on and reset, and ideally should be part of the homing files for axis with closed loop drivers. | 1 |
-| Absolute SPI Encoder Calibration | Calibrates the encoder positions to the motor. | Yes for Absolute SPI connected (magnetic) encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board as the results are stored in the 1HCL memory. | 2 |
+| 1 | Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised.| Yes for all encoder types. This needs to be done after each power on and reset, and ideally should be part of the homing files for axis with closed loop drivers. | Four full steps forwards and then four back to original position | Less than one second |
+| 2 | Absolute SPI Encoder Calibration | Clears the encoder calibration, runs basic tuning, and then calibrates the encoder positions to the motor. | Yes for Absolute SPI connected (magnetic) encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board as the results are stored in the 1HCL memory. | Four full steps forwards and back, then two full motor revolutions | TODO |
 
 ### Examples
 <br>
