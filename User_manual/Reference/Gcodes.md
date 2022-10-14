@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-11T16:33:46.538Z
+date: 2022-10-14T14:08:52.159Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4922,7 +4922,7 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 
 * **Pnn** Motor driver number
 * **Tn** Encoder type: 0=none, 1=linear quadrature encoder on axis, 2=quadrature encoder on motor shaft, 3=Duet closed loop magnetic sensor (based on the AS5047D)
-* **Cn.n** Encoder counts per full step (when using a quadrature encoder on motor shaft) [count per mm will become available as support for linear encoders is implemented]
+* **Cn.n** For a linear quadrature encoder (T1) or a quadrature encoder on the motor shaft (T2) this is the number of counts per full step. For a magnetic shaft encoder (T3) this is the motor full step angle in degrees (normally 1.8 or 0.9).
 * **En.n:m.m** Error thresholds. If m.m is nonzero then whenever the actual position is more than m.m full motor steps of the desired position, this will be reported as a driver error. If n.n is nonzero and n.n < m.m then whenever the actual position is more than n.n full steps of the desired position but is less than m.m full steps, this will be reported as a pre-stall. The action that is taken on a stall/pre-stall can be configured using the [event system](/User_manual/RepRapFirmware/Events)
 * **Rn.n** Proportional constant
 * **In.n** Integral constant
@@ -4933,18 +4933,16 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 
 Sets the configuration parameters of a closed loop driver. See the [M569](/User_manual/Reference/Gcodes/M569){target=_blank} D parameter for switching a driver to closed loop after it has been configured.
 
-Encoder counts per step (Cn.n) can be found from the datasheet of the encoder being used. If the value is stated as counts per revolution (CPR), divide by the steps per revolution of the stepper motor to get the count per step. For example, a 1000 CPR encoder attached to a 200 step/rev motor will have a count per step of 1000 ÷ 200 = 5.
-
-
+If you are using a quadrature encoder on the motor shaft, the encoder counts per full step (Cn.n) can be found from the datasheet of the encoder being used. If the value is stated as counts per revolution (CPR), divide by the steps per revolution of the stepper motor to get the count per step. For example, a 1000 CPR encoder attached to a 200 step/rev (1.8 deg/step) motor will have a count per step of 1000 ÷ 200 = 5.
 
 ### Notes
 
 Supported for drivers attached to:
 * [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL){target=_blank}
 
-The E parameter defaulta to 0.0:0.0. **If you do not override this default, then failure to maintain position will not be reported.**
+The E parameter defaults to 0.0:0.0. **If you do not override this default, then failure to maintain position will not be reported.**
 
-See '[Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_blank}' for further details on setting the proportional/integral/derivative constants.
+See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_blank} for further details on setting the proportional/integral/derivative constants.
 
 ## M569.2: Read or write stepper driver register
 
