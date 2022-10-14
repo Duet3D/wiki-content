@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-13T20:08:46.409Z
+date: 2022-10-14T05:45:30.122Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -64,13 +64,13 @@ Most changes in config.g don't need a reboot, but when a drive or letter assignm
 Currently, valid values for the type and parameters are:
 * 6Axis:full and 6Axis:zaxis
 * CNC5Axis:AC and CNC5Axis:BC
-* CoreXY:K1:AC and CoreXY:K1:BC
+* CoreXY:AC, CoreXY:BC, CoreXZ:AC, CoreXZ:BC, CoreYZ:AC, CoreYZ:BC
 * 4AxisPall and 4AxisPall:inverted
 
 The robot types are described in detail on dedicated pages, please see the robot tag overview. CoreXY 5 axis is described on the CNC 5 axis page.
 
 Example:
-* B"robotType=CoreXY:K1:AC" specifies CoreXY subtype K1 as used in Cartesian kinematics and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. The axis configurations are the common used ones: reference is X0Y0Z0, steppers are configured to be drive mappings X0 Y1 Z2 A3 C4. XYZ directions are as usually used: two parallel Y axis to behind, X to the right, Z positive means more bed-nozzle distance. A is assembled on the Z, C is on A, and the bed is mounted on C. The print object is printed on the Z-moving and AC-rotating bed. The nozzle is moved by steppers XY. Those defaults are preset, but can be overwritten with P parameters. A parameters and M208 set movement and rotation limits.
+* B"robotType=CoreXY:AC" specifies CoreXY subtype K1 as used in Cartesian kinematics and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. The axis configurations are the common used ones: reference is X0Y0Z0, steppers are configured to be drive mappings X0 Y1 Z2 A3 C4. XYZ directions are as usually used: two parallel Y axis to behind, X to the right, Z positive means more bed-nozzle distance. A is assembled on the Z, C is on A, and the bed is mounted on C. The print object is printed on the Z-moving and AC-rotating bed. The nozzle is moved by steppers XY. Those defaults are preset, but can be overwritten with P parameters. A parameters and M208 set movement and rotation limits.
 
 
 # M669 A parameter: angles
