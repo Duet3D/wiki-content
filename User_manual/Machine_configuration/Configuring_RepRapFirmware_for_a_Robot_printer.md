@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-14T05:45:30.122Z
+date: 2022-10-14T05:46:55.674Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -189,28 +189,6 @@ Examples:
 * CNC 5 axis e. g. PPPRR is zaxis, because the 2 rotary axes control the Z axis orientation. XY constantly changes because the drill rotates.
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
-
-**P"closedChain..."**
-
-Closed chain means, part of the robot kinematic chain is built from links which depend on each other. A part of the joints have no actuator attached, because the movement is defined by the parallel connected links.
-
-When defining the closed Chains, the connected joints must be defined together by Dn DH parameters, e. g. D0+D1 for CoreXY. A CoreXZ must define the Dn definitions for the XZ axes together. The drive numbers need not to be changed, the assignments can be changed by B"mapDriveLetterDn".
-
-**P"closedChain=CoreXY:K1:m:o"**
-Defines part of the actuators as connected by a closed kinematics chain.
-* CoreXY is the CoreXY kinematics where two steppers are connected by the formula X=1/2(dA + dB) Y=1/2(dA-dB) for forward kinematics and AB are the motors.
-* the second parameter is the same K parameter used by Cartesian kinematics to define the CoreXY type: K1 = CoreXY
-* the two numbers are the Dn numbers, where the two depending steppers are attached to. The Dn numbers must be consecutive for drives which belong together in respect to closed chain.
-
-Other K values could be implemented in the future, if it makes sense.
-
-Example:
-* P"closedChain=CoreXY:K1:4:5" defines CoreXY with the first of the two connected steppers controlling the axis being attached to the D4 definition and the second one attached to D5. The definition, which drive number is the first and second connected stepper, is defined in  P"mapDriveLetterDn", which should be defined also to be clear for the firmware. If mapDriveLetterDn is not defined, the default is using drive numbers 0 to 4 for XYZAC. There is no default for the Dn number assignments.
-
-**P"closedChain=FiveBarParallelScara[:1:2:options]"**
-* two steppers define the XY position by closed chain, one actuator the linear Z axis
-* the numbers define to which Dn numbers the two close chain steppers are conntected.
-* options are tbd, but they will specify cantilevered type and selected work mode
 
 **P"quality=n[:log|logDetailed|logoff]"**
 * n can be 1, 3 or 5. 1 is lowest quality, 5 highest, default is 5.
