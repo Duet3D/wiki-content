@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-14T05:46:55.674Z
+date: 2022-10-14T06:10:01.567Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -17,6 +17,9 @@ The kinematics is developed for Duet3Ds RepRapFirmware and will be included in 3
 {.is-info}
 
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
+
+Current status:
+* some settings moved to B"robotType", so P"closedChain" is not necessary any more. CoreXY now has submodes like XY, YZ, XZ
 
 # Configuring a Robot printer
 
@@ -35,7 +38,7 @@ For specific robot types, example configurations and explanation of specific set
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
 The first M669 line must specify the K type and robot type, e.g.:
-M669 K13 B"robotType=CNC5Axis:AC"
+M669 K13 B"robotType=CNC5AxisAC"
 
 This will set defaults for the other settings.
 
@@ -62,16 +65,18 @@ Most changes in config.g don't need a reboot, but when a drive or letter assignm
 **B"robotType=type[:parameters]"**
 
 Currently, valid values for the type and parameters are:
-* 6Axis:full and 6Axis:zaxis
-* CNC5Axis:AC and CNC5Axis:BC
-* CoreXY:AC, CoreXY:BC, CoreXZ:AC, CoreXZ:BC, CoreYZ:AC, CoreYZ:BC
-* 4AxisPall and 4AxisPall:inverted
+* 6Axis
+* 5AxisAC, 5AxisBC
+* CoreXYAC, CoreXYBC, CoreXZAC, CoreXZBC, CoreYZAC, CoreYZBC
+* 4AxisPall, 4AxisPallInv
+* 5BarParScara
+
+The default settings of robotType can be overwritten by P"..." parameters. B"robotType" should be specified first.
 
 The robot types are described in detail on dedicated pages, please see the robot tag overview. CoreXY 5 axis is described on the CNC 5 axis page.
 
 Example:
-* B"robotType=CoreXY:AC" specifies CoreXY subtype K1 as used in Cartesian kinematics and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. The axis configurations are the common used ones: reference is X0Y0Z0, steppers are configured to be drive mappings X0 Y1 Z2 A3 C4. XYZ directions are as usually used: two parallel Y axis to behind, X to the right, Z positive means more bed-nozzle distance. A is assembled on the Z, C is on A, and the bed is mounted on C. The print object is printed on the Z-moving and AC-rotating bed. The nozzle is moved by steppers XY. Those defaults are preset, but can be overwritten with P parameters. A parameters and M208 set movement and rotation limits.
-
+* B"robotType=CoreXYAC" specifies CoreXY and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. More details of the 5 axis types are described on a dedicated page.
 
 # M669 A parameter: angles
 
