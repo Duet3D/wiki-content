@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-14T06:10:01.567Z
+date: 2022-10-14T06:37:18.047Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -20,6 +20,7 @@ The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.
 
 Current status:
 * some settings moved to B"robotType", so P"closedChain" is not necessary any more. CoreXY now has submodes like XY, YZ, XZ
+* 5 Bar Parallel Scara mode is currently experimental
 
 # Configuring a Robot printer
 
