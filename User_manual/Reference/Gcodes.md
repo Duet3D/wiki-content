@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-14T15:54:59.852Z
+date: 2022-10-14T15:55:26.262Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5142,7 +5142,7 @@ The table below lists the available tuning manoeuvres. For more information see 
 | Manoeuvre ID | Manoeuvre Name | Description | Required? | Movement performed | Time taken |
 |:---|:---|
 | 1 | Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised.| Yes for all encoder types. This needs to be done after each power on and reset, and ideally should be part of the homing files for axis with closed loop drivers. | Four full steps forwards and then four back to original position | Less than one second |
-| 2 | Absolute SPI Encoder Calibration | Clears the encoder calibration, runs basic tuning, and then calibrates the encoder positions to the motor. | Yes for Absolute SPI connected (magnetic) encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board as the results are stored in the 1HCL memory. | Four full steps forwards and back, then two full motor revolutions | TODO |
+| 2 | Absolute SPI Encoder Calibration | Clears the encoder calibration, runs basic tuning, and then calibrates the encoder positions to the motor. | Yes for Absolute SPI connected (magnetic) encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board as the results are stored in the 1HCL memory. | Four full steps forwards and back, then **two full motor revolutions** | TODO |
 
 ### Examples
 <br>
