@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-14T06:37:18.047Z
+date: 2022-10-15T04:48:13.069Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -94,10 +94,7 @@ Example:
 
 Example:
 * A"0:-180.0:180.0:0.0" means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
-* A"5:cont:0" means the axis is continuous. In most cases, this is only possible if no electronics or filament is attached to the rotating element. The C rotary axis of CNC 5 axis could be cont e.g.
-
-> tbd open how to configure a continuous axis
-{.is-info}
+* A"5:cont:0" means the axis is continuous and the homing angle is 0 degrees or 0 mm. In most cases, this is only possible if no electronics or filament is attached to the rotating element. The C rotary axis of CNC 5 axis could be cont e.g.
 
 # M669 D parameter: Denavit-Hartenberg
 Dn define DH parameters and are numbered from 0 to maximum 9.
