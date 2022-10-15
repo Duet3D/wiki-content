@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-15T06:14:44.884Z
+date: 2022-10-15T06:17:58.881Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -82,6 +82,6 @@ quality holds the string setting. log and logoff set logSimple and logDetailed. 
 
 Timer start, stop, maximum array size to hold values for performance measuring while the code is running, using the chrono C++ library.
 
-# xcachedAngles[]
+# cachedAngles[]
 
-The angles of the last move are cached. They are used for the calculation of a new target. Homing sets this cache, as well as a segmented move. The calculation whether a target is reachable (LimitPosition) does not set or change xcachedAngles.
+The angles of the last move are cached. They are used for the calculation of a new target. Homing sets this cache, as well as a segmented move. The calculation whether a target is reachable (LimitPosition) does not set or change cachedAngles.
