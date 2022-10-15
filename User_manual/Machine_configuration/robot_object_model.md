@@ -2,11 +2,13 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-15T05:59:51.968Z
+date: 2022-10-15T06:00:42.437Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
 ---
+
+This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
 # Object Model
 
