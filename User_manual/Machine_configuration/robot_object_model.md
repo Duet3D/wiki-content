@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-15T11:41:14.255Z
+date: 2022-10-15T16:56:37.516Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -64,7 +64,12 @@ When changing dn directly, it must be synchronized with dnActiveInv.
 
 # connectedDns, coreXYRatioZ
 
-For parallel arms, those special parameters store the configuration. connectedDns are the connected Dn for CoreXY by storing the positions as flags. coreXYRatioZ stores the Z ratio for CoreXZ and CoreYZ types (default 3).
+For parallel arms, those special parameters store the configuration:
+
+* connectedDns are the connected Dn for CoreXY by storing the positions as flags. 5BarParScara has the 4 or 5 (when using cantilevered) Dns flagged.
+* coreXYRatioZ stores the Z ratio for CoreXZ and CoreYZ types (default 3)
+
+The binary flag is calculated by (variable |= (1<< Dnnumber))
 
 # an[][], continuousAxis
 
