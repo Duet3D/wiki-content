@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-15T16:58:09.345Z
+date: 2022-10-15T17:13:04.464Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -56,7 +56,7 @@ dnDrive is a mapping between drive number and Dn: each array element is a Dn, co
 
 # dn[][], dnActiveInv
 
-The double array dn holds the 6 Dn values each (ztr, zrot, ytr, yrot, xtr, xrot).
+The double array dn holds the 6 Dn values each (ztr (DH: d), zrot (DH: theta), ytr, yrot, xtr (DH: a), xrot (DH: alpha)).
 
 dnActiveInv is an array with an element for each Dn holding the information whether the Dn is active (value 1), inverted (value -1) or not used (value 0).
 
