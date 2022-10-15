@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-15T06:17:58.881Z
+date: 2022-10-15T09:09:58.270Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -38,7 +38,7 @@ When defining more than 10 Dn or axes, the numbers become two-digit. This is not
 # robotType
 
 Setting B"robotType=..." sets a couple of parameters. The original call is saved in a string robotType. The depending parameters are:
-numOfAxes, mapDriveLetterDn, orientationType, Dn, connectedDns, so changing it directly is not advisable.
+numOfAxes, mapDriveLetterDn, orientationType, Dn, connectedDns and more for specific types, so changing it directly is not advisable.
 
 # axisTypes, numOfAxes
 
@@ -61,6 +61,10 @@ The double array dn holds the 6 Dn values each (ztr, zrot, ytr, yrot, xtr, xrot)
 dnActiveInv is an array with an element for each Dn holding the information whether the Dn is active (value 1), inverted (value -1) or not used (value 0).
 
 When changing dn directly, it must be synchronized with dnActiveInv.
+
+# connectedDns, coreXYRatioZ
+
+For parallel arms, those special parameters store the configuration. connectedDns are the connected Dn for CoreXY by storing the positions as flags. coreXYRatioZ stores the Z ratio for CoreXZ and CoreYZ types (default 3).
 
 # an[][], continuousAxis
 
