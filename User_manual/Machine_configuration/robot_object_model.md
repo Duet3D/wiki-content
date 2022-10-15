@@ -2,15 +2,13 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-15T05:16:12.719Z
+date: 2022-10-15T05:49:00.425Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
 ---
 
 # Object Model
-
-(this section may be moved to a dedicated page later)
 
 The following description allows manipulating parameters of robot kinematics directly. Care should be taken for
 * parameters which are connected
@@ -21,5 +19,57 @@ Those special cases will be mentioned when describing the object model.
 
 The object model is built with the structure of a double list: main topics and sublists each. The following structure follows this list structure.
 
-First, there are values which are not part of the object model, but are constants which need recompilation of firmware when changed:
+# Fixed parameters
 
+There are values which are not part of the object model, but are constants which need recompilation of firmware when changed:
+
+* RRFMODE=0 means the code runs in Windows, 1 means it runs in RRF. RobotKinematics1 to 3 can run without RRF for testing. It has no dependencies from other RRF code.
+* MAXNUMOFAXES=7 sets the maximum number of actuators, to allow a 7 axis robot at maximum.
+* MAXDN = 9 sets the maximum number of Dn definitions, meaning possible values are D0 to D8
+* radiansToDegrees value as exact as possible, used to convert radians to degrees
+* flt_epsilon constant with same value as FLT_EPSILON from float.h
+
+When defining more than 10 Dn or axes, the numbers become two-digit. This is not fully tested.
+
+# robotType
+
+Setting B"robotType=..." sets a couple of parameters. The original call is saved in a string robotType. The depending parameters are:
+numOfAxes, mapDriveLetterDn, orientationType, Dn, connectedDns, so changing it directly is not advisable.
+
+# axisTypes, numOfAxes
+
+Sets the axis types as described in the main document. Depending parameter: numOfAxes, counting the number of the axes. A passive parallel axis is counted. It is very important that numOfAxes is correct, so when changing axisTypes directly, numOfAxes must be changed also.
+
+# mapDriveLetterDn, dnDrive
+
+Assigns drive numbers (in the sense of the M584) to the Dn number. This parameter changes dnDrive, which must be changed as well.
+
+dnDrive is a mapping between drive number and Dn: each array element is a Dn, containing the drive number or 99 for palletized axis or -1 if no drive assigned.
+
+# dn[][], dnActiveInv
+
+The double array dn holds the 6 Dn values each (ztr, zrot, ytr, yrot, xtr, xrot).
+
+dnActiveInv is an array with an element for each Dn holding the information whether the Dn is active (value 1), inverted (value -1) or not used (value 0).
+
+When changing dn directly, it must be synchronized with dnActiveInv.
+
+# an[][], continuousAxis
+
+an holds the Angle (or mm position for a prismatic joint) definitions in a double array, 3 values each: min, max and home angle/position.
+
+continuousAxis is an int with binary flags for the axes which are set to continuous. If e.g. the 6th axis is continuous, the 6th bit from right is set to 1.
+
+# quality, logSimple, logDetailed, ...
+
+quality holds the string setting. log and logoff set logSimple and logDetailed. The different levels change multiple values:
+* precision of segemented move: precision, precisionAngle, segmentLength, segmentsPerSecond
+* precision of long moves: longMovePrecision, longMovePrecisionAngle, longMoveSegmentLength
+* angleDiff: angle change for calculation of jacobian matrix
+* maxIterations: how many iterations max to find a solution
+* lowValuesZero: used to round values near 0, 1, -1 in some orientation calculations
+* normalize: after calculation, the orientations are often not exactly orthonormal. normalize makes a postcalculation and sets the values to orthonormal
+
+# start, stop, MAXTIMERS
+
+Timer start, stop, maximum array size to hold values for performance measuring while the code is running, using the chrono C++ library.
