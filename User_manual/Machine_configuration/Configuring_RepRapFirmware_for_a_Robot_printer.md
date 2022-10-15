@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-15T08:59:58.878Z
+date: 2022-10-15T09:01:39.501Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -69,7 +69,7 @@ Most changes in config.g don't need a reboot, but when a drive or letter assignm
 Currently, valid values for the type and parameters are:
 * 6Axis
 * 5AxisAC, 5AxisBC
-* CoreXYAC, CoreXYBC, CoreXZAC[:Zf], CoreXZBC[:Zf], CoreYZAC, CoreYZBC
+* CoreXYAC, CoreXYBC, CoreXZAC[:Zf], CoreXZBC[:Zf], CoreYZAC[:Zf], CoreYZBC[:Zf]
 * 4AxisPall, 4AxisPallInv
 
 The default settings of robotType can be overwritten by P"..." parameters. B"robotType" should be specified first.
@@ -78,7 +78,7 @@ The robot types are described in detail on dedicated pages, please see the robot
 
 Example:
 * B"robotType=CoreXYAC" specifies CoreXY and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. More details of the 5 axis types are described on a dedicated page.
-* B"robotType=CoreXZAC:Z2.5" sets CoreXZ with reduction ratio for Z to 2.5. Default for CoreXZ is 3.
+* B"robotType=CoreXZAC:Z2.5" sets CoreXZ with reduction ratio for Z to 2.5. Default for CoreXZ is 3. Same for CoreYZAC/BC.
 
 # M669 A parameter: angles
 
