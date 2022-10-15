@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-15T09:01:39.501Z
+date: 2022-10-15T16:37:04.862Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -71,14 +71,17 @@ Currently, valid values for the type and parameters are:
 * 5AxisAC, 5AxisBC
 * CoreXYAC, CoreXYBC, CoreXZAC[:Zf], CoreXZBC[:Zf], CoreYZAC[:Zf], CoreYZBC[:Zf]
 * 4AxisPall, 4AxisPallInv
+* 5BarParScara, 5BarParScaraAC, 5BarParScaraBC (experimental)
+
+The robotType specification sets some default parameters, but it is also important to decide which arms are connected as parallel and which drives are e. g. AC. Together with mapDriveLetterDn, firmware knows to which drive and Dn A is connected, and which drives are the connected actuators for CoreXY/XZ/YZ.
 
 The default settings of robotType can be overwritten by P"..." parameters. B"robotType" should be specified first.
 
-The robot types are described in detail on dedicated pages, please see the robot tag overview. CoreXY 5 axis is described on the CNC 5 axis page.
+The robot types are described in detail on dedicated pages, please see the robot tag overview. CoreXY 5 axis and 5BarParScara are described on the CNC 5 axis page.
 
 Example:
 * B"robotType=CoreXYAC" specifies CoreXY and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. More details of the 5 axis types are described on a dedicated page.
-* B"robotType=CoreXZAC:Z2.5" sets CoreXZ with reduction ratio for Z to 2.5. Default for CoreXZ is 3. Same for CoreYZAC/BC.
+* B"robotType=CoreXZAC:Z2.5" sets CoreXZ with reduction ratio for Z to 2.5. Default for CoreXZ/CoreYZ is Z3.
 
 # M669 A parameter: angles
 
