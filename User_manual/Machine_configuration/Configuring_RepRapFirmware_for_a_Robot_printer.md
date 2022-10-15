@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-15T16:37:04.862Z
+date: 2022-10-15T16:42:22.040Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -46,7 +46,9 @@ This will set defaults for some core settings.
 
 M669 without parameters will output the current settings to the console.
 
-Multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. But different letters can be combined, e.g. D and A settings which belong together.
+Most parameters can be changed and asked for by the object model, see dedicated page.
+
+Multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. Different letters can be combined.
 
 Overview
 * K13 set robot kinematics and must be defined first
@@ -73,9 +75,9 @@ Currently, valid values for the type and parameters are:
 * 4AxisPall, 4AxisPallInv
 * 5BarParScara, 5BarParScaraAC, 5BarParScaraBC (experimental)
 
-The robotType specification sets some default parameters, but it is also important to decide which arms are connected as parallel and which drives are e. g. AC. Together with mapDriveLetterDn, firmware knows to which drive and Dn A is connected, and which drives are the connected actuators for CoreXY/XZ/YZ.
+The task of robotType is to set some default parameters, but it is also important to decide which arms are connected as parallel and which drives are e. g. AC. For example, together with information of mapDriveLetterDn, firmware knows to which drive and Dn A is connected, and which drives are the connected actuators for CoreXY/XZ/YZ/5BarParScara.
 
-The default settings of robotType can be overwritten by P"..." parameters. B"robotType" should be specified first.
+The default settings of robotType can be overwritten by P"..." parameters. B"robotType" should be specified first, otherwise P parameters will be overwritten.
 
 The robot types are described in detail on dedicated pages, please see the robot tag overview. CoreXY 5 axis and 5BarParScara are described on the CNC 5 axis page.
 
