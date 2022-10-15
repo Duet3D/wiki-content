@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-10-15T07:46:08.074Z
+date: 2022-10-15T07:48:30.093Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -125,7 +125,7 @@ What should be added:
 * mapDriveLetterDn to assign drive numbers to Dn. 
 
 Example:
-* P"mapDriveLetterDn=0X4:1Y3:2Z5:3A2:4C1" for a CoreXZ system will assign the X0 and Z2 (m584) drives to D4 and D5, so they can work together. The chain will start at the workpiece, so C first, then A, then Y, then the connected XZ. D6 will be the tool, D0 if needed the base.
+* P"mapDriveLetterDn=0X4:1Y3:2Z5:3A2:4C1" for a CoreXZ system will assign the X0 and Z2 (m584) drives to D4 and D5, so they can work together. The chain will start at the workpiece, so C first, then A, then Y, then the connected XZ. D6 will be the tool, D0 if needed the offsets between workpiece and rotating C plate.
 
 # unsorted
 
