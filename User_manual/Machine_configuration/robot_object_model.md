@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-15T05:49:00.425Z
+date: 2022-10-15T05:50:41.516Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -17,7 +17,7 @@ The following description allows manipulating parameters of robot kinematics dir
 
 Those special cases will be mentioned when describing the object model.
 
-The object model is built with the structure of a double list: main topics and sublists each. The following structure follows this list structure.
+The object model is built with the structure of a double list: main topics and sublists each.
 
 # Fixed parameters
 
