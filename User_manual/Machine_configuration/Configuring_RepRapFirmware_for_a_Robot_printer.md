@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-15T07:55:33.738Z
+date: 2022-10-15T08:49:27.182Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -20,7 +20,6 @@ The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.
 
 Current status, last actions:
 * some settings moved to B"robotType", so P"closedChain" is not necessary any more. CoreXY now has submodes like XY, YZ, XZ (TBD: Z3 etc. settings for axes coupling ratios)
-* 5 Bar Parallel Scara mode is currently experimental
 * removed Dn from robotType, because mapDriveLetterDn will be needed in most cases anyway
 * new documentation page about object model
 
@@ -72,7 +71,6 @@ Currently, valid values for the type and parameters are:
 * 5AxisAC, 5AxisBC
 * CoreXYAC, CoreXYBC, CoreXZAC, CoreXZBC, CoreYZAC, CoreYZBC
 * 4AxisPall, 4AxisPallInv
-* 5BarParScara
 
 The default settings of robotType can be overwritten by P"..." parameters. B"robotType" should be specified first.
 
