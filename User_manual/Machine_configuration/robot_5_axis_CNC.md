@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis
 published: true
-date: 2022-10-01T07:26:21.955Z
+date: 2022-10-15T07:46:08.074Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -105,10 +105,10 @@ The calculations allow correct positions and orientations for every segment of a
 
 A new configuration option allows to set most configuration settings fast:
 
-M669 K13 B"robotType=CoreXY:K1:AC"
+M669 K13 B"robotType=CoreXY:AC"
 if the rotary axis A is parallel to the X axis
 or
-M669 K13 B"robotType=CoreXY:K1:BC"
+M669 K13 B"robotType=CoreXY:BC"
 if the rotary axis B is parallel to the Y axis.
 The rotary axis C is parallel to the Z axis.
 The C rotary table is mounted on top of the A/B axis, this one is mounted on the Z axis. Z is connected to the base, as are XY axes, which are CoreXY connected. The base is a fixpoint (0,0,0), which doesn't change position and orientation and is a reference.
@@ -122,6 +122,10 @@ sets some parameters already:
 What should be added:
 * A axis min, max and home angle/position settings
 * Dn parameters if the rotary axes have displacements of the axes and displacements between the linear axes, so the distance between hotend and print bed is correct
+* mapDriveLetterDn to assign drive numbers to Dn. 
+
+Example:
+* P"mapDriveLetterDn=0X4:1Y3:2Z5:3A2:4C1" for a CoreXZ system will assign the X0 and Z2 (m584) drives to D4 and D5, so they can work together. The chain will start at the workpiece, so C first, then A, then Y, then the connected XZ. D6 will be the tool, D0 if needed the base.
 
 # unsorted
 
