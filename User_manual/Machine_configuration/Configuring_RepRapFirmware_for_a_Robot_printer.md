@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-15T04:48:13.069Z
+date: 2022-10-15T05:05:01.415Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -39,23 +39,23 @@ For specific robot types, example configurations and explanation of specific set
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
 The first M669 line must specify the K type and robot type, e.g.:
-M669 K13 B"robotType=CNC5AxisAC"
+M669 K13 B"robotType=5AxisAC"
 
-This will set defaults for the other settings.
+This will set defaults for some core settings.
 
 M669 without parameters will output the current settings to the console.
 
 Multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. But different letters can be combined, e.g. D and A settings which belong together.
 
 Overview
-required: the three following settings:
 * K13 set robot kinematics and must be defined first
-* B specify robot type
-* A minimum, maximum and home angles
-
-optional: the next settings:
-* D Denavit-Hartenberg (DH) parameters
-* P specific settings to add to or derivate from B setting
+* B"robotType=..." specify robot type
+* A"a:..." minimum, maximum and home angles
+* D"n:..." Denavit-Hartenberg (DH) parameters
+* P"axisTypes=..." specify types of joints
+* P"mapDriveLetterDn=..." assign drive number to Dn
+* P"orientationType=..." set mode of orientation calculation
+* P"quality=..." set quality level of calculations
 * S segments per second
 * T minimum segment length in mm
 
