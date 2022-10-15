@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-15T16:42:22.040Z
+date: 2022-10-15T16:50:12.724Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -30,11 +30,6 @@ When Duet starts after power on, it needs to know how to behave. Reading the fil
 The robot kinematics supports different types. Roughly, they can be separated into
 * serial robots: the joints and arms are connected in one serial chain, called open chain kinematics. Industrial robots (6 rotational axes), CNC 5 axis (3 prismatic, two rotational axes), cartesian (three prismatic axes), serial scara (one prismatic and two rotational axes) and polar (two prismatic and one rotational axes) printers are examples. Configuration allows mixing any prismatic and rotational axes, e.g. a cartesian with spheric head (3 prismatic and 3 rotational axes).
 * parallel robots: the joints and arms are completely or partially connected in parallel. Often some joints are without an actuator. The kinematic is more difficult to calculate and need dedicated formulae, so only defined types are supported. Examples are delta, 5 arm parallel scara, stewart/hexapod, 4 axis palletized robot. Delta is not supported in robot kinematics, because RepRapFirmware has dedicated delta support. 4 axis palletized is supported, stewart is planned, 5 arm parallel scara has dedicated RepRapFirmware support.
-
-For specific robot types, example configurations and explanation of specific settings, please see the document about robot types. The following robot types are described in separate documents (call the robot tag to see the links):
-* 6 axis industrial robot
-* CNC 5 axis including CoreXY 5 axis
-* 4 axis palletized robot
 
 # M669 configuration
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
@@ -70,10 +65,12 @@ Most changes in config.g don't need a reboot, but when a drive or letter assignm
 
 Currently, valid values for the type and parameters are:
 * 6Axis
-* 5AxisAC, 5AxisBC
+* 5AxisAC, 5AxisBC (=> CNC 5 axis, Pentarod, Open5x)
 * CoreXYAC, CoreXYBC, CoreXZAC[:Zf], CoreXZBC[:Zf], CoreYZAC[:Zf], CoreYZBC[:Zf]
-* 4AxisPall, 4AxisPallInv
+* 4AxisPall, 4AxisPallInv (=> IRB 460 like)
 * 5BarParScara, 5BarParScaraAC, 5BarParScaraBC (experimental)
+
+Not being on the list doesn't mean that a robot type is not supported. E.g. polar kinematics, serial Scara, cartesian with 3 axes spherical head and many more are all supported by specifying the D and P parameters individually. Some kinematics already exist as dedicated kinematics. Robot kinematics for them is meant as an additional option, not as replacement.
 
 The task of robotType is to set some default parameters, but it is also important to decide which arms are connected as parallel and which drives are e. g. AC. For example, together with information of mapDriveLetterDn, firmware knows to which drive and Dn A is connected, and which drives are the connected actuators for CoreXY/XZ/YZ/5BarParScara.
 
