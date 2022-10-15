@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-15T06:12:36.048Z
+date: 2022-10-15T06:14:44.884Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -66,7 +66,7 @@ When changing dn directly, it must be synchronized with dnActiveInv.
 
 an holds the Angle (or mm position for a prismatic joint) definitions in a double array, 3 values each: min, max and home angle/position.
 
-continuousAxis is an int with binary flags for the axes which are set to continuous. If e.g. the 6th axis is continuous, the 6th bit from right is set to 1.
+continuousAxis is an int with binary flags for the axes which are set to continuous. If e.g. the 6th axis is continuous, the 6th bit from right is set to 1. When an axis is flagged as continuous, the first two parameters of an[] are ignored.
 
 # quality, logSimple, logDetailed, ...
 
