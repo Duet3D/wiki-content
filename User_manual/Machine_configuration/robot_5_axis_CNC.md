@@ -1,8 +1,8 @@
 ---
 title: Robot CNC 5 axis
-description: Including Pentarod, Open5, CoreXY 5 axis
+description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-10-15T07:48:30.093Z
+date: 2022-10-15T16:19:56.523Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -130,3 +130,18 @@ Example:
 # unsorted
 
 CNC 5 axis has a spindle with only one orientation in Z direction (orientationType=zaxis). Two rotational axes are used to change the angle of the spindle in respect to the workpiece surface. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis. The angle of the spindle in respect to the workpiece surface is described as tool vector values. In the documentation about firmware is a detailed description about orientation types.
+
+# 5 Bar Parallel Scara
+
+There is already a kinematics for 5 Bar Parallel Scara https://docs.duet3d.com/User_manual/Machine_configuration/Configuration_five_bar_parallel_scara but it can be used by robot kinematics also. The config is more complicated that the other robot types, because there are specific additional parameters, which must be defined somehow.
+
+Currently the following method is used to define the config:
+* B"robotType=5BarParallelScara"
+* Dn and Dn+1 specifies the connected actuators to drive the two arms. The Dm xtr (= DH a) parameter specifies the proximal arm lenghts
+* Dn+2 and Dn+3 are the passive driven arms connected to Dn and Dn+1 respectively. Dn+2 and Dn+3 are then connected to close the chain. The xtr (= DH a) parameter specify the distal arm lengths from hinge to hinge (the hotend has an additional distance in cantilevered case)
+* workmode and cantilevered modes are specified through special P parameters (tbd), same with angle restrictions
+* the Z axis is specified like a normal prismatic axis
+
+To summarize: D!0 base offsets, D!1 Z axis workpiece mode, D2 and D3 proximal arms, D4 and D5 distal arms, optionally D6 cantilevered, D7 tool.
+
+Compared to the dedicated 5BarParallelScara kinematics, the robot kinematics will allow to finetune axis properties and support the planned calibration (calculating back from hotend to joint/link properties). Disadvantage is, that calculation effort maybe higher.
