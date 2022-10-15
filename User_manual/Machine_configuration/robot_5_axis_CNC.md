@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-10-15T16:19:56.523Z
+date: 2022-10-15T16:29:11.125Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -137,7 +137,7 @@ There is already a kinematics for 5 Bar Parallel Scara https://docs.duet3d.com/U
 
 Currently the following method is used to define the config:
 * B"robotType=5BarParallelScara"
-* Dn and Dn+1 specifies the connected actuators to drive the two arms. The Dm xtr (= DH a) parameter specifies the proximal arm lenghts
+* Dn and Dn+1 specifies the connected actuators to drive the two arms. The Dn xtr (= DH a) parameter specifies the proximal arm lenghts
 * Dn+2 and Dn+3 are the passive driven arms connected to Dn and Dn+1 respectively. Dn+2 and Dn+3 are then connected to close the chain. The xtr (= DH a) parameter specify the distal arm lengths from hinge to hinge (the hotend has an additional distance in cantilevered case)
 * workmode and cantilevered modes are specified through special P parameters (tbd), same with angle restrictions
 * the Z axis is specified like a normal prismatic axis
