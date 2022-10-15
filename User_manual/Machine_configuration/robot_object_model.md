@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-15T09:09:58.270Z
+date: 2022-10-15T11:41:14.255Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -80,7 +80,6 @@ quality holds the string setting. log and logoff set logSimple and logDetailed. 
 * angleDiff: angle change for calculation of jacobian matrix
 * maxIterations: how many iterations max to find a solution
 * lowValuesZero: used to round values near 0, 1, -1 in some orientation calculations
-* normalize: after calculation, the orientations are often not exactly orthonormal. normalize makes a postcalculation and sets the values to orthonormal
 
 # start, stop, MAXTIMERS
 
