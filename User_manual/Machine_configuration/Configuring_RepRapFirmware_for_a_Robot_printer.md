@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-15T16:50:12.724Z
+date: 2022-10-18T07:00:32.301Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -22,6 +22,7 @@ Current status, last actions:
 * some settings moved to B"robotType", so P"closedChain" is not necessary any more. CoreXY now has submodes like XY, YZ, XZ (TBD: Z3 etc. settings for axes coupling ratios)
 * removed Dn from robotType, because mapDriveLetterDn will be needed in most cases anyway
 * new documentation page about object model
+* added Z parameter for CoreXZ, CoreYZ
 
 # Configuring a Robot printer
 
