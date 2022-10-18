@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-08-22T14:47:29.077Z
+date: 2022-10-18T16:21:04.812Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -92,13 +92,13 @@ Standard red/blue/yellow automotive crimp tools will crimp these terminals. Ther
 
 JST-VH crimps require a minimum of 22AWG wire (20AWG or 0.5mm2 recommended. Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way, but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heat shrink sleeving over the insulation to bulk up the insulation. 
 
-You will need a suitable crimping tool for the crimp pins, for example Engineer PA21. The PA21 is designed to handle the longer flanges of the VH crimps that grip the insulation. Use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation. The large side of a ratchet crimping tool, such as the HT-225D, may also be able to crimp the VH series. Alternatively you can solder the wire to the crimp pin.
+You will need a suitable crimping tool for the crimp pins, for example Engineer PA21. The PA21 is designed to handle the longer flanges of the VH crimps that grip the insulation. Use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation. The large side of a ratchet crimping tool, such as the HT-225D, may also be able to crimp the VH series. The Iwiss SN-2549 ratchet cripping tool claims to be compatible with JST VH crimp pins and all other pin connectors currently use by Duets. Alternatively you can solder the wire to the crimp pin.
 
 <p style="clear:both"></p>
 
 ### Medium and Low current connectors
 
-![wiring_engineer_pa-09.jpg](/guides/wiring/wiring_engineer_pa-09.jpg =50%x){.align-right}![wiring_ht225d.jpg](/guides/wiring/wiring_ht225d.jpg =50%x){.align-right}Molex KK-compatible connectors are used for all other inputs and outputs on Duet mainboards. Use a manual tool such as Engineer PA-09/PA-20/PA-21 (use the 1.6mm opening for the bare wire, and 1.9mm opening for the insulation), or ratchet crimping tool, eg HT-225D ratchet crimper.
+![wiring_engineer_pa-09.jpg](/guides/wiring/wiring_engineer_pa-09.jpg =50%x){.align-right}![wiring_ht225d.jpg](/guides/wiring/wiring_ht225d.jpg =50%x){.align-right}Molex KK-compatible connectors are used for all other inputs and outputs on Duet mainboards. Use a manual tool such as Engineer PA-09/PA-20/PA-21 (use the 1.6mm opening for the bare wire, and 1.9mm opening for the insulation), or ratchet crimping tool, eg HT-225D ratchet crimper. The Iwiss SN-2549 ratchet cripping tool claims to be compatible with Molex crimp pins and all other pin connectors currently use by Duets. 
 
 <p style="clear:both"></p>
 
@@ -106,7 +106,7 @@ You will need a suitable crimping tool for the crimp pins, for example Engineer 
 
 ![wiring_engineer_pa-09.jpg](/guides/wiring/wiring_engineer_pa-09.jpg =50%x){.align-right}Most Duet 3 expansion boards use the same connectors as the main boards. The exception to this is the [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC), which uses JST-PH and JST-ZH connectors to keep the size of the board as small as possible.
 
-The JST-PH connectors can be crimped using a manual tool such as Engineer PA-09, or pre-crimped connectors are available from electrical retailers.
+The JST-PH connectors can be crimped using a manual tool such as Engineer PA-09, or pre-crimped connectors are available from electrical retailers. The Iwiss SN-2549 ratchet cripping tool claims to be compatible with JST PH crimp pins and all other pin connectors currently use by Duets except JST ZH. 
 
 The JST-ZH connectors (used for CAN and 1LC v1.0 headers) are difficult to crimp because they are so small, so Duet3D supply pre-terminated connectors. You can connect longer wires to them by hand soldering or using small size (white) solder sleeves. They can be manually crimped with Engineer PA-09, good eyesight and a steady hand. 
 
