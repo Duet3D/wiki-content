@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-20T06:42:00.188Z
+date: 2022-10-20T07:01:31.313Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -23,6 +23,7 @@ Current status, last actions:
 * removed Dn from robotType, because mapDriveLetterDn will be needed in most cases anyway
 * new documentation page about object model
 * added Z parameter for CoreXZ
+* to finish the current release for a stable version, I postpone the following capabilities to the next release: 5BarParScara, handling continuous axis, complete object model, most robotType templates (draft versions are created)
 
 # Configuring a Robot printer
 
