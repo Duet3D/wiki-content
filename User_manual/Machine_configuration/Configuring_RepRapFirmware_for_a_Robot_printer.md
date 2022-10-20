@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-18T07:00:32.301Z
+date: 2022-10-20T06:42:00.188Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -19,10 +19,10 @@ The kinematics is developed for Duet3Ds RepRapFirmware and will be included in 3
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
 Current status, last actions:
-* some settings moved to B"robotType", so P"closedChain" is not necessary any more. CoreXY now has submodes like XY, YZ, XZ (TBD: Z3 etc. settings for axes coupling ratios)
+* some settings moved to B"robotType", so P"closedChain" is not necessary any more. CoreXY and CoreXZ with Z parameter
 * removed Dn from robotType, because mapDriveLetterDn will be needed in most cases anyway
 * new documentation page about object model
-* added Z parameter for CoreXZ, CoreYZ
+* added Z parameter for CoreXZ
 
 # Configuring a Robot printer
 
@@ -67,7 +67,7 @@ Most changes in config.g don't need a reboot, but when a drive or letter assignm
 Currently, valid values for the type and parameters are:
 * 6Axis
 * 5AxisAC, 5AxisBC (=> CNC 5 axis, Pentarod, Open5x)
-* CoreXYAC, CoreXYBC, CoreXZAC[:Zf], CoreXZBC[:Zf], CoreYZAC[:Zf], CoreYZBC[:Zf]
+* CoreXYAC, CoreXYBC, CoreXZAC[:Zf], CoreXZBC[:Zf]
 * 4AxisPall, 4AxisPallInv (=> IRB 460 like)
 * 5BarParScara, 5BarParScaraAC, 5BarParScaraBC (experimental)
 
@@ -95,6 +95,8 @@ Example:
 * max is the maximum angle or position
 * cont means the axis is continuous and has no min/max angles
 * home is the home position in degrees or mm. The value can be outside min and max, the endstop can be low or high type
+
+Currently there is no continuous axis in RRF core, but when it exists, this setting will ignore angle limits.
 
 Example:
 * A"0:-180.0:180.0:0.0" means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
