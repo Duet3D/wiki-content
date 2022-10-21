@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-19T23:15:03.032Z
+date: 2022-10-21T00:12:55.676Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -53,6 +53,10 @@ Sets the axis types as described in the main document. Depending parameter: numO
 # orientationType
 
 This enum holds the information about how orientation information is handled: no, zaxis or full. Internal calculations are always full calculations with rotation matrices, but the decision whether a target position and orientation is met, depends on the orientationType. This is explained in detail on the firmware page.
+
+# bcMode
+
+If 5 axis BC is used instead of AC, the bool bcMode is set to true.
 
 # mapDriveLetterDn, dnDrive
 
