@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-21T08:11:32.196Z
+date: 2022-10-21T08:30:21.438Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -50,11 +50,15 @@ The Dn parameters are set at default values by robotType to help setup, but must
 
 Sets the axis types as described in the main document. Depending parameter: numOfAxes, counting the number of the axes. A passive parallel axis is counted. It is very important that numOfAxes is correct, so when changing axisTypes directly, numOfAxes must be changed also.
 
-# orientationType, isAC, isBC
+# orientationType, isAC, isBC, isQuat, isEulerAxis
 
 This enum holds the information about how orientation information is handled: no, zaxis or full. Internal calculations are always full calculations with rotation matrices, but the decision whether a target position and orientation is met, depends on the orientationType. This is explained in detail on the firmware page.
 
 If orientationType is zaxis, the isAC means AC is used, isBC means BC is used. IJK mode is not implemented.
+
+If orientationType is full, the isQuat uses quaternions in G-Code, isEulerAxis uses Euler axis and angle in G-Gode.
+* Quaternions are described by imaginary part as ABC and real part as D.
+* Euler Axis is desribed by ABC and angle by D. Euler Axis is different from Euler Angles. Euler axis is like IJK, while Euler angles is one of 12 possible 3-step-angle rotations (ZYX, ZYZ etc).
 
 # mapDriveLetterDn, dnDrive
 
