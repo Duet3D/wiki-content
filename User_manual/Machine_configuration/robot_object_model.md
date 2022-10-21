@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-21T08:10:47.066Z
+date: 2022-10-21T08:11:32.196Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -50,11 +50,9 @@ The Dn parameters are set at default values by robotType to help setup, but must
 
 Sets the axis types as described in the main document. Depending parameter: numOfAxes, counting the number of the axes. A passive parallel axis is counted. It is very important that numOfAxes is correct, so when changing axisTypes directly, numOfAxes must be changed also.
 
-# orientationType
+# orientationType, isAC, isBC
 
 This enum holds the information about how orientation information is handled: no, zaxis or full. Internal calculations are always full calculations with rotation matrices, but the decision whether a target position and orientation is met, depends on the orientationType. This is explained in detail on the firmware page.
-
-# isAC, isBC
 
 If orientationType is zaxis, the isAC means AC is used, isBC means BC is used. IJK mode is not implemented.
 
