@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-09-29T14:48:57.637Z
+date: 2022-10-21T22:19:03.076Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -162,7 +162,13 @@ To avoid printing in a singularity, M208 can be set accordingly. Please see the 
 Singularities are solved by calculating generalized inverses.
 
 # Speed and Acceleration control
+Speed control is managed directly in the inverse kinematics: the calculated needed angle velocities are compared against the M203 setting and a violation reported if it exceeds the limit. The limits are defined as degrees/min for rotational axes and mm/min for prismatic ones. The overall speed should be controlled by limiting the extrusion speed by the core RRF, but I'll test it.
+
+Acceleration and jerk is not monitored in this release.
+
 Near and at a singularity, the angular speed of a single or few actuators would grow to infinity and stop printing. The solution is to avoid singularities or to set those angular speed to 0 and accept some inaccuracy. The affected segments are corrected and the surrounding ones smoothing down to velocity values approaching 0 to avoid jerks. The M203 and M201 (and maybe M566) settings are used as upper angular velocity limits for each actuator.
+
+The setting P"violationBehaviour=..." controls what to do with violations (e. g. warn, hinder movement, accept x % over with warning). This is handled together with angle violations.
 
 # Tool offsets and orientation
 Tool offsets are defined by G10 X, Y, Z offsets. There are no parameters for tool orientation in G10 (a proposal would be to add IJK)*), so a modification of the DH parameters directly is needed, if the tool itself is not vertical. When changing tools with a toolchanger, each tool could have it's own tilt values.
