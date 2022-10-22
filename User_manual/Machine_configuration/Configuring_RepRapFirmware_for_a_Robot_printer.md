@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-22T07:07:33.516Z
+date: 2022-10-22T07:10:50.871Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -24,6 +24,7 @@ Current status, last actions:
 * new documentation page about object model
 * added Z parameter for CoreXZ
 * to finish the current release for a stable version, I postpone the following capabilities to the next release: 5BarParScara, handling continuous axis, complete object model, most robotType templates (draft versions are created), 5 axis BC types (may work).
+* added P parameter workingMode and documentation on the robot firmware page about the meaning of work modes
 
 # Configuring a Robot printer
 
