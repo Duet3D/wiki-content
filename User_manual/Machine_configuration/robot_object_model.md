@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-22T07:17:02.639Z
+date: 2022-10-22T08:10:09.890Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -68,7 +68,7 @@ dnDrive is a mapping between drive number and Dn: each array element is a Dn, co
 
 # workingMode
 
-Specifies currently to be used working mode. Holds the value which is set by the M669 P"workingMode=..." parameter. The value is used for inverse kinematics as starting point, e. g. to decide in method LimitPosition whether a desired target is reachable.
+Specifies currently to be used working mode. Holds the value which is set by the M669 P"workingMode=..." parameter. The value is used for inverse kinematics as starting point, e. g. to decide in method LimitPosition whether a desired target is reachable. It is also a fallback solution where to start calculations if something goes wrong.
 
 # dn[][], dnActiveInv
 
