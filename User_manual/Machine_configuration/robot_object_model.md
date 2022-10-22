@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-21T08:30:21.438Z
+date: 2022-10-22T07:15:13.843Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -65,6 +65,10 @@ If orientationType is full, the isQuat uses quaternions in G-Code, isEulerAxis u
 Assigns drive numbers (in the sense of the M584) to the Dn number. This parameter changes dnDrive, which must be changed as well.
 
 dnDrive is a mapping between drive number and Dn: each array element is a Dn, containing the drive number or 99 for palletized axis or -1 if no drive assigned.
+
+# workingMode
+
+Specifies currently to be used working mode. Holds the value which is set by the M669 P"workingMode=..." parameter.
 
 # dn[][], dnActiveInv
 
