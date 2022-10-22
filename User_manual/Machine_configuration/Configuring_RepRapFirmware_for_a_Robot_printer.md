@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-20T07:03:00.270Z
+date: 2022-10-22T07:07:33.516Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -199,6 +199,19 @@ Examples:
 * CNC 5 axis e. g. PPPRR is zaxis, because the 2 rotary axes control the Z axis orientation. XY constantly changes because the drill rotates.
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
+
+**P"workingMode=home|a1:p2:a3:etc"**
+
+Working modes are explained in https://docs.duet3d.com/en/User_manual/Machine_configuration/robot_firmware chapter "Working modes". The work mode can be changed by
+* home sets the workmode to the angle combinations of the homing angles. This is the default and startup situation after changing to robot kinematics.
+* list-of-angles is a colon separated list of degrees for rotary axes and mm for linear/prismatic axes. The list size must match the count of actuators, including a palletized axis (the palletized axis's angle will be ignored). If a value is not specified, the homeing value will be taken.
+
+The work mode can be changed by e. g. G1 H2 moves and then setting to the current position by issuing the P command with the current values. Only setting the new P values without previous moving will probably fail, because the singularity cannot be crossed in most cases.
+
+Example:
+* P"workingMode=10:20:30:-20:0" for CNC 5 axis AC will set XYZ positions to 10, 20, 30 mm, the A axis to -20 degrees and the C axis to 0 degrees as starting point.
+* P"workingMode=:::-20:0" same, but the prismatic positions will be set to the homing values and only A and C are specified.
+* P"workingMode=home" will set the starting point to the values of the An... third parameters of each axis. The starting point will be stored when the An parameters are completely specified.
 
 **P"quality=n[:log|logDetailed|logoff]"**
 * n can be 1, 3 or 5. 1 is lowest quality, 5 highest, default is 5.
