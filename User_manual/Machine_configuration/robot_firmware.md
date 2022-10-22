@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-10-21T22:19:03.076Z
+date: 2022-10-22T06:47:26.137Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -160,6 +160,16 @@ Being in a singularity may be necessary when homing. In Example 2 of the DH para
 To avoid printing in a singularity, M208 can be set accordingly. Please see the chapter about M208 for details.
 
 Singularities are solved by calculating generalized inverses.
+
+# Working modes
+
+For part of the robot types, a specific cartesian position and orientation can be reached by different arm positions. https://docs.duet3d.com/User_manual/Machine_configuration/Configuration_five_bar_parallel_scara chapter "Working Modes" explains it for 5 bar parallel scara. An industrial 6 axis robot has up to 8 possible angle combinations for a given position and orientation.
+
+Crossing the boundaries and changing the working modes is only possible by crossing singularities. For exceptions please see below.
+
+To avoid problems, the working mode can be specified by telling the firmware using a set of actuator angles with P"workmode=..." as reference, which is used as beginning position/orientation to calculate targets. Default are the homing angles. The calculation uses a print path which is solvable the whole path, i. e. all segments of a move will be achievable with limited velocity of the actuators. When the kinematics is informed about a new move, the method LimitPosition is called which checks whether the position and orientation is reachable. The decision is made by the M208 limits and the inverse kinematics calculation whether the robot can reach the position and orientation. The calculation stays inside the work mode, starting from the position/orientation of the stored angles in cachedAngles.
+
+To change workmode, additional G-Code commands like G1 H2 moves are necessary and setting to the new workmode. An alternative is to cross the singularity with the experimental solution to set velocity for critical actuators to 0 and cross the singularity. This will often produce inexact print or drill results, but may be acceptable.
 
 # Speed and Acceleration control
 Speed control is managed directly in the inverse kinematics: the calculated needed angle velocities are compared against the M203 setting and a violation reported if it exceeds the limit. The limits are defined as degrees/min for rotational axes and mm/min for prismatic ones. The overall speed should be controlled by limiting the extrusion speed by the core RRF, but I'll test it.
