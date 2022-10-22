@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-22T08:11:37.491Z
+date: 2022-10-22T08:13:48.195Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -66,9 +66,11 @@ Assigns drive numbers (in the sense of the M584) to the Dn number. This paramete
 
 dnDrive is a mapping between drive number and Dn: each array element is a Dn, containing the drive number or 99 for palletized axis or -1 if no drive assigned.
 
-# workingMode
+# workingMode, workingModeValues
 
 Specifies currently to be used working mode. Holds the value which is set by the M669 P"workingMode=..." parameter. The value is used for inverse kinematics as starting point, e. g. to decide in method LimitPosition whether a desired target is reachable. It is also a fallback solution where to start calculations in case something goes wrong.
+
+workingModeValues hold the values. This values for homing values can only be set when the An parameters has been specified completely.
 
 # dn[][], dnActiveInv
 
