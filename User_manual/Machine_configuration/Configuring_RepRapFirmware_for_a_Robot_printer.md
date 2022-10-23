@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-23T19:33:17.892Z
+date: 2022-10-23T19:51:49.916Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -189,17 +189,17 @@ The first number is the drive number, the second drive letter and the third the 
 Example:
 * 4C0 means, drive number 4 from config.g with letter C is assigned to D!0 . An example for CNC 5 axis AC table/table configuration, where the chain starts with C axis inverted in workpiece mode.
 
-**P"orientationType=zaxis|no|full"**
+**P"orientationType=AC|BC|full|no"**
 The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
-* zaxis means, only the orientation of the Z axis is important. That's the case with most 3D printers and CNC machines, including 5 axis CNC. The tool may get tilted, but the orientation with respect of X and Y axis is not controlled.
+* AC, BC means, only the orientation of the Z axis is important. That's the case with most 3D printers and CNC machines, including 5 axis CNC. The tool may get tilted, but the orientation with respect of X and Y axis is not controlled. AC is set if two rotational axes are used which are parallel to X and Z axis. BC is used if they are parallel to Y and Z axis.
 * no means, there is no control about orientation. Orientation will change by the mechanical properties and can be changed by actuator changes, but it is not managed by firmware. Forward and inverse kinematics ignore orientation values with the exception of angle violations.
 * full gives full control over the orientation by using the full three orientation vectors. There is no G-Code standard, quaternions are used using ABCD: A is the real number, BCD are the imaginary numbers.
 
 Examples:
 * 4 axis palletized RRRp is no, because orientation is not controllable
-* CNC 5 axis e. g. PPPRR is zaxis, because the 2 rotary axes control the Z axis orientation. XY constantly changes because the drill rotates.
+* CNC 5 axis e. g. PPPRR is AC or BC, because the 2 rotary axes control the Z axis orientation. XY constantly changes because the drill rotates.
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
-* robot 6 axis RRRRRR can be set to different modes: zaxis if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
+* robot 6 axis RRRRRR can be set to different modes: AC, BC if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
 
 **P"workingMode=home|a1:p2:a3:etc"**
 
