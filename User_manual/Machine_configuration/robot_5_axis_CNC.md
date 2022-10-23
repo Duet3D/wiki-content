@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-10-16T07:44:16.437Z
+date: 2022-10-23T20:25:20.995Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -10,21 +10,23 @@ dateCreated: 2022-08-31T22:53:13.376Z
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
-# 5 axis CNC
+# Supported robot types described on this page
 
-A 5 axis CNC is built from three cartesian axes (including the possibility to double axes, like a gantry CNC) and two rotary axes. This kinematics subtype includes Pentarod, Open5x and CoreXY based 3D printers also. This kinematics allows
-* work on 5 sides without workpiece rearranging
-* nonplanar work by tilting the tool
+The following description includes the following robot types:
+* CNC 5 axis AC or BC, head/head, head/table or table/table
+* CoreXY or CoreXZ with AC or BC rotational axes. Z can move the table or the head similar to a CNC
+* Pentarod or Open5x like
+* 5BarParallelScara with AC or BC rotational axes (planned)
 
-Properties:
-* the rotary axis which is parallel to the X axis is called A axis, to Y is the B axis and to Z is the C axis when they are in 0 degree position. Two of them are used, AC, AB or BC. For AC, AB, BC there are 2 different assemblies possible, e.g. A with C assembled on it (in this case, traditionally A is called master or 4th axis and C slave or 5th axis because C is linked and depends on A), or C with A assembled on it.
+# AC, BC
+
+The types above have a specific method to move X, Y, Z and addional two rotational axes which are called AC or BC:
+* AC is using rotational axes which are parallel to the X and Z axis
+* BC are axes parallel to Y and Z axis
+* head/head means both rotational axes are assambled at the head, head/table is mixed and in table/table mode, both are assembled at the bottom. The possibilities have different results in respect to workpiece size, stability etc., but it is not discussed here.
+* in head/head and table/table mode, one rotary axis is assembled on top of the other. Tradionally, they are named master and slave, e.g. if C is assembled on top of A, A is master, C is slave.
 * a rotating spindle has only one important orientation, the Z axis. Two rotations are sufficient to describe it's orientation.
-* the rotary axes can be installed at the spindle ("head") or table, resulting in subtypes head/head, head/table, table/table
-* the possibilities have different results in respect to workpiece size, stability etc., but it is not discussed here.
-
-If for some reason the rotational axes are named UVW, the default firmware behaviour is to handle them as linear. To change it to rotational, use M485 R1 for the letters. ABCD are handled by firmware as rotational by default. The firmware must know whether its rotational to calculate speed limits and distances correctly, e. g.
-
-In G-Code G0, G1 the XYZ letters are cartesian coordinates and AC (or BC, AB) are rotary angles, i. e. different units of measurement are used. An alternative G-Code uses IJK tool vectors, used e. g. by Fanuc. The letters IJ conflict with G2/G3 commands, where they have a different meaning, so IJK is not used until there is a standardized solution.
+* if for some reason the G-Code doesn't use AC, but other letters like UV, they can be remapped with the M669 P"mapDriveLetterDn" parameter.
 
 # Denavit-Hartenberg (DH)
 
@@ -126,6 +128,8 @@ What should be added:
 
 Example:
 * P"mapDriveLetterDn=0X4:1Y3:2Z5:3A2:4C1" for a CoreXZ system will assign the X0 and Z2 (m584) drives to D4 and D5, so they can work together. The chain will start at the workpiece, so C first, then A, then Y, then the connected XZ. D6 will be the tool, D0 if needed the offsets between workpiece and rotating C plate.
+
+CoreXZ with Z parameter is supported to set a ratio between X and Z movement.
 
 # unsorted
 
