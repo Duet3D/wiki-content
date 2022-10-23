@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-22T08:13:48.195Z
+date: 2022-10-23T18:55:50.386Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -95,14 +95,18 @@ an holds the Angle (or mm position for a prismatic joint) definitions in a doubl
 
 continuousAxis is an int with binary flags for the axes which are set to continuous. If e.g. the 6th axis is continuous, the 6th bit from right is set to 1. When an axis is flagged as continuous, the first two parameters of an (min, max) are ignored.
 
-# quality, logSimple, logDetailed, ...
+# quality, logLevel
 
-quality holds the string setting. log and logoff set logSimple and logDetailed. The different levels change multiple values:
+quality holds the string settingThe different levels change multiple values:
 * precision of segemented move: precision, precisionAngle, segmentLength, segmentsPerSecond
 * precision of long moves: longMovePrecision, longMovePrecisionAngle, longMoveSegmentLength
 * angleDiff: angle change for calculation of jacobian matrix
 * maxIterations: how many iterations max to find a solution
 * lowValuesZero: used to round values near 0, 1, -1 in some orientation calculations
+
+The P"quality" can activate logging also. log means logLevel 1 and logDetailed means logLevel 2. logLevel 0 means no logging.
+* logLevel 1 will log main data like time needed for move calculations
+* logLevel 2 will contain much more information like calculation results of the chain steps to find the reason for unexpected calculation results. logLevel will greatly reduce performance.
 
 # start, stop, MAXTIMERS
 
