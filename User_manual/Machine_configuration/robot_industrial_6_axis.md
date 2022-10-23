@@ -2,11 +2,18 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2022-09-17T21:19:05.335Z
+date: 2022-10-23T20:06:29.078Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
 ---
+
+This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
+
+
+> This page is very draft. This will change when the 5 axis robots are all working ok.
+{.is-info}
+
 
 # Industrial 6 axis robot
 following will be a description of the specifics
@@ -14,10 +21,9 @@ following will be a description of the specifics
 
 # orientation
 
-I am not aware of G-Code describing the orientation of a 6 axis DOF robot, so I'm currently using the following method:
-* B"orientationType=full" must be set to use it
-* describe the orientation by quaternions and use ABCD letters for the values: A for the real value of rotation and BCD for the imaginary values of the rotation axis vector. Quaternions can be directly translated into the rotation information of the transformation matrix.
-* G1 or G2/G3 XYZABCD will then describe a 6 DOF position with orientation
+Full orientation of a 6 axis robot will be described by using quaternions. G-Code ABCD are the real and 3 imaginary numbers in this order. 6 axis robot can also operated in AC or BC mode. G-Code AC or BC commands will be translated into the full orientations of the robot. Internally, all orientations are stored as rotation information as part of a transformation matrix with full information of all three coordination axes.
+
+* G1 or G2/G3 XYZABCD describes a 6 DOF position with orientation
 
 Currently not implemented is quaternion based segmentation, this would require a change in the main firmware code. Quaternion based rotations (slerp) have constant velocity and sound interesting for nonplanar printing or drilling, especially for B-Splines or Nurbs.
 
