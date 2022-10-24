@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-10-24T09:08:51.641Z
+date: 2022-10-24T09:09:27.096Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -62,7 +62,7 @@ With AC and BC, one should be aware of the gimbal lock at A = 0 degrees and B = 
 The configuration of the DH parameters, which are specified by the Dn parameters, depends on where the axes are located, their direction and where the angle 0 degree is located. The DWC plugin RobotViewer shall help configuring (this tool is in development).
 
 A good approach is:
-* decide where the reference coordination point is located, where the position and orientation doesn't change. This is called base
+* decide where the reference coordination point is located, where the position and orientation doesn't change. This is called base or origin.
 * build the chain from base to the hotend. Often this is base-Y-X-Tool or base-Y-X-Z-Tool
 * build the chain from base to the workpiece/printobject. This chain must then be inverted and the chain elements reversed (by D!n and changing order). Often this is base-A-C-workpiece or base-Z-A-C-workpiece.
 * put together the two chains, starting from the workpiece Dn, removing one base entry, ending with tool's Dn.
