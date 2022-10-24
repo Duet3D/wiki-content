@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-10-24T09:19:17.015Z
+date: 2022-10-24T09:19:47.283Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -91,7 +91,7 @@ The inverse kinematics is calculated by the jacobian, generalized inverse method
 
 The calculations allow correct positions and orientations for every segment of a move, like RTCP. It is however important to have a good path planner on the CAM side.
 
-# CoreXY or CoreXZ in CNC 5 axis mode
+# CoreXY or CoreXZ 5 axis
 
 A new configuration option allows to set most configuration settings fast:
 
