@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-23T19:51:49.916Z
+date: 2022-10-24T08:33:41.054Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -214,12 +214,9 @@ Example:
 * P"workingMode=:::-20:0" same, but the prismatic positions will be set to the homing values and only A and C are specified.
 * P"workingMode=home" will set the starting point to the values of the An... third parameters of each axis. The starting point will be stored when the An parameters are completely specified.
 
-**P"quality=n[:log|logDetailed|logoff]"**
+**P"quality=n"**
 * n can be 1, 3 or 5. 1 is lowest quality, 5 highest, default is 5.
-* log will log performance measure like time and iterations needed and will be reported on the console. Log will change performance a bit.
-* logDetailed will log detailed information like all rotation matrix results and outputs it to the console. This will reduce performance.
-* logoff will turn off log and logDetailed.
-* default is B"quality=5:logoff"
+* default is P"quality=5"
 
 Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality.
 
@@ -228,6 +225,13 @@ The following properties will be changed:
 * required precision for position and orientation
 
 Testing so far has shown, that altering iterations has nearly no effect. After 5 iterations, all tests have approached the target, with the exception of singularity areas, where the iterations is interrupted, because angles go havoc. Changing precision requirement has some effect on time required to calculate.
+
+**P"logLevel=0|1|2"**
+Turning on logging for performance measuring or debugging.
+* log results are output to console
+* default is P"logLevel=0"
+* logLevel=1 will report performance and important information
+* logLevel=2 will additionally report detailed position and orientation information about every chain step and other data like parameters of the calls to forward and inverse kinematics. It will reduce performance a lot.
 
 # M669 S, T parameters: segmentation
 
