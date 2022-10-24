@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-23T19:48:13.083Z
+date: 2022-10-24T08:37:52.358Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -95,7 +95,11 @@ an holds the Angle (or mm position for a prismatic joint) definitions in a doubl
 
 continuousAxis is an int with binary flags for the axes which are set to continuous. If e.g. the 6th axis is continuous, the 6th bit from right is set to 1. When an axis is flagged as continuous, the first two parameters of an (min, max) are ignored.
 
-# quality, logLevel
+# quality
+
+* quality=5 is the highest level and default
+* quality=3 is middle
+* quality=1 is lowest quality
 
 quality holds the string settingThe different levels change multiple values:
 * precision of segemented move: precision, precisionAngle, segmentLength, segmentsPerSecond
@@ -104,9 +108,13 @@ quality holds the string settingThe different levels change multiple values:
 * maxIterations: how many iterations max to find a solution
 * lowValuesZero: used to round values near 0, 1, -1 in some orientation calculations
 
-The P"quality" can activate logging also. log means logLevel 1 and logDetailed means logLevel 2. logLevel 0 means no logging.
-* logLevel 1 will log main data like time needed for move calculations
-* logLevel 2 will contain much more information like calculation results of the chain steps to find the reason for unexpected calculation results. logLevel will greatly reduce performance.
+# logLevel
+
+* logLevel=0 means no special logging and is default
+* logLevel=1 will log main data like time needed for move calculations
+* logLevel=2 will contain much more information like calculation results of the chain steps to find the reason for unexpected calculation results. logLevel will greatly reduce performance.
+
+The logLevel is independent from the debugging options of the core RRF.
 
 # start, stop, MAXTIMERS
 
