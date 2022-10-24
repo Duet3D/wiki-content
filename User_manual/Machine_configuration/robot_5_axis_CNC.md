@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-10-24T09:08:05.976Z
+date: 2022-10-24T09:08:51.641Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -69,7 +69,7 @@ A good approach is:
 * assign the drives to Dn
 * verify movements by issuing G1 H2 commands
 
-From this descriptions it becomes clear that a rotary A axis located near the hotend must be handled differently than if it is located near C and workpiece. The first is in the base-...-tool chain, the second is located in the inverted base-...-workpiece chain. It is also a difference where the Z axis is located: at the hotend like CNC gantry systems are constructed or at the print bed like a CoreXY.
+From this descriptions it becomes clear that a rotary A axis located near the hotend (head mode) must be handled differently than if it is located near C and workpiece (table mode). The first is in the base-...-tool chain, the second is located in the inverted base-...-workpiece chain. It is also a difference where the Z axis is located: at the hotend like CNC gantry systems are constructed or at the print bed like a CoreXY.
 
 # DH example AC, BC table/table mode
 
