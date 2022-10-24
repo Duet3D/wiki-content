@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-10-24T09:19:47.283Z
+date: 2022-10-24T09:22:18.024Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -104,6 +104,8 @@ M669 K13 B"robotType=CoreXZBC:Zn"
 if the rotary axis B is parallel to the Y axis.
 The rotary axis C is parallel to the Z axis.
 The C rotary table is mounted on top of the A/B axis, this one is mounted on the Z axis. Z is connected to the base, as are XY axes, which are CoreXY connected. The base is a fixpoint (0,0,0), which doesn't change position and orientation and is a reference.
+
+The firmware decides by the used letter where the connected steppers are located and which Dn-s they are connected to. The XY or XZ assigned Dn-s must be defined together as pairs.
 
 sets some parameters already:
 * axisTypes=PPPRR is set for prismatic axes XYZ and rotary axes AC
