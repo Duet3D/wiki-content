@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-10-24T09:13:47.109Z
+date: 2022-10-24T09:19:17.015Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -73,25 +73,6 @@ A good approach is:
 
 From this descriptions it becomes clear that a rotary A axis located near the hotend (head mode) must be handled differently than if it is located near C and workpiece (table mode). The first is in the base-...-tool chain, the second is located in the inverted base-...-workpiece chain. It is also a difference where the Z axis is located: at the hotend like CNC gantry systems are constructed or at the print bed like a CoreXY.
 
-# DH example AC, BC table/table mode
-
-
-If AC or BC in table/table mode are used, the calculation is in workpiece mode, the transformations are as follows:
-
-![cnc5axisactransform.png](/manual/configuration/cnc5axisactransform.png)
-
-Starting from the base of the C axis plate, the coordinate system is translated d up to be in line with the A/B axis. Then changing by the A/B angle and then translating down to the base again by -d. Then rotaing by C axis, and then adding XYZ of the linear axes and some tool offsets to get the endpoint position and orientation. Because it is in workpiece mode, which means the transformation shall start from the workpiece and not the plate, the matrix transformations between workpiece and plate must be inverted before multiplications to calculate forward and inverse kinematics.
-
-* d translate and rotate of coordinate system so the Z axis is in the A/B axis direction: for A axis: D0:d:0.0:0:90:0.0:0.0 rotating 90 degrees by Y axis, for B axis: D0:d:0.0:0.0:90.0 rotating by 90 around the X axis. The goal of the coordinate system rotation is to get the Z axis into the direction of the A/B axis: the arrow for the A axis to the right, for B axis to the front. This defines positive angles for the A axis to be CCW if looking from right to the axis and for B axis positive angle to be CCW when looking from front to the axis.
-* rotate A/B around the Z axis and change back coordinate system for case B: for A axis: D1:0:0:0:-90:0:0 and for B axis: D1:0:0:0:-90
-* translate coordinate system back to plate, then rotate C axis: D2:-d:0:0:0
-* D3 to D5 are the linear axes movements
-* D6 are tool properties, later overwritten by G10 offset values
-
-When calculating the chain, D0, D1 and D2 must be inverted.
-
-Forward calculates A/C or B/C to XYZ IJK position and orientation, while inverse kinematics can be calculated from XYZ IJK, resulting in XYZ AC or XYZ BC values. IJK is the tool vector with orientation vertical on the workpiece surface.
-
 # BC table/table example
 
 B means the B axis is parallel to the Y axis and is master, C is parallel to the Z axis and is slave, i. e. it is assembled on top of the B axis.
@@ -110,14 +91,16 @@ The inverse kinematics is calculated by the jacobian, generalized inverse method
 
 The calculations allow correct positions and orientations for every segment of a move, like RTCP. It is however important to have a good path planner on the CAM side.
 
-# CoreXY in CNC 5 axis mode
+# CoreXY or CoreXZ in CNC 5 axis mode
 
 A new configuration option allows to set most configuration settings fast:
 
-M669 K13 B"robotType=CoreXY:AC"
+M669 K13 B"robotType=CoreXYAC"
+M669 K13 B"robotType=CoreXZAC:Zn"
 if the rotary axis A is parallel to the X axis
 or
-M669 K13 B"robotType=CoreXY:BC"
+M669 K13 B"robotType=CoreXYBC"
+M669 K13 B"robotType=CoreXZBC:Zn"
 if the rotary axis B is parallel to the Y axis.
 The rotary axis C is parallel to the Z axis.
 The C rotary table is mounted on top of the A/B axis, this one is mounted on the Z axis. Z is connected to the base, as are XY axes, which are CoreXY connected. The base is a fixpoint (0,0,0), which doesn't change position and orientation and is a reference.
@@ -136,7 +119,7 @@ What should be added:
 Example:
 * P"mapDriveLetterDn=0X4:1Y3:2Z5:3A2:4C1" for a CoreXZ system will assign the X0 and Z2 (m584) drives to D4 and D5, so they can work together. The chain will start at the workpiece, so C first, then A, then Y, then the connected XZ. D6 will be the tool, D0 if needed the offsets between workpiece and rotating C plate.
 
-CoreXZ with Z parameter is supported to set a ratio between X and Z movement.
+The CoreXZ Z parameter is described at the cartesian kinematics for M669 K2.
 
 # unsorted
 
