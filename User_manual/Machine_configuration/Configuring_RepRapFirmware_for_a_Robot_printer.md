@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-24T08:33:41.054Z
+date: 2022-10-24T10:07:56.675Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -235,9 +235,9 @@ Turning on logging for performance measuring or debugging.
 
 # M669 S, T parameters: segmentation
 
-**Sn** Segments per second
+**Sn** Segments per second, default is 100
 
-**Tn** Minimum segment length (mm). Default is 0.1 mm
+**Tn** Minimum segment length (mm). Default is 0.2 mm
 
 G1, G2, and G3 moves are separated into segments, which are executed as straight lines. The length of the segments is controlled by the S and T parameters. More segments give better results, but at the cost of processing time to calculate them.
 
