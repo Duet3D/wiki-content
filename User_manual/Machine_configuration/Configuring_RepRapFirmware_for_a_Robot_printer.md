@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-24T10:07:56.675Z
+date: 2022-10-24T13:12:44.362Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -214,9 +214,8 @@ Example:
 * P"workingMode=:::-20:0" same, but the prismatic positions will be set to the homing values and only A and C are specified.
 * P"workingMode=home" will set the starting point to the values of the An... third parameters of each axis. The starting point will be stored when the An parameters are completely specified.
 
-**P"quality=n"**
+**P"quality=1|3|5"**
 * n can be 1, 3 or 5. 1 is lowest quality, 5 highest, default is 5.
-* default is P"quality=5"
 
 Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality.
 
