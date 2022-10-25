@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-25T04:31:47.934Z
+date: 2022-10-25T04:32:44.334Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -47,7 +47,7 @@ This will set defaults for some core settings.
 
 M669 without parameters or with K13 alone will output the current settings to the console. M409 K"move.kinematics" displays most parameters as object model.
 
-Multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. Different letters can be combined. Example: to set two P settings, they must be on separate lines.
+Multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. Different letters can be combined.
 
 Overview
 * K13 set robot kinematics and must be defined first
