@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-25T04:37:29.971Z
+date: 2022-10-25T04:39:59.102Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -90,7 +90,7 @@ parameters for CoreXYAC or CoreXYBC:
 
 Not being on the list doesn't mean that a robot type is not supported. E.g. polar kinematics, serial Scara, cartesian with 3 axes spherical head and many more are all supported by specifying the D and P parameters individually. robotType is left empty in this case. Some kinematics already exist as dedicated kinematics. Robot kinematics for them is meant as an additional option, not as replacement.
 
-The task of robotType is to set some default parameters, but it is also important to decide which arms are connected as parallel and which drives are e. g. AC. For example, together with information of mapDriveLetterDn, firmware knows to which drive and Dn A is connected, and which drives are the connected actuators for CoreXY/XZ/YZ/5BarParScara.
+The task of robotType is to set some default parameters, but it is also important to decide which arms are connected as parallel and which drives are e. g. AC. For example, together with information of mapDriveLetterDn, firmware knows to which drive and Dn A is connected, and which drives are the connected actuators for CoreXY/XZ/5BarParScara/Palletized.
 
 The default settings of robotType can be overwritten by P"..." parameters. B"robotType" should be specified first, otherwise P parameters will be overwritten.
 
