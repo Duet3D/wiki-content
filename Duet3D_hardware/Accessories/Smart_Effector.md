@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2022-10-12T06:43:05.296Z
+date: 2022-10-25T17:37:49.755Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -58,7 +58,7 @@ The STEP files are available on github:
 
 [https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v2.0/SmartEffector_v2.0.step](https://github.com/Duet3D/SmartEffector/blob/master/SmartEffector/SmartEffector_v2.0/SmartEffector_v2.0.step){target=_blank}
 
-Note the v4.0 is very similar but the 8 way Molex KK is replaced with a 6 wal JST PH. the 2 way Molex KK is replaced with a 2 way JST PH. these connectors are slightly smaller.
+Note the v4.0 is very similar but the 8 way Molex KK is replaced with a 8 way JST PH. The 2 way Molex KK is replaced with a 2 way JST PH. these connectors are slightly smaller.
 
 ### Carriage Adapter Dimensions
 
