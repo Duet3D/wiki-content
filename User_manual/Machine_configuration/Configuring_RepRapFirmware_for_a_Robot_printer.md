@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-25T04:32:44.334Z
+date: 2022-10-25T04:37:29.971Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -78,10 +78,8 @@ Currently, valid values for the type and parameters are:
 * leaving empty: use only Dn, P, A and other parameters
 
 parameters for the AC, BC types:
-* table-table for AC or BC being located at the table
+* table-table for AC or BC being located at the table. In table-table mode, C is assemled on top of A/B. If not, Dn must be changed individually afterwards.
 * head-table for A or B being located at the head and C at the table
-
-In table-table mode, C is assemled on top of A/B. If not, Dn must be changed individually afterwards.
 
 parameters for CoreXZAC and CoreXZBC: (as shown above)
 * Zf for the ratio parameter like described in M669 K2 kinematics
