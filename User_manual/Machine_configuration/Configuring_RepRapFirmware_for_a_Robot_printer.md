@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-25T04:17:56.539Z
+date: 2022-10-25T04:18:49.337Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -80,9 +80,11 @@ Currently, valid values for the type and parameters are:
 parameters for the AC, BC types:
 * table-table for AC or BC being located at the table
 * head-table for A or B being located at the head and C at the table
+
 parameters for CoreXZAC and CoreXZBC: (as shown above)
 * Zf for the ratio parameter like described in M669 K2 kinematics
-parameter for CoreXYAC or CoreXYBC: 
+
+parameters for CoreXYAC or CoreXYBC: 
 * ZatTable the Z axis moving the bed
 * ZatHead the Z axis moving the head similar to CNC gantry machines
 
