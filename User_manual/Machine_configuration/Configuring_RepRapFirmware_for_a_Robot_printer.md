@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-10-25T04:18:49.337Z
+date: 2022-10-25T04:24:42.027Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -40,12 +40,12 @@ The robot kinematics supports different types. Roughly, they can be separated in
 # M669 configuration
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-The first M669 line must specify the K type and robot type, e.g.:
+The first M669 line must specify the K13 type. Often is also useful to specify the B"robotType":
 M669 K13 B"robotType=5AxisAC"
 
 This will set defaults for some core settings.
 
-M669 without parameters will output the current settings to the console.
+M669 without parameters or with K13 alone will output the current settings to the console. M409 K"move.kinematics" displays most parameters as object model.
 
 Most parameters can be changed and asked for by the object model, see dedicated page.
 
@@ -80,6 +80,8 @@ Currently, valid values for the type and parameters are:
 parameters for the AC, BC types:
 * table-table for AC or BC being located at the table
 * head-table for A or B being located at the head and C at the table
+
+In table-table mode, C is assemled on top of A/B. If not, Dn must be changed individually afterwards.
 
 parameters for CoreXZAC and CoreXZBC: (as shown above)
 * Zf for the ratio parameter like described in M669 K2 kinematics
