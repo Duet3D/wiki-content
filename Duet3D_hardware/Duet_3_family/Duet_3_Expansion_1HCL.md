@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-10-30T09:43:00.826Z
+date: 2022-10-30T09:46:04.957Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -208,8 +208,8 @@ See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning) f
 The following code could be used in config.g to set the sensor as a thermistor:
 
 ```
-M308 S3 P"50.temp0" Y"thermistor" T100000 B3950 A"X Motor Temp" ;Setup temp  0  on 1HCL at CAN address 50 as sensor 3  - sensing X motor temperature
-M308 S4 P"51.temp0" Y"thermistor" T100000 B3950 A"Y Motor Temp" ;Setup temp 0 on 1HCL at CAN address 51 as sensor 4  - sensing Y motor temperature
+M308 S3 P"50.temp0" Y"thermistor" T100000 B3950 A"X Motor Temp" ; Setup temp 0 on 1HCL at CAN address 50 as sensor 3  - sensing X motor temperature
+M308 S4 P"51.temp0" Y"thermistor" T100000 B3950 A"Y Motor Temp" ; Setup temp 0 on 1HCL at CAN address 51 as sensor 4  - sensing Y motor temperature
 ```
 
 These sensors would be displayed in the "extras" tab in  DWC and available in the object model to query and potentially take action on for example the following could be inserted into [daemon.g](/User_manual/Tuning/Macros#daemong) to check the motor temperature every second and raise the alarm if they are higher than a set value of 70C
@@ -219,8 +219,8 @@ if sensors.analog[3].lastReading >70
     echo "X MOTOR Temp Alarm: ", sensors.analog[3].lastReading
     M98 P"motorovertemp.g"
 if sensors.analog[4].lastReading >70
-     echo "Y MOTOR Temp Alarm: ", sensors.analog[4].lastReading
-     M98 P"motorovertemp.g"
+    echo "Y MOTOR Temp Alarm: ", sensors.analog[4].lastReading
+    M98 P"motorovertemp.g"
 G4 P1000
 ```
 
