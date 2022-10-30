@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-30T10:25:07.387Z
+date: 2022-10-30T10:26:47.489Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -44,9 +44,9 @@ When defining more than 10 Dn or axes, the numbers become two-digit. This will c
 Setting B"robotType=..." sets a couple of parameters. The original call is saved in a string robotType. The depending parameters are: numOfAxes, mapDriveLetterDn, orientationType, Dn, connectedDns and more for specific types, so changing it directly is not advisable.
 
 robotType is important for the firmware for special handling of some kinematics and AC / BC axes.
-* CoreXY/XZ/YZ are recognized by robotType Core...
+* CoreXY/XZ are recognized by robotType Core...
 * AC, BC 5 axis types are recognized by those letters in the robotType name
-* 4 axis palletized instaed is recognized by the axisTypes p letter
+* 4 axis palletized is recognized by the axisTypes p letter
 
 The Dn parameters are set at default values by robotType to help setup, but must be changed in most cases to reflect printer properties like arm lengths.
 
