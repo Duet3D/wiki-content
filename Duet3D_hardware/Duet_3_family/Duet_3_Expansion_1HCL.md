@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-10-30T09:40:51.529Z
+date: 2022-10-30T09:43:00.826Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -21,8 +21,8 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 ## Hardware specification
 
 |---|---|
-| **Processor** | Atmel ATSAME51G |
-| **Processor features** | 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM |
+| **Processor** | Microchip ATSAME51G19A |
+| **Processor features** | 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard. Optional on-board CAN bus termination. |
 | **On-board stepper driver** | 1 x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. Maximum motor current 6.3A peak per phase (4.45A RMS). |
