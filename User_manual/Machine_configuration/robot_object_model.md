@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-24T13:22:56.320Z
+date: 2022-10-30T10:25:07.387Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -30,13 +30,14 @@ m409 K"move.kinematics"
 
 There are values which are not part of the object model, but are constants which need recompilation of firmware when changed:
 
-* RRFMODE=0 means the code runs in Windows, 1 means it runs in RRF. RobotKinematics1 to 3 can run without RRF for testing. It has no dependencies from other RRF code.
-* MAXNUMOFAXES=7 sets the maximum number of actuators, to allow a 7 axis robot at maximum.
-* MAXDN = 9 sets the maximum number of Dn definitions, meaning possible values are D0 to D8
+* RRFMODE=1 means the code runs in RRF, 0 if not
+* WINDOWSMODE=1 means the code runs in windows, 0 if not
+* MAXNUMOFAXES=6 sets the maximum number of actuators, to allow a 6 axis robot at maximum.
+* MAXDN = 10 sets the maximum number of Dn definitions, meaning possible values are D0 to D9
 * radiansToDegrees value as exact as possible, used to convert radians to degrees
 * flt_epsilon constant with same value as FLT_EPSILON from float.h
 
-When defining more than 10 Dn or axes, the numbers become two-digit. This is not fully tested.
+When defining more than 10 Dn or axes, the numbers become two-digit. This will currently not work correctly.
 
 # robotType
 
