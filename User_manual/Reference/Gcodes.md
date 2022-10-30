@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-30T11:09:46.542Z
+date: 2022-10-30T11:18:00.430Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2501,11 +2501,11 @@ Switch the bed to its standby temperature. M144 S1 will set it back to its activ
 * **Xn** (RRF 3.4 and earlier only) LED type: X0 = DotStar (default prior to RRF 3.2), X1 = RGB NeoPixel (default in RRF 3.2 and later), X2 = bit-banged RGB NeoPixel, X3 = RGBW NeoPixel (from RRF 3.3), X4 = bit-banged RGBW NeoPixel (from RRF3). This parameter is remembered from one call to the next, so it only needs to be given once. Not all boards support all the modes. On the Duet 3 Mini, X1 and X3 select the NeoPixel output on the main board, while X2 and X4 address the RGB LEDs on some 12864 displays.
 * **Qnnn** (optional, RRF 3.4 and earlier only) Use specified SPI frequency (in Hz) instead of the default frequency. This parameter is not normally needed, and is only processed if X parameter also present. When using NeoPixels, only frequencies in the range 2.4 to 4MHz will work.
 
-### Examples
+### Examples (RRF 3.4 and earlier)
 <br>
 <pre class="cblock">
-M150 X1 Q3000000      ; set LED type to NeoPixel and set SPI frequency to 3MHz
-M150 R255 P128 S20 F1    ; set first 20 LEDs to red, half brightness, more commands for the strip follow
+M150 X1 Q3000000          ; set LED type to NeoPixel and set SPI frequency to 3MHz
+M150 R255 P128 S20 F1     ; set first 20 LEDs to red, half brightness, more commands for the strip follow
 M150 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished programming strip
 </pre>
 
@@ -2515,12 +2515,14 @@ The specified RGB values will be sent to the number of LEDs in the LED strip as 
 
 Caution: if the S parameter is omitted then as many LEDs as can be set in a single chunk will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2, many more on Duet 3). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
 
+Note: if a Neopixel LED strip is assigned to a pin that that cannot generate the WS2812 LED timing in hardware, then motion will be suspended while the LED strip is being written.
+
 Оn **Fysetc 12864mini** you can configure all three LEDs separately. For display and for encoder illumination:
 
-### Examples
+### Example (RRF 3.4 and earlier)
 <br>
 <pre class="cblock">
-M918 P2 E-4 F2000000           ; Fysetc 12864mini
+M918 P2 E-4 F2000000               ; Fysetc 12864mini
 M150 X2 R255 U0 B0 P255 S1 F1      ; display led
 M150 X2 R0 U255 B0 P255 S1 F1      ; left encoder led
 M150 X2 R0 U255 B0 P255 S1 F0      ; right encoder led
@@ -7072,7 +7074,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **En** (RRF 3.5 and later only) LED strip number
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters. For LED strips (supported in RRF 3.5 and later only) this is the LED clock frequency.
-* **T** When creating a heater: temperature sensor number, required (see M308). When creating a LED strip: LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel.
+* **T** When creating a heater: temperature sensor number, required (see M308). When creating a LED strip: LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only, RRF 3.3 and later) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 * **Kaaa(:bbb[:ccc])** (optional, for spindles only, RRF 3.5 and later) Optional PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
 
