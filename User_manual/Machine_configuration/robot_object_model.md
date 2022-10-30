@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-30T10:26:47.489Z
+date: 2022-10-30T10:28:02.439Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -127,3 +127,7 @@ Timer start, stop, maximum array size to hold values for performance measuring w
 # cachedAngles[]
 
 The angles (for rotational axes) or positions (for prismatic axes) of the last move are cached. They are used for the calculation of a new target. Homing sets this cache, as well as a segmented move. The calculation whether a target is reachable (LimitPosition) does not set or change cachedAngles.
+
+# HomeRobotFileName
+
+Name of the homing file to home all axes, default is homeRobot.g
