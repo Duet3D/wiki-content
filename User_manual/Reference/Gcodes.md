@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-26T08:51:59.155Z
+date: 2022-10-30T11:06:36.664Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2496,7 +2496,7 @@ Switch the bed to its standby temperature. M144 S1 will set it back to its activ
 * **Pnnn** Brightness, 0-255 (RepRapFirmware 2.03 and later)
 * **Snnn** Number of individual LEDs to set to these colours
 * **Fn** Following command action. F0 (default) means this is the last command for the LED strip, so the next M150 command starts at the beginning of the strip. F1 means further M150 commands for the remainder of the strip follow this one.
-* **Xn** LED type: X0 = DotStar (default prior to RRF 3.2), X1 = RGB NeoPixel (default in RRF 3.2 and later), X2 = bit-banged RGB NeoPixel, X3 = RGBW NeoPixel (from RRF 3.3), X4 = bit-banged RGBW NeoPixel (from RRF3). This parameter is remembered from one call to the next, so it only needs to be given once. Not all boards support all the modes. On the Duet 3 Mini, X1 selects the NeoPixel output on the main board, while X2 and X4 address the RGB LEDs on some 12864 displays.
+* **Xn** LED type: X0 = DotStar (default prior to RRF 3.2), X1 = RGB NeoPixel (default in RRF 3.2 and later), X2 = bit-banged RGB NeoPixel, X3 = RGBW NeoPixel (from RRF 3.3), X4 = bit-banged RGBW NeoPixel (from RRF3). This parameter is remembered from one call to the next, so it only needs to be given once. Not all boards support all the modes. On the Duet 3 Mini, X1 and X3 select the NeoPixel output on the main board, while X2 and X4 address the RGB LEDs on some 12864 displays.
 * **Ynn** 'Brightness, 0-31 (alternative to P 0-255)
 * **Qnnn** (optional) Use specified SPI frequency (in Hz) instead of the default frequency. This parameter is not normally needed, and is only processed if X parameter also present. When using NeoPixels, only frequencies in the range 2.4 to 4MHz will work.
 
@@ -7056,7 +7056,7 @@ Also see [M118](/User_manual/Reference/Gcodes/M118){target=_blank}.
 
 *Supported in RepRapFirmware 3.*
 
-M950 is used to create heaters, fans and GPIO ports and to assign pins to them. Each M950 command assigns a pin or pins to a single device. So every M950 command must have **exactly one** of the H, F, J, P, S or (for Duet 3 MB6HC only) D parameters.
+M950 is used to create heaters, fans and GPIO ports and to assign pins to them. Each M950 command assigns a pin or pins to a single device. So every M950 command must have **exactly one** of the H, F, J, P, S, D (for Duet 3 MB6HC only) or E (in RRF 3.5 and later) parameters.
 
 If a M950 command has C and/or Q parameters, then the pin allocation and/or frequency will be configured accordingly. Otherwise, the current configuration will be reported.
 
@@ -7067,10 +7067,11 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **Jnn** Input pin number (RRF 3.01 and later only)
 * **Pnn** or **Snn** Output/servo pin number. Servo pins are just GpOut pins with a different default PWM frequency.
 * **Rnn** Spindle number (RRF 3.3 and later only)
-* **Dn** SD slot number (the only value supported is 1) (Duet 3 MB6HC running RRF 3.4 or later only)
+* **Dn** (Duet 3 MB6HC running RRF 3.4 or later only) SD slot number. The only value supported is 1.
+* **En** (RRF 3.5 and later only) LED strip number
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
-* **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters
-* **T** Temperature sensor number, required only when creating a heater. See M308.
+* **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters. For LED strips (supported in RRF 3.5 and later only) this is the LED clock frequency.
+* **T** When creating a heater: temperature sensor number, required (see M308). When creating a LED strip: LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel.
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only, RRF 3.3 and later) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 * **Kaaa(:bbb[:ccc])** (optional, for spindles only, RRF 3.5 and later) Optional PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
 
