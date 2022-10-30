@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-10-29T18:50:06.193Z
+date: 2022-10-30T09:40:51.529Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -22,7 +22,7 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 
 |---|---|
 | **Processor** | Atmel ATSAME51G |
-| **Prosessor features** | 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM |
+| **Processor features** | 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard. Optional on-board CAN bus termination. |
 | **On-board stepper driver** | 1 x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. Maximum motor current 6.3A peak per phase (4.45A RMS). |
@@ -34,10 +34,10 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 ## Operating limits
 
 |:--|:--|
-| **Input voltage** | 12V to 48V |
+| **Input voltage** | 12V to 50V |
 | **VIN connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **Fuses** | 5A for V_FUSED (max 10A), 5A for V_BRAKE |
-| **Stepper driver** | Up to 6.3A peak current per phase (4.45A RMS) |
+| **Stepper driver** | Up to 6.3A peak current per phase (4.45A RMS per phase; max. standstill current 4.45A) |
 | **Medium current outputs** | OUT0/1 up to 2.5A each |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **12V current limit** | 200mA |
@@ -47,9 +47,9 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 
 Use motors with 1.8 or more degrees per step. **Do not use 0.9deg motors**. The positioning accuracy depends on the resolution of the encoder, not on the degrees/step of the motor.
 
-When using a quadrature encoder or any other type of encoder that sigbals relative motion (not absolute shaft angle), **there must be an integer number of output pulses from the encoder per 4 full steps**. For example, a 1.8deg/step motor (200 full steps/rev) could have an encoder with 1000cpr (20 pulses per 4 full steps), 2000 cpr (40 pulses per 4 full steps) or 2500 cpr (50 pulses per 4 full steps).
+When using a quadrature encoder or any other type of encoder that signals relative motion (not absolute shaft angle), **there must be an integer number of output pulses from the encoder per 4 full steps**. For example, a 1.8deg/step motor (200 full steps/rev) could have an encoder with 1000cpr (20 pulses per 4 full steps), 2000 cpr (40 pulses per 4 full steps) or 2500 cpr (50 pulses per 4 full steps).
 
-The maximum speed at which the firmware can drive the motor is typically 6000 full steps/second or a little higher.
+The maximum speed at which the firmware can drive the motor is typically at least 6000 full steps/second.
 
 ## Firmware notes
 
