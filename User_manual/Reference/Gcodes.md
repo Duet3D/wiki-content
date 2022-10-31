@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-10-30T11:18:00.430Z
+date: 2022-10-31T09:58:44.604Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1148,6 +1148,18 @@ The effect of M1 depends on the state of the machine.
 G and M codes can still be sent, the first of which will wake it up again. See also [M0 - stop or unconditional stop](/User_manual/Reference/Gcodes/M0){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
 
 If Marlin is emulated in RepRapFirmware, this does the same as [M25](/User_manual/Reference/Gcodes/M25){target=_blank} if the code was read from a serial or Telnet connection, else the macro file **sleep.g** is run before all heaters and drives are turned off.
+
+## M2: Program End
+
+### Examples
+<br>
+<pre class="cblock">
+M2
+</pre>
+
+This command terminates the current job. At present, it behaves just like M0.
+
+Supported in v3.5-b1 and later.
 
 ## M3: Spindle On, Clockwise (CNC specific)/ Laser on (Laser specific)
 
