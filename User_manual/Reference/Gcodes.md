@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-11-01T11:55:16.676Z
+date: 2022-11-01T11:56:57.268Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4949,7 +4949,7 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 
 Sets the configuration parameters of a closed loop driver. See the [M569](/User_manual/Reference/Gcodes/M569){target=_blank} D parameter for switching a driver to closed loop after it has been configured.
 
-If you are using a quadrature encoder on the motor shaft, the encoder counts per full step (Cn.n) can be found from the datasheet of the encoder being used. If the value is stated as counts per revolution (CPR), divide by the steps per revolution of the stepper motor to get the count per step. For example, a 1000 CPR encoder attached to a 200 step/rev (1.8 deg/step) motor will have a count per step of 1000 ÷ 200 = 5.
+For RRF 3.4, if you are using a quadrature encoder on the motor shaft,  the encoder counts per full step (Cn.n) can be found from the datasheet of the encoder being used. If the value is stated as counts per revolution (CPR), divide by the steps per revolution of the stepper motor to get the count per step. For example, a 1000 CPR encoder attached to a 200 step/rev (1.8 deg/step) motor will have a count per step of 1000 ÷ 200 = 5.
 
 ### Notes
 
