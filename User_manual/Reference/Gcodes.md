@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-11-02T11:30:05.123Z
+date: 2022-11-02T11:32:31.484Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1807,7 +1807,7 @@ RepRapFirmware uses floating point maths so it is possible to use floating point
 ### Parameters
 
 * **P"nnn"** Macro filename^1^
-* **Rn** (when no P parameter is provided, RRF 3.4 and later) This is used within a macro file to indicate whether the macro can be paused from this point on. 1 = remainder of current macro can be paused **and the macro restarted from the beginning after resuming**, 0 = remainder of current macro cannot be paused. By default, a macro cannot be paused except in the case of power failure.
+* **Rn** (when no P parameter is provided, RRF 3.4 and later) This is used within a macro file to indicate whether the macro can be paused from this point on. 1 = remainder of current macro can be paused **and the macro restarted from the beginning after resuming**, 0 = remainder of current macro cannot be paused. By default, a macro cannot be paused except in the case of power failure. **Do not use R1 in system macros** such as tool change macros, homing macros, pause.g or resume.g.
 * If the P parameter is provided then any additional parameters will be passed to the macro^2^
 
 ### Examples
