@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-01T07:44:16.455Z
+date: 2022-11-02T08:23:01.644Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -274,8 +274,8 @@ At the end of the last axis, a tool is attached. The tool is defined as last Dn 
 The signs of the offsets are important and depend on tool's coordinate system (explained in the DH document).
 Example: Z is positive and Z axis of the coordinate system of last Dn points to (0 0 -1) downwards with a common head-table configuration, then Z will lower the distance between head and table.
 
-# M208: limits
-M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). 
+# M208 limits
+M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). With 5 axis robots (AC or BC), the letters A, B, C can also be specified. In this case, the limit is not a cartesian coordinate, but the A, B, C angles in degrees. This is redundant to The first and second An parameter.
 
 The robotic print area is not cubic in most cases, so the workspace differs from the M208 setting. Configuration can set M208 too small or too big:
 * setting too small to a safe, always printable area
