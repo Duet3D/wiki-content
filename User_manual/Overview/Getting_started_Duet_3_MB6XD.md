@@ -2,7 +2,7 @@
 title: Getting started with Duet 3 Mainboard 6XD
 description: 
 published: true
-date: 2022-07-29T15:42:26.720Z
+date: 2022-11-02T23:26:12.385Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-29T15:35:43.090Z
@@ -95,9 +95,10 @@ To run the Duet 3 in standalone mode, the SD card must be formatted correctly an
 
 #### Initial USB setup
 
-You will need to initially setup the Duet 3 using a USB cable (USB A to Micro B). Make sure the USB cable is capable of carrying power AND data; some USB cables are power-only. Then follow the guide here: [Getting connected to your Duet](/How_to_guides/Getting_connected/Getting_connected_to_your_Duet).
+You may find it easiest to initially setup the Duet 3 using a USB cable (USB A to USB C). Make sure the USB cable is capable of carrying power AND data; some USB cables are power-only. Then follow the guide here: [Getting connected to your Duet](/How_to_guides/Getting_connected/Getting_connected_to_your_Duet).
 
 After following this guide, you should be able to connect to your Duet 3 over your network, and connect to the Duet Web Console (DWC).
+
 
 # Commissioning
 
