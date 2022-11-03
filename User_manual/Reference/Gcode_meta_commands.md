@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2022-10-03T20:29:32.183Z
+date: 2022-11-03T18:59:33.807Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -360,6 +360,7 @@ The following functions are supported, with their conventional meanings:
 | datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a DateTime, or a string with format "yyyy-mm-ddThh:mm:ss" to a DateTime. Available in RRF 3.4 and later. |
 | degrees | float->float | Converts radians to degrees |
 | exists | name  -> bool | Yields true if 'name' is a valid variable or object model element name and is not null (available in RRF 3.3beta3 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
+| fileexists | filename  -> bool | Yields true if the file 'filename' exists (available in RRF 3.5beta1 and later). |
 | floor | float->int or float->float | Result is int if it fits in a 32-bit signed integer, else float |
 | isnan | float->bool | |
 | max | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
