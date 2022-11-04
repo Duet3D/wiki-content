@@ -2,7 +2,7 @@
 title: Mesh bed compensation
 description: 
 published: true
-date: 2021-12-15T22:45:13.713Z
+date: 2022-11-04T11:52:28.569Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T15:16:32.300Z
@@ -38,8 +38,8 @@ The Z probe trigger height must not vary significantly with XY position. Measure
 1. Make sure there is no filament stuck to the nozzle (you may want to do this test with the nozzle hot)
 1. Cancel any existing bed compensation by sending [M561](/User_manual/Reference/Gcodes/M561)
 1. Send [M564 S0](/User_manual/Reference/Gcodes/M564) to allow movement lower than where the firmware thinks Z=0 is. This is to ensure that you can lower the nozzle all the way to the bed in step 5.
-1. Command the print head to the coordinates you want to probe. To probe the center, send G1 Z1.
-1. Command the print head down in small steps until the nozzle just touches the bed or just grips a sheet of paper. You may also wish to create a macro to lower the head by e.g. 0.02mm to get greater accuracy (G91 followed by G1 Z-0.02).
+1. Command the print head to the XY coordinates you want to probe. This can be any place where both the nozzle and the probe are over the bed. Either use the jog buttons in DWC, or send a G1 command (eg G1 X100 Y100) to move to a specific location.
+1. Command the print head down in small steps, using the jog buttons in DWC or by sending individual G1 Z[value] commands, until the nozzle just touches the bed or just grips a sheet of paper. You may also wish to create a macro to lower the head by e.g. 0.02mm to get greater accuracy (G91 followed by G1 Z-0.02).
 1. Send G92 Z0 to define that height as Z=0
 1. Command the nozzle up 5mm (G1 Z5)
 1. Send G30 S-1 to probe the bed without resetting the Z=0 position
