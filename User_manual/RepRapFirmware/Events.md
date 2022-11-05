@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2022-11-05T18:31:53.226Z
+date: 2022-11-05T18:33:45.907Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -78,7 +78,7 @@ Once processing is completed the event is removed from the queue. If an event of
 
 The following behaviour changes may require configuration and macro file changes to be made when upgrading from RRF 3.3 to 3.4.
 
-* In RRF 3.3 when a filament error occurred RRF would first look for filament_error#.g where # is the extruder number, and fall back to filament_error.g if that was not found. RRF 3.3 would pause the print before running the filament_error file. RRF 3.4 only looks for filament_error.g but it passes the extruder number in the D parameter, and it does not pause the print.
-* In RRF 3.3 if the M915 R2 parameter was given then on a motor stall RRF would pause the print, and if R3 was given it would pause the print, run rehome.g, then resume the print. In RRF 3.3 both R2 and R3 do the same thing: they create an event. File rehome.g is not used. Therefore to achieve the effect of R3 you need to rename rehome.g to driver_stall.g. To achieve the effect of R2 you need to create driver_stall.g, put a M25 command in it, and use the parameters to create a message to the user.
-* RRF 3.3 reports driver errors (e.g. over temperature or short-to-ground) to the user but does not stop the print. RRF 3.4 attempts to run driver_error.g instead. If it is not found then it pauses the print **without** running pause.g and notifies the user via a message box.
-* RRF 3.3 reports driver warnings (e.g. over temperature, or phase disconnected) to the user. RRF 3.4 attempts to run driver_warning.g. If that file is not found then it just notifies the user via the console.
+* In RRF 3.3 when a filament error occurred RRF would first look for filament-error#.g where # is the extruder number, and fall back to filament_error.g if that was not found. RRF 3.3 would pause the print before running the filament-error file. RRF 3.4 only looks for filament-error.g but it passes the extruder number in the D parameter, and it does not pause the print.
+* In RRF 3.3 if the M915 R2 parameter was given then on a motor stall RRF would pause the print, and if R3 was given it would pause the print, run rehome.g, then resume the print. In RRF 3.3 both R2 and R3 do the same thing: they create an event. File rehome.g is not used. Therefore to achieve the effect of R3 you need to rename rehome.g to driver-stall.g. To achieve the effect of R2 you need to create driver_stall.g, put a M25 command in it, and use the parameters to create a message to the user.
+* RRF 3.3 reports driver errors (e.g. over temperature or short-to-ground) to the user but does not stop the print. RRF 3.4 attempts to run driver-error.g instead. If it is not found then it pauses the print **without** running pause.g and notifies the user via a message box.
+* RRF 3.3 reports driver warnings (e.g. over temperature, or phase disconnected) to the user. RRF 3.4 attempts to run driver-warning.g. If that file is not found then it just notifies the user via the console.
