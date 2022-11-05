@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2022-11-05T18:29:10.916Z
+date: 2022-11-05T18:30:30.230Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -52,7 +52,7 @@ Events also have the following derived properties:
 
 # Processing events
 
-Events are added to an even queue running on the mainboard and processed sequentially, and inserted according to their priority. Higher priority events can jump the queue, but do not jump ahead of an event that's part way through processing. Once an event is processed its removed from the queue.
+Events are added to an event queue running on the mainboard and processed sequentially, and inserted according to their priority. Higher priority events can jump the queue, but do not jump ahead of an event that's part way through processing. Once an event is processed its removed from the queue.
 
 The normal action taken when processing an event is to attempt to run the macro for that event. The handler macro must be in the system files folder (i.e. “/sys” or as set by M505) and have the same name as the event type, with a ‘g’ extension added. Parameters are passed as follows:
 
