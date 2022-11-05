@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2022-11-05T18:33:45.907Z
+date: 2022-11-05T18:34:34.579Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -11,8 +11,6 @@ dateCreated: 2021-12-17T14:46:17.569Z
 # Introduction
 
 Prior to RRF 3.4, conditions that now trigger an event on a mainboard were handled in a range of ways, depending on the issue. Similar conditions on CAN-FD connected expansion boards did not cause the same handling to be invoked. The event system is designed to unify the handling of these (often erroneous) conditions across Duet 2 and Duet3 mainboards, and CAN-FD expansion boards.
-
-*Note that the event system is still under development.*
 
 *In the case of a heater fault the heater is turned off before the event is raised, **so a faulty heater is aways turned off***
 
