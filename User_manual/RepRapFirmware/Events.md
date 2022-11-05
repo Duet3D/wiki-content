@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2022-11-05T18:30:30.230Z
+date: 2022-11-05T18:31:53.226Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -67,7 +67,7 @@ If the macro file is not found then default processing occurs as shown in the ta
 | Event type & macro file name | D macro parameter | P macro parameter | B macro parameter | Default action if macro file not found | Log level |
 |:---|:---|
 | heater-fault | Heater # | Heater fault type code | CAN address of board controlling the heater | Faulty heater turned off (before the event is raised). Pause print using pause.g and inform user via message box | Error |
-| driver-error | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Pause print without running pause.g and inform user vis message box | Error |
+| driver-error | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Pause print without running pause.g and inform user via message box | Error |
 | filament-error | Extruder # | Filament error type code | CAN address of board hosting the filament monitor | Pause print using pause.g and inform user via message box | Error |
 | driver-stall | Local driver # | 0 | CAN address of board with driver | Inform user via console and continue | Warning |
 | driver-warning | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Inform user via console and continue | Warning |
