@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-10-22T06:47:26.137Z
+date: 2022-11-06T16:15:38.437Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -232,3 +232,20 @@ The long unsegmented moves are calculated in chunks of large segments to avoid "
 Short segmented moves happen
 * G1, G2, G3 moves with segmentation activated
 * the move itself is short
+
+# segmentation
+
+When RRF receives a long G1 move or a G2/G3 move, it will be segmented. Segmentation means, a long line or curve is divided into short straight lines. Similar to how Pi is calculated by approaching the curve by smaller and smaller line approximations.
+
+For 3D printing, typical values are 0.1 or 0.2 mm line segments. For CNC, 0.01 mm are typical values.
+
+The segments can be created by the CAM/slicer also.
+
+Segmentation in RRF has the following advantages
+* smaller G-Code file and lower SD card transfer speed requirement
+* lower G-Code overhead, as every G-Code command needs resources like LimitPosition calculation, and movement planning
+* RRF tries to balance actuator speeds between the segments, so the movements will be smoother
+
+Disadvantages
+* CAM/slicer may have special functionality like collision avoidance which can be considered in G-Code if CAM segments
+* faster pause/stop because the moves are shorter
