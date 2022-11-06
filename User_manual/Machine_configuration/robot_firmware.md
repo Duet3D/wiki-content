@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-11-06T16:15:38.437Z
+date: 2022-11-06T16:18:12.551Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -237,7 +237,7 @@ Short segmented moves happen
 
 When RRF receives a long G1 move or a G2/G3 move, it will be segmented. Segmentation means, a long line or curve is divided into short straight lines. Similar to how Pi is calculated by approaching the curve by smaller and smaller line approximations.
 
-For 3D printing, typical values are 0.1 or 0.2 mm line segments. For CNC, 0.01 mm are typical values.
+For 3D printing, typical values are 0.1 or 0.2 mm line segments. For CNC, 0.01 mm are typical values. Smaller values mean better quality of the approximation, but more processor power needed. If too much power is needed, it will show up in M122 hiccup values.
 
 The segments can be created by the CAM/slicer also.
 
