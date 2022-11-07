@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-11-07T18:24:35.042Z
+date: 2022-11-07T18:46:36.924Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5157,8 +5157,8 @@ The table below lists the available tuning manoeuvres. For more information see 
 
 | Manoeuvre ID | Manoeuvre Name | Description | Required? | Movement performed | Time taken |
 |:---|:---|
-| 1 | Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised.| Yes for quadrature encoders. This needs to be done after each power on and reset, and ideally should be part of the homing files for axis with closed loop drivers. | Four full steps forwards and then four back to original position | Less than one second |
-| 2 | Magnetic Encoder Calibration | Clears the encoder calibration, then calibrates the encoder positions to the motor. | Yes for magnetic shaft encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board with the motor not driving any significant load. The results are stored in the 1HCL memory. If the encoder board is removed from the motor and re-attached, it should be run again. | One full motor revolution in each direction | Typically fifteen seconds to rotate the motor and capture the data, then ten seconds to process the data and store the calibration |
+| 1 | Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised.| Yes for quadrature shaft encoders and linear composite encoders (for linear composite encoders, magnetic encoder calibration must have been done first). This needs to be performed after each power on and reset, and ideally should be part of the homing files for axes with closed loop drivers. | Abount five full steps forwards and then five back to original position | Less than one second |
+| 2 | Magnetic Encoder Calibration | Clears the encoder calibration, then calibrates the encoder positions to the motor. | Yes for magnetic shaft encoders and linear composite encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board with the motor not driving any significant load. The results are stored in the 1HCL memory. If the encoder board is removed from the motor and re-attached, it should be run again. | For magnetoc shaft encoders: just over one full motor revolution in each direction; for linear composite encoders: about five motor revolutions in each direction | Typically fifteen seconds to rotate the motor and capture the data, then ten seconds to process the data and store the calibration |
 | 3 | Magnetic encoder calibration check | Checks that the encoder calibration is accurate | Optional | As for magnetic encoder calibration | As for magnetic encoder calibration |
 | 4 | Clear encoder calibration | Clears the encoder calibration. The encoder will need to be calibrated before the motor can be used in closed loop mode. This command can be used even when the driver is in open loop mode. | Only if the motor behaves strangely when switched into closed loop mode. | None | Less than one second |
 
