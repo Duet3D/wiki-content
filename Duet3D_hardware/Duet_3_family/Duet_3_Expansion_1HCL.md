@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-10-30T09:46:04.957Z
+date: 2022-11-07T18:40:51.489Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -43,17 +43,31 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 | **12V current limit** | 200mA |
 | **5V and 3.3V current limit** | 100mA total on 5V and 3.3V |
 
-## Compatible motors and encoders
+## Compatible motors
 
 Use motors with 1.8 or more degrees per step. **Do not use 0.9deg motors**. The positioning accuracy depends on the resolution of the encoder, not on the degrees/step of the motor.
 
-When using a quadrature encoder or any other type of encoder that signals relative motion (not absolute shaft angle), **there must be an integer number of output pulses from the encoder per 4 full steps**. For example, a 1.8deg/step motor (200 full steps/rev) could have an encoder with 1000cpr (20 pulses per 4 full steps), 2000 cpr (40 pulses per 4 full steps) or 2500 cpr (50 pulses per 4 full steps).
+The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second.
 
-The maximum speed at which the firmware can drive the motor is typically at least 6000 full steps/second.
+## Compatible Encoders
+
+RRF 3.4 supports quadrature motor shaft encoders only. RRF 3.5 also supports Duet3D magnetic shaft encoders and linear composite encoders.
+
+### Quadrature motor shaft encoders
+
+Stepper motors can be purchased with integral optical shaft encoders. It is also possible to buy add-on quadrature shaft encoders, which are typically mounted on the back of dual-shaft stepper motors. The resolution is specified in counts or pulses per motor revolution. **There must be an integer number of output pulses from the encoder per 4 full steps**. For example, a 1.8deg/step motor (200 full steps/rev) could have an encoder with 1000cpr (20 pulses per 4 full steps), 2000 cpr (40 pulses per 4 full steps) or 2500 cpr (50 pulses per 4 full steps).
+
+### Duet3D magnetic motor shaft encoders
+
+The Duet3D magnetic shaft encoder is a small board that mounts on the back of the stepper motor. It is supplied with a diametrically-magnetised disc magnet, which must be glued to the centre of the end of the shaft at the back of the motor. A jig should be used to centre the magnet accurately while the glue sets.
+
+### Linear composite encoder
+
+A linear composite encoder comprises a linear quadrature encoder that tracks position on a linear axis (for example the Renishaw LM10IA or LM10IB) and a Duet3D magnetic shaft encoder. The shaft encoder handles motor commutation, the linear encoder is used to close the loop.
 
 ## Firmware notes
 
-* Compatible RepRapFirmware versions: RRF 3.x
+* Compatible RepRapFirmware versions: RRF 3.4 and later
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
 ## Open source
