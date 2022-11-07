@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-09-09T13:46:49.214Z
+date: 2022-11-07T13:19:47.388Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -97,12 +97,12 @@ Running this command should make the drive move slightly (tuning manoeuvres will
 
 The table below lists the available tuning manoeuvres:
 
-
-
 | Manoeuvre Name | Description | Required? | Manoeuvre ID |
 |:---|:---|
-| Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. | Yes for all encoder types. This needs to be done after each power on and reset, and ideally should be part of the homing files for axis with closed loop drivers. | 1 |
-| Absolute SPI Encoder Calibration | Calibrates the encoder positions to the motor. | Yes for Absolute SPI connected (magnetic) encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board as the results are stored in the 1HCL memory. | 2 |
+| Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. | Yes for rotary quadrature encoders and (temporarily) for linear composite encoders. This needs to be done after each power on and reset, and ideally should be part of the homing files for axis with closed loop drivers. | 1 |
+| Absolute Encoder Calibration | Calibrates the encoder positions to the motor. | Yes for Absolute (magnetic) encoders and linear composite encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board as the results are stored in the 1HCL flash memory. | 2 |
+| Absolute Encoder Calibration Check | Checks the encoder calibration but does not alter it | No | 3
+| Clear absolute encoder calibration | Clears the calibration table. Not normally required. Can be executed even when the driver is in open loop mode. | No | 4
 
 ### What do I Need to Do?
 
@@ -116,17 +116,15 @@ If you are using a quadrature encoder (i.e. your [M569.1](/User_manual/Reference
 
 Ideally this is put in the home#.g file for the axis that the motor is associated with, until the motor has had the Polarity Detection and Zeroing tuning move carried out it will not move in closed loop mode. The normal procedure would be to home in open loop mode, then switch to close loop mode, then run the Polarity Detection and Zeroing move. See the [Running Tuning on Power On](/User_manual/Tuning/Duet_3_1HCL_tuning#running-tuning-on-power-on) section below.
 
-#### Magnetic Encoders
+#### Magnetic Encoders (not supported before firmware 3.5)
 
-If you are using a magnetic encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T3), then from the table above, manoeuvres 1 and 2 are required. The Polarity Detection and Zeroing move must be run every time the printer is powered on.  This can be achieved by using the following command:
+If you are using a magnetic encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T3), then from the table above, manoeuvre 2 is required just once.  The procedure for this is detailed in the 'Caveats for Magnetic Encoders' section below. Follow the instructions here, and then read the instructions in that section.
 
-`M569.6 P##.# V1    ; Where P##.# is the driver address to tune`
+#### Linear Composite Encoders (not supported before firmware 3.5)
 
-As for quadrature encoders the normal place to run this move would be in the home#.g, see the [Running Tuning on Power On](/User_manual/Tuning/Duet_3_1HCL_tuning#running-tuning-on-power-on) section below
+If you are using a linear composite encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1), then from the table above, manoeuvre 2 is required just once and manoeuvre 1 is temporarily required after every power up.
 
-In addition, manoeuvre 2 must be run at least once. The procedure for this is detailed in the 'Caveats for Magnetic Encoders' section below. Follow the instructions here, and then read the instructions in that section.
-
-### Running Tuning on Power On
+### Running Polarity Detection and Zeroing at Power On
 
 The most suitable way to ensure tuning is run every time the printer is powered on is to modify the homing moves to include tuning. This is because the motors make a small movement when they run the tuning move, and if the axis are homed before the move is made the printer can be in a known safe place to run the move.
 
@@ -135,7 +133,7 @@ A suitable new homing procedure is as follows:
 1. Home in open-loop mode
 1. Move to a known-safe position to perform tuning
 1. Switch to closed-loop mode
-1. Perform the tuning manoeuvres
+1. Perform the polarity detection and zeroing tuning manoeuvre
 1. Move back to home
 
 An example of this is shown below for a driver attached to the X axis, as driver 0 on the board at CAN address 50 with a **quadrature** encoder:
@@ -173,22 +171,19 @@ Magnetic encoders have a number of caveats that must be noted. Please read the f
 
 **Motivation**
 
-The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is incredibly difficult to align the centre of the magnet with the centre of rotation, so instead of requiring sub-mm precision assembly, the zeroing move measures how offset the magnet is, and then corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this tuning move.
+The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is incredibly difficult to align the centre of the magnet with the centre of rotation, so instead of requiring sub-mm precision assembly, the calibration procedure measures how offset the magnet is, and then corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this tuning move.
 
-**Running the move**
+**Running the calibration procedure**
 
-To measure the offset, a full rotation of the motor is used. Unlike other tuning moves, you would be fine to disconnect the motor from the axis - the magnet offset isn't affected by load on the motor, unlike some other tuning parameters.
+To measure the offset, a little more than one full rotation of the motor is performed in each direction. Unlike other tuning moves, you would be fine to disconnect the motor from the axis - the magnet offset isn't affected by load on the motor, unlike some other tuning parameters.
 
-Once you are satisfied that the motor can freely make up to 2 rotations (the motor first rotates to find the zero position, then makes 1 full rotation), run the following command:
+Once you are satisfied that the motor can freely make up to 1.5 rotations in either direction, run the following command:
 
 `M569.6 P##.# V2    ; Where P##.# is the driver address to tune`
 
-> This tuning move turns the motor very slowly to ensure eahc position is captured so will take a 5-10 minutes to complete.
-{.is-info}
+Once this has been performed successfully, the values will be written to non-volatile memory and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V2 command again, or checked by running the M569.6 ... V3 command.
 
-Once this has been performed once, the values should be written to non-volatile memory, and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V3 command again.
-
-From RRF 3.4.2 the firmware will output the highest deviation of expected positon vs encoder postion recorded. This is useful as a proxy for how centered the magnet is.
+The firmware will output the highest deviation of expected positon vs encoder position recorded. This is useful as a proxy for how centered the magnet is.
 
 ## PID Tuning
 
