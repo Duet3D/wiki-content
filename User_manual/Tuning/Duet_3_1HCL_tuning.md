@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-11-08T12:25:10.273Z
+date: 2022-11-08T12:25:22.882Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -171,7 +171,7 @@ Magnetic encoders have a number of caveats that must be noted. Please read the f
 
 **Motivation**
 
-The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is incredibly difficult to align the centre of the magnet precisely with the centre of rotation, so the calibration procedure measures how offset the magnet is and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this tuning move.
+The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is difficult to align the centre of the magnet precisely with the centre of rotation, so the calibration procedure measures how offset the magnet is and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this tuning move.
 
 **Running the calibration procedure**
 
