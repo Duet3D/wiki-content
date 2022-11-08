@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-11-08T12:25:22.882Z
+date: 2022-11-08T12:28:05.596Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -188,6 +188,8 @@ The firmware will output the highest deviation of expected positon vs encoder po
 ## PID Tuning
 
 As discussed in the above 'PID Control Systems' section, the PID controller can be tuned by setting it's P, I and D parameters. Many methods exist for choosing parameters that lead to desirable characteristics for tuning PID loops in general. This is one example that is shown to work with the 1HCL boards with 48Ncm, 1.8degree, Nema 17 motors coupled with 1000ppr/4000cpr encoders.
+
+Always run PID tuning with the motor current set to the highest value you intend to use. Increasing motor current after tuning the PID values may result in oscillation.
 
 ### What do I Need to Do?
 
