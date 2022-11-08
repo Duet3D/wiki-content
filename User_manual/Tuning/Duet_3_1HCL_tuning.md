@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-11-07T13:19:47.388Z
+date: 2022-11-08T12:25:10.273Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -99,10 +99,10 @@ The table below lists the available tuning manoeuvres:
 
 | Manoeuvre Name | Description | Required? | Manoeuvre ID |
 |:---|:---|
-| Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. | Yes for rotary quadrature encoders and (temporarily) for linear composite encoders. This needs to be done after each power on and reset, and ideally should be part of the homing files for axis with closed loop drivers. | 1 |
-| Absolute Encoder Calibration | Calibrates the encoder positions to the motor. | Yes for Absolute (magnetic) encoders and linear composite encoders. This needs to be done just once for a combination of motor, encoder and 1HCL board as the results are stored in the 1HCL flash memory. | 2 |
+| Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. | For quadrature motor shaft encoders, this needs to be done after each power on or reset, preferably as part of the homing file for the axis concerned. For linear composite encoders, this needs to be done just once when commissioning the system (the result is saved in the 1HCL flash memory). Not required for magnetic shaft encoders. | 1 |
+| Absolute Encoder Calibration | Calibrates the encoder positions to the motor. | For magnetic shaft encoders and linear composite encoders, this needs to be done just once for a combination of motor, encoder and 1HCL board. The results are stored in the 1HCL flash memory. Not required for quadrature shaft encoders. | 2 |
 | Absolute Encoder Calibration Check | Checks the encoder calibration but does not alter it | No | 3
-| Clear absolute encoder calibration | Clears the calibration table. Not normally required. Can be executed even when the driver is in open loop mode. | No | 4
+| Clear absolute encoder calibration | Clears the calibration table. Not normally required. Can be executed even when the driver is in open loop mode. | Run this if the motor or encoder that the 1HCL is connected to has changed, to prevent uncontrolled movements when the driver is switched into closed loop mode. | 4
 
 ### What do I Need to Do?
 
@@ -110,7 +110,7 @@ This depends on what type of encoder you are using. Read the appropriate section
 
 #### Quadrature Encoders
 
-If you are using a quadrature encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1 or T2), then from the table above, manoeuvres 1 is required and it must be run every time the printer is powered on.  This can be achieved by using the following command:
+If you use a quadrature shaft encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T2), then from the table above, manoeuvre 1 is required and it must be run every time the printer is powered on. This can be achieved by using the following command:
 
 `M569.6 P##.# V1    ; Where P##.# is the driver address to tune`
 
@@ -118,15 +118,15 @@ Ideally this is put in the home#.g file for the axis that the motor is associate
 
 #### Magnetic Encoders (not supported before firmware 3.5)
 
-If you are using a magnetic encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T3), then from the table above, manoeuvre 2 is required just once.  The procedure for this is detailed in the 'Caveats for Magnetic Encoders' section below. Follow the instructions here, and then read the instructions in that section.
+If you use a magnetic encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T3), then from the table above, manoeuvre 2 is required just once.  The procedure for this is detailed in the 'Calibrating Magnetic Encoders' section below. Follow the instructions here, and then read the instructions in that section.
 
 #### Linear Composite Encoders (not supported before firmware 3.5)
 
-If you are using a linear composite encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1), then from the table above, manoeuvre 2 is required just once and manoeuvre 1 is temporarily required after every power up.
+If you are using a linear composite encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1), then from the table above, manoeuvre 2 and manoeuvre 1 are required just once.
 
 ### Running Polarity Detection and Zeroing at Power On
 
-The most suitable way to ensure tuning is run every time the printer is powered on is to modify the homing moves to include tuning. This is because the motors make a small movement when they run the tuning move, and if the axis are homed before the move is made the printer can be in a known safe place to run the move.
+This is applicable to quadrature shaft encoders ony. The most suitable way to ensure tuning is run every time the printer is powered on is to modify the homing moves to include tuning. This is because the motors make a small movement when they run the tuning move, and if the axis are homed before the move is made the printer can be in a known safe place to run the move.
 
 A suitable new homing procedure is as follows:
 
@@ -165,17 +165,17 @@ Currently the RRF configuration tool will not generate these homing GCODE files 
 
 If tuning fails, the M569.6 command will report an error. In this case, check the troubleshooting section below.
 
-### Caveats for Magnetic Encoders
+### Calibrating Magnetic Encoders
 
 Magnetic encoders have a number of caveats that must be noted. Please read the following sections if you are using a magnetic encoder such as the Duet closed loop magnetic sensor, based on the AS5047D.
 
 **Motivation**
 
-The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is incredibly difficult to align the centre of the magnet with the centre of rotation, so instead of requiring sub-mm precision assembly, the calibration procedure measures how offset the magnet is, and then corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this tuning move.
+The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is incredibly difficult to align the centre of the magnet precisely with the centre of rotation, so the calibration procedure measures how offset the magnet is and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this tuning move.
 
 **Running the calibration procedure**
 
-To measure the offset, a little more than one full rotation of the motor is performed in each direction. Unlike other tuning moves, you would be fine to disconnect the motor from the axis - the magnet offset isn't affected by load on the motor, unlike some other tuning parameters.
+To measure the offset, a little more than one full rotation of the motor is performed in each direction. Unlike other tuning moves, you would be fine to disconnect the motor from the axis - indeed, this is recommended. The magnet offset isn't affected by load on the motor, unlike some other tuning parameters.
 
 Once you are satisfied that the motor can freely make up to 1.5 rotations in either direction, run the following command:
 
