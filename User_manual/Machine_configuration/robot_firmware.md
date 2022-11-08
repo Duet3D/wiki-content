@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-11-08T07:08:42.800Z
+date: 2022-11-08T07:09:48.103Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -215,7 +215,7 @@ The direct path is https://github.com/JoergS5/RepRapFirmware/tree/3.5-dev/src/Mo
 
 Additional steps:
 * Kinematics.h and .cpp the variables robot and include RobotKinematics.h are added. robot is used instead of robot5axis to use K13
-* Config/Pins.h set SUPPORTROBOT to 1 and all other Kinematics SUPPORT... to 0
+* Config/Pins.h set SUPPORT_ROBOT to 1 and all other Kinematics SUPPORT... to 0
 * all .h and .cpp files with names starting with RobotKinematics in folder src/Movement/Kinematics
 
 If it doesn't compile or with many errors, I may have forgot to change WINDOWSMODE 1/RRMODE 0 to WINDOWSMODE 0/RRFMODE 1 in RobotKinematics.h, which allows testing in Windows or RRF environment.
