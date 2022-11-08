@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-11-06T16:18:12.551Z
+date: 2022-11-08T07:08:42.800Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -209,11 +209,16 @@ Tests with forward, inverse kinematics and angle calculations resulted in differ
 # Firmware development and compilation
 For installation and running robot kinematics, taking the binaries is the easiest solution. The following is only interesting if one wishes to compile or change something static inside the firmware code (e.g. using more than 6 axes).
 
-For indidivual compilation of source, the guide https://github.com/Duet3D/RepRapFirmware/wiki/Building-RepRapFirmware should be followed. For the robot, the official Duet3D is based on the 3.4.0inputshaper branch, changed by:
-* Kinematics.h and .cpp the variables robot and include RobotKinematics are added. robot is used instead of robot5axis to use K13
-* Config/Pins.h set all other Kinematics SUPPORT_... to 0
-* disabled delta code in ... (tbd where)
-* all .h and .cpp files with names starting with Robot in folder src/Movement/Kinematics
+For indidivual compilation of source, the guide https://github.com/Duet3D/RepRapFirmware/wiki/Building-RepRapFirmware should be followed. For the robot, a github fork is made and the code added to the branch 3.5-dev
+
+The direct path is https://github.com/JoergS5/RepRapFirmware/tree/3.5-dev/src/Movement/Kinematics
+
+Additional steps:
+* Kinematics.h and .cpp the variables robot and include RobotKinematics.h are added. robot is used instead of robot5axis to use K13
+* Config/Pins.h set SUPPORTROBOT to 1 and all other Kinematics SUPPORT... to 0
+* all .h and .cpp files with names starting with RobotKinematics in folder src/Movement/Kinematics
+
+If it doesn't compile or with many errors, I may have forgot to change WINDOWSMODE 1/RRMODE 0 to WINDOWSMODE 0/RRFMODE 1 in RobotKinematics.h, which allows testing in Windows or RRF environment.
 
 # setup analysis, logDetailed
 
