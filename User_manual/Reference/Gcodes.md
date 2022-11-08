@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-11-08T07:39:31.002Z
+date: 2022-11-08T11:39:26.585Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1285,7 +1285,7 @@ Disables stepper motors and allows axes to move 'freely.' Stepper motors can be 
 ### Examples
 <br>
 <pre class="cblock">
-M20                      ; lists all files in the root folder of the internal SD card
+M20                      ; lists all files in the default folder of the internal SD card (0:/gcodes)
 M20 S2 P"/gcodes/subdir" ; lists all files in the gcodes/subdir folder of the internal SD card, using JSON format
 M20 P"1:/"               ; lists all files on the secondary (PanelDue) SD card's root
 </pre>
