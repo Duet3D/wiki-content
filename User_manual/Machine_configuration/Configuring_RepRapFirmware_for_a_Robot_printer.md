@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-02T08:23:01.644Z
+date: 2022-11-10T09:59:10.855Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -190,11 +190,11 @@ Examples:
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
 
 **P"mapDriveLetterDn=0X3:1Y4:2Z5:3A1:4C0"**
-**P"mapDriveLetterDn=0X1:1Y2:2Z3:p4"**
-The first number is the drive number, the second drive letter and the third the Dn number. A parallelogram axis has no actuator, so the first number is omitted and pn is used.
+**P"mapDriveLetterDn=0X1:1Y2:2Z3: p4"**
+The first number is the drive number, the second drive letter and the third the Dn number. A parallelogram axis has no actuator, so the first number is omitted space used instead.
 * if this parameter is not set, it is expected that the first drive is used at D1, second at D2 etc. and the letters are standard XYZABC (or XYZUVW) for 6 axis, XYZ for 4 axis pallet, XYZAC for CNC 5 axis AC type.
 * maps drive number with drive letter with Dn, in the first example the first drive called X is mapped to D3
-* the parallel axis of the 4 axis palletized robot is named pn, e.g. second example p is assigned to D4
+* the parallel axis of the 4 axis palletized robot is named spacepn, e.g. " p4"
 * default is 0X1:1Y2:2Z3:3A4:4B5:5C6 or abbreviated for less defined axes
 * every Dn number may be used only once
 * different drive numbers may not point to the same Dn
