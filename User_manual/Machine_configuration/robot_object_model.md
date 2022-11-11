@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-10-30T10:28:02.439Z
+date: 2022-11-11T09:43:48.081Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -64,11 +64,9 @@ If orientationType is full, the isQuat uses quaternions in G-Code, isEulerAxis u
 * Quaternions are described by imaginary part as ABC and real part as D.
 * Euler Axis is desribed by ABC and angle by D. Euler Axis is different from Euler Angles. Euler axis is like IJK, while Euler angles is one of 12 possible 3-step-angle rotations (ZYX, ZYZ etc).
 
-# mapDriveLetterDn, dnDrive
+# mapDriveLetterDn
 
-Assigns drive numbers (in the sense of the M584) to the Dn number. This parameter changes dnDrive, which must be changed as well.
-
-dnDrive is a mapping between drive number and Dn: each array element is a Dn, containing the drive number or 99 for palletized axis or -1 if no drive assigned.
+Assigns drive numbers (in the sense of the M584) to the Dn number. 
 
 # workingMode, workingModeValues
 
@@ -80,9 +78,9 @@ workingModeValues hold the values. This values for homing values can only be set
 
 The double array dn holds the 6 Dn values each (ztr (DH: d), zrot (DH: theta), ytr, yrot, xtr (DH: a), xrot (DH: alpha)).
 
-dnActiveInv is an array with an element for each Dn holding the information whether the Dn is active (value 1), inverted (value -1) or not used (value 0).
-
-When changing dn directly, it must be synchronized with dnActiveInv.
+dnActiveInv is a unit32_t variable to held bitwise information which Dn-s are used. The bits are stored pairwise:
+* bit0 for D0 (and 2 for D1, 4 for D2, ...) 1 means Dn is active, 0 means not
+* bit1 for D0 (and 3 for D1, 5 for D2, ...) 0 means normal, 1 means inverted
 
 # connectedDns, coreXYRatioZ
 
