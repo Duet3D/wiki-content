@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-11-11T09:43:48.081Z
+date: 2022-11-12T09:38:13.971Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -70,9 +70,12 @@ Assigns drive numbers (in the sense of the M584) to the Dn number.
 
 # workingMode, workingModeValues
 
-Specifies currently to be used working mode. Holds the value which is set by the M669 P"workingMode=..." parameter. The value is used for inverse kinematics as starting point, e. g. to decide in method LimitPosition whether a desired target is reachable. It is also a fallback solution where to start calculations in case something goes wrong.
+The robot is in a specific work mode, which it can only escape by crossing a singularity. The current workmode is stored in two variables:
+* workingMode=1 if home angles are used, set by P"workingMode=home"
+* workingMode=2 if specific angles are used, set by P"workingMode=list of angles"
+* workingModeValues hold the current work mode angles. They are the home angles for workingMode 1 and are explicitly set in case of workingMode 2.
 
-workingModeValues hold the values. This values for homing values can only be set when the An parameters has been specified completely.
+To change a work mode, the robot arms must be moved outside normal operation to the new work mode, e. g. by G1 H2 commands. Then the new workingMode can be set and new movements executed.
 
 # dn[][], dnActiveInv
 
