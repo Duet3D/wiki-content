@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-11-12T09:38:13.971Z
+date: 2022-11-12T10:02:06.669Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -37,7 +37,7 @@ There are values which are not part of the object model, but are constants which
 * radiansToDegrees value as exact as possible, used to convert radians to degrees
 * flt_epsilon constant with same value as FLT_EPSILON from float.h
 
-When defining more than 10 Dn or axes, the numbers become two-digit. This will currently not work correctly.
+When defining more than 10 Dn or axes by changing the variables above and recompiling, the numbers may become two-digit. This will currently not work correctly.
 
 # robotType
 
@@ -52,21 +52,21 @@ The Dn parameters are set at default values by robotType to help setup, but must
 
 # axisTypes, numOfAxes
 
-Sets the axis types as described in the main document. Depending parameter: numOfAxes, counting the number of the axes. A passive parallel axis is counted. It is very important that numOfAxes is correct, so when changing axisTypes directly, numOfAxes must be changed also.
+Sets the axis types as described in the main document. Depending parameter: numOfAxes, counting the number of the axes. A passive parallel axis is counted (p axis of 4 axis palletized). It is very important that numOfAxes is correct, so when changing axisTypes directly, numOfAxes must be changed also.
 
-# orientationType, isAC, isBC, isQuaternion, isNoOri
+# isAC, isBC, isFull, isNoOri
 
-This enum holds the information about how orientation information is handled: no, zaxis or full. Internal calculations are always full calculations with rotation matrices, but the decision whether a target position and orientation is met, depends on the orientationType. This is explained in detail on the firmware page.
-
-If orientationType is zaxis, the isAC means AC is used, isBC means BC is used. IJK mode is not implemented.
-
-If orientationType is full, the isQuat uses quaternions in G-Code, isEulerAxis uses Euler axis and angle in G-Gode.
-* Quaternions are described by imaginary part as ABC and real part as D.
-* Euler Axis is desribed by ABC and angle by D. Euler Axis is different from Euler Angles. Euler axis is like IJK, while Euler angles is one of 12 possible 3-step-angle rotations (ZYX, ZYZ etc).
+This bool values store information about how orientation information is handled. One value is true, the others false.
+* isAC means zaxis mode is used with A axis being parallel to the X axis and C parallel to Z
+* isBC means zaxis mode with B parallel to Y and C to Z
+* isFull means using all three coordination axes and specified with quaternions real-imag-imag-imag values as ABCD
+* isNoOri means orientation is ignored
 
 # mapDriveLetterDn
 
-Assigns drive numbers (in the sense of the M584) to the Dn number. 
+Assigns drive numbers (in the sense of the M584) to the Dn number.
+
+The format is drivenumber-letter-Dn-colon, e.g. "0X3:1Y4" to define drive 0 as letter X and using D3 and drive 1 as Y using D4.
 
 # workingMode, workingModeValues
 
@@ -77,11 +77,11 @@ The robot is in a specific work mode, which it can only escape by crossing a sin
 
 To change a work mode, the robot arms must be moved outside normal operation to the new work mode, e. g. by G1 H2 commands. Then the new workingMode can be set and new movements executed.
 
-# dn[][], dnActiveInv
+# dn, dnActiveInv
 
 The double array dn holds the 6 Dn values each (ztr (DH: d), zrot (DH: theta), ytr, yrot, xtr (DH: a), xrot (DH: alpha)).
 
-dnActiveInv is a unit32_t variable to held bitwise information which Dn-s are used. The bits are stored pairwise:
+dnActiveInv is a variable to held bitwise information which Dn-s are used. The bits are stored pairwise:
 * bit0 for D0 (and 2 for D1, 4 for D2, ...) 1 means Dn is active, 0 means not
 * bit1 for D0 (and 3 for D1, 5 for D2, ...) 0 means normal, 1 means inverted
 
@@ -94,9 +94,9 @@ For parallel arms, those special parameters store the configuration:
 
 The binary flag is calculated by (variable |= (1<< Dnnumber))
 
-# an[][], continuousAxis
+# an, continuousAxis
 
-an holds the Angle (or mm position for a prismatic joint) definitions in a double array, 3 values each: min, max and home angle/position.
+an holds the Angle (or mm position for a prismatic joint) definitions, 3 values each: min, max and home angle/position.
 
 continuousAxis is an int with binary flags for the axes which are set to continuous. If e.g. the 6th axis is continuous, the 6th bit from right is set to 1. When an axis is flagged as continuous, the first two parameters of an (min, max) are ignored.
 
@@ -121,11 +121,11 @@ quality holds the string settingThe different levels change multiple values:
 
 The logLevel is independent from the debugging options of the core RRF.
 
-# start, stop, MAXTIMERS
+# starttime
 
-Timer start, stop, maximum array size to hold values for performance measuring while the code is running, using the chrono C++ library.
+Start time for logging performance measurements.
 
-# cachedAngles[]
+# cachedAngles
 
 The angles (for rotational axes) or positions (for prismatic axes) of the last move are cached. They are used for the calculation of a new target. Homing sets this cache, as well as a segmented move. The calculation whether a target is reachable (LimitPosition) does not set or change cachedAngles.
 
