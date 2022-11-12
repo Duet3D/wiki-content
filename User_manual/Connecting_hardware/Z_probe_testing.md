@@ -2,7 +2,7 @@
 title: Test and calibrate a Z probe
 description: 
 published: true
-date: 2021-10-28T11:29:05.777Z
+date: 2022-11-12T16:56:08.704Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T11:29:02.047Z
@@ -41,7 +41,7 @@ As above, but either monitor the Z probe reading in PanelDue if you have one, or
 1. Jog the nozzle down until it is just touching the bed or just gripping a sheet of paper. If the firmware doesn't let you jog it down far enough, send M564 S0 to disable axis limits.
 1. Once you have the nozzle touching the bed, send command G92 Z0 to  tell the firmware that the head is at Z=0
 1. Jog the head up by 5 to 10mm
-1. Send command G30 S-1. The nozzle will descend or the bed rise until the probe triggers and the Z height at which the probe stopped will be reported. If you are using a nozzle-contact Z probe, the trigger height will be slightly negative. For any other type of Z probe where the probe triggers before the nozzle contacts the bed, it will be positive.
+1. Send command G30 S-1. The nozzle will descend or the bed rise until the probe triggers and the Z height at which the probe stopped will be reported in the console. If you are using a nozzle-contact Z probe, the trigger height will be slightly negative. For any other type of Z probe where the probe triggers before the nozzle contacts the bed, it will be positive.
 1. Repeat  from step 5 two or three times to make sure that the  trigger height is consistent.
 1. In Duet Web Control, go to Settings -> System Editor and edit the config.g file. Set the Z parameter in the G31 command to the trigger height that was reported. Save the file.
 1. Open config-override.g and check that there are no G31 commands in it. If you find any, delete those lines and save the file.
