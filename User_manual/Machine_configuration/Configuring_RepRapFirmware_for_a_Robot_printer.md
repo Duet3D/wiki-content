@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-10T09:59:54.143Z
+date: 2022-11-15T15:30:22.000Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -76,16 +76,10 @@ Currently, valid values for the type and parameters are:
 * 5BarParScara, 5BarParScaraAC, 5BarParScaraBC (experimental)
 * leaving empty: use only Dn, P, A and other parameters
 
-parameters for the AC, BC types:
-* table-table for AC or BC being located at the table. In table-table mode, C is assemled on top of A/B. If not, Dn must be changed individually afterwards.
-* head-table for A or B being located at the head and C at the table
+The AC and BC types use the typical configuration with A/B at the table and C on top of it. If other configurations like head/table are needed, the Dn parameters can be changed afterwards as wished. Explanations and examples will be posted on the 5 axis documentation page.
 
 parameters for CoreXZAC and CoreXZBC: (as shown above)
 * Zf for the ratio parameter like described in M669 K2 kinematics
-
-parameters for CoreXYAC or CoreXYBC: 
-* ZatTable the Z axis moving the bed
-* ZatHead the Z axis moving the head similar to CNC gantry machines
 
 Not being on the list doesn't mean that a robot type is not supported. E.g. polar kinematics, serial Scara, cartesian with 3 axes spherical head and many more are all supported by specifying the D and P parameters individually. robotType is left empty in this case. Some kinematics already exist as dedicated kinematics. Robot kinematics for them is meant as an additional option, not as replacement.
 
@@ -97,8 +91,7 @@ The robot types are described in detail on dedicated pages, please see the robot
 
 Example:
 * B"robotType=CoreXYAC" specifies CoreXY and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. More details of the 5 axis types are described on a dedicated page.
-* B"robotType=CoreXZAC:Z2.5" sets CoreXZ with reduction ratio for Z to 2.5. Default for CoreXZ/CoreYZ is Z3.
-* B"robotType=CoreXYAC:head-table is a configuration with A axis at the head and the rotating C plate near the workpiece.
+* B"robotType=CoreXZAC:Z3" sets CoreXZ with reduction ratio for Z to 3. Default for CoreXZ/CoreYZ is Z3.
 
 # M669 A parameter: angles
 
