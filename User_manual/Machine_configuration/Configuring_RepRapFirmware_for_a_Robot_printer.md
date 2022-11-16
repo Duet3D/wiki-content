@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-15T15:30:22.000Z
+date: 2022-11-16T14:29:28.941Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -73,7 +73,7 @@ Currently, valid values for the type and parameters are:
 * 5AxisAC, 5AxisBC (=> CNC 5 axis, Pentarod, Open5x)
 * CoreXYAC, CoreXYBC, CoreXZAC[:Zf], CoreXZBC[:Zf]
 * 4AxisPall, 4AxisPallInv (=> IRB 460 like)
-* 5BarParScara, 5BarParScaraAC, 5BarParScaraBC (experimental)
+* 5BarParall, 5BarParallAC, 5BarParallBC (experimental)
 * leaving empty: use only Dn, P, A and other parameters
 
 The AC and BC types use the typical configuration with A/B at the table and C on top of it. If other configurations like head/table are needed, the Dn parameters can be changed afterwards as wished. Explanations and examples will be posted on the 5 axis documentation page.
