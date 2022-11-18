@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-11-18T06:48:44.616Z
+date: 2022-11-18T12:19:34.501Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -113,9 +113,9 @@ quality holds the string settingThe different levels change multiple values:
 * maxIterations: how many iterations max to find a solution
 * lowValuesZero: used to round values near 0, 1, -1 in some orientation calculations
 
-# loggingOn
+# logLevel
 
-* loggingOn=0 means no special logging. Default
+* logLevel=0 means no special logging. Default
 * logLevel=1 will log performance and debug information to the console
 
 The logLevel is independent from the debugging options of the core RRF.
