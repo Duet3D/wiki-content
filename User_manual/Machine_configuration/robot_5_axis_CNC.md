@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-11-18T23:40:49.093Z
+date: 2022-11-18T23:53:07.577Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -25,8 +25,12 @@ The types above have a specific method to move X, Y, Z and addional two rotation
 * BC are axes parallel to Y and Z axis
 * head/head means both rotational axes are assambled at the head, head/table is mixed and in table/table mode, both are assembled at the bottom. The possibilities have different results in respect to workpiece size, stability etc., but it is not discussed here.
 * in head/head and table/table mode, one rotary axis is assembled on top of the other. Tradionally, they are named master and slave, e.g. if C is assembled on top of A, A is master, C is slave.
-* a rotating spindle has only one important orientation, the Z axis. Two rotations are sufficient to describe it's orientation.
+* a rotating spindle has only one important orientation, the Z axis. The two parameters A+C or B+C are sufficient to describe its orientation.
 * if for some reason the G-Code doesn't use AC, but other letters like UV, they can be remapped with the M669 P"mapDriveLetterDn" parameter.
+
+The most often used version is the table/table AC type. Sometimes, especially for drilling machines, A is at the head.
+
+Defining the axes by DH parameters allow all combinations and offsets between the axes. As example, the A and C axes need not to cross.
 
 # Denavit-Hartenberg (DH)
 
