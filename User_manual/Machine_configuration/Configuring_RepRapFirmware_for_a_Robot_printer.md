@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-16T14:29:28.941Z
+date: 2022-11-18T06:47:30.340Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -232,12 +232,10 @@ The following properties will be changed:
 
 Testing so far has shown, that altering iterations has nearly no effect. After 5 iterations, all tests have approached the target, with the exception of singularity areas, where the iterations is interrupted, because angles go havoc. Changing precision requirement has some effect on time required to calculate.
 
-**P"logLevel=0|1|2"**
-Turning on logging for performance measuring or debugging.
+**P"loggingOn=0|1"**
+Turning on logging for performance measuring or debugging. Logging will reduce performance, so performance measuring is not exact.
 * log results are output to console
-* default is P"logLevel=0"
-* logLevel=1 will report performance and important information
-* logLevel=2 will additionally report detailed position and orientation information about every chain step and other data like parameters of the calls to forward and inverse kinematics. It will reduce performance a lot.
+* default is logging turned off, P"loggingOn=0"
 
 # M669 S, T parameters: segmentation
 
