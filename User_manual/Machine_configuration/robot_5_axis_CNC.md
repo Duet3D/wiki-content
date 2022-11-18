@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-10-24T09:35:08.330Z
+date: 2022-11-18T23:37:32.091Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -57,12 +57,12 @@ With AC and BC, one should be aware of the gimbal lock at A = 0 degrees and B = 
 * one solution is to restrict movements to all negative or all positive angles for A or B, in most cases negative one, because the angle range is often the greatest for negative angles. E. g. a typical A angle range is -120 to +30 degrees, so negative angles are preferred. In the CAM program there is often a setting to prefer positive or negative angles.
 * another solution can be to set the C rotation speed to 0 while being in the 0 degree area. But the result will be an inexact movement. This may or may not be acceptable
 
-# DH parameters
+# general procedure to configure
 
 The configuration of the DH parameters, which are specified by the Dn parameters, depends on where the axes are located, their direction and where the angle 0 degree is located. The DWC plugin RobotViewer shall help configuring (this tool is in development).
 
 A good approach is:
-* set B"robotType=..." similar to the existing hardware. This will set part of the parameters.
+* set B"robotType=..." similar to the existing hardware. This will set part of the parameters. Possible values are documented on the configuration page
 * issue M669 to see the current settings, especially the Dn parameter values
 * decide where the reference coordination point is located, where the position and orientation doesn't change. This is called base or origin.
 * build the chain from base to the hotend. Often this is base-Y-X-Tool or base-Y-X-Z-Tool
@@ -72,6 +72,17 @@ A good approach is:
 * verify movements by issuing G1 H2 commands
 
 From this descriptions it becomes clear that a rotary A axis located near the hotend (head mode) must be handled differently than if it is located near C and workpiece (table mode). The first is in the base-...-tool chain, the second is located in the inverted base-...-workpiece chain. It is also a difference where the Z axis is located: at the hotend like CNC gantry systems are constructed or at the print bed like a CoreXY.
+
+# CNC, Cartesian, Prusa with 5 axis example
+
+This robot type has 3 linear axes which control X, Y, Z positions, and two rotary axes which are assembled at head or table. Gantry type constructions have two Y axes and can be driven by 2 motors. They have one common drive number and are handled together by the core RRF.
+
+The general starting point is
+M669 K13 B"robotType=5AxisAC" or 5AxisBC
+
+This defines a starting point of configuration. The configuration can be seen by calling M669 without parameters. Default are axes PPPRR (X, Y, Z are prismatic, A, C/B are rotary).
+
+Then find out the chain. Open5x e.g. has the forward part base-Z-X-hotend and the to be inverted part base-Y-A-C-workpiece. After inverting the second part, they can be joined. In this example, D0 is workpiece, D1 the C rotary axis, D2 the A, D3 the Y, D4 is base, D5 the Z, D6 the X and D7 the tool.
 
 # BC table/table example
 
