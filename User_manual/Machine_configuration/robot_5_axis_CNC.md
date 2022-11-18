@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-11-18T23:37:32.091Z
+date: 2022-11-18T23:40:49.093Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -75,12 +75,12 @@ From this descriptions it becomes clear that a rotary A axis located near the ho
 
 # CNC, Cartesian, Prusa with 5 axis example
 
-This robot type has 3 linear axes which control X, Y, Z positions, and two rotary axes which are assembled at head or table. Gantry type constructions have two Y axes and can be driven by 2 motors. They have one common drive number and are handled together by the core RRF.
+This robot type has 3 linear axes which control X, Y, Z positions, and two rotary axes which are assembled at head or table. Gantry type constructions have two connected Y guides and can be driven by 2 motors. They have one common drive number and are handled together by the core RRF.
 
 The general starting point is
 M669 K13 B"robotType=5AxisAC" or 5AxisBC
 
-This defines a starting point of configuration. The configuration can be seen by calling M669 without parameters. Default are axes PPPRR (X, Y, Z are prismatic, A, C/B are rotary).
+This defines a starting point of configuration. The configuration can be seen by calling M669 without parameters. Default are axes PPPRR (X, Y, Z are prismatic, A/B and C are rotary).
 
 Then find out the chain. Open5x e.g. has the forward part base-Z-X-hotend and the to be inverted part base-Y-A-C-workpiece. After inverting the second part, they can be joined. In this example, D0 is workpiece, D1 the C rotary axis, D2 the A, D3 the Y, D4 is base, D5 the Z, D6 the X and D7 the tool.
 
