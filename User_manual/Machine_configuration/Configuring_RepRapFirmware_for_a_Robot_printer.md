@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-18T12:18:57.995Z
+date: 2022-11-19T00:18:41.658Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -18,15 +18,9 @@ RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 4
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
 Current status, last actions:
-* some settings moved to B"robotType", so P"closedChain" is not necessary any more. CoreXY and CoreXZ with Z parameter
-* removed Dn from robotType, because mapDriveLetterDn will be needed in most cases anyway
-* new documentation page about object model
-* added Z parameter for CoreXZ
-* to finish the current release for a stable version, I postpone the following capabilities to the next release: 5BarParScara, handling continuous axis, complete object model, most robotType templates (draft versions are created)
-* added P parameter workingMode and documentation on the robot firmware page about the meaning of work modes
-* BC mode should work correct now
-* robotType submodes, especially for 5 axis types
-* logLevel2 statistics
+* to finish the current release for a stable version, I postpone the following capabilities to the next release: 5BarParScara, handling continuous axis, most robotType templates (draft versions are created)
+* added homing M208 possibility for G1 H1 like for CoreXY, Cartesian or prismatic axes in general.
+* reduced memory needed
 
 # Configuring a Robot printer
 
@@ -105,6 +99,8 @@ Example:
 * max is the maximum angle or position
 * cont means the axis is continuous and has no min/max angles
 * home is the home position in degrees or mm. The value can be outside min and max, the endstop can be low or high type
+
+If An is not defined for an axis, then the M208 values are used for homing: depending in low or high end the S1 or S0 value and taking the values as limits. A prismatic X, Y, Z axis or A, B, C rotary axes are handled this way. Rotary X, Y, Z axes must be defined with An, because M208 X, Y, Z values are cartesian values, and rotary axis values are angles.
 
 Currently there is no continuous axis in RRF core, but when it exists, this setting will ignore angle limits.
 
@@ -274,6 +270,8 @@ The robotic print area is not cubic in most cases, so the workspace differs from
 
 # Homing
 When the Duet controller starts, it has no knowledge about the stepper positions. By a procedure called homing it gets those values. The common procedure of homing is that movements trigger endstops and the values are set for each axis when the endstop is triggered. After homing, the endstops and homing procedure is not necessary any more.
+
+If there are An homing and limit defintions for a drive, those values are used. If they are not defined, M208 values are used. If both are not defined, the status will remain at unhomed for this axes and normal movements are not possible.
 
 Some thoughts about homing
 * removing endstops and probes after homing and mesh compensation can be considered to avoid collisions with workpiece/print object
