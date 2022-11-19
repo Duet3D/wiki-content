@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-11-18T12:19:34.501Z
+date: 2022-11-19T08:13:38.131Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -11,6 +11,9 @@ dateCreated: 2022-10-15T05:16:12.719Z
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
 # Object Model
+
+> currently, most object model values are for reading only and cannot be modified by accessing the object model. Most information is comparable to calling M669
+{.is-info}
 
 The following description allows manipulating parameters of robot kinematics directly. Care should be taken for
 * parameters which are connected
@@ -24,7 +27,8 @@ The object model is built with the structure of a double list: main topics and s
 The following is only the description of the robot kinematics specific object model elements. The general object model is described in the general Duet documentation, e.g. in https://github.com/Duet3D/RepRapFirmware/wiki/Object-Model-Documentation
 
 The values of the object model can be called by:
-m409 K"move.kinematics"
+
+**m409 K"move.kinematics"**
 
 # Fixed parameters
 
@@ -98,6 +102,8 @@ The binary flag is calculated by (variable |= (1<< Dnnumber))
 
 an holds the Angle (or mm position for a prismatic joint) definitions, 3 values each: min, max and home angle/position.
 
+The values are set to -999.9 each if not in use. If the third value (home value) is set, it is used as homing value. If the axis is prismatic and the three values are not set, the M208 values are used for min, max and home values. If the axis is rotary and the three values are not set, the M208 values are used, if they are not X, Y, Z values (M208 X, Y, Z are cartesian values).
+
 continuousAxis is an int with binary flags for the axes which are set to continuous. If e.g. the 6th axis is continuous, the 6th bit from right is set to 1. When an axis is flagged as continuous, the first two parameters of an (min, max) are ignored.
 
 # quality
@@ -118,7 +124,7 @@ quality holds the string settingThe different levels change multiple values:
 * logLevel=0 means no special logging. Default
 * logLevel=1 will log performance and debug information to the console
 
-The logLevel is independent from the debugging options of the core RRF.
+The logLevel is independent from the debugging options of the core RRF. Logging will reduce the performance and itself distort the performance measurement.
 
 # starttime
 
