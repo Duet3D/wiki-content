@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-11-19T08:13:38.131Z
+date: 2022-11-19T08:19:45.141Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -58,19 +58,21 @@ The Dn parameters are set at default values by robotType to help setup, but must
 
 Sets the axis types as described in the main document. Depending parameter: numOfAxes, counting the number of the axes. A passive parallel axis is counted (p axis of 4 axis palletized). It is very important that numOfAxes is correct, so when changing axisTypes directly, numOfAxes must be changed also.
 
-# isAC, isBC, isFull, isNoOri
+# orientationType
 
-This bool values store information about how orientation information is handled. One value is true, the others false.
-* isAC means zaxis mode is used with A axis being parallel to the X axis and C parallel to Z
-* isBC means zaxis mode with B parallel to Y and C to Z
-* isFull means using all three coordination axes and specified with quaternions real-imag-imag-imag values as ABCD
-* isNoOri means orientation is ignored
+Stores the information bitwise about how orientation is calculated and handled:
+* 0 means no orientation information
+* first bit set means ZAxis with AC orientation. A is parallel to the X axis, C to the Z axis
+* second bit set means ZAxis with BC orientation. B is parallel to the Y axis
+* third bit set means all three coordination axes with full orientation
 
 # mapDriveLetterDn
 
 Assigns drive numbers (in the sense of the M584) to the Dn number.
 
 The format is drivenumber-letter-Dn-colon, e.g. "0X3:1Y4" to define drive 0 as letter X and using D3 and drive 1 as Y using D4.
+
+A palletized drive has a space instead of the drive number and p (lower case p) as letter, e.g. " p5"
 
 # workingMode, workingModeValues
 
