@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-11-19T08:19:45.141Z
+date: 2022-11-19T08:23:47.385Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -91,12 +91,12 @@ dnActiveInv is a variable to held bitwise information which Dn-s are used. The b
 * bit0 for D0 (and 2 for D1, 4 for D2, ...) 1 means Dn is active, 0 means not
 * bit1 for D0 (and 3 for D1, 5 for D2, ...) 0 means normal, 1 means inverted
 
-# connectedDns, coreXYRatioZ
+# connectedDns, coreXZRatio
 
 For parallel arms, those special parameters store the configuration:
 
 * connectedDns are the connected Dn for CoreXY by storing the positions as flags. 5BarParScara has the 4 or 5 (when using cantilevered) Dns flagged.
-* coreXYRatioZ stores the Z ratio for CoreXZ and CoreYZ types (default 3)
+* coreXZRatio stores the Z ratio for CoreXZ (default 3). It is the Z parameter of cartesian kinematics
 
 The binary flag is calculated by (variable |= (1<< Dnnumber))
 
