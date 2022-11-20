@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-19T00:18:41.658Z
+date: 2022-11-20T16:16:18.115Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -267,6 +267,20 @@ M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only
 The robotic print area is not cubic in most cases, so the workspace differs from the M208 setting. Configuration can set M208 too small or too big:
 * setting too small to a safe, always printable area
 * setting too big around the workspace. Kinematics does two check: whether desired print is inside M208 limits and whether it is reachable by the arm lengths and allowed angles. If M208 is possible, but not according to the true workspace, an error will be reported. Whether a partial print will be done, depends on the printer type (3D printing mode will print partially, CNC mode not).
+
+# angle limits: M208, A"..."
+
+Additionally the M208 limits, the A angle min and max settings limit the allowed movements.
+
+# speed limits: M350, M92, M203, maxVelocity
+
+The following values are important to check speed limits and the reporting of speed violations. Movement speeds will be lowered or hindered if the motor speeds are too high.
+
+* M92 are steps/mm for prismatic and steps/degrees for rotary axes, where the step number of a stepper, the M350 microsteps, gear ratio and pulley teeth are considered. Example 200-step stepper, 16 microsteps,1:3 ratio gear and 20 teeth of pulley are 200 * 16 * 3 / 20. The M92 values must be correct for calculations.
+* M203 is the mm/min for prismatic and degress/min for rotary axes. An industrial robot like Kuka has typically 180 degress for one second, i. e. M203 would be 180 * 60 = 10800. The "big axis" from 1 to 3 are slower, the axes 4 to 6 are often faster, sometimes doubled speed. This makes sense, as axes 1 to 3 have to rotate more mass than axes 4 to 6. Accelerations will differ accordingly.
+* a typical prismatic M203 could be 200 mm/s * 60 s = 12000
+
+If a movement has a velocity too high for one of it's axes, it is currently reported on the console, but the movement is currently not hindered. This will be changed in productive use. A too high velocity is a signal of approaching or reaching a singularity or if the extrusion speed is set too high compared to the normal axis speeds. In most cases, however, extrusion speed is not the limiting factor.
 
 # Homing
 When the Duet controller starts, it has no knowledge about the stepper positions. By a procedure called homing it gets those values. The common procedure of homing is that movements trigger endstops and the values are set for each axis when the endstop is triggered. After homing, the endstops and homing procedure is not necessary any more.
