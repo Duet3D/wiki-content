@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-11-23T07:03:52.864Z
+date: 2022-11-23T10:03:16.130Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -107,17 +107,6 @@ an holds the Angle (or mm position for a prismatic joint) definitions, 3 values 
 The values are set to -999.9 each if not in use. If the third value (home value) is set, it is used as homing value. If the axis is prismatic and the three values are not set, the M208 values are used for min, max and home values. If the axis is rotary and the three values are not set, the M208 values are used, if they are not X, Y, Z values (M208 X, Y, Z are cartesian values).
 
 continuousAxis is an int with binary flags for the axes which are set to continuous. If e.g. the 6th axis is continuous, the 6th bit from right is set to 1. When an axis is flagged as continuous, the first two parameters of an (min, max) are ignored.
-
-# acMode
-
-Sets the behaviour of the A (or B) for robots using axes AC (or BC).
-
-* -1 means the A axis will stay in negative range
-* 0 means A is locked to 0 degrees, i. e. A will not rotate
-* 1 means A will stay in the positive range
-* 99 means the behaviour will change, depending where A starts, trying to find a solution which makes sense
-
-The acMode can be changed at any time between moves.
 
 # quality
 
