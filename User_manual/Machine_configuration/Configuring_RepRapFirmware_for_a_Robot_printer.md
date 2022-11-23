@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-23T07:04:35.326Z
+date: 2022-11-23T10:02:10.637Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -21,7 +21,6 @@ Current status, last actions:
 * to finish the current release for a stable version, I postpone the following capabilities to the next release: 5BarParScara, handling continuous axis, most robotType templates (draft versions are created)
 * added homing M208 possibility for G1 H1 like for CoreXY, Cartesian or prismatic axes in general.
 * reduced memory needed
-* Nov 23: added acMode, because every orientation has two AC solutions
 
 # Configuring a Robot printer
 
@@ -233,14 +232,6 @@ Testing so far has shown, that altering iterations has nearly no effect. After 5
 Turning on logging for performance measuring or debugging. Logging will reduce performance, so performance measuring is not exact.
 * log results are output to console
 * default is logging turned off, P"logLevel=0"
-
-**P"acMode=-1|0|1|99"**
-When using 5 axis robot types, operating at 0 degrees for axis A is critical, as for many situations the velocity of C will go to infinity. A more detailed explanation is be on the CNC 5 axis page. The parameters controls how the firmware shall behave:
-* -1 axis A stays in the negative angle range with 0 as maximum. Speed at 0 will be set to 0
-* 0 A is set to 0 degree constantly
-* 1 axis A stays in the positive angle range with 0 as minium
-* 99 is set if the behaviour is undefined for best-bet approach. Movements can fail when approaching or crossing A 0 degreees
-* acMode is used for AC and BC
 
 # M669 S, T parameters: segmentation
 
