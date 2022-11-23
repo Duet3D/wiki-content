@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-23T06:59:55.875Z
+date: 2022-11-23T07:04:35.326Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -235,7 +235,7 @@ Turning on logging for performance measuring or debugging. Logging will reduce p
 * default is logging turned off, P"logLevel=0"
 
 **P"acMode=-1|0|1|99"**
-When using 5 axis robot types, operating at 0 degrees for axis A is critical, as for many situations the velocity of C will go to infinity. A more detailed explanation will be on the 5 axis page. The parameters controls how the firmware shall behave:
+When using 5 axis robot types, operating at 0 degrees for axis A is critical, as for many situations the velocity of C will go to infinity. A more detailed explanation is be on the CNC 5 axis page. The parameters controls how the firmware shall behave:
 * -1 axis A stays in the negative angle range with 0 as maximum. Speed at 0 will be set to 0
 * 0 A is set to 0 degree constantly
 * 1 axis A stays in the positive angle range with 0 as minium
