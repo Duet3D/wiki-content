@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-11-08T12:31:20.807Z
+date: 2022-11-23T09:12:54.719Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7207,7 +7207,7 @@ This command is used to reconfigure the board it is executed on as a CAN-connect
 
 ### Notes
 
-A few GCode commands can still be executed locally for diagnostic purposes, for example [M111](/User_manual/Reference/Gcodes/M111){target=_blank} and [M122](/User_manual/Reference/Gcodes/M122){target=_blank}.
+After this command is executed, for diagnostic purposes a few GCode commands can still be sent to the USB port for local execution, for example [M111](/User_manual/Reference/Gcodes/M111){target=_blank} and [M122](/User_manual/Reference/Gcodes/M122){target=_blank}.
 
 ## M955: Configure Accelerometer
 
