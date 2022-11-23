@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-11-23T09:12:54.719Z
+date: 2022-11-23T21:22:40.553Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7290,7 +7290,7 @@ This command triggers a firmware update if the necessary files are present on th
 
 * **Snnn** Firmware module number(s), default 0
 * **Bnnn** CAN address of the board to be updated (RRF3, Duet 3 only)
-* **P"filename"** Filename of firmware binary to use (RRF 3.3beta2 and later)
+* **P"filename"** Filename of firmware binary to use (RRF 3.3 and later)
 
 ### Examples
 <br>
@@ -7306,13 +7306,13 @@ In RepRapFirmware on the Duet series, module numbers are as follows:
 * 1 - web server firmware, filename DuetWiFiServer.bin (WiFi-equipped Duets only)
 * 2 - web server file system, filename DuetWebControl.bin (needed only when using RepRapFirmware 1.18 series and earlier for Duet 2 WiFi)
 * 3 - put the WiFi module into bootloader mode, so that firmware can be uploaded directly via its serial port. Also used to update bootloader on CAN-connected Duet 3 expansion boards.
-* 4 - PanelDue firmware (RRF 3.2-beta4.1 and later; see [PanelDue firmware update instructions](/User_manual/RepRapFirmware/Updating_PanelDue){target=_blank}).
+* 4 - PanelDue firmware (RRF 3.2 and later; see [PanelDue firmware update instructions](/User_manual/RepRapFirmware/Updating_PanelDue){target=_blank}).
 
-With all firmware versions up to RRF v3.2.2, all firmware update files are stored in the ‘0:/sys/’ directory. From RRF v3.3beta1, to avoid too many files in this folder, all firmware update files are stored in ‘0:/firmware/’ directory.
+With all firmware versions up to RRF v3.2.2, all firmware update files are stored in the ‘0:/sys/’ directory. From RRF v3.3, to avoid too many files in this folder, all firmware update files are stored in ‘0:/firmware/’ directory.
 
 On Duet 3 only this command take an optional B (board number) parameter which is the CAN address of the board to be updated, default 0 (i.e. main board).
 
-The optional **P** parameter can be used to provide the filename of the file to be used for updating a module. This can either only be a filename in which case it will prepend directories.firmware to it (0:/firmware) or can be an absolute path to the file to be used. It is not allowed to use P parameter and multiple modules, e.g. S1:4. (RRF 3.3beta2 and later)
+The optional **P** parameter can be used to provide the filename of the file to be used for updating a module. This can either only be a filename in which case it will prepend directories.firmware to it (0:/firmware) or can be an absolute path to the file to be used. It is not allowed to use P parameter and multiple modules, e.g. S1:4. (RRF 3.3 and later)
 
 See [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank} for detailed documentation.
 
