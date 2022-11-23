@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-11-23T06:58:10.867Z
+date: 2022-11-23T07:12:24.376Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -56,6 +56,8 @@ RTCP means, that when rotating AB/AC/BC without XYZ correction, the movement wou
 For a given orientation of the transformation matrix, there are two solutions for AC (or BC). They are mirrored at the A axis, e.g. A -20 and C 10 has a mirrored solution at A +20 and C-170. The result is, that at A 0 degrees it can happen that the kinematics wants to rotate the C axis by 180 degrees immediately, i. e. with infinite velocity. This is of course not possible and the movement fails. (A little joke: only Star Trek Voyager Paris achieved Warp 10 with funny results).
 
 Another solution which is taken by some CAM programs is to set a priority for the A axis to stay in negative and positive range. That's the acMode for, to set a priority, or 99 if the firmware shall try to find the best solution. Firmware tries to set A velocity to 0 near the 0 degree, but the exact degree position will be difficult to find and will fail sometimes. The more stable solution is to set negative or positive A range and stay there.
+
+The two solutions have the same orientation, but the position on the C plate is different. I. e. the XYZ axes must move to different places, which may result in positions which are not possible to reach. The CAM or slicer must calculate the correct solutions.
 
 # G-Code
 
