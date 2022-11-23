@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-23T06:35:32.066Z
+date: 2022-11-23T06:59:55.875Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -240,6 +240,7 @@ When using 5 axis robot types, operating at 0 degrees for axis A is critical, as
 * 0 A is set to 0 degree constantly
 * 1 axis A stays in the positive angle range with 0 as minium
 * 99 is set if the behaviour is undefined for best-bet approach. Movements can fail when approaching or crossing A 0 degreees
+* acMode is used for AC and BC
 
 # M669 S, T parameters: segmentation
 
