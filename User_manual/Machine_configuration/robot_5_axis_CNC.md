@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-11-23T07:12:24.376Z
+date: 2022-11-23T07:14:15.655Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -57,7 +57,7 @@ For a given orientation of the transformation matrix, there are two solutions fo
 
 Another solution which is taken by some CAM programs is to set a priority for the A axis to stay in negative and positive range. That's the acMode for, to set a priority, or 99 if the firmware shall try to find the best solution. Firmware tries to set A velocity to 0 near the 0 degree, but the exact degree position will be difficult to find and will fail sometimes. The more stable solution is to set negative or positive A range and stay there.
 
-The two solutions have the same orientation, but the position on the C plate is different. I. e. the XYZ axes must move to different places, which may result in positions which are not possible to reach. The CAM or slicer must calculate the correct solutions.
+The two solutions have the same orientation, but the XYZ axes must move to different places (the C rotation takes the position to a different global position), which may not be possible to reach. The CAM or slicer must calculate the correct solutions.
 
 # G-Code
 
