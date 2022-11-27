@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-23T10:02:10.637Z
+date: 2022-11-27T16:09:38.745Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -21,6 +21,7 @@ Current status, last actions:
 * to finish the current release for a stable version, I postpone the following capabilities to the next release: 5BarParScara, handling continuous axis, most robotType templates (draft versions are created)
 * added homing M208 possibility for G1 H1 like for CoreXY, Cartesian or prismatic axes in general.
 * reduced memory needed
+* removed CoreXZ and concentrate on CoreXY. Currently intensive CoreXY testing
 
 # Configuring a Robot printer
 
@@ -65,19 +66,16 @@ Most changes in config.g don't need a reboot, but when a drive or letter assignm
 Currently, valid values for the type and parameters are:
 * 6Axis
 * 5AxisAC, 5AxisBC (=> CNC 5 axis, Pentarod, Open5x)
-* CoreXYAC, CoreXYBC, CoreXZAC[:Zf], CoreXZBC[:Zf]
+* CoreXYAC, CoreXYBC
 * 4AxisPall, 4AxisPallInv (=> IRB 460 like)
 * 5BarParall, 5BarParallAC, 5BarParallBC (experimental)
 * leaving empty: use only Dn, P, A and other parameters
 
 The AC and BC types use the typical configuration with A/B at the table and C on top of it. If other configurations like head/table are needed, the Dn parameters can be changed afterwards as wished. Explanations and examples will be posted on the 5 axis documentation page.
 
-parameters for CoreXZAC and CoreXZBC: (as shown above)
-* Zf for the ratio parameter like described in M669 K2 kinematics
-
 Not being on the list doesn't mean that a robot type is not supported. E.g. polar kinematics, serial Scara, cartesian with 3 axes spherical head and many more are all supported by specifying the D and P parameters individually. robotType is left empty in this case. Some kinematics already exist as dedicated kinematics. Robot kinematics for them is meant as an additional option, not as replacement.
 
-The task of robotType is to set some default parameters, but it is also important to decide which arms are connected as parallel and which drives are e. g. AC. For example, together with information of mapDriveLetterDn, firmware knows to which drive and Dn A is connected, and which drives are the connected actuators for CoreXY/XZ/5BarParScara/Palletized.
+The task of robotType is to set some default parameters, but it is also important to decide which arms are connected as parallel and which drives are e. g. AC. For example, together with information of mapDriveLetterDn, firmware knows to which drive and Dn A is connected, and which drives are the connected actuators for CoreXY/5BarParScara/Palletized.
 
 The default settings of robotType can be overwritten by P"..." parameters. B"robotType" should be specified first, otherwise P parameters will be overwritten.
 
@@ -85,7 +83,6 @@ The robot types are described in detail on dedicated pages, please see the robot
 
 Example:
 * B"robotType=CoreXYAC" specifies CoreXY and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. More details of the 5 axis types are described on a dedicated page.
-* B"robotType=CoreXZAC:Z3" sets CoreXZ with reduction ratio for Z to 3. Default for CoreXZ/CoreYZ is Z3.
 
 # M669 A parameter: angles
 
