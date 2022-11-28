@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2022-08-31T09:33:06.828Z
+date: 2022-11-28T18:21:45.429Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -10,9 +10,9 @@ dateCreated: 2022-01-25T12:15:12.719Z
 
 # Introduction
 
-Duet Software Framework (DSF) is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
+Duet Software Framework (DSF) is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3. This is refered to running in "SBC" mode, as opposed to running in "standalone" mode wihtout an SBC. Running in SBC mode is optional, it brings with it the potential to use the SBC to handle the networking and UI functions  of the system. In addition it provides an [API](https://github.com/Duet3D/DuetSoftwareFramework/wiki/API-Overview){target=_blank} on the SBC to build plugins and other applications that work with the Duet controlled system.
 
-Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3 or 4. For a standard setup, the [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup) page gives an outline how to get setup initially, and what to do if there are issues.
+Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3 or 4. For a standard setup, the [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank} page gives an outline how to get setup initially, and what to do if there are issues.
 
 # Prerequisites
 
@@ -20,11 +20,11 @@ Duet Software Framework utilises .NET 6 so an ARMv7 processor is required for op
 
 * DuetPi (Raspberry Pi 3 or newer)
 
-  DuetPi is the official Debian image based on Raspberry Pi OS that is customised for the Duet 3. If you are not very familiar with the Raspberry Pi, it is strongly recommended to use this instead of the stock Raspbian image. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
+  DuetPi is the official Debian image based on Raspberry Pi OS that is customised for the Duet 3. If you are not very familiar with the Raspberry Pi, it is strongly recommended to use this instead of the stock Raspbian image. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
 
 * Stock Raspberry Pi OS and other SBCs
 
-  If you have the latest Raspbian image installed on your Raspberry Pi or if you are using another SBC, follow [these](/User_manual/Machine_configuration/DSF_Other) instructions to get started with DSF.
+  If you have the latest Raspbian image installed on your Raspberry Pi or if you are using another SBC, follow [these](/User_manual/Machine_configuration/DSF_Other){target=_blank} instructions to get started with DSF.
 
 # Updates
 
@@ -39,7 +39,7 @@ sudo apt update
 sudo apt dist-upgrade
 ```
 
-This will automatically install the latest DSF components. You may achieve the same remotely using [SSH](https://www.raspberrypi.com/documentation/computers/remote-access.html).
+This will automatically install the latest DSF components. You may achieve the same remotely using [SSH](https://www.raspberrypi.com/documentation/computers/remote-access.html){target=_blank}.
 
 ## Switch to unstable packages
 
@@ -114,11 +114,11 @@ The first SD card (0:/) is emulated by DCS and its default directory is `/opt/ds
 
 # Third-Party Plugins
 
-Duet3D provides some sample plugins for DSF which are available on [GitHub](https://github.com/Duet3D/DSF-Plugins/releases).
-Other third-party plugins are available on the [forum](https://forum.duet3d.com/category/41/plugins-for-dwc-and-dsf).
+Duet3D provides some sample plugins for DSF which are available on [GitHub](https://github.com/Duet3D/DSF-Plugins/releases){target=_blank}.
+Other third-party plugins are available on the [forum](https://forum.duet3d.com/category/41/plugins-for-dwc-and-dsf){target=_blank}.
 
-If you want to get involved in plugin development, check out the [DSF](https://github.com/Duet3D/DuetSoftwareFramework/wiki/Third-Party-Plugins) and [DWC](https://github.com/Duet3D/DuetWebControl/wiki/Third-Party-Plugins) plugin guides.
+If you want to get involved in plugin development, check out the [DSF](https://github.com/Duet3D/DuetSoftwareFramework/wiki/Third-Party-Plugins){target=_blank} and [DWC](https://github.com/Duet3D/DuetWebControl/wiki/Third-Party-Plugins){target=_blank} plugin guides.
 
 # Reporting issues
 
-Please use the forum to report any issues: [https://forum.duet3d.com/](https://forum.duet3d.com/)
+Please use the forum to report any issues: [https://forum.duet3d.com/](https://forum.duet3d.com/){target=_blank}
