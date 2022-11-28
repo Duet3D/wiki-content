@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-09-05T13:35:21.329Z
+date: 2022-11-28T18:20:45.245Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -12,7 +12,7 @@ dateCreated: 2021-07-09T14:00:13.273Z
 
 # Introduction
 
-The Duet 3 Mainboard 6HC is a next-generation controller board that builds on Duet3D's experience in developing the most flexible 3d printer control solutions. It is the core of the Duet 3 family which provides control for a wide range of machines including 3d printers, CNCs, lasercutters and more. The overall aim with the Duet 3 series is to allow for maximum flexibility of machine design through highly capable mainboards, expansion boards, smart tool boards and custom expansion modules. The flexibility of configuration and advanced features are enabled by our innovative [RepRapFirmware](/User_manual/RepRapFirmware/RepRapFirmware_overview) running on the Mainboard and DuetSoftwareFramework running on the single board computer.
+The Duet 3 Mainboard 6HC is a next-generation controller board that builds on Duet3D's experience in developing the most flexible 3d printer control solutions. It is the core of the Duet 3 family which provides control for a wide range of machines including 3d printers, CNCs, lasercutters and more. The overall aim with the Duet 3 series is to allow for maximum flexibility of machine design through highly capable mainboards, expansion boards, smart tool boards and custom expansion modules. The flexibility of configuration and advanced features are enabled by our innovative [RepRapFirmware](/User_manual/RepRapFirmware/RepRapFirmware_overview){target=_blank} running on the Mainboard and DuetSoftwareFramework running on the single board computer.
 
 The Duet 3 Mainboard 6HC is the first version of the Mainboard produced.
 
@@ -26,10 +26,10 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 
 | HARDWARE SPECIFICATION ||
 |---|---|
-| **Processor** | [ATSAME70Q20B](https://www.microchip.com/en-us/product/ATSAME70Q20) |
+| **Processor** | [ATSAME70Q20B](https://www.microchip.com/en-us/product/ATSAME70Q20){target=_blank} |
 | **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
 | **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port; CAN-FD bus |
-| **On-board stepper drivers** | 6 x  [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/) |
+| **On-board stepper drivers** | 6 x  [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 |
 | **High current outputs** | 1 x 15A^1^, 3 x 6A each |
 | **Medium current outputs** | 6 x PWM-controlled outputs, of which 3 support tacho input. Voltage selectable between VIN / 12V / external power, in 2 banks. 1 x VIN-voltage, always-on output. 1 x 12V, always-on output. |
