@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-11-26T17:45:20.098Z
+date: 2022-11-29T16:13:12.182Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1925,11 +1925,12 @@ Request the temperature of the current extruder and the build base in degrees Ce
 <br>
 <pre class="cblock">
 M106 S127
-M106 P1 T45 S0.7 H1:2
+M106 P1 T45 S0.7 H1:2 ; (RRF 3.3 and earlier, see notes)
+M106 P1 T45 H1:2 X0.7 ; (RRF 3.4 and later, see notes)
 M106 P1 T40:50 H1:2
 </pre>
 
-The first example turns on the default cooling fan at half speed. The second example sets the second fan to a thermostatic fan for sensors 1 and 2 (e.g. the extruder heaters in a dual-nozzle machine) such that the fan will be on at 70% PWM when either hot end is at or above 45C. The third example also sets up a thermostatic fan, but this time it runs in proportional mode. 
+The first example turns on the default cooling fan at half speed. The second (RRF 3.3 and earlier) and third (RRF 3.4 and later) examples sets the second fan to a thermostatic fan for sensors 1 and 2 (e.g. the extruder heaters in a dual-nozzle machine) such that the fan will be on at 70% PWM when either hot end is at or above 45C. The third example also sets up a thermostatic fan, but this time it runs in proportional mode; fan speed scales from 0% to 100% as temperature rises from 40C to 50C. 
 <br>
 <pre class="cblock">
 M308 S10 Y"mcu-temp" A"MCU"                      ; defines sensor 10 as MCU temperature sensor
@@ -1948,6 +1949,8 @@ The A (logical pin number), F (fan PWM frequency) and I (invert pwm) parameters 
 The P parameter relates to the fan number created by M950, NOT the fan pin number on the board as in RRF2.x.
 
 The H parameter relates to the sensor number(s) created by M308, not the temperature sensor pin number on the board as in RRF2.x.
+
+From RRF 3.4, when a fan is configured as thermostatic using M106, the S parameter is now ignored. If a single T value is given, then when the temperature is above the T parameter the fan will run at the PWM specified by the X (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the S parameter. 
 
 If a fan is configured to trigger on a sensor that represents a stepper driver over-temperature flags (ie M308 ... Y'drivers'), then when the fan turns on it will delay the reporting of an over-temperature warning for the corresponding drivers for a few seconds, to give the fan time to cool the driver down.
 
@@ -1984,7 +1987,7 @@ M950 F2 C"!Fan2+exp.pb6" Q25000  ; fan 2 is a 4-wire PWM fan so invert it, use h
 <br>
 <pre class="cblock">
 M106 S127
-M106 P1 T45 S0.7 H1:2
+M106 P1 T45 S0.5 H1:2
 M106 P1 T40:50 H1:2
 M106 P2 T45:65 H100:101:102
 </pre>
@@ -2009,7 +2012,7 @@ If an S parameter is provided but no other parameter is present, then the speeds
 
 If no S parameter is given but the R1 parameter is used, the fan speed when the print was last paused will be set, this allows the pause.g macro to switch off the fans and have them resume when the print is resumed. If the R2 parameter is used, then the speeds of the print cooling fans associated with the current tool will be set to the remembered value (see above). R2 allows the configured fan speed to be passed between tools which is useful on multi extruder printers where the slicing software may not specify the fan speed on tool change and the tool change macros shut down fans when not in use.
 
-The T and H parameters allow a fan to be configured to operate in thermostatic mode, for example to use one of the fan channels to control the hot end fan. In this mode the fan will be on with the PWM set by the S parameter (subject to a minimum of 0.5) when the temperature of any of the heaters listed in the H parameter is at or above the trigger temperature set by the T parameter, and off otherwise. Thermostatic mode can be disabled using parameter H-1.
+The T and H parameters allow a fan to be configured to operate in thermostatic mode, for example to use one of the fan channels to control the hot end fan. In this mode the fan will be on when the temperature of any of the heaters listed in the H parameter is at or above the trigger temperature set by the T parameter, and off otherwise. Thermostatic mode can be disabled using parameter H-1. In RRF 3.4 and later, the fan will run at the PWM specified by the X (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the S parameter.
 
 In firmware 1.19 and later, the T parameter may be of the form Taaa:bbb where aaa is the temperature at/below which the fan should be fully off and bbb is the temperature at which the fan should be fully on. The PWM will be set proportionally if the temperature is between these limits.
 
@@ -4698,6 +4701,7 @@ M563 P0 D0:2:3 H1:3 ; create a tool using extruder drives 0, 2 and 3 and heaters
 M563 P1 D1 H2 X3 ; create a tool using extruder drive 1 and heater 2 with X movement mapped to the U axis
 M563 P2 D0:1 H1:2 X0:3 F0:2 ; create a tool using extruder drives 0 and 1, heaters 1 and 2, with X movement mapped to both X and U axes and fan 0 mapped to fans 0 and 2
 M563 P3 D0 H1 S"Chocolate extruder" ; create a named tool using extruder drive 0 and heater 1
+M563 P1 D-1 H-1 ; Delete tool 1
 </pre>
 
 ### Description
@@ -7074,7 +7078,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **Hnn** Heater number
 * **Fnn** Fan number
 * **Jnn** Input pin number (RRF 3.01 and later only)
-* **Pnn** or **Snn** Output/servo pin number. Servo pins are just GpOut pins with a different default PWM frequency.
+* **Pnn** or **Snn** Output/servo pin number. Each P and/or S number needs to be unique, eg P1, P2, S3 P4, S5 etc. Servo pins are GpOut pins with a different default PWM frequency.
 * **Rnn** Spindle number (RRF 3.3 and later only)
 * **Dn** (Duet 3 MB6HC running RRF 3.4 or later only) SD slot number. The only value supported is 1.
 * **En** (RRF 3.5 and later only) LED strip number
