@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-11-29T16:13:12.182Z
+date: 2022-11-30T15:59:09.381Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5816,7 +5816,7 @@ M585 X100 F600 E3 L0 S0 ; probe X until E0 endstop goes low
   * Select your tool (Txx)
   * Move the tool to your starting position (G1 X?? Y?? Z?? F3000)
   * Drive the tool into the endstop, stop there and apply the new tool offset with the given correction factor (M585 XYZ?? F1000 E??)
-  * Call G10/M568 Pxx with your tool number to get the corrected tool offset or call M500 (supported in RRF 1.20beta3 and later) to store the probed tool offsets on the SD card
+  * Call G10 Pxx with your tool number to get the corrected tool offset or call M500 (supported in RRF 1.20beta3 and later) to store the probed tool offsets on the SD card
 
 ## M586: Configure network protocols
 
