@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-01T09:17:27.026Z
+date: 2022-12-01T13:22:07.563Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -201,13 +201,16 @@ Examples:
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: AC, BC if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
 
-**P"workingMode=home|a1:p2:a3:etc"**
+**P"workingMode=home|current|a1:p2:a3:etc"**
 
 Working modes are explained in https://docs.duet3d.com/en/User_manual/Machine_configuration/robot_firmware chapter "Working modes". The work mode can be changed by
 * home sets the workmode to the angle combinations of the homing angles. This is the default and startup situation after changing to robot kinematics.
+* current sets the current actuator positions as workmode values
 * list-of-angles is a colon separated list of degrees for rotary axes and mm for linear/prismatic axes. The list size must match the count of actuators, including a palletized axis (the palletized axis's angle will be ignored). If a value is not specified, the homeing value will be taken.
 
 The work mode can be changed by e. g. G1 H2 moves and then setting to the current position by issuing the P command with the current values. Only setting the new P values without previous moving will probably fail, because the singularity cannot be crossed in most cases.
+
+The workmode values should not be in a singularity or near the singularity, because moving out of it is difficult. The generalized inverse provides solutions for singularities (reduced ranks), but the velocity limits will often be violated.
 
 Example:
 * P"workingMode=10:20:30:-20:0" for CNC 5 axis AC will set XYZ positions to 10, 20, 30 mm, the A axis to -20 degrees and the C axis to 0 degrees as starting point.
