@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-11-23T10:03:16.130Z
+date: 2022-12-01T10:23:58.015Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z
@@ -108,18 +108,16 @@ The values are set to -999.9 each if not in use. If the third value (home value)
 
 continuousAxis is an int with binary flags for the axes which are set to continuous. If e.g. the 6th axis is continuous, the 6th bit from right is set to 1. When an axis is flagged as continuous, the first two parameters of an (min, max) are ignored.
 
-# quality
+# quality related
 
-* quality=5 is the highest level and default
-* quality=3 is middle
-* quality=1 is lowest quality
+The following values can be changed to change the precision-performance balance:
+* angleDiff
+* maxIterations
+* precision
+* precisionAngle
+* lowValuesZero
 
-quality holds the string settingThe different levels change multiple values:
-* precision of segemented move: precision, precisionAngle, segmentLength, segmentsPerSecond
-* precision of long moves: longMovePrecision, longMovePrecisionAngle, longMoveSegmentLength
-* angleDiff: angle change for calculation of jacobian matrix
-* maxIterations: how many iterations max to find a solution
-* lowValuesZero: used to round values near 0, 1, -1 in some orientation calculations
+The most effect are achieved by changing precision, which is the required precision for every prismatic axis in mm until the target is considered to be achieved, and precisionAngle for rotary axes in degrees for the same criterium.
 
 # logLevel
 
