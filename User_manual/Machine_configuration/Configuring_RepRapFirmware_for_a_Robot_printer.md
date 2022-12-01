@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-01T09:16:22.128Z
+date: 2022-12-01T09:17:27.026Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -214,7 +214,7 @@ Example:
 * P"workingMode=:::-20:0" same, but the prismatic positions will be set to the homing values and only A and C are specified.
 * P"workingMode=home" will set the starting point to the values of the An... third parameters of each axis. The starting point will be stored when the An parameters are completely specified.
 
-**P"parametername=value"**
+**P"qualityParameterName=value"**
 
 Currently 5 paramters control the quality of calculations. Higher quality means longer calculation time. The values are the default values:
 * angleDiff=1.0 is the value by which angles are changed to calculate the Jacobian matrix
