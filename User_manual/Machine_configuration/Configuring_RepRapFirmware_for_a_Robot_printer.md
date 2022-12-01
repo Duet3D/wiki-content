@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-11-27T16:09:38.745Z
+date: 2022-12-01T09:16:22.128Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -214,16 +214,16 @@ Example:
 * P"workingMode=:::-20:0" same, but the prismatic positions will be set to the homing values and only A and C are specified.
 * P"workingMode=home" will set the starting point to the values of the An... third parameters of each axis. The starting point will be stored when the An parameters are completely specified.
 
-**P"quality=1|3|5"**
-* n can be 1, 3 or 5. 1 is lowest quality, 5 highest, default is 5.
+**P"parametername=value"**
 
-Slow and high quality means the algorithms takes more time to calculate exact results. Quality can be changed anytime between moves, e. g. to print specific object details with higher quality.
+Currently 5 paramters control the quality of calculations. Higher quality means longer calculation time. The values are the default values:
+* angleDiff=1.0 is the value by which angles are changed to calculate the Jacobian matrix
+* maxIterations=10 is the number of iterations to find a target. If the target is not reached for the given precision, best best result so far is used. More than 5 iterations are singularity situations in most cases and the result will be only an approximation
+* precision=1e-4f is the required precision for every prismatic actuator in mm
+* precisionAngle=1e-3f is the required precision for every rotary actuator in degrees
+* lowValuesZero=1e-6 is the tolerance in some matrix calculation to decide that a value near 0, 1 or -1 is rounded to exactly 0, 1, -1
 
-The following properties will be changed:
-* allowed maximum number of iterations to achieve the precision goal. When it aborts, firmware takes the best result achieved (lowest position and orientation error)
-* required precision for position and orientation
-
-Testing so far has shown, that altering iterations has nearly no effect. After 5 iterations, all tests have approached the target, with the exception of singularity areas, where the iterations is interrupted, because angles go havoc. Changing precision requirement has some effect on time required to calculate.
+When performance is too low, changing the precision and precisionAngle to a lower value (e.g. to 1e-2f which is 0.01, 10 micrometer) has the most effect.
 
 **P"logLevel=0|1"**
 Turning on logging for performance measuring or debugging. Logging will reduce performance, so performance measuring is not exact.
