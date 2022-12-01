@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-11-08T07:09:48.103Z
+date: 2022-12-01T13:25:35.257Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -168,6 +168,11 @@ For part of the robot types, a specific cartesian position and orientation can b
 Crossing the boundaries and changing the working modes is only possible by crossing singularities. For exceptions please see below.
 
 To avoid problems, the working mode can be specified by telling the firmware using a set of actuator angles with P"workmode=..." as reference, which is used as beginning position/orientation to calculate targets. Default are the homing angles. The calculation uses a print path which is solvable the whole path, i. e. all segments of a move will be achievable with limited velocity of the actuators. When the kinematics is informed about a new move, the method LimitPosition is called which checks whether the position and orientation is reachable. The decision is made by the M208 limits and the inverse kinematics calculation whether the robot can reach the position and orientation. The calculation stays inside the work mode, starting from the position/orientation of the stored angles in cachedAngles.
+
+The following methods exist to specify workmode:
+* home uses the homing values and 0 until all values are specified
+* current uses the current prismatic and rotary actuator positions
+* a list of values specify mm (prismatic) or degree (rotary) values. If a value is left empty, it uses the current set value
 
 To change workmode, additional G-Code commands like G1 H2 moves are necessary and setting to the new workmode. An alternative is to cross the singularity with the experimental solution to set velocity for critical actuators to 0 and cross the singularity. This will often produce inexact print or drill results, but may be acceptable.
 
