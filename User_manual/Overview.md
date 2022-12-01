@@ -2,7 +2,7 @@
 title: User manual: Overview
 description: 
 published: true
-date: 2022-07-29T15:45:50.770Z
+date: 2022-12-01T14:46:58.310Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:46:34.769Z
@@ -35,5 +35,6 @@ Guide: [Getting Connected to your Duet](/How_to_guides/Getting_connected/Getting
 # Duet 3 with single board computer (SBC) 
 
 [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup)
+[Duet Software Framework (DSF)](/User_manual/Machine_configuration/DSF)
 [Duet Software Framework (DSF) on Raspberry Pi](/User_manual/Machine_configuration/DSF_RPi) - using DuetPi image from Duet3D
 [Duet Software Framework (DSF) on other boards](/User_manual/Machine_configuration/DSF_Other) - installing DSF on Raspberry Pi OS or a custom Debian board/installation
