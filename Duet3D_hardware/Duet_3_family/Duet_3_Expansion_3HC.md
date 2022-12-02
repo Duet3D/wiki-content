@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-09-12T13:34:20.851Z
+date: 2022-12-02T16:14:31.545Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -16,10 +16,10 @@ The Duet 3 Expansion 3HC supports the following:
 ## Hardware specification
 
 |---|---|
-| **Processor** | [Atmel ATSAME51N](https://www.microchip.com/wwwproducts/en/ATSAME51N19A) |
+| **Processor** | [Atmel ATSAME51N](https://www.microchip.com/wwwproducts/en/ATSAME51N19A){target=_blank} |
 | **Prosessor features** | 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM and many peripherals |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard | 
-| **On-board stepper drivers** | 3 x [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/) |
+| **On-board stepper drivers** | 3 x [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 | 
 | **High current outputs** | 3 x 6A each | 
 | **Thermistor/PT1000 inputs** | 3 x inputs, optimised for 100K thermistors and PT1000 sensors | 
