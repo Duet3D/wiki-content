@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2022-12-02T16:31:52.662Z
+date: 2022-12-02T17:16:33.263Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -103,6 +103,34 @@ Note there a multiple revisions of the v1.7 and v3.0 PCB but the critical dimens
 
 ## Tabs {.tabset}
 
+### v3.0 magnetic assembly and housing
+
+Before starting ensure the printed parts are free from stringing and that filament passes through the filament path. the filament path may need to be reamed out with a 1.8mm drill bit.
+
+Install the idler carriers, idler bearing and spring.
+![mfm_v3_assembly_1.png](/hardware/magnetic_filament_monitor/mfm_v3_assembly_1.png =400x)
+
+
+Place the flanged bearing on the magnetic assembly and then fit in the body as shown. Ensure the bearing is seated properly 
+![mfm_v3_assembly_2.png](/hardware/magnetic_filament_monitor/mfm_v3_assembly_2.png =400x)
+
+
+Insert the collets and collet clips.
+![mfm_v3_assembly_3.png](/hardware/magnetic_filament_monitor/mfm_v3_assembly_3.png =400x)
+
+
+Place the lid on top. It is usual for the magnet to cause the lid to lift slightly until the PCB is screwed into place. Screw the PCB in place as showing. note the two 12mm long M2.5 screws go to the left as show in this image, the single 6mm M2.5 screw goes to the right.
+![mfm_v3_assembly_4.png](/hardware/magnetic_filament_monitor/mfm_v3_assembly_4.png =400x)
+
+
+If the MFM will be mounted directly above an extruder, supported only with the PTFE tube then use M3x 10 screws (not supplied) to complete the assembly. If the MFM will be screwed into a mounting plate then use appropriate length M3 screws for the chosen mounting method.
+
+![mfm_v2_step4_m3.jpg](/hardware/magnetic_filament_monitor/mfm_v2_step4_m3.jpg =400x)
+
+Mount using PTFE tube to guide the filament in and out of the filament monitor.
+
+![mfm_v2_step4_collets.jpg](/hardware/magnetic_filament_monitor/mfm_v2_step4_collets.jpg =400x)
+
 ### v2.0 magnetic assembly and housing
 
 Before starting ensure the printed parts are free from stringing and that filament passes through the filament path. the filament path may need to be reamed out with a 1.8mm drill bit.
@@ -169,9 +197,10 @@ Note that when mounting after the extruder, ensure that the dust from the entrud
 
 ## Tabs {.tabset}
 
-### PCB v1.7a, 1.7b
+### PCB v1.7a, 1.7b, v3.0
 
-[![Wiring for the Rotating Magnet Filament monitor version 1.7a and v1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_wiring_d1.0.png =500x)](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_wiring_d1.0.png){target=_blank}
+[![Wiring for the Rotating Magnet Filament monitor version 3.0, 1.7b and v1.7a](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab3_wiring_d1.0.png =500x)](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab3_wiring_d1.0.png){target=_blank}
+
 
 **Note:** on board revision v1.7a and later, the 'Switch' and 'Output' header is rotated 180 degrees, ie the connector tab is on the outside edge, compared with v1.7.
 
@@ -185,7 +214,7 @@ It is possible to modify the Filament monitor PCB to connect to a controller tha
 
 ![Diagram showing the locaiton of the 3.3V/5V drillable jumper on the rotating magnet PCB version 1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_5v_d1.0.png =600x)
 
-This image shows PCB v1.7b, the process is the same for 1.7 and 1.7a
+This image shows PCB v1.7b, the process is the same for v3.0. 1.7a and 1.7
 
 
 
@@ -250,6 +279,13 @@ The fuses should be set correctly on the monitor but if they are not the followi
 # Revisions
 
 # Tabs {.tabset}
+
+## Revision 3.0
+
+Changes to the magnetic assembly and housing design. No change to the PCB design:
+
+* Magnetic assembly changed form a ring magnet to a rod magnet.
+* Enclosure modified slightly to accommpdate new magnetic assembly.
 
 ## PCB Revision 1.7b
 
