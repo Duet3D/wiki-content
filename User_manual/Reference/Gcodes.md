@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-11-30T15:59:09.381Z
+date: 2022-12-02T08:50:32.947Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5671,7 +5671,7 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 ### Parameters
 
 * **Tnn** Trigger number to poll
-* **Sn** (optional, RRF 3.5 and later only) 0 = only trigger if the onput states are at the correct level (default), 1 = trigger unconditionally
+* **Sn** (optional, RRF 3.5 and later only) 0 = only trigger if the input states are at the correct level (default), 1 = trigger unconditionally
 
 ### Examples
 <br>
@@ -5682,7 +5682,7 @@ M582 T3 S1 ; set trigger #3 pending unconditionally
 
 ### Notes
 
-Triggers set up by the M581 command are normally activated only when the specified inputs change state. This command provides a way of causing the trigger to be executed if the input is at a certain level. For each of the inputs associated with the trigger, the trigger condition will be checked as if the input had just changed from the opposite state to the current state.
+Triggers set up by the M581 command are normally activated only when the specified inputs change state. This command provides a way of causing the trigger to be executed if the input is at a certain level. For each of the inputs associated with the trigger, the trigger condition will be checked as if the input had just changed from the opposite state to the current state. If the S1 parameter is used then the trigger will be activated unconditionally (RRF 3.5 and later only).
 
 For example, if you use M581 to support an out-of-filament sensor, then M582 allows you to check for out-of-filament just before starting a print.
 
@@ -7203,6 +7203,8 @@ When CAN is implemented on Microchip SAME5x and SAMC21 processors, these values 
 
 ## M954: Configure as CAN expansion board
 
+*Supported in RRF 3.4 and later on Duet 3 boards*
+
 This command is used to reconfigure the board it is executed on as a CAN-connected expansion board. It would typically be the only command in the config.g file. When it is executed, the board changes its CAN address to the one specified in the A parameter, stops sending CAN time sync messages, and responds to requests received via CAN just like a regular expansion board. 
 
 ### Parameters
@@ -7215,7 +7217,7 @@ After this command is executed, for diagnostic purposes a few GCode commands can
 
 ## M955: Configure Accelerometer
 
-*To be supported in RRF 3.4 (limited support in 3.3beta3)*
+*Supported in RRF 3.4 and later (limited support in 3.3)*
 
 This command configures an accelerometer.
 
@@ -7240,7 +7242,7 @@ The **S** and **R** parameters control how the accelerometer is programmed. The 
 
 ## M956: Collect accelerometer data and write to file
 
-*To be supported in RRF 3.4 (limited support in 3.3beta3)*
+*Supported in RRF 3.4 and later (limited support in 3.3)*
 
 This command causes the specified number of accelerometer samples to be collected and saved to a .csv file.
 
@@ -7256,9 +7258,9 @@ This command causes the specified number of accelerometer samples to be collecte
 
 The **P** parameter selects which accelerometer to use and is mandatory. To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**.
 
-## M957: Raise event or Trigger
+## M957: Raise event
 
-*Supported in RepRapFirmware 3.4 and later for raising events, 3.5 and later for raising triggers.*
+*Supported in RepRapFirmware 3.4 and later for raising events*
 
 This command is used to raise an event or trigger internally as if the event had actually occurred, and execute any related handler macro for that event or trigger. Its main use is to test event handler and trigger macros.
 
