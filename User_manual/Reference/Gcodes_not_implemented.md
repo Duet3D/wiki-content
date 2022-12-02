@@ -2,7 +2,7 @@
 title: GCodes not implemented
 description:  This page lists GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware. 
 published: true
-date: 2022-06-29T21:18:44.016Z
+date: 2022-12-02T18:40:27.505Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:45:16.729Z
@@ -20,13 +20,15 @@ When these are implemented depends very much on the demand.
 
 * G40: Compensation Off (CNC specific)
 * G80: Cancel Canned Cycle (CNC specific)
-* G93: Feed Rate Mode (Inverse Time Mode) 
+* G93: Feed Rate Mode (Inverse Time Mode) - implemented experimentally in RRF 3.5beta1
+* G94: Feed Rate Mode (Units per Minute) - implemented experimentally in RRF 3.5beta1
+* M2: Program End - implemented in RRF 3.5beta1
 * M6: Tool change (although tool change macros and entering Tn commands allow for greater functionality)
-* M7: Mist Coolant On (CNC specific) (pumps or other motors can be controlled using appropriate circuity on a fan pin, see M106 or an unused IO pin, see M42)
-* M8: Flood Coolant On (CNC specific) (but see comments above on M7)
-* M9: Coolant Off (CNC specific) (but see comments above on M7)
-* M10: Vacuum On (CNC specific) (but see comments above on M7)
-* M11: Vacuum Off (CNC specific) (but see comments above on M7)
+* M7: Mist Coolant On (CNC specific) (you can define a macro M7.g to implement this)
+* M8: Flood Coolant On (CNC specific) (you can define a macro M8.g to implement this)
+* M9: Coolant Off (CNC specific)(you can define a macro M9.g to implement this)
+* M10: Vacuum On (CNC specific) (you can define a macro M10.g to implement this)
+* M11: Vacuum Off (CNC specific)(you can define a macro M11.g to implement this)
 * M33: Stop and Close File and save restart.gcode (possibly not using this specific G-Code)
 * M85: Set inactivity shut down timer (No demand)
 * M123: Tachometer value
@@ -42,8 +44,6 @@ These are unlikely to be implemented due to functionality existing in other RepR
 
 * G6: Direct Stepper Move (Use G1 S1 instead)
 * G33: Measure/List/Adjust Distortion Matrix (Use G29 or G32 instead)
-
-* G94: Feed Rate Mode (Units per Minute) (No demand)
 * G100: Calibrate floor or rod radius (No demand)
 * G130: Set digital potentiometer value (Use M906)
 * G131: Remove offset
@@ -51,12 +51,11 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * G133: Measure steps to top
 * G161: Home axes to minimum (use G28, if that homes to max then consider a macro to move to 0,0,0 after homing)
 * G162: Home axes to maximum (use G28, if that homes to min then consider a macro to move to max,max,max after homing)
-* M2: Program End (Not required)
 * M31: Output time since last M109 or SD card start to serial (No demand)
 * M33: Get the long name for an SD card file or folder (Not required, other SD card M commands already support long file names)
 * M34: Set SD file sorting options (Not Required as the UI, e.g. DWC or PanelDue is better suited to handling how file lists are displayed)
 * M40: Eject (No requirement, define a macro to eject parts)
-* M41: Loop (No requirement)
+* M41: Loop (No requirement, conditional GCode is moire powerful)
 * M43: Stand by on material exhausted (use M591)
 * M43: Pin report and debug (much of this functionality is available within M42, M581,M582, M583)
 * M48: Measure Z-Probe repeatability ([use a macro](https://forum.duet3d.com/topic/6962/))
