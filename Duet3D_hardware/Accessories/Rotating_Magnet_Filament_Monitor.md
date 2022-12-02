@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2022-09-12T12:19:47.443Z
+date: 2022-12-02T16:31:52.662Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -26,6 +26,20 @@ The filament monitor consists of a PCB which senses the rotation of a diametrica
 
 ### Tabs {.tabset}
 
+
+#### v3.0 magnetic assembly and housing
+[![mfm_v3_kit_labelled.png](/hardware/magnetic_filament_monitor/mfm_v3_kit_labelled.png =600x)](/hardware/magnetic_filament_monitor/mfm_v3_kit_labelled.png){target=_blank}
+
+The housing consists of:
+
+* The main part that carries the hobbed assembly, idler, collets and constrains the filament path.
+* A lid that mounts the PCB a set distance from the magnet.
+
+The printed parts are not supplied; the housing models are [available on Github here](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic/version3/enclosure){target=_blank} and should be printed with a layer height of 0.2mm (including the first layer). This will ensure the correct distance between the magnet and the sensor PCB.
+
+There are two versions of the body stl part, 1 with clearance M3 holes and one with holes sized for the M3 screws to tap into. Print the part that fits your mounting plan.
+
+
 #### v2.0 magnetic assembly and housing
 ![mfm_v2_parts_annotated.jpg](/hardware/magnetic_filament_monitor/mfm_v2_parts_annotated.jpg =600x)
 The housing consists of:
@@ -33,7 +47,7 @@ The housing consists of:
 * The main part that carries the hobbed assembly, idler, collets and constrains the filament path.
 * A lid that mounts the PCB a set distance from the magnet.
 
-The printed parts are not supplied; the housing models are [available on Github here](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic/enclosure_v2) and should be printed with a layer height of 0.2mm (including the first layer). This will ensure the correct distance between the magnet and the sensor PCB.
+The printed parts are not supplied; the housing models are [available on Github here](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic/enclosure_v2){target=_blank} and should be printed with a layer height of 0.2mm (including the first layer). This will ensure the correct distance between the magnet and the sensor PCB.
 
 There are two versions of the body stl part, 1 with clearance M3 holes and one with holes sized for the M3 screws to tap into. Print the part that fits your mounting plan.
 
@@ -43,9 +57,21 @@ There are two versions of the body stl part, 1 with clearance M3 holes and one w
 
 The v1 housing can be 3d printed using an FDM printer using a fairly high resolution (e.g. 0.1 layer height); however some tweaking will  be required to get the magnet distance just right.
 
-CAD models of the housing are [available on our GitHub](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic/enclosure).
+CAD models of the housing are [available on our GitHub](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic/enclosure){target=_blank}.
 
 ### Hobbed assembly
+
+### Tabs {.tabset}
+
+#### v3.0 magnetic assembly
+
+This consists of a custom machined hobbed part, and a 3mm diametrically magnetised magnet. Together with the idler this acts to closely couple the movement of the magnet to the movement of the filament.
+
+The v3 hobbed assembly has a rod magnet as opposed to the ring magnet used in the v2.0 and v1.0 MFMs
+
+[![v2vsv3_magnet_assembly.png](/hardware/magnetic_filament_monitor/v2vsv3_magnet_assembly.png)](/hardware/magnetic_filament_monitor/v2vsv3_magnet_assembly.png){target=_blank}.
+
+#### v2.0 and v1.0 magnetic assembly
 
 This consists of a custom machined hobbed part, a bearing and a 6mm diametrically magnetised magnet. Together with the idler this acts to closely couple the movement of the magnet to the movement of the filament.
 
@@ -70,6 +96,8 @@ The filament monitor PCB can be used to detect the movement of any appropriate d
 ## Dimensions
 
 [![magnetic_fm_dimensions.png](/hardware/magnetic_filament_monitor/magnetic_fm_dimensions.png =400x)](/hardware/magnetic_filament_monitor/magnetic_fm_dimensions.png){target=_blank}
+
+Note there a multiple revisions of the v1.7 and v3.0 PCB but the critical dimensions have not changed.
 
 ## Assembly
 
