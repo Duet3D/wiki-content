@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-12-05T09:48:55.791Z
+date: 2022-12-05T12:32:00.845Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7055,7 +7055,7 @@ M929 S0 ; stop logging
 
 ### Notes
 
-Starting with RepRapFirmware 3.2.0-beta3 there is a more fine granular logging available that is split into 3 log levels plus no logging. Each line in the log will have the log level of that message added right after the timestamp.
+From RepRapFirmware 3.2.0 and later, more granular logging is available. There are three log levels, and no logging. Each line in the log will have the log level of that message added after the timestamp.
 
 * WARN: All log messages from previous versions will fall into this log level
 * INFO: G10, M117, M291 and M292 invocations will fall into this log level
