@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2022-12-06T15:12:08.694Z
+date: 2022-12-06T15:14:02.510Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -75,9 +75,9 @@ In a similar process to the above, this assumes that the stable packages are a l
 
 ## Downgrade packages
 
-> These steps are only applicable when downgrading from the **unstable** package feed. They do not have an effect if you are already on the **stable** package feed. {.is-warning}
+> These steps are only applicable when downgrading beta/rc versions from the **unstable** package feed. They do not have an effect if you are already on the latest **stable** version. {.is-warning}
 
-> Downgrading **stable** packages is **NOT** recommended. If you encounter problems after an upgrade, consider creating a new thread on the [forum](https://forum.duet3d.com) instead. If you do need to downgrade anyway, skip the following step 1 and replace `/stable` with `=X.Y.Z` (`=.X.Y.Z-1` for RepRapFirmware) where `X.Y.Z` equals your desired package version (e.g. `3.4.4`). Be aware that successive `apt upgrade` calls will upgrade to the latest version again. {.is-info}
+> Downgrading **stable** packages is **NOT** recommended. If you encounter problems after an upgrade, create a new thread on the [forum](https://forum.duet3d.com) instead. If you do need to downgrade anyway, skip the following step 1 and replace `/stable` with `=X.Y.Z` (`=.X.Y.Z-1` for RepRapFirmware) where `X.Y.Z` equals your desired *stable* package version (e.g. `3.4.4`). Be aware that successive `apt upgrade` calls will upgrade everything to the latest version again. {.is-info}
 
 To downgrade from an installed version to a earlier release requires a few extra steps to remove files newer than the release version. This example demonstates downgrading from an unstable release to a stable release, the process is similar for downgrading to an unstable release.  Follow these steps:
 
