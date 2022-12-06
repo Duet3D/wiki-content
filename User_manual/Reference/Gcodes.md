@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-12-06T16:27:26.234Z
+date: 2022-12-06T21:02:39.715Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2540,7 +2540,7 @@ M150 X2 R0 U255 B0 P255 S1 F0      ; right encoder led
 * The specified RGB values will be sent to the number of LEDs in the LED strip as specified by the S parameter, pushing the existing colours along the strip. To set all the LEDs the same colour, make the S parameter equal to or a little longer than the number of LEDs in the strip.
 * Caution: if the S parameter is omitted then as many LEDs as can be set in a single chunk will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2, many more on Duet 3). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
 * If a Neopixel LED strip is assigned to a pin that that cannot generate the WS2812 LED timing in hardware, then motion will be suspended while the LED strip is being written.
-* Some Neopixel/WS2812 versions have the colour order as RGB and others are GRB. Check the datasheet for the LEDs you are using if the Red and Green colours are switched.
+* Some Neopixel/WS2812 versions have the colour order as RGB and others are GRB. Check the datasheet for the LEDs you are using if the Red and Green colours are switched. You will have to set the red with the U parameter and green with the R parameter.
 
 ## M190: Wait for bed temperature to reach target temp
 
