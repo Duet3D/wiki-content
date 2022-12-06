@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2022-09-09T10:08:56.039Z
+date: 2022-12-06T17:54:53.440Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -222,8 +222,16 @@ Bossa is available for Windows, Apple macOS and Linux.
 * When the write completes, press *Verify*
 * It is also possible to use the command line version (bossac) with this command line (replace COMxx by the correct COM port number): 
   `bossac --port=COMxx -b -U -e -w -v path\Duet2CombinedFirmware.bin -R`
-  
-##### Linux and Raspberry Pi
+
+##### Linux and DuetPi (after March 2022)
+
+Send:
+  ```
+  bossac -e -w -v -b [file location and name]
+  ```
+  where [file location and name] is where the firmware binary file is saved, eg `/opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin`
+
+##### Linux and Raspberry Pi 
 
 * Install Bossa with the following commands:
   ```
@@ -236,7 +244,7 @@ Bossa is available for Windows, Apple macOS and Linux.
   ```
   ~/BOSSA/bin/bossac -e -w -v -b [file location and name]
   ```
-  where [file location and name] is where the firmware binary file is saved, eg /opt/dsf/sd/sys/Duet3Firmware_MB6HC.bin
+  where [file location and name] is where the firmware binary file is saved, eg `/opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin`
 
 ### SAM-BA
 
