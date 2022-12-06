@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2022-12-06T18:17:07.611Z
+date: 2022-12-06T18:18:53.314Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -263,8 +263,8 @@ You must be on a recent Debian/Ubuntu release (`bullseye`/`bionic` respectively)
 ![paneldue_firmware_flashing.jpg](/hardware/paneldue/paneldue_firmware_flashing.jpg =500x)
 *Note: picture of BOSSA above shows PanelDue firmware flashing, not RepRapFirmware flashing!*
 * When the write completes, press *Verify*
-* It is also possible to use the command line version (bossac) with this command line (replace COMxx by the correct COM port number): 
-  `bossac --port=/dev/ttyACM0 -b -U -e -w -v path\Duet2CombinedFirmware.bin -R`
+* It is also possible to use the command line version (bossac) with this command line (use `--port=/dev/ttyACM0` or similar if bossac fails to auto-detect the right serial port): 
+  `bossac -b -U -e -w -v path\Duet2CombinedFirmware.bin -R`
 
 ### SAM-BA
 
