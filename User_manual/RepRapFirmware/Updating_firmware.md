@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2022-12-06T17:54:53.440Z
+date: 2022-12-06T18:17:07.611Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -225,11 +225,11 @@ Bossa is available for Windows, Apple macOS and Linux.
 
 ##### Linux and DuetPi (after March 2022)
 
-Send:
-  ```
-  bossac -e -w -v -b [file location and name]
-  ```
-  where [file location and name] is where the firmware binary file is saved, eg `/opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin`
+DuetPi releases newer than March 2022 contain a precompiled `bossac` binary that may be used with the Duet 2 or Duet 3 MB 6 HC/XD. To flash the firmware again using a Linux terminal, run:
+```
+bossac -e -w -v -b [file location and name]
+```
+where [file location and name] is where the firmware binary file is saved, eg `/opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin`
 
 ##### Linux and Raspberry Pi 
 
@@ -245,6 +245,26 @@ Send:
   ~/BOSSA/bin/bossac -e -w -v -b [file location and name]
   ```
   where [file location and name] is where the firmware binary file is saved, eg `/opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin`
+
+##### Linux and Debian/Ubuntu
+
+You must be on a recent Debian/Ubuntu release (`bullseye`/`bionic` respectively) in order to be able to install a BOSSA version that is capable of flashing the processor of the Duet 3 MB 6 HC or XD. 
+
+* Install BOSSA first:
+  ```
+  sudo apt install bossa-cli bossa
+  ```
+* Launch it:
+  ```
+  bossa
+  ```
+* Check boxes *Erase all*, *Lock*, and *Boot to flash*
+* Browse to the firmware binary file to be installed, then press Write.
+![paneldue_firmware_flashing.jpg](/hardware/paneldue/paneldue_firmware_flashing.jpg =500x)
+*Note: picture of BOSSA above shows PanelDue firmware flashing, not RepRapFirmware flashing!*
+* When the write completes, press *Verify*
+* It is also possible to use the command line version (bossac) with this command line (replace COMxx by the correct COM port number): 
+  `bossac --port=/dev/ttyACM0 -b -U -e -w -v path\Duet2CombinedFirmware.bin -R`
 
 ### SAM-BA
 
