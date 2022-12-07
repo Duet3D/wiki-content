@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-11-28T12:28:21.602Z
+date: 2022-12-07T14:46:32.115Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -26,7 +26,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | HARDWARE SPECIFICATION ||
 |---|---|
 | **Processor** | [ATSAMV71Q20B](https://www.microchip.com/en-us/product/ATSAMV71Q20){target=_blank}. Alternatively the ATSAME70Q20B will be used. They are functionally equivalent in this design |
-| **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
+| **Processor features** | 32-bit, 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
 | **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port; CAN-FD bus |
 | **External Driver Support** | 6 ports with step/direction/enable outputs, and fault inputs. Signalling is 5V single ended. |
 | **High current outputs** | 3 x 6A each |
@@ -164,7 +164,7 @@ A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainbo
 | **4 x 2-pin KK connectors** | TEMP_0,-TEMP_3 | Connections for thermistor or PT1000 sensors. |
 | **9 x 5-pin KK connectors** | IO_0-IO_8 | Duet 3 standard GPIO ports. These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option for IO2). The outputs are 3.3V signals levels with 470R series resistors. See IO capabilities table below for specifics of each IO. |
 | ^^ | ^^ | **Note** IO_5-IO_8 are also provided as opto-isolated outputs on separate connectors. See below |
-| **1 x 2-pin Jumper** | IO2_I2C_Byp | Jumper to allow the 10K resistors on IO2.in to be bypassed with 470R resistors. This is required to use IO2 for I2C. |
+| **1 x 2-pin Jumper** | IO2_I2C_Byp | Jumper to allow the 10K resistors on IO2.in to be bypassed with 470R resistors. This is required to use IO2 for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | **4 x 2-pin KK connectors** | IO_5_ISO_IN-IO_8_ISO_IN | Differential signal, opto-isolated inputs for IO5.in - IO8.in, rated to 30V. |
 | **4 x 4-pin KK connectors** | IO_5_ISO_OUT-IO_8_ISO_OUT | Differential signal, opto-isolated outputs for IO5.in - IO8.in. Each output is fused at 50mA |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
@@ -296,7 +296,7 @@ Capabilities of IO_0 to IO_8 are shown below.
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no | Shared with PanelDue header for UART connection|
 | 1 | yes | no | no |  |
-| 2 | no | no | no | I2C bypass jumper provided |
+| 2 | no | no | no | I2C bypass jumper provided.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
 | 5 | no | yes | no |  |
