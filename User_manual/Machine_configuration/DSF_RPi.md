@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2022-12-06T15:14:09.532Z
+date: 2022-12-07T10:08:38.757Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -109,7 +109,7 @@ To downgrade from an installed version to a earlier release requires a few extra
 
 1. Downgrade DSF
    ```
-   sudo apt install -y --allow-downgrades duetsoftwareframework/stable duetcontrolserver/stable duetwebserver/stable duetpluginservice/stable duettools/stable duetruntime/stable duetwebcontrol/stable
+   sudo apt install -y --allow-downgrades duetsoftwareframework/stable duetcontrolserver/stable duetwebserver/stable duetpluginservice/stable duettools/stable duetruntime/stable duetwebcontrol/stable duetpimanagementplugin/stable
    ```
 
 # Virtual SD card
