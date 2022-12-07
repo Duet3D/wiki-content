@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2022-11-07T18:40:51.489Z
+date: 2022-12-07T15:55:14.966Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -22,7 +22,7 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 
 |---|---|
 | **Processor** | Microchip ATSAME51G19A |
-| **Processor features** | 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit |
+| **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard. Optional on-board CAN bus termination. |
 | **On-board stepper driver** | 1 x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. Maximum motor current 6.3A peak per phase (4.45A RMS). |
@@ -262,6 +262,7 @@ After M569.7 is executed, the port will be initially off. Therefore, M569.7 shou
 
 * Pin changes to allow a UART and PWM on IO_0 and I2C on IO_1
 * Add a physical jumper for I2C support on IO_1
+**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 * Change the SPI header to be a 2x5 box header so an off the shelf 2x5 ribbon cable can be used.	Used the same pinout arrangement as the SPI temperature Daughterboard connector (with the quadrature pins where CS lines were).
 * Add a second temperature input on PA7 (AIN7)
 * Remove the button
