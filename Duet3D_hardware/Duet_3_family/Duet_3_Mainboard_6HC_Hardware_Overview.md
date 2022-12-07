@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-12-07T14:41:04.509Z
+date: 2022-12-07T14:47:41.691Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -295,15 +295,13 @@ On the version 0.6 and 1.0 boards the individual IO_x connectors have the follow
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no |  |
 | 1 | yes | no | no |  |
-| 2 | no | no | no | Could in principle be used for I2C if a resistor is changed. |
+| 2 | no | no | no | Could in principle be used for I2C if a resistor is changed.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
 | 5 | no | yes | yes |  |
 | 6 | no | yes | no |  |
 | 7 | no | yes | yes |  |
 | 8 | no | no | no |  |
-
-**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
 ### Duet 3 Mainboard 6HC v0.5 and earlier
 
