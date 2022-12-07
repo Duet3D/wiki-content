@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2022-09-12T13:28:02.447Z
+date: 2022-12-07T15:56:22.196Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -28,7 +28,7 @@ To make it easy to connect multiple direct driver extruders in a tool changer or
 
 |---|---|
 | **Processor** | [ATSAMC21G18A](https://www.microchip.com/en-us/product/ATSAMC21G18A) |
-| **Processor features** | 48MHz ARM Cortex M0+, 256KB Flash, 32KB RAM |
+| **Processor features** | 32-bit, 48MHz ARM Cortex M0+, 256KB Flash, 32KB RAM |
 | **Networking/Comms** | CAN-FD interconnect to Duet 3 Tool Distribution Board or Duet 3 Mainboard; serial port |
 | **On-board stepper driver** | 1 x [TMC2209](https://www.trinamic.com/products/integrated-circuits/details/tmc2209-la/) |
 | **Stepper driver features** | Up to 1.6A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 |
@@ -239,6 +239,8 @@ The individual IO_x connectors have the following capabilities:
 | IO_1 | No | No | No | Input only, no ouput pin |
 | IO_2 | No | No | No | Input only, no ouput pin |
 | IO_3 | No | No | No | Input only, no ouput pin |
+
+**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
 ## CAN
 
