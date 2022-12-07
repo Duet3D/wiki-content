@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-11-28T18:20:45.245Z
+date: 2022-12-07T14:41:04.509Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -27,7 +27,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | HARDWARE SPECIFICATION ||
 |---|---|
 | **Processor** | [ATSAME70Q20B](https://www.microchip.com/en-us/product/ATSAME70Q20){target=_blank} |
-| **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
+| **Processor features** | 32-bit, 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
 | **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port; CAN-FD bus |
 | **On-board stepper drivers** | 6 x  [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 |
@@ -295,13 +295,15 @@ On the version 0.6 and 1.0 boards the individual IO_x connectors have the follow
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no |  |
 | 1 | yes | no | no |  |
-| 2 | no | no | no | Could in principle be used for I2C if a resistor is changed |
+| 2 | no | no | no | Could in principle be used for I2C if a resistor is changed. |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
 | 5 | no | yes | yes |  |
 | 6 | no | yes | no |  |
 | 7 | no | yes | yes |  |
 | 8 | no | no | no |  |
+
+**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
 ### Duet 3 Mainboard 6HC v0.5 and earlier
 
