@@ -2,7 +2,7 @@
 title: Hardware overview
 description: 
 published: true
-date: 2022-07-29T11:16:46.799Z
+date: 2022-12-07T14:36:57.670Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T11:36:08.818Z
@@ -16,7 +16,7 @@ dateCreated: 2021-12-06T11:36:08.818Z
 |:---|:---|:---|:---|:---|:---|
 | **Board image** | ![duet_3_mb6hc_v0.6_top.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_v0.6_top.jpg =200x){.align-center} | ![Duet 3 Mainboard 6XD v1.0](/duet_boards/duet_3_mb6xd/mb6xd_5_small.png =175x){.align-center} | ![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =150x){.align-center} || ![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top_90.jpg =150x){.align-center} ||
 | **Processor** | ATSAME70Q20B | ATSAMV71Q20B | ATSAME54P20A || ATSAM4E8E ||
-| **Processor features** | 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache || 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache || 120MHz ARM Cortex M4F, 512Kb flash, 128Kb RAM, hardware floating point (single precision), DMA, 2Kb cache ||
+| **Processor features** | 32-bit, 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache || 32-bit, 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache || 32-bit, 120MHz ARM Cortex M4F, 512Kb flash, 128Kb RAM, hardware floating point (single precision), DMA, 2Kb cache ||
 | **Networking** | 100BaseTX Ethernet, or via attached SBC || 2.4GHz WiFi with external antenna, or via attached SBC | 100BaseTX Ethernet, or via attached SBC | 2.4GHz WiFi (internal and external antenna versions available) | 100BaseTX Ethernet |
 | **Support for attached Raspberry Pi or other Single Board Computer (SBC)** | Yes || Yes || Yes, from RRF 3.2 (requires hardware modification) ||
 | **Stepper drivers on-board** | 6 x TMC2160 or TMC5160 | NA | 5 x TMC2209 || 5 x TMC2660 ||
