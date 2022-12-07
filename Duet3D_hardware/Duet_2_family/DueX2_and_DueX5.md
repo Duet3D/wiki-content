@@ -2,7 +2,7 @@
 title: DueX2 and DueX5
 description: The DueX5 is an expansion board for the Duet 2 WiFi and Ethernet. The DueX2 was a similar board with only 2 drivers that is now discontinued.
 published: true
-date: 2022-05-01T11:02:37.264Z
+date: 2022-12-07T11:55:17.780Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-03T14:27:58.735Z
@@ -18,7 +18,7 @@ In the following instructions given for the DueX5 apply equally to the DueX2 exc
 
 # Features
 
-![duex5&2_features.png](/duet_boards/duet_2_expansion/duex5&2_features.png =x600)
+![duex5&2_features.png](/duet_boards/duet_2_expansion/duex5&2_features.png =x600){target=_blank}
 
 The DueX2 and DueX5 are based on the same PCB with 3 channels of steppers, heaters fans etc not populated on the DueX2 to save costs.
 
@@ -26,7 +26,7 @@ The DueX2 and DueX5 are based on the same PCB with 3 channels of steppers, heate
 
 | | DueX5 | DueX2 v0.8a and newer | DueX2 v0.8 and older |
 |:---|:---|:---|
-| **On-board Stepper drivers** | 5 x [TMC2660](https://www.trinamic.com/products/integrated-circuits/details/tmc2660c-pa/) | 2 x [TMC2660](https://www.trinamic.com/products/integrated-circuits/details/tmc2660c-pa/) ||
+| **On-board Stepper drivers** | 5 x [TMC2660](https://www.trinamic.com/products/integrated-circuits/details/tmc2660c-pa/){target=_blank} | 2 x [TMC2660](https://www.trinamic.com/products/integrated-circuits/details/tmc2660c-pa/){target=_blank} ||
 | **Stepper driver features** | Up to 2.4A peak current, up to x256 microstepping, optional x16 interpolation on x16 microstepping, stall detection |||
 | **Heater outputs** | 5 x extruder heater (up to 6A each) || 2 x extruder heater (up to 6A each) |
 | **Thermistor/PT1000 inputs** | 5, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy || 2, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy |
@@ -66,10 +66,10 @@ The DueX2 and DueX5 are expansion boards for the Duet 2 Wifi and Ethernet. These
 
 Importantly Duets are Open:
 
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet-2-Hardware/blob/master/LICENSE)
-* All hardware [source files](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet_Expansion) are available on Github.
-* Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet-2-Hardware/blob/master/LICENSE){target=_blank}
+* All hardware [source files](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet_Expansion){target=_blank} are available on Github.
+* Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank} and [Eclipse](https://eclipse.org/){target=_blank} using open tools means the barrier to getting involved is as low as possible.
 
 # Physical properties
 
@@ -91,9 +91,9 @@ As with the Duet 2, the stepper motor drivers are cooled via the PCB. To improve
 
 ## 3D models
 
-The DueX v0.11 CAD file is here: https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet_Expansion/Duex5v0.11  (downloaf the STEP file)
+The DueX v0.11 CAD file is available on the [Duet3D Github repository here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet_Expansion/Duex5v0.11){target=_blank}  (download the STEP file)
 
-Morten Nielsen has also shared a model of the earlier versions, [available here](https://grabcad.com/library/duex5-1).
+Morten Nielsen has also shared a model of the earlier versions, [available here](https://grabcad.com/library/duex5-1){target=_blank}.
 
 ## Using a DueX5 with External drivers
 
@@ -111,7 +111,7 @@ Caution! The signals on D7, D8 and D9 are all at 3.3V. The Step, Dir and Enable 
 
 Remove the jumper that is labelled "open for DueX2"
 
-![duex5_v0.11_switchdx2.png](/duet_boards/duet_2_expansion/duex5_v0.11_switchdx2.png =x400)
+![duex5_v0.11_switchdx2.png](/duet_boards/duet_2_expansion/duex5_v0.11_switchdx2.png =x400){target=_blank}
 
 *Note that the "cut for DueX0" jumper is not supported in firmware yet.*
 
@@ -119,7 +119,7 @@ Remove the jumper that is labelled "open for DueX2"
 
 Remove the enable jumpers for D7, D8 and D9. Connect the external driver to the 'D# S/D/E' header.
 
-![duex5_v0.11_disabledrivers.png](/duet_boards/duet_2_expansion/duex5_v0.11_disabledrivers.png =x400)
+![duex5_v0.11_disabledrivers.png](/duet_boards/duet_2_expansion/duex5_v0.11_disabledrivers.png =x400){target=_blank}
 
 
 ### DueX5 v0.10 with External Drivers
@@ -130,7 +130,7 @@ Remove the enable jumpers for D7, D8 and D9. Connect the external driver to the 
 
 There is a jumper marked "Cut for DueX2" on the underside of the DueX5 v0.10 board:
 
-![duex5_v0.10_mod_01.png](/duet_boards/duet_2_expansion/duex5_v0.10_mod_01.png =x400)
+![duex5_v0.10_mod_01.png](/duet_boards/duet_2_expansion/duex5_v0.10_mod_01.png =x400){target=_blank}
 
 To break the circuit to make the DueX5 appear to be a DueX2, gently remove the copper ring of the jumper using a 1mm drill bit and confirm its removal by testing between the two pads using a multi-meter; there should be no connection.
 
@@ -142,7 +142,7 @@ From version 0.10 it is possible to disable the internal drivers on the DueX5 so
 
 To do this there are 5 small drill-able solder jumpers on the underside of the board labelled EN5 to EN9. The image below shows jumpers EN5 and EN6:
 
-![duex5_v0.10_mod_02.png](/duet_boards/duet_2_expansion/duex5_v0.10_mod_02.png =x400)
+![duex5_v0.10_mod_02.png](/duet_boards/duet_2_expansion/duex5_v0.10_mod_02.png =x400){target=_blank}
 
 To disable the internal jumper, gently remove the copper ring of the jumper using a 1mm drill bit and confirm its removal by testing between the two pads using a multi-meter; there should be no connection.
 
@@ -164,7 +164,7 @@ For these revisions forward the only difference between the DueX2 and DueX5 is o
 
 [![duex5&2_wiring_v0.9_v0.10.png](/duet_boards/duet_2_expansion/duex5&2_wiring_v0.9_v0.10.png =600x)](/duet_boards/duet_2_expansion/duex5&2_wiring_v0.9_v0.10.png){target=_blank}
 
-The .svg version of this diagram is [available on github](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Wiring%20Diagrams).
+The .svg version of this diagram is [available on github](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Wiring%20Diagrams){target=_blank}.
 
 ### DueX5 (Revision 0.8 and earlier)
 
@@ -227,14 +227,14 @@ LEDs are provided to indicate the following:
 
 ## Pin names
 
-| Pin label on DueX PCB/wiring diagram | RRF3 Pin name (DueX) | Shared with (on Duet) |
+| Label/pin on DueX PCB/wiring diagram | RRF3 Pin name (DueX) | Shared with (on Duet) |
 |--|--|
 | **Heater outputs** |||
-| E2 HEATER E2-, PWM1 E2_PWM | duex.e2heat, duex.pwm1 | !exp.heater3, !exp.8 |
-| E3 HEATER E3-, PWM2 E3_PWM | duex.e3heat, duex.pwm2 | !exp.heater4, !exp.13 |
-| E4 HEATER E4-, PWM3 E4_PWM | duex.e4heat, duex.pwm3 | !exp.heater5, !exp.18 |
-| E5 HEATER E5-, PWM4 E5_PWM | duex.e5heat, duex.pwm4 | !exp.heater6, !exp.23 |
-| E6 HEATER E6-, PWM5 E6_PWM | duex.e6heat, duex.pwm5 | !exp.heater7, !exp.31|
+| E2 HEATER, E2-, PWM_1, E2_PWM | duex.e2heat, duex.pwm1 | !exp.heater3, !exp.8 |
+| E3 HEATER, E3-, PWM_2, E3_PWM | duex.e3heat, duex.pwm2 | !exp.heater4, !exp.13 |
+| E4 HEATER, E4-, PWM_3, E4_PWM | duex.e4heat, duex.pwm3 | !exp.heater5, !exp.18 |
+| E5 HEATER, E5-, PWM_4, E5_PWM | duex.e5heat, duex.pwm4 | !exp.heater6, !exp.23 |
+| E6 HEATER, E6-, PWM_5, E6_PWM | duex.e6heat, duex.pwm5 | !exp.heater7, !exp.31|
 | **Temperature inputs** |||
 | E2_THERMSTOR3 | duex.e2temp | e2temp, exp.thermistor3, exp.35 |
 | E3_THERMSTOR4 | duex.e3temp | e3temp, exp.thermistor4, exp.36 |
@@ -320,7 +320,7 @@ Use the supplied 50-pin ribbon cable to connect the DueX2/5 expansion connector 
 
 ### Power wiring
 
-![duex5&2_power_wiring.jpg](/duet_boards/duet_2_expansion/duex5&2_power_wiring.jpg =x500)
+![duex5&2_power_wiring.jpg](/duet_boards/duet_2_expansion/duex5&2_power_wiring.jpg =x500){target=_blank}
 
 * Connect VIN and GND terminals of the DueX5 to the corresponding terminals of the Duet 2. **Do not run separate ground wires from each terminal block back to the power supply unless the power supply is very close (less than 100mm) to the Duet 2 and DueX.** Instead, run a very short and thick ground wire directly from the negative (-) terminal of the VIN terminal block on the DueX board to the negative VIN terminal of the Duet. Also connect the negative wire from your power supply to the negative VIN terminal of the Duet. You can run separate +VIN wires from the Duet 2 and DueX back to the positive terminal of the power supply if you wish. The screw terminal rated current is 25A maximum. At high currents, it is essential to use either ferrules or solid core wire with the terminal blocks on the Duet 2 and DueX.
 * **Caution!** On early production (v0.6, v0.7) DueX2 and DueX5 boards, the VIN and GND markings on the underside of the board are incorrect and should be swapped over, so GND is the terminal that is also marked -, and VIN is the terminal that is also marked +. 
