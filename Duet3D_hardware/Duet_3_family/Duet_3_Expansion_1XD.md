@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2022-09-12T12:33:43.175Z
+date: 2022-12-07T14:50:03.821Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -157,6 +157,8 @@ The individual IO_x connectors have the following capabilities:
 | 0 | No | No | Yes |  |
 | 1 | No | Yes | No | Input only, no ouput pin.  |
 | 2 | No | No | Yes |   |
+
+**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
 ## External Stepper Connection
 
