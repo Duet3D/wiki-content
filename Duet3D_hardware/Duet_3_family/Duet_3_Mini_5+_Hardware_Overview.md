@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2022-09-05T13:36:22.637Z
+date: 2022-12-07T14:44:08.013Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -26,7 +26,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 |:---|:---|
 |  | **Duet 3 Mini 5+ WiFi** | **Duet 3 Mini 5+ Ethernet** |
 | **Processor** | [ATSAME54P20A](https://www.microchip.com/wwwproducts/en/ATSAME54P20A) ||
-| **Processor features** | 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache ||
+| **Processor features** | 32-bit, 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache ||
 | **Networking/Comms** | 2.4GHz WiFi; USB port; serial port; CAN-FD bus | 10BaseT/100BaseTX Ethernet; USB port; serial port; CAN-FD bus |
 | **On-board stepper drivers** | 5 x [TMC2209](https://www.trinamic.com/products/integrated-circuits/details/tmc2209-la/) ||
 | **Stepper driver features** | Up to 2.0A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 ||
@@ -174,7 +174,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **1 x JST ZH 6-pin connectors** | SWD | Connection for an SWD programming device such as an Atmel-ICE |
 | **1 x 2-pin KK connectors** | CAN | CAN-FD Bus connection for Duet 3 CAN-FD expansion boards. |
 | **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signals levels with 470R series resistors. IO_1,2,3 are PWM capable. |
-| **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. Jumpers to allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C. |
+| **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. Jumpers to allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
@@ -278,7 +278,7 @@ There are 7 IO headers on board. IO_0 to IO_4 have pins for input, output, 3.3V,
 
 Except as noted in the table below, an IO_x_IN pin can always be used to provide a digital input (e.g. for endstop inputs or filament monitors), and an IO_x_OUT pin can always be used to provide a digital output.
 
-IO output pins can be used as inputs, but are only 3.3V tolerant. IO input pins can be used as outputs, but have 10K protection resistors in series with them, so you would need to bypass these to use them as outputs. On board revision v1.01 and later only, jumpers allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C.
+IO output pins can be used as inputs, but are only 3.3V tolerant. IO input pins can be used as outputs, but have 10K protection resistors in series with them, so you would need to bypass these to use them as outputs. On board revision v1.01 and later only, jumpers allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
 The individual IO_x connectors have the following capabilities:
 
@@ -410,7 +410,7 @@ WiFi revision is version 1.02, Ethernet revision is 1.02a
 
 ## Revision 1.01
 
-* Added Jumpers to bypass 10K input protection resistors with 470R resistors for IO2.in and IO3.in. This is to allow these inputs to be used with I2C.
+* Added Jumpers to bypass 10K input protection resistors with 470R resistors for IO2.in and IO3.in. This is to allow these inputs to be used with I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 * Add a 10K pulldown resistor between signal line io4_out and ground. This is to prevent PS_ON turning on momentarily when the board is powered up.
 
 ## Revision 1.0
