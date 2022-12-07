@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2022-12-02T16:16:01.174Z
+date: 2022-12-07T15:23:05.713Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -17,7 +17,7 @@ The Duet 3 Expansion 3HC supports the following:
 
 |---|---|
 | **Processor** | [Atmel ATSAME51N](https://www.microchip.com/wwwproducts/en/ATSAME51N19A){target=_blank} |
-| **Prosessor features** | 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM and many peripherals |
+| **Prosessor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM and many peripherals |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard | 
 | **On-board stepper drivers** | 3 x [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 | 
@@ -33,7 +33,7 @@ The Duet 3 Expansion 3HC supports the following:
 |:--|:--|
 | **Stepper drivers** | Up to 6.3A peak current |
 | **High current outputs** | OUT0/1/2 up to 6A each |
-| **Input power voltage** | Version 1.01 and earlier: 12V to 32V, version 1.02: 12V to 48V |
+| **Input power voltage** | Version 1.01 and earlier: 12V to 32V.</br>Version 1.02: 12V to 48V |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **Fuses** | 10A for V_Fused. |
@@ -203,7 +203,7 @@ Except as noted in the table below, an IO_x_IN pin can always be used to provide
 | 4 | no | no | yes |  |
 | 5 | no | yes | no |  |
 
-^1^ Note, to use IO 0 with I2C the protection bypass resistor must be fitted to bypass the 10K series resistor. If this is fitted then IO0.in is no longer protected sufficiently against over voltage/over current.
+^1^ Note: to use IO 0 with I2C the protection bypass resistor must be fitted to bypass the 10K series resistor. If this is fitted then IO0.in is no longer protected sufficiently against over voltage/over current. Also note that RepRapFirmware does not currently support I2C on Duet 3 boards.
 
 ## Power distribution
 
@@ -310,7 +310,8 @@ Ensure you have can communication (the status light is flashing in sync with the
 * Added a green LED for CAN Activity.
 * Add Programming pads so the SWD header does not need to be used for initial programming.
 * Enlarged the VFUSED trace to the three high current outputs so its capable of handling 15A@40C rise.
-* Added bypass jumper to IO_0_IN to bypass the 10K protection resistor to allow for I2C to be used on IO_0
+* Added bypass jumper to IO_0_IN to bypass the 10K protection resistor to allow for I2C to be used on IO_0. 
+**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 * Many changes to components to work around supply chain issues that do not impact the functionality of the board.
 
 ## Revision v1.0a
