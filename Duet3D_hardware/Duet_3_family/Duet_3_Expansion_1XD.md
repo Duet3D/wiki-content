@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2022-12-07T14:50:03.821Z
+date: 2022-12-07T14:52:48.276Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -20,7 +20,7 @@ The Duet 3 Expansion 1XD board provides step, direction and enable outputs to in
 
 |---|---|
 | **Processor** | [ATSAMC21G18A](https://www.microchip.com/en-us/product/ATSAMC21G18A) |
-| **Processor features** | 48MHz ARM Cortex M0+, 256KB Flash, 32KB RAM |
+| **Processor features** | 32-bit, 48MHz ARM Cortex M0+, 256KB Flash, 32KB RAM |
 | **Networking/Comms** | RJ11 CAN In and CAN Out connectors to connect to the Duet 3 CAN-FD bus; serial port |
 | **External stepper driver support** | 1 x  5V differential Step, Dir and Enable output, plus two common +5V pin. |
 | **Medium current output** | 2 x 2A |
