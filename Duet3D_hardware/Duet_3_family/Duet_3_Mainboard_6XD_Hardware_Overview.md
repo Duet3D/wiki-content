@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-12-07T14:46:32.115Z
+date: 2022-12-08T10:42:21.163Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -269,7 +269,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | DRIVER 4| driver4.err | ^^ |
 | ^^ | DRIVER 5| driver5.err | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
-| ^^ | LASER/VFD | laser, vfd | Pin shared with OUT 6 and LASER/VFD connectors |
+| ^^ | LASER/VFD | laser, vfd | 5V PWM signal  |
 
 ## Input/Output Port capabilities
 
