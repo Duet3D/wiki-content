@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-12-06T21:02:39.715Z
+date: 2022-12-09T12:41:09.886Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1715,6 +1715,7 @@ In RRF 3.4.0 and later, M80 will do nothing unless you have previously allocated
 
 * **C"port_name"** (RRF 3.4.0 and later) Name of the pin used to control the power supply
 * **Sn** n=0 turn power off immediately (default), n=1 turn power off when all thermostatic fans have turned off (RepRapFirmware 1.20 and later only). This parameter optional and ignored if the C parameter is present. The default is to turn off power as soon as the movement queue is empty.
+* **Dnnn** Delay powering down for nnn seconds (RRF 3.5 and later only)
 
 ### Examples
 <br>
@@ -1722,11 +1723,12 @@ In RRF 3.4.0 and later, M80 will do nothing unless you have previously allocated
 M81 C"pson" ; allocate the PS_ON pin to power control but leave power off
 M81         ; turn power off immediately
 M81 S1      ; turn power off when all thermostatic fans have turned off
+M81 D30 S1  ; turn power off after 30 seconds or when all thermostatic fans have turned off, whichever happens later (RRF 3.5)
 </pre>
 
 Turns off the ATX power supply. Counterpart to M80. A deferred power down command (M81 S1) that has not yet happened can be cancelled using M80.
 
-In RRF 3.4beta6 and later, M81 will have no effect unless a power control pin has previously been assigned using M80 or M81 with the C parameter. This would normally be done in the config.g file.
+In RRF 3.4 and later, M81 will have no effect unless a power control pin has previously been assigned using M80 or M81 with the C parameter. This would normally be done in the config.g file.
 
 ## M82: Set extruder to absolute mode
 
