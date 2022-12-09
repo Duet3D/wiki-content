@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2022-12-07T15:56:22.196Z
+date: 2022-12-09T12:18:33.104Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -434,7 +434,7 @@ Forum user [Nuramori](https://forum.duet3d.com/user/nuramori) has produced [a gr
 
 ## PCB revision v1.3
 
-* Changed the mounting holes to the Hemera XS dimensions, the overall board diemnstions are unchanged.
+* Changed the mounting holes to the Hemera XS dimensions, the overall board dimensions are unchanged.
 * Provided a path to ground, via 100K resistors from the mounting holes to make it easier for static charge build up on the exstruder to dissapate if the Toolboard is mounted on the Hemera XS
 * Changed to higher power protection resistors for the thermistor inputs to better resist ESD/short from thermistor to 24V.
 * Changed the circuit around the VSSA fuse to make it more robust to ESD events.
