@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.3) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2022-12-10T16:15:46.961Z
+date: 2022-12-10T16:17:14.535Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -45,3 +45,4 @@ We plan to remove these in future firmware releases.
 * When filament monitors are configured on expansion boards, the "calibrated" values in the object model are not updated; however they can be queried using M591 as usual.
 * The M571 command cannot be used in conjunction with extruders driven from CAN-connected expansion boards.
 * The tower motors of a delta printer cannot be driven via CAN-connected expansion boards.
+* Input shaping is not supported on axis motors driven by expansion boards.
