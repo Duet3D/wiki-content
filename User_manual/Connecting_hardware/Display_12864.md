@@ -2,7 +2,7 @@
 title: Connecting 12864 or other display
 description: 
 published: true
-date: 2022-12-09T17:05:16.215Z
+date: 2022-12-10T00:11:17.120Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T15:08:34.637Z
@@ -100,12 +100,15 @@ The ST7920 controller chip is invariably powered from 5V, which means that the d
 * Using the supplied ribbon cables, connect the 12864_EXP1 header on the Duet to the EXP1 header on the display. Connect the 12864_EXP2 header one the Duet to the EXP2 header on the display. Usually, both headers and the ribbon cable are keyed so they can only go on one way around.
 * Some displays are supplied with the ribbon cable or the EXP1 and EXP2 headers wired 180° rotated.
   * You won't damage the display if it is connected the wrong way around 
-  * A quick check is to rotate the encoder on the display. If it resets the Duet, it is wired 180° rotated, as the EXP2 pin that usually connects the encoder, connects to the reset pin.
-  * If you need to rotate the cable, instead of cutting the tab off the ribbon cable, you can usually pull the header shroud off the pins on the display. Then put it back on rotated 180°. Do this to both shrouds, on EXP1 and EXP2.
+  * A quick check is to rotate the encoder on the display. If it resets the Duet, it is wired 180° rotated, as the encoder will be connected to the reset pin on the EXP2 connector.
+  * If you need to rotate the cable, instead of cutting the tab off the ribbon cable, you can usually pull the header shroud off the pins on the display. Then put it back on rotated 180°. Do this to both shrouds, on EXP1 and EXP2, then reconnect the ribbon cables.
+* The backlight on ST7920-based displays should turn on when powered. The backlight and LEDs on ST7567-based displays will stay off until an M150 command is sent, unless it is the Fysetc Mini12864 Panel V1.2 with fixed backlight.
 
 ## Configuring 12864 displays
 
-With the display connected, menu files need to be added to the SD card, or the display will have nothing to display. See [12864 display menu system](/User_manual/Connecting_hardware/Display_12864_menu).
+With the display connected, menu files need to be added to the SD card, or the display will have nothing to show. See [12864 display menu system](/User_manual/Connecting_hardware/Display_12864_menu).
+
+To enable the display, send an M918 command. For displays that have addressable RGB LEDs, an M150 command will need to be sent before they turn on. These will usually be added to the config.g, so the display is enabled at startup. 
 
 ## Tabs{.tabset}
 
@@ -113,7 +116,7 @@ With the display connected, menu files need to be added to the SD card, or the d
 
 To configure this type of display in RepRapFirmware, use the [M918](/User_manual/Reference/Gcodes/M918) command with display type parameter P2. The contrast setting for these displays is done in software, and the M918 command supports a C parameter for this purpose. It is also necessary to set a resistor ratio parameter in software, which can be done using the M918 R parameter.
 
-On displays that support NeoPixel RGB backlights, set these with [M150](/User_manual/Reference/Gcodes/M150)
+On displays that support NeoPixel RGB backlights, set these with [M150](/User_manual/Reference/Gcodes/M150). 
 
 Example for Fysetc Mini12864 V2.1
 ```
@@ -131,8 +134,10 @@ Note that some RGB LEDs define their colours in the order Green, Red, Blue, so R
 
 ### STST7920
 
-To configure this type of display in RepRapFirmware, use the [M918](/User_manual/Reference/Gcodes/M918) command with display type parameter P1.
-
+To configure this type of display in RepRapFirmware, use the [M918](/User_manual/Reference/Gcodes/M918) command with display type parameter P1, eg:
+```
+M918 P1 E4 F2000000
+```
 
 # Connecting BigTreeTech colour displays
 
