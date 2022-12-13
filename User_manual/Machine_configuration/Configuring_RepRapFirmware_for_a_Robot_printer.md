@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-13T16:35:36.783Z
+date: 2022-12-13T16:36:54.990Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -147,7 +147,7 @@ The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0
 Same as above, but inverts the transformation. Inverts rotations and translations. This is used for workpiece mode and explained in a world mode vs. workpiece mode chapter.
 
 **D"n:ztr|d|zrot|ytr|yrot|xtr|a|xrot|alpha=..."**
-Sets a single value of a D parameter. If the default of a robotType can be used, single paramter setting will be the easiest method to specify arm lengths. ztr (or d) is the Z translate paramter, zrot (or theta) the Z rotate, analogue for y (ytr, yrot) and x (xtr or a, xrot or alpha). The other defined paramters of Dn remain unchanged. If the Dn did not exist, it is created with the other values being set to 0. A change of inverted or not will change the type.
+Sets a single value of a D parameter. If the default of a robotType can be used, single parameter setting will be the easiest method to specify arm lengths. ztr (or d) is the Z translate parameter, zrot (or theta) the Z rotate, analogue for y (ytr, yrot) and x (xtr or a, xrot or alpha). The other defined parameters of Dn remain unchanged. If the Dn did not exist, it is created with the other values being set to 0. A change of inverted or not will change the type.
 
 Example:
 * D"1:100.0:0:0:90.0" means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
@@ -155,7 +155,7 @@ Example:
 * D"7:0:0:0:0" if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
 * D"!1:100.0:0:0:0" inverts the transformation matrix.
 * D"1:ztr=300" sets the Z trans parameter to 300 mm for a prismatic axis which is connected to D1
-* D"1:ztr=300:zrot=20.0" sets the Z trans parameter to 300 mm for a prismatic axis and a fixed 20 degree offset value to the zrot of D1 (the movement is linear, but the Z axis is tilted by 20 degrees)
+* D"1:ztr=300:zrot=20.0" sets the Z trans parameter to 300 mm for a prismatic axis and a fixed 20 degree offset value to the zrot of D1 (the movement is linear, but the Z axis is constantly rotated by 20 degrees)
 
 # M669 P parameter: axisTypes, special
 
