@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-12-13T12:57:21.489Z
+date: 2022-12-13T14:13:29.268Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -275,30 +275,30 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | TEMP 1 | temp1 | |
 | ^^ | TEMP 2 | temp2 | |
 | ^^ | TEMP 3 | temp3 | |
-| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc (note io0 pins common with PanelDue header) |
+| Input/Outputs | IO_0 | io0&#46;in | Endstops, Z probes, filament monitors etc (note io0 pins common with PanelDue header) |
 | ^^ | ^^ | io0.out | ^^ |
-| ^^ | IO_1 | io1.in | ^^ |
+| ^^ | IO_1 | io1&#46;in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
-| ^^ | IO_2 | io2.in | ^^ |
+| ^^ | IO_2 | io2&#46;in | ^^ |
 | ^^ | ^^ | io2.out | ^^ |
-| ^^ | IO_3 | io3.in | ^^ |
+| ^^ | IO_3 | io3&#46;in | ^^ |
 | ^^ | ^^ | io3.out | ^^ |
-| ^^ | IO_4 | io4.in | ^^ |
+| ^^ | IO_4 | io4&#46;in | ^^ |
 | ^^ | ^^ | io4.out | ^^ |
-| ^^ | IO_5 | io5.in | ^^ |
+| ^^ | IO_5 | io5&#46;in | ^^ |
 | ^^ | ^^ | io5.out | ^^ |
-| ^^ | IO_6 | io6.in | ^^ |
+| ^^ | IO_6 | io6&#46;in | ^^ |
 | ^^ | ^^ | io6.out | ^^ |
-| ^^ | IO_7 | io7.in | ^^ |
+| ^^ | IO_7 | io7&#46;in | ^^ |
 | ^^ | ^^ | io7.out | ^^ |
-| ^^ | IO_8 | io8.in | ^^ |
+| ^^ | IO_8 | io8&#46;in | ^^ |
 | ^^ | ^^ | io8.out | ^^ |
 | SPI CS | SPI_DB | spi.cs0 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
 | ^^ | ^^ | spi.cs1 | ^^ |
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
 | PanelDue | PanelDue | spi.cs4 | External SD card CS, note Io0 pins shared with io0 header.|
-| ^^ | ^^ | io0.in | ^^ |
+| ^^ | ^^ | io0&#46;in | ^^ |
 | ^^ | ^^ | io0.out | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
 
@@ -388,6 +388,27 @@ External 5V power can be provided to the board by removing the jumper on 'Int 5V
 
 #### v1.02
 
+5V can be provided to the board through one of four ways:
+- the 5V internal regulator, derived from 12V, (which itself is derived from VIN)
+- supplied via the EX_5V header
+- supplied via the USB connection
+- supplied through the 5V_SBC pins on the SBC header
+
+In normal operation the USB connection is not expected to be used for 5V supply, and the 5V internal regulator is the default source of 5V. Optionally 5V from wither the 5V_EXT header of 5V_SBC pins can be used. This is selected using the 5V Select jumper:
+
+![the 5V selection jumper of the Duet 3 Mainboard 6HC, showing the 5V_EXT pin and the 5V_SBC pin](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_5v_select.png =200x)
+
+##### 5V via the external 5V header.
+Put a 2 pin jumper in the position shown and connect 5V to the external 5V header (three pin molex immediately above the 5V select jumper)
+
+![duet3_mb_6hc_v1.02_5v_select_5v_ext.png](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_5v_select_5v_ext.png =200x)
+
+##### 5V via the 5V_SBCpins on the SBC header.
+Put a 2 pin jumper in the position shown. 5V wall be drawn from to the 5V_SBC pins on the 26 pin SBC header. Note these are protected by diodes do 5V cannot be supplied to the SBC in this way.
+
+![duet3_mb_6hc_v1.02_5v_select_5v_sbc.png](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_5v_select_5v_sbc.png =200x)
+
+Ensure the SBC's 5V power budget is sufficient for the Duet and do not have high current 5V devices (such as lots of LEDs) supplied this way.
 
 #### v1.01a
 
