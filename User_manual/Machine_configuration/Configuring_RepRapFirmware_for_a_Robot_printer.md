@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-13T16:26:59.046Z
+date: 2022-12-13T16:30:41.044Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -22,6 +22,7 @@ Current status, last actions:
 * added homing M208 possibility for G1 H1 like for CoreXY, Cartesian or prismatic axes in general.
 * reduced memory needed
 * removed CoreXZ and concentrate on CoreXY. Currently intensive CoreXY testing
+* added to set single D paramters
 
 # Configuring a Robot printer
 
