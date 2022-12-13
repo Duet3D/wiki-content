@@ -2,7 +2,7 @@
 title: Hardware overview
 description: 
 published: true
-date: 2022-12-07T14:36:57.670Z
+date: 2022-12-13T11:24:49.926Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T11:36:08.818Z
@@ -14,7 +14,7 @@ dateCreated: 2021-12-06T11:36:08.818Z
 
 | Feature | [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | [Duet 3 Mainboard 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | [Duet 3 Mini 5+ WiFi](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 3 Mini 5+ Ethernet](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | [Duet 2 WiFi](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | [Duet 2 Ethernet](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) |
 |:---|:---|:---|:---|:---|:---|
-| **Board image** | ![duet_3_mb6hc_v0.6_top.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_v0.6_top.jpg =200x){.align-center} | ![Duet 3 Mainboard 6XD v1.0](/duet_boards/duet_3_mb6xd/mb6xd_5_small.png =175x){.align-center} | ![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =150x){.align-center} || ![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top_90.jpg =150x){.align-center} ||
+| **Board image** | ![duet_3_mb6hc_v0.6_top.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_v0.6_top.jpg =250x){.align-center} | ![Duet 3 Mainboard 6XD v1.0](/duet_boards/duet_3_mb6xd/mb6xd_5_small.png =175x){.align-center} | ![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =150x){.align-center} || ![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top_90.jpg =150x){.align-center} ||
 | **Processor** | ATSAME70Q20B | ATSAMV71Q20B | ATSAME54P20A || ATSAM4E8E ||
 | **Processor features** | 32-bit, 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache || 32-bit, 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache || 32-bit, 120MHz ARM Cortex M4F, 512Kb flash, 128Kb RAM, hardware floating point (single precision), DMA, 2Kb cache ||
 | **Networking** | 100BaseTX Ethernet, or via attached SBC || 2.4GHz WiFi with external antenna, or via attached SBC | 100BaseTX Ethernet, or via attached SBC | 2.4GHz WiFi (internal and external antenna versions available) | 100BaseTX Ethernet |
@@ -32,7 +32,7 @@ dateCreated: 2021-12-06T11:36:08.818Z
 | **Endstop status LEDs** | No |||| Yes ||
 | **Z probe connector** | See under Endstop or filament monitor inputs |||| 4-pin with IN/GND/MOD/3V3 pins (IN pin is 30V-tolerant in revision 1.04 and later) ||
 | **Servo support** | See under Endstop and filament monitor inputs. Also one output with 5V signal level for servo, laser or VFD converter (shared control signal with one of the 2-wire  fan outputs). || See under Endstop and filament monitor inputs. Also one output with 5V signal level for servo, laser or VFD converter (shared control signal with one of the 2-wire  fan outputs). || Up to 5 via expansion connector (3.3V drive unless expansion board used) ||
-| **Input power voltage** | 11V to 32V | 11V to 30V | 11V to 25V || 11V to 25V ||
+| **Input power voltage** | 11V to 48V* | 11V to 30V | 11V to 25V || 11V to 25V ||
 | **Power monitoring** | VIN voltage and 12V regulator output voltage || VIN voltage || VIN voltage and input to on-board 5V regulator ||
 | **LCD support** | Typically provided by HDMI touch screen attached to the SBC. PanelDue also supported. || PanelDue colour touch screen, mini 12864 mono graphics display using ST7567 controller (3.3V signal levels) || PanelDue colour touch screen ||
 | **LED strip support** | Neopixel (max. 240 RGBW or 320 RGB in RRF 3.4) or DotStar || Neopixel (max. 80 RGBW or 106 RGB in RRF 3.4, external 5V power required) || Neopixel (max. 60 RGBW or 80 RGB in RRF 3.4, external 5V power required) ||
@@ -40,6 +40,8 @@ dateCreated: 2021-12-06T11:36:08.818Z
 | **SD card interface speed** | 25Mbytes/sec || 22.5Mbytes/sec || 20Mbytes/sec ||
 | **RepRapFirmware versions available** | 3.0 series |||| 2.0 series, 3.0 series ||
 | **Dimensions** | 140x134mm | 140x115mm | 120x100mm || 120x100mm ||
+
+**Note 6HC boards before v1.02 had a max VIN voltage of 32V*
 <!---
 ## Legacy Duets
 
