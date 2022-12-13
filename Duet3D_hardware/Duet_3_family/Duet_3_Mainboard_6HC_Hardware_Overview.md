@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-12-13T12:48:34.783Z
+date: 2022-12-13T12:57:21.489Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -275,7 +275,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | TEMP 1 | temp1 | |
 | ^^ | TEMP 2 | temp2 | |
 | ^^ | TEMP 3 | temp3 | |
-| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc |
+| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc (note io0 pins common with PanelDue header) |
 | ^^ | ^^ | io0.out | ^^ |
 | ^^ | IO_1 | io1.in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
@@ -293,10 +293,13 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | io7.out | ^^ |
 | ^^ | IO_8 | io8.in | ^^ |
 | ^^ | ^^ | io8.out | ^^ |
-| SPI CS | TEMPDB | spi.cs0 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
+| SPI CS | SPI_DB | spi.cs0 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
 | ^^ | ^^ | spi.cs1 | ^^ |
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
+| PanelDue | PanelDue | spi.cs4 | External SD card CS, note Io0 pins shared with io0 header.|
+| ^^ | ^^ | io0.in | ^^ |
+| ^^ | ^^ | io0.out | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
 
 ## Input/Output
@@ -483,12 +486,11 @@ The Ethernet port provides the ability to directly network to the board when not
 - Due to the change in the onboard power supply circuitry the 5V supply available for external devices is now 800mA.
 - Updated the external 5V input options to select between the 5V_EXT header and 5V_SBC
 - Change to a USB C connector.
-- Add a header for a wifi module - note this requires the module and firmware support to be completed.
+- Add a 2x6 header for an ESP wifi module - note this requires the module and firmware support to be completed.
 - Added an ACT indication LED as on other Duet 3 boards. This signals CAN-FD bus activity.
 - Added a 2x5 IDC header for a ribbon cable connection to a PanelDue with external SD card.
 - Improved ESD protection for temperature, tacho and other inputs.
 - Various component changes to work around supply chain shortages (except thos listed above this does not result in functional changes to the design).
-
 
 ## Revision v1.01a
 - DNP the jumpers for 5V power between the Duet and the SBC. A more modern SBC (e.g. RPi 4) needs too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarily the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give a under voltage warning.
