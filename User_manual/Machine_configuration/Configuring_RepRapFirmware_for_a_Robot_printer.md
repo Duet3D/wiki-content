@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-01T13:22:07.563Z
+date: 2022-12-13T16:26:59.046Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -111,6 +111,8 @@ Dn define DH parameters and are numbered from 0 to maximum 9.
 There is a separate document about DH parameters with examples. The DWC plugin RobotViewer shall help with configuration.
 
 The standard usage is:
+* every DH parameter set has one D... defintion with numbers 0 to 9
+* after D, optional invert and number, there are 1, 4 or 6 parameters, all parts delimited with :
 * D0 is optional the definition of the base. If the first axis is vertical starting in 0,0,0, D0 can be omitted
 * D1 to D6 are DH parameters with actuators assigned (or less numbers for less actuators)
 * D7 for tool. Offset values of the current selected tool G10 will be added
@@ -143,11 +145,15 @@ The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0
 **D"!n:..."**
 Same as above, but inverts the transformation. Inverts rotations and translations. This is used for workpiece mode and explained in a world mode vs. workpiece mode chapter.
 
+**D"n:ztr|d|zrot|ytr|yrot|xtr|a|xrot|alpha=..."**
+Sets a single value of a D parameter. If the default of a robotType can be used, single paramter setting will be the easiest method to specify arm lengths. ztr (or d) is the Z translate paramter, zrot (or theta) the Z rotate, analogue for y (ytr, yrot) and x (xtr or a, xrot or alpha). The other defined paramters of Dn remain unchanged. If the Dn did not exist, it is created with the other values being set to 0
+
 Example:
 * D"1:100.0:0:0:90.0" means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
 * D"6" without values clears the definitions of D6 and removes D6 from the chain
 * D"7:0:0:0:0" if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
 * D"!1:100.0:0:0:0" inverts the transformation matrix.
+* D"1:ztr=300" sets the Z trans parameter to 300 mm for a prismatic axis which is connected to D1
 
 # M669 P parameter: axisTypes, special
 
