@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-12-13T11:55:20.181Z
+date: 2022-12-13T12:48:34.783Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -105,9 +105,15 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview){target=_blank} p
 
 # Physical properties
 
+
 ## Dimensions
 
-[![Dimensions and mounting holes for the Duet 3 MB 6HC v0.6 and later](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png =500x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png){target=_blank}
+## Tabs {.tabset}
+### v1.02
+[![Dimensions and mounting holes for the Duet 3 MB 6HC v1.02](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_dimensions_d1.0.png =500x)](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_dimensions_d1.0.png){target=_blank}
+
+### v0.6-v1.01a
+[![Dimensions and mounting holes for the Duet 3 MB 6HC v0.6 -v1.01](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png =500x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png){target=_blank}
 
 ## Mounting
 
@@ -133,7 +139,6 @@ The STEP file for the Duet 3 Mainboard 6HC is shared on the [Duet3D github here]
 # Physical connections
 
 ## Wiring diagram
-
 
 ## Tabs {.tabset}
 
@@ -228,9 +233,10 @@ LEDs are provided to indicate the following:
 | **OUT_1** | Red | Next to the OUT 1 connector, indicates when on |
 | **OUT_2** | Red | Next to the OUT 2 connector, indicates when on |
 | **OUT_3** | Red | Next to the OUT 3 connector, indicates when on |
-| **DIAG** | Red | Diagnostic LED. See description below |
+| **STATUS** | Red | Diagnostic LED. See description below |
+| **ACT** | Green | Diagnostic LED. See description below |
 
-The red LED labelled "DIAG" indicates the state of the board, as follows.
+The red LED labelled "STATUS" (labelled DIAG before v1.02) indicates the state of the board, as follows.
 
 | LED | Meaning |
 |:---|:---|
@@ -239,6 +245,7 @@ The red LED labelled "DIAG" indicates the state of the board, as follows.
 | Glowing dimly, or off | Firmware has been erased |
 | Flashing three times, then off for a while | Firmware CRC check failed |
 
+The green LED labelled "ACT" (on v1.02 and later) indicates CAN-FD bus activity
 
 ## Pin names
 
@@ -310,9 +317,25 @@ IO output pins can be used as inputs, but are only 3.3V tolerant. IO input pins 
 
 ## Tabs {.tabset}
 
+### Duet 3 Mainboard 6HC v1.02
+
+On the version 1.02 boards the individual IO_x connectors have the following additional capabilities:
+
+| IO # | UART? | Analog in? | PWM out? | Notes |
+|:---|:---|:---|:---|:---|
+| 0 | yes | no | no |  |
+| 1 | yes | no | no |  |
+| 2 | no | no | no | A jumper is provided to bypass the 10K input ptotection resistor to allow I2C to be used on this port. |
+| 3 | no | yes | no |  |
+| 4 | no | yes | yes |  |
+| 5 | no | yes | yes |  |
+| 6 | no | yes | no |  |
+| 7 | no | yes | yes |  |
+| 8 | no | no | no |  |
+
 ### Duet 3 Mainboard 6HC v0.6 and later
 
-On the version 0.6 and 1.0 boards the individual IO_x connectors have the following additional capabilities:
+On the version 0.6, 1.0 and 1.01 boards the individual IO_x connectors have the following additional capabilities:
 
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|:---|:---|:---|
@@ -346,7 +369,7 @@ On the Duet 3 Mainboard 6HC prototype v0.5 boards the capabilities are different
 
 ### VIN (Input voltage from PSU)
 
-VIN in the range 12V-32V must be provided to the Duet. In addition the same, or a different voltage can be provided specifically for the very high current OUT0 circuit. This allows for a heated bed or similar to be run from an alternative power supply. If that is not required the same VIN can be supplied to the OUT0 input.
+VIN in the range 12V-48V must be provided to the Duet (12V-32V before v1.02). In addition the same, or a different voltage can be provided specifically for the very high current OUT0 circuit. This allows for a heated bed or similar to be run from an alternative power supply. If that is not required the same VIN can be supplied to the OUT0 input.
 
 ### 12V
 
@@ -359,6 +382,9 @@ The Duet 3 Mainboard 6HC also produces onboard 5V and 3.3V, from VIN. These volt
 External 5V power can be provided to the board by removing the jumper on 'Int 5V EN' and supplying 5V power to the 'EXT 5V' connector.
 
 ### Tabs {.tabset}
+
+#### v1.02
+
 
 #### v1.01a
 
@@ -390,6 +416,18 @@ If you wish to power the Duet and SBC separately, both from external 5V power su
 
 ## Electronics power consumption
 
+### Tabs {.tabset}
+
+#### v1.02
+
+Power the SBC from its own 5V supply that is specifically designed for the purpose.The official Raspberry Pi Power Supply is a good example of this. Additionally, the USB cable used to power the Pi must be of good quality.
+
+It is possible to power the Duet from the SBC is the Duet does not have higher current 5V devices connected (PanelDue, Neopixel/Dotstar LEDs) and the 5V power budget of the SBC power supply is not exceeded. See the 5V documentation above for how to set the selection jumpers.
+
+The Pi may display a lightning bolt icon on the display (if connected) which is a good indication there is a power supply problem.
+
+
+#### v1.01 and earlier Duet 6HCs:
 Powering a SBC like the Pi3 from the Duet is feasible provided any USB peripherals attached to the Pi are very low power draw or have their own separate power supply. Higher power draw SBC like the Pi4 may draw more power than the internal 5v on the Duet can supply, especially with added peripherals. In general, for best results, it is recommended to power the Duet and the SBC separately to avoid power overdraw issues.
 
 Furthermore, it is recommended to use a sufficient power supply for the Pi4 that is capable of providing 5a. The official Raspberry Pi Power Supply is a good example of this. Additionally, the USB cable used to power the Pi must be of good quality.
@@ -404,7 +442,7 @@ The Duet 3 Mainboard 6HC can also be run in standalone mode (without the SBC) by
 
 ## Motion
 
-The Duet 3 Mainboard 6HC has 6 TMC 5160 stepper drivers on board. Until further testing including detailed thermal analysis is conducted these are limited to 4A RMS. The [initial testing of the TMC5160s](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC#thermal-tests) in this configuration, conducted on the Expansion board looks very promising. 4A per phase will allow driving stepper motors rated to up to 5A RMS (it is recommended to drive stepper motors at around 80% of rated maximum current).
+The Duet 3 Mainboard 6HC has 6 TMC 2160 or 5160 stepper drivers on board. Until further testing including detailed thermal analysis is conducted these are limited to 4.4A RMS (6.3A Peak). The [initial testing of the TMC5160s](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC#thermal-tests) in this configuration, conducted on the Expansion board looks very promising. 4A per phase will allow driving stepper motors rated to up to 5A (it is recommended to drive stepper motors at around 80% of rated maximum current).
 
 RepRapFirmware configures these drivers over the SPI bus: dynamic setting of microstepping, current and many other features can be achieved through firmware. The drivers can be combined together to use multiple drivers on one axis (for example a 3 motor Z levelling system).
 
@@ -417,11 +455,11 @@ The Duet 3 Mainboard 6HC has 10 PWM controlled outputs. These can be configured 
 | Output | Rated current | Notes |
 |:---|:---|:---|
 | OUT0 | 15A | Designed for a heated bed or similar fused to 15A but rated to 18A |
-| OUT1-3 | 5A | Designed for extruder heaters or similar |
+| OUT1-3 | 6A | Designed for extruder heaters or similar |
 | OUT4-6 | 2A | Select between VIN and 12V for this bank of 3 fans. Headers compatible with 4 wire fans, including tacho feedback |
 | OUT7-9 | 2A | Select between VIN and 12V for this bank of 3 fans. Standard 2 wire fans |
 
-Note: maximum total output from the on-board 12V regulator is 1A. Because the stepper drivers require 12V as well, the current drawn from external devices must not exceed 800mA.
+Note: maximum current drawn by external devices at 12V must not exceed 800mA.
 
 ## CAN-FD Bus expansion
 
@@ -431,11 +469,10 @@ The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a
 
 The CAN BUS is connected via RJ11 and at least 2 core twisted pair, although 6 core RJ11 is more common.
 
-## Future expansion - Ethernet
+## Ethernet
 
-The Ethernet port provides the ability to directly network to the board when not using an SBC. Along with the built-in SD card this provides a reduced feature set method of controlling the Duet 3.
+The Ethernet port provides the ability to directly network to the board when not using an SBC. Along with the built-in SD card this allows the Mainboard to run in Standalone mode.
 
-The Ethernet port may also provide potential to support EtherCat in the future if this is implemented.
 
 # Revision History
 
@@ -444,11 +481,13 @@ The Ethernet port may also provide potential to support EtherCat in the future i
 ## Revision v1.02
 - Update the power and stepper driver circuitry to allow VIN of up to 48V.
 - Due to the change in the onboard power supply circuitry the 5V supply available for external devices is now 800mA.
+- Updated the external 5V input options to select between the 5V_EXT header and 5V_SBC
 - Change to a USB C connector.
 - Add a header for a wifi module - note this requires the module and firmware support to be completed.
 - Added an ACT indication LED as on other Duet 3 boards. This signals CAN-FD bus activity.
 - Added a 2x5 IDC header for a ribbon cable connection to a PanelDue with external SD card.
-- 
+- Improved ESD protection for temperature, tacho and other inputs.
+- Various component changes to work around supply chain shortages (except thos listed above this does not result in functional changes to the design).
 
 
 ## Revision v1.01a
