@@ -2,13 +2,13 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-12-13T14:26:12.332Z
+date: 2022-12-13T14:26:48.650Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
 ---
 
-![duet3_mb_6hc-v1.02.png](/duet_boards/duet_3_mb6hc/duet3_mb_6hc-v1.02.png =500x)
+![Image of the Duet 3 Mainboard 6HC taken from an angle](/duet_boards/duet_3_mb6hc/duet3_mb_6hc-v1.02.png =500x)
 
 # Introduction
 
