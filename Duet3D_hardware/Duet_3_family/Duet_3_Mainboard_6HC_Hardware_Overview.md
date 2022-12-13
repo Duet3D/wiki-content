@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-12-07T14:47:41.691Z
+date: 2022-12-13T11:08:28.638Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -14,11 +14,9 @@ dateCreated: 2021-07-09T14:00:13.273Z
 
 The Duet 3 Mainboard 6HC is a next-generation controller board that builds on Duet3D's experience in developing the most flexible 3d printer control solutions. It is the core of the Duet 3 family which provides control for a wide range of machines including 3d printers, CNCs, lasercutters and more. The overall aim with the Duet 3 series is to allow for maximum flexibility of machine design through highly capable mainboards, expansion boards, smart tool boards and custom expansion modules. The flexibility of configuration and advanced features are enabled by our innovative [RepRapFirmware](/User_manual/RepRapFirmware/RepRapFirmware_overview){target=_blank} running on the Mainboard and DuetSoftwareFramework running on the single board computer.
 
-The Duet 3 Mainboard 6HC is the first version of the Mainboard produced.
-
 # Features
 
-![duet_3_mb6hc_features.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_features.png =500x)
+![Render of the Duet3 Mainboard 6HC v1.02 overlaid with the key features of the board grouped by location](/duet_boards/duet_3_mb6hc/duet3_mainboard_6hc_v1.2_features_d1.0.png =500x)
 
 ## Hardware Specification
 
@@ -56,7 +54,20 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | ^1^ Note that the board is rated to 18A on the '15A high current output'; however it is supplied with a 15A fuse fitted (18A are difficult to source). If you need 18A on the this output then you need to fit a 20A fuse and take further precautions against over-current. |
 
 ## Operating limits
+## Tabs {.tabset}
 
+### Revision v1.02
+|:--|:--|
+| **Stepper drivers** | Up to 6.3A peak current |
+| **High current outputs** | OUT0 up to 18A (see note above), OUT1/2/3 up to 6A each |
+| **Input power voltage** | 11V to 48V for VIN, 0V to 48V for OUT0 |
+| **Inputs/Outputs** | Inputs are 30V-tolerant |
+| **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
+| **Fuses** | 15A for V_Fused, 15A for OUT0. |
+| **12V current limit** | 800ma (total for out3-8 ports, when 12V selected) |
+| **5V and 3.3V current limit** | 800mA total on 5V and 3.3V, of which no more than 500mA from 3.3V. |
+
+### Revision v1.01 and earlier
 |:--|:--|
 | **Stepper drivers** | Up to 6.3A peak current |
 | **High current outputs** | OUT0 up to 18A (see note above), OUT1/2/3 up to 6A each |
@@ -65,7 +76,9 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **Fuses** | 15A for V_Fused, 15A for OUT0. |
 | **5V current limit** | 3A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power, and any connected SBC powered by the Duet. **Note: future versions of Duet 3 MB6HC are likely to have the 5V current limit reduced to about 1.0A, which will make about 0.7A available for use by external devices.** |
-| **12V current limit** | 800ma (fan pins only, when 12V selected) |
+| **12V current limit** | 800ma (out4-out9 pins only, when 12V selected) |
+
+
 
 ## Firmware notes
 
@@ -418,6 +431,10 @@ The Ethernet port may also provide potential to support EtherCat in the future i
 
 # Tabs{.tabset}
 
+## Revision v1.02
+- Update the power and stepper driver circuitry to allow VIN of up to 48V
+- Due to the change in the onboard power supply circuitry the 5V supply available for external devices is now 1A
+-
 ## Revision v1.01a
 - DNP the jumpers for 5V power between the Duet and the SBC. A more modern SBC (e.g. RPi 4) needs too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarily the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give a under voltage warning.
 - Minor component changes that do not impact functionality.
