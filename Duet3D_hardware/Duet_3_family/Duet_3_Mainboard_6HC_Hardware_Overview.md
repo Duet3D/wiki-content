@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-12-13T11:08:28.638Z
+date: 2022-12-13T11:50:24.423Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -34,7 +34,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **Thermistor/PT1000 inputs** | 4 x inputs, optimised for 100K thermistors and PT1000 sensors |
 | **Inputs/Outputs** | 9 x on-board I/O connectors for endstop, filament monitor, Z-probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Also one output with 5V signal level for hobby servo, laser control or VFD. |
 | **Power monitoring** | VIN voltage monitoring allows for state save on power failure.12V regulator output voltage also monitored |
-| **SD card interface** | On-board high speed SD card socket. |
+| **SD card interface** | On-board high speed SD card socket. External SD card socket (e.g. on attached PanelDue) also supported from v1.02|
 
 
 | **EXPANSION** ||
@@ -44,8 +44,8 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **Stepper driver expansion** | 20+ via CAN-FD-connected expansion boards |
 | **High current output and/or thermistor expansion** | 20+ via CAN-FD-connected expansion boards |
 | **PT100 and thermocouple daughterboard support** | Supports 2 x daughterboards (4 channels) on board. 50+ via CAN-FD-connected expansion boards. |
-| **LCD support** | Typically provided by HDMI touch screen attached to the SBC. PanelDue also supported. |
-| **LED strip support** | RGB Neopixel (max. 60 LEDs) or DotStar |
+| **LCD support** | HDMI touch screen attached to the SBC. PanelDue and 12864 directly connected displays also supported. |
+| **LED strip support** | RGB/RGBW Neopixel or DotStar, note these LEDs can draw a lot of current to external 5V supply is required to drive more than ~8, see the operating limits below. |
 | **Other expansion** | A huge variety supported via CAN-FD-connected expansion boards |
 
 
@@ -94,26 +94,26 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 
 Importantly Duets are Open:
 
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE).
-* All hardware [source files](https://github.com/Duet3D/Duet3-Mainboard-6HC) are available on Github.
-* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE){target=_blank}.
+* All hardware [source files](https://github.com/Duet3D/Duet3-Mainboard-6HC){target=_blank} are available on Github.
+* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl){target=_blank} web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware){target=_blank} are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank} and [Eclipse](https://eclipse.org/){target=_blank} using open tools means the barrier to getting involved is as low as possible.
 
 ## Feature Comparison
 
-See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a feature comparison table between different versions of the Duet.
+See the [Hardware overview](/Duet3D_hardware/Hardware_overview){target=_blank} page for a feature comparison table between different versions of the Duet.
 
 # Physical properties
 
 ## Dimensions
 
-[![duet_3_mb6hc_dimensions.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png =500x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png){target=_blank}
+[![Dimensions and mounting holes for the Duet 3 MB 6HC v0.6 and later](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png =500x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_dimensions.png){target=_blank}
 
 ## Mounting
 
 On Duet 3 Mainboard 6HC the mounting holes are isolated and not plated through, they have a keep out area around the M4 clearance hole of an additional 2.2mm radius. Any metallic mounting solution should keep inside this keep-out area.
 
-![duet_3_mb6hc_mounting.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_mounting.png =230x)
+![Detail of the mounting hole size and clearance for the Duet 3 MB 6HC v0.6 and later](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_mounting.png =230x)
 
 Please note:
 
@@ -128,7 +128,7 @@ The stepper drivers' heatsinks are connected to the PCB and the majority of the 
 
 ## 3D model
 
-The STEP file for the Duet 3 Mainboard 6HC is shared on the [Duet3D github here](https://github.com/Duet3D/Duet3-Mainboard-6HC/tree/master/Duet3_Mainboard_v1.0).
+The STEP file for the Duet 3 Mainboard 6HC is shared on the [Duet3D github here](https://github.com/Duet3D/Duet3-Mainboard-6HC){target=_blank}.
 
 # Physical connections
 
@@ -136,6 +136,8 @@ The STEP file for the Duet 3 Mainboard 6HC is shared on the [Duet3D github here]
 
 
 ## Tabs {.tabset}
+
+### Revision v1.02
 
 ### Revision v1.0 and v1.01
 
@@ -176,8 +178,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 6-way barrier strip** | POWER IN, GND, VIN | Two pins for main VIN and GND. VIN min/max: 11V to 32V |
 | ^^ | OUT 0 POWER IN, GND, V_OUT0 | Two pins for the VIN and GND supply for the OUT_0 terminals. OUT0 voltage min/max: 0V to 32V |
 | ^^ | OUT 0, V_OUT0, OUT0- | Positive and negative OUT_0 terminals. OUT_0 is intended to drive a bed heater. The ground side of OUT_0 is switched by the mosfet and the positive side is protected by a 15A fuse. If using the OUT0 terminal to drive a SSR, take note that their polarity is opposite to the polarity of the VIN terminals. There is no flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
-| **1 x 3-pin KK connector** | EXT 5V | Open drain mosfet output for controlling an ATX-style power supply or a SSR. The +5V pin can also be used to provide external 5V power. A small amount of 5V power can be drawn from this pin (through an internal 220 ohm resistor), so that the control terminals of an SSR can be connected directly between the +5V and PS_ON pins. |
-| ^^ | ^^ | **Note:** on the v0.5 board this connector is rotated 180 degrees compared to the intended orientation on later version boards. |
+| **1 x 3-pin KK connector** | EXT 5V | Open drain mosfet output for controlling an ATX-style power supply or a SSR. The +5V pin can also be used to provide a small amount of 5V power (through an internal 220 ohm resistor) so that the control terminals of an SSR can be connected directly between the +5V and PS_ON pins. |
 | **6 x 4-pin JST VH connector** | DRIVER_0, DRIVER_1, DRIVER_2, DRIVER_3, DRIVER_4, DRIVER_5 | Stepper motor connections. (see note on JST VH connectors) |
 | **3 x 2-pin JST VH connector** | OUT 1, OUT 2, OUT 3 | These are intended for extruder heaters or fans. Maximum recommended current 6A each. These outputs are protected by flyback diodes. |
 | **3 x 4-pin KK connectors with offset spigot** | OUT 4, OUT 5, OUT 6 | These medium current outputs are intended for PWM-controllable fans. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUT_LC_1 pin (+ve) and the OUT_n_NEG pin (-ve). |
@@ -185,14 +186,14 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 3-pin KK header** | OUT4-OUT6_SelectV | The positive supply to the OUT 4, OUT 5 and OUT 6 connectors is the centre pin of the 3-pin jumper block labeled OUT4-OUT6_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
 | **3 x 2-pin KK connectors** | OUT 7, OUT 8, OUT 9 | These are intended for fans. Maximum recommended current 2.5A each when supplied by VIN. |
 | ^^ | ^^ | **Note:** These outputs are protected by a flyback diode connected to V_OUT_LC_2. Do not mix loads connected to V_OUT_LC_2 with the jumper set to 12V and loads connected to V_FUSED on the same bank. |
-| **1 x 3-pin KK header** | OUT7-OUT9_SelectV | The positive supply to the OUT 7, OUT 8 and OUT 9 connectors is the centre pin of the 3-pin jumper block labeled OUT7-OUT9_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
-| **1 x 3-pin KK connector** | SERVO, OUT 10 | v0.5 boards only. This provides a 5V servo-compatible control signal and 5V power. |
+| **1 x 3-pin KK header** | OUT7-OUT9_SelectV | The positive supply to the OUT 7, OUT 8 and OUT 9 connectors is the centre pin of the 3-pin jumper block labeled OUT7-OUT9_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. (*see note 1*)|
 | **1 x 2-pin KK connector** | VFUSED | This is for powering an always-on fan or similar. |
-| ^^ | ^^ | **Caution!** On v0.5 boards the GND and V_FUSED legends on the underside of the board are the wrong way round! The ones on the top are correct. |
-| ^^ | ^^ | **Note:** on the v0.5 board this connector is rotated 180 degrees compared to the intended orientation on later version boards. |
 | **1 x 2-pin KK connector** | RESET_EXT | For an external normally-open reset switch. |
-| **1 x 2-pin KK connector** | 12V | Provides 12V power for a PWM-to-0 to 10V converter. |
+| **1 x 2-pin KK connector** | 12V | Provides 12V power for a PWM to 0-10V converter. (*see note 1*)|
 | **1 x 3-pin KK connector** | LASER/VFD | v1.0 and later boards only. This provides 5V power and a 5V level signal for a TTL-compatible input to a laser controller, a PWM-to-0 to 10V converter (for variable-frequency drives), or a servo. The control signal for this output is shared with OUT9, so don't use OUT9 if you use this connector. |
+| **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*).|
+| ^^ | ^^ | **Note** The PanelDue UART is shared with io0.in and io0.out pins on the IO_0 header. |
+| **1 x 2-pin Jumper** |  PD_CD_OVERRIDE | v1.0 and later. Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
 | **4 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2, TEMP_3 | Connections for thermistor or PT1000 sensors. |
 | **1 x RJ45 network connector** | Ethernet | 100BaseT Port. non MDIX connect to an Ethernet switch, hub or MDIX enabled laptop port. If connecting to a non MDIX enabled port use a crossover cable. Orange LED on Ethernet port indicates Ethernet enabled, green LED indicates network activity |
 | **9 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4, IO_5, IO_6, IO_7, IO_8 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
@@ -202,6 +203,11 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
 | **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector and permanent termination resistor, so it must be at one end of the CAN bus |
+
+**Notes**
+
+1. Total 12V load should not exceed 800mA
+1. 5V power can be sourced from multiple inputs (USB, External 5V input, SBC) as well as the internal 5V regulator. Total 3.3V and 5V load combined should not exceed 800mA when powered from the internal 5V regulator. see the "[Power Distribution, 5V](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v)" subsection below for more information
 
 ## LED indications
 
@@ -432,9 +438,15 @@ The Ethernet port may also provide potential to support EtherCat in the future i
 # Tabs{.tabset}
 
 ## Revision v1.02
-- Update the power and stepper driver circuitry to allow VIN of up to 48V
-- Due to the change in the onboard power supply circuitry the 5V supply available for external devices is now 1A
--
+- Update the power and stepper driver circuitry to allow VIN of up to 48V.
+- Due to the change in the onboard power supply circuitry the 5V supply available for external devices is now 800mA.
+- Change to a USB C connector.
+- Add a header for a wifi module - note this requires the module and firmware support to be completed.
+- Added an ACT indication LED as on other Duet 3 boards. This signals CAN-FD bus activity.
+- Added a 2x5 IDC header for a ribbon cable connection to a PanelDue with external SD card.
+- 
+
+
 ## Revision v1.01a
 - DNP the jumpers for 5V power between the Duet and the SBC. A more modern SBC (e.g. RPi 4) needs too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarily the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give a under voltage warning.
 - Minor component changes that do not impact functionality.
