@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-12-13T14:13:29.268Z
+date: 2022-12-13T14:19:39.034Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -143,6 +143,8 @@ The STEP file for the Duet 3 Mainboard 6HC is shared on the [Duet3D github here]
 ## Tabs {.tabset}
 
 ### Revision v1.02
+
+[![duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_d1.0_wiring.png =745x)](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_d1.0_wiring.png){target=_blank}
 
 ### Revision v1.0 and v1.01
 
