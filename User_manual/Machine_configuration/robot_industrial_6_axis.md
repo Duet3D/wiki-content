@@ -2,17 +2,13 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2022-12-14T12:12:04.587Z
+date: 2022-12-14T12:12:26.374Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
 ---
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
-
-
-> This page is very draft. This will change when the 5 axis robots are all working ok.
-{.is-info}
 
 ![robot_dh_main.jpg](/manual/configuration/robot_main.jpg)
 
