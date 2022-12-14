@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2022-12-14T12:08:28.706Z
+date: 2022-12-14T12:12:04.587Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -13,6 +13,8 @@ This page is part of multiple pages about robot configuration and usage. Please 
 
 > This page is very draft. This will change when the 5 axis robots are all working ok.
 {.is-info}
+
+![robot_dh_main.jpg](/manual/configuration/robot_main.jpg)
 
 # Introduction
 
