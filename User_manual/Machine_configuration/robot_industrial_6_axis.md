@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2022-12-14T12:19:25.155Z
+date: 2022-12-14T12:27:48.878Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -29,7 +29,7 @@ The basic configuration setting is
 M669 B"robotType=6Axis"
 which sets a sample robot, the same which is used as example in the document about DH parameters. The properties are from an itialian professor from a Youtube video. Starting from the basic configuration, the arm lengths and other properties can be modified easily with the single value D parameters.
 
-6 axis robots are capable to control all 6 degrees of freedom (6DOF), but they have the difficulty that some positions and orientations are in so-called singularities. More about it below.
+6 axis robots are capable to control all 6 degrees of freedom (6DOF), but they have the difficulty that some positions and orientations are in so-called singularities. More about orientations and singularities are in the firmware document.
 
 
 # orientation
