@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-01T13:25:35.257Z
+date: 2022-12-14T12:38:59.205Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -44,10 +44,19 @@ The M669 B"orientationType" parameter specifies one of three possible orientatio
 
 If red is the direction of the X axis, green of Y axis and blue of the Z axis, with Z pointing down as is usual for 3D printers and CNC, the possibilities of orientation are from left to right:
 * no orientation: only position is specified. An example is a cartesian printer
-* Z axis orientation: only Z axis orientation is specified. The direction of X and Y axis is unspecified and can change and is out of control for the printer/CNC. Examples are normal 3D printers and CNC 3 axis.
-* full orientation: all axes' orientations are under control. The axes vectors are orthonormal and righthanded, i. e. vector lengths are 1 each and all vertical on each other. To describe full orientation, 4 values are necessary: 3 to describe the Z axis orientation and one to describe the angle of the X and Y axis in respect to the reference angle 0 in the X axis direction. To store the 4 values, different methods are availabe. In the firmware used methods are:
-* axisangle: axis is stored as Euler axis (this are not Euler angles) and rotation angle
-* quaternions: a different system to store rotation axis and angle
+* Z axis orientation: only Z axis orientation is specified. The direction of X and Y axis is unspecified and can change and is out of control for the printer/CNC. Examples are 5 axis printers or CNC of different types like AC, BC mounted on table or head.
+* full orientation: all axes' orientations are under control. The axes vectors are orthonormal and righthanded, i. e. vector lengths are 1 each and all vertical on each other.
+
+# Orientation storing
+
+There are different methods to store orientation information:
+* rotation matrix with 3x3 values, storing three 3-dimensional vectors, stores the orientation best, but needs most memory.
+* quaternions store full orientation with 4 parameters: one parameter stores the rotation angle, 3 parameters the rotation axis
+* skew symmetric storing also needs 4 parameters, the rotation axis, and the rotation angle must be stored separately
+* Euler angles exist in 12 subtypes and store rotation angles, which are executed in a specific order
+* Euler axis and angle is similar to skew
+
+Internally the rotation matrix is used and for forward/inverse calculations quaternions and skew. Euler angles are not used, because the have problems at edges like gimbal lock. They are however often used, so in RobotViewer there will probably be support of it to visualize rotations. Euler angles subtype ZYX is as well how the Denativ-Hartenberg rotation works.
 
 # Rotation matrix
 After calculation of forward inverse kinematics, the result is a 4x4 transformation matrix with information about position and orientation:
