@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2022-12-14T12:15:46.891Z
+date: 2022-12-14T12:19:25.155Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -20,6 +20,8 @@ Following is a description of the common 6 axis industrial robot. It has the fol
 * axis 4 "twists" the next arm
 * axis 5 is parallel to 2 and 3 again (if axis 4 is 0 degrees)
 * axis 6 rotates the endpoint
+
+The first 3 axes are mainly for XYZ positioning and axes 4-6 for orientation. Axes 4-6 are often organized as RPY, roll-pitch-yaw, axes, which is a term from aviation, because axis 4 rolls, 5 pitches and 6 yaws the object.
 
 Most industrial robots are 6 axis robots. Leading manufacturers are ABB, Fanuc, Kuka, Yaskawa. There are also some open source ones and smaller companies like Stäubli or Mecademic. The other common type is 4 axis pallletized robot, which is based on a parallelogram as the name suggest, used for palletizing jobs with high payloads. This type is desribed in a separate document (see overview in robot tag).
 
