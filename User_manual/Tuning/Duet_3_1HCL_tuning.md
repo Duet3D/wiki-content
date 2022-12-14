@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-11-08T12:54:40.697Z
+date: 2022-12-14T12:51:32.800Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -90,7 +90,7 @@ In order to perform a tuning manoeuvre, the [M569.6](/User_manual/Reference/Gcod
 
 *Note that the drive must be in closed-loop mode before this command can be run. See [M569 D4](/User_manual/Reference/Gcodes/M569) for putting a drive in closed-loop mode.*
 
-Running this command should make the drive move slightly (tuning manoeuvres will at most make the motor move 10 steps). You may get a warning at this stage, but this is nothing to worry about.
+Running this command should make the drive move slightly: this quadrature tuning manoeuvre will at most make the motor move 10 steps (however note the magnetic encoder calibration moves just over one full motor rotation then back again). You may get a warning at this stage, but this is nothing to worry about.
 
 > Duet firmware currently only supports tuning one driver at a time. This means that when tuning a multi-driver axis, one driver will move and the other(s) will not. If attempting to tune a multi-driver axis, please take appropriate mitigation to ensure the axis doesn't become stressed/misaligned when only one one driver moves.
 {.is-warning}
