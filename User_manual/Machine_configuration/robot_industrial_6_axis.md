@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2022-10-23T20:06:29.078Z
+date: 2022-12-14T12:08:28.706Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -14,9 +14,22 @@ This page is part of multiple pages about robot configuration and usage. Please 
 > This page is very draft. This will change when the 5 axis robots are all working ok.
 {.is-info}
 
+# Introduction
 
-# Industrial 6 axis robot
-following will be a description of the specifics
+Following is a description of the common 6 axis industrial robot. It has the following axes:
+* axis 1 is vertical
+* axis 2 and 3 are horizontal and parallel to each other
+* axis 4 "twists" the next arm
+* axis 5 is parallel to 2 and 3 again (if axis 4 is 0 degrees)
+* axis 6 rotates the endpoint
+
+Most Kuka, ABB, etc. industrial robots are 6 axis robots. The other common type is 4 axis pallletized robot, which is based on a parallelogram as the name suggest, used for palletizing jobs with high payloads. This type is desribed in a separate document (see overview in robot tag).
+
+The basic configuration setting is 
+M669 B"robotType=6Axis"
+which sets a sample robot, the same which is used as example in the document about DH parameters. The properties are from an itialian professor from a Youtube video. Starting from the basic configuration, the arm lengths and other properties can be modified easily with the single value D parameters.
+
+6 axis robots are capable to control all 6 degrees of freedom (6DOF), but they have the difficulty that some positions and orientations are in so-called singularities. More about it below.
 
 
 # orientation
