@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-14T12:38:59.205Z
+date: 2022-12-14T12:42:13.317Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -70,7 +70,7 @@ It contains the following information:
 * position XYZ (yellow) is the information about the tool tip's position
 
 Some technical information about the transformation matrix:
-* for every orientation vector, x² + y² + z² = 1
+* for every orientation vector, x² + y² + z² = 1, the same is true for every red-green-blue row.
 * each orientation vector is vertical to the other ones (orthonormal) and the axes are organized righthanded
 * full can be uniquely translated into quaternions and reverse. Quaternions are used for storage efficiency, using 4 instead of 9 values. They can also be translated into angle-axis mode with 4 parameters, where axis is a Euler axis (not to be confused with Euler angles) and angle is the rotation around this axis.
 * The four numbers (0 0 0 1) in the last line make sure that rotations and translations stay at their positions. They don't change.
