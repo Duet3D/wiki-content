@@ -2,7 +2,7 @@
 title: Duet Software Framework
 description: DSF Overview
 published: true
-date: 2022-12-01T14:47:57.100Z
+date: 2022-12-16T13:36:32.101Z
 tags: 
 editor: markdown
 dateCreated: 2022-12-01T14:46:05.540Z
@@ -60,9 +60,9 @@ It is not recommended to put SBC configuration data into `config.g`, because the
 
 DSF is fully written in C# using .NET. In order to write custom C# applications connecting to it, the following NuGet packages are available:
 
-- [DuetAPI]()
-- [DuetAPIClient]()
-- [DuetHttpClient]()
+- DuetAPI
+- DuetAPIClient
+- DuetHttpClient
 
 Further information about third-party plugins (installable via DWC) is available [here](https://github.com/Duet3D/DuetSoftwareFramework/wiki/Third-Party-Plugins).
 
