@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2022-06-29T20:47:46.839Z
+date: 2022-12-16T18:43:03.244Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -75,6 +75,43 @@ The following table gives an overview of the different Z probe modes.
 | 9 | BLTouch | OUT (Duet 3) and MOD (Duet 2 Maestro) can be configured to control deployment/retraction. MOD on Duet 2 WiFi/Ethernet is not PWM capable, so use heater pin on expansion port instead. |
 | 10 | Z motor stall detection | Not used |
 
+**Z Probe Mode details**
+
+##### Mode 0
+
+Select this mode if you have no Z probe. When the firmware tries to execute a command to probe the bed, it will instead show a dialogue in Duet Web Control, and also on Panel Due, asking you to jog the head down until the nozzle just touches the bed and then press the OK button.
+
+##### Mode 1
+
+This is a probe with an analog output connected to the Z probe connector. The probe output must rise as it gets closer to the bed. If the probe output falls as it gets closer, invert the probe output by prefixing the input pin name (C parameter) with ! character, in the M558 command. The control signal is driven HIGH.
+
+##### Mode 2
+
+This is a probe with an analog output that requires the Duet to provide modulation signal and demodulate the returned signal. The probe output rises as it gets closer to the bed. If the probe output falls as it gets closer, invert the probe output by prefixing the input pin name (C parameter) with ! character RRF 3.x in the M558 command. The Duet drives the control signal with a 250Hz square wave. The firmware extracts that part of the analog signal received on the IN pin that is in phase with the modulation.
+
+##### Mode 3
+
+As mode 1 except that the control signal is driven LOW.
+
+
+##### Mode 5
+
+A switch or digital output device connected between the STP or IN and GND terminals of the connector. The only pullup resistor is the 100K nominal pullup in the microcontroller so the sink current requirement is tiny. The input must be active high when triggered.
+
+Select the input pin with the C parameter in the M558 command. Invert the probe output to select active low by prefixing the input pin name (C parameter) with ! character in the M558 command
+
+##### Mode 8
+
+Similar to mode 5 except that the input is not filtered, for slightly faster response. Supported in firmware 1.20 and later.
+
+##### Mode 9
+
+Special mode for BLTouch probe. Supported in firmware 1.21 and later.
+
+##### Mode 10
+
+Use the Z motor stall detection as the Z probe trigger. Supported in firmware 1.21 and later. There are limitations to [stall detection](/User_manual/Connecting_hardware/Sensors_stall_detection) and it is not always appropriate for accurate Z probing, however there is a [detailed discussion on the forum](https://forum.duet3d.com/topic/4772/motor-stall-detection-as-z-probe) and some users have had success.
+
 #### RepRapFirmware 2.x
 
 The following table gives an overview of the different Z probe modes.
@@ -93,66 +130,62 @@ The following table gives an overview of the different Z probe modes.
 | 9 | BLTouch with output connected to Z Probe input | OUT (Duet 3) and MOD (Duet 2 Maestro) can be configured to control deployment/retraction. MOD on Duet 2 WiFi/Ethernet is not PWM capable, so use heater pin on expansion port instead. |
 | 10 | Z motor stall detection | Not used |
 
+**Z Probe Mode details**
+
+##### Mode 0
+
+Select this mode if you have no Z probe. When the firmware tries to execute a command to probe the bed, it will instead show a dialogue in Duet Web Control, and also on Panel Due if you are running recent Panel Due firmware, asking you to jog the head down until the nozzle just touches the bed and then press the OK button.
+
+##### Mode 1
+
+This is a probe with an analog output connected to the Z probe connector. The probe output must rise as it gets closer to the bed. If the probe output falls as it gets closer, invert the probe output by adding the I1 parameter in the M558 command. The control signal is driven HIGH.
+
+##### Mode 2
+
+This is a probe with an analog output that requires the Duet to provide modulation signal and demodulate the returned signal. The probe output rises as it gets closer to the bed. If the probe output falls as it gets closer, invert the probe output by adding the I1 parameter, in the M558 command. The Duet drives the control signal with a 250Hz square wave. The firmware extracts that part of the analog signal received on the IN pin that is in phase with the modulation.
+
+##### Mode 3
+
+As mode 1 except that the control signal is driven LOW.
+
+##### Mode 4
+
+The trigger signal is read from the E0 endstop circuit. You can choose whether the signal is high or low when triggered. In firmware 1.15 and earlier this is done by using M574 E0 S1 to select active high, or M574 E0 S0 to select active low. In firmware 1.16 to 2.x, use I1 in the M558 command to select active low, otherwise it defaults to active high.
+
+The device connected to the E0 STP pin must be able to sink 1.5mA for the Duet 2 WiFi and Duet 2 Ethernet, 0.3mA for the Duet 2 Maestro, or 2.1mA for the Duet 0.6 or 0.8.5. In firmware 2.03 and later you can choose a different endstop input using the C parameter of the M558 command.
+
+##### Mode 5
+
+A switch or digital output device connected between the STP or IN and GND terminals of the connector. The only pullup resistor is the 100K nominal pullup in the microcontroller so the sink current requirement is tiny. The input must be active high when triggered.
+
+Similar to mode 4 except that the Z probe connector is used. In firmware 1.16 and later you can use the I1 parameter in the M558 command to invert the probe signal to select active low.
+
+##### Mode 6
+
+Similar to mode 4 except that the E1 endstop input is used. Deprecated in firmware 2.03 and later, use mode 4 with parameter C4 instead.
+
+##### Mode 7
+
+Similar to mode 4 except that the Z endstop input is used.  Deprecated in firmware 2.03 and later, use mode 4 with parameter C2 instead. 
+
+##### Mode 8
+
+Similar to mode 5 except that the input is not filtered, for slightly faster response. Supported in firmware 1.20 and later.
+
+##### Mode 9
+
+Special mode for BLTouch probe. Supported in firmware 1.21 and later.
+
+##### Mode 10
+
+Use the Z motor stall detection as the Z probe trigger. Supported in firmware 1.21 and later. There are limitations to [stall detection](/User_manual/Connecting_hardware/Sensors_stall_detection) and it is not always appropriate for accurate Z probing, however there is a [detailed discussion on the forum](https://forum.duet3d.com/topic/4772/motor-stall-detection-as-z-probe) and some users have had success.
+
 ### Configuring multiple probes
 
 From RRF 3.1.0, you can define multiple probes.
 
 * The K parameter in M558 selects the Z probe number. If there is no K parameter then 0 is used. You can ignore this parameter if you have only one Z probe.
 * Z probe #0 can use probe types 0, 1, 2, 3, 5, 8, 9 or 10. All other probes must be probe type 0, 8, 9 or 10.
-
-## Z Probe Mode details
-
-### Mode 0
-
-Select this mode if you have no Z probe. When the firmware tries to execute a command to probe the bed, it will instead show a dialogue in Duet Web Control, and also on Panel Due if you are running recent Panel Due firmware, asking you to jog the head down until the nozzle just touches the bed and then press the OK button.
-
-### Mode 1
-
-This is a probe with an analog output connected to the Z probe connector. The probe output must rise as it gets closer to the bed. If the probe output falls as it gets closer, invert the probe output by prefixing the input pin name (C parameter) with ! character (RRF 3.x), or by adding the I1 parameter (RRF 1.16 to 2.x), in the M558 command. The control signal is driven HIGH.
-
-### Mode 2
-
-This is a probe with an analog output that requires the Duet to provide modulation signal and demodulate the returned signal. The probe output rises as it gets closer to the bed. If the probe output falls as it gets closer, invert the probe output by prefixing the input pin name (C parameter) with ! character (RRF 3.x), or by adding the I1 parameter (RRF 1.16 to 2.x), in the M558 command. The Duet drives the control signal with a 250Hz square wave. The firmware extracts that part of the analog signal received on the IN pin that is in phase with the modulation.
-
-### Mode 3
-
-As mode 1 except that the control signal is driven LOW.
-
-### Mode 4
-
-The trigger signal is read from the E0 endstop circuit. You can choose whether the signal is high or low when triggered. In firmware 1.15 and earlier this is done by using M574 E0 S1 to select active high, or M574 E0 S0 to select active low. In firmware 1.16 to 2.x, use I1 in the M558 command to select active low, otherwise it defaults to active high.
-
-The device connected to the E0 STP pin must be able to sink 1.5mA for the Duet 2 WiFi and Duet 2 Ethernet, 0.3mA for the Duet 2 Maestro, or 2.1mA for the Duet 0.6 or 0.8.5. In firmware 2.03 and later you can choose a different endstop input using the C parameter of the M558 command.
-
-Not supported in RRF 3. Use type 5 or 8.
-
-### Mode 5
-
-A switch or digital output device connected between the STP or IN and GND terminals of the connector. The only pullup resistor is the 100K nominal pullup in the microcontroller so the sink current requirement is tiny. The input must be active high when triggered.
-
-**RepRapFirmware 3.x**: Select the input pin with the C parameter in the M558 command. Invert the probe output to select active low by prefixing the input pin name (C parameter) with ! character in the M558 command
-
-**RepRapFirmware 1.x and 2.x**:  Similar to mode 4 except that the Z probe connector is used. In firmware 1.16 and later you can use the I1 parameter in the M558 command to invert the probe signal to select active low.
-
-### Mode 6
-
-Similar to mode 4 except that the E1 endstop input is used. Deprecated in firmware 2.03 and later, use mode 4 with parameter C4 instead. Not supported in RRF 3; use type 5 or 8.
-
-### Mode 7
-
-Similar to mode 4 except that the Z endstop input is used.  Deprecated in firmware 2.03 and later, use mode 4 with parameter C2 instead. Not supported in RRF 3; use type 5 or 8.
-
-### Mode 8
-
-Similar to mode 5 except that the input is not filtered, for slightly faster response. Supported in firmware 1.20 and later.
-
-### Mode 9
-
-Special mode for BLTouch probe. Supported in firmware 1.21 and later.
-
-### Mode 10
-
-Use the Z motor stall detection as the Z probe trigger. Supported in firmware 1.21 and later. There are limitations to [stall detection](/User_manual/Connecting_hardware/Sensors_stall_detection) and it is not always appropriate for accurate Z probing, however there is a [detailed discussion on the forum](https://forum.duet3d.com/topic/4772/motor-stall-detection-as-z-probe) and some users have had success.
 
 # Connecting different types of Z probe
 
