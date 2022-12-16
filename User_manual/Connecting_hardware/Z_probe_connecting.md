@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2022-12-16T18:43:03.244Z
+date: 2022-12-16T18:45:25.270Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -259,8 +259,12 @@ Connect the sensor ground wire to Duet ground, and the sensor's + power wire to 
 
 Select mode 5 in the M558 command. The signal should not need to be inverted.
 
-> Note: on the **Duet 2 Maestro** and on **Duet 2 WiFi/Ethernet revision 1.04 or later**, you can instead connect the output of the sensor directly to the IN pin of the Z probe connector because the IN pin is 30V-tolerant. You must still connect a pulldown resistor between IN and GND of the Z probe connector. 10Kohms is a suitable value. **Caution! Make quite sure that you connect the sensor output to the IN pin on the Z probe connector. There are 2 versions of the Duet WiFi wiring diagram, and one has the connector reversed with respect to the other. Make sure that the diagram you are using is for the 1.04 revision of the Duet. Connecting the sensor output to the +3.3V pin by mistake will destroy the Duet!** Due to the risk of mis-connection, we recommend the wiring method described earlier instead, using two 10K resistors. 
+
+>**Caution!** Make quite sure that you connect the sensor output to the IN pin on the Z probe connector. There are 2 versions of the Duet WiFi wiring diagram, and one has the connector reversed with respect to the other. Make sure that the diagram you are using is for the 1.04 revision of the Duet. **Connecting the sensor output to the +3.3V pin by mistake will destroy the Duet!** Due to the risk of mis-connection, we recommend the wiring method described earlier instead, using two 10K resistors. 
 {.is-warning}
+
+> Note: on the **Duet 2 Maestro** and on **Duet 2 WiFi/Ethernet revision 1.04 or later**, you can instead connect the output of the sensor directly to the IN pin of the Z probe connector because the IN pin is 30V-tolerant. You must still connect a pulldown resistor between IN and GND of the Z probe connector. 10Kohms is a suitable value.{.is-info}
+
 
 ## BLTouch
 
