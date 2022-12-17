@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-17T07:46:42.364Z
+date: 2022-12-17T08:01:58.401Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -20,10 +20,10 @@ This page is part of multiple pages about robot configuration and usage. Please 
 |RobotViewer DWC plugin|[RobotViewer DWC plugin](/User_manual/Machine_configuration/RobotViewer_DWC_plugin)|
 
 
-The kinematics is developed for Duet3Ds RepRapFirmware and will be included in 3.5. The **robot firmware is currently in development**.
+The kinematics is developed for Duet3Ds RepRapFirmware. The **robot firmware is currently in development** on the base of RRF 3.5 beta.
 
 The source is in github https://github.com/JoergS5/RepRapFirmware/tree/3.5-dev/src/Movement/Kinematics
-RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 4.cpp is code which can also run and be tested outside RRF.
+RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 4.cpp is code which is independent of RRF and can run and be tested outside RRF.
 
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
@@ -33,14 +33,17 @@ Current status, last actions:
 * reduced memory needed
 * removed CoreXZ and concentrate on CoreXY. Currently intensive CoreXY testing
 * added to set single D paramters
+* started to include screw theory, based on skew matrices, which allows covering force calculations and more endpoint options
 
-# Configuring a Robot printer
+# Configuring a Robot
 
 When Duet starts after power on, it needs to know how to behave. Reading the file config.g and some associated files, the firmware is set to specific configurations like setup of the steppers, arm lengths, endstops and homing positions, heaters etc. M669 is at the core to define robot kinematics behaviour, accompanied by other settings, which are described in this document.
 
 The robot kinematics supports different types. Roughly, they can be separated into
-* serial robots: the joints and arms are connected in one serial chain, called open chain kinematics. Industrial robots (6 rotational axes), CNC 5 axis (3 prismatic, two rotational axes), cartesian (three prismatic axes), serial scara (one prismatic and two rotational axes) and polar (two prismatic and one rotational axes) printers are examples. Configuration allows mixing any prismatic and rotational axes, e.g. a cartesian with spheric head (3 prismatic and 3 rotational axes).
-* parallel robots: the joints and arms are completely or partially connected in parallel. Often some joints are without an actuator. The kinematic is more difficult to calculate and need dedicated formulae, so only defined types are supported. Examples are delta, 5 arm parallel scara, stewart/hexapod, 4 axis palletized robot. Delta is not supported in robot kinematics, because RepRapFirmware has dedicated delta support. 4 axis palletized is supported, stewart is planned, 5 arm parallel scara has dedicated RepRapFirmware support.
+* serial robots (also called open chain): the joints and arms are connected in one serial chain. Industrial robots (6 rotational axes), CNC 5 axis (3 prismatic, two rotational axes), cartesian (three prismatic axes), serial scara (one prismatic and two rotational axes) and polar (two prismatic and one rotational axes) printers are examples. Configuration allows mixing any prismatic and rotational axes, e.g. a cartesian with spheric head (3 prismatic and 3 rotational axes).
+* parallel robots: the joints and arms are completely or partially connected in parallel. Often some joints are without an actuator. The kinematic is more difficult to calculate and need dedicated formulae, so only defined types are supported. Examples are (3 arm) delta, 5 arm parallel scara, stewart/hexapod, 4 axis palletized robot. Delta is not supported in robot kinematics, because RepRapFirmware has dedicated delta support. 4 axis palletized is supported, stewart is planned, 5 arm parallel scara has dedicated RepRapFirmware support.
+
+Serial robots are easier to calculate, but parallel robots have higher precision and in case of 4 axis palletized robots higher payloads.
 
 # M669 configuration
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
