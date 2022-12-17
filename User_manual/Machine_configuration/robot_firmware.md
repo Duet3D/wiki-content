@@ -2,13 +2,20 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-14T12:46:31.863Z
+date: 2022-12-17T08:19:09.352Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
 ---
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
+
+At the core of this page are two topics
+* describing how the forward and inverse kinematics is implemented
+* describing orientation and the different methods to calculate and store them
+
+Positions are easily calculated, but for the orientation of the endpoints exist multiple methods. Optimizing print/drill paths to avoid singularities and to improve results are still base of scientific research. Currently angle and velocity restrictions are controlled. Additional topics which will be addressed in the future are force/torque calculations (including payload), calibration, endpoint grippers, multiple robots with collision detection.
+
 # Forward and inverse kinematics
 
 The kinematics classes have two methods as core functionality: calculation of cartesian coordinates from stepper's position, called forward kinematics. And the opposite direction, called inverse kinematics.
