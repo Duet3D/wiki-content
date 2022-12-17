@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-17T08:26:42.516Z
+date: 2022-12-17T08:30:07.265Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -118,10 +118,10 @@ The inversion of a tranformation matrix looks like this:
 T are transposes, R is the rotation matrix, t is the position matrix.
 
 It is important to get the transformation matrix order for multiplication correct, i. e. the order of the Dn definitions, because matrix multiplication order is not commutative, i. e. A * B is different from B * A. In case of changing from world mode to workpiece mode, the transformation matrix must
-* be inverted by setting the B"dnInvert" value this Dn-s
+* be inverted by setting D!n
 * change the Dn order to be reversed for the workpiece Dn-s
 
-Example: D0 to D2 are BC settings for the rotary axes of CNC 5 axis BC. The workpiece is assembled on the C plate, then changing to workpiece mode means setting B"dnInvert=0:1:2" and reversing D0 to D2 values, i. e. using the original D2 values for D0 etc. For the other Dn values of the linear axes and tool Dn, the normal order is used, D3 to D6 in this example.
+Example: D0 to D2 are BC settings for the rotary axes of CNC 5 axis BC. The workpiece is assembled on the C plate, then changing to workpiece mode means inverting by using D!0, D!1, D!2. For the other Dn values of the linear axes and tool Dn, the normal order is used, D3 to D6 in this example.
 
 # Angle-Axis
 Full orientation can be described by Euler axis and an angle around this axis.
