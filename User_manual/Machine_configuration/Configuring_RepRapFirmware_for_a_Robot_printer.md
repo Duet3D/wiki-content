@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-17T08:03:08.310Z
+date: 2022-12-18T09:40:00.545Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -28,12 +28,7 @@ RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 4
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
 Current status, last actions:
-* to finish the current release for a stable version, I postpone the following capabilities to the next release: 5BarParScara, handling continuous axis, most robotType templates (draft versions are created)
-* added homing M208 possibility for G1 H1 like for CoreXY, Cartesian or prismatic axes in general.
-* reduced memory needed
-* removed CoreXZ and concentrate on CoreXY. Currently intensive CoreXY testing
-* added to set single D paramters
-* started to include screw theory, based on skew matrices, which allows covering force calculations and more endpoint options
+* started to include screw theory (also called PoE Product of Exponentials), based on skew matrices, which allows covering force calculations and more endpoint options. This will probably speed up calculations and allow including force/torque calculations. The extended DH parameter configuration with 6 parameters will remain, but Plücker coordinates will probably be added as option to define parameters.
 
 # Configuring a Robot
 
