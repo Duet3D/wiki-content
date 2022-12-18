@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-18T11:21:47.729Z
+date: 2022-12-18T11:22:32.394Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -282,7 +282,7 @@ Disadvantages
 
 # Joint types
 
-Robot kinematics supports different joint types, configured by B"axisTypes=...".
+Robot kinematics supports different joint types, configured by P"axisTypes=...".
 
 There are 6 common types, currently supported are:
 * R revolute, also called rotational and hinge joints. It changes position and orientation.
