@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-18T11:18:23.508Z
+date: 2022-12-18T11:21:47.729Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -284,9 +284,10 @@ Disadvantages
 
 Robot kinematics supports different joint types, configured by B"axisTypes=...".
 
-There are 6 common types, supported are:
-* revolute, also called rotational and hinge joints. It changes position and orientation.
-* prismatic, also called linear, sliding. It changes only position.
-* for the passive rotational joint, where the position is defined by a parallelogram, the p parameter is added.
+There are 6 common types, currently supported are:
+* R revolute, also called rotational and hinge joints. It changes position and orientation.
+* P prismatic, also called linear, sliding. It changes only position.
+* p for the passive rotational joint, where the position is defined by a parallelogram, the p parameter is added.
+* spherical, indirectly supported by 3 rotational joints: a roll-pitch-yaw (RPY) construction of three rotational joints of a 6 axis industrial robot behaves like a spherical joint. A spherical joint (and hence the RPY 3 axes) suffer from the gimbal lock singularity.
 
-The other types are helical, cylindrical, universal and spherical. A roll-pitch-yaw (RPY) construction of three rotational joints of a 6 axis industrial robot behaves like a spherical joint. A spherical joint (and hence the RPY 3 axes) suffer from the gimbal lock singularity.
+The other types are helical, cylindrical and universal. 
