@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-17T08:30:07.265Z
+date: 2022-12-18T11:18:23.508Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -279,3 +279,14 @@ Segmentation in RRF has the following advantages
 Disadvantages
 * CAM/slicer may have special functionality like collision avoidance which can be considered in G-Code if CAM segments
 * faster pause/stop because the moves are shorter
+
+# Joint types
+
+Robot kinematics supports different joint types, configured by B"axisTypes=...".
+
+There are 6 common types, supported are:
+* revolute, also called rotational and hinge joints. It changes position and orientation.
+* prismatic, also called linear, sliding. It changes only position.
+* for the passive rotational joint, where the position is defined by a parallelogram, the p parameter is added.
+
+The other types are helical, cylindrical, universal and spherical. A roll-pitch-yaw (RPY) construction of three rotational joints of a 6 axis industrial robot behaves like a spherical joint. A spherical joint (and hence the RPY 3 axes) suffer from the gimbal lock singularity.
