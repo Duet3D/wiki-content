@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-12-08T10:42:21.163Z
+date: 2022-12-20T14:30:40.560Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -121,7 +121,8 @@ A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainbo
 
 ### Revision 1.0
 
-[![Duet3 Mainboard 6XD v1.0 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.3_wiring.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.3_wiring.png){target=_blank}
+[![Duet3 Mainboard 6XD v1.0 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.4_wiring.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.4_wiring.png){target=_blank}
+
 
 ### Revision 0.1
 
