@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-18T09:45:08.520Z
+date: 2022-12-20T06:57:10.478Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -103,7 +103,7 @@ Example:
 * axis is the axis number, starting with 0
 * min is the minium angle for rotary axis and minimum position in mm for prismatic axis
 * max is the maximum angle or position
-* cont means the axis is continuous and has no min/max angles
+* cont means the axis is continuous and has no min/max angles. This doesn't mean continuous movement, but only that it can rotate any degree
 * home is the home position in degrees or mm. The value can be outside min and max, the endstop can be low or high type
 
 If An is not defined for an axis, then the M208 values are used for homing: depending in low or high end the S1 or S0 value and taking the values as limits. A prismatic X, Y, Z axis or A, B, C rotary axes are handled this way. Rotary X, Y, Z axes must be defined with An, because M208 X, Y, Z values are cartesian values, and rotary axis values are angles.
