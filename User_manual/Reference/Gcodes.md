@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-12-21T13:36:10.652Z
+date: 2022-12-21T15:05:25.873Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5889,6 +5889,30 @@ The M587 command will fail if the WiFi module has not yet been taken out of rese
 When connecting to an open network with no password, M587 still requires a password in the P parameter. However, it doesn't matter what password you provide as long as it meets the minimum length requirement for M587.
 
 **Important!** Do not use M587 within config.g. As well as being a security hazard, writing the access point parameters to WiFi chip every time you start the Duet may eventually wear out the flash memory. Also, the wifi module does not get enabled until the end of running config.g (see [this forum thread](https://forum.duet3d.com/post/42798){target=_blank} for explanation). It is better to use a macro to send M587.
+
+## M587.1: Start network scan
+
+**This command must not be used in the config.g file.**
+
+Supported only by RRF 3.5 or later with WiFi firmware 2.0 or later.
+
+### Parameters
+
+None
+
+This command causes the WiFi module to start a network scan.
+
+## M587.2: Return network scan results
+
+**This command must not be used in the config.g file.**
+
+Supported only by RRF 3.5 or later with WiFi firmware 2.0 or later.
+
+### Parameters
+
+None
+
+This command waits for any active wifi scan to compete, then returns the result in JSON format. It is intended for use by Duet Web Control, PanelDue and other user interfaces.
 
 ## M588: Forget WiFi host network
 
