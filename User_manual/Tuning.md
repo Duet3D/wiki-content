@@ -2,7 +2,7 @@
 title: User manual: Tuning
 description: 
 published: true
-date: 2022-12-21T16:12:38.668Z
+date: 2022-12-21T16:15:17.780Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:58:18.971Z
@@ -11,7 +11,7 @@ dateCreated: 2021-06-08T13:58:18.971Z
 # Printer setup
 
 [Centering the bed or setting the bed origin](/User_manual/Tuning/Bed_origin)
-[Defining tool and Z-probe offsets]
+[Defining tool and Z-probe offsets](/User_manual/Tuning/Defining_tool_and_Z_probe_offsets)
 [Orthogonal axis compensation with M556](/User_manual/Tuning/Orthogonal_axis_compensation)
 [Setting up to resume a print after a power failure or planned power down](/User_manual/Tuning/Resume)
 [Calibrating a delta printer](/User_manual/Tuning/Delta_calibration)
