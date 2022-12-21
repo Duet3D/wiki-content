@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-12-21T15:05:25.873Z
+date: 2022-12-21T15:09:09.744Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5900,7 +5900,7 @@ Supported only by RRF 3.5 or later with WiFi firmware 2.0 or later.
 
 None
 
-This command causes the WiFi module to start a network scan.
+This command causes the WiFi module to start a network scan. During the scan, any existing WiFi connection will be lost until the scan is complete. If starting ths command from Duet Web Control connected over WiFi, wait for the reconnection before sending M587.2.
 
 ## M587.2: Return network scan results
 
@@ -5910,9 +5910,9 @@ Supported only by RRF 3.5 or later with WiFi firmware 2.0 or later.
 
 ### Parameters
 
-None
+* **Fn** 0 = report in plain text (default), 1 = report in JSON format
 
-This command waits for any active wifi scan to compete, then returns the result in JSON format. It is intended for use by Duet Web Control, PanelDue and other user interfaces.
+This command waits for any active wifi scan to compete, then returns the result. The JSON format is intended for use by Duet Web Control, PanelDue and other user interfaces.
 
 ## M588: Forget WiFi host network
 
