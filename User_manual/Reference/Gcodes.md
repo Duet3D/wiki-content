@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-12-20T19:14:18.633Z
+date: 2022-12-21T13:35:26.148Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1076,9 +1076,7 @@ Note: RepRapFirmware uses [M83](/User_manual/Reference/Gcodes/M83){target=_blank
 G92 X10 E90
 </pre>
 
-Allows manual specification of the axis positions by specifying the current position to the values given. This example would set the machine's X coordinate to 10, and the extrude coordinate to 90. No physical motion will occur. In RepRapFirmware, a G92 without coordinates does nothing.
-
-This command updates the user position and not the machine position.
+Allows manual specification of the axis positions by setting the current user position to the values given. The machine position is updated as necessary taking into account tool offsets and workplace coordinate offsets. The example above would set the machine's X user coordinate to 10, and the extruder coordinate to 90. No physical motion will occur. In RepRapFirmware, a G92 without coordinates does nothing.
 
 ## G93: Feed Rate Mode (Inverse Time Mode) 
 
