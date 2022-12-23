@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-23T10:52:52.428Z
+date: 2022-12-23T10:55:44.605Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -179,6 +179,8 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 * Mangles are the actuator's angles in degrees which are used to calculate the M values
 
 The choice of the angles and M influence the performance of calculations: if they are near the desired target, iterations are faster. Default is to set it for all angles being the home positions.
+
+When using D parameter with DH values, the R values are calculated from them and the workmode angles are used for M and Mangles. When only R is used and not D, D is not calculated.
 
 # M669 P parameter: axisTypes, special
 
