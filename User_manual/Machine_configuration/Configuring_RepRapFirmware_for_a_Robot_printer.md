@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-23T10:55:44.605Z
+date: 2022-12-23T11:08:06.871Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -181,6 +181,11 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 The choice of the angles and M influence the performance of calculations: if they are near the desired target, iterations are faster. Default is to set it for all angles being the home positions.
 
 When using D parameter with DH values, the R values are calculated from them and the workmode angles are used for M and Mangles. When only R is used and not D, D is not calculated.
+
+Example:
+* R"1:0:1:0:70:0:352" means axis 2 is oriented horizontal with arrow to the back and the position is X 70, Y 0 and Z 352. This is a value of the DH example robot
+* R"M:0:0:1:615:0:-1:0:0:1:0:0:712" is the setting of the DH example of the 6 axis robot
+* R"Mangles:0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
 
 # M669 P parameter: axisTypes, special
 
