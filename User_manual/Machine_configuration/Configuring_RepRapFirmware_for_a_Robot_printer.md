@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-23T10:52:18.707Z
+date: 2022-12-23T10:52:52.428Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -169,7 +169,7 @@ Example:
 Instead of configuration by D parameters of Denavit-Hartenberg, properties based on screw theory can be used.
 
 **R"act:s1:s2:s3:q1:q2:q3"**
-**R"M:r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"
+**R"M:r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"**
 **R"Mangles:a0:a1:a2:..."**
 
 * act is the actuator drive number, starting by 0. For a 6 axis robot, 0 to 5
