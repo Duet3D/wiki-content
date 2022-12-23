@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-20T06:57:10.478Z
+date: 2022-12-23T10:52:18.707Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -164,6 +164,21 @@ Example:
 * D"!1:100.0:0:0:0" inverts the transformation matrix.
 * D"1:ztr=300" sets the Z trans parameter to 300 mm for a prismatic axis which is connected to D1
 * D"1:ztr=300:zrot=20.0" sets the Z trans parameter to 300 mm for a prismatic axis and a fixed 20 degree offset value to the zrot of D1 (the movement is linear, but the Z axis is constantly rotated by 20 degrees)
+
+# M669 R parameter: screw properties
+Instead of configuration by D parameters of Denavit-Hartenberg, properties based on screw theory can be used.
+
+**R"act:s1:s2:s3:q1:q2:q3"**
+**R"M:r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"
+**R"Mangles:a0:a1:a2:..."**
+
+* act is the actuator drive number, starting by 0. For a 6 axis robot, 0 to 5
+* s1:s2:s3 is the axis orientation as normalized XYZ directions. The direction reference are the world coordinates.
+* q1:q2:q3 is a point on this axis in cartesian world coordinates
+* M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions.
+* Mangles are the actuator's angles in degrees which are used to calculate the M values
+
+The choice of the angles and M influence the performance of calculations: if they are near the desired target, iterations are faster. Default is to set it for all angles being the home positions.
 
 # M669 P parameter: axisTypes, special
 
