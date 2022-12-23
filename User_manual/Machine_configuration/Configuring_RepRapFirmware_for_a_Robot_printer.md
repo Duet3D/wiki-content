@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-23T11:08:06.871Z
+date: 2022-12-23T11:11:19.211Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -175,7 +175,7 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 * act is the actuator drive number, starting by 0. For a 6 axis robot, 0 to 5
 * s1:s2:s3 is the axis orientation as normalized XYZ directions. The direction reference are the world coordinates.
 * q1:q2:q3 is a point on this axis in cartesian world coordinates
-* M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions.
+* M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the origin (base).
 * Mangles are the actuator's angles in degrees which are used to calculate the M values
 
 The choice of the angles and M influence the performance of calculations: if they are near the desired target, iterations are faster. Default is to set it for all angles being the home positions.
