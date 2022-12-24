@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-23T11:11:19.211Z
+date: 2022-12-24T07:16:15.440Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -183,9 +183,13 @@ The choice of the angles and M influence the performance of calculations: if the
 When using D parameter with DH values, the R values are calculated from them and the workmode angles are used for M and Mangles. When only R is used and not D, D is not calculated.
 
 Example:
-* R"1:0:1:0:70:0:352" means axis 2 is oriented horizontal with arrow to the back and the position is X 70, Y 0 and Z 352. This is a value of the DH example robot
+* R"1:0:1:0:70:0:352" means axis 2 is oriented horizontal with arrow to the back (i.e. Y=1 and the others 0) and the position is X 70, Y 0 and Z 352. This is a value of the DH example robot
 * R"M:0:0:1:615:0:-1:0:0:1:0:0:712" is the setting of the DH example of the 6 axis robot
 * R"Mangles:0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
+
+More about screw explanation and examples on the firmware page (maybe a dedicated page in the future).
+
+An open question is how to handle workpiece mode. Syntax will probably change for handling it (! somewhere).
 
 # M669 P parameter: axisTypes, special
 
