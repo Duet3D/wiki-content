@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-24T10:05:28.151Z
+date: 2022-12-24T10:08:37.978Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -133,7 +133,7 @@ The choice of the angles and M influence the performance of calculations: if the
 When using D parameter with DH values, the C values are calculated from them and the workmode angles are used for M and Mangles. When only R is used and not D, D is not calculated.
 
 Example:
-* C"1:0:1:0:70:0:352" means axis 2 is oriented horizontal with arrow to the back (i.e. Y=1 and the others 0) and the position is X 70, Y 0 and Z 352. This is a value of the DH example robot
+* C"1=1:0:1:0:70:0:352" means axis 2 is oriented horizontal with arrow to the back (i.e. Y=1 and the others 0) and the position is X 70, Y 0 and Z 352. This is a value of the DH example robot
 * C"M=0:0:1:615:0:-1:0:0:1:0:0:712" is the setting of the DH example of the 6 axis robot
 * C"reference=0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
 
