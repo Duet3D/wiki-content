@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-24T09:54:56.312Z
+date: 2022-12-24T10:05:28.151Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -117,24 +117,25 @@ Example:
 # M669 C parameter: screw properties
 Instead of configuration by D parameters of Denavit-Hartenberg, properties based on screw theory can be used.
 
-**C"act:s1:s2:s3:q1:q2:q3"**
-**C"M:r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"**
-**C"Mangles:a0:a1:a2:..."**
+**C"axis=drivenr:s1:s2:s3:q1:q2:q3"**
+**C"M=r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"**
+**C"reference=a0:a1:a2:..."**
 
-* act is the actuator drive number, starting by 0. For a 6 axis robot, 0 to 5. The same number as for M584 and mapDriveLetterDn first digit
+* axis is the axis number, starting by 1
+* drivenr is the assigned drive number as defined by M584 and used by mapDriveLetterDn first digit
 * s1:s2:s3 is the axis orientation as normalized XYZ directions. The direction reference are the world coordinates.
 * q1:q2:q3 is a point on this axis in cartesian world coordinates
 * M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the origin (base).
-* Mangles are the actuator's angles in degrees which are used to calculate the M values
+* reference are the actuator's angles in degrees which are used to calculate the M values. It defines the workmode, i. e. which of the up to 16 possible solutions for a given position is choosen. Default are home position's angles.
 
-The choice of the angles and M influence the performance of calculations: if they are near the desired target, iterations are faster. Default is to set it for all angles being the home positions.
+The choice of the angles and M influence the performance of calculations: if they are near the desired target, iterations are faster.
 
 When using D parameter with DH values, the C values are calculated from them and the workmode angles are used for M and Mangles. When only R is used and not D, D is not calculated.
 
 Example:
 * C"1:0:1:0:70:0:352" means axis 2 is oriented horizontal with arrow to the back (i.e. Y=1 and the others 0) and the position is X 70, Y 0 and Z 352. This is a value of the DH example robot
-* C"M:0:0:1:615:0:-1:0:0:1:0:0:712" is the setting of the DH example of the 6 axis robot
-* C"Mangles:0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
+* C"M=0:0:1:615:0:-1:0:0:1:0:0:712" is the setting of the DH example of the 6 axis robot
+* C"reference=0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
 
 More about screw explanation and examples on the firmware page (maybe a dedicated page in the future).
 
@@ -245,19 +246,7 @@ Examples:
 
 **P"workingMode=home|current|a1:p2:a3:etc"**
 
-Working modes are explained in https://docs.duet3d.com/en/User_manual/Machine_configuration/robot_firmware chapter "Working modes". The work mode can be changed by
-* home sets the workmode to the angle combinations of the homing angles. This is the default and startup situation after changing to robot kinematics.
-* current sets the current actuator positions as workmode values
-* list-of-angles is a colon separated list of degrees for rotary axes and mm for linear/prismatic axes. The list size must match the count of actuators, including a palletized axis (the palletized axis's angle will be ignored). If a value is not specified, the homeing value will be taken.
-
-The work mode can be changed by e. g. G1 H2 moves and then setting to the current position by issuing the P command with the current values. Only setting the new P values without previous moving will probably fail, because the singularity cannot be crossed in most cases.
-
-The workmode values should not be in a singularity or near the singularity, because moving out of it is difficult. The generalized inverse provides solutions for singularities (reduced ranks), but the velocity limits will often be violated.
-
-Example:
-* P"workingMode=10:20:30:-20:0" for CNC 5 axis AC will set XYZ positions to 10, 20, 30 mm, the A axis to -20 degrees and the C axis to 0 degrees as starting point.
-* P"workingMode=:::-20:0" same, but the prismatic positions will be set to the homing values and only A and C are specified.
-* P"workingMode=home" will set the starting point to the values of the An... third parameters of each axis. The starting point will be stored when the An parameters are completely specified.
+replaced by C"reference:..."
 
 **P"qualityParameterName=value"**
 
