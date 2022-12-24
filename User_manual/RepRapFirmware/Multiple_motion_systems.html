@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2022-12-24T13:39:17.901Z
+date: 2022-12-24T13:48:36.146Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -16,8 +16,8 @@ dateCreated: 2022-03-22T10:08:15.620Z
   <li>Due to memory limitations, RRF on Duet 2 series boards does not support this feature. All Duet 3 main boards support it, however performance on Duet 3 Mini might be limiting.</li>
   <li>Only two motion systems are currently supported. In the future we may increase this limit on Duet 3 MB6HC and MB6XD boards.</li>
   <li>By default, the second motion queue is only three elements long. Use the M595 command to lengthen it, for example: M595 Q1 P60 will increase it to 60 elements (the same number as in the primary movement queue on MB6HC and MB6XD boards).</li>
-  <li>Currently, only independent XY motion systems supported, with the Z axis being common to both motion systems.</li>
-  <li>The two independent XY motion systems must not share any common motors. That is, movement of any motor must affect the X and/or Y coordinates of only one motion system.</li>
+  <li>At any time, each motion system “owns” a set of physical axes and extruders. See below for details of ownership of axes and extruders.</li>
+  <li>For any two axes owned by different motion systems, those axes may not share a motor. For example, on a CoreXY machine the X and Y axes cannot be owned by different motion systems.</li>
 </ul>
 <h1>Selecting &nbsp;a motion queue</h1>
 <p>Use the <a href="https://docs.duet3d.com/en/User_manual/Reference/Gcodes#m596-select-movement-queue-number">M596</a> command to specify which motion system any motion or tool operations in the following commands should be targeted at. The selection of target motion system remain in force until one of the following occurs:</p>
@@ -30,6 +30,8 @@ dateCreated: 2022-03-22T10:08:15.620Z
 </ul>
 <h1>Avoiding collisions</h1>
 <p>Use the <a href="https://docs.duet3d.com/en/User_manual/Reference/Gcodes#m597-collision-avoidance">M597</a> command to set up a restriction on how close together the positions of two axes can get. For example, if you machine has separate Y and V gantries that move independently, use M597 to prevent them from coming too close together. Only one pair of axes can be restricted in this way.</p>
+<h1>Synchronising the motion systems</h1>
+<p>There will be times when the two motion systems need to be synchronised. For example, when the two motion systems are used to drive the two print heads of a IDEXY machine independently, they will need to synchronise at each layer change because they share a common Z axis. Use the M598 command to cause the movement system that reaches the command first to wait for the other one to catch up.</p>
 <h1>Command execution using multiple motion queues</h1>
 <p>The way that command streams that use multiple motion systems are processed depends on the source of the command stream.</p>
 <p>For command streams from USB, async serial input (including PanelDue) and the DWC console, the commands are processed by a single GCode processor. This means that the ability of the system to execution motion of both systems concurrently will be limited, because when there is a long block of motion commands for one system, the GCode processor must wait until it has queued all those commands before it can process subsequent commands that are targeted at another motion system.</p>
