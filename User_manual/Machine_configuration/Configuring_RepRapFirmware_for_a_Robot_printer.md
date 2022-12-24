@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-24T07:16:15.440Z
+date: 2022-12-24T09:51:29.730Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -114,6 +114,32 @@ Example:
 * A"0:-180.0:180.0:0.0" means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
 * A"5:cont:0" means the axis is continuous and the homing angle is 0 degrees or 0 mm. In most cases, this is only possible if no electronics or filament is attached to the rotating element. The C rotary axis of CNC 5 axis could be cont e.g.
 
+# M669 C parameter: screw properties
+Instead of configuration by D parameters of Denavit-Hartenberg, properties based on screw theory can be used.
+
+**C"act:s1:s2:s3:q1:q2:q3"**
+**C"M:r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"**
+**C"Mangles:a0:a1:a2:..."**
+
+* act is the actuator drive number, starting by 0. For a 6 axis robot, 0 to 5
+* s1:s2:s3 is the axis orientation as normalized XYZ directions. The direction reference are the world coordinates.
+* q1:q2:q3 is a point on this axis in cartesian world coordinates
+* M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the origin (base).
+* Mangles are the actuator's angles in degrees which are used to calculate the M values
+
+The choice of the angles and M influence the performance of calculations: if they are near the desired target, iterations are faster. Default is to set it for all angles being the home positions.
+
+When using D parameter with DH values, the C values are calculated from them and the workmode angles are used for M and Mangles. When only R is used and not D, D is not calculated.
+
+Example:
+* C"1:0:1:0:70:0:352" means axis 2 is oriented horizontal with arrow to the back (i.e. Y=1 and the others 0) and the position is X 70, Y 0 and Z 352. This is a value of the DH example robot
+* C"M:0:0:1:615:0:-1:0:0:1:0:0:712" is the setting of the DH example of the 6 axis robot
+* C"Mangles:0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
+
+More about screw explanation and examples on the firmware page (maybe a dedicated page in the future).
+
+An open question is how to handle workpiece mode. Syntax will probably change for handling it (! somewhere).
+
 # M669 D parameter: Denavit-Hartenberg
 Dn define DH parameters and are numbered from 0 to maximum 9.
 
@@ -164,32 +190,6 @@ Example:
 * D"!1:100.0:0:0:0" inverts the transformation matrix.
 * D"1:ztr=300" sets the Z trans parameter to 300 mm for a prismatic axis which is connected to D1
 * D"1:ztr=300:zrot=20.0" sets the Z trans parameter to 300 mm for a prismatic axis and a fixed 20 degree offset value to the zrot of D1 (the movement is linear, but the Z axis is constantly rotated by 20 degrees)
-
-# M669 R parameter: screw properties
-Instead of configuration by D parameters of Denavit-Hartenberg, properties based on screw theory can be used.
-
-**R"act:s1:s2:s3:q1:q2:q3"**
-**R"M:r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"**
-**R"Mangles:a0:a1:a2:..."**
-
-* act is the actuator drive number, starting by 0. For a 6 axis robot, 0 to 5
-* s1:s2:s3 is the axis orientation as normalized XYZ directions. The direction reference are the world coordinates.
-* q1:q2:q3 is a point on this axis in cartesian world coordinates
-* M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the origin (base).
-* Mangles are the actuator's angles in degrees which are used to calculate the M values
-
-The choice of the angles and M influence the performance of calculations: if they are near the desired target, iterations are faster. Default is to set it for all angles being the home positions.
-
-When using D parameter with DH values, the R values are calculated from them and the workmode angles are used for M and Mangles. When only R is used and not D, D is not calculated.
-
-Example:
-* R"1:0:1:0:70:0:352" means axis 2 is oriented horizontal with arrow to the back (i.e. Y=1 and the others 0) and the position is X 70, Y 0 and Z 352. This is a value of the DH example robot
-* R"M:0:0:1:615:0:-1:0:0:1:0:0:712" is the setting of the DH example of the 6 axis robot
-* R"Mangles:0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
-
-More about screw explanation and examples on the firmware page (maybe a dedicated page in the future).
-
-An open question is how to handle workpiece mode. Syntax will probably change for handling it (! somewhere).
 
 # M669 P parameter: axisTypes, special
 
@@ -274,6 +274,10 @@ When performance is too low, changing the precision and precisionAngle to a lowe
 Turning on logging for performance measuring or debugging. Logging will reduce performance, so performance measuring is not exact.
 * log results are output to console
 * default is logging turned off, P"logLevel=0"
+
+# R reporting
+
+R is for future use for reporting functions like to tell about singularity regions.
 
 # M669 S, T parameters: segmentation
 
