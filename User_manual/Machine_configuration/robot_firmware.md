@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-18T11:24:22.714Z
+date: 2022-12-24T07:28:26.527Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -238,12 +238,21 @@ For indidivual compilation of source, the guide https://github.com/Duet3D/RepRap
 
 The direct path is https://github.com/JoergS5/RepRapFirmware/tree/3.5-dev/src/Movement/Kinematics
 
+The file contents are as follows
+* RobotKinematics.cpp contain the kinematics API methods which are used by core RRF
+* RobotKinematics1.cpp contains methods to calculate forward and inverse kinematics and DH handling code
+* RobotKinematics2.cpp contain code to calculate the generalized inverse, based on SVD (single value decomposition)
+* RobotKinematics3.cpp contains code to set configuration and read configuration values
+* RobotKinematics4.cpp contains core matrix calculation code, rotations, scew methods including Rodrigues' formula
+* all cpp files use one RobotKinematics.h file as single reference for variable and method declarations
+
+
 Additional steps:
 * Kinematics.h and .cpp the variables robot and include RobotKinematics.h are added. robot is used instead of robot5axis to use K13
 * Config/Pins.h set SUPPORT_ROBOT to 1 and all other Kinematics SUPPORT... to 0
 * all .h and .cpp files with names starting with RobotKinematics in folder src/Movement/Kinematics
 
-If it doesn't compile or with many errors, I may have forgot to change WINDOWSMODE 1/RRMODE 0 to WINDOWSMODE 0/RRFMODE 1 in RobotKinematics.h, which allows testing in Windows or RRF environment.
+If it doesn't compile or with many errors, I may have forgot to change WINDOWSMODE 1/RRMODE 0 to WINDOWSMODE 0/RRFMODE 1 in RobotKinematics.h, which are values to be set to 1 for the Windows or RRF environment.
 
 # setup analysis, logDetailed
 
