@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-24T09:51:29.730Z
+date: 2022-12-24T09:54:56.312Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -121,7 +121,7 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 **C"M:r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"**
 **C"Mangles:a0:a1:a2:..."**
 
-* act is the actuator drive number, starting by 0. For a 6 axis robot, 0 to 5
+* act is the actuator drive number, starting by 0. For a 6 axis robot, 0 to 5. The same number as for M584 and mapDriveLetterDn first digit
 * s1:s2:s3 is the axis orientation as normalized XYZ directions. The direction reference are the world coordinates.
 * q1:q2:q3 is a point on this axis in cartesian world coordinates
 * M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the origin (base).
