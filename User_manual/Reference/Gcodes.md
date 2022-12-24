@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2022-12-21T15:09:09.744Z
+date: 2022-12-24T13:55:21.833Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6206,6 +6206,8 @@ M595 without any parameters reports the length of the movement queue and the num
 
 ## M596: Select movement queue number
 
+*Supported from firmware version 3.5 on Duet 3 main boards*
+
 ### Parameters
 * **Pnn** Movement queue number. Queues are numbered 0 (the default queue), 1, ...
 
@@ -6220,7 +6222,7 @@ M596 without the P parameter reports the current movement queue number for the i
 
 ## M597: Collision avoidance
 
-*Supported from firmware version 3.5*
+*Supported from firmware version 3.5 on Duet 3 main boards*
 
 ### Parameters
 
@@ -6242,6 +6244,17 @@ In the above example, the position of the Y axis must always be at least 23.5mm 
 
 When Y and V are driven by independent motion systems and executing moves independently, in any block of GCode between synchronisation points, using this example the minimum of all Y coordinates inside the block (including the initial Y coordinate) must be at least 23.5mm greater than the maximum of the all V coordinates inside the block. If this is not the case, the job will be aborted prior to starting the first move that would cause the conflict.
 
+## M598: Synchronise motion systems
+
+*Supported from firmware version 3.5 on Duet 3 main boards*
+
+### Parameters
+
+None
+
+## Description
+
+This command is used in print files when multiple movemenbt systems are being used (see the M596 command). It causes all motion systems to conmplete all queued movements and execute no further instructions until they have all reached this command and are ready to proceed.
 
 ## M600: Filament change pause
 
