@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-24T10:08:37.978Z
+date: 2022-12-29T08:05:16.021Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -56,6 +56,7 @@ Overview
 * K13 set robot kinematics and must be defined first
 * B"robotType=..." specify robot type
 * A"a:..." minimum, maximum and home angles
+* C"nr:..." screw parameters
 * D"n:..." Denavit-Hartenberg (DH) parameters
 * P"axisTypes=..." specify types of joints
 * P"mapDriveLetterDn=..." assign drive number to Dn
