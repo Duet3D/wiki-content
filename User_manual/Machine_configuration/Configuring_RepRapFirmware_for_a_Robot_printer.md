@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-29T08:05:16.021Z
+date: 2022-12-29T08:11:09.709Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -56,16 +56,15 @@ Overview
 * K13 set robot kinematics and must be defined first
 * B"robotType=..." specify robot type
 * A"a:..." minimum, maximum and home angles
-* C"nr:..." screw parameters
+* C"para=..." screw parameters
 * D"n:..." Denavit-Hartenberg (DH) parameters
-* P"axisTypes=..." specify types of joints
-* P"mapDriveLetterDn=..." assign drive number to Dn
-* P"orientationType=..." set mode of orientation calculation
-* P"workingMode=..." set working mode
-* P"quality=..." set quality level
-* P"logLevel=..." set log level
+* P"para=..." special parameters
 * S segments per second
 * T minimum segment length in mm
+
+P"axisTypes=..." is the most important setting, as it defines how many axes are used.
+
+C and D are alternative methods to describe the properties of links and joints. C is preferred.
 
 Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
 
