@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-24T07:28:26.527Z
+date: 2022-12-29T09:17:25.182Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -60,14 +60,21 @@ If red is the direction of the X axis, green of Y axis and blue of the Z axis, w
 
 # Orientation storing
 
-There are different methods to store orientation information:
+Rotations and the resulting orientation can be stored by different methods. Two subtypes can be divided by whether the angle changes are infinitesimal (all angles are changed at the same time) or one-after-another, where the order of changing axis is important:
+
+Infinitesimal angle changes, all at once, order arbitrary:
 * rotation matrix with 3x3 values, storing three 3-dimensional vectors, stores the orientation best, but needs most memory.
 * quaternions store full orientation with 4 parameters: one parameter stores the rotation angle, 3 parameters the rotation axis
-* skew symmetric storing also needs 4 parameters, the rotation axis, and the rotation angle must be stored separately
-* Euler angles exist in 12 subtypes and store rotation angles, which are executed in a specific order
-* Euler axis and angle is similar to skew
+* skew symmetric storing also needs 4 (or 3) parameters, the rotation axis, and the rotation angle must be stored separately
+* Axis-angle: Euler axis and angle.
 
-Internally the rotation matrix is used and for forward/inverse calculations quaternions and skew. Euler angles are not used, because the have problems at edges like gimbal lock. They are however often used, so in RobotViewer there will probably be support of it to visualize rotations. Euler angles subtype ZYX is as well how the Denativ-Hartenberg rotation works.
+Skew and Axis-Angle can be in two forms both: using unit vectors and the rotation angle as separate value or the unit vector multiplied with the angle. The result are 4 or 3 values.
+
+Angle changes one-after-another, order is important:
+* processing of Denavit-Hartenberg rotations
+* Euler angles exist in 12 subtypes and store rotation angles, which are executed in a specific order
+
+Euler angles are not used in robot kinematics code, because they have problems at edges like gimbal lock. They are however often used, e.g. in aviation as roll-pitch-yaw (RPY).
 
 # Rotation matrix
 After calculation of forward inverse kinematics, the result is a 4x4 transformation matrix with information about position and orientation:
@@ -81,11 +88,11 @@ It contains the following information:
 * position XYZ (yellow) is the information about the tool tip's position
 
 Some technical information about the transformation matrix:
-* for every orientation vector, x² + y² + z² = 1, the same is true for every red-green-blue row.
-* each orientation vector is vertical to the other ones (orthonormal) and the axes are organized righthanded. As a result the determinant of the 3x3 left upper matrix is 1.
+* for every orientation vector, x² + y² + z² = 1, the same is true for every row of the 3x3 rotation submatrix.
+* each orientation vector is vertical to the other ones (orthonormal) and the axes are organized righthanded. As a result the determinant of the 3x3 left upper matrix is 1 (lefthanded would be -1).
 * full can be uniquely translated into quaternions and reverse. Quaternions are used for storage efficiency, using 4 instead of 9 values. They can also be translated into angle-axis mode with 4 parameters, where axis is a Euler axis (not to be confused with Euler angles) and angle is the rotation around this axis.
-* The four numbers (0 0 0 1) in the last line make sure that rotations and translations stay at their positions (they would make shearing if other values are used). They don't change.
-* the transformation matrices are created by the Dn Denavit-Hartenberg parameters and multiplied to get forward kinematics
+* The four numbers (0 0 0 1) in the last line make sure that rotations and translations stay at their positions (they would make non-linear affine transformations if other values are used). They don't change.
+* the transformation matrices are created by Screw or Denavit-Hartenberg parameters and multiplied to get forward kinematics
 
 # Forward: chain of rotation matrices
 
@@ -164,7 +171,7 @@ Forward kinematics result in X, Y, Z and orientation. Together they result in 6 
 
 Examples of reduced rank:
 * a cartesian printer has 3 DOFs: control over X, Y, Z positions, but no control about the orientation of the endpoint. By mechanical means, the endpoint is always vertical.
-* CNC 5 axis has a limited 6 DOFs: X, Y, Z positions and control over the orientation of the Z axis, but no control over the orientation of the X and Y axes. A CNC spindle doesn't need X, Y axis orientation control (they constantly change), so it's no problem.
+* CNC 5 axis has 5 DOFs: X, Y, Z positions and control over the orientation of the Z axis, but no control over the orientation of the X and Y axes. A CNC spindle doesn't need X, Y axis orientation control (they constantly change).
 * singularity situations of a 6 axis robot: in one of the singularity situations, position and orientation changes are limited. For singularity types, see singularity section.
 
 # Workspace and Singularities
@@ -239,20 +246,18 @@ For indidivual compilation of source, the guide https://github.com/Duet3D/RepRap
 The direct path is https://github.com/JoergS5/RepRapFirmware/tree/3.5-dev/src/Movement/Kinematics
 
 The file contents are as follows
+* RobotKinematics.h contains all declarations and variables
 * RobotKinematics.cpp contain the kinematics API methods which are used by core RRF
-* RobotKinematics1.cpp contains methods to calculate forward and inverse kinematics and DH handling code
-* RobotKinematics2.cpp contain code to calculate the generalized inverse, based on SVD (single value decomposition)
-* RobotKinematics3.cpp contains code to set configuration and read configuration values
-* RobotKinematics4.cpp contains core matrix calculation code, rotations, scew methods including Rodrigues' formula
-* all cpp files use one RobotKinematics.h file as single reference for variable and method declarations
-
+* RobotKinematics1.cpp contains all code which can run and be tested outside RRF
+* RobotKinematics2.cpp contains code to calculated the generalized inverse. It can run and be tested outside RRF
+* RobotKinematics3.cpp contains code to help configuration reading and setting. It can run and be tested outside RRF
 
 Additional steps:
 * Kinematics.h and .cpp the variables robot and include RobotKinematics.h are added. robot is used instead of robot5axis to use K13
 * Config/Pins.h set SUPPORT_ROBOT to 1 and all other Kinematics SUPPORT... to 0
 * all .h and .cpp files with names starting with RobotKinematics in folder src/Movement/Kinematics
 
-If it doesn't compile or with many errors, I may have forgot to change WINDOWSMODE 1/RRMODE 0 to WINDOWSMODE 0/RRFMODE 1 in RobotKinematics.h, which are values to be set to 1 for the Windows or RRF environment.
+If it doesn't compile or with many errors, I may have forgot to change WINDOWSMODE 1/RRMODE 0 to WINDOWSMODE 0/RRFMODE 1 in RobotKinematics.h when checkin into github. The values are used to set Windows or RRF environment.
 
 # setup analysis, logDetailed
 
