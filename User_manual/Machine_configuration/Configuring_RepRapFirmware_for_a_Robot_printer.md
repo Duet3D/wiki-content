@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-29T08:11:09.709Z
+date: 2022-12-29T08:12:49.879Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -66,7 +66,7 @@ P"axisTypes=..." is the most important setting, as it defines how many axes are 
 
 C and D are alternative methods to describe the properties of links and joints. C is preferred.
 
-Most changes in config.g don't need a reboot, but when a drive or letter assignments change, a reboot is probably necessary.
+Most changes in config.g don't need a reboot, but when drive or letter assignments with M584 change, a reboot is often necessary.
 
 # M669 B parameter: robot type
 
