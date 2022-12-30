@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-30T09:42:08.202Z
+date: 2022-12-30T13:45:57.404Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -243,10 +243,6 @@ Examples:
 * CNC 5 axis e. g. PPPRR is AC or BC, because the 2 rotary axes control the Z axis orientation. XY constantly changes because the drill rotates.
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: AC, BC if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
-
-**P"workingMode=home|current|a1:p2:a3:etc"**
-
-replaced by C"reference:..."
 
 **P"qualityParameterName=value"**
 
