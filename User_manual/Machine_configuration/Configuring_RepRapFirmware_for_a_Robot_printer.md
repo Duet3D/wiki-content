@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-30T09:40:20.557Z
+date: 2022-12-30T09:42:08.202Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -126,7 +126,7 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 * s1:s2:s3 is the axis orientation as normalized XYZ directions. The direction reference are the world coordinates.
 * q1:q2:q3 is a point on this axis in cartesian world coordinates
 * M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the origin (base).
-* reference are the actuator's angles in degrees which are used to calculate the M values. It defines the workmode, i. e. which of the up to 16 possible solutions for a given position is choosen. Default are home position's angles. This parameter isn't needed for calculations, but is informative only.
+* reference are the actuator's angles in degrees which are used to calculate the M values. It defines the workmode, i. e. which of the up to 16 possible solutions for a given position is choosen. Default is to expect 0 angles/positions. This parameter isn't needed for calculations, but is informative only.
 
 The choice of the angles and M influence the performance of calculations: if they are near the desired target, less iterations are needed.
 
