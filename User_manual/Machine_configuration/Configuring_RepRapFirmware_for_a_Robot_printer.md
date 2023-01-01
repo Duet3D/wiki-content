@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2022-12-30T13:45:57.404Z
+date: 2023-01-01T09:50:43.839Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -11,6 +11,7 @@ dateCreated: 2022-03-03T13:05:06.424Z
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 |---|---|
 |configuration|[Configuring](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)|
+|screw theory (product of exponentials)|[screw theory](/User_manual/Machine_configuration/robot_screw_theory)|
 |Denavit-Hartenberg explanation and examples|[DH parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)|
 |firmware explained, orientations|[Firmware](/User_manual/Machine_configuration/robot_firmware)|
 |CNC, CoreXY, Prusalike 5 axis|[5 axis](/User_manual/Machine_configuration/robot_5_axis_CNC)|
@@ -29,6 +30,7 @@ The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.
 
 Current status, last actions:
 * started to include screw theory (also called PoE Product of Exponentials), based on skew matrices. This will probably speed up calculations. The extended DH parameter configuration with 6 parameters will remain, but Plücker coordinates will probably be added as option to define parameters.
+* following Pardos-Godor's book to develop closed calculations for inverse kinematics
 
 # Configuring a Robot
 
