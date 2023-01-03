@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-03T08:32:49.706Z
+date: 2023-01-03T13:40:27.562Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -36,6 +36,21 @@ In the first release, the following configurations will be available as robotTyp
 * perhaps 5 bar parallel scara, polar, serial scara, colinear tripteron
 
 Stewart-Gough is postponed. It has a lot of degrees of freedom and is complex to solve.
+
+# Paden-Kahan subproblems
+
+Inverse kinematics can be divided into sub-calculations to solve the equations fully mathetically with all alternatives. This is called Paden-Kahan subproblems (about 4) or canonical inverse kinematics. Following additional subproblems will be added to the original set, e. g. those of Pardos-Gotor.
+
+The result is faster than the iterative process usually used and all alternative joint angles are provided. Knowing all alternatives allow to choose the best trajectory solution.
+
+To allow Paden-Kahan, the mechanical configuration can support and ease the application of the subproblems. The following constructions will ease it:
+* consecutive axes crossing at one point, e. g. spheric axes and rotation or translation (PK2, PG2)
+* rotations or translations to a given distance (PK3, PG1, PG3)
+* half of the screw definition is a point on the axis. This point can be choosen such that different axes share one point
+* axes being parallel to each other (PG4)
+* rotation about a single axis (PK1)
+
+PK1... are Paden-Kahan subproblems, PG1... Pardos-Gotor, more to come.
 
 # Literature about screw theory
 
