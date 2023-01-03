@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-03T08:20:36.523Z
+date: 2023-01-03T08:32:49.706Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -28,6 +28,14 @@ The following closed form subproblems will be included and extended
 * Paden-Kahan subproblems 1 to 6 with generalization of subproblem 2
 * Pardos-Gotor subproblems 1 to 4
 * extensions by others, e.g. to support parallel kinematics
+
+In the first release, the following configurations will be available as robotType templates, where only some basic settings like arm lenghts, angle and speed limits are necessary:
+* robot 6 axis industrial robot
+* CNC 5 axis AC or BC type, Prusa (Pentarod, Open5x) and CoreXY with 5 axes
+* 4 axis palletized robot
+* perhaps 5 bar parallel scara, polar, serial scara, colinear tripteron
+
+Stewart-Gough is postponed. It has a lot of degrees of freedom and is complex to solve.
 
 # Literature about screw theory
 
