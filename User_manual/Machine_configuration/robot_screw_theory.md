@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-03T13:42:24.342Z
+date: 2023-01-03T13:50:20.032Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -39,14 +39,14 @@ Stewart-Gough is postponed. It has a lot of degrees of freedom and is complex to
 
 # Paden-Kahan subproblems
 
-Inverse kinematics can be divided into sub-calculations to solve the equations fully mathetically with all alternatives. This is called Paden-Kahan subproblems (about 4) or canonical inverse kinematics. Following additional subproblems will be added to the original set, e. g. those of Pardos-Gotor.
+Inverse kinematics can be divided into sub-calculations to find all exact solutions. This is called Paden-Kahan subproblems or canonical inverse kinematics.
 
-The result is faster than the iterative process usually used and all alternative joint angles are provided. Knowing all alternatives allow to choose the best trajectory solution.
+A 6 axis industrial robot has e. g. up to 8 possible solutions. Knowing all solutions allow to choose the best trajectory (or force/torque or whatever the criteria are) solution.
 
 To allow Paden-Kahan, the mechanical configuration can support and ease the application of the subproblems. The following constructions will ease it:
-* consecutive axes crossing at one point, e. g. spheric axes. For rotation (PK2) or translation (PG2)
+* consecutive axes crossing at one point, e. g. spheric axes. For rotational (PK2) or translational (PG2) axes
 * rotations (PK3) or translations (PG1, PG3) to a given distance
-* half of the screw definition is a point on the axis. This point can be choosen such that different axes share one point
+* part of the screw definition is chossing a point on the axis. This point can be choosen such that different axes share one point
 * axes being parallel to each other (PG4)
 * rotation about a single axis (PK1)
 
