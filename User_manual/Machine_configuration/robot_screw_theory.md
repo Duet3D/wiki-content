@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-03T21:01:43.075Z
+date: 2023-01-03T21:14:25.420Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -50,13 +50,17 @@ To allow Paden-Kahan, the mechanical configuration can support and ease the appl
 * axes being parallel to each other (PG4)
 * rotation about a single axis (PK1)
 
-PK1... are Paden-Kahan subproblems, PG1... Pardos-Gotor, more to come. PK2 is extended to disjoint axes, following the article of Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008.
+# Literature about canonical subproblems
+PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones.
+
+* Jose Pardos-Gotor: Screw Theory for Robotics (the similar book Screw Theory in robotics was too expensive for me). The Paden-Kahan subproblems are based on this book.
+* Paden's dissertation (available as pdf), describing 4 subproblems
+* Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2.
+* Elias, Wen: Canonical Subproblems..., 2022. Overview of additional subproblems, and description of 6 changed/new subproblems.
 
 # Literature about screw theory
 
 Following are personal recommendations:
-* Jose Pardos-Gotor: Screw Theory for Robotics (the similar book Screw Theory in robotics was too expensive for me). The Paden-Kahan subproblems are based on this book.
-* Paden's dissertation (available as pdf), describing 4 subproblems
 * Lynch, Park
 * Murray, Li, Sastry
 * Wikipedia, often enlightening, sometimes distracting
