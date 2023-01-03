@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-01-01T09:50:43.839Z
+date: 2023-01-03T09:57:19.903Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -75,7 +75,7 @@ Most changes in config.g don't need a reboot, but when drive or letter assignmen
 **B"robotType=type[:parameters]"**
 
 Currently, valid values for the type and parameters are:
-* 6Axis
+* 6Axis (=> industrial robot, Puma robot, IRB120 like)
 * 5AxisAC, 5AxisBC (=> CNC 5 axis, Pentarod, Open5x)
 * CoreXYAC, CoreXYBC
 * 4AxisPall, 4AxisPallInv (=> IRB 460 like)
