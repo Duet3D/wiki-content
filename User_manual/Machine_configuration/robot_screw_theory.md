@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-03T13:50:20.032Z
+date: 2023-01-03T21:01:43.075Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -50,7 +50,7 @@ To allow Paden-Kahan, the mechanical configuration can support and ease the appl
 * axes being parallel to each other (PG4)
 * rotation about a single axis (PK1)
 
-PK1... are Paden-Kahan subproblems, PG1... Pardos-Gotor, more to come.
+PK1... are Paden-Kahan subproblems, PG1... Pardos-Gotor, more to come. PK2 is extended to disjoint axes, following the article of Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008.
 
 # Literature about screw theory
 
