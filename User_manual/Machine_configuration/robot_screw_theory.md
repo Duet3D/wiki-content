@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-03T21:17:38.152Z
+date: 2023-01-04T23:59:32.208Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -52,9 +52,20 @@ To allow Paden-Kahan, the mechanical configuration can support and ease the appl
 
 PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones.
 
+# C parameter
+Configuration has two parts:
+
+Direction of an axis and a point anywhere on the axis for revolute joints and a direction of the axis for prismatic/linear joints. Currently, two types of joints can be configured:
+* revolute/rotational with 3 values of omega and 3 values of q. From omega and v, a v is calculated. omega are orthonormal axis values of the rotating axis. q is a point on the axis.
+* translational/linear with omega being 3 values with 0 each, and v being 3 values of the direction of the axis
+
+Endpoint position and orientation for reference angles, e.g. all angles being 0. This is called M. M is a transformation matrix as described on the firmware page with a 3x3 rotation matrix and a 1x3 position vector, put together in a 4x4 matrix. It contains the orientation and position of the endpoint for given actuator angles (revolute joints) / positions (linear joints).
+
+The two parts are sufficient to calculate new endpoints with given actuator angles/positions.
+
 # Literature about canonical subproblems
 
-* Paden's dissertation (available as pdf), describing 4 subproblems
+* Paden's dissertation (available as pdf),describing 4 subproblems
 * Jose Pardos-Gotor: Screw Theory for Robotics. 4 additional subproblems called PG1...4
 * Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2 for disjoint axes.
 * Elias, Wen: Canonical Subproblems..., 2022. Overview of additional subproblems, and description of 6 changed/new subproblems, e. g. extension to 3 or 4 intersecting cones.
