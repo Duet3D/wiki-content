@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-05T15:48:41.861Z
+date: 2023-01-05T15:50:31.831Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -57,6 +57,8 @@ The PK subproblems 1 to 5 are explained in Wikipedia of the link mentioned below
 # Pieper criterion
 
 The close form inverse kinematics are easier to solve, if consecutive axes cross or are parallel to each other. This is especially true for axes 4 to 6 of the 6 axis industrial robot, resulting in a spherical joint. It is also advantageous, if axes 1 to 3 are on one line (same X Y positions) and axes 2 and 3 are parallel.
+
+For some subproblems less restrictive formulae were developed for disjoint axes, but the formulae get more complicated and will probably need more performance to be solved.
 
 # C parameter
 Configuration has two parts:
