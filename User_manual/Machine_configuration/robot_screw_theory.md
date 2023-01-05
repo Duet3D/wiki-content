@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-05T07:59:22.066Z
+date: 2023-01-05T14:57:48.090Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -72,6 +72,7 @@ The two parts are sufficient to calculate new endpoints with given actuator angl
 * Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2 for disjoint axes.
 * Elias, Wen: Canonical Subproblems..., 2022. Overview of additional subproblems, and description of 6 changed/new subproblems, e. g. extension to 3 or 4 intersecting cones.
 * https://en.wikipedia.org/wiki/Paden%E2%80%93Kahan_subproblems
+* An, H.S.; Seo, T.W.; Lee, J.W. Generalized solution for a sub-problem of inverse kinematics based on product of exponential formula
 
 # Literature about screw theory
 
