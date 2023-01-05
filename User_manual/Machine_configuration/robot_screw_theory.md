@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-05T07:03:46.403Z
+date: 2023-01-05T07:04:56.197Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -88,4 +88,4 @@ The two parts are sufficient to calculate new endpoints with given actuator angl
 Following are personal recommendations:
 * Lynch, Park
 * Murray, Li, Sastry
-* Wikipedia, often enlightening, sometimes distracting
+* Jose Pardos-Gotor: Screw Theory for Robotics
