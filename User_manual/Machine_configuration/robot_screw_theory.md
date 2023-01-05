@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-05T14:57:48.090Z
+date: 2023-01-05T15:08:00.217Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -53,6 +53,10 @@ To allow Paden-Kahan, the mechanical configuration can support and ease the appl
 
 PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones.
 The PK subproblems 1 to 5 are explained in Wikipedia of the link mentioned below.
+
+# Pieper criterion
+
+The close form inverse kinematics are easier to solve, if consecutive axes cross or are parallel to each other. This is especially true for axes 4 to 6 of the 6 axis industrial robot, resulting in a spherical joint. It is also advantageous, if axes 1 to 3 are on one line (same X Y positions).
 
 # C parameter
 Configuration has two parts:
