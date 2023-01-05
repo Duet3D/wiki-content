@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-05T07:04:56.197Z
+date: 2023-01-05T07:25:28.315Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -51,18 +51,7 @@ To allow Paden-Kahan, the mechanical configuration can support and ease the appl
 * rotation about a single axis (PK1)
 
 PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones.
-
-# Paden-Kahan PK1
-
-PK1 is a rotation about a single revolute axis.
-* given: points p and k, axis omega
-* searched: angle theta
-* simplification possible for: p lies on omega. Exponential can be taken out
-* image => todo
-* formula => todo
-* applicable for: 6 axis robot step 1 removing angles 4-6, 6 axis robot step 4 solving axis 6 => todo
-
-I'll explain the todo topics later.
+The PK subproblems 1 to 5 are explained in Wikipedia of the link mentioned below.
 
 # C parameter
 Configuration has two parts:
