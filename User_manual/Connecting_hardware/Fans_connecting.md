@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2023-01-06T10:43:17.171Z
+date: 2023-01-06T10:48:47.928Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -232,6 +232,8 @@ This sets fan 1 to run any time the temperature of heater 1 is above 45 Celsius.
 
 A thermostatically controlled hot end fan will be turned on automatically when you auto tune any heater that it monitors.
 
+Note: thermostatic fans SHOULD NOT be mapped to tools.
+
 ## G-code controlled fans
 
 Printing PLA (and perhaps other plastics) benefits from additional cooling of printed layers, particularly when layers are printing quickly. That said, excessive cooling can cause problems with first layer adhesion or even interfere with a new layer's bonding to the previous one. Many slicer programs will introduce fan control G-codes to run the fan strongly for layers that print quickly, and only start running the fan after the first few layers. Attach/define such a fan to one of the connectors FAN0, FAN1, or FAN2. If your slicer doesn't support specifying which fan to control, it defaults to FAN0.
@@ -320,7 +322,7 @@ M563 P2 D2 H3 F2 ; tool 2 uses extruder 2, heater 3 and fan 2
 
 After this whenever tool 0 is selected, sending M106 Snnn will control fan 0. With tool 1, fan 1 and tool 2 fan 2.
 
-Note that you do not need to, and should not, map thermostatic fans to tools.
+Note: thermostatic fans SHOULD NOT be mapped to tools.
 
 For more examples see the [tool definition section](/User_manual/Machine_configuration/Configuration_cartesian#tool-definition-section) of the config.g file.
 
