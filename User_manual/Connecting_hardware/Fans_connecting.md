@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2022-10-04T16:19:09.113Z
+date: 2023-01-06T10:43:17.171Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -319,6 +319,8 @@ M563 P2 D2 H3 F2 ; tool 2 uses extruder 2, heater 3 and fan 2
 ```
 
 After this whenever tool 0 is selected, sending M106 Snnn will control fan 0. With tool 1, fan 1 and tool 2 fan 2.
+
+Note that you do not need to, and should not, map thermostatic fans to tools.
 
 For more examples see the [tool definition section](/User_manual/Machine_configuration/Configuration_cartesian#tool-definition-section) of the config.g file.
 
