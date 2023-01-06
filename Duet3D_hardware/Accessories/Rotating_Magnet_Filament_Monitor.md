@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2022-12-02T17:16:33.263Z
+date: 2023-01-06T22:01:46.616Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -284,8 +284,8 @@ The fuses should be set correctly on the monitor but if they are not the followi
 
 Changes to the magnetic assembly and housing design. No change to the PCB design:
 
-* Magnetic assembly changed form a ring magnet to a rod magnet.
-* Enclosure modified slightly to accommpdate new magnetic assembly.
+* Magnetic assembly changed from a ring magnet to a rod magnet.
+* Enclosure modified slightly to accommodate new magnetic assembly.
 
 ## PCB Revision 1.7b
 
