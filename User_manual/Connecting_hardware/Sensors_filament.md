@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2023-01-09T14:56:01.077Z
+date: 2023-01-09T16:31:44.069Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -197,13 +197,13 @@ Typically errors 6 & 7 means that the magnet is too far away from the sensor chi
 
 From RepRapFrimware v3.4 errors can be reported and handled through the [Event System](/User_manual/RepRapFirmware/Events). for the filament monitor the following events are possible:
 
-| Event string | Description |
-|:----|:---|
-| noDataReceived| A filament monitor is configured, but no data is being received from the monitor|
-| noFilament| The filament switch on the filment monitor is configured and it is showing filament not present (Filament monitor is configured as type 4)|
-| tooLittleMovement| The movement is below the minimum set in the R value of M591  |
-| tooMuchMovement| The movement is above the maximum set in the R value of M591 |
-| sensorError| one of the faults indicated by the LED flashes is present |
+| Event number | Object Model String | Description |
+|:---|:---|:---|
+| 2 | noDataReceived| A filament monitor is configured, but no data is being received from the monitor|
+| 3 | noFilament| The filament switch on the filment monitor is configured and it is showing filament not present (Filament monitor is configured as type 4)|
+| 4 | tooLittleMovement| The movement is below the minimum set in the R value of M591  |
+| 5 | tooMuchMovement| The movement is above the maximum set in the R value of M591 |
+| 6 | sensorError| one of the faults indicated by the LED flashes is present |
 	
 
 ### Errors during operation
