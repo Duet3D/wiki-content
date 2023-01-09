@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2023-01-09T13:47:52.266Z
+date: 2023-01-09T14:56:01.077Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -195,7 +195,7 @@ Typically errors 6 & 7 means that the magnet is too far away from the sensor chi
 
 ### Event System filament-error events
 
-From RepRapFrimware v3.4 errors can be reported and handled through the [Event System](/User_manual/RepRapFirmware/Events). for the filament monitor the following elevets are possible:
+From RepRapFrimware v3.4 errors can be reported and handled through the [Event System](/User_manual/RepRapFirmware/Events). for the filament monitor the following events are possible:
 
 | Event string | Description |
 |:----|:---|
