@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2022-09-21T12:16:21.023Z
+date: 2023-01-09T17:16:27.042Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -96,6 +96,7 @@ Older versions of the Duet 2 WiFi/Ethernet need both the 4-wire and ribbon cable
 
 ## Notes
 
+* On all Duet 3 boards the ribbon cable connector uses the same pins as io0_in and io0.out. **Do not connect anything to the IO0 connector!**
 * In order to use the SD card slot on the PanelDue, you must use the ribbon cable option. If you do not wish to use the SD card slot, it's recommended to use the 4-wire cable option described in Option 1. 
 * If a **Duet 3** with a non-integrated PanelDue, PanelDue 5i v1.0 or PanelDue 7i v2.0, see 'Card detect signal' section below.
 * The **Duet 3 MB6HC** has no PanelDue_SD socket. To use the external SD card, it requires RRF 3.4 or later, and a special wiring scheme; see 'Duet 3 MB6HC using ribbon cable' section below.
