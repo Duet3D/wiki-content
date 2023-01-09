@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2022-01-17T12:33:13.182Z
+date: 2023-01-09T12:14:38.585Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -12,12 +12,9 @@ dateCreated: 2021-10-26T13:10:27.693Z
 
 If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament. To do this the printer needs to have a filament-out sensor attached.
 
-The filament sensor may be a simple switch that detects the presence of filament, or a sensor that measures filament motion (e.g. laser, rotating magnet or pulsed filament monitor), or both.
+The filament sensor may be a simple switch that detects the presence of filament, or a sensor that measures filament motion (e.g. rotating magnet or pulsed filament monitor), or both.
 
-There are two Duet3D products for precise motion detection with direction:
-
-* [Duet3D Rotating Magnet Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor)
-* [Duet3D Laser Filament Monitor](/Duet3D_hardware/Accessories/Laser_Filament_Monitor)
+The [Duet3D Rotating Magnet Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor) provides precise motion detection with direction:
 
 # How it works
 
@@ -45,9 +42,9 @@ For all firmware versions, **note that filament monitoring in RRF is only active
 
 **Important!** If you are using a Duet 3 or 3 Mini with tool or expansion boards, then **the filament monitor must be connected to the same board as the motor** for the extruder that it is monitoring. Filament monitors connected to tool and expansion boards are supported in RepRapFirmware 3.2beta4 and later.
 
-##### Laser, rotating magnet or pulsed filament monitor
+##### Rotating magnet or pulsed filament monitor
 
-Connect a **laser, rotating magnet or pulsed filament monitor** to the +3.3V, GND and IN pins of one of the IO connectors on the Duet 3 mainboard, or on a tool or expansion board.
+Connect a **rotating magnet or pulsed filament monitor** to the +3.3V, GND and IN pins of one of the IO connectors on the Duet 3 mainboard, or on a tool or expansion board.
 
 | Duet 3 | Filament monitor |
 |:---|:---|
@@ -59,7 +56,7 @@ Connect a **laser, rotating magnet or pulsed filament monitor** to the +3.3V, GN
 
 **Optional filament presence switch**
 
-The Duet3D Rotating Magnet Filament Monitor and Duet3D Laser Filament Monitor have an optional filament presence switch. You can connect a microswitch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
+The Duet3D Rotating Magnet Filament Monitor has an optional filament presence switch. You can connect a microswitch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
 
 However, this is not normally necessary, because the filament monitor will detect that there is no filament moving through just a few mm after the end of the filament has passed over the sensor, which will normally be well before the end of the filament reaches the extruder drive.
 
@@ -71,9 +68,9 @@ For a **simple filament presence switch** connect the switch between the IN and 
 
 #### Duet 2
 
-##### Laser, rotating magnet or pulsed filament monitor
+##### Rotating magnet or pulsed filament monitor
 
-Connect a **laser, rotating magnet or pulsed filament monitor** to an **endstop** connection on the Duet 2 **mainboard**, using a 3 wire cable with a Molex KK cable socket on either end. The cable does not need to be shielded.
+Connect a **rotating magnet or pulsed filament monitor** to an **endstop** connection on the Duet 2 **mainboard**, using a 3 wire cable with a Molex KK cable socket on either end. The cable does not need to be shielded.
 
 **DueX2/5 Note:** A Laser, rotating magnet or pulsed filament monitor must be connected to an endstop on the Duet 2 WiFi/Ethernet mainboard. This can be X, Y, Z, E0, E1, Stop 10 (connlcd.encb in RRF 3.x, C10 in RRF 2.x) or Stop 11 (connlcd.enca in RRF 3.x, C11 in RRF 2.x) on the CONN_LCD connector. It will not work connected to an endstop on a DueX expansion board. Endstop inputs on the DueX2/5 expansion board can be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation, pulsed or laser sensor).
 
@@ -85,7 +82,7 @@ Connect a **laser, rotating magnet or pulsed filament monitor** to an **endstop*
 
 **Optional filament presence switch**
 
-The Duet3D Rotating Magnet Filament Monitor and Duet3D Laser Filament Monitor have an optional filament presence switch. You can connect a microswitch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
+The Duet3D Rotating Magnet Filament Monitor has an optional filament presence switch. You can connect a microswitch to the 2-pin "SW" header arranged so that the switch contacts are closed when filament is present and open when it is not.
 
 However, this is not normally necessary, because the filament monitor will detect that there is no filament moving through just a few mm after the end of the filament has passed over the sensor, which will normally be well before the end of the filament reaches the extruder drive.
 
@@ -220,96 +217,6 @@ Values for 'agc' of 50 to 105 are considered normal. If the value is higher, up 
 If the above doesn’t help, and you are still getting spurious readings, please contact Duet3D support by [posting on the forum](https://forum.duet3d.com/).
 
 
-# Duet3D Laser filament sensor
-
-## Firmware requirements
-
-For **Revision 2.0** we recommend you use **RepRapFirmware 2.03 or later** in order to get the correct readings.
-
-For **Revision 1.7** you must be using **RepRapFirmware 1.21 or later**.
-
-## Firmware configuration
-
-## Tabs {.tabset}
-
-### RepRapFirmware 3.x
-
-The filament monitor is configured using the M591 command, see [M591](/User_manual/Reference/Gcodes/M591). Here is an example of that command:
-
-`M591 D0 P5 C"e0_stop" R40:120 E3.0 S0 ; Duet3D laser sensor for extruder drive 0, connected to endstop input 3 (E0), tolerance 40 to 120%, 3mm comparison length, disabled`
-
-You can also use M591 from the console to retrieve the current data:
-
-`M591 D0 ; display filament sensor parameters for extruder drive 0`
-
-Brief explanation of parameters:
-
-* D =  extruder drive number
-* P = filament sensor type. P5 = Duet3D laser filament monitor **without** additional filament presence detection switch, P6 = Duet3D laser filament monitor with switch.
-* E = minimum extrusion length before a commanded/measured comparison is done, default 3mm
-* C = Pin name of the pin the filament sensor is connected to, eg 'io[x].in' (Duet 3) or 'e0stop' (Duet 2)
-* Raa:bb = minimum and maximum permitted measured movement as a percentage of commanded movement
-* S = 0 to disable comparison of commanded vs. measured output, 1 to enable comparison and pause the print if a discrepancy is detected
-* An (firmware 2.03 and later) 1 = check All extruder motion, 0 (default) = only check extruder motion of printing moves (moves with both movement and forward extrusion)
-
-Initially you will not know some of the correct parameters for the M591 command, so put in the correct D, C and P parameters and set S to 0.
-
-### RepRapFirmware 2.x
-
-The filament monitor is configured using the M591 command, see [M591](/User_manual/Reference/Gcodes/M591). Here is an example of that command:
-
-`M591 D0 P5 C3 R40:120 E3.0 S0 ; Duet3D laser sensor for extruder drive 0, connected to endstop input 3 (E0), tolerance 40 to 120%, 3mm comparison length, disabled`
-
-You can also use M591 from the console to retrieve the current data:
-
-`M591 D0 ; display filament sensor parameters for extruder drive 0`
-
-Brief explanation of parameters:
-
-* D =  extruder drive number
-* P = filament sensor type. P5 = Duet3D laser filament monitor **without** additional filament presence detection switch, P6 = Duet3D laser filament monitor with switch.
-* E = minimum extrusion length before a commanded/measured comparison is done, default 3mm
-* C = endstop number (0 = X, 1 = Y, 2 = Z, 3 = E0 etc.). Endstop inputs 5-9 which are on the Duex 2 or Duex 5 expansion boards cannot be used. Endstop inputs 10 and 11 on the CONN_LCD connector can be used. 
-* Raa:bb = minimum and maximum permitted measured movement as a percentage of commanded movement
-* S = 0 to disable comparison of commanded vs. measured output, 1 to enable comparison and pause the print if a discrepancy is detected
-* An (firmware 2.03 and later) 1 = check All extruder motion, 0 (default) = only check extruder motion of printing moves (moves with both movement and forward extrusion)
-
-Initially you will not know some of the correct parameters for the M591 command, so put in the correct D, C and P parameters and set S to 0.
-
-## Commissioning
-
-### Self test
-
-On startup, after a few seconds the green LED on the filament monitor will flash 3 times if initialisation and self-test are successful.  The green and red LEDs will then flash periodically indicating communication to the Duet. If the filament is moving, the green LED will flash more frequently.
-
-If initialisation or self test fail, the red LED will flash an error code (currently this is always 5 flashes). It will retry every few seconds.
-
-### Calibration
-
-1. Make sure you have calibrated your extruder steps/mm correctly
-1. If you haven't done so already, send the M591 command with the correct D, P and C parameters and S=0 to tell the firmware about the sensor.
-1. Run M591 D# where # is the extruder number and check that the sensor angle is reported, to confirm that communication from the filament monitor to the Duet is working.
-1. Start a print.
-1. During and after the print, as soon as sufficient filament has been extruded you can use M591 D# (where # is the extruder number) to report the minimum and maximum measured movement as a percentage of commanded movement.
-1. If you pause and then resume the print, on resuming the calibration will be re-started and the values accumulated from before you paused will be discarded.
-1. Set the R (tolerance) parameter of the M591 command to give a somewhat wider tolerance than the calibration reports. For example, if calibration reports 43% to 115% then you might choose R30:130.
-1. It is worth testing with a wide variety of filaments that you typically use before setting the minimum and maximum trigger values as the laser sensor is sensitive to filament material. Alternatively you can use a different bracket of minimum and maximum for different filament types by setting the M591 setting within the print start gcode, through a macro or through the [filament management system](/User_manual/Reference/DWC_filaments).
-
-## Troubleshooting
-
-### LED diagnosis
-
-If the filament monitor fails to initialise after power up, then instead of flashing the green LED 3 times it will flash the red LED five times to indicate an error. It will continue to try to initialise and flash the red LED until successful initialisation.
-
-### Reported Information
-
-Three pieces of information are reported by the filament monitor that describe how well the sensor chip is reading the moving surface of the filament (or other surface for an indirect measurement).
-
-* **quality** - Reports the number of features detected by the PAT9130 sensor. The higher the quality reported the better the surface is tracked. (theoretical range 0-255)
-* **brightness** - The average brightness of all pixels in the PAT9130 sensor. Brightness and shutter are related (the sensor alters the shutter setting to keep the brightness within an acceptable range). (theoretical range 0-255)
-* **shutter** - It is controlled by the PAT9130 sensor auto-exposure algorithm. lower numbers for shutter indicate a "better" surface. (theoretical range 0-255)
-
-
 # Configuring other filament-out sensors
 
 RepRapFirmware supports a variety of different filament presence and motion sensors using the [M591](/User_manual/Reference/Gcodes/M591) Gcode, where the 'Pnn' parameter is the type of sensor:
@@ -341,3 +248,94 @@ M591 D0 ; display filament sensor parameters for extruder drive 0
 ```
 
 **Note that filament monitoring in RRF is only active when printing from SD card.**
+
+# Legacy products
+
+## Duet3D Laser filament sensor
+
+### Firmware requirements
+
+For **Revision 2.0** we recommend you use **RepRapFirmware 2.03 or later** in order to get the correct readings.
+
+For **Revision 1.7** you must be using **RepRapFirmware 1.21 or later**.
+
+### Firmware configuration
+
+### Tabs {.tabset}
+
+#### RepRapFirmware 3.x
+
+The filament monitor is configured using the M591 command, see [M591](/User_manual/Reference/Gcodes/M591). Here is an example of that command:
+
+`M591 D0 P5 C"e0_stop" R40:120 E3.0 S0 ; Duet3D laser sensor for extruder drive 0, connected to endstop input 3 (E0), tolerance 40 to 120%, 3mm comparison length, disabled`
+
+You can also use M591 from the console to retrieve the current data:
+
+`M591 D0 ; display filament sensor parameters for extruder drive 0`
+
+Brief explanation of parameters:
+
+* D =  extruder drive number
+* P = filament sensor type. P5 = Duet3D laser filament monitor **without** additional filament presence detection switch, P6 = Duet3D laser filament monitor with switch.
+* E = minimum extrusion length before a commanded/measured comparison is done, default 3mm
+* C = Pin name of the pin the filament sensor is connected to, eg 'io[x].in' (Duet 3) or 'e0stop' (Duet 2)
+* Raa:bb = minimum and maximum permitted measured movement as a percentage of commanded movement
+* S = 0 to disable comparison of commanded vs. measured output, 1 to enable comparison and pause the print if a discrepancy is detected
+* An (firmware 2.03 and later) 1 = check All extruder motion, 0 (default) = only check extruder motion of printing moves (moves with both movement and forward extrusion)
+
+Initially you will not know some of the correct parameters for the M591 command, so put in the correct D, C and P parameters and set S to 0.
+
+#### RepRapFirmware 2.x
+
+The filament monitor is configured using the M591 command, see [M591](/User_manual/Reference/Gcodes/M591). Here is an example of that command:
+
+`M591 D0 P5 C3 R40:120 E3.0 S0 ; Duet3D laser sensor for extruder drive 0, connected to endstop input 3 (E0), tolerance 40 to 120%, 3mm comparison length, disabled`
+
+You can also use M591 from the console to retrieve the current data:
+
+`M591 D0 ; display filament sensor parameters for extruder drive 0`
+
+Brief explanation of parameters:
+
+* D =  extruder drive number
+* P = filament sensor type. P5 = Duet3D laser filament monitor **without** additional filament presence detection switch, P6 = Duet3D laser filament monitor with switch.
+* E = minimum extrusion length before a commanded/measured comparison is done, default 3mm
+* C = endstop number (0 = X, 1 = Y, 2 = Z, 3 = E0 etc.). Endstop inputs 5-9 which are on the Duex 2 or Duex 5 expansion boards cannot be used. Endstop inputs 10 and 11 on the CONN_LCD connector can be used. 
+* Raa:bb = minimum and maximum permitted measured movement as a percentage of commanded movement
+* S = 0 to disable comparison of commanded vs. measured output, 1 to enable comparison and pause the print if a discrepancy is detected
+* An (firmware 2.03 and later) 1 = check All extruder motion, 0 (default) = only check extruder motion of printing moves (moves with both movement and forward extrusion)
+
+Initially you will not know some of the correct parameters for the M591 command, so put in the correct D, C and P parameters and set S to 0.
+
+### Commissioning
+
+#### Self test
+
+On startup, after a few seconds the green LED on the filament monitor will flash 3 times if initialisation and self-test are successful.  The green and red LEDs will then flash periodically indicating communication to the Duet. If the filament is moving, the green LED will flash more frequently.
+
+If initialisation or self test fail, the red LED will flash an error code (currently this is always 5 flashes). It will retry every few seconds.
+
+#### Calibration
+
+1. Make sure you have calibrated your extruder steps/mm correctly
+1. If you haven't done so already, send the M591 command with the correct D, P and C parameters and S=0 to tell the firmware about the sensor.
+1. Run M591 D# where # is the extruder number and check that the sensor angle is reported, to confirm that communication from the filament monitor to the Duet is working.
+1. Start a print.
+1. During and after the print, as soon as sufficient filament has been extruded you can use M591 D# (where # is the extruder number) to report the minimum and maximum measured movement as a percentage of commanded movement.
+1. If you pause and then resume the print, on resuming the calibration will be re-started and the values accumulated from before you paused will be discarded.
+1. Set the R (tolerance) parameter of the M591 command to give a somewhat wider tolerance than the calibration reports. For example, if calibration reports 43% to 115% then you might choose R30:130.
+1. It is worth testing with a wide variety of filaments that you typically use before setting the minimum and maximum trigger values as the laser sensor is sensitive to filament material. Alternatively you can use a different bracket of minimum and maximum for different filament types by setting the M591 setting within the print start gcode, through a macro or through the [filament management system](/User_manual/Reference/DWC_filaments).
+
+### Troubleshooting
+
+#### LED diagnosis
+
+If the filament monitor fails to initialise after power up, then instead of flashing the green LED 3 times it will flash the red LED five times to indicate an error. It will continue to try to initialise and flash the red LED until successful initialisation.
+
+#### Reported Information
+
+Three pieces of information are reported by the filament monitor that describe how well the sensor chip is reading the moving surface of the filament (or other surface for an indirect measurement).
+
+* **quality** - Reports the number of features detected by the PAT9130 sensor. The higher the quality reported the better the surface is tracked. (theoretical range 0-255)
+* **brightness** - The average brightness of all pixels in the PAT9130 sensor. Brightness and shutter are related (the sensor alters the shutter setting to keep the brightness within an acceptable range). (theoretical range 0-255)
+* **shutter** - It is controlled by the PAT9130 sensor auto-exposure algorithm. lower numbers for shutter indicate a "better" surface. (theoretical range 0-255)
