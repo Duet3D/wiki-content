@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-10T00:27:16.103Z
+date: 2023-01-10T00:29:32.958Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -42,7 +42,7 @@ Currently not implemented is quaternion based segmentation, this would require a
 
 # Screw solution with Paden-Kahan subproblems (PK)
 
-Currently, comparing to the DH example, there is one restriction: axes 1 and 2 must be at the same X Y positions, i. e. the axes must intersect (so no 70 offset in X direction). This restriction is to allow application of Paden-Kahan PK2 subproblem.
+Currently, comparing to the DH example, there is one restriction: axes 1 and 2 must be at the same X Y positions, i. e. the axes must intersect (so no 70 offset in X direction). Axis 3 intersects with the spherical axes 4 to 6, as is the case with the DH example. This restrictions allow application of Paden-Kahan subproblems in closed form without any iterations.
 
 The example is from the book of Pardos-Gotor, but for the properties of the DH example. The Matlab code from github was converted to C++ code and optimized (details about it on the firmware page).
 
