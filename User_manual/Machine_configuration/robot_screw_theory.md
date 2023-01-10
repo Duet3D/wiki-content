@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-10T21:00:17.645Z
+date: 2023-01-10T21:14:36.832Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -40,9 +40,10 @@ Stewart-Gough is postponed. It has a lot of degrees of freedom and is complex to
 
 # Paden-Kahan subproblems
 
-Inverse kinematics can be divided into sub-calculations to find all exact solutions. This is called Paden-Kahan subproblems or canonical inverse kinematics.
-
-A 6 axis industrial robot has e. g. up to 8 possible solutions. Knowing all solutions allow to choose the best trajectory (or force/torque or whatever the criteria are) solution.
+Paden developed a method to divide the inverse kinematics problem into solvable parts called subproblems. It has the following properties
+* the subproblems are solvable by algorithms, without iterations
+* all possible solutions are found (up to 8 for a 6 axis robot)
+* basic procedure is to find points where part of the complete PoE formula can be eliminated and the rest solved
 
 To allow Paden-Kahan, the mechanical configuration can support and ease the application of the subproblems. The following constructions will ease it:
 * consecutive axes crossing at one point, e. g. spheric axes. For rotational (PK2) or translational (PG2) axes
@@ -74,6 +75,7 @@ The two parts are sufficient to calculate new endpoints with given actuator angl
 # Literature about Paden-Kahan / canonical subproblems
 
 * Paden's dissertation (available as pdf),describing 4 subproblems
+* Kahan didn't disclose his results
 * Jose Pardos-Gotor: Screw Theory for Robotics. 4 additional subproblems called PG1...4
 * Pardos-Gotor Matlab code in https://github.com/DrPardosGotor/ScrewTheoryRobotics-KINEMATICS-Illustrated
 * Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2 for disjoint axes.
