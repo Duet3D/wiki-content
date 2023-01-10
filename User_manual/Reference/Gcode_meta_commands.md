@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2022-11-28T15:58:57.763Z
+date: 2023-01-10T10:33:45.339Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -28,7 +28,9 @@ This causes all nested macros and the current print file (if any) to be terminat
 
 At least one expression must be provided. The expressions are converted to strings and written to the console, with a space character between each pair. Example:
 
-`echo move.axes[0].homed, move.axes[1].homed, move.axes[2].homed`
+```
+echo move.axes[0].homed, move.axes[1].homed, move.axes[2].homed
+```
 
 Starting with firmware 3.4 the output from an echo command can be redirected to a file. To create a file (deleting any existing file of the same name) containing the text resulting from the echo command, use this syntax:
 
@@ -39,6 +41,10 @@ where \<filename> is either a quoted string or an expression enclosed in { } tha
 To append a line to an existing file (or create a new file if it doesn't already exist), use:
 
 `echo >><filename> <expression>, <expression>, ...`
+
+To append to a file without adding a newline character at the end, so that multiple echo commands can be used to build a single long line, use the following (supported in firmware 3.5beta2 and later):
+
+`echo >>><filename> <expression>, <expression>, ...`
 
 There must be no spaces between the > or >> symbol and \<filename>. The default folder for the file is /sys.
 
