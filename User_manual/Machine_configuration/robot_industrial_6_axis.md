@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-10T00:29:32.958Z
+date: 2023-01-10T00:31:35.823Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -55,6 +55,8 @@ The Paden-Kahan (PK) subproblems are used in the order PK3-PK2-PK2-PK1 (Details 
 There are maximum of 2 * 2 * 2 * 1 = 8 solutions of the inverse kinematics calculation. When no solution is found for an angle, the nearest solution is returned.
 
 On a laptop, performance is about 3.5 microseconds to calculate the 8 solutions. (performance measuring on Duet tbd)
+
+An alternative to use PG4 with axes 2 and 3 will be tried. (tbd)
 
 # unsorted:
 
