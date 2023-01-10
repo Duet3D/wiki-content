@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-10T00:31:35.823Z
+date: 2023-01-10T00:37:38.839Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -52,7 +52,7 @@ The Paden-Kahan (PK) subproblems are used in the order PK3-PK2-PK2-PK1 (Details 
 * second PK2 gives one or two solutions for axes 4 and 5
 * PK1 gives one solution for axis 6
 
-There are maximum of 2 * 2 * 2 * 1 = 8 solutions of the inverse kinematics calculation. When no solution is found for an angle, the nearest solution is returned.
+There are maximum of 2 * 2 * 2 * 1 = 8 solutions of the inverse kinematics calculation. When no solution is found for an angle, the nearest solution is returned. Less than 8 solutions probably always means singularity or near singularity situations. (to be verified)
 
 On a laptop, performance is about 3.5 microseconds to calculate the 8 solutions. (performance measuring on Duet tbd)
 
