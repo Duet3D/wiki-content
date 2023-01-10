@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2023-01-10T13:43:38.969Z
+date: 2023-01-10T14:30:21.328Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -186,7 +186,7 @@ Duet 3 Toolboard 1LC provides the following connectors:
 | 4-pin JST PH | Screw terminal || OUT_1 | 4-wire fan output (also accepts a 2- or 3-wire fan) intended for use as the print cooling fan.<br>2A total max current for OUT1 and OUT2 when VIN selected (v1.1 board), 0.8A total max current for OUT1 and OUT2 on 12V.<br>This output is protected by a flyback diode.<br>**Note** On v1.0 boards and earlier, VOUT on OUT_1 and OUT_2 is set to 12V. On v1.1 boards, voltage is selectable between 12V and VIN, using VOUT for OUT_1, OUT_2 pins.<br>**Note** When using a 4-wire fan, the tacho reading is valid at all PWM settings. |
 | 3-pin JST PH | Screw terminal || OUT_2 | 3-wire fan output (also accepts a 2-wire fan) intended for use as the hot end fan. 2A total max current for OUT1 and OUT2 when VIN selected (v1.1 board), 0.8A total max current for OUT1 and OUT2 on 12V. This output is protected by a flyback diode.<br>**Note** On v1.0 boards and earlier, VOUT on OUT_1 and OUT_2 is set to 12V. On v1.1 boards, voltage is selectable between 12V and VIN, using VOUT for OUT_1, OUT_2 pins.<br>**Note** the tacho reading is valid only when running the fan at full speed. |
 | 1 x 2-pin KK | N/A || VOUT for OUT_1, OUT_2 | (v1.1 board) Voltage select for OUT_1 and OUT_2, between 12V and VIN. On V1.0 boards it is set to 12V. 0.8A total for OUT1 and OUT2 when set to 12V because the maximum output current of the 12V regulator is 1A, and the 5V rail is also derived from that regulator. |
-| 2 x Push button ||| Button 0, Button 1 | Buttons can be used to generate triggers. If both buttons are held down at power on, the board will factory reset; CAN address (121) and CAB bus speed (1Mbps) will be reset to defaults. |
+| 2 x Push button ||| Button 0, Button 1 | Buttons can be used to generate triggers. If both buttons are held down at power on, the board will factory reset, see the [Factory Reset](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC#factory-reset).  |
 | 1 x 4-pin JST ZH ||| CAN | CAN connector. See CAN section below. |
 
 ## LED indications
