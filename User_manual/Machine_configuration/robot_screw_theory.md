@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-05T15:50:31.831Z
+date: 2023-01-10T20:37:11.957Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -71,7 +71,7 @@ Endpoint position and orientation for reference angles, e.g. all angles being 0.
 
 The two parts are sufficient to calculate new endpoints with given actuator angles/positions.
 
-# Literature about canonical subproblems
+# Literature about Paden-Kahan / canonical subproblems
 
 * Paden's dissertation (available as pdf),describing 4 subproblems
 * Jose Pardos-Gotor: Screw Theory for Robotics. 4 additional subproblems called PG1...4
@@ -79,6 +79,7 @@ The two parts are sufficient to calculate new endpoints with given actuator angl
 * Elias, Wen: Canonical Subproblems..., 2022. Overview of additional subproblems, and description of 6 changed/new subproblems, e. g. extension to 3 or 4 intersecting cones.
 * https://en.wikipedia.org/wiki/Paden%E2%80%93Kahan_subproblems
 * An, H.S.; Seo, T.W.; Lee, J.W. Generalized solution for a sub-problem of inverse kinematics based on product of exponential formula
+* Murray/Li/Sastry book chapter 3.3.2 ff
 
 # Literature about screw theory
 
