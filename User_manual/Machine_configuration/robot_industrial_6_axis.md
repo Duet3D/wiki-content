@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2022-12-14T12:27:48.878Z
+date: 2023-01-10T00:27:16.103Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -40,9 +40,23 @@ Full orientation of a 6 axis robot will be described by using quaternions. G-Cod
 
 Currently not implemented is quaternion based segmentation, this would require a change in the main firmware code. Quaternion based rotations (slerp) have constant velocity and sound interesting for nonplanar printing or drilling, especially for B-Splines or Nurbs.
 
-# unsorted:
+# Screw solution with Paden-Kahan subproblems (PK)
 
-Configuration is made by defining the Denavit-Hartenberg parameters, see the wiki about DH.
+Currently, comparing to the DH example, there is one restriction: axes 1 and 2 must be at the same X Y positions, i. e. the axes must intersect (so no 70 offset in X direction). This restriction is to allow application of Paden-Kahan PK2 subproblem.
+
+The example is from the book of Pardos-Gotor, but for the properties of the DH example. The Matlab code from github was converted to C++ code and optimized (details about it on the firmware page).
+
+The Paden-Kahan (PK) subproblems are used in the order PK3-PK2-PK2-PK1 (Details about the PK subproblems on the screw theory page):
+* PK3 gives one or two solutions for axis 3
+* first PK2 gives one or two solutions for axes 1 and 2
+* second PK2 gives one or two solutions for axes 4 and 5
+* PK1 gives one solution for axis 6
+
+There are maximum of 2 * 2 * 2 * 1 = 8 solutions of the inverse kinematics calculation. When no solution is found for an angle, the nearest solution is returned.
+
+On a laptop, performance is about 3.5 microseconds to calculate the 8 solutions. (performance measuring on Duet tbd)
+
+# unsorted:
 
 Especially important is the identification of singularity areas, which must be avoided.
 
