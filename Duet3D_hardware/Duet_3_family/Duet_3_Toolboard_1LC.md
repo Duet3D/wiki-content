@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2023-01-10T13:42:44.621Z
+date: 2023-01-10T13:43:38.969Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -356,7 +356,7 @@ The firmware filename is Duet3Firmware_TOOL1LC.bin and this needs to be uploaded
 
 Update the firmware by using the M997 B# command, where # is the CAN address of the new board.
 
-Holding both buttons down as the bard is powered up will cause a factory reset. The CAN address is set back to default 121 and the bootloader requests firmware file Duet3Firmware_TOOL1LC.bin from the main board.
+Holding both buttons down as the board is powered up will cause a factory reset. The CAN address is set back to default 121 and the bootloader requests firmware file Duet3Firmware_TOOL1LC.bin from the main board.
 
 **CAUTION**! On version 0.6 Toolboards, the heater and fans will be turned on when the board is powered up unless valid firmware is loaded. This means that the heater and fans will be on during a firmware update. This isn't normally a problem unless you have a very fast hot end heater, because the firmware update process takes only a few seconds. However, **if the firmware update fails, the heater could be left on for an extended period of time**. Therefore, when updating firmware, you should either disconnect the heater, or watch the red LED carefully and be ready to turn power off if it doesn't resume flashing in sync with the Duet 3 Mainboard within a few seconds.
 
