@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-01-11T10:38:52.570Z
+date: 2023-01-12T10:00:56.096Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5199,7 +5199,7 @@ When the motor driver is enabled, the specified output port will be turned on at
 
 Note: after M569.7 is executed, the port will be initially off. Therefore, M569.7 should be executed before the motor is first enabled.
 
-## M569.8: Configure driver sense resistor and maximum current
+## M569.9: Configure driver sense resistor and maximum current
 
 ### Parameters
 
@@ -5215,7 +5215,7 @@ M569.8 P0.1 R0.075 S4.4   ; driver 1 on the main board has a 0.075 Ohm sense res
 
 ### Notes
 
-This command is available on boards running the STM32 port of RepRapFirmware (version 3.4.1RC1 and later), it can be used to inform the firmware of the TMC driver sense resistor and maximum current limit used by driver modules that have non standard values.
+This command is available on boards running the STM32 port of RepRapFirmware (version 3.4.2_102 and later), it can be used to inform the firmware of the TMC driver sense resistor and maximum current limit used by driver modules that have non standard values.
 
 ## M570: Configure heater fault detection
 
