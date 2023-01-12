@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-01-12T10:00:56.096Z
+date: 2023-01-12T10:16:36.925Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5210,7 +5210,7 @@ Note: after M569.7 is executed, the port will be initially off. Therefore, M569.
 ### Examples
 <br>
 <pre class="cblock">
-M569.8 P0.1 R0.075 S4.4   ; driver 1 on the main board has a 0.075 Ohm sense resistor and will have the maximum current setting limited to 4.4A
+M569.9 P0.1 R0.075 S4.4   ; driver 1 on the main board has a 0.075 Ohm sense resistor and will have the maximum current setting limited to 4.4A
 </pre>
 
 ### Notes
