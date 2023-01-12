@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-12T19:26:10.998Z
+date: 2023-01-12T19:31:50.909Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -35,6 +35,8 @@ In the first release, the following configurations will be available as robotTyp
 * CNC 5 axis AC or BC type, Prusa (Pentarod, Open5x) and CoreXY with 5 axes
 * 4 axis palletized robot
 * perhaps 5 bar parallel scara, polar, serial scara, colinear tripteron
+* serial scara
+* linear gantry with 5 axis rotary (see Pardos-Gotor second example)
 
 Stewart-Gough is postponed. It has a lot of degrees of freedom and is complex to solve.
 
@@ -52,7 +54,8 @@ Dividing into subproblems need the construction to be dividable by common points
 * axes being parallel to each other (PG4)
 * rotation about a single axis (PK1)
 
-PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones.
+PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones. Paden only defined subproblems for rotary axes, Pardos-Gotor added similar ones for linear axes and one additional for rotary ones.
+
 The PK subproblems 1 to 5 are explained in Wikipedia of the link mentioned below.
 There are tries to define subproblems without common points, like a generalized PK2. This will be implemented also, but will probably need more processing power (i. e. less performance).
 
@@ -74,7 +77,7 @@ The two parts are sufficient to calculate new endpoints with given actuator angl
 * Paden's dissertation (available as pdf),describing 4 subproblems
 * Kahan didn't disclose his results
 * Jose Pardos-Gotor: Screw Theory for Robotics. 4 additional subproblems called PG1...4
-* Pardos-Gotor Matlab code in https://github.com/DrPardosGotor/ScrewTheoryRobotics-KINEMATICS-Illustrated
+* Pardos-Gotor Matlab code in https://github.com/DrPardosGotor/ScrewTheoryRobotics-KINEMATICS-Illustrated which also includes two pdf documents with a part of the book, especially the cases of ABB IRB 120 6 axis and the cobot 7 axis IIWAR 820. The formulae are only in the book and in the Matlab code
 * Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2 for disjoint axes.
 * Elias, Wen: Canonical Subproblems..., 2022. Overview of additional subproblems, and description of 6 changed/new subproblems, e. g. extension to 3 or 4 intersecting cones.
 * https://en.wikipedia.org/wiki/Paden%E2%80%93Kahan_subproblems
