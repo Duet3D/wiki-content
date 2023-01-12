@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-10T21:14:36.832Z
+date: 2023-01-12T19:26:10.998Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -43,9 +43,9 @@ Stewart-Gough is postponed. It has a lot of degrees of freedom and is complex to
 Paden developed a method to divide the inverse kinematics problem into solvable parts called subproblems. It has the following properties
 * the subproblems are solvable by algorithms, without iterations
 * all possible solutions are found (up to 8 for a 6 axis robot)
-* basic procedure is to find points where part of the complete PoE formula can be eliminated and the rest solved
+* **basic procedure is to find points** where part of the complete PoE formula can be eliminated and the rest solved
 
-To allow Paden-Kahan, the mechanical configuration can support and ease the application of the subproblems. The following constructions will ease it:
+Dividing into subproblems need the construction to be dividable by common points or distances, e.g:
 * consecutive axes crossing at one point, e. g. spheric axes. For rotational (PK2) or translational (PG2) axes
 * rotations (PK3) or translations (PG1, PG3) to a given distance
 * part of the screw definition is chossing a point on the axis. This point can be choosen such that different axes share one point
@@ -54,12 +54,9 @@ To allow Paden-Kahan, the mechanical configuration can support and ease the appl
 
 PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones.
 The PK subproblems 1 to 5 are explained in Wikipedia of the link mentioned below.
+There are tries to define subproblems without common points, like a generalized PK2. This will be implemented also, but will probably need more processing power (i. e. less performance).
 
-# Pieper criterion
-
-The close form inverse kinematics are easier to solve, if consecutive axes cross or are parallel to each other. This is especially true for axes 4 to 6 of the 6 axis industrial robot, resulting in a spherical joint. It is also advantageous, if axes 1 to 3 are on one line (same X Y positions) and axes 2 and 3 are parallel.
-
-For some subproblems less restrictive formulae were developed for disjoint axes, but the formulae get more complicated and will probably need more performance to be solved.
+The crossing was also defined by the "Pieper criterion". Nearly all kinematics which follow the Pieper criterion are solvable by closed form subproblems.
 
 # C parameter
 Configuration has two parts:
