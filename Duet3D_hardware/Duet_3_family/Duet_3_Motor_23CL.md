@@ -2,25 +2,28 @@
 title: Duet 3 Expansion 1HCL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: false
-date: 2023-01-09T19:18:18.412Z
+date: 2023-01-12T16:34:36.473Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
 ---
 
-![Photograph of a Duet 3 1HCL board shown at an angle](/duet_boards/duet_3_can_expansion/duet_3_1hcl/1hcl_angle_4_wb_sm.png =x400)
+![Photograph of a Duet 3 Motor 23CL shown at an agle with the M8 connectors for power and CAN-FD coming out the top back of the motor](/duet_boards/duet_3_can_expansion/motor23cl/23cl_proto_s.png =500x)
 
 # Introduction
 
-The EXP1HCL board provides a high current Stepper motor driver, combined with multiple interfaces for position feedback and firmware to implement closed loop position control. In addition it has a number of peripheral inputs and outputs for functions such as sensing motor temperature, controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the Duet 3 Mainboard 6HC, Duet 3 expansion boards, and the tool distribution board). Multiple EXP1HCL boards can be daisy chained on the bus, with power (up to 48V) provided locally. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
+The Duet 3 Motor 23CL (M23CL) is a family of Closed loop, FAN-FD conncted Nema23 motors, fully integrated in to the Duet 3 ecosytem. They optionally integrate a brake to hold the motor in postion when power is off. Connection to the Duet 3 CAN-FD bus and power use industial M8 connectors. Multiple M23CLs can be connected to the bus, either via an M8 Y splitter or a distibution box.
 
-![Photograph of a Duet 3 1HCL board shown from above](/duet_boards/duet_3_can_expansion/duet_3_1hcl/1hcl_overhead_wb_sm.png =x500)
+Note the M23CL series are in active development and this documentation will be expanded as we confirm speicifics of each motor variant, along with bus distribution options.
+
 
 # Features
 
 ## Hardware specification
 
-|---|---|
+| | M23CL-56-2800B | M23CL-76-2800B
+|---|---|---|
+| **Motor Option** | Microchip ATSAME51G19A |
 | **Processor** | Microchip ATSAME51G19A |
 | **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard. Optional on-board CAN bus termination. |
