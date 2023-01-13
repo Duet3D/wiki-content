@@ -2,7 +2,7 @@
 title: Orthogonal axis compensation with M556
 description: 
 published: true
-date: 2023-01-13T23:26:13.619Z
+date: 2023-01-13T23:28:35.986Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-06T14:44:11.234Z
@@ -10,7 +10,7 @@ dateCreated: 2022-05-06T14:44:11.234Z
 
 # Introduction
 
-RepRapFirmware allows you to compensate for the fact that the X, Y, and Z axes of your machine may not have been assembled at perfect right angles. Ideally, your machine will be have been built perfectly square. This page tells you how to implement orthogonal axis compensation if you were not able to.
+RepRapFirmware allows you to compensate for the fact that the X, Y, and Z axes of your machine may not have been assembled at perfect right angles, using Gcode [M556](/User_manual/Reference/Gcodes/M556) for axis skew compensation. Ideally, your machine will be have been built perfectly square. This page tells you how to implement orthogonal axis compensation if you were not able to.
 
 # Original RRF method
 
