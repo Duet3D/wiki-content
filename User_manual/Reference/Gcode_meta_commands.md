@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2023-01-10T10:33:45.339Z
+date: 2023-01-13T13:55:22.854Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -297,7 +297,9 @@ else
     echo "no move passed to macro.g"
 ```
 
-When using a macro as custom gcode, do not use G, M, N or T as parameters in a custom 'G' gcode file. Do not use G, M or N as parameter in a custom 'M' gcode file.  There are no standard G or M commands that use these parameters and RRF will treat the parameter as being the start of the next command.
+You cannot use P as a parameter (as P is already used to reference the gcode file that is being called by M98)
+
+When using a macro as custom gcode, do not use G, M, N, or T as parameters in a custom 'G' gcode file. Do not use G, M, or N as parameter in a custom 'M' gcode file.  There are no standard G or M commands that use these parameters and RRF will treat the parameter as being the start of the next command.
 
 ## Array expressions
 
