@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-01-13T16:35:00.028Z
+date: 2023-01-13T16:37:46.488Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4441,13 +4441,13 @@ Currently, only RepRapFirmware, Marlin and nanoDLP emulations are supported.
 <br>
 <pre class="cblock">
 M556 S100 X0.7 Y-0.2 Z0.6
-M556
+M556 ; reports the axis compensation in use
 Axis compensations - XY: 0.00700, YZ: -0.00200, ZX: 0.00600
 </pre>
 
 ### Description
 
-This tells software the tangents of the angles between the axes of the machine obtained by printing then measuring a test part. 
+This tells software the tangents of the angles between the axes of the machine obtained by printing then measuring a test part. When used without parameters, reports the axis skew compensation factors in use.
 
 ### Notes
 
