@@ -2,8 +2,8 @@
 title: Duet3D Documentation
 description: Introduction to the Duet3D range of control electronics
 published: true
-date: 2021-12-13T14:28:32.357Z
-tags: 
+date: 2023-01-14T12:52:55.098Z
+tags: exp3hc
 editor: markdown
 dateCreated: 2021-04-20T11:08:57.551Z
 ---
@@ -23,7 +23,7 @@ Duet3D control [hardware](/Duet3D_hardware) is split into the [Duet 3 Family](/D
 Duet3D control hardware runs advanced firmware called [RepRapFirmware](/User_manual/RepRapFirmware). This runs directly on the microprocessors on Duet 2 and Duet 3 mainboards, along with Duet 3 expansion boards. RepRapFirmware is extremely configurable and flexible, supporting a wide range of machine kinematics, large numbers of axes, tools and ancillaries. RepRapFirmware is actively under development and so is constantly improving with new features added each release. See the [RepRapFirmware github project](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x) for all the recent changes.
 
 <!-- TODO add a Duet Software Framework Overview -->
-When using Duet 3 mainboards it is possible to connect a Single Board Computer (SBC) such as a Raspberry Pi directly to the Duet over a high speed SPI bus. With DuetSoftwareFramework running on the SBC, you can use a directly connected display to show the User interface, make use of the SBC's netwowking capabilities and make use of a powerful API to interface third partly applications and plugins as tightly as needed to the machine control flow.
+When using Duet 3 mainboards it is possible to connect a Single Board Computer (SBC) such as a Raspberry Pi directly to the Duet over a high speed SPI bus. With DuetSoftwareFramework running on the SBC, you can use a directly connected display to show the User interface, make use of the SBC's networking capabilities and make use of a powerful API to interface third-party applications and plugins as tightly as needed to the machine control flow.
 
 All Duet3D mainboards support networking and [Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual) provides a fully featured web browser based user interface that runs in all modern browsers. It is responsive and looks great on a phone, tablet, laptop, monitor or TV. DWC supports plugins that provide further extentability and customisation of the UI.
 
