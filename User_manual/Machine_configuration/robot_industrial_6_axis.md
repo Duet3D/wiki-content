@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-10T00:54:27.001Z
+date: 2023-01-15T11:55:03.410Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -57,6 +57,36 @@ There are maximum of 2 * 2 * 2 * 1 = 8 solutions of the inverse kinematics calcu
 Performance results: tbd
 
 An alternative to use PG4 with axes 2 and 3 will be tried. (tbd)
+
+# configuring gst(0), HST(0), M
+
+The names mean the same, are named differently in literature. It is meant a reference configuration, often when all angles are 0 or are in home position. The gst(0) is the transformation matrix T in this 0 position, containing the 3x3 rotation matrix and the 3x1 positions, as explained on the firmware page. gst(0) can be calculated by forward kinematics and if the axes are even (0 0 1 etc), is is often easy to calculate it by adding the arm lengths in the directions of the axes.
+
+Beginning with the base axes and 0,0,0 position, the screws are chained and multiplied with gst(0). Result is the end effector pose (orientation and position). This formula is valid for all axis angles and linear movements.
+
+When the DH parameters are set, gst(0) can be calculated from the properties, the home angles and the tool properties.
+
+# configuring axes and axis positions
+
+In screw theory, every axis is defined as screw, including rotation and translation. The properties differ for rotary and linear axes:
+* rotary: axis direction omega and a point q somewhere on the axis
+* linear: direction v of the movement
+
+omega, q and v are all 3-value vectors. omega is normalized.
+
+# configuring point
+
+Paden-Kahan is based on rules which uses common axis crossing points. The points need to be defined. The fastest calculation is if those points are identical to the points on the axes in the previous step.
+
+Example: for spherical axes 4, 5, 6, the point should be set to the point where the three axes cross. Point p is the end effector's pose, also called TCP or noap.
+
+To easily follow Pardos-Gotor code, the points are named as
+* k intersection of axis 1 and 2
+* r point on axis 3
+* f intersection of axes 4, 5 and 6
+* p end effector TCP
+
+The intersection of axes 1 and 2 will be tried to be lowered to non-intersecting axes, following the article by Yue-sheng/Ai-ping (see literature list on screw page).
 
 # unsorted:
 
