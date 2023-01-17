@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2022-10-25T17:37:49.755Z
+date: 2023-01-17T15:57:41.062Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -28,8 +28,8 @@ Note: the metal carriage and belt tensioner on the carriage adaptor plate is not
 ## Compatibility
 
 * Compatible with e3d Revo Micro with the screw top heatsink
-* Compatible with E3Dv6 hot end using custom heatsink (heatsink available as part of the kit).
-* If you already own a E3D Lite6 hot end, you will need to order a [heat break](https://e3d-online.com/v6-heat-break) to upgrade to a full V6 hotend using the custom heat sink.
+* Compatible with E3Dv6  threaded heatsink (https://e3d-online.com/products/v6-threaded-heatsink)
+* If you already own a E3D Lite6 hot end, you will need to order a [heat break](https://e3d-online.com/v6-heat-break) to upgrade to a full V6 hotend using the  threaded heatisnk
 * Smart Effector and Carriage adapters suit magnetic ball studs with M3 tails
 * Carriage Adapters suit carriages with 4 x M3 fixing holes in a 20mm square 
 * Compatible with 12V and 24V heaters, and 12V and 24V hot end fan power (jumper selectable, see note below)
