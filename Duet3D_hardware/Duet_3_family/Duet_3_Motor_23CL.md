@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: false
-date: 2023-01-17T14:41:39.131Z
+date: 2023-01-17T14:43:01.919Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -90,7 +90,7 @@ The first time the M23CL starts up it may request firmware from the Duet3d mainb
 
 Before the M23CL is connected to the CAN-FD bus, if it is powered, the STATUS (red) LED will be blinking rapidly. once it is connected (after any initial firmware update happens), it should settle down to a ~1Hz blink rate. If there are other blink patterns displayed see the [LED behaviour and error codes section of the CAN connection basics documentation] (/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes}
 
-Check that you can communicate with the 1HCL board, by sending:
+Check that you can communicate with the M23CL, by sending:
 
 `M115 B123`
 
@@ -102,7 +102,7 @@ Duet 3 expansion boards, tool boards and Motors have a bootstrap loader written 
 
 ## Updating the firmware
 
-The 1HCL board will be shipped with firmware loaded during production. You can  check the version loaded by sending
+The M23CL will be shipped with firmware loaded during production. You can check the version loaded by sending
 
 `M115 B123`
 
