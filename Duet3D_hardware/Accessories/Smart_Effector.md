@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2023-01-17T15:57:41.062Z
+date: 2023-01-17T15:59:37.016Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -29,7 +29,7 @@ Note: the metal carriage and belt tensioner on the carriage adaptor plate is not
 
 * Compatible with e3d Revo Micro with the screw top heatsink
 * Compatible with E3Dv6  threaded heatsink (https://e3d-online.com/products/v6-threaded-heatsink)
-* If you already own a E3D Lite6 hot end, you will need to order a [heat break](https://e3d-online.com/v6-heat-break) to upgrade to a full V6 hotend using the  threaded heatisnk
+* If you already own a E3D Lite6 hot end, you will need to order a [heat break](https://e3d-online.com/v6-heat-break) to upgrade to a full V6 hotend using the  threaded heatsink
 * Smart Effector and Carriage adapters suit magnetic ball studs with M3 tails
 * Carriage Adapters suit carriages with 4 x M3 fixing holes in a 20mm square 
 * Compatible with 12V and 24V heaters, and 12V and 24V hot end fan power (jumper selectable, see note below)
@@ -89,10 +89,7 @@ For those people who want to make parts that fit flush with the underside of the
 | 16 | Crimp pins for Microfit shells |  |
 | 12 | Crimp pins for JST PH shells |  |
 | 2 | Small ferrules for terminating heater wires | not needed if your Smart Effector uses a 2-pin Microfit connector for the heater instead of a terminal block - They are supplied with a terminal block by default |
-| 1 | M12 half nut | pitch is either 1.5 or 1.0, see the note on the heatsink |
-| 1 | M12 plastic or fibre washer, see the note on the heatsink |  |
 | 1 | 18mm or 20mm round spirit level |  |
-| 1 | E3Dv6 threaded heatsink | Note this was produced for Duet3D by e3d, originally with a 1.0 pitch, the more recent e3dv6 threaded heatsinks are 1.5mm pitch. If supplied with a plastic nut the fibre washer is not required |
 | 6 | Magnetic ball studs with M3 tails | Optional depending on which kit you purchase, Also available from [https://www.magballarms.com/](https://www.magballarms.com/){target=_blank} |
 | 6 | Delta printer arms with magnets in the end and socket to fit the ball studs. The ones with machined Delrin ends are best. | Optional depending on which kit you purchase, Different lengths available from [https://www.magballarms.com/](https://www.magballarms.com/){target=_blank} |
 
@@ -120,6 +117,7 @@ For those people who want to make parts that fit flush with the underside of the
 
 | Qty | Item | Supplier |
 |:---|:---|
+| 1 | Reve micro, e3dv6 with threaded heatsink or compatible hot end.
 | 12 | M3 plain washers | eBay |
 | 12 | M3 nuts (nyloc if you prefer) | eBay |
 
