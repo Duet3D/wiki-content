@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: false
-date: 2023-01-17T14:43:01.919Z
+date: 2023-01-17T14:43:32.248Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -122,7 +122,7 @@ Send M997 B## to carry out a firmware update, the bootloader will request the Du
 
 ## Calibrating the Encoder
 
-for mre details on this please see the section on [calibrating the magnetic encoder](/User_manual/Tuning/Duet_3_1HCL_tuning#calibrating-magnetic-encoders) on the closed loop tuning page, its writted for the magnetic encoder on the 1HCL but the same theory applies.
+For more details on this please see the section on [calibrating the magnetic encoder](/User_manual/Tuning/Duet_3_1HCL_tuning#calibrating-magnetic-encoders) on the closed loop tuning page, its written for the magnetic encoder on the 1HCL but the same theory applies.
 
 The calibration procedure measures magnet offsets and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. if course, if you change or remove and reattach the M23CL internal control board, you must re-run this tuning move.
 
