@@ -2,19 +2,19 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: false
-date: 2023-01-17T14:43:32.248Z
+date: 2023-01-17T15:51:14.282Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
 ---
 
-![Photograph of a Duet 3 Motor 23CL shown at an agle with the M8 connectors for power and CAN-FD coming out the top back of the motor](/duet_boards/duet_3_can_expansion/motor23cl/23cl_proto_s.png =500x)
+![Photograph of a Duet 3 Motor 23CL shown at an angle with the M8 connectors for power and CAN-FD coming out the top back of the motor](/duet_boards/duet_3_can_expansion/motor23cl/23cl_proto_s.png =500x)
 
 # Introduction
 
-The Duet 3 Motor 23CL (M23CL) is a family of Closed loop, FAN-FD conncted Nema23 motors, fully integrated in to the Duet 3 ecosytem. They optionally integrate a brake to hold the motor in postion when power is off. Connection to the Duet 3 CAN-FD bus and power use industial M8 connectors. Multiple M23CLs can be connected to the bus, either via an M8 Y splitter or a distibution box.
+The Duet 3 Motor 23CL (M23CL) is a family of Closed loop, FAN-FD connected Nema23 motors, fully integrated in to the Duet 3 ecosystem. They optionally integrate a brake to hold the motor in position when power is off. Connection to the Duet 3 CAN-FD bus and power use industrial M8 connectors. Multiple M23CLs can be connected to the bus, either via an M8 Y splitter or a distribution board/box.
 
-Note the M23CL series are in active development and this documentation will be expanded as we confirm speicifics of each motor variant, along with bus distribution options.
+Note the M23CL series are in active development and this documentation will be expanded as we confirm specifics of each motor variant, along with bus distribution options.
 
 
 # Features
@@ -40,10 +40,10 @@ Note the M23CL series are in active development and this documentation will be e
 | **On-board stepper driver** | 1 x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} ||||
 | **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. ||||
 | **Encoder Inputs** | Hall effect 14 bit resolution ||||
-| **Temperature monitoring** | 1 on board thermistor and processor temperature avaiable for temperature monitoring. ||||
+| **Temperature monitoring** | 1 on board thermistor and processor temperature available for temperature monitoring. ||||
 
 ^1^ In open loop mode up to 256 microstepping can be configured
-^2^ See the prototpye dimensions below for the prototpye M23CL-56-2800B
+^2^ See the prototype dimensions below for the prototype M23CL-56-2800B
 
 ## Firmware notes
 
@@ -64,7 +64,7 @@ Note the M23CL series are in active development and this documentation will be e
 
 ## Connection Diagram
 
-[![Image showingthe connections on a Duet 3 Motor 23CL](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connection.png =600x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connection.png){target=_blank}
+[![Image showing the connections on a Duet 3 Motor 23CL](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connection.png =600x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connection.png){target=_blank}
 
 # Encoders
 
@@ -76,7 +76,7 @@ The M23CL incorporates a hall effect position sensor sensing a magnet on the mot
 
 See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
 
-All boards in the system must have different CAN addresses. Duet 3 Mootor 23CLs are shipped set to a default CAN address of 123. They will also revert to 123 if you use the can reset button (not exposed on prototpyes). Therefore, if you have more than one new M23CL or tother Cut3d CAN-FD connectted expansion board, only one of them must be powered up and connected to the CAN bus at a time so the address can be changed form the default. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that M23CL, you can connect the next one; and so on. See the section: [Set the CAN address](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL#set-the-can-address) below for how to change the default address.
+All boards in the system must have different CAN addresses. Duet 3 Mootor 23CLs are shipped set to a default CAN address of 123. They will also revert to 123 if you use the can reset button (not exposed on prototypes). Therefore, if you have more than one new M23CL or other Duet3d CAN-FD connected expansion board, only one of them must be powered up and connected to the CAN bus at a time so the address can be changed from the default. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that M23CL, you can connect the next one; and so on. See the section: [Set the CAN address](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL#set-the-can-address) below for how to change the default address.
 
 ## Startup Time
 
@@ -122,9 +122,9 @@ Send M997 B## to carry out a firmware update, the bootloader will request the Du
 
 ## Calibrating the Encoder
 
-For more details on this please see the section on [calibrating the magnetic encoder](/User_manual/Tuning/Duet_3_1HCL_tuning#calibrating-magnetic-encoders) on the closed loop tuning page, its written for the magnetic encoder on the 1HCL but the same theory applies.
+For more details on this please see the section on [calibrating the magnetic encoder](/User_manual/Tuning/Duet_3_1HCL_tuning#calibrating-magnetic-encoders) on the closed loop tuning page, it's written for the magnetic encoder on the 1HCL but the same theory applies.
 
-The calibration procedure measures magnet offsets and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. if course, if you change or remove and reattach the M23CL internal control board, you must re-run this tuning move.
+The calibration procedure measures magnet offsets and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change or remove and reattach the M23CL internal control board, you must re-run this tuning move.
 
 ### Running the calibration procedure
 
@@ -136,7 +136,7 @@ M569.6 P##.# V2 ; Where P##.# is the driver address to tune
 
 Once this has been performed successfully, the values will be written to non-volatile memory and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V2 command again, or checked by running the M569.6 ... V3 command.
 
-The firmware will output the highest deviation of expected positon vs encoder position recorded. 
+The firmware will output the highest deviation of expected position vs encoder position recorded. 
 
 *To follow, acceptable ranges for deviation of position*
 
@@ -163,13 +163,11 @@ The M23CL will autoset the correct settings for closed loop mode. In open loop m
 
 # Sample configuration examples
 
-**CAUTION** before using these examples check the datasheet and user manual of the motor, encoder (and optionally brake) you are using. Especially: check compatibility of signal voltages.
-
 ## Adding a M23CL
 
 [M569.1](/User_manual/Reference/Gcodes/M569_1) is used to configure the closed loop driver.
 
-Here's an sample excerpt from a config.g file for RRF 3.5 to drive the X and Y motors from M23CLs configured at CAN addresses 70 and 71.
+Here's a sample excerpt from a config.g file for RRF 3.5 to drive the X and Y motors from M23CLs configured at CAN addresses 70 and 71.
 
 ```
 M569.1 P70.0 T3 E2:4 R100 I0 D0 ; Configure the M23CL at CAN address 70
@@ -182,7 +180,7 @@ M350 X32 Y32 ; set steps/mm to 32 for open loop mode operation
 M92 X160 Y160 ; steps/mm for a 20 tooth gt2 pulley for open loop operation
 ```
 
-Note the initial PID values show will need to be [tuned to the particular motion system](https://docs.duet3d.com/en/User_manual/Tuning/Duet_3_1HCL_tuning).
+Note the initial PID values will need to be [tuned to the particular motion system](https://docs.duet3d.com/en/User_manual/Tuning/Duet_3_1HCL_tuning).
 
 In contrast to usual drivers, the closed loop axes can have their holding current set to zero using M917, with negligible detrimental effect. Whilst a normal driver may slip if it's holding current is set to zero, a closed loop driver will notice that it has slipped an apply a current to return the drive to it's intended position. Setting a holding current of zero will also mean less current is used, so the motor runs cooler. However, a holding current can still be set using M917 if desired.
 
@@ -215,7 +213,7 @@ Where the "motorovertemp.g" macro can have whatever actions are appropriate. Thi
 
 ## Motor Brake Control
 
-Some versions of the M23CL have a motor holding brake solenoid fitted (all prototpyes, and model numbers ending in "B") 
+Some versions of the M23CL have a motor holding brake solenoid fitted (all prototypes, and model numbers ending in "B") 
 
 If a brake is present the M23CL will disable it when the motors are enabled (M17 and enable it when the motors are disabled (M18).
 
@@ -225,4 +223,4 @@ If a brake is present the M23CL will disable it when the motors are enabled (M17
 
 ### Prototpye
 
-* The intial M23CL witha 54mm motor body, brake and an 8mm shaft.
+* The initial M23CL with a 54mm motor body, brake and an 8mm shaft.
