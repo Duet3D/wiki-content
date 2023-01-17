@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: false
-date: 2023-01-12T16:34:57.879Z
+date: 2023-01-17T11:03:32.872Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -21,109 +21,57 @@ Note the M23CL series are in active development and this documentation will be e
 
 ## Hardware specification
 
-| | M23CL-56-2800B | M23CL-76-2800B
-|---|---|---|
-| **Motor Option** | Microchip ATSAME51G19A |
-| **Processor** | Microchip ATSAME51G19A |
-| **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit |
-| **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard. Optional on-board CAN bus termination. |
-| **On-board stepper driver** | 1 x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
-| **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. Maximum motor current 6.3A peak per phase (4.45A RMS). |
-| **Encoder Inputs** | Quadrature or SPI bus |
-| **Thermistor/PT1000 inputs** | 2 x thermistor/PT1000 inputs. This is intended to allow for motor temperature monitoring, potentially coupled with a cooling system controlled by one of the outputs. |
-| **Medium current outputs** | 2 x medium-current (2.5A max recommended) outputs at V_FUSED or V_BRAKE voltage, with PWM capability and built-in flyback diodes. Optionally provide V_BRAKE at a different voltage from V_FUSED, to allow (for example) running the stepper motor at 48V and the brake at 24V. |
-| **Inputs/Outputs** | 2 x 3.3V-level PWM capable output (3mA max), 2 x digital inputs, protected against over-voltage. Example use: endstop switches. |
+| |M23CL-56-2800B|M23CL-56-2800|M23CL-76-2800B|M23CL-76-2800|
+|:---|:---|:---|:---|:---|
+| **Holding Torque** | 12.6 Kg.cm || 18.9 Kg.cm||
+| **Detent Torque** | 0.4 Kg.cm || 0.86 Kg.cm||
+| **Full Step Angle^1^** | 1.8deg ||||
+| **Max current/phase** | 2.8A || 2.8A ||
+| **Rotor Inertia** | 0.3Kg/cm^2 || 0.48Kg/cm^2 ||
+| **Motor Section Length** | 56mm || 76mm||
+| **Total Length** | TBC^2^ || TBC||
+| **Brake** | 24V, 1.5Nm| No Brake fitted| 24V, 1.5Nm| No Brake fitted|
+| **Ambient Temperature**|-20C - +50C|||
+| **Max Motor & Controller Temperature**|85C|||
+| **Input voltage** | 12V to 48V ||||
+| **Processor** | Microchip ATSAME51G19A ||||
+| **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit ||||
+| **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard. Optional on-board CAN bus termination. ||||
+| **On-board stepper driver** | 1 x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} ||||
+| **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. ||||
+| **Encoder Inputs** | Hall effect 14 bit resolution ||||
+| **Temperature monitoring** | 2 on board thermistors and processor temperature avaiable for temperature monitoring. ||||
 
-## Operating limits
-
-|:--|:--|
-| **Input voltage** | 12V to 50V |
-| **VIN connector rated current** | 25A maximum, or fused limit (whichever is lower) |
-| **Fuses** | 5A for V_FUSED (max 10A), 5A for V_BRAKE |
-| **Stepper driver** | Up to 6.3A peak current per phase (4.45A RMS per phase; max. standstill current 4.45A) |
-| **Medium current outputs** | OUT0/1 up to 2.5A each |
-| **Inputs/Outputs** | Inputs are 30V-tolerant |
-| **12V current limit** | 200mA |
-| **5V and 3.3V current limit** | 100mA total on 5V and 3.3V |
-
-## Compatible motors
-
-Use motors with 1.8 or more degrees per step. **Do not use 0.9deg motors**. The positioning accuracy depends on the resolution of the encoder, not on the degrees/step of the motor.
-
-The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second.
-
-## Compatible Encoders
-
-RRF 3.4 supports quadrature motor shaft encoders only. RRF 3.5 also supports Duet3D magnetic shaft encoders and linear composite encoders.
-
-### Quadrature motor shaft encoders
-
-Stepper motors can be purchased with integral optical shaft encoders. It is also possible to buy add-on quadrature shaft encoders, which are typically mounted on the back of dual-shaft stepper motors. The resolution is specified in counts or pulses per motor revolution. **There must be an integer number of output pulses from the encoder per 4 full steps**. For example, a 1.8deg/step motor (200 full steps/rev) could have an encoder with 1000cpr (20 pulses per 4 full steps), 2000 cpr (40 pulses per 4 full steps) or 2500 cpr (50 pulses per 4 full steps).
-
-### Duet3D magnetic motor shaft encoders
-
-The Duet3D magnetic shaft encoder is a small board that mounts on the back of the stepper motor. It is supplied with a diametrically-magnetised disc magnet, which must be glued to the centre of the end of the shaft at the back of the motor. A jig should be used to centre the magnet accurately while the glue sets.
-
-### Linear composite encoder
-
-A linear composite encoder comprises a linear quadrature encoder that tracks position on a linear axis (for example the Renishaw LM10IA or LM10IB) and a Duet3D magnetic shaft encoder. The shaft encoder handles motor commutation, the linear encoder is used to close the loop.
+^1^ In open loop mode up to 256 microstepping can be configured
+^2^ See the prototpye dimensions below for the prototpye M23CL-56-2800B
 
 ## Firmware notes
 
-* Compatible RepRapFirmware versions: RRF 3.4 and later
-* Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
-
-## Open source
-
-Importantly Duets are Open:
-
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Expansion-1HCL/blob/main/LICENSE).
-* All hardware [source files](https://github.com/Duet3D/Duet3-Expansion-1HCL/) are available on Github.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+* Compatible RepRapFirmware versions: RRF 3.4.4 and later
+* General Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
 # Physical properties
 
 ## Dimensions
 
-[![Image showing the key dimensions of the Duet 3 1HCL](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_dimensions.png  =500x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_dimensions.png){target=_blank}
+[![Image showing the key dimensions of the Duet 3 motor 23CL prototype](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v0.2_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v0.2_dimensions.png){target=_blank}
 
 ## 3D model
 
-A STEP 3D model of the Duet 3 Expansion 1HCL is available [on github](https://github.com/Duet3D/Duet3-Expansion-1HCL/blob/main/v1.0/Duet3_Exp_1HCL.step){target=_blank}.
+*to follow*
 
 # Wiring
 
-## Wiring Diagram
+## Connection Diagram
 
-[![Image showing all the connections on a Duet 3 1HCL to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png){target=_blank}
+[![Image showingthe connections on a Duet 3 Motor 23CL](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connection.png =600x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connection.png){target=_blank}
 
 # Encoders
 
-## Quadrature encoder
+## Built in encoder
 
-The 1HCL supports a quadrature encoder connected to the Quadrature Input interface. This works with common 5V, 1000CPR-2500CPR optical encoders that are frequently supplied with closed loop stepper motors.   (One example is the [17E1K-05](https://www.omc-stepperonline.com/p-series-nema-17-closed-loop-stepper-motor-48ncm-67-99oz-in-with-encoder-1000ppr-4000cpr-17e1k-05)), however there are many other examples).
 
-### Connecting a Quadrature Encoder
-
-Quadrature encoders have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output.
-
-*note the index signal is not currently used*
-
-If the encoder has a single ended output the signal lines connect to the 1HCL input. A to A_INPUT, B to B_INPUT . 5V or VCC to the +5V and ground to ground. The Z or N can be left disconnected.
-
-If the encoder has a differential output then connect the A+, B+ to the signal inputs on the 1HCL. 5V/VCC to 5V and ground to ground. The A-,B- and Z+Z-/N+N- can be left disconnected.
-
-Here is a picture (courtesy of LDO motors) which shows a single ended and differential encoder output:
-
-![Image showing both single ended and differential encoder connection schemes](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_encoders_01.png =600x)
-
-## Magnetic Encoder
-
-*This support is still experimental in RRF 3.4*
-
-The 1HCL supports SPI connected encoders (initially just the AS5047D sensing an on motor shaft magnet will be supported). Duet3D will supply this encoder on a Nema17 form factor PCB, designed to sense a diametrically magnetised magnet glued to the back of the motor shaft.
-
-*More details to follow, including mounting pictures once further testing is completed*
+The Motor 23CL incorporates a AS5047D sensing an on motor shaft magnet. 
 
 # Commissioning
 
