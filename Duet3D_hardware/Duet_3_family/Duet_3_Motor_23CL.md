@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: false
-date: 2023-01-17T11:03:32.872Z
+date: 2023-01-17T12:06:20.760Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -77,13 +77,13 @@ The Motor 23CL incorporates a AS5047D sensing an on motor shaft magnet.
 
 See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
 
-All boards in the system must have different CAN addresses. 1HCL boards are shipped set to a default CAN address of 123. They will also revert to 123 if you use the jumper to force the bootloader to request new firmware. Therefore, if you have more than one new 1HCL board, only one of them must be powered up and connected to the CAN bus. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that board, you can connect the next one; and so on.
+All boards in the system must have different CAN addresses. Duet 3 Mootor 23CLs are shipped set to a default CAN address of 123. They will also revert to 123 if you use the can reset button (not exposed on prototpyes). Therefore, if you have more than one new M23CL or tother Cut3d CAN-FD connectted expansion board, only one of them must be powered up and connected to the CAN bus at a time so the address can be changed form the default. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that M23CL, you can connect the next one; and so on. See the section: [Set the CAN address](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) below for how to change the default address.
 
 ## Startup Time
 
 It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards
 
-`G4 S1   ;wait for expansion boards to start`
+`G4 S2   ;wait for expansion boards to start`
 
 ## Testing communication
 
