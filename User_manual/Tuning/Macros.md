@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2022-06-20T08:42:27.172Z
+date: 2023-01-18T15:57:30.068Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -181,6 +181,8 @@ From RRF3.1.0 and later the file /sys/daemon.g can be used to execute regular ta
 This can be used in combination with [Conditional Gcode](/User_manual/Reference/Gcode_meta_commands) to check the object model to look for a particular condition, and then take an action.
 
 Caution must be taken not to start a loop that takes a long time to complete, without having a `G4 P500` or similar command to hand control back to the main process every half a second or so.
+
+You can't directly edit a daemon.g file that is running on a Duet. To edit, right click on daemon.g in the SD card /sys folder and rename it to something else. This will stop the daemon.g file from running, and allow editing. Once the file has been edited, rename it back to daemon.g.
 
 ## runonce.g
 
