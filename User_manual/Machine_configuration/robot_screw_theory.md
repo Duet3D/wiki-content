@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-19T08:28:06.273Z
+date: 2023-01-19T09:36:13.754Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -78,7 +78,7 @@ There are tries to define subproblems without common points, like a generalized 
 The crossing was also defined by the "Pieper criterion". Nearly all kinematics which follow the Pieper criterion are solvable by closed form subproblems.
 
 # C parameter
-Configuration has two parts:
+Configuration has three parts:
 
 Direction of an axis and a point anywhere on the axis for revolute joints and a direction of the axis for prismatic/linear joints. Currently, two types of joints can be configured:
 * revolute/rotational with 3 values of omega and 3 values of q. From omega and v, a v is calculated. omega are orthonormal axis values of the rotating axis. q is a point on the axis.
@@ -86,7 +86,9 @@ Direction of an axis and a point anywhere on the axis for revolute joints and a 
 
 Endpoint position and orientation for reference angles, e.g. all angles being 0. This is called M. M is a transformation matrix as described on the firmware page with a 3x3 rotation matrix and a 1x3 position vector, put together in a 4x4 matrix. It contains the orientation and position of the endpoint for given actuator angles (revolute joints) / positions (linear joints).
 
-The two parts are sufficient to calculate new endpoints with given actuator angles/positions.
+Crossing points of axes and endpoint position. This can probably be calculated from the other paramters or from the DH parameters if they are provided, also.
+
+The three parts are sufficient to calculate new endpoints with given actuator angles/positions and the inverse kinematics.
 
 # Literature about Paden-Kahan / canonical subproblems
 
