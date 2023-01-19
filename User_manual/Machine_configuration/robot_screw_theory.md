@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-19T20:01:49.618Z
+date: 2023-01-19T20:18:22.335Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -66,7 +66,7 @@ Simplifications are important, because they allow elimination of PoE elements to
 |PG3, PK5|like PK3 with linear axes| |
 |PG4|two parallel rotational axes| |
 |PK2 Yue-sheng|like PK2 without crossing axes| |
-|PK2 Chen|3 axis: 1 perpendicular to two parallel| |
+|PK2 Chen, Hong|3 axis: 1 perpendicular to two parallel| |
 |PK2 Dimovski|3 axis: 1 + two parallel| |
 
 
@@ -101,7 +101,7 @@ books
 
 articles
 * 1 free + 2 parallel: Dimovski et al, Algorithmic approach to geometric...: one axis plus 2 parallel axes, without perpendicular requirement of first axis of Chen et al. PK2 modified
-* 1 perpend + 2 parallel (1, 2/3, 4/5, 6): Hong et al - Algorithm and Application of Inverse Kinematics
+* 1 perpend + 2 parallel (1, 2/3, 4/5, 6): Hong et al - Algorithm and Application of Inverse Kinematics. Chen/Zhu/Zhang - Improved Inverse Kinematics Algorithm
 * Elias, Wen: Canonical Subproblems..., 2022. Overview of additional subproblems, and description of 6 changed/new subproblems, e. g. extension to 3 or 4 intersecting cones. Offers a good overview of previous articles about subproblems
 * PK2 extended disjoint: Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2 for disjoint axes.
 * An, H.S.; Seo, T.W.; Lee, J.W. Generalized solution for a sub-problem of inverse kinematics based on product of exponential formula. Joining PK2 and PK3 into one subproblem.
