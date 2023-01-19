@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-19T08:27:18.671Z
+date: 2023-01-19T08:28:06.273Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -58,16 +58,16 @@ Simplifications are important, because they allow elimination of PoE elements to
 
 |-|-|
 |PK1|one axis, two points|simplifictation: point on axis|
-|PK2|two crossing axes||
+|PK2|two crossing axes| |
 |PK3|one axis, given distance|simplification: distance point on axis|
 |PK4|like PK2, but distance to two points|?|
 |PG1|like PK1 with linear axis|simplification: any point on planes|
-|PG2|like PK2 with linear axes||
-|PG3, PK5|like PK3 with linear axes||
-|PG4|two parallel rotational axes||
-|PK2 Yue-sheng|like PK2 without crossing axes||
-|PK2 Chen|3 axis: 1 perpendicular to two parallel||
-|PK2 Dimovski|3 axis: 1 + two parallel||
+|PG2|like PK2 with linear axes| |
+|PG3, PK5|like PK3 with linear axes| |
+|PG4|two parallel rotational axes| |
+|PK2 Yue-sheng|like PK2 without crossing axes| |
+|PK2 Chen|3 axis: 1 perpendicular to two parallel| |
+|PK2 Dimovski|3 axis: 1 + two parallel| |
 
 
 PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones. Paden only defined subproblems for rotary axes, Pardos-Gotor added similar ones for linear axes and one additional for rotary ones.
