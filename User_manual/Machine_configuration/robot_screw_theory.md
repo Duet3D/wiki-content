@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-19T08:11:19.441Z
+date: 2023-01-19T08:13:03.780Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -76,7 +76,7 @@ The two parts are sufficient to calculate new endpoints with given actuator angl
 
 * Paden's dissertation (available as pdf),describing 4 subproblems
 * Kahan didn't disclose his results
-* Jose Pardos-Gotor: Screw Theory for Robotics. 4 additional subproblems called PG1...4
+* Jose Pardos-Gotor: Screw Theory for Robotics. 4 additional subproblems called PG1...4, PG1...3 for translational (analogue to PK1...PK3), PG4 for parallel rotational axes
 * Pardos-Gotor Matlab code in https://github.com/DrPardosGotor/ScrewTheoryRobotics-KINEMATICS-Illustrated which also includes two pdf documents with a part of the book, especially the cases of ABB IRB 120 6 axis and the cobot 7 axis IIWAR 820. The formulae are only in the book and in the Matlab code
 * Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2 for disjoint axes.
 * Elias, Wen: Canonical Subproblems..., 2022. Overview of additional subproblems, and description of 6 changed/new subproblems, e. g. extension to 3 or 4 intersecting cones. Offers a good overview of previous articles about subproblems and Matlab code in https://github.com/rpiRobotics/linear-subproblem-solutions
