@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-19T09:36:13.754Z
+date: 2023-01-19T09:38:15.118Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -57,7 +57,7 @@ Dividing into subproblems need the construction to be dividable by common points
 Simplifications are important, because they allow elimination of PoE elements to calculate angles.
 
 |-|-|
-|PK1|one axis, two points|simplifictation: point on axis|
+|PK1|one axis, two points|simplification: point on axis|
 |PK2|two crossing axes| |
 |PK3|one axis, given distance|simplification: distance point on axis|
 |PK4|like PK2, but distance to two points|?|
@@ -84,7 +84,7 @@ Direction of an axis and a point anywhere on the axis for revolute joints and a 
 * revolute/rotational with 3 values of omega and 3 values of q. From omega and v, a v is calculated. omega are orthonormal axis values of the rotating axis. q is a point on the axis.
 * translational/linear with omega being 3 values with 0 each, and v being 3 values of the direction of the axis
 
-Endpoint position and orientation for reference angles, e.g. all angles being 0. This is called M. M is a transformation matrix as described on the firmware page with a 3x3 rotation matrix and a 1x3 position vector, put together in a 4x4 matrix. It contains the orientation and position of the endpoint for given actuator angles (revolute joints) / positions (linear joints).
+Endpoint position and orientation for reference angles, e.g. all angles being 0. This is called Gst(0) or HSt(0) or M. Gst(0) is a transformation matrix as described on the firmware page with a 3x3 rotation matrix and a 1x3 position vector, put together in a 4x4 matrix. It contains the orientation and position of the endpoint for given actuator angles (revolute joints) / positions (linear joints). Often all angles being 0 degrees or the home positions are taken as base for calculation of Gst(0).
 
 Crossing points of axes and endpoint position. This can probably be calculated from the other paramters or from the DH parameters if they are provided, also.
 
