@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-19T09:38:15.118Z
+date: 2023-01-19T09:40:53.247Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -91,6 +91,8 @@ Crossing points of axes and endpoint position. This can probably be calculated f
 The three parts are sufficient to calculate new endpoints with given actuator angles/positions and the inverse kinematics.
 
 # Literature about Paden-Kahan / canonical subproblems
+
+With the exception of Pardos-Gotor's book, all the following literature was available free, being Open Access, source code (e.g. on github) or as pre-printed versions.
 
 * Paden's dissertation (available as pdf),describing 4 subproblems
 * Kahan didn't disclose his results
