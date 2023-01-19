@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-19T11:17:11.077Z
+date: 2023-01-19T11:25:37.735Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -100,11 +100,11 @@ books
 * Lynch/Park Modern Robotics preprint 2017. Not about Paden-Kahan, but much about screw theory
 
 articles
-* Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2 for disjoint axes.
-* Elias, Wen: Canonical Subproblems..., 2022. Overview of additional subproblems, and description of 6 changed/new subproblems, e. g. extension to 3 or 4 intersecting cones. Offers a good overview of previous articles about subproblems and Matlab code in https://github.com/rpiRobotics/linear-subproblem-solutions
-* https://en.wikipedia.org/wiki/Paden%E2%80%93Kahan_subproblems with formulae PK1 to PK3 (draft for PK 4, 5)
-* An, H.S.; Seo, T.W.; Lee, J.W. Generalized solution for a sub-problem of inverse kinematics based on product of exponential formula. Joining PK2 and PK3 into one subproblem.
 * Dimovski et al, Algorithmic approach to geometric...: one axis plus 2 parallel axes, without perpendicular requirement of first axis of Chen et al. PK2 modified
+* Elias, Wen: Canonical Subproblems..., 2022. Overview of additional subproblems, and description of 6 changed/new subproblems, e. g. extension to 3 or 4 intersecting cones. Offers a good overview of previous articles about subproblems
+* Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2 for disjoint axes.
+* An, H.S.; Seo, T.W.; Lee, J.W. Generalized solution for a sub-problem of inverse kinematics based on product of exponential formula. Joining PK2 and PK3 into one subproblem.
+* https://en.wikipedia.org/wiki/Paden%E2%80%93Kahan_subproblems with formulae PK1 to PK3 (draft for PK 4, 5)
 
 dissertations
 * Paden's dissertation (available as pdf),describing 4 subproblems
@@ -114,3 +114,4 @@ source code
 * Pardos-Gotor Matlab code in https://github.com/DrPardosGotor/ScrewTheoryRobotics-KINEMATICS-Illustrated which also includes two pdf documents with a part of the book, especially the cases of ABB IRB 120 6 axis and the cobot 7 axis IIWAR 820. The formulae are only in the book and in the Matlab code
 * Lynch, Park https://github.com/NxRLab/ModernRobotics
 * Corke Robotics Toolbox https://petercorke.com/toolboxes/robotics-toolbox/
+* Elias source for article with Matlab code: https://github.com/rpiRobotics/linear-subproblem-solutions
