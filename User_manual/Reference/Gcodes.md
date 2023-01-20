@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-01-13T16:37:46.488Z
+date: 2023-01-20T14:22:43.560Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6291,9 +6291,9 @@ When Y and V are driven by independent motion systems and executing moves indepe
 
 None
 
-## Description
+### Description
 
-This command is used in print files when multiple movemenbt systems are being used (see the M596 command). It causes all motion systems to conmplete all queued movements and execute no further instructions until they have all reached this command and are ready to proceed.
+This command is used in print files when multiple movemenbt systems are being used (see the M596 command). It causes all motion systems to complete all queued movements and execute no further instructions until they have all reached this command and are ready to proceed.
 
 ## M600: Filament change pause
 
