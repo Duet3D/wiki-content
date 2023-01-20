@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-19T20:26:55.471Z
+date: 2023-01-20T08:36:07.274Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -109,6 +109,9 @@ articles
 
 article, using dual quaternions
 * Chen et al - Solution of an Inverse Kinematics Problem using Dual Quaternions
+
+articles CNC 5 axis (for all with PPPRR)
+* Yang, Altintas - Generalized Kinematics of 5-Axis serial machines
 
 dissertations
 * Paden's dissertation (available as pdf),describing 4 subproblems
