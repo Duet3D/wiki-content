@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2022-12-06T18:18:53.314Z
+date: 2023-01-20T23:51:52.121Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -270,7 +270,7 @@ You must be on a recent Debian/Ubuntu release (`bullseye`/`bionic` respectively)
 
 SAM-BA is available for Windows and Linux.
 
-* Download and install SAM-BA version 2.17 from [Microchip](http://aem-origin.microchip.com/en-us/development-tool/SAM-BA-IN-SYSTEM-PROGRAMMER)
+* Download and install SAM-BA version 2.17 from [Microchip](http://www.microchip.com/en-us/development-tool/SAM-BA-IN-SYSTEM-PROGRAMMER)
 * Load SAM-BA. It usually detects the correct COM port automatically.
   * For Duet WiFi/Ethernet, select **at91sam4e8-ek**. For Maestro, select **at91sam4s8-ek**. Press **Connect**. A connection error will be reported if the wrong board is selected.
 
