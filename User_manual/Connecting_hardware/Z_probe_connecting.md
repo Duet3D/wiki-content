@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2022-12-16T18:45:25.270Z
+date: 2023-01-21T00:02:44.396Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -610,4 +610,4 @@ M402                     ; retract probe
 
 ## TH3D EZABL
 
-See the connection and configuration guide on the [TH3D site](https://www.th3dstudio.com/hc/).
+See the connection and configuration guide on the [TH3D site](https://support.th3dstudio.com/helpcenter/duet-board-setup-information/).
