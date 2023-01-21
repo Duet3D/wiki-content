@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-20T08:54:39.878Z
+date: 2023-01-21T07:09:41.398Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -12,6 +12,7 @@ dateCreated: 2023-01-01T09:48:16.157Z
 > work in progress
 {.is-info}
 
+Screw theory will not be explained here, because Wikipedia, books and scientific articles can explain it much better than me (see the literature links below for recommendations). The following information provides what is needed to give an overview and configure the kinematics.
 
 Screw Theory, also called Product of Exponentials, PoE, is an alternative to Denavit-Hartenberg, DH. DH is the most used method, but screw has some advantages:
 * setup is easier, because less frames and axis definitions are necessary
@@ -20,6 +21,9 @@ Screw Theory, also called Product of Exponentials, PoE, is an alternative to Den
 * the closed form avoids iterating problems with big distances. The question whether a pose is reachable can be decided fast
 * force/torque and trajectory planning are included in the theory with similar methods as for kinematics calculations
 * probably a speedup in calculation of inverse kinematics
+
+disadvantage:
+* application of subproblems require special setups of the axes being intersecting or parallel. Some configurations cannot be calculated, but scientific research tries to solve those unsolvable problems.
 
 # Inverse kinematics
 
@@ -92,10 +96,11 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 
 # Literature about Paden-Kahan / canonical subproblems
 
-With the exception of Pardos-Gotor's and Murray/Li/Sastry books, all the following literature was available free, being Open Access, source code (e.g. on github) or as pre-printed versions.
+With the exception of Pardos-Gotor's and Murray/Li/Sastry books, all the following literature was available free, being Open Access, source code (e.g. on github) or as pre-printed versions. I especially recommend buying the smaller, less expensive Pardos-Gotor book.
 
 books
-* Jose Pardos-Gotor: Screw Theory for Robotics. 4 additional subproblems called PG1...4, PG1...3 for translational (analogue to PK1...PK3), PG4 for parallel rotational axes
+* Jose Pardos-Gotor: Screw Theory for Robotics (about 200 pages). 4 additional subproblems called PG1...4, PG1...3 for translational (analogue to PK1...PK3), PG4 for parallel rotational axes
+* Jose Pardos-Gotor: Screw Theory in Robotics (about 280 pages): I don't know its contents compared to the other one. It is very expensive.
 * Murray/Li/Sastry book chapter 3.3.2 ff
 * Lynch/Park Modern Robotics preprint 2017. Not about Paden-Kahan, but much about screw theory
 
