@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-21T09:05:02.142Z
+date: 2023-01-21T09:11:48.517Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -71,7 +71,7 @@ This type allows modeling like the DH model with an X offset of 70 between axis 
 
 # configuring gst(0), HST(0), M
 
-The names mean the same, are named differently in literature. It is meant a reference configuration, often when all angles are 0 or are in home position. The gst(0) is the transformation matrix T in this 0 position, containing the 3x3 rotation matrix and the 3x1 positions, as explained on the firmware page. gst(0) can be calculated by forward kinematics and if the axes are even (0 0 1 etc), is is often easy to calculate it by adding the arm lengths in the directions of the axes.
+The names mean the same, are named differently in literature. It is meant a reference configuration, often when all angles are 0 or are in home position. The gst(0) is the transformation matrix T in this 0 position, containing the 3x3 rotation matrix and the 3x1 positions, as explained on the firmware page. gst(0) can be calculated by forward kinematics.
 
 Beginning with the base axes and 0,0,0 position, the screws are chained and multiplied with gst(0). Result is the end effector pose (orientation and position). This formula is valid for all axis angles and linear movements.
 
