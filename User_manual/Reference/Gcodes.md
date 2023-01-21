@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-01-20T14:22:43.560Z
+date: 2023-01-21T11:49:13.707Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5223,8 +5223,9 @@ Supported for drivers attached to:
 ### Parameters
 
 * **Pn.n** Motor CAN board address (if applicable) and driver number
-* **C"port"** Port name of the brake control port. **The port must be on the same CAN board as the driver.** The CAN address does not need to be specified in the port name, but if it is then it must be the same as the driver CAN address. In RRF3.5 and later the delay between brake on and motor off is set to the default value unless the S parameter is present.
-* **Snnn** (RRF 3.5 and later only) Delay in milliseconds between de-energising the brake solenoid (to activate the brake) and disabling the driver when M18 or M84 is used to turn off the motor. This is to allow the brake to engage fully before the motor curent is turned off.
+* **C"port"** Port name of the brake control port. **The port must be on the same CAN board as the driver.** The CAN address does not need to be specified in the port name, but if it is then it must be the same as the driver CAN address. In RRF3.5 and later, when this parameter is present the delay between brake on and motor off is set to the default value unless the S parameter is present.
+* **Snnn** (optional, RRF 3.5 and later only) Delay in milliseconds between de-energising the brake solenoid (to activate the brake) and disabling the driver when M18 or M84 is used to turn off the motor. This is to allow the brake to engage fully before the motor current is turned off.
+* **Vnn** (optional, supported in RRF 3.5 and later on boards with variants that accept 48V VIN) Brake voltage. If the VIN voltage is or rises above this value, PWM will be used to reduce the average brake voltge to this value. Caution: use this option only in conjunction with a port that supports PWM! All Duet 3 OUT ports support PWM.
 
 ### Examples
 <br>
@@ -5240,11 +5241,13 @@ Note: after M569.7 is executed, the port will be initially off. Therefore, M569.
 
 ## M569.9: Configure driver sense resistor and maximum current
 
+*Supported by the STM port of RRF only*
+
 ### Parameters
 
 * **Pn.n** Motor CAN board address (if applicable) and driver number
-* **Rnnnn** Driver current sense resistor value in Ohms
-* **Snnnn** Driver maximum current limit in Amps
+* **Rnnnn** Driver current sense resistor value in ohms
+* **Snnnn** Driver maximum current limit in amperes
 
 ### Examples
 <br>
