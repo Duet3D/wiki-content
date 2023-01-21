@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-21T09:11:48.517Z
+date: 2023-01-21T09:14:50.560Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -97,7 +97,7 @@ To easily follow Pardos-Gotor code, the points are named as
 * f intersection of axes 4, 5 and 6
 * p end effector TCP
 
-The intersection of axes 1 and 2 will be tried to be lowered to non-intersecting axes, following the article by Yue-sheng/Ai-ping (see literature list on screw page).
+The point names will be used in the object model later.
 
 # unsorted:
 
