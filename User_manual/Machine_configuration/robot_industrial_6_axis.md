@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-15T11:55:03.410Z
+date: 2023-01-21T08:59:53.720Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -31,7 +31,6 @@ which sets a sample robot, the same which is used as example in the document abo
 
 6 axis robots are capable to control all 6 degrees of freedom (6DOF), but they have the difficulty that some positions and orientations are in so-called singularities. More about orientations and singularities are in the firmware document.
 
-
 # orientation
 
 Full orientation of a 6 axis robot will be described by using quaternions. G-Code ABCD are the real and 3 imaginary numbers in this order. 6 axis robot can also operated in AC or BC mode. G-Code AC or BC commands will be translated into the full orientations of the robot. Internally, all orientations are stored as rotation information as part of a transformation matrix with full information of all three coordination axes.
@@ -40,11 +39,15 @@ Full orientation of a 6 axis robot will be described by using quaternions. G-Cod
 
 Currently not implemented is quaternion based segmentation, this would require a change in the main firmware code. Quaternion based rotations (slerp) have constant velocity and sound interesting for nonplanar printing or drilling, especially for B-Splines or Nurbs.
 
-# Screw solution with Paden-Kahan subproblems (PK)
+# 6Axis_type1
 
-Currently, comparing to the DH example, there is one restriction: axes 1 and 2 must be at the same X Y positions, i. e. the axes must intersect (so no 70 offset in X direction). Axis 3 intersects with the spherical axes 4 to 6, as is the case with the DH example. This restrictions allow application of Paden-Kahan subproblems in closed form without any iterations.
+Paden-Kahan is applicable if some restrictions are met.
 
-The example is from the book of Pardos-Gotor, but for the properties of the DH example. The Matlab code from github was converted to C++ code and optimized (details about it on the firmware page).
+Type 1:
+* axis 1 and 2 intersect, i. e. they meet at one point
+* axes 4 to 6 intersect, i. e. they build a spheric hinge
+
+This differs from the DH example, where axis 1 and 2 have an X offset of 70.
 
 The Paden-Kahan (PK) subproblems are used in the order PK3-PK2-PK2-PK1 (Details about the PK subproblems on the screw theory page):
 * PK3 gives one or two solutions for axis 3
@@ -54,9 +57,14 @@ The Paden-Kahan (PK) subproblems are used in the order PK3-PK2-PK2-PK1 (Details 
 
 There are maximum of 2 * 2 * 2 * 1 = 8 solutions of the inverse kinematics calculation. When no solution is found for an angle, the nearest solution is returned. Less than 8 solutions probably always means singularity or near singularity situations. (to be verified)
 
-Performance results: tbd
+Performance results: on 2 GHz laptop 30 microseconds for all solutions.
 
-An alternative to use PG4 with axes 2 and 3 will be tried. (tbd)
+# 6Axis_type2
+
+Type 2 will be different with respect to axes 1 to 3:
+* axis 1 is arbitrary
+* axis 2 and 3 are parallel
+* axes 4 to 6 intersect (i. e. spheric)
 
 # configuring gst(0), HST(0), M
 
