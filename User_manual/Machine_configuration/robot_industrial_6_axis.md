@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-21T08:59:53.720Z
+date: 2023-01-21T09:05:02.142Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -41,10 +41,9 @@ Currently not implemented is quaternion based segmentation, this would require a
 
 # 6Axis_type1
 
-Paden-Kahan is applicable if some restrictions are met.
-
 Type 1:
 * axis 1 and 2 intersect, i. e. they meet at one point
+* axis 3 is arbitrary positioned
 * axes 4 to 6 intersect, i. e. they build a spheric hinge
 
 This differs from the DH example, where axis 1 and 2 have an X offset of 70.
@@ -59,12 +58,16 @@ There are maximum of 2 * 2 * 2 * 1 = 8 solutions of the inverse kinematics calcu
 
 Performance results: on 2 GHz laptop 30 microseconds for all solutions.
 
+The algorithm follows Pardos-Gotor, Wikipedia and other sources. The calculation order is 3 by PK3 - 1/2 by PK2 - 4/5 by PK2 - 6 by PK1.
+
 # 6Axis_type2
 
 Type 2 will be different with respect to axes 1 to 3:
 * axis 1 is arbitrary
 * axis 2 and 3 are parallel
 * axes 4 to 6 intersect (i. e. spheric)
+
+This type allows modeling like the DH model with an X offset of 70 between axis 1 and 2. The algorithm is implemented following Dimovski et al.
 
 # configuring gst(0), HST(0), M
 
