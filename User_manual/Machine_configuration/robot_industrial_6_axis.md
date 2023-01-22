@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-22T17:24:25.160Z
+date: 2023-01-22T17:30:26.633Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -74,6 +74,8 @@ This type is like the DH example:
 * axis 1 is arbitrary (but do not intersect or parallel with axis 2)
 * axis 2 and 3 are parallel
 * axes 4 to 6 intersect (i. e. spheric)
+
+Differing from figure 3 of the Dimovski article, axis 2 and 3 planes need not to be the same plane, they only need to be parallel (i.e. there can be a Y offset between axis 4 and 1).
 
 This type allows modeling like the DH model with an X offset of 70 between axis 1 and 2. The algorithm is implemented following Dimovski et al. The order of calculation is:
 axis 1 with PK2Dim - 2/3 with PK2Dim/PG4, 4/5 with PK2, 6 with PK1.
