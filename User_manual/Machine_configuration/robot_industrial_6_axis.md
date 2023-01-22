@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-01-22T09:33:50.876Z
+date: 2023-01-22T09:35:36.374Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -71,7 +71,7 @@ The algorithm follows Pardos-Gotor, Wikipedia and other sources. The calculation
 # 6Axis_type2
 
 This type is like the DH example:
-* axis 1 is arbitrary
+* axis 1 is arbitrary (but do not intersect or parallel with axis 2)
 * axis 2 and 3 are parallel
 * axes 4 to 6 intersect (i. e. spheric)
 
