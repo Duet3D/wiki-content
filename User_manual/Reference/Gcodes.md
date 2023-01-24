@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-01-21T11:49:13.707Z
+date: 2023-01-24T16:35:24.917Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -835,27 +835,63 @@ The **K parameter** is applicable to all G30 commands. It is the Z probe number,
 
 ### Parameters
 
+### Tabs {tabset}
+
+#### RepRapFirmware v3.3 and later
+
 * **Pnnn** Trigger value
 * **Xnnn** Probe X offset^1^
 * **Ynnn** Probe Y offset^1^
-* **U,V,W,A,B,C...nnn** Probe Offsets for all axes except Z^1^ (RRF >=3.3beta2)
+* **U,V,W,A,B,C...nnn** Probe Offsets for all axes except Z^1^
 * **Znnn** Trigger Z height
-* **Cnnn** Temperature coefficient^2^ (RRF <= 3.3beta1)
-* **Tnnn** Temperature coefficient^2^ (RRF >= 3.3beta2)
+* **Tnnn** Temperature coefficient^2^
 * **Snnn** Calibration temperature^2^
-* **Tnnn** (RRF 1.17 and later, removed in RRF3) Z probe type to which these parameters apply, defaults to the current Z probe type as defined by M558 P parameter.
-* **Knnn** (RRF3) Selects the Z probe number. If there is no K parameter then the current Z probe number is used. The current Z probe number is 0 at startup.
-* **Hnnn** (RRF3) Selects the sensor number to use for temperature compensation when the C and S parameters are used.
+* **Knnn** Selects the Z probe number. If there is no K parameter then the current Z probe number is used. The current Z probe number is 0 at startup.
+* **Hnnn** Selects the sensor number (defined by M308) to use for temperature compensation when the S and T parameters are used.^2^
 
 ^1^X and Y offsets of the Z probe relative to the print head (i.e. the position when the empty tool is selected) can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X and Y offset.
 
-^2^Optional parameters 'S' (temperature in °C at which the specified Z parameter is correct, default is current temperature) and 'C' (temperature coefficient of Z parameter in mm/°C, default zero) ('T' in RRF >=3.3beta2) can be set. This is useful for probes that are affected by temperature. In RRF2 the bed temperature reading is used. In RRF3 you must specify which temperature sensor to use in the H parameter.
+^2^Optional parameters 'S' (temperature in °C at which the specified Z parameter is correct, default is current temperature) and 'T' (temperature coefficient of Z parameter in mm/°C, default zero). This is useful for probes that are affected by temperature.  In RRF3 you must specify which temperature sensor to use in the 'H' parameter.
+
+#### RepRapFirmware v3.0 to v3.2
+
+* **Pnnn** Trigger value
+* **Xnnn** Probe X offset^1^
+* **Ynnn** Probe Y offset^1^
+* **Znnn** Trigger Z height
+* **Cnnn** Temperature coefficient^2^
+* **Snnn** Calibration temperature^2^
+* **Knnn** Selects the Z probe number. If there is no K parameter then the current Z probe number is used. The current Z probe number is 0 at startup.
+* **Hnnn** Selects the sensor number (defined by M308) to use for temperature compensation when the C and S parameters are used.^2^
+
+^1^X and Y offsets of the Z probe relative to the print head (i.e. the position when the empty tool is selected) can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X and Y offset.
+
+^2^Optional parameters 'S' (temperature in °C at which the specified Z parameter is correct, default is current temperature) and 'C' (temperature coefficient of Z parameter in mm/°C, default zero). This is useful for probes that are affected by temperature. In RRF3 you must specify which temperature sensor to use in the 'H' parameter.
+
+#### RepRapFirmware v2.x and earlier
+
+* **Pnnn** Trigger value
+* **Xnnn** Probe X offset^1^
+* **Ynnn** Probe Y offset^1^
+* **Znnn** Trigger Z height
+* **Cnnn** Temperature coefficient^2^
+* **Snnn** Calibration temperature^2^
+* **Tnnn** (RRF 1.17 and later) Z probe type to which these parameters apply, defaults to the current Z probe type as defined by M558 P parameter.^2^
+
+^1^X and Y offsets of the Z probe relative to the print head (i.e. the position when the empty tool is selected) can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X and Y offset.
+
+^2^Optional parameters 'S' (temperature in °C at which the specified Z parameter is correct, default is current temperature) and 'C' (temperature coefficient of Z parameter in mm/°C, default zero). This is useful for probes that are affected by temperature. In RRF2 the bed temperature reading is used.
 
 ### Examples
 <br>
 <pre class="cblock">
 G31 P500 Z2.6
 G31 X16.0 Y1.5
+
+; RRF 3.3 and later example of probe with thermistor and temperature compensation
+M558 P8 C"io2.in" H1 F1000 T6000 A3              				  ; Prusa PindaV2 Endstop
+M308 S2 P"temp2" A"Pinda V2" Y"thermistor" T100000 B3950  ; Prusa PindaV2 Thermistor
+G31 P500 X23 Y5 Z1.1 S21 H2 T0.02                         ; Nozzle offset - Smooth Sheet
 </pre>
 
 ### Order dependency
