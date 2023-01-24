@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-01-24T12:28:30.073Z
+date: 2023-01-24T12:40:37.627Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -277,30 +277,30 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | TEMP 1 | temp1 | |
 | ^^ | TEMP 2 | temp2 | |
 | ^^ | TEMP 3 | temp3 | |
-| Input/Outputs | IO_0 | io0&#46;in | Endstops, Z probes, filament monitors etc (note io0 pins common with PanelDue header) |
+| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc (note io0 pins common with PanelDue header) |
 | ^^ | ^^ | io0.out | ^^ |
-| ^^ | IO_1 | io1&#46;in | ^^ |
+| ^^ | IO_1 | io1.in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
-| ^^ | IO_2 | io2&#46;in | ^^ |
+| ^^ | IO_2 | io2.in | ^^ |
 | ^^ | ^^ | io2.out | ^^ |
-| ^^ | IO_3 | io3&#46;in | ^^ |
+| ^^ | IO_3 | io3.in | ^^ |
 | ^^ | ^^ | io3.out | ^^ |
-| ^^ | IO_4 | io4&#46;in | ^^ |
+| ^^ | IO_4 | io4.in | ^^ |
 | ^^ | ^^ | io4.out | ^^ |
-| ^^ | IO_5 | io5&#46;in | ^^ |
+| ^^ | IO_5 | io5.in | ^^ |
 | ^^ | ^^ | io5.out | ^^ |
-| ^^ | IO_6 | io6&#46;in | ^^ |
+| ^^ | IO_6 | io6.in | ^^ |
 | ^^ | ^^ | io6.out | ^^ |
-| ^^ | IO_7 | io7&#46;in | ^^ |
+| ^^ | IO_7 | io7.in | ^^ |
 | ^^ | ^^ | io7.out | ^^ |
-| ^^ | IO_8 | io8&#46;in | ^^ |
+| ^^ | IO_8 | io8.in | ^^ |
 | ^^ | ^^ | io8.out | ^^ |
 | SPI CS | SPI_DB | spi.cs0 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
 | ^^ | ^^ | spi.cs1 | ^^ |
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
 | PanelDue | PanelDue | spi.cs4 | External SD card CS, note Io0 pins shared with io0 header.|
-| ^^ | ^^ | io0&#46;in | ^^ |
+| ^^ | ^^ | io0.in | ^^ |
 | ^^ | ^^ | io0.out | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
 
