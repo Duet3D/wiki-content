@@ -2,13 +2,11 @@
 title: Gcode link test page
 description: 
 published: true
-date: 2023-01-24T12:30:33.069Z
+date: 2023-01-24T12:32:09.340Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-20T14:33:44.987Z
 ---
-
- <iframe src="/User_manual/Reference/Gcodes/G0" title="G0"></iframe> 
 
 # Gcode link test page
 [G0](/User_manual/Reference/Gcodes/G0)
