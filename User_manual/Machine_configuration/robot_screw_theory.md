@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-21T07:09:41.398Z
+date: 2023-01-24T08:00:36.692Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -94,15 +94,16 @@ Crossing points of axes and endpoint position. This can probably be calculated f
 
 The three parts are sufficient to calculate new endpoints with given actuator angles/positions and the inverse kinematics.
 
-# Literature about Paden-Kahan / canonical subproblems
+# Literature about screw theory, Paden-Kahan / canonical subproblems
 
-With the exception of Pardos-Gotor's and Murray/Li/Sastry books, all the following literature was available free, being Open Access, source code (e.g. on github) or as pre-printed versions. I especially recommend buying the smaller, less expensive Pardos-Gotor book.
+With the exception of most of the books, all the following literature was available free, being Open Access, source code (e.g. on github) or as pre-printed versions. I especially recommend buying the smaller, less expensive Pardos-Gotor book.
 
 books
 * Jose Pardos-Gotor: Screw Theory for Robotics (about 200 pages). 4 additional subproblems called PG1...4, PG1...3 for translational (analogue to PK1...PK3), PG4 for parallel rotational axes
 * Jose Pardos-Gotor: Screw Theory in Robotics (about 280 pages): I don't know its contents compared to the other one. It is very expensive.
 * Murray/Li/Sastry book chapter 3.3.2 ff
 * Lynch/Park Modern Robotics preprint 2017. Not about Paden-Kahan, but much about screw theory
+* McCarthy: Introcution to Theoretical kinematics. Has some wasted pages, but is very affordable and provides good summaries about many topics including quaternions and closed chains.
 
 articles
 * 1 free + 2 parallel: Dimovski et al, Algorithmic approach to geometric...: one axis plus 2 parallel axes, without perpendicular requirement of first axis of Chen et al. PK2 modified
