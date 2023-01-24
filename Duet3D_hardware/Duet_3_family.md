@@ -2,7 +2,7 @@
 title: Duet 3 Family
 description: 
 published: true
-date: 2022-06-29T19:43:56.273Z
+date: 2023-01-24T09:31:36.318Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:14:53.360Z
@@ -22,6 +22,7 @@ dateCreated: 2021-06-03T16:14:53.360Z
 [Duet 3 Expansion 1HCL](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL)
 [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC)
 [Duet 3 Tool Distribution Board](/Duet3D_hardware/Duet_3_family/Duet_3_Tool_Distribution_Board)
+[Duet 3 Motor 23CL](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL)
 [Using the Sammy-C21 development board with Duet 3](/Duet3D_hardware/Duet_3_family/Using_the_Sammy-C21_development_board_with_Duet_3)
 
 
