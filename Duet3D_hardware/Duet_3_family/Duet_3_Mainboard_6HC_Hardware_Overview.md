@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2022-12-13T14:26:48.650Z
+date: 2023-01-24T12:28:30.073Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -45,7 +45,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **High current output and/or thermistor expansion** | 20+ via CAN-FD-connected expansion boards |
 | **PT100 and thermocouple daughterboard support** | Supports 2 x daughterboards (4 channels) on board. 50+ via CAN-FD-connected expansion boards. |
 | **LCD support** | HDMI touch screen attached to the SBC. PanelDue and 12864 directly connected displays also supported. |
-| **LED strip support** | RGB/RGBW Neopixel or DotStar, note these LEDs can draw a lot of current to external 5V supply is required to drive more than ~8, see the operating limits below. |
+| **LED strip support** | RGB/RGBW Neopixel or DotStar. Note: LEDs can draw a lot of current so external 5V supply is required to drive more than ~8, see the operating limits below. |
 | **Other expansion** | A huge variety supported via CAN-FD-connected expansion boards |
 
 
