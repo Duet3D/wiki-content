@@ -2,14 +2,15 @@
 title: Defining tool and Z-probe offsets
 description: 
 published: true
-date: 2022-12-21T16:43:09.601Z
+date: 2023-01-24T16:02:33.824Z
 tags: 
 editor: markdown
 dateCreated: 2022-12-21T16:43:09.601Z
 ---
 
 # Defining tool and Z-probe offsets
-In RepRapFirmware all tool offsets, Z-probe offsets and machine limits are relative to the Head Reference Point (hereafter referred to as the HRP). The HRP must be somewhere on the print carriage so that it moves with the nozzle and (if present) the Z-probe, but other than that it can be wherever you want. Therefore, before you specify any tool or Z-probe offsets r the machine limits, you should define where the HRP is on your machine.
+
+In RepRapFirmware all tool offsets, Z-probe offsets and machine limits are relative to the Head Reference Point (hereafter referred to as the HRP). The HRP is a conceptual point from which you reference all other points. The HRP must be somewhere on the print carriage so that it moves with the nozzle and (if present) the Z-probe, but other than that it can be wherever you want. Therefore, before you specify any tool or Z-probe offsets or the machine limits, you should define where the HRP is on your machine.
 
 ## Typical choices for the HRP:
 
@@ -23,3 +24,24 @@ In RepRapFirmware all tool offsets, Z-probe offsets and machine limits are relat
 * Set the M208 axis limits to be the values that you want the HRP to be limited to, and (for axes using endstop sensors) give you the desired values when you home those axes. RRF will constrain the location of the HRP (not the nozzle) to remain within those limits.
 * If the carriage or tool pickup has a Z probe, set the Z probe offsets in the G31 command to be the offsets of the Z probe relative to the HRP; except that the Z vaue in the G31 command is the trigger height, which can be thought of as the negative of the Z probe offset.
 * In your G10 tool offset setting commands (these G10 commands have axis letter parameters and a P parameter but no L parameter), specify the offsets of the nozzle or cutting head relative to the HRP.
+
+## Example usage
+
+Here is an example using a tool changing machine with a probe tool on the tool pickup, and two other swappable tools, T0 and T1:
+* Z probe is chosen as the HRP because the z probe is on the tool pickup and so is independent of any tool and is unlikely to change, tools may be swapped out.
+* Z probe offsets are therefore 0,0,0
+* Tool offsets are measured from the Z probe. For example T0 = 10,20,-8   T1 = 11,21,-10
+
+So when no tool is selected and the machine is moved to 0,0,0:
+machine coordinates = 0,0,0
+user coordinates = 0,0,0
+
+When T0 is selected, and the machine is moved to 0,0,0
+machine coordinates = -10,-20,8
+user coordinates = 0,0,0
+
+Similarly, when T1 is selected, and the machine is moved to 0,0,0
+machine coordinates = -11,-21,10
+user coordinates = 0,0,0
+
+Note the change in sign because if the nozzle is 10mm further in +X than the HRP, the machine coordinates need to be at -10 to put the nozzle on X0.
