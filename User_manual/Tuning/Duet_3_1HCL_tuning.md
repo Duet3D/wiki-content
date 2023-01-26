@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2022-12-14T12:51:32.800Z
+date: 2023-01-26T09:54:16.406Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -191,6 +191,8 @@ As discussed in the above 'PID Control Systems' section, the PID controller can 
 
 Always run PID tuning with the motor current set to the highest value you intend to use. Increasing motor current after tuning the PID values may result in oscillation.
 
+The tuning propcess described here is aimed at achieving maximum positioning accuracy (error between the commanded position and the motor position reduced as fast as possible). However, operating the motor in this way may be noisy because maximum current will be used to resolve small errors quickly. You may prefer to run with more relaxed PID settings to make the motor run more quietly, at the expense of a slightly greater lag between the commanded and actual position (but this lag may still be less than you would get in open loop mode). To do this, simply choose a lower P value (e.g. 30% or 50% of the value that gives the best rise time without oscillation), then tune the D and I values as normal.
+
 ### What do I Need to Do?
 
 Possibly nothing! The 1HCL expansion board comes with PID parameters out of the box which may work sufficiently well for a basic use cases (P=100, I=0, D=0). However, the real power of closed-loop control comes when the PID controller is tuned for your specific setup. The sections below contain more details on how to tune your PID controller to achieve better results.
@@ -199,7 +201,7 @@ On average, tuning a PID controller results in an order of magnitude better perf
 
 ### Automatic Tuning
 
-This feature will be added in a future release.
+This feature is present in the version 3.5 closed loop plugin for Duet Web Control.
 
 ### Manual Tuning
 
