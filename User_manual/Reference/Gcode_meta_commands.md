@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2023-01-13T13:55:22.854Z
+date: 2023-01-26T18:59:46.153Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -359,7 +359,7 @@ The following functions are supported, with their conventional meanings:
 
 | Function name | Signature | Notes |
 |:---|:---|
-| abs | float->float or int->int | |
+| abs | float->float or int->int | Returns the absolute value of the operand |
 | acos | float->float | Result is in radians |
 | asin | float->float | Result is in radians |
 | atan | float->float | Result is in radians |
@@ -370,20 +370,21 @@ The following functions are supported, with their conventional meanings:
 | exists | name  -> bool | Yields true if 'name' is a valid variable or object model element name and is not null (available in RRF 3.3beta3 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
 | fileexists | filename  -> bool | Yields true if the file 'filename' exists (available in RRF 3.5beta1 and later). |
 | floor | float->int or float->float | Result is int if it fits in a 32-bit signed integer, else float |
-| isnan | float->bool | |
+| isnan | float->bool | Returns true if the operand is a NaN (Not-a-Number) e.g. sqrt(-1) |
 | max | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
 | min | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
-| mod | (int, int)->int or (float, float)->float | |
+| mod | (int, int)->int or (float, float)->float | Returns the remainder from dividing the first operand by the second operand |
 | radians | float->float | Converts degrees to radians |
 | random | int->int | Operand must >= 1. Returns a pseudo-random integer in the range 0 to one less than the operand. |
 | sin | float->float | Argument must be in radians |
-| sqrt | float->float | |
+| sqrt | float->float | Returns the square root of the operand |
 | tan | float->float | Argument must be in radians |
+| vector | (int, T) -> array of T | (RRF 3.5beta2 and later) Returns an array with the number of elements equal to the first operand and each element a copy of the second operand
 
 # Notes
 
 ## Line Endings
-* If you are writing macros in a windows OS, set the EOL to be Linux-style (LF only). Windows default (CR LF) written macros work, but error messages count the CR and LF as two lines, so all line numbers were multiplied by 2.
+* If you are writing macros in a windows OS, set the EOL to be Linux-style (LF only). Windows default (CR LF) written macros work, but in some versions of RRF error messages count the CR and LF as two lines, so all line numbers were multiplied by 2.
 
 ## daemon.g
 
