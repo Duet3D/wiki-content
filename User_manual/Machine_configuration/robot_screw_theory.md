@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-24T08:00:36.692Z
+date: 2023-01-26T09:35:08.425Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -112,6 +112,7 @@ articles
 * PK2 extended disjoint: Yue-sheng, Ai-ping: Extension of the Second Paden-Kahan Sub-problem..., 2008. Extension of PK2 for disjoint axes.
 * An, H.S.; Seo, T.W.; Lee, J.W. Generalized solution for a sub-problem of inverse kinematics based on product of exponential formula. Joining PK2 and PK3 into one subproblem.
 * https://en.wikipedia.org/wiki/Paden%E2%80%93Kahan_subproblems with formulae PK1 to PK3 (draft for PK 4, 5)
+* Bertold Bongardt - An analysis of the dual-complex unit circle with applications to line geometry
 
 article, using dual quaternions
 * Chen et al - Solution of an Inverse Kinematics Problem using Dual Quaternions
