@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2023-01-09T16:33:32.735Z
+date: 2023-01-26T17:05:15.791Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -61,7 +61,6 @@ The normal action taken when processing an event is to attempt to run the macro 
 
 If the macro file is not found then default processing occurs as shown in the table. Where "Pause print" is shown, if the print is already paused or pausing then no additional pause is added.
 
-
 | Event type & macro file name | D macro parameter | P macro parameter | B macro parameter | Default action if macro file not found | Log level |
 |:---|:---|
 | heater-fault | Heater # | Heater fault type code | CAN address of board controlling the heater | Faulty heater turned off (before the event is raised). Pause print using pause.g and inform user via message box | Error |
@@ -71,6 +70,20 @@ If the macro file is not found then default processing occurs as shown in the ta
 | driver-warning | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Inform user via console and continue | Warning |
 
 Once processing is completed the event is removed from the queue. If an event of a particular type in in the queue and that condition happens again on the same device, a second event of the same type/device is not added to the queue.
+
+## Handling events in macros
+As described above events call specific macros (e.g. filament-error.g) and pass macro parameters to those macros.
+
+For more information about macro prameters see:
+https://docs.duet3d.com/en/User_manual/Reference/Gcode_meta_commands#macro-parameters
+
+as an example:
+fialment-error.g could contain:
+
+`echo "filament error from filament monitor: "^{param.B}^"."^{param.D}^" : "^{param.P}^" ,"^{param.S}`
+
+to print the particular issue.
+
 
 # Changes in behaviour since RRF 3.3
 
