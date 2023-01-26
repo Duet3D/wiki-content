@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-26T09:54:36.641Z
+date: 2023-01-26T09:55:55.327Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -60,7 +60,7 @@ Dividing into subproblems need the construction to be dividable by common points
 
 Simplifications are important, because they allow elimination of PoE elements to calculate angles.
 
-PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones. PK1...5 are algorithms for rotational axes, PG1...3 for prismatic analogue to PK1...3, and PG4 is a special case of PK2. Several authors  generalized PK2 (original PK2: two intersecting axes) to include parallel or skew axes.
+PK denote Paden-Kahan subproblems, PG Pardos-Gotor ones. PK1...5 are algorithms for rotational axes, PG1...3 for prismatic analogue to PK1...3, and PG4 is a special case of PK2. Several authors  generalized PK2 (original PK2: two intersecting axes) to include parallel or skew axes.
 
 The crossing was also defined by the "Pieper criterion". Nearly all kinematics which follow the Pieper criterion are solvable by closed form subproblems.
 
