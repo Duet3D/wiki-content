@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-01-24T16:35:24.917Z
+date: 2023-01-26T12:25:36.534Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1321,9 +1321,9 @@ Disables stepper motors and allows axes to move 'freely.' Stepper motors can be 
 ### Parameters
 
 * *This command can be used without any additional parameters.*
-* **Snnn** Output style: 0 = text (default), 2 = JSON
+* **Snnn** Output style: 0 = text (default), 2 = JSON, 3 = Verbose JSON
 * **P"path"** Folder to list, defaults to the standard folder for GCode files (0:/gcodes in RepRapFirmware)
-* **Rnnn** Number of files to skip, default 0
+* **Rnnn** Number of files to skip, default 0, S2 and S3 only
 
 ### Examples
 <br>
@@ -1361,6 +1361,33 @@ M20 S2 P"/gcodes"
 </pre>
 
 Returned value "first" is the number of files that were skipped (as specified in the R parameter), and "next" is the number to skip next time to retrieve the next block of filenames. If "next" is zero then there are no more filenames.
+
+The S3 parameter is similar to S2 but includes "type", "name", "size", "date", e.g.
+<br>
+<pre class="cblock">
+M20 S3 R23
+{
+    "dir": "0:/gcodes/",
+    "first": 23,
+    "files": [
+        {
+            "type": "f",
+            "name": "Hinged_Box.gcode",
+            "size": 179638,
+            "date": "2022-11-09T18:56:02"
+        },
+        {
+            "type": "f",
+            "name": "frog.gcode.gcode",
+            "size": 612786,
+            "date": "2022-11-09T14:06:32"
+        }
+    ],
+    "next": 0
+}
+</pre>
+
+
 
 ## M21: Initialize SD card
 
