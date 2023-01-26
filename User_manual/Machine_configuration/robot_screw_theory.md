@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-26T09:35:08.425Z
+date: 2023-01-26T09:54:36.641Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -60,24 +60,7 @@ Dividing into subproblems need the construction to be dividable by common points
 
 Simplifications are important, because they allow elimination of PoE elements to calculate angles.
 
-|-|-|
-|PK1|one axis, two points|simplification: point on axis|
-|PK2|two crossing axes| |
-|PK3|one axis, given distance|simplification: distance point on axis|
-|PK4|like PK2, but distance to two points|?|
-|PG1|like PK1 with linear axis|simplification: any point on planes|
-|PG2|like PK2 with linear axes| |
-|PG3, PK5|like PK3 with linear axes| |
-|PG4|two parallel rotational axes| |
-|PK2 Yue-sheng|like PK2 without crossing axes| |
-|PK2 Chen, Hong|3 axis: 1 perpendicular to two parallel| |
-|PK2 Dimovski|3 axis: 1 + two parallel| |
-
-
-PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones. Paden only defined subproblems for rotary axes, Pardos-Gotor added similar ones for linear axes and one additional for rotary ones.
-
-The PK subproblems 1 to 5 are explained in Wikipedia of the link mentioned below.
-There are tries to define subproblems without common points, like a generalized PK2. This will be implemented also, but will probably need more processing power (i. e. less performance).
+PK1... are Paden-Kahan subproblems, PG1... are Pardos-Gotor ones. PK1...5 are algorithms for rotational axes, PG1...3 for prismatic analogue to PK1...3, and PG4 is a special case of PK2. Several authors  generalized PK2 (original PK2: two intersecting axes) to include parallel or skew axes.
 
 The crossing was also defined by the "Pieper criterion". Nearly all kinematics which follow the Pieper criterion are solvable by closed form subproblems.
 
