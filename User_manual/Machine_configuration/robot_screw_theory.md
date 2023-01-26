@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-26T09:55:55.327Z
+date: 2023-01-26T11:24:32.461Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -105,10 +105,9 @@ articles CNC 5 axis (for all with PPPRR)
 
 dissertations
 * Paden's dissertation (available as pdf),describing 4 subproblems
-* Kahan didn't disclose his results
 
 source code
-* Pardos-Gotor Matlab code in https://github.com/DrPardosGotor/ScrewTheoryRobotics-KINEMATICS-Illustrated which also includes two pdf documents with a part of the book, especially the cases of ABB IRB 120 6 axis and the cobot 7 axis IIWAR 820. The formulae are only in the book and in the Matlab code
+* Pardos-Gotor Matlab code in https://github.com/DrPardosGotor/ScrewTheoryRobotics-KINEMATICS-Illustrated which also includes two pdf documents with a part of the book, especially the cases of ABB IRB 120 6 axis and the cobot 7 axis IIWAR 820
 * Lynch, Park https://github.com/NxRLab/ModernRobotics
 * Corke Robotics Toolbox https://petercorke.com/toolboxes/robotics-toolbox/
 * Elias source for article with Matlab code: https://github.com/rpiRobotics/linear-subproblem-solutions
