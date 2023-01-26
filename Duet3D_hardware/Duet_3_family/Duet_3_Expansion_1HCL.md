@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-01-26T09:38:41.643Z
+date: 2023-01-26T09:42:59.349Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -45,9 +45,9 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 
 ## Compatible motors
 
-Use motors with 1.8 or more degrees per step. **Do not use 0.9deg motors**. The positioning accuracy depends on the resolution of the encoder, not on the degrees/step of the motor.
+Use motors with 1.8 or more degrees per step. Do not use 0.9deg motors. The positioning accuracy in closed-loop mode depends on the resolution of the encoder, not on the degrees/step of the motor.
 
-The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second. However, the maximum step rate may be much lower if the driver is not able to change the motor current fast enough. The calculator at https://www.reprapfirmware.org/emf.html will estimate the maximum speed for which full torque is available for a given motor and supply voltage. Good closed loop operation will be available below this speed.
+The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second. However, the maximum step rate may be much lower if the driver is not able to change the motor current fast enough because of high moor inductance. The calculator at https://www.reprapfirmware.org/emf.html will estimate the maximum speeds for which full torque is available for a given motor and supply voltage. Good closed loop operation will typically be available up to the "high slip angle" speed.
 
 ## Compatible Encoders
 
