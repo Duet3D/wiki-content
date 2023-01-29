@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-26T11:24:32.461Z
+date: 2023-01-29T09:51:00.816Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -14,7 +14,7 @@ dateCreated: 2023-01-01T09:48:16.157Z
 
 Screw theory will not be explained here, because Wikipedia, books and scientific articles can explain it much better than me (see the literature links below for recommendations). The following information provides what is needed to give an overview and configure the kinematics.
 
-Screw Theory, also called Product of Exponentials, PoE, is an alternative to Denavit-Hartenberg, DH. DH is the most used method, but screw has some advantages:
+Screw Theory, also called Product of Exponentials (PoE), is an alternative to Denavit-Hartenberg (DH). DH is the most used method, but screw has some advantages:
 * setup is easier, because less frames and axis definitions are necessary
 * local singularities are avoided. There are no gimbal locks, polar kinematics 0,0 singularity and similar.
 * inverse kinematics can be developed in closed form, i. e. as algorithms without iterations. All possible solutions (up to 8 for a 6 axis industrial robot) are calculated, so the best can be chosen.
@@ -25,17 +25,31 @@ Screw Theory, also called Product of Exponentials, PoE, is an alternative to Den
 disadvantage:
 * application of subproblems require special setups of the axes being intersecting or parallel. Some configurations cannot be calculated, but scientific research tries to solve those unsolvable problems.
 
+# Comparison DH with Screw Theory PoE
+
+Both approaches describe the properties of a robot, but differently:
+
+|-|-|
+|what|DH|PoE|
+|joints|change of coordinate system|actuator axis orientation and a point on it|
+|links|two DH parameters d, a|implicit through points and Gst0|
+|actuator angles|through coordinate system|relative to Gst0|
+|points|not explicit|points depend on setup|
+|endpoint|not explicit|Gst0|
+
+* so screw needs less axis descriptions, but additional reference points. The reference points depend on the setup: do axes intersect or are parallel e.g. (the more, the better)
+* DH can be converted to Screw parameters by calculating forward kinematics
+* Screw cannot be converted completely to DH, because Y rotations and transformations are missing in DH
+* both calculations are connected to transformation matrices by Rodrigues' formula
+
+The power of screw theory shows in inverse kinematics and torque calculations to allow closed form calculations without iterations.
+
 # Inverse kinematics
 
-In most cases, inverse kinematics for robots are calculated by an iterative process, approaching a solution. Robot kinematics uses a closed form calculation instead, calculating all possible solutions. It is used the method of Paden-Kahan to define solvable subproblems. The iterative process is included as fallback solution.
-
-The following closed form subproblems will be included and extended
-* Paden-Kahan subproblems 1 to 6 with generalization of subproblem 2
-* Pardos-Gotor subproblems 1 to 4
-* extensions by others, e.g. to support parallel kinematics
+In most cases, inverse kinematics for robots are calculated by an iterative process, approaching a solution. Screw PoE uses a closed form calculation instead, calculating all possible solutions.
 
 In the first release, the following configurations will be available as robotType templates, where only some basic settings like arm lenghts, angle and speed limits are necessary:
-* robot 6 axis industrial robot
+* robot 6 axis industrial robot with subtypes
 * CNC 5 axis AC or BC type, Prusa (Pentarod, Open5x) and CoreXY with 5 axes
 * 4 axis palletized robot
 * perhaps 5 bar parallel scara, polar, serial scara, colinear tripteron
@@ -46,7 +60,14 @@ Stewart-Gough is postponed. It has a lot of degrees of freedom and is complex to
 
 # Paden-Kahan subproblems
 
-Paden developed a method to divide the inverse kinematics problem into solvable parts called subproblems. It has the following properties
+It is used a process called subproblems: the whole chain is split into easier calculations by using reference points, where part of the chain can be elimininated from the formula. Paden-Kahan have developed a set of subproblem solutions for rotary joints. Other authors have added subproblems for prismatic joints or extensions.
+
+The following closed form subproblems will be included and extended
+* Paden-Kahan subproblems 1 to 5 with generalization of subproblem 2
+* Pardos-Gotor subproblems 1 to 4
+* extensions by others, e.g. to support parallel kinematics
+
+Paden-Kahan subproblems:
 * the subproblems are solvable by algorithms, without iterations
 * all possible solutions are found (up to 8 for a 6 axis robot)
 * **basic procedure is to find points** where part of the complete PoE formula can be eliminated and the rest solved
