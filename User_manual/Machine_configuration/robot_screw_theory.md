@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-29T09:51:00.816Z
+date: 2023-01-29T09:59:21.761Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -39,7 +39,7 @@ Both approaches describe the properties of a robot, but differently:
 
 * so screw needs less axis descriptions, but additional reference points. The reference points depend on the setup: do axes intersect or are parallel e.g. (the more, the better)
 * DH can be converted to Screw parameters by calculating forward kinematics
-* Screw cannot be converted completely to DH, because Y rotations and transformations are missing in DH
+* Screw cannot be converted completely to DH, because Y rotations and translations are missing in DH
 * both calculations are connected to transformation matrices by Rodrigues' formula
 
 The power of screw theory shows in inverse kinematics and torque calculations to allow closed form calculations without iterations.
