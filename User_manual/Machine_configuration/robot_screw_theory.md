@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-29T10:08:26.957Z
+date: 2023-01-29T10:13:59.504Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -35,7 +35,7 @@ Both approaches describe the properties of a robot, but differently:
 |links|two DH parameters d, a|implicit through points and Gst0|
 |actuator angles|through coordinate system|relative to Gst0|
 |points|not explicit|points depend on setup|
-|endpoint|not explicit|Gst0|
+|endpoint reference|not explicit|Gst0|
 
 * so screw needs less axis descriptions, but additional reference points. The reference points depend on the setup: do axes intersect or are parallel e.g. (the more, the better)
 * DH can be converted to Screw parameters by calculating forward kinematics
