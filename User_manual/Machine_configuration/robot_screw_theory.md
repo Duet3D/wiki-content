@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-29T09:59:21.761Z
+date: 2023-01-29T10:08:26.957Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -30,7 +30,7 @@ disadvantage:
 Both approaches describe the properties of a robot, but differently:
 
 |-|-|
-|what|DH|PoE|
+|what|Denavit-Hartenberg, DH|Screw theory, PoE|
 |joints|change of coordinate system|actuator axis orientation and a point on it|
 |links|two DH parameters d, a|implicit through points and Gst0|
 |actuator angles|through coordinate system|relative to Gst0|
