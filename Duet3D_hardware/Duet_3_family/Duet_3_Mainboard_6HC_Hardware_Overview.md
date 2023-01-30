@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-01-24T12:40:37.627Z
+date: 2023-01-30T15:51:55.605Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -466,6 +466,35 @@ The Duet 3 Mainboard 6HC has a dedicated high speed SPI bus to a single board co
 
 The Duet 3 Mainboard 6HC can also be run in standalone mode (without the SBC) by using the on-board SD card socket and Ethernet interface, but then the advanced facilities of DSF are not available.
 
+### Ethernet
+
+The Ethernet port provides the ability to directly network to the board when not using an SBC. Along with the built-in SD card this allows the Mainboard to run in Standalone mode.
+
+### WIFI - v1.02
+
+The Duet 3 6HC v1.02 has a header labelled "ESP" which accepts a Duet 3 Wifi Module
+![Duet 3 6HC mainboard v1.02 with a wifi module fitted to the ESP header - view from above](/hardware/wifi_module/duet3_6hc_wifi_module_v0.1_fitted1.png =400x)
+
+This module overlaps the SBC hader and uses some of the same pins so it cannot be used at the same time as an SBC connection. 
+![Duet 3 6HC mainboard v1.02 with a wifi module fitted to the ESP header - view from an angle](/hardware/wifi_module/duet3_6hc_wifi_module_v0.1_fitted2.png =400x)
+
+#### Wifi Module Installation and Setup
+
+Note that the wifi module is the second network interface on the 6HC (the ethernet interface is the first one) so all [M552](/User_manual/Reference/Gcodes/M552) commands need to contain "I1" to indicate they are for the wifi module interface. 
+
+* With the 6HC powered off plug the WIFI module into the ESP header, as oriented in the image above and ensuring all the pins line up. 
+
+* Power up the 6HC and connect to it either via USB or Ethernet (see the [getting started guide](/User_manual/Overview/Getting_started_Duet_3_MB6HC) for how to get to that point. 
+
+* Send M552 I1 S0 to take the WIFI module out of its disabled state and into idle.
+
+* Use [M587](/User_manual/Reference/Gcodes/M587) to add the SSID and password of your wifi network. Not it does not need to be the same network that the ethernet is connected to. the WIFI interface will get its own IP address.
+
+* Send M552 I1 S1 to enable the WIFI interface. Send M552 I1 or M122 to see the configured IP address
+
+* You can add this to config.g if you want the wifi to be enabled on boot.
+
+
 ## Motion
 
 The Duet 3 Mainboard 6HC has 6 TMC 2160 or 5160 stepper drivers on board. Until further testing including detailed thermal analysis is conducted these are limited to 4.4A RMS (6.3A Peak). The [initial testing of the TMC5160s](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC#thermal-tests) in this configuration, conducted on the Expansion board looks very promising. 4A per phase will allow driving stepper motors rated to up to 5A (it is recommended to drive stepper motors at around 80% of rated maximum current).
@@ -495,9 +524,7 @@ The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a
 
 The CAN BUS is connected via RJ11 and at least 2 core twisted pair, although 6 core RJ11 is more common.
 
-## Ethernet
 
-The Ethernet port provides the ability to directly network to the board when not using an SBC. Along with the built-in SD card this allows the Mainboard to run in Standalone mode.
 
 
 # Revision History
