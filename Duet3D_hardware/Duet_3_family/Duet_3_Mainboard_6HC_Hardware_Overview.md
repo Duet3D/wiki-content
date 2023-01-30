@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-01-30T16:00:02.753Z
+date: 2023-01-30T16:05:39.635Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -482,18 +482,17 @@ This module overlaps the SBC header and uses some of the same pins so it cannot 
 
 Note that the wifi module is the second network interface on the 6HC (the ethernet interface is the first one) so all [M552](/User_manual/Reference/Gcodes/M552) commands need to contain "I1" to indicate they are for the wifi module interface. 
 
-* With the 6HC powered off plug the WIFI module into the ESP header, as oriented in the image above and ensuring all the pins line up. 
+* With the 6HC powered off plug the WiFi module into the ESP header, as oriented in the image above and ensuring all the pins line up. 
 
 * Power up the 6HC and connect to it either via USB or Ethernet (see the [getting started guide](/User_manual/Overview/Getting_started_Duet_3_MB6HC) for how to get to that point. 
 
-* Send M552 I1 S0 to take the WIFI module out of its disabled state and into idle.
+* Send M552 I1 S0 to take the WiFi module out of its disabled state and into idle.
 
-* Use [M587](/User_manual/Reference/Gcodes/M587) to add the SSID and password of your wifi network. Not it does not need to be the same network that the ethernet is connected to. the WIFI interface will get its own IP address.
+* Use [M587](/User_manual/Reference/Gcodes/M587) to add the SSID and password of your wifi network. Note, it does not need to be the same network that the ethernet is connected to. The WiFi interface will get its own IP address via DHCP, or you can specify what IP address to use in the M587 command.
 
-* Send M552 I1 S1 to enable the WIFI interface. Send M552 I1 or M122 to see the configured IP address
+* Send M552 I1 S1 to enable the WiFi interface in client mode and connect to an access point that you specified using M587. Send M552 I1 or M122 to see the configured IP address.
 
-* You can add this to config.g if you want the wifi to be enabled on boot.
-
+* You can add this to config.g if you want WiFi to be enabled on boot.
 
 ## Motion
 
