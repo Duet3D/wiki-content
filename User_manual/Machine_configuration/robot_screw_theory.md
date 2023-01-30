@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-30T09:36:04.166Z
+date: 2023-01-30T23:56:09.959Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -108,7 +108,7 @@ books
 * Murray/Li/Sastry book chapter 3.3.2 ff
 * Lynch/Park Modern Robotics preprint 2017. Not about Paden-Kahan, but much about screw theory
 * McCarthy: Introcution to Theoretical kinematics. Has some wasted pages, but is very affordable and provides good summaries about many topics including quaternions and closed chains.
-* Peter Corke: Robotics, Vision and Control 2nd ed. 2nd ed is important, as in this edition screw theory was added as topic. Uses Matlab a lot, as Corke is an original developer of robotics toolbox and machine vision toolbox of Matlab.
+* Peter Corke: Robotics, Vision and Control 2nd ed. 2nd ed is important, as in this edition screw theory was added as topic. Uses Matlab a lot, as Corke is an original developer of robotics toolbox and machine vision toolbox of Matlab. He offers two open source versions of the toolboxes.
 
 articles
 * 1 free + 2 parallel: Dimovski et al, Algorithmic approach to geometric...: one axis plus 2 parallel axes, without perpendicular requirement of first axis of Chen et al. PK2 modified
