@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-01-30T15:51:55.605Z
+date: 2023-01-30T16:00:02.753Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -475,7 +475,7 @@ The Ethernet port provides the ability to directly network to the board when not
 The Duet 3 6HC v1.02 has a header labelled "ESP" which accepts a Duet 3 Wifi Module
 ![Duet 3 6HC mainboard v1.02 with a wifi module fitted to the ESP header - view from above](/hardware/wifi_module/duet3_6hc_wifi_module_v0.1_fitted1.png =400x)
 
-This module overlaps the SBC hader and uses some of the same pins so it cannot be used at the same time as an SBC connection. 
+This module overlaps the SBC header and uses some of the same pins so it cannot be used at the same time as an SBC connection. 
 ![Duet 3 6HC mainboard v1.02 with a wifi module fitted to the ESP header - view from an angle](/hardware/wifi_module/duet3_6hc_wifi_module_v0.1_fitted2.png =400x)
 
 #### Wifi Module Installation and Setup
