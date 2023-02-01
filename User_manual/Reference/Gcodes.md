@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-01-26T12:25:36.534Z
+date: 2023-02-01T15:53:22.647Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6359,7 +6359,7 @@ None
 
 ### Description
 
-This command is used in print files when multiple movemenbt systems are being used (see the M596 command). It causes all motion systems to complete all queued movements and execute no further instructions until they have all reached this command and are ready to proceed.
+This command is used in print files when multiple movement systems are being used (see the M596 command). It causes all motion systems to complete all queued movements and execute no further instructions until they have all reached this command and are ready to proceed.
 
 ## M600: Filament change pause
 
