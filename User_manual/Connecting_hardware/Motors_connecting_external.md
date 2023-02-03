@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2022-10-09T00:54:07.165Z
+date: 2023-02-03T14:55:20.181Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -236,7 +236,7 @@ M569 P5 R1 ; driver 5 requires an active high enable
 
 Refer to the documentation for your stepper driver to determine settings for step timing. The default step timing used for the onboard drivers may be too fast for your external driver. You can set a minimum step pulse width and other timings in the [M569](/User_manual/Reference/Gcodes/M569) command using the T parameter, and configure the direction with the S parameter.
 
-**Taa:bb:cc:dd** Minimum driver step pulse width, step pulse interval, direction to ste leadomg edge setup time, and direction hold time from trailing edge of step, all in microseconds
+**Taa:bb:cc:dd** Minimum driver step pulse width, step pulse interval, direction setup time and direction hold time, in microseconds
 
 ```
 M569 P5 R1 T5:5:10:0 ; driver 5 requires an active high enable, 5us minimum step pulse, 5us minimum step interval, 10us DIR setup time and no hold time
