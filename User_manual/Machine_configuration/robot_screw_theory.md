@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-01-30T23:56:09.959Z
+date: 2023-02-06T13:59:34.964Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -98,6 +98,13 @@ Crossing points of axes and endpoint position. This can probably be calculated f
 
 The three parts are sufficient to calculate new endpoints with given actuator angles/positions and the inverse kinematics.
 
+# Overview of mathematical methods
+
+* Denavit-Hartenberg is used for setup and calculating forward kinematics
+* screw theory is used for setup and formula basis for Paden-Kahan based inverse kinematics
+* geometric algebra (Clifford algebra, multivectors) is used to deduce the algorithms for Paden-Kahan subproblems
+* quaternions, dual quaternions are used to store position and orientation (translations and rotations) values
+
 # Literature about screw theory, Paden-Kahan / canonical subproblems
 
 With the exception of most of the books, all the following literature was available free, being Open Access, source code (e.g. on github) or as pre-printed versions. I especially recommend buying the smaller, less expensive Pardos-Gotor book.
@@ -133,3 +140,4 @@ source code
 * Lynch, Park https://github.com/NxRLab/ModernRobotics
 * Corke Robotics Toolbox https://petercorke.com/toolboxes/robotics-toolbox/
 * Elias source for article with Matlab code: https://github.com/rpiRobotics/linear-subproblem-solutions
+
