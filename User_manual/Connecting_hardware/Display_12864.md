@@ -2,7 +2,7 @@
 title: Connecting 12864 or other display
 description: 
 published: true
-date: 2022-12-10T00:11:17.120Z
+date: 2023-02-06T13:10:47.125Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T15:08:34.637Z
@@ -46,6 +46,8 @@ RepRapFirmware 3.2 and later also support displays using the ST7567 controller. 
 | Expansion pin 4 (EXP_0) | EXP 1 pin 7 | LcdA0Pin |
 | Expansion pin 5 (EXP_1) | EXP 1 pin 8 | LcdCSPin |
 
+**NOTE**: The Duet 2 Maestro DOES NOT currently support the M150 command for controlling addressable LEDs/NeoPixel backlights, as of RRF v3.4.5, because Maestro is very short of spare outputs. Displays with a fixed backlight should work, eg Fysetc Mini12864 Panel V1.2 (NOT V2.0 or V2.1), but have not been tested.
+
 ### Duet 2 WiFi/Ethernet
 
 RepRapFirmware 3.2 and later support a 12864 display using ST7567 controller. RepRapFirmware 3.3 added support for a short string of Neopixels on Duet WiFi and Ethernet, so boards that use a Neopixel for the backlight should be able to be controlled. See [this thread on the forum](https://forum.duet3d.com/topic/22351/) for more details.
@@ -80,7 +82,8 @@ We do not recommend connecting a 12864 display with ST7920 controller because th
 
 * [Fysetc Mini12864 Panel V1.2 or V2.1](https://wiki.fysetc.com/Mini12864_Panel)
 Note that this panel comes in a number of different revisions; V1.2 (with fixed backlight), and v2.1 (with NeoPixel backlight) are supported by most Duet boards with the right firmware version. V2.0, which uses 3 x PWM pins for the RGB LEDs, is not supported.
-When using a version 2.1 controller, the colours of the three Neopixel LEDs built into the display can be set using the M150 command with LED type parameter X2.
+When using a version 2.1 controller, the colours of the three Neopixel LEDs built into the display can be set using the M150 command with LED type parameter X2. 
+Note that Duet 2 Maestro does not currently support M150, so only the V1.2 version works (not tested).
 * [BigTreeTech Mini12864 V1.0 and V2.0](https://github.com/bigtreetech/MINI-12864/)
 V1.0 is effectively a clone of the Fysetc Mini12864 V2.1 panel. V2.0 adds another connector, but should work the same as the V1.0 board.
 * Mellow FLY Mini12864 V1.0 Panel (Available on AliExpress)
