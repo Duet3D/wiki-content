@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-02-01T15:53:22.647Z
+date: 2023-02-06T13:19:27.480Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3853,8 +3853,8 @@ PanelDue currently uses only M408 S0 and M408 S1.
 <br>
 <pre class="cblock">
 M409 K"move.axes" F"f"   ; report all frequently-changing properties of all axes
-M409 K"move.axes[0] F"v,n,d4"  ; report all properties of the first axis, including values not normally reported, to a maximum depth of 4
-M409 K"move.axes.homed"  ; for all axes, report whether it is homed
+M409 K"move.axes[0]" F"v,n,d4"  ; report all properties of the first axis, including values not normally reported, to a maximum depth of 4
+M409 K"move.axes[].homed"  ; for all axes, report whether it is homed
 M409 K"#move.axes"     ; report the number of axes
 M409 F"v"          ; report the whole object model to the default depth
 </pre>
@@ -3879,7 +3879,6 @@ The flags string may include one or more of the following letters:
 The flags string may optionally use spaces or commas to separate the individual flags
 
 The response is a JSON object of the following form:
-
 {"key":"*key*","flag'":"*flags*","result":*object-value*}
 
 If the key string is malformed or refers to a property that does not exist in the object model, the result field is **null**.
