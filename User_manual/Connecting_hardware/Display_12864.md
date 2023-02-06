@@ -2,7 +2,7 @@
 title: Connecting 12864 or other display
 description: 
 published: true
-date: 2023-02-06T13:10:47.125Z
+date: 2023-02-06T13:12:28.321Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T15:08:34.637Z
@@ -46,7 +46,7 @@ RepRapFirmware 3.2 and later also support displays using the ST7567 controller. 
 | Expansion pin 4 (EXP_0) | EXP 1 pin 7 | LcdA0Pin |
 | Expansion pin 5 (EXP_1) | EXP 1 pin 8 | LcdCSPin |
 
-**NOTE**: The Duet 2 Maestro DOES NOT currently support the M150 command for controlling addressable LEDs/NeoPixel backlights, as of RRF v3.4.5, because Maestro is very short of spare outputs. Displays with a fixed backlight should work, eg Fysetc Mini12864 Panel V1.2 (NOT V2.0 or V2.1), but have not been tested.
+**NOTE**: As of RRF v3.4.5, the Duet 2 Maestro does not currently support the M150 command for controlling addressable LEDs/NeoPixel backlights, because Maestro is very short of spare outputs. Displays with a fixed backlight should work, eg Fysetc Mini12864 Panel V1.2 (NOT V2.0 or V2.1), but have not been tested.
 
 ### Duet 2 WiFi/Ethernet
 
