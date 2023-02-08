@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2022-08-22T15:04:42.887Z
+date: 2023-02-08T09:35:25.893Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -120,10 +120,10 @@ See also [Adapting an existing printer to Duet](/User_manual/Overview/Adapting)
 
 The Duet control board supports printing your gcode files over a USB connection streamed by a gcode sender software like those mentioned in the title. However, there are limitations, including, but not limited to:
 
-* Print statistics, such as remaining time estimation, current layer etc, not showing.
+* Print statistics, such as remaining time estimation, current layer etc, not showing in Duet Web Control or on the LCD display.
 * Pause print will have to be handled by the GCode sender, and will take longer because all queued moves will have to complete before the pause takes place.
 * Filament sensors will not function.
 * Resume after power fail will not function.
-* Print speed may be limited because many GCode senders can't supply data fast enough over USB, so print time may be extended.
+* Print speed might be limited because some GCode senders can't supply data fast enough over USB, so print time may be extended.
 
-It is strongly recommended that you use the Duet Web Control for machine control and the internal SD card for gcode printing, however, if your application requires printing over USB, such as using the Mosaic Palette, it will work as expected, with the above limitations.
+It is strongly recommended that you use the Duet Web Control for machine control and the internal SD card for gcode printing, however, if your application requires printing over USB, such as using the Mosaic Palette, it should work as expected with the above limitations.
