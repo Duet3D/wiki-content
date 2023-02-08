@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-02-08T11:47:22.388Z
+date: 2023-02-08T15:04:05.136Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2365,7 +2365,10 @@ Sending an M122 causes the RepRap to transmit diagnostic information.
 
 The 'P' parameter is used to report specific information. The details vary between releases. As at RepRapFirmware version 3.41 they are:
 
-* P1 print summary test report (additional parameters: Taa:bb = min/max accepted MCU temperature reading, Vaa:bb = min/max VIN voltage reading, Waa:bb = min/max 12V regulator voltage reading if applicable)
+* P1 print summary test report. Parameters: 
+  * required parameters: **Taa:bb** = min/max accepted MCU temperature reading, **Vaa:bb** = min/max VIN voltage reading 
+  * optional parameter: **Waa:bb** = min/max 12V regulator voltage reading if applicable
+  * NOTE: M122 P1 subfunction is provided for factory testing purposes only, so the details are liable to be changed without notice
 * P100 print a summary of recent moves (only if move logging is enabled in the firmware build)
 * P101 print the status of an attached DueX expansion board (Duet 2 only)
 * P102 print how long it takes to evaluate the square root of a 62-bit unsigned integer
