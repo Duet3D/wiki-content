@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2023-02-08T09:36:59.202Z
+date: 2023-02-08T09:39:00.248Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -18,6 +18,7 @@ It is configured with human editable files located on an SD-card plugged into th
 
 RepRapFirmware was the first open-source firmware to implement significant advances in 3D printing, including:
 
+* Model-based heater control and tuning
 * Heater feedforward for changes in extrusion rate (RRF v3.4)
 * Heater feedforward for changes in cooling fan RPM (RRF v3.2)
 * CAN bus-based distributed control system (Duet 3, RRF v3.0)
