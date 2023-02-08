@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2023-02-08T09:35:25.893Z
+date: 2023-02-08T09:36:59.202Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -112,7 +112,7 @@ The Duets run RepRapFirmware. This differs from Marlin, Repetier and other firmw
 * For delta printers, fast auto delta calibration is provided using a least-squares algorithm. The process takes around 30 seconds or less, making it practical to run at the start of every print if you wish.
 * Firmware updates are normally done over the web interface, with USB used only as a backup.
 * Nozzle heaters are controlled differently. With RepRapFirmware, you associate heaters and extruder drives to tools (you can have more than one of each used by a tool if you like), you assign active and standby temperatures to each tool's heaters, then you activate the tool. You can have several tools that share the same heaters and extruder drives. Other firmwares have a much more primitive concept of tools and typically consider each heater to be a tool.
-* Marlin and Reptier often use **mm/s** for speed values. RepRapFirmware uses **mm/min**. Be careful when switching between the two. To convert from one to the other you will either need to multiply or divide by 60. Example 100mm/s = 6000mm/min. 
+* Marlin and Repetier use **mm/s** for some speed values (e.g. in M203) and mm/min for others (e.g. F parameter in G1 commands). RepRapFirmware uses **mm/min** consistently. Be careful when switching between the two. To convert from one to the other you will either need to multiply or divide by 60. Example 100mm/s = 6000mm/min. 
 
 See also [Adapting an existing printer to Duet](/User_manual/Overview/Adapting)
 
