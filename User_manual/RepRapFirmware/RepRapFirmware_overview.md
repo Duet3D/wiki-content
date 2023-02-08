@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2023-02-08T09:43:24.026Z
+date: 2023-02-08T09:44:34.782Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -45,7 +45,7 @@ RepRapFirmware supports the following machine kinematics:
 * [Serial SCARA](/User_manual/Machine_configuration/Configuration_SCARA), five-bar parallel SCARA
 * [Hangprinter](/User_manual/Machine_configuration/Configuration_Hangprinter)
 * [Polar](/User_manual/Machine_configuration/Configuration_Polar)
-* Additionally, RepRapFirmware can support any kinematics for which the movement of each axis is a linear combination of the movement of the motors. The relationship between axis movement and motor movement is defined by a matrix; see GCode [M669](/User_manual/Reference/Gcodes/M669).
+* Additionally, RepRapFirmware can support **any kinematics for which the movement of each axis is a linear combination of the movement of the motors**. The relationship between axis movement and motor movement is defined by a matrix; see GCode [M669](/User_manual/Reference/Gcodes/M669).
 
 # Checking firmware versions
 
