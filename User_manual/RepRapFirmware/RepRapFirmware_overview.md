@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2023-02-08T09:39:00.248Z
+date: 2023-02-08T09:43:24.026Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -18,11 +18,13 @@ It is configured with human editable files located on an SD-card plugged into th
 
 RepRapFirmware was the first open-source firmware to implement significant advances in 3D printing, including:
 
-* Model-based heater control and tuning
-* Heater feedforward for changes in extrusion rate (RRF v3.4)
-* Heater feedforward for changes in cooling fan RPM (RRF v3.2)
-* CAN bus-based distributed control system (Duet 3, RRF v3.0)
-* Conditional GCode, object model, daemon task (RRF v3.0)
+* Model-based heater control and tuning (since RRF 1.15)
+* Heater feedforward for changes in extrusion rate (since RRF v3.4)
+* Heater feedforward for changes in cooling fan RPM (since RRF v3.2)
+* CAN bus-based distributed control system (Duet 3, since RRF v3.0)
+* Object model of the printer configuration and state, allowing a wide variety of values to be retrieved (since RRF 3.0)
+* Conditional and looping GCode (since RRF 3.0)
+* Daemon task (since RRF v3.0)
 * Heater power compensated for changes in supply voltage (November 2017)
 * Support for SPI-controlled stepper drivers (August 2016)
 * Least-squares auto calibration of delta printers (April 2015)
