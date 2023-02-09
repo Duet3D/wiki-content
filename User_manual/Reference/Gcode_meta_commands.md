@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2023-01-26T18:59:46.153Z
+date: 2023-02-09T11:47:03.383Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -314,6 +314,8 @@ A sequence of expressions exclosed in { } and separated by commas is an array ex
 `{1,{2,3,4},5}` is an array of three elements, whose second value is itself an array
 
 The unary prefix operator `#` can be applied to a value of array type to get the number of elements, and the indexing operator `[ ]` can be applied to extract a single element.
+
+Note, once created arrays are fixed length. The array values must be reassigned to a new array to change its length.
 
 ## Unary prefix operators
 
