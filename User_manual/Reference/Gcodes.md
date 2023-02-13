@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-02-08T21:00:32.761Z
+date: 2023-02-13T15:45:43.658Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6382,14 +6382,14 @@ M599 X10:25 Y0:20
 
 ### Description
 
-This command establishes a "no entry" zone for the toolhead reference point. If any G0/G1/G2/G3 move attempts to move the toolhead reference point inside the no entry zone, the job will be aborted with an error message.
+This command establishes a "no entry" zone for the toolhead reference point. If any G0/G1/G2/G3 move attempts to move the toolhead reference point inside the no entry zone, the job will be aborted with an error message. In other words, in 3.5b2, the X, Y etc coordinates are in machine coordinates.
 
 ### Notes
 
 * You may specify any number of axes, up to the number that the machine has. 
 * If no axes are specified and the S parameter is not provided then the parameters and enabled/disabled state of the existing keepout zone will be reported.
 * Movement commands (G0, G1, G2 and G3) will normally be checked before starting the move.
-* The number of keepout zones supported is implementation dependent. It may be just one.
+* The number of keepout zones supported is implementation dependent. In RRF 3.5b2 only one is supported.
 
 ## M600: Filament change pause
 
