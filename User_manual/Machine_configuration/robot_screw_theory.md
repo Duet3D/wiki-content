@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-02-06T13:59:34.964Z
+date: 2023-02-16T07:13:24.823Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -141,3 +141,7 @@ source code
 * Corke Robotics Toolbox https://petercorke.com/toolboxes/robotics-toolbox/
 * Elias source for article with Matlab code: https://github.com/rpiRobotics/linear-subproblem-solutions
 
+# Literature about Geometric/Clifford Algebra, Conformal Model
+books
+* Dorst, Fontijne, Mann: Geometric Algebra for Computer Science
+* McCarthy: Introduction to Theoretical Kinematics
