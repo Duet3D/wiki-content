@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-02-17T15:56:01.783Z
+date: 2023-02-17T15:57:09.462Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -188,7 +188,7 @@ M950 H1 C"121.out0" T1                       ; create nozzle heater output on 12
 NOTE: When using M950 to create a heater, RRF 3.4 allows multiple port names to be provided, separated by the '+' sign. The maximum number of ports that may be used depends on the board. Any CAN address at the start of the port name string applies to all the port names. For example, if you were using the 2 heater outputs of a Duet 3 Expansion 3HC as one heater:
 
 ```
-M950 H0 C"1.out0+out1" T0            ; create bed heater output on 1.out0, 1.out1 and 1.out2 and map it to sensor 0
+M950 H0 C"1.out0+out1" T0            ; create bed heater output on 1.out0 and 1.out1, and map it to sensor 0
 ```
 
 There is a limit on the number of ports a heater can use. See the [Configuration limits](https://docs.duet3d.com/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) here.
