@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-02-17T15:06:55.651Z
+date: 2023-02-17T15:34:39.347Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -175,7 +175,7 @@ M558 P9 C"121.io0.in" H5 F120 T6000          ; set Z probe type to bltouch and t
 ### Heaters
 
 Sensor 0 (S0, thermistor temperature sensor) and Heater 0 are connected to the mainboard, while Sensor 1 (S1, PT1000 temperature sensor) and Heater 1 are connected to a Duet 3 Toolboard 1LC at CAN address 121.
- 
+
 ```
 ; Heaters
 M308 S0 P"temp0" Y"thermistor" T100000 B4138 ; configure sensor 0 as thermistor on pin temp0
@@ -185,16 +185,24 @@ M308 S1 P"121.temp0" Y"pt1000"               ; configure sensor 1 as PT1000 on p
 M950 H1 C"121.out0" T1                       ; create nozzle heater output on 121.out0 and map it to sensor 1
 ```
 
+NOTE: When using M950 to create a heater, RRF 3.4 allows multiple port names to be provided, separated by the '+' sign. The maximum number of ports that may be used depends on the board. Any CAN address at the start of the port name string applies to all the port names. eg:
+
+```
+M950 H0 C"out0+out1+out2+out3" T0            ; create bed heater output on out0 and map it to sensor 0
+```
+
 ### Fans
 
 Here the part cooling fan (F0) and hot end cooling fan (F1) are both connected to a Duet 3 Toolboard 1LC at CAN address 121.
 
+NOTE: When using M950 to create a fan, the port name string may be either a single port, or two ports separated by the '+' sign. The second port is used to read the fan tacho. Any CAN address at the start of the port name string applies to both port names.
+
 ```
 ; Fans
-M950 F0 C"121.out1" Q500                     ; create fan 0 on pin 121.out1 and set its frequency
-M106 P0 S0 H-1                               ; set fan 0 value. Thermostatic control is turned off
-M950 F1 C"121.out2" Q500                     ; create fan 1 on pin 121.out2 and set its frequency
-M106 P1 S1 H1 T45                            ; set fan 1 value. Thermostatic control is turned on 
+M950 F0 C"121.out1+out1.tach" Q500 ; create fan 0 on pin 121.out1 with tacho input on 121.out1.tach and set its frequency
+M106 P0 S0 H-1                     ; set fan 0 value. Thermostatic control is turned off
+M950 F1 C"121.out2" Q500           ; create fan 1 on pin 121.out2 and set its frequency
+M106 P1 S1 H1 T45                  ; set fan 1 value. Thermostatic control is turned on 
 ```
 
 # Updating Duet 3 expansion board firmware
