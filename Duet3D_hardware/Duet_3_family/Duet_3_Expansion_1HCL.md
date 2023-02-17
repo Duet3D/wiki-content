@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-01-26T09:42:59.349Z
+date: 2023-02-17T17:04:17.969Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -47,7 +47,7 @@ The EXP1HCL board provides a high current Stepper motor driver, combined with mu
 
 Use motors with 1.8 or more degrees per step. Do not use 0.9deg motors. The positioning accuracy in closed-loop mode depends on the resolution of the encoder, not on the degrees/step of the motor.
 
-The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second. However, the maximum step rate may be much lower if the driver is not able to change the motor current fast enough because of high moor inductance. The calculator at https://www.reprapfirmware.org/emf.html will estimate the maximum speeds for which full torque is available for a given motor and supply voltage. Good closed loop operation will typically be available up to the "high slip angle" speed.
+The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second. However, the maximum step rate may be much lower if the driver is not able to change the motor current fast enough because of high moor inductance. The calculator at [https://www.reprapfirmware.org/emf.html](https://www.reprapfirmware.org/emf.html){target=_blank} will estimate the maximum speeds for which full torque is available for a given motor and supply voltage. Good closed loop operation will typically be available up to the "high slip angle" speed.
 
 ## Compatible Encoders
 
@@ -88,11 +88,75 @@ Importantly Duets are Open:
 
 A STEP 3D model of the Duet 3 Expansion 1HCL is available [on github](https://github.com/Duet3D/Duet3-Expansion-1HCL/blob/main/v1.0/Duet3_Exp_1HCL.step){target=_blank}.
 
-# Wiring
+# Physical connections
 
 ## Wiring Diagram
 
 [![Image showing all the connections on a Duet 3 1HCL to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png){target=_blank}
+
+## Description of Connections
+
+Duet 3 Expansion 3HC provides the following connectors:
+
+| Header | Label | Function |
+|--
+| **1 x 2-way barrier strip** | VIN, GND | Two pins for main VIN and GND. |
+*To come*
+
+## LED indications
+
+LEDs are provided to indicate the following:
+
+| Label | Colour | Function |
+|--|--|--|
+| **ACT** | Green | Indicates activity on the CAN-FD bus |
+| **STATUS** | Red | See description below |
+| **V_FUSED** | Blue | Indicates fused VIN supply present |
+| **12V+** | Amber | Indicates indicates on-board 12V regulator operating |
+| **5V+** | Red | Indicates indicates 5V supply present |
+| **3.3V+** | Green | Indicates on-board 3.3V regulator operating |
+
+The red LED labelled "STATUS", next to the Reset button, indicates the state of the board, as follows.
+
+**STATUS LED:** In normal use, the red LED flashes slowly in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
+
+## Pin names
+
+For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names).
+
+RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of gcode commands, eg M574, M558, M950.
+
+The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mainboard.
+
+| Function | Pin location | RRF3 Pin name | Notes |
+|---|---|---|
+| Outputs | OUT_0 | out0 | PWM |
+| ^^ | OUT_1 | out1 | PWM |
+| Inputs/Outputs | IO_0 | io0.out | PWM |
+| ^^ | ^^ | io0.in | analog/digital input |
+| ^^ | IO_1 | io1.out | PWM |
+| ^^ | ^^ | io1.in | digital input |
+| ^^ | Test pad | pa20 | brought out to a test pad only |
+| ^^ | Quadrature input | pdec.a | used to connect a quadrature encoder. If no quadrature encoder is connected then they are available as digital inputs. |
+| ^^ | ^^ | pdec.b | ^^ |
+| ^^ | ^^ | pdec.n | ^^ |
+| ^^ | TEMP_0 | temp0 | 2K2 pullup + filter, intended for thermistor/pt1000 |
+| ^^ | TEMP_1 | temp1 | ^^ |
+
+## Input/Output
+
+OUT_0 and OUT_1 are PWM-capable.
+
+The individual IO_x connectors have the following capabilities:
+
+| IO # | UART/I2C? | Analog in? | PWM out? | Notes |
+|:---|:---|
+| IO_0 | No | Yes | Yes |  |
+| IO_1 | Yes | No | Yes | io1 in/out are theoretically capable of I2C but this isn't implemented at present |
+| pa20 | No | No | No | digital in/out , brought out to a test pad only |
+| pdec.a, pdec.b. pdec.n | No | No | No | digital inputs |
+
+**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
 # Encoders
 
