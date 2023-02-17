@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2023-02-08T09:44:34.782Z
+date: 2023-02-17T16:03:27.134Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -81,7 +81,7 @@ See the wiki page on the [SD card](/User_manual/RepRapFirmware/SD_card).
 
 RepRapFirmware has some configuration limits. Note that the total system limits are set by the mainboard. Expansion boards can be configured within the full capabilities of their hardware, subject to the overall system limits. As of RRF 3.4 these are:
 
-| | Duet 3 MB6HC | Duet 3 Mini: | Duet 2 WiFi/Ethernet | Duet Maestro | Notes |
+| | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Notes |
 |---|---|
 | MaxSensors | 56 | 56 | 32 | 32 | The maximum number of sensors |
 | MaxHeaters | 32 | 32 | 10 | 4 | The maximum number of heaters |
