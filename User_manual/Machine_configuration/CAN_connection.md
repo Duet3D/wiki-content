@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-02-17T15:57:09.462Z
+date: 2023-02-17T16:41:35.150Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -123,6 +123,8 @@ It is possible to run a Duet 3 mainboard as an expansion board. This allows grea
 * The CAN addresses for each board do not need to be in sequential order along the CAN bus.
 
 # Using CAN addresses
+
+The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion boards, where expansion-board-address is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 mainboard.
 
 To configure stepper motor drivers, heaters, fans, input/output etc on an expansion board, the CAN address is used as part of the pin name in the Gcode command. Generally, Gcode commands that have a 'pin name' parameter can reference a CAN address. Prefix the pin name with the CAN address, for example:
 
