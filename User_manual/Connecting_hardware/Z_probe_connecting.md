@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2023-01-21T00:02:44.396Z
+date: 2023-02-17T14:30:55.816Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -288,11 +288,16 @@ For example, recent BLTouch kits for Creality printers use a cable with differen
 
 #### Duet 3
 
-Connect the BLTouch to a PWM-capable IO header.
+Connect the BLTouch to a PWM-capable IO header. For more information on pin header capability, see the 'Input/Output' section of the hardware overview of the board you are connecting the BLTouch to.
 
-For Duet 3 MB6HC, use IO_4, IO_5 or IO_7. For more information on pin header capability, see [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview)
-
-For Duet 3 Mini 5+, use IO_1, IO_2 or IO_3. For more information on pin header capability, see [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview)
+| Duet 3 board</br>(link to hardware overview) | PWM-capable IO headers |
+|:--|:--|:--|
+| [Duet 3 MB6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview){target=_blank} | IO_4, IO_5 or IO_7 (v0.6 and later) |
+| [Duet 3 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview){target=_blank} | IO_4 or IO_7 |
+| [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview){target=_blank} | IO_1, IO_2 or IO_3 |
+| [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC){target=_blank} | IO_0 |
+| [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC){target=_blank} | IO_1 or IO_4 | 
+| [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD){target=_blank} | IO_0 or IO_2 |
 
 Connect as follows:
 
