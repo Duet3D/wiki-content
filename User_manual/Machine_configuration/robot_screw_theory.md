@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-02-19T13:03:01.217Z
+date: 2023-02-20T00:23:32.719Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -94,7 +94,7 @@ Direction of an axis and a point anywhere on the axis for revolute joints and a 
 
 Endpoint position and orientation for reference angles, e.g. all angles being 0. This is called Gst(0) or HSt(0) or M. Gst(0) is a transformation matrix as described on the firmware page with a 3x3 rotation matrix and a 1x3 position vector, put together in a 4x4 matrix. It contains the orientation and position of the endpoint for given actuator angles (revolute joints) / positions (linear joints). Often all angles being 0 degrees or the home positions are taken as base for calculation of Gst(0).
 
-Crossing points of axes and endpoint position. This can probably be calculated from the other paramters or from the DH parameters if they are provided, also.
+Crossing points of axes and endpoint position. This can probably be calculated from the other paramters or from the DH parameters if they are provided, also. Due to rounding errors of the float numbers, intersections may not be detected, so there will be an explicit method in configuration to tell firmware where intersections are located. => tbd
 
 The three parts are sufficient to calculate new endpoints with given actuator angles/positions and the inverse kinematics.
 
@@ -102,7 +102,8 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 
 * Denavit-Hartenberg is used for setup and calculating forward kinematics
 * screw theory is used for setup and formula basis for Paden-Kahan based inverse kinematics
-* geometric algebra (Clifford algebra, multivectors) is used to deduce the algorithms for Paden-Kahan subproblems
+* geometric algebra (Clifford algebra, multivectors, GA) is used to deduce the algorithms for Paden-Kahan subproblems
+* conformal geometric algebra (exterior algebra, CGA, Grassmann, G4.1), a 5-dimensional space is used for more complex problems
 * quaternions, dual quaternions are used to store position and orientation (translations and rotations) values
 
 # Literature about screw theory, Paden-Kahan / canonical subproblems
