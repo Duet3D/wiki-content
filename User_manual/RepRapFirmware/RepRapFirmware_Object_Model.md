@@ -2,7 +2,7 @@
 title: RepRapFirmware Object Model
 description: All Duet software projects share the same object model to store configuration and sensor data.
 published: true
-date: 2023-02-20T14:49:10.535Z
+date: 2023-02-20T14:49:47.629Z
 tags: 
 editor: markdown
 dateCreated: 2023-02-20T14:49:10.535Z
