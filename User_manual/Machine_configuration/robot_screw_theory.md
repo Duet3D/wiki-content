@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-02-20T00:38:37.906Z
+date: 2023-02-20T00:41:12.588Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -104,7 +104,7 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 * screw theory is used for setup and formula basis for Paden-Kahan based inverse kinematics
 * geometric algebra (Clifford algebra, multivectors, GA) is used to deduce the algorithms for Paden-Kahan subproblems
 * conformal geometric algebra (exterior algebra, CGA, Grassmann, G4.1, Minkowski space, versors), a 5-dimensional space is used for more complex problems
-* quaternions, dual quaternions are used to store position and orientation (translations and rotations) values
+* quaternions, dual quaternions (octonions, Cayley numbers) are used to store position and orientation (translations and rotations) values. Quaternions can store rotations, but to store positional information as well, dual quaternions are needed.
 
 # Literature about screw theory, Paden-Kahan / canonical subproblems
 
