@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-02-20T00:23:32.719Z
+date: 2023-02-20T00:25:59.020Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -100,7 +100,7 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 
 # Overview of mathematical methods
 
-* Denavit-Hartenberg is used for setup and calculating forward kinematics
+* Screw configuration or extended Denavit-Hartenberg is used for setup and calculating forward kinematics
 * screw theory is used for setup and formula basis for Paden-Kahan based inverse kinematics
 * geometric algebra (Clifford algebra, multivectors, GA) is used to deduce the algorithms for Paden-Kahan subproblems
 * conformal geometric algebra (exterior algebra, CGA, Grassmann, G4.1), a 5-dimensional space is used for more complex problems
