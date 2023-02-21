@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-02-20T13:34:00.356Z
+date: 2023-02-21T12:27:53.542Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5464,6 +5464,7 @@ In RRF 3.4 and later, if you need to find the average heater PWM, you can query 
 * **Znnn** Position of Z endstop: 0 = none, 1 = low end, 2 = high end.
 * **P"pin_name"** Defines the pin name(s) that the endstop(s) for the specified axis are connected to, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Needed when S=1. May need ! before pin name to invert signal, or ^ to enable the pullup resistor, for example on the Duet 2 expansion header if using the pins directly without a duex5.
 * **Snnn** 1 = switch-type (eg microswitch) endstop input, 2 = Z probe (when used to home an axis other than Z), 3 = single motor load detection, 4 = multiple motor load detection (see Notes).
+* **Knnn** Optional Z probe number (3.5beta3 or later, only for S2, defaults to 0)
 
 ##### Order dependency
 
