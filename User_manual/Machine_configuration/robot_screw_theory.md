@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-02-21T18:49:07.714Z
+date: 2023-02-21T18:50:29.902Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -108,7 +108,7 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 
 # Geometric Algebra
 
-Developed in the 19th century by Grassmann, Clifford and others to develop an algebra to describe geometric without coordinate system. Falling into oblivion by linear algebra and matrix calculations, it was rediscovered in the 20th century by quantum theory and later by Hestenes and Sobczyk (and others). Geometric algebra allows mixing objects of different dimensions and calculate intersections or unions between them in a unified way. There are different stages of complexitiy (and requirement for memory and processing power), which can also be mixed, like projective vector algebra, homogeneous algebra, geometric algebra, conformal geometric algebra, working in 3, 4 or 5 (G4.1) dimensional spaces. Results can be crosschecked with traditional algorithms, and the fasted one will be taken...
+Developed in the 19th century by Grassmann, Clifford and others to develop an algebra to describe geometric without coordinate system. Falling into oblivion by linear algebra and matrix calculations, it was rediscovered in the 20th century by quantum theory and later by Hestenes and Sobczyk (and others). Geometric algebra allows mixing objects of different dimensions and calculate intersections or unions between them in a unified way. There are different stages of complexitiy (and requirement for memory and processing power), which can also be mixed, like vector algebra, homogeneous algebra, geometric algebra (GA), projective geometric algebra (PGA), conformal geometric algebra (CGA), working in 3, 4 or 5 (G4.1) dimensional spaces. Results can be crosschecked with traditional algorithms, and the fasted one will be taken...
 
 # Literature about screw theory, Paden-Kahan / canonical subproblems
 
