@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-02-25T07:10:35.833Z
+date: 2023-02-25T07:15:08.768Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -150,7 +150,7 @@ source code
 books
 * Dorst, Fontijne, Mann: Geometric Algebra for Computer Science. A bit expensive, but IMHO worth every cent. It also offers three freeware programs to view geometric algebra and helps starting to develop it.
 * McCarthy: Introduction to Theoretical Kinematics. Sometimes not easy, but good overview over the topics.
-* John Vince: several books about geometric algebra, quaternions, rotations and alike in an understandable (at least for me) style. The book "Guide to Geometric Algebra in Practice" is especially about the conformal model CGA.
+* John Vince: several books about geometric algebra, quaternions, rotations and alike in an understandable (at least for me) style.
 
 # Literatur about algorithms
 * Sunday: Practical Geometry Algorithms with C++ Code. Nice book about fast geometric solutions.
