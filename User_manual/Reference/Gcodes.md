@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-02-28T17:03:46.704Z
+date: 2023-02-28T17:07:10.765Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -888,7 +888,7 @@ The **K parameter** is applicable to all G30 commands. It is the Z probe number,
 * **Znnn** Trigger Z height
 * **Snnn** Calibration temperature^2^
 * **Cnnn** Temperature coefficient^3^
-* **Tnnn** (RRF 1.17 and later) Z probe type to which these parameters apply, defaults to the current Z probe type as defined by M558 P parameter.^2^
+* **Tnnn** (RRF 1.17 and later) Z probe type to which the S and C parameters apply, defaults to the current Z probe type as defined by M558 P parameter.^2^
 
 ##### Notes
 
@@ -902,8 +902,7 @@ The **K parameter** is applicable to all G30 commands. It is the Z probe number,
 <br>
 <pre class="cblock">
 G31 P500 Z2.6
-G31 X16.0 Y1.5
-
+G31 X16.0 Y1.5<br>
 ; RRF 3.3 and later example of probe with thermistor and temperature compensation
 M558 P8 C"io2.in" H1 F1000 T6000 A3              				  ; Prusa PindaV2 Endstop
 M308 S2 P"temp2" A"Pinda V2" Y"thermistor" T100000 B3950  ; Prusa PindaV2 Thermistor
