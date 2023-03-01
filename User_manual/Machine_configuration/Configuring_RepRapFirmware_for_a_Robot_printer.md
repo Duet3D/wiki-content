@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-01-03T09:57:19.903Z
+date: 2023-03-01T08:04:55.819Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -25,6 +25,9 @@ The kinematics is developed for Duet3Ds RepRapFirmware. The **robot firmware is 
 
 The source is in github https://github.com/JoergS5/RepRapFirmware/tree/3.5-dev/src/Movement/Kinematics
 RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 4.cpp is code which is independent of RRF and can run and be tested outside RRF.
+> The code includes the iteration-based DH code, it will be updated with the new screw theory based code at mid march.
+{.is-info}
+
 
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
