@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-02-28T17:09:18.514Z
+date: 2023-03-01T15:16:23.672Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -876,9 +876,11 @@ The **K parameter** is applicable to all G30 commands. It is the Z probe number,
 
 ^1^ X and Y offsets of the Z probe relative to the print head (i.e. the position when the empty tool is selected) can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X and Y offset.
 
-^2^ Optional parameter 'S' (temperature in °C at which the specified Z parameter is correct, default is current temperature). This is useful for probes that are affected by temperature. 
+^2^ Optional parameter 'S' specifies the temperature in °C at which the specified Z parameter is correct. The default is current temperature. In RRF3 you must specify which temperature sensor to use in the 'H' parameter.
 
-^3^ Optional parameter 'C' (temperature coefficient of Z parameter in mm/°C, default zero). In RRF3 you must specify which temperature sensor to use in the 'H' parameter.
+^3^ Optional parameter 'C' specifies one, or two (RRF v3.2), temperature coefficients of the Z parameter, default zero. This is useful for probes that are affected by temperature.
+* If one parameter is specified, it is the variation in Z parameter height with the change in sensor temperature in mm/°C. The parameter is applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 C0.02 S20 H2` when sensor 2 measures 26C would calculate trigger height as 1.2 + 0.02x6x6 = 1.92mm
+* If two parameters are specified (RRF v3.2), the first is the variation in Z parameter height with the change in sensor temperature in mm/°C, and the second is variation in Z parameter height with the square of temperature. The parameters are applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 C0.03:0.02 S20 H2` when sensor 2 measures 26C would calculate trigger height as 1.2 + 0.03x6 + 0.02x6x6 = 2.1mm
 
 #### RepRapFirmware v2.x and earlier
 
@@ -894,9 +896,9 @@ The **K parameter** is applicable to all G30 commands. It is the Z probe number,
 
 ^1^ X and Y offsets of the Z probe relative to the print head (i.e. the position when the empty tool is selected) can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X and Y offset.
 
-^2^ Optional parameter 'S' (temperature in °C at which the specified Z parameter is correct, default is current temperature). In RRF2 the bed temperature reading is used.
+^2^ Optional parameter 'S' specifies the temperature in °C at which the specified Z parameter is correct. The default is current temperature. In RRF2 the bed temperature reading is used.
 
-^3^ Optional parameter 'C' (temperature coefficient of Z parameter in mm/°C, default zero). This is useful for probes that are affected by temperature. 
+^3^ Optional parameter 'C' specifies the temperature coefficient of the Z parameter, default zero. This is useful for probes that are affected by temperature. When the parameter is specified, it is the variation in Z parameter height with the change in sensor temperature in mm/°C. The parameter is applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 C0.02 S20` when the bed measures 26C would calculate trigger height as 1.2 + 0.02x6x6 = 1.92mm
 
 ### Examples
 <br>
