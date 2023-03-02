@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-01-30T16:07:54.509Z
+date: 2023-03-02T17:10:49.065Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -542,6 +542,7 @@ The CAN BUS is connected via RJ11 and at least 2 core twisted pair, although 6 c
 - Added a 2x5 IDC header for a ribbon cable connection to a PanelDue with external SD card.
 - Improved ESD protection for temperature, tacho and other inputs.
 - Various component changes to work around supply chain shortages (except thos listed above this does not result in functional changes to the design).
+- Move the location of the erase jumper.
 
 ## Revision v1.01a
 - DNP the jumpers for 5V power between the Duet and the SBC. A more modern SBC (e.g. RPi 4) needs too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarily the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give a under voltage warning.
