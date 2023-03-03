@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-02-25T07:15:08.768Z
+date: 2023-03-03T09:21:22.716Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -108,7 +108,25 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 
 # Geometric Algebra
 
-Developed in the 19th century by Grassmann, Hamilton, Clifford and others to develop an algebra to describe geometric without coordinate system. Falling into oblivion by linear algebra and matrix calculations, it was rediscovered in the 20th century by quantum theory and later by Hestenes and Sobczyk (and others). Geometric algebra allows mixing objects of different dimensions and calculate intersections or unions between them in a unified way. There are different stages of complexitiy (and requirement for memory and processing power), which can also be mixed, like vector algebra, homogeneous algebra, geometric algebra (GA), projective geometric algebra (PGA), conformal geometric algebra (CGA), working in 3, 4 or 5 (G4.1) dimensional spaces. Results can be crosschecked with traditional algorithms, and the fasted one will be taken...
+Geometric Algebra (abbreviated by GA) offers descriptions and calculations of geometric with the help of algebra. It was developed in the 19th century, but was almost forgotten. Some key people were:
+- Grassmann to develop what he called exterior algebra
+- Hamilton to develop quaternions to describe rotations in 3D
+- Clifford who joined the two (and died too young)
+- several persons who used GA for quantum theory
+- Hestenes and Sobczyk who rediscovered GA and set the name
+
+GA offers
+- coordinate free geometric descriptions and calculations
+- e.g. normals, intersections, unions
+- in all dimensions and mixing them
+
+GA is like an onion, starting simple with option to solve complex problems with more advanced methods:
+- vector and matrix calculations
+- geometric product
+- projective geometric algebra (PGA)
+- conformal geometric algebra (CGA), 5-dimensional
+
+To optimize performance, simple problem can therefore solved by simple methods.
 
 # Literature about screw theory, Paden-Kahan / canonical subproblems
 
