@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-03T09:43:57.703Z
+date: 2023-03-03T09:47:52.030Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -124,7 +124,7 @@ GA offers
 
 GA is like an onion, starting simple with option to solve complex problems with more advanced methods:
 - vector and matrix calculations
-- geometric product
+- geometric product, joining inner and outer product
 - projective geometric algebra (PGA)
 - conformal geometric algebra (CGA), 5-dimensional
 
