@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-03T09:21:22.716Z
+date: 2023-03-03T09:32:11.047Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -111,7 +111,7 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 Geometric Algebra (abbreviated by GA) offers descriptions and calculations of geometric with the help of algebra. It was developed in the 19th century, but was almost forgotten. Some key people were:
 - Grassmann to develop what he called exterior algebra
 - Hamilton to develop quaternions to describe rotations in 3D
-- Clifford who joined the two (and died too young)
+- Clifford who joined the two theories (and died too young)
 - several persons who used GA for quantum theory
 - Hestenes and Sobczyk who rediscovered GA and set the name
 
@@ -119,6 +119,7 @@ GA offers
 - coordinate free geometric descriptions and calculations
 - e.g. normals, intersections, unions
 - in all dimensions and mixing them
+- proving trigonometric, geometric and other theorems with ease
 
 GA is like an onion, starting simple with option to solve complex problems with more advanced methods:
 - vector and matrix calculations
