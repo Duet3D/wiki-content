@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-03T09:32:11.047Z
+date: 2023-03-03T09:43:57.703Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -120,6 +120,7 @@ GA offers
 - e.g. normals, intersections, unions
 - in all dimensions and mixing them
 - proving trigonometric, geometric and other theorems with ease
+- applicable not only for robotics, but also e. g. quantum theory, Maxwell's equations, cristallography, image processing
 
 GA is like an onion, starting simple with option to solve complex problems with more advanced methods:
 - vector and matrix calculations
