@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-04T23:14:50.580Z
+date: 2023-03-05T09:28:43.543Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -165,14 +165,3 @@ source code
 * Lynch, Park https://github.com/NxRLab/ModernRobotics
 * Corke Robotics Toolbox https://petercorke.com/toolboxes/robotics-toolbox/
 * Elias source for article with Matlab code: https://github.com/rpiRobotics/linear-subproblem-solutions
-
-# Literature about Geometric/Clifford Algebra, Conformal Model
-books
-* Dorst, Fontijne, Mann: Geometric Algebra for Computer Science. A bit expensive, but IMHO worth every cent. It also offers three freeware programs to view geometric algebra and helps starting to develop it.
-* McCarthy: Introduction to Theoretical Kinematics. Sometimes not easy, but good overview over the topics.
-* John Vince: several books about geometric algebra, quaternions, rotations and alike in an understandable (at least for me) style.
-* Hildenbrand: Foundations of Geometric Algebra Computing, another good book about especially CGA (conformal model) with a libary.
-* Hestenes and Sobczyk pushed GA in the 1980-ies with their book and published new topics later.
-
-# Literatur about algorithms
-* Sunday: Practical Geometry Algorithms with C++ Code. Nice book about fast geometric solutions.
