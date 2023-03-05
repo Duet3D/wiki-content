@@ -2,7 +2,7 @@
 title:  Stall detection and sensorless homing
 description: 
 published: true
-date: 2021-12-15T22:27:33.206Z
+date: 2023-03-05T16:04:19.782Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -19,7 +19,7 @@ The **TMC5160/2160** drivers (Duet 3 MB6HC and Duet 3 EB3HC), **TMC2209** driver
 
 **The TMC2224 drivers on the Duet Maestro do not support stall detection.**
 
-Currently (RRF 3.2), stall detection on Duet 3 tool boards (Duet 3 TOOL1LC) and expansion boards (Duet 3 EB3HC) are not yet reported and cannot be used for homing. See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
+Currently (RRF 3.4.5), stall detection on Duet 3 CAN-FD expansion boards cannot be used for homing. See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
 ## Table of features
 
