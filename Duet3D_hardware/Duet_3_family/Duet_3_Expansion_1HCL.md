@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-02-20T13:27:43.089Z
+date: 2023-03-06T16:13:50.450Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -52,6 +52,8 @@ The maximum speed at which the firmware can drive the motor reliably in closed l
 ## Compatible Encoders
 
 RRF 3.4 supports quadrature motor shaft encoders only. RRF 3.5 also supports Duet3D magnetic shaft encoders and linear composite encoders.
+
+Encoder resolutions of over 1000PPR/4000CPR are highly recommended. resolutoons below this are unlikely to work well in most situations.
 
 ### Quadrature motor shaft encoders
 
