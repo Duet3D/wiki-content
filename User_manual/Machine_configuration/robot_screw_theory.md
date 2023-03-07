@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-05T09:28:43.543Z
+date: 2023-03-07T00:25:29.371Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -165,3 +165,7 @@ source code
 * Lynch, Park https://github.com/NxRLab/ModernRobotics
 * Corke Robotics Toolbox https://petercorke.com/toolboxes/robotics-toolbox/
 * Elias source for article with Matlab code: https://github.com/rpiRobotics/linear-subproblem-solutions
+
+# Literature about Geometric Algebra
+
+There are a lot of free pdf articles available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk and many others are available. Main topics are directed to robotics, geometry, physics and other. Since 2000, the 5-dimensional CGA version of geometric algebra was detected for robotics and geometric tasks.
