@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-07T00:25:29.371Z
+date: 2023-03-07T00:52:45.592Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -129,6 +129,15 @@ GA is like an onion, starting simple with option to solve complex problems with 
 - conformal geometric algebra (CGA), 5-dimensional
 
 To optimize performance, simple problem can therefore solved by simple methods.
+
+The current list of GA software for visualization or using in own developement:
+- Galoop
+- GAViewer and Gaigen2
+- there is a Matlab plugin called Clifford Multivector Toolbox
+- Clical
+- CLUCal seems to be dead
+
+Galoop offers good switch between dimension systems, GAViewer is visually nice. Both support CGA.
 
 # Literature about screw theory, Paden-Kahan / canonical subproblems
 
