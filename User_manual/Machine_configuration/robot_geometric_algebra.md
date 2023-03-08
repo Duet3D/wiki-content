@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-08T08:33:39.733Z
+date: 2023-03-08T08:55:40.970Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -38,13 +38,17 @@ GA is like an onion, starting simple with option to solve complex problems with 
 To optimize performance, simple problem can therefore solved by simple methods.
 
 The current list of GA software for visualization or using in own developement:
-- Galoop (sources Java with plugins for C++, CUDA etc)
-- GAViewer and Gaigen2 (sources Gaigen 1.0 C++ in GAViewer, C#/Java in Gaigen2)
+- Galoop (sources Java with plugins for C++, CUDA etc). Offers good switch beteween dimension systems (including CGA), can use Maxima and is actively developed.
+- GAViewer and Gaigen2 (sources Gaigen 1.0 C++ in GAViewer, C#/Java in Gaigen2). Has a nice GUI and supports CGA.
 - there is a Matlab plugin called Clifford Multivector Toolbox
 - Clical
 - CLUCal seems to be inactive
 
-Galoop offers good switch between dimension systems, GAViewer is visually nice. Both support CGA.
+# Conformal Geometric Algebra (CGA)
+
+Conformal means angle preserving. CGA uses additional information, compared to 3-dimensional storage. CGA is a 5-dimensional Minkowski G4.1 space, needing 32 parameters to describe all blades. CGA was patented in US 6,853,964, but fortunately expired in July 2022.
+
+The blades according to Pascal triangle, 2^5 blades, 1-5-10-10-5-1, the first being scalar, then the single vectors, then bivectors, trivectors, 4-vectors, then all axes called pseudoscalar. Most can be ignored later for most object calculations.
 
 # Geometric Algebra in Firmware
 
