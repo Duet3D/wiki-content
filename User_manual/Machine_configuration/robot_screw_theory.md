@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-07T13:29:51.743Z
+date: 2023-03-08T08:04:25.288Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -131,8 +131,8 @@ GA is like an onion, starting simple with option to solve complex problems with 
 To optimize performance, simple problem can therefore solved by simple methods.
 
 The current list of GA software for visualization or using in own developement:
-- Galoop
-- GAViewer and Gaigen2
+- Galoop (sources Java with plugins for C++, CUDA etc)
+- GAViewer and Gaigen2 (sources Gaigen 1.0 C++ in GAViewer, C#/Java in Gaigen2)
 - there is a Matlab plugin called Clifford Multivector Toolbox
 - Clical
 - CLUCal seems to be inactive
