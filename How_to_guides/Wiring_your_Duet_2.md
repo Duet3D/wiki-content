@@ -2,7 +2,7 @@
 title: Wiring your Duet 2 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 2 mainboard.
 published: true
-date: 2022-08-22T14:15:12.860Z
+date: 2023-03-08T11:02:53.996Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-28T15:53:00.844Z
@@ -66,13 +66,17 @@ Here is a good guide to crimping: [Teaching Tech on YouTube](https://youtu.be/GZ
 
 <p style="clear:both"></p>
 
-![wiring_crimp_tool_manual.jpg](/guides/wiring/wiring_crimp_tool_manual.jpg =50%x){.align-right}![wiring_crimp_tool_ratchet.jpg](/guides/wiring/wiring_crimp_tool_ratchet.jpg =50%x){.align-right}**Duet 2 Maestro** has a 4-way barrier strip with screw terminals to connect power supply and heated bed wires, and are supplied with insulated spade crimp terminals. Use an appropriate crimping tool; we find ratchet wire crimping tools produce better crimps than the non-ratcheting type.
+![wiring_crimp_tool_manual.jpg](/guides/wiring/wiring_crimp_tool_manual.jpg =50%x){.align-right}![wiring_crimp_tool_ratchet.jpg](/guides/wiring/wiring_crimp_tool_ratchet.jpg =50%x){.align-right}**Duet 3 Mainboards and most expansion boards** have a 2, 4 or 6-way barrier strip with screw terminals to connect power supply (and heated bed wires if applicable), and are supplied with insulated spade crimp terminals. Use an appropriate crimping tool; we find ratchet wire crimping tools produce better crimps than the non-ratcheting type.
 
 <p style="clear:both"></p>
 
 ### Medium current connectors
 
 ![wiring_ferrule_crimp_tool_manual.jpg](/guides/wiring/wiring_ferrule_crimp_tool_manual.jpg =50%x){.align-right}![wiring_ferrule_crimp_tool.jpg](/guides/wiring/wiring_ferrule_crimp_tool.jpg =50%x){.align-right}Duet 2 boards use bootlace ferrules on the end of the medium current (usually hot end heater) wires, which connect to the screw terminal on the Duet board. Use an appropriate bootlace ferrule crimping tool to crimp the wires in the bootlace ferrule, as for the Duet 2 WiFi/Ethernet high current connectors.
+
+<p style="clear:both"></p>
+
+![wiring_engineer_pa-09.jpg](/guides/wiring/wiring_engineer_pa-09.jpg =50%x){.align-right}![wiring_ht225d.jpg](/guides/wiring/wiring_ht225d.jpg =50%x){.align-right} Duet 3 boards use JST VH connectors for heaters. Use a manual tool such as Engineer band.
 
 <p style="clear:both"></p>
 
