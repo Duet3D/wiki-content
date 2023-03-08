@@ -2,15 +2,15 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-08T08:04:25.288Z
+date: 2023-03-08T08:18:50.908Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
 ---
 
+This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
+
 # Screw Theory
-> work in progress
-{.is-info}
 
 Screw theory will not be explained here, because Wikipedia, books and scientific articles can explain it much better than me (see the literature links below for recommendations). The following information provides what is needed to give an overview and configure the kinematics.
 
