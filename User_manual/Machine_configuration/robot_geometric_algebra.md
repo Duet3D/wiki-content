@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-08T09:10:56.473Z
+date: 2023-03-08T09:24:47.986Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -61,4 +61,9 @@ This approach will allow using the full functionality on a PC or in a future Due
 
 # Literature about Geometric Algebra
 
-There are a lot of free pdf articles available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk and many others are available. Main topics are directed to robotics, geometry, physics and other. Since 2000, the 5-dimensional CGA version of geometric algebra was detected for robotics and geometric tasks.
+Recommended introductory books from a personal view are:
+- Dorst: Geometric Algebra for Computer Science, 1st revised ed. Includes CGA.
+- Hildenbrand: Foundations fo Geometric Algebra Computing. Including CGA and Gaalop description. Basic GA knowledge is preferrable.
+- Hestenes, Sobczyk: Clifford Algebras And Their Applications In Mathematical Physics. Book where GA was re-established after its deep sleep.
+
+There are a lot of free pdf articles available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk and many others are available. Main topics are directed to robotics, geometry, physics and other.
