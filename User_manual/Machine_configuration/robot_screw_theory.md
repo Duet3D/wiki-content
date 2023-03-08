@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-08T08:18:50.908Z
+date: 2023-03-08T08:28:34.631Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -106,38 +106,6 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 * conformal geometric algebra (exterior algebra, CGA, Grassmann, G4.1, Minkowski space, versors), a 5-dimensional space is used for more complex problems
 * quaternions, dual quaternions (octonions, Cayley numbers) are used to store position and orientation (translations and rotations) values. Quaternions can store rotations, but to store positional information as well, dual quaternions are needed.
 
-# Geometric Algebra
-
-Geometric Algebra (abbreviated by GA) offers descriptions and calculations of geometric with the help of algebra. It was developed in the 19th century, but was almost forgotten. Some key people were:
-- Grassmann to develop what he called exterior algebra
-- Hamilton to develop quaternions to describe rotations in 3D
-- Clifford who joined the two theories (and died too young)
-- several persons who used GA for quantum theory
-- Hestenes and Sobczyk who rediscovered GA and set the name
-
-GA offers
-- coordinate free geometric descriptions and calculations
-- e.g. normals, intersections, unions
-- in all dimensions and mixing them
-- proving trigonometric, geometric and other theorems with ease
-- applicable not only for robotics, but also e. g. quantum theory, Maxwell's equations, cristallography, image processing
-
-GA is like an onion, starting simple with option to solve complex problems with more advanced methods:
-- vector and matrix calculations
-- geometric product, joining inner and outer product
-- projective geometric algebra (PGA)
-- conformal geometric algebra (CGA), 5-dimensional
-
-To optimize performance, simple problem can therefore solved by simple methods.
-
-The current list of GA software for visualization or using in own developement:
-- Galoop (sources Java with plugins for C++, CUDA etc)
-- GAViewer and Gaigen2 (sources Gaigen 1.0 C++ in GAViewer, C#/Java in Gaigen2)
-- there is a Matlab plugin called Clifford Multivector Toolbox
-- Clical
-- CLUCal seems to be inactive
-
-Galoop offers good switch between dimension systems, GAViewer is visually nice. Both support CGA.
 
 # Literature about screw theory, Paden-Kahan / canonical subproblems
 
@@ -175,6 +143,3 @@ source code
 * Corke Robotics Toolbox https://petercorke.com/toolboxes/robotics-toolbox/
 * Elias source for article with Matlab code: https://github.com/rpiRobotics/linear-subproblem-solutions
 
-# Literature about Geometric Algebra
-
-There are a lot of free pdf articles available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk and many others are available. Main topics are directed to robotics, geometry, physics and other. Since 2000, the 5-dimensional CGA version of geometric algebra was detected for robotics and geometric tasks.
