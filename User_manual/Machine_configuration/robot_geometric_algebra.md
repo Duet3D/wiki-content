@@ -1,8 +1,8 @@
 ---
-title: robot Geometric Algebra, Conformal Geometric Algebra, GA, CGA
+title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-08T08:28:19.105Z
+date: 2023-03-08T08:33:39.733Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -10,9 +10,7 @@ dateCreated: 2023-03-08T08:28:19.105Z
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
-# robot Geometric Algebra
-
-> work in programm (just started, please come back in a few days to see content)
+> work in programm (just started, please come back in a few days to see more content)
 {.is-info}
 
 # Geometric Algebra
@@ -48,6 +46,14 @@ The current list of GA software for visualization or using in own developement:
 
 Galoop offers good switch between dimension systems, GAViewer is visually nice. Both support CGA.
 
+# Geometric Algebra in Firmware
+
+An old development saying is, to develop correctly with respect to design first, then analyze for bottlenecks and optimize later. In other words, don't optimize too early to avoid bad designs. In this spirit, I'm implementing all
+* in Conformal Geometric Algebra, 5 dimensional
+* check performance and memory usage*
+* strip down and simplify if this usage is too high for RRF
+
+This approach will allow using the full functionality on a PC or in a future Duet with lot of memory.
 
 # Literature about Geometric Algebra
 
