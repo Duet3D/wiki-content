@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-08T09:00:02.915Z
+date: 2023-03-08T09:10:56.473Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -54,7 +54,7 @@ The blades according to Pascal triangle, 2^5 blades, 1-5-10-10-5-1, the first be
 
 An old development saying is, to develop correctly with respect to design first, then analyze for bottlenecks and optimize later. In other words, don't optimize too early to avoid bad designs. In this spirit, I'm implementing all
 * in Conformal Geometric Algebra, 5 dimensional
-* check performance and memory usage*
+* check performance and memory usage
 * strip down and simplify if this usage is too high for RRF
 
 This approach will allow using the full functionality on a PC or in a future Duet with lot of memory.
