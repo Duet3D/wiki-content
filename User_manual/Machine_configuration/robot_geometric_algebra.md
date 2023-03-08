@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-08T08:55:40.970Z
+date: 2023-03-08T09:00:02.915Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -46,7 +46,7 @@ The current list of GA software for visualization or using in own developement:
 
 # Conformal Geometric Algebra (CGA)
 
-Conformal means angle preserving. CGA uses additional information, compared to 3-dimensional storage. CGA is a 5-dimensional Minkowski G4.1 space, needing 32 parameters to describe all blades. CGA was patented in US 6,853,964, but fortunately expired in July 2022.
+Conformal means angle preserving of the transformations (reflection, rotation, translation etc). CGA uses additional information, compared to 3-dimensional storage. CGA is a 5-dimensional Minkowski G4.1 space, needing 32 parameters to describe all blades. CGA was patented in US 6,853,964, but fortunately expired in July 2022.
 
 The blades according to Pascal triangle, 2^5 blades, 1-5-10-10-5-1, the first being scalar, then the single vectors, then bivectors, trivectors, 4-vectors, then all axes called pseudoscalar. Most can be ignored later for most object calculations.
 
