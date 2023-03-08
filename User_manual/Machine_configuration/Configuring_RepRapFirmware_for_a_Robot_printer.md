@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-03-01T08:04:55.819Z
+date: 2023-03-08T08:35:08.552Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -12,6 +12,7 @@ This page is part of multiple pages about robot configuration and usage. Please 
 |---|---|
 |configuration|[Configuring](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)|
 |screw theory (product of exponentials)|[screw theory](/User_manual/Machine_configuration/robot_screw_theory)|
+|geometric algebra|[geometric algebra](/User_manual/Machine_configuration/robot_geometric_algebra)|
 |Denavit-Hartenberg explanation and examples|[DH parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)|
 |firmware explained, orientations|[Firmware](/User_manual/Machine_configuration/robot_firmware)|
 |CNC, CoreXY, Prusalike 5 axis|[5 axis](/User_manual/Machine_configuration/robot_5_axis_CNC)|
