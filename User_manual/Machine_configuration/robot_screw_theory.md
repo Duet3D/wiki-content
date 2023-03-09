@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-08T08:28:34.631Z
+date: 2023-03-09T06:39:15.742Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -60,30 +60,28 @@ Stewart-Gough is postponed. It has a lot of degrees of freedom and is complex to
 
 # Paden-Kahan subproblems
 
-It is used a process called subproblems: the whole chain is split into easier calculations by using reference points, where part of the chain can be elimininated from the formula. Paden-Kahan have developed a set of subproblem solutions for rotary joints. Other authors have added subproblems for prismatic joints or extensions.
+Paden-Kahan is used to solve the inverse kinematics, i. e. for a given endpoint (position and orientation), the actuator angles or linear position shall be calculated. Often, there exists more than one solution, so all solutions are calculated.
 
-The following closed form subproblems will be included and extended
-* Paden-Kahan subproblems 1 to 5 with generalization of subproblem 2
-* Pardos-Gotor subproblems 1 to 4
-* extensions by others, e.g. to support parallel kinematics
+For an introduction of the method, please see https://en.wikipedia.org/wiki/Paden%E2%80%93Kahan_subproblems
 
-Paden-Kahan subproblems:
-* the subproblems are solvable by algorithms, without iterations
-* all possible solutions are found (up to 8 for a 6 axis robot)
-* **basic procedure is to find points** where part of the complete PoE formula can be eliminated and the rest solved
+The actuator chain shall be solved by simplifying the exponential formula by
+- taking out known actuator values
+- handling together axes which are connected somehow, like intersection or being parallel
+- finding points, vectors or distances in the chain which do not change by specific actuator changes
 
-Dividing into subproblems need the construction to be dividable by common points or distances, e.g:
-* consecutive axes crossing at one point, e. g. spheric axes. For rotational (PK2) or translational (PG2) axes
-* rotations (PK3) or translations (PG1, PG3) to a given distance
-* part of the screw definition is chossing a point on the axis. This point can be choosen such that different axes share one point
-* axes being parallel to each other (PG4)
-* rotation about a single axis (PK1)
+Paden developed an initial set of PK1 ... PKn (mainly 3) subproblems in his dissertation. It was extended for linear axes and other situations later.
 
-Simplifications are important, because they allow elimination of PoE elements to calculate angles.
-
-PK denote Paden-Kahan subproblems, PG Pardos-Gotor ones. PK1...5 are algorithms for rotational axes, PG1...3 for prismatic analogue to PK1...3, and PG4 is a special case of PK2. Several authors  generalized PK2 (original PK2: two intersecting axes) to include parallel or skew axes.
+I'll label Paden's subproblems as PK1...PK3 (4,5,6), Pardos-Gators' ones like he labeled it PG1..., and extensions as PK2a, PK2b etc. from several scientific articles.
 
 The crossing was also defined by the "Pieper criterion". Nearly all kinematics which follow the Pieper criterion are solvable by closed form subproblems.
+
+|-|
+|label|property|simplification possible if...|solutions *)|
+|PK1|one rotary axis|a point on the axis|1|
+|PK2|two intersecting rotary axes|no|0...2 for the axis pair|
+|PK3|rotary axis to given distance|distance fix|1|
+
+*) solutions, if not simplified
 
 # C parameter
 Configuration has three parts:
