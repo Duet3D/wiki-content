@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-09T09:15:35.051Z
+date: 2023-03-09T09:25:45.428Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -19,7 +19,8 @@ Geometric Algebra (abbreviated by GA) offers descriptions and calculations of ge
 - Grassmann to develop what he called exterior algebra
 - Hamilton to develop quaternions to describe rotations in 3D
 - Clifford who joined the two theories (and died too young)
-- several persons who used GA for quantum theory
+- Gibbs needed only 3-dimensional calculations and used cross vectors, this distracted from a dimensional-independent geometric algebra.
+- Pauli, Dirac and others for quantum and spin theory
 - Hestenes and Sobczyk who rediscovered GA and set the name
 
 GA offers
