@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-09T09:25:45.428Z
+date: 2023-03-09T09:27:47.166Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -28,7 +28,7 @@ GA offers
 - e.g. normals, intersections, unions
 - in all dimensions and mixing them
 - proving trigonometric, geometric and other theorems with ease
-- applicable not only for robotics, but also e. g. quantum theory, Maxwell's equations, cristallography, image processing
+- applicable not only for robotics, but also e. g. quantum theory, Maxwell's equations, mechanics incl. Newton's laws, cristallography, image processing
 
 GA is like an onion, starting simple with option to solve complex problems with more advanced methods:
 - vector and matrix calculations
