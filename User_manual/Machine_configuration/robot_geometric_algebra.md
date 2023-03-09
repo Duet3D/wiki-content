@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-08T09:36:50.803Z
+date: 2023-03-09T07:00:02.456Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -37,12 +37,18 @@ GA is like an onion, starting simple with option to solve complex problems with 
 
 To optimize performance, simple problem can therefore solved by simple methods.
 
-The current list of GA software for visualization or using in own developement:
-- Galoop (sources Java with plugins for C++, CUDA etc). Offers good switch beteween dimension systems (including CGA), can use Maxima and is actively developed.
-- GAViewer and Gaigen2 (sources Gaigen 1.0 C++ in GAViewer, C#/Java in Gaigen2). Has a nice GUI and supports CGA.
-- there is a Matlab plugin called Clifford Multivector Toolbox
-- Clical
-- CLUCal seems to be inactive
+# Geometric Algebra Software
+
+Learning GA needs good books or articles, but software for visualization and to learn the algorithms is also very valuable. Following an imcomplete list of software:
+
+|-|-|-|-|
+|name|developed, documented by|language, capabilities|
+|Gaalop|Hildenbrand, Steinmetz|Java, several dimension systems, symbolic optimizer Maxima integrated|
+|GAViewer|Dorst|C++ with Gaigen 1, Viewer|
+|Gaigen 2|Dorst|C#, Java, library for different dimension systems|
+|Clifford Multivector Toolbox| |Matlab plugin|
+|Clical| | |
+|CLUCal| |seems to be inactive. Gaalop is based on it|
 
 # Conformal Geometric Algebra (CGA)
 
