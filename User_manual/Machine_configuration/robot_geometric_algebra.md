@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-09T09:27:47.166Z
+date: 2023-03-09T12:43:06.396Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -45,6 +45,7 @@ Learning GA needs good books or articles, but software for visualization and to 
 |-|-|-|-|
 |name|developed, documented by|language, capabilities|
 |Gaalop|Hildenbrand, Steinmetz|Java, several dimension systems, symbolic optimizer Maxima integrated|
+|Maxima|GPL developers|symbolic algebra with optimizer|
 |GAViewer|Dorst|C++ with Gaigen 1, Viewer|
 |Gaigen 2|Dorst|C#, Java, library for different dimension systems|
 |Clifford Multivector Toolbox| |Matlab plugin|
