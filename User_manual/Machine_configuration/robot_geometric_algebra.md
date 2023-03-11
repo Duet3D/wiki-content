@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-11T09:12:56.662Z
+date: 2023-03-11T09:14:23.430Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -15,7 +15,7 @@ This page is part of multiple pages about robot configuration and usage. Please 
 
 # Geometric Algebra
 
-Geometric Algebra (abbreviated by GA) offers descriptions and calculations of geometric with the help of algebra. It was developed in the 19th century, but was almost forgotten. Some key people were:
+Geometric Algebra (abbreviated by GA, other names: Clifford algebra, exterior algebra) offers descriptions and calculations of geometric with the help of algebra. It was developed in the 19th century, but was almost forgotten. Some key people were:
 - Grassmann to develop what he called exterior algebra
 - Hamilton to develop quaternions to describe rotations in 3D
 - Clifford who joined the two theories (and died too young)
