@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-09T12:43:06.396Z
+date: 2023-03-11T09:12:56.662Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -25,18 +25,19 @@ Geometric Algebra (abbreviated by GA) offers descriptions and calculations of ge
 
 GA offers
 - coordinate free geometric descriptions and calculations
-- e.g. normals, intersections, unions
+- e. g. for calculation of intersections and unions
 - in all dimensions and mixing them
-- proving trigonometric, geometric and other theorems with ease
-- applicable not only for robotics, but also e. g. quantum theory, Maxwell's equations, mechanics incl. Newton's laws, cristallography, image processing
+- explain trigonometric, geometric and other theorems geometrically and easier to understand than the "traditional" approach
+- applicable not only for robotics, but also e. g. quantum/spin theory, Maxwell's equations, mechanics incl. Newton's laws, cristallography, image processing
 
 GA is like an onion, starting simple with option to solve complex problems with more advanced methods:
-- vector and matrix calculations
-- geometric product, joining inner and outer product
-- projective geometric algebra (PGA)
+- vector model for rotations in 3D space
+- homogeneous model in 4D space for translations
+- projective geometric algebra (PGA) in 4D space
 - conformal geometric algebra (CGA), 5-dimensional
+- even higher spaces like 6 and 9 dimensions
 
-To optimize performance, simple problem can therefore solved by simple methods.
+To optimize performance, simple problem can therefore solved by simple methods and use higher dimensions if needed.
 
 # Geometric Algebra Software
 
