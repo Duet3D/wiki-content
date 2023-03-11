@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-11T09:27:17.790Z
+date: 2023-03-11T09:53:40.462Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -77,3 +77,4 @@ Recommended introductory books from a personal view are:
 There are a lot of free pdf articles and websites available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald and many others are available. Main topics are directed to robotics, geometry, physics and other. The newer books often include CGA.
 An example of a nice website is http://geocalc.clas.asu.edu/GA_Primer/GA_Primer/introduction-to-geometric/index.html by Hestenes.
 
+For a beginner of GA, I recommend the Dorst book, use GAViewer and Gaalop and to accompany Dorst by looking up topics in the web which are unclear after reading it. 
