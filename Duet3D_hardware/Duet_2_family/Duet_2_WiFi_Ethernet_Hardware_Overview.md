@@ -2,7 +2,7 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2022-08-23T11:05:39.105Z
+date: 2023-03-13T21:15:20.754Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z
@@ -170,7 +170,7 @@ Duet 2 WiFi and Ethernet profide the following connectors:
 | **5 x 3-pin KK headers** | X_STOP, Y_STOP, Z_STOP, E0_STOP, E1_STOP | I/O connectors for endstop and filament monitors |
 | **5 x 2-pin KK headers** | Always On Fans, FAN0, FAN1, FAN2 | 2 always-on fan connectors, 3 PWM-controlled fan connectors. Voltage selectable between VIN, 5V or external supply (all fans together). Total current draw not to exceed 1A. From board revision v1.02, PWM fan outputs are protected by on-board flyback diodes. |
 | **1 x 4-pin KK headers** | PanelDue | Connector for 4-wire PanelDue connection |
-| **1 x 4-pin KK headers** | Probe | Connector for probe with IN/GND/MOD/3V3 pins (IN pin is 30V-tolerant in revision 1.04 and later) |
+| **1 x 4-pin KK headers** | Probe | Connector for probe with IN/GND/MOD/3V3 pins. NOTE: IN pin is 30V-tolerant in revision 1.04 and later, but only 3.3V-tolerant in revision 1.03 boards and earlier. |
 | **1 x 3-pin KK headers** | 5V_PS | Used to turn on and off an external 12/24V supply |
 | **2x5 header, open** | SPIO | This is for connecting PT100 and thermocouple interface boards and/or other SPI connected devices, eg accelerometer. |
 | **2 x 10 pin IDC header** | CONN_SD, CONN_LCD | Connects the PanelDue UART and shared SPI bus for external SD card. Powered from 5V supply |
