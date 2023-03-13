@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2022-12-20T14:37:29.088Z
+date: 2023-03-13T13:42:24.032Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -43,7 +43,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **External stepper driver support** | 6 on board, further via CAN-FD bus |
 | **Stepper driver expansion** | Via CAN-FD expansion boards |
 | **IO/Output/thermistor expansion** | Via CAN-FD expansion boards |
-| **PT100 and thermocouple daughter board support** | 2 boards (4 channels) |
+| **PT100 and thermocouple daughter board support** | Supports 2 x daughterboards (4 channels) on board. Additional boards supported via CAN-FD-connected expansion boards. |
 | **Servo support** | One output with 5V signal level for hobby servo, laser or VFD converter |
 | **LCD support** | PanelDue or via HDMI touch screen attached to the SBC. |
 | **LED strip support** | Neopixel (max. 60 LEDs) or DotStar |
