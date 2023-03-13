@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-07T13:53:51.112Z
+date: 2023-03-13T14:33:10.099Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5119,7 +5119,9 @@ If the V parameter is not provided, this command reads the specified register an
 
 **WARNING!** Use of M569.2 to write stepper driver registers may result in damage to the stepper drivers, for example from excessive motor current or insufficient blanking time.
 
-## M569.3: Read Motor Driver Encoder
+## M569.3: Read Motor Driver Encoder via secondary CAN bus
+
+*Supported on Duet 3 MB6HC and MB6XD boards with ODrives connected to the second CAN bus and Hangprinter kinematics configured*
 
 Report a current motor encoder positions to the host in units of arc degrees (1/360'ths of turns), relative to some reference position that you set with the **S** parameter.
 
@@ -5173,13 +5175,15 @@ If **P** is not supplied, an error is returned.
 
 A maximum of four CAN-connected drivers can be reached with M569.3 counting from machine boot. CAN addresses that fail to respond don't count towards this maximum.
 
-## M569.4: Set Motor Driver Torque Mode
+## M569.4: Set Motor Driver Torque Mode via secondary CAN bus
+
+*Supported only on Duet 3 MB6HC and MB6XD boards with ODrives connected to the second CAN bus and Hangprinter kinematics configured*
 
 Tell one or more motor drivers to apply a specified torque regardless of position. Planned for support in RRF 3.4.
 
 ### Parameters
 
-* **Pn** or **Pn.n** Motor driver number, or board address and driver number. Can also be a colon separated list of driver numbers.
+* **Pn.n** Motor CAN address and driver number. Can also be a colon separated list of driver numbers.
 * **Tn** Where n is the mode/torque to apply in units of Nm.
 
 ### Examples
@@ -5213,7 +5217,7 @@ If **P** or **T** parameter is missing, then no action is taken.
 
 The driver is put back into position mode by requesting a torque smaller than 0.0001 Nm.
 
-Hangprinter's "torque mode" will be implemented as a RepRapFirmware macro that depends on M569.4.
+Hangprinter's "torque mode" is implemented as a RepRapFirmware macro that depends on M569.4.
 
 ## M569.5: Closed loop data collection
 
@@ -5325,6 +5329,14 @@ M569.7 P40.0 C"out1"   ; driver 0 on board 40 uses port out1 on board 40 to cont
 When the motor driver is enabled, the specified output port will be turned on at the same time to release the brake. When the motor driver is disabled, the output port will be turned off. Idle current mode does not count as disabled.
 
 Note: after M569.7 is executed, the port will be initially off. Therefore, M569.7 should be executed before the motor is first enabled.
+
+## M569.8: Read motor force via secondary CAN bus
+
+*Supported only on Duet 3 MB6HC and MB6XD boards with ODrives connected to the second CAN bus and Hangprinter kinematics configured*
+
+### Parameters
+
+* **Pn.n** Motor CAN board address and driver number
 
 ## M569.9: Configure driver sense resistor and maximum current
 
