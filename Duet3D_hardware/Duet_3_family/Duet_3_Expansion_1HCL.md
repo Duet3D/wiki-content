@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-03-06T16:13:50.450Z
+date: 2023-03-14T15:29:50.103Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -331,6 +331,14 @@ After M569.7 is executed, the port will be initially off. Therefore, M569.7 shou
 # Revisions
 
 ## Tabs {.tabset}
+
+### Revision v1.0a
+
+* Changed polarity of the VBrake connector to match other JST VHs used in the Duet 3 series.
+* Improved ESD protection on temperature circuits.
+* CAN reset jumper moved.
+* Changed to different CAN-FD CM choke part, no functional impact.
+* Various MOSFETs changed due to part availability, no functional impact.
 
 ### Revision v1.0
 
