@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-03-14T15:34:36.671Z
+date: 2023-03-14T15:42:28.610Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -94,6 +94,12 @@ A STEP 3D model of the Duet 3 Expansion 1HCL is available [on github](https://gi
 
 ## Wiring Diagram
 
+## Tabs {.tabset}
+
+### V1.0a
+[![Image showing all the connections on a Duet 3 1HCL to aid wiring](/duet_boards/duet_3_can_expansion/duet3_eb_1hcl_v1.0a_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet3_eb_1hcl_v1.0a_d1.0_wiring.png){target=_blank}
+
+### V1.0
 [![Image showing all the connections on a Duet 3 1HCL to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png){target=_blank}
 
 ## Description of Connections
