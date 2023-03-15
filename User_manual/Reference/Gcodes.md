@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-13T14:33:10.099Z
+date: 2023-03-15T21:02:36.638Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4820,7 +4820,7 @@ In firmware 1.20 and later, M562 with no parameters will clear a heater fault on
 * **S"name"** Tool name (optional)
 * **Dnnn** Extruder drive(s)
 * **Hnnn** Heater(s)
-* **Fnnn** Fan(s) to map fan 0 to (RepRapFirmware 1.16 and later)
+* **Fnnn** Fan number(s) to use as print cooling fans for this tool (RepRapFirmware 1.16 and later)
 * **Xnnn** Axis or axes to map X movement to (RepRapFirmware 1.16 and later)
 * **Ynnn** Axis or axes to map Y movement to (RepRapFirmware 1.19 and later)
 * **Lnnn** Drive to use for filament mapping. By default RRF will use the first and only extruder drive if this parameter is not specified (supported by RRF >= 2.02)
@@ -4855,10 +4855,10 @@ Alternatively, if the slicer does not support generating G1 commands with multip
 
 **H** The 'H' field specifies the tool's heaters - in the first example heaters 1 and 3. Heater 0 is usually the hot bed (if any) so the first extruder heater is usually 1. If there is no H field the tool has no heaters. It is permissible for different tools to share some (or all) of their drives and heaters. So, for example, you can define two tools with identical hardware, but that just operate at different temperatures.
 
-**F** The print cooling fan of the tool, default 0. Use this parameter if you are not using fan 0 as the print cooling fan for the tool you are defining. You do not need to, and should not, map thermostatic fans to tools. To map more than one fan to the tool, the definition would typically look like this:
+**F** The print cooling fan number(s) of the tool, default 0. Use this parameter if you are not using fan 0 as the print cooling fan for the tool you are defining. **You do not need to, and must not, list the fan numbers of thermostatic hot end fans here**. To use more than one print cooling fan for the tool, the definition would typically look like this:
 <br>
 <pre class="cblock">
-M563 P0 D0 H1 F0:1 ; tool 0 uses extruder drive 0 and heater 1. Fan 0 and Fan 1 are mapped to tool 0
+M563 P0 D0 H1 F0:1 ; tool 0 uses extruder drive 0 and heater 1. Fan 0 and Fan 1 are use by tool 0 as print cooling fans.
 </pre>
 
 **R** The spindle number mapped to this tool. (RRF >= 3.3beta2)
