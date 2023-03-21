@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-01-26T09:54:16.406Z
+date: 2023-03-21T11:23:56.477Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -91,6 +91,8 @@ In order to perform a tuning manoeuvre, the [M569.6](/User_manual/Reference/Gcod
 *Note that the drive must be in closed-loop mode before this command can be run. See [M569 D4](/User_manual/Reference/Gcodes/M569) for putting a drive in closed-loop mode.*
 
 Running this command should make the drive move slightly: this quadrature tuning manoeuvre will at most make the motor move 10 steps (however note the magnetic encoder calibration moves just over one full motor rotation then back again). You may get a warning at this stage, but this is nothing to worry about.
+
+You will get a backlash for the motor reported, the backlash reading is a measure of how much stiction you have in your motor and the mechanics that constrain the rotation of the motor. The maximum allowed by the firmware is currently 0.22 full steps. The measured value typically reduces if motor current is increased.
 
 > Duet firmware currently only supports tuning one driver at a time. This means that when tuning a multi-driver axis, one driver will move and the other(s) will not. If attempting to tune a multi-driver axis, please take appropriate mitigation to ensure the axis doesn't become stressed/misaligned when only one one driver moves.
 {.is-warning}
