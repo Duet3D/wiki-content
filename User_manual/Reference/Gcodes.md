@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-15T21:02:36.638Z
+date: 2023-03-23T19:15:12.827Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -151,7 +151,7 @@ M587 S"MYROUTER" P"ABC'X'Y'Z;"" 123"
 
 ### Checking
 
-This is an optional feature that is seldom used as GCode files are normally printed form the on-board SD card.
+This is an optional feature that is seldom used as GCode files are normally printed from the on-board SD card.
 
 #### N: Line number
 
