@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2023-02-17T14:30:55.816Z
+date: 2023-03-24T15:11:34.257Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -268,19 +268,50 @@ Select mode 5 in the M558 command. The signal should not need to be inverted.
 
 ## BLTouch
 
+These instructions, except where stated, cover the similar [Creality CR Touch](https://www.creality3dofficial.com/products/creality-bl-touch){target=_blank} as well.
+
 See also: [BLTouch Troubleshooting](/User_manual/Troubleshooting/BLTouch_troubleshooting)
 
-**NOTE:** CHECK YOUR WIRING! If using a clone BLTouch, or one supplied with a manufacturer's kit, the wiring colours may not match those listed below, which are correct for genuine BLTouch from [www.antclabs.com](http://www.antclabs.com).
+> **CHECK YOUR WIRING!** 
+If using a clone BLTouch, or one supplied with a manufacturer's kit, the wiring colours may not match those listed below, which are correct for genuine BLTouch kit from [www.antclabs.com](http://www.antclabs.com){target=_blank}. However, the actual pinout of the connector on the probe's PCB is the same, as far as we can tell. See information below.
+{.is-warning}
 
-For example, recent BLTouch kits for Creality printers use a cable with different colours and wiring. For these, check your wiring based on the following chart (see genuine BLTouch image below):
+### BLTouch pinout and wire colours
 
 ![sensors_probe_bltouch.png](/manual/sensors/sensors_probe_bltouch.png =150x)
 
-| | GND (Left) | +5V (Left mid) | Control (Middle) | GND (Right mid) | Out (Right)
+When viewed from the side with the PCB, as above, the pinout and wire colours for a genuine BLTouch should be, from LEFT to RIGHT:
+
+| PCB pinout | GND (Left) | +5V (Left mid) | Control (Middle) | GND (Right mid) | Out (Right)
 |:--|:--|:--|:--|:--|:--
-| Genuine BLTouch | Brown | Red | Yellow | Black | White |
+| Genuine BLTouch wiring | Brown | Red | Yellow | Black | White |
+
+For clone and BLTouch kits supplied by other companies, e.g. Creality, the wiring colours may be different. For example, we have seen:
+
+| PCB pinout (Left to Rigth) | GND | +5V | Control | GND | Out 
+|:--|:--|:--|:--|:--|:--
 | Creality kit (some versions) | White | Black | Yellow | Blue | Red |
-| Creality kit (other versions) | White | Black | Yellow | Red | Blue |
+| Creality kit (most common) | White | Black | Yellow | Red | Blue |
+
+i.e. the wiring colour is reversed, sometimes with different colours for the last two pins.
+
+If in doubt, check the orientation of the connector on the probe PCB by using a multimeter to test for a connection between the GND pins (pins 1 and 4, or 2 and 5 if reversed). This should make it clear the order of the pins on the PCB. Then note the colour of the wire that connects to each pin.
+
+### Creality CR Touch wire colours
+
+Creality CR Touch kits also use a cable with different colours.
+
+![sensors_probe_creality_cr_touch.png](/manual/sensors/sensors_probe_creality_cr_touch.png)
+
+When viewed from the side with the Creality logo, as above, the pinout should be, LEFT to RIGHT:
+
+| PCB pinout (Left to Right) | Out | GND | Control | +5V | GND 
+|:--|:--|:--|:--|:--|:--
+| Creality CR Touch (most common order seen) | Blue | Red | Yellow | Black | White |
+
+This is reversed from the BLTouch, mainly because you are looking at the back of the probe PCB, rather than the front.
+
+If in doubt, check the orientation of the connector on the probe PCB by using a multimeter to test for a connection between the GND pins (pins 2 and 5, or 1 and 4 if reversed). This should make it clear the order of the pins on the PCB. Then note the colour of the wire that connects to each pin.
 
 ### Wiring the BLTouch
 
