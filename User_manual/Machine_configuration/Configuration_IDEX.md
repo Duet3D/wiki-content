@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2022-06-29T11:42:08.874Z
+date: 2023-03-24T13:02:25.004Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -22,14 +22,13 @@ RepRapFirmware 1.16 and later allow you to configure up to four X-carriages. The
 
 For each additional X-carriage, you need to:
 
-* Define an additional axis to represent the carriage. You should use axes U, V and W in that order. So the second X carriage on an IDEX machine would use the U axis.
-* Configure all the usual parameters for the additional axis (i.e. motors used, motor current, steps/mm, accelerations, speed, jerk, axis limits, endstop configuration, and homing files)
+* Define an additional axis to represent the carriage. In the examples that follow, the second X carriage on an IDEX machine is defined as the U axis.
+* Configure all the usual parameters for the additional axis/axes (i.e. motors used, motor current, steps/mm, accelerations, speed, jerk, axis limits, endstop configuration, and homing files)
 * When defining tools on the second carriage, use the axis mapping facility to map the appropriate standard axis to the new axis (e.g. map the X axis to the U axis) or axes (e.g. map X to both X and U)
+* Have free endstop inputs to home the additional axes
 * Set up the tfree#.g files to home or park a carriage when you stop using it.
 
-A machine with 2 independent X carriages needs 4 axis motors and 2 extruder motors, total 6. As the Duet 2 WiFi and Duet 2 Ethernet have only 5 motor drivers, you will need to add a 6th stepper driver via the expansion connector. The easiest way is to use a Duex 2 or Duex 5 expansion board.
-
-**NOTE:** the U axis uses the E0 endstop input, and the V axis uses E1.
+A machine with 2 independent X carriages needs 4 axis motors and 2 extruder motors, total 6. As Duet 2 and Duet 3 Mini 5+ mainboards have only 5 motor drivers, you will need to add a 6th stepper driver. The easiest way is to use a [Duet 3 Expansion Mini 2+](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_Mini_2+) with the Duet 3 Mini 5+, a [DueX2 or DueX5](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) for Duet 2 WiFi/Ethernet, or a [Dual Stepper Driver Expansion](/Duet3D_hardware/Duet_2_family/Dual_Stepper_Driver_Expansion_Module) for Duet 2 Maestro. Alternatively, see [Connecting external stepper and servo motor drivers](/User_manual/Connecting_hardware/Motors_connecting_external)
 
 # Creating new axes
 
@@ -39,9 +38,9 @@ Create a new axis by defining the motors it uses in a M584 command. Example for 
 M584 X0 Y1 Z2 U3 E4:5 ; create the U axis and assign stepper driver 3 to it
 ```
 
-Note: if you create axis V then axis U will also be created even if you didn't ask for one. Similarly, if you create the W axis then U and V will also be created. But the motor assignments for the extra new axes will probably not be what you want.
+The M584 command should come before every other command that needs to refer to the new axes, because additional axis letters are not recognised in other G and M commands until the corresponding axes have been created. So put it at the beginning of the movement section of config.g.
 
-The M584 command should come before every other command that needs to refer to the new axes, because axis letters U, V and W are not recognised in other G and M commands until the corresponding axes have been created. So put it at the beginning of the movement section of config.g.
+Note: In RRF 2.x and earlier, if you create axis V then axis U will also be created even if you didn't ask for one. Similarly, if you create the W axis then U and V will also be created. But the motor assignments for the extra new axes will probably not be what you want. In RRF 3.x and later, only the axis requested is created; i.e. if you create the W axis, U and V will not be created.
 
 # Configuring new axes
 
@@ -56,8 +55,6 @@ M208 S1 X-50 Y0 U0 Z0
 
 In this example, the X carriage moves along the X axis from -50 to 200 and the U carriage moves from 0 to 250. So there is a printable zone accessible to both carriages from 0 to 200.
 
-For an IDEX machine, the X endstop will be at the low end and the U endstop will be at the high end. Remember to declare this in the M574 command.
-
 Here is a sample Drives section of config.g for an IDEX machine:
 
 ```
@@ -70,7 +67,6 @@ M569 P4 S1 ; Drive 4 goes forwards
 M569 P5 S1 ; Drive 5 goes forwards
 M584 X0 Y1 Z2 U3 E4:5 ; Create U axis for second X carriage before we try to configure it
 
-M574 X1 Y1 Z0 U2 S1 ; Set endstop configuration (X and Y endstops at low end, U endstop at high end, active high, no Z endstop)
 M906 X800 Y800 U800 Z800 E1000 ; Set motor currents (mA)
 M201 X800 Y800 U800 Z15 E1000 ; Accelerations (mm/s^2)
 M203 X15000 Y15000 U15000 Z100 E3600 ; Maximum speeds (mm/min)
@@ -79,9 +75,28 @@ M208 X200 Y200 U250 Z200 ; Set axis maxima (adjust to suit your machine)
 M208 X-50 Y0 U0 Z-0.2 S1 ; Set axis minimum (adjust to make X=0 and Y=0 the edge of the bed)
 M92 X80 Y80 U80 Z2560 ; Set axis steps/mm
 M92 E420:420 ; Set extruder steps per mm
-G21 ; Work in millimetres
-G90 ; Send absolute coordinates...
-M83 ; ...but relative extruder moves
+```
+
+For an IDEX machine, the X endstop will be at the low end and the U endstop will be at the high end. Remember to declare this in the M574 command. 
+NOTE: in RRF 2.x and earlier, the U axis uses the E0 endstop input, and the V axis uses E1.
+
+Example of the endstop congiration:
+
+```
+; Endstops
+
+; RRF 3.x, Duet 3
+M574 X1 S1 P"io1.in"                            ; configure switch-type (e.g. microswitch) endstop for low end on X via pin io1.in
+M574 Y1 S1 P"io2.in"                            ; configure switch-type (e.g. microswitch) endstop for low end on Y via pin io2.in
+M574 U2 S1 P"io3.in"                            ; configure switch-type (e.g. microswitch) endstop for high end on U via pin io3.in
+
+; RRF 3.x, Duet 2
+M574 X1 S1 P"xstop"                             ; configure switch-type (e.g. microswitch) endstop for low end on X via pin xstop
+M574 Y1 S1 P"ystop"                             ; configure switch-type (e.g. microswitch) endstop for low end on Y via pin ystop
+M574 U2 S1 P"e0stop"                            ; configure switch-type (e.g. microswitch) endstop for high end on U via pin e0stop 
+
+; RRF 2.x, Duet 2 : 
+M574 X1 Y1 Z0 U2 S1 ; Set endstop configuration (X and Y endstops at low end, U endstop at high end, active high, no Z endstop)
 ```
 
 # Homing files
