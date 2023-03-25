@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2023-01-06T10:48:47.928Z
+date: 2023-03-25T21:57:19.287Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -320,11 +320,19 @@ M563 P1 D1 H2 F1 ; tool 1 uses extruder 1, heater 2 and fan 1
 M563 P2 D2 H3 F2 ; tool 2 uses extruder 2, heater 3 and fan 2
 ```
 
-After this whenever tool 0 is selected, sending M106 Snnn will control fan 0. With tool 1, fan 1 and tool 2 fan 2.
+After this whenever tool 0 is selected, sending `M106 Snnn` will control fan 0. With tool 1, fan 1 and tool 2 fan 2.
 
-Note: thermostatic fans SHOULD NOT be mapped to tools.
+**Note: thermostatic fans SHOULD NOT be mapped to tools.**
 
 For more examples see the [tool definition section](/User_manual/Machine_configuration/Configuration_cartesian#tool-definition-section) of the config.g file.
+
+## Allocating multiple fans to a tool
+
+You can bind more than one fan to a tool for part cooling. Then all fans will be controlled by `M106 Snnn` commands. Use [M563](/User_manual/Reference/Gcodes/M563)
+```
+M563 P0 D0 H1 F0:2:3 ; tool 0 uses extruder 0, heater 1, and fan 0 mapped to fans 0, 2 and 3
+```
+Fans will still be independently controllable through DWC.
 
 # Using fan connectors for other functions
 
