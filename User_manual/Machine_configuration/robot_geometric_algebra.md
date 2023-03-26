@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-26T10:27:23.518Z
+date: 2023-03-26T10:30:53.856Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -59,6 +59,10 @@ Currently my favorite is Gaalop. The syntax of GAViewer and Gaalop is similar. P
 - often nullpointerexceptions, variables not usable and alike
 - the C++ output is good
 
+Tipps for GAViewer
+- loading the samples doesn't work, copy-paste of the code without the function begin/end works
+- didn't find a solution to clear screen or all objects at once. Workaround: restart
+- difficult to pan, zoom and alike, middle mouse button used, but if not available?
 
 # Conformal Geometric Algebra (CGA)
 
