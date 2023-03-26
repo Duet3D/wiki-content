@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-21T16:47:16.663Z
+date: 2023-03-26T10:25:36.894Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -52,6 +52,12 @@ Learning GA needs good books or articles, but software for visualization and to 
 |Clifford Multivector Toolbox| |Matlab plugin|
 |Clical| | |
 |CLUCal| |seems to be inactive. Gaalop is based on it|
+
+Currently my favorite is Gaalop. The syntax of GAViewer and Gaalop is similar. Program handling and documentation of both is terrible, but imho it's important to follow how they calculate. Some tipps for Gaalop:
+- start.bat doesn't work for me, I have to start by java -jar starter...jar directly. Jdk 14 and 19 both work.
+- the visualizer runs only at the first call, then there are exceptions (so to visualize, I restart every time)
+- the C++ output is good
+
 
 # Conformal Geometric Algebra (CGA)
 
