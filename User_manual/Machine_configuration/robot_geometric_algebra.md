@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-26T10:42:45.859Z
+date: 2023-03-26T11:34:44.441Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -39,9 +39,9 @@ GA is like an onion, starting simple with option to solve complex problems with 
 
 To optimize performance, simple problem can therefore solved by simple methods and use higher dimensions if needed.
 
-# Geometric Algebray system
+# Geometric Algebra dimension
 
-There are several different systems, declared as Gp,q[,r]:
+There are several different GA dimension systems, declared as Gp,q[,r]:
 - p are coordinate axes which square to 1
 - q square to -1
 - r squares to 0
@@ -49,6 +49,12 @@ There are several different systems, declared as Gp,q[,r]:
 For example the cartesian coordinate system is G3 with three real axes e1, e2 and e3 with e1² = e2² = e3² = 1 unit values.
 
 As example, G4,1 is the conformal model (CGA) with 4 real number axes and one imaginary. G3,0,1 is projective geometric algebra (PGA) which is often used for (game) graphics. There are many other ones like G2, G3, G3,3, G9 etc.
+
+The choosen dimension has influence on
+- the capabilities
+- how much memory is necessary to store the geometric objects
+
+As example, G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used.
 
 # Geometric Algebra Software
 
