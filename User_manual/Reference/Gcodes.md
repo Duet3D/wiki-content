@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-28T13:43:03.204Z
+date: 2023-03-28T15:26:06.843Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1422,7 +1422,7 @@ M21 P1
 
 The specified SD card is initialized. If an SD card is loaded when the machine is switched on, this will happen by default. SD card must be initialized for the other SD functions to work.
 
-In SBC mode and v3.4 or newer this code may be used to mount block devices or remote endpoints using the mount command. Note that this requires the DuetPiManagementPlugin to be running.
+In SBC mode and v3.4 or newer this code may be used to mount block devices or remote endpoints using the mount command. 
 
 ### Parameters
 
@@ -1438,6 +1438,11 @@ M21 P"192.168.1.222:3D" S"0:/gcodes/remote" T"nfs"
 M21 P"//192.168.1.222/3D" S"0:/gcodes/remote" T"cifs" O"user=myUser,password=myPass"
 M21 P"curlftpfs#ftp://192.168.1.222:/3D" S"0:/gcodes/remote" T"fuse" O"user=myUser:myPass" ; requires curlftpfs package
 </pre>
+
+### Notes
+
+* This requires the DuetPiManagementPlugin to be running. 
+* In SBC mode, this command should be in dsf-config.g NOT config.g.
 
 ## M22: Release SD card
 
@@ -1455,7 +1460,7 @@ M22 P1
 
 The specified SD card is released, so further (accidental) attempts to read from it are guaranteed to fail. Helpful, but not mandatory before removing the card physically.
 
-In SBC mode and v3.4 or newer this code may be used to unmount block devices or remote endpoints using the mount command. Note that this requires the DuetPiManagementPlugin to be running.
+In SBC mode and v3.4 or newer this code may be used to unmount block devices or remote endpoints using the mount command.
 
 ### Parameters
 
@@ -1466,6 +1471,11 @@ In SBC mode and v3.4 or newer this code may be used to unmount block devices or 
 <pre class="cblock">
 M22 P"0:/gcodes/remote"
 </pre>
+
+### Notes
+
+* This requires the DuetPiManagementPlugin to be running. 
+* In SBC mode, this command should be in dsf-config.g NOT config.g.
 
 ## M23: Select SD file
 
@@ -4325,11 +4335,10 @@ Sets the [MAC address](http://en.wikipedia.org/wiki/MAC_address){target=_blank} 
 
 ### Notes
 
-On WiFi-equipped Duet boards (Duet 3 Mini 5+ WiFi and Duet 2 WiFi) the MAC address is unique and set on the WiFi Module so this command has no effect. 
-
-The default MAC address on a Ethernet-equipped Duet boards is generated from the unique processor ID so there is normally no need to change it.
-
-All devices running on the same network should have different MAC addresses. For your printers, changing the last digit is sufficient.
+* On WiFi-equipped Duet boards (Duet 3 Mini 5+ WiFi and Duet 2 WiFi) the MAC address is unique and set on the WiFi Module so this command has no effect. 
+* The default MAC address on a Ethernet-equipped Duet boards is generated from the unique processor ID so there is normally no need to change it.
+* All devices running on the same network should have different MAC addresses. For your printers, changing the last digit is sufficient.
+* In SBC mode, this command should be in dsf-config.g NOT config.g.
 
 ## M550: Set Name
 
@@ -4351,13 +4360,11 @@ The machine name is also used to allow local network discovery using **mDNS loca
 
 ### Notes
 
-Quotation marks around the machine name are mandatory in RRF3, but discretionary in earlier firmware versions.
-
-Using the machine name to access the machine on the network relies on mDNS. This needs to be supported on the device trying to connect. See a longer description about [mDNS support here](/User_manual/Machine_configuration/Networking#a-note-about-mdns-local-network-discovery){target=_blank}.
-
-The machine name is also used as the NetBIOS name, which can help to identify the Duet on a network. This is only supported on Duet 2 WiFi and legacy Duet 0.6/0.85.
-
-Both the mDNS and NetBIOS name are limited to 15 characters. If you use a longer name, the mDNS name will be the first 15 characters, eg if the Duet name is "3DPrinterWithVeryLongName", you should still be able to connect to "3DPrinterWithVe.local".
+* Quotation marks around the machine name are mandatory in RRF3, but discretionary in earlier firmware versions.
+* In SBC mode, this command should be in dsf-config.g NOT config.g.
+* Using the machine name to access the machine on the network relies on mDNS. This needs to be supported on the device trying to connect. See a longer description about [mDNS support here](/User_manual/Machine_configuration/Networking#a-note-about-mdns-local-network-discovery){target=_blank}.
+* The machine name is also used as the NetBIOS name, which can help to identify the Duet on a network. This is only supported on Duet 2 WiFi and legacy Duet 0.6/0.85.
+* Both the mDNS and NetBIOS name are limited to 15 characters. If you use a longer name, the mDNS name will be the first 15 characters, eg if the Duet name is "3DPrinterWithVeryLongName", you should still be able to connect to "3DPrinterWithVe.local".
 
 ## M551: Set Password
 
@@ -4403,9 +4410,9 @@ Enables networking as a client, and joins the network with the SSID 'MyNetwork',
 
 ##### Notes
 
-Also works with the WiFi interface on an attached SBC. See M587 for configuration limitation.
-
-On Duet boards with WiFi interfaces running firmware 1.19 and later, the IP address is set in the M587 command when you configure the access point details.
+* Also works with the WiFi interface on an attached SBC. See M587 for configuration limitation.
+* In SBC mode, this command should be in dsf-config.g NOT config.g.
+* On Duet boards with WiFi interfaces running firmware 1.19 and later, the IP address is set in the M587 command when you configure the access point details.
 
 #### Ethernet interfaces (Duet 2/3 Ethernet and 06/085)
 
@@ -4434,9 +4441,9 @@ The I1 setting here specifies the second network interface on the SBC. This uses
 
 ##### Notes
 
-M552 with no parameters reports the current network state and IP address.
-
-In firmware 1.18 and later the HTTP port address is set using the M586 command, so the R parameter of this command is no longer supported.
+* M552 with no parameters reports the current network state and IP address.
+* In SBC mode, this command should be in dsf-config.g NOT config.g.
+* In firmware 1.18 and later the HTTP port address is set using the M586 command, so the R parameter of this command is no longer supported.
 
 ## M553: Set Netmask
 
@@ -4455,11 +4462,10 @@ Sets the network mask of the RepRap machine to (in this case) 255.255.255.0.
 
 ### Notes
 
-A restart may be required before the new network mask is used. 
-
-If no 'P' field is specified, this echoes the existing network mask configured.
-
-DuetWifiFirmware versions 1.18 and earlier do not support setting the network mask manually.
+* In SBC mode, this command should be in dsf-config.g NOT config.g.
+* A restart may be required before the new network mask is used. 
+* If no 'P' field is specified, this echoes the existing network mask configured.
+* DuetWifiFirmware versions 1.18 and earlier do not support setting the network mask manually.
 
 ## M554: Set Gateway and/or DNS server
 
@@ -4479,11 +4485,10 @@ Sets the Gateway IP address of the RepRap machine to (in this case) 192.168.1.1.
 
 ### Notes
 
-A restart may be required before the new gateway IP address is used. 
-
-If no 'P' field is specified, this echoes the existing Gateway IP address configured.
-
-DuetWifiFirmware versions 1.18 and earlier do not support setting the gateway address.
+* In SBC mode, this command should be in dsf-config.g NOT config.g.
+* A restart may be required before the new gateway IP address is used. 
+* If no 'P' field is specified, this echoes the existing Gateway IP address configured.
+* DuetWifiFirmware versions 1.18 and earlier do not support setting the gateway address.
 
 ## M555: Set compatibility
 
@@ -5989,9 +5994,9 @@ M586 P2 S1 ; enable Telnet
 
 ### Notes
 
-M586 with no S parameter reports the current support for the available protocols.
-
-RepRapFirmware 1.18 and later enable only HTTP (or HTTPS if supported) protocol by default. If you wish to enable FTP and/or Telnet, enable them using this command once or twice in config.g.
+* In SBC mode, this command should be in dsf-config.g NOT config.g.
+* M586 with no S parameter reports the current support for the available protocols.
+* RepRapFirmware 1.18 and later enable only HTTP (or HTTPS if supported) protocol by default. If you wish to enable FTP and/or Telnet, enable them using this command once or twice in config.g.
 
 ## M587: Add WiFi host network to remembered list, or list remembered networks
 
@@ -6018,17 +6023,12 @@ M587 S"Network-ssid-123" P"Password123" I192.128.1.200
 
 ### Notes
 
-In SBC mode (v3.3 and later) it is not possible to configure different IP addresses per SSID.
-
-Many programs used to send GCodes convert all characters to uppercase. In firmware 1.19.2 and later, within any quoted string you can use a single-quote character to indicate that the following character should be changed to lowercase. For example, M587 S"ABC" P"P'A'S'SW'O'R'D" would specify that the password is "PassWord". Use two single quote characters to represent one actual single quote character in the password or in the SSID. For example, if your SSID is "Pete's network" then enter "Pete''s network".
-
-The use of special characters in the SSID cannot be guaranteed to work. In general it's best to avoid most special characters. Spaces, periods, dashes, underscores, and other punctuation is likely ok, but special characters on the number keys likely are not safe. (@#$%^&\*). If you are having troubles adding your SSID, try a simplified version with only letters and numbers.
-
-M587 with no parameters lists all the remembered SSIDs, but not the remembered passwords.
-
-The M587 command will fail if the WiFi module has not yet been taken out of reset. So if the WiFi module has not been started, send M552 S0 to put it in idle mode first.
-
-When connecting to an open network with no password, M587 still requires a password in the P parameter. However, it doesn't matter what password you provide as long as it meets the minimum length requirement for M587.
+* In SBC mode (v3.3 and later) it is not possible to configure different IP addresses per SSID.
+* Many programs used to send GCodes convert all characters to uppercase. In firmware 1.19.2 and later, within any quoted string you can use a single-quote character to indicate that the following character should be changed to lowercase. For example, M587 S"ABC" P"P'A'S'SW'O'R'D" would specify that the password is "PassWord". Use two single quote characters to represent one actual single quote character in the password or in the SSID. For example, if your SSID is "Pete's network" then enter "Pete''s network".
+* The use of special characters in the SSID cannot be guaranteed to work. In general it's best to avoid most special characters. Spaces, periods, dashes, underscores, and other punctuation is likely ok, but special characters on the number keys likely are not safe. (@#$%^&\*). If you are having troubles adding your SSID, try a simplified version with only letters and numbers.
+* M587 with no parameters lists all the remembered SSIDs, but not the remembered passwords.
+* The M587 command will fail if the WiFi module has not yet been taken out of reset. So if the WiFi module has not been started, send M552 S0 to put it in idle mode first.
+* When connecting to an open network with no password, M587 still requires a password in the P parameter. However, it doesn't matter what password you provide as long as it meets the minimum length requirement for M587.
 
 **Important!** Do not use M587 within config.g. As well as being a security hazard, writing the access point parameters to WiFi chip every time you start the Duet may eventually wear out the flash memory. Also, the wifi module does not get enabled until the end of running config.g (see [this forum thread](https://forum.duet3d.com/post/42798){target=_blank} for explanation). It is better to use a macro to send M587.
 
@@ -6073,9 +6073,8 @@ M588 S"*"
 
 ### Notes
 
-The specified SSID will be removed from the remembered list and the associated password cleared out of EEPROM. If the SSID is given as "\*" then all remembered networks will be forgotten.
-
-The M588 command will fail if the WiFi module has not yet been taken out of reset. So if the WiFi module has not been started, send M552 S0 to put it in idle mode first. M588 does not work from within config.g at startup.
+* The specified SSID will be removed from the remembered list and the associated password cleared out of EEPROM. If the SSID is given as "\*" then all remembered networks will be forgotten.
+* The M588 command will fail if the WiFi module has not yet been taken out of reset. So if the WiFi module has not been started, send M552 S0 to put it in idle mode first. M588 does not work from within config.g at startup.
 
 ## M589: Configure access point parameters
 
