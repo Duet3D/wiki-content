@@ -2,7 +2,7 @@
 title: Duet Software Framework
 description: DSF Overview
 published: true
-date: 2022-12-16T13:36:32.101Z
+date: 2023-03-28T15:06:55.263Z
 tags: 
 editor: markdown
 dateCreated: 2022-12-01T14:46:05.540Z
@@ -52,9 +52,11 @@ DuetPi 3.4.4 and newer support auto-mounting of external drives (e.g. USB keys).
 
 ## Configuration notes
 
-When DuetControlServer and the two DuetPluginService instances have been started, the macro file `dsf-config.g` is automatically invoked. You may use this configuration file to run custom G/M/T-codes that need to be executed when plugins are being started and/or SBC-relevant commands need to be executed.
+When DuetControlServer and the two DuetPluginService instances have been started, the macro file `dsf-config.g` is automatically invoked. This is found in `/opt/dsf/sd/sys/`. Use this configuration file to run custom G/M/T-codes that need to be executed when plugins are being started and/or SBC-relevant commands need to be executed.
 
-It is not recommended to put SBC configuration data into `config.g`, because they will probably have no effect and may generate unwanted errors or warnings. See [DuetPiManagementPlugin](https://github.com/Duet3D/DuetSoftwareFramework/tree/master/src/DuetPiManagementPlugin#supported-codes) for a list of plugins that should NOT be put in `config.g` in SBC mode.
+It is not recommended to put SBC configuration data into `config.g`, because they will probably have no effect and may generate unwanted errors or warnings. See [DuetPiManagementPlugin](https://github.com/Duet3D/DuetSoftwareFramework/tree/master/src/DuetPiManagementPlugin#supported-codes) for a list of commands/plugins that should NOT be put in `config.g` in SBC mode.
+
+If you add custom G/M/T-codes to `dsf-config.g`, add a short delay to the beginning (~2 seconds should be fine, e.g. `G4 S2`) may be needed to ensure that started plugins have a bit of spare time to register command interceptors. If the listed codes are executed before plugins have had a chance to register command interceptors, they may be just passed on to RRF, which typically results in an error message.
 
 ## Development
 
