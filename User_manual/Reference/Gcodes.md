@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-23T19:15:12.827Z
+date: 2023-03-28T10:08:22.742Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7234,7 +7234,7 @@ Note this is not supported on Duet 2 with TMC2660 or on external drivers.
 
 ## M918: Configure direct-connect display
 
-This command is used to tell RepRapFirmware about a directly-connected LCD such as a 12864 or compatible display. Supported on Duet 2 Maestro.
+This command is used to tell RepRapFirmware about a directly-connected LCD such as a 12864 or compatible display.
 
 ### Parameters
 
@@ -7249,6 +7249,10 @@ This command is used to tell RepRapFirmware about a directly-connected LCD such 
 <pre class="cblock">
 M918 P1 E2
 </pre>
+
+### Notes
+
+See [Connecting 12864 or other display](/User_manual/Connecting_hardware/Display_12864) for supported Duet boards and usage.
 
 ## M929: Start/stop event logging to SD card
 
