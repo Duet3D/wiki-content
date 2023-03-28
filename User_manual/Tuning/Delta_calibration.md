@@ -2,7 +2,7 @@
 title: Calibrating a delta printer
 description: Delta printers are mechanically simpler than most other types of 3D printer. They also take up very little desk space for a given build volume. However, in order to produce good prints, they need to be accurately built and calibrated.
 published: true
-date: 2022-06-29T21:00:36.465Z
+date: 2023-03-28T13:17:27.982Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:16:48.607Z
@@ -123,7 +123,9 @@ See [Connecting_a_Z_probe](/User_manual/Connecting_hardware/Z_probe_connecting) 
 
 The default output from the  [RepRapFirmware configuration tool](https://configtool.reprapfirmware.org/) for Delta printers will move the axis down by 5mm from where the end stops are triggered.
 
+<!-- Old text, not accurate
 For the purposes of G30 calibration this needs to be disabled / commented out in the  homedelta.g file. G30 makes the assumption that it's starting point is where the end stops are triggered.
+-->
 
 ```
 ;G1 Z-5 F6000               ; move down a few mm so that the nozzle can be centred
