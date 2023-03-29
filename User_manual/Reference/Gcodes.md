@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-29T15:23:29.984Z
+date: 2023-03-29T15:32:16.504Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2482,7 +2482,7 @@ Set the PID to measure temperatures and calculate the power to send to the heate
 
 ### Parameters
 
-* **Pnnn** (RRF 1.20 and later) Bed heater index, default 0
+* **Pnnn** (RRF 1.20 and later) Bed heater slot, default 0
 * **Hnnn** Heater number
 * **Snnn** Active/Target temperature
 * **Rnnn** Standby temperature
@@ -2519,7 +2519,7 @@ The sixth example sets the active/target bed temperature to absolute negative te
 
 ### Parameters
 
-* **Pnnn** (RRF 2.03 and later only) Chamber heater index, default 0
+* **Pnnn** (RRF 2.03 and later only) Chamber heater slot, default 0
 * **Hnnn** Heater number
 * **Snnn** Active/Target temperature
 * **Rnnn** Standby temperature
@@ -2616,7 +2616,7 @@ With A0 set on RepRapFirmware 1.26.1, PS_ON is triggered after the fault has exi
 
 ### Parameters
 
-* **Pnnn** Bed index (supported in RepRapFirmware 1.20 and later)
+* **Pnnn** Bed heater slot (supported in RepRapFirmware 1.20 and later)
 * **Sn** 0 = put bed heater on standby (default), 1 = make bed heater active
 
 ### Examples
@@ -2674,7 +2674,7 @@ M150 X2 R0 U255 B0 P255 S1 F0      ; right encoder led
 ### Parameters
 
 * **Snnn** minimum target temperature, waits while heating
-* **Pnnn** Bed index (supported in RepRapFirmware 1.20 and later)
+* **Pnnn** Bed heater slot (supported in RepRapFirmware 1.20 and later)
 * **Rnnn** accurate target temperature, waits while heating and cooling
 
 ### Examples
@@ -2693,7 +2693,7 @@ Set the temperature of the bed to 60C and wait for the temperature to be reached
 
 * **Snnn** minimum target temperature, waits while heating
 * **Rnnn** accurate target temperature, waits while heating and cooling
-* **Pnnn** Chamber index. This defaults to 0 and the maximum is dependent on the board type. (Supported in RepRapFirmware 1.20 and later)
+* **Pnnn** Chamber slot. This defaults to 0 and the maximum is dependent on the board type. (Supported in RepRapFirmware 1.20 and later)
 
 ### Examples
 <br>
