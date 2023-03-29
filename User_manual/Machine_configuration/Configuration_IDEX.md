@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2023-03-24T13:02:25.004Z
+date: 2023-03-29T14:16:06.909Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -175,17 +175,11 @@ You should take the following precautions in the bed.g file for an IDEX machine:
 
 ## Creating a tool that uses just one carriage
 
-A tool that uses the X carriage should be configured as normal:
+A tool that uses the X carriage, and for example extruder drive 0, heater 1 and fan 1 can be configured as normal:
 
 ```
-M563 P0 D0 H1 ; tool 0 uses extruder 0 and heater 1
+M563 P0 D0 H1 F1 ; tool 0 uses extruder 0 and heater 1 and fan 1
 G10 P0 X0 Y0 Z0 S0 R0 ; set tool 0 offsets and temperatures
-```
-
-This assumes the print cooling fan for this tool is on F0, if not (if it's on Fan 1, for example) then add that to the mapping:
-
-```
-M563 P0 D0 H1 F1 ; tool 0 uses extruder 0 and heater 1 and fan channel 1
 ```
 
 A tool that uses the U carriage for X movement need an X3 parameter in the M563 command:
@@ -195,9 +189,11 @@ M563 P1 D1 H2 X3 F2 ; tool 1 uses extruder 1 and heater 2 and maps X to U, use f
 G10 P1 Y0 U0 Z0 S0 R0 ; set tool 1 offsets and temperatures
 ```
 
-This tells the firmware that the X axis should be mapped to axis #3 which is the U axis. Note that the "X offset" of tool 1 is actually a U offset, because tool offsets are applied after axis mapping. Also the third fan channel is configured to this tool. This is because many slicers will send M106 Sxxx without any fan number, When this head is selected any M106 commands will refer to the fan on channel 3.
+This tells the firmware that the X axis should be mapped to axis #3 which is the U axis. Note that the "X offset" of tool 1 is actually a U offset, because tool offsets are applied after axis mapping. Leave all offsets at 0 to start with.
 
-You should adjust the Y and Z offsets of tool 1 so that both tools print at the same locations along the Y axis and at the same heights. To get both tools printing at the same place along the X axis, either adjust the homing positions of the X and U axes via the M208 commands, or adjust the G10 P0 X offset and/or the G10 P1 U offset, see the Calibration section below.
+The third fan channel is configured to this tool. This is because many slicers will send M106 Sxxx without any fan number. When this tool is selected any M106 commands will refer to fan 2.
+
+You will need to adjust the X, Y and Z offsets of tool 1 so that both tools print at the same locations along the Y axis and at the same heights. To get both tools printing at the same place along the X axis, either adjust the homing positions of the U axes via the M208 commands, or adjust the G10 P1 U offset. See the Calibration section below.
 
 ## Creating a tool that uses more than one carriage to print multiple copies of an object
 
@@ -350,7 +346,7 @@ With both tools at the same Z height, or the difference accounted for in the G10
 1. Move T0 on the X axis so it is as near as possible over the marked dot, make a note of the X and Y co-ordinates, move the X axis out the way.
 1. Move T1 on the U axis so it is as near as possible over the marked dot, make a note of the U and Y co-ordinates.
 1. Subtract the U co-ordinates from the X co-ordinates and you have the rough offsets for U and Y. For the U value, increase or decrease the value of M208 Uxxx by the U offset, so that when the U axis is homed and then travels back to the spot it is above it for the same X co-ordinate as the X axis. For the Y co-ordinate add it to the G10 P1 Yx.x tool definition.
-1. with the new values in effect (either reboot after updating config.g or enter them into the gcode console to test them temporarily) repeat the testing above the dot, both axis should now be above the dot with the same X and Y co-ordinate.
+1. With the new values in effect (either reboot after updating config.g or enter them into the gcode console to test them temporarily) repeat the testing above the dot, both axis should now be above the dot with the same X and Y co-ordinate.
 
 Now the tools are roughly aligned, fine alignment can be conducted in a number of ways. One method is to print a dual extruder print with lines, or triangles of varying spacing and then work out where they align:
 
