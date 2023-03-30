@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-30T12:58:54.604Z
+date: 2023-03-30T13:18:28.790Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -250,6 +250,10 @@ For a list of GCodes that may be found in other firmwares/CNC control software w
 In RepRapFirmware 2.03 and later, you can create custom GCodes, so long as the GCode is not already implemented. If you try to execute a G- or M-command that RRF does not implement, it will execute a system macro of that name if it exists. For example, if you send G40 then it will execute /sys/G40.g if it exists; and if you send M5000 then it will execute /sys/M5000.g if it exists.
 
 In RRF 3.4 and later this extends to G- and M-commands with fractional numbers, for example if you send M55.6 then RRF will look for file "0:/sys/M55.6.g".
+
+## Command Length
+
+The maximum length of a gcode command including the command itself and all parameters is 256 characters. 
 
 # G-commands
 
@@ -3101,9 +3105,9 @@ Supported in firmware version 1.19 and later.
 
 ### Parameters
 
-* **P"message"** The message to display, which must be enclosed in double quotation marks. If the message itself contains a double quotation mark, use two double quotation marks to represent it.
-* **R"message"** Optional title for the message box. Must be enclosed in double quotation marks too.
-* **Sn** Message box mode (see below), default 1
+* **P"message"** The message to display, which must be enclosed in double quotation marks. If the message itself contains a double quotation mark, use two double quotation marks to represent it. Maximum length <250 chars. Limited by total gcode length limit of 256 characters.
+* **R"message"** Optional title for the message box. Must be enclosed in double quotation marks too. Maximum length 60 chars
+* **Sn** Message box mode (see below), default 1 
 * **Tn** Timeout in seconds, ignored if S=2 or S=3. The message will be cancelled after this amount of time, if the user does not cancel it before then. A zero or negative value means that the message does not time out (it may still be cancelled by the user if it has a Close button). The default value is 10 seconds (this applies to modes 0 and 1 only).
 * **X, Y, Zn** 0 = no special action (default), 1 = display jog buttons alongside the message to allow the user to adjust the head position on the specified axis. Only valid in conjunction with S2 or S3.
 * **Jn** (RRF 3.5 and later only, optional) If message box mode >= 4: 0 = no Cancel button (default), 1 = display a Cancel button.
@@ -3136,7 +3140,7 @@ Duet Web Control 2.03 and later support HTML messages but that may not be displa
 
 When using Duet 3 with attached SBC, DSF versions before v3.1.1 support only non-blocking calls are supported in DuetSoftwareFramework. M291 is fully supported in DSF v3.1.1 and later.
 
-The limit in RRF3 is 200 characters in the entire GCode command. In RRF2 it's 160 characters.
+The limit in RRF 3.4 and later is 256 characters in the entire GCode command. Before 3.4 is was 200 characters, in RRF2 it's 160 characters.
 
 ## M292: Acknowledge blocking message
 
