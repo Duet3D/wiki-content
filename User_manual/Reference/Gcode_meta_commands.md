@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2023-02-09T11:47:03.383Z
+date: 2023-03-30T13:00:44.188Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -206,7 +206,7 @@ Tabs and space characters may be used freely between variable names, keywords, l
 
 Sub-expressions may be enclosed in { } or in ( ). However, standard CNC GCode uses ( ) to enclose comments. So in CNC mode, RepRapFirmware treats ( ) as enclosing subexpressions when they appear inside { } and as enclosing comments when they do not. Therefore, when RepRapFirmware is running in CNC mode, any use of ( ) to enclose a subexpression or function parameter list must be within an expression enclosed in { }.
 
-Expression length is limited to 250 characters.
+Expression length is limited to 100 characters.
 
 ## Types
 
