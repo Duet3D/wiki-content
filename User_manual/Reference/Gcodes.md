@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-29T15:32:16.504Z
+date: 2023-03-30T12:58:54.604Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2336,7 +2336,7 @@ Supported in RepRapFirmware 1.21 and later.
 ### Parameters
 
 * **Pnnn** Message type (0 = Generic [default], 1 = USB, 2 = PanelDue/UART, 3 = HTTP, 4 = Telnet, 5 = second UART, 6 = MQTT publisher [RRF 3.5beta2 and later only]) (optional)
-* **S"msg"** Message to send
+* **S"msg"** Message to send , limit of 100 characters
 * **Lnnn** Log level of this message (0 = do not log this line, 1 = log as WARN, 2 = log as INFO, 3 = log as DEBUG (default)) (RRF >= 3.2.0-beta3)
 
 ### Examples
@@ -2361,6 +2361,8 @@ Note that a message only having the **Lnnn** parameter but no **Pnnn** parameter
 <pre class="cblock">
 M118 P0 S"message" L1
 </pre>
+
+**Note**: messages that exceed **100 characters** will be truncated.
 
 ## M119: Get Endstop Status
 
