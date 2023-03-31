@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-03-31T12:44:01.197Z
+date: 2023-03-31T12:46:43.884Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -266,15 +266,15 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | OUT 1 | out1 | Medium current outputs, hot ends |
 | ^^ | OUT 2 | out2 | ^^ |
 | ^^ | OUT 3 | out3 | ^^ |
-| Outputs (4-pin) | OUT 4 | out4 | Fans, pumps. 2.5A limit per pin on VIN, 800mA limit total on internal 12V |
+| Outputs (4-pin) | OUT 4 | out4 | Fans, pumps. 2A limit per pin on VIN, 800mA limit total on internal 12V |
 | ^^ | ^^ | out4.tach | ^^ |
 | ^^ | OUT 5 | out5 | ^^ |
 | ^^ | ^^ | out5.tach | ^^ |
 | ^^ | OUT 6 | out6 | ^^ |
 | ^^ | ^^ | out6.tach | ^^ |
-| Outputs (2-pin) | OUT 7 | out7 | |
-| ^^ | OUT 8 | out8 | |
-| ^^ | OUT 9 | out9, laser, vfd | Pin shared with VFD/Laser/Servo drive header |
+| Outputs (2-pin) | OUT 7 | out7 | ^^ |
+| ^^ | OUT 8 | out8 | ^^ |
+| ^^ | OUT 9 | out9, laser, vfd | Fans, pumps. 2A limit per pin on VIN, 800mA limit total on internal 12V. <br>Pin shared with VFD/Laser/Servo drive header |
 | ^^ | OUT 10 / SERVO | servo, out10 | v0.5 boards only. |
 | Temperature inputs | TEMP 0 | temp0 | |
 | ^^ | TEMP 1 | temp1 | |
