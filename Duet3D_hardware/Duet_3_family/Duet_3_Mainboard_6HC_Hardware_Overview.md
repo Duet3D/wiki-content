@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-03-28T12:04:02.319Z
+date: 2023-03-31T12:44:01.197Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -191,11 +191,11 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 3-pin KK connector** | EXT 5V | Open drain mosfet output for controlling an ATX-style power supply or a SSR. The +5V pin can also be used to provide a small amount of 5V power (through an internal 220 ohm resistor) so that the control terminals of an SSR can be connected directly between the +5V and PS_ON pins. |
 | **6 x 4-pin JST VH connector** | DRIVER_0, DRIVER_1, DRIVER_2, DRIVER_3, DRIVER_4, DRIVER_5 | Stepper motor connections. (see note on JST VH connectors) |
 | **3 x 2-pin JST VH connector** | OUT 1, OUT 2, OUT 3 | These are intended for extruder heaters or fans. Maximum recommended current 6A each. These outputs are protected by flyback diodes. |
-| **3 x 4-pin KK connectors with offset spigot** | OUT 4, OUT 5, OUT 6 | These medium current outputs are intended for PWM-controllable fans. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUT_LC_1 pin (+ve) and the OUT_n_NEG pin (-ve). |
+| **3 x 4-pin KK connectors with offset spigot** | OUT 4, OUT 5, OUT 6 | These medium current outputs are intended for PWM-controllable fans. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUT_LC_1 pin (+ve) and the OUT_n_NEG pin (-ve). Maximum recommended current 2A each when supplied by VIN. |
 | ^^ | ^^ | **Note:** These outputs are protected by a flyback diode connected to V_OUT_LC_1. Do not mix loads connected to V_OUT_LC_1 with the jumper set to 12V and loads connected to V_FUSED on the same bank. |
 | **1 x 3-pin KK header** | OUT4-OUT6_SelectV | The positive supply to the OUT 4, OUT 5 and OUT 6 connectors is the centre pin of the 3-pin jumper block labeled OUT4-OUT6_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
 | ^^ | ^^ | *see note 1 below*. |
-| **3 x 2-pin KK connectors** | OUT 7, OUT 8, OUT 9 | These are intended for fans. Maximum recommended current 2.5A each when supplied by VIN. |
+| **3 x 2-pin KK connectors** | OUT 7, OUT 8, OUT 9 | These are intended for fans. Maximum recommended current 2A each when supplied by VIN. |
 | ^^ | ^^ | **Note:** These outputs are protected by a flyback diode connected to V_OUT_LC_2. Do not mix loads connected to V_OUT_LC_2 with the jumper set to 12V and loads connected to V_FUSED on the same bank. |
 | **1 x 3-pin KK header** | OUT7-OUT9_SelectV | The positive supply to the OUT 7, OUT 8 and OUT 9 connectors is the centre pin of the 3-pin jumper block labeled OUT7-OUT9_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin.|
 | ^^ | ^^ | *see note 1 below*. |
