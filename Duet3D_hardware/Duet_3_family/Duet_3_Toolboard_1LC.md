@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2023-01-10T14:30:21.328Z
+date: 2023-04-02T21:59:34.235Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -17,7 +17,7 @@ The Duet 3 Toolboard 1LC places the control requirements for a direct drive extr
 
 This reduces the number of wires needed to two power wires and two twisted pairs for the CAN bus. In comparison a direct drive extruder tool such as the E3D Hemera would normally need four wires for the stepper motor, two for the heater, three to five for 2 fans, and at least 2 for the temperature sensor: total 11 or more wires. If a filament monitor is wanted, 3 more wires are needed; and if a Z probe is wanted, another 1 to 3 wires, totalling 14 to 17.
 
-![Image from an angle of the Duet 3 Toolboard 1LC v1.1](/duet_boards/duet_3_can_expansion/toolboard1lc_v1_1_04_v2_small.png =400x)!
+![Image from an angle of the Duet 3 Toolboard 1LC v1.1](/duet_boards/duet_3_can_expansion/toolboard1lc_v1_1_04_v2_small.png =400x)
 
 
 To make it easy to connect multiple direct driver extruders in a tool changer or other multi tool machine, we have also designed a [Tool Distribution board](/Duet3D_hardware/Duet_3_family/Duet_3_Tool_Distribution_Board). This takes power from the PSU and CAN bus from the Duet. It provides 4 power outputs for Toolboards using 2-pin JST VH connectors and 4 CAN connections for Toolboards using 4-pin JST ZH connectors.
