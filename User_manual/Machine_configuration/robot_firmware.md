@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-29T09:17:25.182Z
+date: 2022-12-29T09:17:29.041Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z

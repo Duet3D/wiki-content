@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Serial SCARA printer
 description: This page describes how to set up the configuration files for Serial SCARA printers.
 published: true
-date: 2022-01-28T11:56:33.124Z
+date: 2022-05-14T16:36:58.258Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T17:10:46.643Z
@@ -42,7 +42,8 @@ The parameters for serial SCARA are:
 * **Annn:mmm** Ground-to-proximal joint minimum and maximum angles
 * **Bnnn:mmm** Proximal-to-distal joint minimum and maximum angles
 * **Caaa:bbb:ccc** Crosstalk factors (optional, default all zero)
-* **Rnnn** (optional, RRF 2.03 and later only) Minimum permitted printing radius from the proximal axis. If not specified, it will be calculated to be slightly larger than the distance between nozzle and proximal axis when the distal axis is homed.* **Snnn** Maximum segments per second (optional)
+* **Rnnn** (optional, RRF 2.03 and later only) Minimum permitted printing radius from the proximal axis. If not specified, it will be calculated to be slightly larger than the distance between nozzle and proximal axis when the distal axis is homed.
+* **Snnn** Maximum segments per second (optional)
 * **Tnnn** Minimum segment length (optional)
 * **Xxxx and Yyyy** X and Y offsets from the location of the proximal joint.
 

@@ -2,7 +2,7 @@
 title: Contributing to development
 description: The Duet runs entirely on open-source firmware and software. Whats more it is built using open tools (KiCAD and Eclipse), we want to encourage other to get involved and lower the barrier to entry. 
 published: true
-date: 2022-06-29T11:44:27.910Z
+date: 2022-06-29T11:44:31.773Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T16:04:31.638Z

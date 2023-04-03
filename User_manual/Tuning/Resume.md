@@ -2,7 +2,7 @@
 title: Setting up to resume a print after a power failure or planned power down
 description: RepRapFirmware can be configured to allow you to resume a print after loss of power. This page explains how.
 published: true
-date: 2021-12-03T16:00:07.068Z
+date: 2022-03-29T12:52:52.195Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:00:04.074Z
@@ -22,10 +22,17 @@ RepRapFirmware can be configured to allow you to resume a print after loss of po
 
 # Limitations
 
-* If you want to handle unplanned power outages, you should use 24V power, not 12V.  If you use 12V power then it is most unlikely that there will be sufficient power left to lift the print head and save the resume information when power failure is detected. Adding a 10000uF capacitor across the VIN rail can help increase the amount of stored power giving enough time to write to the SD card.
+## Physical
+
 * You must be able to re-home the printer (possibly using a different homing sequence from normal) with a print on the bed.
 * If the print becomes detached from the bed while the power is off due to loss of bed heat, you won't be able to resume the print.
 * The head must not drop down onto the print when power is removed.
+
+## Power
+
+* If you want to handle unplanned power outages, you should use 24V power, not 12V. If you use 12V power then it is most unlikely that there will be sufficient power left to lift the print head and save the resume information when power failure is detected. 
+* Adding a 10000uF capacitor across the VIN rail can help increase the amount of stored power giving enough time to write to the SD card. However, the PSU may false-detect a short circuit and turn off when the machine is powered on. In this case, we suggest using a diode and parallel resistor, connected between the VIN line and the capacitor. The resistor is for charging the cap. When the power goes off, the capacitor powers VIN via the diode. Make sure the diode is sufficient to handle the bed heater current (if powered from VIN) for at least a few seconds; in the fraction of a second between the mains failing and the VIN voltage dropping low enough for RRF to detect the loss of power, the capacitor will be supplying the bed through the diode.
+* For Duet + SBC, a solid external 5V supply is recommended for the Duet + SBC for this feature to work. When power to the Duet + SBC is cut, the SBC may turn off before the Duet can inform the SBC about the content of resurrect.g, or the SBC may lose power while it's trying to write the content of resurrect.g to the microSD card. An external 5V buck regulator may be sufficient to keep a Duet 3 Mini 5+ and SBC on long enough. For MB6HC, the on-board 5V regulator might not endure long enough for resurrect.g to be written to persistent storage if the Duet powers an SBC as well. Hence we recommend using an external 5V PSU if this feature is configured.
 
 # How it works
 

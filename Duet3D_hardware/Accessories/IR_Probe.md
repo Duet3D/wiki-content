@@ -2,7 +2,7 @@
 title: Duet3D IR Probe
 description: 
 published: true
-date: 2021-12-13T13:31:55.562Z
+date: 2022-02-11T13:04:53.161Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T15:22:57.157Z
@@ -34,7 +34,7 @@ The IR sensor comes with:
 
 For details on connecting the IR Sensor see [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting).
 
-For the full detail on DC42's IR sensor see his [IR sensor web page](https://miscsolutions.wordpress.com/mini-height-sensor-board).
+For the full detail on DC42's IR sensor see his [IR sensor web page](https://miscsolutions.wordpress.com/mini-height-sensor-board){target=_blank}.
 
 # Bed surface
 

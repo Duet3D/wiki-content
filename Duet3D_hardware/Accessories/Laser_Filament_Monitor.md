@@ -2,7 +2,7 @@
 title: Duet3D Laser Filament Monitor
 description: 
 published: true
-date: 2022-06-29T10:59:48.365Z
+date: 2022-06-29T10:59:52.407Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T10:48:43.726Z

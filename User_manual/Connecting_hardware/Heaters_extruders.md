@@ -2,7 +2,7 @@
 title: Connecting and configuring extruder heaters
 description: 
 published: true
-date: 2021-12-15T15:12:15.061Z
+date: 2022-02-11T14:48:26.636Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-20T14:22:52.182Z
@@ -26,7 +26,7 @@ Some high capacity heaters, such as the E3D 12V SuperVolcano 80W Heater, can dra
 | 80W | 12V | 1.8 | 6.66A |
 
 > **WARNING! DO NOT** run a 12V heater on 24V! 
-{.is-warning}
+{.is-danger}
 
 As you can see from the above table, the 30W 12V heater has a resistance of 4.8 ohms. If you run this on 24V, the current draw is 24V / 4.8 ohms = 5A and power is 24V x 5A = 120W! Even running with a 25% PWM duty cycle, this means the heater will be on full power 25% of the time. PWM does not modify the voltage, it modifies the amount of time the output is turned on. Use a heater with a resistance that suits the supply voltage.
 

@@ -2,7 +2,7 @@
 title: What to do if your Duet won't respond
 description: 
 published: true
-date: 2022-06-29T21:01:31.227Z
+date: 2022-06-29T21:01:35.492Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:52:16.731Z

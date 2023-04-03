@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2023-01-09T17:22:16.952Z
+date: 2023-01-09T17:22:20.808Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z

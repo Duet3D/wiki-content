@@ -1,8 +1,8 @@
 ---
-title: Configuring RepRapFirmware for you machine
+title: Configuring RepRapFirmware for your machine
 description: 
 published: true
-date: 2022-03-03T13:10:09.253Z
+date: 2022-04-06T12:11:44.357Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:25:14.342Z

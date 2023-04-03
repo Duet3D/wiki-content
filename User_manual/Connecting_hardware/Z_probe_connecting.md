@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2023-03-24T15:11:34.257Z
+date: 2023-03-24T15:11:39.018Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z

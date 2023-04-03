@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2023-01-18T15:57:30.068Z
+date: 2023-01-18T15:57:34.224Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z

@@ -2,7 +2,7 @@
 title: Configuring stepper motors
 description: Describes firmware configuration of stepper motors
 published: true
-date: 2021-10-12T15:16:11.003Z
+date: 2022-02-16T12:21:04.118Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-11T11:54:37.059Z
@@ -27,6 +27,17 @@ Drive numbers used in G-code correspond to the following driver labels on the bo
 | 9 | | | | | E6 (On DueX5) |  |
 | 10 | | | | | On LCD_CONN header |  |
 | 11 | | | | | On LCD_CONN header |  |
+
+# Drive limits
+
+As of RepRapFirmware 3.3, the maximum number of configurable drives is:
+
+| | Duet 3 Mini 5+ | Duet 3 MB6HC | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Note |
+|---|---|
+| MaxAxes | 10 | 15 | 10 | 6 | The maximum number of movement axes in the machine, usually just X, Y and Z
+| MaxDriversPerAxis | 4 | 8 | 5 | 4 | The maximum number of stepper drivers assigned to one axis
+| MaxExtruders | 5 | 16 | 7 | 4 | The maximum number of extruders
+| MaxAxesPlusExtruders | 12 | 25 | 12 | 7 | The maximum number of axes and extruders
 
 # Defining connected motors
 
@@ -74,6 +85,8 @@ The above example is of a Duet 2 WiFi/Ethernet with X, Y and Z axis motors (one 
 
 ## Using more than one motor on an axis with a separate driver for each motor
 
+Note that RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. 
+
 ### Tabs {.tabset}
 
 #### Duet 3
@@ -90,7 +103,7 @@ M569 P121.0 S1                         ; physical drive 121.0 goes forwards
 M569 P122.0 S1                         ; physical drive 121.0 goes forwards
 M569 P123.0 S1                         ; physical drive 121.0 goes forwards
 M569 P124.0 S1                         ; physical drive 121.0 goes forwards
-M584 X0.0 Y0.1:0.2 Z1.0:1.1:1.2 E121.0:122.0:123.0:124.0: ; set drive mapping
+M584 X0.0 Y0.1:0.2 Z1.0:1.1:1.2 E121.0:122.0:123.0:124.0 ; set drive mapping
 ```
 
 The above example is of a Duet 3 mainboard with X axis (one motor) and Y axis (two motors on separate drivers) connected, an expansion board with 3 x Z axis motors connected to it, and 4 x toolboards with an extruder motor connected to each one.
@@ -112,6 +125,54 @@ M584 X0 Y1 Z2:3:4 E5:6:7:8 ; set drive mapping
 ```
 
 The above example is of a Duet 2 WiFi/Ethernet mainboard with X axis (one motor), Y axis (one motor) and Z axis (3 motors, each on individual drivers) connected, and a DueX5 expansion board with 4 x extruder motors connected to it.
+
+## Creating additional axes
+
+You can create additional axes as required. Use [M569](/User_manual/Reference/Gcodes/M569) to define the motor parameters, and assign it to an axis with [M584](/User_manual/Reference/Gcodes/M584). Additional drive letters can be:
+* UVW in RepRapFirmware 1.16 and later
+* UVWABC  in RepRapFirmware 1.19 and later
+* UVWABCD available in RepRapFirmware 3.0 and later
+* UVWABCDabcdefghijkl available in RepRapFirmware 3.3 and later, Duet 3 MB6HC only
+
+### Tabs {.tabset}
+
+#### Duet 3
+
+```
+; Drives
+M569 P0.0 S1                           ; physical drive 0.0 goes forwards
+M569 P0.1 S0                           ; physical drive 0.1 goes backwards
+M569 P0.2 S0                           ; physical drive 0.2 goes backwards
+M569 P0.3 S1                           ; physical drive 1.0 goes forwards
+M569 P0.4 S1                           ; physical drive 1.1 goes forwards
+M569 P121.0 S1                         ; physical drive 121.0 goes forwards
+M569 P122.0 S1                         ; physical drive 121.0 goes forwards
+M584 X0.0 Y0.1 Z0.2 U0.3 V0.4 E121.0:122.0 ; set drive mapping
+```
+
+The above example is of a Duet 3 mainboard with X, Y, Z, U and V axes, with one motor per axis (perhaps for a CoreXYU printer, which has two motors for each extruder), and 2 x toolboards with an extruder motor connected to each one.
+
+**NOTE:** when configuring extra axes, you must configure steps and speeds for the additional axes, using M350, M92, M566, M203, M201 and M906. See 'Configuring steps and speeds' section below.
+
+#### Duet 2
+
+```
+; Drives
+M569 P0 S1                 ; physical drive 0 goes forwards
+M569 P1 S1                 ; physical drive 1 goes forwards
+M569 P2 S0                 ; physical drive 2 goes backwards
+M569 P3 S0                 ; physical drive 3 goes backwards
+M569 P4 S0                 ; physical drive 4 goes backwards
+M569 P5 S1                 ; physical drive 5 goes forwards
+M569 P6 S1                 ; physical drive 6 goes forwards
+M569 P7 S1                 ; physical drive 7 goes forwards
+M569 P8 S1                 ; physical drive 8 goes forwards
+M584 X0 Y1 Z2:3:4 U:5 V:6 E7:8 ; set drive mapping
+```
+
+The above example is of a Duet 2 WiFi/Ethernet mainboard with X, Y, U and V axes, with one motor per axis (perhaps for a CoreXYU printer, which has two motors for each extruder), and a DueX5 expansion board with the Z axis (3 motors, each on individual drivers) and 2x extruder motors connected to it.
+
+**NOTE:** when configuring extra axes, you must configure steps and speeds for the additional axes, using M350, M92, M566, M203, M201 and M906. See 'Configuring steps and speeds' section below.
 
 ## Disabling stepper driver reporting
 
@@ -200,4 +261,20 @@ As with most other commands in RepRapFirmware, you can see the current settings 
 ```
 M906
 Motor current (mA) - X:1200, Y:1200, Z:1000, E:1000, idle factor 30%
+```
+
+## Settings for additional axes
+
+When adding additional axes, you must configure steps and speeds for them, using M350, M92, M566, M203, M201 and M906. Add the additional axis/axes into these commands. For example:
+
+```
+M584 X0 Y1 Z2:3:4 U:5 V:6 E7:8               ; set drive mapping
+
+M350 X16 Y16 Z16 U16 V16 E16:16 I1           ; configure microstepping with interpolation
+M92 X80 Y80 Z400 U80 V80 E420:420            ; set steps per mm
+M566 X900 Y900 Z60 U900 V900 E120:120        ; set maximum instantaneous speed changes (mm/min)
+M203 X6000 Y6000 Z180 U6000 V6000 E1200:1200 ; set maximum speeds (mm/min)
+M201 X500 Y500 Z20 U500 V500 E250:250        ; set accelerations (mm/s^2)
+M906 X800 Y800 Z800 U800 V800 E800:800 I30   ; set motor currents (mA) and motor idle factor in per cent
+
 ```

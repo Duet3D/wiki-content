@@ -2,7 +2,7 @@
 title: Duet3D Thermocouple daughterboard
 description: Overview of the Duet 3D Thermocouple daughter board.
 published: true
-date: 2022-06-28T11:52:19.638Z
+date: 2022-06-28T11:52:23.164Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T12:01:36.003Z

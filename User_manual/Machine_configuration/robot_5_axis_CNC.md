@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-11-27T16:13:15.108Z
+date: 2022-11-27T16:13:18.608Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z

@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2023-01-09T16:31:44.069Z
+date: 2023-01-09T16:31:48.156Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z

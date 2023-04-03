@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the experimental accelerometer support in RRF 3.3 and later.
 published: true
-date: 2022-07-09T12:26:38.144Z
+date: 2023-04-03T20:26:41.736Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -46,7 +46,7 @@ To use a direct connection, connect the accelerometer SDA (also called MOSI), SD
 
 Two further signals must be connected on the accelerometer breakout board: CS and INT1. The INT1 pin must be connected to a Duet pin with interrupt capability. **The CS pin should be separated from other signal wires if possible because it is sensitive to interference, especially when using a Duet 3 Mini or Duet 3 MB6HC** (see note below).
 
-![accelerometer_01.jpg](/manual/sensors/accelerometer_01.jpg =x400) ![accelerometer_02.jpg](/manual/sensors/accelerometer_02.jpg =x400)
+![accelerometer_01.jpg](/manual/sensors/accelerometer_01.jpg =x400){target=_blank} ![accelerometer_02.jpg](/manual/sensors/accelerometer_02.jpg =x400){target=_blank}
 
 The photo on the left shows a sample cable that connects the Adafruit LIS3DH board to the temperature daughterboard connector on a Duet 2 WiFi, Ethernet, Maestro or Duet 3 MB6HC if no temperature daughterboards are in use. The photo on the right shows a sample cable that connects a LIS3DH or LIS3DSH board to a Duet 3 Mini 5+ or Duet 3 MB6HC. This wiring scheme has been designed to keep the wire carrying CS away from the other signal wires. 
 
@@ -146,7 +146,7 @@ Use this command to tell RRF about the accelerometer:
 `M955 P0 C"twd0+twck0"`
 
 
-### Duet 3 Toolboard 1LC v1.1
+### Duet 3 Toolboard 1LC v1.1 and later
 
 You do not need to tell RRF about the accelerometer with M955; it will use the default M955 settings. However, you can use M955 if necessary to set accelerometer orientation, sampling rate or resolution. The P parameter is the CAN address of the Toolboard and accelerometer device number, eg P121.0. For example:
 
@@ -160,11 +160,31 @@ You do not need to tell RRF about the accelerometer with M955; it will use the d
 
 ## Orientation
 
+Accelerometer boards usually have an XYZ arrow to aid orientation. The Z axis is generally in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine.
+
+![accelerometer_duet3_tb_1lc_v1.3_top.jpg](/manual/sensors/accelerometer_duet3_tb_1lc_v1.3_top.jpg =225x){target=_blank} ![accelerometer_adafruit_lis3dh.jpg](/manual/sensors/accelerometer_adafruit_lis3dh.jpg =225x){target=_blank} ![accelerometer_sparkfun_lis3dh.jpg](/manual/sensors/accelerometer_sparkfun_lis3dh.jpg =225x){target=_blank}
+
 You can add parameter I (uppercase 'i') to the M955 command if you need to change the default orientation.
 
 The I (orientation) parameter tells the firmware which of the 24 possible orientations the accelerometer chip is in relative to the printer axes. It is expressed as a 2-digit number. The first digit specifies which machine direction the Z axis of the accelerometer chip (usually the top face of the chip) faces, as follows: 0 = +X, 1 = +Y, 2 = +Z, 4 = -X, 5 = -Y, 6 = -Z. The second digit expresses which direction the X axis of the accelerometer chip faces, using the same code. If the accelerometer chip axes line up with the machine axis, the orientation is 20. This is the default orientation if no orientation has been specified.
 
-Forum user [Nuramori](https://forum.duet3d.com/user/nuramori) has produced a [graphical guide to help illustrate the orientation options](https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf) with a Duet 3 Tool Board 1LC rev 1.1 (with onboard accelerometer).
+Forum user [Nuramori](https://forum.duet3d.com/user/nuramori){target=_blank} has produced a [graphical guide to help illustrate the orientation options](https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf){target=_blank} with a Duet 3 Tool Board 1LC rev 1.1 (with onboard accelerometer). 
+
+![accelerometer_i20_full.jpg](/accelerometer_i20_full.jpg){target=_blank}
+
+The table below uses his work to show all of the possible orientations of a Duet 3 Toolboard 1LC, with the appropriate M955 command.
+
+Match the image to your Duet 3 Toolboard 1LC orientation, and note the I value associated with the image. The OUT_0 connector on the board, a screw down terminal shown in blue below, is used for indexing, and is highlighted with a red circle if hidden. OUT_0 is normally used for the extruder heater.
+
+| Accelerometer axis to machine axis |||||||
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| | +X to +X | +X to +Y | +X to +Z | +X to -X | +X to -Y | +X to -Z |
+| +Z to +X | NA | ![accelerometer_i01.jpg](/manual/sensors/accelerometer_i01.jpg){target=_blank}<br>`M955 P[##] I01` | ![accelerometer_i02.jpg](/manual/sensors/accelerometer_i02.jpg){target=_blank}<br>`M955 P[##] I02`| NA | ![accelerometer_i05.jpg](/manual/sensors/accelerometer_i05.jpg){target=_blank}<br>`M955 P[##] I05` | ![accelerometer_i06.jpg](/manual/sensors/accelerometer_i06.jpg){target=_blank}<br>`M955 P[##] I06` |
+| +Z to +Y | ![accelerometer_i10.jpg](/manual/sensors/accelerometer_i10.jpg){target=_blank}<br>`M955 P[##] I10` | NA | ![accelerometer_i12.jpg](/manual/sensors/accelerometer_i12.jpg){target=_blank}<br>`M955 P[##] I12` | ![accelerometer_i14.jpg](/manual/sensors/accelerometer_i14.jpg){target=_blank}<br>`M955 P[##] I14` | NA | ![accelerometer_i16.jpg](/manual/sensors/accelerometer_i16.jpg){target=_blank}<br>`M955 P[##] I16` |
+| +Z to +Z | ![accelerometer_i20.jpg](/manual/sensors/accelerometer_i20.jpg){target=_blank}<br>`M955 P[##] I20` | ![accelerometer_i21.jpg](/manual/sensors/accelerometer_i21.jpg){target=_blank}<br>`M955 P[##] I21` | NA | ![accelerometer_i24.jpg](/manual/sensors/accelerometer_i24.jpg){target=_blank}<br>`M955 P[##] I24` | ![accelerometer_i25.jpg](/manual/sensors/accelerometer_i25.jpg){target=_blank}<br>`M955 P[##] I25` | NA |
+| +Z to -X | NA | ![accelerometer_i41.jpg](/manual/sensors/accelerometer_i41.jpg){target=_blank}<br>`M955 P[##] I41` | ![accelerometer_i42.jpg](/manual/sensors/accelerometer_i42.jpg){target=_blank}<br>`M955 P[##] I42` | NA | ![accelerometer_i45.jpg](/manual/sensors/accelerometer_i45.jpg){target=_blank}<br>`M955 P[##] I45` | ![accelerometer_i46.jpg](/manual/sensors/accelerometer_i46.jpg){target=_blank}<br>`M955 P[##] I46` |
+| +Z to -Y | ![accelerometer_i50.jpg](/manual/sensors/accelerometer_i50.jpg){target=_blank}<br>`M955 P[##] I50` | NA | ![accelerometer_i52.jpg](/manual/sensors/accelerometer_i52.jpg){target=_blank}<br>`M955 P[##] I52` | ![accelerometer_i54.jpg](/manual/sensors/accelerometer_i54.jpg){target=_blank}<br>`M955 P[##] I54` | NA | ![accelerometer_i56.jpg](/manual/sensors/accelerometer_i56.jpg){target=_blank}<br>`M955 P[##] I56` |
+| +Z to -Z | ![accelerometer_i60.jpg](/manual/sensors/accelerometer_i60.jpg){target=_blank}<br>`M955 P[##] I60` | ![accelerometer_i61.jpg](/manual/sensors/accelerometer_i61.jpg){target=_blank}<br>`M955 P[##] I61` | NA | ![accelerometer_i64.jpg](/manual/sensors/accelerometer_i64.jpg){target=_blank}<br>`M955 P[##] I64` | ![accelerometer_i65.jpg](/manual/sensors/accelerometer_i65.jpg){target=_blank}<br>`M955 P[##] I65` | NA |
 
 ## Sampling rate and resolution
 

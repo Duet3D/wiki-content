@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-12-13T14:23:06.090Z
+date: 2022-12-13T14:23:11.038Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z

@@ -2,7 +2,7 @@
 title: Adapting an existing printer to Duet
 description: What mechanical and electrical details are needed to configure RepRapFirmware? What information is needed to configure an existing 3D printer to work with a Duet control board? Going from Marlin on Arduino to RepRapFirmware on Duet.
 published: true
-date: 2022-01-17T13:53:17.933Z
+date: 2022-02-16T11:30:14.570Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T14:53:55.818Z
@@ -19,76 +19,80 @@ Every 3D printer is different. And while mechanics are commonly shared, the spec
 
 ## What mechanical details are needed to configure RepRapFirmware?
 
-* **Steps per MM**
-  * Motor resolution
+**Steps per MM**
+* Motor resolution
   * 0.9° or 1.8° rotation per step
   * 400 or 200 steps per revolution
-  * Drive pulley tooth count
+* Drive pulley tooth count
   * 16T, 20T, 30T, 40T, 60T are common
-  * Belt tooth profile and pitch
+* Belt tooth profile and pitch
   * Timing Profile Example: GT2, GT3, MXL, HTD
   * Belt Pitch Example: 2mm, 3mm, 2.08mm, etc
-  * Driver microstepping
+* Driver microstepping
   * Commonly 16 steps (A4988) or 32 steps (DRV8825)
   * Duet can use up to 256
-  * Lead screw pitch and lead
+* Lead screw pitch and lead
   * Pitch = distance between threads
   * Lead = travel in mm for one revolution
     * TR8\*8 are most common with a pitch of 2mm and a lead of 8mm
-  * Gear Ratios
+* Gear Ratios
   * Extruder Gearing
     * Example: E3D Titan and BondTech extruders use 3:1 gearing.
   * Z Axis Gearing
     * Example: 20T drive gear and 40T gear on lead screw would be 2:1 gearing
-  * Formulas
+* Formulas
   * [Online Steps Per MM Calculator (Google Sheets)](https://docs.google.com/spreadsheets/d/1ts5fz73JQoQ4G0Z95nzfPDSS6HYEyczyZyccDZ5M6B4/edit?usp=sharing)
   * X and Y Axis
     * **xy_steps_per_mm = (motor_steps_per_rev * driver_microstep) / (belt_pitch_mm * pulley_number_of_teeth)**
   * Z Axis
-    * **Z_steps_per_mm = (motor_steps_per_rev * driver_microstep) / thread_pitch **
+    * **Z_steps_per_mm = (motor_steps_per_rev * driver_microstep) / thread_pitch**
   * Extruder Axis
     * **e_steps_per_mm = (motor_steps_per_rev * driver_microstep) * (big_gear_teeth / small_gear_teeth) / (hob_effective_diameter * pi)**
-* **Build Volume**
-  * Axis travel maximums
-  * Print surface size
-  * Z Probe to Nozzle XYZ offset
-  * Origin location (0,0) AKA home position.
+
+**Build Volume**
+* Axis travel maximums
+* Print surface size
+* Z Probe to nozzle XYZ offset
+* Origin location (0,0) AKA home position.
 
 ## What electrical details are needed to configure RepRapFirmware?
 
-* **Voltages**
-  * Power Supply
+**Voltages**
+* Power Supply
   * Commonly 12v or 24v
-  * Fan Voltages
+* Fan Voltages
   * Most commonly 12v, but also available in 24v and 5v
-  * Heater cartridge and bed heater voltage
-  * 12v or 24v common for heater cartridges and PCB heat beds. 120v or 240v for AC powered heat beds using an SSR
-  * Max rated motor current in amps
+* Heater cartridge and bed heater voltage
+  * 12v or 24v common for heater cartridges and PCB heat beds. 
+  * 120v or 240v for AC powered heat beds using an SSR
+* Max rated motor current in amps
   * Check the motor spec sheet if available, may need to find model number sticker on the motor
   * May be found in configuration.h or LCD menu of the printer
   * For optimal performance on the Duet target to set the current at 70-85% of max rated
-* **Thermistor details**
-  * Type of thermistor
+
+**Temperature sensor details**
+* Type of temperature sensor
   * Thermistor, PT100, PT1000, Type-K Thermocouple
-  * Thermistor table values if known
-  * Max temp for bed and hotend
-* **Endstop details**
-  * Endstop type: microswitch, optical, hall effect
-  * Switch type: Active Low (Normally open), or Active High (normally closed)
-  * Endstop position: High end or low end of travel
-* **Z Probe details**
-  * Probe voltage
-  * Probe trigger height
-  * Probe voltage
+  * If thermistor, thermistor table values if known
+* Max temp for bed and hotend
+
+**Endstop details**
+* Endstop type: microswitch, optical, hall effect, motor stall
+* Switch type: Active Low (Normally open), or Active High (normally closed)
+* Endstop position: High end or low end of travel
+
+**Z Probe details**
+* Probe voltage
+* Probe trigger height
 
 ## What firmware details are needed to configure RepRapFirmware?
 
-* **Speed settings**
-  * Acceleration and Jerk values
-    * Can be found in LCD menu or in configuration.h
-  * Extrusion multiplier
-  * Z offset
-  * Fan speeds
+* Speed settings
+  * Maximum speed, acceleration and Jerk values
+  * Can be found in LCD menu or in configuration.h
+* Extrusion multiplier
+* Z offset
+* Fan speeds
 
 # Going from Marlin on Arduino to RepRapFirmware on Duet
 
@@ -98,4 +102,4 @@ If you're not sure what these values are for your printer, check with the manufa
 
 If you're coming from Marlin and have access to the configuration.h files you check there for some of the values.
 
-Note: Marlin uses MM/s for feed rates, RepRapFirmware uses MM/Min. To convert from one to the other you must either multiply or divide by 60. Example: 100mm/s = 6000mm/min.
+**Note:** Marlin uses MM/s for feed rates, RepRapFirmware uses MM/Min. To convert from one to the other you must either multiply or divide by 60. Example: 100mm/s = 6000mm/min.

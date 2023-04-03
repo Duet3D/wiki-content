@@ -2,7 +2,7 @@
 title: User manual: Connecting hardware
 description: 
 published: true
-date: 2022-06-29T20:48:45.033Z
+date: 2022-06-29T20:48:48.608Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:51:46.990Z

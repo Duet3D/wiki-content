@@ -2,7 +2,7 @@
 title: Connecting 12864 or other display
 description: 
 published: true
-date: 2023-02-06T13:12:28.321Z
+date: 2023-02-06T13:12:32.474Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T15:08:34.637Z

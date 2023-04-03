@@ -2,7 +2,7 @@
 title: Duet3D Documentation
 description: Introduction to the Duet3D range of control electronics
 published: true
-date: 2023-01-24T12:34:06.752Z
+date: 2023-01-24T12:34:10.610Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-20T11:08:57.551Z

@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-30T13:18:28.790Z
+date: 2023-03-30T13:18:41.803Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z

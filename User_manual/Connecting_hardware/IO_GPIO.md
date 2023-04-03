@@ -2,16 +2,17 @@
 title: Controlling unused IO pins
 description: 
 published: true
-date: 2021-12-17T22:26:33.782Z
+date: 2022-02-16T17:46:35.638Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-18T14:03:58.975Z
 ---
 
+<!--
 # REWRITE FOR GPIO
 
 Originally based on [Connecting servos and DC motors](/User_manual/Connecting_hardware/Motors_servos). Expand to cover inputs and outputs. Also see [Using servos and controlling unused IO pins](https://duet3d.dozuki.com/Wiki/Using_servos_and_controlling_unused_IO_pins) on Dozuki.
-
+-->
 # Introduction
 
 RepRapFirmware allows you to connect other devices to unused outputs. Expansion boards also provide additional inputs and outputs. The following Gcodes allow re-purposing of some pins, and direct control of those pins for peripherals such as PWM hobby servos, DC motors and pumps. 

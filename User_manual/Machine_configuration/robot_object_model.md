@@ -2,7 +2,7 @@
 title: Robot Object Model
 description: description of the object model, explaining some internal workings also
 published: true
-date: 2022-12-01T10:23:58.015Z
+date: 2022-12-01T10:24:01.713Z
 tags: robot
 editor: markdown
 dateCreated: 2022-10-15T05:16:12.719Z

@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-09T06:39:15.742Z
+date: 2023-03-09T06:39:19.365Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z

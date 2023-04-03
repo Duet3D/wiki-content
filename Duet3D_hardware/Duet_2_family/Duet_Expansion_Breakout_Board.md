@@ -2,7 +2,7 @@
 title: Duet Expansion Breakout Board
 description: This breakout board connects to the Duet 2 (Wifi or Ethernet) expansion header and is specifically designed for external drivers that take differential signals. It also breaks out heater 6 and 7 signals to 5V.
 published: true
-date: 2021-12-10T16:36:19.201Z
+date: 2022-02-11T11:04:40.385Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-06T14:26:49.243Z
@@ -41,7 +41,7 @@ Importantly Duets are Open:
 
 ## Dimensions
 
-![duet_expansion_bob_v1.1_dimensions.png](/duet_boards/duet_2_expansion//duet_expansion_bob_v1.1_dimensions.png =600x)
+[![duet_expansion_bob_v1.1_dimensions.png](/duet_boards/duet_2_expansion//duet_expansion_bob_v1.1_dimensions.png =600x)](/duet_boards/duet_2_expansion//duet_expansion_bob_v1.1_dimensions.png){target=_blank}
 
 ## Mounting
 
@@ -51,7 +51,7 @@ The board has 4 x M4 clearance holes for mounting.
 
 ## Wiring diagram
 
-![duet_expansion_bob_v1.1_wiring.png](/duet_boards/duet_2_expansion/duet_expansion_bob_v1.1_wiring.png =600x)
+[![duet_expansion_bob_v1.1_wiring.png](/duet_boards/duet_2_expansion/duet_expansion_bob_v1.1_wiring.png =600x)](/duet_boards/duet_2_expansion/duet_expansion_bob_v1.1_wiring.png){target=_blank}
 
 ## Description of connections
 

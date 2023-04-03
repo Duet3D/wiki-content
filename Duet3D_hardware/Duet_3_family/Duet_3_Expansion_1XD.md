@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2023-02-07T11:10:59.965Z
+date: 2023-02-07T11:11:04.797Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z

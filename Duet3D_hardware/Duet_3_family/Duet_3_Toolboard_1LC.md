@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2023-04-02T21:59:34.235Z
+date: 2023-04-02T21:59:38.729Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z

@@ -2,7 +2,7 @@
 title: Configuring the on-board MCU and stepper driver temperature sensors
 description: 
 published: true
-date: 2022-09-13T17:19:10.519Z
+date: 2022-09-13T17:19:14.137Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T15:59:19.157Z

@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2023-01-06T22:01:46.616Z
+date: 2023-01-06T22:01:50.591Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z

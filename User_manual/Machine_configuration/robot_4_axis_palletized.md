@@ -2,7 +2,7 @@
 title: Robot 4 axis palletized
 description: Robots with 4th axis being set by 2nd and 3rd axis like ABB IRB 460
 published: true
-date: 2022-09-13T14:18:47.715Z
+date: 2022-09-13T14:18:52.530Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:56:49.658Z

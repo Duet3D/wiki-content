@@ -2,7 +2,7 @@
 title: Updating the bootloader on Duet 3 expansion and tool boards
 description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
 published: true
-date: 2022-09-12T12:30:14.384Z
+date: 2022-09-12T12:30:18.186Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:04:31.062Z

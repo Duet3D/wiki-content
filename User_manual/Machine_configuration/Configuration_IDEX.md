@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2023-03-29T14:16:06.909Z
+date: 2023-03-29T14:16:10.992Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z

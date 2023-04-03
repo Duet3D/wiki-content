@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2023-01-26T17:05:58.595Z
+date: 2023-01-26T17:06:02.403Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z

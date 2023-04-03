@@ -2,7 +2,7 @@
 title: Getting Started With Duet 3 Mainboard 6HC
 description: 
 published: true
-date: 2022-07-29T14:48:46.985Z
+date: 2022-07-29T14:48:50.577Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:18:25.164Z

@@ -2,7 +2,7 @@
 title: Multicast
 description: A multicast protocol implemented in RRF
 published: true
-date: 2022-07-16T10:58:14.078Z
+date: 2022-07-16T10:58:17.244Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-16T10:54:55.878Z

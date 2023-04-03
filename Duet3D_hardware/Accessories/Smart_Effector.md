@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2023-01-17T15:59:37.016Z
+date: 2023-01-17T15:59:41.673Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z

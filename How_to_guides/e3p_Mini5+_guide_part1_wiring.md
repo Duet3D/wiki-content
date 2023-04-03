@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+ Guide Part 1: Wiring
 description: Ender 3 Pro and Duet 3 Mini 5+ Guide Part 1: Wiring
 published: true
-date: 2023-03-08T11:30:11.231Z
+date: 2023-03-08T11:30:15.528Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-01T21:04:23.371Z

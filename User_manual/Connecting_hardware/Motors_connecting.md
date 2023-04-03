@@ -2,7 +2,7 @@
 title: Connecting stepper motors
 description: Physical connecting stepper motors to Duet boards
 published: true
-date: 2022-06-29T21:30:35.247Z
+date: 2022-06-29T21:30:38.990Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T14:39:11.046Z

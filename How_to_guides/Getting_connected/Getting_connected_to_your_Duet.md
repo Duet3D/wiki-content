@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-07-29T14:16:41.813Z
+date: 2022-07-29T14:16:46.622Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z

@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Rotary Delta
 description: 
 published: true
-date: 2022-01-28T11:54:55.714Z
+date: 2022-01-28T11:54:59.332Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T15:14:26.484Z

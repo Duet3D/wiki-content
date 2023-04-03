@@ -2,7 +2,7 @@
 title: Connecting a web camera to Duet Web Control
 description: Duet 2 and Duet 3 mainboards do not support a directly-connected web camera. However, you can buy a suitable Wifi or Ethernet IP camera and then configure Duet Web Control to include an image from the camera on the Print page.
 published: true
-date: 2023-01-21T00:17:12.934Z
+date: 2023-01-21T00:17:17.159Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T15:12:46.132Z

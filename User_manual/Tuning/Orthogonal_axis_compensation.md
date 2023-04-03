@@ -2,7 +2,7 @@
 title: Orthogonal axis compensation with M556
 description: 
 published: true
-date: 2023-01-13T23:28:35.986Z
+date: 2023-01-13T23:28:39.446Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-06T14:44:11.234Z

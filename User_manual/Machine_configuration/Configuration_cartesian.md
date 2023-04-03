@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Cartesian printer
 description: This page describes how to set up the configuration files for Cartesian printers, and forms the basis for setting up all printer types. However, the same firmware binary also supports Delta, CoreXY and other printers kinematics.
 published: true
-date: 2022-03-01T07:05:35.502Z
+date: 2022-03-01T07:05:40.017Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-16T20:09:06.405Z

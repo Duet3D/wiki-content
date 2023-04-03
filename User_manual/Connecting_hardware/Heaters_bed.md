@@ -2,7 +2,7 @@
 title: Connecting and configuring a bed heater
 description: 
 published: true
-date: 2021-12-15T15:14:29.879Z
+date: 2022-02-10T10:19:43.275Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-21T15:48:54.901Z
@@ -126,7 +126,7 @@ In RRF 3.x, no heaters or temperature sensors are defined by default. If you hav
 - [M140](/User_manual/Reference/Gcodes/M140) tells the firmware the heater is a bed heater 
 - [M143](/User_manual/Reference/Gcodes/M143) sets a maximum heater temperature.
 
-RepRapFirmware 3.x does not set different PWM frequencies for different outputs. If using an SSR then set the "Q" parameter in the [M950](/User_manual/Reference/Gcodes/M950) command to a low frequency like 10 Hz.
+RepRapFirmware 3.x does not automatically set different PWM frequencies for different outputs. If using an SSR then set the "Q" parameter in the [M950](/User_manual/Reference/Gcodes/M950) command to a low frequency like 10 Hz.
 
 ### Tabs {.tabset}
 

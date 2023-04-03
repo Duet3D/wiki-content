@@ -2,7 +2,7 @@
 title: Test and calibrate a Z probe
 description: 
 published: true
-date: 2022-11-12T16:56:08.704Z
+date: 2022-11-12T16:56:12.180Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T11:29:02.047Z

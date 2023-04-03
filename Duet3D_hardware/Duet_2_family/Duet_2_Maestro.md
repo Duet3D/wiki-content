@@ -2,7 +2,7 @@
 title: Duet 2 Maestro
 description: 
 published: true
-date: 2021-12-13T12:49:26.800Z
+date: 2022-02-11T11:03:28.878Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-10T14:00:38.659Z
@@ -89,7 +89,7 @@ There are four 4mm clearance holes at the corners of the board. You can use M4 s
 
 **Duet 2 Maestro Dimensions**
 
-![duet_2_maestro_dimensions.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_dimensions.jpg =500x)
+[![duet_2_maestro_dimensions.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_dimensions.jpg =500x)](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_dimensions.jpg){target=_blank}
 
 The diagrams show the mounting hole points in the format X,Y so the bottom left hole is at X=4mm, Y=4mm, the top left is at X=4mm, Y=119mm and so on. The board has 1 additional holes at (63.4,64.3) for mounting the temperature daugherboard.
 
@@ -120,7 +120,7 @@ A 3d model of the Duet 2 Maestro has not yet been produced.
 
 ## Wiring diagram
 
-![duet_2_maestro_v1.0_wiring.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_v1.0_wiring.png =600x)
+[![duet_2_maestro_v1.0_wiring.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_v1.0_wiring.png =600x)](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_maestro_v1.0_wiring.png){target=_blank}
 
 There is an SVG version of this image [available on Github](https://github.com/T3P3/Duet/blob/master/Duet2/Duet2Maestro_v1.0/Duet2Maestro_Wiring_V1.0_drawing_v1.3.svg).
 

@@ -2,7 +2,7 @@
 title: Getting started with Duet 3 Mainboard 6XD
 description: 
 published: true
-date: 2022-11-02T23:26:12.385Z
+date: 2022-11-02T23:26:16.293Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-29T15:35:43.090Z

@@ -2,7 +2,7 @@
 title: Testing stepper motors
 description: 
 published: true
-date: 2021-10-08T10:23:05.015Z
+date: 2022-02-11T15:06:12.899Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-06T14:11:27.032Z
@@ -17,7 +17,7 @@ M564 S0 H0
 
 Navigate back to the Machine Control page. At this time, we will check the operation of our stepper motors.
 
-![stepper_motors_testing_01.png](/manual/motors/stepper_motors_testing_01.png =600x)
+[![stepper_motors_testing_01.png](/manual/motors/stepper_motors_testing_01.png =600x)](/manual/motors/stepper_motors_testing_01.png){target=_blank}
 
 Move each stepper motor, individually, 1 mm in each direction.
 

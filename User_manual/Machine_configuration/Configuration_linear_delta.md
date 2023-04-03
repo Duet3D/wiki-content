@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Linear Delta printer
 description: This page describes how to set up the configuration files for Delta printers, the same firmware binary also supports Cartesian, CoreXY and other printers kinematics .
 published: true
-date: 2022-06-01T20:25:16.102Z
+date: 2022-06-01T20:25:20.114Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T16:48:42.130Z

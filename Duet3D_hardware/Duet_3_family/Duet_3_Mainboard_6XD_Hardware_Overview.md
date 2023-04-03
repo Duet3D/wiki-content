@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2023-03-13T14:15:56.161Z
+date: 2023-03-13T14:16:00.965Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z

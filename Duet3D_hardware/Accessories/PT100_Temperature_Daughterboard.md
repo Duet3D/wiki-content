@@ -2,7 +2,7 @@
 title: Duet3D PT100 temperature sensor daughterboard
 description: Overview of the Duet3D PT100 daughterboard
 published: true
-date: 2022-06-29T10:49:51.872Z
+date: 2022-06-29T10:49:55.478Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T11:12:36.201Z

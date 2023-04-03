@@ -2,7 +2,7 @@
 title: Configuration Five Bar Parallel Scara Printer
 description: Explanation and setup of a five bar parallel scara printer.
 published: true
-date: 2022-03-03T13:29:20.231Z
+date: 2022-03-08T22:13:32.014Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-01T06:21:20.414Z

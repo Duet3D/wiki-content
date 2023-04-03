@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2021-12-10T16:27:22.409Z
+date: 2022-02-11T10:24:38.842Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -28,7 +28,7 @@ See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection).
 
 # Wiring diagram
 
-![duet_3_tool_distribution_board_v0.5_wiring.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_wiring.png =500x)
+[![duet_3_tool_distribution_board_v0.5_wiring.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_wiring.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_wiring.png){target=_blank}
 
 # Dimensions
 
@@ -36,8 +36,8 @@ See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection).
 
 ## Revision v0.5
 
-![duet_3_tool_distribution_board_v0.5_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_dimensions.png =500x)
+[![duet_3_tool_distribution_board_v0.5_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_dimensions.png){target=_blank}
 
 ## Revision v0.4
 
-![duet_3_tool_distribution_board_v0.4_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.4_dimensions.png =500x)
+[![duet_3_tool_distribution_board_v0.4_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.4_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.4_dimensions.png){target=_blank}

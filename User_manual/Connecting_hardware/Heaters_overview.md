@@ -2,7 +2,7 @@
 title: Heaters overview
 description: 
 published: true
-date: 2021-11-26T11:50:10.451Z
+date: 2022-02-16T13:36:51.136Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-20T12:20:29.631Z
@@ -27,6 +27,19 @@ Heater outputs can also be used for other applications, eg CNC spindle control, 
 | Duet 2 Maestro | 1 x 18A (15A fuse) | 2 x 6A | bedheat, e0heat, e1heat | 0 (bed), 1, 2 |
 
 Note that some boards are rated to 18A on the bed heater channel; however all Duets are supplied with a 15A fuse fitted (18A fuses are difficult to source). If you need 18A on the bed heater channel then you need to fit a 20A fuse and take further precautions against over-current. This rating has been increased from 15A due to [updated thermal testing](http://blog.think3dprint3d.com/2017/04/duetwifi-updated-thermal-testing.html).
+
+# Heater configuration limits
+
+RepRapFirmware has some limits on how heaters can be configured. As of RRF 3.3 these are:
+
+| | Duet 3 MB6HC | Duet 3 Mini: | Duet 2 WiFi/Ethernet | Duet Maestro |  |
+|---|---|
+| MaxHeaters | 32 | 32 | 10 | 4 | The maximum number of heaters |
+| MaxPortsPerHeater | 3 | 2 | 2 | 2 | The maximum number of output ports per heater |
+| MaxMonitorsPerHeater | 3 | 3 | 3 | 3 | The maximum number of monitors per heater |
+| MaxBedHeaters | 12 | 2 | 4 | 2 | The maximum number of bed heaters |
+| MaxChamberHeaters | 4 | 2 | 4 | 2 | The maximum number of chamber heaters |
+| MaxHeatersPerTool | 8 | 2 | 8 | 2 | The maximum number of heaters per tool |
 
 # Connecting heaters
 

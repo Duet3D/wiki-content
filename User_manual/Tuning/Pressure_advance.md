@@ -2,7 +2,7 @@
 title: Pressure advance
 description: Pressure advance aims to compensate for the elasticity of the filament and the extruder system.
 published: true
-date: 2022-04-27T14:04:20.083Z
+date: 2022-04-27T14:04:24.542Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:23:22.545Z

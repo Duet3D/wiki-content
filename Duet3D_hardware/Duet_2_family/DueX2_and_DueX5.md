@@ -2,7 +2,7 @@
 title: DueX2 and DueX5
 description: The DueX5 is an expansion board for the Duet 2 WiFi and Ethernet. The DueX2 was a similar board with only 2 drivers that is now discontinued.
 published: true
-date: 2022-12-07T11:55:17.780Z
+date: 2022-12-07T11:55:22.212Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-03T14:27:58.735Z

@@ -2,7 +2,7 @@
 title: Input shaping
 description: This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. 
 published: true
-date: 2023-01-24T12:12:15.165Z
+date: 2023-01-24T12:12:19.052Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:33:14.384Z

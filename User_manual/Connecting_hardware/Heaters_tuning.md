@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2022-09-19T11:45:53.840Z
+date: 2022-09-19T11:45:57.677Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z

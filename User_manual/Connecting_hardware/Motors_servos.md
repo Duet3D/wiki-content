@@ -2,7 +2,7 @@
 title: Connecting hobby servos and DC motors
 description: This page deals with connecting hobby servos and DC motors to Duet mainboards.
 published: true
-date: 2021-12-15T22:17:46.868Z
+date: 2022-02-16T17:44:05.430Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-12T16:04:36.467Z
@@ -113,7 +113,7 @@ There are many different types of hobby servos, and we do not recommend any part
 
 Servos of similar specification to this should be fine to connect to a Duet without extra circuitry:
 
-| [TowerPro SG90 9G micro servo](https://opencircuit.shop/Product/TowerPro-SG90-9G-micro-servo-motor-180) ||
+| [TowerPro SG90 9G micro servo](https://www.towerpro.com.tw/product/sg90-analog/) ||
 |---|---|
 | Description | 9g micro-servo |
 | Idle current | 6 ± 10 mA |

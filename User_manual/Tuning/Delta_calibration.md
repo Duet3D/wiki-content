@@ -2,7 +2,7 @@
 title: Calibrating a delta printer
 description: Delta printers are mechanically simpler than most other types of 3D printer. They also take up very little desk space for a given build volume. However, in order to produce good prints, they need to be accurately built and calibrated.
 published: true
-date: 2023-03-28T13:17:27.982Z
+date: 2023-03-28T13:17:32.008Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:16:48.607Z

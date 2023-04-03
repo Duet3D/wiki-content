@@ -2,7 +2,7 @@
 title: Connecting thermocouples
 description: 
 published: true
-date: 2022-05-04T07:19:49.713Z
+date: 2022-05-04T07:19:53.667Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-13T14:16:06.389Z

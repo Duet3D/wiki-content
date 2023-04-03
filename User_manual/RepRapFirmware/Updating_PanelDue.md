@@ -2,7 +2,7 @@
 title: Installing and Updating PanelDue Firmware
 description: This page describes how to update the PanelDue Firmware.
 published: true
-date: 2023-01-09T16:56:53.462Z
+date: 2023-01-09T16:56:56.865Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:21:58.270Z

@@ -2,7 +2,7 @@
 title: Choosing stepper motors
 description: This page provides in depth consideration for choosing stepper motors
 published: true
-date: 2022-06-13T16:48:33.577Z
+date: 2022-06-13T16:48:37.630Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T11:49:00.204Z

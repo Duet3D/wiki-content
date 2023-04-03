@@ -2,7 +2,7 @@
 title: Connecting PT100 temperature sensors
 description: 
 published: true
-date: 2021-12-15T15:03:46.306Z
+date: 2022-04-07T16:22:30.818Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-13T13:58:33.455Z
@@ -32,6 +32,7 @@ Each daughterboard supports 2 channels, ie two temperature sensors per daughterb
 | Duet board | Number of boards supported | Pin names (RRF 3) | Channel (RRF 2) |
 |---|---|
 | Duet 3 Mainboard 6HC | 2, stacked | spi.cs0 to spi.cs3 | - |
+| Duet 3 Mainboard 6XD | 2, stacked | spi.cs0 to spi.cs3 | - |
 | Duet 3 Mini 5+ | 1 | spi.cs1 to spi.cs2 | - |
 | Duet 3 Expansion 3HC | 2, stacked | spi.cs0 to spi.cs3 | - |
 | Duet 3 Toolboard 1LC | 0 | - | - |

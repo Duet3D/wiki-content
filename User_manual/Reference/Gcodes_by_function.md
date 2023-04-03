@@ -2,7 +2,7 @@
 title: GCodes by function
 description: 
 published: true
-date: 2022-01-10T11:07:06.909Z
+date: 2022-05-29T11:34:53.693Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-06T15:58:12.677Z
@@ -76,13 +76,13 @@ dateCreated: 2021-07-06T15:58:12.677Z
 
 [G31](/User_manual/Reference/Gcodes/G31): Set or Report Current Probe status
 
-[G38.2](/User_manual/Reference/Gcodes/G38.2): Probe toward workpiece, stop on contact, signal error if failure
+[G38.2](/User_manual/Reference/Gcodes/G38_2): Probe toward workpiece, stop on contact, signal error if failure
 
-[G38.3](/User_manual/Reference/Gcodes/G38.3): Probe toward workpiece, stop on contact
+[G38.3](/User_manual/Reference/Gcodes/G38_3): Probe toward workpiece, stop on contact
 
-[G38.4](/User_manual/Reference/Gcodes/G38.4): Probe away from workpiece, stop on loss of contact, signal error if failure
+[G38.4](/User_manual/Reference/Gcodes/G38_4): Probe away from workpiece, stop on loss of contact, signal error if failure
 
-[G38.5](/User_manual/Reference/Gcodes/G38.5): Probe away from workpiece, stop on loss of contact
+[G38.5](/User_manual/Reference/Gcodes/G38_5): Probe away from workpiece, stop on loss of contact
 
 [M401](/User_manual/Reference/Gcodes/M401): Deploy z-probe
 
@@ -406,7 +406,7 @@ dateCreated: 2021-07-06T15:58:12.677Z
 
 [M201](/User_manual/Reference/Gcodes/M201): Set max acceleration
 
-[M201.1](/User_manual/Reference/Gcodes/M201.1): Set reduced acceleration for special move types
+[M201.1](/User_manual/Reference/Gcodes/M201_1): Set reduced acceleration for special move types
 
 [M203](/User_manual/Reference/Gcodes/M203): Set maximum feedrate
 
@@ -432,19 +432,19 @@ dateCreated: 2021-07-06T15:58:12.677Z
 
 [M569](/User_manual/Reference/Gcodes/M569): Set motor driver direction, enable polarity and step pulse timing
 
-[M569.1](/User_manual/Reference/Gcodes/M569.1): Stepper driver closed loop configuration
+[M569.1](/User_manual/Reference/Gcodes/M569_1): Stepper driver closed loop configuration
 
-[M569.2](/User_manual/Reference/Gcodes/M569.2): Read or write stepper driver register
+[M569.2](/User_manual/Reference/Gcodes/M569_2): Read or write stepper driver register
 
-[M569.3](/User_manual/Reference/Gcodes/M569.3): Read Motor Driver Encoder
+[M569.3](/User_manual/Reference/Gcodes/M569_3): Read Motor Driver Encoder
 
-[M569.4](/User_manual/Reference/Gcodes/M569.4): Set Motor Driver Torque Mode
+[M569.4](/User_manual/Reference/Gcodes/M569_4): Set Motor Driver Torque Mode
 
-[M569.5](/User_manual/Reference/Gcodes/M569.5): Closed loop data collection
+[M569.5](/User_manual/Reference/Gcodes/M569_5): Closed loop data collection
 
-[M569.6](/User_manual/Reference/Gcodes/M569.6):  Execute closed loop tuning move
+[M569.6](/User_manual/Reference/Gcodes/M569_6):  Execute closed loop tuning move
 
-[M569.7](/User_manual/Reference/Gcodes/M569.7):  Configure motor brake port
+[M569.7](/User_manual/Reference/Gcodes/M569_7):  Configure motor brake port
 
 [M584](/User_manual/Reference/Gcodes/M584): Set drive mapping
 
@@ -530,11 +530,11 @@ dateCreated: 2021-07-06T15:58:12.677Z
 
 [G59](/User_manual/Reference/Gcodes/G59): selects coordinate system 6
 
-[G59.1](/User_manual/Reference/Gcodes/G59.1): selects coordinate system 7
+[G59.1](/User_manual/Reference/Gcodes/G59_1): selects coordinate system 7
 
-[G59.2](/User_manual/Reference/Gcodes/G59.2): selects coordinate system 8
+[G59.2](/User_manual/Reference/Gcodes/G59_2): selects coordinate system 8
 
-[G59.3](/User_manual/Reference/Gcodes/G59.3): selects coordinate system 9
+[G59.3](/User_manual/Reference/Gcodes/G59_3): selects coordinate system 9
 
 [G60](/User_manual/Reference/Gcodes/G60): Save current position to slot
 

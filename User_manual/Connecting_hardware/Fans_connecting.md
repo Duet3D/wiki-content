@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2023-03-25T21:57:19.287Z
+date: 2023-03-25T21:57:23.688Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z

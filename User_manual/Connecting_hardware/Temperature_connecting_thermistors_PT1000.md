@@ -2,7 +2,7 @@
 title: Connecting thermistors and PT1000 temperature sensors
 description: 
 published: true
-date: 2022-10-14T11:34:08.422Z
+date: 2022-10-14T11:34:12.687Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T16:02:20.373Z

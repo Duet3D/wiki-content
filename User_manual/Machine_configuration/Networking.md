@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2022-09-27T13:55:13.877Z
+date: 2022-09-27T13:55:17.492Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z

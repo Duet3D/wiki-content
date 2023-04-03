@@ -2,7 +2,7 @@
 title: Connecting an Emergency Stop
 description: 
 published: true
-date: 2022-06-15T11:56:33.172Z
+date: 2022-06-15T11:56:36.944Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T14:19:50.302Z

@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-02-17T16:41:35.150Z
+date: 2023-02-17T16:41:39.664Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z

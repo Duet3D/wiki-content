@@ -2,7 +2,7 @@
 title: Input shaping plugin
 description: Description about the input shaping plugin for DWC 3.4 and later
 published: true
-date: 2022-08-17T14:30:34.446Z
+date: 2022-08-17T14:30:39.095Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-31T16:06:54.645Z

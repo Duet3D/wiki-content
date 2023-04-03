@@ -2,7 +2,7 @@
 title: Duet Web Control Manual
 description: Duet Web Control is a browser based user interface for RepRapFirmware that runs in most modern browsers that support HTML 5.
 published: true
-date: 2022-06-29T20:42:51.587Z
+date: 2022-06-29T20:42:56.241Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T14:41:33.290Z

@@ -2,7 +2,7 @@
 title: Migration from RRF2 to RRF3
 description: RepRapFirmware 3 is the next generation of the leading 32-bit 3D printer firmware, developed by Duet3D and derived from the RepRapFirmware code base developed by Adrian Bowyer.
 published: true
-date: 2022-10-09T10:15:07.836Z
+date: 2022-10-09T10:15:12.073Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T20:21:14.611Z

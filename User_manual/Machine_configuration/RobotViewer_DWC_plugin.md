@@ -2,7 +2,7 @@
 title: RobotViewer
 description: DWC plugin to create and visualize robot configurations
 published: true
-date: 2022-08-13T08:06:05.660Z
+date: 2022-08-13T08:06:09.839Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-02T04:43:21.762Z

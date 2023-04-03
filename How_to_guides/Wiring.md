@@ -2,7 +2,7 @@
 title: Wiring
 description: 
 published: true
-date: 2021-06-04T12:23:21.837Z
+date: 2022-02-04T12:36:57.200Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-04T12:23:19.668Z
@@ -18,3 +18,5 @@ Connecting and configuring fans
 Choosing and connecting stepper motors
 Connecting External Drivers
 Connecting endstop switches
+
+Panucatt Viki 2 / VIKI2 setup

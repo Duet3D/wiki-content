@@ -2,7 +2,7 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2023-03-13T21:15:20.754Z
+date: 2023-03-13T21:15:25.465Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z

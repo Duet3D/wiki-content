@@ -2,7 +2,7 @@
 title: User manual: Machine configuration
 description: 
 published: true
-date: 2022-05-04T12:39:03.452Z
+date: 2022-05-09T13:23:57.747Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:58:06.577Z
@@ -31,12 +31,17 @@ Configuration (General Cartesian) -->
 [Configuring RepRapFirmware for a Laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser)
 [Configuring RepRapFirmware for OpenPnP](/User_manual/Machine_configuration/Configuration_OpenPnP)
 
-# Duet 3 SBC and CAN
+# Duet 3 SBC 
 
 [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup)
 [Duet Software Framework (DSF) on Raspberry Pi](/User_manual/Machine_configuration/DSF_RPi) - using DuetPi image from Duet3D
 [Duet Software Framework (DSF) on other boards](/User_manual/Machine_configuration/DSF_Other) - installing DSF on Raspberry Pi OS or a custom Debian board/installation
+
+
+# CAN Expansion
+
 [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
+
 
 # Networking
 

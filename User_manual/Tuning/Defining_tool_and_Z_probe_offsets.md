@@ -2,7 +2,7 @@
 title: Defining tool and Z-probe offsets
 description: 
 published: true
-date: 2023-03-29T14:19:04.200Z
+date: 2023-03-29T14:19:07.876Z
 tags: 
 editor: markdown
 dateCreated: 2022-12-21T16:43:09.601Z

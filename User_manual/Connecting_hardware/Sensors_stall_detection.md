@@ -2,7 +2,7 @@
 title:  Stall detection and sensorless homing
 description: 
 published: true
-date: 2023-03-05T16:04:19.782Z
+date: 2023-03-05T16:04:23.645Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z

@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2021-11-15T12:26:23.297Z
+date: 2022-02-11T15:21:25.085Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -43,13 +43,13 @@ If you are replacing the 18-or 20-core cable supplied with the pendant by 3- or 
 
 # Wiring
 
-![cnc_pendant_02.jpg](/manual/sensors/cnc_pendant_02.jpg =600x)
+[![cnc_pendant_02.jpg](/manual/sensors/cnc_pendant_02.jpg =600x)](/manual/sensors/cnc_pendant_02.jpg){target=_blank}
 
-The cut ends of the original 18- or 20 core cable, and the cores of the 4-core cable,  must be connected to the Arduino Pro Micro as listed at [https://github.com/Duet3D/CNC-Pendant-Firmware/blob/master/README.md](https://github.com/Duet3D/CNC-Pendant-Firmware/blob/master/README.md). As there are several wires that need to be connected to ground, it's easiest if you connect them together at the ground terminal of the rotary encoder, then run a single ground wire from there to the Arduino. That way you don't need to connect more than one wire to each pad of the Arduino, except that you need to connect both +5V from the 4-core cable and +5V for the encoder to the VCC terminal.
+The cut ends of the original 18- or 20 core cable, and the cores of the 4-core cable,  must be connected to the Arduino Pro Micro as listed at [https://github.com/Duet3D/CNC-Pendant-Firmware/blob/master/README.md](https://github.com/Duet3D/CNC-Pendant-Firmware/blob/master/README.md){target=_blank}. As there are several wires that need to be connected to ground, it's easiest if you connect them together at the ground terminal of the rotary encoder, then run a single ground wire from there to the Arduino. That way you don't need to connect more than one wire to each pad of the Arduino, except that you need to connect both +5V from the 4-core cable and +5V for the encoder to the VCC terminal.
 
 *TO DO: add schematic*
 
-![cnc_pendant_03.jpg](/manual/sensors/cnc_pendant_03.jpg =600x)
+[![cnc_pendant_03.jpg](/manual/sensors/cnc_pendant_03.jpg =600x)](/manual/sensors/cnc_pendant_03.jpg){target=_blank}
 
 If you do not intend to use a PanelDue at the same time as the pendant, it's best to leave the green wire of the 4-core cable (the one that would be connected to DOUT on the PanelDue) not connected to the Arduino RX0 pin, otherwise it might pick up noise.
 
@@ -61,6 +61,6 @@ Before refitting the back of the pendant, put some Kapton tape or insulating tap
 
 To connect a PanelDue to the port as well as the pendant, the DOUT signal from the PanelDue (which is usually the blue wire in a 4-core cable) must be connected to the RX0 pin of the Arduino in the pendant (which in the wiring list I have given uses the green wire in the 4-core pendant cable). So connect the blue wire from PanelDue to the green wire of the pendant. Connect the DIN (green) PanelDue wire to the UTXD pin of the PanelDue connector on the Duet (or IO_0_OUT if using a Duet 3). The +5V pin on the Duet goes to the +5V (red) wire of both the pendant and the PanelDue, likewise the ground connection goes to the yellow wires of both.
 
-![cnc_pendant_04.jpg](/manual/sensors/cnc_pendant_04.jpg =600x)
+[![cnc_pendant_04.jpg](/manual/sensors/cnc_pendant_04.jpg =600x)](/manual/sensors/cnc_pendant_04.jpg){target=_blank}
 
 I used solder sleeves to connect the PanelDue and pendant cables to a short length of 4-core cable that plugs into the Duet, as shown here before I shrunk the heatshrink over the joints.

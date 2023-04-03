@@ -1,8 +1,8 @@
 ---
-title: Tuning stepper  motor drivers
+title: Tuning stepper motor drivers
 description: This article covers tuning Trinamic stepper motor drivers in Duet 3 MB6HC, EB3HC, Toolboard 1LC and Mini 5+, and Duet 2 WiFi / Ethernet and Maestro
 published: true
-date: 2021-12-15T22:15:10.379Z
+date: 2022-05-12T11:19:51.268Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-12T15:42:36.812Z
@@ -81,7 +81,7 @@ coolStep allows energy savings by automatically adapting the motor current to th
 
 [M569](/User_manual/Reference/Gcodes/M569) is used to set stepper driver settings. The following parameters are used to enable tuning of the Trinamic drivers:
 
-* Dnn (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160, TMC5160 and TMC5161 stepper drivers) Driver mode: 0=constant off time, 1=random off time, 2=spread cycle, 3=stealthChop or stealthChop2 (mode 3 for TMC22xx/TMC2160/TMC516x only). The default is spreadCycle for TMC2660, TMC2160 and TMC516x drivers, and stealthChop2 for TMC22xx. In stealthChop mode the drivers will switch over to spreadCycle automatically at high speeds, see the V parameter.
+* Dnn (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160, TMC5160 and TMC5161 stepper drivers) Driver mode: 0=constant off time, 1=random off time, 2=spread cycle, 3=stealthChop or stealthChop2 (mode 3 for TMC22xx/TMC2160/TMC516x only). The default is spreadCycle for all drivers. In stealthChop mode the drivers will switch over to spreadCycle automatically at high speeds, see the V parameter.
 * Cnnnn (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160 and TMC516x stepper drivers) Lowest 17 bits of the chopper control register value.
 * Bnn (firmware 2.02RC1 and later) Blanking time (tbl) in the chopper control register, 0 to 3. See the TMC driver datasheet.
 * Hnn (firmware 2.02RC2 and later) thigh parameter for those stepper driver chips that support it, e.g. TMC5160 and TMC2160. Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec. See also the V parameter.

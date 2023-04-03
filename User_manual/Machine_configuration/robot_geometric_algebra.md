@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-03-28T08:36:02.072Z
+date: 2023-03-28T08:36:05.725Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z

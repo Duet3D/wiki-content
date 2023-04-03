@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2022-12-07T10:08:38.757Z
+date: 2022-12-07T10:08:42.356Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
