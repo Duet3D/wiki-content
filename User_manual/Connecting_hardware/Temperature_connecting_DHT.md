@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2023-04-04T12:30:03.387Z
+date: 2023-04-04T12:33:07.315Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -89,7 +89,7 @@ Connect the DHT I/O line to both IOx.IN and the IOx.OUT pin of an IO connector. 
 
 ## Duet 2
 
-Connect the DHT I/O line to one of the SPI CS lines on the temperature daughterboard connector, which also provides +3.3V and ground. For systems on RRF 3 without a DueX, some of the expansion connector pins could be used instead, for example the E2 to E6 endstop pins (E0 and E1 on the Duet cannot be used).
+Connect the DHT I/O line to one of the SPI CS lines on the temperature daughterboard connector. This connector also provides +3.3V and ground. For systems running RRF 3 with no DueX expansion connected, some of the expansion connector pins could be used instead, for example the E2 to E6 endstop pins (E0 and E1 on the Duet cannot be used).
 
 # Configuring a DHT sensor
 
