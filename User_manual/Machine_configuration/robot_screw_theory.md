@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-04T06:56:47.446Z
+date: 2023-04-04T07:00:06.612Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -52,9 +52,9 @@ An axis is described by the direction, its position and its property:
 - type of axis, rotary, prismatic, palletized-parallel or other
 - whether axis joints parallel axes or is passive
 
-All axes are described with reference angles. With this setup, the endposition and endorientation is calculated and stored.
+All axes are described with reference angles. This reference can be 0 degrees each, home angles or anything else. With this setup, the endposition and endorientation is calculated and stored.
 
-This information is sufficient to calculate new positions when changing angles/linear positions and to calculated inverse kinematics (i e. from endposition calculating back to the angles).
+This information is sufficient to calculate new positions when changing angles/linear positions and to calculated inverse kinematics (i e. from endposition calculating back to the angles). This is possible, because the changed angles/positions are calculated from relative changes in respect to the reference angles.
 
 For special kinematics types like CoreXY or parallel kinematics, it is necessary to define additional properties.
 
