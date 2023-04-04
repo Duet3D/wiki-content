@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-03-30T13:18:41.803Z
+date: 2023-04-04T09:51:52.635Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1650,7 +1650,7 @@ Returns information in JSON format for the specified SD card file (if a filename
 
 The "err" field is zero if successful, nonzero if the file was not found or an error occurred while processing it. The "size" field should always be present if the operation was successful. The presence or absence of other fields depends on whether the corresponding values could be found by reading the file. The "filament" field is an array of the filament lengths required from each spool. The size is in bytes, the times are in seconds, all other values are in mm. "printTime" is the printing time estimated by the slicer, "simulationTime" is the time measured when the print was simulated by the firmware. The fields may appear in any order, and additional fields may be present. Versions of RepRapFirmware prior to 3.4 do not provide the "fileName" field if information for a specific file was requested.
 
-RepRapFirmware 3.4 and later also return information about thumbnail imaged embedded in the GCode file via an additional JSON field "thumbnails". A sample value for this field is:
+RepRapFirmware 3.4 and later also return information about thumbnail images embedded in the GCode file via an additional JSON field "thumbnails". A sample value for this field is:
 <br>
 <pre class="cblock">
 "thumbnails":[{"width":32,"height":32,"fmt":"qoi","offset":103,"size":2140},{"width":220,"height":220,"fmt":"qoi","offset":2384,"size":25464}]
