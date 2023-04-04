@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-04-04T11:10:50.121Z
+date: 2023-04-04T11:50:53.385Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -201,20 +201,23 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | ^^ | ^^ | *see note 1 below*. |
 | **1 x 2-pin KK connector** | VFUSED | This is for powering an always-on fan or similar. |
 | **1 x 2-pin KK connector** | RESET_EXT | For an external normally-open reset switch. |
+| **1 x 2-pin jumper** | ERASE | Add a jumper to erase the firmware. |
 | **1 x 2-pin KK connector** | 12V | Provides 12V power for a PWM to 0-10V converter.|
 | ^^ | ^^ | *see note 1 below*. |
 | **1 x 3-pin KK connector** | LASER/VFD | v1.0 and later boards only. This provides 5V power and a 5V level signal for a TTL-compatible input to a laser controller, a PWM-to-0 to 10V converter (for variable-frequency drives), or a servo. The control signal for this output is shared with OUT9, so don't use OUT9 if you use this connector. |
-| **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply |
+| **1 x 2x5 IDC connector** | PanelDue_SD | v1.02 and later boards only. Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply |
 | ^^ | ^^ | **Note** The PanelDue UART is shared with io0.in and io0.out pins on the IO_0 header. |
 | ^^ | ^^ | *see note 2 below*. |
-| **1 x 2-pin Jumper** |  PD_CD_OVERRIDE | v1.0 and later. Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
+| **1 x 2-pin jumper** | PD_CD_OVERRIDE | v1.02 and later boards only. Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
 | **4 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2, TEMP_3 | Connections for thermistor or PT1000 sensors. |
 | **1 x RJ45 network connector** | Ethernet | 100BaseT Port. non MDIX connect to an Ethernet switch, hub or MDIX enabled laptop port. If connecting to a non MDIX enabled port use a crossover cable. Orange LED on Ethernet port indicates Ethernet enabled, green LED indicates network activity |
 | **9 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4, IO_5, IO_6, IO_7, IO_8 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
 | **1 x 4-pin KK connector** | DS_LED | This is to connect and power DotStar LED strips. |
 | ^^ | ^^ | *see note 2 below*.
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging|
+| **1 x 2-pin jumper** | IO2 I2C BYPASS | v1.02 and later boards only. Add a jumper to bypass the 10k resistor on IO2.in, so it can be used for I2C. |
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
+| **1 x 2x6 header** | ESP | v1.02 and later boards only. Header to connect an ESP WiFi board. |
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
 | **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector and permanent termination resistor, so it must be at one end of the CAN bus |
 
@@ -545,6 +548,8 @@ The CAN BUS is connected via RJ11 and at least 2 core twisted pair, although 6 c
 - Add a 2x6 header for an ESP wifi module - note this requires the module and firmware support to be completed.
 - Added an ACT indication LED as on other Duet 3 boards. This signals CAN-FD bus activity.
 - Added a 2x5 IDC header for a ribbon cable connection to a PanelDue with external SD card.
+- Added a 2-pin jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect.
+- Added a 2-pin jumper to bypass the 10k resistor on IO2.in, so it can be used for I2C.
 - Improved ESD protection for temperature, tacho and other inputs.
 - Various component changes to work around supply chain shortages (except thos listed above this does not result in functional changes to the design).
 - Move the location of the erase jumper.
