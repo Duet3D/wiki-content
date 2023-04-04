@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-04T09:54:49.403Z
+date: 2023-04-04T12:17:42.755Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3154,7 +3154,7 @@ The limit in RRF 3.4 and later is 256 characters in the entire GCode command. Be
 
 This command is sent by the user interface when the user acknowledges a message that was displayed because of a M291 command with parameter S=2 or S=3.  DWC and PanelDue 3.5 and later also use thie command to acknowledge a non-blocking message (M291 command with parameter S=0 or S=1) but in that case the S parameter must match the sequence number of the message being acknowledged. The P parameter is ignored unless M291 was called with S=3, and always ignored by RRF 3.5 and later if the R parameter is present.
 
-In RRF versions prior to 3.5, M292 may ony be used to acknowledge blocking message boxes. RRF 3.5 and later allow M292 to be used to cancel non-blocking message boxes too, provided that the correct sequence number is specified.
+In RRF versions prior to 3.5, M292 may only be used to acknowledge blocking message boxes. RRF 3.5 and later allow M292 to be used to cancel non-blocking message boxes too, provided that the correct sequence number is specified.
 
 Supported in firmware version 1.19 and later.
 
