@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2023-04-04T15:48:10.161Z
+date: 2023-04-04T15:55:03.496Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -137,17 +137,17 @@ In RRF 3, [M308](/User_manual/Reference/Gcodes/M308) is used to define the DHT s
 
 * **Sn** Sensor number.
 * **P"pin_name"** See section above for pins to use with each Duet version.
-* **Y"sensor_type"** "dht11" (RRF 3.3 and earlier), "dht21", "dht22", "dhthumidity", "bme280", "bme280-pressure", "bme280-humidity" ("bme280" RRF3.5 and later on Duet 3 only)
+* **Y"sensor_type"** "dht11" (RRF 3.3 and earlier), "dht21", "dht22", "dht-humidity"
 * **A"name"** Sensor name (optional), displayed in the web interface
 
-All DHT variants have a primary output for temperature and a secondary output that delivers the humidity values. "dhthumidity" will be attached to an existing DHT sensor's secondary output by using its full sensor number (including the leading S) and the output's index separated by a dot.
+All DHT variants have a primary output for temperature and a secondary output that delivers the humidity values. "dht-humidity" will be attached to an existing DHT sensor's secondary output by using its full sensor number (including the leading S) and the output's index separated by a dot.
 
 Example:
 
 ```
 ;DHT Sensor on Temperature Daughterboard SPI CS1 pin
 M308 S10 P"0.spi.cs1" Y"dht22" A"Filament Temp" ; define DHT22 temperature sensor
-M308 S11 P"S10.1" Y"dhthumidity" A"Filament Hum[%]" ; Attach DHT22 humidity sensor to secondary output of temperature sensor
+M308 S11 P"S10.1" Y"dht-humidity" A"Filament Hum[%]" ; Attach DHT22 humidity sensor to secondary output of temperature sensor
 ```
 
 On **Duet 3 Mini 5+**, as you connect the DHT data line to both IOx.out and IOx. in, you need to specify both pins in the M308 command.
@@ -155,7 +155,7 @@ On **Duet 3 Mini 5+**, as you connect the DHT data line to both IOx.out and IOx.
 ```
 ;DHT Sensor on IO4 on Duet 3 Mini 5+
 M308 S10 P"io4.out+io4.in" Y"dht22" A"Chbr Temp[C]"
-M308 S11 P"S10.1" Y"dhthumidity" A"Chbr Hum[%]"
+M308 S11 P"S10.1" Y"dht-humidity" A"Chbr Hum[%]"
 ```
 
 ### RepRapFirmware 2.x
@@ -187,16 +187,16 @@ In RRF 3, [M308](/User_manual/Reference/Gcodes/M308) is used to define the BME28
 
 * **Sn** Sensor number.
 * **P"pin_name"** See section above for pins to use with each Duet version.
-* **Y"sensor_type"** "bme280", "bme280-pressure", "bme280-humidity" (RRF3.5 and later on Duet 3 only)
+* **Y"sensor_type"** "bme280", "bme-pressure", "bme-humidity" (RRF3.5 and later on Duet 3 only)
 * **A"name"** Sensor name (optional), displayed in the web interface
 
-The BME280 has a primary output for temperature, secondary output for pressure, and third for the humidity values. A primary sensor is created for temperature, eg `S11`, and "bme280-pressure" will be attached to this sensor as a secondary output by using its full sensor number (including the leading S) and the output's index separated by a dot, eg `S11.1`. "bme280-humidity" is attached in the same way as the third output.
+The BME280 has a primary output for temperature, secondary output for pressure, and third for the humidity values. A primary sensor is created for temperature, eg `S11`, and "bme-pressure" will be attached to this sensor as a secondary output by using its full sensor number (including the leading S) and the output's index separated by a dot, eg `S11.1`. "bme-humidity" is attached in the same way as the third output.
 
 Example:
 ```
 m308 s11 y"bme280" p"spi.cs1" a"Ambient temp"
-m308 s12 y"bme280-pressure" p"s11.1" a"Pressure[hPa]"
-m308 s13 y"bme280-humidity" p"s11.2" a"Humidity[%]"
+m308 s12 y"bme-pressure" p"s11.1" a"Pressure[hPa]"
+m308 s13 y"bme-humidity" p"s11.2" a"Humidity[%]"
 ```
 
 # Displaying DHT data
