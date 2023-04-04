@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-04-04T13:00:15.172Z
+date: 2023-04-04T13:30:56.440Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -404,7 +404,7 @@ External 5V power can be provided to the board by removing the jumper on 'Int 5V
 - supplied via the USB connection
 - supplied through the 5V_SBC pins on the SBC header
 
-In normal operation the USB connection is not expected to be used for 5V supply, and the 5V internal regulator is the default source of 5V. Optionally 5V from wither the 5V_EXT header of 5V_SBC pins can be used. This is selected using the 5V Select jumper:
+In normal operation the USB connection is not expected to be used for 5V supply, and the 5V internal regulator is the default source of 5V. Optionally 5V from either the 5V_EXT header or 5V_SBC pins can be used. This is selected using the 5V Select jumper:
 
 ![the 5V selection jumper of the Duet 3 Mainboard 6HC, showing the 5V_EXT pin and the 5V_SBC pin](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_5v_select.png =200x)
 
@@ -414,7 +414,7 @@ Put a 2 pin jumper in the position shown and connect 5V to the external 5V heade
 ![duet3_mb_6hc_v1.02_5v_select_5v_ext.png](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_5v_select_5v_ext.png =200x)
 
 ##### 5V via the 5V_SBCpins on the SBC header.
-Put a 2 pin jumper in the position shown. 5V wall be drawn from to the 5V_SBC pins on the 26 pin SBC header. Note these are protected by diodes do 5V cannot be supplied to the SBC in this way.
+Put a 2 pin jumper in the position shown. 5V wall be drawn from to the 5V_SBC pins on the 26 pin SBC header. Note these are protected by diodes so 5V cannot be supplied to the SBC in this way.
 
 ![duet3_mb_6hc_v1.02_5v_select_5v_sbc.png](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_5v_select_5v_sbc.png =200x)
 
