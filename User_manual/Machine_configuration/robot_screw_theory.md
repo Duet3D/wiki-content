@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-03-09T06:39:19.365Z
+date: 2023-04-04T06:56:47.446Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -43,6 +43,20 @@ Both approaches describe the properties of a robot, but differently:
 * both calculations are connected to transformation matrices by Rodrigues' formula
 
 The power of screw theory shows in inverse kinematics and torque calculations to allow closed form calculations without iterations.
+
+# Description of Screw Setup
+
+An axis is described by the direction, its position and its property:
+- direction as vector, e.g. (0,0,1) in Z-direction. The angles for rotary and movement for linear axes is as usual right-hand rule, CCW if looking at the arrow
+- an arbitrary point on the axis (preferable a point which crosses with other axes, with the base or with the endpoint)
+- type of axis, rotary, prismatic, palletized-parallel or other
+- whether axis joints parallel axes or is passive
+
+All axes are described with reference angles. With this setup, the endposition and endorientation is calculated and stored.
+
+This information is sufficient to calculate new positions when changing angles/linear positions and to calculated inverse kinematics (i e. from endposition calculating back to the angles).
+
+For special kinematics types like CoreXY or parallel kinematics, it is necessary to define additional properties.
 
 # Inverse kinematics
 
