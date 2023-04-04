@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-04-04T11:50:53.385Z
+date: 2023-04-04T13:00:15.172Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -189,6 +189,8 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | ^^ | OUT 0 POWER IN, GND, V_OUT0 | Two pins for the VIN and GND supply for the OUT_0 terminals. OUT0 voltage min/max: 0V to 48V (0V to 32V before v1.02) |
 | ^^ | OUT 0, V_OUT0, OUT0- | Positive and negative OUT_0 terminals. OUT_0 is intended to drive a bed heater. The ground side of OUT_0 is switched by the mosfet and the positive side is protected by a 15A fuse. If using the OUT0 terminal to drive a SSR, take note that their polarity is opposite to the polarity of the VIN terminals. There is no flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
 | **1 x 3-pin KK connector** | EXT 5V | Open drain mosfet output for controlling an ATX-style power supply or a SSR. The +5V pin can also be used to provide a small amount of 5V power (through an internal 220 ohm resistor) so that the control terminals of an SSR can be connected directly between the +5V and PS_ON pins. |
+| **1 x 3-pin KK header** | 5V SELECT | v1.02 and later boards only. 5V supply select, between 5V internal regulator (no jumper), 5V_EXT, and 5V_SBC. See Power distribution > 5V documentation below for details. |
+| **3 x 2-pin KK headers** | 5V Options | v0.6 to v1.0a boards only, not populated on v1.0a. 5V supply select. See Power distribution > 5V documentation below for details. |
 | **6 x 4-pin JST VH connector** | DRIVER_0, DRIVER_1, DRIVER_2, DRIVER_3, DRIVER_4, DRIVER_5 | Stepper motor connections. (see note on JST VH connectors) |
 | **3 x 2-pin JST VH connector** | OUT 1, OUT 2, OUT 3 | These are intended for extruder heaters or fans. Maximum recommended current 6A each. These outputs are protected by flyback diodes. |
 | **3 x 4-pin KK connectors with offset spigot** | OUT 4, OUT 5, OUT 6 | These medium current outputs are intended for PWM-controllable fans. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUT_LC_1 pin (+ve) and the OUT_n_NEG pin (-ve). Maximum recommended current 2A each when supplied by VIN. |
@@ -201,7 +203,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | ^^ | ^^ | *see note 1 below*. |
 | **1 x 2-pin KK connector** | VFUSED | This is for powering an always-on fan or similar. |
 | **1 x 2-pin KK connector** | RESET_EXT | For an external normally-open reset switch. |
-| **1 x 2-pin jumper** | ERASE | Add a jumper to erase the firmware. |
+| **1 x 2-pin KK header** | ERASE | Add a jumper to erase the firmware. |
 | **1 x 2-pin KK connector** | 12V | Provides 12V power for a PWM to 0-10V converter.|
 | ^^ | ^^ | *see note 1 below*. |
 | **1 x 3-pin KK connector** | LASER/VFD | v1.0 and later boards only. This provides 5V power and a 5V level signal for a TTL-compatible input to a laser controller, a PWM-to-0 to 10V converter (for variable-frequency drives), or a servo. The control signal for this output is shared with OUT9, so don't use OUT9 if you use this connector. |
