@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2021-12-15T15:07:59.499Z
+date: 2023-04-04T12:30:03.387Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -57,7 +57,7 @@ Usually packaged in a large case, with three wires. Similar specification to DHT
 
 ## DHT11
 
-Usually cheapest, with limited range for temperature and humidity, but small and updates every second. Not supported in RRF 3.4. or later
+Usually cheapest, with limited range for temperature and humidity, but small and updates every second. **Not supported in RRF 3.4. or later.**
 
 * Humidity: 20-80% humidity readings with 5% accuracy
 * Temperature: 0-50°C temperature readings ±2°C accuracy
