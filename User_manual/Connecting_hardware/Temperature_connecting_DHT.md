@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2023-04-04T12:33:07.315Z
+date: 2023-04-04T15:35:27.997Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -18,6 +18,8 @@ dateCreated: 2021-09-14T16:07:27.411Z
 DHT sensors are low-cost digital temperature and humidity sensors. They use a capacitive humidity sensor and a thermistor to measure the surrounding air, and transmit a digital signal on the data pin to the host, so no analog input pins are needed.
 
 RepRapFirmware from v1.20 supports DHT11, DHT21 and DHT22 sensors.
+RepRapFirmware from v3.4 drops support for DHT11 sensors
+RepRapFirmware from v3.5 adds support for BME 280 sensors
 
 # General recommendations
 
@@ -64,44 +66,77 @@ Usually cheapest, with limited range for temperature and humidity, but small and
 * Sensing period: 1 Hz sampling rate (once every second)
 * Dimensions: 22.5mm x 12mm x 5.5mm
 
+## BME280
+
+Still relatively low-cost, the BME280 from Bosch usually comes packaged on a small breakout board, and can measure humidity, temperature and barometric pressure.  
+
+* Humidity: ±3% accuracy
+* Temperature: -40 to 85°C temperature readings ±1°C accuracy
+* Pressure: 300 to 1100 hPa with ±1 hPa absolute accuracy
+* Sensing period: 1 Hz sampling rate (once every second)
+* Dimensions: vary
+
+### Notes
+
+* BME280 sensors are only supported on Duet 3, not Duet 2.
+* BME280 sensors are only supported in RepRapFirmware 3.5 and later.
+* RepRapFirmware currently supports BME280 sensors using SPI, not I2C. Breakout boards need to have the appropriate pins accessible. For example, [this board from Adafruit](https://www.adafruit.com/product/2652) or [this one from Sparkfun](https://www.sparkfun.com/products/13676) should work fine. Many boards available have only 4 pins; these are I2C only, and are not supported.
+
 # Connecting a DHT sensor
 
-## Cable
+# Tabs {.tabset}
+
+## DHT sensors
+
+### Cable recommendations
 
 Connect the sensor to +3.3V and GND. Do not use 5V unless you use a bidirectional level shifter between the Duet and the DHT22.
 
-The one-wire bus used by the DHT sensor for data is sensitive to noise, so if you use unshielded cable it is very likely to pick up interference from any stepper motor cables that it runs close to. We recommend using shielded cable (stereo microphone cable should work), using the shield for the ground connection.
+DHT sensors use the one-wire bus, which is sensitive to noise, so if you use unshielded cable it is very likely to pick up interference from any stepper motor cables that it runs close to. We recommend using shielded cable (stereo microphone cable should work), using the shield for the ground connection.
 
 Bare DHT sensors usually come with a pullup resistor of between 4k7 and 10k ohms. DHT sensors on a PCB, or encased and pre-wired, usually have the pullup resistor already fitted on the PCB. The pullup resistor goes between the signal line and 3.3V.
 
 Cable capacitance should not exceed about 2000pF. Using a lower value resistor will allow longer cable runs, eg a 2k2 ohm, but be more susceptible to noise. Shielded cables normally specify the capacitance/meter, so you should be able to work out the highest value pullup resistor you can use for a specific length and type of cable. If a higher pullup resistor is used then the max cable length is reduced. In testing, dc42 uses a 10K pullup resistor and 400mm of cable.
 
-# Tabs {.tabset}
+### Wiring
 
+### Tabs {.tabset}
 
-## Duet 3 MB6HC
+#### Duet 3 MB6HC
 
 Connect the DHT I/O line to either one of the SPI CS lines on the Temperature Daughterboard connector, or one of the IOx.OUT pins. Both of these connectors also provides +3.3V and ground.
 
-## Duet 3 Mini 5+
+#### Duet 3 Mini 5+
 
 Connect the DHT I/O line to both IOx.IN and the IOx.OUT pin of an IO connector. The IO connector also provides +3.3V and ground. Using the Temperature Daughterboard connector is NOT supported. RepRapFirmware 3.3beta1 or later is required.
 
-## Duet 2
+#### Duet 2
 
 Connect the DHT I/O line to one of the SPI CS lines on the temperature daughterboard connector. This connector also provides +3.3V and ground. For systems running RRF 3 with no DueX expansion connected, some of the expansion connector pins could be used instead, for example the E2 to E6 endstop pins (E0 and E1 on the Duet cannot be used).
+
+## BME280 sensors
+
+### Cable recommendations
+
+BME280 sensors should be less sensitive to interference than DHT sensors, but the cable should still be kept away from stepper motor cables.
+
+### Wiring
+
+Using the Temperature Daughterboard connector (TEMP_DB), connect the SDI, SDO and SCK pins of the BME280 to MOSI, MISO and SCLK respectively. Also connect CS to your chosen spi.cs pin, 3.3V power and ground.
 
 # Configuring a DHT sensor
 
 # Tabs {.tabset}
 
-## RepRapFirmware 3.x
+## DHT sensors
+
+### RepRapFirmware 3.x
 
 In RRF 3, [M308](/User_manual/Reference/Gcodes/M308) is used to define the DHT sensor. Use the following parameters:
 
 * **Sn** Sensor number.
 * **P"pin_name"** See section above for pins to use with each Duet version.
-* **Y"sensor_type"** "dht11" (RRF 3.3 and earlier), "dht21" or "dht22", and "dhthumidity"
+* **Y"sensor_type"** "dht11" (RRF 3.3 and earlier), "dht21", "dht22", "dhthumidity", "bme280", "bme280-pressure", "bme280-humidity" ("bme280" RRF3.5 and later on Duet 3 only)
 * **A"name"** Sensor name (optional), displayed in the web interface
 
 All DHT variants have a primary output for temperature and a secondary output that delivers the humidity values. "dhthumidity" will be attached to an existing DHT sensor's secondary output by using its full sensor number (including the leading S) and the output's index separated by a dot.
@@ -122,7 +157,7 @@ M308 S10 P"io4.out+io4.in" Y"dht22" A"Chbr Temp[C]"
 M308 S11 P"S10.1" Y"dhthumidity" A"Chbr Hum[%]"
 ```
 
-## RepRapFirmware 2.x
+### RepRapFirmware 2.x
 
 In RRF 2 and earlier, [M305](/User_manual/Reference/Gcodes/M305) is used to define the DHT sensor. In RRF 2, every temperature sensor belongs to a heater. For sensors with no controllable heater (e.g. DHT sensors) you have to create a "virtual heater" in order to be able to use the sensor. Use the following parameters:
 
@@ -143,6 +178,24 @@ Example:
 ;DHT Sensor on Temperature Daughterboard SPI CS1 pin
 M305 P103 X400 T22 S"DHT Temperature" 
 M305 P104 X450 T22 S"DHT Humidity [%]"
+```
+
+## BME280 sensors
+
+In RRF 3, [M308](/User_manual/Reference/Gcodes/M308) is used to define the BME280 sensor. Use the following parameters:
+
+* **Sn** Sensor number.
+* **P"pin_name"** See section above for pins to use with each Duet version.
+* **Y"sensor_type"** "bme280", "bme280-pressure", "bme280-humidity" (RRF3.5 and later on Duet 3 only)
+* **A"name"** Sensor name (optional), displayed in the web interface
+
+The BME280 has a primary output for temperature, secondary output for pressure, and third for the humidity values. A primary sensor is created for temperature, eg `S11`, and "bme280-pressure" will be attached to this sensor as a secondary output by using its full sensor number (including the leading S) and the output's index separated by a dot, eg `S11.1`. "bme280-humidity" is attached in the same way as the third output.
+
+Example:
+```
+m308 s11 y"bme280" p"spi.cs1" a"Ambient temp"
+m308 s12 y"bme280-pressure" p"s11.1" a"Pressure[hPa]"
+m308 s13 y"bme280-humidity" p"s11.2" a"Humidity[%]"
 ```
 
 # Displaying DHT data
