@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2023-04-04T15:43:03.568Z
+date: 2023-04-04T15:48:10.161Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -87,7 +87,7 @@ Still relatively low-cost, the BME280 from Bosch usually comes packaged on a sma
 
 # Tabs {.tabset}
 
-## DHT sensors
+## DHT22/21/11 sensors
 
 ### Cable recommendations
 
@@ -129,7 +129,7 @@ Using the Temperature Daughterboard connector (TEMP_DB), connect the SDI, SDO an
 
 # Tabs {.tabset}
 
-## DHT sensors
+## DHT22/21/11 sensors
 
 ### RepRapFirmware 3.x
 
