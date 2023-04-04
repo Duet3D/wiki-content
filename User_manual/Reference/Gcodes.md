@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-04T12:17:42.755Z
+date: 2023-04-04T16:04:14.504Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3531,7 +3531,7 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 
 * **Sn** Sensor number
 * **P"pin_name"** The name of the control board pin that this sensor uses. For thermistors it is the thermistor input pin name, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. For sensors connected to the SPI bus it is the name of the output pin used as the chip select.
-* **Y"sensor_type"** The sensor and interface type, one of: "thermistor", "pt1000", "rtd-max31865", "thermocouple-max31855", "thermocouple-max31856", "linear-analog", "dht21", "dht22", "dht-humidity", "bme280", "bme280-pressure", "bme280-humidity", "current-loop-pyro", "drivers", "mcu-temp" (see note below regarding "mcu-temp" support on Duet 3 Mini 5+). Duet WiFi/Ethernet with an attached DueX2 or DueX5 also support "drivers-duex". "dht11" is supported in firmware up to RRF 3.3, but removed from RRF 3.4 onward. "bme280" is only supported in RRF 3.5 and later, and only on Duet 3 boards.
+* **Y"sensor_type"** The sensor and interface type, one of: "thermistor", "pt1000", "rtd-max31865", "thermocouple-max31855", "thermocouple-max31856", "linear-analog", "dht21", "dht22", "dht-humidity", "bme280", "bme-pressure", "bme-humidity", "current-loop-pyro", "drivers", "mcu-temp" (see note below regarding "mcu-temp" support on Duet 3 Mini 5+). Duet WiFi/Ethernet with an attached DueX2 or DueX5 also support "drivers-duex". "dht11" is supported in firmware up to RRF 3.3, but removed from RRF 3.4 onward. "bme280" is only supported in RRF 3.5 and later, and only on Duet 3 boards.
 * **A"name"** Sensor name (optional), displayed in the web interface
 
 **Additional parameters for thermistors**
@@ -3566,7 +3566,7 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 * **Bnnn** The temperature or other value when the ADC output is zero
 * **Cnnn** The temperature or other value when the ADC output is full scale
 
-**P"nnn" parameter for "dht-humidity", "bme280-pressure" and "bme280-humidity**
+**P"nnn" parameter for "dht-humidity", "bme-pressure" and "bme-humidity**
 
 DHT sensors provide a primary temperature output and an additional output providing humidity. To access the humidity output of a DHT sensor you must first configure the primary sensor of type "dht21" or "dht22". Then you can configure "dht-humidity" to be attached to the DHT sensor's secondary output, by specifying port P"Snnn.1" where nnn is the sensor number of the primary sensor.
 
