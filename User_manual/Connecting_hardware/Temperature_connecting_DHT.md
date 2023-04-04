@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2023-04-04T15:35:27.997Z
+date: 2023-04-04T15:43:03.568Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -19,13 +19,14 @@ DHT sensors are low-cost digital temperature and humidity sensors. They use a ca
 
 RepRapFirmware from v1.20 supports DHT11, DHT21 and DHT22 sensors.
 RepRapFirmware from v3.4 drops support for DHT11 sensors
-RepRapFirmware from v3.5 adds support for BME 280 sensors
+RepRapFirmware from v3.5 adds support for BME280 sensors
 
 # General recommendations
 
-* DHT 22 is recommended. DHT21 is also supported. DHT11 is supported in firmware up to RRF 3.3, but removed from RRF 3.4 onward.
-* Connect using 3 wires. As well as +3.3V and ground, the DHT sensor needs a combined input-output line. This is usually connected to one of the SPI CS lines on the Temperature Daughterboard connector, or one of the IOx.OUT pins.
-* In RRF 3, the humidity channel of the same sensor is configured as a piggyback sensor off the main one.
+* DHT22 and BME280 are recommended. DHT21 is also supported, but is less accurate. DHT11 support has been removed from current firmware. 
+* DHT22/21/11 connect using 3 wires. As well as +3.3V and ground, the DHT sensor needs a combined input-output line. This is usually connected to one of the SPI CS lines on the Temperature Daughterboard connector, or one of the IOx.OUT pins.
+* BME280 connect using 6 wires, and connects to pins on the Temperature Daughterboard connector.
+* In RRF 3, the humidity and pressure (BME280 only) channels of the same sensor are configured as piggyback sensors off the main sensor.
 
 # Choosing a DHT sensor
 
