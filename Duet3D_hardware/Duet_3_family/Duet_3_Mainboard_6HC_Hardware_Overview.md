@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-03-31T12:46:48.899Z
+date: 2023-04-04T11:10:50.121Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -488,7 +488,9 @@ This module overlaps the SBC header and uses some of the same pins so it cannot 
 Note that the wifi module is the second network interface on the 6HC (the ethernet interface is the first one) so all [M552](/User_manual/Reference/Gcodes/M552) commands need to contain "I1" to indicate they are for the wifi module interface. 
 
 * With the 6HC powered off plug the WiFi module into the ESP header, as oriented in the image above and ensuring all the pins line up. 
-
+* The WiFi module will need the firmware installed before configuration. The WiFi firmware is available from this [Duet3D Github repository](https://github.com/Duet3D/WiFiSocketServerRTOS/releases). Use the latest available release, at least v2.1beta3. Use the file named "DuetWiFiServer_32S3.bin".
+  * If you have no network connection via Ethernet, copy the WiFi firmware binary file to the /firmware directory of the SD card on a PC. Replace the SD card in the Duet, turn on, then send `M997 S1` to install it on the WiFi module.
+  * If you can connect to DWC via Ethernet, upload the firmware binary file by clicking on "Upload System Files" on the Files > System page. After upload, you should be asked if you want to install the WiFi firmware; select yes.
 * Power up the 6HC and connect to it either via USB or Ethernet (see the [getting started guide](/User_manual/Overview/Getting_started_Duet_3_MB6HC) for how to get to that point. 
 
 * Send M552 I1 S0 to take the WiFi module out of its disabled state and into idle.
