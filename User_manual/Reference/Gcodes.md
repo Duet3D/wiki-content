@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-04T09:51:52.635Z
+date: 2023-04-04T09:54:49.403Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1656,7 +1656,7 @@ RepRapFirmware 3.4 and later also return information about thumbnail images embe
 "thumbnails":[{"width":32,"height":32,"fmt":"qoi","offset":103,"size":2140},{"width":220,"height":220,"fmt":"qoi","offset":2384,"size":25464}]
 </pre>
 
-The "fmt" field denotes the encoding of the thumbnail and is either "png" or "qoi". The "thumbnails" field is omitted entirely if there are no thumbnails embedded in the GCode file.
+The "fmt" field denotes the encoding of the thumbnail and is one of "png", "qoi" or "jpeg". The "thumbnails" field is omitted entirely if there are no thumbnails embedded in the GCode file.
 
 ## M36.1: Return embedded thumbnail data
 
