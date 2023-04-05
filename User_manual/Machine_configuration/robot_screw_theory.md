@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-05T07:26:40.496Z
+date: 2023-04-05T07:29:56.735Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -103,9 +103,11 @@ The original PK2 describes two intersecting axes and calculates two angles with 
 - for all combinations of two axes: intersecting, skewing, parallel and same position and type mixing rotary-rotary, rotary-prismatic and prismatic-prismatic
 - changing algorithm from vector based by using cross products to geometric algebra based approach using the conformal model (CGA)
 
-The traditional approach calculates a point on the axis, the point between the intersection points, the intersection points and then the angles.
+The traditional approach calculates the axis intersection point, the intersection points and then the angles.
 
 The geometric algebra calculates the two circles by defining planes and spheres, the meet of the two circles and the angles to the two intersecting points. Geometric algebra should be able to calculate it without coordinates and optimized to use only needed values. The code should cover the different axis types already.
+
+Both method allow a split of pre-calculatable and angle-dependent calculations, where the first part can be cached. This speeds up calculation by about 50%.
 
 # C parameter
 Configuration has three parts:
