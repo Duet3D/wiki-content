@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-04T07:00:06.612Z
+date: 2023-04-05T07:26:40.496Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -96,6 +96,16 @@ The crossing was also defined by the "Pieper criterion". Nearly all kinematics w
 |PK3|rotary axis to given distance|distance fix|1|
 
 *) solutions, if not simplified
+
+# PK2 subproblem
+
+The original PK2 describes two intersecting axes and calculates two angles with two possible angles each. The following method extends it
+- for all combinations of two axes: intersecting, skewing, parallel and same position and type mixing rotary-rotary, rotary-prismatic and prismatic-prismatic
+- changing algorithm from vector based by using cross products to geometric algebra based approach using the conformal model (CGA)
+
+The traditional approach calculates a point on the axis, the point between the intersection points, the intersection points and then the angles.
+
+The geometric algebra calculates the two circles by defining planes and spheres, the meet of the two circles and the angles to the two intersecting points. Geometric algebra should be able to calculate it without coordinates and optimized to use only needed values. The code should cover the different axis types already.
 
 # C parameter
 Configuration has three parts:
