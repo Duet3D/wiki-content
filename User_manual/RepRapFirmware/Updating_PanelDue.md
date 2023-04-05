@@ -2,7 +2,7 @@
 title: Installing and Updating PanelDue Firmware
 description: This page describes how to update the PanelDue Firmware.
 published: true
-date: 2023-01-09T16:56:56.865Z
+date: 2023-04-05T10:58:20.464Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:21:58.270Z
@@ -12,9 +12,9 @@ dateCreated: 2021-11-30T13:21:58.270Z
 
 # Introduction
 
-This page describes how to update the PanelDue Firmware.
+This page describes how to update the [PanelDue](/Duet3D_hardware/Accessories/PanelDue){target=_blank} firmware.
 
-* From RepRapFirmware version 3.2 (beta 4.1), you can flash the PanelDue firmware from the Duet itself, provided you have a V3/5i/7i PanelDue. 
+* From RepRapFirmware version 3.2 (beta 4.1), you can flash the PanelDue firmware from the Duet itself, provided you have a V3/5i/7i PanelDue running firmware 3.2.2 or later. 
 * For earlier RepRapFirmware versions, and earlier PanelDue, flash the firmware via the USB connector on the PanelDue.
 
 # Download PanelDue firmware
@@ -108,7 +108,7 @@ If your Duet is running versions of RepRapFirmware older than RRF 3.2, you will 
 
 ## Requirements
 
-* Download and install Bossa 1.9.1 from [ShumaTech](http://www.shumatech.com/web/products/bossa). Versions of bossa or bossac earlier than 1.8 will not be able to program the version 3.0 PanelDue board. Apple Macintosh users, please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x)
+* Download and install Bossa 1.9.1 from [ShumaTech](http://www.shumatech.com/web/products/bossa){target=_blank}. Versions of bossa or bossac earlier than 1.8 will not be able to program the version 3.0 PanelDue board. Apple Macintosh users, please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x){target=_blank}
 * Download and unzip the appropriate PanelDue firmware file from the sources listed above.
 
 ## Connect the PanelDue to the host computer
@@ -161,3 +161,16 @@ If you are unable to use the BOSSA application, try the command line tool.
 * The PanelDue controller board is supplied as standard with firmware for driving a 4.3 inch 480 x 272 pixel display. If you use a different display, then you will need to re-program the board with firmware for that display. There may be more recent firmware available even if you are using the recommended display.
 * If you have a PanelDue with a 7 inch TFT panel, then some PC USB ports and especially laptop USB ports may not be able to supply enough power to the PanelDue when the backlight is on. If you press Erase and Reset while the PanelDue it powered from your controller electronics, then the backlight should turn off, which should resolve the problem. Or you can disconnect the PanelDue control board from the TFT panel (unless you are using the integrated version), then upgrade the firmware, then reconnect it.
 * After you have connected the PanelDue to your 3D printer, you can still update the firmware using the same procedure. If you have a version 3.0 PanelDue then you must either disconnect it from your 3D printer first or power up your 3D printer. Version 2.0 and earlier can be updated without disconnecting them from your printer electronics even if the printer is not powered.
+
+# Troubleshooting
+
+Most firmware update problems are related to flashing the wrong firmware binary ot the PanelDue. If you do this, you may get one or more of the following problems:
+* Display is blank
+* Display is corrupted
+* Display shows incorrect colours
+
+Check the firmware version and that the colour bars are displayed correctly by clicking on the 'Setup' menu (if possible). Your PanelDue should look like this:
+
+![paneldue_5i_colourbars.png](/hardware/paneldue/paneldue_5i_colourbars.png)
+
+Check the firmware file used is correct for your PanelDue hardware. If not, reflash the firmware to the PanelDue.
