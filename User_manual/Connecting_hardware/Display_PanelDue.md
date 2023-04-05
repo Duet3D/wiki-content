@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2023-01-09T17:22:20.808Z
+date: 2023-04-05T10:23:41.649Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -12,7 +12,7 @@ dateCreated: 2021-11-09T17:02:03.830Z
 
 # Introduction
 
-All Duet boards support the PanelDue colour TFT touch screen control panel.
+All Duet boards support the [PanelDue colour TFT touch screen control panel](/Duet3D_hardware/Accessories/PanelDue).
 
 There are two cable options for connecting the PanelDue, both options are included with the PanelDue. Option 1 is the included 4-wire cable with Molex KK connector ends. Option 2 is the included 10-wire ribbon cable. For some older boards, both cables need to be plugged in to enable both TFT panel and SD card socket.
 
