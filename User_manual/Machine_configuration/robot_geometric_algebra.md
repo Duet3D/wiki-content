@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-05T09:04:24.245Z
+date: 2023-04-05T22:51:30.847Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -64,7 +64,7 @@ Conformal Geometric algebra (CGA) can describe transformations (rotation, reflec
 
 # Geometric Algebra Software
 
-Learning GA needs good books or articles, but software for visualization and to learn the algorithms is also very valuable. Following an imcomplete list of software:
+Following an incomplete list of software to compute and visualize geometric algebra:
 
 |-|-|-|-|
 |name|developed, documented by|language, capabilities|
@@ -75,6 +75,10 @@ Learning GA needs good books or articles, but software for visualization and to 
 |Clifford Multivector Toolbox| |Matlab plugin|
 |Clical| | |
 |CLUCal| |seems to be inactive. Gaalop is based on it|
+
+I will primarily use Gaalop, which is documented in Hildenbrand, because it seems to be more mature, is actively developed and supports different goals, compared to GAViewer/Gaigen. Unfortunately, Dorst uses dual for the opposite formulae. I'm using the syntax rules and names of Hildenbrand.
+
+There's a web based Gaalop and two universities providing web-based online usage of GA.
 
 # Conformal Geometric Algebra (CGA)
 
@@ -103,14 +107,15 @@ This approach will allow using the full functionality on a PC or in a future Due
 
 # Literature about Geometric Algebra
 
-Recommended introductory books from a personal view are:
+Recommended books from a personal view are:
 - Dorst: Geometric Algebra for Computer Science, 1st revised ed. Includes CGA. Including and using GAViewer and Gaigen2.
 - Hildenbrand: Foundations fo Geometric Algebra Computing. Including CGA and using Gaalop. Basic GA knowledge is preferrable.
+- Hildenbrand: The Power of Geometric Algebra Computing. More from Gaalop and extensions of CGA into cubic, conic, quantum.
 
 There are a lot of free pdf articles and websites available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald and many others are available. Main topics are directed to robotics, geometry, physics and other. The newer books often include CGA.
 An example of a nice website is http://geocalc.clas.asu.edu/GA_Primer/GA_Primer/introduction-to-geometric/index.html by Hestenes.
 
-For a beginner of GA, I recommend the Dorst book, use GAViewer and Gaalop and to accompany Dorst by looking up topics in the web which are unclear after reading it. 
+For a beginner of GA, I recommend the Dorst book, use GAViewer and Gaalop and to accompany Dorst by looking up topics in the web which are unclear after reading it. Syntax of Dorst and Hildenbrand are similar, but different. I'll concentrate on Gaalop.
 
 Articles specifically about conformal geometric algebra:
 - dissertation Gebken: https://www.informatik.uni-kiel.de/inf/Sommer/doc/extern/tr1001.pdf
