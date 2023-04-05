@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2023-04-05T10:23:41.649Z
+date: 2023-04-05T10:25:43.277Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -12,11 +12,11 @@ dateCreated: 2021-11-09T17:02:03.830Z
 
 # Introduction
 
-All Duet boards support the [PanelDue colour TFT touch screen control panel](/Duet3D_hardware/Accessories/PanelDue).
+All Duet boards support the [PanelDue colour TFT touch screen control panel](/Duet3D_hardware/Accessories/PanelDue){target=_blank}.
 
 There are two cable options for connecting the PanelDue, both options are included with the PanelDue. Option 1 is the included 4-wire cable with Molex KK connector ends. Option 2 is the included 10-wire ribbon cable. For some older boards, both cables need to be plugged in to enable both TFT panel and SD card socket.
 
-Information for connecting older versions of the PanelDue is available from [dc42's blog here](https://miscsolutions.wordpress.com/paneldue/).
+Information for connecting older versions of the PanelDue is available from [dc42's blog here](https://miscsolutions.wordpress.com/paneldue/){target=_blank}.
 
 ### PanelDue v3.0, 5i and 7i connection matrix
 
@@ -107,7 +107,7 @@ Connect a 10-way ribbon cable between socket X5 on the PanelDue and socket CONN_
 
 ![displays_paneldue_ribbon_01.jpg](/manual/displays/displays_paneldue_ribbon_01.jpg =700x)
 
-*(Photo from [www.flickr.com](https://www.flickr.com/photos/adafruit/12226184743))*
+*(Photo from [www.flickr.com](https://www.flickr.com/photos/adafruit/12226184743){target=_blank})*
 
 In tests using standard 28awg 1.27mm spaced ribbon cable, 400mm worked reliably but 800mm did not. So 400mm is the maximum recommended cable length. You can also get 26awg 1.27mm ribbon cable, and by using such cable you may be able to achieve reliable operation with cables longer than 400mm.
 
@@ -190,7 +190,7 @@ On the Duet 3 Mini 5+ you can ground the card detect signal by bridging pins 2 a
 
 ## PanelDue firmware and RRF compatibility
 
-Generally it is best to run the latest version of the PanelDue firmware that is supported by the RepRapFirmware version on your Duet mainboard. See: [Installing and updating PanelDue firmware](/User_manual/RepRapFirmware/Updating_PanelDue)
+Generally it is best to run the latest version of the PanelDue firmware that is supported by the RepRapFirmware version on your Duet mainboard. See: [Installing and updating PanelDue firmware](/User_manual/RepRapFirmware/Updating_PanelDue){target=_blank}
 
 From RRF v3.2, PanelDue firmware releases are co-ordinated with the RRF release, and share the same version number. Use the PanelDue firmware version that matches your Duet mainboard's firmware version.
 
@@ -206,7 +206,7 @@ The PanelDue firmware v1.24 assumes a fixed relationship between bed, tools and 
 * PanelDue will display the bed heater H0 first (even if it is disabled), then iterate the defined tools. It then iterates the defined heaters below this. It expects a 1:1 relationship between tools and heaters. This means:
   * if you have a machine that uses one heater for more than one tool (eg a 2-into-1, filament-swapping hot end), it will display more tools than heaters. Tools may not line up with their respective heaters.
   * if you have more heaters defined than tools (eg extra bed heater/chamber heater, or a tool that uses multiple heaters), you'll have more heaters than tools.
-* The PanelDue also iterates the heaters from the first defined heater to the last, including all heaters in between, whether defined or not. This means if you have a heater defined on H0 (bed) and one on H5 (Duex output), it will show all the ones in between, eg H0, H1, H2, H3, H4 and H5. For an example, see [this forum post](https://forum.duet3d.com/post/136207). Ideally, configure heaters on consecutive heater connections.
+* The PanelDue also iterates the heaters from the first defined heater to the last, including all heaters in between, whether defined or not. This means if you have a heater defined on H0 (bed) and one on H5 (Duex output), it will show all the ones in between, eg H0, H1, H2, H3, H4 and H5. For an example, see [this forum post](https://forum.duet3d.com/post/136207){target=_blank}. Ideally, configure heaters on consecutive heater connections.
 * Due to constraints on display resolution, PanelDue can only display 7 heaters in total on 5" and 7" panels, and 5 on 4.3" panels. If there are more heaters and/or tools than this, some columns will overlap. 
 * PanelDue does not recognise Chamber heaters, or extra heated beds. It will show them as heaters, though.
 
