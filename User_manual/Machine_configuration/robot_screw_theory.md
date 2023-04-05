@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-05T07:50:31.548Z
+date: 2023-04-05T07:54:03.812Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -111,7 +111,7 @@ Both methods allow a split of pre-calculatable and angle-dependent calculations,
 
 Geometic algebra code
 - each circle is defined by 10 bivectors in conformal geometry (CGA). It can be precalculated and cached. The code is optimized by Gaalop/Maxima (Maxima is an optimizer for symbolic algebra)
-- the point pair is the wedge product of the two circles
+- the point pair is the wedge product of the two circles. Those are the two solutions of the two angles each
 - the angles are calculated by atan2 to get 360 degree angles in all quadrants
 
 # C parameter
