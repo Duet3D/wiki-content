@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-06T16:23:53.972Z
+date: 2023-04-06T16:39:17.539Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -107,7 +107,7 @@ This approach will allow using the full functionality on a PC or in a future Due
 # Literature about Geometric Algebra
 
 Recommended books from a personal view are:
-- Dorst: Geometric Algebra for Computer Science, 1st revised ed. Includes CGA. Including and using GAViewer and Gaigen2.
+- Dorst/Fontijne/Mann: Geometric Algebra for Computer Science, 1st revised ed. Includes CGA. Including and using GAViewer and Gaigen2.
 - Hildenbrand: Foundations fo Geometric Algebra Computing. Including CGA and using Gaalop. Basic GA knowledge is preferrable.
 - Hildenbrand: The Power of Geometric Algebra Computing. More from Gaalop and extensions of CGA into cubic, conic, quantum.
 
