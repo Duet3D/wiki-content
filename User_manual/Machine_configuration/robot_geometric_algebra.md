@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-06T16:39:17.539Z
+date: 2023-04-06T17:56:11.250Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -65,6 +65,8 @@ Conformal Geometric algebra (CGA) can describe transformations (rotation, reflec
 # Geometric Algebra Software
 
 To verify code, Gaalop by Hildenbrand/Steinmetz is used. GAViewer by Dorst is also nice and fast, but uses a different syntax. Clifford Multivector Toolbox for Matlab is also available.
+
+An overview of software is in https://vixra.org/pdf/2202.0099v1.pdf chapter 10.
 
 Gaalop
 - is actively developed
