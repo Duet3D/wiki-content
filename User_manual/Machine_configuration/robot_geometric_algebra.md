@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-05T22:51:30.847Z
+date: 2023-04-06T15:33:41.428Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -64,21 +64,14 @@ Conformal Geometric algebra (CGA) can describe transformations (rotation, reflec
 
 # Geometric Algebra Software
 
-Following an incomplete list of software to compute and visualize geometric algebra:
+To verify code, Gaalop by Hildenbrand/Steinmetz is used. GAViewer by Dorst is also nice and fast, but uses a different syntax. Clifford Multivector Toolbox for Matlab is also available.
 
-|-|-|-|-|
-|name|developed, documented by|language, capabilities|
-|Gaalop|Hildenbrand, Steinmetz|Java, several dimension systems, symbolic optimizer Maxima integrated|
-|Maxima|GPL developers|symbolic algebra with optimizer|
-|GAViewer|Dorst|C++ with Gaigen 1, Viewer|
-|Gaigen 2|Dorst|C#, Java, library for different dimension systems|
-|Clifford Multivector Toolbox| |Matlab plugin|
-|Clical| | |
-|CLUCal| |seems to be inactive. Gaalop is based on it|
-
-I will primarily use Gaalop, which is documented in Hildenbrand, because it seems to be more mature, is actively developed and supports different goals, compared to GAViewer/Gaigen. Unfortunately, Dorst uses dual for the opposite formulae. I'm using the syntax rules and names of Hildenbrand.
-
-There's a web based Gaalop and two universities providing web-based online usage of GA.
+Gaalop
+- is actively developed
+- creates code for C++, Python, CUDA and others
+- creates visualization code, but could be nicer, like GAViewer
+- offers a web version and two universities who offer web based online usage
+- can be extended by Maxima to optimize the symbolic code of GA
 
 # Conformal Geometric Algebra (CGA)
 
