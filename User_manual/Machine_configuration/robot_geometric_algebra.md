@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-06T15:33:41.428Z
+date: 2023-04-06T15:47:28.231Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -72,6 +72,7 @@ Gaalop
 - creates visualization code, but could be nicer, like GAViewer
 - offers a web version and two universities who offer web based online usage
 - can be extended by Maxima to optimize the symbolic code of GA
+- http://www.gaalop.de/ is open source and LGPL 3, Java based
 
 # Conformal Geometric Algebra (CGA)
 
