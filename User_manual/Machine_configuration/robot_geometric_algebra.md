@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-06T16:11:15.702Z
+date: 2023-04-06T16:23:53.972Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -74,6 +74,11 @@ Gaalop
 - can be extended by Maxima to optimize the symbolic code of GA
 - http://www.gaalop.de/ is open source and LGPL 3, Java based
 
+Clifford Multivector Toolbox for Matlab (not tested yet)
+- GPL license
+- developed by Sangwine/Hitzer
+- https://clifford-multivector-toolbox.sourceforge.io/
+
 # Conformal Geometric Algebra (CGA)
 
 Conformal means angle preserving of the transformations (reflection, rotation, translation etc). CGA uses additional information, compared to 3-dimensional storage. CGA is a 5-dimensional Minkowski G4.1 space, needing 32 parameters to describe all blades. CGA was patented in US 6,853,964, but expired in July 2022.
@@ -106,10 +111,4 @@ Recommended books from a personal view are:
 - Hildenbrand: Foundations fo Geometric Algebra Computing. Including CGA and using Gaalop. Basic GA knowledge is preferrable.
 - Hildenbrand: The Power of Geometric Algebra Computing. More from Gaalop and extensions of CGA into cubic, conic, quantum.
 
-There are a lot of free pdf articles and websites available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald and many others are available. Main topics are directed to robotics, geometry, physics and other. The newer books often include CGA.
-An example of a nice website is http://geocalc.clas.asu.edu/GA_Primer/GA_Primer/introduction-to-geometric/index.html by Hestenes.
-
-For a beginner of GA, I recommend the Dorst book, use GAViewer and Gaalop and to accompany Dorst by looking up topics in the web which are unclear after reading it. Syntax of Dorst and Hildenbrand are similar, but different. I'll concentrate on Gaalop.
-
-Articles specifically about conformal geometric algebra:
-- Eckhard Hitzer articles seem to be good
+There are a lot of free pdf articles and websites available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald, Hitzer and many others are available. Main topics are directed to robotics, geometry, physics and other. The newer books often include CGA.
