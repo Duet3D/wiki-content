@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-06T15:47:28.231Z
+date: 2023-04-06T16:11:15.702Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -112,4 +112,4 @@ An example of a nice website is http://geocalc.clas.asu.edu/GA_Primer/GA_Primer/
 For a beginner of GA, I recommend the Dorst book, use GAViewer and Gaalop and to accompany Dorst by looking up topics in the web which are unclear after reading it. Syntax of Dorst and Hildenbrand are similar, but different. I'll concentrate on Gaalop.
 
 Articles specifically about conformal geometric algebra:
-- dissertation Gebken: https://www.informatik.uni-kiel.de/inf/Sommer/doc/extern/tr1001.pdf
+- Eckhard Hitzer articles seem to be good
