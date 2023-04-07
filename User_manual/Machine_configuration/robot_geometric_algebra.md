@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-07T07:16:01.033Z
+date: 2023-04-07T07:21:16.703Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -113,15 +113,17 @@ This approach will allow using the full functionality on a PC or in a future Due
 # Paden-Kahan PK2 solution
 
 Strategy:
+- given: axes properties om1 (axis direction), om2, v1 (point on axis 1), v2, p (first point), k (second point)
+- searched: angles between p and intersection point(s), angle between k and intersection point(s)
 - get planes and sphere middle points from axis definitions and points
 - calculate intersection line of planes. Special case parallel axes/planes, where the intersection solution is a plane, not a line
 - calculate pointpair by intersection of this line with sphere
 - double check by calculating other pointpair with intersection of line with other sphere
 - the two pointpairs must match
 - atan2(wedge,inner) of points with pointpair solutions
-- store the 2 * 2 results
+- store the 2 * 2 results (1 * 2 or 0 solutions are also possible)
 
-This should already support parallel and skewing axes as extension to traditional PK2.
+This should already support parallel and skewing axes as extension to traditional PK2, which used only intersecting axes.
 
 # Literature about Geometric Algebra
 
