@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-06T17:59:19.533Z
+date: 2023-04-07T07:09:42.884Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -10,8 +10,12 @@ dateCreated: 2023-03-08T08:28:19.105Z
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
-> work in programm (just started, please come back in a few days to see more content)
-{.is-info}
+Following is content about
+- geometric algebra in general
+- knowledge about syntax and usage of Gaalop
+- application of it to Paden-Kahan subproblems
+
+Gaalop seems to be the best starting point to develop solutions, so I'll use its syntax. The Hildenbrand books give additional information.
 
 # Geometric Algebra
 
@@ -32,10 +36,10 @@ GA offers
 
 GA is like an onion, starting simple with option to solve complex problems with more advanced methods:
 - vector model for rotations in 3D space
-- homogeneous model in 4D space for translations
+- homogeneous model in 4D space
 - projective geometric algebra (PGA) in 4D space
 - conformal geometric algebra (CGA), 5-dimensional
-- even higher spaces like 6 and 9 dimensions
+- even higher spaces like 6 and 9 dimensions, supporting cubic, conic, quantum theory topics
 
 To optimize performance, simple problem can therefore solved by simple methods and use higher dimensions if needed.
 
@@ -105,6 +109,16 @@ An old development saying is, to develop correctly with respect to design first,
 * strip down and simplify if this usage is too high for RRF
 
 This approach will allow using the full functionality on a PC or in a future Duet with lot of memory.
+
+# Paden-Kahan PK2 solution
+
+Strategy:
+- get planes and sphere middle points from axis definitions and points
+- calculate intersection line of planes. Special case parallel axes/planes, where the intersection solution is a plane, not a line
+- calculate pointpair by intersection of this line with sphere
+- double check by calculating other pointpair with intersection of line with other sphere
+- atan2(wedge,inner) of points with pointpair solutions
+- store the 2 * 2 results
 
 # Literature about Geometric Algebra
 
