@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-07T08:28:33.310Z
+date: 2023-04-07T08:35:25.581Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -41,3 +41,5 @@ IPNS means inner product null space.
 # intersections
 
 # angles and distances
+
+# Denavit-Hartenberg - Screw - CGA
