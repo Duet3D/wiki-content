@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-07T07:11:02.318Z
+date: 2023-04-07T07:16:01.033Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -120,6 +120,8 @@ Strategy:
 - the two pointpairs must match
 - atan2(wedge,inner) of points with pointpair solutions
 - store the 2 * 2 results
+
+This should already support parallel and skewing axes as extension to traditional PK2.
 
 # Literature about Geometric Algebra
 
