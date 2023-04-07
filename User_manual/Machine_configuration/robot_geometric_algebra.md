@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-07T07:09:42.884Z
+date: 2023-04-07T07:11:02.318Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -117,6 +117,7 @@ Strategy:
 - calculate intersection line of planes. Special case parallel axes/planes, where the intersection solution is a plane, not a line
 - calculate pointpair by intersection of this line with sphere
 - double check by calculating other pointpair with intersection of line with other sphere
+- the two pointpairs must match
 - atan2(wedge,inner) of points with pointpair solutions
 - store the 2 * 2 results
 
