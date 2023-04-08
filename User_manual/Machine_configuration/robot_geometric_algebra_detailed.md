@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-08T07:10:42.343Z
+date: 2023-04-08T07:14:07.175Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -49,7 +49,7 @@ CGA uses the following blades and they are used in the array as follows. This fo
 |4|e123inf, e1230, e12inf0, e13inf0, e23inf0|26...30|
 |5|e123inf0 (pseudoscalar)|31|
 
-
+einf means e∞, 0 means e0, e12 means e1^e2
 
 # objects IPNS
 
