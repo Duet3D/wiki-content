@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-08T07:58:49.787Z
+date: 2023-04-08T08:04:02.620Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -15,7 +15,7 @@ This page is part of multiple pages about robot configuration and usage. Please 
 > work in progress, just started
 {.is-info}
 
-This page give detailed information about conformal geometric algebra (CGA). It is not necessary to use the firmware, but gives insight how the firmware is developed.
+This page give detailed information about conformal geometric algebra (CGA). It is not necessary to use the firmware, but gives insight how the robot kinematics part of the RRF firmware is developed.
 
 The syntax follows Gaalop syntax and the content of the Hildenbrand books. I recommend buying the Hildenbrand and Dorst books, because I can give a summary below, but details and extented samples are in the books. Mathematical books are very expensive unfortunately, I would buy the Dorst or Hildenbrand Foundations book if I am forced to buy just one. Dorst is very good, but syntax differs between Dorst/GAViewer/Gaigen and Hildenbrand/Gaalop.
 
