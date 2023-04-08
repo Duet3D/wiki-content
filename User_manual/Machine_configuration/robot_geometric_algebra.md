@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-08T07:00:21.858Z
+date: 2023-04-08T07:01:14.381Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -12,7 +12,7 @@ This page is part of multiple pages about robot configuration and usage. Please 
 
 Following is content about
 - geometric algebra in general
-- knowledge about syntax and usage of Gaalop
+- knowledge about syntax and usage of Gaalop => this is moved to a dedicated page "geometric algebra detailed"
 - application of it to Paden-Kahan subproblems
 
 Gaalop seems to be the best starting point to develop solutions, so I'll use its syntax. The Hildenbrand books give additional information.
