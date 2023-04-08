@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-08T07:16:58.360Z
+date: 2023-04-08T07:24:08.516Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -23,14 +23,17 @@ The syntax follows Gaalop syntax and the content of the Hildenbrand books. Dorst
 
 # Geometric Algebra dimension
 
-There are several different GA dimension systems, declared as Gp,q[,r]:
+There are several different geometric dimension systems, declared as Gp,q[,r]:
 - p are coordinate axes which square to 1
 - q square to -1
 - r squares to 0
 
-For example the cartesian coordinate system is G3 with three real axes e1, e2 and e3 with e1² = e2² = e3² = 1 unit values.
+For example,
 
-As example, G4,1 is the conformal model (CGA) with 4 real number axes and one imaginary. G3,0,1 is projective geometric algebra (PGA) which is often used for (game) graphics. There are many other ones like G2, G3, G3,3, G9 etc.
+- G3 uses three real axes e1, e2 and e3 with e1² = e2² = e3² = 1 unit values.
+- CGA G4,1 uses e1²=e2²=e3²=e+²=1 and e-²=-1. e+ and e- are converted to e∞ (einf) and e0 to be used in CGA.
+- G3,0,1 is projective geometric algebra (PGA) which is often used for (game) graphics
+- there are many other ones like G2, G3, G3,3, G9 etc.
 
 The choosen dimension has influence on
 - the capabilities
