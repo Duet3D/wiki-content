@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-08T07:31:00.653Z
+date: 2023-04-08T07:31:52.962Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -67,6 +67,8 @@ IPNS means inner product null space.
 |circle|
 |line|
 |point pair|
+
+A point is a sphere with 0 radius, so the properties are similar.
 
 As example, a circle uses all 2-blades, array elements 6...15, wheres as dual representation (OPNS) it uses all 3-blades, array elements 16...25.
 
