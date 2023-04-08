@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-08T09:48:48.700Z
+date: 2023-04-08T14:03:13.662Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -54,7 +54,7 @@ einf means e∞, 0 means e0, e12 means e1^e2
 
 # objects IPNS
 
-IPNS means inner product null space.
+IPNS means inner product null space, which means, that to check whether a point intersects with an object, this can be tested by inner product being 0: P.X=0 (p point, X object).
 
 |-|-|-|-|
 |object|formula|Gaalop sample code|filled array elements|
@@ -71,6 +71,19 @@ A point is a sphere with 0 radius, so the properties are similar.
 As example, a circle uses all 2-blades, array elements 6...15, wheres as dual representation (OPNS) it uses all 3-blades, array elements 16...25.
 
 # objects OPNS
+
+OPNS are the dual representations of IPNS, named by outer product null space. A test whether a point is part of the object can be done by P^X=0 (p the point, X the object).
+
+|-|-|-|-|
+|object|formula|Gaalop sample code|filled array elements|
+|vector|
+|sphere|
+|plane|
+|circle|
+|line|
+|point pair|
+
+A point has only an IPNS representation.
 
 # intersections
 
