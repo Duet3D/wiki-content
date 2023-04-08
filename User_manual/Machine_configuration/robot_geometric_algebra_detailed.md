@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-08T08:04:02.620Z
+date: 2023-04-08T09:46:19.702Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -29,7 +29,7 @@ There are several different geometric dimension systems, declared as Gp,q[,r]:
 For example,
 
 - G3 uses three real axes e1, e2 and e3 with e1² = e2² = e3² = 1 unit values.
-- CGA G4,1 uses e1²=e2²=e3²=e+²=1 and e-²=-1. e+ and e- are converted to e∞ (einf) and e0 to be used in CGA.
+- CGA G4,1 uses e1²=e2²=e3²=e+²=1 and e-²=-1. e+ and e- are converted to e∞ (einf) and e0 to be used in CGA: e0 = 0.5(e- - e+), einf = 0.5(e- + e+).
 - G3,0,1 is projective geometric algebra (PGA) which is often used for (game) graphics
 - there are many other ones like G2, G3, G3,3, G9 etc.
 
