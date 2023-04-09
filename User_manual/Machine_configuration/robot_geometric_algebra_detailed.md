@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-09T10:26:52.246Z
+date: 2023-04-09T10:31:30.162Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -95,8 +95,8 @@ p1=createPoint(1,2,3);
 p2=createPoint(2,5,7);
 pp=p1^p2;
 x=-einf.pp;
-?orig1=(pp-sqrt(pp*pp))/x;
-?orig2=(pp+sqrt(pp*pp))/x;
+?orig1=(pp-sqrt(pp * pp))/x;
+?orig2=(pp+sqrt(pp * pp))/x;
 The results are in the e1, e2 and e3 parts or orig1/2.
 
 The formula is according to Dorst 14.13 or Dress/Havel Distance geometry article. In Hitzer et al Carrier Method on page 2 is additional information.
