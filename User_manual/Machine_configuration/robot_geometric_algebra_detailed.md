@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-09T10:31:30.162Z
+date: 2023-04-09T15:18:06.251Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -37,7 +37,7 @@ The choosen dimension has influence on
 - the capabilities
 - how much memory is necessary to store the geometric objects
 
-As example, G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used.
+As example, G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used. Lengyel has a nice image on page 10 of https://terathon.com/gdc23_lengyel.pdf
 
 CGA uses the following blades and they are used in the array as follows. This follows how Gaalop is organized, so the code of it can be used by C++, Python etc. directly:
 
