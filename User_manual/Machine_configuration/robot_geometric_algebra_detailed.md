@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T23:12:01.181Z
+date: 2023-04-10T23:14:28.434Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -93,10 +93,10 @@ IPNS means inner product null space, which means, that to check whether a point 
 
 |-|-|-|-|
 |object|how calculated|Gaalop sample code|filled array elements|
-|point|vector + 0.5 * norm² + e0|p=createPoint(1,2,3);|1-5, all 1-blades|
+|point|vector + 0.5 * norm² + e0|p=createPoint(1,2,3);|1-5, 1-blades|
 |vector|coordinates e1, e2, e3|v=e1+2 * e2+e3|1-3 part of 1-blades|
-|sphere|point - 0.5 * r * r * einf|s=createPoint(1,2,3)-0.5 * 3 * 3 * einf;|all 1-blades|
-|plane|normal vector + distance * einf|plane=1 * e1+2 * e2+3 * e3+5 * einf;|0-4 1-blades|
+|sphere|point - 0.5 * r * r * einf|s=createPoint(1,2,3)-0.5 * 3 * 3 * einf;|1-5 1-blades|
+|plane|normal vector + distance * einf|plane=1 * e1+2 * e2+3 * e3+5 * einf;|0-4 scalar and 1-blades without e0|
 |circle|intersection two spheres|z = s1 ^ s2|6-15 2-blades|
 |line|intersection two planes|l = pl1 ^ pl2|6-8, 10, 11, 13 part of 2-blades|
 |point pair|intersection three spheres|pp = s1 ^ s2 ^ s3|16-25 3-blades|
