@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T11:36:45.674Z
+date: 2023-04-10T11:38:11.495Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -116,6 +116,7 @@ Tests decomposition:
 |created by point-point|ok|
 |sphere-sphere-plane|ok|
 |line-plane|not yet|
+|line-sphere|ok|
 |more to come|
 
 # angles and distances
