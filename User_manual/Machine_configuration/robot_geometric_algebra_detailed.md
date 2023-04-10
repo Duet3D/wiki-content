@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T00:26:25.491Z
+date: 2023-04-10T00:34:30.242Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -107,7 +107,9 @@ The formula is according to Dorst 14.13 or Dress/Havel Distance geometry article
 
 Conformal geometry algebra has its name conformal from the fact that transformations are angle preserving.
 
-"Normal" rotations in linear algebra are done by matrix multiplications, as used in robotics to calculate the effect of angle changes e.g. by L=T2 * T1 . A second method is possible, using reflections and multiple reflections by sandwitching, e.g. by L=Ro~R, which means an object o is processed from two sides with R and ~R. The R operator is called versor or spinor. One reflection is a reflection, but two reflections are a rotation. Versors can be combined. To avoid scaling effects, the versors should be normed.
+"Normal" rotations in linear algebra are done by matrix multiplications, as used in robotics to calculate the effect of angle changes e.g. by L=T2 * T1 .
+
+A second method is possible, using reflections and multiple reflections by sandwitching, e.g. by L=Ro~R, which means an object is pre- and postprocessed with R and ~R. The R operator is called versor or spinor. One reflection is a reflection, but two reflections are a rotation. Versors can be combined. To avoid scaling effects, the versors should be normed.
 
 Overview of sandwitching transformations:
 
@@ -117,5 +119,7 @@ Overview of sandwitching transformations:
 |translation|reflections at two parallel planes||
 |motor|combined translation and rotation||
 |inversion|
+
+The rotors allow to implement interpolated motions easily. The quaternion slerp method is related to this algorithm.
 
 # Denavit-Hartenberg - Screw - CGA
