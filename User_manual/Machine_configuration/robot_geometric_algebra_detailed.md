@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T13:40:44.942Z
+date: 2023-04-10T22:51:34.075Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -17,7 +17,7 @@ This page is part of multiple pages about robot configuration and usage. Please 
 
 This page give detailed information about conformal geometric algebra (CGA). It is not necessary to use the firmware, but gives insight how the robot kinematics part of the RRF firmware is developed.
 
-The syntax follows Gaalop syntax and the content of the Hildenbrand books. I recommend buying the Hildenbrand and Dorst books, because I can give a summary below, but details and extented samples are in the books. Mathematical books are very expensive unfortunately, I would buy the Dorst or Hildenbrand Foundations book if I am forced to buy just one. Dorst is very good, but syntax differs between Dorst/GAViewer/Gaigen and Hildenbrand/Gaalop.
+The syntax follows Gaalop syntax and the content of the Hildenbrand books.
 
 # Geometric Algebra dimension
 
@@ -29,15 +29,32 @@ There are several different geometric dimension systems, declared as Gp,q[,r]:
 For example,
 
 - G3 uses three real axes e1, e2 and e3 with e1² = e2² = e3² = 1 unit values.
-- CGA G4,1 uses e1²=e2²=e3²=e+²=1 and e-²=-1. e+ and e- are converted to e∞ (einf) and e0 to be used in CGA: e0 = 0.5(e- - e+), einf = 0.5(e- + e+). e0 and einf are null vectors: e0²=einf²=0. Inner product e0 . einf = -1.
-- G3,0,1 is projective geometric algebra (PGA) which is often used for (game) graphics
+- G3,0,1 PGA is projective geometric algebra which is often used for (game) graphics
+- G3,1 CRA compass ruler algebra is the CGA flavor for 2D and used in the Introduction book of Hildenbrand to explain GA
+- G4,1 CGA see next section
+- GAC is geometric algebra conic
 - there are many other ones like G2, G3, G3,3, G9 etc.
 
 The choosen dimension has influence on
 - the capabilities
 - how much memory is necessary to store the geometric objects
 
-As example, G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used. Lengyel has a nice image on page 10 of https://terathon.com/gdc23_lengyel.pdf
+# CGA
+
+Conformal geometric algebra, CGA, is placed in Euclidean 3D space, but uses for representation 5 dimensions. The 2 additional dimensions e0 and einf (e∞) are virtual ones with specific properties as explained next:
+
+e1²=e2²=e3²=e+²=1
+e-²=-1
+e+ and e- are converted to e∞ (einf) and e0 to be used in CGA
+e0 = 0.5(e- - e+), einf = 0.5(e- + e+)
+e0 and einf are null vectors: e0²=einf²=0
+The inner product e0 . einf = -1
+
+The additional dimensions allow additional object types and affine orthogonal transformations.
+
+G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used.
+
+Lengyel has a nice image on page 10 of https://terathon.com/gdc23_lengyel.pdf about the Pascal triangle.
 
 CGA uses the following blades and they are used in the array as follows. This follows how Gaalop is organized, so the code of it can be used by C++, Python etc. directly:
 
@@ -52,7 +69,9 @@ CGA uses the following blades and they are used in the array as follows. This fo
 
 einf means e∞, 0 means e0, e12 means e1^e2
 
-The name pseudoscalar comes from it defines the volume 1 of a full dimension object.
+The order of the single elements of each blade is not standardized, so differnt authors may use different orders.
+
+The name pseudoscalar comes from the fact that it defines the volume 1 of a full dimension object.
 
 # Dual
 
@@ -65,6 +84,8 @@ Another example: a plane can be defined by a vector which defines the normal of 
 In Gaalop and elsewhere, the dual is marked by * in front of the object, e.g. dual = * object;
 
 An object can be transformed into its dual by * and back again by another *
+
+The choice which (IPNS or OPNS) is called standard form and which is the dual one is not standardizes and differs between authors.
 
 # objects IPNS
 
@@ -89,15 +110,18 @@ As example, a circle uses all 2-blades, array elements 6...15, wheres as dual re
 OPNS are the dual representations of IPNS, named by outer product null space. A test whether a point is part of the object can be done by P^X=0 (p the point, X the object).
 
 |-|-|-|-|
-|object|formula|Gaalop sample code|filled array elements|
-|vector|
-|sphere|
-|plane|
-|circle|
-|line|
-|point pair|
+|object|how calculated|Gaalop sample code|filled array elements|
+|sphere|four points of the curvature|s = p1 ^ p2 ^ p3 ^ p4;|26-30|
+|plane|three points on plane and einf|pl = p1 ^ p2 ^ p3 ^ einf;|26,28-30|
+|circle|three points on circle|c = p1 ^ p2 ^ p3;|16-25|
+|line|two points and einf|l = pl1 ^ pl2;|17,19,21,22,24,25|
+|point pair|wedge of two points|pp = p1 ^ p2;|6-15|
+
+In most cases the dual object is transformed into the normal form. The array elements are those of the normal form then.
 
 A point has only an IPNS representation.
+
+The objects with einf part are also called flat (e. g. plane) and those without einf are called round (e. g. sphere, circle).
 
 # intersections
 
