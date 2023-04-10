@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T11:38:11.495Z
+date: 2023-04-10T11:39:50.480Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -118,6 +118,8 @@ Tests decomposition:
 |line-plane|not yet|
 |line-sphere|ok|
 |more to come|
+
+Author van Evert https://observablehq.com/@kelleyvanevert/conformal-3d-geometric-algebra suspect it has to do whether the objects are flat or round (i. e. whether they have an einf component).
 
 # angles and distances
 
