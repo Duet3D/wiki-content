@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T00:34:30.242Z
+date: 2023-04-10T07:49:04.394Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -57,14 +57,14 @@ einf means e∞, 0 means e0, e12 means e1^e2
 IPNS means inner product null space, which means, that to check whether a point intersects with an object, this can be tested by inner product being 0: P.X=0 (p point, X object).
 
 |-|-|-|-|
-|object|formula|Gaalop sample code|filled array elements|
-|point|P=x + 0.5 * x² einf + e0|p=createPoint(1,2,3);|1-5, all 1-blades|
-|vector|
-|sphere|s=p-0.5 * r * r * einf|s=createPoint(1,2,3)-0.5 * 3 * 3 * einf;|all 1-blades|
-|plane|
-|circle|
-|line|
-|point pair|
+|object|how calculated|Gaalop sample code|filled array elements|
+|point|vector + 0.5 * norm² + e0|p=createPoint(1,2,3);|1-5, all 1-blades|
+|vector|coordinates e1, e2, e3|v=e1+2 * e2+e3|1-3|
+|sphere|point - 0.5 * r * r * einf|s=createPoint(1,2,3)-0.5 * 3 * 3 * einf;|all 1-blades|
+|plane|normal vector + distance * einf|plane=1 * e1+2 * e2+3 * e3+5 * einf;|0-4|
+|circle|intersection two spheres|z = s1 ^ s2|6-15|
+|line|intersection two planes|l = pl1 ^ pl2|6-8, 10, 11, 13|
+|point pair|intersection three spheres|pp = s1 ^ s2 ^ s3|16-25|
 
 A point is a sphere with 0 radius, so the properties are similar.
 
