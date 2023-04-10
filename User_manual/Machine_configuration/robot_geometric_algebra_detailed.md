@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T11:19:31.269Z
+date: 2023-04-10T11:36:45.674Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -108,7 +108,15 @@ pl=pln/abs(pln);
 ?orig1=(pp-sqrt(pp * pp))/x;
 ?orig2=(pp+sqrt(pp * pp))/x;
 
-There is a bug somewhere, because the radius of the resulting points are spheres. But the result can be used as midpoint of a new sphere or the coordinates extracted.
+It currently works with some object combinations, but not all. E. g. intersection line with plane doesn't work.
+
+Tests decomposition:
+
+|-|-|
+|created by point-point|ok|
+|sphere-sphere-plane|ok|
+|line-plane|not yet|
+|more to come|
 
 # angles and distances
 
