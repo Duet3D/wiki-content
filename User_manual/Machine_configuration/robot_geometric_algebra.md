@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-08T17:49:53.170Z
+date: 2023-04-10T11:13:31.157Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -119,3 +119,4 @@ Recommended books from a personal view are:
 There are a lot of free pdf articles and websites available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald, Hitzer, Perwass and many others are available. Main topics are directed to robotics, geometry, physics and other. The newer books often include CGA.
 
 - Perwass: Aspects of Geometric Algebra in Euclidean, Projective and Conformal Space
+- Colapinto dissertation and articles has nice looking images (and good information).
