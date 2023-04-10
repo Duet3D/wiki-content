@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T13:14:02.791Z
+date: 2023-04-10T13:40:44.942Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -65,8 +65,6 @@ Another example: a plane can be defined by a vector which defines the normal of 
 In Gaalop and elsewhere, the dual is marked by * in front of the object, e.g. dual = * object;
 
 An object can be transformed into its dual by * and back again by another *
-
-The following IPNS are the "normal" object and the OPNS the dual ones. This is the usage by Hildenbrand/Gaalop. Dorst uses the IPNS objects as dual objects in his book. This adds to confusion and to different syntax in GAViewer. There is no standard yet about some of those definitions.
 
 # objects IPNS
 
