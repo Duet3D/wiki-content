@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-10T19:34:24.130Z
+date: 2023-04-10T23:54:55.082Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4423,7 +4423,7 @@ Quotation marks around the password are mandatory in RRF3, but discretionary in 
 
 ##### Parameters
 
-* **Innn** (Optional) Number of the network interface to manage (defaults to 0).
+* **Innn** (Optional) Number of the network interface to manage (defaults to 0). Only needed if the board supports more than one network interface, such as Duet 3 MB6HC revision 1.02 or later with the optional WiFi interface. On that board, I0 is the Ethernet interface and I1 is the WiFi interface.
 * **P"ssid"** (optional, RepRapFirmware 1.20 and later) SSID of network to connect to. The SSID and password must already have been registered using M587. If this parameter is not present, the WiFi will try to connect to the strongest network that is broadcasting its SSID and whose SSID has been registered using M587.
 * **Snnn** 0 = disable networking, 1 = enable networking as a client, 2 = enable networking as an access point , -1 = disable WiFi module
 
