@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T22:53:42.451Z
+date: 2023-04-10T23:12:01.181Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -94,12 +94,12 @@ IPNS means inner product null space, which means, that to check whether a point 
 |-|-|-|-|
 |object|how calculated|Gaalop sample code|filled array elements|
 |point|vector + 0.5 * norm² + e0|p=createPoint(1,2,3);|1-5, all 1-blades|
-|vector|coordinates e1, e2, e3|v=e1+2 * e2+e3|1-3|
+|vector|coordinates e1, e2, e3|v=e1+2 * e2+e3|1-3 part of 1-blades|
 |sphere|point - 0.5 * r * r * einf|s=createPoint(1,2,3)-0.5 * 3 * 3 * einf;|all 1-blades|
-|plane|normal vector + distance * einf|plane=1 * e1+2 * e2+3 * e3+5 * einf;|0-4|
-|circle|intersection two spheres|z = s1 ^ s2|6-15|
-|line|intersection two planes|l = pl1 ^ pl2|6-8, 10, 11, 13|
-|point pair|intersection three spheres|pp = s1 ^ s2 ^ s3|16-25|
+|plane|normal vector + distance * einf|plane=1 * e1+2 * e2+3 * e3+5 * einf;|0-4 1-blades|
+|circle|intersection two spheres|z = s1 ^ s2|6-15 2-blades|
+|line|intersection two planes|l = pl1 ^ pl2|6-8, 10, 11, 13 part of 2-blades|
+|point pair|intersection three spheres|pp = s1 ^ s2 ^ s3|16-25 3-blades|
 
 A point is a sphere with 0 radius, so the properties are similar.
 
@@ -111,11 +111,11 @@ OPNS are the dual representations of IPNS, named by outer product null space. A 
 
 |-|-|-|-|
 |object|how calculated|Gaalop sample code|filled array elements|
-|sphere|four points of the curvature|s = p1 ^ p2 ^ p3 ^ p4;|26-30|
-|plane|three points on plane and einf|pl = p1 ^ p2 ^ p3 ^ einf;|26,28-30|
-|circle|three points on circle|c = p1 ^ p2 ^ p3;|16-25|
-|line|two points and einf|l = pl1 ^ pl2 ^ einf;|17,19,21,22,24,25|
-|point pair|wedge of two points|pp = p1 ^ p2;|6-15|
+|sphere|four points of the curvature|s = p1 ^ p2 ^ p3 ^ p4;|26-30 4-blades|
+|plane|three points on plane and einf|pl = p1 ^ p2 ^ p3 ^ einf;|26,28-30 4-blades|
+|circle|three points on circle|c = p1 ^ p2 ^ p3;|16-25 3-blades|
+|line|two points and einf|l = pl1 ^ pl2 ^ einf;|17,19,21,22,24,25 part of the 3-blades|
+|point pair|wedge of two points|pp = p1 ^ p2;|6-15 2-blades|
 
 In most cases the dual object is transformed into the normal form. The array elements are those of the normal form then.
 
@@ -131,9 +131,7 @@ In Euclidian 3D like CGA, intersection result in circles, lines or point pairs. 
 
 # extract points from pair points
 
-The pp pair point must be in dual mode (OPNS mode) *) . The formula is according to Dorst 14.13 and Hitzer Euclidean Geometric Objects ch 2.1. Chapter 9.2 of Hildenbrand/Fontijne/Perwass/Dorst's tutorial http://www.gaalop.de/dhilden_data/CLUScripts/eg04_tut03.pdf
-
-*) dual mode in Hildenbrand book, normal mode in Dorst book. The pp must be stored with 2-blades array elements 6-15.
+The pp pair point must be in OPNS mode for the following formula, which means the pp contains only 2-blades. The formula is according to Dorst 14.13 and Hitzer Euclidean Geometric Objects ch 2.1. Chapter 9.2 of Hildenbrand/Fontijne/Perwass/Dorst's tutorial http://www.gaalop.de/dhilden_data/CLUScripts/eg04_tut03.pdf
 
 Example intersection of two spheres (which result in a circle) and a plane (which result in point pair), which is the use case to calculate PK2:
 
