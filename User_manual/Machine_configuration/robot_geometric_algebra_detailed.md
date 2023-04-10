@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T09:01:34.077Z
+date: 2023-04-10T09:04:38.686Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -106,6 +106,7 @@ pl=pln/abs(pln);
 ?orig1=(pp-sqrt(pp * pp))/x;
 ?orig2=(pp+sqrt(pp * pp))/x;
 
+There is a bug somewhere, because the radius of the resulting points are spheres. But the result can be used as midpoint of a new sphere.
 
 # angles and distances
 
