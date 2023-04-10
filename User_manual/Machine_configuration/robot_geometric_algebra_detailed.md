@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T22:51:34.075Z
+date: 2023-04-10T22:53:42.451Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -114,7 +114,7 @@ OPNS are the dual representations of IPNS, named by outer product null space. A 
 |sphere|four points of the curvature|s = p1 ^ p2 ^ p3 ^ p4;|26-30|
 |plane|three points on plane and einf|pl = p1 ^ p2 ^ p3 ^ einf;|26,28-30|
 |circle|three points on circle|c = p1 ^ p2 ^ p3;|16-25|
-|line|two points and einf|l = pl1 ^ pl2;|17,19,21,22,24,25|
+|line|two points and einf|l = pl1 ^ pl2 ^ einf;|17,19,21,22,24,25|
 |point pair|wedge of two points|pp = p1 ^ p2;|6-15|
 
 In most cases the dual object is transformed into the normal form. The array elements are those of the normal form then.
@@ -122,6 +122,8 @@ In most cases the dual object is transformed into the normal form. The array ele
 A point has only an IPNS representation.
 
 The objects with einf part are also called flat (e. g. plane) and those without einf are called round (e. g. sphere, circle).
+
+Some authors describe additional objects like a hyperplane or different point types.
 
 # intersections
 
