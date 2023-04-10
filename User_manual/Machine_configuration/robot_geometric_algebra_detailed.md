@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T08:58:42.610Z
+date: 2023-04-10T09:01:34.077Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -93,7 +93,7 @@ In Euclidian 3D like CGA, intersection result in circles, lines or point pairs. 
 
 The pp pair point must be in dual mode (OPNS mode). The formula is according to Dorst 14.13 and Hitzer Euclidean Geometric Objects ch 2.1.
 
-Example intersection of two spheres (which result in a circle) and a plane (which result in point pair):
+Example intersection of two spheres (which result in a circle) and a plane (which result in point pair), which is the use case to calculate PK2:
 
 s1n=createPoint(1,2,3)-0.5 * 5 * 5 * einf;
 s2n=createPoint(3,2,3)-0.5 * 5 * 5 * einf;
