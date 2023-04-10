@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T07:49:04.394Z
+date: 2023-04-10T08:13:20.587Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -88,18 +88,6 @@ A point has only an IPNS representation.
 # intersections
 
 In Euclidian 3D like CGA, intersection result in circles, lines or point pairs. An example is an intersection between two spheres: ci=s1^s2; which is a circle. Two circles intersect to a point pair pp=ci1^ci2;
-
-Point pairs can be split into single points by 
-
-p1=createPoint(1,2,3);
-p2=createPoint(2,5,7);
-pp=p1^p2;
-x=-einf.pp;
-?orig1=(pp-sqrt(pp * pp))/x;
-?orig2=(pp+sqrt(pp * pp))/x;
-The results are in the e1, e2 and e3 parts or orig1/2.
-
-The formula is according to Dorst 14.13 or Dress/Havel Distance geometry article. In Hitzer et al Carrier Method on page 2 is additional information.
 
 # angles and distances
 
