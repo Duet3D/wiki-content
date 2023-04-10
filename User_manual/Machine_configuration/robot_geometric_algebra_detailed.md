@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T13:10:09.729Z
+date: 2023-04-10T13:14:02.791Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -52,9 +52,13 @@ CGA uses the following blades and they are used in the array as follows. This fo
 
 einf means e∞, 0 means e0, e12 means e1^e2
 
+The name pseudoscalar comes from it defines the volume 1 of a full dimension object.
+
 # Dual
 
 An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I, and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades.
+
+I is the pseudoscalar, the e1 ^ e2 ^ e3 ^ einf ^ e0 (e123inf0) blade.
 
 Another example: a plane can be defined by a vector which defines the normal of the plane and the distance to the origin (pl = v + 5 * einf), stored in 1-blades, or as dual plane by using three points together with einf to store it in 4-blades (pl= * (p1 ^ p2 ^ p3 ^ einf)).
 
