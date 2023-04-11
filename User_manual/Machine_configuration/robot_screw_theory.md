@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-11T06:53:53.358Z
+date: 2023-04-11T06:58:13.057Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -81,24 +81,9 @@ The crossing was also defined by the "Pieper criterion". Nearly all kinematics w
 |PK2|two intersecting rotary axes|no|0...2 for the axis pair|
 |PK3|rotary axis to given distance|distance fix|1|
 
-*) solutions, if not simplified
+*) number of angle solutions
 
-# PK2 subproblem
-
-The original PK2 describes two intersecting axes and calculates two angles with two possible angles each. The following method extends it
-- for all combinations of two axes: intersecting, skewing, parallel and same position and type mixing rotary-rotary, rotary-prismatic and prismatic-prismatic
-- changing algorithm from vector based by using cross products to geometric algebra based approach using the conformal model (CGA)
-
-The traditional approach calculates the axis intersection point, the intersection points and then the angles. For the different axis types exist multiple articles with additional algorithms. For prismatic axes, PG2 was developed by Pardos-Gotor.
-
-The geometric algebra calculates the two circles by defining planes and spheres, the meet of the two circles and the angles to the two intersecting points. Geometric algebra can calculate without coordinates and optimized to use only needed values. The code covers different axis types already.
-
-Both methods allow a split of pre-calculatable and angle-dependent calculations, where the first part can be cached. This speeds up calculation by about 50%.
-
-Geometic algebra code
-- each circle is defined by 10 bivectors in conformal geometry (CGA). The code is optimized by Gaalop/Maxima (Maxima is an optimizer for symbolic algebra)
-- the point pair is the wedge product of the two circles. Those are the two solutions of the two angles each
-- the angles are calculated by atan2 to get 360 degree angles in all quadrants
+The solutions are described on the geometric algebra detailed page, starting with PK2.
 
 # C parameter
 Configuration has three parts:
