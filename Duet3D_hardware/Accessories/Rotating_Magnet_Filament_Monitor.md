@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2023-01-06T22:01:50.591Z
+date: 2023-04-11T10:11:18.601Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -22,12 +22,20 @@ The filament monitor consists of a PCB which senses the rotation of a diametrica
 
 # Hardware
 
-## Components
+## Tabs {.tabset}
 
-### Tabs {.tabset}
+### Assembled
+
+The assembled version comprises the same components as the kit, preassembled into a MJF printed housing
+
+![mfm_assembled_v3.0_top_bottom.png](/hardware/magnetic_filament_monitor/mfm_assembled_v3.0_top_bottom.png)
+
+### Kit
+
+#### Tabs {.tabset}
 
 
-#### v3.0 magnetic assembly and housing
+##### v3.0 magnetic assembly and housing
 [![mfm_v3_kit_labelled.png](/hardware/magnetic_filament_monitor/mfm_v3_kit_labelled.png =600x)](/hardware/magnetic_filament_monitor/mfm_v3_kit_labelled.png){target=_blank}
 
 The housing consists of:
@@ -40,7 +48,7 @@ The printed parts are not supplied; the housing models are [available on Github 
 There are two versions of the body stl part, 1 with clearance M3 holes and one with holes sized for the M3 screws to tap into. Print the part that fits your mounting plan.
 
 
-#### v2.0 magnetic assembly and housing
+##### v2.0 magnetic assembly and housing
 ![mfm_v2_parts_annotated.jpg](/hardware/magnetic_filament_monitor/mfm_v2_parts_annotated.jpg =600x)
 The housing consists of:
 
@@ -52,7 +60,7 @@ The printed parts are not supplied; the housing models are [available on Github 
 There are two versions of the body stl part, 1 with clearance M3 holes and one with holes sized for the M3 screws to tap into. Print the part that fits your mounting plan.
 
 
-#### v1.0 magnetic assembly and housing
+##### v1.0 magnetic assembly and housing
 ![magnetic_fm_hardware.jpg](/hardware/magnetic_filament_monitor/magnetic_fm_hardware.jpg =600x)
 
 The v1 housing can be 3d printed using an FDM printer using a fairly high resolution (e.g. 0.1 layer height); however some tweaking will  be required to get the magnet distance just right.
