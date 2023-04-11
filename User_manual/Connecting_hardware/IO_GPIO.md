@@ -2,7 +2,7 @@
 title: Controlling unused IO pins
 description: 
 published: true
-date: 2022-02-16T17:46:35.638Z
+date: 2023-04-11T15:00:21.771Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-18T14:03:58.975Z
@@ -27,11 +27,10 @@ There are a number of options for extra control:
 
 ### Number of General Purpose Input/Output (GPIO) ports supported (as of RRF 3.4)
 
-| | Outputs | Inputs |
+| | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Notes |
 |---|---|
-|Duet 3 | 32 | 16 |
-|Duet 2 WiFi/Ethernet | 20 | 20 |
-|Duet 2 Maestro | 10 | 10 |
+| MaxGpInPorts | 32 (16 in RRF3.3) | 32 (16 in RRF3.3) | 20 | 10 | The maximum number of general purpose input ports. |
+| MaxGpOutPorts | 32 | 32 | 20 | 10 | The maximum number of general purpose output ports |
 
 # Firmware configuration
 
