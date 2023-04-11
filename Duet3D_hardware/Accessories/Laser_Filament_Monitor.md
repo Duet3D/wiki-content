@@ -2,7 +2,7 @@
 title: Duet3D Laser Filament Monitor
 description: 
 published: true
-date: 2022-06-29T10:59:52.407Z
+date: 2023-04-11T09:21:53.168Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T10:48:43.726Z
@@ -14,7 +14,7 @@ dateCreated: 2021-08-18T10:48:43.726Z
 
 The Duet3D filament monitors sense filament movement and so can indicate that filament has run out, jammed or has been ground away in the extruder. This version uses a laser sensor to detect movement.
 
-> The Duet3D Laser filament monitor is no longer under production as better results across filament types and colours are achieved using the [Rotating Magnet Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor){target=_blank}. {.is-info}
+> The Duet3D Laser filament monitor is no longer under production as better results across filament types and colours are achieved using the [Rotating Magnet Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor){target=_blank}. {.is-warning}
 
 # How it works
 
