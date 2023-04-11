@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-11T20:51:02.787Z
+date: 2023-04-11T20:53:58.203Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -101,6 +101,8 @@ IPNS means inner product null space, which means, that to check whether a point 
 |line|intersection two planes|l = pl1 ^ pl2|6-8, 10, 11, 13 part of 2-blades|
 |point pair|intersection three spheres|pp = s1 ^ s2 ^ s3|16-25 3-blades|
 
+In IPNS mode, the role of ^ is intersection.
+
 A point is a sphere with 0 radius, so the properties are similar.
 
 As example, a circle uses all 2-blades, array elements 6...15, wheres as dual representation (OPNS) it uses all 3-blades, array elements 16...25.
@@ -116,6 +118,8 @@ OPNS are the dual representations of IPNS, named by outer product null space. A 
 |circle|three points on circle|c = p1 ^ p2 ^ p3;|16-25 3-blades|
 |line|two points and einf|l = pl1 ^ pl2 ^ einf;|17,19,21,22,24,25 part of the 3-blades|
 |point pair|wedge of two points|pp = p1 ^ p2;|6-15 2-blades|
+
+In OPNS mode, the role of ^ is to combine the elements to build the object.
 
 In most cases the dual object is transformed into the normal form. The array elements are those of the normal form then.
 
