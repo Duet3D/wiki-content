@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-11T20:03:12.518Z
+date: 2023-04-11T20:04:34.263Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -140,7 +140,7 @@ Formula: * means take dual (see example), 2=1^2 means left 2-blade, right 1 and 
 |line-sphere|pp|ok||
 |line-plane|pp, one inf|not solved yet||
 
-Example of intersection sphere-sphere-plane, which results in point pair:
+Example of intersection sphere-sphere-plane, which results in point pair. Followed by an extraction of the point pair into single points:
 
 s1n=createPoint(1,2,3)-0.5 * 5 * 5 * einf;
 s2n=createPoint(3,2,3)-0.5 * 5 * 5 * einf;
