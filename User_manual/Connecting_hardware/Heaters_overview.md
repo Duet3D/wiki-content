@@ -2,7 +2,7 @@
 title: Heaters overview
 description: 
 published: true
-date: 2022-02-16T13:36:51.136Z
+date: 2023-04-11T14:23:14.115Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-20T12:20:29.631Z
@@ -30,9 +30,9 @@ Note that some boards are rated to 18A on the bed heater channel; however all Du
 
 # Heater configuration limits
 
-RepRapFirmware has some limits on how heaters can be configured. As of RRF 3.3 these are:
+RepRapFirmware has some limits on how heaters can be configured. As of RRF 3.4 these are:
 
-| | Duet 3 MB6HC | Duet 3 Mini: | Duet 2 WiFi/Ethernet | Duet Maestro |  |
+| | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Notes |
 |---|---|
 | MaxHeaters | 32 | 32 | 10 | 4 | The maximum number of heaters |
 | MaxPortsPerHeater | 3 | 2 | 2 | 2 | The maximum number of output ports per heater |
