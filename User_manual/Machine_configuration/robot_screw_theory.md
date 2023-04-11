@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-05T08:05:32.858Z
+date: 2023-04-11T06:53:53.358Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -57,20 +57,6 @@ All axes are described with reference angles. This reference can be 0 degrees ea
 This information is sufficient to calculate new positions when changing angles/linear positions and to calculated inverse kinematics (i e. from endposition calculating back to the angles). This is possible, because the changed angles/positions are calculated from relative changes in respect to the reference angles.
 
 For special kinematics types like CoreXY or parallel kinematics, it is necessary to define additional properties.
-
-# Inverse kinematics
-
-In most cases, inverse kinematics for robots are calculated by an iterative process, approaching a solution. Screw PoE uses a closed form calculation instead, calculating all possible solutions.
-
-In the first release, the following configurations will be available as robotType templates, where only some basic settings like arm lenghts, angle and speed limits are necessary:
-* robot 6 axis industrial robot with subtypes
-* CNC 5 axis AC or BC type, Prusa (Pentarod, Open5x) and CoreXY with 5 axes
-* 4 axis palletized robot
-* perhaps 5 bar parallel scara, polar, serial scara, colinear tripteron
-* serial scara
-* linear gantry with 5 axis rotary (see Pardos-Gotor second example)
-
-Stewart-Gough is postponed. It has a lot of degrees of freedom and is complex to solve.
 
 # Paden-Kahan subproblems
 
@@ -131,9 +117,8 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 
 * Screw configuration or extended Denavit-Hartenberg is used for setup and calculating forward kinematics
 * screw theory is used for setup and formula basis for Paden-Kahan based inverse kinematics
-* geometric algebra (Clifford algebra, multivectors, GA) is used to deduce the algorithms for Paden-Kahan subproblems
-* conformal geometric algebra (exterior algebra, CGA, Grassmann, G4.1, Minkowski space, versors), a 5-dimensional space is used for more complex problems
-* quaternions, dual quaternions (octonions, Cayley numbers) are used to store position and orientation (translations and rotations) values. Quaternions can store rotations, but to store positional information as well, dual quaternions are needed.
+* geometric algebra (Clifford algebra, multivectors, GA) is used to deduce the algorithms for Paden-Kahan subproblems. See the two dedicated pages
+* quaternions, dual quaternions (octonions, Cayley numbers) are used to calculate rotations and translations
 
 
 # Literature about screw theory, Paden-Kahan / canonical subproblems
