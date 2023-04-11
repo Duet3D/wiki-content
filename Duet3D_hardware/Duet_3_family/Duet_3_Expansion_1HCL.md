@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-03-14T15:42:33.224Z
+date: 2023-04-11T16:44:54.306Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -61,7 +61,7 @@ Stepper motors can be purchased with integral optical shaft encoders. It is also
 
 ### Duet3D magnetic motor shaft encoders
 
-The Duet3D magnetic shaft encoder is a small board that mounts on the back of the stepper motor. It is supplied with a diametrically-magnetised disc magnet, which must be glued to the centre of the end of the shaft at the back of the motor. A jig should be used to centre the magnet accurately while the glue sets.
+The Duet3D magnetic motor encoder is a small board that mounts on the back of the stepper motor. It is supplied with a diametrically-magnetised disc magnet, which must be glued to the centre of the end of the shaft at the back of the motor. A jig should be used to centre the magnet accurately while the glue sets.
 
 ### Linear composite encoder
 
