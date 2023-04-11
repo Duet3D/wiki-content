@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-11T11:00:22.918Z
+date: 2023-04-11T20:03:12.518Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -129,11 +129,18 @@ Some authors describe additional objects like a hyperplane or different point ty
 
 In Euclidian 3D like CGA, intersection result in circles, lines or point pairs. An example is an intersection between two spheres: ci=s1^s2; which is a circle. Two circles intersect to a point pair pp=ci1^ci2;
 
-# extract points from pair points
+Point pairs (pp) must be in 2-blade mode.
 
-The pp pair point must be in OPNS mode for the following formula, which means the pp contains only 2-blades. The formula is according to Dorst 14.13 and Hitzer Euclidean Geometric Objects ch 2.1. Chapter 9.2 of Hildenbrand/Fontijne/Perwass/Dorst's tutorial http://www.gaalop.de/dhilden_data/CLUScripts/eg04_tut03.pdf
+Formula: * means take dual (see example), 2=1^2 means left 2-blade, right 1 and 2-blade modes of objects.
 
-Example intersection of two spheres (which result in a circle) and a plane (which result in point pair), which is the use case to calculate PK2:
+|-|-|-|
+|intersect|result|formula|blades|
+|plane-circle|pp|* pp = pl ^ ci|2 = 1 ^ 2|
+|sphere-sphere-plane|pp|* pp = s1 ^ s2 ^ pl|2 = 1 ^ 1 ^ 1|
+|line-sphere|pp|ok||
+|line-plane|pp, one inf|not solved yet||
+
+Example of intersection sphere-sphere-plane, which results in point pair:
 
 s1n=createPoint(1,2,3)-0.5 * 5 * 5 * einf;
 s2n=createPoint(3,2,3)-0.5 * 5 * 5 * einf;
@@ -143,21 +150,8 @@ s2=s2n/abs(s2n);
 pl=pln/abs(pln);
 ?pp= * (s1 ^ s2 ^ pl);
 ?x=-einf.pp;
-?orig1=(pp-sqrt(pp * pp))/x;
-?orig2=(pp+sqrt(pp * pp))/x;
-
-It currently works with some object combinations, but not all. E. g. intersection line with plane doesn't work.
-
-Tests decomposition:
-
-|-|-|
-|created by point-point|ok|
-|sphere-sphere-plane|ok|
-|line-plane|not yet|
-|line-sphere|ok|
-|more to come|
-
-Author van Evert https://observablehq.com/@kelleyvanevert/conformal-3d-geometric-algebra suspect it has to do whether the objects are flat or round (i. e. whether they have an einf component).
+?p1=(pp-sqrt(pp * pp))/x;
+?p2=(pp+sqrt(pp * pp))/x;
 
 # angles and distances
 
