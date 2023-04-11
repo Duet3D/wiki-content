@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2023-04-11T10:21:53.926Z
+date: 2023-04-11T10:23:14.433Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -34,7 +34,7 @@ The assembled version uses v3 hardware
 
 ## Kit
 
-### contents
+### Contents
 
 #### Tabs {.tabset}
 
@@ -185,7 +185,7 @@ Screw the PCB in place as showing. note the two 12mm long M2.5 screws go to the 
 
 Insert the collets and collet clips. Note that they are not secure in the housing until PTFE tube is inserted.
 
-## Mounting
+# Mounting
 
 The monitor can be installed either before or after the extruder. It can mount directly onto the PTFE filament guide or bowden tube, held in place by the collets and collet clips. Alternatively there are two M3 holes in the housing to allow it to be screwed onto a flat surface.
 
