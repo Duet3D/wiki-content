@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-10T23:14:28.434Z
+date: 2023-04-11T10:14:49.846Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -75,7 +75,7 @@ The name pseudoscalar comes from the fact that it defines the volume 1 of a full
 
 # Dual
 
-An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I, and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades.
+An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I, and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades. (Dorst names them other round)
 
 I is the pseudoscalar, the e1 ^ e2 ^ e3 ^ einf ^ e0 (e123inf0) blade.
 
