@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2023-04-11T10:11:18.601Z
+date: 2023-04-11T10:13:59.978Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -67,7 +67,8 @@ The v1 housing can be 3d printed using an FDM printer using a fairly high resolu
 
 CAD models of the housing are [available on our GitHub](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic/enclosure){target=_blank}.
 
-### Hobbed assembly
+
+## Hobbed assembly
 
 ### Tabs {.tabset}
 
