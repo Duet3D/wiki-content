@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2023-04-02T21:59:38.729Z
+date: 2023-04-11T13:01:52.119Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -236,9 +236,9 @@ The individual IO_x connectors have the following capabilities:
 | IO # | UART/I2C? | Analog in? | PWM out? | Notes |
 |:---|:---|
 | IO_0 | No | Yes | Yes |  |
-| IO_1 | No | No | No | Input only, no ouput pin |
-| IO_2 | No | No | No | Input only, no ouput pin |
-| IO_3 | No | No | No | Input only, no ouput pin |
+| IO_1 | No | No | No | Input only, no output pin |
+| IO_2 | No | No | No | Input only, no output pin |
+| IO_3 | No | No | No | Input only, no output pin |
 
 **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
