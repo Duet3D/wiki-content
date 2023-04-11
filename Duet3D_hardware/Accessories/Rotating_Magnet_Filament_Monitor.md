@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2023-04-11T10:16:13.011Z
+date: 2023-04-11T10:20:29.495Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -31,6 +31,8 @@ The filament monitor consists of a PCB which senses the rotation of a diametrica
 This comprises the same components as the kit, fully assembled into a MJF printed housing
 
 ![mfm_assembled_v3.0_top_bottom.png](/hardware/magnetic_filament_monitor/mfm_assembled_v3.0_top_bottom.png)
+
+The assembled version uses v3 hardware
 
 ### Kit
 
@@ -70,11 +72,11 @@ The v1 housing can be 3d printed using an FDM printer using a fairly high resolu
 CAD models of the housing are [available on our GitHub](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic/enclosure){target=_blank}.
 
 
-## Hobbed assembly
+### Hobbed assembly
 
-### Tabs {.tabset}
+#### Tabs {.tabset}
 
-#### v3.0 magnetic assembly
+##### v3.0 magnetic assembly
 
 This consists of a custom machined hobbed part, and a 3mm diametrically magnetised magnet. Together with the idler this acts to closely couple the movement of the magnet to the movement of the filament.
 
@@ -82,7 +84,7 @@ The v3 hobbed assembly has a rod magnet as opposed to the ring magnet used in th
 
 [![v2vsv3_magnet_assembly.png](/hardware/magnetic_filament_monitor/v2vsv3_magnet_assembly.png)](/hardware/magnetic_filament_monitor/v2vsv3_magnet_assembly.png){target=_blank}.
 
-#### v2.0 and v1.0 magnetic assembly
+##### v2.0 and v1.0 magnetic assembly
 
 This consists of a custom machined hobbed part, a bearing and a 6mm diametrically magnetised magnet. Together with the idler this acts to closely couple the movement of the magnet to the movement of the filament.
 
@@ -104,7 +106,7 @@ These hold 4mm OD PTFE tubing in both sides of the filament monitor. The tubing 
 
 The filament monitor PCB can be used to detect the movement of any appropriate diametrically magnetised magnet. It can be used in custom extruder designs, the diagram below shows the critical dimensions.
 
-## Dimensions
+#### PCB Dimensions
 
 [![magnetic_fm_dimensions.png](/hardware/magnetic_filament_monitor/magnetic_fm_dimensions.png =400x)](/hardware/magnetic_filament_monitor/magnetic_fm_dimensions.png){target=_blank}
 
