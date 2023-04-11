@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2023-01-09T16:31:48.156Z
+date: 2023-04-11T16:43:23.560Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -100,7 +100,7 @@ We recommend you use the normally-closed contacts of a microswitch, which are ge
 
 ## Firmware requirements
 
-**Note**: RRF v2.03 or later is required to support the Magnetic Filament Monitor, version 2.04RC4 or later is recommended.
+**Note**: RRF v2.03 or later is required to support the Magnetic Filament Monitor, version 3.4 or later is recommended.
 
 ## Firmware configuration
 
