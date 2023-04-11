@@ -2,7 +2,7 @@
 title: Configuring stepper motors
 description: Describes firmware configuration of stepper motors
 published: true
-date: 2022-02-16T12:21:04.118Z
+date: 2023-04-11T14:18:17.007Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-11T11:54:37.059Z
@@ -30,14 +30,14 @@ Drive numbers used in G-code correspond to the following driver labels on the bo
 
 # Drive limits
 
-As of RepRapFirmware 3.3, the maximum number of configurable drives is:
+As of RepRapFirmware 3.4, the maximum number of configurable drives is:
 
-| | Duet 3 Mini 5+ | Duet 3 MB6HC | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Note |
+| | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Notes |
 |---|---|
-| MaxAxes | 10 | 15 | 10 | 6 | The maximum number of movement axes in the machine, usually just X, Y and Z
-| MaxDriversPerAxis | 4 | 8 | 5 | 4 | The maximum number of stepper drivers assigned to one axis
-| MaxExtruders | 5 | 16 | 7 | 4 | The maximum number of extruders
-| MaxAxesPlusExtruders | 12 | 25 | 12 | 7 | The maximum number of axes and extruders
+| MaxAxes | 15 | 10 | 10 | 6 | The maximum number of movement axes in the machine, usually just X, Y and Z |
+| MaxDriversPerAxis | 8 | 4 | 6 (5 in RRF3.3) | 4 | The maximum number of stepper drivers assigned to one axis |
+| MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
+| MaxAxesPlusExtruders | 25 | 12 | 12 | 7 | The maximum number of axes and extruders |
 
 # Defining connected motors
 
