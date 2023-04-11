@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2023-04-11T10:20:29.495Z
+date: 2023-04-11T10:21:37.161Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -22,11 +22,9 @@ The filament monitor consists of a PCB which senses the rotation of a diametrica
 
 # Hardware
 
-## Fully assembled or Kit
-
 ## Tabs {.tabset}
 
-### Assembled
+## Assembled
 
 This comprises the same components as the kit, fully assembled into a MJF printed housing
 
@@ -34,7 +32,9 @@ This comprises the same components as the kit, fully assembled into a MJF printe
 
 The assembled version uses v3 hardware
 
-### Kit
+## Kit
+
+### contents
 
 #### Tabs {.tabset}
 
