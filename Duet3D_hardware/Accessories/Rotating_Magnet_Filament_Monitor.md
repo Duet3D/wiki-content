@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2023-04-11T10:24:13.140Z
+date: 2023-04-11T10:25:50.853Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -21,8 +21,6 @@ The filament monitor consists of a PCB which senses the rotation of a diametrica
 ![magnetic_fm_how_it_works.png](/hardware/magnetic_filament_monitor/magnetic_fm_how_it_works.png =500x)
 
 # Hardware
-
-## Tabs {.tabset}
 
 ## Assembled
 
@@ -114,9 +112,9 @@ Note there a multiple revisions of the v1.7 and v3.0 PCB but the critical dimens
 
 ### Assembly
 
-### Tabs {.tabset}
+#### Tabs {.tabset}
 
-#### v3.0 magnetic assembly and housing
+##### v3.0 magnetic assembly and housing
 
 Before starting ensure the printed parts are free from stringing and that filament passes through the filament path. the filament path may need to be reamed out with a 1.8mm drill bit.
 
@@ -144,7 +142,7 @@ Mount using PTFE tube to guide the filament in and out of the filament monitor.
 
 ![mfm_v2_step4_collets.jpg](/hardware/magnetic_filament_monitor/mfm_v2_step4_collets.jpg =400x)
 
-#### v2.0 magnetic assembly and housing
+##### v2.0 magnetic assembly and housing
 
 Before starting ensure the printed parts are free from stringing and that filament passes through the filament path. the filament path may need to be reamed out with a 1.8mm drill bit.
 
@@ -169,7 +167,7 @@ If the MFM will be mounted directly above an extruder, supported only with the P
 ![mfm_v2_step4_m3.jpg](/hardware/magnetic_filament_monitor/mfm_v2_step4_m3.jpg =400x)
 
 
-#### v1.0 magnetic assembly and housing
+##### v1.0 magnetic assembly and housing
 
 Ensure the bearing in the main housing is seated properly and installer the idler carrier, idler bearing and spring.
 
