@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-11T10:59:24.048Z
+date: 2023-04-11T11:00:22.918Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -169,7 +169,7 @@ Conformal geometry algebra has its name conformal from the fact that transformat
 
 A second method is possible, using reflections and multiple reflections by sandwitching, e.g. by L=Ro~R, which means an object is pre- and postprocessed with R and ~R. The R operator is called versor or spinor. One reflection is a reflection, but two reflections are a rotation. Versors can be combined. To avoid scaling effects, the versors should be normed.
 
-A reflection by line or plane is possible, but in most cases for transformations bivectors are used (e. g. rotate at e1 ^ e2).
+A reflection by line or plane is possible, but in most cases for transformations bivectors (= 2-blades) are used (e. g. rotate at e1 ^ e2).
 
 Overview of sandwitching transformations:
 
