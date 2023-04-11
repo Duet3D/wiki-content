@@ -2,7 +2,7 @@
 title: Duet3D Rotating Magnet Filament Monitor
 description: 
 published: true
-date: 2023-04-11T10:25:50.853Z
+date: 2023-04-11T10:26:28.325Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -21,6 +21,8 @@ The filament monitor consists of a PCB which senses the rotation of a diametrica
 ![magnetic_fm_how_it_works.png](/hardware/magnetic_filament_monitor/magnetic_fm_how_it_works.png =500x)
 
 # Hardware
+
+# Tabs {.tabset}
 
 ## Assembled
 
