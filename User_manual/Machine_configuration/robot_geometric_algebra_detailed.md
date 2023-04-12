@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-12T01:25:55.286Z
+date: 2023-04-12T01:26:51.660Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -134,8 +134,6 @@ Some authors describe additional objects like a hyperplane or different point ty
 In Euclidian 3D like CGA, intersection result in circles, lines or point pairs. An example is an intersection between two spheres: ci=s1^s2; which is a circle. Two circles intersect to a point pair pp=ci1^ci2;
 
 Point pairs (pp) must be in 2-blade mode, i. e. OPNS.
-
-Formula: * means take dual (see example), 2=1^2 means left 2-blade, right 1 and 2-blade modes of objects.
 
 Example of intersection sphere-sphere-plane, which results in point pair. Followed by an extraction of the point pair into single points:
 
