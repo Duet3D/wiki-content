@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2023-04-12T13:33:52.637Z
+date: 2023-04-12T13:34:14.130Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -24,7 +24,7 @@ The Duet3D magnetic encoder senses motor position and rotation using a hall effe
 * SPI output for communication with a EXP1HCL (supplied with a 150mm ribbon cable for this purpose)
 * 3.3V operation - compatible with the EXP1HCL (Can be modified for 5V operation for other applications. 
 
-^1^ Max system RPM possible depends on the 1HCL closed loop speed and the maximum motor RPM
+^1^ Max system RPM possible depends on the EXP1HCL closed loop speed and the maximum motor RPM
 
 ## Supported hardware
 
