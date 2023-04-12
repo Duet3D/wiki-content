@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2023-04-12T13:16:14.816Z
+date: 2023-04-12T13:24:41.006Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -92,7 +92,7 @@ The jig can be printed using a reasonably tuned FDM 3d printer with a 0.4mm nozz
 
 ![Image showing the Nema 17 motor with two of the 4 bolts through the back of the motor removes, also shown are the Magnetic encoder PCB, two long M3 bolts and 4 sets of nylon washers of different thicknesses.](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step3.png)
 
-* Fit the magnetic encoder board to the back of the motor, using the nylon washers as spacers to the encoder chip is ~1mm from the magnet.
+* Fit the magnetic encoder board to the back of the motor, using the nylon washers as spacers so the encoder chip is ~1mm from the magnet.
 
 ![Image showing the encoder board fitted to the back of the motor using nylon spacers and the longer M3 bolts. the image shows that the Magnetic encoder chip mounted on the baord is ~1mm for the magnet.](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step4.png)
 
