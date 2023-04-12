@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2023-04-11T17:51:43.791Z
+date: 2023-04-12T11:33:38.386Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -47,6 +47,28 @@ The Duet 3 Magnetic Encoder is designed to be paired with a [Duet 3 1HCL control
 (coming soon)
 
 # Installation
+
+## Required parts
+
+| Qty | Item | Remarks |
+|:---|:---|
+| 1 | Magnetic Encoder PCB | included |
+| 1 | 4mm thick, 6mm diameter magnet | included |
+| 4 | 0.5mm M3 nylon washer | included |
+| 4 | 1mm M3 washer | included |
+| 4 | 2mm M3 washer | included |
+| 4 | 3mm M3 washer | included |
+| 1 | 150mm ribbon cable 10 way| included |
+| 1 | LOCTITE 648, 435, a cyanoacrylate adhesive or equivalent| not provided |
+| 1 | Printed jig for centering the magnet | not provided |
+
+### Printed Jig
+
+In order to ensure the magnet is centered on the motor shaft, a printed jig can assist with the magnet installation.
+
+The STL and OpenSCAD file for the hig are avalable here:
+
+
 
 # Configuration
 
