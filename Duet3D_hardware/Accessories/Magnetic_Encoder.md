@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2023-04-12T13:26:02.568Z
+date: 2023-04-12T13:30:42.819Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -131,7 +131,7 @@ M569.6 P51.0 V2 ; conduct magnetic encoder calibration on move on closed loop dr
 
 This can be checked with V3 and cleared with V4, see [Runtime Tuning](/User_manual/Tuning/Duet_3_1HCL_tuning#runtime-tuning ){target=_blank}.
 
-It must be run once for a new 1HCL, motor, magnet or magnetic encoder board. The values are stored so it does not need to be run again unless the system changes (new 1HCL, motor, magnet or magnet encoder board).
+It must be run once for a new 1HCL, motor, magnet or magnetic encoder board. The values are stored in flash memory, so it does not need to be run again unless the system changes (i.e. you replace the EXP1HCL, motor, magnet or magnet encoder board, or you remove and re-fit the magnetic encoder board or the magnet).
 
 > Note: this initial tuning must be run with the motor unloaded for best results {.is-warning}
 
