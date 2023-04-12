@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2023-04-12T12:25:56.632Z
+date: 2023-04-12T12:36:16.064Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -114,21 +114,31 @@ This should be read in conjuction with the [1HCL documentation](/Duet3D_hardware
 
 [M569.1](/User_manual/Reference/Gcodes/M569_1){target=_blank} is used to configure the closed loop driver. 
 
-The T parameter specifies that the encoder used is the magnetic 
+The T parameter specifies that the encoder used is the Duet 3 Magnetic encoder 
 
-Here's an sample excerpt from a config.g file for RRF 3.4 to drive the X and Y motors from 1HCL  boards configured at CAN addresses 50 and 51, with quadrature encoders. **Note, some parameters have changed in RRF 3.5**.
+Here's an sample excerpt from a config.g file for RRF 3.5 to drive the X motors from 1HCL board configured at CAN addresses 50, with a Duet 3 Magnetic encoder.
 
 ```
-M569.1 P50.0 T2 C5 R100 I0 D0 ; Configure the 1HCL board at CAN address 50 with a quadrature encoder on the motor shaft that has 5 steps per motor full step. 
-M569.1 P51.0 T2 C5 R100 I0 D0  ; Configure the 1HCL board at CAN address 51 with a quadrature encoder on the motor shaft that has 5 steps per motor full step. 
+M569.1 P50.0 T3 E1:2 R100 I0 D0 ; Configure the 1HCL board at CAN address 50 with a Duet 3 magnetic encoder, warn if 1 fullstep threshold exceeded, error if 2 full steps threshold exceeded. 
 M569 P50.0 D4 S1 ; Configure the motor on the 1HCL at can address 50 as being in closed-loop drive mode (D4) and not reversed (S1) 
-M569 P51.0 D4 S1 ; Configure the motor on the 1HCL at can address 51 as being in closed-loop drive mode (D4) and not reversed (S1) 
-M584 X50.0 Y51.0 ; set X and Y drivers
-M917 X0 Y0 ; Set the closed loop axes to have a holding current of zero
-M350 X32 Y32 ; set steps/mm to 32 to make full use of the encoder resolution
-M92 X160 Y160 ; steps/mm for a 20 tooth gt2 pulley
+M584 X50.0; set X drivers
 ```
 Note the initial PID values show will need to be tuned to the particular motor.
+
+## Magnetic Encoder Tuning.
+
+The [M569.6](/User_manual/Reference/Gcodes/M569_6){target=_blank} command is used to tune the motor and encoder pair, e.g.
+```
+M569.6 P51.0 V2 ; conduct magnetic encoder calibration on move on closed loop driver on HCL board with magnetic encoder at address 50.
+```
+
+This can be checked with V3 and cleared with V4, see:
+[Runtime Tuning](/User_manual/Tuning/Duet_3_1HCL_tuning#runtime-tuning ){target=_blank}
+
+It must be run once for a new 1HCL, motor, magnet, magnetic encoder system. the values are stored so it does not need to be run again unless the system changes (new 1HCL, motor, magnet or magnet encoder board.
+
+> Note: this initial tuning must be run with the motor unloaded for best results {.is-warning}
+
 
 
 # Revision history
