@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-13T06:40:04.483Z
+date: 2023-04-13T06:42:28.673Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -171,6 +171,8 @@ Overview of sandwitching transformations:
 |inversion|
 
 The rotors allow to implement interpolated motions easily. The quaternion slerp method is related to this algorithm.
+
+This chapter will also describe how GA transformations can model screw motions (i. e. Chasles' theorem).
 
 # angles and distances
 
