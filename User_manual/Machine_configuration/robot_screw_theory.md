@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-11T06:58:13.057Z
+date: 2023-04-13T06:58:56.093Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -107,6 +107,8 @@ The three parts are sufficient to calculate new endpoints with given actuator an
 
 
 # Literature about screw theory, Paden-Kahan / canonical subproblems
+
+When searching for screw theory, searching for Chasles' theorem will give some findinds also. The theorem says that all motions can be described by a rotation and translation (a screw).
 
 With the exception of most of the books, all the following literature was available free, being Open Access, source code (e.g. on github) or as pre-printed versions. I especially recommend buying the smaller, less expensive Pardos-Gotor book.
 
