@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2023-04-12T13:34:14.130Z
+date: 2023-04-13T15:50:17.658Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -21,15 +21,15 @@ The Duet3D magnetic encoder senses motor position and rotation using a hall effe
 * 14 Bit On-Axis Magnetic Rotary Sensor
 * Maximum sensor RPM supported 14500 ^1^
 * Supplied with a 4mm thick, 6mm diameter magnet
-* SPI output for communication with a EXP1HCL (supplied with a 150mm ribbon cable for this purpose)
-* 3.3V operation - compatible with the EXP1HCL (Can be modified for 5V operation for other applications. 
+* SPI output for communication with a Duet 3 Expansion 1HCL controller (supplied with a 150mm ribbon cable for this purpose)
+* 3.3V operation - compatible with the Duet 3 Expansion 1HCL controller (Can be modified for 5V operation for other applications. 
 
-^1^ Max system RPM possible depends on the EXP1HCL closed loop speed and the maximum motor RPM
+^1^ Max system RPM possible depends on the Duet 3 Expansion 1HCL controller closed loop speed and the maximum motor RPM
 
 ## Supported hardware
 
 ### Duet 3 hardware
-The Duet 3 Magnetic Encoder is designed to be paired with a [Duet 3 EXP1HCL controller](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL).
+The Duet 3 Magnetic Encoder is designed to be paired with a [Duet 3 Expansion 1HCL controller](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL).
 
 ### Compatible motors
 
@@ -96,7 +96,7 @@ The jig can be printed using a reasonably tuned FDM 3d printer with a 0.4mm nozz
 
 ![Image showing the encoder board fitted to the back of the motor using nylon spacers and the longer M3 bolts. the image shows that the Magnetic encoder chip mounted on the baord is ~1mm for the magnet.](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step4.png)
 
-## Step 4 - Connect to EXP1HCL
+## Step 4 - Connect to Duet 3 Expansion 1HCL
 
 * Connect using the ribbon cable and a stepper motor cable to the 1HCL.
 * Move on to configuration.
@@ -105,7 +105,7 @@ The jig can be printed using a reasonably tuned FDM 3d printer with a 0.4mm nozz
 
 # Configuration
 
-This should be read in conjunction with the [EXP1HCL documentation](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL#commissioning){target=_blank}
+This should be read in conjunction with the [Duet 3 Expansion 1HCL documentation](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL#commissioning){target=_blank}
 
 ## Config.g changes
 
@@ -116,8 +116,8 @@ The T parameter specifies that the encoder used is the Duet 3 Magnetic encoder
 Here's an sample excerpt from a config.g file for RRF 3.5 to drive the X motors from 1HCL board configured at CAN addresses 50, with a Duet 3 Magnetic encoder.
 
 ```
-M569.1 P50.0 T3 E1:2 R100 I0 D0 ; Configure the EXP1HCL board at CAN address 50 with a Duet 3 magnetic encoder, warn if 1 fullstep threshold exceeded, error if 2 full steps threshold exceeded. 
-M569 P50.0 D4 S1 ; Configure the motor on the EXP1HCL at can address 50 as being in closed-loop drive mode (D4) and not reversed (S1) 
+M569.1 P50.0 T3 E1:2 R100 I0 D0 ; Configure the Duet 3 Expansion 1HCL board at CAN address 50 with a Duet 3 magnetic encoder, warn if 1 fullstep threshold exceeded, error if 2 full steps threshold exceeded. 
+M569 P50.0 D4 S1 ; Configure the motor on the Duet 3 Expansion 1HCL controller at can address 50 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M584 X50.0; set X drivers
 ```
 Note the initial PID values shown will need to be tuned to the particular motor.
@@ -126,12 +126,12 @@ Note the initial PID values shown will need to be tuned to the particular motor.
 
 The [M569.6](/User_manual/Reference/Gcodes/M569_6){target=_blank} command is used to tune the motor and encoder pair, e.g.
 ```
-M569.6 P51.0 V2 ; conduct magnetic encoder calibration on move on closed loop driver on EXP1HCL board with magnetic encoder at address 50.
+M569.6 P51.0 V2 ; conduct magnetic encoder calibration on move on closed loop driver on Duet 3 Expansion 1HCL board with magnetic encoder at address 50.
 ```
 
 This can be checked with V3 and cleared with V4, see [Runtime Tuning](/User_manual/Tuning/Duet_3_1HCL_tuning#runtime-tuning ){target=_blank}.
 
-It must be run once for a new 1HCL, motor, magnet or magnetic encoder board. The values are stored in flash memory, so it does not need to be run again unless the system changes (i.e. you replace the EXP1HCL, motor, magnet or magnet encoder board, or you remove and re-fit the magnetic encoder board or the magnet).
+It must be run once for a new 1HCL, motor, magnet or magnetic encoder board. The values are stored in flash memory, so it does not need to be run again unless the system changes (i.e. you replace the Duet 3 Expansion 1HCL controller, motor, magnet or magnet encoder board, or you remove and re-fit the magnetic encoder board or the magnet).
 
 > Note: this initial tuning must be run with the motor unloaded for best results {.is-warning}
 
