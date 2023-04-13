@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-12T01:26:51.660Z
+date: 2023-04-13T06:40:04.483Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -11,9 +11,6 @@ dateCreated: 2023-04-07T08:20:25.411Z
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
 # Robot Geometric Algebra detailed
-
-> work in progress, just started
-{.is-info}
 
 This page give detailed information about conformal geometric algebra (CGA). It is not necessary to use the firmware, but gives insight how the robot kinematics part of the RRF firmware is developed.
 
@@ -41,14 +38,20 @@ The choosen dimension has influence on
 
 # CGA
 
-Conformal geometric algebra, CGA, is placed in Euclidean 3D space, but uses for representation 5 dimensions. The 2 additional dimensions e0 and einf (e∞) are virtual ones with specific properties as explained next:
+Conformal geometric algebra, CGA, is placed in Euclidean 3D space, but uses for representation 5 dimensions.
 
-e1²=e2²=e3²=e+²=1
-e-²=-1
-e+ and e- are converted to e∞ (einf) and e0 to be used in CGA
-e0 = 0.5(e- - e+), einf = 0.5(e- + e+)
-e0 and einf are null vectors: e0²=einf²=0
-The inner product e0 . einf = -1
+The e1, e2, e3 are the x, y, z coordinates. The 2 additional dimensions e0 and einf (e∞) are virtual ones to allow the extended capabilities of CGA. They are designed in a way, so the 3-dimensional euclidean information is included in CGA and can be extracted unchanged.
+
+The coordinate properties are:
+
+- e1²=e2²=e3²=e+²=1
+- e-²=-1
+- e+ and e- are converted to e∞ (einf) and e0 to be used in CGA
+- e0 = 0.5(e- - e+), einf = 0.5(e- + e+)
+- e0 and einf are null vectors: e0²=einf²=0
+- e0 . einf = -1 (inner product)
+
+e+ and e- are the two additional coordinates, but e0 and einf are used to define the objects. Some authors have slightly other definitions for e0 and einf and then as consequence other formulae for the objects.
 
 The additional dimensions allow additional object types and affine orthogonal transformations.
 
@@ -148,8 +151,6 @@ pl=pln/abs(pln);
 ?p1=(pp-sqrt(pp * pp))/x;
 ?p2=(pp+sqrt(pp * pp))/x;
 
-# angles and distances
-
 # transformations
 
 Conformal geometry algebra has its name conformal from the fact that transformations are angle preserving.
@@ -171,4 +172,10 @@ Overview of sandwitching transformations:
 
 The rotors allow to implement interpolated motions easily. The quaternion slerp method is related to this algorithm.
 
+# angles and distances
+
+The inner product is used for angle and distance calculations. It is similar to the matrix dot product, but valid for all dimensions.
+
 # Denavit-Hartenberg - Screw - CGA
+
+This section will probably be moved to configuration page when defined, and will describe how they are related and converted into each other (primarily to allow defintion by DH and then use the data in screw configuration).
