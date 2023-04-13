@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a laser engraver/cutter
 description: How to configure RRF to use a PWM driven laser module
 published: true
-date: 2021-12-15T12:56:39.912Z
+date: 2023-04-13T09:46:23.345Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:48:48.343Z
@@ -141,6 +141,8 @@ M571 P3 F200 S255
 ```
 
 ## Using M3 and M5
+
+> NOTE this is not supported in RRF 3.x. Use the G1 S1 method.{.is-warning}
 
 [M3](/User_manual/Reference/Gcodes/M3) turns the laser on, with the S parameter setting the laser power (0 to 254), before a series corresponding G1 move. The relationship between the S parameter and laser power depends on the R parameter that was specified in the M452 command. [M5](/User_manual/Reference/Gcodes/M5) turns the laser off after the last G1 move. Note there can be issues using this mode as the M-command queue is only 8 commands long, while the G-command queue is 20 commands long. You may get stuttering, particularly when raster engraving. Best to use G1 with S parameter. Only supported in RRF 2.x.
 
