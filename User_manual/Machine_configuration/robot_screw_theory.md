@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-13T06:59:53.455Z
+date: 2023-04-13T07:19:00.918Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -46,17 +46,21 @@ The power of screw theory shows in inverse kinematics and torque calculations to
 
 # Description of Screw Setup
 
-An axis is described by the direction, its position and its property:
-- direction as vector, e.g. (0,0,1) in Z-direction. The angles for rotary and movement for linear axes is as usual right-hand rule, CCW if looking at the arrow
-- an arbitrary point on the axis (preferable a point which crosses with other axes, with the base or with the endpoint)
-- type of axis, rotary, prismatic, palletized-parallel or other
-- whether axis joints parallel axes or is passive
+An axis is described by
+- axis direction of the rotating/moving axis (in DH the Z axis), e. g. (0,0,1) to rotate about the Z axis (rotary axis) or move in Z axis direction (prismatic axis)
+- an arbitray point on the axis
+- type of axis
 
-All axes are described with reference angles. This reference can be 0 degrees each, home angles or anything else. With this setup, the endposition and endorientation is calculated and stored.
+The endpoint position is described
+- for a given set of angles (rotary) and positions (prismatic)
+- endpoint as 3-value position and 9-value orientation
+
+For parallel kinematics
+- how it's organized
+- how the axes movements are related
 
 This information is sufficient to calculate new positions when changing angles/linear positions and to calculated inverse kinematics (i e. from endposition calculating back to the angles). This is possible, because the changed angles/positions are calculated from relative changes in respect to the reference angles.
 
-For special kinematics types like CoreXY or parallel kinematics, it is necessary to define additional properties.
 
 # Paden-Kahan subproblems
 
