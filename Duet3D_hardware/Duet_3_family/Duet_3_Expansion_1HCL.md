@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-04-11T16:44:54.306Z
+date: 2023-04-13T15:54:55.305Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -12,7 +12,7 @@ dateCreated: 2022-02-04T12:59:49.801Z
 
 # Introduction
 
-The EXP1HCL board provides a high current Stepper motor driver, combined with multiple interfaces for position feedback and firmware to implement closed loop position control. In addition it has a number of peripheral inputs and outputs for functions such as sensing motor temperature, controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the Duet 3 Mainboard 6HC, Duet 3 expansion boards, and the tool distribution board). Multiple EXP1HCL boards can be daisy chained on the bus, with power (up to 48V) provided locally. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
+The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, combined with multiple interfaces for position feedback and firmware to implement closed loop position control. In addition it has a number of peripheral inputs and outputs for functions such as sensing motor temperature, controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the Duet 3 Mainboard 6HC, Duet 3 expansion boards, and the tool distribution board). Multiple Duet 3 Expansion 1HCL boards can be daisy chained on the bus, with power (up to 48V) provided locally. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
 
 ![Photograph of a Duet 3 1HCL board shown from above](/duet_boards/duet_3_can_expansion/duet_3_1hcl/1hcl_overhead_wb_sm.png =x500)
 
@@ -53,7 +53,7 @@ The maximum speed at which the firmware can drive the motor reliably in closed l
 
 RRF 3.4 supports quadrature motor shaft encoders only. RRF 3.5 also supports Duet3D magnetic shaft encoders and linear composite encoders.
 
-Encoder resolutions of over 1000PPR/4000CPR are highly recommended. resolutoons below this are unlikely to work well in most situations.
+Encoder resolutions of over 1000PPR/4000CPR are highly recommended. resolutions below this are unlikely to work well in most situations.
 
 ### Quadrature motor shaft encoders
 
@@ -174,7 +174,7 @@ The 1HCL supports a quadrature encoder connected to the Quadrature Input interfa
 
 ### Connecting a Quadrature Shaft Encoder
 
-Quadrature encoders have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output. The EXP1HCL has a 5-pin Molex KK connector for quadrature signals.
+Quadrature encoders have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output. The Duet 3 Expansion 1HCL has a 5-pin Molex KK connector for quadrature signals.
 
 *Note the index signal is not currently used*
 
@@ -190,17 +190,17 @@ Here is a picture (courtesy of LDO motors) which shows a single ended and differ
 
 *This support is available in RRF 3.5*
 
-The 1HCL supports the Duet3D magnetic encoder bsed on the AS5047D encoder IC. We supply this encoder on a Nema17 form factor PCB, designed to sense a diametrically magnetised magnet glued to the back of the motor shaft. We have also used this encoder board on a Nema23 motor using a printed adapter.
+The Duet 3 Expansion 1HCL supports the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) board based on the AS5047D encoder IC. We supply this encoder on a Nema17 form factor PCB, designed to sense a diametrically magnetised magnet glued to the back of the motor shaft. We have also used this encoder board on a Nema23 motor using a printed adapter.
 
-Connect the encoder board to the EXP1HCL to the 10-way box connector using a 10-way straight-through ribbon cable. The cable length should not exceed 200mm.
+Connect the encoder board to the Duet 3 Expansion 1HCL to the 10-way box connector using a 10-way straight-through ribbon cable. The cable length should not exceed 200mm.
 
-*More details to follow*
+See the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) documentation for more information.
 
 ## Linear quadrature encoder plus Magnetic Shaft Encoder
 
 *This support is available on an experimental basis in RRF 3.5*
 
-Attach and connect the magnetic shad encoder as described above. Connect the linear quadrature encoder to the 5-pin Molex connector as decribed above for a quadrature shaft encoder.
+Attach and connect the magnetic shaft encoder as described above. Connect the linear quadrature encoder to the 5-pin Molex connector as described above for a quadrature shaft encoder.
 
 # Commissioning
 
