@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2023-04-13T15:50:17.658Z
+date: 2023-04-13T16:35:22.471Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -33,9 +33,9 @@ The Duet 3 Magnetic Encoder is designed to be paired with a [Duet 3 Expansion 1H
 
 ### Compatible motors
 
-**NEMA17:** All NEMA17 motors with an exposed rear shaft no more than 3.5mm below the pack of the motor should be compatible. If the exposed rear shaft projects from the back of the motor then a mounting solution that holds the sensor ~1mm from the magnet mounted on the shaft will be required.
+**NEMA17:** All NEMA17 motors with an exposed rear shaft no more than 3.5mm below the back of the motor should be compatible. If the exposed rear shaft projects from the back of the motor then a mounting solution that holds the sensor ~1mm from the magnet mounted on the shaft will be required.
 
-**NEMA23 and other sizes:** An adaptor plate/mounting system would be required to use the Duet3 Magnetic encoder with other motors.
+**NEMA23 and other sizes:** An adaptor plate/mounting system would be required to use the Duet 3 Magnetic Encoder with other motors.
 
 
 ## Dimensions
