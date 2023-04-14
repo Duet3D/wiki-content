@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-13T15:05:03.834Z
+date: 2023-04-14T11:33:53.643Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -94,6 +94,8 @@ The choice which (IPNS or OPNS) is called standard form and which is the dual on
 
 IPNS means inner product null space, which means, that to check whether a point intersects with an object, this can be tested by inner product being 0: P.X=0 (p point, X object).
 
+The first version of the point is the same for IPNS and OPNS.
+
 |-|-|-|-|
 |object|how calculated|Gaalop sample code|filled array elements|
 |point|vector + 0.5 * norm² + e0|p=createPoint(1,2,3);|1-5, 1-blades|
@@ -103,6 +105,7 @@ IPNS means inner product null space, which means, that to check whether a point 
 |circle|intersection two spheres|z = s1 ^ s2|6-15 2-blades|
 |line|intersection two planes|l = pl1 ^ pl2|6-8, 10, 11, 13 part of 2-blades|
 |point pair|intersection three spheres|pp = s1 ^ s2 ^ s3|16-25 3-blades|
+|point|intersection four spheres|p = s1 ^ s2 ^ s3 ^ s4||
 
 In IPNS mode, the role of ^ is intersection.
 
@@ -121,6 +124,7 @@ OPNS are the dual representations of IPNS, named by outer product null space. A 
 |circle|three points on circle|c = p1 ^ p2 ^ p3;|16-25 3-blades|
 |line|two points and einf|l = pl1 ^ pl2 ^ einf;|17,19,21,22,24,25 part of the 3-blades|
 |point pair|wedge of two points|pp = p1 ^ p2;|6-15 2-blades|
+|hyperplane|four points and einf|pl = p1 ^ p2 ^ p3 ^ p4 ^ einf;||
 
 In OPNS mode, the role of ^ is to combine the elements to build the object.
 
