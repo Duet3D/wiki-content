@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-14T08:29:13.086Z
+date: 2023-04-14T08:37:25.323Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -61,17 +61,16 @@ For parallel kinematics
 
 This information is sufficient to calculate new positions when changing angles/linear positions and to calculated inverse kinematics (i e. from endposition calculating back to the angles). This is possible, because the changed angles/positions are calculated from relative changes in respect to the reference angles.
 
-Data model (prepared for CGA geometric algebra):
+Data model:
 
 |-|-|-|
 |element|data|example|
-|axis|direction vector, point on axis ,norm|0,0,1,0,0,352,123904|
+|axis|direction vector, point on axis|0,0,1,0,0,352|
 |axis type|type of axis and how parallel setup|RRRRRR|
-|endpoint|3 direction vectors,point of endpoint|12 values + 4 norm²|
+|endpoint|3 direction vectors, point of endpoint|12 values|
 |endpoint angle reference|maxactuators * degrees or positions|0,0,0,0,0,0|
 
-
-The norm is the distance² for the CGA point einf value and is a calculated value (not needed as input).
+The norm which is needed for CGA points is added and cached and is not needed as input value.
 
 # Paden-Kahan subproblems
 
