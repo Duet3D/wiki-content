@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-14T08:53:14.243Z
+date: 2023-04-14T08:56:41.586Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -73,6 +73,8 @@ Data model:
 The direction vectors must be normalized (i. e. the sum of the squares is 1).
 
 The norm which is needed for CGA points is added and cached and is not needed as input value.
+
+To specify parallel kinematics setup, no standard exists yet. As workaround, the robotType parameter is used to specify the types.
 
 # Paden-Kahan subproblems
 
