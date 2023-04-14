@@ -2,7 +2,7 @@
 title: Duet 3 Family
 description: 
 published: true
-date: 2023-04-14T15:10:38.604Z
+date: 2023-04-14T15:10:54.000Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:14:53.360Z
@@ -30,6 +30,6 @@ dateCreated: 2021-06-03T16:14:53.360Z
 
 [Duet 3 Expansion Mini 2+](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_Mini_2+)
 
-## Motor position sensing
+# Motor position sensing
 
 [Duet3D magnetic encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder)
