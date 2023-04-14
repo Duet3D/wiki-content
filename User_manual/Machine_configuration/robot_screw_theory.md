@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-14T08:56:41.586Z
+date: 2023-04-14T11:25:43.802Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -12,7 +12,10 @@ This page is part of multiple pages about robot configuration and usage. Please 
 
 # Screw Theory
 
-Screw theory will not be explained here, because Wikipedia, books and scientific articles can explain it much better than me (see the literature links below for recommendations). The following information provides what is needed to give an overview and configure the kinematics.
+Screw theory uses the fact that every rigid body transformation can be expressed by a rotational and translational movement.
+- Robert Ball developed the theory in 19th century
+- Chasles' theorem
+- Klein, Plücker, Clifford and others developed it further
 
 Screw Theory, also called Product of Exponentials (PoE), is an alternative to Denavit-Hartenberg (DH). DH is the most used method, but screw has some advantages:
 * setup is easier, because less frames and axis definitions are necessary
