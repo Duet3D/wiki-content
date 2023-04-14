@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-14T08:37:25.323Z
+date: 2023-04-14T08:41:34.427Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -66,7 +66,7 @@ Data model:
 |-|-|-|
 |element|data|example|
 |axis|direction vector, point on axis|0,0,1,0,0,352|
-|axis type|type of axis and how parallel setup|RRRRRR|
+|axis type|type of axis and how parallel setup|RRRRRR (industrial robot)|
 |endpoint|3 direction vectors, point of endpoint|12 values|
 |endpoint angle reference|maxactuators * degrees or positions|0,0,0,0,0,0|
 
