@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-04-04T13:30:56.440Z
+date: 2023-04-14T14:38:24.580Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -201,7 +201,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | ^^ | ^^ | **Note:** These outputs are protected by a flyback diode connected to V_OUT_LC_2. Do not mix loads connected to V_OUT_LC_2 with the jumper set to 12V and loads connected to V_FUSED on the same bank. |
 | **1 x 3-pin KK header** | OUT7-OUT9_SelectV | The positive supply to the OUT 7, OUT 8 and OUT 9 connectors is the centre pin of the 3-pin jumper block labeled OUT7-OUT9_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin.|
 | ^^ | ^^ | *see note 1 below*. |
-| **1 x 2-pin KK connector** | VFUSED | This is for powering an always-on fan or similar. |
+| **1 x 2-pin KK connector** | VFUSED | Always on, not switched. This is for powering an always-on fan or similar. Current limit 1.5A|
 | **1 x 2-pin KK connector** | RESET_EXT | For an external normally-open reset switch. |
 | **1 x 2-pin KK header** | ERASE | Add a jumper to erase the firmware. |
 | **1 x 2-pin KK connector** | 12V | Provides 12V power for a PWM to 0-10V converter.|
