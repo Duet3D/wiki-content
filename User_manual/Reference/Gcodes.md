@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-10T23:54:55.082Z
+date: 2023-04-14T08:16:43.108Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4199,9 +4199,29 @@ Supported in RRF >= 2.03.
 M471 S"/sys/config-override.g" T"/sys/config-override.g.bak"
 </pre>
 
+
 ### Notes
 
 Rename or move a file or directory. Using the D parameter will delete any existing file with the target name. Renaming or moving across directories is possible though not from one SD-Card to another.
+
+## M472: Delete File/Directory on SD-Card
+
+Supported in RRF >= 2.03.
+
+### Usage
+
+* M472 P"filename"
+
+### Parameters
+
+* **P"name"** Name of file/directory
+* **Rnnn** Delete directory recursively (defaults to `0`)
+
+### Examples
+<br>
+<pre class="cblock">
+M472 P"/sys/foobar" R1
+</pre>
 
 ## M486: Object cancellation
 
