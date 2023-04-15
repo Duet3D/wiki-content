@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-15T07:28:23.088Z
+date: 2023-04-15T07:36:14.985Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -78,7 +78,7 @@ einf means e∞, 0 means e0, e12 means e1^e2
 
 The order of the single elements of each blade is not standardized, so differnt authors may use different orders.
 
-The name pseudoscalar comes from the fact that it defines the volume 1 of a full dimension object.
+The name pseudoscalar comes from the fact that it defines the volume 1 of a full dimension object and is only one scalar value.
 
 # Dual
 
