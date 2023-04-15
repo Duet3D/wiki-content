@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-14T11:33:53.643Z
+date: 2023-04-15T07:17:15.649Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -138,9 +138,19 @@ Some authors describe additional objects like a hyperplane or different point ty
 
 # intersections
 
-In Euclidian 3D like CGA, intersection result in circles, lines or point pairs. An example is an intersection between two spheres: ci=s1^s2; which is a circle. Two circles intersect to a point pair pp=ci1^ci2;
+Calculation of intersections is one of CGA's strengths, because syntax is very simple.
 
-Point pairs (pp) must be in 2-blade mode, i. e. OPNS.
+∩ means meet.
+
+There are two methods:
+- A ∩ B = dual(B) . A
+- dual(A ∩ B) = dual(B) ^ dual(A)
+
+The dual object is meant to be the IPNS here.
+
+The first method (using the inner product) has preconditions (removing some parts from A), while the second (using wedge product) is without.
+
+In my tests I currently have problems to find the intersection between line and plane, so I decided to test all possible combinations of objects. This will take a while, I'll document the results here.
 
 Example of intersection sphere-sphere-plane, which results in point pair. Followed by an extraction of the point pair into single points:
 
@@ -154,6 +164,11 @@ pl=pln/abs(pln);
 ?x=-einf.pp;
 ?p1=(pp-sqrt(pp * pp))/x;
 ?p2=(pp+sqrt(pp * pp))/x;
+
+For this formula, pp must be in 2-blade mode, i. e. OPNS. Gaalop offers methods to extract the points:
+p1=ExtractFirstPoint(pp);
+p2=ExtractSecondPoint(pp);
+
 
 # transformations
 
