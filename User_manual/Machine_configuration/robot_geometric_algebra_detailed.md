@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-15T08:05:19.364Z
+date: 2023-04-15T08:24:21.392Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -52,10 +52,12 @@ The coordinate properties are:
 - e-²=-1
 - the bases e∞ (einf) and e0 are used instead of e+ and e-:
 - e0 = 0.5(e- - e+), einf = e- + e+
-- e0²=einf²=0 (null vectors)
+- e0²=einf²=0 (i. e. they are null vectors)
 - e0 . einf = -1 (inner product)
 
 e+ and e- are the two additional coordinates (where the name G4,1 comes from), but e0 and einf are used to define the objects.
+
+Because e0 and einf are null vectors, the product p.p has the same length as the norm of the euclidean based vector of the point.
 
 The additional dimensions allow additional object types and affine orthogonal transformations.
 
