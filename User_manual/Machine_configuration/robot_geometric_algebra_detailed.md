@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-15T07:18:15.137Z
+date: 2023-04-15T07:28:23.088Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -29,8 +29,12 @@ For example,
 - G3,0,1 PGA is projective geometric algebra which is often used for (game) graphics
 - G3,1 CRA compass ruler algebra is the CGA flavor for 2D and used in the Introduction book of Hildenbrand to explain GA
 - G4,1 CGA see next section
-- GAC is geometric algebra conic
+- G5,3 GAC is an algebra for conics (H10)
+- G8,2 (?) Double CGA adds objects like quadrics, tori and cylinders (H11)
+- G9,7 (?) Cubic CGA adds cubics (H12)
 - there are many other ones like G2, G3, G3,3, G9 etc.
+
+H10 = Hildenbrand The Power of ... chapter 10.
 
 The choosen dimension has influence on
 - the capabilities
