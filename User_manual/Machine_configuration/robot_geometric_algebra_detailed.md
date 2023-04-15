@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-15T07:56:12.509Z
+date: 2023-04-15T07:57:59.790Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -199,8 +199,4 @@ This chapter will also describe how GA transformations can model screw motions (
 
 # angles and distances
 
-The inner product is used for angle and distance calculations. It is similar to the matrix dot product, but valid for all dimensions.
-
-# Denavit-Hartenberg - Screw - CGA
-
-This section will probably be moved to configuration page when defined, and will describe how they are related and converted into each other (primarily to allow defintion by DH and then use the data in screw configuration).
+tbd
