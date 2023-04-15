@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-15T07:36:14.985Z
+date: 2023-04-15T07:41:42.074Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -150,7 +150,7 @@ There are two methods:
 - A ∩ B = dual(B) . A
 - dual(A ∩ B) = dual(B) ^ dual(A)
 
-The dual object is meant to be the IPNS here.
+The dual object is meant to be the IPNS here. (Example: if a plane is created by using normal and distance, it is in dual mode already).
 
 The first method (using the inner product) has preconditions (removing some parts from A), while the second (using wedge product) is without.
 
