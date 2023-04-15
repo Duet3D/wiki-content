@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-15T07:41:42.074Z
+date: 2023-04-15T07:56:12.509Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -154,7 +154,7 @@ The dual object is meant to be the IPNS here. (Example: if a plane is created by
 
 The first method (using the inner product) has preconditions (removing some parts from A), while the second (using wedge product) is without.
 
-In my tests I currently have problems to find the intersection between line and plane, so I decided to test all possible combinations of objects. This will take a while, I'll document the results here.
+In my tests I currently have problems to find the intersection between line and plane and circle-circle, so I decided to test all possible combinations of objects. This will take a while, I'll document the results here.
 
 Example of intersection sphere-sphere-plane, which results in point pair. Followed by an extraction of the point pair into single points:
 
