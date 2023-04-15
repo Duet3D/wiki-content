@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-15T08:43:13.680Z
+date: 2023-04-15T08:45:01.057Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -57,7 +57,7 @@ The coordinate properties are:
 
 e+ and e- are the two additional coordinates (where the name G4,1 comes from), but e0 and einf are used to define the objects.
 
-Because e0 and einf are null vectors, the inner product of two points have the same length as the euclidean vectors of the points. p.p itself is a null vector.
+Because e0 and einf are null vectors, the inner product of two points have the same length as the euclidean distance of the vectors of the points. p.p=0, i. e. is a null vector.
 
 The additional dimensions allow additional object types and affine orthogonal transformations.
 
