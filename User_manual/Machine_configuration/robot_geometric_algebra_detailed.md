@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-15T07:57:59.790Z
+date: 2023-04-15T08:05:19.364Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -187,11 +187,12 @@ A reflection by line or plane is possible, but in most cases for transformations
 Overview of sandwitching transformations:
 
 |-|-|-|
-|reflection|one reflection|
-|rotation|two reflections|
-|translation|reflections at two parallel planes||
-|motor|combined translation and rotation||
-|inversion|
+|reflection at line|one reflection|formula|
+|reflection at plane|one reflection|formula|
+|rotation|two reflections|formula|
+|translation|reflections at two parallel planes|formula|
+|motor|combined translation and rotation|formula|
+|inversion|at sphere|formula|
 
 The rotors allow to implement interpolated motions easily. The quaternion slerp method is related to this algorithm.
 
