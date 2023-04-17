@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-17T07:20:25.576Z
+date: 2023-04-17T07:21:47.093Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -202,7 +202,8 @@ This chapter will also describe how GA transformations can model screw motions (
 
 # angles
 
-the following is to be verified:
+> The following is from the memory and is to be verified
+{.is-warning}
 
 A vector can be created by subtracting points:
 p1=createPoint(1,0,0);
