@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-15T08:45:01.057Z
+date: 2023-04-17T07:19:00.091Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -200,6 +200,29 @@ The rotors allow to implement interpolated motions easily. The quaternion slerp 
 
 This chapter will also describe how GA transformations can model screw motions (i. e. Chasles' theorem).
 
-# angles and distances
+# angles
 
-tbd
+the following is to be verified:
+
+A vector can be created by subtracting points:
+p1=createPoint(1,0,0);
+p2=createPoint(2,0,0);
+?v1=p2-p1;
+
+The angle between two vectors a and b is:
+
+Inner product i:
+a . b = |a| |b| * cos(phi)
+if the vectors are normalized: a . b = cos(phi)
+
+Wedge (outer) product w:
+(a ^ b)(a ^ b) = |a||b| sin(phi)
+if the vectors are normalized: (a ^ b)(a ^ b) = sin(phi)
+
+For the angle to be correct in 360 degree range and with correct orientation:
+For normalized vectors:
+atan2(sin,cos) = atan2(w,i) = atan2((a ^ b)(a ^ b), a . b)
+
+Gaalop has no atan2 function, so atan(w/i) can be calculated instead and a 180 degree correction must be made for the cases sin... and cos... (tbd)
+
+# distances
