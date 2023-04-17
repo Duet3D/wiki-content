@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-17T07:19:00.091Z
+date: 2023-04-17T07:20:25.576Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -208,6 +208,7 @@ A vector can be created by subtracting points:
 p1=createPoint(1,0,0);
 p2=createPoint(2,0,0);
 ?v1=p2-p1;
+The vector has xyz euclidean information and an einf component which contains information about weight and orientation.
 
 The angle between two vectors a and b is:
 
