@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2023-03-29T14:16:10.992Z
+date: 2023-04-17T16:40:10.357Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -89,12 +89,16 @@ Example of the endstop congiration:
 M574 X1 S1 P"io1.in"                            ; configure switch-type (e.g. microswitch) endstop for low end on X via pin io1.in
 M574 Y1 S1 P"io2.in"                            ; configure switch-type (e.g. microswitch) endstop for low end on Y via pin io2.in
 M574 U2 S1 P"io3.in"                            ; configure switch-type (e.g. microswitch) endstop for high end on U via pin io3.in
+```
 
+```
 ; RRF 3.x, Duet 2
 M574 X1 S1 P"xstop"                             ; configure switch-type (e.g. microswitch) endstop for low end on X via pin xstop
 M574 Y1 S1 P"ystop"                             ; configure switch-type (e.g. microswitch) endstop for low end on Y via pin ystop
 M574 U2 S1 P"e0stop"                            ; configure switch-type (e.g. microswitch) endstop for high end on U via pin e0stop 
+```
 
+```
 ; RRF 2.x, Duet 2 : 
 M574 X1 Y1 Z0 U2 S1 ; Set endstop configuration (X and Y endstops at low end, U endstop at high end, active high, no Z endstop)
 ```
