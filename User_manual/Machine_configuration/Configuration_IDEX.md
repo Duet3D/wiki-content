@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2023-04-17T16:40:10.357Z
+date: 2023-04-17T16:47:40.166Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -168,7 +168,7 @@ G30 ; probe the bed and set Z height
 
 # Bed probing file
 
-Bed probing is always done using the X carriage - so the X carriage is the one that carries your Z probe. The X coordinates in G30 commands are never mapped.
+In formal setups, bed probing is always done using the X carriage - so the X carriage is the one that carries your Z probe. The X coordinates in G30 commands are never mapped.
 
 You should take the following precautions in the bed.g file for an IDEX machine:
 
