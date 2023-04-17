@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-04-13T15:54:55.305Z
+date: 2023-04-17T13:59:57.166Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -174,11 +174,11 @@ The 1HCL supports a quadrature encoder connected to the Quadrature Input interfa
 
 ### Connecting a Quadrature Shaft Encoder
 
-Quadrature encoders have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output. The Duet 3 Expansion 1HCL has a 5-pin Molex KK connector for quadrature signals.
+Quadrature encoders (which may use optical or magnetic technology) have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output. The Duet 3 Expansion 1HCL has a 5-pin Molex KK connector for quadrature signals.
 
-*Note the index signal is not currently used*
+*Note the index signal (N or Z) is not currently used*
 
-If the encoder has a single ended output the signal lines connect to the 1HCL input. A to A_INPUT, B to B_INPUT. 5V or VCC to the +5V and ground to ground. The Z or N can be left disconnected.
+If the encoder has a single ended output then the signal lines connect to the 1HCL input: A to A_INPUT, B to B_INPUT, and 5V or VCC to the +5V and ground to ground. The Z or N can be left disconnected.
 
 If the encoder has a differential output then connect the A+, B+ to the signal inputs on the 1HCL. 5V/VCC to 5V and ground to ground. The A-,B- and Z+Z-/N+N- can be left disconnected.
 
@@ -186,9 +186,9 @@ Here is a picture (courtesy of LDO motors) which shows a single ended and differ
 
 ![Image showing both single ended and differential encoder connection schemes](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_encoders_01.png =600x)
 
-## Magnetic Shaft Encoder
+## Duet3D Magnetic Shaft Encoder
 
-*This support is available in RRF 3.5*
+*This support is available from RRF 3.5*
 
 The Duet 3 Expansion 1HCL supports the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) board based on the AS5047D encoder IC. We supply this encoder on a Nema17 form factor PCB, designed to sense a diametrically magnetised magnet glued to the back of the motor shaft. We have also used this encoder board on a Nema23 motor using a printed adapter.
 
@@ -196,11 +196,11 @@ Connect the encoder board to the Duet 3 Expansion 1HCL to the 10-way box connect
 
 See the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) documentation for more information.
 
-## Linear quadrature encoder plus Magnetic Shaft Encoder
+## Linear quadrature encoder plus Duet3D Magnetic Shaft Encoder
 
 *This support is available on an experimental basis in RRF 3.5*
 
-Attach and connect the magnetic shaft encoder as described above. Connect the linear quadrature encoder to the 5-pin Molex connector as described above for a quadrature shaft encoder.
+Attach and connect the Duet3D magnetic shaft encoder as described above. Connect the linear quadrature encoder to the 5-pin Molex connector as described above for a quadrature shaft encoder.
 
 # Commissioning
 
