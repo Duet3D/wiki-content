@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-17T07:37:42.259Z
+date: 2023-04-17T07:38:34.672Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -229,4 +229,4 @@ Gaalop has no atan2 function, so atan(w/i) can be calculated instead and a 180 d
 
 # distances
 
-The inner product is the main tool to calculate distances. Depending on the object types, the meaning is different. For example, an inner product between a line and a plane measures the angle between them, while other the inner product of other object types will measure different types of distances.
+The inner product is the main tool to calculate distances. Depending on the object types, the meaning is different. For example, an inner product between a line and a plane measures the angle between them, while the inner product of other object types will measure different types of distances.
