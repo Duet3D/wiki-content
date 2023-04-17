@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-04-17T13:59:57.166Z
+date: 2023-04-17T14:02:42.581Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -228,7 +228,7 @@ Duet 3 expansion boards and tool boards have a bootstrap loader written to the s
 
 ## Updating the firmware
 
-The 1HCL board will be shipped with firmware loaded during production. You can  check the version loaded by sending
+The 1HCL board will be shipped with firmware loaded during production. You can check the version loaded by sending
 
 `M115 B123`
 
@@ -236,7 +236,7 @@ The 1HCL board will be shipped with firmware loaded during production. You can  
 
 To update the firmware get the [latest version from the RepRapFirmware github.](https://github.com/Duet3D/RepRapFirmware/releases) It is recommended to upgrade all the firmware in your Duet 3 system together so that the versions do not get out of sync.
 
-Send M997 B## to carry out a firmware update, the bootloader will request the Duet3Firmware_EXP1HCL.bin from the Duet 3 main board, it needs to be in the /firmware folder.
+Send M997 B## to carry out a firmware update. The bootloader will request the Duet3Firmware_EXP1HCL.bin from the Duet 3 main board; it needs to be in the /firmware folder of the SD card.
 
 ## Set the CAN address
 
