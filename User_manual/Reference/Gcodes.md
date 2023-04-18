@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-14T08:16:43.108Z
+date: 2023-04-18T17:37:15.667Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4206,7 +4206,7 @@ Rename or move a file or directory. Using the D parameter will delete any existi
 
 ## M472: Delete File/Directory on SD-Card
 
-Supported in RRF >= 2.03.
+Supported in RRF >= 3.5.
 
 ### Usage
 
