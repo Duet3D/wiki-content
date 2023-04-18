@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2022-11-27T16:13:18.608Z
+date: 2023-04-18T08:19:40.085Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -18,6 +18,11 @@ The following description includes the following robot types:
 * Pentarod or Open5x like
 * 5BarParallelScara with AC or BC rotational axes (planned)
 
+Those types have in common
+- three linear axes for XYZ position without orientation (rotary) change. Part of the XYZ may be rotary (e. g. the 5 Bar Scara)
+- two rotary axes for orientation change. They change the XYZ position as well a little bit (see RTCP below). They are named AC or BC. The axes can be intersecting or skewing, but may not be parallel.
+- the current tool is added to the position with its G10 offset value
+
 # AC, BC
 
 The types above have a specific method to move X, Y, Z and addional two rotational axes which are called AC or BC:
@@ -32,9 +37,9 @@ The most often used version is the table/table AC type. Sometimes, especially fo
 
 Defining the axes by DH parameters allow all combinations and offsets between the axes. As example, the A and C axes need not to cross.
 
-# Denavit-Hartenberg (DH)
+# Configuration
 
-CNC 5 axis properties are defined by DH parameters: the direction of the axes, where the 0 degree angle is located and in which direction the rotation is a positive angle, axes offsets and positional offsets of linear axes. There is a dedicated document to describe DH parameters and give examples.
+The axis definitions are described on the configuration and screw pages. Denavit-Hartenberg parameters can be used as input in the RobotViewer application and transfered to screw.
 
 # Calculation
 
@@ -45,6 +50,7 @@ The following calculation is done by firmware:
 * when G-Code arrives, it is interpreted as tool tip position and orientation (tool or workpiece). I. e. specific implementations like rotary axis offsets  and where the Z distance come from (tool length, print bed thickness) do not play a role. Forward kinematics transfers this machine independent information to motor positions by calculating using the transformation matrices and tool offsets. Important is, that the G-Code AC values often do not match the AC rotary angles. They match only, if the rotary axes are spheric, i. e. without any displacements and the C axis is directly below the endpoint midpoint.
 * the inverse kinematics starts from the motor positions and calculates the XYZAC tool tip positions and orientations, once again XYZAC has nothing to do with the concrete AC angles. Even XYZ do not match, because through rotation of the AC axes, they differ from the XYZ motor positions.
 * a planned move is segmented into smaller straight lines with XYZAC positions. The kinematics will calculate the true motor positions for every segment. This is called RTCP.
+
 # Segmentation
 
 A move is segmented into small straight lines. The segmentation is calculated and planned in the main process of RRF and is not part of the kinematics. The kinematics calculates forward and inverse information for the true XYZ positions, so this is equal to which is named RTCP mode.
@@ -135,18 +141,3 @@ What should be added:
 # unsorted
 
 CNC 5 axis has a spindle with only one orientation in Z direction (orientationType=zaxis). Two rotational axes are used to change the angle of the spindle in respect to the workpiece surface. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis. The angle of the spindle in respect to the workpiece surface is described as tool vector values. In the documentation about firmware is a detailed description about orientation types.
-
-# 5 Bar Parallel Scara
-
-There is already a kinematics for 5 Bar Parallel Scara https://docs.duet3d.com/User_manual/Machine_configuration/Configuration_five_bar_parallel_scara but it can be used by robot kinematics also. The config is more complicated that the other robot types, because there are specific additional parameters, which must be defined somehow.
-
-Currently the following method is used to define the config:
-* B"robotType=5BarParallelScara"
-* Dn and Dn+1 specifies the connected actuators to drive the two arms. The Dn xtr (= DH a) parameter specifies the proximal arm lenghts. The mapDriveLetterDn assignments of X and Y are used to get the correct Dn numbers
-* Dn+2 and Dn+3 are the passive driven arms connected to Dn and Dn+1 respectively. Dn+2 and Dn+3 are then connected to close the chain. The xtr (= DH a) parameter specify the distal arm lengths from hinge to hinge (the hotend has an additional distance in cantilevered case)
-* workmode and cantilevered modes are specified through special P parameters (tbd), same with angle restrictions
-* the Z axis is specified like a normal prismatic axis
-
-To summarize: D!0 base offsets, D!1 Z axis workpiece mode, D2 and D3 proximal arms, D4 and D5 distal arms, optionally D6 cantilevered, D7 tool. X and Y must be assigned to D2 and D3, D4 and D5 must be without actuators, D6 as well without actuator if cantilevered mode is used. If there would be an actuator assembled on the cantilevered arm, this would be D7 and the tool D8.
-
-Compared to the dedicated 5BarParallelScara kinematics, the robot kinematics will allow to finetune axis properties and support the planned calibration (calculating back from hotend to joint/link properties). Disadvantage is, that calculation effort maybe higher.
