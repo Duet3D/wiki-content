@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-04-18T08:19:40.085Z
+date: 2023-04-18T08:21:42.835Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -16,7 +16,7 @@ The following description includes the following robot types:
 * CNC 5 axis AC or BC, head/head, head/table or table/table
 * CoreXY or CoreXZ with AC or BC rotational axes. Z can move the table or the head similar to a CNC
 * Pentarod or Open5x like
-* 5BarParallelScara with AC or BC rotational axes (planned)
+* 5BarParallelScara 5 axis version
 
 Those types have in common
 - three linear axes for XYZ position without orientation (rotary) change. Part of the XYZ may be rotary (e. g. the 5 Bar Scara)
