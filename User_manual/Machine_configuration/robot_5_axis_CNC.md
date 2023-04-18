@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-04-18T08:21:42.835Z
+date: 2023-04-18T08:23:55.791Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -19,8 +19,8 @@ The following description includes the following robot types:
 * 5BarParallelScara 5 axis version
 
 Those types have in common
-- three linear axes for XYZ position without orientation (rotary) change. Part of the XYZ may be rotary (e. g. the 5 Bar Scara)
-- two rotary axes for orientation change. They change the XYZ position as well a little bit (see RTCP below). They are named AC or BC. The axes can be intersecting or skewing, but may not be parallel.
+- three linear axes for XYZ position without orientation (rotary) change. Part of the XYZ may be rotary (e. g. the 5 Bar Scara). Z can move the bed or the hotend/tool/endpoint.
+- two rotary axes for orientation change. They change the XYZ position as well a little bit (see RTCP below). They are named AC or BC. The axes can be intersecting or skewing, but may not be parallel. The axes can rotate the bed or the tool or cobinations of it.
 - the current tool is added to the position with its G10 offset value
 
 # AC, BC
