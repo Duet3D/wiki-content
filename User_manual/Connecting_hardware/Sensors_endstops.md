@@ -2,7 +2,7 @@
 title: Connecting endstop switches
 description: 
 published: true
-date: 2021-12-15T22:26:26.806Z
+date: 2023-04-19T15:08:05.240Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-20T14:14:43.144Z
@@ -135,7 +135,7 @@ Other Duets: Preferably, use 3.3V-compatible Hall sensors instead. However, If y
 
 ## 3.3V-compatible optical endstop
 
-Connect Gnd to Gnd, Vcc of the opto sensor to 3V3, and the output of the opto sensor to STP/IN. Opto sensors usually have active high outputs, so use S1 in the M574 command.
+Connect Gnd to Gnd, Vcc of the opto sensor to 3V3, and the output of the opto sensor to STP/IN. Opto sensors usually have active high outputs, so in RRF 3.0 and later set the endstop type to switch (S1) in the M574 command. In RRF 2.x and earlier, also use S1 in the M574 command, though this sets the endstop as have active high input.
 
 Note: opto endstops made to the Generation 7 design are often claimed to be 3.3V-compatible, but in fact the design is marginal with a 5V supply and frequently doesn't work at all on 3.3V. Here are some workarounds:
 
