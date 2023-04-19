@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-17T07:43:39.097Z
+date: 2023-04-19T13:10:57.567Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -199,6 +199,22 @@ Overview of sandwitching transformations:
 The rotors allow to implement interpolated motions easily. The quaternion slerp method is related to this algorithm.
 
 This chapter will also describe how GA transformations can model screw motions (i. e. Chasles' theorem).
+
+# transformations and quaternions
+
+Quaternions are rotors in 3D space.
+
+A quaternion q = qw * w + qi * i + qj * j + qk * k;
+qw² + qi² + qj² + qk² = 1
+i * j * k = -1
+etc.
+
+Then the relation to GA is that the quaternions are the following blades and basis of the rotor bivectors:
+i = e3e2
+j = e1e3
+k = e2e1
+
+There are other relations from other authors, where the sign of the result is different.
 
 # angles
 
