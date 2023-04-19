@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-14T11:25:43.802Z
+date: 2023-04-19T06:54:06.603Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -105,6 +105,17 @@ The crossing was also defined by the "Pieper criterion". Nearly all kinematics w
 *) number of angle solutions
 
 The solutions are described on the geometric algebra detailed page, starting with PK2.
+
+# screw formula, resolve by PK
+
+This frightening looking formula - tbd insert image - is simple, if looking in overview mode:
+- the e elements are single actuator, the theta are are angles or linear movements. Those are the screw rotations and translations.
+- noap is the end position of the reference angles/positions (noap stands for nick - ... - approach - position of a gripper) and is a 4x4 transformation matrix described on the firmware page.
+
+The angles/positions are resolved by isolating e elements or pairs of e elements by
+- moving the other elements to the right side by inverting them
+- finding points where e elements can be removed. They are the special cases of PK1 and PK3, if a point is on the axis
+- getting the angle(s) by applying a PK method
 
 # C parameter
 Configuration has three parts:
