@@ -2,7 +2,7 @@
 title: robot geometric algebra detailed
 description: Semantics and syntax of geometric algebra, especially conformal one (CGA)
 published: true
-date: 2023-04-19T13:10:57.567Z
+date: 2023-04-19T13:12:12.162Z
 tags: robot
 editor: markdown
 dateCreated: 2023-04-07T08:20:25.411Z
@@ -204,7 +204,7 @@ This chapter will also describe how GA transformations can model screw motions (
 
 Quaternions are rotors in 3D space.
 
-A quaternion q = qw * w + qi * i + qj * j + qk * k;
+A quaternion q = qw + qi * i + qj * j + qk * k;
 qw² + qi² + qj² + qk² = 1
 i * j * k = -1
 etc.
