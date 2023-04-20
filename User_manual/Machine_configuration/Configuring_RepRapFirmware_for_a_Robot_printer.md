@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-04-20T05:50:56.792Z
+date: 2023-04-20T05:57:55.382Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -26,10 +26,9 @@ Using:
 Theories:
 |---|---|
 |firmware explained, orientations|[Firmware](/User_manual/Machine_configuration/robot_firmware)|
-|screw theory (product of exponentials)|[screw theory](/User_manual/Machine_configuration/robot_screw_theory)|
-|geometric algebra|[geometric algebra](/User_manual/Machine_configuration/robot_geometric_algebra)|
-|geometric algebra detailed|[geometric algebra detailed](/User_manual/Machine_configuration/robot_geometric_algebra_detailed)|
-|Denavit-Hartenberg explanation and examples|[DH parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)|
+|screw theory (product of exponentials, PoE)|[screw theory](/User_manual/Machine_configuration/robot_screw_theory)|
+|conformal geometric algebra (CGA)|[geometric algebra](/User_manual/Machine_configuration/robot_geometric_algebra)|
+|Denavit-Hartenberg (DH)|[DH parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)|
 
 
 The kinematics is developed for Duet3Ds RepRapFirmware. The **robot firmware is currently in development** on the base of RRF 3.5 beta.
