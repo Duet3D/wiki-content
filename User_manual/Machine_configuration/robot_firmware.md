@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2022-12-29T09:17:29.041Z
+date: 2023-04-20T07:36:55.124Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -305,3 +305,16 @@ There are 6 common types, currently supported are:
 * spherical, indirectly supported by 3 rotational joints: a roll-pitch-yaw (RPY) construction of three rotational joints of a 6 axis industrial robot behaves like a spherical joint. A spherical joint (and hence the RPY 3 axes) suffer from the gimbal lock singularity, which occurs at a 6 axis robot when axis 5 is 0 degrees and the axes 4 and 6 are parallel.
 
 The other types are helical, cylindrical and universal. 
+
+# testing kinematics
+
+![robot_forward_inverse_testing.png](/manual/configuration/robot_forward_inverse_testing.png)
+
+The kinematics code includes code to test the robot type's code for forward and inverse kinematics. It can be run with simulation with random values of actuator angles or by G-Code G1 target positions and orientations with M669 R ... (tbd to be specified).
+
+The procedure is as follows:
+- a robotType (type, configuration of actuators, arms etc) is specified
+- with random actuator angles or positions (for rotary or prismatic actuators), forward position and orientation is calculated
+- with this position/orientation, the inverse solution(s) are calculated
+- the match is tested, primarily the actuator match. Position/Orientation match can also be tested to test for rounding errors or singularity reasons to hinder reachability
+- the testing can also be other round, calculating the inverse first and then validating it by calculating foward after it
