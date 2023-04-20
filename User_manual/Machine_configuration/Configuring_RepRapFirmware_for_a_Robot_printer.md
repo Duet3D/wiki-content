@@ -2,25 +2,34 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-04-07T08:22:24.786Z
+date: 2023-04-20T05:50:56.792Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
 ---
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
+
+How to setup:
 |---|---|
-|configuration|[Configuring](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)|
+|configuration (starting page)|[Configuring](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)|
+|6 axis robot|[6 axis industrial](/User_manual/Machine_configuration/robot_industrial_6_axis)|
+|CNC, CoreXY, Prusalike 5 axis|[5 axis](/User_manual/Machine_configuration/robot_5_axis_CNC)|
+|4 axis palletized|[4 axis palletized](/User_manual/Machine_configuration/robot_4_axis_palletized)|
+|parallel robots|tbd|
+
+Using:
+|---|---|
+|RobotViewer DWC plugin|[RobotViewer DWC plugin](/User_manual/Machine_configuration/RobotViewer_DWC_plugin)|
+|Object Model|[object model](/User_manual/Machine_configuration/robot_object_model)|
+
+Theories:
+|---|---|
+|firmware explained, orientations|[Firmware](/User_manual/Machine_configuration/robot_firmware)|
 |screw theory (product of exponentials)|[screw theory](/User_manual/Machine_configuration/robot_screw_theory)|
 |geometric algebra|[geometric algebra](/User_manual/Machine_configuration/robot_geometric_algebra)|
 |geometric algebra detailed|[geometric algebra detailed](/User_manual/Machine_configuration/robot_geometric_algebra_detailed)|
 |Denavit-Hartenberg explanation and examples|[DH parameters](/User_manual/Machine_configuration/Configuring_Robot_DH_parameters)|
-|firmware explained, orientations|[Firmware](/User_manual/Machine_configuration/robot_firmware)|
-|CNC, CoreXY, Prusalike 5 axis|[5 axis](/User_manual/Machine_configuration/robot_5_axis_CNC)|
-|4 axis palletized|[4 axis palletized](/User_manual/Machine_configuration/robot_4_axis_palletized)|
-|6 axis robot|[6 axis industrial](/User_manual/Machine_configuration/robot_industrial_6_axis)|
-|Object Model|[object model](/User_manual/Machine_configuration/robot_object_model)|
-|RobotViewer DWC plugin|[RobotViewer DWC plugin](/User_manual/Machine_configuration/RobotViewer_DWC_plugin)|
 
 
 The kinematics is developed for Duet3Ds RepRapFirmware. The **robot firmware is currently in development** on the base of RRF 3.5 beta.
