@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-20T06:09:55.285Z
+date: 2023-04-20T06:34:22.958Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -41,6 +41,28 @@ GA is like an onion, starting simple with option to solve complex problems with 
 - even higher spaces like 6 and 9 dimensions, supporting cubic, conic, quantum theory topics
 
 To optimize performance, simple problem can therefore solved by simple methods and use higher dimensions if needed.
+
+# Geometric Algebra dimension
+
+There are several different geometric dimension systems, declared as Gp,q[,r]:
+- p are coordinate axes which square to 1
+- q square to -1
+- r squares to 0
+
+For example,
+
+- G3 uses three real axes e1, e2 and e3 with e1² = e2² = e3² = 1 unit values.
+- G3,0,1 PGA is projective geometric algebra which is often used for (game) graphics
+- G3,1 CRA compass ruler algebra is the CGA flavor for 2D and used in the Introduction book of Hildenbrand to explain GA
+- G4,1 CGA see next section
+- G5,3 GAC is an algebra for conics
+- G8,2 (?) Double CGA adds objects like quadrics, tori and cylinders
+- G9,7 (?) Cubic CGA adds cubics
+- there are many other ones like G2, G3, G3,3, G9 etc.
+
+The choosen dimension has influence on
+- the capabilities
+- how much memory is necessary to store the geometric objects
 
 # Conformal Geometric Algebra, CGA
 
@@ -90,58 +112,6 @@ Every rigid body motion can be represented by a rotation and translation in the 
 
 Conformal Geometric algebra (CGA) can describe transformations (rotation, reflection, translation, dilation) by so-called rotors with the help of versors. Screw motions can be realised by combining the two rotors rotation and translation. A description can be found in chapter 13.5.2 of the Dorst book.
 
-# Geometric Algebra Software
-
-To verify code, Gaalop by Hildenbrand/Steinmetz is used. GAViewer by Dorst is also nice and fast, but uses a different syntax. Clifford Multivector Toolbox for Matlab is also available.
-
-An overview of software is in Breuils et al - New Applications ... chapter 10.
-
-Gaalop
-- is actively developed
-- creates code for C++, Python, CUDA and others
-- creates visualization code, but could be nicer, like GAViewer
-- offers a web version and two universities who offer web based online usage
-- can be extended by Maxima to optimize the symbolic code of GA
-- http://www.gaalop.de/ is open source and LGPL 3, Java based
-
-Clifford Multivector Toolbox for Matlab (not tested yet)
-- GPL license
-- developed by Sangwine/Hitzer
-- https://clifford-multivector-toolbox.sourceforge.io/
-
-
-# Geometric Algebra in Firmware
-
-An old development saying is, to develop correctly with respect to design first, then analyze for bottlenecks and optimize later. In other words, don't optimize too early to avoid bad designs. In this spirit, I'm implementing all
-* in Conformal Geometric Algebra, 5 dimensional
-* check performance and memory usage
-* strip down and simplify if this usage is too high for RRF
-
-This approach will allow using the full functionality on a PC or in a future Duet with lot of memory.
-
-# Geometric Algebra dimension
-
-There are several different geometric dimension systems, declared as Gp,q[,r]:
-- p are coordinate axes which square to 1
-- q square to -1
-- r squares to 0
-
-For example,
-
-- G3 uses three real axes e1, e2 and e3 with e1² = e2² = e3² = 1 unit values.
-- G3,0,1 PGA is projective geometric algebra which is often used for (game) graphics
-- G3,1 CRA compass ruler algebra is the CGA flavor for 2D and used in the Introduction book of Hildenbrand to explain GA
-- G4,1 CGA see next section
-- G5,3 GAC is an algebra for conics (H10)
-- G8,2 (?) Double CGA adds objects like quadrics, tori and cylinders (H11)
-- G9,7 (?) Cubic CGA adds cubics (H12)
-- there are many other ones like G2, G3, G3,3, G9 etc.
-
-H10 = Hildenbrand The Power of ... chapter 10.
-
-The choosen dimension has influence on
-- the capabilities
-- how much memory is necessary to store the geometric objects
 
 # Dual
 
@@ -217,7 +187,7 @@ The dual object is meant to be the IPNS here. (Example: if a plane is created by
 
 The first method (using the inner product) has preconditions (removing some parts from A), while the second (using wedge product) is without.
 
-In my tests I currently have problems to find the intersection between line and plane and circle-circle, so I decided to test all possible combinations of objects. This will take a while, I'll document the results here.
+The dual is in respect to the common blades of A and B. For some object combinations, calculation becomes complex.
 
 Example of intersection sphere-sphere-plane, which results in point pair. Followed by an extraction of the point pair into single points:
 
@@ -308,6 +278,24 @@ Gaalop has no atan2 function, so atan(w/i) can be calculated instead and a 180 d
 
 The inner product is the main tool to calculate distances. Depending on the object types, the meaning is different. For example, an inner product between a line and a plane measures the angle between them, while the inner product of other object types will measure different types of distances.
 
+# Geometric Algebra Software
+
+To verify code, Gaalop by Hildenbrand/Steinmetz is used. GAViewer by Dorst is also nice and fast, but uses a different syntax. Clifford Multivector Toolbox for Matlab is also available.
+
+An overview of software is in Breuils et al - New Applications ... chapter 10.
+
+Gaalop
+- is actively developed
+- creates code for C++, Python, CUDA and others
+- creates visualization code, but could be nicer, like GAViewer
+- offers a web version and two universities who offer web based online usage
+- can be extended by Maxima to optimize the symbolic code of GA
+- http://www.gaalop.de/ is open source and LGPL 3, Java based
+
+Clifford Multivector Toolbox for Matlab (not tested yet)
+- GPL license
+- developed by Sangwine/Hitzer
+- https://clifford-multivector-toolbox.sourceforge.io/
 
 # Literature about Geometric Algebra
 
