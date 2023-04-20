@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-20T06:34:22.958Z
+date: 2023-04-20T06:37:27.098Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -300,9 +300,10 @@ Clifford Multivector Toolbox for Matlab (not tested yet)
 # Literature about Geometric Algebra
 
 Recommended books from a personal view are:
-- Dorst/Fontijne/Mann: Geometric Algebra for Computer Science, 1st revised ed. Includes CGA. Including and using GAViewer and Gaigen2.
-- Hildenbrand: Foundations fo Geometric Algebra Computing. Including CGA and using Gaalop. Basic GA knowledge is preferrable.
+- Dorst/Fontijne/Mann: Geometric Algebra for Computer Science, 1st revised ed. Uses GAViewer and Gaigen 2 software
+- Hildenbrand: Foundations fo Geometric Algebra Computing. Uses Gaalop software
 - Hildenbrand: The Power of Geometric Algebra Computing. More from Gaalop and extensions of CGA into cubic, conic, quantum.
+- Fontijne thesis
 
 There are a lot of free pdf articles and websites available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald, Hitzer, Perwass and many others are available. Main topics are directed to robotics, geometry, physics and other. The newer books often include CGA. A valuable source are thesis/dissertations, because they often have detailed explanations and they are often freely available.
 
@@ -310,4 +311,3 @@ Some articles/thesis:
 - Perwass: Aspects of Geometric Algebra in Euclidean, Projective and Conformal Space
 - Colapinto dissertation and articles has nice looking images (and good information).
 - Hildenbrand/Fontijne/Perwass/Dorst: Geometric Algebra and its Application to Computer Graphics at http://www.gaalop.de/dhilden_data/CLUScripts/eg04_tut03.pdf
-- Fontijne thesis is very good and published as book
