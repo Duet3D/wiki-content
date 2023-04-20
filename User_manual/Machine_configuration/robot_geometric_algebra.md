@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-20T05:56:15.084Z
+date: 2023-04-20T06:05:52.456Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -43,6 +43,47 @@ GA is like an onion, starting simple with option to solve complex problems with 
 
 To optimize performance, simple problem can therefore solved by simple methods and use higher dimensions if needed.
 
+# Conformal Geometric Algebra, CGA
+
+Conformal means angle preserving of the transformations (reflection, rotation, translation etc). CGA uses additional information, compared to 3-dimensional storage. CGA is a 5-dimensional Minkowski G4.1 space, needing 32 parameters to describe all blades. CGA was patented in US 6,853,964, but expired in July 2022.
+
+The e1, e2, e3 are the x, y, z coordinates. The 2 additional dimensions e0 and einf (e∞) are virtual ones to allow the extended capabilities of CGA. They are designed in a way, so the 3-dimensional euclidean information is included in CGA and can be extracted unchanged.
+
+The coordinate properties are:
+
+- e1²=e2²=e3²=e+²=1
+- e-²=-1
+- the bases e∞ (einf) and e0 are used instead of e+ and e-:
+- e0 = 0.5(e- - e+), einf = e- + e+
+- e0²=einf²=0 (i. e. they are null vectors)
+- e0 . einf = -1 (inner product)
+
+e+ and e- are the two additional coordinates (where the name G4,1 comes from), but e0 and einf are used to define the objects.
+
+Because e0 and einf are null vectors, the inner product of two points have the same length as the euclidean distance of the vectors of the points. p.p=0, i. e. is a null vector.
+
+The additional dimensions allow additional object types and affine orthogonal transformations.
+
+G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used.
+
+The blades according to Pascal triangle, 2^5 = 32 blades, 1-5-10-10-5-1. CGA uses the following blades and they are used in the array as follows. This follows how Gaalop is organized, so the code of it can be used by C++, Python etc. directly:
+
+|-|-|-|
+|grade|blade|array index|
+|0|1 (scalar)|0|
+|1|e1, e2, e3, einf, e0|1...5|
+|2|e12, e13, e1inf, e10, e23, e2inf, e20, e3inf, e30, einf0|6...15|
+|3|e123, e12inf, e120, e13inf, e130, e1inf0, e23inf, e230, e2inf0, e3inf0|16...25|
+|4|e123inf, e1230, e12inf0, e13inf0, e23inf0|26...30|
+|5|e123inf0 (pseudoscalar)|31|
+
+einf means e∞, 0 means e0, e12 means e1^e2
+
+The order of the single elements of each blade is not standardized, so differnt authors may use different orders.
+
+The name pseudoscalar comes from the fact that it defines the volume 1 of a full dimension object and is only one scalar value.
+
+Most can be ignored later for most object calculations, because for specific objects, most values are 0.
 
 # Geometric Algebra and Screw Theory
 
@@ -69,21 +110,6 @@ Clifford Multivector Toolbox for Matlab (not tested yet)
 - developed by Sangwine/Hitzer
 - https://clifford-multivector-toolbox.sourceforge.io/
 
-# Conformal Geometric Algebra (CGA)
-
-Conformal means angle preserving of the transformations (reflection, rotation, translation etc). CGA uses additional information, compared to 3-dimensional storage. CGA is a 5-dimensional Minkowski G4.1 space, needing 32 parameters to describe all blades. CGA was patented in US 6,853,964, but expired in July 2022.
-
-The blades according to Pascal triangle, 2^5 = 32 blades, 1-5-10-10-5-1:
-- 1 scalar value
-- 5 1-blades, the e1, e2, e3, e0, einf axes
-- 10 2-blades, the combinations e1e2 etc.
-- 10 3-blades of e1e2e3 etc
-- 5 4-blades, e. g. e1e2e3einf
-- 1 pseudoscalar
-
-Most can be ignored later for most object calculations, because for specific objects, most values are 0.
-
-CGA is classified as G4,1, which means 4 coordinates square to 1 and one to -1.
 
 # Geometric Algebra in Firmware
 
@@ -138,48 +164,6 @@ H10 = Hildenbrand The Power of ... chapter 10.
 The choosen dimension has influence on
 - the capabilities
 - how much memory is necessary to store the geometric objects
-
-# CGA
-
-Conformal geometric algebra, CGA, is placed in Euclidean 3D space, but uses for representation 5 dimensions.
-
-The e1, e2, e3 are the x, y, z coordinates. The 2 additional dimensions e0 and einf (e∞) are virtual ones to allow the extended capabilities of CGA. They are designed in a way, so the 3-dimensional euclidean information is included in CGA and can be extracted unchanged.
-
-The coordinate properties are:
-
-- e1²=e2²=e3²=e+²=1
-- e-²=-1
-- the bases e∞ (einf) and e0 are used instead of e+ and e-:
-- e0 = 0.5(e- - e+), einf = e- + e+
-- e0²=einf²=0 (i. e. they are null vectors)
-- e0 . einf = -1 (inner product)
-
-e+ and e- are the two additional coordinates (where the name G4,1 comes from), but e0 and einf are used to define the objects.
-
-Because e0 and einf are null vectors, the inner product of two points have the same length as the euclidean distance of the vectors of the points. p.p=0, i. e. is a null vector.
-
-The additional dimensions allow additional object types and affine orthogonal transformations.
-
-G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used.
-
-Lengyel has a nice image on page 10 of https://terathon.com/gdc23_lengyel.pdf about the Pascal triangle.
-
-CGA uses the following blades and they are used in the array as follows. This follows how Gaalop is organized, so the code of it can be used by C++, Python etc. directly:
-
-|-|-|-|
-|grade|blade|array index|
-|0|1 (scalar)|0|
-|1|e1, e2, e3, einf, e0|1...5|
-|2|e12, e13, e1inf, e10, e23, e2inf, e20, e3inf, e30, einf0|6...15|
-|3|e123, e12inf, e120, e13inf, e130, e1inf0, e23inf, e230, e2inf0, e3inf0|16...25|
-|4|e123inf, e1230, e12inf0, e13inf0, e23inf0|26...30|
-|5|e123inf0 (pseudoscalar)|31|
-
-einf means e∞, 0 means e0, e12 means e1^e2
-
-The order of the single elements of each blade is not standardized, so differnt authors may use different orders.
-
-The name pseudoscalar comes from the fact that it defines the volume 1 of a full dimension object and is only one scalar value.
 
 # Dual
 
