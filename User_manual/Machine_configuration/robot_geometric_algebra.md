@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-20T06:09:08.128Z
+date: 2023-04-20T06:09:55.285Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -322,3 +322,4 @@ Some articles/thesis:
 - Perwass: Aspects of Geometric Algebra in Euclidean, Projective and Conformal Space
 - Colapinto dissertation and articles has nice looking images (and good information).
 - Hildenbrand/Fontijne/Perwass/Dorst: Geometric Algebra and its Application to Computer Graphics at http://www.gaalop.de/dhilden_data/CLUScripts/eg04_tut03.pdf
+- Fontijne thesis is very good and published as book
