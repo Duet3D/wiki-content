@@ -2,7 +2,7 @@
 title: GCodes not implemented
 description:  This page lists GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware. 
 published: true
-date: 2022-12-02T18:40:31.082Z
+date: 2023-04-22T07:21:33.858Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:45:16.729Z
@@ -18,6 +18,7 @@ Note, in RepRapFirmware 2.03 and later, if you try to execute a G- or M-command 
 
 When these are implemented depends very much on the demand.
 
+* G15/G16: Polar co-ordinates
 * G40: Compensation Off (CNC specific)
 * G80: Cancel Canned Cycle (CNC specific)
 * G93: Feed Rate Mode (Inverse Time Mode) - implemented experimentally in RRF 3.5beta1
