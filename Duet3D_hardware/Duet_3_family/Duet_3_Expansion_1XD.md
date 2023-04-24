@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2023-02-07T11:11:04.797Z
+date: 2023-04-24T22:01:27.005Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -139,11 +139,10 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | OUT_1 | out1 | 2A max output |
 | **Inputs/Outputs** |||
 | IO_0 | io0.in | 30V tolerant |
-| ^^ | io0.out | 300mA peak total max output, 50mA continuous |
+| ^^ | io0.out | 3mA max  |
 | IO_1 | io1.in | 30V tolerant |
 | IO_2 | io2.in | 30V tolerant |
-| ^^ | io2.out | v1.0 and later board. 300mA peak total max output, 50mA continuous. |
-| ^^ | io2.out2 | v0.4 board only. 300mA peak total max output, 50mA continuous. |
+| ^^ | io2.out | v1.0 and later board. 3mA max |
 | TEMP_0 | temp0 | |
 
 ## Input/Output
