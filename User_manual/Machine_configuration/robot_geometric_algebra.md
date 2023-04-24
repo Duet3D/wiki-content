@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-20T06:37:27.098Z
+date: 2023-04-24T08:13:48.634Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -10,15 +10,9 @@ dateCreated: 2023-03-08T08:28:19.105Z
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
-Following is content about
-- geometric algebra in general
-- knowledge about syntax and usage of Gaalop => this is moved to a dedicated page "geometric algebra detailed"
-- application of it to Paden-Kahan subproblems
-- syntax is based on the Gaalop tool, a LGPL GA library
-
 # Geometric Algebra
 
-Geometric Algebra (abbreviated by GA, other names: Clifford algebra, exterior algebra) offers descriptions and calculations of geometric with the help of algebra. It was developed in the 19th century, but was almost forgotten. Some key people were:
+Geometric Algebra (abbreviated GA, similar to: Clifford algebra, exterior algebra) offers descriptions and calculations of geometric with the help of algebra. It was developed in the 19th century, but was almost forgotten. Some key people were:
 - Grassmann to develop what he called exterior algebra
 - Hamilton to develop quaternions to describe rotations in 3D
 - Clifford who joined the two theories (and died too young)
@@ -33,14 +27,13 @@ GA offers
 - explain trigonometric, geometric and other theorems geometrically and easier to understand than the "traditional" approach
 - applicable not only for robotics, but also e. g. quantum/spin theory, Maxwell's equations, mechanics incl. Newton's laws, cristallography, image processing
 
-GA is like an onion, starting simple with option to solve complex problems with more advanced methods:
+Several geometries are included in GA:
 - vector model for rotations in 3D space
 - homogeneous model in 4D space
 - projective geometric algebra (PGA) in 4D space
 - conformal geometric algebra (CGA), 5-dimensional
-- even higher spaces like 6 and 9 dimensions, supporting cubic, conic, quantum theory topics
-
-To optimize performance, simple problem can therefore solved by simple methods and use higher dimensions if needed.
+- GA can also use more than 5 dimensions for more objects like conics, cubic
+- quaternions and complex numbers are part of it
 
 # Geometric Algebra dimension
 
@@ -68,26 +61,9 @@ The choosen dimension has influence on
 
 Conformal means angle preserving of the transformations (reflection, rotation, translation etc). CGA uses additional information, compared to 3-dimensional storage. CGA is a 5-dimensional Minkowski G4.1 space, needing 32 parameters to describe all blades. CGA was patented in US 6,853,964, but expired in July 2022.
 
-The e1, e2, e3 are the x, y, z coordinates. The 2 additional dimensions e0 and einf (e∞) are virtual ones to allow the extended capabilities of CGA. They are designed in a way, so the 3-dimensional euclidean information is included in CGA and can be extracted unchanged.
-
-The coordinate properties are:
-
-- e1²=e2²=e3²=e+²=1
-- e-²=-1
-- the bases e∞ (einf) and e0 are used instead of e+ and e-:
-- e0 = 0.5(e- - e+), einf = e- + e+
-- e0²=einf²=0 (i. e. they are null vectors)
-- e0 . einf = -1 (inner product)
-
-e+ and e- are the two additional coordinates (where the name G4,1 comes from), but e0 and einf are used to define the objects.
-
-Because e0 and einf are null vectors, the inner product of two points have the same length as the euclidean distance of the vectors of the points. p.p=0, i. e. is a null vector.
-
 The additional dimensions allow additional object types and affine orthogonal transformations.
 
-G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used.
-
-The blades according to Pascal triangle, 2^5 = 32 blades, 1-5-10-10-5-1. CGA uses the following blades and they are used in the array as follows. This follows how Gaalop is organized, so the code of it can be used by C++, Python etc. directly:
+G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used. The following table follows how Gaalop is organized:
 
 |-|-|-|
 |grade|blade|array index|
@@ -99,12 +75,6 @@ The blades according to Pascal triangle, 2^5 = 32 blades, 1-5-10-10-5-1. CGA use
 |5|e123inf0 (pseudoscalar)|31|
 
 einf means e∞, 0 means e0, e12 means e1^e2
-
-The order of the single elements of each blade is not standardized, so differnt authors may use different orders.
-
-The name pseudoscalar comes from the fact that it defines the volume 1 of a full dimension object and is only one scalar value.
-
-Most can be ignored later for most object calculations, because for specific objects, most values are 0.
 
 # Geometric Algebra and Screw Theory
 
@@ -175,7 +145,7 @@ Some authors describe additional objects like a hyperplane or different point ty
 
 # intersections
 
-Calculation of intersections is one of CGA's strengths, because syntax is very simple.
+Calculation of intersections is one of CGA's strengths, because syntax is often very simple, especially if the objects are of the same type like two spheres.
 
 ∩ means meet.
 
@@ -183,29 +153,7 @@ There are two methods:
 - A ∩ B = dual(B) . A
 - dual(A ∩ B) = dual(B) ^ dual(A)
 
-The dual object is meant to be the IPNS here. (Example: if a plane is created by using normal and distance, it is in dual mode already).
-
-The first method (using the inner product) has preconditions (removing some parts from A), while the second (using wedge product) is without.
-
-The dual is in respect to the common blades of A and B. For some object combinations, calculation becomes complex.
-
-Example of intersection sphere-sphere-plane, which results in point pair. Followed by an extraction of the point pair into single points:
-
-s1n=createPoint(1,2,3)-0.5 * 5 * 5 * einf;
-s2n=createPoint(3,2,3)-0.5 * 5 * 5 * einf;
-pln=e2+2 * einf;
-s1=s1n/abs(s1n);
-s2=s2n/abs(s2n);
-pl=pln/abs(pln);
-?pp= * (s1 ^ s2 ^ pl);
-?x=-einf.pp;
-?p1=(pp-sqrt(pp * pp))/x;
-?p2=(pp+sqrt(pp * pp))/x;
-
-For this formula, pp must be in 2-blade mode, i. e. OPNS. Gaalop offers methods to extract the points:
-p1=ExtractFirstPoint(pp);
-p2=ExtractSecondPoint(pp);
-
+The second method's dual is not necessarly the pseudoscalar. See Fortijne's thesis for detailed information.
 
 # transformations
 
