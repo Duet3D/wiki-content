@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-04-26T13:01:19.213Z
+date: 2023-04-26T13:24:59.283Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -121,7 +121,7 @@ It is possible to run a Duet 3 mainboard as an expansion board. This allows grea
 * Once you have that IAP installed, then firmware updates to all boards can be done by the normal zip file method in DWC on the first mainboard.
 * Note that mainboards have only a single CAN connector, so the mainboard-as-expansion-board has to be the last one in the CAN chain. If you have any additional expansion boards, they should go between the two mainboards.
 * The CAN addresses for each board do not need to be in sequential order along the CAN bus.
-* If you want to daisy chain multiple mainboards, as each board has only a single connector, and has termination resistors, it is unlikely that you can go beyond 2 or 3 boards in the daisy chain before CAN voltage levels get too low.
+* If you want to daisy chain multiple mainboards, as each board has only a single CAN connector and termination resistors, it is unlikely that you can go beyond 2 or 3 boards in the daisy chain before CAN voltage levels get too low. To overcome this, desolder and remove the CAN termination resistors of the intermediate boards. Newer boards will come with cuttable traces. For wiring, loop-on CAN wires from the one CAN connector.
 
 # Using CAN addresses
 
