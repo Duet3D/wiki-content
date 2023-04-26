@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2023-04-11T16:43:23.560Z
+date: 2023-04-26T13:55:27.310Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -20,17 +20,31 @@ The [Duet3D Rotating Magnet Filament Monitor](/Duet3D_hardware/Accessories/Rotat
 
 Configure a filament monitor using [M591](/User_manual/Reference/Gcodes/M591). The action on a filament error depends on the version of RepRapFirmware your Duet is running.
 
+## Tabs {.tabset}
+
+### RepRapFirmware 3.4 and later
+
 In **RRF 3.4 and later**, the action on a filament error is to:
-* run filament-error#.g if available, where # is the extruder number
-* failing that run filament-error.g if available
+* run filament-error.g if available. The extruder number is passed in the D parameter, and it does not pause the print.
 * failing that the Duet enters the Pausing state, shows a message on all available targets with the type of filament error, and invokes system macro pause.g. The job is paused and will need manual intervention to resume the print.
 * Note if you use a filament-error macro, there is no pause unless you put an [M25](/User_manual/Reference/Gcodes/M25) in the macro. If the job is paused, it will require manual intervention, or [M24](/User_manual/Reference/Gcodes/M24) in the macro, to resume the print.
 
-**RRF 3.2 and 3.3** is the same as RRF 3.4 and later, except the print is paused first. filament-error#.g or filament-error.g is run instead of pause.g if one of them exists. However, as the job is paused, you will need manual intervention to resume the print (M24 cannot be called from within any pause macro, which is what the filament-error macros are).
+**Note that filament monitoring in RRF is only active when printing from SD card.**
+
+### RepRapFirmware 3.2 and 3.3
+
+In **RRF 3.2 and 3.3**, the action on a filament error is to:
+* print is paused
+* run filament-error#.g if available, where # is the extruder number
+* failing that run filament-error.g if available
+* failing that the Duet enters the Pausing state, shows a message on all available targets with the type of filament error, and invokes system macro pause.g. 
+* The job is paused and will need manual intervention to resume the print (M24 cannot be called from within any pause macro, which is what the filament-error macros are).
+
+**Note that filament monitoring in RRF is only active when printing from SD card.**
+
+### RepRapFirmware 1.19 to 3.1.1
 
 **RRF 1.19 to 3.1.1** does not support filament-error macros. The action on a filament error is to enter the Pausing state, show a message on all available targets with the type of filament error, and invoke system macro pause.g. The job is paused and will need manual intervention to resume the print.
-
-For all firmware versions, **note that filament monitoring in RRF is only active when printing from SD card.**
 
 # Connecting a filament sensor
 
