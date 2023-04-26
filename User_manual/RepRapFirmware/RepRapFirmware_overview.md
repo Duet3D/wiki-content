@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2023-02-17T16:03:31.397Z
+date: 2023-04-26T15:37:55.546Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -79,7 +79,9 @@ See the wiki page on the [SD card](/User_manual/RepRapFirmware/SD_card).
 
 # Firmware configuration limits
 
-RepRapFirmware has some configuration limits. Note that the total system limits are set by the mainboard. Expansion boards can be configured within the full capabilities of their hardware, subject to the overall system limits. As of RRF 3.4 these are:
+RepRapFirmware has some configuration limits. Note that the total system limits are set by the mainboard. Expansion boards can be configured within the full capabilities of their hardware, subject to the overall system limits. You can check the configuration limits of the firmware version you are running by opening the 'Object Model' plugin in DWC, and checking the 'limits' section.
+
+As of RRF 3.4 these are:
 
 | | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Notes |
 |---|---|
