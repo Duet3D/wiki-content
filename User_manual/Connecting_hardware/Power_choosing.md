@@ -2,7 +2,7 @@
 title: Choosing the power supply
 description: 
 published: true
-date: 2021-10-28T16:29:32.687Z
+date: 2023-04-26T12:48:58.717Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T16:29:11.925Z
@@ -16,12 +16,17 @@ The two main decisions to make when choosing a power supply are the voltage and 
 
 ## Voltage
 
-Minimum and maxium input voltages for Duet mainboards.
+Minimum and maxium input voltages for Duet boards.
 
 | | Minimum input voltage | Max input voltage | 
 |---|---|
-| Duet 3 Mainboard 6HC | 11V | 32V | 
+| Duet 3 Mainboard 6HC | 11V | 48V (v1.02 and later), 32V (v1.01 and earlier) | 
+| Duet 3 Mainboard 6XD | 11V | 30V | 
 | Deut 3 Mini 5+ | 11V | 25V | 
+| Duet 3 Expansion 3HC | 12V | 48V (v1.02 and later), 32V (v1.01 and earlier) |
+| Duet 3 Expansion 1XD | 12V | 48V |
+| Duet 3 Expansion 1HCL | 12V | 50V  |
+| Duet 3 Toolboard 1LC | 12V | 32V  |
 | Duet 2 WiFi/Ethernet | 11V | 25V | 
 | Duet 2 Maestro | 11V | 25V | 
 
