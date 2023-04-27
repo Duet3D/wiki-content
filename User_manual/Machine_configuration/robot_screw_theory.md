@@ -2,7 +2,7 @@
 title: Robot Screw Theory (Product of Exponentials)
 description: Details of screw theory, configuration and examples
 published: true
-date: 2023-04-19T06:54:06.603Z
+date: 2023-04-27T07:30:56.693Z
 tags: robot
 editor: markdown
 dateCreated: 2023-01-01T09:48:16.157Z
@@ -63,6 +63,8 @@ For parallel kinematics
 - how the axes movements are related
 
 This information is sufficient to calculate new positions when changing angles/linear positions and to calculated inverse kinematics (i e. from endposition calculating back to the angles). This is possible, because the changed angles/positions are calculated from relative changes in respect to the reference angles.
+
+**To avoid rounding problems, for axes which intersect, it is advantageous to use this crossing point as point on the two axes.**
 
 Data model:
 
