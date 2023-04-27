@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-04-27T07:01:40.467Z
+date: 2023-04-27T07:09:50.309Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -359,5 +359,12 @@ When configuration is stored and Duet rebooted, the following procedure shall av
 
 I'll use some abbreviations in the documents and explain it here.
 
-|_
-GA
+|-|-|
+|GA|geometric algebra|
+|CGA|conformal geometric algebra, G4,1 geometry|
+|PK1 to PK...|Paden-Kahan subproblems (for rotary axes), extended by newer research|
+|PG1 to PG...|Pardos-Gotor subproblems (mainly for linear axes)|
+|Pos/Ori|position and full orientation with 3-value vector for position and 3 axes x, y, z with 3 values each|
+|GSt(0)|defined end position for given angles/positions|
+|noap|nick-...-approach-position of endposition|
+|DH|Denavit-Hartenberg system to describe configuration|
