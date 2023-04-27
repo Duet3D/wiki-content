@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-25T05:45:21.491Z
+date: 2023-04-27T08:21:21.563Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -108,7 +108,7 @@ The first version of the point is the same for IPNS and OPNS.
 |point|vector + 0.5 * norm² + e0|p=createPoint(1,2,3);|1-5, 1-blades|
 |vector|coordinates e1, e2, e3|v=e1+2 * e2+e3|1-3 part of 1-blades|
 |sphere|point - 0.5 * r * r * einf|s=createPoint(1,2,3)-0.5 * 3 * 3 * einf;|1-5 1-blades|
-|plane|normal vector + distance * einf|plane=1 * e1+2 * e2+3 * e3+5 * einf;|0-4 scalar and 1-blades without e0|
+|plane|normal vector + distance * einf|plane=1 * e1+2 * e2+3 * e3+5 * einf;|1-4 1-blades without e0|
 |circle|intersection two spheres|z = s1 ^ s2|6-15 2-blades|
 |line|intersection two planes|l = pl1 ^ pl2|6-8, 10, 11, 13 part of 2-blades|
 |point pair|intersection three spheres|pp = s1 ^ s2 ^ s3|16-25 3-blades|
@@ -127,7 +127,7 @@ OPNS are the dual representations of IPNS, named by outer product null space. A 
 |-|-|-|-|
 |object|how calculated|Gaalop sample code|filled array elements|
 |sphere|four points of the curvature|s = p1 ^ p2 ^ p3 ^ p4;|26-30 4-blades|
-|plane|three points on plane and einf|pl = p1 ^ p2 ^ p3 ^ einf;|26,28-30 4-blades|
+|plane|three points on plane and einf|pl = p1 ^ p2 ^ p3 ^ einf;|26,28-30 part of 4-blades|
 |circle|three points on circle|c = p1 ^ p2 ^ p3;|16-25 3-blades|
 |line|two points and einf|l = pl1 ^ pl2 ^ einf;|17,19,21,22,24,25 part of the 3-blades|
 |point pair|wedge of two points|pp = p1 ^ p2;|6-15 2-blades|
