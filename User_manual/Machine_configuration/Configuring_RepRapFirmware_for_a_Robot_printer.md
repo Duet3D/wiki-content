@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-04-20T05:57:55.382Z
+date: 2023-04-27T07:01:40.467Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -354,3 +354,10 @@ When configuration is stored and Duet rebooted, the following procedure shall av
 * G91 G1 H2 Xn with bigger values to assure that the M92 settings are correct
 * home the individual axes and assure that the endstops are triggered. M114 Count values can be used to check the stored motor position value for the homing position.
 * with normal G1 moves, check that the coordinates are interpreted correctly, X positive being to the right, Y positiv to behind and Z positive means greater distance between hotend and bed. This step is especially important for setups with the print object moving (workpiece mode).
+
+# Glossary
+
+I'll use some abbreviations in the documents and explain it here.
+
+|_
+GA
