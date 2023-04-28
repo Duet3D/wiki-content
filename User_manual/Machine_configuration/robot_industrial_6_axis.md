@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-04-18T07:22:43.512Z
+date: 2023-04-28T23:40:54.564Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -51,3 +51,37 @@ Care must be taken when the robot is powered off: the arms need protection again
 # G10 tool offsets
 
 Kinematics uses the G10 settings of the currently selected tool.
+
+# Testcases
+
+The following setups were used to test forward and inverse kinematics, so if one uses this configuration, chances are good that the robot works correctly.
+
+# Case 1, 2 intersected, 4-6 intersected
+
+This is the setup of the DH example, with the change that axes 1 and 2 intersect.
+
+|-|-|-|
+|axis #|direction|a point on the axis|
+|1|0, 0, 1|0, 0, 352|
+|2|0, 1, 0|0, 0, 352|
+|3|0, 1, 0|0, 0, 712|
+|4|1, 0, 0|380, 0, 712|
+|5|0, 1, 0|380, 0, 712|
+|6|1, 0, 0|380, 0, 712|
+
+tool: z = length 100 set with G10
+GSt(0) must be the tool tip pos/ori
+
+GSt(0)
+|-|-|
+|direction|value|
+|x|tbd|
+|y|tbd|
+|z|tbd|
+|pos|tbd|
+
+angle limits:...
+
+The workspace is ...
+
+singularities are at...
