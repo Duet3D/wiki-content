@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-29T16:06:08.881Z
+date: 2023-04-29T16:15:11.468Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -109,6 +109,7 @@ Classification by grade:
 |2 bivector|point pair|
 |3 trivector|line|circle|
 |4-vector|plane|sphere|
+|5-vector|hyperplane|I, pseudoscalar|
 
 A round object becomes flat by using one point from einf (a circle becomes a line, so a line is a circle with one point in infinity).
 
