@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-29T15:30:33.550Z
+date: 2023-04-29T15:31:16.605Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -85,7 +85,7 @@ Conformal Geometric algebra (CGA) can describe transformations (rotation, reflec
 
 # Dual
 
-An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I (i. e. x* = x . I-1), and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades. (Dorst names them other round)
+An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I (i. e. x* = x . I^-1^), and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades. (Dorst names them other round)
 
 I is the pseudoscalar, the e1 ^ e2 ^ e3 ^ einf ^ e0 (e123inf0) blade. / I means multiplying with the inverse of I.
 
