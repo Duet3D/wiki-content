@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-29T22:02:49.126Z
+date: 2023-04-29T22:12:50.403Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -271,14 +271,14 @@ Clifford Multivector Toolbox for Matlab (not tested yet)
 
 Recommended books from a personal view are:
 - Dorst/Fontijne/Mann: Geometric Algebra for Computer Science, 1st revised ed. Uses GAViewer and Gaigen 2 software
-- Hildenbrand: Foundations fo Geometric Algebra Computing. Uses Gaalop software
-- Hildenbrand: The Power of Geometric Algebra Computing. More from Gaalop and extensions of CGA into cubic, conic, quantum.
+- Hildenbrand: Foundations fo Geometric Algebra Computing. Uses Gaalop software, together with Steinmetz maintainer of Gaalop.
+- Hildenbrand: The Power of Geometric Algebra Computing. More about Gaalop and extensions of CGA into cubic, conic, quantum.
 
 There are a lot of free pdf articles and websites available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald, Hitzer, Perwass and many others are available. Main topics are directed to robotics, geometry, physics and other. The newer books (after 2001) often include CGA.
 
 A valuable source are thesis/dissertations, because they often have detailed explanations and they are often freely available. Some dissertations/thesis/master/articles:
-- Fontijne: Efficient Implementation of Geometric Algebra, thesis with details about implementing and performance
+- Fontijne: Efficient Implementation of Geometric Algebra, thesis with details about implementing and performance. Together with Dorst developer of GAViewer and GAViewer.
 - Perwass: Aspects of Geometric Algebra in Euclidean, Projective and Conformal Space
-- Colapinto master thesis (2011) and dissertation (2016) and articles have nice looking images and good explanations. YT video https://www.youtube.com/watch?v=W4p-e-g37tg and C++ library Versor: https://github.com/wolftype/versor
+- Colapinto master thesis (2011) and dissertation (2016) and articles have nice looking images and good explanations. Latest research topics are about surfaces/smooth curvature with GA help. YT video https://www.youtube.com/watch?v=W4p-e-g37tg and C++ library Versor: https://github.com/wolftype/versor
 - Hildenbrand/Fontijne/Perwass/Dorst: Geometric Algebra and its Application to Computer Graphics at http://www.gaalop.de/dhilden_data/CLUScripts/eg04_tut03.pdf
 - Wareham dissertation: Computer Graphics using Conformal Geometric Algebra (2006)
