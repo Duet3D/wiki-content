@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-04-28T23:40:54.564Z
+date: 2023-04-29T06:44:09.156Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -75,12 +75,19 @@ GSt(0) must be the tool tip pos/ori
 GSt(0)
 |-|-|
 |direction|value|
-|x|tbd|
-|y|tbd|
-|z|tbd|
-|pos|tbd|
+|x|0, 0, 1|
+|y|0, -1, 0|
+|z|1, 0, 0|
+|pos|545, 0, 712|
 
-angle limits:...
+angle limits:
+
+|-|-|-|-|
+|axis|angle min|angle max|homing angle|
+|1|-150|150|0|
+...
+
+
 
 The workspace is ...
 
