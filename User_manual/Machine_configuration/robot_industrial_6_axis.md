@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-04-29T06:44:09.156Z
+date: 2023-04-29T06:46:04.689Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -72,13 +72,15 @@ This is the setup of the DH example, with the change that axes 1 and 2 intersect
 tool: z = length 100 set with G10
 GSt(0) must be the tool tip pos/ori
 
-GSt(0)
+GSt(0), endposition for given angles/positions (rotary/prismatic):
+
 |-|-|
 |direction|value|
 |x|0, 0, 1|
 |y|0, -1, 0|
 |z|1, 0, 0|
 |pos|545, 0, 712|
+|angles/pos|0, 0, 0, 0, 0, 0|
 
 angle limits:
 
