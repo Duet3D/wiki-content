@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-29T16:15:11.468Z
+date: 2023-04-29T16:17:53.038Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -121,7 +121,7 @@ They are linked through dualization.
 
 # objects IPNS
 
-IPNS means inner product null space, which means, that to check whether a point intersects with an object, this can be tested by inner product being 0: P.X=0 (p point, X object).
+IPNS means inner product null space, which means, that to check whether a point intersects with an object (i. e. whether it is part of the object), this can be tested by inner product being 0: P.X=0 (p point, X object).
 
 The first version of the point is the same for IPNS and OPNS.
 
