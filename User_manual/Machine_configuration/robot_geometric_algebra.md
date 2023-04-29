@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-29T16:17:53.038Z
+date: 2023-04-29T16:29:16.837Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -99,7 +99,7 @@ The choice which (IPNS or OPNS) is called standard form and which is the dual on
 
 # objects
 
-The 5 dimensions of CGA allow more objects to be stored as geometric objects than the 4-dimensional homogenous model.
+The following objects can be stored in CGA. Storage needs between 3 and 10 values of the 32 values of CGA, so implementation has the task to optimize the sparse value usage (i. e. ignore the many 0 values).
 
 Classification by grade:
 
