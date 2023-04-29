@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-27T12:26:17.502Z
+date: 2023-04-29T15:29:55.349Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -85,7 +85,7 @@ Conformal Geometric algebra (CGA) can describe transformations (rotation, reflec
 
 # Dual
 
-An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I, and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades. (Dorst names them other round)
+An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I (x* = x . I-1), and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades. (Dorst names them other round)
 
 I is the pseudoscalar, the e1 ^ e2 ^ e3 ^ einf ^ e0 (e123inf0) blade. / I means multiplying with the inverse of I.
 
@@ -251,11 +251,12 @@ Recommended books from a personal view are:
 - Dorst/Fontijne/Mann: Geometric Algebra for Computer Science, 1st revised ed. Uses GAViewer and Gaigen 2 software
 - Hildenbrand: Foundations fo Geometric Algebra Computing. Uses Gaalop software
 - Hildenbrand: The Power of Geometric Algebra Computing. More from Gaalop and extensions of CGA into cubic, conic, quantum.
+
+There are a lot of free pdf articles and websites available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald, Hitzer, Perwass and many others are available. Main topics are directed to robotics, geometry, physics and other. The newer books often include CGA.
+
+A valuable source are thesis/dissertations, because they often have detailed explanations and they are often freely available. Some dissertations/thesis/master/articles:
 - Fontijne: Efficient Implementation of Geometric Algebra, thesis with details about implementing and performance
-
-There are a lot of free pdf articles and websites available. Additionally, the books from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald, Hitzer, Perwass and many others are available. Main topics are directed to robotics, geometry, physics and other. The newer books often include CGA. A valuable source are thesis/dissertations, because they often have detailed explanations and they are often freely available.
-
-Some articles/thesis:
 - Perwass: Aspects of Geometric Algebra in Euclidean, Projective and Conformal Space
 - Colapinto master thesis (2011) and dissertation (2016) and articles have nice looking images and good explanations
 - Hildenbrand/Fontijne/Perwass/Dorst: Geometric Algebra and its Application to Computer Graphics at http://www.gaalop.de/dhilden_data/CLUScripts/eg04_tut03.pdf
+- Wareham dissertation: Computer Graphics using Conformal Geometric Algebra (2006)
