@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-29T16:29:16.837Z
+date: 2023-04-29T22:02:49.126Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -279,6 +279,6 @@ There are a lot of free pdf articles and websites available. Additionally, the b
 A valuable source are thesis/dissertations, because they often have detailed explanations and they are often freely available. Some dissertations/thesis/master/articles:
 - Fontijne: Efficient Implementation of Geometric Algebra, thesis with details about implementing and performance
 - Perwass: Aspects of Geometric Algebra in Euclidean, Projective and Conformal Space
-- Colapinto master thesis (2011) and dissertation (2016) and articles have nice looking images and good explanations
+- Colapinto master thesis (2011) and dissertation (2016) and articles have nice looking images and good explanations. YT video https://www.youtube.com/watch?v=W4p-e-g37tg and C++ library Versor: https://github.com/wolftype/versor
 - Hildenbrand/Fontijne/Perwass/Dorst: Geometric Algebra and its Application to Computer Graphics at http://www.gaalop.de/dhilden_data/CLUScripts/eg04_tut03.pdf
 - Wareham dissertation: Computer Graphics using Conformal Geometric Algebra (2006)
