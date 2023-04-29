@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-29T15:31:16.605Z
+date: 2023-04-29T15:36:24.785Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -93,7 +93,7 @@ Another example: a plane can be defined by a vector which defines the normal of 
 
 In Gaalop and elsewhere, the dual is marked by * in front of the object, e.g. dual = * object;
 
-An object can be transformed into its dual by * and back again by another *
+An object can be transformed into its dual by * and back again by another * => that's wrong, it is rotated 180 degree when dualization two times. To revert, there is a special algorithm for "undualization" x^-*^ and the formula is (see dissertation Fontijne 2.25) A^-x^ = A . I
 
 The choice which (IPNS or OPNS) is called standard form and which is the dual one is not standardizes and differs between authors.
 
