@@ -2,7 +2,7 @@
 title: Robot industrial 6 axis
 description: 
 published: true
-date: 2023-04-29T06:46:04.689Z
+date: 2023-04-29T06:49:47.893Z
 tags: robot
 editor: markdown
 dateCreated: 2022-09-13T11:49:01.371Z
@@ -59,6 +59,10 @@ The following setups were used to test forward and inverse kinematics, so if one
 # Case 1, 2 intersected, 4-6 intersected
 
 This is the setup of the DH example, with the change that axes 1 and 2 intersect.
+
+To ease calculation and make intersection clear, 1-2 and 4,5,6 are set to same point each. The points need to be somewhere on the axis.
+
+Axis 3 can be X, Y offset from 1-2 also for the kinematics to work correctly and it doesn't need to be parallel to axis 2.
 
 |-|-|-|
 |axis #|direction|a point on the axis|
