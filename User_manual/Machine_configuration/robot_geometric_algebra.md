@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-29T15:39:31.443Z
+date: 2023-04-29T16:06:08.881Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -96,6 +96,27 @@ In Gaalop and elsewhere, the dual is marked by * in front of the object, e.g. du
 An object can be transformed into its dual by * and back again by another * => that's wrong, it is rotated 180 degree when dualization two times. To revert, there is a special algorithm for "undualization" x^-*^ and the formula is (see dissertation Fontijne 2.25) A^-x^ = A . I
 
 The choice which (IPNS or OPNS) is called standard form and which is the dual one is not standardizes and differs between authors.
+
+# objects
+
+The 5 dimensions of CGA allow more objects to be stored as geometric objects than the 4-dimensional homogenous model.
+
+Classification by grade:
+
+|-|-|-|
+|grade|flat|round|
+|1 vector|point, vector|
+|2 bivector|point pair|
+|3 trivector|line|circle|
+|4-vector|plane|sphere|
+
+A round object becomes flat by using one point from einf (a circle becomes a line, so a line is a circle with one point in infinity).
+
+There are two methods to create the objects:
+- IPNS: intersection of multiple objects
+- OPNS: multiple points define the object
+
+They are linked through dualization.
 
 # objects IPNS
 
