@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-30T19:17:17.226Z
+date: 2023-04-30T19:18:58.579Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4816,6 +4816,10 @@ where trigger_height and probe_threshold are as set by G31
 If the A parameter is not present but the S parameter is present then the probe is raised or lowered to (trigger_height + S_parameter) at the current XY position, then readings are taken as the probe is gradually lowered to (trigger_height - S_parameter). The readings are used to compute, store and report new values of A and B.
 
 If neither the A nor the S parameter is present, the current A and B values are reported.
+
+##### Order dependency
+
+Before M558.1 is used the probe must be defined as a scanning Z probe using M558, and the probe trigger height and threshold must be set using G31.
 
 ## M559: Upload file
 
