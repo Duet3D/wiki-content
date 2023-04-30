@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-30T08:28:52.412Z
+date: 2023-04-30T08:33:55.253Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -112,7 +112,7 @@ Surface information is an area of current research, an overview will be added he
 
 Every rigid body motion can be represented by a rotation and translation in the direction of the rotation axis, according to Chasles' theorem. This combined motion is called screw. If used for velocity, it is called twist. If used for force/torque, it is called wrench.
 
-Conformal Geometric algebra (CGA) can describe transformations (rotation, reflection, translation, dilation) by so-called rotors with the help of versors. Screw motions can be realised by combining the two rotors rotation and translation. A description can be found in chapter 13.5.2 of the Dorst book.
+Conformal Geometric algebra (CGA) can describe transformations (rotation, reflection, translation, dilation) by so-called rotors with the help of versors. Screw motions can be realised by combining the two rotors rotation and translation. A description can be found in chapter 13.5.2 of the Dorst book. Rotations can be calculated by screw algorithms easier, but for interpolation (to allow e.g. a smooth rotation with move) by exponentials and logarithms, converting to rotors in geometric algebra is necessary.
 
 
 # Dual
