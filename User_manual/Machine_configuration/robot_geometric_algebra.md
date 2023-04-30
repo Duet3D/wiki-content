@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-29T22:24:18.072Z
+date: 2023-04-30T08:25:43.555Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -75,6 +75,36 @@ G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offerin
 |5|e123inf0 (pseudoscalar)|31|
 
 einf means e∞, 0 means e0, e12 means e1^e2
+
+# Geometries included in CGA and higher ones
+
+Following and overview which geometries are included in CGA and higher (G8,2 etc) geometries. Included means e. g. isomorphismus.
+
+This overview will be extended.
+
+|-|-|-|
+|capability|explanation|
+|projective|2D representations like for gaming|
+|conformal|angle preserving when transforming|
+|euclidean||
+|hyperbolic||
+|spheric||
+|quaternion|3D rotation (versor/spinor/rotor)|
+|complex numbers||
+
+objects supported
+
+|-|-|-|
+|object|included in/since|values needed|
+|point, vector|tbd|in CGA: 5, 3|
+|line as Plücker|PGA and higher||
+|sphere, plane|CGA|5, 4|
+|line, circle|CGA|6, 10|
+|point pair|CGA|10|
+|hyperplane|CGA|?|
+|conic|||
+|cylinder||
+|cubic|||
 
 # Geometric Algebra and Screw Theory
 
