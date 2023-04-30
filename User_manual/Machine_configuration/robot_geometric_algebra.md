@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-30T08:25:43.555Z
+date: 2023-04-30T08:28:52.412Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -105,6 +105,8 @@ objects supported
 |conic|||
 |cylinder||
 |cubic|||
+
+Surface information is an area of current research, an overview will be added here. (curvature, Bezier, Bspline etc, geometric calculus. Research by eg Hestenes, Dorst, Colapinto (Colapinto has nice images))
 
 # Geometric Algebra and Screw Theory
 
