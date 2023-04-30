@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-30T18:59:54.511Z
+date: 2023-04-30T19:17:17.226Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4703,6 +4703,7 @@ A Z probe may be a switch, an IR proximity sensor, or some other device. The **P
 * P8 is as P5 but is unfiltered, for faster response time.
 * P9 is as P5 but for a BLTouch probe that needs to be retracted and redeployed between probe points.
 * P10 means use Z motor stall detection as the Z probe trigger.
+* P11 means a scanning Z probe with an analog output (supported from RRF 3.5.0-beta.4). Such probes muct be calibrated before use (see M558.1).
 
 Z probe types 4, 6 and 7 (used in RRF 2.x) are no longer supported. Instead, use type 5 (filtered digital) or 8 (unfiltered digital) and use the C parameter to specify the input. 
 
@@ -4791,6 +4792,30 @@ In RepRapFirmware versions 1.20beta4 and earlier, the **X**, **Y** and **Z** par
 Related commands: [G29](/User_manual/Reference/Gcodes/G29){target=_blank}, [G30](/User_manual/Reference/Gcodes/G30){target=_blank}, [G31](/User_manual/Reference/Gcodes/G31){target=_blank}, [G32](/User_manual/Reference/Gcodes/G32){target=_blank}, [M401](/User_manual/Reference/Gcodes/M401){target=_blank}, [M402](/User_manual/Reference/Gcodes/M402){target=_blank}.
 
 See also: [Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing){target=_blank}, [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting){target=_blank}
+
+## M558.1: Calibrate scanning Z probe
+
+Supported from RRF 3.5.0-beta.4.
+
+### Parameters
+
+* **Knn** (optional) Z probe number, default 0. The probe must be of a scanning type (see M558).
+* **Sn.n** (optional) Height to scan above and below the trigger height, in mm
+* **Ann.n** (optional) Linear coefficient of the output, in counts per mm
+* **Bnn.n** (optional, ignored unless A parameter is also present, default 0.0) Quadratic coefficient of the output, in counts^2 per mm
+
+If the A parameter is present than the equation to calculate the actual height of the Z probe is set to this:
+
+<br>
+<pre class="cblock">
+height = trigger_height + A * (probe_reading - probe_threshold) + B * (probe_reading - probe_threshold)^2
+</pre>
+
+where trigger_height and probe_threshold are as set by G31
+
+If the A parameter is not present but the S parameter is present then the probe is raised or lowered to (trigger_height + S_parameter) at the current XY position, then readings are taken as the probe is gradually lowered to (trigger_height - S_parameter). The readings are used to compute, store and report new values of A and B.
+
+If neither the A nor the S parameter is present, the current A and B values are reported.
 
 ## M559: Upload file
 
