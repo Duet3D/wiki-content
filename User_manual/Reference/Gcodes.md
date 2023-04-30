@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-18T17:37:15.667Z
+date: 2023-04-30T15:54:20.545Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7359,7 +7359,8 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters. For LED strips (supported in RRF 3.5 and later only) this is the LED clock frequency.
 * **T** When creating a heater: temperature sensor number, required (see M308). When creating a LED strip: LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only, RRF 3.3 and later) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
-* **Kaaa(:bbb[:ccc])** (optional, for spindles only, RRF 3.5 and later) Optional PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
+* **Kaaa(:bbb[:ccc])** (optional, for spindles only, RRF 3.5 and later) PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
+* **Unnn** (optional, for LED strips only) The number of LEDs in the strip for the driver to buffer. This must be at least the number of LEDs in the strip (larger is OK but wastes memory).
 
 ^1^ Check the individual hardware pages, some IO pins have permanent pullups.
 
