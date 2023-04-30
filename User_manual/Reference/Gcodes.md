@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-30T18:58:54.338Z
+date: 2023-04-30T18:59:54.511Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7354,13 +7354,13 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **Pnn** or **Snn** Output/servo pin number. Each P and/or S number needs to be unique, eg P1, P2, S3 P4, S5 etc. Servo pins are GpOut pins with a different default PWM frequency.
 * **Rnn** Spindle number (RRF 3.3 and later only)
 * **Dn** (Duet 3 MB6HC running RRF 3.4 or later only) SD slot number. The only value supported is 1.
-* **En** (RRF 3.5 and later only) LED strip number
+* **En** (RRF 3.5.0-beta.4 and later only) LED strip number
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
-* **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters. For LED strips (supported in RRF 3.5 and later only) this is the LED clock frequency.
+* **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters. For LED strips (supported in RRF 3.5.0-beta.4 and later only) this is the LED clock frequency.
 * **T** When creating a heater: temperature sensor number, required (see M308). When creating a LED strip: LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only, RRF 3.3 and later) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 * **Kaaa(:bbb[:ccc])** (optional, for spindles only, RRF 3.5 and later) PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
-* **Unnn** (optional, RRF 3.5 and later, for LED strips only) The maximum number of LEDs in the strip. Larger values use more memory.
+* **Unnn** (optional, RRF 3.5.0-beta.4 and later, for LED strips only) The maximum number of LEDs in the strip. Larger values use more memory.
 
 ^1^ Check the individual hardware pages, some IO pins have permanent pullups.
 
