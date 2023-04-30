@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-04-30T14:18:25.579Z
+date: 2023-04-30T22:58:44.589Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -149,6 +149,8 @@ There are two methods to create the objects:
 - OPNS: multiple points define the object
 
 They are linked through dualization.
+
+The master thesis of Colapinto has a very nice overview in table 11 and appendix about a lot of methods to create objects.
 
 # objects IPNS
 
@@ -314,3 +316,4 @@ A valuable source are thesis/dissertations, because they often have detailed exp
 - Hildenbrand/Fontijne/Perwass/Dorst: Geometric Algebra and its Application to Computer Graphics at http://www.gaalop.de/dhilden_data/CLUScripts/eg04_tut03.pdf
 - Wareham dissertation: Computer Graphics using Conformal Geometric Algebra (2006)
 - Rosenhahn dissertation about pose estimation
+- Zaplana dissertation Solving Robot Kinematic Problems. Uses CGA for inverse kinematics.
