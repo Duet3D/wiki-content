@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-01T23:15:16.216Z
+date: 2023-05-01T23:21:35.131Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -51,6 +51,7 @@ For example,
 - G4,1 CGA see next section
 - G4,8 Double Conformal Space-Time Algebra (DCSTA)
 - G5,3 GAC is an algebra for conics
+- G6,3 uses CGA and adds quadrics (see Zamora-Esquivel)
 - G8,2 Double CGA adds objects like quadrics, tori and cylinders (see Easter, Hitzer)
 - G9,7 (?) Cubic CGA adds cubics
 - G9,3 Triple CGA for 2D
