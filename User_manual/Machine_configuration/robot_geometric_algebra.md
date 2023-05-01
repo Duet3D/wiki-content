@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-01T23:24:48.904Z
+date: 2023-05-01T23:33:36.239Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -280,7 +280,7 @@ For the angle to be correct in 360 degree range and with correct orientation:
 For normalized vectors:
 atan2(sin,cos) = atan2(w,i) = atan2((a ^ b)(a ^ b), a . b)
 
-Gaalop has no atan2 function, so atan(w/i) can be calculated instead and a 180 degree correction must be made for the cases sin... and cos... (tbd)
+Gaalop has no atan2 function, so atan(w/i) can be calculated instead and a 180 degree correction must be made for the cases sin... and cos... (tbd). atan2 is defined differently, sometime sin parameter first, sometimes cos first.
 
 # distances
 
