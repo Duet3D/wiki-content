@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-04-20T07:36:55.124Z
+date: 2023-05-01T09:32:55.379Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -318,3 +318,7 @@ The procedure is as follows:
 - with this position/orientation, the inverse solution(s) are calculated
 - the match is tested, primarily the actuator match. Position/Orientation match can also be tested to test for rounding errors or singularity reasons to hinder reachability
 - the testing can also be other round, calculating the inverse first and then validating it by calculating foward after it
+
+Additional idea:
+- for existing kinematics, take forward/inverse code and compare the results it with Screw/GA code solutions. Allows to check implementation of options also (tilting parameters etc).
+
