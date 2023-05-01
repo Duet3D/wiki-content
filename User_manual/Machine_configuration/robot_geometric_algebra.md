@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-01T23:08:24.055Z
+date: 2023-05-01T23:15:16.216Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -49,10 +49,13 @@ For example,
 - G3,1 CRA compass ruler algebra is the CGA flavor for 2D and used in the Introduction book of Hildenbrand to explain GA
 - G1,3 spacetime algebra (see Hestenes)
 - G4,1 CGA see next section
+- G4,8 Double Conformal Space-Time Algebra (DCSTA)
 - G5,3 GAC is an algebra for conics
 - G8,2 Double CGA adds objects like quadrics, tori and cylinders (see Easter, Hitzer)
 - G9,7 (?) Cubic CGA adds cubics
-- there are many other ones like G2, G3, G3,3, G9 etc.
+- G9,3 Triple CGA for 2D
+- G12,3 Triple CGA for 3D (TCGA) (see Easter, Hitzer)
+- there are other ones
 
 The choosen dimension has influence on
 - the capabilities
