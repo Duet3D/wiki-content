@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-01T10:20:01.830Z
+date: 2023-05-01T10:22:47.267Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -309,7 +309,8 @@ Recommended books from a personal view are:
 
 There are a lot of free pdf articles and websites available. Additionally, the articles, books and webpages from Dorst, Hildenbrand, Bayro-Corrochano, Vince, Hestenes, Sobczyk, MacDonald, Hitzer, Perwass, Ian Bell, Lasenby (2 persons) and many others are available. Main topics are directed to robotics, geometry, physics, biology and other. The newer books (after 2001) often include CGA.
 
-Poster: http://projectivegeometricalgebra.org/confgeomalg.pdf
+Poster CGA: http://projectivegeometricalgebra.org/confgeomalg.pdf
+a similar one for PGA: http://projectivegeometricalgebra.org/projgeomalg.pdf
 
 A valuable source are thesis/dissertations, because they often have detailed explanations and they are often freely available. Some dissertations/thesis/master/articles, most use CGA:
 - Fontijne: Efficient Implementation of Geometric Algebra, thesis with details about implementing and performance. Together with Dorst developer of GAViewer and GAViewer.
