@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-01T23:21:35.131Z
+date: 2023-05-01T23:24:48.904Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -47,7 +47,7 @@ For example,
 - G3 uses three real axes e1, e2 and e3 with e1² = e2² = e3² = 1 unit values.
 - G3,0,1 PGA is projective geometric algebra which is often used for (game) graphics
 - G3,1 CRA compass ruler algebra is the CGA flavor for 2D and used in the Introduction book of Hildenbrand to explain GA
-- G1,3 spacetime algebra (see Hestenes)
+- G1,3 spacetime algebra, Lorentz manifold (see Hestenes, relativity)
 - G4,1 CGA see next section
 - G4,8 Double Conformal Space-Time Algebra (DCSTA)
 - G5,3 GAC is an algebra for conics
