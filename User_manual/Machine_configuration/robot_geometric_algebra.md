@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-02T06:56:18.332Z
+date: 2023-05-02T07:16:59.633Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -37,7 +37,7 @@ Several geometries are included in GA:
 
 # Geometric Algebra dimension
 
-There are several different geometric dimension systems, declared as Gp,q[,r]:
+There are several different geometric dimension systems, declared as Gp,q[,r] (or R... or Cl...):
 - p are coordinate axes which square to 1
 - q square to -1
 - r squares to 0
