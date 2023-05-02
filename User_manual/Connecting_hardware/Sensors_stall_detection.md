@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2023-04-11T14:36:05.490Z
+date: 2023-05-02T11:59:07.861Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -60,7 +60,7 @@ Stall detection is configured using the [M915](/User_manual/Reference/Gcodes/M91
 * **Snnn** Stall detection threshold (-64 to +63, values below -10 not recommended). Higher values reduce the sensitivity; lower values make false stall detection more likely.
 * **Fn** Stall detection filter mode, 1 = filtered (one reading per 4 full steps), 0 = unfiltered (default, 1 reading per full step)
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200 (try 400 for 0.9deg motors)
-* **Rn** Action to take on detecting a stall from any of these drivers: 0 = no action (default), 1 = just report it, 2 = pause print, 3 = pause print, execute /sys/rehome/.g, and resume print
+* **Rn** Action to take on detecting a stall from any of these drivers: 0 = no action (default), 1 = just report it, 2 = pause print, 3 = pause print, execute /sys/rehome/.g, and resume print. in RRF 3.4 this is changed to use the [event system](/User_manual/RepRapFirmware/Events)
 
 Additionally, the **TMC2209** stepper driver used in Duet 3 Mini 5+ (and Duet 3 Tool board TOOL1LC once stallGuard is implemented in firmware), features stallGuard 4. This is optimised for operation with stealthChop, while its predecessor stallGuard 2 (TMC5160 and TMC2260) works with spreadCycle. You will need to adjust the speed at which stealthChop changes over to spreadCycle. This is set by [M569](/User_manual/Reference/Gcodes/M569) V parameter. The default is 2000.
 
