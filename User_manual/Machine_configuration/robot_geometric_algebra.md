@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-02T14:41:59.919Z
+date: 2023-05-02T14:50:09.745Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -82,7 +82,7 @@ G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offerin
 |4|e123inf, e1230, e12inf0, e13inf0, e23inf0|26...30|
 |5|e123inf0 (pseudoscalar)|31|
 
-einf means e∞, 0 means e0, e12 means e1^e2
+einf means e∞ (infinity), 0 means e0 (origin), e12 means e1^e2
 
 G4,1 is an assembly from G3 euclidean and G1,1 Minkowski metric. e1, e2, e3 and e+ square to 1 each, e- to -1 (hence the name G4,1). e+ and e- are converted to a different base system to be used:
 einf = e- - e+
