@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2023-05-02T11:59:07.861Z
+date: 2023-05-02T12:02:42.063Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -82,6 +82,8 @@ Additionally, the **TMC2209** stepper driver used in Duet 3 Mini 5+ (and Duet 3 
 * Use R1 when experimenting with the other parameters, so that you can see what effect they have during a print. If logging is enabled, stalls will be logged as well as reported.
 * Use R2 when you have tuned stall detection and you want to pause the print automatically when a stall is detected.
 * Use R3  when you have tuned stall detection and you want to re-home and continue the print automatically. **You must have a rehome.g file in /sys on the SD card**, to instruct the printer on how you'd like to rehome. On a Cartesian or CoreXY printer, typically you would enable stall detection on just the X and Y motors, and re-home just the X and Y axes in rehome.g.
+
+**Note**: In RRF v3.4 and later there is no longer a distinction between R2 and R3; both cause an event to be created when the driver stalls. To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. File rehome.g is no longer used. If file driver-stall.g is not found then the print is paused without running pause.g and the error is reported.
 
 # Sensorless Homing
 
