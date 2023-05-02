@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-02T14:30:37.245Z
+date: 2023-05-02T14:41:59.919Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -88,7 +88,7 @@ G4,1 is an assembly from G3 euclidean and G1,1 Minkowski metric. e1, e2, e3 and 
 einf = e- - e+
 e0 = 0.5*(e- + e+)
 so that e0²=0 and einf²=0 (null vectors) and
-einf * e0 = -1
+einf.e0 = -1
 CGA uses e1, e2, e3, e0 and einf, i. e. 5 coordinates for 2^5 = 32 values to represent the objects.
 Some authors use two times 1/sqrt(2) instead of 0.5 as factor, the formulae are different then, but the logic is the same.
 
