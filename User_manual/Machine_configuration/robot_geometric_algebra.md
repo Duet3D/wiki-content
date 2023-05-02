@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-01T23:33:36.239Z
+date: 2023-05-02T06:54:44.819Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -121,7 +121,7 @@ Conformal Geometric algebra (CGA) can describe transformations (rotation, reflec
 
 # Dual
 
-An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I (i. e. x* = x . I^-1^), and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades. (Dorst names them other round)
+An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I (i. e. A^*^ = AI^-1^), and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades. (Dorst names them other round)
 
 I is the pseudoscalar, the e1 ^ e2 ^ e3 ^ einf ^ e0 (e123inf0) blade. / I means multiplying with the inverse of I.
 
@@ -129,9 +129,9 @@ Another example: a plane can be defined by a vector which defines the normal of 
 
 In Gaalop and elsewhere, the dual is marked by * in front of the object, e.g. dual = * object;
 
-An object can be transformed into its dual by * and back again by another * => that's wrong, it is rotated 180 degree when dualization two times. To revert, there is a special algorithm for "undualization" x^-*^ and the formula is (see dissertation Fontijne 2.25) A^-x^ = A . I
+When an object is dualized two times, the result is negative. To get the correct result, i. e. the original object, there is a special algorithm for "undualization" x^-*^ and the formula is (see dissertations Fontijne 2.25 / Colapinto 2.20) A^-x^ = AI
 
-The choice which (IPNS or OPNS) is called standard form and which is the dual one is not standardizes and differs between authors.
+In most cases, the IPNS is called the dual form and the other the standard form.
 
 # objects
 
