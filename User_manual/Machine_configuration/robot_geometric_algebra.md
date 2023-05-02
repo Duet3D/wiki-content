@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-02T15:02:10.160Z
+date: 2023-05-02T15:03:37.964Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -165,7 +165,7 @@ There are two methods to create the objects:
 - OPNS: multiple points define the object
 
 They are linked through dualization and
-- the grade of an object has grade 5-1 of the dual (e. g. sphere grade 4, dual sphere grade 1)
+- the grade of an object has grade 5-... of the dual (e. g. sphere grade 4, dual sphere grade 1)
 - the value number of objects is the same for the dual (e. g. sphere and dual sphere both need 5 values, but at different places)
 
 The master thesis of Colapinto has a very nice overview in table 11 and appendix A about a lot of methods to create objects.
