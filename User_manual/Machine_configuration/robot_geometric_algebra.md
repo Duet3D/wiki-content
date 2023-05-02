@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-02T15:07:52.461Z
+date: 2023-05-02T15:17:58.336Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -227,6 +227,10 @@ There are two methods:
 - dual(A ∩ B) = dual(B) ^ dual(A)
 
 The second method's dual is not necessarly the pseudoscalar. See Fontijne's thesis for detailed information (chapters 2.8.4, 2.13.2).
+
+The second method formulated by Colapinto (see his dissertation chapter 2.2.5 and 2.2.6):
+v = (A^*^ ^ B^*^)^-*^
+where -* is the undualization: A^-*^ = AI
 
 # transformations
 
