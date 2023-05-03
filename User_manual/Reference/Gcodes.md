@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-03T19:11:31.782Z
+date: 2023-05-03T19:12:56.904Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -218,8 +218,8 @@ As soon as one of these commands is received it is acknowledged and stored local
 
 * Commands are queued when executed from a job file or a macro.
 * All moves are always queued, except for homing/probing moves which are special.
-* G4/M400 finishes all moves in the current queue and thus clears the queue. (RRF 3.5 may support multiple queues, which run independently.)
-* M595 sets the move queue length.
+* G4/M400 finishes all moves in the current queue and thus clears the queue. RRF 3.5 on some boards supports multiple queues, which run independently.
+* M595 can be used to increase the move queue length.
 * When a non-queued command is received, it is stored but not acknowledged to the host until the queue is exhausted and then the command has been executed.
 * If a command that is usually queued contains a parameter that is an OM expression enclosed in `{ }` then the command is not queued because the value of the OM expression is liable to change, and there isn't a suitable context to evaluate it in if it were to be queued.
 * Meta commands such as echo are never queued.
