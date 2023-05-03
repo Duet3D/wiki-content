@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2023-04-05T17:24:06.058Z
+date: 2023-05-03T19:19:03.268Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -366,19 +366,20 @@ The following functions are supported, with their conventional meanings:
 | asin | float->float | Result is in radians |
 | atan | float->float | Result is in radians |
 | atan2 | (float, float)->float | Result is in radians |
+| ceil | float->int or float->float | Result is **int** if it fits in a 32-bit signed integer, else float  (available in RRF 3.5.0-beta.4 and later). |
 | cos | float->float | Argument must be in radians |
-| datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a DateTime, or a string with format "yyyy-mm-ddThh:mm:ss" to a DateTime. Available in RRF 3.4 and later. |
+| datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a **DateTime**, or a string with format "yyyy-mm-ddThh:mm:ss" to a **DateTime**. Available in RRF 3.4 and later. |
 | degrees | float->float | Converts radians to degrees |
 | exists | name  -> bool | Yields true if 'name' is a valid variable or object model element name and is not null (available in RRF 3.3beta3 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
 | exp | float->float | returns *e* raised to the operand (supported in RRF 3.5beta3 and later) |
 | fileexists | filename  -> bool | Yields true if the file 'filename' exists (available in RRF 3.5beta1 and later). |
-| floor | float->int or float->float | Result is int if it fits in a 32-bit signed integer, else float |
+| floor | float->int or float->float | Result is **int** if it fits in a 32-bit signed integer, else float |
 | isnan | float->bool | Returns true if the operand is a NaN (Not-a-Number) e.g. sqrt(-1) |
 | log | float->float | returns the natural logarithm of the operand (supported in RRF 3.5beta3 and later) |
 | max | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
 | min | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
 | mod | (int, int)->int or (float, float)->float | Returns the remainder from dividing the first operand by the second operand |
-| pow | (float, float)->float | returns the first operand to the power of the second operand  (supported in RRF 3.5beta3 and later) |
+| pow | (float, float)->float or (int, int)->int | Returns the first operand to the power of the second operand  (supported in RRF 3.5beta3 and later). In RRF 3.5.0-beta.4 and later the result type is **int** if the operatnds are int, the second operand is non-negative, and the result fits in an **int**. |
 | radians | float->float | Converts degrees to radians |
 | random | int->int | Operand must >= 1. Returns a pseudo-random integer in the range 0 to one less than the operand. |
 | sin | float->float | Argument must be in radians |
