@@ -2,7 +2,7 @@
 title: 12864 display menu system
 description: 
 published: true
-date: 2021-11-15T12:37:51.604Z
+date: 2023-05-03T14:54:26.139Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-08T15:18:45.632Z
@@ -34,8 +34,9 @@ Folder **/menu** of the micro SD card installed in the Duet is used to hold menu
 
 There are a number of published user-created menu file sets you can use:
 
-* mudcruzr - [Duet-Maestro-12864-Menu-Files](https://github.com/mudcruzr/Duet-Maestro-12864-Menu-Files)
 * JadonM - [UltimateDuetMenuSystem](https://github.com/jadonmmiller/UltimateDuetMenuSystem)
+As far as we know, JadonM's menu system is currently the only one that supports selecting and printing files from the external SD card on the display itself.
+* mudcruzr - [Duet-Maestro-12864-Menu-Files](https://github.com/mudcruzr/Duet-Maestro-12864-Menu-Files)
 * jottesman - [DUET3D_12864LCD_MenuFiles](https://github.com/tinkerlifeprojects/DUET3D_12864LCD_MenuFiles)
 
 Many thanks to these users for their work!
