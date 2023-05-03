@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-03T18:39:19.879Z
+date: 2023-05-03T18:40:45.909Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2669,7 +2669,7 @@ M150 X2 R0 U255 B0 P255 S1 F0      ; right encoder led
 
 ### Notes
 
-* This command is only supported on controllers that have an output connector for DotStar or NeoPixel LEDs.
+* In older firmware versions this command is only supported on controllers that have an output connector for DotStar or NeoPixel LEDs. More recent firmwares remove this limitation.
 * The specified RGB values will be sent to the number of LEDs in the LED strip as specified by the S parameter, pushing the existing colours along the strip. To set all the LEDs the same colour, make the S parameter equal to or a little longer than the number of LEDs in the strip.
 * Caution: in early firmware versions, if the S parameter is omitted then as many LEDs as can be set in a single chunk will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
 * If a Neopixel LED strip is assigned to a pin that that cannot generate the WS2812 LED timing in hardware, then motion will be suspended while the LED strip is being written.
