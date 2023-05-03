@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-04-30T19:18:58.579Z
+date: 2023-05-03T18:39:19.879Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2643,7 +2643,7 @@ Switch the bed to its standby temperature. M144 S1 will set it back to its activ
 * **Wnnn** White component, 0-255 (Only for RGBW NeoPixel, RepRapFirmware 3.3 and later)
 * **Pnnn** Brightness, 0-255 (RepRapFirmware 2.03 and later)
 * **Ynn** Brightness, 0-31 (alternative to P 0-255)
-* **Snnn** Number of individual LEDs to set to these colours
+* **Snnn** Number of individual LEDs to set to these colours, default 1
 * **Fn** Following command action. F0 (default) means this is the last command for the LED strip, so the next M150 command starts at the beginning of the strip. F1 means further M150 commands for the remainder of the strip follow this one.
 * **En** (RRF 3.5 and later only) LED strip number, default 0. See M950.
 * **Xn** (RRF 3.4 and earlier only) LED type: X0 = DotStar (default prior to RRF 3.2), X1 = RGB NeoPixel (default in RRF 3.2 and later), X2 = bit-banged RGB NeoPixel, X3 = RGBW NeoPixel (from RRF 3.3), X4 = bit-banged RGBW NeoPixel (from RRF3). This parameter is remembered from one call to the next, so it only needs to be given once. Not all boards support all the modes. On the Duet 3 Mini, X1 and X3 select the NeoPixel output on the main board, while X2 and X4 address the RGB LEDs on some 12864 displays.
@@ -2671,9 +2671,9 @@ M150 X2 R0 U255 B0 P255 S1 F0      ; right encoder led
 
 * This command is only supported on controllers that have an output connector for DotStar or NeoPixel LEDs.
 * The specified RGB values will be sent to the number of LEDs in the LED strip as specified by the S parameter, pushing the existing colours along the strip. To set all the LEDs the same colour, make the S parameter equal to or a little longer than the number of LEDs in the strip.
-* Caution: if the S parameter is omitted then as many LEDs as can be set in a single chunk will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2, many more on Duet 3). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
+* Caution: in early firmware versions, if the S parameter is omitted then as many LEDs as can be set in a single chunk will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
 * If a Neopixel LED strip is assigned to a pin that that cannot generate the WS2812 LED timing in hardware, then motion will be suspended while the LED strip is being written.
-* Some Neopixel/WS2812 versions have the colour order as RGB and others are GRB. Check the datasheet for the LEDs you are using if the Red and Green colours are switched. You will have to set the red with the U parameter and green with the R parameter.
+* Some Neopixel/WS2812 versions have the colour order as RGB and others are GRB. Check the datasheet for the LEDs you are using if the Red and Green colours are switched. If this is the case then you will have to set the red with the U parameter and green with the R parameter.
 
 ## M190: Wait for bed temperature to reach target temp
 
