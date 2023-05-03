@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-03T18:40:45.909Z
+date: 2023-05-03T19:11:31.782Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -204,7 +204,7 @@ A line that does not start with one of these keywords must start with command le
 
 RepRapFirmware allows multiple G- and M-commands to be included in a single line. Each occurrence of G or M on the line that is preceded by a space or tab character and is not inside a quoted string or a meta command starts a new command. In RRF 3.2 and later, the space or tab character is not required.
 
-**Important**: a command that invokes a macro file (such as G28, G29, G32 and M98) must be the last command in that line of GCode, because any following commands on the same line will not be executed. A T (tool change) command must be the last command on the line.
+**Important**: a command that invokes a macro file (such as G28, G29, G32 and M98) must be the last command in that line of GCode, because any following commands on the same line will not be executed. A T (tool change) command must be on a line by itself.
 
 ## Command queueing
 
