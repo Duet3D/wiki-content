@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-04T07:27:29.342Z
+date: 2023-05-04T07:28:10.366Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -344,4 +344,4 @@ A valuable source are thesis/dissertations, because they often have detailed exp
 - Zaplana dissertation Solving Robot Kinematic Problems. Uses CGA for inverse kinematics.
 
 About the topic intersection,
-- Baryo-Corrochano et al - Computing in the Conformal Space Objects is a remarkable article
+- Bayro-Corrochano et al - Computing in the Conformal Space Objects is a remarkable article
