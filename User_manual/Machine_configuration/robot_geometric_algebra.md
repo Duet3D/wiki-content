@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-04T07:29:18.596Z
+date: 2023-05-04T12:58:36.331Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -76,20 +76,20 @@ G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offerin
 |-|-|-|
 |grade|blade|array index|
 |0|1 (scalar)|0|
-|1|e1, e2, e3, einf, e0|1...5|
-|2|e12, e13, e1inf, e10, e23, e2inf, e20, e3inf, e30, einf0|6...15|
-|3|e123, e12inf, e120, e13inf, e130, e1inf0, e23inf, e230, e2inf0, e3inf0|16...25|
-|4|e123inf, e1230, e12inf0, e13inf0, e23inf0|26...30|
-|5|e123inf0 (pseudoscalar)|31|
+|1|e1, e2, e3, einf, eo|1...5|
+|2|e12, e13, e1inf, e1o, e23, e2inf, e2o, e3inf, e3o, einfo|6...15|
+|3|e123, e12inf, e12o, e13inf, e13o, e1info, e23inf, e23o, e2info, e3info|16...25|
+|4|e123inf, e123o, e12info, e13info, e23info|26...30|
+|5|e123info (pseudoscalar)|31|
 
-einf means e∞ (infinity), 0 means e0 (origin), e12 means e1^e2
+einf means e∞ (infinity), o means eo (origin), e12 means e1^e2
 
 G4,1 is an assembly from G3 euclidean and G1,1 Minkowski metric. e1, e2, e3 and e+ square to 1 each, e- to -1 (hence the name G4,1). e+ and e- are converted to a different base system to be used:
 einf = e- - e+
-e0 = 0.5*(e- + e+)
-so that e0²=0 and einf²=0 (null vectors) and
-einf.e0 = -1
-CGA uses e1, e2, e3, e0 and einf, i. e. 5 coordinates for 2^5 = 32 values to represent the objects.
+eo = 0.5*(e- + e+)
+so that eo²=0 and einf²=0 (null vectors) and
+einf.eo = -1
+CGA uses e1, e2, e3, eo and einf, i. e. 5 coordinates for 2^5 = 32 values to represent the objects.
 Some authors use two times 1/sqrt(2) instead of 0.5 as factor, the formulae are different then, but the logic is the same.
 
 # Geometries included in CGA and higher ones
@@ -134,7 +134,7 @@ Conformal Geometric algebra (CGA) can describe transformations (rotation, reflec
 
 An object can be described by a combination of blades. It can be described by an alternative set of blades called dual. It is calculated by dual = object / I (i. e. A^*^ = AI^-1^), and has the effect in CGA, that the array elements who describe it have dimension 5-n. Example: if an object uses 2-blades like a circle, the dual circle uses 3-blades. Point pairs use 3-blades, the dual 2-blades. (Dorst names them other round)
 
-I is the pseudoscalar, the e1 ^ e2 ^ e3 ^ einf ^ e0 (e123inf0) blade. / I means multiplying with the inverse of I.
+I is the pseudoscalar, the e1 ^ e2 ^ e3 ^ einf ^ eo (e123info) blade. / I means multiplying with the inverse of I.
 
 Another example: a plane can be defined by a vector which defines the normal of the plane and the distance to the origin (pl = v + 5 * einf), stored in 1-blades, or as dual plane by using three points together with einf to store it in 4-blades (pl= * (p1 ^ p2 ^ p3 ^ einf)).
 
@@ -178,7 +178,7 @@ The first version of the point is the same for IPNS and OPNS.
 
 |-|-|-|-|
 |object|how calculated|Gaalop sample code|filled array elements|
-|point|vector + 0.5 * norm² + e0|p=createPoint(1,2,3);|1-5, 1-blades|
+|point|vector + 0.5 * norm² + eo|p=createPoint(1,2,3);|1-5, 1-blades|
 |vector|coordinates e1, e2, e3|v=e1+2 * e2+e3|1-3 part of 1-blades|
 |sphere|point - 0.5 * r * r * einf|s=createPoint(1,2,3)-0.5 * 3 * 3 * einf;|1-5 1-blades|
 |plane|normal vector + distance * einf|plane=1 * e1+2 * e2+3 * e3+5 * einf;|1-4 1-blades without e0|
