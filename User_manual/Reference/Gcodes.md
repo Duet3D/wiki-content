@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-04T11:03:17.265Z
+date: 2023-05-04T18:54:59.955Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2158,7 +2158,7 @@ Deprecated in RepRapFirmware. Use M106 S0 instead.
 
 ## M108: Cancel Heating
 
-Breaks out of an M109 or M190 wait-for-temperature loop, continuing the print job. Use this command with caution! If cold extrusion prevention is enabled (see M302) and the temperature is too low, this will start "printing" without extrusion. If cold extrusion prevention is disabled and the hot-end temperature is too low, the extruder may jam.
+Breaks out of an M109, M116, M190 or M191 wait-for-temperature loop, continuing the print job. Use this command with caution! If cold extrusion prevention is enabled (see M302) and the extruder temperature is too low, this will start "printing" without extrusion. If cold extrusion prevention is disabled and the hot-end temperature is too low, the extruder may jam.
 
 ## M109: Set Extruder Temperature and Wait
 
