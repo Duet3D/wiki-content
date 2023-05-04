@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-03T19:12:56.904Z
+date: 2023-05-04T11:03:17.265Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1838,7 +1838,7 @@ In RRF 3.4.0 and later, M80 will do nothing unless you have previously allocated
 ### Parameters
 
 * **C"port_name"** (RRF 3.4.0 and later) Name of the pin used to control the power supply
-* **Sn** n=0 turn power off immediately (default), n=1 turn power off when all thermostatic fans have turned off (RepRapFirmware 1.20 and later only). This parameter optional and ignored if the C parameter is present. The default is to turn off power as soon as the movement queue is empty.
+* **Sn** n=0 turn power off immediately (default), n=1 turn power off when all thermostatic fans have turned off (RepRapFirmware 1.20 and later only). This parameter optional and ignored if the D parameter is present. The default is to turn off power as soon as the movement queue is empty.
 * **Dnnn** Delay powering down for nnn seconds (RRF 3.5 and later only)
 
 ### Examples
