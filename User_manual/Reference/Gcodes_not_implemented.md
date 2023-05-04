@@ -2,7 +2,7 @@
 title: GCodes not implemented
 description:  This page lists GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware. 
 published: true
-date: 2023-04-22T07:21:33.858Z
+date: 2023-05-04T09:45:28.150Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:45:16.729Z
@@ -43,7 +43,7 @@ When these are implemented depends very much on the demand.
 
 These are unlikely to be implemented due to functionality existing in other RepRapFirmware G-codes or there being no perceived demand (if that is wrong then post in the firmware wishlist on the forum)
 
-* G6: Direct Stepper Move (Use G1 S1 instead)
+* G6: Direct Stepper Move (Use G1 H1 instead)
 * G33: Measure/List/Adjust Distortion Matrix (Use G29 or G32 instead)
 * G100: Calibrate floor or rod radius (No demand)
 * G130: Set digital potentiometer value (Use M906)
