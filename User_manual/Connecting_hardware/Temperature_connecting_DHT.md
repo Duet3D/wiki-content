@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2023-04-04T15:55:03.496Z
+date: 2023-05-05T15:51:14.080Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -123,7 +123,21 @@ BME280 sensors should be less sensitive to interference than DHT sensors, but th
 
 ### Wiring
 
-Using the Temperature Daughterboard connector (TEMP_DB), connect the SDI, SDO and SCK pins of the BME280 to MOSI, MISO and SCLK respectively. Also connect CS to your chosen spi.cs pin, 3.3V power and ground.
+Using the Temperature Daughterboard connector (TEMP_DB), connect the SDI (may be labelled as SDA), SDO and SCK (SCL) pins of the BME280 to MOSI, MISO and SCK respectively. Also connect CS (may be labelled CSB) to your chosen spi.cs pin, 3.3V power and ground.
+
+| Duet SPI Daughterboard connector || BME280 |
+|---|---|
+| Pin number | Pin name | Pin name / alternate name |
+| 1 | spi.cs1 | CS / CSB |
+| 2 | GND | GND |
+| 3 | spi.cs0 | (alternative for CS / CSB) |
+| 4 | SPIO_SCK | SCK / SCL |
+| 5 | SPIO_MOSI | SDI / SDA |
+| 6 | SPIO_MISO | SDO |
+| 7 | spi.cs2 | (alternative for CS / CSB) |
+| 8 | +3.3V | VCC |
+| 9 | spi.cs3 | (alternative for CS / CSB) |
+| 10 | NC | - |
 
 # Configuring a DHT sensor
 
