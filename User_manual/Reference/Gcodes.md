@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-05T09:59:12.567Z
+date: 2023-05-05T13:52:42.106Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3849,7 +3849,7 @@ Deprecated in RRF 3.3 and later. Use M409 to get response from Object Model, whi
 
 ### Parameters
 
-* **Snnn** Response type (only used when P is zero or not present)
+* **Snnn** Response type (only used when R is zero or not present)
 * **Rnnn** Response sequence number (see **seq** and **resp** in list below)
 
 ### Examples
