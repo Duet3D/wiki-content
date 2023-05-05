@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-01T09:32:55.379Z
+date: 2023-05-05T06:41:30.446Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -22,19 +22,15 @@ Positions are easily calculated, but for the orientation of the endpoints exist 
 
 # Forward and inverse kinematics
 
-The kinematics classes have two methods as core functionality: calculation of cartesian coordinates from stepper's position, called forward kinematics. And the opposite direction, called inverse kinematics.
+The original procedure to calculate kinematics by Jacobian is replaced by screw theory with geometric algebra means.
 
-![jacobian_geninverse.png](/manual/configuration/jacobian_geninverse.png)
-
-For 6 axis robot and most other robot kinematics, forward kinematics is calculated by matrix multiplication of the axes, which contain translations and rotations. The result is a position and an orientation of the endpoint (hotend, CNC drill etc.). Internally, the full position and orientation information is used for calculations.
-
-The Jacobian matrix is a calculation of the correlation between stepper position and cartesian coordinate/orientation, when single steppers are changed (the steppers are not changed in reality, but only mathematically, as if).
-
-An inverse must be calculated to get the inverse kinematics:
-* if the Jacobian is quadratic and non-singular, an inverse can be calculated. This is fastest
-*  if the Jacobian is nonquadratic or singular, a so-called generalized inverse must be calculated. The method used is described in "Singular Value Decomposition and Least Square Solutions" by G. H. Golub and C. Reinsch from 1970 http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf and is based on Singular Value Decomposition (SVD) method.
-
-The jacobian and inverse values are almost exact if using small steps, i. e. small segments. The default is 0.1 segment lengths. The precision achieved is below 1e-3 mm.
+Procedure of development:
+- calculate forward from all angle combinations with a high sample number by DH or with existing RRF kinematics code
+- calculate all inverse solutions (up to 8 for 6 axis robot)
+- verify that one of the inverse solutions is the forward angle combination (to make sure that all inverses were calculated)
+- verify all inverse solutions by calculating forward for each of them
+- calculate forward with DH and with screw based code and verify that the result is the same
+- all calculations must tolerate some rounding errors in the range of 1e-6 (which is 1 micrometer)
 
 # G-Code to machine position
 
