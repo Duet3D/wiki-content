@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-05T09:54:35.205Z
+date: 2023-05-05T09:59:12.567Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7268,7 +7268,7 @@ M915 X Y S5 R2
 
 ### Notes
 
-* In RRF v3.4 and later there is no longer a distinction between R2 and R3; both cause an event to be created when the driver stalls. To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. File rehome.g is no longer used. If file driver-stall.g is not found then the print is paused without running pause.g and the error is reported.
+* In RRF v3.4 and later there is no longer a distinction between R2 and R3; both cause an event to be created when the driver stalls. See the [events](/User_manual/RepRapFirmware/Events) page for more detail. To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. File rehome.g is no longer used. If file driver-stall.g is not found then the default action to report it to the console and carry on.
 * **S parameter** For most drivers, values range from -64 to +63. For TMC2209 drivers (Duet 3 Mini 5+, Duet 3 Toolboard 1LC) values range from -128 to +127. Lower values make stall detection more sensitive. Values below -10 are not recommended. S3 is a good starting point for many motors.
 * If any of the S, F, T and R parameters are absent, the previous values for those parameters associated with the specified drivers will continue to be used. 
 * If all the parameters are absent, the existing settings for the specified drive(s) will be reported.
