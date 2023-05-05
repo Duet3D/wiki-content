@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-04T18:54:59.955Z
+date: 2023-05-05T09:54:35.205Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1225,13 +1225,13 @@ This command terminates the current job. At present, it behaves just like M0.
 
 Supported in v3.5-b1 and later.
 
-## M3: Spindle On, Clockwise (CNC specific)/ Laser on (Laser specific)
+## M3: Spindle On, Clockwise
 
-Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC mode (see [M453](/User_manual/Reference/Gcodes/M453){target=_blank}) or laser mode ([M452](/User_manual/Reference/Gcodes/M452){target=_blank}).
+Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC mode (see [M453](/User_manual/Reference/Gcodes/M453){target=_blank}) and in CNC and FFF mode from RepRapFirmware version 3.5
 
 ### Parameters
 
-* **Snnn** Spindle RPM (CNC mode) or laser power (laser mode). In laser mode, the relationship between the S parameter and laser power depends on the R parameter that was specified in the M452 command.
+* **Snnn** Spindle RPM (CNC mode)
 * **Pnnn** Spindle slot (CNC mode only). Directly address a spindle slot.
 
 ### Examples
@@ -1248,9 +1248,12 @@ Using the S parameter will additionally set the spindle RPM of the current tool.
 
 It is an error if there is no tool active or the active tool does not have a spindle assigned and there is no P parameter provided to define which spindle this should be applied to.
 
-## M4: Spindle On, Counterclockwise (CNC specific)
+#### M3 in RepRapFirmware 3.5 and later
+M3 M4 and M5 commands are now supported in FDM mode as well as CNC mode. This will allow mixing of additive and subtractive tools wihtout switching mode.
 
-Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC (see M453).
+## M4: Spindle On, Counterclockwise
+
+Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC (see [M453](/User_manual/Reference/Gcodes/M453){target=_blank}) and in CNC and FFF mode from RepRapFirmware version 3.5
 
 ### Parameters
 
@@ -1271,9 +1274,12 @@ Using the S parameter will additionally set the spindle RPM of the current tool.
 
 It is an error if there is no tool active or the active tool does not have a spindle assigned and there is no P parameter provided to define which spindle this should be applied to.
 
-## M5: Spindle Off (CNC specific), laser off (Laser specific)
+#### M4 in RepRapFirmware 3.5 and later
+M3 M4 and M5 commands are now supported in FDM mode as well as CNC mode. This will allow mixing of additive and subtractive tools without switching mode.
 
-Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC (see M453) or Laser (see M452).
+## M5: Spindle Off
+
+Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC mode (see [M453](/User_manual/Reference/Gcodes/M453){target=_blank}) and in CNC and FFF mode from RepRapFirmware version 3.5
 
 ### Parameters
 
@@ -1288,6 +1294,9 @@ M5 ; turn of spindle/laser
 #### M5 in RepRapFirmware 3.3 and later
 
 M5 will stop the spindle of the current tool (if any) or all defined spindles if the current tool has no spindle assigned or there is no active tool.
+
+#### M5 in RepRapFirmware 3.5 and later
+M3 M4 and M5 commands are now supported in FDM mode as well as CNC mode. This will allow mixing of additive and subtractive tools without switching mode.
 
 ## M17: Enable all stepper motors
 
