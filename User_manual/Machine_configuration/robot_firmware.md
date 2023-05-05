@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-05T06:41:30.446Z
+date: 2023-05-05T06:50:38.031Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -29,7 +29,7 @@ Procedure of development:
 - calculate all inverse solutions (up to 8 for 6 axis robot)
 - verify that one of the inverse solutions is the forward angle combination (to make sure that all inverses were calculated)
 - verify all inverse solutions by calculating forward for each of them
-- calculate forward with DH and with screw based code and verify that the result is the same
+- calculate forward with DH and with screw based code and verify that the result is the same (this verifies the DH-screw converter as well)
 - all calculations must tolerate some rounding errors in the range of 1e-6 (which is 1 micrometer)
 
 # G-Code to machine position
