@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-04T13:00:03.662Z
+date: 2023-05-06T07:09:34.320Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -231,6 +231,10 @@ The second method's dual is not necessarly the pseudoscalar. See Fontijne's thes
 The second method formulated by Colapinto (see his dissertation chapter 2.2.5 and 2.2.6):
 v = (A^*^ ^ B^*^)^-*^
 where -* is the undualization: A^-*^ = AI
+
+Circle-circle intersection is difficult to calculate, it is easier to convert one of the circles to a sphere and calculate the intersection of circle-sphere.
+
+A very good new article about intersections and distances (see literature link below) is from Bayro-Corrochano et al.
 
 # transformations
 
