@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-08T07:09:22.403Z
+date: 2023-05-08T07:12:08.689Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -85,9 +85,8 @@ G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offerin
 einf means e∞ (infinity), o means eo (origin), e12 means e1^e2
 
 G4,1 is an assembly from G3 euclidean and G1,1 Minkowski metric. e1, e2, e3 and e+ square to 1 each, e- to -1 (hence the name G4,1). e+ and e- are converted to a different base system to be used:
-einf = e- - e+, eo = 0.5*(e- + e+), einf.e0=-1
-so that eo²=0 and einf²=0 (null vectors).
-And other round: e+=eo-0.5einf, e-=eo+0.5einf
+einf = e- - e+, eo = 0.5* (e- + e+), einf.e0=-1, eo²=einf²=0
+e+=eo-0.5* einf, e-=eo+0.5* einf, e+.e+=1, e-.e-=-1
 
 CGA uses e1, e2, e3, eo and einf, i. e. 5 coordinates for 2^5 = 32 values to represent the objects.
 Some authors use two times 1/sqrt(2) instead of 0.5 as factor, the formulae are different then, but the logic is the same.
