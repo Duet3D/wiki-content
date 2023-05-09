@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-09T14:15:46.378Z
+date: 2023-05-09T14:18:27.047Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6088,10 +6088,6 @@ M586 P2 S1 ; enable Telnet
 
 *Supported from firmware version 3.5. Requires WiFi interface running WiFi server version 2.1 or later.*
 
-### Descripton
-
-The RRF MQTT client publishes message sent via M118 under a predefined topic, eg `topic-duet`. The `echo` MQTT client is subscribed to this topic, which retransmits the message under a second predefined topic, eg `topic-echo`. Since the RRF MQTT client in turn is subscribed to this topic, it receives and displays the retransmitted message.
-
 ### Parameters
 
 * **U** "username" The name to use when logging on to the MQTT server
@@ -6104,6 +6100,10 @@ The RRF MQTT client publishes message sent via M118 under a predefined topic, eg
 * **P** "publish" Publish the topic if this is set
 * **Rn** 1 = retain, 0 = do not retain (only processed if the P parameter is used)
 * **Dn** 1 = duplicate, 0 = don't duplicate (only processed if the P parameter is used)
+
+### Descripton
+
+The RRF MQTT client publishes message sent via M118 under a predefined topic, eg `topic-duet`. The `echo` MQTT client is subscribed to this topic, which retransmits the message under a second predefined topic, eg `topic-echo`. Since the RRF MQTT client in turn is subscribed to this topic, it receives and displays the retransmitted message.
 
 ### Examples
 
