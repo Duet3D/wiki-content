@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-09T14:18:27.047Z
+date: 2023-05-09T14:37:43.705Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6086,7 +6086,7 @@ M586 P2 S1 ; enable Telnet
 
 ## M586.4: Configure MQTT server
 
-*Supported from firmware version 3.5. Requires WiFi interface running WiFi server version 2.1 or later.*
+*Supported from firmware version 3.5, on Duet WiFi boards in standalone mode. Requires the WiFi interface to be running WiFi server version 2.1 or later.*
 
 ### Parameters
 
