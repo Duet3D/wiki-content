@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the experimental accelerometer support in RRF 3.3 and later.
 published: true
-date: 2023-04-03T20:26:41.736Z
+date: 2023-05-09T09:51:40.673Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -168,7 +168,7 @@ You can add parameter I (uppercase 'i') to the M955 command if you need to chang
 
 The I (orientation) parameter tells the firmware which of the 24 possible orientations the accelerometer chip is in relative to the printer axes. It is expressed as a 2-digit number. The first digit specifies which machine direction the Z axis of the accelerometer chip (usually the top face of the chip) faces, as follows: 0 = +X, 1 = +Y, 2 = +Z, 4 = -X, 5 = -Y, 6 = -Z. The second digit expresses which direction the X axis of the accelerometer chip faces, using the same code. If the accelerometer chip axes line up with the machine axis, the orientation is 20. This is the default orientation if no orientation has been specified.
 
-Forum user [Nuramori](https://forum.duet3d.com/user/nuramori){target=_blank} has produced a [graphical guide to help illustrate the orientation options](https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf){target=_blank} with a Duet 3 Tool Board 1LC rev 1.1 (with onboard accelerometer). 
+Forum user [Nuramori](https://forum.duet3d.com/user/nuramori){target=_blank} has produced a [graphical guide to help illustrate the orientation options](https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf){target=_blank} with a Duet 3 ToolBoard 1LC. His images use a Toolboard 1LC rev 1.1, however the same orientations apply all toolboards with onboard accelerometer: v1.1,v1.2 and v1.3). 
 
 ![accelerometer_i20_full.jpg](/accelerometer_i20_full.jpg){target=_blank}
 
