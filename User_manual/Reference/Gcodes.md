@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-05T13:52:42.106Z
+date: 2023-05-09T14:15:46.378Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6083,6 +6083,46 @@ M586 P2 S1 ; enable Telnet
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
 * M586 with no S parameter reports the current support for the available protocols.
 * RepRapFirmware 1.18 and later enable only HTTP (or HTTPS if supported) protocol by default. If you wish to enable FTP and/or Telnet, enable them using this command once or twice in config.g.
+
+## M586.4: Configure MQTT server
+
+*Supported from firmware version 3.5. Requires WiFi interface running WiFi server version 2.1 or later.*
+
+### Descripton
+
+The RRF MQTT client publishes message sent via M118 under a predefined topic, eg `topic-duet`. The `echo` MQTT client is subscribed to this topic, which retransmits the message under a second predefined topic, eg `topic-echo`. Since the RRF MQTT client in turn is subscribed to this topic, it receives and displays the retransmitted message.
+
+### Parameters
+
+* **U** "username" The name to use when logging on to the MQTT server
+* **K** "password" The password to use when logging on to the MQTT server (only valid if the U parameter is also present)
+* **C** "client-id" The client ID to use
+* **W** "will-message" The will-message to use
+* **T** "topic" The topic name to use (only processed if the W parameter is also present)
+* **S** "subscription" The subscription name to use
+* **Qnn** The quality of service to use, 0 to 2 (only processed if the S parameter is also present)
+* **P** "publish" Publish the topic if this is set
+* **Rn** 1 = retain, 0 = do not retain (only processed if the P parameter is used)
+* **Dn** 1 = duplicate, 0 = don't duplicate (only processed if the P parameter is used)
+
+### Examples
+
+<br>
+<pre class="cblock">
+;Configure the MQTT client
+M586.4 C"duet"
+M586.4 U"test-duet" K"test-duet-pswd"
+M586.4 P"topic-duet" D0 R0 Q0
+M586.4 S"topic-echo" Q0
+; Enable the MQTT protocol
+M586 P4 R1884 H192.168.10.244 S1
+; Publish a message via M118
+M118 P6 S"duet-message"
+; Disable the MQTT Protocol
+M586 P4 S0
+</pre>
+
+For a full example, see [the RRF Github repository here](https://github.com/Duet3D/RepRapFirmware/tree/3.5-dev/Scripts/MQTTDemo).
 
 ## M587: Add WiFi host network to remembered list, or list remembered networks
 
