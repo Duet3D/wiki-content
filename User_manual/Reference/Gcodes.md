@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-10T08:00:57.258Z
+date: 2023-05-10T12:07:24.881Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7445,20 +7445,21 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 ### Order dependency
 
 * When M950 is used to create a heater, the M950 command must come later in config.g than the M308 command that creates the sensor referred to in the T parameter
-* M950 must come before any commands that refer to the device being created. For example, when M950 is used to create a heater, it must be earlier than the M307 command used to set the heater parameters, and earlier than any M563 commands that create tools that use that heater. When M950 is used to create a fan, it must come earlier than any M106 commands relating to that fan.
+* M950 must come before any commands that refer to the device being created. For example, when M950 is used to create a heater, it must be earlier than the M307 command used to set the heater parameters, and earlier than any M563 commands that create tools that use that heater. When M950 is used to create a fan, it must come earlier than any M106 commands relating to that fan. When M950 is used to create an LED strip, it must come earlier than any M150 commands that use that strip.
 
 ### Examples
 <br>
 <pre class="cblock">
-M950 H1 C"out1" Q100 T1 ; create heater 1
+M950 H1 C"out1" Q100 T1        ; create heater 1
 M950 H1 C"3.out0+out2" Q100 T1 ; create heater 1 using ports OUT0 and OUT1 on CAN board 3 (RRF 3.4 or later)
-M950 H2 C"nil" ; disable heater 2 and free up the associated pin
-M950 F3 C"heater2" Q100 ; Fan 3 is connected to heater 2 pin, PWM at 100Hz
-M950 P0 C"exp.heater3" ; create output/servo port 0 attached to heater 3 pin on expansion connector
-M950 F2 C"!fan2+^exp.pb6" ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
-M950 J1 C"!^e1stop" ; Input 1 uses e1Stop pin, inverted, pullup enabled
+M950 H2 C"nil"                 ; disable heater 2 and free up the associated pin
+M950 F3 C"heater2" Q100        ; Fan 3 is connected to heater 2 pin, PWM at 100Hz
+M950 P0 C"exp.heater3"         ; create output/servo port 0 attached to heater 3 pin on expansion connector
+M950 F2 C"!fan2+^exp.pb6"      ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
+M950 J1 C"!^e1stop"            ; Input 1 uses e1Stop pin, inverted, pullup enabled
 M950 R0 C"!exp.heater3" L12000 ; Spindle 0 uses exp.heater3 as RPM pin and has a max RPM of 12000
-M950 D1 C"spi.cs0+spi.cs2" ; on Duet 3 MB6HC support external SD card using pins spi.cs0 and spi.cs2 for the CS and Card Detect pins respectively
+M950 D1 C"spi.cs0+spi.cs2"     ; on Duet 3 MB6HC support external SD card using pins spi.cs0 and spi.cs2 for the CS and Card Detect pins respectively
+M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED port (RRF 3.5)
 </pre>
 
 ### Notes
@@ -7466,7 +7467,7 @@ M950 D1 C"spi.cs0+spi.cs2" ; on Duet 3 MB6HC support external SD card using pins
 When using M950 to create a fan, the port name string may be either a single port, or two ports separated by the '+' sign. The second port is used to read the fan tacho. **Any CAN address at the start of the port name string applies to both port names.**
 <br>
 <pre class="cblock">
-M950 F5 C"!out4+out4.tach" Q450 ; Create Fan 5 on the mainboard on OUT4 with a tacho input
+M950 F5 C"!out4+out4.tach" Q450   ; Create Fan 5 on the mainboard on OUT4 with a tacho input
 M950 F0 C"!1.out3+out3.tach" Q450 ; Create Fan 0 on expansion board 1, output OUT3 with a tacho input
 </pre>
 
