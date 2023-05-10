@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-08T07:12:08.689Z
+date: 2023-05-10T05:52:57.533Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -45,24 +45,12 @@ There are several different geometric dimension systems, declared as Gp,q[,r] (o
 For example,
 
 - G3 uses three real axes e1, e2 and e3 with e1² = e2² = e3² = 1 unit values.
-- G2,4 for cosmology, conformalized space-time metric (see Lasenby)
 - G3,0,1 PGA is projective geometric algebra which is often used for (game) graphics
-- G3,1 CRA compass ruler algebra is the CGA flavor for 2D and used in the Introduction book of Hildenbrand to explain GA
-- G3,3 (see Dorst)
-- G1,3 spacetime algebra, Lorentz manifold (see Hestenes, relativity)
 - G4,1 CGA see next section
-- G4,2 Lie Sphere Geometry
-- G4,8 Double Conformal Space-Time Algebra (DCSTA)
-- G5,3 GAC is an algebra for conics
-- G6,3 uses CGA and adds quadrics (see Zamora-Esquivel)
-- G8,2 Double CGA adds objects like quadrics, tori and cylinders (see Easter, Hitzer)
-- G9,7 (?) Cubic CGA adds cubics
-- G9,3 Triple CGA for 2D
-- G12,3 Triple CGA for 3D (TCGA) (see Easter, Hitzer)
 - there are other ones
 
 The choosen dimension has influence on
-- the capabilities
+- the capabilities, e. g. support of additional objects
 - how much memory is necessary to store the geometric objects
 
 # Conformal Geometric Algebra, CGA
