@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-10T12:07:24.881Z
+date: 2023-05-10T14:03:05.108Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -467,6 +467,7 @@ Counter-clockwise arc move. Supported by RRF_1.18 and later.
 * **Znnn** The position to move to on the Z axis.
 * **Innn** The X coordinate of the arc centre **relative to the current X coordinate** (optional, ignored if R parameter is present).
 * **Jnnn** The Y coordinate of the arc centre **relative to the current Y coordinate** (optional, ignored if R parameter is present).
+* **Knnn** The Z coordinate of the arc centre **relative to the current Z coordinate** (optional, ignored if R parameter is present).
 * **Ennn** The amount to extrude between the starting point and ending point.^1^
 * **Fnnn** The feedrate per minute of the move between the starting point and ending point (optional, defaults to the current feed rate).
 * **Rnnn** The radius of the arc (optional, RRF2.03 and later)
@@ -482,6 +483,10 @@ G2 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Clockwise arc from the current point to
 G3 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Counter-Clockwise arc from the current point to point (X=90.6,Y=13.8), with a center point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
 G2 X100 Y50 R200            ; (draw a clockwise arc with radius 200 from the current position to X=100 Y=50)
 </pre>
+
+### Notes
+
+* Use of I, J and K parameters depends on the plane selected with G17, G18 or G19. Use I and J for the XY plane (G17), I and K for XZ plane (G18), and J and K for YZ plane (G19).
 
 ## G4: Dwell
 
