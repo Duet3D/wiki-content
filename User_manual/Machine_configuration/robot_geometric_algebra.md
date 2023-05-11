@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-11T07:18:22.179Z
+date: 2023-05-11T07:53:49.212Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -65,7 +65,7 @@ The choosen dimension has influence on
 |5|e123info (pseudoscalar)|31|
 
 Conformal geometric algebra (CGA) has the following properties:
-- conformal means angle preserving for translations like reflection, rotation, translation, dilation
+- conformal means angle preserving for transformations like reflection, rotation, translation, dilation
 - used patent US 6,853,964, which expired July 2022
 - uses G4,1 Minkowski space, built from G3 and G1,1
 - needs 32 parameters for a multivector variable
