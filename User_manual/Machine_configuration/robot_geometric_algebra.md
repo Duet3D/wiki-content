@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-10T05:52:57.533Z
+date: 2023-05-11T07:18:22.179Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -55,12 +55,6 @@ The choosen dimension has influence on
 
 # Conformal Geometric Algebra, CGA
 
-Conformal means angle preserving of the transformations (reflection, rotation, translation etc). CGA uses additional information, compared to 3-dimensional storage. CGA is a 5-dimensional Minkowski G4.1 space, needing 32 parameters to describe all blades. CGA was patented in US 6,853,964, but expired in July 2022.
-
-The additional dimensions allow additional object types and affine orthogonal transformations.
-
-G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offering the capability of orthogonal transformations by using rotors (versors) including translates (reflect, rotate, dilate, translate). Not every object needs all values, so compressing is used. The following table follows how Gaalop is organized:
-
 |-|-|-|
 |grade|blade|array index|
 |0|1 (scalar)|0|
@@ -70,14 +64,20 @@ G4,1 needs 32 (2^5, ordered by Pascal triangle) values for one variable, offerin
 |4|e123inf, e123o, e12info, e13info, e23info|26...30|
 |5|e123info (pseudoscalar)|31|
 
-einf means e∞ (infinity), o means eo (origin), e12 means e1^e2
+Conformal geometric algebra (CGA) has the following properties:
+- conformal means angle preserving for translations like reflection, rotation, translation, dilation
+- used patent US 6,853,964, which expired July 2022
+- uses G4,1 Minkowski space, built from G3 and G1,1
+- needs 32 parameters for a multivector variable
+- the blades are organized according to Pascal triangle 1-5-10-10-5-1
+- the additional dimensions allow additional object types and affine orthogonal transformations.
 
-G4,1 is an assembly from G3 euclidean and G1,1 Minkowski metric. e1, e2, e3 and e+ square to 1 each, e- to -1 (hence the name G4,1). e+ and e- are converted to a different base system to be used:
-einf = e- - e+, eo = 0.5* (e- + e+), einf.e0=-1, eo²=einf²=0
-e+=eo-0.5* einf, e-=eo+0.5* einf, e+.e+=1, e-.e-=-1
-
-CGA uses e1, e2, e3, eo and einf, i. e. 5 coordinates for 2^5 = 32 values to represent the objects.
-Some authors use two times 1/sqrt(2) instead of 0.5 as factor, the formulae are different then, but the logic is the same.
+G4,1 is organized as e1, e2, e3, e+, e- and converted to e1, e2, e3, einf and eo according to this rules:
+- einf means e∞ (infinity), o means eo (origin), e12 means e1^e2
+- e1, e2, e3 and e+ square to 1 each, e- to -1 (hence the name G4,1). e+ and e- are converted to a different base system to be used:
+- einf = e- - e+, eo = 0.5* (e- + e+), einf.e0=-1, eo²=einf²=0
+- e+=eo-0.5* einf, e-=eo+0.5* einf, e+.e+=1, e-.e-=-1
+- Some authors use two times 1/sqrt(2) instead of 0.5 as factor, the formulae are different then, but the logic is the same.
 
 # Geometries included in CGA and higher ones
 
