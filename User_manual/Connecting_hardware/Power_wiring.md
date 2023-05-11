@@ -2,7 +2,7 @@
 title: Power Wiring
 description: 
 published: true
-date: 2021-12-15T23:05:14.740Z
+date: 2023-05-11T08:21:34.513Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-29T09:54:45.515Z
@@ -16,7 +16,8 @@ Minimum and maxium input voltages for Duet mainboards.
 
 | | Minimum input voltage | Max input voltage | 
 |---|---|
-| Duet 3 Mainboard 6HC | 11V | 32V | 
+| Duet 3 Mainboard 6HC v1.01 and earlier | 11V | 32V |
+| Duet 3 Mainboard 6HC v1.02 and later| 11V | 48V | 
 | Deut 3 Mini 5+ | 11V | 25V | 
 | Duet 2 WiFi/Ethernet | 11V | 25V | 
 | Duet 2 Maestro | 11V | 25V | 
