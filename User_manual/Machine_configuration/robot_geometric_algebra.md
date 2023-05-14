@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-14T08:05:51.129Z
+date: 2023-05-14T19:54:37.440Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -133,7 +133,7 @@ The first version of the point is the same for IPNS and OPNS.
 
 |-|-|-|-|
 |object|how calculated|Gaalop sample code|filled array elements|
-|point|vector + 0.5 * norm² + eo|p=createPoint(1,2,3);|1-5, 1-blades|
+|point|vector + 0.5 * norm² * einf + eo|p=createPoint(1,2,3);|1-5, 1-blades|
 |vector|coordinates e1, e2, e3|v=e1+2 * e2+e3|1-3 part of 1-blades|
 |sphere|point - 0.5 * r * r * einf|s=createPoint(1,2,3)-0.5 * 3 * 3 * einf;|1-5 1-blades|
 |plane|normal vector + distance * einf|plane=1 * e1+2 * e2+3 * e3+5 * einf;|1-4 1-blades without eo|
