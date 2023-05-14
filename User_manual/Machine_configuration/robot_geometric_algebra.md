@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-14T19:54:37.440Z
+date: 2023-05-14T20:00:08.785Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -157,7 +157,7 @@ OPNS are the dual representations of IPNS, named by outer product null space. A 
 |sphere|four points of the curvature|s = p1 ^ p2 ^ p3 ^ p4;|26-30 4-blades|
 |plane|three points on plane and einf|pl = p1 ^ p2 ^ p3 ^ einf;|26,28-30 part of 4-blades|
 |circle|three points on circle|c = p1 ^ p2 ^ p3;|16-25 3-blades|
-|line|two points and einf|l = pl1 ^ pl2 ^ einf;|17,19,21,22,24,25 part of the 3-blades|
+|line|two planes and einf|l = pl1 ^ pl2 ^ einf;|17,19,21,22,24,25 part of the 3-blades|
 |point pair|wedge of two points|pp = p1 ^ p2;|6-15 2-blades|
 |(hyperplane)|four points and einf|pl = p1 ^ p2 ^ p3 ^ p4 ^ einf;||
 
