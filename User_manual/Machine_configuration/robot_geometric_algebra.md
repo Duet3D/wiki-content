@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-11T07:53:49.212Z
+date: 2023-05-14T08:05:51.129Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -78,38 +78,6 @@ G4,1 is organized as e1, e2, e3, e+, e- and converted to e1, e2, e3, einf and eo
 - einf = e- - e+, eo = 0.5* (e- + e+), einf.e0=-1, eo²=einf²=0
 - e+=eo-0.5* einf, e-=eo+0.5* einf, e+.e+=1, e-.e-=-1
 - Some authors use two times 1/sqrt(2) instead of 0.5 as factor, the formulae are different then, but the logic is the same.
-
-# Geometries included in CGA and higher ones
-
-Following and overview which geometries are included in CGA and higher (G8,2 etc) geometries. Included means e. g. isomorphismus.
-
-This overview will be extended.
-
-|-|-|-|
-|capability|explanation|
-|projective|2D representations like for gaming|
-|conformal|angle preserving when transforming|
-|euclidean||
-|hyperbolic||
-|spheric||
-|quaternion|3D rotation (versor/spinor/rotor)|
-|complex numbers||
-
-objects supported
-
-|-|-|-|
-|object|included in/since|values needed|
-|point, vector|tbd|in CGA: 5, 3|
-|line as Plücker|PGA and higher||
-|sphere, plane|CGA|5, 4|
-|line, circle|CGA|6, 10|
-|point pair|CGA|10|
-|hyperplane|CGA|?|
-|conic|||
-|cylinder||
-|cubic|||
-
-Surface information is an area of current research, an overview will be added here. (curvature, Bezier, Bspline etc, geometric calculus. Research by eg Hestenes, Dorst, Colapinto (Colapinto has nice images))
 
 # Geometric Algebra and Screw Theory
 
