@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-14T20:00:08.785Z
+date: 2023-05-15T08:02:13.152Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -101,35 +101,19 @@ In most cases, the IPNS is called the dual form and the other the standard form.
 
 # objects
 
-The following objects can be stored in CGA. Storage needs between 3 and 10 values of the 32 values of CGA, so implementation has the task to optimize the sparse value usage (i. e. ignore the many 0 values).
-
-Classification by grade:
-
-|-|-|-|
-|grade|flat|round|
-|1 vector|point, vector|
-|2 bivector|point pair|
-|3 trivector|line|circle|
-|4-vector|plane|sphere|
-|5-vector|hyperplane|I, pseudoscalar|
-
-A round object becomes flat by using one point from einf (a circle becomes a line, so a line is a circle with one point in infinity).
+Storage of objects need between 3 and 10 values of the 32 values of CGA.
 
 There are two methods to create the objects:
 - IPNS: intersection of multiple objects
 - OPNS: multiple points define the object
 
-They are linked through dualization and
-- the grade of an object has grade 5-... of the dual (e. g. sphere grade 4, dual sphere grade 1)
-- the value number of objects is the same for the dual (e. g. sphere and dual sphere both need 5 values, but at different places)
-
-The master thesis of Colapinto has a very nice overview in table 11 and appendix A about a lot of methods to create objects.
+IPNS and OPNS methods store the object data in different values of CGA. Both are connected by dualization and can be converted into the other.
 
 # objects IPNS
 
 IPNS means inner product null space, which means, that to check whether a point intersects with an object (i. e. whether it is part of the object), this can be tested by inner product being 0: P.X=0 (p point, X object).
 
-The first version of the point is the same for IPNS and OPNS.
+A point is created only with one method.
 
 |-|-|-|-|
 |object|how calculated|Gaalop sample code|filled array elements|
@@ -201,20 +185,6 @@ A second method is possible, using reflections and multiple reflections by sandw
 
 A reflection by line or plane is possible, but in most cases for transformations bivectors (= 2-blades) are used (e. g. rotate at e1 ^ e2).
 
-Overview of sandwitching transformations:
-
-|-|-|-|
-|reflection at line|one reflection|formula|
-|reflection at plane|one reflection|formula|
-|rotation|two reflections|formula|
-|translation|reflections at two parallel planes|formula|
-|motor|combined translation and rotation|formula|
-|inversion|at sphere|formula|
-
-The rotors allow to implement interpolated motions easily. The quaternion slerp method is related to this algorithm.
-
-This chapter will also describe how GA transformations can model screw motions (i. e. Chasles' theorem).
-
 # transformations and quaternions
 
 Quaternions are rotors in 3D space.
@@ -230,37 +200,6 @@ j = e1e3
 k = e2e1
 
 There are other relations from other authors, where the sign of the result is different.
-
-# angles
-
-> The following is from the memory and is to be verified
-{.is-warning}
-
-A vector can be created by subtracting points:
-p1=createPoint(1,0,0);
-p2=createPoint(2,0,0);
-?v1=p2-p1;
-The vector has xyz euclidean information and an einf component which contains information about weight and orientation in relation to the coordinate system.
-
-The angle between two vectors a and b is:
-
-Inner product i:
-a . b = |a| |b| * cos(phi)
-if the vectors are normalized: a . b = cos(phi)
-
-Wedge (outer) product w:
-(a ^ b)(a ^ b) = |a||b| sin(phi)
-if the vectors are normalized: (a ^ b)(a ^ b) = sin(phi)
-
-For the angle to be correct in 360 degree range and with correct orientation:
-For normalized vectors:
-atan2(sin,cos) = atan2(w,i) = atan2((a ^ b)(a ^ b), a . b)
-
-Gaalop has no atan2 function, so atan(w/i) can be calculated instead and a 180 degree correction must be made for the cases sin... and cos... (tbd). atan2 is defined differently, sometime sin parameter first, sometimes cos first.
-
-# distances
-
-The inner product is the main tool to calculate distances. Depending on the object types, the meaning is different. For example, an inner product between a line and a plane measures the angle between them, while the inner product of other object types will measure different types of distances.
 
 # Geometric Algebra Software
 
