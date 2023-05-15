@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-15T08:02:13.152Z
+date: 2023-05-15T08:04:11.050Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -116,7 +116,7 @@ IPNS means inner product null space, which means, that to check whether a point 
 A point is created only with one method.
 
 |-|-|-|-|
-|object|how calculated|Gaalop sample code|filled array elements|
+|object|how calculated|Gaalop sample code|0...31 array elements|
 |point|vector + 0.5 * norm² * einf + eo|p=createPoint(1,2,3);|1-5, 1-blades|
 |vector|coordinates e1, e2, e3|v=e1+2 * e2+e3|1-3 part of 1-blades|
 |sphere|point - 0.5 * r * r * einf|s=createPoint(1,2,3)-0.5 * 3 * 3 * einf;|1-5 1-blades|
@@ -137,7 +137,7 @@ As example, a circle uses all 2-blades, array elements 6...15, wheres as dual re
 OPNS are the dual representations of IPNS, named by outer product null space. A test whether a point is part of the object can be done by P^X=0 (p the point, X the object).
 
 |-|-|-|-|
-|object|how calculated|Gaalop sample code|filled array elements|
+|object|how calculated|Gaalop sample code|0...31 array elements|
 |sphere|four points of the curvature|s = p1 ^ p2 ^ p3 ^ p4;|26-30 4-blades|
 |plane|three points on plane and einf|pl = p1 ^ p2 ^ p3 ^ einf;|26,28-30 part of 4-blades|
 |circle|three points on circle|c = p1 ^ p2 ^ p3;|16-25 3-blades|
