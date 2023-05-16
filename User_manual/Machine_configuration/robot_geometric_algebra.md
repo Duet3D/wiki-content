@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-15T08:04:11.050Z
+date: 2023-05-16T09:03:02.554Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -98,6 +98,12 @@ In Gaalop and elsewhere, the dual is marked by * in front of the object, e.g. du
 When an object is dualized two times, the result is negative. To get the correct result, i. e. the original object, there is a special algorithm for "undualization" with the formula (see dissertations Fontijne 2.25 / Colapinto 2.20) A^-*^ = AI
 
 In most cases, the IPNS is called the dual form and the other the standard form.
+
+# Normalize
+
+Every time an object has an einf element (as single einf or as part of a blade), it can be scaled. To normalize it, the einf needs to be 1.0. Gaalop calculates by onor=o/abs(o) to normalize an object. E. g. if o is a vector, abs calculates the length of the vector.
+
+Normalizing is important for angle and distance calculations in most cases.
 
 # objects
 
