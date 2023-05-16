@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-05-04T15:15:34.640Z
+date: 2023-05-16T10:33:55.685Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -85,7 +85,8 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 
 ## Firmware notes
 
-* **Duet 3 Mainboard 6HC** is compatible RepRapFirmware version 3.0 and later
+* **Version 1.02 and later ** require RRF 3.4.3 or later (latest stable version is recommended)
+* **Version 1.01 and earlier ** are compatible RepRapFirmware version 3.0 and later (latest stable version is recommended)
 * For **firmware update instructions**:
   * Standalone mode - [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. 
   * SBC mode - [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
