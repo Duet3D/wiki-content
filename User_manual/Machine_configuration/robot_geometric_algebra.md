@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-16T10:26:07.230Z
+date: 2023-05-16T10:27:36.669Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -115,7 +115,7 @@ There are two methods to create the objects:
 
 IPNS and OPNS methods store the object data in different values of CGA. Both are connected by dualization and can be converted into the other.
 
-A classification in literature is between flat (line, plane) and round (circle, sphere) objects. If the object contains einf elements, it is flat.
+A classification in literature is between flat (line, plane) and round (circle, sphere) objects.
 
 # objects IPNS
 
