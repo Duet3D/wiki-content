@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2023-04-11T20:16:05.390Z
+date: 2023-05-17T15:17:13.589Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -102,6 +102,23 @@ If a job file, HTTP or SBC calls a macro then both motion systems execute it; bu
 The reason for this is that a macro may contain M596 commands, so both File and File2 need to execute it. Each will skip the commands that don't apply to it.
 
 A few other commands lock both motion systems but they are mostly configuration commands, e.g. M569 and M569.1 when used with parameters other than just the driver number, M574 when changing axis endstops, M150 when addressing Neopixels on a bit-banged port, M563 when used to create or delete a tool, M81, etc. etc.
+
+## Input channel flags
+
+Each input channel (SD card, USB, http, telnet etc) has its own set of flags. For all of the Gcode commands below, the following is true:
+* Each input channel has its own flag for each state.
+* At the end of running config.g at startup, the flag state is copied to all input channels. E.g. M83 in config.g will default all input channels to relative extrusion.
+* The flag state is saved when a macro starts and is restored when a macro ends. E.g. M82/M83 in a macro will affect the remainder of the macro, but will not affect commands after the M98 command that invoked the macro. This means that macros can safely change to absolute or relative without messing up whatever job or script called them.
+
+| Command | Description | Default flag | Notes |
+|---|---|---|
+| G1/G2/G3 (and G0 in FDM mode) | Feed rate | 3000mm/min | flag for feed rate if the next G0/1/2/3 command doesn't include an F parameter |
+| G17/G18/G19 | The selected plane for arc moves | G17 (XY plane) | |
+| G20/G21 | Units (inches or mm) | G21 (mm) | |
+| G90/G91 | Axis absolute/relative positioning | G90 (absolute) | |
+| G93/G94 | Inverse time mode/units per minute mode | G94 (units per minute) | |
+| M82/83 | Extruder absolute/relative mode | M82 (absolute) | |
+| M200 | Volumtric extrusion | Disabled | |
 
 # Notes on particular commands when multiple GCode processors are used
 
