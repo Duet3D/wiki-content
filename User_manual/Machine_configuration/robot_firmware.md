@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-05T06:50:38.031Z
+date: 2023-05-17T08:57:48.404Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -318,3 +318,17 @@ The procedure is as follows:
 Additional idea:
 - for existing kinematics, take forward/inverse code and compare the results it with Screw/GA code solutions. Allows to check implementation of options also (tilting parameters etc).
 
+# GA storage
+
+(to understand termini technici, see geometric algebra page)
+
+CGA, conformal geometric algebra, uses 32 values for every object (following named 0...31), but not all at the same time and not at the same places. To store and use efficient, the following storage methods are used:
+
+- LUTGAObj: 1 byte char for object type and 4 byte size_t to bitwise mark which 0...31 values are used for this object. Stored as array, growing if necessary. Object type is numbered by the index number.
+- idx32ToPatt: lookup from 0...31 to the char pattern, which are values between 0 and 62.
+- pattToIdx32: lookup from int(char-patt), which is 0...62, to the index of 0...31
+
+LUTGAObj needs 5 * count of objecttypes, idx32ToPatt needs 32 bytes, pattToIdx32 needs 63 bytes, total about 250 bytes (about 30 object types, including transformations).
+
+- the objects are stored as 1-byte object type and a float array of the used 0...31 values. E.g. a point uses only the 5 values of 1...5 (all 1-blades) of the 0...31 range.
+- 0...31 are stored as: 0b00000001 is scalar, bit 2 from right is e1, bit 3, is e2, bit 4 is einf, bit 5 is eo, the other blades are assembled from them. E. g. e12o is 0b00100110.
