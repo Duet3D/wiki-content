@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-17T08:57:48.404Z
+date: 2023-05-17T09:02:02.820Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -330,5 +330,5 @@ CGA, conformal geometric algebra, uses 32 values for every object (following nam
 
 LUTGAObj needs 5 * count of objecttypes, idx32ToPatt needs 32 bytes, pattToIdx32 needs 63 bytes, total about 250 bytes (about 30 object types, including transformations).
 
-- the objects are stored as 1-byte object type and a float array of the used 0...31 values. E.g. a point uses only the 5 values of 1...5 (all 1-blades) of the 0...31 range.
+- the objects are stored as 1-byte object type and a float array of the used 0...31 values. E.g. a point uses only the 5 values of 1...5 (all 1-blades) of the 0...31 range. Object type of point points to the LUTGAObj size_t pattern for 0b00000000000000000000000000111110 (marking the 1-blades).
 - 0...31 are stored as: 0b00000001 is scalar, bit 2 from right is e1, bit 3, is e2, bit 4 is einf, bit 5 is eo, the other blades are assembled from them. E. g. e12o is 0b00100110.
