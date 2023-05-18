@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-17T09:09:22.531Z
+date: 2023-05-18T05:09:33.892Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -323,10 +323,12 @@ Additional idea:
 CGA, conformal geometric algebra, uses 32 values for every object (following named 0...31), but not all at the same time and not at the same places. To store and use efficient, the following storage methods are used:
 
 - LUTGAObj: 1 byte char for object type and 4 byte size_t to bitwise mark which 0...31 values are used for this object. Stored as array, growing if necessary. Object type is numbered by the index number.
-- idx32ToPatt: lookup from 0...31 to the char pattern, which are values between 0 and 62.
-- pattToIdx32: lookup from int(char-patt), which is 0...62, to the index of 0...31
+- idx32ToPatt: lookup from 0...32 to the char pattern.
+- pattToIdx32: lookup from int(char-patt), which is 0...32, to the index of 0...32. The normal 0...31 values are stored mirrored to idx32ToPatt, value 32 is used to represent 0.
 
-LUTGAObj needs 5 * count of objecttypes, idx32ToPatt needs 32 bytes, pattToIdx32 needs 63 bytes, total about 250 bytes (about 30 object types, including transformations).
+Gaalop doesn't differ between a 0 result and a scalar result of value 0. The pattern 0b00100000 is added for a 0 value.
 
-- the objects are stored as 1-byte object type and a float array of the used 0...31 values. E.g. a point uses only the 5 values of 1...5 (all 1-blades) of the 0...31 range. Object type of point points to the LUTGAObj size_t pattern for 0b00000000000000000000000000111110 (marking the 1-blades).
-- 0...31 are stored as: 0b00000001 is scalar, bit 2 from right is e1, bit 3, is e2, bit 4 is einf, bit 5 is eo, the other blades are assembled from them. E. g. e12o is 0b00100110.
+Bytes needed: 5 * number of objects/transformations. + 33 + 33. About 200 bytes in total.
+
+- the objects are stored as 1-byte object type and a float array of the used 0...31 values. E.g. a point uses only the 5 values of 1...5 (all 1-blades) of the 0...31 range. Object type of point points to the LUTGAObj size_t pattern for 0b00000000000000000000000000011111 (marking the 1-blades).
+- pattern is stored as bits from right side (LSB-0), starting with e1. The 6th bit marks 0. Example 0b00011001 is e1info with int(patt)=25 and idx=21. 21 means bit position 22 in the 0...31 array of the values of the variable.
