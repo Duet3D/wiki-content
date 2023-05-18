@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-18T05:23:22.134Z
+date: 2023-05-18T05:32:23.974Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -326,9 +326,11 @@ CGA, conformal geometric algebra, uses 32 values for every object (following nam
 - idx32ToPatt: lookup from 0...32 to the char pattern.
 - pattToIdx32: lookup from int(char-patt), which is 0...32, to the index of 0...32. The normal 0...31 values are stored mirrored to idx32ToPatt, value 32 is used to represent 0.
 
+Patt and idx32 have different orders, hence the lookup-tables: while idx32 is ordered according to the table about blades on the GA page (and is the numbering of Gaalop), pattern is ordered logically as described below.
+
 Gaalop doesn't differ between a 0 result and a scalar result of value 0. The pattern 0b00100000 is added in this firmware for a 0 value, so the code can differentiate between a 0 result and a scalar result of value 0.
 
 Bytes needed: 5 * number of objects/transformations. + 33 + 33. About 200 bytes in total.
 
-- the objects are stored as 1-byte object type and a float array of the used 0...31 values. E.g. a point uses only the 5 values of 1...5 (all 1-blades) of the 0...31 range. Object type of point points to the LUTGAObj size_t pattern for 0b00000000000000000000000000011111 (marking the 1-blades).
-- pattern is stored as bits from right side (LSB-0), starting with e1. The 6th bit marks 0. Example 0b00011001 is e1info with int(patt)=25 and idx=21. 21 means bit position 22 in the 0...31 array of the values of the variable.
+- the objects are stored as 1-byte object type and a float array of the used 0...31 values. Example: a point is specified by the cgaObject type 1 and an array of floats for the used values, i. e. 5 values (all 1-blades).
+- pattern is stored as bits from right side (LSB-0), starting with e1. The 6th bit marks 0, i. e. no 0...31 pattern result. Example 0b00011001 is e1info with int(patt)=25 and idx=21. 21 means bit position 22 in the 0...31 array of the values of the variable.
