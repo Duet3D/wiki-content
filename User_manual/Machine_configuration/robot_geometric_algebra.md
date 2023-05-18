@@ -2,7 +2,7 @@
 title: (Conformal) Geometric Algebra (GA, CGA)
 description: explanation and how it's used in RRF, RobotViewer
 published: true
-date: 2023-05-18T05:48:06.512Z
+date: 2023-05-18T05:50:00.462Z
 tags: robot
 editor: markdown
 dateCreated: 2023-03-08T08:28:19.105Z
@@ -119,9 +119,7 @@ A classification in literature is between flat (line, plane) and round (circle, 
 
 # objects IPNS
 
-IPNS means inner product null space, which means, that to check whether a point intersects with an object (i. e. whether it is part of the object), this can be tested by inner product being 0: P∙X=0 (p point, X object, ∙ is the inner product).
-
-A point is created only with one method.
+IPNS means inner product null space, which means, that to check whether a point is part of the object: P∙X=0 (p point, X object, ∙ is the inner product).
 
 |-|-|-|-|
 |object|how calculated|Gaalop sample code|0...31 array elements|
@@ -136,7 +134,7 @@ A point is created only with one method.
 
 In IPNS mode, the role of ^ is intersection.
 
-A point is a sphere with 0 radius, so the properties are similar.
+A point is created only with one method.
 
 As example, a circle uses all 2-blades, array elements 6...15, wheres as dual representation (OPNS) it uses all 3-blades, array elements 16...25.
 
