@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-18T05:09:33.892Z
+date: 2023-05-18T05:12:48.589Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -326,7 +326,7 @@ CGA, conformal geometric algebra, uses 32 values for every object (following nam
 - idx32ToPatt: lookup from 0...32 to the char pattern.
 - pattToIdx32: lookup from int(char-patt), which is 0...32, to the index of 0...32. The normal 0...31 values are stored mirrored to idx32ToPatt, value 32 is used to represent 0.
 
-Gaalop doesn't differ between a 0 result and a scalar result of value 0. The pattern 0b00100000 is added for a 0 value.
+Gaalop doesn't differ between a 0 result and a scalar result of value 0. The pattern 0b00100000 is added in this firmware for a 0 value, so the code can differentiate between a 0 result and a scalar result of value 0.
 
 Bytes needed: 5 * number of objects/transformations. + 33 + 33. About 200 bytes in total.
 
