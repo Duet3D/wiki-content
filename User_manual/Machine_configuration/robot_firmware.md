@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-18T05:14:36.140Z
+date: 2023-05-18T05:23:22.134Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -318,7 +318,7 @@ The procedure is as follows:
 Additional idea:
 - for existing kinematics, take forward/inverse code and compare the results it with Screw/GA code solutions. Allows to check implementation of options also (tilting parameters etc).
 
-# GA storage
+# CGA storage
 
 CGA, conformal geometric algebra, uses 32 values for every object (following named 0...31), but not all at the same time and not at the same places. To store and use efficient, the following storage methods are used:
 
