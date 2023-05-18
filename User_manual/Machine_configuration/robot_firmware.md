@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-18T05:12:48.589Z
+date: 2023-05-18T05:14:36.140Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -322,7 +322,7 @@ Additional idea:
 
 CGA, conformal geometric algebra, uses 32 values for every object (following named 0...31), but not all at the same time and not at the same places. To store and use efficient, the following storage methods are used:
 
-- LUTGAObj: 1 byte char for object type and 4 byte size_t to bitwise mark which 0...31 values are used for this object. Stored as array, growing if necessary. Object type is numbered by the index number.
+- cgaObject: 1 byte char for object type and 4 byte size_t to bitwise mark which 0...31 values are used for this object. Stored as array, growing if necessary. Object type is numbered by the index number. An enum list will list the object names and properties.
 - idx32ToPatt: lookup from 0...32 to the char pattern.
 - pattToIdx32: lookup from int(char-patt), which is 0...32, to the index of 0...32. The normal 0...31 values are stored mirrored to idx32ToPatt, value 32 is used to represent 0.
 
