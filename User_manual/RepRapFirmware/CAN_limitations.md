@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.3) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2023-02-08T17:08:54.210Z
+date: 2023-05-19T14:22:12.182Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -40,7 +40,7 @@ We plan to remove these in future firmware releases.
 * ~~Due to CAN latency the motors connected to expansion boards may slightly overshoot the position at which the endstop or Z probe was triggered. This would not usually matter for an endstop switch, but it does mean that if the Z motor(s) is/are connected to an expansion board then repeated probing with a Z probe (e.g. for mesh bed compensation) is not advisable.~~ This restriction is removed in firmware 3.4.
 * ~~Stalls of expansion board motors are not yet reported.~~ This restriction is removed in firmware 3.4.
 * ~~Change of stepper driver status on expansion boards are not proactively reported (but can be queried using M122). e.g. overheat warnings, short to ground etc.~~ This restriction is removed in firmware 3.4.
-* Stalls of expansion board motors cannot be used for homing. We expect to remove this restriction in firmware 3.5.
+* Stalls of expansion board motors cannot be used for homing. We expect to remove this restriction in firmware 3.6.
 * Cold extrusion prevention is not enforced on extruders driven from CAN-connected expansion boards. We expect to remove this restriction in firmware 3.5.
 * When filament monitors are configured on expansion boards, the "calibrated" values in the object model are not updated; however they can be queried using M591 as usual.
 * The M571 command cannot be used in conjunction with extruders driven from CAN-connected expansion boards.
