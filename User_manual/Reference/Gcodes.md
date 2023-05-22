@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-10T14:21:04.235Z
+date: 2023-05-22T16:35:20.386Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -344,6 +344,11 @@ G1 E10:10:5:0:0 F300 ; with a tool that has 5 extruder drives, extrude 10mm on d
 RepRapFirmware treats G0 and G1 in the same way **except** as follows:
 * On SCARA and similar architectures that normally require linear motion to be approximated by short segments, a single continuous non-segmented movement will be used if this can be done without the print head dropping below the current Z height.
 * In Laser and CNC mode, G0 moves are executed at the maximum feed rate available, to comply with the NIST GCode standard, This feed rate is set by the M203 command.
+* RRF maintains a flag for feed rate (F parameter). For all G1/2/3 moves (and G0 moves in FDM mode) the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for feed rate.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no feed rate is specified in config.g, the default of 3000mm/min (50mm/s) is used.
+  * The feed rate stored by the flag is used if the next G0/1/2/3 command doesn't include an F parameter.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 #### G0/G1 H and S parameter
 
@@ -487,6 +492,11 @@ G2 X100 Y50 R200            ; (draw a clockwise arc with radius 200 from the cur
 ### Notes
 
 * **RRF 3.3 and later:** Use of I, J and K parameters depends on the plane selected with G17, G18 or G19. Use I and J for the XY plane (G17), I and K for XZ plane (G18), and J and K for YZ plane (G19).
+* RRF maintains a flag for feed rate (F parameter). For all G1/2/3 moves (and G0 moves in FDM mode) the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for feed rate.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no feed rate is specified in config.g, the default of 3000mm/min (50mm/s) is used.
+  * The feed rate stored by the flag is used if the next G0/1/2/3 command doesn't include an F parameter.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 ## G4: Dwell
 
@@ -635,25 +645,27 @@ Supported from RepRapFirmware 3.3beta1.
 
 **Parameters:** none
 
-The active plane determines how the tool path of an arc (G2 or G3) is interpreted. Each input channel (e.g. SD card, USB, DWC) remembers the current plane independently of the other channels.
+### Description
 
-G17 is supported in RRF 2.03 to RRF 3.2.2, however as no other plane selection command (G18, G19) is supported, it accepts this command, but takes no action on receiving it.
+The active plane determines how the tool path of an arc (G2 or G3) is interpreted. 
+
+### Notes
+
+* RRF maintains a flag for the selected plane for arc moves (G2 or G3). As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the selected plane.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no plane is specified in config.g, the default G17 (XY plane) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
+* G17 is supported in RRF 2.03 to RRF 3.2.2, however as no other plane selection command (G18, G19) is supported, it accepts this command, but takes no action on receiving it.
 
 ## G18: Select XZ plane for arc moves
 
 Supported from RepRapFirmware 3.3beta1.
-
-**Parameters:** none
-
-The active plane determines how the tool path of an arc (G2 or G3) is interpreted. Each input channel (e.g. SD card, USB, DWC) remembers the current plane independently of the other channels.
+See 'G17: Select XY plane for arc moves' for usage.
 
 ## G19: Select YZ plane for arc moves
 
 Supported from RepRapFirmware 3.3beta1.
-
-**Parameters:** none
-
-The active plane determines how the tool path of an arc (G2 or G3) is interpreted. Each input channel (e.g. SD card, USB, DWC) remembers the current plane independently of the other channels.
+See 'G17: Select XY plane for arc moves' for usage.
 
 ## G20: Set Units to Inches
 
@@ -677,7 +689,9 @@ In RRF 2.03 and later, each GCode input channel has a separate inches/mm setting
 G21 ; set units to millimeters
 </pre>
 
-Units from this command onwards are in millimeters. (This is the default.).
+### Description
+
+Units from this command onwards are in millimeters. This is the default.
 
 ## G28: Home
 
