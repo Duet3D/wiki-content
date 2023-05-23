@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2023-05-23T11:30:25.953Z
+date: 2023-05-23T11:32:11.663Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -173,7 +173,7 @@ The Duet 3 Mini 5+ supports an easy mechanism for updating the firmware directly
 * A new Mass Storage device should appear on the PC. Identify its drive letter (Windows) or mount path (Linux).
 ![duet_3_mini_5+_firmware_uf2.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_firmware_uf2.png)
 * A directory listing of this mass storage device should show three virtual files. File CURRENT.UF2 is the existing firmware on the Duet.
-* If you don't want to update the firmware, you can press reset once or cycle power at this point to reboot the Duet with the existing firmware.
+* If you don't want to update the firmware at this time, you can press reset once or cycle power to reboot the Duet with the existing firmware.
 * Copy the new Duet3Firmware-Mini5plus.uf2 file to the mass storage device
 * The Status LED will flicker as the firmware is being written, then the Duet will reboot using the new firmware. The mass storage device will disappear from your PC and the Duet 3 COM port will appear.
 
