@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the experimental accelerometer support in RRF 3.3 and later.
 published: true
-date: 2023-05-23T11:30:22.389Z
+date: 2023-05-23T11:31:19.862Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -118,11 +118,14 @@ Use command [M955](/User_manual/Reference/Gcodes/M955) to create an acceleromete
 
 To check current settings, send `M955 P[n]`, where [n] is the device-number. For an accelerometer connected locally via SPI, this will be P0. For an accelerometer on a CAN-connected board, use the form P[board-address.device-number], for example P121.0.
 
-## Tabs {.tabset}
 
-The C parameter of M955 is used in the following manner:
+When connecting using SPI,  C parameter of M955 is used in the following manner:
 
 `C"aaa+bbb" Pins to use for CS and INT (in that order) when connecting the accelerometer via SPI`
+
+## Tabs {.tabset}
+
+
 
 
 ### Duet 3 MB6HC and MB6XD
