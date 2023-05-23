@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the experimental accelerometer support in RRF 3.3 and later.
 published: true
-date: 2023-05-09T09:51:40.673Z
+date: 2023-05-23T11:25:31.458Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -73,9 +73,9 @@ Both cables are wired as follows:
 
 #### Tabs {.tabset}
 
-##### Duet 3 MB6HC
+##### Duet 3 MB6HC and 6XD
 
-On **Duet 3 MB6HC** you can use either of the wiring schemes, ie connect all wires to the temperature daughterboard connector, or connect CS and INT1 to IO_n.out and IO_n.in. 
+On **Duet 3 MB6HC** and **Duet 3 MBXD** you can use either of the wiring schemes, ie connect all wires to the temperature daughterboard connector, or connect CS and INT1 to IO_n.out and IO_n.in. 
 
 ##### Duet 3 Mini 5+
 
