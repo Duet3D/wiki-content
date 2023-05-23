@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the experimental accelerometer support in RRF 3.3 and later.
 published: true
-date: 2023-05-23T11:25:31.458Z
+date: 2023-05-23T11:30:22.389Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -120,7 +120,12 @@ To check current settings, send `M955 P[n]`, where [n] is the device-number. For
 
 ## Tabs {.tabset}
 
-### Duet 3 MB6HC
+The C parameter of M955 is used in the following manner:
+
+`C"aaa+bbb" Pins to use for CS and INT (in that order) when connecting the accelerometer via SPI`
+
+
+### Duet 3 MB6HC and MB6XD
 
 Depending on how you have wired it, use one of these commands to tell RRF about the accelerometer:
 
