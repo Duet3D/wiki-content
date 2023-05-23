@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2023-01-26T17:06:02.403Z
+date: 2023-05-23T15:00:26.027Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -25,20 +25,22 @@ An event is one of the following:
 * Driver stall     
 * Driver error (e.g. over temperature shutdown, short-to-ground, or closed loop driver error failure to achieve the requested position)
 * Driver warning (e.g. over temperature warning, or phase disconnected)
+* Expansion board timeout (RRF 3.5.0-beta.4 and later only)
+* Expansion board reconnect (RRF 3.5.0-beta.4 and later only)
 
 Other event types may be added in future, for example MCU over-temperature on a main board or expansion board, or over- and under-voltage.
 
 The following are not currently treated as events:
 
 * Triggers (so that a trigger does not block an event)     
-* Main board power failure (because it requires immediate action even if an event is already being processed)
+* Main board power failure (because it requires immediate action even if another event is already being processed)
 
 # Event properties
 
 An event has the following properties:
 
 * The type of the event, e.g. heater-fault, filament-error.
-* The device number concerned, e.g. the heater number, extruder number, or driver number.
+* For most event types, the device number concerned, e.g. the heater number, extruder number, or driver number.
 * The CAN address of the board that detected the event .
 * For some event types, an additional parameter that may indicate the event subtype, for example the type of heater fault.
 * For some event types, a short text string giving additional details. This is limited to 56 characters so that it can be sent as part of a CAN message.
@@ -63,6 +65,8 @@ If the macro file is not found then default processing occurs as shown in the ta
 
 | Event type & macro file name | D macro parameter | P macro parameter | B macro parameter | Default action if macro file not found | Log level |
 |:---|:---|
+| expansion-reconnect | 0 | 0 | CAN address of the board that has stopped communicating | Inform user via console and continue (likely to be changed before RRF 3.5 release) | Error
+| expansion-timeout | 0 | 0 | CAN address of the board that has stopped communicating | Inform user via console and continue (likely to be changed before RRF 3.5 release) | Error
 | heater-fault | Heater # | Heater fault type code | CAN address of board controlling the heater | Faulty heater turned off (before the event is raised). Pause print using pause.g and inform user via message box | Error |
 | driver-error | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Pause print without running pause.g and inform user via message box | Error |
 | filament-error | Extruder # | [Filament error type code](/User_manual/Connecting_hardware/Sensors_filament#event-system-filament-error-events) | CAN address of board hosting the filament monitor | Pause print using pause.g and inform user via message box | Error |
