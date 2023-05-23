@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-22T16:35:20.386Z
+date: 2023-05-23T15:29:35.967Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -675,11 +675,16 @@ See 'G17: Select XY plane for arc moves' for usage.
 G20 ; set units to inches
 </pre>
 
-Units from this command onwards are in inches. Note that this is only intended to affect G0, G1 and other commands commonly found in GCode files that represent objects to print. Specifically G20 only affects: G0 to G3, G10 and G92.
+### Description
 
-So you should use metric values in config.g when configuring the printer and then change to inches with G20 at the end of it if the GCodes you want to send to move the machine are expressed in inches by default.
+Units from this command onwards are in inches. Note that this is only intended to affect G0, G1 and other commands commonly found in GCode files that represent objects to print. Specifically G20 only affects: G0 to G3, G10 and G92. So you should use metric values in config.g when configuring the printer and then change to inches with G20 at the end of it if the GCodes you want to send to move the machine are expressed in inches by default.
 
-In RRF 2.03 and later, each GCode input channel has a separate inches/mm setting.
+### Notes
+
+* From RRF 2.03 and later, RRF maintains a flag for the set units (mm or inches, G20 or G21). As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the units setting.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no units are specified in config.g, the default G21 (mm) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 ## G21: Set Units to Millimeters
 
@@ -692,6 +697,13 @@ G21 ; set units to millimeters
 ### Description
 
 Units from this command onwards are in millimeters. This is the default.
+
+### Notes
+
+* From RRF 2.03 and later, RRF maintains a flag for the set units (mm or inches, G20 or G21). As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the units setting.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no units are specified in config.g, the default G21 (mm) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 ## G28: Home
 
@@ -1110,31 +1122,61 @@ RepRapFirmware implements G68 for the XY plane only.
 
 ## G69: Cancel coordinate rotation
 
+### Parameters
+
+* No additional parameters
+
 ### Usage
 
 * G69
+
+### Description
 
 This cancels any coordinate rotation that was set up by G68.
 
 ## G90: Set to Absolute Positioning
 
+### Parameters
+
+* No additional parameters
+
 ### Usage
 
 * G90
 
+### Description
+
 All coordinates from now on are absolute, relative to the origin of the machine.
 
-Note: RepRapFirmware uses [M82](/User_manual/Reference/Gcodes/M82){target=_blank} to set the extruder to absolute mode: extrusion is NOT set to absolute using G90
+### Notes
+
+* RepRapFirmware uses [M82](/User_manual/Reference/Gcodes/M82){target=_blank} to set the extruder to absolute mode: extrusion is NOT set to absolute using G90
+* RRF maintains a flag for the absolute/relative positioning state. As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the absolute/relative positioning state.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default G90 (absolute) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 ## G91: Set to Relative Positioning
+
+### Parameters
+
+* No additional parameters
 
 ### Usage
 
 * G91
 
+### Description
+
 All coordinates from now on are relative to the last position.
 
-Note: RepRapFirmware uses [M83](/User_manual/Reference/Gcodes/M83){target=_blank} to set the extruder to relative mode: extrusion is NOT set to relative using G91
+### Notes
+
+* RepRapFirmware uses [M83](/User_manual/Reference/Gcodes/M83){target=_blank} to set the extruder to relative mode: extrusion is NOT set to relative using G91
+* RRF maintains a flag for the absolute/relative positioning state. As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the absolute/relative positioning state.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default G90 (absolute) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 ## G92: Set User Position
 
@@ -1168,10 +1210,19 @@ Allows manual specification of the axis positions by setting the current user po
 G93
 </pre>
 
+### Description
+
+G93 is Inverse Time Mode. In inverse time feed rate mode, an F word means the move should be completed in (one divided by the F number) minutes. For example, F2.0 means the move should be completed in a half a minute.
+
 ### Notes
 
-* G93 is Inverse Time Mode. In inverse time feed rate mode, an F word means the move should be completed in (one divided by the F number) minutes. For example, F2.0 means the move should be completed in a half a minute.
-* When the inverse time feed rate mode is active, an F word must appear on every line which has a G1, G2, or G3 motion, and an F word on a line that does not have G1, G2, or G3 is ignored. Being in inverse time feed rate mode does not affect G0 (rapid move) motions.
+* When the inverse time feed rate mode is active, an F word must appear on every line which has a G1, G2, or G3 motion.
+* An F word on a line that does not have G1, G2, or G3 is ignored.
+* Being in inverse time feed rate mode does not affect G0 (rapid move) motions.
+* RRF maintains a flag for the feed rate mode selected, which is either Inverse Time Mode or Units per Minute. As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the feed rate mode state.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no feed rate mode is specified in config.g, the default G94 (Units per Minute) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 ## G94: Feed Rate Mode (Units per Minute)
 
@@ -1187,9 +1238,16 @@ G93
 G94
 </pre>
 
+### Description
+
+G94 is Units per Minute Mode. In units per minute feed mode, an F word is interpreted to mean the controlled point should move at a certain number of inches per minute, millimeters per minute, or degrees per minute, depending upon what length units are being used and which axis or axes are moving. 
+
 ### Notes
 
-* G94 is Units per Minute Mode. In units per minute feed mode, an F word is interpreted to mean the controlled point should move at a certain number of inches per minute, millimeters per minute, or degrees per minute, depending upon what length units are being used and which axis or axes are moving. 
+* RRF maintains a flag for the feed rate mode selected, which is either Inverse Time Mode or Units per Minute. As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the feed rate mode state.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no feed rate mode is specified in config.g, the default G94 (Units per Minute) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 # M-commands
 
