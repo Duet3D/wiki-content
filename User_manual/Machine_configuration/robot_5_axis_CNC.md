@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-05-24T10:33:03.318Z
+date: 2023-05-24T10:35:15.695Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -25,6 +25,8 @@ The following robot type are therefore supported:
 - Serial Scara based are supported by the common robot kinematics anyway (optionally mixed with linear axes)
 
 The current tool is added to the position with its G10 offset values, so toolchangers are supported.
+
+RTCP mode is supported in all cases, i. e. the XYZ change due to AC/BC changes are considered and corrected by small XYZ changes.
 
 # Configuration
 
