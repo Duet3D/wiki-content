@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-04-18T08:23:55.791Z
+date: 2023-05-24T10:33:03.318Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -10,32 +10,21 @@ dateCreated: 2022-08-31T22:53:13.376Z
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
-# Supported robot types described on this page
+# Supported robot types 5 axis
 
-The following description includes the following robot types:
-* CNC 5 axis AC or BC, head/head, head/table or table/table
-* CoreXY or CoreXZ with AC or BC rotational axes. Z can move the table or the head similar to a CNC
-* Pentarod or Open5x like
-* 5BarParallelScara 5 axis version
+This robot type is built from the XYZ axes and the AC/BC axes:
+- XYZ is the common Cartesian, CoreXY, Delta, 5-bar-parallel-Scara, Serial Scara and are linear/rotary/combined type axes.
+- AC/BC are two rotary axes each. Naming: A if parallel to the X axis, B if parallel to Y and C if parallel to Z, with 0 degrees position each.
 
-Those types have in common
-- three linear axes for XYZ position without orientation (rotary) change. Part of the XYZ may be rotary (e. g. the 5 Bar Scara). Z can move the bed or the hotend/tool/endpoint.
-- two rotary axes for orientation change. They change the XYZ position as well a little bit (see RTCP below). They are named AC or BC. The axes can be intersecting or skewing, but may not be parallel. The axes can rotate the bed or the tool or cobinations of it.
-- the current tool is added to the position with its G10 offset value
+The following robot type are therefore supported:
+- CNC 5 axis AC, BC and head/head, head/table, table/table type
+- Open5x, Pentarod, Prusa with AC/BC axes
+- Cartesian, CoreXY with additional AC/BC
+- Delta with additional AC/BC
+- 5-bar-parallel Scara with additional AC/BC. It has the additional difficulty that XYZ rotates the endpoint in the Z axis.
+- Serial Scara based are supported by the common robot kinematics anyway (optionally mixed with linear axes)
 
-# AC, BC
-
-The types above have a specific method to move X, Y, Z and addional two rotational axes which are called AC or BC:
-* AC is using rotational axes which are parallel to the X and Z axis
-* BC are axes parallel to Y and Z axis
-* head/head means both rotational axes are assambled at the head, head/table is mixed and in table/table mode, both are assembled at the bottom. The possibilities have different results in respect to workpiece size, stability etc., but it is not discussed here.
-* in head/head and table/table mode, one rotary axis is assembled on top of the other. Tradionally, they are named master and slave, e.g. if C is assembled on top of A, A is master, C is slave.
-* a rotating spindle has only one important orientation, the Z axis. The two parameters A+C or B+C are sufficient to describe its orientation.
-* if for some reason the G-Code doesn't use AC, but other letters like UV, they can be remapped with the M669 P"mapDriveLetterDn" parameter.
-
-The most often used version is the table/table AC type. Sometimes, especially for drilling machines, A is at the head.
-
-Defining the axes by DH parameters allow all combinations and offsets between the axes. As example, the A and C axes need not to cross.
+The current tool is added to the position with its G10 offset values, so toolchangers are supported.
 
 # Configuration
 
