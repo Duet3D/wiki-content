@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-24T11:34:29.031Z
+date: 2023-05-24T11:41:26.073Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2839,6 +2839,7 @@ Volumetric extrusion is an option you can set in some slicers whereby all extrus
 ### Notes
 
 * Sending M200 without parameters reports the current volumetric extrusion state and (where appropriate) filament diameter for each extruder.
+* To set filament diameter without enabling volumetric extrusion, use M404.
 * Note that if you use slicer-commanded retraction, the retraction amounts must be specified in mm^3^ too. If instead you use firmware retraction, then the firmware retraction amounts specified using the M207 command are still interpreted as mm.
 * RRF maintains a flag for the volumetric extrusion state. As such, the following is true:
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for the volumetric extrusion state.
@@ -3925,11 +3926,11 @@ M402 P1
 
 This runs macro file **sys/retractprobe#.g** (where # is the probe number) if it exists, otherwise **sys/retractprobe.g** if it exists.
 
-## M404: Filament width
+## M404: Filament diameter
 
 ### Parameters
 
-* **Nnnn** Filament width (in mm)
+* **Nnnn** Filament diameter (in mm)
 * **Dnnn** Nozzle diameter (in mm) (deprecated in 3.4-b1)
 
 ### Examples
@@ -3943,9 +3944,9 @@ M404 N3.0 D1.0 ; See note below about D parameter
 
 Enter the nominal filament width (3mm, 1.75mm) or will display nominal filament width without parameters.
 
-The 'D' parameter is used to properly detect the first layer height when files are parsed or a new print is being started. From RRF 3.4-b1 the D parameter is deprecated, and no longer used to in detecting the first layer height.
+The 'D' parameter is used to properly detect the first layer height when files are parsed or a new print is being started. From RRF 3.4-b1 the D parameter is deprecated and no longer used in detecting the first layer height.
 
-The values of this command are currently only used for the print monitor.
+The values of this command are currently only used by the print monitor and only when the slicer reports the filament usage by volume instead of by length.
 
 ## M408: Report JSON-style response
 
