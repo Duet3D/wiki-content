@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-24T13:34:15.111Z
+date: 2023-05-24T13:35:57.919Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5485,6 +5485,8 @@ Perform a [runtime tuning manoeuvre](/User_manual/Tuning/Duet_3_1HCL_tuning#runt
 
 * **Pnn** Motor driver number
 * **Vnn** Tuning move to perform
+* **Snn** For step tuning moves this is the speed in full steps per second
+* **Ann** For step tuning moves this is the acceleration in full steps per second^2
 
 ### Description
 
