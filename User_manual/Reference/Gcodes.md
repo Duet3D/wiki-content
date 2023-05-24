@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-23T15:29:35.967Z
+date: 2023-05-24T11:34:29.031Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1948,7 +1948,16 @@ In RRF 3.4 and later, M81 will have no effect unless a power control pin has pre
 M82 ; absolute extrusion mode
 </pre>
 
+### Description
+
 Makes the extruder interpret extrusion as absolute positions.
+
+### Notes
+
+* RRF maintains a flag for the extruder absolute/relative positioning state. As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the extruder absolute/relative positioning state.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default M82 (absolute) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 ## M83: Set extruder to relative mode
 
@@ -1958,7 +1967,16 @@ Makes the extruder interpret extrusion as absolute positions.
 M83 ; relative extrusion mode
 </pre>
 
+### Description
+
 Makes the extruder interpret extrusion values as relative positions.
+
+### Notes
+
+* RRF maintains a flag for the extruder absolute/relative positioning state. As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the extruder absolute/relative positioning state.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default M82 (absolute) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
 
 ## M84: Stop idle hold
 
@@ -2795,7 +2813,7 @@ M191 S60
 
 Set the temperature of the build chamber to 60C and wait for the temperature to be reached.
 
-## M200: Set filament diameter
+## M200: Volumetric extrusion
 
 *Supported in RRF 1.19 and later*
 
@@ -2809,16 +2827,25 @@ Set the temperature of the build chamber to 60C and wait for the temperature to 
 <br>
 <pre class="cblock">
 M200 D0             ; disable volumetric extrusion on all extruders
-M200 S0             ; Disable volumetric extrusion for tis input channel (RRF 3.5 and later)
+M200 S0             ; disable volumetric extrusion for this input channel (RRF 3.5 and later)
 M200 D1.75          ; set all extruder filament diameters to 1.75mm
 M200 D1.75:3.0:1.75 ; set extruder 0 to 1.75mm, extruder 1 to 3.0mm and all remaining extruders to 1.75mm
 </pre>
 
+### Description
+
+Volumetric extrusion is an option you can set in some slicers whereby all extrusion amounts are specified in mm^3^ (cubic millimetres) of filament instead of mm of filament. This makes the GCode independent of the filament diameter, potentially allowing the same GCode to run on different printers. The purpose of the M200 command is to inform the firmware that the GCode input files have been sliced for volumetric extrusion, and to provide the filament diameter so that the firmware can adjust the requested extrusion amount accordingly.
+
 ### Notes
 
-* Volumetric extrusion is an option you can set in some slicers whereby all extrusion amounts are specified in mm^3^ (cubic millimetres) of filament instead of mm of filament. This makes the GCode independent of the filament diameter, potentially allowing the same GCode to run on different printers. The purpose of the M200 command is to inform the firmware that the GCode input files have been sliced for volumetric extrusion, and to provide the filament diameter so that the firmware can adjust the requested extrusion amount accordingly.
 * Sending M200 without parameters reports the current volumetric extrusion state and (where appropriate) filament diameter for each extruder.
 * Note that if you use slicer-commanded retraction, the retraction amounts must be specified in mm^3^ too. If instead you use firmware retraction, then the firmware retraction amounts specified using the M207 command are still interpreted as mm.
+* RRF maintains a flag for the volumetric extrusion state. As such, the following is true:
+  * Each input channel (SD card, USB, http, telnet etc) has its own flag for the volumetric extrusion state.
+  * At the end of running config.g at startup, the flag state is copied to all input channels. If no volumetric extrusion is specified in config.g, the default (disabled) is used.
+  * The flag state is saved when a macro starts and is restored when a macro ends.
+
+
 
 ## M201: Set max acceleration
 
