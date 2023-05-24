@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-24T13:16:57.308Z
+date: 2023-05-24T13:20:39.087Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7613,9 +7613,9 @@ M950 F3 C"heater2" Q100        ; Fan 3 is connected to heater 2 pin, PWM at 100H
 M950 P0 C"exp.heater3"         ; create output/servo port 0 attached to heater 3 pin on expansion connector
 M950 F2 C"!fan2+^exp.pb6"      ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
 M950 J1 C"!^e1stop"            ; Input 1 uses e1Stop pin, inverted, pullup enabled
-M950 R0 C"!exp.heater3" L12000 ; Spindle 0 uses exp.heater3 as RPM pin and has a max RPM of 12000
-M950 D1 C"spi.cs0+spi.cs2"     ; on Duet 3 MB6HC support external SD card using pins spi.cs0 and spi.cs2 for the CS and Card Detect pins respectively
-M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED port (RRF 3.5)
+M950 R0 C"!exp.heater3" L12000 ; Spindle 0 uses exp.heater3 as RPM pin and has a max RPM of 12000 (RRF 3.3 and later)
+M950 D1 C"spi.cs0+spi.cs2"     ; on Duet 3 MB6HC support external SD card using pins spi.cs0 and spi.cs2 for the CS and Card Detect pins respectively (RRF 3.4 and later)
+M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED port (RRF 3.5 and later)
 </pre>
 
 ### Notes
