@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-24T13:20:39.087Z
+date: 2023-05-24T13:34:15.111Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7607,7 +7607,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 <br>
 <pre class="cblock">
 M950 H1 C"out1" Q100 T1        ; create heater 1
-M950 H1 C"3.out0+out2" Q100 T1 ; create heater 1 using ports OUT0 and OUT1 on CAN board 3 (RRF 3.4 or later)
+M950 H1 C"3.out0+out2" Q100 T1 ; create heater 1 using ports OUT0 and OUT2 on CAN board 3 (RRF 3.4 or later)
 M950 H2 C"nil"                 ; disable heater 2 and free up the associated pin
 M950 F3 C"heater2" Q100        ; Fan 3 is connected to heater 2 pin, PWM at 100Hz
 M950 P0 C"exp.heater3"         ; create output/servo port 0 attached to heater 3 pin on expansion connector
@@ -7620,22 +7620,26 @@ M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED por
 
 ### Notes
 
-When using M950 to create a fan, the port name string may be either a single port, or two ports separated by the '+' sign. The second port is used to read the fan tacho. **Any CAN address at the start of the port name string applies to both port names.**
+**Fans:** When using M950 to create a fan, the port name string may be either a single port, or two ports separated by the '+' sign. The second port is used to read the fan tacho. **Any CAN address at the start of the port name string applies to both port names.**
 <br>
 <pre class="cblock">
 M950 F5 C"!out4+out4.tach" Q450   ; Create Fan 5 on the mainboard on OUT4 with a tacho input
 M950 F0 C"!1.out3+out3.tach" Q450 ; Create Fan 0 on expansion board 1, output OUT3 with a tacho input
 </pre>
 
-When using M950 to create a heater, RRF 3.4 allows multiple port names to be provided separated by the '+' sign. The maximum number of ports that may be used depends on the board. **Any CAN address at the start of the port name string applies to all the port names.**
+**Heaters:** (RRF 3.4 and later) When using M950 to create a heater, multiple port names can be provided, separated by the '+' sign. The maximum number of ports that may be used depends on the board. **Any CAN address at the start of the port name string applies to all the port names.**
+<br>
+<pre class="cblock">
+M950 H1 C"3.out0+out2" Q100 T1 ; create heater 1 using ports OUT0 and OUT2 on CAN board 3
+</pre>
 
-When using M950 to create a spindle (from RRF 3.3) use the following format:
+**Spindles:** (RRF 3.3 and later) When using M950 to create a spindle use the following format:
 <br>
 <pre class="cblock">
 M950 R0 C"pwm_pin+forward_pin+reverse_pin" Qfff Laa:bb
 </pre>
 
-* C can have 1, 2 or 3 pins. The first pin defined is a pwm capable pin to set the spindle speed. If a second pin is defined it is used as spindle on/of, if three pins are defined then the second pin is spindle forward and the third is spindle reverse.
+* C can have 1, 2 or 3 pins. The first pin defined is a pwm capable pin to set the spindle speed. If a second pin is defined it is used as spindle on/off, if three pins are defined then the second pin is spindle forward and the third is spindle reverse.
 * "fff" is the PWM frequency as usual
 * "Laa:bb" sets the RPM range as "aa" to "bb". "Lbb" just sets the max RPM to "bb". Default RPM values are 60 min 10000 max
 
