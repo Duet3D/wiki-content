@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-05-25T06:20:44.389Z
+date: 2023-05-25T06:29:45.011Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -32,16 +32,6 @@ RTCP mode is supported in all cases, i. e. the XYZ change due to AC/BC changes a
 
 The axis definitions are described on the configuration and screw pages. Denavit-Hartenberg parameters can be used as input in the RobotViewer application and transfered to screw.
 
-# Calculation
-
-The following calculation is done by firmware:
-
-![cnc5axis_forware_inverse2.jpg](/cnc5axis_forware_inverse2.jpg)
-
-* when G-Code arrives, it is interpreted as tool tip position and orientation (tool or workpiece). I. e. specific implementations like rotary axis offsets  and where the Z distance come from (tool length, print bed thickness) do not play a role. Forward kinematics transfers this machine independent information to motor positions by calculating using the transformation matrices and tool offsets. Important is, that the G-Code AC values often do not match the AC rotary angles. They match only, if the rotary axes are spheric, i. e. without any displacements and the C axis is directly below the endpoint midpoint.
-* the inverse kinematics starts from the motor positions and calculates the XYZAC tool tip positions and orientations, once again XYZAC has nothing to do with the concrete AC angles. Even XYZ do not match, because through rotation of the AC axes, they differ from the XYZ motor positions.
-* a planned move is segmented into smaller straight lines with XYZAC positions. The kinematics will calculate the true motor positions for every segment. This is called RTCP.
-
 # Segmentation
 
 A move is segmented into small straight lines. The segmentation is calculated and planned in the main process of RRF and is not part of the kinematics. The kinematics calculates forward and inverse information for the true XYZ positions, so this is equal to which is named RTCP mode.
@@ -52,6 +42,7 @@ RTCP means, that when rotating AB/AC/BC without XYZ correction, the movement wou
 
 A CAD, CAM program, slicer or postprocessor will create G-Code which can be executed and is used to control the 5 axis CNC axes. There are two common addressing modes:
 * using XYZ and AB or AC or BC, XYZ being mm positions and AB... being degrees
+* UV can be used as is the case of Open5x and used as BC with the M669 P"mapDriveLetterDn" parameter
 * IJK is not used, because it conflicts with G2/G3 IJ
 
 With AC and BC, one should be aware of the gimbal lock at A = 0 degrees and B = 0 degrees position. At this position, the C axis is parallel to the Z axis, which means lost rank. For some movements, the C axis wants to rotate 180 degree with infinite speed, which is not possible.
@@ -132,3 +123,7 @@ What should be added:
 # unsorted
 
 CNC 5 axis has a spindle with only one orientation in Z direction (orientationType=zaxis). Two rotational axes are used to change the angle of the spindle in respect to the workpiece surface. Letters AB, AC or BC are used: A is a rotational axis in the same direction like the X axis, B like Y, C like Z axis. The angle of the spindle in respect to the workpiece surface is described as tool vector values. In the documentation about firmware is a detailed description about orientation types.
+
+# Literature
+
+* Open5x printer Hong et al "Open5x: Accessible 5-axis 3D printing and conformal slicing" https://arxiv.org/abs/2202.11426
