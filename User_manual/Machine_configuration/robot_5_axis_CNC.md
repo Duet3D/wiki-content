@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-05-25T06:29:45.011Z
+date: 2023-05-25T07:36:07.894Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -30,7 +30,27 @@ RTCP mode is supported in all cases, i. e. the XYZ change due to AC/BC changes a
 
 # Configuration
 
-The axis definitions are described on the configuration and screw pages. Denavit-Hartenberg parameters can be used as input in the RobotViewer application and transfered to screw.
+The following values are for a given angle/position (for rotary/linear axes) value of the actuators.
+
+The tool length is expected to be 100, replaced later by the current tool's G10 values.
+
+robot type:
+- parameter robotType
+- additional parameters robotType-specific (additional arms, tilting etc)
+
+for each of the 5 axes:
+- type of axis, rotary or linear
+- axis angle/position limits min, max and homing value
+- axis direction of the main (Z) axis
+- an arbitrary point on the axis
+
+endpoint:
+- reference starting point is the object's (0,0,0) point on the print bed
+- position
+- full orientation information (x, y, and z axis)
+- for the calculation, the print bed's thickness must be considered
+
+In the following examples, the direction of A, B, C is in the same direction like X, Y, Z axes. This defines in which direction the axes rotate with positive and negative angles. To change this behaviour, the axis direction needs to be reverted by negating all Z axis values and the homing definitions be changed.
 
 # Segmentation
 
