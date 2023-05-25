@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2022-09-08T16:24:32.809Z
+date: 2023-05-25T06:11:28.853Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -25,6 +25,74 @@ Please check Wikipedia for an introduction of DH. In brevity:
 * the Z axis is the rotation axis for a rotational actuator and prismatic axis for a linear one
 * the DH parameters describe 4 of the 6 degrees of freedom to transform one coordinate system to the next: Z translate and rotate, then X translate and rotate. Not all transformations are possible (Y translate and rotate).
 * the DH parameters are defined in M669 A parameter.
+
+# Parameters for setting configuration
+
+> work in progress
+{.is-info}
+
+
+(moved vom configuring page)
+DH based configuration can be used as starting point in the RobotViewer DWC plugin and converted to screw theory parameters.
+
+* D"n:..." Denavit-Hartenberg (DH) parameters
+
+# M669 D parameter: Denavit-Hartenberg
+Dn define DH parameters and are numbered from 0 to maximum 9.
+
+There is a separate document about DH parameters with examples. The DWC plugin RobotViewer shall help with configuration.
+
+The standard usage is:
+* every DH parameter set has one D... defintion with numbers 0 to 9
+* after D, optional invert and number, there are 1, 4 or 6 parameters, all parts delimited with :
+* D0 is optional the definition of the base. If the first axis is vertical starting in 0,0,0, D0 can be omitted
+* D1 to D6 are DH parameters with actuators assigned (or less numbers for less actuators)
+* D7 for tool. Offset values of the current selected tool G10 will be added
+
+For less (more) actuators, less (more) D-s are used. The p (parallelogram 4 axis) has its own Dn and if it has values, they are added to the parallelogram angles.
+
+The standard can be changed with the B parameter and Dn numbers can have holes, e.g. start by 1 without 0.
+
+Every Dn contains three translates and three rotations by Z, Y, X axis in this order. The parameters are explained in detail on the DH Parameter documentation page.
+
+Original set of DH parameters:
+**D"n:d:theta:a:alpha"**
+
+* the original DH definition define Z axis and X axis translate and rotate each, but no Y axis change
+* n are unique integer numbers starting from 0
+* d displacement in Z direction
+* theta rotation by Z axis, added to the variable theta angle
+* a is the shortest distance between Z and former Z axis. If alpha is 0, +-90 or +-180 degrees, the distance is the arm length
+* alpha is the X axis rotation
+* the internally used ytr and yrot values are set to 0.0 each
+
+Extended set with addition Y parameters:
+**D"n:d:theta:ytr:yrot:a:alpha"**
+
+* values meaning as above
+* additionally, ytr and yrot define displacement and rotation/translate around the Y axis
+
+The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0 each.
+
+**D"!n:..."**
+Same as above, but inverts the transformation. Inverts rotations and translations. This is used for workpiece mode and explained in a world mode vs. workpiece mode chapter.
+
+**D"n:ztr|d|zrot|ytr|yrot|xtr|a|xrot|alpha=..."**
+Sets a single value of a D parameter. If the default of a robotType can be used, single parameter setting will be the easiest method to specify arm lengths. ztr (or d) is the Z translate parameter, zrot (or theta) the Z rotate, analogue for y (ytr, yrot) and x (xtr or a, xrot or alpha). The other defined parameters of Dn remain unchanged. If the Dn did not exist, it is created with the other values being set to 0. A change of inverted or not will change the type.
+
+Example:
+* D"1:100.0:0:0:90.0" means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
+* D"6" without values clears the definitions of D6 and removes D6 from the chain
+* D"7:0:0:0:0" if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
+* D"!1:100.0:0:0:0" inverts the transformation matrix.
+* D"1:ztr=300" sets the Z trans parameter to 300 mm for a prismatic axis which is connected to D1
+* D"1:ztr=300:zrot=20.0" sets the Z trans parameter to 300 mm for a prismatic axis and a fixed 20 degree offset value to the zrot of D1 (the movement is linear, but the Z axis is constantly rotated by 20 degrees)
+
+
+
+
+
+
 
 # Coordinate system
 Every robot joint is connected with its own coordinate system. The coordinate system XYZ is right hand based. It's easiest to positon Z to the direction of the axis, then X, then Y by the right hand rule. Although physical axes don't have direction, the coordinate system has, and it's important to be aware of the direction. The axis' direction defines which rotation is positive or negative degrees. From looking in front at the arrow, counterclockwise are positiv degrees.
