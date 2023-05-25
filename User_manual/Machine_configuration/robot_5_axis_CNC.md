@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-05-25T07:37:04.698Z
+date: 2023-05-25T10:56:30.122Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -32,8 +32,6 @@ RTCP mode is supported in all cases, i. e. the XYZ change due to AC/BC changes a
 
 The following values are for a given angle/position (for rotary/linear axes) value of the actuators.
 
-The tool length is expected to be 100, replaced by the current tool's G10 values while calculating forward/inverse kinematics.
-
 robot type:
 - parameter robotType
 - additional parameters robotType-specific (additional arms, tilting etc)
@@ -49,6 +47,7 @@ endpoint:
 - position
 - full orientation information (x, y, and z axis)
 - for the calculation, the print bed's thickness must be considered
+- the defaultToolLength is added (only Z value, XY are 0). For forward/inverse calculations, it is replaced by the G10 offset values of the selected tool.
 
 In the following examples, the direction of A, B, C is in the same direction like X, Y, Z axes. This defines in which direction the axes rotate with positive and negative angles. To change this behaviour, the axis direction needs to be reverted by negating all Z axis values and the homing definitions be changed.
 
