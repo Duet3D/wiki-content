@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-05-24T10:35:15.695Z
+date: 2023-05-25T06:20:44.389Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -14,10 +14,10 @@ This page is part of multiple pages about robot configuration and usage. Please 
 
 This robot type is built from the XYZ axes and the AC/BC axes:
 - XYZ is the common Cartesian, CoreXY, Delta, 5-bar-parallel-Scara, Serial Scara and are linear/rotary/combined type axes.
-- AC/BC are two rotary axes each. Naming: A if parallel to the X axis, B if parallel to Y and C if parallel to Z, with 0 degrees position each.
+- AC/BC are two rotary axes each. Naming: A if parallel to the X axis, B if parallel to Y and C if parallel to Z, with 0 degrees position each. ABC can be connected to the endpoint (hotend, spindle) or table or mixed (head/table mode etc).
 
 The following robot type are therefore supported:
-- CNC 5 axis AC, BC and head/head, head/table, table/table type
+- CNC 5 axis AC/BC
 - Open5x, Pentarod, Prusa with AC/BC axes
 - Cartesian, CoreXY with additional AC/BC
 - Delta with additional AC/BC
