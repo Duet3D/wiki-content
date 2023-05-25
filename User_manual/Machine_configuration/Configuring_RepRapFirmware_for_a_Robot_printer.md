@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-04-27T07:09:50.309Z
+date: 2023-05-25T06:11:41.092Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -12,11 +12,10 @@ This page is part of multiple pages about robot configuration and usage. Please 
 
 How to setup:
 |---|---|
-|configuration (starting page)|[Configuring](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)|
-|6 axis robot|[6 axis industrial](/User_manual/Machine_configuration/robot_industrial_6_axis)|
-|CNC, CoreXY, Prusalike 5 axis|[5 axis](/User_manual/Machine_configuration/robot_5_axis_CNC)|
-|4 axis palletized|[4 axis palletized](/User_manual/Machine_configuration/robot_4_axis_palletized)|
-|parallel robots|tbd|
+|configuration (this starting page)|[Configuring](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)|
+|6 axis industrial robot|[6 axis industrial](/User_manual/Machine_configuration/robot_industrial_6_axis)|
+|CNC, CoreXY, Delta, Prusa, 5-Bar-Par.Scara 5 axis|[5 axis](/User_manual/Machine_configuration/robot_5_axis_CNC)|
+|4 axis palletized (parallelogram)|[4 axis palletized](/User_manual/Machine_configuration/robot_4_axis_palletized)|
 
 Using:
 |---|---|
@@ -35,7 +34,8 @@ The kinematics is developed for Duet3Ds RepRapFirmware. The **robot firmware is 
 
 The source is in github https://github.com/JoergS5/RepRapFirmware/tree/3.5-dev/src/Movement/Kinematics
 RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 4.cpp is code which is independent of RRF and can run and be tested outside RRF.
-> The code includes the iteration-based DH code, it will be updated with the new screw theory based code at mid march.
+
+> The code is based on screw theory and geometric algebra. Denavit-Hartenberg-based code is moved to the RobotViewer DWC plugin.
 {.is-info}
 
 
@@ -51,7 +51,7 @@ When Duet starts after power on, it needs to know how to behave. Reading the fil
 
 The robot kinematics supports different types. Roughly, they can be separated into
 * serial robots (also called open chain): the joints and arms are connected in one serial chain. Industrial robots (6 rotational axes), CNC 5 axis (3 prismatic, two rotational axes), cartesian (three prismatic axes), serial scara (one prismatic and two rotational axes) and polar (two prismatic and one rotational axes) printers are examples. Configuration allows mixing any prismatic and rotational axes, e.g. a cartesian with spheric head (3 prismatic and 3 rotational axes).
-* parallel robots: the joints and arms are completely or partially connected in parallel. Often some joints are without an actuator. The kinematic is more difficult to calculate and need dedicated formulae, so only defined types are supported. Examples are (3 arm) delta, 5 arm parallel scara, stewart/hexapod, 4 axis palletized robot. Delta is not supported in robot kinematics, because RepRapFirmware has dedicated delta support. 4 axis palletized is supported, stewart is planned, 5 arm parallel scara is planned.
+* parallel/closed chain robots: the joints and arms are completely or partially connected in parallel. Often some joints are without an actuator. The kinematic is more difficult to calculate and need dedicated formulae, so only defined types are supported. Examples are (3 arm) delta, 5 arm parallel scara, stewart/hexapod, 4 axis palletized robot. Delta is not supported in robot kinematics, because RepRapFirmware has dedicated delta support. 4 axis palletized is supported, stewart is planned, 5 arm parallel scara is planned.
 
 Serial robots are easier to calculate, but parallel robots have higher precision and in case of 4 axis palletized robots higher payloads.
 
@@ -72,14 +72,11 @@ Overview
 * B"robotType=..." specify robot type
 * A"a:..." minimum, maximum and home angles
 * C"para=..." screw parameters
-* D"n:..." Denavit-Hartenberg (DH) parameters
 * P"para=..." special parameters
 * S segments per second
 * T minimum segment length in mm
 
 P"axisTypes=..." is the most important setting, as it defines how many axes are used.
-
-C and D are alternative methods to describe the properties of links and joints. C is preferred.
 
 Most changes in config.g don't need a reboot, but when drive or letter assignments with M584 change, a reboot is often necessary.
 
@@ -110,10 +107,10 @@ Example:
 
 # M669 A parameter: angles
 
+M208 to set home positions is not applicable to robots, because M208 XYZ values are cartesian coordinates, but to set rotary angle positions, the angle values are necessary. So all angles (homing, min, max) are set explicitly with a separate M669 A parameter.
+
 **A"axis:min:max:home"**
 **A"axis:cont:home"**
-
-**I've changed to start from 0 now. This is analogue to the drive number.**
 
 * axis is the axis number, starting with 0
 * min is the minium angle for rotary axis and minimum position in mm for prismatic axis
@@ -155,57 +152,6 @@ Example:
 More about screw explanation and examples on the firmware page (maybe a dedicated page in the future).
 
 An open question is how to handle workpiece mode. Syntax will probably change for handling it (! somewhere).
-
-# M669 D parameter: Denavit-Hartenberg
-Dn define DH parameters and are numbered from 0 to maximum 9.
-
-There is a separate document about DH parameters with examples. The DWC plugin RobotViewer shall help with configuration.
-
-The standard usage is:
-* every DH parameter set has one D... defintion with numbers 0 to 9
-* after D, optional invert and number, there are 1, 4 or 6 parameters, all parts delimited with :
-* D0 is optional the definition of the base. If the first axis is vertical starting in 0,0,0, D0 can be omitted
-* D1 to D6 are DH parameters with actuators assigned (or less numbers for less actuators)
-* D7 for tool. Offset values of the current selected tool G10 will be added
-
-For less (more) actuators, less (more) D-s are used. The p (parallelogram 4 axis) has its own Dn and if it has values, they are added to the parallelogram angles.
-
-The standard can be changed with the B parameter and Dn numbers can have holes, e.g. start by 1 without 0.
-
-Every Dn contains three translates and three rotations by Z, Y, X axis in this order. The parameters are explained in detail on the DH Parameter documentation page.
-
-Original set of DH parameters:
-**D"n:d:theta:a:alpha"**
-
-* the original DH definition define Z axis and X axis translate and rotate each, but no Y axis change
-* n are unique integer numbers starting from 0
-* d displacement in Z direction
-* theta rotation by Z axis, added to the variable theta angle
-* a is the shortest distance between Z and former Z axis. If alpha is 0, +-90 or +-180 degrees, the distance is the arm length
-* alpha is the X axis rotation
-* the internally used ytr and yrot values are set to 0.0 each
-
-Extended set with addition Y parameters:
-**D"n:d:theta:ytr:yrot:a:alpha"**
-
-* values meaning as above
-* additionally, ytr and yrot define displacement and rotation/translate around the Y axis
-
-The two versions can be mixed, e. g. using the short version if ytr, yrot is 0.0 each.
-
-**D"!n:..."**
-Same as above, but inverts the transformation. Inverts rotations and translations. This is used for workpiece mode and explained in a world mode vs. workpiece mode chapter.
-
-**D"n:ztr|d|zrot|ytr|yrot|xtr|a|xrot|alpha=..."**
-Sets a single value of a D parameter. If the default of a robotType can be used, single parameter setting will be the easiest method to specify arm lengths. ztr (or d) is the Z translate parameter, zrot (or theta) the Z rotate, analogue for y (ytr, yrot) and x (xtr or a, xrot or alpha). The other defined parameters of Dn remain unchanged. If the Dn did not exist, it is created with the other values being set to 0. A change of inverted or not will change the type.
-
-Example:
-* D"1:100.0:0:0:90.0" means DH 1 displacement by 100 mm in Z axis direction and a rotation of the coordinate system by +90 degrees of the X axis
-* D"6" without values clears the definitions of D6 and removes D6 from the chain
-* D"7:0:0:0:0" if D7 is the last defined Dn. Then it is the definition of the tool, G10 offsets will be added before calculating forward kinematics. D7 values of d, ytr or a will be added to the G10 offsets.
-* D"!1:100.0:0:0:0" inverts the transformation matrix.
-* D"1:ztr=300" sets the Z trans parameter to 300 mm for a prismatic axis which is connected to D1
-* D"1:ztr=300:zrot=20.0" sets the Z trans parameter to 300 mm for a prismatic axis and a fixed 20 degree offset value to the zrot of D1 (the movement is linear, but the Z axis is constantly rotated by 20 degrees)
 
 # M669 P parameter: axisTypes, special
 
