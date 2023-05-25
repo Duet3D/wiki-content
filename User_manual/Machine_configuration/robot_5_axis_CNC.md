@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-05-25T07:36:07.894Z
+date: 2023-05-25T07:37:04.698Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -32,7 +32,7 @@ RTCP mode is supported in all cases, i. e. the XYZ change due to AC/BC changes a
 
 The following values are for a given angle/position (for rotary/linear axes) value of the actuators.
 
-The tool length is expected to be 100, replaced later by the current tool's G10 values.
+The tool length is expected to be 100, replaced by the current tool's G10 values while calculating forward/inverse kinematics.
 
 robot type:
 - parameter robotType
