@@ -2,7 +2,7 @@
 title: Robot Denavit-Hartenberg (DH) parameters
 description: Description to describe robot parameters with examples.
 published: true
-date: 2023-05-25T06:11:28.853Z
+date: 2023-05-25T06:12:21.325Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:41:15.633Z
@@ -37,7 +37,8 @@ DH based configuration can be used as starting point in the RobotViewer DWC plug
 
 * D"n:..." Denavit-Hartenberg (DH) parameters
 
-# M669 D parameter: Denavit-Hartenberg
+# parameters (ex M669 D)
+
 Dn define DH parameters and are numbered from 0 to maximum 9.
 
 There is a separate document about DH parameters with examples. The DWC plugin RobotViewer shall help with configuration.
