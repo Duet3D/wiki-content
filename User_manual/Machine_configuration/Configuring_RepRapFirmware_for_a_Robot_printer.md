@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-25T06:11:41.092Z
+date: 2023-05-25T11:03:32.055Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -132,6 +132,7 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 **C"axis=drivenr:s1:s2:s3:q1:q2:q3"**
 **C"M=r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"**
 **C"reference=a0:a1:a2:..."**
+**C"defaultToolLength=z"**
 
 * axis is the axis number, starting by 1
 * drivenr is the assigned drive number as defined by M584 and used by mapDriveLetterDn first digit
@@ -139,6 +140,7 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 * q1:q2:q3 is a point on this axis in cartesian world coordinates
 * M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the origin (base).
 * reference are the actuator's angles in degrees which are used to calculate the M values. It defines the workmode, i. e. which of the up to 16 possible solutions for a given position is choosen. Default is to expect 0 angles/positions. This parameter isn't needed for calculations, but is informative only.
+* defaultToolLength is the Z length of the default tool. It is added to the endpoint calculation as placeholder when no tool is defined yet. The value is positive, although the direction is in the negative Z direction (i. e. lowers the distance between hotend and printbed).
 
 The choice of the angles and M influence the performance of calculations: if they are near the desired target, less iterations are needed.
 
