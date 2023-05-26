@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-25T11:03:32.055Z
+date: 2023-05-26T06:10:59.372Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -130,7 +130,7 @@ Example:
 Instead of configuration by D parameters of Denavit-Hartenberg, properties based on screw theory can be used.
 
 **C"axis=drivenr:s1:s2:s3:q1:q2:q3"**
-**C"M=r11:r12:r13:p1:r21:r22:r23:p2:r31:r32:r33:p3"**
+**C"M=r11:r12:r13:r21:r22:r23:r31:r32:r33:p1:p2:p3"**
 **C"reference=a0:a1:a2:..."**
 **C"defaultToolLength=z"**
 
@@ -138,7 +138,7 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 * drivenr is the assigned drive number as defined by M584 and used by mapDriveLetterDn first digit
 * s1:s2:s3 is the axis orientation as normalized XYZ directions. The direction reference are the world coordinates.
 * q1:q2:q3 is a point on this axis in cartesian world coordinates
-* M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the origin (base).
+* M and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the reference (0,0,0).
 * reference are the actuator's angles in degrees which are used to calculate the M values. It defines the workmode, i. e. which of the up to 16 possible solutions for a given position is choosen. Default is to expect 0 angles/positions. This parameter isn't needed for calculations, but is informative only.
 * defaultToolLength is the Z length of the default tool. It is added to the endpoint calculation as placeholder when no tool is defined yet. The value is positive, although the direction is in the negative Z direction (i. e. lowers the distance between hotend and printbed).
 
@@ -148,12 +148,9 @@ When using D parameter with DH values, the C values are calculated from them and
 
 Example:
 * C"1=1:0:1:0:70:0:352" means axis 2 is oriented horizontal with arrow to the back (i.e. Y=1 and the others 0) and the position is X 70, Y 0 and Z 352. This is a value of the DH example robot
-* C"M=0:0:1:615:0:-1:0:0:1:0:0:712" is the setting of the DH example of the 6 axis robot
+* C"M=0:0:1:0:-1:0:1:0:0:615:0:712" is the setting of the DH example of the 6 axis robot
 * C"reference=0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
-
-More about screw explanation and examples on the firmware page (maybe a dedicated page in the future).
-
-An open question is how to handle workpiece mode. Syntax will probably change for handling it (! somewhere).
+* defaultToolLength=100 is the tool length for initial calculation
 
 # M669 P parameter: axisTypes, special
 
