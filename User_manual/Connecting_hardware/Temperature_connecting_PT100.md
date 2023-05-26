@@ -2,7 +2,7 @@
 title: Connecting PT100 temperature sensors
 description: 
 published: true
-date: 2022-04-07T16:22:30.818Z
+date: 2023-05-26T13:46:14.552Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-13T13:58:33.455Z
@@ -91,6 +91,10 @@ This image shows a thermocouple daughterboard stacked on top of a PT100 board. T
 
 On the first temperature daughterboard (ie closest to the mainboard), the terminal blocks labelled RTD1 and RTD2 will be the first and second temperature measurement channels respectively. If you stack two PT100 daughterboards, the terminal blocks labelled RTD1 and RTD2 on the upper board will be the third and fourth temperature measurement channels. 
 
+PT100 temperature sensors can be wired in either a 2-wire or 4-wire configuration. 3-wire PT100 sensors are also available, but these will need to be wired as a 2-wire, or an extra wire added to be wired in 4-wire.
+
+2-wire connections have the advantage of wiring simplicity. 4-wire connections have the advantage of greater accuracy; the extra wires compensate for the resistance drop in the wires, making readings more accurate. 4-wire does not improve resistance to interference; better approaches to reduce noise include twisted wiring, isolation from noise sources, shielded wiring, better grounding of components etc.
+
 ## Tabs {.tabset}
 
 ### To connect a 2-wire PT100 sensor
@@ -152,3 +156,4 @@ This tells the firmware that for heater 1 (which is normally the first hot end h
   * Fit the 2 jumpers as for a 2-wire PT100 sensor
   * RepRapFirmware should report a temperature very close to 0 degC for that channel.
 * If the reading at room temperature is higher than it should be, then you probably have a bad connection between the RTD interface board and the sensor, or the wires to the sensor are too long or too thin. Each additional ohm of wiring resistance will increase the temperature reading by 2.5C. Using a 4 wire solution PT100 sensor will improve this. If you only have a 2 wire P100 sensor you can still improve the accuracy by using 4 wires for the majority of the distance as described in [dc42's blog post here](https://miscsolutions.wordpress.com/2016/06/25/more-delta-printer-upgrades-wifi-and-silence/).
+* If the sensor readings are subject to interference, some approaches to reduce noise include twisted wiring, isolation from noise sources, shielded wiring, better grounding of components. Canbus 2-wire cable has been recommended in the past, as it is double shielded with a ground core to attach to a ground pin. Check other connections, eg plugs, in the wiring for loose joints, too.
