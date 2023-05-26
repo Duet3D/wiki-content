@@ -2,7 +2,7 @@
 title: Robot CNC 5 axis
 description: Including Pentarod, Open5, CoreXY 5 axis. 5 Bar Parallel Scara
 published: true
-date: 2023-05-25T10:56:30.122Z
+date: 2023-05-26T06:00:28.504Z
 tags: robot
 editor: markdown
 dateCreated: 2022-08-31T22:53:13.376Z
@@ -48,6 +48,8 @@ endpoint:
 - full orientation information (x, y, and z axis)
 - for the calculation, the print bed's thickness must be considered
 - the defaultToolLength is added (only Z value, XY are 0). For forward/inverse calculations, it is replaced by the G10 offset values of the selected tool.
+
+The tool (and as starting point the defaultToolLength) is always added to the Z axis direction, no matter how the chain is defined and with which axis it ends. The length is subtracted from the Z position. (e. g. a Z position of 300 and tool length of 100 will result in a Z200 height).
 
 In the following examples, the direction of A, B, C is in the same direction like X, Y, Z axes. This defines in which direction the axes rotate with positive and negative angles. To change this behaviour, the axis direction needs to be reverted by negating all Z axis values and the homing definitions be changed.
 
