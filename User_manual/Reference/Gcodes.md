@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-26T07:48:13.353Z
+date: 2023-05-26T11:13:37.691Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2408,7 +2408,7 @@ M116 P1
 M116 H0 S5
 </pre>
 
-The first example waits for *all* temperatures and other slowly-changing variables to arrive at their set values.
+The first example waits for *all* bed, chamber, and tool heaters to arrive at their set values. Note that in v3.5, the scope of tool heaters to wait for is limited to the heaters of the currently selected tool of the selected motion system.
 
 The second shows the optional 'P' parameter that is used to specify a tool number. If this parameter is present, then the system only waits for temperatures associated with that tool to arrive at their set values. This is useful during tool changes, to wait for the new tool to heat up without necessarily waiting for the old one to cool down fully.
 
