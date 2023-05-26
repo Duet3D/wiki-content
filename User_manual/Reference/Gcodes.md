@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-26T11:13:37.691Z
+date: 2023-05-26T13:47:18.134Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5428,6 +5428,7 @@ Collect performance data from a drive whilst in closed loop mode. Can be used al
 * **Dnn** Variable filter. Determines which variables are recorded. See below for a list of available variables and how they are represented.
 * **Vnn** Perform a tuning manoeuvre. Available manoeuvres described below.
 * **Snn** Number of samples to record. When recording with rate R0, this sample rate is limited depending on the number of variables being recorded. The command will report back the maximum allowable samples if the maximum is exceeded. The maximum allowable samples may differ between board types since it is dependant on the available RAM.
+* **Tnn** If performing a step tuning manoeuvre, this is the time in milliseconds over which to complete the step change, default 2.0
 
 ### Description
 
@@ -5488,8 +5489,6 @@ Perform a [runtime tuning manoeuvre](/User_manual/Tuning/Duet_3_1HCL_tuning#runt
 
 * **Pnn** Motor driver number
 * **Vnn** Tuning move to perform
-* **Snn** For step tuning moves this is the speed in full steps per second
-* **Ann** For step tuning moves this is the acceleration in full steps per second^2
 
 ### Description
 
