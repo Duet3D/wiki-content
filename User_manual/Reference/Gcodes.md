@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-24T13:35:57.919Z
+date: 2023-05-26T07:48:13.353Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5448,6 +5448,9 @@ The following variables are available to record:
 | Phase Shift | The difference between the desired step phase and the step phase. Roughly proportional to torque applied. | 1024 |
 | Coil A Current | The current running through coil A, expressed as a proportion of the motor's maximum current normalised between -255 to 255. | 2048 |
 | Coil B Current | The current running through coil B, expressed as a proportion of the motor's maximum current normalised between -255 to 255. | 4096 |
+| PID V Term | The value of the PID controller's P term. | 8192 |
+| PID A Term | The value of the PID controller's I term | 16384 |
+| Motor current fraction | The fraction of the configured motor current that is set | 32768 |
 
 To record multiple variables, sum the variable IDs and pass the resulting value as the D parameter. For example, to record coil A current (2048) and coil B current (4096), use D6144.
 
