@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-27T08:00:37.376Z
+date: 2023-05-27T08:06:42.783Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -103,6 +103,8 @@ This parameter describes the chain of the axes from bed/table to the endpoint/he
 - AC is used if the A axis is parallel to the X axis
 - BC is used if the B axis is parallel to the Y axis
 - the C axis is parallel to the Z axis
+
+For some kinematics like Delta and 5-bar-parallel-Scara, additional parameters need to be set. This will be done with Parameter P, please see below.
 
 Not being on the list doesn't mean that a robot type is not supported. E.g. polar kinematics, serial Scara, cartesian with 3 axes spherical head and more are all supported by specifying axis types individually.
 
