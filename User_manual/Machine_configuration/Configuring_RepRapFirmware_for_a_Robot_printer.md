@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-27T07:24:32.944Z
+date: 2023-05-27T07:54:39.923Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -90,7 +90,8 @@ This parameter describes the chain of the axes from bed/table to the endpoint/he
 |Industrial6|6 axis industrial robot|XYZABC|Puma, IRB120 like|
 |CNC5AC *) |CNC 5 axis|CAZYX|other orders possible or CB...|
 |CoreXY5AC|CoreXY 5 axis|CAZ_corexy(XY)|CA_corexy(XY)Z if Z at head|
-|Delta5AC|Delta 5 axis|CA_delta(XYZ)||
+|LinearDelta5AC|Linear Delta 5 axis|CA_lindelta(XYZ)||
+|RotaryDelta5AC|Rotary Delta 5 axis|CA_rotdelta(XYZ)||
 |Open5x|Open5x original (Prusa)|CBYZX|UV letters can be remapped|
 |5bar5AC|5 bar par. Scara|CAZ_5bar(XYc1)|c1, c2 for cantilevered mode|
 |Palletized4|4 axis palletized|X_pall(YZ)|optional actuator at hotend, IRB 460 like|
