@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-26T06:10:59.372Z
+date: 2023-05-27T07:04:16.851Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -58,8 +58,7 @@ Serial robots are easier to calculate, but parallel robots have higher precision
 # M669 configuration
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-The first M669 line must specify the K13 type. Often is also useful to specify the B"robotType":
-M669 K13 B"robotType=5AxisAC"
+The first M669 line must specify the K13 type.
 
 This will set defaults for some core settings.
 
@@ -69,7 +68,7 @@ Multiple settings of the same starting letter must be on separate lines, as the 
 
 Overview
 * K13 set robot kinematics and must be defined first
-* B"robotType=..." specify robot type
+* B"axisorder" specify axis order and robot type
 * A"a:..." minimum, maximum and home angles
 * C"para=..." screw parameters
 * P"para=..." special parameters
@@ -82,28 +81,27 @@ Most changes in config.g don't need a reboot, but when drive or letter assignmen
 
 # M669 B parameter: robot type
 
-**B"robotType=type[:parameters]"**
+**B"name or detailed axis information"**
 
-Currently, valid values for the type and parameters are:
-* 6Axis (=> industrial robot, Puma robot, IRB120 like)
-* 5AxisAC, 5AxisBC (=> CNC 5 axis, Pentarod, Open5x)
-* CoreXYAC, CoreXYBC
-* 4AxisPall, 4AxisPallInv (=> IRB 460 like)
-* 5BarParall, 5BarParallAC, 5BarParallBC (experimental)
-* leaving empty: use only Dn, P, A and other parameters
+This parameter describes the chain of the axes from bed/table to the endpoint/head/hotend/spindle/tool. Example: the rotating table C comes first in the chain, so the order is CA.
 
-The AC and BC types use the typical configuration with A/B at the table and C on top of it. If other configurations like head/table are needed, the Dn parameters can be changed afterwards as wished. Explanations and examples will be posted on the 5 axis documentation page.
+|-|-|-|
+|name|kinematics|parameter|comment|
+|Industrial6|6 axis industrial robot|XYZABC|Puma, IRB120 like|
+|CNC5AC *) |CNC 5 axis|CAZYX|other orders possible or CB...|
+|CoreXY5AC|CoreXY 5 axis|CAZ_corexy(XY)|CA_corexy(XY)Z if Z at head|
+|Delta5AC|Delta 5 axis|CA_delta(XYZ)||
+|Open5x|Open5x original (Prusa)|CBYZX|UV letters can be remapped|
+|5bar5AC|5 bar par. Scara|CAZ_5bar(XYc1)|c1, c2 for cantilevered mode|
+|Palletized4|4 axis palletized|X_pall(YZ)|optional actuator at hotend, IRB 460 like|
+|Palletized4Inv|4 axis palletized inverse|X_pall(YZinv)|optional actuator at hotend|
 
-Not being on the list doesn't mean that a robot type is not supported. E.g. polar kinematics, serial Scara, cartesian with 3 axes spherical head and many more are all supported by specifying the D and P parameters individually. robotType is left empty in this case. Some kinematics already exist as dedicated kinematics. Robot kinematics for them is meant as an additional option, not as replacement.
+*) All AC names change to BC for a BC orientation instead of AC.
+- AC is used if the A axis is parallel to the X axis
+- BC is used if the B axis is parallel to the Y axis
+- the C axis is parallel to the Z axis
 
-The task of robotType is to set some default parameters, but it is also important to decide which arms are connected as parallel and which drives are e. g. AC. For example, together with information of mapDriveLetterDn, firmware knows to which drive and Dn A is connected, and which drives are the connected actuators for CoreXY/5BarParScara/Palletized.
-
-The default settings of robotType can be overwritten by P"..." parameters. B"robotType" should be specified first, otherwise P parameters will be overwritten.
-
-The robot types are described in detail on dedicated pages, please see the robot tag overview. CoreXY 5 axis and 5BarParScara are described on the CNC 5 axis page.
-
-Example:
-* B"robotType=CoreXYAC" specifies CoreXY and the rotary axes to be AC, which means A is parallel to the X axis and C to the Z axis. More details of the 5 axis types are described on a dedicated page.
+Not being on the list doesn't mean that a robot type is not supported. E.g. polar kinematics, serial Scara, cartesian with 3 axes spherical head and more are all supported by specifying axis types individually.
 
 # M669 A parameter: angles
 
@@ -203,22 +201,6 @@ Examples:
 * CNC 5 axis e. g. PPPRR is AC or BC, because the 2 rotary axes control the Z axis orientation. XY constantly changes because the drill rotates.
 * 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
 * robot 6 axis RRRRRR can be set to different modes: AC, BC if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
-
-**P"qualityParameterName=value"**
-
-Currently 5 paramters control the quality of calculations. Higher quality means longer calculation time. The values are the default values:
-* angleDiff=1.0 is the value by which angles are changed to calculate the Jacobian matrix
-* maxIterations=10 is the number of iterations to find a target. If the target is not reached for the given precision, best best result so far is used. More than 5 iterations are singularity situations in most cases and the result will be only an approximation
-* precision=1e-4f is the required precision for every prismatic actuator in mm
-* precisionAngle=1e-3f is the required precision for every rotary actuator in degrees
-* lowValuesZero=1e-6 is the tolerance in some matrix calculation to decide that a value near 0, 1 or -1 is rounded to exactly 0, 1, -1
-
-When performance is too low, changing the precision and precisionAngle to a lower value (e.g. to 1e-2f which is 0.01, 10 micrometer) has the most effect.
-
-**P"logLevel=0|1"**
-Turning on logging for performance measuring or debugging. Logging will reduce performance, so performance measuring is not exact.
-* log results are output to console
-* default is logging turned off, P"logLevel=0"
 
 # R reporting
 
