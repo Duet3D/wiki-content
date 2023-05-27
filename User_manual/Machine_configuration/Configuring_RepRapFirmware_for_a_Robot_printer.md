@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-27T07:54:39.923Z
+date: 2023-05-27T07:57:59.338Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -104,7 +104,9 @@ This parameter describes the chain of the axes from bed/table to the endpoint/he
 
 Not being on the list doesn't mean that a robot type is not supported. E.g. polar kinematics, serial Scara, cartesian with 3 axes spherical head and more are all supported by specifying axis types individually.
 
-Example: M669 B"CoreXY5AC" defines the core parameters for the CoreXY with two rotary axes where A is parallel to the X axis, C to the Z axis and both are assembled in the order CA viewed from the print object's perspective. The axis orientations are the same as the main axes, i. e. A points to the right and C to the top (this defines the rotation positive angle directions, CCW looking at the arrow).
+Example 1: M669 B"CoreXY5AC" defines the core parameters for the CoreXY with two rotary axes where A is parallel to the X axis, C to the Z axis and both are assembled in the order CA viewed from the print object's perspective. The axis orientations are the same as the main axes, i. e. A points to the right and C to the top (this defines the rotation positive angle directions, CCW looking at the arrow).
+
+Example 2: M669 B"XYZAB" with axisTypes="RRRRR" will define a 5 axis industrial robot with rotary axes.
 
 # M669 A parameter: angles
 
