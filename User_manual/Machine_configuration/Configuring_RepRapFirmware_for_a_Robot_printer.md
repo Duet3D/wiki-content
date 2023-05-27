@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-27T07:57:59.338Z
+date: 2023-05-27T08:00:37.376Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -81,7 +81,9 @@ Most changes in config.g don't need a reboot, but when drive or letter assignmen
 
 # M669 B parameter: robot type
 
-**B"name or detailed axis information"**
+**B"name"**
+or
+**B"axis chain parameters"**
 
 This parameter describes the chain of the axes from bed/table to the endpoint/head/hotend/spindle/tool. Example: the rotating table C comes first in the chain, so the order is CA.
 
