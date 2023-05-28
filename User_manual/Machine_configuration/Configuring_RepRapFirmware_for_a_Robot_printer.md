@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-28T16:42:18.269Z
+date: 2023-05-28T18:20:58.068Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -222,22 +222,19 @@ To be sure that the drives are created in the correct order (the order of motorP
 In RRF, XYZUVW are linear axes by default and ABC rotational axes. This corresponds to CNC conventions. The defined axes for robot kinematics should be clarified as prismatic or rotational with the M584 settings, R0 meaning prismatic/linear and R1 meaning revolute/rotational. The reason is, RRF uses this information for some calculations like the distance calculation and uses different algorithms for prismatic and rotational axes. This clarification is only needed if the used letters differ from the default assignment.
 
 # G10: tool offset
-At the end of the last axis, a tool is attached. The tool is defined as last Dn setting. The Dn values are taken and G10 offsets of the currently selected tool is added to it:
-* X, Y, Z are the tool's offsets in mm. Default is 0, 0, 0.
+At the end of the last axis, a tool is attached.
 
-The signs of the offsets are important and depend on tool's coordinate system (explained in the DH document).
-Example: Z is positive and Z axis of the coordinate system of last Dn points to (0 0 -1) downwards with a common head-table configuration, then Z will lower the distance between head and table.
+* X, Y, Z are the tool's offsets in mm. Default is 0, 0, 100. Z is always positive and diminishes the distance of endpoint to bed.
+* defaultToolLength is the starting tool length
+* toolDirection allows to specifiy a tool direction other than the usual Z direction, e. g. to support routers with horizontal spindle.
+* a tool change will result in a changed Z distance. The endpoint Mnoap is changed to the new tool length.
 
 # M208 limits
 M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). With 5 axis robots (AC or BC), the letters A, B, C can also be specified. In this case, the limit is not a cartesian coordinate, but the A, B, C angles in degrees. This is redundant to The first and second An parameter.
 
 The robotic print area is not cubic in most cases, so the workspace differs from the M208 setting. Configuration can set M208 too small or too big:
 * setting too small to a safe, always printable area
-* setting too big around the workspace. Kinematics does two check: whether desired print is inside M208 limits and whether it is reachable by the arm lengths and allowed angles. If M208 is possible, but not according to the true workspace, an error will be reported. Whether a partial print will be done, depends on the printer type (3D printing mode will print partially, CNC mode not).
-
-# angle limits: M208, A"..."
-
-Additionally the M208 limits, the A angle min and max settings limit the allowed movements.
+* setting too big around the workspace. Kinematics does two checks: whether desired print is inside M208 limits and whether it is reachable by the arm lengths and allowed angles. If M208 is possible, but not according to the true workspace, an error will be reported. Whether a partial print will be done, depends on the printer type (3D printing mode will print partially, CNC mode not).
 
 # speed limits: M350, M92, M203, maxVelocity
 
@@ -286,6 +283,5 @@ I'll use some abbreviations in the documents and explain it here.
 |PK1 to PK...|Paden-Kahan subproblems (for rotary axes), extended by newer research|
 |PG1 to PG...|Pardos-Gotor subproblems (mainly for linear axes)|
 |Pos/Ori|position and full orientation with 3-value vector for position and 3 axes x, y, z with 3 values each|
-|GSt(0)|defined end position for given angles/positions|
-|noap|nick-...-approach-position of endposition|
+|M, noap, GSt(0)|defined end position for given angles/positions|
 |DH|Denavit-Hartenberg system to describe configuration|
