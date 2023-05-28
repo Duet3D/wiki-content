@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-28T06:38:11.450Z
+date: 2023-05-28T06:50:38.743Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -191,31 +191,18 @@ Examples:
 
 CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
 
-**P"mapDriveLetterDn=0X3:1Y4:2Z5:3A1:4C0"**
-**P"mapDriveLetterDn=0X1:1Y2:2Z3: p4"**
-The first number is the drive number, the second drive letter and the third the Dn number. A parallelogram axis has no actuator, so the first number is omitted and space used instead.
-* if this parameter is not set, it is expected that the first drive is used at D1, second at D2 etc. and the letters are standard XYZABC (or XYZUVW) for 6 axis, XYZ for 4 axis pallet, XYZAC for CNC 5 axis AC type.
-* maps drive number with drive letter with Dn, in the first example the first drive called X is mapped to D3
-* the parallel axis of the 4 axis palletized robot is named spacepn, e.g. " p4"
-* default is 0X1:1Y2:2Z3:3A4:4B5:5C6 or abbreviated for less defined axes
-* every Dn number may be used only once
-* different drive numbers may not point to the same Dn
-* the order of the elements is not important
+**special settings for rotary Delta**
 
-Example:
-* 4C0 means, drive number 4 from config.g with letter C is assigned to D!0 . An example for CNC 5 axis AC table/table configuration, where the chain starts with C axis inverted in workpiece mode.
 
-**P"orientationType=AC|BC|full|no"**
-The parameter defines how the robot shall behave in respect to orientation information. It can not change the physical properties of the robot, i. e. the setting will fail if the printer doesn't support the required mode. E. g. a cartesian printer cannot change orientation, so setting to full makes no sense.
-* AC, BC means, only the orientation of the Z axis is important. That's the case with most 3D printers and CNC machines, including 5 axis CNC. The tool may get tilted, but the orientation with respect of X and Y axis is not controlled. AC is set if two rotational axes are used which are parallel to X and Z axis. BC is used if they are parallel to Y and Z axis.
-* no means, there is no control about orientation. Orientation will change by the mechanical properties and can be changed by actuator changes, but it is not managed by firmware. Forward and inverse kinematics ignore orientation values with the exception of angle violations.
-* full gives full control over the orientation by using the full three orientation vectors. There is no G-Code standard, quaternions are used using ABCD: A is the real number, BCD are the imaginary numbers.
+**special settings for linear Delta**
 
-Examples:
-* 4 axis palletized RRRp is no, because orientation is not controllable
-* CNC 5 axis e. g. PPPRR is AC or BC, because the 2 rotary axes control the Z axis orientation. XY constantly changes because the drill rotates.
-* 3 axis cartesian PPP is no, because the endpoint is always vertical and cannot be changed
-* robot 6 axis RRRRRR can be set to different modes: AC, BC if the endpoint has no XY axis information like a hotend or drill. full if orientation of all three axes is important.
+**special settings for CoreXY and CoreXZ**
+
+**special settings for 5 bar parallel Scara**
+
+
+
+
 
 # R reporting
 
