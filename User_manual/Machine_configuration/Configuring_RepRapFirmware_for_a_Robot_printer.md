@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-28T18:20:58.068Z
+date: 2023-05-28T19:10:25.098Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -98,8 +98,7 @@ The parameter describes the chain of the axes in the order from bed/table to the
 |RotaryDelta5AC|Rotary Delta 5 axis|CA_rotdelta(XYZ)|RRRRR||
 |Open5x|Open5x original (Prusa)|CBYZX|RRPPP|UV letters can be remapped|
 |5bar5AC|5 bar par. Scara|CAZ_5bar(XY)|RRPRR|optional cantilevered mode|
-|Palletized4|4 axis palletized|X_pall(YZ)|RRR|optional actuator at hotend, IRB 460 like|
-|Palletized4Inv|4 axis palletized inverse|X_pall(YZinv)|RRR|optional actuator at hotend|
+|Palletized4|4 axis palletized|X_pall(YZ)|RRR|optional actuator at hotend, IRB 460 like, optional inverse mode|
 
 *) All AC names change to BC for a BC orientation instead of AC.
 - AC is used if the A axis is parallel to the X axis
