@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-28T07:49:05.463Z
+date: 2023-05-28T08:23:35.124Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -89,17 +89,17 @@ The name is only a placeholder for convenience. The important part is the parame
 
 The parameter describes the chain of the axes in the order from bed/table to the endpoint/head/hotend/spindle/tool. Example: the rotating table C comes first in the chain, so the order is CA.
 
-|-|-|-|
-|name|kinematics|parameter|comment|
-|Industrial6|6 axis industrial robot|XYZABC|Puma, IRB120 like|
-|CNC5AC *) |CNC 5 axis|CAYXZ||
-|CoreXY5AC|CoreXY 5 axis|CAZ_corexy(XY)|CA_corexy(XY)Z if Z at head|
-|LinearDelta5AC|Linear Delta 5 axis|CA_lindelta(XYZ)||
-|RotaryDelta5AC|Rotary Delta 5 axis|CA_rotdelta(XYZ)||
-|Open5x|Open5x original (Prusa)|CBYZX|UV letters can be remapped|
-|5bar5AC|5 bar par. Scara|CAZ_5bar(XYc1)|c1, c2 for cantilevered mode|
-|Palletized4|4 axis palletized|X_pall(YZ)|optional actuator at hotend, IRB 460 like|
-|Palletized4Inv|4 axis palletized inverse|X_pall(YZinv)|optional actuator at hotend|
+|-|-|-|-|
+|name|kinematics|parameter|axisTypes|comment|
+|Industrial6|6 axis industrial robot|XYZABC|RRRRRR|Puma, IRB120 like|
+|CNC5AC *) |CNC 5 axis|CAYXZ|RRPPP||
+|CoreXY5AC|CoreXY 5 axis|CAZ_corexy(XY)|RRPPP|CA_corexy(XY)Z if Z at head|
+|LinearDelta5AC|Linear Delta 5 axis|CA_lindelta(XYZ)|RRPPP||
+|RotaryDelta5AC|Rotary Delta 5 axis|CA_rotdelta(XYZ)|RRRRR||
+|Open5x|Open5x original (Prusa)|CBYZX|RRPPP|UV letters can be remapped|
+|5bar5AC|5 bar par. Scara|CAZ_5bar(XYc1)|RRPRR|c1, c2 for cantilevered mode|
+|Palletized4|4 axis palletized|X_pall(YZ)|RRR|optional actuator at hotend, IRB 460 like|
+|Palletized4Inv|4 axis palletized inverse|X_pall(YZinv)|RRR|optional actuator at hotend|
 
 *) All AC names change to BC for a BC orientation instead of AC.
 - AC is used if the A axis is parallel to the X axis
@@ -107,6 +107,8 @@ The parameter describes the chain of the axes in the order from bed/table to the
 - the C axis is parallel to the Z axis
 
 For some kinematics like Delta and 5-bar-parallel-Scara, additional parameters need to be set. This will be done with Parameter P, please see below.
+
+axisTypes is in the order of the chain. Only axes with actuators are added. The types of the passive hinges are defined by the kinematics. Example: 5 bar parallel three passive rotational hinges. Palletized one rotational hinge behind XYZ.
 
 Hangprinter 5 axis, Polar 5 axis, Tripteron and Stewart-Gough will be added later if it makes sense.
 
