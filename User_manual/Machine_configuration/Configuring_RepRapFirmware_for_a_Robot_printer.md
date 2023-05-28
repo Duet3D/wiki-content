@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-28T07:47:04.494Z
+date: 2023-05-28T07:49:05.463Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -197,9 +197,10 @@ CNC 5 axis allows many variants. The following dynamic mapping allows to configu
 **special settings for linear Delta**
 
 **special settings for CoreXY and CoreXZ**
+* XZ translation ratio
 
 **special settings for 5 bar parallel Scara**
-
+* forward workmode
 
 
 
