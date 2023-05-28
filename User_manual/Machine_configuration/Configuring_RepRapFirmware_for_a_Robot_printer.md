@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-28T07:44:18.081Z
+date: 2023-05-28T07:45:41.047Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -161,7 +161,7 @@ When using D parameter with DH values, the C values are calculated from them and
 Example:
 * C"X=1:0:0:70:0:352" means the X axis points to the X-axis direction and a point on the axis is (70,0,352). Looking from the arrow side to the axis, counterclockwise (CCW) means positive angle change.
 * C"M=0:0:1:0:-1:0:1:0:0:615:0:712" is the setting of the DH example of the 6 axis robot
-* C"reference=0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
+* C"Mreference=0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
 * C"defaultToolLength=100" is the tool length for initial calculation
 * C"toolDirection=1,0,0" would set the tool to be horizontal (e. g. when using a router with horizontal spindle).
 
