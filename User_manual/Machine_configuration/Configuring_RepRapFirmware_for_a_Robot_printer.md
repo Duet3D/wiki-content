@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-28T08:23:35.124Z
+date: 2023-05-28T08:27:00.041Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -97,7 +97,7 @@ The parameter describes the chain of the axes in the order from bed/table to the
 |LinearDelta5AC|Linear Delta 5 axis|CA_lindelta(XYZ)|RRPPP||
 |RotaryDelta5AC|Rotary Delta 5 axis|CA_rotdelta(XYZ)|RRRRR||
 |Open5x|Open5x original (Prusa)|CBYZX|RRPPP|UV letters can be remapped|
-|5bar5AC|5 bar par. Scara|CAZ_5bar(XYc1)|RRPRR|c1, c2 for cantilevered mode|
+|5bar5AC|5 bar par. Scara|CAZ_5bar(XY)|RRPRR|optional cantilevered mode|
 |Palletized4|4 axis palletized|X_pall(YZ)|RRR|optional actuator at hotend, IRB 460 like|
 |Palletized4Inv|4 axis palletized inverse|X_pall(YZinv)|RRR|optional actuator at hotend|
 
@@ -169,29 +169,16 @@ Example:
 
 # M669 P parameter: axisTypes, special
 
-P commands will overwrite the default settings of B"robotType", so it makes sense to set P after the B parameter.
+**P"axisTypes=[R]|[P]*"**
 
-**P"axisTypes=[R]|[P]|[p]*"**
+Defines the type of the axes. It is important that it matches the number of actuators.
 
-Defines the type of the axes. It is important that it matches the number of actuators plus optional parallelogram axis.
-
-* R means rotational/revolute, units are degrees, speeds e.g. degrees/min
-* P means prismatic/linear, units are mm
-* p (lower case p) means passive joint without actuator with parallelogram (see 4 axis palletized robot type)
+* R means rotational/revolute, units are degrees, speeds e.g. degrees/min.
+* P means prismatic/linear, units are mm and mm/min.
 
 The parameter must be set correct, otherwise kinematics will not calculate correctly.
 
-Examples:
-
-* P"axisTypes=RRRRRR" means 6 axis robot with rotational axes
-* P"axisTypes=RRP" means serial scara with third axis being prismatic, i. e. two rotary arms and one linear Z axis
-* P"axisTypes=PPP" means 3 axis cartesian printer with three prismatic axes
-* P"axisTypes=PPPRRR" means cartesian printer with additional spheric 3 axis head
-* P"axisTypes=PPPRR" means CNC 5 axis with three linear and two rotary axes. With a rotary axis at the head, the order will be different like RPPPR
-* P"axisTypes=RRRp" means 4 axis palletized
-* P"axisTypes=RRRpR" means 4 axis palletized with 4th actuator, so 5 axes in total
-
-CNC 5 axis allows many variants. The following dynamic mapping allows to configure them by defining how the forward kinematics is calculated. Inverting transformation matrices or reverting axes is necessary sometimes, as well as changing letter assignments.
+Examples: see the B parameter table column axis types.
 
 **special settings for rotary Delta**
 
@@ -203,7 +190,7 @@ CNC 5 axis allows many variants. The following dynamic mapping allows to configu
 
 **special settings for 5 bar parallel Scara**
 * forward workmode
-
+* cantilevered modes left/right
 
 
 
