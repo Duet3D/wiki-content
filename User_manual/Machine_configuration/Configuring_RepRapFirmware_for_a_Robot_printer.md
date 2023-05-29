@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-28T19:10:25.098Z
+date: 2023-05-29T03:58:29.083Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -96,7 +96,7 @@ The parameter describes the chain of the axes in the order from bed/table to the
 |CoreXY5AC|CoreXY 5 axis|CAZ_corexy(XY)|RRPPP|CA_corexy(XY)Z if Z at head|
 |LinearDelta5AC|Linear Delta 5 axis|CA_lindelta(XYZ)|RRPPP||
 |RotaryDelta5AC|Rotary Delta 5 axis|CA_rotdelta(XYZ)|RRRRR||
-|Open5x|Open5x original (Prusa)|CBYZX|RRPPP|UV letters can be remapped|
+|Prusa5BC|Prusa style, Open5x|CAYZX|RRPPP||
 |5bar5AC|5 bar par. Scara|CAZ_5bar(XY)|RRPRR|optional cantilevered mode|
 |Palletized4|4 axis palletized|X_pall(YZ)|RRR|optional actuator at hotend, IRB 460 like, optional inverse mode|
 
@@ -105,9 +105,10 @@ The parameter describes the chain of the axes in the order from bed/table to the
 - BC is used if the B axis is parallel to the Y axis
 - the C axis is parallel to the Z axis
 
-The underscore _ is optional and can be inserted for clarity everywhere. Letters and setting special kinematics options are recognized by upper case (= letter) or lowercase(...) (= kinematics). The length for name and parameter is currently limited to 20 characters each.
+The underscore _ can be omitted. The length for name and parameter is 
+currently limited to 20 characters each.
 
-For some kinematics like Delta and 5-bar-parallel-Scara, additional parameters need to be set. This will be done with Parameter P, please see below.
+Special kinematics are marked with syntax similar to a function call. Available kinematics are those listed in the table. For some kinematics like Delta and 5-bar-parallel-Scara, additional parameters need to be set. This will be done with Parameter P, please see below.
 
 axisTypes is in the order of the chain. Only axes with actuators are added. The types of the passive hinges are defined by the kinematics. Example: 5 bar parallel three passive rotational hinges. Palletized one rotational hinge behind XYZ.
 
