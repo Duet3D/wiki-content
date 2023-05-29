@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-29T06:23:58.524Z
+date: 2023-05-29T20:51:49.666Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -117,21 +117,19 @@ Example 2: M669 B"XYZAB" with axisTypes="RRRRR" will define a 5 axis industrial 
 M208 to set home positions is not applicable to robots, because M208 XYZ values are cartesian coordinates, but to set rotary angle positions, the angle values are necessary. So all angles (homing, min, max) are set explicitly with a separate M669 A parameter.
 
 **A"letter=min:max:home"**
-**A"letter=cont:home"**
+**A"letter=home"**
 
 * letter is the axis letter
 * min is the minium angle for rotary axis and minimum position in mm for prismatic axis
 * max is the maximum angle or position
-* cont means the axis is continuous and has no min/max angles. This doesn't mean continuous movement, but only that it can rotate any degree
+* if no min and max are set, the axis is continuous. This doesn't mean continuous movement, but only that it can rotate any degree
 * home is the home position in degrees or mm. The value can be outside min and max, the endstop can be low or high type
 
 If An is not defined for an axis, then the M208 values are used for homing: depending in low or high end the S1 or S0 value and taking the values as limits. A prismatic X, Y, Z axis or A, B, C rotary axes are handled this way. Rotary X, Y, Z axes must be defined with An, because M208 X, Y, Z values are cartesian values, and rotary axis values are angles.
 
-Currently there is no continuous axis in RRF core, but when it exists, this setting will ignore angle limits.
-
 Example:
 * A"X=-180.0:180.0:0.0" means the axis X can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
-* A"C=cont:0" means the C axis (e. g. the rotating table of AC) is continuous and the homing angle is 0 degrees or 0 mm. In most cases, this is only possible if no electronics or filament is attached to the rotating element.
+* A"C=0" means the C axis (e. g. the rotating table of AC) is continuous and the homing angle is 0 degrees or 0 mm. In most cases, this is only possible if no electronics or filament is attached to the rotating element.
 
 # M669 C parameter: screw properties
 
