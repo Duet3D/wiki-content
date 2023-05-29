@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-29T04:13:41.181Z
+date: 2023-05-29T04:19:43.270Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -95,7 +95,7 @@ The parameter describes the chain of the axes in the order from bed/table to the
 |RotaryDelta5AC|Rotary Delta 5 axis|CA_rotdelta(XYZ)|RRRRR||
 |Prusa5BC|Prusa style, Open5x|CAYZX|RRPPP||
 |5bar5AC|5 bar par. Scara|CAZ_5bar(XY)|RRPRR|optional cantilevered mode|
-|Palletized4|4 axis palletized|X_pall(YZ)|RRR|optional actuator at hotend, IRB 460 like, optional inverse mode|
+|Palletized4|4 axis palletized|X_pall(YZ)|RRR|optional actuator at hotend (parameter X_pall(YZ)A, axisTypes RRRR), IRB 460 like, optional inverse mode|
 
 *) All AC names change to BC for a BC orientation instead of AC.
 - AC is used if the A axis is parallel to the X axis
@@ -104,9 +104,9 @@ The parameter describes the chain of the axes in the order from bed/table to the
 
 The underscore _ can be omitted. The length for name and parameter is  currently limited to 20 characters each.
 
-Special kinematics are marked with syntax similar to a function call. Available kinematics are those listed in the table. For some kinematics like Delta and 5-bar-parallel-Scara, additional parameters need to be set. This will be done with Parameter P, please see below.
+Special kinematics are marked with syntax similar to a function call. Available kinematics are those listed in the table. After the special function call can be additional axes (e. g. to rotate the hotend). For some kinematics like Delta and 5-bar-parallel-Scara, additional parameters need to be set. This will be done with Parameter P, please see below.
 
-axisTypes is in the order of the chain. Only axes with actuators are added. The types of the passive hinges are defined by the kinematics. Example: 5 bar parallel three passive rotational hinges. Palletized one rotational hinge behind XYZ.
+axisTypes is in the order of the chain. Only axes with actuators are added. The types of the passive hinges are defined by the kinematics. Example: 5 bar parallel three passive rotational hinges. Palletized has one rotational hinge behind XYZ.
 
 Hangprinter 5 axis, Polar 5 axis, Tripteron and Stewart-Gough will be added later if it makes sense.
 
