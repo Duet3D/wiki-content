@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-29T04:19:43.270Z
+date: 2023-05-29T04:58:49.580Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -144,7 +144,7 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 **C"Mnoap=r11:r12:r13:r21:r22:r23:r31:r32:r33:p1:p2:p3"**
 **C"Mreference=a0:a1:a2:..."**
 **C"defaultToolLength=z"**
-**C"toolDirection=x,y,z"**
+**C"toolDirection=x:y:z"**
 
 * letter is the letter which is used by B
 * omega1:omega2:omega3 is the axis direction
