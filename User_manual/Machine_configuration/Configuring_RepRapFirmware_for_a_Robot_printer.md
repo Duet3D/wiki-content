@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-29T04:58:49.580Z
+date: 2023-05-29T05:25:23.810Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -35,15 +35,11 @@ The kinematics is developed for Duet3Ds RepRapFirmware. The **robot firmware is 
 The source is in github https://github.com/JoergS5/RepRapFirmware/tree/3.5-dev/src/Movement/Kinematics
 RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 4.cpp is code which is independent of RRF and can run and be tested outside RRF.
 
-> The code is based on screw theory and geometric algebra. Denavit-Hartenberg-based code is moved to the RobotViewer DWC plugin.
-{.is-info}
-
 
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
 Current status, last actions:
-* started to include screw theory (also called PoE Product of Exponentials), based on skew matrices. This will probably speed up calculations. The extended DH parameter configuration with 6 parameters will remain, but Plücker coordinates will probably be added as option to define parameters.
-* following Pardos-Godor's book to develop closed calculations for inverse kinematics
+* a build will be created soon
 
 # Configuring a Robot
 
