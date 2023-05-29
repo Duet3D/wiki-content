@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-29T03:58:29.083Z
+date: 2023-05-29T03:59:30.372Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -105,8 +105,7 @@ The parameter describes the chain of the axes in the order from bed/table to the
 - BC is used if the B axis is parallel to the Y axis
 - the C axis is parallel to the Z axis
 
-The underscore _ can be omitted. The length for name and parameter is 
-currently limited to 20 characters each.
+The underscore _ can be omitted. The length for name and parameter is  currently limited to 20 characters each.
 
 Special kinematics are marked with syntax similar to a function call. Available kinematics are those listed in the table. For some kinematics like Delta and 5-bar-parallel-Scara, additional parameters need to be set. This will be done with Parameter P, please see below.
 
