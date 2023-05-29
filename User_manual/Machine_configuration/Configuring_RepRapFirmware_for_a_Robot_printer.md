@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-29T03:59:30.372Z
+date: 2023-05-29T04:13:41.181Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -51,27 +51,24 @@ When Duet starts after power on, it needs to know how to behave. Reading the fil
 
 The robot kinematics supports different types. Roughly, they can be separated into
 * serial robots (also called open chain): the joints and arms are connected in one serial chain. Industrial robots (6 rotational axes), CNC 5 axis (3 prismatic, two rotational axes), cartesian (three prismatic axes), serial scara (one prismatic and two rotational axes) and polar (two prismatic and one rotational axes) printers are examples. Configuration allows mixing any prismatic and rotational axes, e.g. a cartesian with spheric head (3 prismatic and 3 rotational axes).
-* parallel/closed chain robots: the joints and arms are completely or partially connected in parallel. Often some joints are without an actuator. The kinematic is more difficult to calculate and need dedicated formulae, so only defined types are supported. Examples are (3 arm) delta, 5 arm parallel scara, stewart/hexapod, 4 axis palletized robot. Delta is not supported in robot kinematics, because RepRapFirmware has dedicated delta support. 4 axis palletized is supported, stewart is planned, 5 arm parallel scara is planned.
+* parallel/closed chain robots: the joints and arms are completely or partially connected in parallel. Often some joints are without an actuator. Examples are (3 arm) delta, 5 bar parallel scara, stewart/hexapod, 4 axis palletized robot.
 
 Serial robots are easier to calculate, but parallel robots have higher precision and in case of 4 axis palletized robots higher payloads.
 
 # M669 configuration
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
-The first M669 line must specify the K13 type.
-
-This will set defaults for some core settings.
-
-M669 without parameters or with K13 alone will output the current settings to the console. M409 K"move.kinematics" displays most parameters as object model.
-
-Multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. Different letters can be combined.
+- the first line should specify K type, B and P"axisTypes=...". This will set some important parameters which are needed for the following parameter settings. Example M669 K13 B"CoreXY5AC" P"axisTypes=RRPPP"
+- after K13 is choosen, M669 without parameters will report the current settings to the console. M409 K"move.kinematics" displays most parameters as object model.
+- multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. Different letters can be combined.
 
 Overview
 * K13 set robot kinematics and must be defined first
-* B"axisorder" specify axis order and robot type
-* A"a:..." minimum, maximum and home angles
+* B"name" or B"axisorder"
+* A"letter=..." minimum, maximum and home angles
 * C"para=..." screw parameters
 * P"para=..." special parameters
+* R reporting
 * S segments per second
 * T minimum segment length in mm
 
@@ -123,10 +120,10 @@ Example 2: M669 B"XYZAB" with axisTypes="RRRRR" will define a 5 axis industrial 
 
 M208 to set home positions is not applicable to robots, because M208 XYZ values are cartesian coordinates, but to set rotary angle positions, the angle values are necessary. So all angles (homing, min, max) are set explicitly with a separate M669 A parameter.
 
-**A"axis:min:max:home"**
-**A"axis:cont:home"**
+**A"letter=min:max:home"**
+**A"letter=cont:home"**
 
-* axis is the axis number, starting with 0
+* letter is the axis letter
 * min is the minium angle for rotary axis and minimum position in mm for prismatic axis
 * max is the maximum angle or position
 * cont means the axis is continuous and has no min/max angles. This doesn't mean continuous movement, but only that it can rotate any degree
@@ -137,8 +134,8 @@ If An is not defined for an axis, then the M208 values are used for homing: depe
 Currently there is no continuous axis in RRF core, but when it exists, this setting will ignore angle limits.
 
 Example:
-* A"0:-180.0:180.0:0.0" means the axis 1 can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
-* A"5:cont:0" means the axis is continuous and the homing angle is 0 degrees or 0 mm. In most cases, this is only possible if no electronics or filament is attached to the rotating element. The C rotary axis of CNC 5 axis could be cont e.g.
+* A"X=-180.0:180.0:0.0" means the axis X can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
+* A"C=cont:0" means the C axis (e. g. the rotating table of AC) is continuous and the homing angle is 0 degrees or 0 mm. In most cases, this is only possible if no electronics or filament is attached to the rotating element.
 
 # M669 C parameter: screw properties
 Instead of configuration by D parameters of Denavit-Hartenberg, properties based on screw theory can be used.
@@ -192,8 +189,6 @@ Examples: see the B parameter table column axis types.
 **special settings for 5 bar parallel Scara**
 * forward workmode
 * cantilevered modes left/right
-
-
 
 # R reporting
 
