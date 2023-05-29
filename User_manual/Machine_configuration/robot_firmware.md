@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-18T05:32:23.974Z
+date: 2023-05-29T05:51:52.549Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -10,15 +10,7 @@ dateCreated: 2022-06-18T05:20:44.359Z
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
 
-At the core of this page are the topics
-* how the forward and inverse kinematics is implemented
-* orientation types and the different methods to calculate and store them
-* world and workpiece mode
-* workmodes
-* singularities
-* firmware details like how segmentation works
-
-Positions are easily calculated, but for the orientation of the endpoints exist multiple methods. Optimizing print/drill paths to avoid singularities and to improve results are still base of scientific research. Currently angle and velocity restrictions are controlled. Additional topics which will be addressed in the future are force/torque calculations (including payload), calibration, endpoint grippers, multiple robots with collision detection.
+At the core of this page is to explain firmware concepts. Details about the data storage is in the object model page.
 
 # Forward and inverse kinematics
 
