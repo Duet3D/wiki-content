@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-29T05:25:23.810Z
+date: 2023-05-29T06:23:58.524Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -134,10 +134,11 @@ Example:
 * A"C=cont:0" means the C axis (e. g. the rotating table of AC) is continuous and the homing angle is 0 degrees or 0 mm. In most cases, this is only possible if no electronics or filament is attached to the rotating element.
 
 # M669 C parameter: screw properties
-Instead of configuration by D parameters of Denavit-Hartenberg, properties based on screw theory can be used.
+
+C defines the axis properties, the endpoint for reference angles/positions, and default tool properties.
 
 **C"letter=omega1:omega2:omega3:q1:q2:q3"**
-**C"Mnoap=r11:r12:r13:r21:r22:r23:r31:r32:r33:p1:p2:p3"**
+**C"Mnoap=r11:r21:r31:r12:r22:r32:r13:r23:r33:p1:p2:p3"**
 **C"Mreference=a0:a1:a2:..."**
 **C"defaultToolLength=z"**
 **C"toolDirection=x:y:z"**
@@ -145,21 +146,17 @@ Instead of configuration by D parameters of Denavit-Hartenberg, properties based
 * letter is the letter which is used by B
 * omega1:omega2:omega3 is the axis direction
 * q1:q2:q3 is a point on this axis in cartesian world coordinates
-* Mnoap and it's 12 values is a transformation matrix from begin to end of the chain. r11 to r33 are the values of the rotation matrix, p1 to p3 are the XYZ positions, with respect to the reference (0,0,0).
+* Mnoap and it's 12 values is a transformation matrix from begin to end of the chain. r11,r21 and r31 are xyz directions of the x-Axis. r..2 of the y-axis and r...3 of the z-axis. p1...p3 is the position.
 * Mreference are the actuator's angles in degrees which were used to calculate the M values
 * defaultToolLength is the Z length of the default tool. It is added to the endpoint calculation as placeholder when no tool is defined yet. The value is positive, although the direction is in the negative Z direction (i. e. lowers the distance between hotend and printbed).
 * toolDirection. For clarity of e.g. a router with horizontal spindle, this optional parameter defines the direction of the tool.  Default is the Z axis direction, i. e. in most cases (0,0,1), and positive values will be subtracted from the Z position.
 
-The choice of the angles and M influence the performance of calculations: if they are near the desired target, less iterations are needed.
-
-When using D parameter with DH values, the C values are calculated from them and the workmode angles are used for M and Mangles. When only R is used and not D, D is not calculated.
-
 Example:
 * C"X=1:0:0:70:0:352" means the X axis points to the X-axis direction and a point on the axis is (70,0,352). Looking from the arrow side to the axis, counterclockwise (CCW) means positive angle change.
 * C"Mnoap=0:0:1:0:-1:0:1:0:0:615:0:712" is the setting of the DH example of the 6 axis robot
-* C"Mreference=0:0:0:0:0:0" means M is calculated with all angles being 0 degrees
+* C"Mreference=0:0:0:0:0:0" means Mnoap is the endpoint orientation and orientation if all angles are 0 degrees. The values are degrees for rotational and mm for prismatic axes.
 * C"defaultToolLength=100" is the tool length for initial calculation
-* C"toolDirection=1,0,0" would set the tool to be horizontal (e. g. when using a router with horizontal spindle).
+* C"toolDirection=1,0,0" would set the tool to be horizontal in x-direction (e. g. when using a router with horizontal spindle).
 
 # M669 P parameter: axisTypes, special
 
