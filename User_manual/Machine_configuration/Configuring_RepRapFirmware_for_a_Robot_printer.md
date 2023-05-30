@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-30T09:19:25.687Z
+date: 2023-05-30T09:23:16.784Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -122,8 +122,10 @@ M208 to set home positions is not applicable to robots, because M208 XYZ values 
 * letter is the axis letter
 * min is the minium angle for rotary axis and minimum position in mm for prismatic axis
 * max is the maximum angle or position
-* if no min and max are set, the axis is continuous. This doesn't mean continuous movement, but only that it can rotate any degree
+* if no min and max are set, the axis is continuous. This doesn't mean continuous movement, but only that it can rotate any degree *)
 * home is the home position in degrees or mm. The value can be outside min and max, the endstop can be low or high type
+
+*) this is the firmware setting. It must be physically possible also, without wires, electronics or filament hindering it.
 
 If An is not defined for an axis, then the M208 values are used for homing: depending in low or high end the S1 or S0 value and taking the values as limits. A prismatic X, Y, Z axis or A, B, C rotary axes are handled this way. Rotary X, Y, Z axes must be defined with An, because M208 X, Y, Z values are cartesian values, and rotary axis values are angles.
 
