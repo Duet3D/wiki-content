@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-29T20:51:49.666Z
+date: 2023-05-30T05:11:02.604Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -215,11 +215,9 @@ At the end of the last axis, a tool is attached.
 * a tool change will result in a changed Z distance. The endpoint Mnoap is changed to the new tool length.
 
 # M208 limits
-M208 limits the allowable cubic area by setting X, Y, Z limits. Printing is only allowed inside this area (an execption is while homing). With 5 axis robots (AC or BC), the letters A, B, C can also be specified. In this case, the limit is not a cartesian coordinate, but the A, B, C angles in degrees. This is redundant to The first and second An parameter.
+M208 limits the allowable printable area to a cube by setting X, Y, Z limits. Using it with G1 H1, the values only make sense for linear axes. If using X, Y, Z rotary axes, the M208 values should be changed to angle values while defining the homing position with G1 H1 and then set back to the cartesian limits after homing. A, B, C values can be used for angle/position (rotary/prismatic axis).
 
-The robotic print area is not cubic in most cases, so the workspace differs from the M208 setting. Configuration can set M208 too small or too big:
-* setting too small to a safe, always printable area
-* setting too big around the workspace. Kinematics does two checks: whether desired print is inside M208 limits and whether it is reachable by the arm lengths and allowed angles. If M208 is possible, but not according to the true workspace, an error will be reported. Whether a partial print will be done, depends on the printer type (3D printing mode will print partially, CNC mode not).
+The M208 limits are controlled when calculating whether the object is printable, together with the reachability by arm lengths and angle restrictions. 3D printers and CNC are handled slightly different (3D prints partially, CNC not).
 
 # speed limits: M350, M92, M203, maxVelocity
 
@@ -257,16 +255,3 @@ When configuration is stored and Duet rebooted, the following procedure shall av
 * G91 G1 H2 Xn with bigger values to assure that the M92 settings are correct
 * home the individual axes and assure that the endstops are triggered. M114 Count values can be used to check the stored motor position value for the homing position.
 * with normal G1 moves, check that the coordinates are interpreted correctly, X positive being to the right, Y positiv to behind and Z positive means greater distance between hotend and bed. This step is especially important for setups with the print object moving (workpiece mode).
-
-# Glossary
-
-I'll use some abbreviations in the documents and explain it here.
-
-|-|-|
-|GA|geometric algebra|
-|CGA|conformal geometric algebra, G4,1 geometry|
-|PK1 to PK...|Paden-Kahan subproblems (for rotary axes), extended by newer research|
-|PG1 to PG...|Pardos-Gotor subproblems (mainly for linear axes)|
-|Pos/Ori|position and full orientation with 3-value vector for position and 3 axes x, y, z with 3 values each|
-|M, noap, GSt(0)|defined end position for given angles/positions|
-|DH|Denavit-Hartenberg system to describe configuration|
