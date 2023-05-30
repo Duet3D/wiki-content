@@ -2,7 +2,7 @@
 title: Setting up to resume a print after a power failure or planned power down
 description: RepRapFirmware can be configured to allow you to resume a print after loss of power. This page explains how.
 published: true
-date: 2023-05-24T14:18:45.331Z
+date: 2023-05-30T12:26:07.270Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:00:04.074Z
@@ -37,7 +37,7 @@ RepRapFirmware can be configured to allow you to resume a print after loss of po
 # How it works
 
 * Any time you pause a print from SD card, the state of the print is saved to a special file on the SD card, **sys/resurrect.g**
-* On the Duet 2, you can also also use the M911 command in config.g to enable automatic pause and state saving when low VIN voltage is detected
+* You can also also use the M911 command in config.g to enable automatic pause and state saving when low VIN voltage is detected
 * You must set up file **sys/resurrect-prologue.g** to home the printer, taking account of the fact that there will be a print on the bed
 * When the power supply voltage drops below the auto-pause threshold voltage, the heaters are turned off to conserve power, the state of the print is saved to file **sys/resurrect.g** on the SD card, the power fail script specified in the M911 command is run, and the print is left in a paused state
 * After the power is restored, you can use command M916 to resume the print from where it stopped. This command runs file **sys/resurrect.g** which calls **sys/resurrect-prologue.g** at an appropriate point to home the printer
