@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-31T12:48:10.208Z
+date: 2023-05-31T12:48:34.607Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6171,7 +6171,7 @@ M585 X100 F600 E3 L0 S0 ; probe X until E0 endstop goes low
 
 ### Parameters
 
-* **Inn** Interface number (defaults to 0, only supported in standalone mode)
+* **Inn** Interface number (RRF 3 and later, defaults to 0, only supported in standalone mode)
 * **Pnn** Protocol: 0 = HTTP or HTTPS, 1 = FTP or SFTP, 2 = Telnet or SSH (which of the two choices depends on the T parameter), 3 = multicast discovery (OEM-specific), 4 = MQTT (see M586.4 below)
 * **Snn** 0 = disable this protocol, 1 = enable this protocol
 * **Rnn** TCP port number to use for the specified protocol. Ignored unless S = 1. If this parameter is not provided then the default port for that protocol and TLS setting is used. When S=0 the default port numbers are 80, 21 and 23 respectively.
