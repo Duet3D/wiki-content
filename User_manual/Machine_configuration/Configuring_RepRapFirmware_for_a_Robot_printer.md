@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-31T07:55:29.074Z
+date: 2023-05-31T07:59:01.099Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -166,7 +166,7 @@ C defines the axis properties, the endpoint for reference angles/positions, and 
 
 * letter is the letter which is used by B
 * omega1:omega2:omega3 is the axis direction
-* q1:q2:q3 is a point on this axis in cartesian world coordinates
+* q1:q2:q3 is a point on this axis in cartesian world coordinates. High precision is currently only important for rotary axes.
 * Mnoap and it's 12 values is a transformation matrix from begin to end of the chain. r11,r21 and r31 are xyz directions of the x-Axis. r..2 of the y-axis and r...3 of the z-axis. p1...p3 is the position.
 * Mreference are the actuator's angles in degrees which were used to calculate the M values
 * defaultToolLength is the Z length of the default tool. It is added to the endpoint calculation as placeholder when no tool is defined yet. The value is positive, although the direction is in the negative Z direction (i. e. lowers the distance between hotend and printbed).
