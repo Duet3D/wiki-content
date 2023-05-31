@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-30T09:23:16.784Z
+date: 2023-05-31T05:38:48.794Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -132,6 +132,27 @@ If An is not defined for an axis, then the M208 values are used for homing: depe
 Example:
 * A"X=-180.0:180.0:0.0" means the axis X can rotate between -180 and +180 degrees and when while homing the endstop is triggered, the motor position is set to 0.0 degrees (or mm, if it's a prismatic axis)
 * A"C=0" means the C axis (e. g. the rotating table of AC) is continuous and the homing angle is 0 degrees or 0 mm. In most cases, this is only possible if no electronics or filament is attached to the rotating element.
+
+# Coordinates
+
+Before explaining the following parameters, a word about coordinate system is necessary.
+
+Coordinates like the next omega1...3 are x, y, z coordinates. They have the property
+- they sum to 1, i. e. they are normalized, i. e. x²+y²+z²=1
+- they are right handed
+- if the input is not normalized, the configuration will normalize and store the normalized value
+
+The normalizing is for convenience of the user, allowing to input a value like (0, 0.01, 1) and the input procedure will normalize it to something like (0, 0.008, 0.99) by dividing the source data through the length.
+
+The normalizing may lead to a solution which is not orthonormal any more (i. e. multiple axes are not perpendicular on each other), so this should only be used for small corrections (i.e. the length of the input values should be near 1).
+
+This normalizing is applied to:
+- Cletter omega1...3
+- C"Mnoap" r11...r33
+- C"toolDirectory"
+- P special settings if they contain axis coordinates
+
+Example: change main linear axis direction a bit for correcting small deviations from 90 degree in construction.
 
 # M669 C parameter: screw properties
 
