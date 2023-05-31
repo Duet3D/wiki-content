@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-05-26T13:47:18.134Z
+date: 2023-05-31T12:48:10.208Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6171,6 +6171,7 @@ M585 X100 F600 E3 L0 S0 ; probe X until E0 endstop goes low
 
 ### Parameters
 
+* **Inn** Interface number (defaults to 0, only supported in standalone mode)
 * **Pnn** Protocol: 0 = HTTP or HTTPS, 1 = FTP or SFTP, 2 = Telnet or SSH (which of the two choices depends on the T parameter), 3 = multicast discovery (OEM-specific), 4 = MQTT (see M586.4 below)
 * **Snn** 0 = disable this protocol, 1 = enable this protocol
 * **Rnn** TCP port number to use for the specified protocol. Ignored unless S = 1. If this parameter is not provided then the default port for that protocol and TLS setting is used. When S=0 the default port numbers are 80, 21 and 23 respectively.
@@ -6190,6 +6191,7 @@ M586 P2 S1 ; enable Telnet
 ### Notes
 
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
+* In SBC mode, `M586 I` is not supported. Configure ufw or another firewall to restrict protocol access per adapter if required.
 * M586 with no S parameter reports the current support for the available protocols.
 * RepRapFirmware 1.18 and later enable only HTTP (or HTTPS if supported) protocol by default. If you wish to enable FTP and/or Telnet, enable them using this command once or twice in config.g.
 
