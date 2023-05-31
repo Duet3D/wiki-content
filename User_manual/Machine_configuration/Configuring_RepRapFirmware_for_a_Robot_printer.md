@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-05-31T05:38:48.794Z
+date: 2023-05-31T07:55:29.074Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -149,7 +149,7 @@ The normalizing may lead to a solution which is not orthonormal any more (i. e. 
 This normalizing is applied to:
 - Cletter omega1...3
 - C"Mnoap" r11...r33
-- C"toolDirectory"
+- C"toolDirection"
 - P special settings if they contain axis coordinates
 
 Example: change main linear axis direction a bit for correcting small deviations from 90 degree in construction.
