@@ -2,7 +2,7 @@
 title: Duet3D Filament Monitor
 description: 
 published: true
-date: 2023-04-13T16:44:36.523Z
+date: 2023-06-01T10:05:06.404Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -13,6 +13,8 @@ dateCreated: 2021-08-18T13:55:54.917Z
 # Introduction
 
 The Duet3D filament monitors sense filament movement and so can indicate a that filament has run out, jammed or has been ground away in the extruder. This is the magnetic filament monitor version, so called because it uses a rotating magnet to very accurately detect movement.
+
+Note the assembled version of the filament monitor works with 1.75mm filament, and the housing designs supplied by Duet3D for the kit version are similarily for 1.75mm filament. It is possible to design your own housing, or use one from the community for 2.85mm filament.
 
 # How it works
 
