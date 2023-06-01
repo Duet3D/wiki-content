@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-06-01T07:35:16.690Z
+date: 2023-06-01T15:59:03.100Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -142,6 +142,8 @@ Coordinates like the next omega1...3 are x, y, z coordinates. They have the prop
 - they are right handed
 - if the input is not normalized, the configuration will normalize and store the normalized value
 
+Performance of the kinematics is best when using values with one +-1 and two 0 values, i. e. exact orientation into the axis directions.
+
 The normalizing is for convenience of the user, allowing to input a value like (0, 0.01, 1) and the input procedure will normalize it to something like (0, 0.008, 0.99) by dividing the source data through the length.
 
 The normalizing may lead to a solution which is not orthonormal any more (i. e. multiple axes are not perpendicular on each other), so this should only be used for small corrections (i.e. the length of the input values should be near 1).
@@ -161,7 +163,7 @@ C defines the axis properties, the endpoint for reference angles/positions, and 
 **C"letter=omega1:omega2:omega3:q1:q2:q3"**
 **C"Mnoap=r11:r21:r31:r12:r22:r32:r13:r23:r33:p1:p2:p3"**
 **C"Mreference=a0:a1:a2:..."**
-**C"defaultToolLength=z"** default 100
+**C"defaultToolLength=z"** default 200
 **C"toolDirection=x:y:z"** default [0,0,1]
 
 * letter is the letter which is used by B
@@ -169,14 +171,14 @@ C defines the axis properties, the endpoint for reference angles/positions, and 
 * q1:q2:q3 is a point on this axis in cartesian world coordinates. High precision is currently only important for rotary axes.
 * Mnoap and it's 12 values is a transformation matrix from begin to end of the chain. r11,r21 and r31 are xyz directions of the x-Axis. r..2 of the y-axis and r...3 of the z-axis. p1...p3 is the position.
 * Mreference are the actuator's angles in degrees which were used to calculate the M values
-* defaultToolLength with default 100 is the Z length of the default tool. It is added to the endpoint calculation as placeholder when no tool is defined yet. The value is positive, although the direction is in the negative Z direction (i. e. lowers the distance between hotend and printbed).
+* defaultToolLength with default 200 is the Z length of the default tool. It is added to the endpoint calculation as placeholder when no tool is defined yet. The value is positive, although the direction is in the negative Z direction (i. e. lowers the distance between hotend and printbed). Setting a 200 default value shall avoid crashing something into the bed when no tool is selected. It should be changed to the longest existing tool when using tool changer.
 * toolDirection. For clarity of e.g. a router with horizontal spindle, this optional parameter defines the direction of the tool.  Default is the Z axis direction, i. e. in most cases (0,0,1), and positive values will be subtracted from the Z position.
 
 Example:
 * C"X=1:0:0:70:0:352" means the X axis points to the X-axis direction and a point on the axis is (70,0,352). Looking from the arrow side to the axis, counterclockwise (CCW) means positive angle change.
 * C"Mnoap=0:0:1:0:-1:0:1:0:0:615:0:712" is the setting of the DH example of the 6 axis robot
 * C"Mreference=0:0:0:0:0:0" means Mnoap is the endpoint orientation and orientation if all angles are 0 degrees. The values are degrees for rotational and mm for prismatic axes.
-* C"defaultToolLength=100" is the tool length for initial calculation
+* C"defaultToolLength=200" is the tool length for initial calculation
 * C"toolDirection=1,0,0" would set the tool to be horizontal in x-direction (e. g. when using a router with horizontal spindle).
 
 # M669 P parameter: axisTypes, special
