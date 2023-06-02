@@ -2,7 +2,7 @@
 title: Calibrating a delta printer
 description: Delta printers are mechanically simpler than most other types of 3D printer. They also take up very little desk space for a given build volume. However, in order to produce good prints, they need to be accurately built and calibrated.
 published: true
-date: 2023-03-28T13:17:32.008Z
+date: 2023-06-02T15:12:49.539Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:16:48.607Z
@@ -178,9 +178,7 @@ The number of probe points you choose must be at least as high as the number of 
 
 Tools that can help you generate the bed.g file include the [RepRapFirmware configuration tool](https://configtool.reprapfirmware.org/) and [the bed file wizard](http://www.escher3d.com/pages/wizards/wizardbed.php).
 
-## Adding trigger height corrections to the bed.g file
-
-You may wish to omit this section for first-time calibration and return to it later.
+## If your probe trigger height varies with position: add trigger height corrections to the bed.g file
 
 Ideally, your Z probe will have exactly the same trigger height at each probe point. In practice it may not:
 
@@ -189,7 +187,7 @@ Ideally, your Z probe will have exactly the same trigger height at each probe po
 
 We recommend that you measure the trigger height at several of your probe points. If you determine that the trigger height is the same at all positions, that's excellent. If it isn't, then for accurate calibration results you should measure the trigger height at every probe point and add trigger height corrections to bed.g.
 
-To measure the trigger height see "measuring the trigger height section above", repeat  for the other XY positions you want to check
+To measure the trigger height see "measuring the trigger height section above", repeat for the other XY positions you want to check
 
 Use the trigger height at the centre of the bed as the reference, and put that value in the Z parameter of your G31 command in config.g. For each of the G31 commands in bed.g except for the one at that centre point, add parameter Hxxx where xxx = (trigger height at that point) - (trigger height at centre point).
 
