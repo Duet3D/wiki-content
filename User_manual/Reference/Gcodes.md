@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-02T14:51:09.774Z
+date: 2023-06-03T14:16:54.976Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2545,6 +2545,10 @@ The 'P' parameter is used to report specific information. The details vary betwe
 The following 'P' parameters are supported by the **LPC and STM32 Port  of RepRapFirmware Only**
 
 * P200 - Lists all of the pins allocated by the firmware and/or board.txt
+
+The following P parameter is supported on boards Arm Cortex M4 processors:
+
+* P500 Sn - n=0 disables the processor write buffer; n=1 enables it which is the default at power up. If the S parameter is missing then the current enable/disable state is reported. Disabling the write buffer reduces performance, but can help when debugging if the processor resets and the M122 reset data indicates that the cause was an imprecise exception, because disabling the write buffer will make the exception precise in future.
 
 Note: do not use M122 with a P parameter of 1000 or greater. Most of these values are used to test the error reporting facilities and deliberately cause the firmware to crash . As at firmware 3.41 these are:
 
