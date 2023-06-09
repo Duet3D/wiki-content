@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-09T14:22:31.338Z
+date: 2023-06-09T14:23:43.133Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6290,7 +6290,7 @@ When using one of these modes there are additional parameters and the meaning of
 <br>
 <pre class="cblock">
 M587 S"Network-ssid-123" P"Password123" I192.128.1.200  ; connect to access point "Network-ssid-123" using WPA2-PSK authentication
-M587 X2 E"ca.pem" S"test-ap"  U"bob" P"hello"  ; Connect to AP "test-ap" with EAP-PEAP-MSCHAPv2, username "bob" and password "hello". Perform CA validation with certificate sys/ca.pem
+M587 X2 E"ca.pem" S"test-ap" U"bob" P"hello"  ; Connect to AP "test-ap" with EAP-PEAP-MSCHAPv2, username "bob" and password "hello". Perform CA validation with certificate sys/ca.pem
 </pre>
 
 ### Notes
