@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-04-17T14:06:06.972Z
+date: 2023-06-09T13:39:08.772Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -28,15 +28,15 @@ The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, co
 | **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. Maximum motor current 6.3A peak per phase (4.45A RMS). |
 | **Encoder Inputs** | Quadrature or SPI bus |
 | **Thermistor/PT1000 inputs** | 2 x thermistor/PT1000 inputs. This is intended to allow for motor temperature monitoring, potentially coupled with a cooling system controlled by one of the outputs. |
-| **Medium current outputs** | 2 x medium-current (2.5A max recommended) outputs at V_FUSED or V_BRAKE voltage, with PWM capability and built-in flyback diodes. Optionally provide V_BRAKE at a different voltage from V_FUSED, to allow (for example) running the stepper motor at 48V and the brake at 24V. |
+| **Medium current outputs** | 2 x medium-current (2.5A max recommended) outputs at V_FUSED or VB_FUSED (V_BRAKE with fuse protection) voltage, with PWM capability and built-in flyback diodes. Optionally provide V_BRAKE at a different voltage from V_IN, to allow (for example) running the stepper motor at 48V and the brake at 24V. |
 | **Inputs/Outputs** | 2 x 3.3V-level PWM capable output (3mA max), 2 x digital inputs, protected against over-voltage. Example use: endstop switches. |
 
 ## Operating limits
 
 |:--|:--|
 | **Input voltage** | 12V to 50V |
-| **VIN connector rated current** | 25A maximum, or fused limit (whichever is lower) |
-| **Fuses** | 5A for V_FUSED (max 10A), 5A for V_BRAKE |
+| **VIN current limit** | 10A maximum (fused limit) |
+| **Fuses** | 5A for V_IN to V_FUSED (max 10A), 5A for V_BRAKE to VB_FUSED |
 | **Stepper driver** | Up to 6.3A peak current per phase (4.45A RMS per phase; max. standstill current 4.45A) |
 | **Medium current outputs** | OUT0/1 up to 2.5A each |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
@@ -47,17 +47,17 @@ The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, co
 
 Use motors with 1.8 or more degrees per step. We advise against using 0.9deg motors because the maximum speed will be reduced. The positioning accuracy in closed-loop mode depends on the resolution of the encoder, not on the degrees/step of the motor.
 
-The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second. However, the maximum step rate may be much lower if the driver is not able to change the motor current fast enough because of high moor inductance. The calculator at [https://www.reprapfirmware.org/emf.html](https://www.reprapfirmware.org/emf.html){target=_blank} will estimate the maximum speeds for which full torque is available for a given motor and supply voltage. Good closed loop operation will typically be available up to the "high slip angle" speed.
+The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second. However, the maximum step rate may be much lower if the driver is not able to change the motor current fast enough because of high motor inductance. The calculator at [https://www.reprapfirmware.org/emf.html](https://www.reprapfirmware.org/emf.html){target=_blank} will estimate the maximum speeds for which full torque is available for a given motor and supply voltage. Good closed loop operation will typically be available up to the "high slip angle" speed.
 
 ## Compatible Encoders
 
 RRF 3.4 supports quadrature motor shaft encoders only. RRF 3.5 also supports Duet3D magnetic shaft encoders and linear composite encoders.
 
-Encoder resolutions of over 1000PPR/4000CPR are highly recommended. resolutions below this are unlikely to work well in most situations.
+Encoder resolutions of over 1000PPR (Pulses Per Revolution) or 4000CPR (Counts Per Revolution) are highly recommended. Note that generally PPR = CPR/4. Resolutions below this are unlikely to work well in most situations.
 
 ### Quadrature motor shaft encoders
 
-Stepper motors can be purchased with integral optical shaft encoders. It is also possible to buy add-on quadrature shaft encoders, which are typically mounted on the back of dual-shaft stepper motors. The resolution is specified in counts or pulses per motor revolution. **There must be an integer number of output pulses from the encoder per 4 full steps**. For example, a 1.8deg/step motor (200 full steps/rev) could have an encoder with 1000cpr (20 pulses per 4 full steps), 2000 cpr (40 pulses per 4 full steps) or 2500 cpr (50 pulses per 4 full steps).
+Stepper motors can be purchased with integral optical shaft encoders. It is also possible to buy add-on quadrature shaft encoders, which are typically mounted on the back of dual-shaft stepper motors. The resolution is specified in counts or pulses per motor revolution. **There must be an integer number of output pulses from the encoder per 4 full steps**. For example, a 1.8deg/step motor (200 full steps/rev) could have an encoder with 1000PPR (20 pulses per 4 full steps), 2000PPR (40 pulses per 4 full steps) or 2500PPR (50 pulses per 4 full steps).
 
 ### Duet3D magnetic motor shaft encoders
 
@@ -102,14 +102,35 @@ A STEP 3D model of the Duet 3 Expansion 1HCL is available [on github](https://gi
 ### V1.0
 [![Image showing all the connections on a Duet 3 1HCL to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png){target=_blank}
 
+## Wiring Notes
+
+* The 4 wire motor is a [JST VH series connector](http://www.jst-mfg.com/product/pdf/eng/eVH.pdf). These require a minimum of 22AWG wire (20AWG or 0.5mm^2^ recommended. Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way; but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heatshrink sleeving over the insulation to bulk up the insulation. You will need a suitable crimping tool for the crimp pins, for example Engineer PA21 (use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation). Alternatively you can solder the wire to the crimp pin.
+
 ## Description of Connections
 
-Duet 3 Expansion 3HC provides the following connectors:
+Duet 3 Expansion 1HCL provides the following connectors:
 
 | Header | Label | Function |
 |--
-| **1 x 2-way barrier strip** | VIN, GND | Two pins for main VIN and GND. |
-*To come*
+| **1 x 2-way barrier strip** | VIN, GND | Two screw terminals for VIN and GND. Max voltage 50V, max current 10A (fused limit) |
+| **1 x 2-pin JST VH connector** | V_BRAKE, GND | Input for separate voltage for brake. Max voltage 50V, max current 5A (fused limit) |
+| **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging |
+| **1 x 2-pin KK connector** | OUT_0 | Intended for motor brake, or other PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
+| **1 x 3-pin KK header** | OUT_0_Select_V | The positive supply to the OUT_0 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_BRAKE supply (VB_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
+| **1 x 2-pin KK connector** | OUT_1 | Intended for motor brake, or other PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
+| **1 x 3-pin KK header** | OUT_1_Select_V | The positive supply to the OUT_1 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_BRAKE supply (VB_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
+| **1 x 4-pin JST VH connector** | DRIVER 0 | Stepper motor connections. (See note on JST VH connectors in 'Wiring notes' above.) |
+| **1 x 2x5 IDC connector** | SPI | SPI encoder input |
+| **1 x 2-pin KK connector** | TEMP_0 | Connections for thermistor or PT1000 sensors |
+| **1 x 2-pin KK connector** | TEMP_1 | Connections for thermistor or PT1000 sensors |
+| **1 x 5-pin KK connector** | IO_1 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
+| **1 x 2-pin KK header** | IO1_I2C | Add a jumper to bypass the 10k resistor on IO1.in, so it can be used for I2C. |
+| **1 x 5-pin KK connector** | IO_0 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
+| **1 x 5-pin KK connector** | Q_IN | Quadrature encoder input |
+| **1 x RJ11 CAN connector** | CAN_IN | RJ11 CAN connector |
+| **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector |
+| **1 x 2-pin KK header** | CAN RESET | CAN address reset jumper. See 'Commisioning' section below. |
+| **1 x 4-pin KK header** | Term_R | CAN bus terminaton jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
 
 ## LED indications
 
@@ -170,7 +191,7 @@ The individual IO_x connectors have the following capabilities:
 
 ## Quadrature encoder
 
-The 1HCL supports a quadrature encoder connected to the Quadrature Input interface. This works with common 5V, 1000CPR-2500CPR optical encoders that are frequently supplied with closed loop stepper motors.   (One example is the [17E1K-05](https://www.omc-stepperonline.com/p-series-nema-17-closed-loop-stepper-motor-48ncm-67-99oz-in-with-encoder-1000ppr-4000cpr-17e1k-05)), however there are many other examples).
+The 1HCL supports a quadrature encoder connected to the Quadrature Input interface. This works with common 5V, 1000PPR-2500PPR optical encoders that are frequently supplied with closed loop stepper motors.   (One example is the [17E1K-05](https://www.omc-stepperonline.com/p-series-nema-17-closed-loop-stepper-motor-48ncm-67-99oz-in-with-encoder-1000ppr-4000cpr-17e1k-05)), however there are many other examples).
 
 ### Connecting a Quadrature Shaft Encoder
 
@@ -255,13 +276,14 @@ The default CAN address is 123. It can be changed as described above.
 Please see the current RepRapFirmware limitations at [Duet 3 firmware with CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
 ## Microstepping
-While in closed loop mode step pulses are not sent to the stepper motor driver in the same manner as an open loop driver; however firmware versions prior to 3.5 still use microsteps internally to represent moves.
 
-To that end the microstep setting for the 1HCL should be high enough to use the full encoder CPR. e.g. if the encoder is 1000 PPR (so 4000 CPR) and the full steps/rev of a 1.8 degree/step motor is 200, then the microstepping needs to be at least 4000/200 = 20 to make use of the full resolution of the encoder.
+While in closed loop mode, step pulses are not sent to the stepper motor driver in the same manner as an open loop driver. However, firmware versions prior to 3.5 still use microsteps internally to represent moves.
 
-Microsteps must be set in powers of 2, in the same manner as open loop drivers (1,2,4,8,16,32,64,128,256)
+Microstep settings for the 1HCL should be high enough to use the full encoder CPR. e.g. if the encoder is 1000PPR (so 4000CPR) and the full steps/rev of a 1.8 degree/step motor is 200, then the microstepping needs to be at least 4000/200 = 20 to make use of the full resolution of the encoder.
 
-So in the case of a 4000CPR encoder on a 1.8 degree/step motor microstepping should be set to 32. Note steps/mm should be adjusted to match the microstep setting chosen.
+Microsteps must be set in powers of 2, in the same manner as open loop drivers, i.e. 1, 2, 4, 8, 16, 32, 64, 128 or 256 x microstepping.
+
+So in the case of a 4000CPR encoder on a 1.8 degree/step motor, microstepping should be set to 32. Note steps/mm should be adjusted to match the microstep setting chosen.
 
 # Sample configuration examples
 
