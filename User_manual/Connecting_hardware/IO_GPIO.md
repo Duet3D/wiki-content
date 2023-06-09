@@ -1,8 +1,8 @@
 ---
-title: Controlling unused IO pins
+title: Controlling IO pins
 description: 
 published: true
-date: 2023-04-11T15:00:21.771Z
+date: 2023-06-09T09:22:46.846Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-18T14:03:58.975Z
