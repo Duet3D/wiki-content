@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-03-21T11:24:00.489Z
+date: 2023-06-10T12:29:33.192Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -69,22 +69,18 @@ We can see that this approximates a sine and cosine wave. This means that if we 
 
 Therefore, to induce a torque of Tmax at any instance, we need to assert the value of sin(theta) on coil A and cos(theta) on coil B, where theta is representative of how far through a cycle of 4 steps the motor is. Intuitively, now that we know the current required to produce a torque of Tmax, we can find the current to produce a torque of a fraction of Tmax by multiplying the current by the fraction.
 
-# Tuning
+# Calibration and Tuning
 
 The 1HCL closed loop driver requires two types of tuning:
 
-1. **Runtime Tuning** - Moves that the closed loop drive must perform before it can operate to force the drive into a known state (similar to homing, where you move an axis until an endstop is hit to determine the actual axis position)
+1. **Calibration** - Operations that must be performed before closed loop mode or assisted open loop mode (if supported) can be used
 1. **PID Tuning** - Adjusting the parameters of the PID control system to provide better response characteristics (e.g. reducing the steady-state error and preventing oscillation - see 'PID Control Systems' above)
 
-## Runtime Tuning
+## Calibration
 
 As described above, the purpose of runtime tuning is to force the drive into a known state. Runtime tuning itself consists of a number of different manoeuvres, however the easiest to understand is the zeroing manoeuvre.
 
-The following example is for quadrature-style motors. Zeroing works slightly differently for magnetic encoders as described below. However, reading the below is still useful for all to gain a conceptual understanding.
-
-As described in 'Closing the Loop on Stepper Motors' above, the closed loop system needs to know that a feedback reading of 0 corresponds to the position the motor is in when the first coil is fully energised. Because the printer has no guarantee of this at start-up, it must perform a small manoeuvre, similar to a homing move, that ensures this is the case.
-
-In order to perform a tuning manoeuvre, the [M569.6](/User_manual/Reference/Gcodes/M569_6) command is used. As per the GCODE dictionary, this command takes a driver address (P) and a manoeuvre number (V as in manoeu**V**re). The manoeuvre number of a zeroing move is 1, so to run a zeroing manoeuvre on drive 0 of a 1HCL board at CAN address 50, one would run:
+In order to perform a calibration operation, the [M569.6](/User_manual/Reference/Gcodes/M569_6) command is used. As per the GCODE dictionary, this command takes a driver address (P) and a manoeuvre number (V as in manoeu**V**re). The manoeuvre number of a zeroing move is 1, so to run a zeroing manoeuvre on drive 0 of a 1HCL board at CAN address 50, one would run:
 
 `M569.6 P50.0 V1`
 
@@ -101,7 +97,7 @@ The table below lists the available tuning moves:
 
 | Move ID | Move Name | Description | Required? | Movement performed | Time taken |
 |:---|:---|
-| 1 | Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised.| For quadrature motor shaft encoders, this needs to be done after each power on or reset, preferably as part of the homing file for the axis concerned. For linear composite encoders, this needs to be done just once when commissioning the system (the result is saved in the 1HCL flash memory). Not required for magnetic shaft encoders. | Quadrature shaft encoders: about 5 full steps forwards and then 5 back to original position. Linear composite encoders: about 20 full steps forwards and then 20 back to original position. |Quadrature shaft encoders: less than one second. Linear composite encoders: about four seconds. |
+| 1 | Quadrature shaft encoder calibration | Detects in which orientation the stepper motor coils are connected and the phase relationship between the motor position and the encoder. This will also detect if a motor wiring is faulty or it is not plugged in. | For quadrature motor shaft encoders, this needs to be done after each power on or reset. Typically it is done as part of the homing file for the axis concerned. For linear composite encoders, this needs to be done just once when commissioning the system (the result is saved in the 1HCL flash memory). Not required for magnetic shaft encoders. | Quadrature shaft encoders: about 5 full steps forwards and then 5 back to original position. Linear composite encoders: about 20 full steps forwards and then 20 back to original position. |Quadrature shaft encoders: less than one second. Linear composite encoders: about four seconds. |
 | 2 | Magnetic Encoder Calibration | Clears the encoder calibration, then calibrates the encoder positions to the motor. | For magnetic shaft encoders and linear composite encoders, this needs to be done just once for a combination of motor, encoder and 1HCL board. The results are stored in the 1HCL flash memory. Not required for quadrature shaft encoders.  | For magnetic shaft encoders: just over one full motor revolution in each direction; for linear composite encoders: about five motor revolutions in each direction | Typically fifteen seconds to rotate the motor and capture the data, then ten seconds to process the data and store the calibration |
 | 3 | Magnetic encoder calibration check | Checks that the encoder calibration is accurate | Optional | As for magnetic encoder calibration | As for magnetic encoder calibration |
 | 4 | Clear encoder calibration | Clears the encoder calibration. The encoder will need to be calibrated before the motor can be used in closed loop mode. This command can be used even when the driver is in open loop mode. | Run this if the motor or encoder that the 1HCL is connected to has changed, to prevent uncontrolled movements when the driver is switched into closed loop mode. | None | Less than one second |
@@ -116,7 +112,7 @@ If you use a quadrature shaft encoder (i.e. your [M569.1](/User_manual/Reference
 
 `M569.6 P##.# V1    ; Where P##.# is the driver address to tune`
 
-Ideally this is put in the home#.g file for the axis that the motor is associated with, until the motor has had the Polarity Detection and Zeroing tuning move carried out it will not move in closed loop mode. The normal procedure would be to home in open loop mode, then switch to close loop mode, then run the Polarity Detection and Zeroing move. See the [Running Tuning on Power On](/User_manual/Tuning/Duet_3_1HCL_tuning#running-tuning-on-power-on) section below.
+Ideally this is put in the home#.g file for the axis that the motor is associated with. Until the motor has had this calibration move carried out, it will not move in closed loop mode. The normal procedure would be to home in open loop mode, then switch to closed loop mode or assisted open loop mode, then run the quadrature shaft encoder calibration move. See the [Running Tuning on Power On](/User_manual/Tuning/Duet_3_1HCL_tuning#running-tuning-on-power-on) section below.
 
 #### Magnetic Encoders (not supported before firmware 3.5)
 
@@ -124,76 +120,76 @@ If you use a magnetic encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/
 
 #### Linear Composite Encoders (not supported before firmware 3.5)
 
-If you are using a linear composite encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1), then from the table above, manoeuvre 2 and manoeuvre 1 are required just once.
+If you are using a linear composite encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1), then from the table above, manoeuvre 2 and manoeuvre 1 are required just once. Perform manoeuvre 2 (magnetic encoder calbration) first.
 
-### Running Polarity Detection and Zeroing at Power On
+### Running Quadrature Shaft Encoder Calibration at Power On
 
-This is applicable to quadrature shaft encoders ony. The most suitable way to ensure tuning is run every time the printer is powered on is to modify the homing moves to include tuning. This is because the motors make a small movement when they run the tuning move, and if the axis are homed before the move is made the printer can be in a known safe place to run the move.
+This is applicable to quadrature shaft encoders ony. The most suitable way to ensure tuning is run every time the printer is powered on is to modify the homing moves to include encoder calibration. This is because the motors make a small movement when they run the tuning move, and if the axis are homed before the move is made the printer can be in a known safe place to run the move.
 
 A suitable new homing procedure is as follows:
 
 1. Home in open-loop mode
 1. Move to a known-safe position to perform tuning
-1. Switch to closed-loop mode
-1. Perform the polarity detection and zeroing tuning manoeuvre
+1. Switch to closed-loop mode or assited open loop mode
+1. Perform the quadrature shaft encoder calibration manoeuvre
 1. Move back to home
 
-An example of this is shown below for a driver attached to the X axis, as driver 0 on the board at CAN address 50 with a **quadrature** encoder:
+An example of this is shown below for a driver attached to the X axis, as driver 0 on the board at CAN address 50 with a **quadrature shaft** encoder:
 
 ```
 ; homex.g
 ; called to home the X axis
 
-M569 P50.0 D0           ; Turn off closed loop
+M569 P50.0 D0           ; Make sure we are in open loop mode
 
 G91                     ; relative positioning
 G1 H2 Z5 F6000          ; lift Z relative to current position
 G1 H1 X-240 F3000       ; move quickly to X axis endstop and stop there (first pass)
 G1 H2 X5 F6000          ; go back a few mm
 G1 H1 X-240 F240        ; move slowly to X axis endstop once more (second pass)
-
 G90                     ; absolute positioning
+
 G1 X50 F3000            ; Move to a known-safe position
 M400                    ; Wait for the move to complete
-G4 P500                 ; Wait for the motor to settle
-M569 P50.0 D4           ; Turn closed loop back on
-M569.6 P50.0 V1         ; Perform the tuning manoeuvres for a quadrature encoder
+G4 P200                 ; Wait for the motor to settle
+M569 P50.0 D4           ; Switch to closed loop mode
+M569.6 P50.0 V1         ; Perform the calibration manoeuvre for a quadrature shaft encoder
 G1 X0                   ; Move back to X0
 
 G1 H2 Z0 F6000          ; lower Z again
 ```
 
-Currently the RRF configuration tool will not generate these homing GCODE files so they will need to be modified manually.
+Currently the RRF configuration tool will not generate these homing GCode files so they will need to be modified manually.
 
 If tuning fails, the M569.6 command will report an error. In this case, check the troubleshooting section below.
 
 ### Calibrating Magnetic Encoders
 
-Magnetic encoders have a number of caveats that must be noted. Please read the following sections if you are using a magnetic encoder such as the Duet closed loop magnetic sensor, based on the AS5047D.
+Please read the following sections if you are using a magnetic encoder such as the Duet closed loop magnetic sensor, based on the AS5047D.
 
 **Motivation**
 
-The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is difficult to align the centre of the magnet precisely with the centre of rotation, so the calibration procedure measures how offset the magnet is and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage such that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this tuning move.
+The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is difficult to align the centre of the magnet precisely with the centre of rotation, so the calibration procedure measures how offset the magnet is and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage so that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this calibration move.
 
 **Running the calibration procedure**
 
-To measure the offset, a little more than one full rotation of the motor is performed in each direction. Unlike other tuning moves, you would be fine to disconnect the motor from the axis - indeed, this is recommended. The magnet offset isn't affected by load on the motor, unlike some other tuning parameters.
+To measure the offset, a little more than one full rotation of the motor is performed in each direction. Unlike other tuning moves, you can disconnect the motor from the axis - indeed, this is recommended because it reduces the load on the motor and makes calibration more accurate.
 
-Once you are satisfied that the motor can freely make up to 1.5 rotations in either direction, run the following command:
+When you are satisfied that the motor can freely make up to 1.5 rotations in either direction, run the following command:
 
 `M569.6 P##.# V2    ; Where P##.# is the driver address to tune`
 
 Once this has been performed successfully, the values will be written to non-volatile memory and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V2 command again, or checked by running the M569.6 ... V3 command.
 
-The firmware will output the highest deviation of expected positon vs encoder position recorded. This is useful as a proxy for how centered the magnet is.
+The firmware will output the highest deviation of expected position vs encoder position recorded. This is useful as a proxy for how centered the magnet is.
 
-## PID Tuning
+## PID Tuning for closed loop mode
 
 As discussed in the above 'PID Control Systems' section, the PID controller can be tuned by setting it's P, I and D parameters. Many methods exist for choosing parameters that lead to desirable characteristics for tuning PID loops in general. This is one example that is shown to work with the 1HCL boards with 48Ncm, 1.8degree, Nema 17 motors coupled with 1000ppr/4000cpr encoders.
 
 Always run PID tuning with the motor current set to the highest value you intend to use. Increasing motor current after tuning the PID values may result in oscillation.
 
-The tuning propcess described here is aimed at achieving maximum positioning accuracy (error between the commanded position and the motor position reduced as fast as possible). However, operating the motor in this way may be noisy because maximum current will be used to resolve small errors quickly. You may prefer to run with more relaxed PID settings to make the motor run more quietly, at the expense of a slightly greater lag between the commanded and actual position (but this lag may still be less than you would get in open loop mode). To do this, simply choose a lower P value (e.g. 30% or 50% of the value that gives the best rise time without oscillation), then tune the D and I values as normal.
+The tuning propcess described here is aimed at achieving maximum positioning accuracy (error between the commanded position and the motor position reduced as fast as possible). However, operating the motor in this way may be noisy because maximum current will be used to resolve small errors quickly. You may prefer to run with more relaxed PID settings to make the motor run more quietly, at the expense of a slightly greater lag between the commanded and actual position - but this lag may still be less than you would get in open loop mode. To do this, simply choose a lower P value (e.g. 30% or 50% of the value that gives the best rise time without oscillation), then tune the D and I values as normal.
 
 ### What do I Need to Do?
 
