@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-06-10T14:04:40.199Z
+date: 2023-06-10T14:10:21.641Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -198,25 +198,25 @@ Always run PID tuning with the motor current set to the highest value you intend
 
 The tuning propcess described here is aimed at achieving maximum positioning accuracy (error between the commanded position and the motor position reduced as fast as possible). However, operating the motor in this way may be noisy because maximum current will be used to resolve small errors quickly. You may prefer to run with more relaxed PID settings to make the motor run more quietly, at the expense of a slightly greater lag between the commanded and actual position - but this lag may still be less than you would get in open loop mode. To do this, simply choose a lower P value (e.g. 30% or 50% of the value that gives the best rise time without oscillation), then tune the D and I values as normal.
 
-### What do I Need to Do?
+### What do I need to do?
 
 Possibly nothing! The 1HCL expansion board comes with PID parameters out of the box which may work sufficiently well for a basic use cases (P=100, I=0, D=0). However, the real power of closed-loop control comes when the PID controller is tuned for your specific setup. The sections below contain more details on how to tune your PID controller to achieve better results.
 
 On average, tuning a PID controller results in an order of magnitude better performance, so whilst the factory default may work out of the box, tuning is very much recommended!
 
-### Automatic Tuning
+### Install the Closed Loop Plugin in Duet Web Control
 
-This feature is present in the version 3.5 closed loop plugin for Duet Web Control.
-
-### Manual Tuning
-
-In order to manually tune the PID controller, one needs to be able to visualise how the system is responding. In order to do this, the [closed loop plugin](https://github.com/Duet3D/Closed-Loop-Plugin) can be used. Firstly, download the 'closed-loop-plugin.zip' file from [the assets section of the latest release](https://github.com/Duet3D/Closed-Loop-Plugin/releases), once downloaded, upload the zip file (without decompressing) to your Duet by using System > Upload System Files, and follow the on-screen instructions to install the plugin. Fially, navigate to Setting > Machine Specific > Machine Specific Plugins and click the 'Start' button. For more details and troubleshooting, see the [GitHub repository](https://github.com/Duet3D/Closed-Loop-Plugin).
+In order to tune the PID controller manually, one needs to be able to visualise how the system is responding. To do this, use the [closed loop plugin](https://github.com/Duet3D/Closed-Loop-Plugin). First, download the 'closed-loop-plugin.zip' file from [the assets section of the latest release](https://github.com/Duet3D/Closed-Loop-Plugin/releases). Once downloaded, upload the zip file (without decompressing) to your Duet by using System > Upload System Files, and follow the on-screen instructions to install the plugin. Finally, navigate to Setting > Machine Specific > Machine Specific Plugins and click the 'Start' button. For more details and troubleshooting, see the [GitHub repository](https://github.com/Duet3D/Closed-Loop-Plugin).
 
 Once the plugin is installed & enabled, a new 'Closed Loop' item should appear on the left menu-bar (under Settings). Clicking into this will bring up the interface shown below.
 
 ![duet_3_1hcl_manual_tuning_01.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_manual_tuning_01.png =800x)
 
-This plugin is essentially a GUI for the [M569.5](/User_manual/Reference/Gcodes/M569_5) command - a command to record data from the closed loop system. This can be used alongside the step manoeuvre to manually tune the PID controller. The settings shown below will record the response to a step change. (Note: This will cause a movement of ~4 steps, and runtime tuning must have been run for the motor - see above.)
+This plugin is essentially a GUI for the [M569.5](/User_manual/Reference/Gcodes/M569_5) command - a command to record data from the closed loop system.
+
+### Manual Tuning when using RepRapFirmware 3.4.x
+
+Use the plugin to execute the step manoeuvre alongside the step manoeuvre. The settings shown below will record the response to a sidden change in desired position of 4 full steps. You must previously have run the required encoder calibration for the motor - see above.)
 
 ![duet_3_1hcl_manual_tuning_02.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_manual_tuning_02.png =800x)
 
