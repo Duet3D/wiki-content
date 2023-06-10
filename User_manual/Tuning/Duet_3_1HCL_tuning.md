@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-06-10T13:56:14.582Z
+date: 2023-06-10T14:00:28.370Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -68,13 +68,13 @@ It is useful to have physical interpretations of the PID constants and control s
 
 ## Closing the Loop on Stepper Motors
 
-As described above, a PID controller outputs a torque control signal. This means that our electronics must be able to then induce this torque in the stepper motor, however this is not classically the way in which stepper motors operate. In order to understand how a torque can be applied, it is useful to revisit how a stepper motor works. A stepper motor has 2 coils that can have varying amounts of current running through them. Shown below left is a diagram of the current in these coils whilst the motor is taking four steps. Each time the current changes, the shaft 'snaps' to the next position. If we wanted to move more continuously instead of snapping, we could half each step (microstepping) - this is shown below middle. We can continue halving these steps as shown below right.
+As described above, a PID controller outputs a torque control signal. This means that our electronics must be able to induce this torque in the stepper motor, however this is not classically the way in which stepper motors operate. In order to understand how a torque can be applied, it is useful to revisit how a stepper motor works. A stepper motor has 2 coils that can have varying amounts of current running through them. Shown below left is a diagram of the current in these coils whilst the motor is taking four full steps. Each time the current changes, the shaft is pulled towards the next position. If we wanted to move more continuously instead of snapping, we could half each step (microstepping) - this is shown below middle. We can continue halving these steps as shown below right.
 
 ![Image of coil currents when a stepper driver is full stepping](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_02.png =32%x) ![Image of coil currents when a stepper driver is half stepping](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_03.png =32%x) ![Image of coil currents when a stepper driver is microstepping](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_04.png =32%x)
 
 We can see that this approximates a sine and cosine wave. This means that if we applied a sine and cosine signal to the input coils, the motor would rotate continuously - i.e. experience a constant torque - let’s call this torque Tmax.
 
-Therefore, to induce a torque of Tmax at any instance, we need to assert the value of sin(theta) on coil A and cos(theta) on coil B, where theta is representative of how far through a cycle of 4 steps the motor is. Intuitively, now that we know the current required to produce a torque of Tmax, we can find the current to produce a torque of a fraction of Tmax by multiplying the current by the fraction.
+Therefore, to induce a torque of Tmax at any instance, we need to assert the value of sin(theta) on coil A and cos(theta) on coil B, where theta is representative of how far through a cycle of 4 steps the motor is. Intuitively, now that we know the current required to produce a torque of Tmax, we can find the current to produce a torque of a fraction of Tmax by multiplying the current by the fraction. Maximum torque is provided when the current through the coils is one full step ahead of the actual position of the rotor.
 
 # Calibration and Tuning
 
