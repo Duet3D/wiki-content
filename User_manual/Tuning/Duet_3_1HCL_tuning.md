@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-06-10T12:29:33.192Z
+date: 2023-06-10T13:56:14.582Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -50,14 +50,21 @@ The interactions between Kd, Kp and Ki are complex, but each can roughly be summ
 * Kd - Dampens down overshoot and oscillations. A typical value may be 0.01 - 0.1.
 * Ki - Ensures the motor can maintain a stationary position under load. A typical value may be 100-1000.
 
+A PID controller suffers from the limitation that when the load changes, the controller doesn't adjust the control signal until the increased load causes the error to increase. This effect can be mitigated by adding one or nomrew feedforward terms. In version 3.5 firmware the following feedforward terms are available:
+
+* Kv - How much the control signal should be increased to allow for the additional load resulting from the motor angular velocity
+* Ka - How much the control signal should be increased to allow for the extra load resulting from the motor angular acceleration
+
 ## A Physical Interpretation of the 1HCL PID controller
 
 It is useful to have physical interpretations of the PID constants and control signal, as these can vary between controllers. Duet boards are implemented such that the following are true:
 
-* Control Signal - Clamped between -255 and 255, 255 represents the motor moving as fast as possible in the positive direction.
+* Control Signal - Clamped between -256 and 256, where 256 represents the motor moving as fast as possible in the positive direction.
 * Kp - A Kp of 1 with an error of 1 step will result in a control signal of 1
 * Kd - A Kd of 1 with an error increasing at the rate of 1 step per second will result in a control signal of 1
 * Ki - A Ki of 1 with an error of 1 step will result in a control signal of 1 after 1 second.
+* Kv - a Kv of 1 will result in the control signal being increased by 1 if the motor speed is 1 full step per second
+* Ka - a Ka of 1 will result in the control signal beibg increased by 1 if the motor acceleration is 1 full step per second per second
 
 ## Closing the Loop on Stepper Motors
 
