@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-06-10T14:01:24.694Z
+date: 2023-06-10T14:03:19.709Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -87,13 +87,13 @@ The 1HCL closed loop driver requires the following:
 
 As described above, the purpose of runtime tuning is to force the drive into a known state. Runtime tuning itself consists of a number of different manoeuvres, however the easiest to understand is the zeroing manoeuvre.
 
-In order to perform a calibration operation, the [M569.6](/User_manual/Reference/Gcodes/M569_6) command is used. As per the GCODE dictionary, this command takes a driver address (P) and a manoeuvre number (V as in manoeu**V**re). The manoeuvre number of a zeroing move is 1, so to run a zeroing manoeuvre on drive 0 of a 1HCL board at CAN address 50, one would run:
+In order to perform a calibration operation, the [M569.6](/User_manual/Reference/Gcodes/M569_6) command is used. As per the GCODE dictionary, this command takes a driver address (P) and a manoeuvre number (V as in manoeu**V**re). The manoeuvre number of a quadrature shaft encoder calibration move is 1, so to run this manoeuvre on drive 0 of a 1HCL board at CAN address 50, one would run:
 
 `M569.6 P50.0 V1`
 
 *Note that the drive must be in closed-loop or assisted-open-loop mode before this command can be run. See [M569 D4](/User_manual/Reference/Gcodes/M569) for putting a drive in one of these modes.*
 
-Running this command should make the drive move slightly: this quadrature tuning manoeuvre will at most make the motor move 10 steps (however note the magnetic encoder calibration moves just over one full motor rotation then back again). You may get a warning at this stage, but this is nothing to worry about.
+Running this command should make the drive move slightly: this quadrature tuning manoeuvre will at most make the motor move 6 full steps in each direction.
 
 You will get a backlash for the motor reported, the backlash reading is a measure of how much stiction you have in your motor and the mechanics that constrain the rotation of the motor. The maximum allowed by the firmware is currently 0.22 full steps. The measured value typically reduces if motor current is increased.
 
