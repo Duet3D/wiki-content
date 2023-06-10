@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-06-10T14:10:21.641Z
+date: 2023-06-10T14:17:39.096Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -249,6 +249,8 @@ The images below show some responses for P=50, 75, 150 and 200 respectively. Imp
 | **P=150** `M569.1 P##.# R150 I0 D0` | ![duet_3_1hcl_tuning_p150.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_p150.png =600x) |
 | **P=200** `M569.1 P##.# R200 I0 D0` | ![duet_3_1hcl_tuning_p200.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_p200.png =600x) |
 
+Note that tuning P in this way makes the motor as responsive as possible, at the expense of motor noise. You may prefer to select a lower value of P (see below) before tuning the other parameters.
+
 #### Tuning D
 
 The next stage is to increase the derivative constant (D) until there is no overshoot (this is called being 'critically damped'). However, a large D term will start to introduce oscillations, so we want to use the lowest value of D that gets us critically damped. Exceedingly large D terms may cause runaway oscillations - so be careful!
@@ -291,31 +293,19 @@ For comparison, below is the same graph, but for the factory default tuning para
 
 ![duet_3_1hcl_tuning_test_03.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_test_03.png =800x)
 
-#### Tuning the Holding Current
-
-At the beginning of this process, the holding current was set to 100%. This can now be reduced to save power (and prevent the motors running hot!).
-
-To do so, use
-
-`M917 #nn                ; Where # is the axis being tuned (X, Y or Z) and nn is the holding percent`
-
-to gradually reduce the holding current. Each time, record a G1 command and view the error (as above). Keep reducing the current to get it as low as possible whilst remaining within an acceptable level of error - the exact value of which is a matter of personal preference.
-
-Standard closed loop drives should be able to perform correctly with a holding current as low as 0-20%.
-
-Don't forget to update config.g with your updated M917 command after you have found a suitable value!
-
 #### Noise reduction
 
 You might have noticed that your motor makes a noise similar to white noise after tuning. The reasons for this can be seen by plotting the PID control signal and it's components on a G1 move:
 
 ![duet_3_1hcl_tuning_test_04.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_tuning_test_04.png =800x)
 
-The PID signal has a large potion of noise introduced by the D term. This isn't too much of a surprise since even small amounts of noise will be picked up by the D term as large gradients, and amplified.
+The PID signal has a large portion of noise introduced by the D term. This isn't too much of a surprise since even small amounts of noise will be picked up by the D term as large gradients, and amplified.
 
-In order to reduce this noise, the D term can be set to zero, however this will have an effect on accuracy.
+In order to reduce this noise, the D term can be set to zero, however this will increase overshoot and therefore have an effect on accuracy. When a G1 command is run on the Ender 3 example above, a tuned D value gives a maximum error of ± 0.07 steps. When using D=0, that error is increased to ± 0.1 steps, however the motor runs much quieter. This is still an order of magnitude better than the factory-default parameters.
 
-When a G1 command is run on the Ender 3 example above, a tuned D value gives a maximum error of ± 0.07 steps. When using D=0, that error is increased to ± 0.1 steps, however the motor runs much quieter. This is still an order of magnitude better than the factory-default parameters, and is a matter of personal preference weighing up the sound of the motors against the decreased accuracy.
+A better way to reduce noise is to accept a slightly worse step response by reducing the P term. This in turn will reduce the optimum D term, which will reduce the noise.
+
+It is a matter of personal preference weighing up the sound of the motors against the decreased accuracy.
 
 # Reporting failure to maintain position
 
