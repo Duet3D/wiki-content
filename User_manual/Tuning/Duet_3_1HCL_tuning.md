@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-06-10T14:04:01.583Z
+date: 2023-06-10T14:04:40.199Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -106,7 +106,7 @@ The table below lists the available calibration moves:
 |:---|:---|
 | 1 | Quadrature shaft encoder calibration | Detects in which orientation the stepper motor coils are connected and the phase relationship between the motor position and the encoder. This will also detect if a motor wiring is faulty or it is not plugged in. | For quadrature motor shaft encoders, this needs to be done after each power on or reset. Typically it is done as part of the homing file for the axis concerned. For linear composite encoders, this needs to be done just once when commissioning the system (the result is saved in the 1HCL flash memory). Not required for magnetic shaft encoders. | Quadrature shaft encoders: about 5 full steps forwards and then 5 back to original position. Linear composite encoders: about 20 full steps forwards and then 20 back to original position. |Quadrature shaft encoders: less than one second. Linear composite encoders: about four seconds. |
 | 2 | Magnetic Encoder Calibration | Clears the encoder calibration, then calibrates the encoder positions to the motor. | For magnetic shaft encoders and linear composite encoders, this needs to be done just once for a combination of motor, encoder and 1HCL board. The results are stored in the 1HCL flash memory. Not required for quadrature shaft encoders.  | For magnetic shaft encoders: just over one full motor revolution in each direction; for linear composite encoders: about five motor revolutions in each direction | Typically fifteen seconds to rotate the motor and capture the data, then ten seconds to process the data and store the calibration |
-| 3 | Magnetic encoder calibration check | Checks that the encoder calibration is accurate | Optional | As for magnetic encoder calibration | As for magnetic encoder calibration |
+| 3 | Magnetic encoder calibration check | Checks that the encoder calibration is accurate and reports the residual error | Optional | As for magnetic encoder calibration | As for magnetic encoder calibration |
 | 4 | Clear encoder calibration | Clears the encoder calibration. The encoder will need to be calibrated before the motor can be used in closed loop mode. This command can be used even when the driver is in open loop mode. | Run this if the motor or encoder that the 1HCL is connected to has changed, to prevent uncontrolled movements when the driver is switched into closed loop mode. | None | Less than one second |
 
 ### What do I Need to Do?
