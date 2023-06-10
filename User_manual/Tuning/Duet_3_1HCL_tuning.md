@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-06-10T14:03:19.709Z
+date: 2023-06-10T14:04:01.583Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -100,7 +100,7 @@ You will get a backlash for the motor reported, the backlash reading is a measur
 > Duet firmware currently only supports tuning one driver at a time. This means that when tuning a multi-driver axis, one driver will move and the other(s) will not. If attempting to tune a multi-driver axis, please take appropriate mitigation to ensure the axis doesn't become stressed/misaligned when only one one driver moves.
 {.is-warning}
 
-The table below lists the available tuning moves:
+The table below lists the available calibration moves:
 
 | Move ID | Move Name | Description | Required? | Movement performed | Time taken |
 |:---|:---|
