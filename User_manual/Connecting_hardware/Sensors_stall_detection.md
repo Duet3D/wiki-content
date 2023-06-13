@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2023-05-02T12:02:42.063Z
+date: 2023-06-13T15:41:40.425Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -60,7 +60,7 @@ Stall detection is configured using the [M915](/User_manual/Reference/Gcodes/M91
 * **Snnn** Stall detection threshold (-64 to +63, values below -10 not recommended). Higher values reduce the sensitivity; lower values make false stall detection more likely.
 * **Fn** Stall detection filter mode, 1 = filtered (one reading per 4 full steps), 0 = unfiltered (default, 1 reading per full step)
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200 (try 400 for 0.9deg motors)
-* **Rn** Action to take on detecting a stall from any of these drivers: 0 = no action (default), 1 = just report it, 2 = pause print, 3 = pause print, execute /sys/rehome/.g, and resume print. in RRF 3.4 this is changed to use the [event system](/User_manual/RepRapFirmware/Events)
+* **Rn** Action to take on detecting a stall from any of these drivers, see 'Action to take on detecting a stall' section below.
 
 Additionally, the **TMC2209** stepper driver used in Duet 3 Mini 5+ (and Duet 3 Tool board TOOL1LC once stallGuard is implemented in firmware), features stallGuard 4. This is optimised for operation with stealthChop, while its predecessor stallGuard 2 (TMC5160 and TMC2260) works with spreadCycle. You will need to adjust the speed at which stealthChop changes over to spreadCycle. This is set by [M569](/User_manual/Reference/Gcodes/M569) V parameter. The default is 2000.
 
@@ -78,12 +78,28 @@ Additionally, the **TMC2209** stepper driver used in Duet 3 Mini 5+ (and Duet 3 
 
 ## Action to take on detecting a stall (R parameter)
 
+## Tabs {.tabset}
+
+### RRF 3.4 and later
+
+In RRF 3.4 and later, the R parameter can take the following values: 0 = no action (default), 1 = just report it, 2 or 3 = create an event.
+
+* Use R0 if you are configuring stall detection for sensorless homing only.
+* Use R1 when experimenting with the other parameters, so that you can see what effect they have during a print. If logging is enabled, stalls will be logged as well as reported.
+* In RRF v3.4 and later there is no longer a distinction between R2 and R3. Both cause an event to be created when the driver stalls.
+  * To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B.
+  * If file driver-stall.g is not found then the default action is to report it to the console and carry on.
+  * File rehome.g is no longer used.
+  * See the [Events](/User_manual/RepRapFirmware/Events) page for more detail.
+
+### RRF 3.3 and earlier
+
+In RRF 3.3 and earlier, the R parameter can take the following values: 0 = no action (default), 1 = just report it, 2 = pause print, 3 = pause print, execute /sys/rehome/.g, and resume print.
+
 * Use R0 if you are configuring stall detection for sensorless homing only.
 * Use R1 when experimenting with the other parameters, so that you can see what effect they have during a print. If logging is enabled, stalls will be logged as well as reported.
 * Use R2 when you have tuned stall detection and you want to pause the print automatically when a stall is detected.
 * Use R3  when you have tuned stall detection and you want to re-home and continue the print automatically. **You must have a rehome.g file in /sys on the SD card**, to instruct the printer on how you'd like to rehome. On a Cartesian or CoreXY printer, typically you would enable stall detection on just the X and Y motors, and re-home just the X and Y axes in rehome.g.
-
-**Note**: In RRF v3.4 and later there is no longer a distinction between R2 and R3; both cause an event to be created when the driver stalls. To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. File rehome.g is no longer used. If file driver-stall.g is not found then the print is paused without running pause.g and the error is reported.
 
 # Sensorless Homing
 
