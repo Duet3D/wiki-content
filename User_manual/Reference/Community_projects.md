@@ -2,7 +2,7 @@
 title: Community Projects
 description: Hardware and software projects started by community members to extend the Duet ecosystem. 
 published: true
-date: 2022-02-11T15:32:19.288Z
+date: 2023-06-13T14:42:03.292Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:54:58.958Z
@@ -80,6 +80,7 @@ If you know of a project that is not on the list, but should be, [post about it 
 
 # DWC/DSF Plugins
 
+* [Official Duet Plugin directory](https://plugins.duet3d.com/) by various. *Repository for RRF/DSF/DWC plugins, including Duet3D plugins and those by third party developers.*
 * [Official Duet Plugins](https://github.com/Duet3D/DSF-Plugins/releases){target=_blank}  by Duet3D. *Various plugins that come with the main DWC release.*
 * [BTN-CMD](https://forum.duet3d.com/topic/22776/){target=_blank}  by MintyTrebor. *allows you to create simple dashboard layouts with info panels, webcams, & custom action buttons. It also has a simple status event monitoring system to alert you to machine status changes - for example you can configure BtnCmd to send a telegram msg when the printer changes to "paused" to remind you to change the filament colour mid print.*
 * [CNC probe functionality for DWC-CNC](https://forum.duet3d.com/topic/23830/){target=_blank}  by raymondstone. *first stab at adding in the probe functions used by workbee owners that use the ooznest (ancient) version of the DUET UI. This is intended for 3.3 and above firmware versions it will not work below that.*
