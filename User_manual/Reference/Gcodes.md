@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-13T14:10:40.957Z
+date: 2023-06-13T15:21:38.875Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7432,7 +7432,11 @@ M914 ; report expansion signal voltage level
 
 This sets the stall detection parameters and optionally the low-load current reduction parameters for TMC2660, TMC2130 or similar driver chips. Use either the P parameter to specify which driver number(s) you want to configure, or the axis names of the axes that those motors drive (the parameters will then be applied to all the drivers associated with any of those axes).
 
-### Parameters
+### Tabs {.tabset}
+
+#### RRF 3.4 and later
+
+##### Parameters
 
 * **Pnnn:nnn:...** Drive number(s) to configure
 * **X,Y,Z,U,V,W,A,B,C** Axes to configure (alternative to using the P parameter)
@@ -7440,7 +7444,27 @@ This sets the stall detection parameters and optionally the low-load current red
 * **Fn** Stall detection filter mode, 1 = filtered (one reading per 4 full steps), 0 = unfiltered (default, 1 reading per full step)
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200
 * **Tnnn** (optional) Coolstep control register, 16-bit unsigned integer
-* **Rn** Action to take on detecting a stall from any of these drivers: 0 = no action (default), 1 = just log it, 2 = pause print, 3 = pause print, execute /sys/rehome.g, and resume print. See notes for RRF v3.4.
+* **Rn** Action to take on detecting a stall from any of these drivers: 0 = no action (default), 1 = just log it, 2 or 3 = create an event (see notes).
+
+##### Notes
+
+* In RRF v3.4 and later, R2 and R3 both cause an event to be created when the driver stalls. 
+* To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. 
+* If file driver-stall.g is not found then the default action is to report it to the console and carry on.
+* File rehome.g is no longer used. 
+* See the [events](/User_manual/RepRapFirmware/Events){target=_blank} page for more detail. 
+
+#### RRF 3.3 and earlier
+
+##### Parameters
+
+* **Pnnn:nnn:...** Drive number(s) to configure
+* **X,Y,Z,U,V,W,A,B,C** Axes to configure (alternative to using the P parameter)
+* **Snnn** Stall detection threshold (see notes below)
+* **Fn** Stall detection filter mode, 1 = filtered (one reading per 4 full steps), 0 = unfiltered (default, 1 reading per full step)
+* **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200
+* **Tnnn** (optional) Coolstep control register, 16-bit unsigned integer
+* **Rn** Action to take on detecting a stall from any of these drivers: 0 = no action (default), 1 = just log it, 2 = pause print, 3 = pause print, execute /sys/rehome.g, and resume print.
 
 ### Order dependency
 
@@ -7455,7 +7479,6 @@ M915 X Y S5 R2
 
 ### Notes
 
-* In RRF v3.4 and later there is no longer a distinction between R2 and R3; both cause an event to be created when the driver stalls. See the [events](/User_manual/RepRapFirmware/Events) page for more detail. To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. File rehome.g is no longer used. If file driver-stall.g is not found then the default action to report it to the console and carry on.
 * **S parameter** For most drivers, values range from -64 to +63. For TMC2209 drivers (Duet 3 Mini 5+, Duet 3 Toolboard 1LC) values range from -128 to +127. Lower values make stall detection more sensitive. Values below -10 are not recommended. S3 is a good starting point for many motors.
 * If any of the S, F, T and R parameters are absent, the previous values for those parameters associated with the specified drivers will continue to be used. 
 * If all the parameters are absent, the existing settings for the specified drive(s) will be reported.
