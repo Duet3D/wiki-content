@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-13T10:37:22.908Z
+date: 2023-06-13T14:10:40.957Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7712,7 +7712,7 @@ Some CAN-connected expansion boards are too small to carry address selection swi
 
 * **Bn** Existing CAN address of expansion board to be changed, 1 to 125.
 * **An** New CAN address of that expansion board, 1 to 125.
-* **Sn.n** Requested bit rate in Kbits/second (1K = 1000)
+* **Sn.n** Requested bit rate in Kbits/second (1K = 1000) (optional, default 1000)
 * **T0.n** Fraction of the bit time between the bit start and the sample point (optional)
 * **J0.n** Maximum jump time as a fraction of the bit time (optional)
 
