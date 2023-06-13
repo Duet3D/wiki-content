@@ -2,7 +2,7 @@
 title: Input shaping
 description: This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. 
 published: true
-date: 2023-01-24T12:12:19.052Z
+date: 2023-06-13T14:39:20.491Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:33:14.384Z
@@ -43,6 +43,8 @@ A ringing test print works well and you can change the shaper being used every s
 
 Two reasons:
 
-1. It's not a good idea. Supporting different input shaping frequencies and/or algorithms on the X and Y axes would mean that if input shaping is applied to printing moves other than pure X or pure Y moves, the tool path will no longer follow the path commanded by the slicer during acceleration and deceleration. As a result, artefacts will occur in the print, especially around corners. The artefacts can be reduced by a smoothing process (as is done by Klipper firmware), but of course this reduces detail, for example by rounding corners that are supposed to be square. The best compromise between reducing artefacts caused by input shaping and reducing detail caused by smoothing may depend on the print.
+1. It's not a good idea, for at least two reasons:
+- Supporting different input shaping frequencies and/or algorithms on the X and Y axes means that if input shaping is applied to printing moves other than pure X or pure Y moves, the tool path no longer follows the path commanded by the slicer during acceleration and deceleration. As a result, artefacts will occur in the print, especially around corners. The artefacts can be reduced by a smoothing process (as is done by Klipper firmware), but of course this reduces detail, for example by rounding corners that are supposed to be square. The best compromise between reducing artefacts caused by input shaping and reducing detail caused by smoothing may depend on the print.
+- Because input shaping modifies the acceleration profile of the move, when input shaping is applied to moves with extrusion the same modified acceleration profile should be applied to the extruder (and further modified by pressure advabnce, if it is configured) so that the extrusion rate stays in step with the movement. RepRapFirmware 3.5bets3 and later sychrhonise extruder acceleration with movement acceleration in this way. If different input shaping is applied to X and Y axes, extrusion can't be synchronised to both, so the extrusion won;t be uniform.
 
-2. It's rarely if ever necessary to use different shaping on X and Y axes, because a single input shaper can suppress a wide range of resonant frequencies. The EI3 shaper suppresses ringing over a frequency range of 3:1. Resonant frequencies vary in proportion to the **square root** of the mass being moved, and the **square root** of the compliance of the belt or other elastic medium; so you would need these elements to differ by a factor of more than 9:1 between the X and Y axes for the resonant frequencies to exceed a 3:1 ratio. In practice, the resonant frequencies to be suppressed rarely exceed a ratio of 2:1.
+2. It's rarely if ever necessary to use different shaping on X and Y axes, because a single input shaper can suppress a wide range of resonant frequencies. The EI3 shaper suppresses ringing over a frequency range of 3:1. Resonant frequencies vary in proportion to the **square root** of the mass being moved, and the **square root** of the compliance of the belt or other elastic medium. Therefore you would need these elements to differ by a factor of more than 9:1 between the X and Y axes for the resonant frequencies to exceed a 3:1 ratio. In practice, the resonant frequencies to be suppressed rarely exceed a ratio of 2:1.
