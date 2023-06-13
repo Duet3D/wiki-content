@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-06-01T15:59:03.100Z
+date: 2023-06-13T15:32:01.064Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -39,7 +39,8 @@ RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 4
 The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
 
 Current status, last actions:
-* a build will be created soon
+* Jun13: there was a bug in homing to set angles, I made a new build and checkin
+* future builds are based on RRF 3.5.0beta4
 
 # Configuring a Robot
 
