@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-14T15:33:59.760Z
+date: 2023-06-14T15:36:26.143Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2762,8 +2762,7 @@ Switch the bed to its standby temperature. M144 S1 will set it back to its activ
 ##### Examples
 <br>
 <pre class="cblock">
-M950 E0 C"led" T1 Q3000000   ; create a RGB Neopixel LED strip on the LED port and set SPI frequency to 3MHz
-
+M950 E0 C"led" T1 Q3000000   ; create a RGB Neopixel LED strip on the LED port and set SPI frequency to 3MHz<BR>
 M150 E0 R255 P128 S20 F1     ; set first 20 LEDs to red, half brightness, more commands for the strip follow
 M150 E0 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished programming strip
 </pre>
