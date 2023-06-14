@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2023-06-14T16:37:19.791Z
+date: 2023-06-14T16:38:52.522Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -273,7 +273,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | DRIVER 5| driver5.err | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
 | ^^ | LASER/VFD | laser, vfd | 5V PWM signal  |
-| ^^ | DOTSTAR | led | For controlling DotStar or Neopixel LEDs (firmware 3.5.0-beta.4 and later only)
+| ^^ | DOTSTAR | led | For controlling DotStar or NeoPixel LEDs (firmware 3.5.0-beta.4 and later only)
 
 ## Input/Output Port capabilities
 
