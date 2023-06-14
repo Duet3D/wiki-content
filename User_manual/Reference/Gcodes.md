@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-13T15:21:38.875Z
+date: 2023-06-14T15:33:59.760Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2743,7 +2743,48 @@ Switch the bed to its standby temperature. M144 S1 will set it back to its activ
 
 ## M150: Set LED colours
 
-### Parameters
+### Tabs {.tabset}
+
+#### RRF 3.5beta4 and later
+
+##### Parameters
+
+* **Rnnn** Red component, 0-255
+* **Unnn** Green component, 0-255
+* **Bnnn** Blue component, 0-255
+* **Wnnn** White component, 0-255 (Only for RGBW NeoPixel)
+* **Pnnn** Brightness, 0-255
+* **Ynn** Brightness, 0-31 (alternative to P 0-255)
+* **Snnn** Number of individual LEDs to set to these colours, default 1
+* **Fn** Following command action. F0 (default) means this is the last command for the LED strip, so the next M150 command starts at the beginning of the strip. F1 means further M150 commands for the remainder of the strip follow this one.
+* **En** LED strip number, default 0. See [M950](/User_manual/Reference/Gcodes/M950) for defining the LED strip number, pin and LED type.
+
+##### Examples
+<br>
+<pre class="cblock">
+M950 E0 C"led" T1 Q3000000   ; create a RGB Neopixel LED strip on the LED port and set SPI frequency to 3MHz
+
+M150 E0 R255 P128 S20 F1     ; set first 20 LEDs to red, half brightness, more commands for the strip follow
+M150 E0 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished programming strip
+</pre>
+
+<!--
+Оn **Fysetc 12864mini** you can configure all three LEDs separately. For display and for encoder illumination:
+
+<br>
+<pre class="cblock">
+M918 P2 E-4 F2000000               ; Fysetc 12864mini
+M950 E0 C"led" T1                  ; create a RGB Neopixel LED strip on the LED port
+
+M150 E0 R255 U0 B0 P255 S1 F1      ; display led
+M150 E0 R0 U255 B0 P255 S1 F1      ; left encoder led
+M150 E0 R0 U255 B0 P255 S1 F0      ; right encoder led
+</pre>
+-->
+
+#### RRF 3.4 and earlier
+
+##### Parameters
 
 * **Rnnn** Red component, 0-255
 * **Unnn** Green component, 0-255
@@ -2753,11 +2794,10 @@ Switch the bed to its standby temperature. M144 S1 will set it back to its activ
 * **Ynn** Brightness, 0-31 (alternative to P 0-255)
 * **Snnn** Number of individual LEDs to set to these colours, default 1
 * **Fn** Following command action. F0 (default) means this is the last command for the LED strip, so the next M150 command starts at the beginning of the strip. F1 means further M150 commands for the remainder of the strip follow this one.
-* **En** (RRF 3.5 and later only) LED strip number, default 0. See M950.
-* **Xn** (RRF 3.4 and earlier only) LED type: X0 = DotStar (default prior to RRF 3.2), X1 = RGB NeoPixel (default in RRF 3.2 and later), X2 = bit-banged RGB NeoPixel, X3 = RGBW NeoPixel (from RRF 3.3), X4 = bit-banged RGBW NeoPixel (from RRF3). This parameter is remembered from one call to the next, so it only needs to be given once. Not all boards support all the modes. On the Duet 3 Mini, X1 and X3 select the NeoPixel output on the main board, while X2 and X4 address the RGB LEDs on some 12864 displays.
-* **Qnnn** (optional, RRF 3.4 and earlier only) Use specified SPI frequency (in Hz) instead of the default frequency. This parameter is not normally needed, and is only processed if X parameter also present. When using NeoPixels, only frequencies in the range 2.4 to 4MHz will work.
+* **Xn** LED type: X0 = DotStar (default prior to RRF 3.2), X1 = RGB NeoPixel (default in RRF 3.2 and later), X2 = bit-banged RGB NeoPixel, X3 = RGBW NeoPixel (from RRF 3.3), X4 = bit-banged RGBW NeoPixel (from RRF3). This parameter is remembered from one call to the next, so it only needs to be given once. Not all boards support all the modes. On the Duet 3 Mini, X1 and X3 select the NeoPixel output on the main board, while X2 and X4 address the RGB LEDs on some 12864 displays.
+* **Qnnn** (optional) Use specified SPI frequency (in Hz) instead of the default frequency. This parameter is not normally needed, and is only processed if X parameter also present. When using NeoPixels, only frequencies in the range 2.4 to 4MHz will work.
 
-### Examples (RRF 3.4 and earlier)
+##### Examples
 <br>
 <pre class="cblock">
 M150 X1 Q3000000          ; set LED type to NeoPixel and set SPI frequency to 3MHz
