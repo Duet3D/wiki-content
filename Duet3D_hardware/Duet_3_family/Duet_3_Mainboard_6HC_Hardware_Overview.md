@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-05-16T10:34:18.075Z
+date: 2023-06-14T16:35:58.088Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -312,6 +312,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | io0.in | ^^ |
 | ^^ | ^^ | io0.out | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
+| ^^ | DOTSTAR | led | For controlling DotStar or Neopixel LEDs
 
 ## Input/Output
 
