@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2022-12-07T14:44:12.976Z
+date: 2023-06-14T16:41:01.106Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -263,6 +263,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | **Miscellaneous** |||
 | LASER/VFD | laser, vfd, out6 | Pin shared with OUT 6 and LASER/VFD connectors |
 | EXT 5V | pson, io4.out | For controlling an external PSU or SSR, shared with io4.out |
+| NEOPIXEL | led | For controlling Neopixel LEDs (firmware 3.5.0-beta.4 and later only)
 
 ## Input/Output
 
