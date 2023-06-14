@@ -2,7 +2,7 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2023-03-13T21:15:25.465Z
+date: 2023-06-14T10:11:05.719Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z
@@ -291,6 +291,12 @@ To see where these pins are, see the *Wiring diagram* section above.
 | connlcd.encb | - | CONN_LCD ENC_B (pin 3) | yes | no | no | |
 | connlcd.enca | - | CONN_LCD ENC_A (pin 4) | yes | no | no | |
 | connsd.encsw | 64 | CONN_SD ENC_SW (pin 7) | yes | no | no | See notes below. Signal name: ENC_SW |
+| connlcd.5, connlcd.db7, connlcd.np | - | CONN_LCD pin 5 | yes | no | no | RRF 3.5beta4 and later only
+| connlcd.6, connlcd.rs | - | CONN_LCD pin 6 | yes | no | no | RRF 3.5beta4 and later only
+| connlcd.7, connlcd.db6 | - | CONN_LCD pin 7 | yes | no | no | RRF 3.5beta4 and later only
+| connlcd.8, connlcd.en | - | CONN_LCD pin 8 | yes | no | no | RRF 3.5beta4 and later only
+| connlcd.9, connlcd.db5 | - | CONN_LCD pin 9 | yes | no | no | RRF 3.5beta4 and later only
+| connlcd.10, connlcd.db4 | - | CONN_LCD pin 10 | yes | no | no | RRF 3.5beta4 and later only
 | urxd0	| - | PanelDue Dout | yes | no | no | Available for I/O if PanelDue not enabled |
 | utxd0 |	- | PanelDue Din | yes | no | no | Available for I/O if PanelDue not enabled |
 | pson | - | EXT 5V, PS_ON pin | output only | no | no | Open drain. Available if not controlling PSU |
