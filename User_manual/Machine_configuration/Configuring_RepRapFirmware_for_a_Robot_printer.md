@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-06-13T15:32:01.064Z
+date: 2023-06-14T04:32:33.564Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -40,7 +40,7 @@ The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.
 
 Current status, last actions:
 * Jun13: there was a bug in homing to set angles, I made a new build and checkin
-* future builds are based on RRF 3.5.0beta4
+* ~~future builds are based on RRF 3.5.0beta4.~~ I currently stay at beta3, because I have compilation problems
 
 # Configuring a Robot
 
