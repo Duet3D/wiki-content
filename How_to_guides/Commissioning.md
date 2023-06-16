@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: true
-date: 2023-03-28T11:55:37.506Z
+date: 2023-06-16T11:10:44.605Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -254,6 +254,10 @@ M574 Z2 S1 P"!io4.in" ; configure switch-type (e.g. microswitch) endstop for hig
 * Observe the physical location of each endstop and compare it to this setting. If it is incorrect, change it now.
 * On a Delta, all endstops are usually at the high end. On Cartesian and CoreXY, the Z low end is where the nozzle is closest to the bed, ie where Z=0.
 * The S parameter configures the type of endstop: 1=switch, 2=Z-probe, 3=motor stall, 4=multiple motor stall (see [M574](/User_manual/Reference/Gcodes/M574) for usage).
+
+> Note that if you changed which end your endstop is located, you will generally need to update your homing macros (homeall.g, homex.g, homey.g, homez.g and any others if you have more axes) to get the axis to move in the correct direction, towards the endstop, during homing.
+{.is-info}
+
 
 **Active high or active low?**
 * In RRF 3.x, the M574 P parameter configures the pins the endstop is connected to. It also configures how the signal is interpreted.
