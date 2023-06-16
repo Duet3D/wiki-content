@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-06-16T05:45:45.912Z
+date: 2023-06-16T06:46:01.445Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -263,18 +263,21 @@ The following values are important to check speed limits and the reporting of sp
 If a movement has a velocity too high for one of it's axes, it is currently reported on the console, but the movement is currently not hindered. This will be changed in productive use. A too high velocity is a signal of approaching or reaching a singularity or if the extrusion speed is set too high compared to the normal axis speeds. In most cases, however, extrusion speed is not the limiting factor.
 
 # Homing
-When the Duet controller starts, it has no knowledge about the stepper positions. By a procedure called homing it gets those values. The common procedure of homing is that movements trigger endstops and the values are set for each axis when the endstop is triggered. After homing, the endstops and homing procedure is not necessary any more.
+When the Duet controller starts, it has no knowledge about the stepper positions. By a procedure called homing it gets and stores those values.
 
-If there are An homing and limit defintions for a drive, those values are used. If they are not defined, M208 values are used. If both are not defined, the status will remain at unhomed for this axes and normal movements are not possible.
+In robot kinematics, three different methods are supported:
+- specifying the homing angles with A parameter and when an endstop triggers, homing is set to this value
+- when no A is set for this drive, the M208 value is used when triggering while G1 H1 is used. The usual high/low of endstop configuration is used.
+- setting the homing values with G92. Example usage is setting homing positions with absolute encoders or optical based direct value setting (camera, interferometer, calibration result etc).
 
-Some thoughts about homing
-* removing endstops and probes after homing and mesh compensation can be considered to avoid collisions with workpiece/print object
-* homing by G92: if the position is known by other means, e. g. an absolute encoder, camera, interferometer etc., the position can be set by G92 directly. G92 stores the value and sets homing status to set without an explicit trigger signal
-* homing can be outside the given M208 or angle limits and can even be in a singularity (the first example on the DH page is a singularity). After homing, the axes should be moved into a valid position and orientation before starting "normal operation", because otherwise G1 moves will be classified as non-reachable
-* homing angles are specified in the third M669 A parameter. The values are mm for prismatic (linear) axes and degrees for rotational ones
-* the current stored stepper position can be checked with the Count values of M122. To calculate stepper degrees or mm position from it, the M92 value must be included: rotational axis degrees * steps/degrees or prismatic mm * steps/mm. The starting value is the homing value and stepper's position when it was set.
-* homing procedures by using G1 H1 setting to M208 limits will not work in most cases, because M208 limits are cartesian coordinates, while the axes are not behaving linearly, but often are rotational axes. That's the main reason to clearly specify home angles inside An
-* the default homing file is called homeRobot.g
+For rotary axes, the values are in degrees, for linear/prismatic axes it is in mm. The G92 and M122 values are degrees or mm * microsteps * ratio.
+
+Example: rotary axis homing position 10 degrees, 16 microsteps, gear 1:5 between stepper and axis, then value is 10 * 16 * 5 = 800.
+Example: prismatic axis homing position 10 mm, 16 microsteps, gear 1:5, 20 teeth GT2: one rotation is 40 mm,  ... tbd
+
+Homing values can be checked by the M122 Count value.
+
+The default homing file is called homeRobot.g
 
 # Mesh compensation
 Mesh compensation is a feature to handle uneven print beds und allow printing with good adhesion by printing the first layers in sync to the unevenness of the bed. It is used a probe to record the unevenness data, which has in most cases an XYZ offset from the hotend. The offset may not change while measuring, because the firmware calculates the hotend position from the probe offset and stores the hotend positions in the mesh file.
