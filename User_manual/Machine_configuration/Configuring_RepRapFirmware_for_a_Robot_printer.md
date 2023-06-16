@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-06-16T05:44:53.029Z
+date: 2023-06-16T05:45:45.912Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -201,9 +201,6 @@ Examples: see the B parameter table column axis types.
 * L1, L2 etc. is the letter being used in the B parameter. Subaxes are using indexes starting with 0
 * example 0X:1Y:2Z:3A:4C is the default for 5-axis kinematics
 * example 0X:1Y:2Z0:3A:4C:5Z1 would use drive 5 as additional Z value (drive 2 and 5 added to one position)
-
-Reintroduced to allow options of unusual drive mappings. Specification will follow.
-
 
 **special settings for rotary Delta**
 
