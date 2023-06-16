@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2023-06-14T16:41:01.106Z
+date: 2023-06-16T08:18:31.425Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -264,6 +264,9 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | LASER/VFD | laser, vfd, out6 | Pin shared with OUT 6 and LASER/VFD connectors |
 | EXT 5V | pson, io4.out | For controlling an external PSU or SSR, shared with io4.out |
 | NEOPIXEL | led | For controlling Neopixel LEDs (firmware 3.5.0-beta.4 and later only)
+| 12864_EXP1 | lcd.a0,exp1.7 | (RRF 3.5.0-rc.1 and later only) Pin 7 of the EXP1 connector. Available for general output if no 12864 display is connected.
+| 12864_EXP1 | enc.sw,exp1.9 | (RRF 3.5.0-rc.1 and later only) Pin 9 of the EXP1 connector. Available for general output if no 12864 display is connected.
+| 12864_EXP1 | lcd.buzz,exp1.10 | (RRF 3.5.0-rc.1 and later only) Pin 10 of the EXP1 connector. Available for general output including PWM if no 12864 display is connected.
 
 ## Input/Output
 
