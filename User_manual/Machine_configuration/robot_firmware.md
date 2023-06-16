@@ -2,7 +2,7 @@
 title: Robot Firmware
 description: details about firmware, orientation types
 published: true
-date: 2023-05-29T05:51:52.549Z
+date: 2023-06-16T05:28:22.522Z
 tags: robot
 editor: markdown
 dateCreated: 2022-06-18T05:20:44.359Z
@@ -225,6 +225,10 @@ In G-Code the two meanings are mixed unhappily, some examples:
 
 # double vs float variables
 Tests with forward, inverse kinematics and angle calculations resulted in differences of e-04 at worst between float and double precision variables for 6 axis robot calculations of positions and orientations. It seems acceptable to use float, because it needs less memory and can run on all newer Duet hardware with single and double precision Cortex chips (all M4F and M7 based with FPU).
+
+Technical details:
+- float uses its 32 bits for: 1 bit for sign, 8 bits for exponent and 23 bits for mantissa/fraction/coefficient. The 23 bits are 2-bit based, which mean 7...8 decimal digits precision (2^23 about 10 mio)
+- double uses its 64 bits: 1 bit for sign, 11 bits for exponent and 52 bits for mantissa, which means about 15...16 decimal digits precision.
 
 # Firmware development and compilation
 For installation and running robot kinematics, taking the binaries is the easiest solution. The following is only interesting if one wishes to compile or change something static inside the firmware code (e.g. using more than 6 axes).
