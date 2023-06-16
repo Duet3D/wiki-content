@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-06-16T06:46:01.445Z
+date: 2023-06-16T07:15:46.007Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -267,7 +267,7 @@ When the Duet controller starts, it has no knowledge about the stepper positions
 
 In robot kinematics, three different methods are supported:
 - specifying the homing angles with A parameter and when an endstop triggers, homing is set to this value
-- when no A is set for this drive, the M208 value is used when triggering while G1 H1 is used. The usual high/low of endstop configuration is used.
+- when no A is set for this drive, the M208 value is used when triggering while G1 H1 is used. The usual high/low of endstop configuration is used. M208 can be changed for homing and set back to printing limits afterwards (see M208 chapter).
 - setting the homing values with G92. Example usage is setting homing positions with absolute encoders or optical based direct value setting (camera, interferometer, calibration result etc).
 
 For rotary axes, the values are in degrees, for linear/prismatic axes it is in mm. The G92 and M122 values are degrees or mm * microsteps * ratio.
