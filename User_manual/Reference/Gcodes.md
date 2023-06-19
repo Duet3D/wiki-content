@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-14T15:36:26.143Z
+date: 2023-06-19T07:20:00.447Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4952,31 +4952,31 @@ See also: [Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing
 
 ## M558.1: Calibrate scanning Z probe
 
-Supported from RRF 3.5.0-beta.4.
+Supported from RRF 3.5.0-rc.1
 
 ### Parameters
 
 * **Knn** (optional) Z probe number, default 0. The probe must be of a scanning type (see M558).
-* **Sn.n** (optional) Height to scan above and below the trigger height, in mm
+* **Sn.n** Height to scan above and below the trigger height, in mm
 * **Ann.n** (optional) Linear coefficient of the output, in counts per mm
 * **Bnn.n** (optional, ignored unless A parameter is also present, default 0.0) Quadratic coefficient of the output, in counts^2 per mm
 
-If the A parameter is present than the equation to calculate the actual height of the Z probe is set to this:
+If the A parameter is present then the equation to calculate the actual height of the Z probe is set to this:
 
 <br>
 <pre class="cblock">
 height = trigger_height + A * (probe_reading - probe_threshold) + B * (probe_reading - probe_threshold)^2
 </pre>
 
-where trigger_height and probe_threshold are as set by G31
+where trigger_height and probe_threshold are as set by G31.
 
-If the A parameter is not present but the S parameter is present then the probe is raised or lowered to (trigger_height + S_parameter) at the current XY position, then readings are taken as the probe is gradually lowered to (trigger_height - S_parameter). The readings are used to compute, store and report new values of A and B.
+If the A parameter is not present but the S parameter is present then the probe is raised or lowered to (trigger_height + S_parameter) at the current XY position, then readings are taken as the probe is gradually lowered to (trigger_height - S_parameter). The readings are used to compute, store and report new values of A and B and the trigger threshold.
 
 If neither the A nor the S parameter is present, the current A and B values are reported.
 
 ##### Order dependency
 
-Before M558.1 is used the probe must be defined as a scanning Z probe using M558, and the probe trigger height and threshold must be set using G31.
+Before M558.1 is used the probe must be defined as a scanning Z probe using M558, the probe trigger height must be set using G31, and the Z axis must have been homed.
 
 ## M559: Upload file
 
