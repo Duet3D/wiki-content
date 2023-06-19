@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-19T07:20:00.447Z
+date: 2023-06-19T15:30:45.714Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7629,7 +7629,7 @@ Also see [M118](/User_manual/Reference/Gcodes/M118){target=_blank}.
 
 *Supported in RepRapFirmware 3.*
 
-M950 is used to create heaters, fans and GPIO ports and to assign pins to them. Each M950 command assigns a pin or pins to a single device. So every M950 command must have **exactly one** of the H, F, J, P, S, D (for Duet 3 MB6HC only) or E (in RRF 3.5 and later) parameters.
+M950 is used to create heaters, fans, GPIO ports, spindles (3.3 and later) and LED strips (3.5 and later), and to assign pins to them. Each M950 command assigns a pin or pins to a single device. Every M950 command must have **exactly one** of the H, F, J, P, S, D (for Duet 3 MB6HC only) or E (in RRF 3.5 and later) parameters.
 
 If a M950 command has C and/or Q parameters, then the pin allocation and/or frequency will be configured accordingly. Otherwise, the current configuration will be reported.
 
@@ -7648,7 +7648,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **En** LED strip number
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters. For LED strips (supported in RRF 3.5.0-beta.4 and later only) this is the LED clock frequency.
-* **T** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)). When creating a LED strip (supported in RRF 3.5.0-beta.4 and later only): LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
+* **Tn** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)). When creating a LED strip (supported in RRF 3.5.0-beta.4 and later only): LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 * **Kaaa(:bbb[:ccc])** (optional, for spindles only, RRF 3.5 and later) PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
 * **Unnn** (optional, RRF 3.5.0-beta.4 and later, for LED strips only) The maximum number of LEDs in the strip. Larger values use more memory.
@@ -7667,7 +7667,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **Dn** (Duet 3 MB6HC only) SD slot number. The only value supported is 1.
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters.
-* **T** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)).
+* **Tn** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)).
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 
 ^1^ Check the individual hardware pages, some IO pins have permanent pullups.
@@ -7683,7 +7683,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **Rnn** Spindle number
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters.
-* **T** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)).
+* **Tn** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)).
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 
 ^1^ Check the individual hardware pages, some IO pins have permanent pullups.
@@ -7698,7 +7698,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **Pnn** or **Snn** Output/servo pin number. Each P and/or S number needs to be unique, eg P1, P2, S3 P4, S5 etc. Servo pins are GpOut pins with a different default PWM frequency.
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters.
-* **T** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)).
+* **Tn** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)).
 
 ^1^ Check the individual hardware pages, some IO pins have permanent pullups.
 
@@ -7707,37 +7707,67 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * When M950 is used to create a heater, the M950 command must come later in config.g than the M308 command that creates the sensor referred to in the T parameter
 * M950 must come before any commands that refer to the device being created. For example, when M950 is used to create a heater, it must be earlier than the M307 command used to set the heater parameters, and earlier than any M563 commands that create tools that use that heater. When M950 is used to create a fan, it must come earlier than any M106 commands relating to that fan. When M950 is used to create an LED strip, it must come earlier than any M150 commands that use that strip.
 
-### Examples
+### Configuration examples and notes
+
+### Tabs {.tabset}
+
+#### Heaters
+
 <br>
 <pre class="cblock">
 M950 H1 C"out1" Q100 T1        ; create heater 1
-M950 H1 C"3.out0+out2" Q100 T1 ; create heater 1 using ports OUT0 and OUT2 on CAN board 3 (RRF 3.4 or later)
 M950 H2 C"nil"                 ; disable heater 2 and free up the associated pin
-M950 F3 C"heater2" Q100        ; Fan 3 is connected to heater 2 pin, PWM at 100Hz
-M950 P0 C"exp.heater3"         ; create output/servo port 0 attached to heater 3 pin on expansion connector
-M950 F2 C"!fan2+^exp.pb6"      ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
-M950 J1 C"!^e1stop"            ; Input 1 uses e1Stop pin, inverted, pullup enabled
-M950 R0 C"!exp.heater3" L12000 ; Spindle 0 uses exp.heater3 as RPM pin and has a max RPM of 12000 (RRF 3.3 and later)
-M950 D1 C"spi.cs0+spi.cs2"     ; on Duet 3 MB6HC support external SD card using pins spi.cs0 and spi.cs2 for the CS and Card Detect pins respectively (RRF 3.4 and later)
-M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED port (RRF 3.5 and later)
+M950 H1 C"3.out0+out2" Q100 T1 ; create heater 1 using ports OUT0 and OUT2 on CAN board 3 (RRF 3.4 or later)
 </pre>
 
-### Notes
+* **Hnn** Heater number
+* **C"name"** Pin name(s) and optional inversion status. Pin name "nil" frees up the pin.
+* **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 250 for heaters.
+* **Tn** When creating a heater, temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)).
 
-**Fans:** When using M950 to create a fan, the port name string may be either a single port, or two ports separated by the '+' sign. The second port is used to read the fan tacho. **Any CAN address at the start of the port name string applies to both port names.**
+(RRF 3.4 and later) When using M950 to create a heater, multiple port names can be provided, separated by the '+' sign. The maximum number of ports that may be used depends on the board. **Any CAN address at the start of the port name string applies to all the port names.**
+
+#### Fans
+
 <br>
 <pre class="cblock">
+M950 F3 C"heater2" Q100           ; Fan 3 is connected to heater 2 pin, PWM at 100Hz
+M950 F2 C"!fan2+^exp.pb6"         ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
 M950 F5 C"!out4+out4.tach" Q450   ; Create Fan 5 on the mainboard on OUT4 with a tacho input
 M950 F0 C"!1.out3+out3.tach" Q450 ; Create Fan 0 on expansion board 1, output OUT3 with a tacho input
 </pre>
 
-**Heaters:** (RRF 3.4 and later) When using M950 to create a heater, multiple port names can be provided, separated by the '+' sign. The maximum number of ports that may be used depends on the board. **Any CAN address at the start of the port name string applies to all the port names.**
+* **Fnn** Fan number
+* **C"name"** Pin name(s) and optional inversion status. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
+* **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 250 for fans.
+
+When using M950 to create a fan, the port name string may be either a single port, or two ports separated by the '+' sign. The second port is used to read the fan tacho. **Any CAN address at the start of the port name string applies to both port names.**
+
+#### Inputs
+
 <br>
 <pre class="cblock">
-M950 H1 C"3.out0+out2" Q100 T1 ; create heater 1 using ports OUT0 and OUT2 on CAN board 3
+M950 J1 C"!^e1stop"            ; Input 1 uses e1Stop pin, inverted, pullup enabled
 </pre>
 
-**Spindles:** (RRF 3.3 and later) When using M950 to create a spindle use the following format:
+* **Jnn** Input pin number
+* **C"name"** Pin name(s) and optional inversion status. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
+
+#### Outputs and servos
+
+<br>
+<pre class="cblock">
+M950 P0 C"exp.heater3"         ; create output/servo port 0 attached to heater 3 pin on expansion connector
+</pre>
+
+* **Pnn** or **Snn** Output/servo pin number. Each P and/or S number needs to be unique, eg P1, P2, S3 P4, S5 etc. Servo pins are GpOut pins with a different default PWM frequency.
+* **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
+* **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins.
+
+#### Spindles
+
+(RRF 3.3 and later) When using M950 to create a spindle use the following format:
+
 <br>
 <pre class="cblock">
 M950 R0 C"pwm_pin+forward_pin+reverse_pin" Qfff Laa:bb
@@ -7746,6 +7776,43 @@ M950 R0 C"pwm_pin+forward_pin+reverse_pin" Qfff Laa:bb
 * C can have 1, 2 or 3 pins. The first pin defined is a pwm capable pin to set the spindle speed. If a second pin is defined it is used as spindle on/off, if three pins are defined then the second pin is spindle forward and the third is spindle reverse.
 * "fff" is the PWM frequency as usual
 * "Laa:bb" sets the RPM range as "aa" to "bb". "Lbb" just sets the max RPM to "bb". Default RPM values are 60 min 10000 max
+
+Example:
+
+<br>
+<pre class="cblock">
+M950 R0 C"!exp.heater3" L12000 ; Spindle 0 uses exp.heater3 as RPM pin and has a max RPM of 12000 (RRF 3.3 and later)
+</pre>
+
+* **Rnn** Spindle number
+* **C"name"** Pin name(s) and optional inversion status. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
+* **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535.
+* **Lbbb** or **Laaa:bbb** (optional) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
+* **Kaaa(:bbb[:ccc])** (optional, RRF 3.5 and later) PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
+
+#### SD card slot
+
+<br>
+<pre class="cblock">
+M950 D1 C"spi.cs0+spi.cs2"     ; on Duet 3 MB6HC support external SD card using pins spi.cs0 and spi.cs2 for the CS and Card Detect pins respectively (RRF 3.4 and later)
+</pre>
+
+Duet 3 MB6HC only, configures the SD slot number. The only value supported is 1. (RRF 3.4 and later)
+
+#### LED strips
+
+Supported in RRF 3.5.0-beta.4 and later only
+
+<br>
+<pre class="cblock">
+M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED port (RRF 3.5 and later)
+</pre>
+
+* **En** LED strip number
+* **C"name"** Pin name
+* **Qnn** (optional) LED clock frequency.
+* **Tn** (optional) LED type: 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
+* **Unnn** (optional) The maximum number of LEDs in the strip. Larger values use more memory.
 
 ## M951: Set height following mode parameters
 
