@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2023-06-21T14:51:54.420Z
+date: 2023-06-21T15:24:40.414Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -46,9 +46,9 @@ The maximum number of DotStar LEDs supported per strip is several thousand, for 
 
 # Connections
 
-# Tabs {.tabset}
-
 ## Dedicated LED connector
+
+The Duet 3 Mainboard 6HC, Duet 3 Mainboard 6XD, Duet 3 Mini 5+ and Duet 2 WiFi/Ethernet have a dedicated LED header. See below how to connect LED strips to these headers. 
 
 #### Tabs {.tabset}
 
@@ -73,13 +73,26 @@ Connect the LED strips to the 3-pin connector labelled NP_LED.
 
 You will need to supply external 5V power to the adjacent 5V_IN connector, unless you connected the 5V line of your LED strip directly to an external 5V supply. The 5V regulator on the Duet 3 Mini is rated at 1A total and can only power a very small number of LEDs.
 
+For control of RGB backlights on 12864 displays, the display's RGB LED data line should be connected to pin 5 of the 12864_EXP1 connector. See [Connecting 12864 displays](/User_manual/Connecting_hardware/Display_12864).
+
 ##### Duet 2 Wifi/Ethernet - NeoPixel 
 
 Support for NeoPixel strips on Duet 2 WiFi/Ethernet was added in RRF 3.3.
 
-A signal for controlling Neopixel strips can be output on pin 5 of the CONN_LCD connector provided that you do not have external stepper drivers connected to CONN_LCD. The signal level is 3.3V so you need to level shift it to 5V. A non-inverting 74HCT series gate or buffer such as 74HCT08 can be used to do this.
+A signal for controlling Neopixel strips can be output on pin 5 of the CONN_LCD connector provided that you do not have external stepper drivers connected to CONN_LCD. 
+* Connect the GND pin of the LED strip to an available GND pin on the Duet, or to a GND shared with the Duet GND.
+* Connect the +5V pin of the LED strip to an available 5V pin on the Duet (note current limitations below), or to an external +5V power supply.
+* Connect the data input line of the LED strip to pin 5 of the CONN_LCD connector.
+
+The signal level on pin 5 of the CONN_LCD connector is 3.3V so you need to level shift it to 5V. You should to do one of the following:
+* Level shift the signal to 5V. A non-inverting 74HCT series gate or buffer such as 74HCT08 can be used to do this.
+* Use Neopixels that accept 3.3V signals (they exist now but are not common)
+* Reduce the supply voltage to the LED strip below 5V. You could probably get away with using a single 1N400x diode to drop the 5V power voltage to the entire strip, or see [this Hackaday article](https://hackaday.com/2017/01/20/cheating-at-5v-ws2812-control-to-use-a-3-3v-data-line/)
 
 RGB NeoPixels draw up to 60mA per LED. RGBW ones draw up to 80mA per LED. Therefore the Duet cannot provide enough power for an LED strip unless the number of LEDs in the strip is small (for example 16 RGB or 12 RGBW LEDs). For longer strips you must provide external 5V power to the strip.
+
+To control RGB backlights on 12864 displays, see [Connecting 12864 displays](/User_manual/Connecting_hardware/Display_12864).
+
 
 ## Using other outputs (RRF 3.5 and later)
 
@@ -110,6 +123,33 @@ When using general purpose output pins (i.e. not the LED ports on Duet 3 series 
 ### RRF 3.5 and later
 
 From RRF 3.5.0-beta.4, [M950](/User_manual/Reference/Gcodes/M950) is used to configure the LED strip, and [M150](/User_manual/Reference/Gcodes/M150) is used to control the strip. Multiple strips can be configured in M950.
+
+#### Configuration
+
+A simple configuration for a single strip might be something like:
+
+```
+M950 E0 C"led" T1 Q3000000   ; create a RGB Neopixel LED strip on the LED port and set SPI frequency to 3MHz
+```
+For configuring a 12864 display's LEDs on a Duet 3 Mini 5+ 12864_EXP1 connector:
+```
+M918 P2 E-4 F2000000           ; Fysetc 12864mini
+M950 E1 C"io3.out" T1 U3       ; create a RGB Neopixel LED strip with 3 LEDs on the Duet 3 Mini 5+ 12864_EXP1 header<br>
+```
+
+#### Controlling
+
+Control the LED strip using M150:
+```
+M150 E0 R255 P128 S20 F1     ; set first 20 LEDs to red, half brightness, more commands for the strip follow
+M150 E0 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished programming strip
+```
+Set the RGB colours of the 12864 display in a similar way:
+```
+M150 E1 R0 U0 B255 P255 S1 F1  ; display led blue
+M150 E1 R255 U0 B0 P255 S1 F1  ; left encoder led red
+M150 E1 R0 U255 B0 P255 S1 F0  ; right encoder led green
+```
 
 ### RRF 3.4 and earlier
 
