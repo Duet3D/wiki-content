@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-19T15:30:45.714Z
+date: 2023-06-21T15:00:07.596Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2762,22 +2762,20 @@ Switch the bed to its standby temperature. M144 S1 will set it back to its activ
 ##### Examples
 <br>
 <pre class="cblock">
-M950 E0 C"led" T1 Q3000000   ; create a RGB Neopixel LED strip on the LED port and set SPI frequency to 3MHz<BR>
+M950 E0 C"led" T1 Q3000000   ; create a RGB Neopixel LED strip on the LED port and set SPI frequency to 3MHz<br>
 M150 E0 R255 P128 S20 F1     ; set first 20 LEDs to red, half brightness, more commands for the strip follow
 M150 E0 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished programming strip
 </pre>
 
-<!--
-Оn **Fysetc 12864mini** you can configure all three LEDs separately. For display and for encoder illumination:
+Оn **Fysetc 12864mini** you can set all three LEDs separately. For display and for encoder illumination:
 
 <br>
 <pre class="cblock">
 M918 P2 E-4 F2000000               ; Fysetc 12864mini
-M950 E0 C"led" T1                  ; create a RGB Neopixel LED strip on the LED port
-
-M150 E0 R255 U0 B0 P255 S1 F1      ; display led
-M150 E0 R0 U255 B0 P255 S1 F1      ; left encoder led
-M150 E0 R0 U255 B0 P255 S1 F0      ; right encoder led
+M950 E0 C"io3.out" T1 U3           ; create a RGB Neopixel LED strip with 3 LEDs on the Duet 3 Mini 5+ 12864_EXP1 header<br>
+M150 E0 R0 U0 B255 P255 S1 F1      ; display led blue
+M150 E0 R255 U0 B0 P255 S1 F1      ; left encoder led red
+M150 E0 R0 U255 B0 P255 S1 F0      ; right encoder led green
 </pre>
 -->
 
@@ -2808,7 +2806,7 @@ M150 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished 
 
 <br>
 <pre class="cblock">
-M918 P2 E-4 F2000000               ; Fysetc 12864mini
+M918 P2 E-4 F2000000               ; Fysetc 12864mini<br>
 M150 X2 R255 U0 B0 P255 S1 F1      ; display led
 M150 X2 R0 U255 B0 P255 S1 F1      ; left encoder led
 M150 X2 R0 U255 B0 P255 S1 F0      ; right encoder led
