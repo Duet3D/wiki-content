@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2023-06-21T08:33:21.601Z
+date: 2023-06-21T14:51:54.420Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -21,12 +21,12 @@ The maximum number of Neopixel LEDs supported per strip depends on the firmware 
 | | RGBW | RGB | RGBW | RGB | RGBW | RGB | RGBW | RGB |
 | Duet 3 6HC/6XD | 240 | 320 | 240 | 320 | 80 | 106 | - | 60 |
 | Duet 3 Mini 5+ | Unlimited^*^ ||  80 | 106 | 80 | 106 | - | 60 |
-| Duet 2 WiFi/Ethernet | Unlimited^*^ || 60 | 80 | - | 60 | - | - |
-| Duet Maestro | See below^**^ || - | - | - | - | - | - |
 | Duet 3 Expansion & Tool boards | Unlimited^*^ || - | - | - | - | - | - |
+| Duet 2 WiFi/Ethernet | Unlimited^*^ || 60 | 80 | - | 60 | - | - |
+| Duet 2 Maestro | See below^**^ || - | - | - | - | - | - |
 
 ^*^Limited only by available RAM
-^**^Neopixel support may work in RRF 3.5 on the Duet Meastro, however this has not been tested by Duet3D. The maximum number supported would be limited by available RAM.
+^**^Neopixel support may work in RRF 3.5 on the Duet 2 Meastro, however this has not been tested by Duet3D. The maximum number supported would be limited by available RAM.
 
 The maximum number of DotStar LEDs supported per strip is several thousand, for all firmware versions (Duet 3 6HC and 6XD only).
 
