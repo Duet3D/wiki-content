@@ -2,7 +2,7 @@
 title: Connecting 12864 or other display
 description: 
 published: true
-date: 2023-02-06T13:12:32.474Z
+date: 2023-06-21T15:35:21.323Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T15:08:34.637Z
@@ -135,7 +135,7 @@ M150 X2 R255 U0 B0 P255 S3 F0 ; GRB LED so this shows green
 ```
 Note that some RGB LEDs define their colours in the order Green, Red, Blue, so R parameter will be green, and U parameter will be blue.
 
-### STST7920
+### ST7920
 
 To configure this type of display in RepRapFirmware, use the [M918](/User_manual/Reference/Gcodes/M918) command with display type parameter P1, eg:
 ```
