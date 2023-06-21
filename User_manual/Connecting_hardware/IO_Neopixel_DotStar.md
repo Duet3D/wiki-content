@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2023-06-21T08:30:33.459Z
+date: 2023-06-21T08:33:21.601Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -115,6 +115,6 @@ From RRF 3.5.0-beta.4, [M950](/User_manual/Reference/Gcodes/M950) is used to con
 
 In RRF 3.4 and earlier, the [M150](/User_manual/Reference/Gcodes/M150) command is used both to configure and control LED strips. 
 
-The X and Q parameters configure them and the remaining parameters set the colours. If the X and Q parameters are not provided, the last values of those parameters specified will be used again, or default parameters if they have never been specified. You do not normally need to specify the Q parameter, but you must specify the X parameter at least once unless the default is acceptable. On the Duet 3 MB6HC, the default is X0 (DotStar) in firmware 3.1.1 and earlier, and X1 in firmware 3.2 and later. On the Duet 3 Mini the default is always X1 (RGB Neopixel).
+The X and Q parameters configure them and the remaining parameters set the colours. If the X and Q parameters are not provided, the last values of those parameters specified will be used again, or default parameters if they have never been specified. You do not normally need to specify the Q parameter, but you must specify the X parameter at least once unless the default is acceptable. On the Duet 3 MB6HC the default is X0 (DotStar) in firmware 3.1.1 and earlier, and X1 (RGB Neopixel) in firmware 3.2 and later. On other boards the default is always X1.
 
-If the S parameter is ommitted then as many LEDs as can be set in a single chunk will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2, many more on Duet 3). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
+If the S parameter is omitted then as many LEDs as can be set in a single chunk will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2, many more on Duet 3). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
