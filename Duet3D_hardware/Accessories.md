@@ -2,7 +2,7 @@
 title: Accessories
 description: 
 published: true
-date: 2023-04-14T15:10:25.067Z
+date: 2023-06-21T21:17:34.883Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:18:25.503Z
@@ -33,3 +33,7 @@ Hardware information on Duet3D-produced accessories
 ## Motor position sensing
 
 [Duet3D magnetic encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder)
+
+## Standalone accelerometer
+
+[Duet3D Accelerometer](/Duet3D_hardware/Accessories/Duet3D_Accelerometer)
