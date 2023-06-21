@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2023-06-21T08:12:15.203Z
+date: 2023-06-21T08:15:37.556Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -34,22 +34,17 @@ The maximum number of DotStar LEDs supported per strip is several thousand, for 
 
 ### RRF 3.5 and later
 
-* LED strips can be connected to the dedicated LED connector (Duet 3, 5V signalling) and/or any pin that can be used as a digital output, on mainboards or expansion boards (these pins will need level shifting from 3.3V to 5V, see Connections section below). 
 * Multiple LED strips are supported, up to 5 in a system (mainboard + expansion boards). 
-* On the Duet 3 Mini 5+, an additional RGB LED output is available on the 12864_EXP1 header, to support the backlight on LCD screens. See [Connecting 12864 or other display](/User_manual/Connecting_hardware/Display_12864).
+* LED strips can be connected to the dedicated LED connector (Duet 3, 5V signalling) and/or any pin that can be used as a digital output, on mainboards or expansion boards (these pins will need level shifting from 3.3V to 5V, see Connections section below). 
 
 ### RRF 3.4 and earlier
 
-* LED strips can only be connected to the dedicated LED connector (except as noted below for the Duet 3 Mini 5+):
+* Only one LED strip is supported, connected to the dedicated LED connector on the main board (except as noted below for the Duet 3 Mini 5+):
   * Duet 3: DOTSTAR/NEOPIXEL pins, 5V signalling
   * Duet 2 WiFi/Ethernet: (RRF 3.3 and later) CONNLCD pin 5, 3.3V signalling (will need level shifting from 3.3V to 5V, see Connections section below). 
-* Only one LED strip is supported, connected to the mainboard.
 * On the Duet 3 Mini 5+, an additional RGB LED output is available on the 12864_EXP1 header, to support the backlight on LCD screens. See [Connecting 12864 or other display](/User_manual/Connecting_hardware/Display_12864).
 
 # Connections
-
-In RRF 3.4 and earlier, LED strips can only be connected to the dedicated LED connector.
-In RRF 3.5 and later, LED strips can be connected to the dedicated LED connector, and/or any pin that can be used as a digital output, on mainboards or expansion boards. Up to five LED are supported per system (mainboard + expansion boards).
 
 # Tabs {.tabset}
 
