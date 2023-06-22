@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the experimental accelerometer support in RRF 3.3 and later.
 published: true
-date: 2023-05-23T11:31:19.862Z
+date: 2023-06-22T01:13:01.667Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -137,7 +137,11 @@ Depending on how you have wired it, use one of these commands to tell RRF about 
 
 ### Duet 3 Mini 5+
 
-Use this command to tell RRF about the accelerometer:
+From RRF 3.5beta4/3.4.6 you can connect an accelerometer to the SPI DB header Use this command to tell RRF about the accelerometer if using one connected to an IO port:
+
+`M955 P0 C"spi.cs1+spi.cs0" "`
+
+Use this command to tell RRF about the accelerometer if using one connected to an IO port:
 
 `M955 P0 C"io3.out+io3.in"`
 
@@ -171,6 +175,7 @@ You do not need to tell RRF about the accelerometer with M955; it will use the d
 Accelerometer boards usually have an XYZ arrow to aid orientation. The Z axis is generally in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine.
 
 ![accelerometer_duet3_tb_1lc_v1.3_top.jpg](/manual/sensors/accelerometer_duet3_tb_1lc_v1.3_top.jpg =225x){target=_blank} ![accelerometer_adafruit_lis3dh.jpg](/manual/sensors/accelerometer_adafruit_lis3dh.jpg =225x){target=_blank} ![accelerometer_sparkfun_lis3dh.jpg](/manual/sensors/accelerometer_sparkfun_lis3dh.jpg =225x){target=_blank}
+![duet3d_accelerometer_top.jpg](/hardware/accelerometer/duet3d_accelerometer_top.jpg =225x){target=_blank}
 
 You can add parameter I (uppercase 'i') to the M955 command if you need to change the default orientation.
 
