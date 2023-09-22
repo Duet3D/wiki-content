@@ -2,7 +2,7 @@
 title: Connecting 12864 or other display
 description: 
 published: true
-date: 2023-06-21T15:35:21.323Z
+date: 2023-09-22T09:17:16.299Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T15:08:34.637Z
@@ -10,11 +10,11 @@ dateCreated: 2021-11-10T15:08:34.637Z
 
 # Connecting a 12864 display
 
-Some Duets can now support 12864 mono graphics LCD displays with a rotary encoder.
+Some Duets support 12864 mono graphics LCD displays with a rotary encoder.
 
 There are two types of controller chip commonly used in these controllers: ST7920 and ST7567. Some Duets support one or both of these types - see below for details. Both types use a menu system stored on the SD card, see [Duet 2 Maestro 12864 display menu system](/User_manual/Connecting_hardware/Display_12864_menu).
 
-Certain boards versions have different methods of controlling the backlight on these boards. 
+Certain board versions have different methods of controlling the backlight on these boards. 
 
 ## Compatibility matrix
 
@@ -29,15 +29,15 @@ Certain boards versions have different methods of controlling the backlight on t
 
 ### Duet 3 Mini 5+
 
-Duet 3 Mini provides two 2x5 ribbon cable headers for connecting a compatible ST7567-based controller (see below).
+Duet 3 Mini 5+ provides two 2x5 ribbon cable headers for connecting a compatible ST7567-based controller (see below).
 
-We do not recommend connecting a 12864 display with ST7920 controller directly to the Duet 3 Mini because the 3.3V signals provided by the Duet 3 Mini do not meet the specifications of the ST7920 controller chip when it is powered from 5V. If you do wish to try it, you will most likely have to reduce the clock frequency (M918 F parameter) to get it working at all, and it may not work reliably. Also, note that when configured for 12864 display with ST7920 controller, RepRapFirwmare provides the CS signal on the pin normally uses for A0 because that more closely matched the pinout of typical 12864/ST7920 displays.
+We do not recommend connecting a 12864 display with ST7920 controller directly to the Duet 3 Mini 5+ because the 3.3V signals provided by the Duet 3 Mini do not meet the specifications of the ST7920 controller chip when it is powered from 5V. If you do wish to try it, you will most likely have to reduce the clock frequency (M918 F parameter) to get it working at all, and it may not work reliably. Also, note that when configured for 12864 display with ST7920 controller, RepRapFirwmare provides the CS signal on the pin normally uses for A0 because that more closely matched the pinout of typical 12864/ST7920 displays.
 
-User PCR on the Duet forum has created a level-shifting board that plugs into the Mini 5+, and converts the 3.3V signalling to 5V, allowing ST7920-based displays to be supported. See [this thread on the forum](https://forum.duet3d.com/post/236333).
+User PCR on the Duet forum has created a level-shifting board that plugs into the Mini 5+, and converts the 3.3V signalling to 5V, allowing ST7920-based displays to be supported. See [this thread on the forum](https://forum.duet3d.com/post/236333){target=_blank}.
 
 ### Duet 2 Maestro
 
-The Duet 2 Maestro provides two 2x5 ribbon cable headers for a 12864 display using ST7920 controller. The connector pinout is compatible with the original RepRapDiscount design. There is also more information in [this thread on the forum](https://forum.duet3d.com/topic/7609/).
+The Duet 2 Maestro provides two 2x5 ribbon cable headers for a 12864 display using ST7920 controller. The connector pinout is compatible with the original RepRapDiscount design. There is also more information in [this thread on the forum](https://forum.duet3d.com/topic/7609/){target=_blank}.
 
 RepRapFirmware 3.2 and later also support displays using the ST7567 controller. For these displays, use the standard cable EXCEPT the following two wires need to be connected to the EXPANSION header pins:
 
@@ -46,11 +46,15 @@ RepRapFirmware 3.2 and later also support displays using the ST7567 controller. 
 | Expansion pin 4 (EXP_0) | EXP 1 pin 7 | LcdA0Pin |
 | Expansion pin 5 (EXP_1) | EXP 1 pin 8 | LcdCSPin |
 
-**NOTE**: As of RRF v3.4.5, the Duet 2 Maestro does not currently support the M150 command for controlling addressable LEDs/NeoPixel backlights, because Maestro is very short of spare outputs. Displays with a fixed backlight should work, eg Fysetc Mini12864 Panel V1.2 (NOT V2.0 or V2.1), but have not been tested.
+#### Neopixel LED backlight support
+
+**RRF 3.5 and later:** Neopixel support may work in RRF 3.5 on the Duet 2 Meastro, however this has not been tested by Duet3D. The maximum number supported would be limited by available RAM.
+
+**RRF v3.4.5 and earlier:** The Duet 2 Maestro does not currently support the M150 command for controlling addressable LEDs/NeoPixel backlights, because Maestro is very short of spare outputs. Displays with a fixed backlight should work, eg Fysetc Mini12864 Panel V1.2 (NOT V2.0 or V2.1), but have not been tested.
 
 ### Duet 2 WiFi/Ethernet
 
-RepRapFirmware 3.2 and later support a 12864 display using ST7567 controller. RepRapFirmware 3.3 added support for a short string of Neopixels on Duet WiFi and Ethernet, so boards that use a Neopixel for the backlight should be able to be controlled. See [this thread on the forum](https://forum.duet3d.com/topic/22351/) for more details.
+RepRapFirmware 3.2 and later support a 12864 display using ST7567 controller. RepRapFirmware 3.3 added support for a short string of Neopixels on Duet WiFi and Ethernet, so boards that use a Neopixel for the backlight should be able to be controlled. See [this thread on the forum](https://forum.duet3d.com/topic/22351/){target=_blank} for more details.
 
 You will need to make up your own wiring loom, connected as follows:
 
@@ -80,19 +84,19 @@ We do not recommend connecting a 12864 display with ST7920 controller because th
 
 ### 12864 displays using ST7567 controller chip
 
-* [Fysetc Mini12864 Panel V1.2 or V2.1](https://wiki.fysetc.com/Mini12864_Panel)
+* [Fysetc Mini12864 Panel V1.2 or V2.1](https://wiki.fysetc.com/Mini12864_Panel){target=_blank}
 Note that this panel comes in a number of different revisions; V1.2 (with fixed backlight), and v2.1 (with NeoPixel backlight) are supported by most Duet boards with the right firmware version. V2.0, which uses 3 x PWM pins for the RGB LEDs, is not supported.
 When using a version 2.1 controller, the colours of the three Neopixel LEDs built into the display can be set using the M150 command with LED type parameter X2. 
 Note that Duet 2 Maestro does not currently support M150, so only the V1.2 version works (not tested).
-* [BigTreeTech Mini12864 V1.0 and V2.0](https://github.com/bigtreetech/MINI-12864/)
+* [BigTreeTech Mini12864 V1.0 and V2.0](https://github.com/bigtreetech/MINI-12864/){target=_blank}
 V1.0 is effectively a clone of the Fysetc Mini12864 V2.1 panel. V2.0 adds another connector, but should work the same as the V1.0 board.
 * Mellow FLY Mini12864 V1.0 Panel (Available on AliExpress)
 Again, this is understood to be a clone of the Fysetc Mini12864 V2.1 panel.
-* [Makerbase MKS Mini12864 V3.0](https://github.com/makerbase-mks/MKS-MINI12864-V3)
+* [Makerbase MKS Mini12864 V3.0](https://github.com/makerbase-mks/MKS-MINI12864-V3){target=_blank}
 Another clone of the Fysetc Mini12864 V2.1 panel, but the unit tested needed a slightly different configuration.
 
 ### 12864 displays using ST7920 controller chip
-These displays are typically clones of the [RepRapDiscount Full Graphic Smart Controller](https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller) and look like this. 
+These displays are typically clones of the [RepRapDiscount Full Graphic Smart Controller](https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller){target=_blank} and look like this. 
 
 ![displays_12864_01.jpg](/manual/displays/displays_12864_01.jpg =400x)
 
@@ -111,13 +115,39 @@ The ST7920 controller chip is invariably powered from 5V, which means that the d
 
 With the display connected, menu files need to be added to the SD card, or the display will have nothing to show. See [12864 display menu system](/User_manual/Connecting_hardware/Display_12864_menu).
 
-To enable the display, send an M918 command. For displays that have addressable RGB LEDs, an M150 command will need to be sent before they turn on. These will usually be added to the config.g, so the display is enabled at startup. 
-
-## Tabs{.tabset}
+## Tabs {.tabset}
 
 ### ST7567
 
-To configure this type of display in RepRapFirmware, use the [M918](/User_manual/Reference/Gcodes/M918) command with display type parameter P2. The contrast setting for these displays is done in software, and the M918 command supports a C parameter for this purpose. It is also necessary to set a resistor ratio parameter in software, which can be done using the M918 R parameter.
+To configure this type of display in RepRapFirmware, use the [M918](/User_manual/Reference/Gcodes/M918) command with display type parameter P2. The contrast setting for these displays is done in software, and the M918 command supports a C parameter for this purpose. It may also be necessary to set a resistor ratio parameter in software, which can be done using the M918 R parameter.
+
+For displays with NeoPixel RGB LED backlights, the configuration depends on which firmware version you are running. RRF 3.5 and later uses M950 to configure the LEDs, and M150 to control them. RRF 3.4 and earlier uses M150 to both configure and control LEDs. These commands will usually be added to the config.g, so the display is enabled at startup. 
+
+#### Tabs {.tabset}
+
+##### RepRapFirmware 3.5 and later
+
+From RRF 3.5.0-beta.4, [M950](/User_manual/Reference/Gcodes/M950) is used to configure displays that support NeoPixel RGB backlights, and [M150](/User_manual/Reference/Gcodes/M150) is used to control the LEDs.
+
+Example for Fysetc Mini12864 V2.1 display with Neopixel LEDs on a Duet 3 Mini 5+ 12864_EXP1 connector:
+```
+M918 P2 E-4 F2000000           ; Fysetc 12864mini
+M950 E1 C"io3.out" T1 U3       ; create a RGB Neopixel LED strip with 3 LEDs on the Duet 3 Mini 5+ 12864_EXP1 header
+M150 E1 R0 U0 B255 P255 S1 F1  ; display led blue
+M150 E1 R255 U0 B0 P255 S1 F1  ; left encoder led red
+M150 E1 R0 U255 B0 P255 S1 F0  ; right encoder led green
+```
+
+Example for Makerbase MKS Mini12864 V3.0
+```
+M918 P2 E-4 C70 R4             ; enable MKS Mini12864
+M950 E0 C"io3.out" T1 U3       ; create a RGB Neopixel LED strip with 3 LEDs on the Duet 3 Mini 5+ 12864_EXP1 header
+M150 E0 R255 U0 B0 P255 S3 F0  ; GRB LEDs so this shows green
+```
+
+Note that some RGB LEDs define their colours in the order Green, Red, Blue, so R parameter will be green, and U parameter will be blue.
+
+##### RepRapFirmware 3.4 and earlier
 
 On displays that support NeoPixel RGB backlights, set these with [M150](/User_manual/Reference/Gcodes/M150). 
 
@@ -144,11 +174,15 @@ M918 P1 E4 F2000000
 
 # Connecting BigTreeTech colour displays
 
-(Instructions from [https://teamgloomy.github.io/tft.html](https://teamgloomy.github.io/tft.html), thanks!)
+(Instructions from [https://teamgloomy.github.io/tft.html](https://teamgloomy.github.io/tft.html){target=_blank}, thanks!)
 
 ## Overview
 
-The most recent version of the [standard bigtreetech TFT firmware](https://github.com/bigtreetech/BIGTREETECH-TouchScreenFirmware/tree/master/Copy%20to%20SD%20Card%20root%20directory%20to%20update) has built in support for RepRapFirmware. The pre-built images have this enabled by default.
+Recent version of the [standard bigtreetech TFT firmware](https://github.com/bigtreetech/BIGTREETECH-TouchScreenFirmware/tree/master/Copy%20to%20SD%20Card%20root%20directory%20to%20update){target=_blank} has built in support for RepRapFirmware. The pre-built images have this enabled by default.
+
+> As of September 2023, BTT firmware still MOSTLY works with RRF. Heating, movement, monitoring prints etc works, however accessing the Duet filesystem does not. There may be other quirks that break RRF support as the firmware develops. Duet3D is not responsible for the BigTreeTech firmware; please contact BTT to get these fixed. See [this thread on the forum](https://forum.duet3d.com/topic/33572/bigtreetech-graphic-display-on-duet-wifi){target=_blank} for more information.
+{.is-info}
+
 
 ## Connection to the board
 
