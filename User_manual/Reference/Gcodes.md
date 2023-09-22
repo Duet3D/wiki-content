@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-06-21T15:06:22.464Z
+date: 2023-09-22T01:56:44.888Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1270,6 +1270,9 @@ The effect of M0 depends on the state of the machine.
 1. All motors are put into idle mode.
 1. If there is no stop.g or cancel.g file (as appropriate) then all heaters are turned off too. In RRF versions prior to 3.4 you can prevent heaters being turned off using parameter H1.
 
+Note: *From RRF 3.5b1, When a print file completes normally then file stop.g is run automatically even if the print file did not end with a M0 command.*
+
+
 See also [M1 - sleep or conditional stop](/User_manual/Reference/Gcodes/M1){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
 
 ## M1: Sleep or Conditional stop
@@ -1498,41 +1501,41 @@ M20 S3 R23
 
 ## M21: Initialize SD card
 
-## Tabs {.tabset}
+### Tabs {.tabset}
 
-### Standalone mode
+#### Standalone mode
 
 The specified SD card is initialized.
 
-#### Parameters
+##### Parameters
 
 * *This command can be used without any additional parameters.*
 * **Pnnn** SD card number (default 0)
 
-#### Examples
+##### Examples
 <br>
 <pre class="cblock">
 M21
 M21 P1
 </pre>
 
-#### Notes
+##### Notes
 
 * If an SD card is loaded when the machine is switched on, this will happen by default. 
 * SD cards must be initialized for the other SD functions to work.
 
-### SBC mode
+#### SBC mode
 
 In SBC mode and RRF v3.4 or newer this code may be used to mount block devices or remote endpoints using the mount command. 
 
-#### Parameters
+##### Parameters
 
 * **Pnnn** Device node or remote endpoint
 * **Snnn** Local directory to mount to (e.g. `0:/gcodes/remote`, optional if the device node is already present in /etc/fstab)
 * **Tnnn** Mount type (-t flag, e.g. nfs)
 * **Onnn** Mount options (-o flag)
 
-#### Examples
+##### Examples
 <br>
 <pre class="cblock">
 M21 P"192.168.1.222:3D" S"0:/gcodes/remote" T"nfs"
@@ -1540,50 +1543,50 @@ M21 P"//192.168.1.222/3D" S"0:/gcodes/remote" T"cifs" O"user=myUser,password=myP
 M21 P"curlftpfs#ftp://192.168.1.222:/3D" S"0:/gcodes/remote" T"fuse" O"user=myUser:myPass" ; requires curlftpfs package
 </pre>
 
-#### Notes
+##### Notes
 
 * This requires the DuetPiManagementPlugin to be running. 
 * In SBC mode, this command should be in dsf-config.g NOT config.g.
 
 ## M22: Release SD card
 
-## Tabs {.tabset}
+### Tabs {.tabset}
 
-### Standalone mode
+#### Standalone mode
 
 The specified SD card is released, so further (accidental) attempts to read from it are guaranteed to fail.
 
-#### Parameters
+##### Parameters
 
 * *This command can be used without any additional parameters.*
 * **Pnnn** SD card number (default 0)
 
-#### Examples
+##### Examples
 <br>
 <pre class="cblock">
 M22
 M22 P1
 </pre>
 
-#### Notes
+##### Notes
 
 * This command is helpful, but not mandatory before removing the card physically.
 
-### SBC mode
+#### SBC mode
 
 In SBC mode and v3.4 or newer this code may be used to unmount block devices or remote endpoints using the mount command.
 
-#### Parameters
+##### Parameters
 
 * **Pnnn** Device node or remote endpoint
 
-#### Examples
+##### Examples
 <br>
 <pre class="cblock">
 M22 P"0:/gcodes/remote"
 </pre>
 
-#### Notes
+##### Notes
 
 * This requires the DuetPiManagementPlugin to be running. 
 * In SBC mode, this command should be in dsf-config.g NOT config.g.
@@ -2303,7 +2306,8 @@ This example sets the current line number to 123. Thus the expected next line af
 ### Parameters
 
 * **Pnn** Debug module number
-* **Sn** Debug on (S1), off (S0)
+* **Sn** Debug on (S1), off (S0). S0 is equivalent to D0. S1 is equivalent to D{0xFFFF}.
+* **Dnnn** Set/clear individual debug flags for the specified module
 
 ### Examples
 <br>
@@ -2312,7 +2316,7 @@ M111
 M111 P1 S1 ; enable debugging for module 1
 </pre>
 
-Enable or disable debugging features for the module number specified by the P parameter. M111 without parameters lists all the modules, their numbers, and whether debugging is enabl d for each..
+Enable or disable debugging features for the module number specified by the P parameter. M111 without parameters lists all the modules, their numbers, and whether debugging is enabled for each..
 
 Note, print quality may be affected when debug output is enabled because of the volume of data sent to USB. Debug output should normally be used only for debugging firmware, or when instructed to help with diagnosis of particular issues.
 
@@ -3090,6 +3094,8 @@ M208 X-5:200 Y0:200 Z0:90 ; set axis minima and maxima
 ### Notes
 
 The values specified set the software limits for axis travel in the specified direction. The axis limits you set are also the positions assumed when an endstop is triggered.
+
+The min/max axis positions are +/- (2^31 - 1) microsteps. Position accuracy will start to suffer when the positions are outside approx. +/- 2^24 microsteps, because it is held and calculated as a 32-bit float. See also this note on [maximum length of moves](/User_manual/Reference/Gcodes#maximum-length-of-moves) in the G1 Gcode entry.
 
 The M208 minimum Z value applies to deltas. The M208 XY min/max and Z max values don't.
 
@@ -3992,7 +3998,7 @@ The values of this command are currently only used by the print monitor and only
 
 ## M408: Report JSON-style response
 
-Deprecated in RRF 3.3 and later. Use M409 to get response from Object Model, which provides more information.
+**Deprecated in RRF 3.3 and later.** Use M409 instead to get response from Object Model, which provides more information.
 
 ### Parameters
 
@@ -4859,7 +4865,7 @@ A Z probe may be a switch, an IR proximity sensor, or some other device. The **P
 * P8 is as P5 but is unfiltered, for faster response time.
 * P9 is as P5 but for a BLTouch probe that needs to be retracted and redeployed between probe points.
 * P10 means use Z motor stall detection as the Z probe trigger.
-* P11 means a scanning Z probe with an analog output (supported from RRF 3.5.0-beta.4). Such probes muct be calibrated before use (see M558.1).
+* P11 means a scanning Z probe with an analog output (supported from RRF 3.5.0-beta.4). Such probes must be calibrated before use (see M558.1).
 
 Z probe types 4, 6 and 7 (used in RRF 2.x) are no longer supported. Instead, use type 5 (filtered digital) or 8 (unfiltered digital) and use the C parameter to specify the input. 
 
@@ -4949,7 +4955,7 @@ Related commands: [G29](/User_manual/Reference/Gcodes/G29){target=_blank}, [G30]
 
 See also: [Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing){target=_blank}, [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting){target=_blank}
 
-## M558.1: Calibrate scanning Z probe
+## M558.1: Calibrate height vs reading of scanning Z probe
 
 Supported from RRF 3.5.0-rc.1
 
@@ -4957,25 +4963,45 @@ Supported from RRF 3.5.0-rc.1
 
 * **Knn** (optional) Z probe number, default 0. The probe must be of a scanning type (see M558).
 * **Sn.n** Height to scan above and below the trigger height, in mm
-* **Ann.n** (optional) Linear coefficient of the output, in counts per mm
-* **Bnn.n** (optional, ignored unless A parameter is also present, default 0.0) Quadratic coefficient of the output, in counts^2 per mm
-
+* **Ann.n** (optional) Linear coefficient of the output, in mm per count
+* **Bnn.n** (optional, ignored unless A parameter is also present, default 0.0) Quadratic coefficient of the output, in mm^2 per count
+* **Cnn.n** (optional, ignored unless A parameter is also present, default 0.0) Cubic coefficient of the output, in mm^3 per count
 If the A parameter is present then the equation to calculate the actual height of the Z probe is set to this:
 
 <br>
 <pre class="cblock">
-height = trigger_height + A * (probe_reading - probe_threshold) + B * (probe_reading - probe_threshold)^2
+height = trigger_height + A * (probe_reading - probe_threshold) + B * (probe_reading - probe_threshold)^2 + C * (probe_reading - probe_threshold)^3
 </pre>
 
 where trigger_height and probe_threshold are as set by G31.
 
-If the A parameter is not present but the S parameter is present then the probe is raised or lowered to (trigger_height + S_parameter) at the current XY position, then readings are taken as the probe is gradually lowered to (trigger_height - S_parameter). The readings are used to compute, store and report new values of A and B and the trigger threshold.
+If the A parameter is not present but the S parameter is present then the probe is raised or lowered to (trigger_height + S_parameter) at the current XY position, then readings are taken as the probe is gradually lowered to (trigger_height - S_parameter). The readings are used to compute, store and report new values of A, B, C and the trigger threshold.
 
-If neither the A nor the S parameter is present, the current A and B values are reported.
+If neither the A nor the S parameter is present, the current A, B and C values are reported.
 
 ##### Order dependency
 
-Before M558.1 is used the probe must be defined as a scanning Z probe using M558, the probe trigger height must be set using G31, and the Z axis must have been homed.
+Before M558.1 is used the probe must be defined as a scanning Z probe using M558, the probe trigger height must be set using G31, the axes must have been homed, the sensor must be over the bed surface and not too close to the edges of the bed, and the sensor drive current should have been set using M558.2 if necessary.
+
+## M558.2: Calibrate or set drive level for scanning Z probe
+
+Supported from RRF 3.5.0-rc.1
+
+### Parameters
+
+* **Knn** (optional) Z probe number, default 0. The probe must be of a scanning type (see M558).
+* **Snn** Drive level to set, or -1 to determine automatically. For LDC1612-based probes, when setting the current this should be in the range 0 to 31.
+
+This command is used to set the drive current of scanning Z probes that use the LDC1612 chip. If the drive current is set too low, the sensor wil not work when it is close to the bed. If the drive current is set too high, it will not work when the sensor is distant from the bed. Use M122 B# (where # is the CAN address of the board that carries the sensor) to determine whether the sensor is working normally.
+
+When using this command with S-1 to determine the optimum drive current automatically, the sensor should first be placed at the lower distance limit (closest distance from the metal bed surface) of the intended operating range.
+
+If M558 is used with no S parameter then the current drive level is reported.
+
+##### Order dependency
+
+Before M558.2 is used the probe must be defined as a scanning Z probe using M558.
+After M558.2 is used to change the drive level, M558.1 should be used to recalibrate the probe.
 
 ## M559: Upload file
 
@@ -5185,7 +5211,7 @@ Example: If you have two motors on your Z axis, physically connected to Z and E0
 
 ### Parameters
 
-* **Pnnn** Tool number
+* **Pnnn** Tool number. If this parameter is not provided, the current tool is used.
 * **Ennn** Mix ratios
 
 ### Examples
@@ -5313,13 +5339,14 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 * **Tn** Encoder type: 0=none (default), 1=linear quadrature encoder plus Duet3D magnetic shaft encoder (RRF 3.5 only), 2=quadrature motor shaft encoder, 3=Duet3D magnetic motor shaft encoder using AS5047D (RRF 3.5 only)
 * **Cn.n** In RRF 3.4, for a quadrature motor shaft encoder (T2) this is the number of counts per full step. In RRF 3.5, for a quadrature shaft encoder (T2) or linear composite encoder (T1) it is the number of quadrature encoder pulses per revolution. Not required for a magnetic shaft encoder.
 * **En.n:m.m** Error thresholds. If m.m is nonzero then whenever the actual position is more than m.m full motor steps of the desired position, this will be reported as a driver error. If n.n is nonzero and n.n < m.m then whenever the actual position is more than n.n full steps of the desired position but is less than m.m full steps, this will be reported as a pre-stall. (Default: m.m=2.0, n.n=1.0) The action that is taken on a stall/pre-stall can be configured using the [event system](/User_manual/RepRapFirmware/Events)
-* **Sn.n** (RRF 3.5 only) Motor full steps per revolution, default 200.
+* **Sn.n** (optional, RRF 3.5 only) Motor full steps per revolution, default 200.
 * **Rn.n** Proportional constant
-* **In.n** Integral constant
-* **Dn.n** Derivative constant
-* **Vn.n** Velocity feedforward constant (RRF 3.5beta2 and later only)
-* **An.n** Acceleration feedforward constant (RRF 3.5beta4 and later only)
-* **Hn.n** Minimum holding current as a percentage of the configured motor current when operating in closed loop mode
+* **In.n** (optional) Integral constant
+* **Dn.n** (optional) Derivative constant
+* **Vn.n** (optional) Velocity feedforward constant (RRF 3.5beta2 and later only)
+* **An.n** (optional) Acceleration feedforward constant (RRF 3.5beta4 and later only)
+* **Hn.n** (optional) Minimum holding current as a percentage of the configured motor current when operating in closed loop mode
+* **Qn.n** (optional) Motor torque in newton-metres per amp of peak motor current (RRF 3.5 post beta 4 only)
 
 ### Description
 
@@ -5332,9 +5359,11 @@ For RRF 3.4, if you are using a quadrature encoder on the motor shaft,  the enco
 Supported for drivers attached to:
 * [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL){target=_blank}
 
-The E parameter defaults to 0.0:0.0. **If you do not override this default, then failure to maintain position will not be reported.**
+The E parameter defaults to 0.0:0.0 in RRF 3.4.x. **If you do not override this default, then failure to maintain position will not be reported.**
 
 See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_blank} for further details on setting the proportional/integral/derivative constants.
+
+The Q parameter is relevant only when the driver is put into torque mode, see M569.4.
 
 ## M569.2: Read or write stepper driver register
 
@@ -5414,16 +5443,17 @@ If **P** is not supplied, an error is returned.
 
 A maximum of four CAN-connected drivers can be reached with M569.3 counting from machine boot. CAN addresses that fail to respond don't count towards this maximum.
 
-## M569.4: Set Motor Driver Torque Mode via secondary CAN bus
+## M569.4: Set Motor Driver Torque Mode
 
-*Supported only on Duet 3 MB6HC and MB6XD boards with ODrives connected to the second CAN bus and Hangprinter kinematics configured*
+*Supported in firmware 3.5 post beta4 on Expansion 1HCL and M23CL devices when in closed loop mode. Also supported in firmware 3.4 and later on Duet 3 MB6HC and MB6XD boards with ODrives connected to the second CAN bus and Hangprinter kinematics configured.*
 
-Tell one or more motor drivers to apply a specified torque regardless of position. Planned for support in RRF 3.4.
+Tell one or more motor drivers to apply a specified torque regardless of position.
 
 ### Parameters
 
 * **Pn.n** Motor CAN address and driver number. Can also be a colon separated list of driver numbers.
-* **Tn** Where n is the mode/torque to apply in units of Nm.
+* **Tn.n** The torque to apply in units of Nm, or zero to leave torque mode.
+* **Vn.n** (optional) Maximum speed to move at (not supported on Hangprinter/ODrive; not yet supported on 1HCL or M23CL as at 2023-08-08).
 
 ### Examples
 <br>
@@ -6239,45 +6269,36 @@ M586 P2 S1 ; enable Telnet
 * M586 with no S parameter reports the current support for the available protocols.
 * RepRapFirmware 1.18 and later enable only HTTP (or HTTPS if supported) protocol by default. If you wish to enable FTP and/or Telnet, enable them using this command once or twice in config.g.
 
-## M586.4: Configure MQTT server
+## M586.4: Configure MQTT Client
 
 *Supported from firmware version 3.5, on Duet WiFi boards in standalone mode. Requires the WiFi interface to be running WiFi server version 2.1 or later.*
 
 ### Parameters
 
-* **U** "username" The name to use when logging on to the MQTT server
-* **K** "password" The password to use when logging on to the MQTT server (only valid if the U parameter is also present)
-* **C** "client-id" The client ID to use
-* **W** "will-message" The will-message to use
-* **T** "topic" The topic name to use (only processed if the W parameter is also present)
-* **S** "subscription" The subscription name to use
-* **Qnn** The quality of service to use, 0 to 2 (only processed if the S parameter is also present)
-* **P** "publish" Publish the topic if this is set
-* **Rn** 1 = retain, 0 = do not retain (only processed if the P parameter is used)
-* **Dn** 1 = duplicate, 0 = don't duplicate (only processed if the P parameter is used)
+* **U** "username" Username for authenticating with MQTT broker that does not allow anonymous login.
+* **K** "password" Password for authenticating with MQTT broker that does not allow anonymous login (only processed if the `U` parameter is also present).
+* **C** "client-id" Set fixed MQTT client ID, useful when using persistent sessions (not yet supported).
+* **W** "will-message" Message to send to subscribers when MQTT client does not disconnect from the broker gracefully (such as sudden shutdown of the board, network loss, etc).
+* **T** "will-topic" The topic to publish the will message under (only processed if the `W` parameter is also present).
+* **Q** "will-qos" QOS level of the will message (only processed if the `W` parameter is also present).
+* **R** "will-retain" Set retain flag of the will message (only processed if the `W` parameter is also present).
+* **S** "subscribe-topic" Add topic to subscribe to.
+* **Onn** "subscribe-max-qos" Max QOS level of the subscription (only processed if the `S` parameter is also present).
 
-### Descripton
 
-The RRF MQTT client publishes message sent via M118 under a predefined topic, eg `topic-duet`. The `echo` MQTT client is subscribed to this topic, which retransmits the message under a second predefined topic, eg `topic-echo`. Since the RRF MQTT client in turn is subscribed to this topic, it receives and displays the retransmitted message.
-
-### Examples
+### Example
 
 <br>
 <pre class="cblock">
-;Configure the MQTT client
-M586.4 C"duet"
-M586.4 U"test-duet" K"test-duet-pswd"
-M586.4 P"topic-duet" D0 R0 Q0
-M586.4 S"topic-echo" Q0
-; Enable the MQTT protocol
-M586 P4 R1884 H192.168.10.244 S1
-; Publish a message via M118
-M118 P6 S"duet-message"
-; Disable the MQTT Protocol
-M586 P4 S0
+M586.4 C"duet"                      ; Set client ID
+M586.4 U"username" K"password"      ; Set authentication credentials
+M586.4 S"subscription" O2           ; Subscribe to topic
+M586 P4 R1884 H192.168.10.244 S1    ; Enable MQTT protocol/client
+M118 P6 S"message" T"topic"         ; Publish message
+M586 P4 S0                          ; Disable MQTT protocol/client; disconnects from broker gracefully.
 </pre>
 
-For a full example, see [the RRF Github repository here](https://github.com/Duet3D/RepRapFirmware/tree/3.5-dev/Scripts/MQTTDemo).
+For a full demonstration, see [the RRF Github repository here](https://github.com/Duet3D/RepRapFirmware/tree/3.5-dev/Scripts/MQTTDemo).
 
 ## M587: Add WiFi host network to remembered list, or list remembered networks
 
@@ -6454,13 +6475,13 @@ Note that filament monitoring in RRF is only active when printing from SD card.
   * 6 = Duet3D laser sensor with microswitch
   * 7 = pulse-generating sensor
 * **C"name"** Pin name the filament sensor is connected to (RRF3 only), see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. DueX2/5 users, see Notes below.
-* **Sn** 0 = disable filament monitoring (default), 1 = enable filament monitoring when printing from SD card. Supported for all filament sensor types in firmwares 1.21.1 and in 2.0 and later. In firmware 1.21 this parameter is not supported for sensor types 1 and 2. Filament monitors accumulate calibration data (where applicable) even when filament monitoring is disabled.
+* **Sn** 0 = disable filament monitoring (default), 1 = enable filament monitoring when printing from SD card, 2 = enable filament monitoring all the time (S2 is supported RRF 3.5.0-rc.1 and later only). Filament monitors accumulate calibration data (where applicable) even when filament monitoring is disabled.
 
 **Additional parameters for Duet3D laser filament monitor**
 
 * **Raa:bb** Allow the filament movement reported by the sensor to be between aa% and bb% of the commanded values; if it is outside these values and filament monitoring is enabled, the print will be paused
 * **Enn** minimum extrusion length before a commanded/measured comparison is done, default 3mm
-* **An** (firmware 2.03 and later) 1 = check All extruder motion, 0 (default) = only check extruder motion of printing moves (moves with both movement and forward extrusion)
+* **An** 1 = check All extruder motion, 0 (default) = only check extruder motion of printing moves (moves with both movement and forward extrusion)
 * **Lnn** (firmware 3.2 and later) Calibration factor, default 1.0. The filament movement reported by the laser sensor is multiplied by this value before being compared with the commanded extrusion. Intended for use with sensors that use the laser to read movement of a wheel that is turned by the filament.
 
 **Additional parameters for Duet3D rotating magnet filament monitor**
@@ -6617,17 +6638,22 @@ M593 P"none"      ; disable DAA
 M593 F40.5  ; use DAA to cancel ringing at 40.5Hz
 </pre>
 
+Note: In firmware 2.02 up to 3.3 the only form of input shaping supported is Dynamic Acceleration Adjustment (DAA). By default, DAA is disabled. If it is enabled, then acceleration and deceleration rates will be adjusted per-move to reduce ringing at the specified frequency. Acceleration limits set by M201 and M204 will still be honoured when DAA is enabled, so DAA will only ever reduce acceleration. Therefore your M201 and M204 limits must be high enough so that DAA can reduce the acceleration to the optimum value. Where possible DAA reduces the acceleration or deceleration so that the time for that phase is the period of the ringing. If that is not possible because of the acceleration limits, it tries for 2 times the period of the ringing.
+
 ### Notes
 
-In firmware 2.02 up to 3.3 the only form of input shaping supported is Dynamic Acceleration Adjustment (DAA). By default, DAA is disabled. If it is enabled, then acceleration and deceleration rates will be adjusted per-move to reduce ringing at the specified frequency. Acceleration limits set by M201 and M204 will still be honoured when DAA is enabled, so DAA will only ever reduce acceleration. Therefore your M201 and M204 limits must be high enough so that DAA can reduce the acceleration to the optimum value. Where possible DAA reduces the acceleration or deceleration so that the time for that phase is the period of the ringing. If that is not possible because of the acceleration limits, it tries for 2 times the period of the ringing.
+Input shaping not working for your printer? Check this:
+* High X and Y jerk values are an issue for all types of Input Shaping because the theory behind IS assumes no jerk. Therefore you should set the X and Y jerk limits only as high as necessary to allow curves to be printed smoothly. Users report jerk values of 5mm/s (300mm/min) seem to allow for IS to work, and curves to print smoothly, though test it works for you.
+* Another cause of IS not working is mesh compensation with a fine mesh and low acceleration. This splits the acceleration and deceleration parts of a move across multiple segments, which makes it difficult for RRF to apply IS.
+* A third cause is short accelerate/decelerate moves. This is being addressed in RRF 3.5.0-rc.1.
 
 Input shaping is most useful to avoid exciting low-frequency ringing, for which S-curve acceleration is ineffective and may make the ringing worse. High-frequency ringing would be better countered by using S-curve acceleration; however, low-frequency ringing is more of a problem in most 3D printers.
 
-The ringing frequencies are best measured using an accelerometer, for which support is provided in RRF 3.3 and later. Alternatively, take a print that exhibits ringing on the perimeters (for example a cube), preferably printed single-wall or external-perimeters-first. Divide the speed at which the outer perimeter was printed (in mm/sec) by the distance between adjacent ringing peaks (in mm). When measuring the distance between peaks, ignore peaks close to the corner where the ringing started (these peaks will be spaced more closely because the print head will have been accelerating in that area).
+The ringing frequencies are best measured using an accelerometer, for which support is provided in RRF 3.3 and later. 
+
+If you don't have an accelerometer, take a print that exhibits ringing on the perimeters (for example a cube), preferably printed single-wall or external-perimeters-first. Divide the speed at which the outer perimeter was printed (in mm/sec) by the distance between adjacent ringing peaks (in mm). When measuring the distance between peaks, ignore peaks close to the corner where the ringing started (these peaks will be spaced more closely because the print head will have been accelerating in that area).
 
 Cartesian and CoreXY printers will typically have different frequencies of ringing for the X and Y axes. In this case it is is usually best to aim to cancel the lower ringing frequency. If the frequencies are not much different, in a moving-bed Cartesian printer you can reduce the higher ringing frequency by adding mass to that axis or reducing belt tension on that axis. Note that X axis ringing causes artefacts predominantly on the Y face of the test cube, and vice versa.
-
-High X and Y jerk values reduce the effectiveness of DAA; therefore you should set the X and Y jerk limits only as high as necessary to allow curves to be printed smoothly.
 
 Keep in mind that you have to retune Pressure Advance after you have configured Input Shaping. The Pressure Advance will differ from shaper to shaper and from frequency to frequency.
 
@@ -7486,6 +7512,7 @@ This sets the stall detection parameters and optionally the low-load current red
 
 ##### Notes
 
+* In RRF 3.4.0 thru 3.4.5, motor stalls don't generate events when not printing from SD card. RRF 3.4.6-rc.1 and 3.5.0-beta4 and later do generate events when not printing from SD card.
 * In RRF v3.4 and later, R2 and R3 both cause an event to be created when the driver stalls. 
 * To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. 
 * If file driver-stall.g is not found then the default action is to report it to the console and carry on.
@@ -7913,15 +7940,26 @@ This command configures an accelerometer.
 * **C"aaa+bbb"** Pins to use for CS and INT (in that order) when connecting the accelerometer via SPI
 * **Q**nnn (RRF 3.3RC1 and later) SPI clock frequency (optional, default 2000000 i.e. 2MHz)
 
+### Examples
+<br>
+<pre class="cblock">
+M955 P0 C"spi.cs1+spi.cs0" I10 ; configure accelerometer on mainboard using SPI pins and specify orientation 
+M955 P121.0 I10                ; configure accelerometer on toolboard with CAN address 121 and specify orientation 
+</pre>
+
 ### Notes
 
-The **P** parameter selects which accelerometer to use and is mandatory. To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**. Use **P0** for an accelerometer connected locally via SPI.
+The **P** parameter selects which accelerometer to use and is mandatory. To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**. Use **P0** for an accelerometer connected locally (i.e. on the mainboard) via SPI.
 
 If none of the other parameters are provided, the current configuration of the specified accelerometer is reported. Otherwise the configuration of that accelerometer is adjusted according to the I, S, and R parameters. These configuration settings persist until they are changed.
+
+The **C** parameter is needed only when the accelerometer is connected to a mainboard, and defines the pins used for the CS and INT signals. It is not needed when using a toolboard with integrated accelerometer.
 
 The **I** (orientation) parameter tells the firmware which of the 24 possible orientations the accelerometer chip is in relative to the printer axes. It is expressed as a 2-digit number. The first digit specifies which machine direction the Z axis of the accelerometer chip (usually the top face of the chip) faces, as follows: 0 = +X, 1 = +Y, 2 = +Z, 4 = -X, 5 = -Y, 6 = -Z. The second digit expresses which direction the X axis of the accelerometer chip faces, using the same code. If the accelerometer chip axes line up with the machine axis, the orientation is 20. This is the default orientation if no orientation has been specified.
 
 The **S** and **R** parameters control how the accelerometer is programmed. The R parameter is ignored unless the S parameter is also provided. If S is provided but R is missing, a default resolution is used. The sensor resolution will be adjusted to be no greater than the value of the R parameter (or the minimum supported resolution if greater), then the sensor sampling rate will be adjusted to a value supported at that resolution that is close to the S parameter. The actual rate and resolution selected can be found by using M955 with just the P parameter.
+
+For more information on connecting accelerometers, see the [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) wiki page.
 
 ## M956: Collect accelerometer data and write to file
 
@@ -8054,16 +8092,17 @@ Starting from v3.3 the **B** parameter may be set to -1 to reboot the attached S
 * **nnn**: Tool number to select. A negative number deselects all tools.
 * **R1**: Select the tool that was active when the print was last paused (firmware 1.20 and later)
 * **Pnnn**: Bitmap of all the macros to be run (dc42 build 1.19 or later and ch fork 1.17b or later)
-* Tool number
+* **Tnn**: (RRF 3.4 and later) Alternative way to specify the tool number, which allows use of an expression to calculate the tool number
 
 ### Examples
 <br>
 <pre class="cblock">
-T0 ; select tool 0
-T1 P0 ; select tool 1 but don't run any tool change macro files
-T-1 P0 ; deselect all tools but don't run any tool change macro files
-T R1 ; select the tool that was active last time the print was paused
-T ; report the current tool number
+T0                          ; select tool 0
+T1 P0                       ; select tool 1 but don't run any tool change macro files
+T-1 P0                      ; deselect all tools but don't run any tool change macro files
+T R1                        ; select the tool that was active last time the print was paused
+T                           ; report the current tool number
+T T{state.currentTool + 1}  ; select the tool whose number is one higher than the current tool
 </pre>
 
 ### Description
