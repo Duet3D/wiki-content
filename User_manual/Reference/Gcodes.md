@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-09-22T01:59:04.995Z
+date: 2023-09-22T02:22:29.593Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2447,9 +2447,13 @@ Supported in RepRapFirmware 1.21 and later.
 
 ### Parameters
 
-* **Pnnn** Message type (0 = Generic [default], 1 = USB, 2 = PanelDue/UART, 3 = HTTP, 4 = Telnet, 5 = second UART, 6 = MQTT publisher [RRF 3.5beta2 and later only]) (optional)
+* **Pnnn** Message type (0 = Generic [default], 1 = USB, 2 = PanelDue/UART, 3 = HTTP, 4 = Telnet, 5 = second UART, 6 = MQTT Client [RRF 3.5beta2 and later only]) (optional)
 * **S"msg"** Message to send , limit of 100 characters
 * **Lnnn** Log level of this message (0 = do not log this line, 1 = log as WARN, 2 = log as INFO, 3 = log as DEBUG (default)) (RRF >= 3.2.0-beta3)
+* **T"topic"** The topic to publish the message under (only valid on MQTT Client message).
+* **Qnn** The QOS level of the message to publish, from `0` to `2` (only valid for MQTT Client message, optional). Defaults to `0` if not specified.
+* **Rn** Set publish retain flag, `1` or `0`  (only valid for MQTT Client message, optional). Defaults to `0` if not specified.
+* **Dn** Set publish duplicate flag, `1` or `0` (only valid for MQTT Client message, optional). Defaults to `0` if not specified.
 
 ### Examples
 <br>
@@ -2458,6 +2462,7 @@ M118 S"Hello Duet"
 M118 S"Hello Logfile" L1
 M118 P0 S"Hello Logfile and DWC" L1
 M118 S"Don't log me" L0
+M118 S"My MQTT Message" T"My-MQTT-Topic"
 </pre>
 
 This code may be used to send messages to a specific target. Basically it is a simple wrapper for RepRapFirmware's Platform::Message method.
@@ -6275,15 +6280,15 @@ M586 P2 S1 ; enable Telnet
 
 ### Parameters
 
-* **U** "username" Username for authenticating with MQTT broker that does not allow anonymous login.
-* **K** "password" Password for authenticating with MQTT broker that does not allow anonymous login (only processed if the `U` parameter is also present).
-* **C** "client-id" Set fixed MQTT client ID, useful when using persistent sessions (not yet supported).
-* **W** "will-message" Message to send to subscribers when MQTT client does not disconnect from the broker gracefully (such as sudden shutdown of the board, network loss, etc).
-* **T** "will-topic" The topic to publish the will message under (only processed if the `W` parameter is also present).
-* **Q** "will-qos" QOS level of the will message (only processed if the `W` parameter is also present).
-* **R** "will-retain" Set retain flag of the will message (only processed if the `W` parameter is also present).
-* **S** "subscribe-topic" Add topic to subscribe to.
-* **Onn** "subscribe-max-qos" Max QOS level of the subscription (only processed if the `S` parameter is also present).
+* **U"username"** Username for authenticating with MQTT broker that does not allow anonymous login (not needed if broker supports anonymous login)
+* **K"password"** Password for authenticating with MQTT broker that does not allow anonymous login (only processed if the `U` parameter is also present; not needed if broker supports anonymous login).
+* **C"client-id"** Set fixed MQTT client ID, used with persistent sessions (not yet supported).
+* **W"will-message"** Set message to send to subscribers when MQTT client does not disconnect from the broker gracefully (such as sudden shutdown of the board, network loss, etc). If not set, no message is sent to subscribers.
+* **T"will-topic"** The topic to publish the will message under (only processed if the `W` parameter is also present).
+* **Q"will-qos"** QOS level of the will message, from `0` to `2` (only processed if the `W` parameter is also present, optional). Defaults to `0` if not specified.
+* **R"will-retain"** Set retain flag of the will message, `1` or `0` (only processed if the `W` parameter is also present, optional). Defaults to `0` if not specified.
+* **S"subscribe-topic"** Add topic to subscribe to.
+* **On** Max QOS level of the subscription, from `0` to `2` (only processed if the `S` parameter is also present).
 
 
 ### Example
