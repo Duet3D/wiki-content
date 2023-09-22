@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-09-22T01:56:44.888Z
+date: 2023-09-22T01:59:04.995Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6294,11 +6294,11 @@ M586.4 C"duet"                      ; Set client ID
 M586.4 U"username" K"password"      ; Set authentication credentials
 M586.4 S"subscription" O2           ; Subscribe to topic
 M586 P4 R1884 H192.168.10.244 S1    ; Enable MQTT protocol/client
-M118 P6 S"message" T"topic"         ; Publish message
+M118 P6 S"message" T"topic"         ; Publish message (See M118 for more details)
 M586 P4 S0                          ; Disable MQTT protocol/client; disconnects from broker gracefully.
 </pre>
 
-For a full demonstration, see [the RRF Github repository here](https://github.com/Duet3D/RepRapFirmware/tree/3.5-dev/Scripts/MQTTDemo).
+For a full demonstration, see [this GitHub repository](https://github.com/Duet3D/MQTT-WPA2-Enterprise-Demo).
 
 ## M587: Add WiFi host network to remembered list, or list remembered networks
 
