@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-09-22T21:20:03.084Z
+date: 2023-09-23T14:14:09.833Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -208,7 +208,7 @@ RepRapFirmware allows multiple G- and M-commands to be included in a single line
 
 ## Command queueing
 
-When commands are executed from a job file or a macro, RepRapFirmware stores G0, G1, G2 and G3 movement commands in a 'move queue' internally for execution, equivalent to a look-ahead buffer. This means that there is no (appreciable) delay while a command is acknowledged and the next transmitted. In turn, this means that sequences of line segments can be plotted without a dwell between one and the next. 
+RepRapFirmware stores regular G0, G1, G2 and G3 movement commands in a 'move queue' internally for execution, equivalent to a look-ahead buffer. These commands are acknowledged when they are placed in the queue. This means that there is no appreciable delay before a command is acknowledged, unless the move queue is full; and that sequences of line segments can be plotted without coming to a stop between one and the next. 
 
 Some non-movement commands are also queued when executed from a job file or a macro, in a 'deferred command queue'. This operates in parallel to the 'move queue', and together the two queues operate as a single logical queue, and generally can be considered as one queue. M3, M4, M5, M42, M104, M106, M107, M117, M140, M141, M144, M280, M300 and M568 commands are all queued.
 
