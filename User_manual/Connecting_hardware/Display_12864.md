@@ -2,7 +2,7 @@
 title: Connecting 12864 or other display
 description: 
 published: true
-date: 2023-09-22T09:17:16.299Z
+date: 2023-09-23T14:54:29.802Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T15:08:34.637Z
@@ -12,7 +12,7 @@ dateCreated: 2021-11-10T15:08:34.637Z
 
 Some Duets support 12864 mono graphics LCD displays with a rotary encoder.
 
-There are two types of controller chip commonly used in these controllers: ST7920 and ST7567. Some Duets support one or both of these types - see below for details. Both types use a menu system stored on the SD card, see [Duet 2 Maestro 12864 display menu system](/User_manual/Connecting_hardware/Display_12864_menu).
+There are two types of controller chip commonly used in these controllers: ST7920 and ST7567. Some Duets support one or both of these types - see below for details. Both types use a menu system stored on the SD card, see [12864 display menu system](/User_manual/Connecting_hardware/Display_12864_menu).
 
 Certain board versions have different methods of controlling the backlight on these boards. 
 
