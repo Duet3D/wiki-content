@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-09-25T11:26:46.197Z
+date: 2023-09-25T13:26:13.573Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7689,7 +7689,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **Tn** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)). When creating a LED strip (supported in RRF 3.5.0-beta.4 and later only): LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 * **Kaaa(:bbb[:ccc])** (optional, for spindles only, RRF 3.5 and later) PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
-* **Unnn** (optional, RRF 3.5.0-beta.4 and later, for LED strips only) The maximum number of LEDs in the strip. Larger values use more memory.
+* **Unnn** (optional, RRF 3.5.0-beta.4 and later, for LED strips only) The maximum number of LEDs in the strip. Default 60, larger values use more memory.
 
 ^1^ Check the individual hardware pages, some IO pins have permanent pullups.
 
@@ -7850,7 +7850,12 @@ M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED por
 * **C"name"** Pin name
 * **Qnn** (optional) LED clock frequency.
 * **Tn** (optional) LED type: 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
-* **Unnn** (optional) The maximum number of LEDs in the strip. Larger values use more memory.
+* **Unnn** (optional) The maximum number of LEDs in the strip. Default 60, larger values use more memory.
+
+* The default maximum number of LEDs in a strip is 60. It can be increased using the M950 U parameter, subject to 
+  (a) available RAM and 
+  (b) on the 6HC and 6XD there is an additional limit because the DMA buffer has to be in non-cached memory. For 6HC and 6XD the max LEDs for a strip connected to the dedicated LED port is currently 240 Neopixel RGBW or 320 RGB. It might reduce in future.
+* When configuring a LED stirp on a tool board or 1XD, using a lower U parameter (ie set U to the number of LEDs) is advised to save RAM, because there is very little free RAM on those boards.
 
 ## M951: Set height following mode parameters
 
