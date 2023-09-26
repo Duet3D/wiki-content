@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2023-04-17T16:48:13.196Z
+date: 2023-09-26T22:40:20.214Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -109,19 +109,19 @@ Your new axes need their own homing files. For an IDEX machine, you need to add 
 
 Your homeall.g file should home the new axes as well as X, Y, Z. On a Cartesian printer you will normally be able to home your additional axes simultaneously with X and Y.
 
-If you home Z using a Z probe, then that probe should be mounted on the X carriage and you should ensure that the X carriage is over the bed when you probe using G30. One way of doing this is to deselect all tools prior to probing. Another is to use the S2 modifier on the G1 commands, which disables axis mapping. You should also park the U carriage out of the way of where you want to probe.
+If you home Z using a Z probe, then that probe should be mounted on the X carriage and you should ensure that the X carriage is over the bed when you probe using G30. One way of doing this is to deselect all tools prior to probing. Another is to use G1 H2 commands on the G1 commands, which disables axis mapping. You should also park the U carriage out of the way of where you want to probe.
 
-Here are some sample files.
+Here are some sample files. (Use G1 S# commands instead of G1 H# commands in the following examples if you are using RRF 2.01 and earlier.)
 
 homex.g:
 
 ```
 ; Home X at the low end of the axis
 G91
-G1 Z4 F200
-G1 X-240 F3000 S1
-G1 X4 F600 S2
-G1 X-10 S1
+G1 Z4 F200 H2
+G1 X-240 F3000 H1
+G1 X4 F600 H2
+G1 X-10 H1
 G1 Z-4 F200
 G90
 ```
@@ -131,10 +131,10 @@ homeu.g:
 ```
 ; Home U at the high end of the axis
 G91
-G1 Z4 F200
-G1 U240 F3000 S1
-G1 U-4 F600 S2
-G1 U10 S1
+G1 Z4 F200 H2
+G1 U240 F3000 H1
+G1 U-4 F600 H2
+G1 U10 H1
 G1 Z-4 F200
 G90
 ```
@@ -144,10 +144,10 @@ homez.g:
 ```
 ; Home Z using the Z probe mounted on the X carriage
 G91
-G1 Z4 F200 ; raise head 4mm to keep it clear of the bed
+G1 Z4 F200 H2 ; raise head 4mm to keep it clear of the bed
 G1 U200 F2000 ; make sure the U carriage is out of the way
 G90
-G1 X100 Y100 F2000 S2 ; move to bed centre for probing
+G1 X100 Y100 F2000 H2 ; move to bed centre for probing
 G30 ; probe the bed and set Z height
 ```
 
@@ -156,13 +156,13 @@ homeall.g:
 ```
 ; Home X, Y, U simultaneously 
 G91
-G1 Z4 F200 ; raise head 4mm to keep it clear of the bed
-G1 X-240 Y-240 U240 F3000 S1 ; coarse home X, Y and U
-G1 X4 Y4 U-4 F600 S2 ; move 4mm away from the homing switches
-G1 X-10 Y-10 U10 S1     ; fine home X, Y and U
+G1 Z4 F200 H2 ; raise head 4mm to keep it clear of the bed
+G1 X-240 Y-240 U240 F3000 H1 ; coarse home X, Y and U
+G1 X4 Y4 U-4 F600 H2 ; move 4mm away from the homing switches
+G1 X-10 Y-10 U10 H1     ; fine home X, Y and U
 G90
 ; Now home Z using the Z probe
-G1 X100 Y100 F2000 S2 ; move to bed centre for probing
+G1 X100 Y100 F2000 H2 ; move to bed centre for probing
 G30 ; probe the bed and set Z height
 ```
 
@@ -259,7 +259,7 @@ M106 S0          ; turn off our print cooling fan
 G91              ; relative axis movement
 G1 Z3 F500       ; up 3mm
 G90              ; absolute axis movement
-G1 S2 X-48 F6000 ; park the X carriage at -48mm
+G1 H2 X-48 F6000 ; park the X carriage at -48mm
 ```
 
 tfree1.g:
@@ -271,7 +271,7 @@ M106 S0          ; turn off our print cooling fan
 G91              ; relative axis movement
 G1 Z3 F500       ; up 3mm
 G90              ; absolute axis movement
-G1 S2 U248 F6000 ; park the U carriage at +248mm
+G1 H2 U248 F6000 ; park the U carriage at +248mm
 ```
 
 tfree2.g:
@@ -325,7 +325,7 @@ G1 E-2 F3600          ; retract 2mm
 G91                   ; relative movement
 G1 Z2 F500            ; raise head 2mm
 G90                   ; absolute movement
-G1 S2 X-48 U248 F6000 ; park both heads
+G1 H2 X-48 U248 F6000 ; park both heads
 ```
 
 Your resume.g file needs to restore the position and undo any retraction:
