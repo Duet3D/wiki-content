@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2023-09-26T22:40:20.214Z
+date: 2023-09-26T22:42:33.823Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -173,7 +173,7 @@ In normal setups, bed probing is always done using the X carriage - so the X car
 You should take the following precautions in the bed.g file for an IDEX machine:
 
 * Get the U carriage out of the way of the X carriage at the start, either by homing it or by moving it to near to its home position
-* If you have any G1 commands in the bed.g file, use the S2 modifier on them so that any X coordinates in those commands do not get mapped.
+* If you have any G1 commands in the bed.g file, use the H2 modifier (S2 in RRF 2.01 and earlier) on them so that any X coordinates in those commands do not get mapped.
 
 # Configuring tools
 
@@ -317,7 +317,7 @@ G1 E2 F3600  ; extrude 2mm from both extruders
 
 # Pause and resume files
 
-When you pause a print, either or both heads may be printing, so you should park both of them in your pause.g file. Use the G1 command with the S2 modifier to do this. Here is an example pause.g file:
+When you pause a print, either or both heads may be printing, so you should park both of them in your pause.g file. Use the G1 command with the H2 modifier (S2 in RRF 2.01 and earlier) modifier to do this. Here is an example pause.g file:
 
 ```
 M83                   ; relative extrusion
