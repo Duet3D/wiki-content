@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-09-25T13:26:13.573Z
+date: 2023-10-02T14:00:53.466Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5368,14 +5368,11 @@ For RRF 3.4, if you are using a quadrature encoder on the motor shaft,  the enco
 
 ### Notes
 
-Supported for drivers attached to:
-* [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL){target=_blank}
-
-The E parameter defaults to 0.0:0.0 in RRF 3.4.x. **If you do not override this default, then failure to maintain position will not be reported.**
-
-See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_blank} for further details on setting the proportional/integral/derivative constants.
-
-The Q parameter is relevant only when the driver is put into torque mode, see M569.4.
+* Supported for drivers attached to:
+  * [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL){target=_blank}
+* The E parameter defaults to 0.0:0.0 in RRF 3.4.x. **If you do not override this default, then failure to maintain position will not be reported.**
+* See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_blank} for further details on setting the proportional/integral/derivative constants.
+* The Q parameter is relevant, and required, only when the driver is put into torque mode, see M569.4.
 
 ## M569.2: Read or write stepper driver register
 
@@ -5494,11 +5491,10 @@ pos_mode, pos_mode
 
 ### Notes
 
-If **P** or **T** parameter is missing, then no action is taken.
-
-The driver is put back into position mode by requesting a torque smaller than 0.0001 Nm.
-
-Hangprinter's "torque mode" is implemented as a RepRapFirmware macro that depends on M569.4.
+* If **P** or **T** parameter is missing, then no action is taken.
+* Use the Q parameter of the M569.1 command to specify the torque constant of the motor.
+* The driver is put back into position mode by requesting a torque smaller than 0.0001 Nm.
+* Hangprinter's "torque mode" is implemented as a RepRapFirmware macro that depends on M569.4.
 
 ## M569.5: Closed loop data collection
 
