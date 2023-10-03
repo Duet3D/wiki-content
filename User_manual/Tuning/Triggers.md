@@ -2,7 +2,7 @@
 title: Using triggers to control the Duet
 description: 
 published: true
-date: 2022-06-28T12:07:51.667Z
+date: 2023-10-03T09:44:57.636Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-31T14:19:20.035Z
@@ -13,8 +13,10 @@ dateCreated: 2022-05-31T14:19:20.035Z
 RepRapFirmware allows you to define external 'triggers' (such as a button press) that will run an associated system macro. This could be for an [emergency stop](/User_manual/Connecting_hardware/IO_E_stop){target=_blank}, but can be used for many other purposes, as the GCode commands that are run are held in a macro file for each trigger.
 
 Below are two examples:
-1. User Clinton Thomas builds a control panel, with a number of buttons which control various actions. This originally appeared on the  [Duet Dozuki wiki](https://duet3d.dozuki.com/Wiki/Using_M581_-_External_Triggers_and_Building_a_Control_Panel){target=_blank}, using a Duet 2 and RRF 2.x
-2. User Nick Lindenmuth builds a water flow sensor failsafe, to add a flow sensor to trigger a reset using an arduino nano. This originally appeared on the  [Duet Dozuki wiki](https://duet3d.dozuki.com/Guide/Water+flow+sensor+failsafe/49){target=_blank}, using a Duet 2 and RRF 2.x
+1. User Clinton Thomas builds a control panel, with a number of buttons which control various actions. This originally appeared on the  Duet Dozuki wiki, using a Duet 2 and RRF 2.x
+2. User Nick Lindenmuth builds a water flow sensor failsafe, to add a flow sensor to trigger a reset using an arduino nano. This originally appeared on the Duet Dozuki wiki, using a Duet 2 and RRF 2.x
+
+These examples have been updated for Duet3 and RRF 3.x.
 
 # Control Panel
 
