@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-10-02T14:00:53.466Z
+date: 2023-10-11T08:13:13.524Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7984,7 +7984,7 @@ This command causes the specified number of accelerometer samples to be collecte
 
 * **Pnn** or **Pbb.nn** Accelerometer to use (required)
 * **Snnn** Number of samples to collect (required)
-* **X** and/or **Y** and/or **Z** Machine axes to collect data for. If no axes are specified, data is collected for all three axes.
+* **X** and/or **Y** and/or **Z** (optional) Machine axes to collect data for. If no axes are specified, or if the accelerometer type is LIS2DW (supported in RRF 3.5.0 and later) then data is collected for all three axes.
 * **An** (required) 0 = activate immediately, 1 = activate just before the start of the next move, 2 = activate just before the start of the deceleration segment of the next move
 * **F"filename.csv"** Name of the file to save the data in (optional, supported by RRF 3.4 and later). The default folder is 0:/sys/accelerometers. If not specified then the filename will be composed from the current date/time.
 
