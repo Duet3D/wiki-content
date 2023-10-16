@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.3) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2023-06-02T09:22:47.503Z
+date: 2023-10-16T07:28:39.445Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -11,6 +11,8 @@ dateCreated: 2021-12-03T15:19:36.333Z
 # Introduction
 
 RepRapFirmware (as at version 3.4) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
+
+For the current maximum number of CAN connected devices etc, please see the [RepRapFirmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits)
 
 # Permanent limitations
 
@@ -42,8 +44,8 @@ We plan to remove these in future firmware releases.
 * ~~Change of stepper driver status on expansion boards are not proactively reported (but can be queried using M122). e.g. overheat warnings, short to ground etc.~~ This restriction is removed in firmware 3.4.
 * Stalls of expansion board motors cannot be used for homing. We expect to remove this restriction in firmware 3.6.
 * Cold extrusion prevention is not enforced on extruders driven from CAN-connected expansion boards. We expect to remove this restriction in firmware 3.5.
-* When filament monitors are configured on expansion boards, the "calibrated" values in the object model are not updated; however they can be queried using M591 as usual.
+* When filament monitors are configured on expansion boards, the "calibrated" values in the object model are not updated; however they can be queried using M591 as usual. We expect to remove this restriction in firmware 3.5.
 * The M571 command cannot be used in conjunction with extruders driven from CAN-connected expansion boards.
-* The tower motors of a delta printer cannot be driven via CAN-connected expansion boards.
-* Input shaping is not supported on axis motors driven by expansion boards.
+* The tower motors of a delta printer cannot be driven via CAN-connected expansion boards. Workaround: use M669 to enable segmentation with short (e.g. 1mm) segments.
+* Input shaping is not supported on axis motors driven by expansion boards. We expect to remove this restriction in firmware 3.5.
 * Using the reset button on the Duet 3 mainboards does not reset the expansion boards. they need to be reset explicitly (M999 Bnn). A soft reset of the mainboard (M999) will cause the expansion boards to reset.
