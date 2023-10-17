@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-10-11T08:13:13.524Z
+date: 2023-10-17T07:21:07.420Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4995,25 +4995,28 @@ If neither the A nor the S parameter is present, the current A, B and C values a
 
 Before M558.1 is used the probe must be defined as a scanning Z probe using M558, the probe trigger height must be set using G31, the axes must have been homed, the sensor must be over the bed surface and not too close to the edges of the bed, and the sensor drive current should have been set using M558.2 if necessary.
 
-## M558.2: Calibrate or set drive level for scanning Z probe
+## M558.2: Calibrate or set drive level and reading offset for scanning Z probe
 
 Supported from RRF 3.5.0-rc.1
 
 ### Parameters
 
 * **Knn** (optional) Z probe number, default 0. The probe must be of a scanning type (see M558).
-* **Snn** Drive level to set, or -1 to determine automatically. For LDC1612-based probes, when setting the current this should be in the range 0 to 31.
+* **Snn** Drive level to set, or -1 to determine drive level and reading offset automatically. For LDC1612-based probes, when setting the current this should be in the range 0 to 31.
+* **Rnnnn** (optional, default zero) Offset to subtract from the raw sensor reading. Only used if the S parameter is present and >= 0.
 
 This command is used to set the drive current of scanning Z probes that use the LDC1612 chip. If the drive current is set too low, the sensor wil not work when it is close to the bed. If the drive current is set too high, it will not work when the sensor is distant from the bed. Use M122 B# (where # is the CAN address of the board that carries the sensor) to determine whether the sensor is working normally.
 
 When using this command with S-1 to determine the optimum drive current automatically, the sensor should first be placed at the lower distance limit (closest distance from the metal bed surface) of the intended operating range.
 
-If M558 is used with no S parameter then the current drive level is reported.
+The R parameter (reading offset) will be subtracted from the raw reading from the sensor in order to make the displayed Z probe reading more readable. You can use a value of zero (the default), but then you will see large readings with only the last few digits changing.
+
+If M558 is used with no S parameter then the current drive level and offset are reported.
 
 ##### Order dependency
 
 Before M558.2 is used the probe must be defined as a scanning Z probe using M558.
-After M558.2 is used to change the drive level, M558.1 should be used to recalibrate the probe.
+After M558.2 is used to change the drive level and/or offset, M558.1 should be used to recalibrate the probe.
 
 ## M559: Upload file
 
