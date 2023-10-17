@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2023-10-17T13:21:27.375Z
+date: 2023-10-17T16:08:01.336Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -12,7 +12,7 @@ dateCreated: 2023-01-09T19:18:18.412Z
 
 # Introduction
 
-The Duet 3 Motor 23CL (M23CL) is a family of Closed loop, FAN-FD connected NEMA 23 motors, fully integrated in to the Duet 3 ecosystem. They optionally integrate a brake to hold the motor in position when power is off. Connection to the Duet 3 CAN-FD bus and power use industrial M8 connectors. Multiple M23CLs can be connected to the bus, either via an M8 Y splitter or a distribution board/box.
+The Duet 3 Motor 23CL (M23CL) is a family of Closed loop, CAN-FD connected NEMA 23 motors, fully integrated in to the Duet 3 ecosystem. They optionally integrate a brake to hold the motor in position when power is off. Connection to the Duet 3 CAN-FD bus and power use industrial M8 connectors. Multiple M23CLs can be connected to the bus, either via an M8 Y splitter or a distribution board/box.
 
 Note the M23CL series are in active development and this documentation will be expanded as we confirm specifics of each motor variant, along with bus distribution options.
 
@@ -80,7 +80,7 @@ The M23CL incorporates a hall effect position sensor sensing a magnet on the mot
 
 See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
 
-All boards in the system must have different CAN addresses. Duet 3 Mootor 23CLs are shipped set to a default CAN address of 123. They will also revert to 123 if you use the can reset button (not exposed on prototypes). Therefore, if you have more than one new M23CL or other Duet3d CAN-FD connected expansion board, only one of them must be powered up and connected to the CAN bus at a time so the address can be changed from the default. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that M23CL, you can connect the next one; and so on. See the section: [Set the CAN address](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL#set-the-can-address) below for how to change the default address.
+All boards in the system must have different CAN addresses. Duet 3 Motor 23CLs are shipped set to a default CAN address of 123. They will also revert to 123 if you use the can reset button (not exposed on prototypes). Therefore, if you have more than one new M23CL or other Duet3d CAN-FD connected expansion board, only one of them must be powered up and connected to the CAN bus at a time so the address can be changed from the default. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that M23CL, you can connect the next one; and so on. See the section: [Set the CAN address](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL#set-the-can-address) below for how to change the default address.
 
 ## Startup Time
 
@@ -88,11 +88,11 @@ It is recommended to add the following to config.g, before any commands that ref
 
 `G4 S2   ;wait for expansion boards to start`
 
-The first time the M23CL starts up it may request firmware from the Duet3d mainboards. ensure you have the correct version (compatible with your mainboard firmware) in the /firmware directory on the  mainboard. see the Firmware section below for more details.
+The first time the M23CL starts up it may request firmware from the Duet3d mainboards. Ensure you have the correct version (compatible with your mainboard firmware) in the /firmware directory on the  mainboard. See the Firmware section below for more details.
 
 ## Testing communication
 
-Before the M23CL is connected to the CAN-FD bus, if it is powered, the STATUS (red) LED will be blinking rapidly. once it is connected (after any initial firmware update happens), it should settle down to a ~1Hz blink rate. If there are other blink patterns displayed see the [LED behaviour and error codes section of the CAN connection basics documentation] (/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes}
+Before the M23CL is connected to the CAN-FD bus, if it is powered, the STATUS (red) LED will be blinking rapidly. Once it is connected (after any initial firmware update happens), it should settle down to a ~1Hz blink rate. If there are other blink patterns displayed see the [LED behaviour and error codes section of the CAN connection basics documentation](/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes)
 
 Check that you can communicate with the M23CL, by sending:
 
@@ -102,7 +102,7 @@ If that fails try depressing the CAN_RST switch and powering up, then down again
 
 ## Update the bootloader
 
-Duet 3 expansion boards, tool boards and Motors have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
+Duet 3 expansion boards, tool boards and motors have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
 
 ## Updating the firmware
 
@@ -112,9 +112,9 @@ The M23CL will be shipped with firmware loaded during production. You can check 
 
 (or B## where ## is the new CAN address of the board if you have changed it already)
 
-To update the firmware get the [latest version from the RepRapFirmware github.](https://github.com/Duet3D/RepRapFirmware/releases) It is highly recommended to upgrade all the firmware in your Duet 3 system together so that the versions do not get out of sync.
+To update the firmware get the [latest version from the RepRapFirmware github.](https://github.com/Duet3D/RepRapFirmware/releases). It is highly recommended to upgrade all the firmware in your Duet 3 system together so that the versions do not get out of sync.
 
-Send M997 B## to carry out a firmware update, the bootloader will request the Duet3Firmware_M23CL.bin from the Duet 3 main board, it needs to be in the /firmware folder.
+Send `M997 B##` to carry out a firmware update. The bootloader will request the Duet3Firmware_M23CL.bin from the Duet 3 main board, which needs to be in the /firmware folder.
 
 ## Set the CAN address
 
@@ -146,7 +146,7 @@ The firmware will output the highest deviation of expected position vs encoder p
 
 # Firmware
 
-Duet 3 Motor 23CL are supported in RRF 3.5 and later.
+Duet 3 Motor 23CL is supported in RRF 3.5 and later.
 
 ## Limitations
 
@@ -162,8 +162,8 @@ The M23CL will autoset the correct settings for closed loop mode. In open loop m
 
 1. RepRapFirmware on the main board rounds the endpoint or extrusion amount to whole microsteps.
 1. RepRapFirmware sends the move details over the CAN-FD bus, including the move length for each motor measured in whole microsteps.
-1. In open loop model microsteps are generated at the appropriate times.
-1. In closed loop mode where the motor should be calculated from the movement parameters as a floating point number of full steps.
+1. In open loop mode, microsteps are generated at the appropriate times.
+1. In closed loop mode, the motor position is calculated from the movement parameters as a floating point number of full steps.
 
 # Sample configuration examples
 
@@ -190,7 +190,7 @@ In contrast to usual drivers, the closed loop axes can have their holding curren
 
 ## Tuning the PID for the closed loop
 
-See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning) for details on tuning the M23CL. the section on PID tuning applies to both the 1HCL and the M23CL
+See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning) for details on tuning the M23CL. The section on PID tuning applies to both the 1HCL and the M23CL
 
 ## Temperature sensor
 
