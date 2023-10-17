@@ -2,7 +2,7 @@
 title: User manual: Tuning
 description: 
 published: true
-date: 2022-12-21T16:44:42.061Z
+date: 2023-10-17T16:03:29.755Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:58:18.971Z
@@ -18,7 +18,7 @@ dateCreated: 2021-06-08T13:58:18.971Z
 [Filaments](/User_manual/Reference/DWC_filaments)
 [Slicing recommendations](/User_manual/Reference/Slicing_recommendations)
 
-# Motor configuration tuning
+# Tuning
 
 See [this forum thread](https://forum.duet3d.com/topic/6181/){target=_blank} for	Tuning Macros Menus (Acceleration, Jerk, Retraction, Pressure Advance)
 [Pressure advance](/User_manual/Tuning/Pressure_advance)
