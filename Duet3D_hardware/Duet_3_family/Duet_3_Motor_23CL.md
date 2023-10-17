@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2023-10-17T11:23:24.840Z
+date: 2023-10-17T13:21:27.375Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -60,13 +60,15 @@ Note the M23CL series are in active development and this documentation will be e
 
 ## 3D model
 
-*to follow*
+The STEP files are available here:
+https://github.com/Duet3D/Duet3-M23CL/tree/master/v1.0
 
 # Wiring
 
 ## Connection Diagram
 
-[![Image showing the connections on a Duet 3 Motor 23CL](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connection.png =600x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connection.png){target=_blank}
+[![Image showing the connections on a Duet 3 Motor 23CL](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connection.png =600x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connection.png){target=_blank}
+
 
 # Encoders
 
