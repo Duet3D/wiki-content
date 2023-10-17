@@ -2,7 +2,7 @@
 title: User manual: Tuning
 description: 
 published: true
-date: 2023-10-17T16:03:29.755Z
+date: 2023-10-17T16:05:55.437Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:58:18.971Z
@@ -27,6 +27,8 @@ See [this forum thread](https://forum.duet3d.com/topic/6181/){target=_blank} for
 [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning)
 <!--[Slicing recommendations](/User_manual/Reference/Slicing_recommendations)
 Homing a FiveAxisRobot-->
+[Scanning Z Probe Calibrartion](/User_manual/Tuning/scanning_z_probe_calibration)
+
 # Macros
 
 [Setting up macro files for common tasks](/User_manual/Tuning/Macros_tasks)
