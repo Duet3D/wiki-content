@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2023-09-26T22:42:33.823Z
+date: 2023-10-18T15:33:18.939Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -174,6 +174,14 @@ You should take the following precautions in the bed.g file for an IDEX machine:
 
 * Get the U carriage out of the way of the X carriage at the start, either by homing it or by moving it to near to its home position
 * If you have any G1 commands in the bed.g file, use the H2 modifier (S2 in RRF 2.01 and earlier) on them so that any X coordinates in those commands do not get mapped.
+
+If you do use the second tool in IDEX for bed probing, where the area to be probed is not covered with XY (e.g. UY), set up the M557 command with the axes to use for probing, e.g.:
+
+```
+M557 U-100:120 Y-110:110 S40:40  ; probe using the U and Y co-ordinates
+```
+
+If using the probe on the second tool, make sure to switch to that tool before running G29. If you have two probes, one on each tool, also remember to switch to that probe with G29 K#, where # is the probe number.
 
 # Configuring tools
 
