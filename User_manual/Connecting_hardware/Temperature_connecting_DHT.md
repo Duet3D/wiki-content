@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2023-05-09T14:30:38.542Z
+date: 2023-10-19T09:01:57.327Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -104,7 +104,7 @@ Cable capacitance should not exceed about 2000pF. Using a lower value resistor w
 
 ### Tabs {.tabset}
 
-#### Duet 3 MB6HC
+#### Duet 3 Mainboard 6HC, 6XD
 
 Connect the DHT I/O line to either one of the SPI CS lines on the Temperature Daughterboard connector, or one of the IOx.OUT pins. Both of these connectors also provides +3.3V and ground.
 
@@ -126,19 +126,20 @@ BME280 sensors should be less sensitive to interference than DHT sensors, but th
 
 Using the Temperature Daughterboard connector (TEMP_DB), connect the SDI (may be labelled as SDA), SDO and SCK (SCL) pins of the BME280 to MOSI, MISO and SCK respectively. Also connect CS (may be labelled CSB) to your chosen spi.cs pin, 3.3V power and ground.
 
-| Duet SPI Daughterboard connector || BME280 |
+| Duet SPI Daughterboard connector |||| BME280 |
 |---|---|
-| Pin number | Pin name | Pin name / alternate name |
-| 1 | spi.cs1 | CS / CSB |
-| 2 | GND | GND |
-| 3 | spi.cs0 | (alternative for CS / CSB) |
-| 4 | SPIO_SCK | SCK / SCL |
-| 5 | SPIO_MOSI | SDI / SDA |
-| 6 | SPIO_MISO | SDO |
-| 7 | spi.cs2 | (alternative for CS / CSB) |
-| 8 | +3.3V | VCC |
-| 9 | spi.cs3 | (alternative for CS / CSB) |
-| 10 | NC | - |
+| Pin # | Pin name ||| Pin name / alternate name |
+| | 6HC, 3HC | 6XD | Mini 5+ | |
+| 1 | spi.cs1 | spi.cs2 || CS / CSB |
+| 2 | GND ||| GND |
+| 3 | spi.cs0 | spi.cs1 || (alternative for CS / CSB) |
+| 4 | SPIO_SCK ||| SCK / SCL |
+| 5 | SPIO_MOSI ||| SDI / SDA |
+| 6 | SPIO_MISO ||| SDO |
+| 7 | spi.cs2 | spi.cs3 | not connected | (alternative for CS / CSB) |
+| 8 | +3.3V ||| VCC |
+| 9 | spi.cs3 | spi.cs4 | not connected | (alternative for CS / CSB) |
+| 10 | not connected ||| - |
 
 # Configuring a DHT sensor
 
@@ -169,7 +170,7 @@ On **Duet 3 Mini 5+**, as you connect the DHT data line to both IOx.out and IOx.
 
 ```
 ;DHT Sensor on IO4 on Duet 3 Mini 5+
-M308 S10 P"io4.out+io4.in" Y"dht22" A"Chbr Temp[C]"
+M308 S10 P"io4.out+io4.in" Y"dht22" A"Chbr Temp"
 M308 S11 P"S10.1" Y"dht-humidity" A"Chbr Hum[%]"
 ```
 
