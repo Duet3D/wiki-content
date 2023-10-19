@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-10-17T07:21:07.420Z
+date: 2023-10-19T08:43:02.074Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5496,7 +5496,8 @@ pos_mode, pos_mode
 
 * If **P** or **T** parameter is missing, then no action is taken.
 * Use the Q parameter of the M569.1 command to specify the torque constant of the motor.
-* The driver is put back into position mode by requesting a torque smaller than 0.0001 Nm.
+* The driver is put back into position mode by requesting a torque smaller than 0.0001 Nm
+* Sending a regular motion command (e.g. G1) that reques movement by the motor also puts the motor back into position mode.
 * Hangprinter's "torque mode" is implemented as a RepRapFirmware macro that depends on M569.4.
 
 ## M569.5: Closed loop data collection
