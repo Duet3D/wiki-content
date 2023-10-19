@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-10-19T08:43:02.074Z
+date: 2023-10-19T12:13:24.648Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3764,7 +3764,7 @@ To read mcu and  driver temperatures on an expansion board connected to a Duet 3
 <br>
 <pre class="cblock">
 M308 S12 Y"mcu-temp" P"1.dummy" A"3HC MCU"
-M307 S13 Y"drivertemp" P"1.dummy" A"3HC Steppers"
+M308 S13 Y"drivertemp" P"1.dummy" A"3HC Steppers"
 </pre>
 
 Note that from RRF 3.4.0 beta 8, "drivertemp" will be changed to "drivers" to match the main board.
