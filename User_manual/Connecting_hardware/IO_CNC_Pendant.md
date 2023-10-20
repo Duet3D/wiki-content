@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2022-02-11T15:21:25.085Z
+date: 2023-10-20T00:20:24.117Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -59,7 +59,7 @@ Before refitting the back of the pendant, put some Kapton tape or insulating tap
 
 # PanelDue pass through
 
-To connect a PanelDue to the port as well as the pendant, the DOUT signal from the PanelDue (which is usually the blue wire in a 4-core cable) must be connected to the RX0 pin of the Arduino in the pendant (which in the wiring list I have given uses the green wire in the 4-core pendant cable). So connect the blue wire from PanelDue to the green wire of the pendant. Connect the DIN (green) PanelDue wire to the UTXD pin of the PanelDue connector on the Duet (or IO_0_OUT if using a Duet 3). The +5V pin on the Duet goes to the +5V (red) wire of both the pendant and the PanelDue, likewise the ground connection goes to the yellow wires of both.
+To connect a PanelDue to the port as well as the pendant, the DOUT signal from the PanelDue (which is usually the blue wire in a 4-core cable) must be connected to the RXI pin of the Arduino in the pendant (which in the wiring list I have given uses the green wire in the 4-core pendant cable). So connect the blue wire from PanelDue to the green wire of the pendant. Connect the DIN (green) PanelDue wire to the UTXD0 pin of the PanelDue connector (Duet 2) or IO_0_OUT (Duet 3). The +5V pin on the Duet goes to the +5V (red) wire of both the pendant and the PanelDue, likewise the ground connection goes to the yellow wires of both.
 
 [![cnc_pendant_04.jpg](/manual/sensors/cnc_pendant_04.jpg =600x)](/manual/sensors/cnc_pendant_04.jpg){target=_blank}
 
