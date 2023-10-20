@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2023-10-20T11:28:08.135Z
+date: 2023-10-20T11:32:23.466Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -106,7 +106,7 @@ Before refitting the back of the pendant, put some Kapton tape or insulating tap
 
 ## PanelDue pass through
 
-To connect a PanelDue as well, the Arduino Pro Micro passes the PanelDue commands through to the Duet.
+To connect a PanelDue as well, the Arduino Pro Micro passes the PanelDue commands through to the Duet. The PanelDue can be connected at either end of the cable, i.e. close to the Arduino Pro Micro if you wanted to have a combined Pendant with PanelDue display, or at the Duet end if the PanelDue is mounted to the machine, and the Pendant is used remotely.
 
 | PanelDue | Pro Micro / Duet | Wire colour |
 |:---------|:-----------------|:------------|
