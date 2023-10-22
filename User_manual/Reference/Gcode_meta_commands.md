@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2023-05-03T19:19:03.268Z
+date: 2023-10-22T18:21:28.536Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -242,6 +242,8 @@ Floating point literals may be expressed in fixed-point simple format (e.g. *165
 
 String literals are surrounded by double quote characters (e.g. *"Hello world"*). To include a double-quote character in a string iteral, use two double-quote characters (e.g. *"Here is some ""quoted text"""*).
 
+Character literals (supported in RRF 3.5.0-rc.1 and later) are surrounded by single quote characters (e.g. 'a').
+
 There are no literals of other types, however the Boolean constants **true** and **false** are available.
 
 ## Object model properties
@@ -372,7 +374,8 @@ The following functions are supported, with their conventional meanings:
 | degrees | float->float | Converts radians to degrees |
 | exists | name  -> bool | Yields true if 'name' is a valid variable or object model element name and is not null (available in RRF 3.3beta3 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
 | exp | float->float | returns *e* raised to the operand (supported in RRF 3.5beta3 and later) |
-| fileexists | filename  -> bool | Yields true if the file 'filename' exists (available in RRF 3.5beta1 and later). |
+| fileexists | string -> bool | Yields true if the file 'filename' exists (available in RRF 3.5.0beta1 and later). |
+| fileread | (filename, int, int, char)  -> array | Returns an array of elements read from a single-line CSV or similar file (available in RRF 3.5.0rc1 and later). The first integer parameter is the number of elements to skip; the second is the maximum number of elements to read; and the character is the field separator, typically ','. See note at the end of this table.|
 | floor | float->int or float->float | Result is **int** if it fits in a 32-bit signed integer, else float |
 | isnan | float->bool | Returns true if the operand is a NaN (Not-a-Number) e.g. sqrt(-1) |
 | log | float->float | returns the natural logarithm of the operand (supported in RRF 3.5beta3 and later) |
@@ -386,6 +389,20 @@ The following functions are supported, with their conventional meanings:
 | sqrt | float->float | Returns the square root of the operand |
 | tan | float->float | Argument must be in radians |
 | vector | (int, T) -> array of T | (RRF 3.5beta2 and later) Returns an array with the number of elements equal to the first operand and each element a copy of the second operand
+
+### Notes on the fileread function
+
+Each element (including each skipped element) must be one of the following:
+- a string in double quotes
+- a number in any of the usual integer or floating point formats
+- a character in single quotes
+- empty (in which case a corresponding null element is included in the array).
+
+Leading and trailing spaces and tabs around each element are ignored. If the file cannot be pened and read, or if any elements do not confirm to the above. then the command containing the fileread call will be aborted.
+
+If the element is a quoted string, then characters within it that match the separator character are not treated as separators, and each consecutive pair of double-quote characters is replaced by a one double quote character.
+
+The number of array elements returned will be one greater than the number of separator characters found; so an empty file will give rise to an array comprising a single null element.
 
 # Notes
 
