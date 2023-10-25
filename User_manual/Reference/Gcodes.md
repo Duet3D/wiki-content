@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-10-19T12:13:24.648Z
+date: 2023-10-25T14:53:02.446Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2545,7 +2545,8 @@ The 'P' parameter is used to report specific information. The details vary betwe
 
 * P1 print summary test report. Parameters: 
   * required parameters: **Taa:bb** = min/max accepted MCU temperature reading, **Vaa:bb** = min/max VIN voltage reading 
-  * optional parameter: **Waa:bb** = min/max 12V regulator voltage reading if applicable
+  * optional parameter: **Waa:bb** = min/max 12V regulator voltage reading if applicable (required if the board monitors the 12V rail)
+  * optional parameter: **Faa:bb** = min/max inductive sensor frequency in kHz (required if the board has an inductive sensor chip)
   * NOTE: M122 P1 subfunction is provided for factory testing purposes only, so the details are liable to be changed without notice
 * P100 print a summary of recent moves (only if move logging is enabled in the firmware build)
 * P101 print the status of an attached DueX expansion board (Duet 2 only)
