@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-10-25T14:53:02.446Z
+date: 2023-10-26T11:49:38.216Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3301,7 +3301,7 @@ S0: No buttons are displayed (non-blocking)
 S1: Only "Close" is displayed (non-blocking)
 S2: Only "OK" is displayed (blocking, send M292 to resume the execution)
 S3: "OK" and "Cancel" are displayed (blocking, send M292 to resume the execution or M292 P1 to cancel the operation in progress)
-S4: (RRF 3.5 and later only) Display a number of choices. The names of the choices are given by the K parameter as an array of strings. The choice is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
+S4: (RRF 3.5 and later only) Display a number of choices. The names of the choices are given by the K parameter as an array of strings. The choice,as the array index, is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
 S5: (RRF 3.5 and later) Prompt for an integer value. L is the minimum accepted value (default 0), H is the maximum accepted value (default unlimited), and F is the default value. The integer is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
 S6: (RRF 3.5 and later) Prompt for a floating point value. L is the minimum accepted value (default 0.0), H is the maximum accepted value, and F is the default value. The floating point value is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
 S7: (RRF 3.5 and later) Prompt for a string value. L is the minimum number of characters (default 1), H is the maximum number of characters (default 10), and F is the default value. The string is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
@@ -3316,6 +3316,22 @@ Duet Web Control 2.03 and later support HTML messages but that may not be displa
 When using Duet 3 with attached SBC, DSF versions before v3.1.1 support only non-blocking calls are supported in DuetSoftwareFramework. M291 is fully supported in DSF v3.1.1 and later.
 
 The limit in RRF 3.4 and later is 256 characters in the entire GCode command. Before 3.4 is was 200 characters, in RRF2 it's 160 characters.
+
+### Examples
+<br>
+<pre class="cblock">
+M291 R"Title" P"Message" K{"Yes","No"} S4
+if (input == 1)
+    echo "No chosen"
+
+</pre>
+<br>
+<pre class="cblock">
+M291 R"Title" P"Request for string" S7 L5 H40 F"desfault string"
+echo {input^" entered by user"}
+</pre>
+
+
 
 ## M292: Acknowledge blocking message
 
