@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.3) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2023-10-16T07:32:52.668Z
+date: 2023-10-30T13:01:15.726Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -50,3 +50,4 @@ We plan to remove these in future firmware releases.
 * Input shaping is not supported on axis motors driven by expansion boards. We expect to remove this restriction in firmware 3.5.
 * Using the reset button on the Duet 3 mainboards does not reset the expansion boards. they need to be reset explicitly (M999 Bnn). A soft reset of the mainboard (M999) will cause the expansion boards to reset.
 * In firmware 3.5 the machine coordinates in the object model are updated in semi-real-time (every 250ms) instead of at tne end of each move; however this does not work if the Z axis is driven by an expansion board.
+* Accelerometers connected to main boards used as expansion boards are not supported.
