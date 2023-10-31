@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-10-26T11:49:38.216Z
+date: 2023-10-31T09:29:05.370Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3301,7 +3301,7 @@ S0: No buttons are displayed (non-blocking)
 S1: Only "Close" is displayed (non-blocking)
 S2: Only "OK" is displayed (blocking, send M292 to resume the execution)
 S3: "OK" and "Cancel" are displayed (blocking, send M292 to resume the execution or M292 P1 to cancel the operation in progress)
-S4: (RRF 3.5 and later only) Display a number of choices. The names of the choices are given by the K parameter as an array of strings. The choice,as the array index, is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
+S4: (RRF 3.5 and later only) Display a number of choices. The names of the choices are given by the K parameter as an array of strings. The choice selected, as the array index, is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
 S5: (RRF 3.5 and later) Prompt for an integer value. L is the minimum accepted value (default 0), H is the maximum accepted value (default unlimited), and F is the default value. The integer is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
 S6: (RRF 3.5 and later) Prompt for a floating point value. L is the minimum accepted value (default 0.0), H is the maximum accepted value, and F is the default value. The floating point value is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
 S7: (RRF 3.5 and later) Prompt for a string value. L is the minimum number of characters (default 1), H is the maximum number of characters (default 10), and F is the default value. The string is available to be used in the ["input" constant](/User_manual/Reference/Gcode_meta_commands#named-constants)
