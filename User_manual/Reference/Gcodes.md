@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-10-31T09:29:36.417Z
+date: 2023-11-01T16:11:15.847Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5481,8 +5481,8 @@ Tell one or more motor drivers to apply a specified torque regardless of positio
 ### Parameters
 
 * **Pn.n** Motor CAN address and driver number. Can also be a colon separated list of driver numbers.
-* **Tn.n** The torque to apply in units of Nm, or zero to leave torque mode.
-* **Vn.n** (optional) Maximum speed to move at (not supported on Hangprinter/ODrive; not yet supported on 1HCL or M23CL as at 2023-08-08).
+* **Tn.n** The torque to apply in units of Nm, or zero to leave torque mode. Applying the requested torque is dependnt on on the M569.1 Q parameter having been specified correctly (not applicable to Hangprnter/ODrive).
+* **Vn.n** (optional) Maximum speed to move at in full steps per second. A zero (the default) or negative value means no limit. Not supported on Hangprinter/ODrive.
 
 ### Examples
 <br>
