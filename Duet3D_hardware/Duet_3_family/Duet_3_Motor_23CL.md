@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2023-10-27T12:28:26.630Z
+date: 2023-11-01T12:08:00.967Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -23,27 +23,27 @@ Note the M23CL series are in active development and this documentation will be e
 
 | |M23CL-56-2804B|M23CL-56-2804|M23CL-76-2804B|M23CL-76-2804|
 |:---|:---|:---|:---|:---|
-| **Holding Torque** | 12.6 Kg.cm || 18.9 Kg.cm||
-| **Detent Torque** | 0.4 Kg.cm || 0.86 Kg.cm||
+| **Holding Torque** | 12.6 Kg/cm || 18.9 Kg/cm||
+| **Detent Torque** | 0.4 Kg/cm || 0.86 Kg/cm||
 | **Full Step Angle^1^** | 1.8deg ||||
 | **Max current/phase** | 2.8A || 2.8A ||
 | **Rotor Inertia** | 0.3Kg/cm^2 || 0.48Kg/cm^2 ||
 | **Motor Section Length** | 56mm || 76mm||
-| **Total Length** | TBC^2^ || TBC||
+| **Total Length** | 157±1mm | 107±1mm | 177±1mm | 127±1mm |
 | **Brake** | 24V, 1.5Nm| No Brake fitted| 24V, 1.5Nm| No Brake fitted|
-| **Ambient Temperature**|-20C - +50C|||
+| **Ambient Temperature**|-20C to +50C|||
 | **Max Motor & Controller Temperature**|85C|||
 | **Input voltage** | 12V to 48V ||||
 | **Processor** | Microchip ATSAME51G19A ||||
 | **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit ||||
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard. Optional on-board CAN bus termination. ||||
 | **On-board stepper driver** | 1 x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} ||||
-| **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. ||||
-| **Encoder Inputs** | Hall effect 14 bit resolution ||||
-| **Temperature monitoring** | 1 on board thermistor and processor temperature available for temperature monitoring. ||||
+| **Stepper driver features** | SPI controlled, can be run in open loop, assisted open loop, or closed loop mode. ||||
+| **Encoder Inputs** | Hall effect, 14-bit resolution ||||
+| **Temperature monitoring** | 1x on-board thermistor and processor temperature available for temperature monitoring. ||||
+| **Closed loop control monitoring** | Real-time performance of the closed loop control data is available for local action or remote monitoring ||||
 
 ^1^ In open loop mode up to 256 microstepping can be configured
-^2^ See the prototype dimensions below for the prototype M23CL-56-2804B
 
 ## Firmware notes
 
@@ -61,8 +61,7 @@ Note the M23CL series are in active development and this documentation will be e
 
 ## 3D model
 
-The STEP files are available here:
-https://github.com/Duet3D/Duet3-M23CL/tree/master/v1.0
+The STEP files are available [from Github here](https://github.com/Duet3D/Duet3-M23CL/tree/master/v1.0){target=_blank}
 
 # Wiring
 
