@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-06-14T16:38:16.301Z
+date: 2023-11-02T21:54:41.831Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -26,7 +26,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 |---|---|
 | **Processor** | [ATSAME70Q20B](https://www.microchip.com/en-us/product/ATSAME70Q20){target=_blank} |
 | **Processor features** | 32-bit, 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
-| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, or via attached SBC; USB port; serial port; CAN-FD bus |
+| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, WiFi via optional Duet 3 WiFi Module (6HC v1.02 or later only, see 'Network, user interface and plugins' below) or via attached SBC; USB port; serial port; CAN-FD bus |
 | **On-board stepper drivers** | 6 x  [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 |
 | **High current outputs** | 1 x 15A^1^, 3 x 6A each |
@@ -46,7 +46,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **PT100 and thermocouple daughterboard support** | Supports 2 x daughterboards (4 channels) on board. 50+ via CAN-FD-connected expansion boards. |
 | **LCD support** | PanelDue, or via HDMI touch screen attached to the SBC. |
 | **LED strip support** | RGB/RGBW Neopixel or DotStar. Note: LEDs can draw a lot of current so external 5V supply is required to drive more than ~8, see the operating limits below. |
-| **Other expansion** | A huge variety supported via CAN-FD-connected expansion boards |
+| **Other expansion** | A huge variety supported via CAN-FD-connected expansion boards. WiFi via optional Duet 3 WiFi Module (6HC v1.02 or later only, see 'Network, user interface and plugins' below). |
 
 
 | **NOTES** |
@@ -500,11 +500,11 @@ Note that the wifi module is the second network interface on the 6HC (the ethern
   * If you can connect to DWC via Ethernet, upload the firmware binary file by clicking on "Upload System Files" on the Files > System page. After upload, you should be asked if you want to install the WiFi firmware; select yes.
 * Power up the 6HC and connect to it either via USB or Ethernet (see the [getting started guide](/User_manual/Overview/Getting_started_Duet_3_MB6HC) for how to get to that point. 
 
-* Send M552 I1 S0 to take the WiFi module out of its disabled state and into idle.
+* Send `M552 I1 S0` to take the WiFi module out of its disabled state and into idle.
 
 * Use [M587](/User_manual/Reference/Gcodes/M587) to add the SSID and password of your wifi network. Note, it does not need to be the same network that the ethernet is connected to. The WiFi interface will get its own IP address via DHCP, or you can specify what IP address to use in the M587 command.
 
-* Send M552 I1 S1 to enable the WiFi interface in client mode and connect to an access point that you specified using M587. Send M552 I1 or M122 to see the configured IP address.
+* Send `M552 I1 S1` to enable the WiFi interface in client mode and connect to an access point that you specified using M587. Send `M552 I1` or `M122` to see the configured IP address.
 
 * You can add this to config.g if you want WiFi to be enabled on boot.
 
@@ -543,6 +543,12 @@ The CAN BUS is connected via RJ11 and at least 2 core twisted pair, although 6 c
 # Revision History
 
 # Tabs{.tabset}
+
+## Revision v1.02a
+- Added a pull down resistor to keep the WiFi module (if present) disabled during board powerup
+- improved the USB  impedance matching and trace routing. 
+- Added USB-C test pads
+- improved the CAN-FD termination resistor bypass solder jumper design to make it easier to use the 6HC as an expansion board.
 
 ## Revision v1.02
 - Update the power and stepper driver circuitry to allow VIN of up to 48V.
