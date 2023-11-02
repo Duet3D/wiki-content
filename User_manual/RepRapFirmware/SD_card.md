@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2023-11-02T15:20:47.312Z
+date: 2023-11-02T15:33:12.743Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -22,7 +22,7 @@ In normal use, you should never need to remove the SD card from its socket. You 
 
 **Caution!** Do not use an SD extender cable. Such cables do not generally work well at the high SD card transfer speeds used by the Duet. Additionally, some types of SD card extender cable have been found to damage the SD card socket. **Damage to the SD card socket from using an extender cable is not covered by the warranty.**
 
-It is possible to connect a second, low-speed SD card socket to most Duets (but not Duet 3 MB6HC), either by connecting a [PanelDue](/User_manual/Connecting_hardware/Display_PanelDue), a [12864 LCD with SD card socket](/User_manual/Connecting_hardware/Display_12864), or an [external SD card reader](https://forum.duet3d.com/topic/7406/).
+It is possible to connect a second, low-speed SD card socket to most Duets (Duet 3 MB6HC from RRF 3.4, [see here](/User_manual/Connecting_hardware/Display_PanelDue#duet-3-mb6hc-using-ribbon-cable)), either by connecting a [PanelDue](/User_manual/Connecting_hardware/Display_PanelDue), a [12864 LCD with SD card socket](/User_manual/Connecting_hardware/Display_12864), or an [external SD card reader](https://forum.duet3d.com/topic/7406/).
 
 # Specification
 
