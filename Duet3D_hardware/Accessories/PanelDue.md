@@ -2,7 +2,7 @@
 title: Duet3D PanelDue
 description: 
 published: true
-date: 2022-07-21T12:56:16.189Z
+date: 2023-11-02T17:35:43.184Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-17T14:02:21.351Z
@@ -166,14 +166,21 @@ A PanelDue can be connected to connector IO_0 using a 4-core cable wired like th
 |---|---|
 | +5V | Red | 5V_EXT (pin 5) | ![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =200x)|
 | GND | Black/yellow | GND (pin 3) | ^^ |
-| URXD0 | Blue | IO_0_IN (pin 2) | ^^ |
-| UTXD0 | Green | IO_0_OUT (pin 4) | ^^ |
+| Dout | Blue | IO_0_IN (pin 2) | ^^ |
+| Din | Green | IO_0_OUT (pin 4) | ^^ |
 
 ![paneldue_wiring_duet_3_01.jpg](/hardware/paneldue/paneldue_wiring_duet_3_01.jpg =500x)
 
 ![paneldue_wiring_duet_3_02.jpg](/hardware/paneldue/paneldue_wiring_duet_3_02.jpg =500x)
 
 ### Duet 2 WiFi, Ethernet and Maestro
+
+| PanelDue pin | Wire colour | Duet 2 PanelDue connector |
+|---|---|
+| +5V | Red | +5V |
+| GND | Black/yellow | GND |
+| Dout | Blue | URXD0 | 
+| Din | Green | UTXD0 | 
 
 For PanelDue 5i and 7i, connect the supplied 4-wire cable as shown.
 
