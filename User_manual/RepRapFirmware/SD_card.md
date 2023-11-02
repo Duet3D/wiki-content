@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2022-08-15T14:22:54.116Z
+date: 2023-11-02T15:20:47.312Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -28,9 +28,11 @@ It is possible to connect a second, low-speed SD card socket to most Duets (but 
 
 If you need to replace the micro SDHC card, we recommend you choose:
 
-* a branded card with a speed rating of Class 4 or higher
+* a branded card with a speed rating of Class 4 or higher. 
 * of up to 32GB capacity, formatted as below. RepRapFirmware does not support SD cards formatted in exFAT format. 
 * Larger capacity cards can be used, but RepRapFirmware can only read the first volume on the card, and this must be no larger than 32GB, or it will be formatted in exFAT format.
+* consider a microSD card with an A1 or A2 rating, particularly for SBC. They're better suited for SBC operation and improve overall responsiveness of the SBC.
+* condider an 'industrial' microSD card, which generally have higher endurance, reliability, extended temperature range, and longevity.
 
 # Formatting
 
