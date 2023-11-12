@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-11-12T19:09:33.741Z
+date: 2023-11-12T22:13:50.934Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2454,9 +2454,9 @@ Supported in RepRapFirmware 1.21 and later.
 
 ### Parameters
 
-* **Pnnn** Message type (0 = Generic [default], 1 = USB, 2 = PanelDue/UART, 3 = HTTP, 4 = Telnet, 5 = second UART, 6 = MQTT Client [RRF 3.5beta2 and later only]) (optional)
+* **Pnnn** Message type (0 = Generic [default], 1 = USB, 2 = PanelDue/UART, 3 = HTTP, 4 = Telnet, 5 = second UART, 6 = MQTT Client [RRF 3.5beta2 and later on WiFi-equipped Duet 3 boards only]) (optional)
 * **S"msg"** Message to send , limit of 100 characters
-* **Lnnn** Log level of this message (0 = do not log this line, 1 = log as WARN, 2 = log as INFO, 3 = log as DEBUG (default)) (RRF >= 3.2.0-beta3)
+* **Lnnn** Log level of this message (0 = do not log this line, 1 = log as WARN, 2 = log as INFO, 3 = log as DEBUG (default)) (RRF 3.2 and later)
 * **T"topic"** The topic to publish the message under (only valid on MQTT Client message).
 * **Qnn** The QOS level of the message to publish, from `0` to `2` (only valid for MQTT Client message, optional). Defaults to `0` if not specified.
 * **Rn** Set publish retain flag, `1` or `0`  (only valid for MQTT Client message, optional). Defaults to `0` if not specified.
@@ -6300,7 +6300,7 @@ M586 P2 S1 ; enable Telnet
 
 ## M586.4: Configure MQTT Client
 
-*Supported from firmware version 3.5, on Duet WiFi boards in standalone mode. Requires the WiFi interface to be running WiFi server version 2.1 or later.*
+*Supported from firmware version 3.5, on WiFi-equipped Duet 3 series main boards running in standalone mode. Requires the WiFi interface to be running WiFi server version 2.1 or later.*
 
 ### Parameters
 
