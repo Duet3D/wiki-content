@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2023-06-21T15:24:40.414Z
+date: 2023-11-20T17:08:16.384Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -45,6 +45,8 @@ The maximum number of DotStar LEDs supported per strip is several thousand, for 
 * On the Duet 3 Mini 5+, an additional RGB LED output is available on the 12864_EXP1 header, to support the backlight on LCD screens. See [Connecting 12864 or other display](/User_manual/Connecting_hardware/Display_12864).
 
 # Connections
+
+# Tabs {.tabset}
 
 ## Dedicated LED connector
 
@@ -94,7 +96,7 @@ RGB NeoPixels draw up to 60mA per LED. RGBW ones draw up to 80mA per LED. Theref
 To control RGB backlights on 12864 displays, see [Connecting 12864 displays](/User_manual/Connecting_hardware/Display_12864).
 
 
-## Using other outputs (RRF 3.5 and later)
+## Other outputs (RRF 3.5 and later)
 
 In RRF 3.5 and later, Neopixel LED strips can also be controlled by any pin that can be used as a low voltage digital output, on mainboards or expansion boards; for example an IO_OUT port on a Duet 3 series board.
 
@@ -124,6 +126,17 @@ When using general purpose output pins (i.e. not the LED ports on Duet 3 series 
 
 From RRF 3.5.0-beta.4, [M950](/User_manual/Reference/Gcodes/M950) is used to configure the LED strip, and [M150](/User_manual/Reference/Gcodes/M150) is used to control the strip. Multiple strips can be configured in M950.
 
+#### Pin names
+
+| | Dedicated pin || Other pins ||
+|---|---|
+| | Pin name | Location | Pin name | Location |
+| Duet 3 6HC/6XD | led | D0, DOTSTAR header | IO[X]_out | IO headers |
+| Duet 3 Mini 5+ | led | D0, NEOPIXEL header | IO[X]_out | IO headers |
+| Duet 3 Expansion & Tool boards | - | - | IO[X]_out | IO headers |
+| Duet 2 WiFi/Ethernet | connlcd.5, connlcd.db7, connlcd.np | CONN_LCD pin 5 | any other digital-capable pin | See Pins table |
+| Duet 2 Maestro | - | - | any other digital-capable pin | See Pins table |
+
 #### Configuration
 
 A simple configuration for a single strip might be something like:
@@ -133,8 +146,8 @@ M950 E0 C"led" T1 Q3000000   ; create a RGB Neopixel LED strip on the LED port a
 ```
 For configuring a 12864 display's LEDs on a Duet 3 Mini 5+ 12864_EXP1 connector:
 ```
-M918 P2 E-4 F2000000           ; Fysetc 12864mini
-M950 E1 C"io3.out" T1 U3       ; create a RGB Neopixel LED strip with 3 LEDs on the Duet 3 Mini 5+ 12864_EXP1 header<br>
+M918 P2 E-4 F2000000         ; Fysetc 12864mini
+M950 E1 C"io3.out" T1 U3     ; create a RGB Neopixel LED strip with 3 LEDs on the Duet 3 Mini 5+ 12864_EXP1 header
 ```
 
 #### Controlling
