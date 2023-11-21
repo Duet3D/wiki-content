@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-04-26T13:24:59.283Z
+date: 2023-11-21T10:30:24.922Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -28,6 +28,8 @@ The Duet 3 Mini 5+ has a 2-pin Molex connector instead of the RJ11 connector, an
 
 The polarity of the connections between boards matters. In all cases, connect CAN_H on one board to CAN_H on the next board, and similarly connect CAN_L to CAN_L.
 
+All connected CAN boards must share a common ground connection. Typically they will all be powered from the same power supply, so this will automatically be the case. However, if you use (for example) one power supply for the main board and a different power supply for an expansion board, you must connect the negative output terminals of the two power supplies together.
+
 ## Cables
 
 Unshielded twisted pair cable is normally used; however over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
@@ -46,7 +48,7 @@ This image shows a cable made to connect a Duet 3 Mini to a Tool Distribution Bo
 
 The colours of the wires going to the pins on the right is hard to see because they are white with a stripe, as is usual for twisted pairs; but the order of colours is the same at both ends.
 
-### Example of a bad cable:
+### Example of an unsuitable cable:
 
 ![can_basics_03.jpg](/manual/configuration/can_basics_03.jpg =600x)
 
@@ -87,19 +89,20 @@ The Duet 3 Expansion 3HC board has a 4-bank DIP switch to set the address. The C
 | off | on | on | on | 14 |
 | on | on | on | on | 15 |
 
-## Duet 3 Toolboard 1LC, Expansion 1XD and 1HCL
+## Duet 3 Toolboard 1LC 1RR, Expansion 1XD and 1HCL, Motor M23CL, SZP
 
-These boards all have a default address as shipped, and revert to that address when the factory reset procedure is used. The default addresses are:
+These boards all have a default address as shipped and revert to that address when the factory reset procedure is used. The default addresses are:
 
 | Board | Default address |
 |:---|:---|
-| TOOL1LC | 121 |
+| SZP | 120 |
+| TOOL1LC and Tool1RR | 121 |
 | EXP1XD | 122 |
-| EXP1HCL | 123 |
+| EXP1HCL and Motor M23CL | 123 |
 
 If you have just one of these boards (or at most one of each type) in your system, you can leave the address set to the default. Otherwise you should change the addresses of every board. To do this:
 
-* Connect just one of the board to the CAN bus (or you can leave the other boards connected to CAN but disconnect the power to them)
+* Connect just one of the boards to the CAN bus (or you can leave the other boards connected to CAN but disconnect the power to them)
 * Power up the system
 * Verify that you can communicate with the board at its default address. For example, to verify a tool board you could send M115 B121 or alternatively M122 B121
 * Use the [M952](/User_manual/Reference/Gcodes/M952) command to change the board address to the required one. For example, to change the address of a tool board to 20, use:
@@ -108,18 +111,18 @@ If you have just one of these boards (or at most one of each type) in your syste
 * Power up the system and use M952 again to set the address of the new board, choosing a different new address this time
 * Repeat until you have configured all the boards
 
-## Mainboard as expansion board
+## Mainboard used as expansion board
 
 It is possible to run a Duet 3 mainboard as an expansion board. This allows greater flexibility in machine design, with mainboards able to provide more stepper drivers and I/O. To do this:
 * The first mainboard (6HC, 6XD or Mini 5+) is set up as normal. 
-* The second mainboard (6HC, 6XD or Mini 5+), to be used as a mainboard-as-expansion-board, has just a single command in config.g which is [M954](/User_manual/Reference/Gcodes/M954). You use this with the A parameter to specify the CAN address.
-* To allow for firmware updates, you need to put a special IAP in the /firmware folder of the mainboard-as-expansion-board SD card: 
+* Additional 6HC, 6XD or Mini 5+ boards to be used as expansion boards have just a single command in the config.g files on their SD cards, which is [M954](/User_manual/Reference/Gcodes/M954). You use this with the A parameter to specify the CAN address for that board to use. Give each board a unique CAN address.
+* To allow for firmware updates via DWC you need to put a special IAP file in the /firmware folder of each mainboard-as-expansion-board SD card: 
   Duet 3 Mainboard 6HC - *Duet3_CANiap32_MB6HC.bin*
   Duet 3 Mainboard 6XD - *Duet3_CANiap32_MB6XD.bin*
   Duet 3 Mini 5+ - *Duet3_CANiap32_Mini5plus.bin* 
   
-* Once you have that IAP installed, then firmware updates to all boards can be done by the normal zip file method in DWC on the first mainboard.
-* Note that mainboards have only a single CAN connector, so the mainboard-as-expansion-board has to be the last one in the CAN chain. If you have any additional expansion boards, they should go between the two mainboards.
+* Once you have that IAP installed, firmware updates to all boards can be done by the normal zip file method in DWC on the first mainboard.
+* Note that mainboards have only a single CAN connector, so the mainboard-as-expansion-board is best made the last board in the CAN chain. If you have any additional expansion boards, they should go between the two mainboards.
 * The CAN addresses for each board do not need to be in sequential order along the CAN bus.
 * If you want to daisy chain multiple mainboards, as each board has only a single CAN connector and termination resistors, it is unlikely that you can go beyond 2 or 3 boards in the daisy chain before CAN voltage levels get too low. To overcome this, desolder and remove the CAN termination resistors of the intermediate boards. Newer boards will come with cuttable traces. For wiring, loop-on CAN wires from the one CAN connector.
 
@@ -127,10 +130,11 @@ It is possible to run a Duet 3 mainboard as an expansion board. This allows grea
 
 The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion boards, where expansion-board-address is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 mainboard.
 
-To configure stepper motor drivers, heaters, fans, input/output etc on an expansion board, the CAN address is used as part of the pin name in the Gcode command. Generally, Gcode commands that have a 'pin name' parameter can reference a CAN address. Prefix the pin name with the CAN address, for example:
+To configure stepper motor drivers, heaters, fans, input/output etc on an expansion board, the CAN address is used as part of the pin name in the Gcode command. Generally, Gcode commands that have a 'pin name' or 'driver number' parameter can reference a CAN address. Prefix the pin name or driver number with the CAN address, for example:
 
 ```
-M569 P121.0 S1 ; configures driver 0 at CAN address 121 to go forwards
+M569 P121.0 S1                       ; configure driver 0 at CAN address 121 to go forwards
+M308 S5 Y"thermistor" P"121.temp0"   ; configure sensor 5 to use the temp0 pin at CAN address 121
 ```
 
 If there is no CAN address used, the firmware assumes the connector/pin you are configuring is on the mainboard. The mainboard is always configured as CAN address 0.
@@ -218,9 +222,9 @@ Unless the bootloader has been corrupted, the expansion board firmware can be up
 * If the expansion board is already communicating with the main board, send M997 B# where # is the address of the expansion board. The expansion board will commence a firmware update and the DIAG LED will go out for a while. When the update is complete, it will flash and re-sync with the main board.
 * Alternatively, set the expansion board bootloader to request a firmware update:
   * On **Duet 3 Expansion 3HC**, set the expansion board address to zero (switches all off) and press the Reset button on the expansion board to commence the firmware update (or power down, change the switches, and power up again). When re-syncing is complete, change the switches back to the correct board address and press Reset again (or power down, change the switches, and power up again).
-  * On **Duet 3 Toolboard 1LC**, hold down the two buttons on power up to force a factory reset (which resets the CAN address to the default 121), and cause the board to request a firmware update. When re-syncing is complete, cycle power.
-  * On **Duet 3 Expansion 1XD** and **Duet 3 Expansion 1HCL**, fit the CAN reset button, and power up. The CAN address will be reset to default, and the board will request a firmware update. When re-syncing is complete, turn off power, remove CAN reset jumper, then power up again. 
-* You can check the firmware version installed on an expansion board by sending M115 B# where has is the board number.
+  * On **Duet 3 Toolboard 1LC**, hold down the two buttons while powering up to force a factory reset (which resets the CAN address to the default 121), and cause the board to request a firmware update. When re-syncing is complete, cycle power.
+  * On **Duet 3 Expansion 1XD** and **Duet 3 Expansion 1HCL**, fit the CAN reset jumper, then power up. The CAN address will be reset to default and the board will request a firmware update. When re-syncing is complete, turn off power, remove the CAN reset jumper, then power up again. 
+* You can check the firmware version installed on an expansion board by sending M115 B# where has is the board CAN address.
 
 **Note**: after updating expansion board firmware, you must restart the main board or at least re-run config.g in order to create any sensors, heaters, fans etc. that you have configured on that board in config.g.
 
@@ -228,7 +232,7 @@ Unless the bootloader has been corrupted, the expansion board firmware can be up
 
 ## LED behaviour and error codes
 
-All Duet 3 main boards, expansion and tool boards have a red LED. Some also have a green LED. On more recent boards, the red LED is labelled STATUS and the green on is labelled ACT (for Activity). On older boards the red LED is labelled DIAG.
+All Duet 3 main boards, expansion and tool boards have a red LED. Some also have a green LED. On more recent boards, the red LED is labelled STATUS and the green one is labelled ACT (for Activity). On older boards the red LED is labelled DIAG.
 
 The red LED behaviour is:
 
