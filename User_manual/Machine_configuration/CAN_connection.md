@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-11-21T10:37:42.264Z
+date: 2023-11-21T10:42:17.864Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -102,7 +102,7 @@ These boards all have a default address as shipped and revert to that address wh
 | EXP1XD | 122 |
 | EXP1HCL and Motor M23CL | 123 |
 
-If you have just one of these boards (or at most one of each type) in your system, you can leave the address set to the default. Otherwise you should change the addresses of every board. To do this:
+If you have just one of these boards (or at most one board in each row of the above table) in your system, you can leave the address set to the default. Otherwise you should change the addresses of every board. To do this:
 
 * Connect just one of the boards to the CAN bus (or you can leave the other boards connected to CAN but disconnect the power to them)
 * Power up the system
