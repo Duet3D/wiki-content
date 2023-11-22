@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2023-11-20T17:08:16.384Z
+date: 2023-11-22T16:35:32.275Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -105,18 +105,17 @@ Connect the LED strips as follows:
 * Connect the +5V pin of the LED strip to an available 5V pin on the Duet (note current limitations below), or to an external +5V power supply.
 * Connect the data input line of the LED strip to the chosen output pin.
 
-RGB NeoPixels draw up to 60mA per LED. RGBW ones draw up to 80mA per LED. Check how many LEDs your Duet can safely provide power for. Short strips may be able to be powered by the Duet. For longer strips you must provide external 5V power to the strip.
+#### Notes
 
-If you use any pins apart from the ones that are designed for that purpose (i.e. the dedicated ones on the Duet 3 boards), then movement will be suspended any time M150 is used to update those LEDs. So OK at the start/end of a print, or the end of heating up, but not a good idea during a print. This is because if the port the LEDs are connected to doesn't have hardware support for LEDs, the CPU has to stop all other activity including step pulse generation in order to generate the correct pulses. Exception: addressing the first or only LED strip configured on a RP2040-based expansion board will not cause movement to be suspended.
-
-If you specify too many LEDs then you may run out of RAM, especially on Duet 2, TOOL1LC and EXP1XD.
-
-The M950 Q parameter is only used when the port is the dedicated LED port on a Duet 3 series board. Otherwise it is ignored.
-
-When using general purpose output pins (i.e. not the LED ports on Duet 3 series boards) to control LEDs, the signalling level will be 3.3V; whereas almost all types pf Neopixel LED require at least 3.5V signals for reliable operation. You should to do one of the following:
-* Level shift the signal to 5V. A non-inverting 74HCT series gate or buffer such as 74HCT08 can be used to do this.
-* Use Neopixels that accept 3.3V signals (they exist now but are not common)
-* Reduce the supply voltage to the LED strip below 5V. You could probably get away with using a single 1N400x diode to drop the 5V power voltage to the entire strip, or see [this Hackaday article](https://hackaday.com/2017/01/20/cheating-at-5v-ws2812-control-to-use-a-3-3v-data-line/)
+* RGB NeoPixels draw up to 60mA per LED. RGBW ones draw up to 80mA per LED. Check how many LEDs your Duet can safely provide power for. Short strips may be able to be powered by the Duet. For longer strips you must provide external 5V power to the strip.
+* If you use any pins apart from the ones that are designed for that purpose (i.e. the dedicated ones on the Duet 3 boards), then movement will be suspended any time M150 is used to update those LEDs. So OK at the start/end of a print, or the end of heating up, but not a good idea during a print. This is because if the port the LEDs are connected to doesn't have hardware support for LEDs, the CPU has to stop all other activity including step pulse generation in order to generate the correct pulses. Exception: addressing the first or only LED strip configured on a RP2040-based expansion board will not cause movement to be suspended.
+* If you specify too many LEDs then you may run out of RAM, especially on Duet 2, TOOL1LC and EXP1XD. Set the M950 U parameter to the number of LEDs you have on the strip.
+* The M950 Q parameter is only used when the port is the dedicated LED port on a Duet 3 series board. Otherwise it is ignored.
+* When using general purpose output pins (i.e. not the LED ports on Duet 3 series boards) to control LEDs, the signalling level will be 3.3V; whereas almost all types pf Neopixel LED require at least 3.5V signals for reliable operation. You should to do one of the following:
+  * Try it! Sometimes the LEDs work okay with 3.3V signalling. 
+  * Level shift the signal to 5V. A non-inverting 74HCT series gate or buffer such as 74HCT08 can be used to do this.
+  * Use Neopixels that accept 3.3V signals (they exist now but are not common)
+  * Reduce the supply voltage to the LED strip below 5V. You could probably get away with using a single 1N400x diode to drop the 5V power voltage to the entire strip, or see [this Hackaday article](https://hackaday.com/2017/01/20/cheating-at-5v-ws2812-control-to-use-a-3-3v-data-line/)
 
 # Configuring and controlling LED strips
 
@@ -166,7 +165,7 @@ M150 E1 R0 U255 B0 P255 S1 F0  ; right encoder led green
 
 ### RRF 3.4 and earlier
 
-In RRF 3.4 and earlier, the [M150](/User_manual/Reference/Gcodes/M150) command is used both to configure and control LED strips. 
+In RRF 3.4 and earlier, the [M150](/User_manual/Reference/Gcodes/M150) command is used both to configure and control LED strips: 
 
 The X and Q parameters configure them and the remaining parameters set the colours. If the X and Q parameters are not provided, the last values of those parameters specified will be used again, or default parameters if they have never been specified. You do not normally need to specify the Q parameter, but you must specify the X parameter at least once unless the default is acceptable. On the Duet 3 MB6HC the default is X0 (DotStar) in firmware 3.1.1 and earlier, and X1 (RGB Neopixel) in firmware 3.2 and later. On other boards the default is always X1.
 
