@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-11-21T11:41:17.239Z
+date: 2023-11-22T15:43:25.386Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7865,14 +7865,17 @@ M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED por
 
 * **En** LED strip number
 * **C"name"** Pin name
-* **Qnn** (optional) LED clock frequency.
+* **Qnn** (optional) LED clock frequency, default 3000000Hz.
 * **Tn** (optional) LED type: 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
 * **Unnn** (optional) The maximum number of LEDs in the strip. Default 60, larger values use more memory.
 
-* The default maximum number of LEDs in a strip is 60. It can be increased using the M950 U parameter, subject to 
+##### Notes
+
+* The **Qnn** parameter sets the LED clock frequency. This is 4x the bit rate. Most datasheets for LEDs (at least SK6812 and WS2812B based LEDs) suggest a maximum data rate of 800Kbps, so 800000 * 4 = 3200000. The default of 3000000 appears to work well with most LEDs.
+* The *Unn* parameter defines the maximum number of LEDs in a strip, and the default is 60. It can be increased using the M950 U parameter, subject to 
   (a) available RAM and 
   (b) on the 6HC and 6XD there is an additional limit because the DMA buffer has to be in non-cached memory. For 6HC and 6XD the max LEDs for a strip connected to the dedicated LED port is currently 240 Neopixel RGBW or 320 RGB. It might reduce in future.
-* When configuring a LED stirp on a tool board or 1XD, using a lower U parameter (ie set U to the number of LEDs) is advised to save RAM, because there is very little free RAM on those boards.
+* When configuring a LED strip on a tool board or 1XD (which have very little free RAM), or configuring multiple LED strips, using a lower U parameter (ie set U to the number of LEDs) is advised to save RAM.
 
 ## M951: Set height following mode parameters
 
