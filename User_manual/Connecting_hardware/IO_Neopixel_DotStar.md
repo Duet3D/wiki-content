@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2023-11-22T16:35:32.275Z
+date: 2023-11-22T17:04:15.042Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -54,7 +54,7 @@ The Duet 3 Mainboard 6HC, Duet 3 Mainboard 6XD, Duet 3 Mini 5+ and Duet 2 WiFi/E
 
 #### Tabs {.tabset}
 
-##### Duet 3 MB6HC - DotStar or NeoPixel 
+##### Duet 3 MB6HC/6XD - DotStar or NeoPixel 
 
 Connect the LED strips to the 4-pin connector labelled DS_LED.
 
@@ -123,8 +123,6 @@ Connect the LED strips as follows:
 
 ### RRF 3.5 and later
 
-From RRF 3.5.0-beta.4, [M950](/User_manual/Reference/Gcodes/M950) is used to configure the LED strip, and [M150](/User_manual/Reference/Gcodes/M150) is used to control the strip. Multiple strips can be configured in M950.
-
 #### Pin names
 
 | | Dedicated pin || Other pins ||
@@ -138,10 +136,22 @@ From RRF 3.5.0-beta.4, [M950](/User_manual/Reference/Gcodes/M950) is used to con
 
 #### Configuration
 
+From RRF 3.5.0-beta.4, [M950](/User_manual/Reference/Gcodes/M950) is used to configure the LED strip. Multiple strips (up to 5) can be configured in M950.
+
+* **En** LED strip number
+* **C"name"** Pin name (see above)
+* **Qnn** (optional) LED clock frequency, default 3000000Hz. This frequency appears to work well with most LEDs.
+* **Tn** (optional) LED type: 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
+* **Unnn** (optional) The maximum number of LEDs in the strip. Default 60, larger values use more memory.
+
 A simple configuration for a single strip might be something like:
 
 ```
+; Duet 3 led pin
 M950 E0 C"led" T1 Q3000000   ; create a RGB Neopixel LED strip on the LED port and set SPI frequency to 3MHz
+
+; Duet 2 WiFi/Ethernet CONNLCD pin 5
+M950 E0 C"connlcd.np" T2 U3  ; create a RGBW Neopixel LED strip with 3 LEDs on CONNLCD pin 5 (will need level shifting from 3.3V to 5V)
 ```
 For configuring a 12864 display's LEDs on a Duet 3 Mini 5+ 12864_EXP1 connector:
 ```
@@ -150,6 +160,18 @@ M950 E1 C"io3.out" T1 U3     ; create a RGB Neopixel LED strip with 3 LEDs on th
 ```
 
 #### Controlling
+
+[M150](/User_manual/Reference/Gcodes/M150) is used to control the strip.
+
+* **Rnnn** Red component, 0-255
+* **Unnn** Green component, 0-255
+* **Bnnn** Blue component, 0-255
+* **Wnnn** White component, 0-255 (Only for RGBW NeoPixel)
+* **Pnnn** Brightness, 0-255
+* **Ynn** Brightness, 0-31 (alternative to P 0-255)
+* **Snnn** Number of individual LEDs to set to these colours, default 1
+* **Fn** Following command action. F0 (default) means this is the last command for the LED strip, so the next M150 command starts at the beginning of the strip. F1 means further M150 commands for the remainder of the strip follow this one.
+* **En** LED strip number, default 0. 
 
 Control the LED strip using M150:
 ```
@@ -166,6 +188,24 @@ M150 E1 R0 U255 B0 P255 S1 F0  ; right encoder led green
 ### RRF 3.4 and earlier
 
 In RRF 3.4 and earlier, the [M150](/User_manual/Reference/Gcodes/M150) command is used both to configure and control LED strips: 
+
+* **Rnnn** Red component, 0-255
+* **Unnn** Green component, 0-255
+* **Bnnn** Blue component, 0-255
+* **Wnnn** White component, 0-255 (Only for RGBW NeoPixel, RepRapFirmware 3.3 and later)
+* **Pnnn** Brightness, 0-255 (RepRapFirmware 2.03 and later)
+* **Ynn** Brightness, 0-31 (alternative to P 0-255)
+* **Snnn** Number of individual LEDs to set to these colours, default 1
+* **Fn** Following command action. F0 (default) means this is the last command for the LED strip, so the next M150 command starts at the beginning of the strip. F1 means further M150 commands for the remainder of the strip follow this one.
+* **Xn** LED type: X0 = DotStar (default prior to RRF 3.2), X1 = RGB NeoPixel (default in RRF 3.2 and later), X2 = bit-banged RGB NeoPixel, X3 = RGBW NeoPixel (from RRF 3.3), X4 = bit-banged RGBW NeoPixel (from RRF3). This parameter is remembered from one call to the next, so it only needs to be given once. Not all boards support all the modes. On the Duet 3 Mini, X1 and X3 select the NeoPixel output on the main board, while X2 and X4 address the RGB LEDs on some 12864 displays.
+* **Qnnn** (optional) Use specified SPI frequency (in Hz) instead of the default frequency. This parameter is not normally needed, and is only processed if X parameter also present. When using NeoPixels, only frequencies in the range 2.4 to 4MHz will work.
+
+Example:
+```
+M150 X1 Q3000000          ; set LED type to NeoPixel and set SPI frequency to 3MHz
+M150 R255 P128 S20 F1     ; set first 20 LEDs to red, half brightness, more commands for the strip follow
+M150 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished programming strip
+```
 
 The X and Q parameters configure them and the remaining parameters set the colours. If the X and Q parameters are not provided, the last values of those parameters specified will be used again, or default parameters if they have never been specified. You do not normally need to specify the Q parameter, but you must specify the X parameter at least once unless the default is acceptable. On the Duet 3 MB6HC the default is X0 (DotStar) in firmware 3.1.1 and earlier, and X1 (RGB Neopixel) in firmware 3.2 and later. On other boards the default is always X1.
 
