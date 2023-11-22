@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2023-11-22T12:45:02.952Z
+date: 2023-11-22T13:09:11.719Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -59,22 +59,25 @@ Here is a sample Drives section of config.g for an IDEX machine:
 
 ```
 ; Drives
-M569 P0 S1 ; Drive 0 goes forwards (change to S0 to reverse it)
-M569 P1 S1 ; Drive 1 goes forwards
-M569 P2 S1 ; Drive 2 goes forwards
-M569 P3 S1 ; Drive 3 goes forwards
-M569 P4 S1 ; Drive 4 goes forwards
-M569 P5 S1 ; Drive 5 goes forwards
-M584 X0 Y1 Z2 U3 E4:5 ; Create U axis for second X carriage before we try to configure it
+M569 P0 S1                                ; Drive 0 goes forwards (change to S0 to reverse it)
+M569 P1 S1                                ; Drive 1 goes forwards
+M569 P2 S1                                ; Drive 2 goes forwards
+M569 P3 S1                                ; Drive 3 goes forwards
+M569 P4 S1                                ; Drive 4 goes forwards
+M569 P5 S1                                ; Drive 5 goes forwards
+M584 X0 Y1 Z2 U3 E4:5                     ; Create U axis for second X carriage before we try to configure it
 
-M906 X800 Y800 U800 Z800 E1000 ; Set motor currents (mA)
-M201 X800 Y800 U800 Z15 E1000 ; Accelerations (mm/s^2)
-M203 X15000 Y15000 U15000 Z100 E3600 ; Maximum speeds (mm/min)
-M566 X600 Y600 U600 Z30 E20 ; Maximum jerk speeds mm/minute
+M350 X16 Y16 Z16 U16 E16:16 I1            ; configure microstepping with interpolation 
+M92 X80 Y80 U80 Z2560 E420:420            ; Set axis steps/mm
+M566 X600 Y600 U600 Z30 E20:20            ; Maximum jerk speeds mm/minute
+M203 X15000 Y15000 U15000 Z100 E3600:3600 ; Maximum speeds (mm/min)
+M201 X800 Y800 U800 Z15 E1000:1000        ; Accelerations (mm/s^2)
+M906 X800 Y800 U800 Z800 E1000:1000       ; Set motor currents (mA)
+M84 S30                                   ; Set idle timeout 
+
+; Axis Limits 
 M208 X200 Y200 U250 Z200 ; Set axis maxima (adjust to suit your machine)
 M208 X-50 Y0 U0 Z-0.2 S1 ; Set axis minimum (adjust to make X=0 and Y=0 the edge of the bed)
-M92 X80 Y80 U80 Z2560 ; Set axis steps/mm
-M92 E420:420 ; Set extruder steps per mm
 ```
 
 For an IDEX machine, the X endstop will be at the low end and the U endstop will be at the high end. Remember to declare this in the M574 command. 
@@ -86,21 +89,21 @@ Example of the endstop congiration:
 ; Endstops
 
 ; RRF 3.x, Duet 3
-M574 X1 S1 P"io1.in"                            ; configure switch-type (e.g. microswitch) endstop for low end on X via pin io1.in
-M574 Y1 S1 P"io2.in"                            ; configure switch-type (e.g. microswitch) endstop for low end on Y via pin io2.in
-M574 U2 S1 P"io3.in"                            ; configure switch-type (e.g. microswitch) endstop for high end on U via pin io3.in
+M574 X1 S1 P"io1.in"                      ; configure switch-type (e.g. microswitch) endstop for low end on X via pin io1.in
+M574 Y1 S1 P"io2.in"                      ; configure switch-type (e.g. microswitch) endstop for low end on Y via pin io2.in
+M574 U2 S1 P"io3.in"                      ; configure switch-type (e.g. microswitch) endstop for high end on U via pin io3.in
 ```
 
 ```
 ; RRF 3.x, Duet 2
-M574 X1 S1 P"xstop"                             ; configure switch-type (e.g. microswitch) endstop for low end on X via pin xstop
-M574 Y1 S1 P"ystop"                             ; configure switch-type (e.g. microswitch) endstop for low end on Y via pin ystop
-M574 U2 S1 P"e0stop"                            ; configure switch-type (e.g. microswitch) endstop for high end on U via pin e0stop 
+M574 X1 S1 P"xstop"                       ; configure switch-type (e.g. microswitch) endstop for low end on X via pin xstop
+M574 Y1 S1 P"ystop"                       ; configure switch-type (e.g. microswitch) endstop for low end on Y via pin ystop
+M574 U2 S1 P"e0stop"                      ; configure switch-type (e.g. microswitch) endstop for high end on U via pin e0stop 
 ```
 
 ```
 ; RRF 2.x, Duet 2 : 
-M574 X1 Y1 Z0 U2 S1 ; Set endstop configuration (X and Y endstops at low end, U endstop at high end, active high, no Z endstop)
+M574 X1 Y1 Z0 U2 S1                       ; Set endstop configuration (X and Y endstops at low end, U endstop at high end, active high, no Z endstop)
 ```
 
 # Homing files
