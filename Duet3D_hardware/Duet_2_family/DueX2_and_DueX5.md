@@ -2,7 +2,7 @@
 title: DueX2 and DueX5
 description: The DueX5 is an expansion board for the Duet 2 WiFi and Ethernet. The DueX2 was a similar board with only 2 drivers that is now discontinued.
 published: true
-date: 2023-06-02T12:11:07.531Z
+date: 2023-11-24T14:58:58.374Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-03T14:27:58.735Z
@@ -97,9 +97,15 @@ Morten Nielsen has also shared a model of the earlier versions, [available here]
 
 ## Using a DueX5 with External drivers
 
-There are two modifications to do, both of which use jumpers on the DueX5 v0.11, but use drillable/solderable jumpers on the DueX5 v0.10 PCB. The first change is to change the board ID so that the Duet 2 thinks a DueX2 is attached, and the second is to disable the onboard drivers so that external drivers can be used.
+The DueX5 can be used to control up to three external drivers, by disabling the on-board driver chips for drives 7, 8 and 9, and using the Driver 7, 8 and 9 external connector.
+
+There are two modifications to do, both of which use jumpers on the DueX5 v0.11, but use drillable/solderable jumpers on the DueX5 v0.10 PCB. The first modification is to change the board ID so that the Duet 2 thinks a DueX2 is attached. This is done to stop the on-board stepper drivers reporting errors. The second is to disable the onboard drivers so that external driver connectors can be used.
 
 Note that the step, direction and enable signalling is 3.3V.  
+
+If you only want to control one or two external steppers, and keep four or three internal drivers working, don't switch the board to DueX2 mode. Then, there are two options.
+* Disable the internal driver by removing the jumper or cutting the trace. You will then get driver errors when you disable the internal driver. You can silence these by adding `M569 P[driver number] R-1` to config.g, and then do not use the Enable signal on the external driver (it won't enable, but step and direction pins will still control it.
+* Don't disable the internal driver. Set the current very low (eg `M906 [axis label]100` for 100mA) and the internal driver shouldn't report phase disconnections. All signals on the external driver connector can be used.
 
 ### DueX5 v0.11 with External Drivers
 
@@ -249,11 +255,11 @@ LEDs are provided to indicate the following:
 | FAN7 FAN7- | duex.fan7 | ^^ |
 | FAN8 FAN8- | duex.fan8 | ^^ |
 | **Endstop inputs** |||
-| E2_STOP | duex.e2stop | exp.e2stop, exp.4 |
-| E3_STOP | duex.e3stop, duex.cs6 | exp.e3stop, exp.9 |
-| E4_STOP | duex.e4stop, duex.cs7 | exp.e4stop, exp.14 |
-| E5_STOP | duex.e5stop, duex.cs8 | exp.e5stop, exp.19 |
-| E6_STOP | duex.e6stop | exp.e6stop, exp.24 |
+| E2_STOP | duex.e2stop | The duex.estop pins are routed through the I2C expander on the DueX. The exp.e[x]stop pins on the Duet expansion header become the CS pins on the DueX temp daughterboard connector. |
+| E3_STOP | duex.e3stop | ^^ |
+| E4_STOP | duex.e4stop | ^^ |
+| E5_STOP | duex.e5stop | ^^ |
+| E6_STOP | duex.e6stop | ^^ |
 | **Miscellaneous** |||
 | GPIO & I2C PB6 | duex.pb6 | exp.pb6, exp.29 |
 | GPIO & I2C GPIO1 | duex.gp1 | **Note:** the duex.gp1-4 pins cannot be used to control a laser. |
@@ -262,9 +268,9 @@ LEDs are provided to indicate the following:
 | GPIO & I2C GPIO4 | duex.gp4 | ^^ |
 | **SPI CS** |||
 | TEMP DB CS5 | duex.cs5 | spi.cs5, exp.50 |
-| TEMP DB CS6 | duex.cs6 | spi.cs6, exp.9 |
-| TEMP DB CS7 | duex.cs7 | spi.cs7, exp.14 |
-| TEMP DB CS8 | duex.cs8 | spi.cs8, exp.19 |
+| TEMP DB CS6 | duex.cs6 | spi.cs6, exp.e3stop, exp.9 |
+| TEMP DB CS7 | duex.cs7 | spi.cs7, exp.e4stop, exp.14 |
+| TEMP DB CS8 | duex.cs8 | spi.cs8, exp.e5stop, exp.19 |
 
 
 ## Input/output
