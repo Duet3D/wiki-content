@@ -2,7 +2,7 @@
 title: DueX2 and DueX5
 description: The DueX5 is an expansion board for the Duet 2 WiFi and Ethernet. The DueX2 was a similar board with only 2 drivers that is now discontinued.
 published: true
-date: 2023-11-24T14:58:58.374Z
+date: 2023-11-24T16:06:05.582Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-03T14:27:58.735Z
@@ -103,9 +103,7 @@ There are two modifications to do, both of which use jumpers on the DueX5 v0.11,
 
 Note that the step, direction and enable signalling is 3.3V.  
 
-If you only want to control one or two external steppers, and keep four or three internal drivers working, don't switch the board to DueX2 mode. Then, there are two options.
-* Disable the internal driver by removing the jumper or cutting the trace. You will then get driver errors when you disable the internal driver. You can silence these by adding `M569 P[driver number] R-1` to config.g, and then do not use the Enable signal on the external driver (it won't enable, but step and direction pins will still control it.
-* Don't disable the internal driver. Set the current very low (eg `M906 [axis label]100` for 100mA) and the internal driver shouldn't report phase disconnections. All signals on the external driver connector can be used.
+If you only want to control one or two external steppers, and keep four or three internal drivers working, don't switch the board to DueX2 mode. Then, disable the internal driver by removing the jumper (v0.11) or cutting the trace (v0.10). You will get driver errors when you disable the internal driver, but you can silence these by adding `M569 P[driver number] R-1` to config.g. You will not be able to use the Enable signal on the external driver, but step and direction pins will still control it.
 
 ### DueX5 v0.11 with External Drivers
 
