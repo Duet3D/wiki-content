@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2023-10-03T18:16:12.054Z
+date: 2023-11-27T15:32:00.182Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -265,7 +265,7 @@ See "Set the CAN address" below.
 
 ### Connecting WITHOUT Duet 3 Tool Distribution Board
 
-It is also possible to connect a Toolboard directly to the Duet 3 Mainboard 6HC, 6XD, or Duet 3 Mini 5+.
+It is also possible to connect a Toolboard directly to the Duet 3 Mainboard 6HC, 6XD, Duet 3 Mini 5+, or any Duet 3 Expansion board.
 
 #### Power connection
 
@@ -275,9 +275,9 @@ Supply between 12V and 32V to the 2-pin JST VH VIN power connector on the Toolbo
 
 #### Tabs {.tabset}
 
-##### Duet 3 Mainboard 6HC & 6XD
+##### Duet 3 Mainboard 6HC, 6XD, and Expansion boards
 
-Connect the RJ11 socket on the Duet 3 Mainboard 6HC or 6XD to the correct 2 CAN pins on the Toolboard, and terminate the other 2 CAN pins on the Toolboard. If using one Toolboard, connect pins 3 and 4 (the middle 2 pins) of the RJ11 connector on the Duet to pins 4 and 3 of the Toolboard, making sure you get them the right way round i.e. CAN1_H in the Duet to CANH on the Toolboard. (Pins 2 and 4 of the Toolboard are interchangeable, as are pins 1 and 3.) Don't connect anything to pins 2 and 5 of the RJ11 connector on the Duet.
+Connect the RJ11 socket on the Duet 3 Mainboard 6HC, 6XD or Expansion board, to the correct 2 CAN pins on the Toolboard, and terminate the other 2 CAN pins on the Toolboard. If using one Toolboard, connect pins 3 and 4 (the middle 2 pins) of the RJ11 connector on the Duet to pins 4 and 3 of the Toolboard, making sure you get them the right way round i.e. CAN1_H in the Duet to CANH on the Toolboard. (Pins 2 and 4 of the Toolboard are interchangeable, as are pins 1 and 3.) Don't connect anything to pins 2 and 5 of the RJ11 connector on the Duet.
 
 [![The image above shows Duet 3 Toolboard 1LC v1.0. ](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_connection_01.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_connection_01.png){target=_blank}
 
