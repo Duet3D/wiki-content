@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-11-28T17:11:50.227Z
+date: 2023-11-28T23:06:28.991Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -371,7 +371,7 @@ The meaning of the S parameter has changed over successive versions of RepRapFir
 
 In **RRF 3.x**:
 * **H** parameter controls movement type
-* **S** parameter sets laser power with range of 0-255 when M452 Laser mode set, otherwise ignored. M452 R[0-255] parameter sets the maximum laser power, the G1 S parameter sets a proportion of this.
+* **S** parameter sets laser power with range of 0-255 when [M452](/User_manual/Reference/Gcodes/M452) Laser mode set, otherwise ignored. M452 R[0-255] parameter sets the maximum laser power, the G1 S parameter sets a proportion of this.
 
 | RRF 3, G0/G1 H parameter BEFORE and AFTER M452 Laser Mode. ||
 |:------------|----------|
@@ -402,7 +402,7 @@ To increase the speed of raster engraving, raster clustering mode has been imple
 
 In **RRF 2.02 to 2.05.1**:
 * **H** parameter controls movement type. 
-* **S** parameter controls movement type BEFORE M452 Laser Mode is set. S parameter sets laser power with range of 0-255 AFTER M452 Laser mode set. M452 R[0-255] parameter sets the maximum laser power, the G1 S parameter sets a proportion of this.
+* **S** parameter controls movement type BEFORE M452 Laser Mode is set. S parameter sets laser power with range of 0-255 AFTER [M452](/User_manual/Reference/Gcodes/M452) Laser mode set. M452 R[0-255] parameter sets the maximum laser power, the G1 S parameter sets a proportion of this.
 
 | RRF 2.02 to 2.05.1, G0/G1 H parameter BEFORE and AFTER M452 Laser Mode. ||
 |:------------|----------|
@@ -424,7 +424,7 @@ In **RRF 2.02 to 2.05.1**:
 
 | RRF 2.02 to 2.05.1, G0/G1 S parameter AFTER M452 Laser Mode. ||
 |:------------|----------|
-| S parameter sets laser power with range of 0 to 254. ||
+| S parameter sets laser power with range of 0 to 255. ||
 
 ##### RRF 2.01 and earlier
 
@@ -1883,15 +1883,15 @@ M950 P0 C"exp.heater3" Q500  ; allocate GPIO port 0 to heater3 on expansion conn
 M42 P0 S0.5  ; set 50% PWM on GPIO port 0
 </pre>
 
-M42 switches a general purpose I/O pin which is defined by M950. Use M42 Px Sy to set pin x to value y. The S field may be in the range 0..1 or 0..255.
+##### Description
+
+M42 switches a general purpose I/O pin which is defined by M950. Use M42 Px Sy to set pin x to value y. The S field may be in the range 0.0-1.0 or >1.0-255. 0 is off in both cases.
 
 ##### Notes
 
-Before you can use M42 you must create a GPIO port using M950. Then in the M42 command, the P parameter is the GPIO port number. 
-
-The F (PWM frequency) and I (invert PWM) parameters are no longer supported in M42. Instead, use the Q (PWM frequency) and C (pin name, with ! to invert) parameters in M950 when you create the GPIO port.
-
-In RRF 3.4, Duet 3 supports up to 32 outpus and 16 inputs, Duet 2 Wifi/Ethernet support up to 20 GPIO ports, and Duet 2 Maestro supports 10 GPIO ports. No GPIO ports are allocated by default.
+* Before you can use M42 you must create a GPIO port using M950. Then in the M42 command, the P parameter is the GPIO port number. 
+* The F (PWM frequency) and I (invert PWM) parameters are no longer supported in M42. Instead, use the Q (PWM frequency) and C (pin name, with ! to invert) parameters in M950 when you create the GPIO port.
+* In RRF 3.4, Duet 3 supports up to 32 outputs and 16 inputs, Duet 2 Wifi/Ethernet support up to 20 GPIO ports, and Duet 2 Maestro supports 10 GPIO ports. No GPIO ports are allocated by default.
 
 #### RepRapFirmware 2.x
 
@@ -1908,7 +1908,7 @@ In RRF 3.4, Duet 3 supports up to 32 outpus and 16 inputs, Duet 2 Wifi/Ethernet 
 M42 P3 I1 S0.5 F500  ; set Heater 3 pin to 50% PWM at 500Hz, inverted
 </pre>
 
-M42 switches a general purpose I/O pin. Use M42 Px Sy to set pin x to value y. The S field may be in the range 0..1 or 0..255.
+M42 switches a general purpose I/O pin. Use M42 Px Sy to set pin x to value y. The S field may be in the range 0.0-1.0 or >1.0-255. 0 is off in both cases.
 
 ##### Notes
 
@@ -2168,9 +2168,9 @@ Request the temperature of the current extruder and the build base in degrees Ce
 ##### Parameters
 
 * **Pnnn** Fan number (optional, defaults to 0). Relates to the fan number created by M950,
-* **Snnn** Fan speed (0 to 255 or 0.0 to 1.0))
-* **Lnnn** Set the minimum fan speed (0 to 255 or 0.0 to 1.0) when a non-zero fan speed is requested.
-* **Xnnn** Set the maximum fan speed (0 to 255 or 0.0 to 1.0) when a non-zero fan speed is requested.
+* **Snnn** Fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases)
+* **Lnnn** Set the minimum fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases) when a non-zero fan speed is requested.
+* **Xnnn** Set the maximum fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases) when a non-zero fan speed is requested.
 * **Bnnn** Blip time - fan will be run at full PWM for this number of seconds when started from standstill. Default is B0.1 which means that there is a 100ms burst after starting the fan.
 * **Hnn:nn:nn...** Enable thermostatic mode and select sensor monitored. H-1 disables thermostatic mode. Relates to the sensor number(s) created by M308.
 * **Rnnn** Restore fan speed to the value it has when the print was paused (R1) or the last time the fan speed was set and no P parameter was provided (R2).
@@ -2200,17 +2200,12 @@ This example sets up an electronics cooling fan that starts to turn on when the 
 
 ##### RepRapFirmware 3 Notes
 
-The A (logical pin number), F (fan PWM frequency) and I (invert pwm) parameters are no longer supported. Instead, specify the corresponding parameters in the M950 command when you create the fan.
-
-The P parameter relates to the fan number created by M950, NOT the fan pin number on the board as in RRF2.x.
-
-The H parameter relates to the sensor number(s) created by M308, not the temperature sensor pin number on the board as in RRF2.x.
-
-From RRF 3.4, when a fan is configured as thermostatic using M106, the S parameter is now ignored. If a single T value is given, then when the temperature is above the T parameter the fan will run at the PWM specified by the X (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the S parameter. 
-
-If a fan is configured to trigger on a sensor that represents a stepper driver over-temperature flags (ie M308 ... Y'drivers'), then when the fan turns on it will delay the reporting of an over-temperature warning for the corresponding drivers for a few seconds, to give the fan time to cool the driver down.
-
-If you were using the PB6 tacho input on Duet 2 WiFi/Ethernet running RRF 2.x, you must declare this in a M950 command for the fan concerned in RRF 3.x.
+* The A (logical pin number), F (fan PWM frequency) and I (invert pwm) parameters are no longer supported. Instead, specify the corresponding parameters in the M950 command when you create the fan.
+* The **P** parameter relates to the fan number created by M950, NOT the fan pin number on the board as in RRF2.x.
+* The **H** parameter relates to the sensor number(s) created by M308, not the temperature sensor pin number on the board as in RRF2.x.
+* From RRF 3.4, when a fan is configured as thermostatic using M106, the S parameter is now ignored. If a single T value is given, then when the temperature is above the T parameter the fan will run at the PWM specified by the X (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the S parameter. 
+* If a fan is configured to trigger on a sensor that represents a stepper driver over-temperature flags (ie M308 ... Y'drivers'), then when the fan turns on it will delay the reporting of an over-temperature warning for the corresponding drivers for a few seconds, to give the fan time to cool the driver down.
+* If you were using the PB6 tacho input on Duet 2 WiFi/Ethernet running RRF 2.x, you must declare this in a M950 command for the fan concerned in RRF 3.x.
 
 Example
 <br>
@@ -2227,11 +2222,11 @@ M950 F2 C"!Fan2+exp.pb6" Q25000  ; fan 2 is a 4-wire PWM fan so invert it, use h
 ##### Parameters
 
 * **Pnnn** Fan number (optional, defaults to 0). (In RRF2 this relates to the fan pin number on the board)
-* **Snnn** Fan speed (0 to 255 or 0.0 to 1.0))
+* **Snnn** Fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases)
 * **Innn** Invert PWM (I1), disable fan (I-1), or normal mode (I0, default)
 * **Fnnn** Fan PWM frequency
-* **Lnnn** Set the minimum fan speed (0 to 255 or 0.0 to 1.0) when a non-zero fan speed is requested.
-* **Xnnn** Set the maximum fan speed (0 to 255 or 0.0 to 1.0) when a non-zero fan speed is requested. (supported in RRF >= 2.02)
+* **Lnnn** Set the minimum fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases) when a non-zero fan speed is requested.
+* **Xnnn** Set the maximum fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases) when a non-zero fan speed is requested. (supported in RRF >= 2.02)
 * **Bnnn** Blip time - fan will be run at full PWM for this number of seconds when started from standstill. Default is B0.1 which means that there is a 100ms burst after starting the fan.
 * **Hnn:nn:nn...** Enable thermostatic mode and select heaters monitored. H-1 disables thermostatic mode. (In RRF2 this relates to the sensor number(s) created by M308, not the temperature sensor pin number on the board)
 * **Rnnn** Restore fan speed to the value it has when the print was paused (R1) or the last time the fan speed was set and no P parameter was provided (R2).
@@ -2252,31 +2247,21 @@ The first example turns on the default cooling fan at half speed. The second exa
 
 ##### RepRapFirmware 2 Notes
 
-The F parameter sets the fan PWM frequency, in Hz. The default is F250, which works with most fans, try F100 or lower if you find that you can't control the speed of your fan. This parameter is ignored for fans connected to the fan outputs of a DueX2 or DueX5 because those outputs don't support variable PWM frequency.
-
-The I parameter causes the fan output signal to be inverted if its value is greater than zero. This makes the cooling fan output suitable for feeding the PWM input of a 4-wire fan via a diode. If the parameter is present and zero, the output is not inverted. If the I parameter is negative then in RRF 1.16 and later the fan is disabled, which frees up the pin for use as a general purpose I/O pin that can be controlled using M42.
-
-The A parameter can be used to assign a fan to a different output pin, for example a spare heater output (use a M307 command to disable the heater and free up the pin first). 
-
-In firmware versions 1.19 and later, fans can respond to virtual heaters (which have heater numbers 100 upwards) as well as real heaters. If a fan is configured to trigger on a virtual heater whose sensor represents TMC2660 driver over-temperature flags, then when the fan turns on it will delay the reporting of an over-temperature warning for the corresponding drivers for a few seconds, to give the fan time to cool the driver down.
+* The **F** parameter sets the fan PWM frequency, in Hz. The default is F250, which works with most fans, try F100 or lower if you find that you can't control the speed of your fan. This parameter is ignored for fans connected to the fan outputs of a DueX2 or DueX5 because those outputs don't support variable PWM frequency.
+* The **I** parameter causes the fan output signal to be inverted if its value is greater than zero. This makes the cooling fan output suitable for feeding the PWM input of a 4-wire fan via a diode. If the parameter is present and zero, the output is not inverted. If the I parameter is negative then in RRF 1.16 and later the fan is disabled, which frees up the pin for use as a general purpose I/O pin that can be controlled using M42.
+* The **A** parameter can be used to assign a fan to a different output pin, for example a spare heater output (use a M307 command to disable the heater and free up the pin first). 
+* In firmware versions 1.19 and later, fans can respond to virtual heaters (which have heater numbers 100 upwards) as well as real heaters. If a fan is configured to trigger on a virtual heater whose sensor represents TMC2660 driver over-temperature flags, then when the fan turns on it will delay the reporting of an over-temperature warning for the corresponding drivers for a few seconds, to give the fan time to cool the driver down.
 
 ### Notes - all firmware versions
 
-The parameter 'S' declares the PWM value (0-255 or 0-1.0). M106 S0 turns the fan off.
-
-If an S parameter is provided but no other parameter is present, then the speeds of the print cooling fans associated with the current tool will be set (see the F parameter in the M563 command). If no tool is active then the speed of Fan 0 will be set. Either way, the speed is remembered so that it can be recalled using the R2 parameter (see below).
-
-If no S parameter is given but the R1 parameter is used, the fan speed when the print was last paused will be set, this allows the pause.g macro to switch off the fans and have them resume when the print is resumed. If the R2 parameter is used, then the speeds of the print cooling fans associated with the current tool will be set to the remembered value (see above). R2 allows the configured fan speed to be passed between tools which is useful on multi extruder printers where the slicing software may not specify the fan speed on tool change and the tool change macros shut down fans when not in use.
-
-The T and H parameters allow a fan to be configured to operate in thermostatic mode, for example to use one of the fan channels to control the hot end fan. In this mode the fan will be on when the temperature of any of the heaters listed in the H parameter is at or above the trigger temperature set by the T parameter, and off otherwise. Thermostatic mode can be disabled using parameter H-1. In RRF 3.4 and later, the fan will run at the PWM specified by the X (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the S parameter.
-
-In firmware 1.19 and later, the T parameter may be of the form Taaa:bbb where aaa is the temperature at/below which the fan should be fully off and bbb is the temperature at which the fan should be fully on. The PWM will be set proportionally if the temperature is between these limits.
-
-The B parameter sets the time for which the fan will be operated at full PWM when started from cold, to allow low fan speeds t be used. A value of 0.1 seconds is usually sufficient.
-
-The L parameter defines the minimum PWM value that is usable with this fan. If a lower value is commanded that is not zero, it will be rounded up to this value.
-
-The X parameter defines the maximum PWM value that is usable with this fan. The requested PWM value (S parameter) is scaled to be between 0 and X parameter value, and rounded up to the minimum if defined (L parameter). e.g. if X128 is set, S255 will set PWM to 128; S128 will set PWM to 64.
+* The parameter **S** declares the PWM value (0.0-1.0 or >1.0-255, 0 is off in both cases). M106 S0 turns the fan off.
+* If an S parameter is provided but no other parameter is present, then the speeds of the print cooling fans associated with the current tool will be set (see the F parameter in the M563 command). If no tool is active then the speed of Fan 0 will be set. Either way, the speed is remembered so that it can be recalled using the R2 parameter (see below).
+* If no S parameter is given but the R1 parameter is used, the fan speed when the print was last paused will be set, this allows the pause.g macro to switch off the fans and have them resume when the print is resumed. If the R2 parameter is used, then the speeds of the print cooling fans associated with the current tool will be set to the remembered value (see above). R2 allows the configured fan speed to be passed between tools which is useful on multi extruder printers where the slicing software may not specify the fan speed on tool change and the tool change macros shut down fans when not in use.
+* The **T** and **H** parameters allow a fan to be configured to operate in thermostatic mode, for example to use one of the fan channels to control the hot end fan. In this mode the fan will be on when the temperature of any of the heaters listed in the H parameter is at or above the trigger temperature set by the T parameter, and off otherwise. Thermostatic mode can be disabled using parameter H-1. In RRF 3.4 and later, the fan will run at the PWM specified by the X (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the S parameter.
+* In firmware 1.19 and later, the T parameter may be of the form Taaa:bbb where aaa is the temperature at/below which the fan should be fully off and bbb is the temperature at which the fan should be fully on. The PWM will be set proportionally if the temperature is between these limits.
+* The **B** parameter sets the time for which the fan will be operated at full PWM when started from cold, to allow low fan speeds t be used. A value of 0.1 seconds is usually sufficient.
+* The **L** parameter defines the minimum PWM value that is usable with this fan. If a lower value is commanded that is not zero, it will be rounded up to this value.
+* The **X** parameter defines the maximum PWM value that is usable with this fan. The requested PWM value (S parameter) is scaled to be between 0 and X parameter value, and rounded up to the minimum if defined (L parameter). e.g. if X128 is set, S255 will set PWM to 128; S128 will set PWM to 64.
 
 ## M107: Fan Off
 
