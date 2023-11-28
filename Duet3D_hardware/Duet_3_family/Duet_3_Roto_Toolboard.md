@@ -2,43 +2,39 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the e3d Revo Roto extruder.
 published: false
-date: 2023-11-28T14:45:30.179Z
+date: 2023-11-28T16:02:08.780Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
 ---
 
-![Top down image of the Duet 3 toolboard v1.3](/duet_boards/duet_3_can_expansion/toolboard_v1.3_1_wb_small.png =400x)
-
+![Image of the Duet 3 Roto Toolboard mounted on a Revo Roto, with a Roto extruder and SCanning Z probe coil attached](/duet_boards/duet_3_can_expansion/duet_3_rrtb/rrtb_mounted_s_wb.jpg =600x)
 
 # Introduction
 
-The Duet 3 Toolboard 1LC places the control requirements for a direct drive extruder right on the tool. It controls the stepper motor driver, 3 mosfets for heaters and fans, 2 fan tacho inputs, 2 temperature sensor interfaces, filament monitor, Z probe and endstop, using an ARM Cortex M0 processor.
+The Duet 3 Roto Toolboard is designed to integrate easily with the E3D Revo Roto extruder and the Revo hotend heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, A two or three wire heatsink fan, The revo heater and thermistor and the secondary temperature sensor. In addition a 2,3,or 4 wire part cooling fan, 4 IO ports for enstrops, filamnet monitor and Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
 
-This reduces the number of wires needed to two power wires and two twisted pairs for the CAN bus. In comparison a direct drive extruder tool such as the E3D Hemera would normally need four wires for the stepper motor, two for the heater, three to five for 2 fans, and at least 2 for the temperature sensor: total 11 or more wires. If a filament monitor is wanted, 3 more wires are needed; and if a Z probe is wanted, another 1 to 3 wires, totalling 14 to 17.
+This reduces the number of wires needed to two power wires and a twisted pair for the CAN-FD bus. 
 
-![Image from an angle of the Duet 3 Toolboard 1LC v1.1](/duet_boards/duet_3_can_expansion/toolboard1lc_v1_1_04_v2_small.png =400x)
-
-
-To make it easy to connect multiple direct driver extruders in a tool changer or other multi tool machine, we have also designed a [Tool Distribution board](/Duet3D_hardware/Duet_3_family/Duet_3_Tool_Distribution_Board). This takes power from the PSU and CAN bus from the Duet. It provides 4 power outputs for Toolboards using 2-pin JST VH connectors and 4 CAN connections for Toolboards using 4-pin JST ZH connectors.
 
 # Features
 
 ## Hardware specification
 
 |---|---|
-| **Processor** | [ATSAMC21G18A](https://www.microchip.com/en-us/product/ATSAMC21G18A) |
-| **Processor features** | 32-bit, 48MHz ARM Cortex M0+, 256KB Flash, 32KB RAM |
-| **Networking/Comms** | CAN-FD interconnect to Duet 3 Tool Distribution Board or Duet 3 Mainboard; serial port |
-| **On-board stepper driver** | 1 x [TMC2209](https://www.trinamic.com/products/integrated-circuits/details/tmc2209-la/) |
-| **Stepper driver features** | Up to 1.6A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 |
+| **Processor** | [ATSAME51G19A](https://www.microchip.com/en-us/product/ATSAME51G19A) |
+| **Processor features** | 32-bit, 120MHz ARM Cortex M4|
+| **Networking/Comms** | CAN-FD interconnect to Duet 3 CAN-FD bus |
+| **On-board stepper driver** | 1 x [TMC2240](https://www.analog.com/en/products/tmc2240.html) |
+| **Stepper driver features** | Up to 1A^1^ peak current, microstep interpolation from any setting to x256, stall detection, |
 | **High current outputs** | 1 x 5A, VIN voltage only |
-| **Thermistor/PT1000 inputs** | 2 x inputs, optimised for 100K thermistors and PT1000 sensors |
-| **Medium current outputs** | 1 x 4-pin and 1 x 3-pin PWM-controlled output with tacho input. Voltage selectable between VIN and 12V. |
+| **Thermistor/PT1000 inputs** | 3 x inputs, 2 optimised for 100K thermistors and PT1000 sensors, 1 used for the coil temperature on the SZP coil.|
+| **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2,3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
 | **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. Two push buttons. 1 x footprint for a switch (v1.1) or switch or optical proximity sensor (v1.2 and later) |
 | **Accelerometer** | Integrated LIS3DH accelerometer (v1.1 and later) |
 | **Power monitoring** | VIN voltage reporting |
 
+*^1^ Note further thermal testing may allow higher extruder current for Extruders other than the Revo Roto which should not exceed 600mA current*
 ## Operating limits
 
 |---|---|
