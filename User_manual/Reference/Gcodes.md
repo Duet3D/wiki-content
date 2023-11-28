@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-11-27T13:44:07.132Z
+date: 2023-11-28T17:11:50.227Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -321,7 +321,10 @@ Same as G1 except when in Laser and CNC mode, where moves are executed at the ma
 * **Ennn** The amount to extrude between the starting point and ending point ^1^
 * **Fnnn** The feed rate per minute of the move between the starting point and ending point (if supplied)
 * **Hnnn** Move type (RRF2.02 and later, RRF3)
-* **Snnn** In RRF3, this parameter is used to set laser power, when switched into Laser mode (see [M452](/User_manual/Reference/Gcodes/M452){target=_blank}); its use for defining move type is deprecated, use 'H' parameter instead. In RRF2.02 and later, when switched into Laser mode (see [M452](/User_manual/Reference/Gcodes/M452){target=_blank}), this parameter sets the laser power. When not switched into Laser mode, and always in firmware 2.01 and earlier, it defines the move type (see the description of the H parameter).
+* **Snnn**
+  * In **RRF3**, the S parameter is used to set laser power, when switched into Laser mode (see [M452](/User_manual/Reference/Gcodes/M452){target=_blank}); its use for defining move type is deprecated, use 'H' parameter instead. 
+  * In **RRF 3.5.0-beta3** and later, in the form **Snnn:nnn:...**, it is additionally used for laser raster clustering, see S parameter description below. 
+  * In **RRF2.02** and later, when switched into Laser mode (see [M452](/User_manual/Reference/Gcodes/M452){target=_blank}), this parameter sets the laser power. When not switched into Laser mode, and always in firmware 2.01 and earlier, it defines the move type (see the description of the H parameter). 
 * **Rn** Return to the coordinates stored in restore point #n (see [G60](/User_manual/Reference/Gcodes/G60){target=_blank}). Any X, Y, Z and other axis parameters in the command are used as offsets from the stored position. Axes not mentioned are not moved, so use offset 0 for axes you want to restore to the stored value. For example, G1 R0 X0 Y0 Z2 will move to 2mm above the position stored in restore point 0.
 * **Pnnnn** (supported only in some builds of RepRapFirmware) IOBITS parameter. Defines the states of output pins while this command is executed. See the M670 command.
 
@@ -366,7 +369,9 @@ The meaning of the S parameter has changed over successive versions of RepRapFir
 
 ##### RRF 3
 
-In **RRF 3**, H parameter controls movement type, S parameter sets laser power with range of 0 to 254 when M452 Laser mode set, otherwise ignored.
+In **RRF 3.x**:
+* **H** parameter controls movement type
+* **S** parameter sets laser power with range of 0-255 when M452 Laser mode set, otherwise ignored. M452 R[0-255] parameter sets the maximum laser power, the G1 S parameter sets a proportion of this.
 
 | RRF 3, G0/G1 H parameter BEFORE and AFTER M452 Laser Mode. ||
 |:------------|----------|
@@ -385,11 +390,19 @@ In **RRF 3**, H parameter controls movement type, S parameter sets laser power w
 
 | RRF 3, G0/G1 S parameter AFTER M452 Laser Mode. ||
 |:------------|----------|
-| S parameter sets laser power with range of 0 to 254. ||
+| S parameter sets laser power with range of 0-255. ||
+
+In **RRF 3.5.0-beta3 and later**:
+
+* **Snnn:nnn:...** parameter is additionally used for 'Raster clustering' mode. Up to 8 S parameters are supported.
+
+To increase the speed of raster engraving, raster clustering mode has been implemented. A single G1 move is split up into equal portions by multiple values in the S parameter, eg `G1 X50 S100:50:25:50:100` would move 50mm and change the laser power every 10mm. This allows more commands to fit in the command buffer, to keep speed up. Laser cutter software such as Lightburn supports raster clustering.
 
 ##### RRF 2.02 to 2.05.1
 
-In **RRF 2.02 to 2.05.1**, H parameter controls movement type. S parameter controls movement type BEFORE M452 Laser Mode is set. S parameter sets laser power with range of 0 to 254 AFTER M452 Laser mode set.
+In **RRF 2.02 to 2.05.1**:
+* **H** parameter controls movement type. 
+* **S** parameter controls movement type BEFORE M452 Laser Mode is set. S parameter sets laser power with range of 0-255 AFTER M452 Laser mode set. M452 R[0-255] parameter sets the maximum laser power, the G1 S parameter sets a proportion of this.
 
 | RRF 2.02 to 2.05.1, G0/G1 H parameter BEFORE and AFTER M452 Laser Mode. ||
 |:------------|----------|
@@ -415,7 +428,8 @@ In **RRF 2.02 to 2.05.1**, H parameter controls movement type. S parameter contr
 
 ##### RRF 2.01 and earlier
 
-In **RRF 2.01 and earlier**, S parameter controls the movement type. There is no H parameter or M452 Laser Mode.
+In **RRF 2.01 and earlier**:
+* **S** parameter controls the movement type. There is no H parameter or M452 Laser Mode.
 
 | RRF_2.01 and earlier, G0/G1 S parameter ||
 |:------------|----------|
