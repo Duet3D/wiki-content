@@ -2,20 +2,19 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the e3d Revo Roto extruder.
 published: true
-date: 2023-11-30T14:36:05.588Z
+date: 2023-11-30T17:14:00.651Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
 ---
 
-![Image of the Duet 3 Roto Toolboard mounted on a Revo Roto, with a Roto extruder and SCanning Z probe coil attached](/duet_boards/duet_3_can_expansion/duet_3_rrtb/rrtb_mounted_s_wb.jpg =600x)
+![Image of the Duet 3 Roto Toolboard mounted on a Revo Roto, with a Roto extruder and Scanning Z Probe coil attached](/duet_boards/duet_3_can_expansion/duet_3_rrtb/rrtb_mounted_s_wb.jpg =600x)
 
 # Introduction
 
-The Duet 3 Roto Toolboard is designed to integrate easily with the E3D Revo Roto extruder and the Revo hotend heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, A two or three wire heatsink fan, The revo heater and thermistor and the secondary temperature sensor. In addition a 2,3,or 4 wire part cooling fan, 4 IO ports for endstops, filament monitor and Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
+The Duet 3 Roto Toolboard is designed to integrate easily with the E3D Revo Roto extruder and Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a two or three wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. In addition a 2, 3 or 4-wire part cooling fan, 4 IO ports for endstops, filament monitor and/or Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
 
 This reduces the number of wires needed to two power wires and a twisted pair for the CAN-FD bus. 
-
 
 # Features
 
@@ -26,7 +25,7 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 | **Processor features** | 32-bit, 120MHz ARM Cortex M4F|
 | **Networking/Comms** | CAN-FD interconnect to Duet 3 CAN-FD bus |
 | **On-board stepper driver** | 1 x [TMC2240](https://www.analog.com/en/products/tmc2240.html) |
-| **Stepper driver features** | Up to 1A^1^ peak current, microstep interpolation from any setting to x256, stall detection, |
+| **Stepper driver features** | Up to 1A^1^ peak current, microstep interpolation from any setting to x256, stall detection |
 | **High current outputs** | 1 x 3.4A, VIN voltage only (80W at 24V) |
 | **Thermistor/PT1000 inputs** | 3 x inputs, 2 optimised for 100K thermistors and PT1000 sensors, 1 used for the coil temperature on the SZP coil.|
 | **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2,3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
@@ -69,7 +68,7 @@ Importantly Duets are Open:
 
 ## Dimensions
 
-The mounting hole pattern is designed for the sized for the E3D Revo Roto, and it is sized to fit within the side dimensions of the Roto
+The mounting hole pattern is designed for the sized for the E3D Revo Roto, and it is sized to fit within the side dimensions of the Roto.
 
 [![Diagram showing the outer dimensions and mounting holes for the Duet3 Roto Toolboard v1.0](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_dimensions.png){target=_blank}
 
@@ -79,7 +78,7 @@ The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Roto
 
 ## Mounting
 
-Mount on the side of the e3d roto with standoffs/spacers sufficient to ensure none of the components on connectors on the back of the board can touch the metal heatsink or motor of the E3D Revo Roto extruder. The E3D Revo Roto extruder can use either M3 through bolts or M4 self tapping plastic screws for mounting into the mounting holes. See E3D documentation for further information.
+Mount on the side of the E3D Roto with standoffs/spacers sufficient to ensure none of the components on connectors on the back of the board can touch the metal heatsink or motor of the E3D Revo Roto extruder. The E3D Revo Roto extruder can use either M3 through bolts or M4 self tapping plastic screws for mounting into the mounting holes. See E3D documentation for further information.
 
 A simple spacer design is available [here](https://github.com/Duet3D/Duet3-RotoToolboard/blob/master/v1.0/roto%20spacer.step){target=_blank}.
 
@@ -91,9 +90,9 @@ A simple spacer design is available [here](https://github.com/Duet3D/Duet3-RotoT
 
 ## Wiring notes
 
-* **XT30 2+2:** If You do not use a pre assembled cable then the two CAN pins are best crimped using an engineer PA09 type crimper.
+* **XT30 2+2:** If you do not use a pre-assembled cable then the two CAN pins are best crimped using an engineer PA09 type crimper.
 * We recommend connecting the hot end metalwork to ground on the toolboard via a resistor (10k to 1M Ohm), if it is not grounded through its mounting system. This will prevent the hot end building up static charge, which might otherwise occur as filament is extruded and may then flash over to the tool board thermistor input, causing damage.
-* The top screw hole is grounded via 100K resistors to provide a path to ground for any static build up in the extruder however because the roto uses plastic mounting points a short wire will be needed from the mounting hole to a point on the metal extruder heatsink (*picture to follow*)
+* The top screw hole is grounded via 100K resistors to provide a path to ground for any static build up in the extruder however because the Roto uses plastic mounting points a short wire will be needed from the mounting hole to a point on the metal extruder heatsink (*picture to follow*)
 
 ## Description of Connections
 
@@ -197,7 +196,7 @@ On the Duet 3 Mini 5+ connect the CAN_FD socket to the 2 CAN pins on the Toolboa
 
 ##### Daisy Chaining
 
-Multiple Duet 3 Roto toolboards can be connected by daily chaining the CAN bus connection. Ideally the stubs of the bus should be kept as short as possible so the Daisy chaining should be made at the XT30 connector. Connect two wires for CAN_L, and two wires for CAN_H. Ideally these wires should be twisted in two pairs (CAN_H and CAN_L in 1 pair, the second CAN_H and CAN_L in the other pair). One pair then goes to the  mainboard or other CAN-FD board earlier in the bus, the other pair goes to the next Roto Toolboard. 
+Multiple Duet 3 Roto toolboards can be connected by daisy chaining the CAN bus connection. Ideally the stubs of the bus should be kept as short as possible so the Daisy chaining should be made at the XT30 connector. Connect two wires for CAN_L, and two wires for CAN_H. Ideally these wires should be twisted in two pairs (CAN_H and CAN_L in 1 pair, the second CAN_H and CAN_L in the other pair). One pair then goes to the  mainboard or other CAN-FD board earlier in the bus, the other pair goes to the next Roto Toolboard. 
 
 Note only the last CAN-FD device on the bus should have the termination resistor fitted.
 
@@ -291,11 +290,11 @@ See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure th
 
 ## Scanning Z Probe
 
-The Duet 3 Rotot Toolboard integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
+The Duet 3 Roto Toolboard integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
 
-Here is an example point map form the SZP on a Duet 3 6HC
+Here is an example point map form the SZP on a Duet 3 Mainboard 6HC
 ![image_792points.png](/duet_boards/duet_3_can_expansion/duet_3_szp/image_792points.png =800x)
-Example mesh of 792 points that took ~20seconds to produce.
+Example mesh of 792 points that took ~20 seconds to produce.
 
 ### Setup and Calibration
 
