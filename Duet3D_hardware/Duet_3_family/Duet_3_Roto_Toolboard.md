@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the e3d Revo Roto extruder.
 published: false
-date: 2023-11-30T13:43:11.329Z
+date: 2023-11-30T13:50:27.724Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -12,7 +12,7 @@ dateCreated: 2023-11-28T14:45:30.179Z
 
 # Introduction
 
-The Duet 3 Roto Toolboard is designed to integrate easily with the E3D Revo Roto extruder and the Revo hotend heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, A two or three wire heatsink fan, The revo heater and thermistor and the secondary temperature sensor. In addition a 2,3,or 4 wire part cooling fan, 4 IO ports for enstrops, filamnet monitor and Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
+The Duet 3 Roto Toolboard is designed to integrate easily with the E3D Revo Roto extruder and the Revo hotend heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, A two or three wire heatsink fan, The revo heater and thermistor and the secondary temperature sensor. In addition a 2,3,or 4 wire part cooling fan, 4 IO ports for endstops, filament monitor and Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
 
 This reduces the number of wires needed to two power wires and a twisted pair for the CAN-FD bus. 
 
@@ -43,7 +43,7 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 | **Input power voltage** | 12V to 32V |
 | **Power input max current** | 5A maximum)
 | **Inputs/Outputs** | IO_0, IO_1, IO_2 and IO_3 are 30V-tolerant |
-| **Fuses** | None onboard. Use Duet 3 Tool Distribution Board (5A fitted), or if directly connected to mainboard, use inline fuse holder with 5A fuse. |
+| **Fuses** | None onboard. Use Duet 3 Tool Distribution Board (5A fitted), or if directly connected to a power supply, use inline fuse holder with 5A or lower fuse depending on required current draw. |
 | **5V current limit** | 700mA |
 | **3.3V current limit** | 200mA |
 
@@ -53,7 +53,7 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 * Compatible RepRapFirmware versions: RRF 3.5 and later
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
-<!--- Upsate with links
+<!--- Updsate with links once published
 ## Open source
 
 Importantly Duets are Open:
@@ -68,7 +68,7 @@ Importantly Duets are Open:
 
 ## Dimensions
 
-The mounting hole pattern is designed for the sized for the E3D Revo Roto, and it is sized to fit withing the side  dimensions of the roto
+The mounting hole pattern is designed for the sized for the E3D Revo Roto, and it is sized to fit within the side dimensions of the Roto
 
 [![Diagram showing the outer dimensions and mounting holes for the Duet3 Roto Toolboard v1.0](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_dimensions.png){target=_blank}
 
@@ -78,7 +78,7 @@ The STEP file is available [on Github here]https://github.com/Duet3D/Duet3-RotoT
 
 ## Mounting
 
-Mount on the side of the e3d roto with standoffs/spacers sufficient to ensure none of the components on connectors on the back of the board can touch the metal heatsink or moto of the E3D Revo Roto extruder. The E3D Revo Roto extruder can use either M3 through bolts or M4 self tapping plastic screws for mounting into the mounting holes. See E3D documentation for further information.
+Mount on the side of the e3d roto with standoffs/spacers sufficient to ensure none of the components on connectors on the back of the board can touch the metal heatsink or motor of the E3D Revo Roto extruder. The E3D Revo Roto extruder can use either M3 through bolts or M4 self tapping plastic screws for mounting into the mounting holes. See E3D documentation for further information.
 
 A simple spacer design is available here on github:
 https://github.com/Duet3D/Duet3-RotoToolboard/blob/master/v1.0/roto%20spacer.step
@@ -93,7 +93,7 @@ https://github.com/Duet3D/Duet3-RotoToolboard/blob/master/v1.0/roto%20spacer.ste
 
 * **XT30 2+2:** If You do not use a pre assembled cable then the two CAN pins are best crimped using an engineer PA09 type crimper.
 * We recommend connecting the hot end metalwork to ground on the toolboard via a resistor (10k to 1M Ohm), if it is not grounded through its mounting system. This will prevent the hot end building up static charge, which might otherwise occur as filament is extruded and may then flash over to the tool board thermistor input, causing damage.
-* The top screw hole is grounded via 100K resistors to provide a path to ground for any static build up in the extruder however because the roto uses plastic mounting points a short wire will be needed form there to a point on the metal extruder heatsink (*picture to follow*)
+* The top screw hole is grounded via 100K resistors to provide a path to ground for any static build up in the extruder however because the roto uses plastic mounting points a short wire will be needed from the mounting hole to a point on the metal extruder heatsink (*picture to follow*)
 
 ## Description of Connections
 
@@ -104,7 +104,7 @@ Duet 3 Toolboard 1LC provides the following connectors:
 | 1 x XT30 2+2 | VIN, GND, CAN_L,CAN_H | Two pins for main VIN and GND along with CAN pins. See CAN section below.  |
 | 4-pin Molex Microfit 2x2 | DRIVER_0 | Stepper motor connection |
 | 3-pin JST PH | LED | Connection for Neopixel LEDs |
-| 2-pin Molex Microfit | OUT_0 | High current output intended for extruder heater, maximum current 3.4A, this is VIN voltage only.<br>There is no flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
+| 2-pin Molex Microfit | OUT_0 | High current output intended for an extruder heater, maximum current 3.4A, this is VIN voltage only.<br>There is no flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
 | 2-pin JST PH | TEMP_1 | Thermistor or PT1000 input |
 | 2-pin JST PH | TEMP_0 | Thermistor or PT1000 input |
 | 4-pin 0.5mm pitch FFC | SZP | Connection for a Duet 3 Scanning Z Probe Coil |
@@ -168,7 +168,7 @@ The individual IO_x connectors have the following capabilities:
 | IO_2 | No | No | No | Input only, no output pin |
 | IO_3 | No | No | No | Input only, no output pin |
 
-*Serial conenction not currently supported in Firmware
+*Serial connection not currently supported in Firmware
 
 ## CAN
 
@@ -186,7 +186,7 @@ Supply between 12V and 32V to the XT30 2+2 power connector on the Toolboard thro
 
 Connect the RJ11 socket on the Duet 3 Mainboard 6HC, 6XD or Expansion board, pins 3 and 4 (the middle 2 pins) of the RJ11 connector to pins 4 and 3 of the Toolboard, making sure you get them the right way round i.e. CAN1_H in the Duet to CAN_H on the Toolboard. Don't connect anything to pins 2 and 5 of the RJ11 connector on the Duet.
 
-[![Direct conneciton of a Roto toolboard to the Duet 3 6HC](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_6hc_direct_connection_d1.0.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_6hc_direct_connection_d1.0.png){target=_blank}
+[![Direct connection of a Roto toolboard to the Duet 3 6HC](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_6hc_direct_connection_d1.0.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_6hc_direct_connection_d1.0.png){target=_blank}
 
 
 ##### Duet 3 Mini 5+
@@ -197,18 +197,18 @@ On the Duet 3 Mini 5+ connect the CAN_FD socket to the 2 CAN pins on the Toolboa
 
 ##### Daisy Chaining
 
-Multiple Duet 3 toto toolboards can be connected by daily chaining the CAN bus connection. Ideally the stups of the bus should be kept as short as possible so the Daisy cahing should be made at the XT30 connector. Connect two wires for CAN_L, and two wires for CAN_H. Ideally these wires should be twisted in two pairs (CAN_H and CAN_L in 1 pair, the second CAN_H and CAN_L in thge other pair). One pair then goes to the  mainboard or other CAN-FD board earlier in the bus, the other pair goes to the next Roto Toolboard. 
+Multiple Duet 3 Roto toolboards can be connected by daily chaining the CAN bus connection. Ideally the stubs of the bus should be kept as short as possible so the Daisy chaining should be made at the XT30 connector. Connect two wires for CAN_L, and two wires for CAN_H. Ideally these wires should be twisted in two pairs (CAN_H and CAN_L in 1 pair, the second CAN_H and CAN_L in the other pair). One pair then goes to the  mainboard or other CAN-FD board earlier in the bus, the other pair goes to the next Roto Toolboard. 
 
 Note only the last CAN-FD device on the bus should have the termination resistor fitted.
 
 #### Terminating resistor
 
-Fit the 2.0mm pitch jumper on the the CAN Termination resistor jumper pins if the Roto Toolboard is to be the last device on the CAN_FD bus.
+Fit the 2.0mm pitch jumper on the CAN Termination resistor jumper pins if the Roto Toolboard is to be the last device on the CAN_FD bus.
 
 
 # Commissioning
 
-All boards in the system must have different CAN addresses. Toolboards are shipped set to a default CAN address of 121. Therefore, if you have more than one Toolboard, **only one of them must be powered up and connected to the CAN bus untill the address is changed.** So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier).
+All boards in the system must have different CAN addresses. Toolboards are shipped set to a default CAN address of 121. Therefore, if you have more than one Toolboard, **only one of them must be powered up and connected to the CAN bus until the address is changed.** So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier).
 
 ## LED indications
 
@@ -239,13 +239,13 @@ Duet 3 expansion boards and tool boards have a bootstrap loader written to the s
 
 ## Updating the firmware
 
-The Roto Toolboard needs RRF v3.5 or later, this firmware version must alos be funning on the Duet 3 mainboard.
+The Roto Toolboard needs RRF v3.5 or later, this firmware version must also be running on the Duet 3 mainboard.
 
 The firmware filename is Duet3Firmware_TOOLRR.bin and this needs to be uploaded to the /firmware folder
 
 Update the firmware by using the M997 B# command, where # is the CAN address of the new board.
 
-Factory resetting the board using the CAN reset jumper will cuase the bootloader to request the firmware file form the mainboard
+Factory resetting the board using the CAN reset jumper will cause the bootloader to request the firmware file from the mainboard
 
 ## Set the CAN address
 
@@ -296,4 +296,4 @@ See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure th
 
 ## PCB revision v1.0
 
-* Initial version after internal prototpyes
+* Initial version after internal prototypes
