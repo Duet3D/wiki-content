@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the e3d Revo Roto extruder.
 published: true
-date: 2023-11-30T13:56:34.520Z
+date: 2023-11-30T14:22:01.833Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -30,7 +30,7 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 | **High current outputs** | 1 x 3.4A, VIN voltage only (80W at 24V) |
 | **Thermistor/PT1000 inputs** | 3 x inputs, 2 optimised for 100K thermistors and PT1000 sensors, 1 used for the coil temperature on the SZP coil.|
 | **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2,3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
-| **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. 1 x footprint for a switch or optical proximity sensor (v1.2 and later) |
+| **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. 1 x footprint for a switch or optical proximity sensor|
 | **Accelerometer** | Integrated LIS2DW accelerometer |
 | **Inductive Sensor** | Integrated LDC1612 inductive sensor for scanning Z probe |
 | **Power monitoring** | VIN voltage reporting |
@@ -81,7 +81,7 @@ The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Roto
 
 Mount on the side of the e3d roto with standoffs/spacers sufficient to ensure none of the components on connectors on the back of the board can touch the metal heatsink or motor of the E3D Revo Roto extruder. The E3D Revo Roto extruder can use either M3 through bolts or M4 self tapping plastic screws for mounting into the mounting holes. See E3D documentation for further information.
 
-A simple spacer design is available here on github:
+A simple spacer design is available here:
 https://github.com/Duet3D/Duet3-RotoToolboard/blob/master/v1.0/roto%20spacer.step
 
 # Physical connections
