@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the e3d Revo Roto extruder.
 published: false
-date: 2023-11-28T16:02:08.780Z
+date: 2023-11-30T08:02:39.200Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -23,35 +23,37 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 
 |---|---|
 | **Processor** | [ATSAME51G19A](https://www.microchip.com/en-us/product/ATSAME51G19A) |
-| **Processor features** | 32-bit, 120MHz ARM Cortex M4|
+| **Processor features** | 32-bit, 120MHz ARM Cortex M4F|
 | **Networking/Comms** | CAN-FD interconnect to Duet 3 CAN-FD bus |
 | **On-board stepper driver** | 1 x [TMC2240](https://www.analog.com/en/products/tmc2240.html) |
 | **Stepper driver features** | Up to 1A^1^ peak current, microstep interpolation from any setting to x256, stall detection, |
-| **High current outputs** | 1 x 5A, VIN voltage only |
+| **High current outputs** | 1 x 3.4A, VIN voltage only (80W at 24V) |
 | **Thermistor/PT1000 inputs** | 3 x inputs, 2 optimised for 100K thermistors and PT1000 sensors, 1 used for the coil temperature on the SZP coil.|
 | **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2,3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
-| **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. Two push buttons. 1 x footprint for a switch (v1.1) or switch or optical proximity sensor (v1.2 and later) |
-| **Accelerometer** | Integrated LIS3DH accelerometer (v1.1 and later) |
+| **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. 1 x footprint for a switch or optical proximity sensor (v1.2 and later) |
+| **Accelerometer** | Integrated LIS2DW accelerometer |
 | **Power monitoring** | VIN voltage reporting |
 
 *^1^ Note further thermal testing may allow higher extruder current for Extruders other than the Revo Roto which should not exceed 600mA current*
 ## Operating limits
 
 |---|---|
-| **Stepper driver** | Up to 1.6A peak current, 1.1A RMS |
-| **High current output** | 1 x 5A |
+| **Stepper driver** | Up to 1A peak current, 1.1A RMS |
+| **High current output** | 1 x 3.4A |
 | **Input power voltage** | 12V to 32V |
-| **Power input connector rated current** | 10A maximum, or fused limit (whichever is lower)
-| **Inputs/Outputs** | IO_0, IO_2 and IO_3 are 30V-tolerant, IO_1 is 3.3V-tolerant |
+| **Power input max current** | 5A maximum)
+| **Inputs/Outputs** | IO_0, IO_1, IO_2 and IO_3 are 30V-tolerant |
 | **Fuses** | None onboard. Use Duet 3 Tool Distribution Board (5A fitted), or if directly connected to mainboard, use inline fuse holder with 5A fuse. |
-| **5V / 3.3V current limit** | 300mA peak, 50mA continuous (combined 5V and 3.3V total current limit) |
-| **12V current limit** | 800ma total (OUT_1 and OUT_2 pins only, when 12V selected) |
+| **5V current limit** | 700mA |
+| **3.3V current limit** | 200mA |
+
 
 ## Firmware notes
 
-* Compatible RepRapFirmware versions: RRF 3.x
+* Compatible RepRapFirmware versions: RRF 3.5 and later
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
+<!--- Upsate with links
 ## Open source
 
 Importantly Duets are Open:
@@ -60,66 +62,17 @@ Importantly Duets are Open:
 * All hardware [source files](https://github.com/Duet3D/Duet3-Toolboard-1LC) are available on Github.
 * Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
 * The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
-
+--->
 
 # Physical properties
 
 ## Dimensions
 
-There are two mounting hole patterns for the Duet3 Toolboard. Versions up to and including v1.2 have hole pattersn sized to for the original E3D Hemera. V1.3 has mounting hole patterns sized for the E3D Hemera XS. The overall dimensions of the board have not changed and no functionality is removed in v1.3
+The mounting hole pattern is designed for the sized for the E3D Revo Roto, and it is sized to fit withing the side  dimensions of the roto
 
-## Tabs {.tabset}
+[![Diagram showing the outer dimensions and mounting holes for the Duet3 Roto Toolboard v1.0](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_dimensions.png){target=_blank}
 
-### Revision v1.3
-
-[![Diagram showing the outer dimensions, mounting holes and center point of connectors for the Duet 3D Toolboard 1LC v1.3](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.3_d1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.3_d1.0_dimensions.png){target=_blank}
-
-The power in screw terminal projects 8.5mm from the top of the PCB. When the JST power connector is fitted, the highest part is the latch on that connector, which at its highest point is nearly 10mm above the PCB surface, although the latch could be cut off if space was critical.
-
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/Toolboard_1LC_v1.3/Duet3_TB_1LC_v1.3_STEP.zip){target=_blank}.
-
-### Revision v1.2
-
-[![Diagram showing the outer dimensions, mounting holes and center point of connectors for the Duet 3D Toolboard 1LC v1.2](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.2_d1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.2_d1.0_dimensions.png){target=_blank}
-
-The power in screw terminal projects 8.5mm from the top of the PCB. When the JST power connector is fitted, the highest part is the latch on that connector, which at its highest point is nearly 10mm above the PCB surface, although the latch could be cut off if space was critical.
-
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/ToolBoard_1LC_v1.2/Duet3_TB_1LC_step_v1.2.zip){target=_blank}.
-
-### Revision v1.1
-
-[![Diagram showing the outer dimensions, mounting holes and center point of connectors for the Duet3 Toolboard 1LC v1.1](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.1_dimensions_01.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.1_dimensions_01.png){target=_blank}
-
-The power in screw terminal projects 8.5mm from the top of the PCB. When the JST power connector is fitted, the highest part is the latch on that connector, which at its highest point is nearly 10mm above the PCB surface, although the latch could be cut off if space was critical.
-
-The mounting hole spacing has been designed to be compatible with the E3D Hemera extruder.
-
-Note there is a SOD123 diode soldered on the back of the v1.1 toolboards which should be taken into account when mounting the board.
-
-![Render showing the back of the Duet3 Toolboard 1LC v1.1 and indicating where the SMT diode is placed](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.1_dimensions_02.png =500x)
-
-this is included in the STEP file linked below.
-
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/raw/master/ToolBoard_1LC_v1.1/Duet3_TB_1LC_v1.1_STEP.zip){target=_blank}.
-
-
-### Revision v1.0
-
-[![Diagram showing the outer dimensions, mounting holes and center point of connectors for the Duet3 Toolboard 1LC v1.0](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.0_dimensions.png){target=_blank}
-
-The tallest components on the board are the out2 screw terminal which projects 10mm (this is not shown in the step file). The other screw terminals project 8.5mm from the top of the PCB. When the JST power connector is fitted, the highest part is the latch on that connector, which at its highest point is nearly 10mm above the PCB surface, although the latch could be cut off if space was critical.
-
-The mounting hole spacing has been designed to be compatible with the E3D Hemera extruder.
-
-### Revision v0.6
-<!--removed the picture, just have the link for this very old board to speed up page loading -->
-[Dimensions, mounting holes and center point of connectors for the Duet3 Toolboard 1LC v0.6](/duet_boards/duet_3_can_expansion/duet_3_1lc_v0.6_dimensions.png){target=_blank}
-
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC)
-
-The tallest components on the board are the screw terminals which project 8.5mm from the top of the PCB. When the JST power connector is fitted, the highest part is the latch on that connector, which at its highest point is nearly 10mm above the PCB surface, although the latch could be cut off if space was critical.
-
-The mounting hole spacing has been designed to be compatible with the E3D Hemera extruder.
+The STEP file is available [on Github here]https://github.com/Duet3D/Duet3-RotoToolboard/blob/master/v1.0/Duet3_TB_Roto_v1.0.step){target=_blank}.
 
 ## Mounting
 
