@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2023-11-27T15:32:00.182Z
+date: 2023-11-30T11:22:19.213Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -173,7 +173,7 @@ Duet 3 Toolboard 1LC provides the following connectors:
 | Connector (board revision) ||| Label | Function |
 | v1.1-v1.3 | v1.0 | v0.6 | ^^ | ^^ |
 |--
-| 1 x 2-pin JST VH ||| POWER IN, VIN, GND | Two pins for main VIN and GND. VIN power is fused at 5A. |
+| 1 x 2-pin JST VH ||| POWER IN, VIN, GND | Two pins for main VIN and GND|
 | 4-pin JST PH | Screw terminal || IO_0 | Input/output with +5V power, for endstops, Z-probes.<br>Input is 30V-tolerant |
 | 3-pin JST PH | 3-pin JST ZH | Screw terminal | IO_1 | Input only with +3.3V power, intended for filament monitors.<br>**Note:** Input is 3.3V-tolerant |
 | 3-pin JST PH | 3-pin JST ZH | Screw terminal | IO_2 | Input only with +5V power, for endstops or tool pickup detection switch.<br>Input is 30V-tolerant |
