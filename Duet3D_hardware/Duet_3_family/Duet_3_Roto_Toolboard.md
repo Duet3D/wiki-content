@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the e3d Revo Roto extruder.
 published: true
-date: 2023-11-30T14:22:47.785Z
+date: 2023-11-30T14:36:05.588Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
