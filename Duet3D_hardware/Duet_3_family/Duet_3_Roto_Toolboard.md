@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the e3d Revo Roto extruder.
 published: true
-date: 2023-11-30T13:51:33.634Z
+date: 2023-11-30T13:56:34.520Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -32,6 +32,7 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 | **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2,3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
 | **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. 1 x footprint for a switch or optical proximity sensor (v1.2 and later) |
 | **Accelerometer** | Integrated LIS2DW accelerometer |
+| **Inductive Sensor** | Integrated LDC1612 inductive sensor for scanning Z probe |
 | **Power monitoring** | VIN voltage reporting |
 
 *^1^ Note further thermal testing may allow higher extruder current for Extruders other than the Revo Roto which should not exceed 600mA current*
@@ -289,6 +290,17 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer, including its orientation in relation to the printer XYZ axis. 
 
+## Scanning Z Probe
+
+The Duet 3 Rotot Toolboard integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
+
+Here is an example point map form the SZP on a Duet 3 6HC
+![image_792points.png](/duet_boards/duet_3_can_expansion/duet_3_szp/image_792points.png =800x)
+Example mesh of 792 points that took ~20seconds to produce.
+
+### Setup and Calibration
+
+To follow
 
 # PCB Revision History
 
