@@ -2,7 +2,7 @@
 title: Connecting a web camera to Duet Web Control
 description: Duet 2 and Duet 3 mainboards do not support a directly-connected web camera. However, you can buy a suitable Wifi or Ethernet IP camera and then configure Duet Web Control to include an image from the camera on the Print page.
 published: true
-date: 2023-12-04T15:10:18.047Z
+date: 2023-12-04T16:13:21.443Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T15:12:46.132Z
@@ -106,7 +106,7 @@ To configure this service in DWC, go to the `Settings` -> `General` page and mak
 
 ## Configuration
 
-The Motion configuration file `motion.conf` file is created in `0:/sys/motion.conf`, and can be edited in DWC. The standard configuration streams video using the built-in webserver, and is not set to capture images or video. However, this is usually done at 1 frame per second, with a resolution of 1280x720. If you would prefer a higher frame rate, at the expense of making the Raspberry Pi work a bit harder, add the following to motion.conf:
+The Motion configuration file `motion.conf` file is created in `0:/sys/motion.conf`, and can be edited in DWC. The standard configuration streams video using the built-in webserver, and is not set to capture images or video. However, the stream usually runs at 1 frame per second, with a resolution of 1280x720. If you would prefer a higher frame rate and better quality, at the expense of making the Raspberry Pi work a bit harder, you can add the following to motion.conf:
 
 ```
 # When Motion is started, pause the motion detection. Default: off
@@ -114,16 +114,16 @@ pause on
 
 # Limit the framerate of the stream in frames per second (default 1, max 100)
 stream_maxrate 25
+```
+You can adjust the video size by editing the following:
+```
+# Image width in pixels.
+width 1280
 
-# Quality setting in percent for the jpeg picture frames transferred over the live stream connection. (default 50)
-stream_quality 50
+# Image height in pixels.
+height 720
 ```
-And change this variable:
-```
-# Maximum number of frames to be captured per second. (default 15)
-framerate 25
-```
-Motion uses about 50-60% CPU on a RPi4 for 1280x720 @ 25fps, 75% quality. 35-40% for 800x600.
+Reported in 'top', Motion's CPU utilisation on a RPi4 is around 40-50% for 1280x720 @ 25fps, and around 30% for 800x600 @ 25fps, when the stream is being displayed. It drops to below 10% CPU utilisation when not being displayed.
 
 ## Build instructions
 
