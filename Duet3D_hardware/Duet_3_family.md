@@ -2,7 +2,7 @@
 title: Duet 3 Family
 description: 
 published: true
-date: 2023-12-05T17:14:26.529Z
+date: 2023-12-05T17:37:56.582Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:14:53.360Z
@@ -33,6 +33,7 @@ dateCreated: 2021-06-03T16:14:53.360Z
 ## Other CAN expansion
 
 [Duet 3 Motor 23CL](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL)
+[Duet 3 Scanning Z probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe)
 
 [Using the Sammy-C21 development board with Duet 3](/Duet3D_hardware/Duet_3_family/Using_the_Sammy-C21_development_board_with_Duet_3)
 [Using a Duet 3 Mainboard as an expansion board](/User_manual/Machine_configuration/CAN_connection#mainboard-as-expansion-board)
