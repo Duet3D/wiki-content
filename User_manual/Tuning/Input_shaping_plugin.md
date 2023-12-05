@@ -2,7 +2,7 @@
 title: Input shaping plugin
 description: Description about the input shaping plugin for DWC 3.4 and later
 published: true
-date: 2023-09-19T08:18:04.973Z
+date: 2023-12-05T17:04:18.677Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-31T16:06:54.645Z
@@ -16,7 +16,7 @@ Input shaping describes a set of algorithms to reduce ringing frequencies that i
 
 Starting from DWC 3.4 the **Input Shaping plugin** can be installed to fine-tune input shaper parameters using an accelerometer.
 
-To install the Input Shaping plugin, download the latest release version for your RepRapFirmware version from [the Duet3D Github repository](https://github.com/Duet3D/InputShapingPlugin) as a .zip file, without unpacking it, and upload it using the `Upload&Start` button on DWC *without* unpacking the file first. After this, you should see the `Plugins` category with a new `Input Shaping` item in the main menu on the left:
+To install the Input Shaping plugin, download the latest release version for your RepRapFirmware version from [the Duet3D Github repository](https://github.com/Duet3D/InputShapingPlugin/releases) as a .zip file, without unpacking it, and upload it using the `Upload&Start` button on DWC *without* unpacking the file first. After this, you should see the `Plugins` category with a new `Input Shaping` item in the main menu on the left:
 
 ![menu.png](/manual/inputshaping/menu.png)
 
