@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2023-12-05T12:15:26.546Z
+date: 2023-12-05T17:45:06.965Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -193,6 +193,21 @@ Connect the RJ11 socket on the Duet 3 Mainboard 6HC, 6XD or Expansion board, pin
 On the Duet 3 Mini 5+ connect the CAN_FD socket to the 2 CAN pins on the Toolboard, and terminate the other 2 CAN pins.
 
 [![Duet 3 Roto Toolbpoard connected to Duet 3 mini 5+](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_mini5+_direct_connection_d1.0.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_mini5+_direct_connection_d1.0.png){target=_blank}
+
+##### Duet 3 Tool Distribution Board
+
+You can use the Roto tool board with the existing Tool Distribution Board (TDB) like this:
+
+If the cable length from the TDB to the Roto Tool Board is no more than 1m:
+
+* Connect the Roto CAN wires to just two of the pins on the 4-pin connector on the TDB
+* Install the bypass jumpers for that port on the TDB
+
+If it's more than 1m:
+
+* Don't install the bypass jumpers for that port on the TDB
+* Run two twisted pairs from the 4-pin connector on the TDB to a junction point no more than 1m from the Roto Tool Board, then use the Roto Tool Board cable to connect the Roto Tool Board to that junction.
+
 
 ##### Daisy Chaining
 
