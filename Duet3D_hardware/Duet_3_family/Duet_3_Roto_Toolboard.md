@@ -1,18 +1,18 @@
 ---
 title: Duet 3 Roto Toolboard
-description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the e3d Revo Roto extruder.
+description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2023-12-05T11:57:47.639Z
+date: 2023-12-05T12:15:26.546Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
 ---
 
-![Image of the Duet 3 Roto Toolboard mounted on a Revo Roto, with a Roto extruder and Scanning Z Probe coil attached](/duet_boards/duet_3_can_expansion/duet_3_rrtb/rrtb_mounted_s_wb.jpg =600x)
+![Image of the Duet 3 Roto Toolboard mounted on an E3D Revo Roto, with a Roto extruder and Scanning Z Probe coil attached](/duet_boards/duet_3_can_expansion/duet_3_rrtb/rrtb_mounted_s_wb.jpg =600x)
 
 # Introduction
 
-The Duet 3 Roto Toolboard is designed to integrate easily with the E3D Revo Roto extruder and Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a 2 or 3-wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. In addition a 2, 3 or 4-wire part cooling fan, 4 IO ports for endstops, filament monitor and/or Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
+The Duet 3 Roto Toolboard is designed to integrate easily with the [E3D Revo Roto extruder](https://e3d-online.com/products/roto-extruder){target=_blank} and E3D Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a 2 or 3-wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. In addition a 2, 3 or 4-wire part cooling fan, 4 IO ports for endstops, filament monitor and/or Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
 
 This reduces the number of wires needed to two power wires and a twisted pair for the CAN-FD bus. 
 
@@ -21,10 +21,10 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 ## Hardware specification
 
 |---|---|
-| **Processor** | [ATSAME51G19A](https://www.microchip.com/en-us/product/ATSAME51G19A) |
+| **Processor** | [ATSAME51G19A](https://www.microchip.com/en-us/product/ATSAME51G19A){target=_blank} |
 | **Processor features** | 32-bit, 120MHz ARM Cortex M4F|
 | **Networking/Comms** | CAN-FD interconnect to Duet 3 CAN-FD bus |
-| **On-board stepper driver** | 1 x [TMC2240](https://www.analog.com/en/products/tmc2240.html) |
+| **On-board stepper driver** | 1 x [TMC2240](https://www.analog.com/en/products/tmc2240.html){target=_blank} |
 | **Stepper driver features** | Up to 1A^1^ peak current, microstep interpolation from any setting to x256, stall detection |
 | **High current outputs** | 1 x 3.4A, VIN voltage only (80W at 24V) |
 | **Thermistor/PT1000 inputs** | 3 x inputs, 2 optimised for 100K thermistors and PT1000 sensors, 1 used for the coil temperature on the SZP coil.|
