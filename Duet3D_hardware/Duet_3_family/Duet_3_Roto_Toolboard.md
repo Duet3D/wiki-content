@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the e3d Revo Roto extruder.
 published: true
-date: 2023-11-30T17:14:00.651Z
+date: 2023-12-05T11:57:47.639Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -12,7 +12,7 @@ dateCreated: 2023-11-28T14:45:30.179Z
 
 # Introduction
 
-The Duet 3 Roto Toolboard is designed to integrate easily with the E3D Revo Roto extruder and Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a two or three wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. In addition a 2, 3 or 4-wire part cooling fan, 4 IO ports for endstops, filament monitor and/or Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
+The Duet 3 Roto Toolboard is designed to integrate easily with the E3D Revo Roto extruder and Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a 2 or 3-wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. In addition a 2, 3 or 4-wire part cooling fan, 4 IO ports for endstops, filament monitor and/or Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
 
 This reduces the number of wires needed to two power wires and a twisted pair for the CAN-FD bus. 
 
