@@ -2,13 +2,44 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-06-16T07:15:46.007Z
+date: 2023-12-06T08:56:55.482Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
 ---
 
 This page is part of multiple pages about robot configuration and usage. Please choose the [robot tag](https://docs.duet3d.com/t/robot) to see an overview.
+
+# Overview of implemented configurations
+
+The following configurations are implemented and tested:
+
+|-|-|-|
+|type|tested by|status|
+|CoreXY AC, Zbed, ACbed|@JoergS5|fw since 2023...., dirty test|
+
+meaning of abbreviations:
+- Zbed: Z axis is connected to the bed
+- Zendp: Z axis connected to endpoint
+- ACbed: AC both connected to the bed, A nearest to workpiece
+
+
+# current status of firmware
+This are the current capabilities of the firmware which is published on github:
+
+Development concentrates on CoreXY 5 axis AC and BC mode:
+* release of Aug 9th with Mini 5, 6HC, 6XD and Duet 2 binaries
+* A axis (1,0,0) with optional y and z offsets in AC mode
+* B axis (0,1,0) with optional x and z offsets in BC mode, no prototype test
+* C axis (0,0,1) with 0 x, y offsets (i. e. bed 0,0 above C axis)
+* D paramter support to hinder unhoming
+* Z attached to bed. Z attached to hotend (like Voron 2.4) may work
+* no angle, speed limits watched (will be changed soon)
+
+I'm currently working on a homing procedure, to activate the limits and to use arbitrary A and C axes.
+
+
+# Overview
 
 How to setup:
 |---|---|
@@ -33,14 +64,23 @@ Theories:
 The kinematics is developed for Duet3Ds RepRapFirmware. The **robot firmware is currently in development** on the base of RRF 3.5.0beta3.
 
 The source is in github https://github.com/JoergS5/RepRapFirmware/tree/3.5-dev/src/Movement/Kinematics
-RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 4.cpp is code which is independent of RRF and can run and be tested outside RRF.
+RobotKinematics.cpp is code which is used by RRF directly. RobotKinematics1 to 2.cpp is code which is independent of RRF and can run and be tested outside RRF.
 
 
-The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes.
+The robot is dicussed in the Duet forum at: [robot thread](https://forum.duet3d.com/topic/17421/robotic-kinematics/285) and in a few additional forum threads about robot prototypes. Current discussion about CoreXY 5 axis is at [CoreXY5axis thread](https://forum.duet3d.com/topic/33060/joergs5-s-corexy-5-axis-robot-kinematics/3?_=1690185230293)
+
+
+
 
 Current status, last actions:
-* Jun13: there was a bug in homing to set angles, I made a new build and checkin
-* ~~future builds are based on RRF 3.5.0beta4.~~ I currently stay at beta3, because I have compilation problems
+* implementation for CoreXY 5 axis AC
+* P"abSign" implemented and processing
+* RTCP improvement
+* performance measured: 35 microseconds for each segment of inverse kin. on Mini5 (can be measured by movements, then call M669 R)
+* CoreXY5BC implemented, but not tested with prototype
+* abSign=2 added
+* binaries 6XD added, so there are now Mini 5, 6HC, 6XD and Duet 2. For other destinations please compile yourself following the readmes on github
+* changed to geometric algebra code, which is faster (15 microseconds) and removes some of the singularities at (0,0,0) and A0
 
 # Configuring a Robot
 
@@ -56,7 +96,7 @@ Serial robots are easier to calculate, but parallel robots have higher precision
 M669 and its parameters are used to define the robot properties like arm lengths and type of axes.
 
 - the first line should specify K type, B and P"axisTypes=...". This will set some important parameters which are needed for the following parameter settings. Example M669 K13 B"CoreXY5AC" P"axisTypes=RRPPP"
-- after K13 is choosen, M669 without parameters will report the current settings to the console. M409 K"move.kinematics" displays most parameters as object model.
+- after K13 is choosen, M669 without parameters will report the current settings to the console. M409 K"move.kinematics" displays most parameters as object model. The report is explained in the next chapter
 - multiple settings of the same starting letter must be on separate lines, as the G-Code interpreter evaluates only the first one. Different letters can be combined.
 
 Overview
@@ -64,14 +104,31 @@ Overview
 * B"name" or B"axisorder"
 * A"letter=..." minimum, maximum and home angles
 * C"para=..." screw parameters
+* D don't unhome
 * P"para=..." special parameters
 * R reporting
 * S segments per second
 * T minimum segment length in mm
 
-P"axisTypes=..." is the most important setting, as it defines how many axes are used.
-
 Most changes in config.g don't need a reboot, but when drive or letter assignments with M584 change, a reboot is often necessary.
+
+# M669 without parameter: report configuration
+
+After M669 K13 is defined and robot kinematics set, calling M669 without parameters will report the current configuration to the console.
+
+- The first line reports general axis information:
+Example: numOfAxes 5 axisTypes RRPPP chain CAZ.. specialChain XY
+means 5 moving/rotating axes are defined with types rotary/rotary/linear/linear/linear. The chain begins at the print object/workpiece and ends at the hotend/drill. .. means, the letters are connected in a specific way with special handling, in this case the connected steppers for XY.
+
+- the next lines reports information about each axis, including orientation, a point on the axis, min and max angles, homing angles
+
+- the next lines report information relevant for screw calculations: reference angles/positions and endpoint position and orientation and currently set tool length, offset and orientation.
+
+- the next lines report settings for special subkinematics like A (B) positive/negative preference for 5 axis or workmode for 5 bar scara.
+
+- the next lines will report how much of the chain cache is used and how much is available. The chain cache reuses memory for different subkinematics, default are 200 floats, wich is currently enough to store 6 axis robot information.
+
+- the final line will tell whether from firmware's view the parameters are completely specified to give reasonable results
 
 # M669 B parameter: robot type
 
@@ -152,7 +209,6 @@ The normalizing may lead to a solution which is not orthonormal any more (i. e. 
 This normalizing is applied to:
 - Cletter omega1...3
 - C"Mnoap" r11...r33
-- C"toolDirection"
 - P special settings if they contain axis coordinates
 
 Example: change main linear axis direction a bit for correcting small deviations from 90 degree in construction.
@@ -164,23 +220,24 @@ C defines the axis properties, the endpoint for reference angles/positions, and 
 **C"letter=omega1:omega2:omega3:q1:q2:q3"**
 **C"Mnoap=r11:r21:r31:r12:r22:r32:r13:r23:r33:p1:p2:p3"**
 **C"Mreference=a0:a1:a2:..."**
-**C"defaultToolLength=z"** default 200
-**C"toolDirection=x:y:z"** default [0,0,1]
 
 * letter is the letter which is used by B
 * omega1:omega2:omega3 is the axis direction
 * q1:q2:q3 is a point on this axis in cartesian world coordinates. High precision is currently only important for rotary axes.
 * Mnoap and it's 12 values is a transformation matrix from begin to end of the chain. r11,r21 and r31 are xyz directions of the x-Axis. r..2 of the y-axis and r...3 of the z-axis. p1...p3 is the position.
 * Mreference are the actuator's angles in degrees which were used to calculate the M values
-* defaultToolLength with default 200 is the Z length of the default tool. It is added to the endpoint calculation as placeholder when no tool is defined yet. The value is positive, although the direction is in the negative Z direction (i. e. lowers the distance between hotend and printbed). Setting a 200 default value shall avoid crashing something into the bed when no tool is selected. It should be changed to the longest existing tool when using tool changer.
-* toolDirection. For clarity of e.g. a router with horizontal spindle, this optional parameter defines the direction of the tool.  Default is the Z axis direction, i. e. in most cases (0,0,1), and positive values will be subtracted from the Z position.
+* the **Mnoap endpoint is including the tool** length, i. e. the true endpoint of the hotend or drill. I am no expert for laser, but probably it is the focus of the laser beam which is the reference.
 
 Example:
 * C"X=1:0:0:70:0:352" means the X axis points to the X-axis direction and a point on the axis is (70,0,352). Looking from the arrow side to the axis, counterclockwise (CCW) means positive angle change.
 * C"Mnoap=0:0:1:0:-1:0:1:0:0:615:0:712" is the setting of the DH example of the 6 axis robot
-* C"Mreference=0:0:0:0:0:0" means Mnoap is the endpoint orientation and orientation if all angles are 0 degrees. The values are degrees for rotational and mm for prismatic axes.
-* C"defaultToolLength=200" is the tool length for initial calculation
-* C"toolDirection=1,0,0" would set the tool to be horizontal in x-direction (e. g. when using a router with horizontal spindle).
+* C"Mreference=0:0:0:0:0:0" means Mnoap is the endpoint orientation and orientation if all angles are 0 degrees. The values are degrees for rotational and mm for linear/prismatic axes.
+
+# M669 D parameter: don't unhome
+
+Most M669 parameters will unhome, i. e. it is necessary to home after issuing the command. The D parameter allows to set some parameters without homing.
+
+The change may produce a high velocity movement if coordinates change too much, so handle with care if used. A possibility is to reduce speed for the next move.
 
 # M669 P parameter: axisTypes, special
 
@@ -190,17 +247,21 @@ Defines the type of the axes. It is important that it matches the number of actu
 
 * R means rotational/revolute, units are degrees, speeds e.g. degrees/min.
 * P means prismatic/linear, units are mm and mm/min.
+* when specifying a known B type, axisTypes will be set there, but can be overwritten
 
 The parameter must be set correct, otherwise kinematics will not calculate correctly.
 
 Examples: see the B parameter table column axis types.
 
-**P"mapDriveLetter=d1L1:d1L2..."**
+**P"abSign=0|1|2"**
 
-* d1 is the drive number which is the array index of the MotorToCartesian and CartesianToMotor methods and M... Pd tbd
-* L1, L2 etc. is the letter being used in the B parameter. Subaxes are using indexes starting with 0
-* example 0X:1Y:2Z:3A:4C is the default for 5-axis kinematics
-* example 0X:1Y:2Z0:3A:4C:5Z1 would use drive 5 as additional Z value (drive 2 and 5 added to one position)
+* relevant for 5 axis kinematics with AC or BC rotary axes
+* setting whether inverse kinematics shall use the positve or negative A (B) axis solution.
+* 0 means stay positive or 0, 1 stay negative or 0, 2 means don't change calculation result. Default is 0
+
+For AC/BC, there are two solutions (with exception 0,0), so in situations where the move crosses A0, the other position is choosen with the result of C rotating very fast by 180 degrees. This will probably be visible in the print. To avoid this, it is best to stay at positive or negative (>= 0 or <= 0). The abSign stores the preference, so the firmware knows the preference for sure. In general, the moves have no memory of past moves, so this is necessary.
+
+The two solutions are rotating C by 180 degrees and to negate A, eg AC being (30, 80) second solution is (-30, -100). The XYZAC coordinates on the print object stay the same, but the axis positions of XYZ are very different.
 
 **special settings for rotary Delta**
 
@@ -216,7 +277,7 @@ Examples: see the B parameter table column axis types.
 
 # R reporting
 
-R is for future use for reporting functions like to tell about singularity regions.
+R reports performance statistics, currently the average time to process one segment.
 
 # M669 S, T parameters: segmentation
 
@@ -237,20 +298,18 @@ To be sure that the drives are created in the correct order (the order of motorP
 
 # M584 R0, R1: axis type
 
-In RRF, XYZUVW are linear axes by default and ABC rotational axes. This corresponds to CNC conventions. The defined axes for robot kinematics should be clarified as prismatic or rotational with the M584 settings, R0 meaning prismatic/linear and R1 meaning revolute/rotational. The reason is, RRF uses this information for some calculations like the distance calculation and uses different algorithms for prismatic and rotational axes. This clarification is only needed if the used letters differ from the default assignment.
+In RRF, XYZUVW are linear axes by default and ABCD rotational axes. This corresponds to CNC conventions. If usage differs from this defaults, the defined axes for robot kinematics should be clarified as prismatic or rotational with the M584 settings, R0 meaning prismatic/linear and R1 meaning revolute/rotational. The reason is, RRF uses this information for some calculations like the distance calculation and uses different algorithms for prismatic and rotational axes.
 
-# G10: tool offset
-At the end of the last axis, a tool is attached.
+# tool changing
 
-* X, Y, Z are the tool's offsets in mm. Default is 0, 0, 100. Z is always positive and diminishes the distance of endpoint to bed.
-* defaultToolLength is the starting tool length
-* toolDirection allows to specifiy a tool direction other than the usual Z direction, e. g. to support routers with horizontal spindle.
-* a tool change will result in a changed Z distance. The endpoint Mnoap is changed to the new tool length.
+If the G10 offset values are changed, e. g. when the tool is being changed, the screw endpoint Mnoap needs to be set to the new value.
 
 # M208 limits
 M208 limits the allowable printable area to a cube by setting X, Y, Z limits. Using it with G1 H1, the values only make sense for linear axes. If using X, Y, Z rotary axes, the M208 values should be changed to angle values while defining the homing position with G1 H1 and then set back to the cartesian limits after homing. A, B, C values can be used for angle/position (rotary/prismatic axis).
 
-The M208 limits are controlled when calculating whether the object is printable, together with the reachability by arm lengths and angle restrictions. 3D printers and CNC are handled slightly different (3D prints partially, CNC not).
+The M208 limits are controlled when calculating whether the object is printable, together with the reachability by arm lengths and angle restrictions. 3D printers and CNC are handled slightly different:
+* 3D printers move partially until reaching the edge of M208
+* CNC doesn't execute the move and reports an error
 
 # speed limits: M350, M92, M203, maxVelocity
 
@@ -287,7 +346,8 @@ After the mesh is measured and stored, the probe is not needed anymore. To avoid
 # Configuration first testing
 When configuration is stored and Duet rebooted, the following procedure shall avoid damages:
 * when Duet reboots or is powered off, the motors lose current and the arms may fall down (for protection, consider brakes, weight balance, gear friction, detent torque, springs, counterweights)
-* G91 G1 H2 X1 to check whether first axis rotates into the expected direction and it is the correct axis. Use low values in case the M92 setting is wrong. Repeat with the other axes. Check letter assignments, positive and negative angles interpreted as expected, and whether rotation degrees are correct.
+* G91 G1 H2 X1 to check whether first axis rotates into the expected direction and it is the correct axis. Use low values in case the move is wrong. Repeat with the other axes. Check letter assignments, positive and negative angles interpreted as expected, and whether rotation degrees are correct by rotating e. g. 90 degrees.
 * G91 G1 H2 Xn with bigger values to assure that the M92 settings are correct
 * home the individual axes and assure that the endstops are triggered. M114 Count values can be used to check the stored motor position value for the homing position.
 * with normal G1 moves, check that the coordinates are interpreted correctly, X positive being to the right, Y positiv to behind and Z positive means greater distance between hotend and bed. This step is especially important for setups with the print object moving (workpiece mode).
+* there are kinematics like CoreXY where G1 H2 and normal G1 moves behave differently for some axes.
