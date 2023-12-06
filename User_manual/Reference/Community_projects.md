@@ -2,7 +2,7 @@
 title: Community Projects
 description: Hardware and software projects started by community members to extend the Duet ecosystem. 
 published: true
-date: 2023-06-13T14:42:03.292Z
+date: 2023-12-06T13:48:01.849Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:54:58.958Z
@@ -13,6 +13,16 @@ The [Duet3D community](https://forum.duet3d.com/){target=_blank}  has created a 
 Here you'll find a listing (in no particular order) of the various projects with a short description and link to further information.
 
 If you know of a project that is not on the list, but should be, [post about it here.](https://forum.duet3d.com/topic/14269/community-projects-wiki){target=_blank} 
+
+# Machine configurations and macros
+
+Below are a number of repositories for example machine configurations. These are suggestions only; please use carefully, and understand that they may need changes to work with your machine, and may damage it if used incorrectly.
+
+* [Duet3D machine configs](https://github.com/Duet3D/RRF-machine-config-files) Configurations for: Big Fast Delta, Creality Ender 5, Creality Ender 3 Pro, Creality Ender 5 Plus, DBot CoreXY, E3D Tool Changer, FlashForge Creator Pro, Jubilee, Kossel, Prusa MK3s, RailCore II 300ZL, RepRapPro Ormerod 1, Robotdigg SCARA, Vivedino Troodon 300
+* [Team Gloomy user configurations](https://github.com/TeamGloomy/LPC-STM32-RRFUserConfigs/tree/master) Configurations for machines running non-Duet3D boards (SKR, BTT, Mellow, MKS etc), but can be used as a guide. Configurations for: Anycubic i3 Mega S, AnyCubic Predator, Caribou MK3S, Cetus MK2 Extended, Creality Ender 3, Creality Ender 5 Plus, Da Vinci Jr, FLSUN Q5, IDEX, K40 CO2 Laser, Micron120, Micron120, Prusa MK2S, SecKit-SK-GO, Sovol SV 01, Tenlog D3, V-Minion, Voron Trident 350, Voron V0.1
+* [pfn's Voron 2.4 config](https://github.com/pfn/voron2-rrf-config)
+* [jay_s_uk's Voron 2.4 config](https://github.com/jaysuk/jays_voron_0.2) Triple boot (Klipper, Marlin, RRF) Voron configuration files.
+* [OwenD's macro library](https://github.com/owendare/RepRapFirmware-Macros) A large collection of macros and conditional g-code examples.
 
 # Hardware Projects
 
