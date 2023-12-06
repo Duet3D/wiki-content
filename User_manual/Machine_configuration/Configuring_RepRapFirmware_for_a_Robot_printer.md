@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Robot printer
 description: 
 published: true
-date: 2023-12-06T08:56:55.482Z
+date: 2023-12-06T08:57:51.106Z
 tags: robot
 editor: markdown
 dateCreated: 2022-03-03T13:05:06.424Z
@@ -20,7 +20,7 @@ The following configurations are implemented and tested:
 
 meaning of abbreviations:
 - Zbed: Z axis is connected to the bed
-- Zendp: Z axis connected to endpoint
+- Zendp: Z axis connected to endpoint (e. g. Voron 2.4)
 - ACbed: AC both connected to the bed, A nearest to workpiece
 
 
