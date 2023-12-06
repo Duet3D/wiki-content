@@ -2,7 +2,7 @@
 title: Bed levelling using multiple independent Z motors
 description: 
 published: true
-date: 2021-10-28T14:47:22.477Z
+date: 2023-12-06T15:41:57.531Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T14:47:18.994Z
@@ -37,7 +37,7 @@ If your bed is not perfectly flat or the gantry sags a little when the head is o
 # Recommendations
 
 * If you have 3 or 4 Z motors, in bed.g use at least one probe point close to each leadscrew.
-* If you have just 2 Z motors, one at each end of the X axis,  then set the Y coordinates of the leadscrews in the M671 command to be equal (the value doesn't matter, so you can use zero). Use at least two probe points, one at each end of the X axis. All your probe points should have the same Y coordinate, which should be at or near the middle of the printable range.
+* If you have just 2 Z motors, one at each end of the X axis, then set the Y coordinates of the leadscrews in the M671 command to be equal (the value doesn't matter, so you can use zero). Use at least two probe points, one at each end of the X axis. All your probe points should have the same Y coordinate, which should be at or near the middle of the printable range.
 * Note: If you are experiencing the Z axis compensating in the opposite direction needed, that means your Z motors are swapped. You can either swap the X values in the M671 command, or swap the stepper motors plugged into the Duet.
 
 # Examples
@@ -50,8 +50,8 @@ File config.g:
 
 ```
 ...
-M584 X0 Y1 Z2:4 E3; two Z motors connected to driver outputs Z and E1
-M671 X-20:220 Y0:0 S0.5 ; leadscrews at left (connected to Z) and right (connected to E1) of X axis
+M584 X0 Y1 Z2:4 E3; two Z motors connected to driver 2 (left motor) and driver 4 (right motor) 
+M671 X-20:220 Y0:0 S0.5 ; position of leadscrew/bed pivot point at left and right of X axis
 M208 X-5:205 Y0:200 ; X carriage moves from -5 to 205, Y bed goes from 0 to 200
 ...
 ```
@@ -60,11 +60,21 @@ File bed.g:
 
 ```
 G28 ; home
-M401 ; deploy Z probe (omit if using bltouch)
 G30 P0 X20 Y100 Z-99999 ; probe near a leadscrew, half way along Y axis
 G30 P1 X180 Y100 Z-99999 S2 ; probe near a leadscrew and calibrate 2 motors
-M402 ; retract probe (omit if using bltouch)
 ```
+
+In RRF 3.x, if you want the gantry levelling to repeat until deviation gets below a certain amount, up to a specific number of times, you could write the bed.g macro as:
+
+```
+G28 ; home
+while true
+    G30 P0 X20 Y100 Z-99999 ; probe near a leadscrew, half way along Y axis
+    G30 P1 X180 Y100 Z-99999 S2 ; probe near a leadscrew and calibrate 2 motors
+    if abs(move.calibration.initial.deviation) < 0.01 || iterations > 3
+        break
+```
+Adjust iterations and the absolute deviation as desired.
 
 ### For 3 motors
 
@@ -72,8 +82,9 @@ File config.g:
 
 ```
 ...
-M584 X0 Y1 Z2:5:6 E4; three Z motors connected to driver outputs 2, 5 and 6
-M671 X-15:100:215 Y190:-10:190 S0.5 ; leadscrews at rear left, front middle and rear right
+M584 X0 Y1 Z2:5:6 E4; three Z motors connected to driver 2 (front left), driver 5 (rear middle) and driver 6 (front right)
+M671 X-15:100:215 Y-10:190:-10 S0.5 ; position of leadscrew/bed pivot point at front left, rear middle and front right
+M208 X-5:205 Y0:200 ; X carriage moves from -5 to 205, Y bed goes from 0 to 200
 ...
 ```
 
@@ -81,12 +92,62 @@ File bed.g:
 
 ```
 G28 ; home
-M401 ; deploy Z probe (omit if using bltouch)
-G30 P0 X20 Y190 Z-99999 ; probe near a leadscrew
-G30 P1 X180 Y190 Z-99999 ; probe near a leadscrew
-G30 P2 X100 Y10 Z-99999 S3 ; probe near a leadscrew and calibrate 3 motors
-M402 ; retract probe (omit if using bltouch)
+G30 P0 X20 Y20 Z-99999 ; probe near a leadscrew
+G30 P1 X100 Y180 Z-99999 ; probe near a leadscrew
+G30 P2 X180 Y20 Z-99999 S3 ; probe near a leadscrew and calibrate 3 motors
 ```
+
+In RRF 3.x, if you want the gantry levelling to repeat until deviation gets below a certain amount, up to a specific number of times, you could write the bed.g macro as:
+
+```
+G28 ; home
+while true
+    G30 P0 X20 Y20 Z-99999 ; probe near a leadscrew
+    G30 P1 X100 Y180 Z-99999 ; probe near a leadscrew
+    G30 P2 X180 Y20 Z-99999 S3 ; probe near a leadscrew and calibrate 3 motors
+    if abs(move.calibration.initial.deviation) < 0.01 || iterations > 3
+        break
+```
+
+Adjust iterations and the absolute deviation as desired.
+
+
+### For 4 motors
+
+File config.g:
+
+```
+...
+M584 X0 Y1 Z2:3:4:5 E6; four Z motors connected to driver 2 (front left), driver 3 (rear left), driver 4 (rear right) and driver 5 (front right)
+M671 X-15:-15:215:215 Y-10:190:190:-10 S0.5 ; position of leadscrew/bed pivot point at front left, rear left, rear right and front right
+M208 X-5:205 Y0:200 ; X carriage moves from -5 to 205, Y bed goes from 0 to 200
+...
+```
+
+File bed.g:
+
+```
+G28 ; home
+G30 P0 X20 Y20 Z-99999 ; probe near a leadscrew
+G30 P1 X20 Y180 Z-99999 ; probe near a leadscrew
+G30 P2 X180 Y180 Z-99999 ; probe near a leadscrew
+G30 P3 X180 Y20 Z-99999 S4 ; probe near a leadscrew and calibrate 4 motors
+```
+
+In RRF 3.x, if you want the gantry levelling to repeat until deviation gets below a certain amount, up to a specific number of times, you could write the bed.g macro as:
+
+```
+G28 ; home
+while true
+    G30 P0 X20 Y20 Z-99999 ; probe near a leadscrew
+    G30 P1 X20 Y180 Z-99999 ; probe near a leadscrew
+    G30 P2 X180 Y180 Z-99999 ; probe near a leadscrew
+    G30 P3 X180 Y20 Z-99999 S4 ; probe near a leadscrew and calibrate 4 motors
+    if abs(move.calibration.initial.deviation) < 0.01 || iterations > 3
+        break
+```
+
+Adjust iterations and the absolute deviation as desired.
 
 ## Note on M584 from examples above
 
