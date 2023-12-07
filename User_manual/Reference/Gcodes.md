@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-12-05T11:32:06.688Z
+date: 2023-12-07T13:12:21.032Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1330,33 +1330,75 @@ Supported in v3.5-b1 and later.
 
 ## M3: Spindle On, Clockwise
 
-Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC mode (see [M453](/User_manual/Reference/Gcodes/M453){target=_blank}) and in CNC and FFF mode from RepRapFirmware version 3.5
+Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC mode (for CNC mode, see [M453](/User_manual/Reference/Gcodes/M453){target=_blank}).
+Supported in RepRapFirmware version 2.01 and later when the printer mode is set to CNC and laser mode (for laser mode, see [M452](/User_manual/Reference/Gcodes/M452){target=_blank}).
+Supported in RepRapFirmware version 3.5 and later when the printer mode is set to CNC, laser and FFF mode (for FFF mode, see [M451](/User_manual/Reference/Gcodes/M451){target=_blank}).
 
 ### Parameters
 
-* **Snnn** Spindle RPM (CNC mode)
+* **Snnn** Spindle RPM (CNC mode), laser power 0-255 (laser mode).
 * **Pnnn** Spindle slot (CNC mode only). Directly address a spindle slot.
 
 ### Examples
 <br>
 <pre class="cblock">
-M3 S4000 ; turn on spindle at speed of 4000 RPM, clockwise
+M3 S4000 ; CNC mode, turn on spindle at speed of 4000 RPM, clockwise
+M3 S255  ; laser mode, set laser power to full on
 </pre>
 
-#### M3 in RepRapFirmware 3.3 and later
-
-M3 can be called without any parameters and will start the spindle of the current tool turning clockwise at the spindle RPM of that tool.
-
-Using the S parameter will additionally set the spindle RPM of the current tool.
-
-It is an error if there is no tool active or the active tool does not have a spindle assigned and there is no P parameter provided to define which spindle this should be applied to.
+### Tabs {.tabset}
 
 #### M3 in RepRapFirmware 3.5 and later
-M3 M4 and M5 commands are now supported in FDM mode as well as CNC mode. This will allow mixing of additive and subtractive tools wihtout switching mode.
+
+* M3, M4 and M5 commands are now supported in FDM mode as well as CNC and laser mode. This will allow mixing of additive and subtractive tools wihtout switching mode.
+* FFF mode:
+  * In FFF mode, M3 will control a predefined spindle, as 'CNC mode' below. Lasers are not supported.
+* CNC mode:
+  * M3 can be called without any parameters and will start the spindle of the current tool turning clockwise at the spindle RPM of that tool.
+  * Using the S parameter will additionally set the spindle RPM of the current tool.
+  * It is an error if there is no tool active or the active tool does not have a spindle assigned and there is no P parameter provided to define which spindle this should be applied to.
+* Laser mode:
+  * M3 is effectively redundant, as the laser can be controlled with G1 S commands.
+  * All M3 commands must have an S parameter. Sending M3 on its own generates an error.
+  * M3 can't be used to fire the laser on its own; the laser will only fire with a G1 movement command.
+  * In 'non-sticky' mode (M452 S0), M3 commands are redundant, as all G1 commands need an S parameter to fire the laser, otherwise it just defaults to S0. 
+  * In 'sticky' mode (M452 S1), you can set the laser with, for example, M3 S255, then subsequent G1 moves will use that setting without needing an S parameter. 
+
+#### M3 in RepRapFirmware 3.0 and 3.4
+
+* CNC mode:
+  * M3 can be called without any parameters and will start the spindle of the current tool turning clockwise at the spindle RPM of that tool.
+  * Using the S parameter will additionally set the spindle RPM of the current tool.
+  * It is an error if there is no tool active or the active tool does not have a spindle assigned and there is no P parameter provided to define which spindle this should be applied to.
+* Laser mode:
+  * M3 is effectively redundant, as the laser can be controlled with G1 S commands.
+  * All M3 commands must have an S parameter. Sending M3 on its own generates an error.
+  * M3 can't be used to fire the laser on its own; the laser will only fire with a G1 movement command.
+  * In 'non-sticky' mode (M452 S0), M3 commands are redundant, as all G1 commands need an S parameter to fire the laser, otherwise it just defaults to S0. 
+  * In 'sticky' mode (M452 S1), you can set the laser with, for example, M3 S255, then subsequent G1 moves will use that setting without needing an S parameter. 
+
+#### M3 in RepRapFirmware 2.01 to 2.05.1
+
+* CNC mode:
+  * M3 can be called without any parameters and will start the spindle of the current tool turning clockwise at the spindle RPM of that tool.
+  * Using the S parameter will additionally set the spindle RPM of the current tool.
+  * It is an error if there is no tool active or the active tool does not have a spindle assigned and there is no P parameter provided to define which spindle this should be applied to.
+* Laser mode:
+  * M3 turns the laser on, with the S parameter setting the laser power (0 to 254), before a series corresponding G1 move. 
+  * The relationship between the S parameter and laser power depends on the R parameter that was specified in the M452 command. 
+  * Note there can be issues using this mode as the M-command queue is only 8 commands long, while the G-command queue is 20 commands long. You may get stuttering, particularly when raster engraving. Best to use G1 with S parameter.
+
+#### M3 in RepRapFirmware 1.20 to 2.0
+
+* CNC mode:
+  * M3 can be called without any parameters and will start the spindle of the current tool turning clockwise at the spindle RPM of that tool.
+  * Using the S parameter will additionally set the spindle RPM of the current tool.
+  * It is an error if there is no tool active or the active tool does not have a spindle assigned and there is no P parameter provided to define which spindle this should be applied to.
 
 ## M4: Spindle On, Counterclockwise
 
-Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC (see [M453](/User_manual/Reference/Gcodes/M453){target=_blank}) and in CNC and FFF mode from RepRapFirmware version 3.5
+Supported in RepRapFirmware version 1.20 and later when the printer mode is set to CNC mode (see [M453](/User_manual/Reference/Gcodes/M453){target=_blank}).
+Supported in RepRapFirmware version 3.5 and later when the printer mode is set to CNC and FFF mode.
 
 ### Parameters
 
