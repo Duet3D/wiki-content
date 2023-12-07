@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-12-07T17:39:50.320Z
+date: 2023-12-07T17:43:06.103Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -490,6 +490,7 @@ Counter-clockwise arc move. Supported by RRF_1.18 and later.
 * **Ennn** The amount to extrude between the starting point and ending point.^1^
 * **Fnnn** The feedrate per minute of the move between the starting point and ending point (optional, defaults to the current feed rate).
 * **Rnnn** The radius of the arc (optional, RRF2.03 and later)
+* **Snnn** (M452 Laser mode only) Laser power 0-255. See G1 S parameter for usage. Raster clustering not supported. (RRF 2.01 and later)
 
 Either the R parameter must be provided, or at least one of I and J must be provided. To draw a complete circle, define the position of the centre using I and/or J and make X and Y the same as the current X and Y coordinates.
 
