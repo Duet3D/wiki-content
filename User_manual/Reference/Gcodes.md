@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-12-08T13:02:17.619Z
+date: 2023-12-08T15:01:29.545Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1351,6 +1351,8 @@ M3 S4000 ; CNC mode, turn on spindle at speed of 4000 RPM, clockwise
 M3 S255  ; laser mode, set laser power to full on
 </pre>
 
+### Notes
+
 ### Tabs {.tabset}
 
 #### M3 in RepRapFirmware 3.5 and later
@@ -1364,9 +1366,11 @@ M3 S255  ; laser mode, set laser power to full on
   * It is an error if there is no tool active or the active tool does not have a spindle assigned and there is no P parameter provided to define which spindle this should be applied to.
 * **Laser mode:**
   * In 'non-sticky' mode (M452 S0), M3 commands are redundant, as all G1 commands need an S parameter to fire the laser, otherwise it just defaults to S0. 
-  * In 'sticky' mode (M452 S1), you can set the laser with, for example, `M3 S255`, then subsequent G1 moves will use that setting without needing an S parameter. Alternatively set the laser power with the first G1 S command, and subsequent G1 commands will use that setting, until either an `M3 S0` or `M5` is sent.
+  * In 'sticky' mode (M452 S1), you can set the laser with, for example, `M3 S255`, then subsequent G1 moves will use that setting without needing an S parameter. Alternatively set the laser power with the first G1 S command, and subsequent G1 commands will use that setting, until either an `M3 S0`, `G1 S0` or `M5` is sent.
   * All M3 commands must have an S parameter. Sending M3 on its own generates an error.
   * M3 can't be used to fire the laser on its own; the laser will only fire with a G1 movement command.
+  * The relationship between the S parameter and laser power depends on the R parameter that was specified in the M452 command. 
+  * Note there can be issues using this mode as the M-command queue is only 8 commands long, while the G-command queue is 20 commands long. You may get stuttering, particularly when raster engraving. Better to use G1 with S parameter.
 
 #### M3 in RepRapFirmware 3.0 and 3.4
 
@@ -1379,6 +1383,8 @@ M3 S255  ; laser mode, set laser power to full on
   * In 'sticky' mode (M452 S1), you can set the laser with, for example, `M3 S255`, then subsequent G1 moves will use that setting without needing an S parameter. Alternatively set the laser power with the first G1 S command, and subsequent G1 commands will use that setting, until either an `M3 S0` or `M5` is sent.
   * All M3 commands must have an S parameter. Sending M3 on its own generates an error.
   * M3 can't be used to fire the laser on its own; the laser will only fire with a G1 movement command.
+  * The relationship between the S parameter and laser power depends on the R parameter that was specified in the M452 command. 
+  * Note there can be issues using this mode as the M-command queue is only 8 commands long, while the G-command queue is 20 commands long. You may get stuttering, particularly when raster engraving. Better to use G1 with S parameter.
 
 #### M3 in RepRapFirmware 2.01 to 2.05.1
 
@@ -1475,8 +1481,7 @@ M5 ; turn off spindle/laser
 * **CNC mode:**
   * M5 will stop the spindle of the current tool (if any) or all defined spindles if the current tool has no spindle assigned or there is no active tool.
 * **Laser mode:**
-  * In 'non-sticky' mode (M452 S0), M5 commands are redundant, as all G1 commands need an S parameter to fire the laser, otherwise it just defaults to S0. 
-  * In 'sticky' mode (M452 S1), `M5` (or `M3 S0` or `G1 S0`) will turn off the laser, and subsequent G1 commands (without an S parameter) will not fire the laser until another M3 S# or G1 S# command is sent.
+  * M5 (or M3 S0 or G1 S0) will turn off the laser, and subsequent G1 commands (without an S parameter) will not fire the laser until another M3 S# or G1 S# command is sent.
 
 #### M5 in RepRapFirmware 1.20 to 2.0
 
