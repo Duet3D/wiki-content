@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-12-08T17:20:29.845Z
+date: 2023-12-09T15:59:06.617Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4357,7 +4357,8 @@ M452 P2 R255 F200 ; switch to laser mode using the heater 2 (E1 heater) output p
 
 * Switches to laser mode. This mode enables handling of a laser pin and makes sure that the laser is only activated during G1 moves if laser was enabled (using M3 Snn or G1 Snn moves) or E is increasing (using [M571](/User_manual/Reference/Gcodes/M571){target=_blank}). G0 moves should never enable the laser. 
 * **Very important!** If you use M452 to put your machine into Laser mode and are upgrading from RepRapFirmware **v2.01 or earlier**, you must replace all S parameters in G0/G1 commands in homing files etc. with H parameters. This is because S is now used to control laser power.
-* M3/M5 can be used to enable/disable the laser for moves. 
+* In RRF 2.05 and later, M3 Snnn no longer turns on the laser immediately. 'Non-sticky' is the default mode.
+* In RRF 2.01 to 2.04, M3/M5 immediately enables/disables the laser. 'Sticky' is the default mode.
 * Logical pin numbers for the P parameter are as defined for the M42 and M208 commands. If a heater or fan output is used to control the laser, you must disable the corresponding heater (see M307) or fan (see M106) first.
 * RRF 2.x does not support laser power velocity ramping.
 * See also [Configuring RepRapFirmware for a laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser){target=_blank}.
