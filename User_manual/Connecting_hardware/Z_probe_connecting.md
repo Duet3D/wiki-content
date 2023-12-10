@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2023-03-24T15:11:39.018Z
+date: 2023-12-10T22:50:15.796Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -237,7 +237,9 @@ Most Piezo kits come with a number of sensors that connect to a small controller
 
 ## NPN output normally-open inductive or capacitive sensor
 
-**Duet 3, Duet 2 WiFi/Ethernet revision 1.04 or later, Duet 2 Maestro:** you can connect the output of the sensor directly to the Z-probe IN pin.
+**Duet 3:** connect the output of the sensor directly to an available IOx.in pin.
+
+**Duet 2 WiFi/Ethernet revision 1.04 or later, Duet 2 Maestro:** connect the output of the sensor directly to the Z-probe IN pin.
 
 **Duet WiFi/Ethernet revision 1.03 or earlier:** Connect the output wire of the sensor to the cathode of a diode, and the anode of the diode to the Z probe IN pin. The diode should preferably be a small-signal Schottky diode such as BAT43 or BAT85, but a small signal silicon diode such as 1N4148 works for some people.
 
@@ -249,7 +251,9 @@ Select mode 5 (P5) in the M558 command. Invert the probe output by prefixing the
 
 ## PNP output normally-open inductive or capacitive sensor
 
-Connect the sensor output wire to one end of a resistor (call this R1), and connect one end of another resistor (call this R2) to GND on the Z-probe connector. Connect the free ends of R1 and R2 together and to the IN pin of the Z-probe connector.
+**If you have a choice between a PNP or a NPN sensor, choose the NPN one because they are simpler to connect to a Duet.**
+
+Connect the PNP sensor output wire to one end of a resistor (call this R1), and connect one end of another resistor (call this R2) to GND on the Z-probe connector. Connect the free ends of R1 and R2 together and to the IN pin of the Z-probe connector.
 
 For **Duet 3**: all IOx.in inputs have a 27K pullup resistor to +3.3V, therefore the value of R2 must be low enough to defeat this. We suggest R2 = 2.2K. Then the value of R1 should be 4.7K to 6.8K if the sensor is powered from +12V; or use 10K to 15K if the sensor is powered from +24V.
 
@@ -359,7 +363,7 @@ GND | | GND | Black | ^^ |
 If you have the older BLTouch (before V3.0), the output is 5V by default. However, the Z probe input on Duet 2 WiFi/Ethernet boards prior to version 1.04 is not 5V tolerant.
 
 * **Either:** Connect a 240 ohm resistor between Probe GND and Probe IN.
-* **Or:** Cut the PCB trace on the BLTouch to reduce the output to 3.3V as described in the instructions for your BLTouch version. See https://www.antclabs.com/
+* **Or:** Cut the PCB trace on the BLTouch to reduce the output to 3.3V as described in the instructions for your BLTouch version. See [https://www.antclabs.com/](https://www.antclabs.com/){target=_blank}
 
 All BLTouch V3.0 and later are 3.3V output by default, though can be set to 5V output.
 
@@ -386,7 +390,7 @@ Connect the BLTouch as follows:
 If you have the older BLTouch (before V3.0), the output is 5V by default. However, the Z probe input on Duet 2 WiFi/Ethernet boards prior to version 1.04 is not 5V tolerant.
 
 * **Either:** Connect a 240 ohm resistor between Probe GND and Probe IN.
-* **Or:** Cut the PCB trace on the BLTouch to reduce the output to 3.3V as described in the instructions for your BLTouch version. See https://www.antclabs.com/
+* **Or:** Cut the PCB trace on the BLTouch to reduce the output to 3.3V as described in the instructions for your BLTouch version. See [https://www.antclabs.com/](https://www.antclabs.com/){target=_blank}
 
 All BLTouch V3.0 and later are 3.3V output by default, though can be set to 5V output.
 
