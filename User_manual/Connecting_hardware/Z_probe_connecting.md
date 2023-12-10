@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2023-12-10T22:50:15.796Z
+date: 2023-12-10T22:53:02.084Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -237,7 +237,7 @@ Most Piezo kits come with a number of sensors that connect to a small controller
 
 ## NPN output normally-open inductive or capacitive sensor
 
-**Duet 3:** connect the output of the sensor directly to an available IOx.in pin.
+**Duet 3:** connect the output of the sensor directly to an available IO_x.in pin.
 
 **Duet 2 WiFi/Ethernet revision 1.04 or later, Duet 2 Maestro:** connect the output of the sensor directly to the Z-probe IN pin.
 
