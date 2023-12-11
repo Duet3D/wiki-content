@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2023-11-01T12:14:15.596Z
+date: 2023-12-11T20:23:54.439Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -227,4 +227,4 @@ If a brake is present the M23CL will disable it when the motors are enabled (M17
 
 ### Prototpye
 
-* The initial M23CL with a 54mm motor body, brake and an 8mm shaft.
+* The initial M23CL with a 56mm motor body, brake and an 8mm shaft.
