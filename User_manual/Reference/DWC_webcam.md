@@ -2,7 +2,7 @@
 title: Connecting a web camera to Duet Web Control
 description: Duet 2 and Duet 3 mainboards do not support a directly-connected web camera. However, you can buy a suitable Wifi or Ethernet IP camera and then configure Duet Web Control to include an image from the camera on the Print page.
 published: true
-date: 2023-12-12T13:56:21.763Z
+date: 2023-12-12T15:59:28.656Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T15:12:46.132Z
@@ -124,15 +124,6 @@ More information on configuration parameters can be found on the [Motion documen
 
 ### Single camera
 
-#### Setup in DWC
-
-To configure this service in DWC, go to the `Settings` -> `General` page and make the following changes:
-
-- Click 'Enable Webcam'
-- Set `Webcam URL` to `http://[HOSTNAME]:8081/0/stream` 
-- Set `Webcam update interval (in ms)` to `0`
-- Go to the `Job` -> `Webcam` page to see your live stream
-
 #### Motion settings
 
 The Motion configuration file `motion.conf` is created in `0:/sys/motion.conf`, and can be edited in DWC. The default configuration uses the default `/dev/video0` device node. Depending on your choice of camera (see 'Camera check' section above), you may need to change this in `motion.conf`.
@@ -161,19 +152,19 @@ After you make changes to motion.conf, you will need to restart the Motion Plugi
 
 Reported in 'top' (run from RPi terminal), Motion's CPU utilisation on a RPi4 is around 40-50% for 1280x720 @ 25fps, and around 30% for 800x600 @ 25fps, when the stream is being displayed. It drops to below 10% CPU utilisation when not being displayed.
 
+#### Setup in DWC
+
+To configure this service in DWC, go to the `Settings` -> `General` page and make the following changes:
+
+- Click 'Enable Webcam'
+- Set `Webcam URL` to `http://[HOSTNAME]:8081/0/stream` 
+- Set `Webcam update interval (in ms)` to `0`
+- If you have made changes to motion.conf, restart Motion by going to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again.
+- Go to the `Job` -> `Webcam` page to see your live stream
+
 ### Multiple cameras
 
 It is easiest to set up one camera first, to check everything is working, before setting up multiple cameras.
-
-#### Setup in DWC
-
-To configure this service for multiple cameras in DWC, go to the `Settings` -> `General` page and make the following changes:
-
-- Click 'Enable Webcam'
-- Set `Webcam URL` to `http://[HOSTNAME]:8080/stream` 
-- Set `Webcam update interval (in ms)` to `0`
-- Click 'Embed webcam image in an iframe
-- Go to the `Job` -> `Webcam` page to see your live stream
 
 #### Motion settings
 
@@ -188,6 +179,17 @@ The individual `camera#.conf` files contain information specific to the camera, 
 TO COME
 ```
 After you make changes to motion.conf, you will need to restart the Motion Plugin to make the settings take effect. Go to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again. Check that your changes have taken effect, by checking the Job > Webcam page.
+
+#### Setup in DWC
+
+To configure this service for multiple cameras in DWC, go to the `Settings` -> `General` page and make the following changes:
+
+- Click 'Enable Webcam'
+- Set `Webcam URL` to `http://[HOSTNAME]:8080/stream` 
+- Set `Webcam update interval (in ms)` to `0`
+- Click 'Embed webcam image in an iframe'
+- If you have made changes to motion.conf or camera#.conf, restart Motion by going to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again.
+- Go to the `Job` -> `Webcam` page to see your live stream
 
 ## Build instructions
 
