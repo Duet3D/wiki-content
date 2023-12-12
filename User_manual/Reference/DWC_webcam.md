@@ -2,7 +2,7 @@
 title: Connecting a web camera to Duet Web Control
 description: Duet 2 and Duet 3 mainboards do not support a directly-connected web camera. However, you can buy a suitable Wifi or Ethernet IP camera and then configure Duet Web Control to include an image from the camera on the Print page.
 published: true
-date: 2023-12-12T15:59:28.656Z
+date: 2023-12-12T16:44:41.690Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T15:12:46.132Z
@@ -170,15 +170,50 @@ It is easiest to set up one camera first, to check everything is working, before
 
 To use more than one camera, Motion splits the configuration into a main configuraton named `motion.conf` and a configuration for each camera. For this example, they are called `camera1.conf` and `camera2.conf`. There are all created and stored in `0:/sys/`, and can be edited in DWC.
 
-`motion.conf` stores all parameters that are used by all cameras. This includes the webserver address for all the cameras, the location of the `camera#.conf` configuration files, and picture settings that apply to all streams. An example could be:
+`motion.conf` stores all parameters that are used by all cameras. This includes the webserver address for all the cameras, the location of the `camera#.conf` configuration files (in the same folder as `motion.conf` in this example), and picture settings that apply to all streams. An example could be:
+
+motion.conf
 ```
-TO COME
+pause on
+daemon off
+setup_mode off
+log_level 3
+emulate_motion off
+picture_output off
+movie_output off
+
+width 800
+height 600
+framerate 25
+stream_maxrate = 25
+stream_localhost off
+
+webcontrol_port 8080
+webcontrol_localhost off
+webcontrol_parms 0
+camera /opt/dsf/sd/sys/camera1.conf
+camera /opt/dsf/sd/sys/camera2.conf
+
 ```
-The individual `camera#.conf` files contain information specific to the camera, mainly the device node the stream uses, eg `/dev/video0` or `/dev/video1`. An example could be:
+The individual `camera#.conf` files contain information specific to the camera, mainly the device node the stream uses, eg `/dev/video0` or `/dev/video1`. Create these in the /sys folder with `motion.conf` An example could be:
+
+Camera1.conf
 ```
-TO COME
+camera_name CAM-1
+camera_id 001
+video_device /dev/video0
+text_left CAM-1
+stream_port 8081
 ```
-After you make changes to motion.conf, you will need to restart the Motion Plugin to make the settings take effect. Go to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again. Check that your changes have taken effect, by checking the Job > Webcam page.
+Camera2.conf
+```
+camera_name CAM-2
+camera_id 002
+video_device /dev/video1
+text_left CAM-2
+stream_port 8082
+```
+After you make changes to motion.conf or camera#.conf, you will need to restart the Motion Plugin to make the settings take effect. Go to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again. Check that your changes have taken effect, by checking the Job > Webcam page.
 
 #### Setup in DWC
 
