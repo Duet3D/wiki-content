@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-12-09T15:59:06.617Z
+date: 2023-12-12T18:09:28.243Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4119,7 +4119,7 @@ The values of this command are currently only used by the print monitor and only
 
 ## M408: Report JSON-style response
 
-**Deprecated in RRF 3.3 and later.** Use M409 instead to get response from Object Model, which provides more information.
+**Deprecated in RRF 3.3 and later; planned for removal in RRF 3.5 and later.** Use M409 instead to get response from Object Model, which provides more information.
 
 ### Parameters
 
