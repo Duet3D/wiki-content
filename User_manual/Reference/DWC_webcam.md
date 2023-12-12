@@ -2,7 +2,7 @@
 title: Connecting a web camera to Duet Web Control
 description: Duet 2 and Duet 3 mainboards do not support a directly-connected web camera. However, you can buy a suitable Wifi or Ethernet IP camera and then configure Duet Web Control to include an image from the camera on the Print page.
 published: true
-date: 2023-12-04T16:13:21.443Z
+date: 2023-12-12T13:56:21.763Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T15:12:46.132Z
@@ -84,38 +84,72 @@ The cameras will also work, generally, in low to no light, I forgot where i got 
 
 # Motion on a Raspberry Pi Running DSF
 
-From 3.4 the Duet3D-provided Raspberry Pi images for Duet Software Framework come with the [motion](https://github.com/Motion-Project/motion){target=_blank} streaming service installed. A compatible camera can be connected to the Rapsberry Pi, and can then be used through DWC and controlled through the [Motion Webcam Plugin](https://github.com/Duet3D/MotionWebcamServerPlugin/releases){target=_blank}.
+## Description
+
+From RRF 3.4, the Duet3D-provided Raspberry Pi images for Duet Software Framework come with the [motion](https://github.com/Motion-Project/motion){target=_blank} streaming service installed. A compatible camera can be connected to the Rapsberry Pi using the Raspberry Pi camera connectors or USB, and can then be used through DWC and controlled through the [Motion Webcam Plugin](https://github.com/Duet3D/MotionWebcamServerPlugin/releases){target=_blank}.
 
 Motion is a program that monitors the video signal from one or more cameras and is able to detect if a significant part of the picture has changed. Or in other words, it can detect motion. It is generally used in security cameras. It can also stream the camera view, using a built-in webserver, which is what DWC uses.
 
-## Description
+## Camera check
 
-This plugin runs the [motion](https://github.com/Motion-Project/motion){target=_blank} webcam streaming service as a DSF plugin. The main `motion.conf` file is accessible via `0:/sys/motion.conf`.
+When you connect a camera to the Raspberry Pi, it is set up as a device in the /dev folder as a 'video' device. You can check what devices are connected by sending `v4l2-ctl --list-devices` in the Raspberry Pi's terminal.
+```
+bcm2835-codec-decode (platform:bcm2835-codec):
+	/dev/video10
+	/dev/video11
+	/dev/video12
 
-Note that the default configuration uses the default `/dev/video0` device node. Depending on your choice of camera, extra customizations may be required.
+mmal service 16.1 (platform:bcm2835-v4l2):
+	/dev/video0
 
-More information on configuration can be found on the [Motion documentation pages](https://motion-project.github.io/motion_config.html){target=_blank}.
+HP Webcam 3100: HP Webcam 3100 (usb-3f980000.usb-1.5):
+	/dev/video1
+	/dev/video2
+```
+In the above, /dev/video0 is a Raspberry Pi Camera, and /dev/video1 is a USB webcam.
 
-## Setup in DWC
+## Installation
+
+* Download the .zip file of the plugin without extracting it, using the version that matches the firmware version of your Duet, from [Motion Webcam Plugin](https://github.com/Duet3D/MotionWebcamServerPlugin/releases){target=_blank}. 
+* Install the plugin in DWC by going to Settings > Plugins > External plugins, then select 'Install plugins' and upload the .zip file.
+* Once installed, click the 'Start' button to start the Plugin.
+
+This plugin runs the Motion webcam streaming service as a DSF plugin. 
+
+More information on configuration parameters can be found on the [Motion documentation pages](https://motion-project.github.io/motion_config.html){target=_blank}.
+
+## Configuration
+
+## Tabs {.tabset}
+
+### Single camera
+
+#### Setup in DWC
 
 To configure this service in DWC, go to the `Settings` -> `General` page and make the following changes:
 
+- Click 'Enable Webcam'
 - Set `Webcam URL` to `http://[HOSTNAME]:8081/0/stream` 
 - Set `Webcam update interval (in ms)` to `0`
 - Go to the `Job` -> `Webcam` page to see your live stream
 
-## Configuration
+#### Motion settings
 
-The Motion configuration file `motion.conf` file is created in `0:/sys/motion.conf`, and can be edited in DWC. The standard configuration streams video using the built-in webserver, and is not set to capture images or video. However, the stream usually runs at 1 frame per second, with a resolution of 1280x720. If you would prefer a higher frame rate and better quality, at the expense of making the Raspberry Pi work a bit harder, you can add the following to motion.conf:
+The Motion configuration file `motion.conf` is created in `0:/sys/motion.conf`, and can be edited in DWC. The default configuration uses the default `/dev/video0` device node. Depending on your choice of camera (see 'Camera check' section above), you may need to change this in `motion.conf`.
 
+The standard configuration streams video using the built-in webserver, and is not set to capture images or video. However, the stream usually runs at 1 frame per second, with a resolution of 1280x720. If you would prefer a higher frame rate and better quality, at the expense of making the Raspberry Pi work a bit harder, you can add the following to motion.conf.
+
+Turn off the motion detection (reduces RPi CPU utilisation by 5-10%):
 ```
 # When Motion is started, pause the motion detection. Default: off
 pause on
-
+```
+Increase the stream frame rate (usually 1fps!):
+```
 # Limit the framerate of the stream in frames per second (default 1, max 100)
 stream_maxrate 25
 ```
-You can adjust the video size by editing the following:
+Adjust the video size by editing the following:
 ```
 # Image width in pixels.
 width 1280
@@ -123,7 +157,37 @@ width 1280
 # Image height in pixels.
 height 720
 ```
-Reported in 'top', Motion's CPU utilisation on a RPi4 is around 40-50% for 1280x720 @ 25fps, and around 30% for 800x600 @ 25fps, when the stream is being displayed. It drops to below 10% CPU utilisation when not being displayed.
+After you make changes to motion.conf, you will need to restart the Motion Plugin to make the settings take effect. Go to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again. Check that your changes have taken effect, by checking the Job > Webcam page.
+
+Reported in 'top' (run from RPi terminal), Motion's CPU utilisation on a RPi4 is around 40-50% for 1280x720 @ 25fps, and around 30% for 800x600 @ 25fps, when the stream is being displayed. It drops to below 10% CPU utilisation when not being displayed.
+
+### Multiple cameras
+
+It is easiest to set up one camera first, to check everything is working, before setting up multiple cameras.
+
+#### Setup in DWC
+
+To configure this service for multiple cameras in DWC, go to the `Settings` -> `General` page and make the following changes:
+
+- Click 'Enable Webcam'
+- Set `Webcam URL` to `http://[HOSTNAME]:8080/stream` 
+- Set `Webcam update interval (in ms)` to `0`
+- Click 'Embed webcam image in an iframe
+- Go to the `Job` -> `Webcam` page to see your live stream
+
+#### Motion settings
+
+To use more than one camera, Motion splits the configuration into a main configuraton named `motion.conf` and a configuration for each camera. For this example, they are called `camera1.conf` and `camera2.conf`. There are all created and stored in `0:/sys/`, and can be edited in DWC.
+
+`motion.conf` stores all parameters that are used by all cameras. This includes the webserver address for all the cameras, the location of the `camera#.conf` configuration files, and picture settings that apply to all streams. An example could be:
+```
+TO COME
+```
+The individual `camera#.conf` files contain information specific to the camera, mainly the device node the stream uses, eg `/dev/video0` or `/dev/video1`. An example could be:
+```
+TO COME
+```
+After you make changes to motion.conf, you will need to restart the Motion Plugin to make the settings take effect. Go to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again. Check that your changes have taken effect, by checking the Job > Webcam page.
 
 ## Build instructions
 
