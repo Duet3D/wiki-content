@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2023-12-06T16:37:14.945Z
+date: 2023-12-13T12:54:57.340Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -171,13 +171,21 @@ The individual IO_x connectors have the following capabilities:
 
 ## CAN
 
-It is possible to connect a Roto Toolboard directly to the Duet 3 Mainboard 6HC, 6XD, Duet 3 Mini 5+, or any Duet 3 Expansion board.
+It is possible to connect a Roto Toolboard directly to the Duet 3 Mainboard 6HC, 6XD, Duet 3 Mini 5+, or daisy chain it with other toolboards or any Duet 3 Expansion board.
 
 ### Power connection
 
 Supply between 12V and 32V to the XT30 2+2 power connector on the Toolboard through a fuse and observing the correct polarity. Inline blade fuse holders are readily available, pick the lowest rated fuse appropriate for your heater and motor current draw.
 
 #### CAN Connection
+
+The XT30(2+2) pre-wired cables supplied with the boards have different wire colours depending on the wiring batch.
+
+| CAN | Prototpyes and initial V1.0 | Later V1.0 | Moulded connector |
+|:---|:---|
+| CAN H | Blue | Yellow | Yellow |
+| CAN L | White | White | Green | 
+
 
 #### Tabs {.tabset}
 
