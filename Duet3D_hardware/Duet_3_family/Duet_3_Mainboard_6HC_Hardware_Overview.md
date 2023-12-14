@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-12-14T12:00:54.473Z
+date: 2023-12-14T12:07:45.776Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -222,7 +222,9 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
 | **1 x 2x6 header** | ESP | v1.02 and later boards only. Header to connect an ESP WiFi board. |
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
-| **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector and permanent termination resistor, so it must be at one end of the CAN bus |
+| **1 x RJ11 CAN connector** | CAN1_OUT | *Revision 1.02 and later*: RJ11 connector for CAN1 (main CAN-FD bus). Termination resistor fitted so normally this board must be at the end of the bus however there are drill to disconnect jumpers that allow the termination resistor to be removed. That is not required in normal operation.|
+| ^^ | CAN_OUT |*Revisions before 1.02*: RJ11 CAN connector for both CAN1 and CAN0 with a permanent termination resistor, so it must be at one end of the CAN bus |
+| **1 x 2-pin KK connector** | CAN0_OUT | *Revision 1.02 and later only*: secondary CAN-FD bus. Termination resistor fitted so normally this board must be at the end of the bus however there are drill to disconnect jumpers that allow the termination resistor to be removed. That is not required in normal operation|
 
 **Notes**
 
