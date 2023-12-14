@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2023-06-14T16:38:52.522Z
+date: 2023-12-14T11:52:05.472Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -31,8 +31,8 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **External Driver Support** | 6 ports with step/direction/enable outputs, and fault inputs. Signalling is 5V single ended. |
 | **High current outputs** | 3 x 6A each |
 | **Medium current outputs** | 6 x PWM-controlled outputs, of which 3 support tacho input. Voltage selectable between VIN / 12V / external power, in 2 individually-fused banks. 1 x VIN-voltage, always-on output. 1 x 12V, always-on output. |
-| **Thermistor/PT1000 inputs** | 4, optimised for 100K thermistors and PT1000 sensors |
-| **Inputs/Outputs** | 9 on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo, or PanelDue connection. Inputs are 30V-tolerant. 4 of the 9 pairs of IO also have alternative opto-isolated connectors.
+| **Thermistor/PT1000 inputs** | 4 x inputs, optimised for 100K thermistors and PT1000 sensors |
+| **Inputs/Outputs** | 9 x on-board I/O connectors for endstop, filament monitor, Z probe, hobby servo, or PanelDue connection. Inputs are 30V-tolerant. 4 of the 9 pairs of IO also have alternative opto-isolated connectors.
 | **Power monitoring** | VIN voltage monitoring allows for state save on power failure.12V regulator output voltage also monitored |
 | **SD card interface** | On-board high speed (25Mbytes/sec) SD card socket. External SD card socket (e.g. on attached PanelDue) also supported.|
 
@@ -122,7 +122,7 @@ A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainbo
 
 ### Revision 1.0
 
-[![Duet3 Mainboard 6XD v1.0 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.4_wiring.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.4_wiring.png){target=_blank}
+[![Duet3 Mainboard 6XD v1.0 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_wiring_latest.png =500x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_wiring_latest.png){target=_blank}
 
 
 ### Revision 0.1
@@ -441,11 +441,16 @@ Power overdraw conditions may result in poor communication between the Pi and Du
 
 ## Connecting External Motor Drivers
 
-The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. The Step, Dir and Enable outputs from the 6XD are either low (when "on") or floating/high impedence when "off". To connect a Pololu/StepStick/similar driver to the 6XD a 10K pullup resistor is needed from the Step/Dir/En lines to +5V.
+The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. Note that:
+* The Step and Dir outputs from the 6XD are either low (when "on") or floating/high-impedance when "off". 
+* The Enable output is either low when "on" and high impedance when "off", or vice versa, depending on the position of the 'Driver Enable Polarity' (En_Pol) jumper.
+* To connect a Pololu/StepStick/similar driver to the 6XD a 10K pullup resistor is needed from the Step/Dir/En lines to +5V.
 
 This diagram shows connection to a "typical" optoisolated stepper motor driver
 
 [![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png){target=_blank} [![duet_3_mb6xd_ext_driver.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg =400x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg){target=_blank}
+
+For firmware configuration, including mapping drives to axes, configuring enable polarity, and configuruing step timing, see the [Connecting external stepper and servo drivers](/User_manual/Connecting_hardware/Motors_connecting_external) wiki page.
 
 ## Connecting a PanelDue
 
