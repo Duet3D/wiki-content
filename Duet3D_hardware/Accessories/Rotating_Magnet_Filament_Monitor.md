@@ -2,7 +2,7 @@
 title: Duet3D Filament Monitor
 description: 
 published: true
-date: 2023-06-01T10:05:06.404Z
+date: 2023-12-14T14:30:00.249Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -23,6 +23,16 @@ The filament monitor consists of a PCB which senses the rotation of a diametrica
 ![magnetic_fm_how_it_works.png](/hardware/magnetic_filament_monitor/magnetic_fm_how_it_works.png =500x)
 
 # Hardware
+
+## Hardware specification
+
+|---|---|
+| **Processor** | [ATTINY44A](https://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny24A-44A-84A-DataSheet-DS40002269A.pdf) |
+| **Comms** | single wire protocol designed for compatibility with Duet 2 endstop inputs and Duet 3 IO connectors |
+| **Magnetic Encoder** | [AS5601](https://ams.com/as5601)  |
+| **Input power voltage** | 3.3V (5V compatible with a drillable via)|
+| **Max Ambient Temperature** | 75C |
+
 
 # Tabs {.tabset}
 
@@ -225,7 +235,7 @@ Note that when mounting after the extruder, ensure that the dust from the entrud
 
 ## 5V Operation
 
-It is possible to modify the Filament monitor PCB to connect to a controller that uses 5V logic. To do this use a small drill bit to carefully remove the connection between the two pads that is made with the ring of the throuhg hole between the pads. **Test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.**
+It is possible to modify the Filament monitor PCB to connect to a controller that uses 5V logic. To do this use a small drill bit to carefully remove the connection between the two pads that is made with the ring of the through hole between the pads. **Test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.**
 
 ![Diagram showing the locaiton of the 3.3V/5V drillable jumper on the rotating magnet PCB version 1.7b](/hardware/magnetic_filament_monitor/rm_fm_v1.7ab_5v_d1.0.png =600x)
 
