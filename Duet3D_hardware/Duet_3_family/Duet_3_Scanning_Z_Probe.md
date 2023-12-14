@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2023-11-05T11:50:23.699Z
+date: 2023-12-14T14:24:56.054Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -31,6 +31,7 @@ Example mesh of 792 points that took ~20seconds to produce.
 | **Power monitoring** | VIN voltage reporting |
 | **Input power voltage** | 5V |
 | **Power Consuption** | <200mA |
+| **Max Ambient Temperature (Control Board)** | 75C |
 
 ## Firmware notes
 
