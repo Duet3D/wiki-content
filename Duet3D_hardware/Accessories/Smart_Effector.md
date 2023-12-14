@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2023-01-17T15:59:41.673Z
+date: 2023-12-14T14:20:22.375Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -367,7 +367,7 @@ Code 6 or 7 may occur once or twice during startup. If they persist then they no
 
 ## v4.0
 
-* Now uses built in traces in a custom PCB manufacturing process. Significantly finer straces allow for a higher noise margin.
+* Now uses built in traces in a custom PCB manufacturing process. Significantly finer traces allow for a higher noise margin.
 * Changed the 8 pin connector on the top of the board to a JST PH which is more robust. The Molex KK 2 pin header on the bottom has also been changed to JST PH
 
 ## v3.0
