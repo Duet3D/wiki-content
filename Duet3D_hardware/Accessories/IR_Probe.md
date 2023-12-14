@@ -2,7 +2,7 @@
 title: Duet3D IR Probe
 description: 
 published: true
-date: 2022-02-11T13:04:53.161Z
+date: 2023-12-14T14:22:35.389Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T15:22:57.157Z
@@ -48,7 +48,7 @@ Here is a guide to using the sensor with different print surfaces:
 
 ## Glass
 
-With or without coatings such as hairspray, PVA or Kapton tape: works as-is if placed directly on a PCB bed heater or other surface that does not reflect strongly. If there is an aluminium heat spreader or bed plate underneath the glass, then either paint the aluminium surface matt black (see below), or put a sheet of matt black paper between the glass and the aluminium. Coatings on the glass affect the trigger height slightly.
+With or without coatings such as hairspray, PVA or Kapton tape: works as-is if placed directly on a PCB bed heater or other surface that does not reflect strongly. If there is an aluminium heat spreader or bed plate underneath the glass, then either paint the aluminium surface matt black, or put a sheet of matt black paper between the glass and the aluminium. Coatings on the glass affect the trigger height slightly.
 
 ## PEI
 
