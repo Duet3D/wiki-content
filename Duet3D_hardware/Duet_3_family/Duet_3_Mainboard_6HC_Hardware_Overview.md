@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-12-14T12:07:45.776Z
+date: 2023-12-14T12:08:44.212Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -26,7 +26,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 |---|---|
 | **Processor** | [ATSAME70Q20B](https://www.microchip.com/en-us/product/ATSAME70Q20){target=_blank} |
 | **Processor features** | 32-bit, 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
-| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, WiFi via optional Duet 3 WiFi Module (6HC v1.02 or later only, see 'Network, user interface and plugins' below) or via attached SBC; USB port; serial port; CAN-FD bus |
+| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, WiFi via optional Duet 3 WiFi Module (6HC v1.02 or later only, see 'Network, user interface and plugins' below) or via attached SBC; USB port; serial port; 2x CAN-FD bus |
 | **On-board stepper drivers** | 6 x  [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 |
 | **High current outputs** | 1 x 15A^1^, 3 x 6A each |
