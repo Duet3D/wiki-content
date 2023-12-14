@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-11-02T21:54:41.831Z
+date: 2023-12-14T12:00:54.473Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -550,18 +550,20 @@ The CAN BUS is connected via RJ11 and at least 2 core twisted pair, although 6 c
 - Added USB-C test pads
 - improved the CAN-FD termination resistor bypass solder jumper design to make it easier to use the 6HC as an expansion board.
 
+
 ## Revision v1.02
 - Update the power and stepper driver circuitry to allow VIN of up to 48V.
 - Due to the change in the onboard power supply circuitry the 5V supply available for external devices is now 800mA.
 - Updated the external 5V input options to select between the 5V_EXT header and 5V_SBC
 - Change to a USB C connector.
 - Add a 2x6 header for an ESP wifi module - note this requires the module and firmware support to be completed.
+- added a 2 pin Molex KK header for the second CAN-FD Bus (CAN0) to make it easier to access in the future.
 - Added an ACT indication LED as on other Duet 3 boards. This signals CAN-FD bus activity.
 - Added a 2x5 IDC header for a ribbon cable connection to a PanelDue with external SD card.
 - Added a 2-pin jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect.
 - Added a 2-pin jumper to bypass the 10k resistor on IO2.in, so it can be used for I2C.
 - Improved ESD protection for temperature, tacho and other inputs.
-- Various component changes to work around supply chain shortages (except thos listed above this does not result in functional changes to the design).
+- Various component changes to work around supply chain shortages (except those listed above this does not result in functional changes to the design).
 - Move the location of the erase jumper.
 
 ## Revision v1.01a
