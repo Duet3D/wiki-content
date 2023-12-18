@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2023-04-26T15:37:55.546Z
+date: 2023-12-18T10:50:13.185Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -46,6 +46,14 @@ RepRapFirmware supports the following machine kinematics:
 * [Hangprinter](/User_manual/Machine_configuration/Configuration_Hangprinter)
 * [Polar](/User_manual/Machine_configuration/Configuration_Polar)
 * Additionally, RepRapFirmware can support **any kinematics for which the movement of each axis is a linear combination of the movement of the motors**. The relationship between axis movement and motor movement is defined by a matrix; see GCode [M669](/User_manual/Reference/Gcodes/M669).
+
+# Safety features
+
+RepRapFirmware employs two or three (depending on the microcontroller used) internal watchdogs to guard against dangerous situations such as runaway heating in the event of a firmware crash, by resetting the board and reporting the reset cause. It resets in the following cases:
+* If the tick interrupt fails to occur, after about 1 second the hardware watchdog timer resets the processor. The reset cause will be "watchdog". Where the microcontroler has a secondary hardware watchdog, the first one is set to go off a little earlier than the main one and attempts to save additional information about the firmware state.
+* If the task that controls heaters doesn't run for 20 seconds, or the main task doesn't run for 20 seconds, then the processor will be reset. The reset cause will be "heat task stuck" or "stuck in spin loop". (This may be reduced to 5 seconds in RRF 3.5.)
+
+RepRapFirmware builds a model of each heater in your system when you run the corresponding heater tuning. RepRapFirmware uses this model to estimate the expected heating rate. If the actual heating rate falls short of the minimum expected (for example, because the temperature sensor and the heater have become decoupled), RepRapFirmware will turn off that heater and report a heater fault.
 
 # Checking firmware versions
 
@@ -94,7 +102,7 @@ As of RRF 3.4 these are:
 | MaxZProbes | 4 | 4 | 4 | 2 | The maximum number of probes |
 | MaxGpInPorts | 32 (16 in RRF3.3) | 32 (16 in RRF3.3) | 20 | 10 | The maximum number of general purpose input ports. |
 | MaxGpOutPorts | 32 | 32 | 20 | 10 | The maximum number of general purpose output ports |
-| MaxAxes | 15 | 10 | 10 | 6 | The maximum number of movement axes |
+| MaxAxes | 15 (30 in RRF3.5) | 10 | 10 | 6 | The maximum number of movement axes |
 | MaxDriversPerAxis | 8 | 4 | 6 (5 in RRF3.3) | 4 | The maximum number of stepper drivers assigned to one axis |
 | MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
 | MaxAxesPlusExtruders | 25 | 12 | 12 | 7 | The maximum number of axes + extruders |
@@ -106,6 +114,8 @@ As of RRF 3.4 these are:
 | MaxZProbeProgramBytes | 8 | 8 |  |  | Maximum number of bytes in a Z probe program |
 | MaxCanDrivers | 20 | 7 |  |  | The maximum number of CAN connected stepper drivers |
 | MaxCanBoards | 20 | 4 |  |  | The maximum number of CAN connected boards |
+
+There are also some firmware configuration limitations with CAN expansion on Duet 3, see [CAN expansion limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
 # Firmware differences from other firmwares
 
