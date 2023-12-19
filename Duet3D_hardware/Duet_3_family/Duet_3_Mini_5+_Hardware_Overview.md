@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2023-12-19T15:13:36.461Z
+date: 2023-12-19T15:21:38.816Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -392,7 +392,7 @@ See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
 
 The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a range of expansion devices. 
 
-The CAN BUS is connected via a 2-pin KK connector. 2-core twisted pair wiring is recommended.
+The CAN-FD bus is connected via a 2-pin KK connector. 2-core twisted pair wiring is recommended.
 
 
 # Programming the bootloader
