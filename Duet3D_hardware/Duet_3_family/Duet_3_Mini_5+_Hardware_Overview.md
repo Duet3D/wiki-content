@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2023-06-16T08:22:53.257Z
+date: 2023-12-19T15:13:36.461Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -31,8 +31,8 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 | **On-board stepper drivers** | 5 x [TMC2209](https://www.trinamic.com/products/integrated-circuits/details/tmc2209-la/) ||
 | **Stepper driver features** | Up to 2.0A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 ||
 | **High current outputs** | 1 x 15A, 2 x 5A each ||
-| **Thermistor/PT1000 inputs** | 3 x inputs, optimised for 100K thermistors and PT1000 sensors ||
 | **Medium current outputs** | 4 x PWM-controlled outputs, of which 2 support tacho input. Voltage selectable between VIN and 12V in 2 banks ||
+| **Thermistor/PT1000 inputs** | 3 x inputs, optimised for 100K thermistors and PT1000 sensors ||
 | **Inputs/Outputs** | 5 x on-board I/O connectors plus 2 x input-only connectors for endstop, filament monitor, Z probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Also one output with 5V signal level for hobby servo, laser control or VFD. ||
 | **Power monitoring** | VIN voltage monitoring allows for state save on power failure. ||
 | **SD card interface** | On-board high speed SD card socket. ||
@@ -256,10 +256,8 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | IO_5 | io5.in | Input only |
 | IO_6 | io6.in | ^^ |
 | **SPI CS** |||
-| TEMPDB | spi.cs0 | Thermocouple or PT100 daughterboard |
-| ^^ | spi.cs1 | ^^ |
+| TEMPDB | spi.cs1 | Thermocouple or PT100 daughterboard |
 | ^^ | spi.cs2 | ^^ |
-| ^^ | spi.cs3 | ^^ |
 | **Miscellaneous** |||
 | LASER/VFD | laser, vfd, out6 | Pin shared with OUT 6 and LASER/VFD connectors |
 | EXT 5V | pson, io4.out | For controlling an external PSU or SSR, shared with io4.out |
@@ -387,6 +385,15 @@ See [Connecting stepper motors](/User_manual/Connecting_hardware/Motors_connecti
 ## Connecting Fans
 
 See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting).
+
+## CAN-FD Bus expansion
+
+See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
+
+The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a range of expansion devices. 
+
+The CAN BUS is connected via a 2-pin KK connector. 2-core twisted pair wiring is recommended.
+
 
 # Programming the bootloader
 
