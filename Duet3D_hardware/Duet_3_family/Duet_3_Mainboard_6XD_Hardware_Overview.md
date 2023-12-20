@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2023-12-14T11:52:05.472Z
+date: 2023-12-20T16:05:12.632Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -153,9 +153,9 @@ A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainbo
 | **1 x 3-pin KK connector** | LASER/VFD | 5V buffered output, along with 5V and ground supply (*see note 2 below*). Provides a 5V PWM signal to drive hobby servos, and PWM->analog controls for VFDs or Lasers. |
 | **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*).|
 | ^^ | ^^ | **Note** The PanelDue UART is shared with io0.in and io0.out pins on the IO_0 header. |
-| **1 x 2-pin Jumper** |  PD_CD_OVERRIDE | v1.0 and later. Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
-| **1 x RJ11 CAN connector** | CAN_1_OUT | CAN-FD connection for Duet 3 expansion boards. Without modification, it must be at one end of the CAN bus, however the bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
-| **1 x 2-pin KK connector** | CAN_0_OUT | CAN-FD Bus connection for future expansion. bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
+| **1 x 2-pin Jumper** |  PD_CD_OVERRIDE | *v1.0 boards and later.* Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
+| **1 x RJ11 CAN connector** | CAN_1_OUT | RJ11 connector for CAN1 (main CAN-FD bus). **USE CAN1** for connecting Duet expansion boards, see CAN-FD bus expansion section below. Without modification, it must be at one end of the CAN bus, however the bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
+| **1 x 2-pin KK connector** | CAN_0_OUT | Secondary CAN-FD bus for future expansion. **Use CAN1** for connecting expansion boards, see CAN-FD bus expansion section below. Bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
 | **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface boards.|
 | **6 x 6-pin KK connectors** | DRIVER_0-DRIVER_5 | External stepper or servo motor driver connections. 5V, GND, single ended outputs for Step, Dir and Enable along with a fault input provided per driver. See "Connecting External Drivers" section below. |
 | **1 x 3-pin Jumper** |  Driver Enable Polarity | A jumper in the "left" position is used for external drivers which are enabled when a voltage is applied to the enable connection (Active Enable). A jumper in the "right" position is used for external drivers which are disabled when a voltage is applied to the enable connection (Active Disable) (*Note the v0.1 boards have the silkscreen reversed*). |
@@ -469,6 +469,19 @@ When using an attached Raspberry Pi or other SBC the Ethernet interface on the D
 ## Connecting Fans
 
 See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting){target=_blank}.
+
+## CAN-FD Bus expansion
+
+The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a range of expansion devices. The maximum number of expansion devices on the bus depends on the firmware used; see [Firmware configuration limits](https://docs.duet3d.com/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits).
+
+The CAN BUS is connected via RJ11 and at least 2-core twisted pair wiring. 6-core RJ11 wiring is more common, and can be used, though only one pair of wires are used.
+
+The Duet 3 Mainboard 6XD has support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.4.6) only **CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics. 
+
+There is a termination resistor fitted on each CAN bus, so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers on the underside of the board that allow the termination resistor to be removed, however this is not required in normal operation.
+
+For further information on CAN connectivity, see [CAN connection](/User_manual/Machine_configuration/CAN_connection)
+
 
 # Revision History
 
