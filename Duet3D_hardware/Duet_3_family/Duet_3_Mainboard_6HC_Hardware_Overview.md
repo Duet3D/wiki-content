@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-12-14T12:08:44.212Z
+date: 2023-12-20T15:38:12.631Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -190,8 +190,8 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | ^^ | OUT 0 POWER IN, GND, V_OUT0 | Two pins for the VIN and GND supply for the OUT_0 terminals. OUT0 voltage min/max: 0V to 48V (0V to 32V before v1.02) |
 | ^^ | OUT 0, V_OUT0, OUT0- | Positive and negative OUT_0 terminals. OUT_0 is intended to drive a bed heater. The ground side of OUT_0 is switched by the mosfet and the positive side is protected by a 15A fuse. If using the OUT0 terminal to drive a SSR, take note that their polarity is opposite to the polarity of the VIN terminals. There is no flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
 | **1 x 3-pin KK connector** | EXT 5V | Open drain mosfet output for controlling an ATX-style power supply or a SSR. The +5V pin can also be used to provide a small amount of 5V power (through an internal 220 ohm resistor) so that the control terminals of an SSR can be connected directly between the +5V and PS_ON pins. |
-| **1 x 3-pin KK header** | 5V SELECT | v1.02 and later boards only. 5V supply select, between 5V internal regulator (no jumper), 5V_EXT, and 5V_SBC. See Power distribution > 5V documentation below for details. |
-| **3 x 2-pin KK headers** | 5V Options | v0.6 to v1.0a boards only, not populated on v1.0a. 5V supply select. See Power distribution > 5V documentation below for details. |
+| **1 x 3-pin KK header** | 5V SELECT | *v1.02 and later boards.* 5V supply select, between 5V internal regulator (no jumper), 5V_EXT, and 5V_SBC. See Power distribution > 5V documentation below for details. |
+| **3 x 2-pin KK headers** | 5V Options | *v0.6 to v1.0a boards only, not populated on v1.0a*. 5V supply select. See Power distribution > 5V documentation below for details. |
 | **6 x 4-pin JST VH connector** | DRIVER_0, DRIVER_1, DRIVER_2, DRIVER_3, DRIVER_4, DRIVER_5 | Stepper motor connections. (see note on JST VH connectors) |
 | **3 x 2-pin JST VH connector** | OUT 1, OUT 2, OUT 3 | These are intended for extruder heaters or fans. Maximum recommended current 6A each. These outputs are protected by flyback diodes. |
 | **3 x 4-pin KK connectors with offset spigot** | OUT 4, OUT 5, OUT 6 | These medium current outputs are intended for PWM-controllable fans. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUT_LC_1 pin (+ve) and the OUT_n_NEG pin (-ve). Maximum recommended current 2A each when supplied by VIN. |
@@ -207,24 +207,24 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2-pin KK header** | ERASE | Add a jumper to erase the firmware. |
 | **1 x 2-pin KK connector** | 12V | Provides 12V power for a PWM to 0-10V converter.|
 | ^^ | ^^ | *see note 1 below*. |
-| **1 x 3-pin KK connector** | LASER/VFD | v1.0 and later boards only. This provides 5V power and a 5V level signal for a TTL-compatible input to a laser controller, a PWM-to-0 to 10V converter (for variable-frequency drives), or a servo. The control signal for this output is shared with OUT9, so don't use OUT9 if you use this connector. |
-| **1 x 2x5 IDC connector** | PanelDue_SD | v1.02 and later boards only. Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply |
+| **1 x 3-pin KK connector** | LASER/VFD | *v1.0 and later boards.* This provides 5V power and a 5V level signal for a TTL-compatible input to a laser controller, a PWM-to-0 to 10V converter (for variable-frequency drives), or a servo. The control signal for this output is shared with OUT9, so don't use OUT9 if you use this connector. |
+| **1 x 2x5 IDC connector** | PanelDue_SD | *v1.02 and later boards.* Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply |
 | ^^ | ^^ | **Note** The PanelDue UART is shared with io0.in and io0.out pins on the IO_0 header. |
 | ^^ | ^^ | *see note 2 below*. |
-| **1 x 2-pin jumper** | PD_CD_OVERRIDE | v1.02 and later boards only. Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
+| **1 x 2-pin jumper** | PD_CD_OVERRIDE | *v1.02 and later boards.* Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
 | **4 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2, TEMP_3 | Connections for thermistor or PT1000 sensors. |
 | **1 x RJ45 network connector** | Ethernet | 100BaseT Port. non MDIX connect to an Ethernet switch, hub or MDIX enabled laptop port. If connecting to a non MDIX enabled port use a crossover cable. Orange LED on Ethernet port indicates Ethernet enabled, green LED indicates network activity |
 | **9 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4, IO_5, IO_6, IO_7, IO_8 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
 | **1 x 4-pin KK connector** | DS_LED | This is to connect and power DotStar LED strips. |
 | ^^ | ^^ | *see note 2 below*.
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging|
-| **1 x 2-pin jumper** | IO2 I2C BYPASS | v1.02 and later boards only. Add a jumper to bypass the 10k resistor on IO2.in, so it can be used for I2C. |
+| **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Add a jumper to bypass the 10k resistor on IO2.in, so it can be used for I2C. |
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
-| **1 x 2x6 header** | ESP | v1.02 and later boards only. Header to connect an ESP WiFi board. |
+| **1 x 2x6 header** | ESP | *v1.02 and later boards*: Header to connect an ESP WiFi board. |
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
-| **1 x RJ11 CAN connector** | CAN1_OUT | *Revision 1.02 and later*: RJ11 connector for CAN1 (main CAN-FD bus). Termination resistor fitted so normally this board must be at the end of the bus however there are drill to disconnect jumpers that allow the termination resistor to be removed. That is not required in normal operation.|
-| ^^ | CAN_OUT |*Revisions before 1.02*: RJ11 CAN connector for both CAN1 and CAN0 with a permanent termination resistor, so it must be at one end of the CAN bus |
-| **1 x 2-pin KK connector** | CAN0_OUT | *Revision 1.02 and later only*: secondary CAN-FD bus. Termination resistor fitted so normally this board must be at the end of the bus however there are drill to disconnect jumpers that allow the termination resistor to be removed. That is not required in normal operation|
+| **1 x RJ11 CAN connector** | CAN1_OUT | *v1.02 and later boards*: RJ11 connector for CAN1 (main CAN-FD bus). Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. |
+| ^^ | CAN_OUT |*v1.01a and earlier boards.* RJ11 CAN connector for both CAN1 and CAN0 with a permanent termination resistor, so it must be at one end of the CAN bus |
+| **1 x 2-pin KK connector** | CAN0_OUT | *v1.02 and later boards.* Secondary CAN-FD bus. **CURRENTLY NOT USED**. Use CAN1 for connecting expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. |
 
 **Notes**
 
@@ -533,14 +533,15 @@ Note: maximum current drawn by external devices at 12V must not exceed 800mA.
 
 ## CAN-FD Bus expansion
 
-See [CAN connection](/User_manual/Machine_configuration/CAN_connection)
+The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a range of expansion devices. The maximum number of expansion devices on the bus depends on the firmware used; see [Firmware configuration limits](https://docs.duet3d.com/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits).
 
-The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a range of expansion devices. The maximum number of expansion devices on the bus is to be determined, however we expect at least an additional 24 stepper channels via 8 x 3 channel expansion modules will be supported.
+The CAN BUS is connected via RJ11 and at least 2-core twisted pair wiring. 6-core RJ11 wiring is more common, and can be used, though only one pair of wires are used.
 
-The CAN BUS is connected via RJ11 and at least 2 core twisted pair, although 6 core RJ11 is more common.
+The Duet 3 Mainboard 6HC has support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.4.6) only **CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics. 
 
+**v1.02 and later boards** have a termination resistor fitted on each CAN bus, so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation.
 
-
+For further information on CAN connectivity, see [CAN connection](/User_manual/Machine_configuration/CAN_connection)
 
 # Revision History
 
