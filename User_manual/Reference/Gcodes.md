@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-12-18T10:49:03.326Z
+date: 2023-12-20T14:50:05.017Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1294,7 +1294,8 @@ M0
 The effect of M0 depends on the state of the machine.
 
 1. The firmware finishes any moves left in its buffer.
-1. **Either**: if the axes are homed and if a print is being cancelled (M25), it executes the macro file **cancel.g** if present. **Or**: if M0 is sent at any other time, **stop.g** is run if present.
+1. **Either**: if the axes are homed and if a print is paused (M25), it executes the macro file **cancel.g** if present.
+  **Or**: if M0 is sent at any other time, **stop.g** is run if present.
 1. All motors are put into idle mode.
 1. If there is no stop.g or cancel.g file (as appropriate) then all heaters are turned off too. In RRF versions prior to 3.4 you can prevent heaters being turned off using parameter H1.
 
@@ -1314,7 +1315,8 @@ M1
 The effect of M1 depends on the state of the machine.
 
 1. The firmware finishes any moves left in its buffer.
-1. **Either**: if the axes are homed and if a print is being cancelled (M25), it executes the macro file **cancel.g** if present. **Or**: if M1 is sent at any other time, **sleep.g** is run if present.
+1. **Either**: if the axes are homed and if a print is paused (M25), it executes the macro file **cancel.g** if present. 
+  **Or**: if M1 is sent at any other time, **sleep.g** is run if present.
 1. All motors and heaters are are turned off.
 
 G and M codes can still be sent, the first of which will wake it up again. See also [M0 - stop or unconditional stop](/User_manual/Reference/Gcodes/M0){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
