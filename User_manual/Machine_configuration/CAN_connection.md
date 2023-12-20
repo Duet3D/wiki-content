@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-11-21T10:47:01.964Z
+date: 2023-12-20T16:23:48.028Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -18,17 +18,35 @@ We chose CAN-FD because it is highly tolerant of noise (in particular, the groun
 
 The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus should be terminated by 120 ohm resistors at each end.
 
-The Duet 3 Mainboard 6HC has a RJ11 CAN connector. Earlier versions have a permanent termination resistor, so must be at one end of the CAN bus. Later versions have a cuttable trace to allow the termination resistor to be taken out of circuit.
+## Mainboard connections
+
+## Tabs {.tabset}
+
+### Duet 3 MB 6HC and 6XD
+
+The **Duet 3 Mainboard 6HC and 6XD** have an RJ11 CAN connector. Earlier versions have a permanent termination resistor, so must be at one end of the CAN bus. Later versions have a cuttable trace to allow the termination resistor to be taken out of circuit.
+
+The 6HC and 6XD have support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.4.6) **only CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 is for future expansion, and can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics.
+
+### Duet 3 Mini 5+
+
+The **Duet 3 Mini 5+** has a 2-pin Molex connector instead of the RJ11 connector, and a built-in termination resistor. It has only one CAN-FD bus.
+
+## Expansion board connections
 
 Most Duet 3 expansion boards have two RJ11 connectors and two jumpers which can be fitted to provide termination. If the board is used at one end of the CAN bus, only one of the RJ11 connectors will be used and the termination jumpers should be fitted. if the board is used at an intermediate position then both RJ11 connectors will be used and the termination jumpers should **not** be fitted. Although the two RJ11 connectors are labelled CAN_IN and CAN_OUT, they are connected in parallel and it doesn't matter if the cables to them are swapped.
 
-The Duet 3 Tool Board is an exception, because it is too small to accommodate RJ11 connectors. Instead it has a single 4-pin JST ZH connector which is intended to be used for CAN_IN and CAN_OUT functionality. The Tool Distribution Board provides four similar JST ZH connectors. Preferably, connect each Tool Board to the Tool Distribution Board using two twisted pair cables, and remove the two jumpers on the Tool Distribution Board that are provided to bypass that connector. However, unless the cables are very long, you may get away with using a single twisted pair between the Tool Board and the Tool Distribution Board and leaving the jumpers in place.
+The **Duet 3 Tool Board 1LC** is an exception, because it is too small to accommodate RJ11 connectors. Instead it has a single 4-pin JST ZH connector which is intended to be used for CAN_IN and CAN_OUT functionality. The Tool Distribution Board provides four similar JST ZH connectors. Preferably, connect each Tool Board to the Tool Distribution Board using two twisted pair cables, and remove the two jumpers on the Tool Distribution Board that are provided to bypass that connector. However, unless the cables are very long, you may get away with using a single twisted pair between the Tool Board and the Tool Distribution Board and leaving the jumpers in place.
 
-If a Tool Distribution Board is at the end of the CAN bus, then leave the CAN_OUT RJ11 connector not connected, and fit the termination jumper. On the Tool Distribution Board, CAN_IN and CAN_OUT are **not** interchangeable.
+If a **Tool Distribution Board** is at the end of the CAN bus, then leave the CAN_OUT RJ11 connector not connected, and fit the termination jumper. On the Tool Distribution Board, CAN_IN and CAN_OUT are **not** interchangeable.
 
-The Duet 3 Mini 5+ has a 2-pin Molex connector instead of the RJ11 connector, and a built-in termination resistor.
+> The polarity of the connections between boards matters. In all cases, connect CAN_H on one board to CAN_H on the next board, and similarly connect CAN_L to CAN_L.
+> 
+> {.is-warning}
+> 
+{.is-danger}
 
-The polarity of the connections between boards matters. In all cases, connect CAN_H on one board to CAN_H on the next board, and similarly connect CAN_L to CAN_L.
+## Grounding
 
 All connected CAN boards must share a common ground connection. Typically they will all be powered from the same power supply, so this will automatically be the case. However, if you use (for example) one power supply for the main board and a different power supply for an expansion board, you must connect the negative output terminals of the two power supplies together.
 
