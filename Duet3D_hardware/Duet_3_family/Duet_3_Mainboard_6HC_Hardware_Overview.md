@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2023-12-20T15:57:51.867Z
+date: 2023-12-20T16:31:01.203Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -16,7 +16,8 @@ The Duet 3 Mainboard 6HC is a next-generation controller board that builds on Du
 
 # Features
 
-![Render of the Duet3 Mainboard 6HC v1.02 overlaid with the key features of the board grouped by location](/duet_boards/duet_3_mb6hc/duet3_mainboard_6hc_v1.2_features_d1.0.png =500x)
+![Render of the Duet3 Mainboard 6HC v1.02 overlaid with the key features of the board grouped by location](/duet_boards/duet_3_mb6hc/duet3_mainboard_6hc_v1.2_features_d1.1.png =500x)
+
 
 ## Hardware Specification
 
