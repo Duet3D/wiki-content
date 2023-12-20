@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-12-20T16:23:48.028Z
+date: 2023-12-20T16:25:25.101Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -20,17 +20,11 @@ The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus should 
 
 ## Mainboard connections
 
-## Tabs {.tabset}
-
-### Duet 3 MB 6HC and 6XD
-
 The **Duet 3 Mainboard 6HC and 6XD** have an RJ11 CAN connector. Earlier versions have a permanent termination resistor, so must be at one end of the CAN bus. Later versions have a cuttable trace to allow the termination resistor to be taken out of circuit.
 
 The 6HC and 6XD have support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.4.6) **only CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 is for future expansion, and can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics.
 
-### Duet 3 Mini 5+
-
-The **Duet 3 Mini 5+** has a 2-pin Molex connector instead of the RJ11 connector, and a built-in termination resistor. It has only one CAN-FD bus.
+The **Duet 3 Mini 5+** has a 2-pin Molex connector instead of the RJ11 connector, and a built-in termination resistor. It has only one CAN-FD bus, for connecting CAN-FD Duet 3 Expansion and Tool boards.
 
 ## Expansion board connections
 
