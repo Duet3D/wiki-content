@@ -2,7 +2,7 @@
 title: Using the Sammy-C21 development board with Duet 3
 description: 
 published: true
-date: 2021-12-10T16:30:44.363Z
+date: 2024-01-02T11:03:16.733Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:28:45.749Z
@@ -81,15 +81,15 @@ Firmware is easier to debug if you load it directly using the Atmel ICE instead 
 | **pa07** | yes | yes | yes | no |  |
 | **pa08** | no | yes | yes | no |  |
 | **pa12** | yes | no | yes | yes |  |
-| **pa13** | yes | no | yes | no | Reserved for accelerometer interrupt in firmware 3.3 |
+| **pa13** | yes | no | yes | no | Reserved for accelerometer interrupt in firmware 3.3 and later |
 | **pa16** | yes | no | yes | no | Reserved for SPI sensor support if SUPPORT_SPI_SENSORS is set |
 | **pa17** | yes | no | yes | no | Reserved for SPI sensor support if SUPPORT_SPI_SENSORS is set |
 | **pa18** | yes | no | yes | no | Reserved for SPI sensor support if SUPPORT_SPI_SENSORS is set |
 | **pa19** | yes | no | yes | yes |  |
 | **pa20** | no | no | yes | no |  |
-| **pa21** | no | no | yes | no |  |
-| **pa22** | no | no | yes | no | Reserved for I2C accelerometer support in firmware 3.3 |
-| **pa23** | no | no | yes | yes | Reserved for I2C accelerometer support in firmware 3.3 |
+| **pa21** | no | no | yes | no | Reserved for LDC1612 interrupt in firmnware 3.5 and later |
+| **pa22** | no | no | yes | no | Reserved for I2C SDA signal in firmware 3.3 and later |
+| **pa23** | no | no | yes | yes | Reserved for I2C SCL signal in firmware 3.3 and later |
 | **pa24** | no | no | yes | no |  |
 | **pa25** | no | no | yes | no |  |
 | **pb08** | yes | no | yes | no |  |
