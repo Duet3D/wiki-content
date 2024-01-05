@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-01-05T17:43:56.074Z
+date: 2024-01-05T21:45:08.314Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -143,46 +143,29 @@ There is a solderable jumper on the back of the SZP to set the termination resis
 ![termination_resistor.png](/duet_boards/duet_3_can_expansion/duet_3_szp/termination_resistor.png =200x)
 
 
-# Configuration
+# Commissioning
+
+## Startup Time
 
 > Add the following to your sys/config.g file
 {.is-info}
-
-## Startup Time
 
 It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards, eg close to the start of config.g
 
 `G4 S2 ; wait for expansion boards to start`
 
-## Scanning Z Probe
+## Set the CAN address
 
-Add the following to your config.g:
-```
-; Scanning Z probe
-M558 K1 P11 C"120.i2c.ldc1612" F36000 T36000
-M308 A"SZP coil" S10 Y"thermistor" P"120.temp0" ; thermistor on coil
-```
+> The default CAN address is 120. Changing the CAN address is only necessary if you have another CAN-connected board with the same CAN address, eg another SZP or toolboard.
+{.is-info}
 
-* If you change the CAN address, the CAN address in M558 C parameter and M308 P parameter will need to change.
+All boards in the system must have different CAN addresses. SZPs are shipped set to a default CAN address of 120. If you have more than one SZP on a bus, **only one of them must be powered up and connected to the CAN bus initially until a new address is set.**
 
-## Accelerometer
-
-Add the following to your config.g:
-```
-M955 P120.0 I10 ; Add accelerometer on SZP with CAN address 120 and specify orientation
-```
-See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
-
-### Orientation
-
-The Duet 3 Scanning Z Probe has an XYZ arrow to aid orientation of the accelerometer, see image below. The Z axis is  in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine, but it may not be possible, so this is configurable in M955. 
-
-![accelerometer_szp.png](/duet_boards/duet_3_can_expansion/duet_3_szp/accelerometer_szp.png =500x)
-
-
-# Commissioning
-
-All boards in the system must have different CAN addresses. SZPs are shipped set to a default CAN address of 120. If you have more that one SZP on a bus, **only one of them must be powered up and connected to the CAN bus initially until a new address is set.**
+* Send command `M115 B#` to verify that the main board can communicate with the SZP, where # is the original CAN address (normally 120)
+* Send command `M952 B# A##` where ## is the new address you want to use, e.g. `M952 B120 A100`.
+* Power the system down and up again, or send `M999 B120`. This will cause the SZP to restart with the new address.
+* Send command `M122 B100` (or whatever address you chose) to verify that you can communicate with the SZP at its new address
+* You can now power up the next SZP and commission it in the same way if you have moe than one in the system
 
 ## Testing communication
 
@@ -191,14 +174,6 @@ Check that you can communicate with the SZP, by sending
 `M115 B120`
 
 The status of the accelerometer and Inductive probe is listed at the end of the report.
-
-## SZP and accelerometer calibration and use
-
-SZP - [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
-
-For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
-
-# Notes
 
 ## Factory Reset
 
@@ -220,16 +195,7 @@ To check versions are the same:
 * The firmware filename is Duet3Firmware_SZP.bin and this needs to be uploaded to the /firmware folder of the SD card on the attached SBC, or the SD card in the Duet 3 main board if it is running in standalone mode.
 * Update the firmware by using the `M997 B#` command, where # is the CAN address of the new board.
 
-## Set the CAN address
-
-> The default CAN address is 120. Changing the CAN address is only necessary if you have another CAN-connected boards with the same CAN address, eg another SZP.
-{.is-info}
-
-* Send command M115 B# to verify that the main board can communicate with the SZP, where # is the original CAN address (normally 120)
-* Send command M952 B# A## where ## is the new address you want to use, e.g. M952 B120 A100.
-* Power the system down and up again, or send M999 B120. This will cause the SZP to restart with the new address.
-* Send command M122 B100 (or whatever address you chose) to verify that you can communicate with the SZP at its new address
-* You can now power up the next SZP and commission it in the same way if you have moe than one in the system
+Factory resetting the board using the CAN reset jumper will cause the bootloader to request the firmware file from the mainboard.
 
 ## Update the bootloader
 
@@ -237,6 +203,46 @@ To check versions are the same:
 {.is-info}
 
 Duet 3 expansion boards and tool boards have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
+
+# Connecting peripherals
+
+## Scanning Z Probe
+
+### Configuration
+
+Add the following to your config.g:
+```
+; Scanning Z probe
+M558 K1 P11 C"120.i2c.ldc1612" F36000 T36000
+M308 A"SZP coil" S10 Y"thermistor" P"120.temp0" ; thermistor on coil
+```
+
+* If you change the CAN address, the CAN address in M558 C parameter and M308 P parameter will need to change.
+
+### Calibration and usage
+
+For SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
+
+
+## Accelerometer
+
+Add the following to your config.g:
+```
+M955 P120.0 I10 ; Add accelerometer on SZP with CAN address 120 and specify orientation
+```
+See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
+
+### Orientation
+
+The Duet 3 Scanning Z Probe has an XYZ arrow to aid orientation of the accelerometer, see image below. The Z axis is  in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine, but it may not be possible, so this is configurable in M955. 
+
+![accelerometer_szp.png](/duet_boards/duet_3_can_expansion/duet_3_szp/accelerometer_szp.png =500x)
+
+### Calibration and usage
+
+For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
+
+
 
 # PCB Revision History
 
