@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-01-05T17:48:33.488Z
+date: 2024-01-05T19:08:10.378Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -296,11 +296,13 @@ In normal use, the red LED flashes slowly in sync with the main board to indicat
 
 The board will do a factory reset if you power it up with a 2.0mm jumper fitted to the CAN reset jumper pins. The CAN address will be reset to the default (121), the CAN bus timing will also be reset to default (1Mbps), and the bootloader will request a firmware update.
 
-## Update the bootloader
+## Set the CAN address
 
-***Not normally required***
-
-Duet 3 expansion boards and tool boards have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
+* Send command M115 B# to verify that the main board can communicate with the Toolboard, where # is the original CAN address (normally 121)
+* Send command M952 B# A## where ## is the new address you want to use. We suggest you use addresses starting at 20 for Toolboards. So for the first Toolboard, if your new CAN board was at address 121, send M952 B121 A20.
+* Power the system down and up again, or send M999 B121. This will cause the Toolboard to restart with the new address.
+* Send command M122 B20 (or whatever address you chose) to verify that you can communicate with the Toolboard at its new address
+* You can now power up the next Toolboard and commission it in the same way, choosing a different CAN address for it.
 
 ## Updating the firmware
 
@@ -312,13 +314,11 @@ Update the firmware by using the M997 B# command, where # is the CAN address of 
 
 Factory resetting the board using the CAN reset jumper will cause the bootloader to request the firmware file from the mainboard
 
-## Set the CAN address
+## Update the bootloader
 
-* Send command M115 B# to verify that the main board can communicate with the Toolboard, where # is the original CAN address (normally 121)
-* Send command M952 B# A## where ## is the new address you want to use. We suggest you use addresses starting at 20 for Toolboards. So for the first Toolboard, if your new CAN board was at address 121, send M952 B121 A20.
-* Power the system down and up again, or send M999 B121. This will cause the Toolboard to restart with the new address.
-* Send command M122 B20 (or whatever address you chose) to verify that you can communicate with the Toolboard at its new address
-* You can now power up the next Toolboard and commission it in the same way, choosing a different CAN address for it.
+***Not normally required***
+
+Duet 3 expansion boards and tool boards have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
 
 # Connecting peripherals
 
@@ -346,12 +346,7 @@ An ITR20001/T reflective optical sensor can be soldered onto the header on the b
 
 ## Accelerometer
 
-For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
-
-### Orientation
-
-
-See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer, including its orientation in relation to the printer XYZ axis. 
+See Configuring section above.
 
 ## Scanning Z Probe
 
