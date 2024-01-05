@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-01-05T19:08:10.378Z
+date: 2024-01-05T21:45:02.228Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -229,18 +229,84 @@ Note only the last CAN-FD device on the bus should have the termination resistor
 
 Fit the 2.0mm pitch jumper on the CAN Termination resistor jumper pins if the Roto Toolboard is to be the last device on the CAN_FD bus.
 
-# Configuration
+# Commissioning
+
+## Startup Time
 
 > Add the following to your sys/config.g file
 {.is-info}
-
-## Startup Time
 
 It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards, eg close to the start of config.g
 
 `G4 S2 ; wait for expansion boards to start`
 
+## Set the CAN address
+
+> The default CAN address is 121. Changing the CAN address is only necessary if you have another CAN-connected boards with the same CAN address, eg another Duet 3 Toolboard.
+{.is-info}
+
+All boards in the system must have different CAN addresses. Toolboards are shipped set to a default CAN address of 121. Therefore, if you have more than one Toolboard, **only one of them must be powered up and connected to the CAN bus until the address is changed.** So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier).
+
+* Send command `M115 B#` to verify that the main board can communicate with the Toolboard, where # is the original CAN address (normally 121)
+* Send command `M952 B# A##` where ## is the new address you want to use. We suggest you use addresses starting at 20 for Toolboards. So for the first Toolboard, if your new CAN board was at address 121, send `M952 B121 A20`.
+* Power the system down and up again, or send `M999 B121`. This will cause the Toolboard to restart with the new address.
+* Send command `M122 B20` (or whatever address you chose) to verify that you can communicate with the Toolboard at its new address
+* You can now power up the next Toolboard and commission it in the same way, choosing a different CAN address for it.
+
+## Testing communication
+
+Check that you can communicate with the Roto toolboard, by sending 
+
+`M115 B120`
+
+The status of the accelerometer and Inductive probe is listed at the end of the report.
+
+## LED indications
+
+In normal use, the red LED flashes slowly in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board.
+
+## Factory Reset
+
+The board will do a factory reset if you power it up with a 2.0mm jumper fitted to the CAN reset jumper pins. The CAN address will be reset to the default (121), the CAN bus timing will also be reset to default (1Mbps), and the bootloader will request a firmware update.
+
+
+## Updating the firmware
+
+> The Roto Toolboard needs RRF v3.5 or later, and the same firmware version must also be running on the Duet 3 mainboard.
+{.is-info}
+
+Usually, if you update the firmware using the .zip package of the latest release, connected CAN boards will be updated to the same release.
+
+To check versions are the same:
+
+* Send `M115` and `M115 B#` (where # is the Roto Toolboard CAN address, usually 121) to report the firmware version of the mainboard and the Roto Toolboard.
+* If they are not the same version, download the matching version firmware files from the [RepRapFirmware Github repository](https://github.com/Duet3D/RepRapFirmware/releases).
+* The firmware filename is Duet3Firmware_TOOLRR.bin and this needs to be uploaded to the /firmware folder of the SD card on the attached SBC, or the SD card in the Duet 3 main board if it is running in standalone mode.
+* Update the firmware by using the `M997 B#` command, where # is the CAN address of the board.
+
+Factory resetting the board using the CAN reset jumper will cause the bootloader to request the firmware file from the mainboard.
+
+## Updating the bootloader
+
+> Updating the bootloader is rarely necessary.
+{.is-info}
+
+Duet 3 expansion boards and tool boards have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
+
+# Connecting peripherals
+
+# Tabs {.tabset}
+
 ## Scanning Z Probe
+
+The Duet 3 Roto Toolboard integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
+
+Here is an example point map form the SZP on a Duet 3 Mainboard 6HC
+![image_792points.png](/duet_boards/duet_3_can_expansion/duet_3_szp/image_792points.png =800x)
+Example mesh of 792 points that took ~20 seconds to produce.
+
+
+### Configuration
 
 Add the following to your config.g:
 ```
@@ -251,7 +317,13 @@ M308 A"SZP coil" S10 Y"thermistor" P"121.temp2" ; thermistor on coil
 
 * If you change the CAN address, the CAN address in M558 C parameter and M308 P parameter will need to change.
 
+### Calibration and usage
+
+For SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
+
 ## Accelerometer
+
+### Configuration
 
 Add the following to your config.g:
 ```
@@ -265,62 +337,9 @@ The Duet 3 Roto toolboard has an XYZ arrow to aid orientation of the acceleromet
 
 ![duet3_rrtb_v1.0_d1.0_accelerometer.png](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_accelerometer.png)
 
-
-# Commissioning
-
-All boards in the system must have different CAN addresses. SZPs are shipped set to a default CAN address of 121. If you have more that one SZP on a bus, **only one of them must be powered up and connected to the CAN bus initially until a new address is set.**
-
-## Testing communication
-
-Check that you can communicate with the SZP, by sending 
-
-`M115 B120`
-
-The status of the acceleromteter and Inductive probe is listed at the end of the report.
-
-## SZP and acclerometer calibration and use
-
-SZP - [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
+### Calibration and usage
 
 For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
-
-# Notes
-
-All boards in the system must have different CAN addresses. Toolboards are shipped set to a default CAN address of 121. Therefore, if you have more than one Toolboard, **only one of them must be powered up and connected to the CAN bus until the address is changed.** So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier).
-
-## LED indications
-
-In normal use, the red LED flashes slowly in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board.
-
-## Factory Reset
-
-The board will do a factory reset if you power it up with a 2.0mm jumper fitted to the CAN reset jumper pins. The CAN address will be reset to the default (121), the CAN bus timing will also be reset to default (1Mbps), and the bootloader will request a firmware update.
-
-## Set the CAN address
-
-* Send command M115 B# to verify that the main board can communicate with the Toolboard, where # is the original CAN address (normally 121)
-* Send command M952 B# A## where ## is the new address you want to use. We suggest you use addresses starting at 20 for Toolboards. So for the first Toolboard, if your new CAN board was at address 121, send M952 B121 A20.
-* Power the system down and up again, or send M999 B121. This will cause the Toolboard to restart with the new address.
-* Send command M122 B20 (or whatever address you chose) to verify that you can communicate with the Toolboard at its new address
-* You can now power up the next Toolboard and commission it in the same way, choosing a different CAN address for it.
-
-## Updating the firmware
-
-The Roto Toolboard needs RRF v3.5 or later, this firmware version must also be running on the Duet 3 mainboard.
-
-The firmware filename is Duet3Firmware_TOOLRR.bin and this needs to be uploaded to the /firmware folder
-
-Update the firmware by using the M997 B# command, where # is the CAN address of the new board.
-
-Factory resetting the board using the CAN reset jumper will cause the bootloader to request the firmware file from the mainboard
-
-## Update the bootloader
-
-***Not normally required***
-
-Duet 3 expansion boards and tool boards have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
-
-# Connecting peripherals
 
 ## Connecting a BL Touch
 
@@ -333,10 +352,13 @@ The Toolboard supports probe type 8 (unfiltered switch) and 9 (BL Touch). To con
 | io0_in | OUT | White |
 | 5V_EXT | +5V | Red |
 
+See [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)
 
 ## Connecting a filament monitor
 
 Connector IO_1 or IO2, provides a 3.3V supply and 3.3V input signal level, suitable for a Duet3D Rotating Magnet filament monitor. 
+
+See [Connecting and configuring a filament runout sensor](/User_manual/Connecting_hardware/Sensors_filament)
 
 ## Adding an IO_3 Reflective Optical Sensor
 
@@ -344,21 +366,8 @@ An ITR20001/T reflective optical sensor can be soldered onto the header on the b
 
 ![Renders of an ITR20001/T reflective optical sensor on the Roto toolboard ](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_opto.png =300x)
 
-## Accelerometer
 
-See Configuring section above.
 
-## Scanning Z Probe
-
-The Duet 3 Roto Toolboard integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
-
-Here is an example point map form the SZP on a Duet 3 Mainboard 6HC
-![image_792points.png](/duet_boards/duet_3_can_expansion/duet_3_szp/image_792points.png =800x)
-Example mesh of 792 points that took ~20 seconds to produce.
-
-### Setup and Calibration
-
-To follow
 
 # PCB Revision History
 
