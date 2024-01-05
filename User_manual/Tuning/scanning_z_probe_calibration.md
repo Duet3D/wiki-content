@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2024-01-05T17:29:27.170Z
+date: 2024-01-05T17:37:03.261Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -57,7 +57,11 @@ To calibrate the probe:
 * Also check that the Z probe reading is sensible when the sensor is a long way above the bed. The aim is to get sensible readings (i.e. not 999999) from the minimum height to "infinite" height.
 * A typical drive level is around 15.
 
-* The reading vs. height then needs to be calibrated, using M558.1. If you have another way of determining Z=0 (e.g. another Z probe, or touch the nozzle to the build plate and set G92 Z0) then it's best to do this immediately before scanning rather than try to save the calibration. An example mesh.g file might be:
+* The reading vs. height then needs to be calibrated, using M558.1. If you have another way of determining Z=0 (e.g. another Z probe, or touch the nozzle to the build plate and set G92 Z0) then it's best to do this immediately before scanning rather than try to save the calibration. 
+
+## Example mesh.g file
+
+An example mesh.g file, which is run when a [G29](/User_manual/Reference/Gcodes/G29) command is sent (to do a bed mesh scan), might be:
 
 ```
 T-1
