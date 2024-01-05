@@ -1,8 +1,8 @@
 ---
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
-published: false
-date: 2024-01-05T17:25:47.721Z
+published: true
+date: 2024-01-05T17:26:03.326Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
