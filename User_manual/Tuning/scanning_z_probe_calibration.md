@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2024-01-05T17:37:03.261Z
+date: 2024-01-05T22:00:01.742Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -15,6 +15,10 @@ Induction-based probes need to have the sensor drive level calibrated and the re
 # LDC1612-based probes
 
 Duet3D have boards that use the LDC1612 chip, including the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe) and the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard).
+
+## Mounting
+
+The bottom of the SZP coil should be around 1 to 2mm above the tip of the nozzle, so that when scanning the bed the G31 trigger height can be set to around 2mm to avoid the nozzle contacting the bed, while keeping the coil fairly close to the bed.
 
 ## Configuration
 
@@ -37,7 +41,7 @@ M557 X-140:140 Y-90:80 S10                      ; Define mesh grid for probe 1 (
 
 ### Notes
 
-* In M558, the K parameter sets the probe number. If you have more than one probe, you need to set the K parameter so each probe is unique.
+* In M558, the K parameter sets the probe number. If you have more than one probe, you need to set the K parameter so each probe is unique. If there is no K parameter then 0 is used. 
 * In M558, the C parameter defines the CAN address ("120") and the pin name ("i2c.ldc1612"). You may need to change the CAN address to your specific configuration.
 * Measure the G31 offset of the probe from the nozzle in X and Y: [Test and calibrate a Z probe - measuring probe x y offset](/User_manual/Connecting_hardware/Z_probe_testing#measuring-probe-x-y-offset)
 * M308 P parameter pin name is `120.temp0` for Duet 3 Scanning Z Probe, and `121.temp2` for Duet 3 Roto Toolboard.
@@ -51,8 +55,8 @@ M557 X-140:140 Y-90:80 S10                      ; Define mesh grid for probe 1 (
 To calibrate the probe: 
 * Position the sensor above the bed at the minimum height that you expect to use it. 
   For example, if the trigger height is set to 3mm, and the bed error is expected to be not more than 1mm, the minimum height would be 2mm. 
-* Run `M558.2 S-1` to calibrate the drive level. If it is successful then it should report the resulting drive level. 
-* You can also use `M558.2` with no S parameter to report the current drive level. 
+* Run `M558.2 K1 S-1` to calibrate the drive level. If it is successful then it should report the resulting drive level. 
+* You can also use `M558.2 K1` with no S parameter to report the current drive level and . 
 * Add an M558.2 command in config.g to set that drive level, e.g. if the reported drive level after calibration was 15 and it is probe #1, then use `M558.2 K1 S15`. Add this later in config.g than the M558 K1 command that configures the probe.
 * Also check that the Z probe reading is sensible when the sensor is a long way above the bed. The aim is to get sensible readings (i.e. not 999999) from the minimum height to "infinite" height.
 * A typical drive level is around 15.
