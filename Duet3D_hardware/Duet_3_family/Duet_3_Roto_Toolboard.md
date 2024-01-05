@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-01-05T14:41:00.422Z
+date: 2024-01-05T17:48:33.488Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -229,8 +229,62 @@ Note only the last CAN-FD device on the bus should have the termination resistor
 
 Fit the 2.0mm pitch jumper on the CAN Termination resistor jumper pins if the Roto Toolboard is to be the last device on the CAN_FD bus.
 
+# Configuration
+
+> Add the following to your sys/config.g file
+{.is-info}
+
+## Startup Time
+
+It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards, eg close to the start of config.g
+
+`G4 S2 ; wait for expansion boards to start`
+
+## Scanning Z Probe
+
+Add the following to your config.g:
+```
+; Scanning Z probe
+M558 K1 P11 C"121.i2c.ldc1612" F36000 T36000
+M308 A"SZP coil" S10 Y"thermistor" P"121.temp2" ; thermistor on coil
+```
+
+* If you change the CAN address, the CAN address in M558 C parameter and M308 P parameter will need to change.
+
+## Accelerometer
+
+Add the following to your config.g:
+```
+M955 P121.0 I10 ; Add accelerometer on SZP with CAN address 120 and specify orientation
+```
+See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
+
+### Orientation
+
+The Duet 3 Roto toolboard has an XYZ arrow to aid orientation of the accelerometer. The Z axis is  in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine, but it may not be possible, so this is configurable in M955. 
+
+![duet3_rrtb_v1.0_d1.0_accelerometer.png](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_accelerometer.png)
+
 
 # Commissioning
+
+All boards in the system must have different CAN addresses. SZPs are shipped set to a default CAN address of 121. If you have more that one SZP on a bus, **only one of them must be powered up and connected to the CAN bus initially until a new address is set.**
+
+## Testing communication
+
+Check that you can communicate with the SZP, by sending 
+
+`M115 B120`
+
+The status of the acceleromteter and Inductive probe is listed at the end of the report.
+
+## SZP and acclerometer calibration and use
+
+SZP - [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
+
+For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
+
+# Notes
 
 All boards in the system must have different CAN addresses. Toolboards are shipped set to a default CAN address of 121. Therefore, if you have more than one Toolboard, **only one of them must be powered up and connected to the CAN bus until the address is changed.** So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier).
 
@@ -241,19 +295,6 @@ In normal use, the red LED flashes slowly in sync with the main board to indicat
 ## Factory Reset
 
 The board will do a factory reset if you power it up with a 2.0mm jumper fitted to the CAN reset jumper pins. The CAN address will be reset to the default (121), the CAN bus timing will also be reset to default (1Mbps), and the bootloader will request a firmware update.
-
-## Startup Time
-
-It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards
-
-`G4 S2 ; wait for expansion boards to start`
-
-## Testing communication
-
-Check that you can communicate with the Toolboard, by sending 
-
-`M115 B121`
-
 
 ## Update the bootloader
 
@@ -309,7 +350,6 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 ### Orientation
 
-![duet3_rrtb_v1.0_d1.0_accelerometer.png](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_accelerometer.png)
 
 See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer, including its orientation in relation to the printer XYZ axis. 
 
