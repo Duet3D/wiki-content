@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2023-11-30T11:22:19.213Z
+date: 2024-01-05T21:12:05.059Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -371,6 +371,27 @@ Holding both buttons down as the board is powered up will cause a factory reset.
 
 # Tabs {.tabset}
 
+## Accelerometer
+
+For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
+
+### Firmware Support
+
+Full support for using an accelerometer with input shaping is implemented in RRF 3.4. It is recommended that the [input shaping plugin](/User_manual/Tuning/Input_shaping_plugin) is used to help select and turne the best input shaper for a specific application.
+
+Accelerometer data can be captured and written to a file using [M956](/User_manual/Reference/Gcodes/M956). There is a plugin for RRF in 3.3RC1 that will display the data:
+
+![duet_3_1lc_v1.1_accelerometer_02.png](/manual/inputshaping/profile1.png =800x)
+
+### Orientation
+
+![duet_3_1lc_v1.1_accelerometer_01.png](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.1_accelerometer_01.png =500x)
+
+See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer, including its orientation in relation to the printer XYZ axis. 
+
+Forum user [Nuramori](https://forum.duet3d.com/user/nuramori) has produced [a graphical guide](https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf?dl=0) to help illustrate the orientation options.
+
+
 ## Connecting a BL Touch
 
 The Toolboard supports probe type 8 (unfiltered switch) and 9 (BL Touch). To connect a BL Touch, see table below.
@@ -407,25 +428,6 @@ From v1.2 the footprints for an ITR20001/T or TCRT1000/1010 reflective optical s
 ![Renders of an ITR20001/T,  TCRT1000 or TCRT1010 reflective optical sensors on the toolboard v1.2 ](/duet_boards/duet_3_can_expansion/duet3_tb_1lc_v1.2_optos.png =700x)
 
 
-## Accelerometer
-
-For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
-
-### Firmware Support
-
-Full support for using an accelerometer with input shaping is implemented in RRF 3.4. It is recommended that the [input shaping plugin](/User_manual/Tuning/Input_shaping_plugin) is used to help select and turne the best input shaper for a specific application.
-
-Accelerometer data can be captured and written to a file using [M956](/User_manual/Reference/Gcodes/M956). There is a plugin for RRF in 3.3RC1 that will display the data:
-
-![duet_3_1lc_v1.1_accelerometer_02.png](/manual/inputshaping/profile1.png =800x)
-
-### Orientation
-
-![duet_3_1lc_v1.1_accelerometer_01.png](/duet_boards/duet_3_can_expansion/duet_3_1lc_v1.1_accelerometer_01.png =500x)
-
-See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer, including its orientation in relation to the printer XYZ axis. 
-
-Forum user [Nuramori](https://forum.duet3d.com/user/nuramori) has produced [a graphical guide](https://www.dropbox.com/s/hu2w5mk57l4zqpg/Accelerometer%20Orientation.pdf?dl=0) to help illustrate the orientation options.
 
 # PCB Revision History
 
