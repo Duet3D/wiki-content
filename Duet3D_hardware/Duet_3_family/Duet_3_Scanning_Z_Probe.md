@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-01-05T21:45:08.314Z
+date: 2024-01-05T22:01:32.033Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -83,14 +83,12 @@ The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Tool
 
 ## Mounting
 
-The SZP sensor board can be mounted anywhere within reach of the supplied FFC cable (100mm).
+The SZP board can be mounted anywhere within reach of the supplied FFC cable (100mm).
 
-Ideally, it should be 4-5mm above the bed when it scans. This generally means it needs to be 2-3mm above the nozzle tip, if it is mounted on a tool.
+The bottom of the SZP coil should be around 1 to 2mm above the tip of the nozzle, so that when scanning the bed the G31 trigger height can be set to around 2mm to avoid the nozzle contacting the bed, while keeping the coil fairly close to the bed.
 
 Here is an example with it mounted on a Mini Stealth Burner tool on a Voron:
 ![tridex_mount4.jpg](/duet_boards/duet_3_can_expansion/duet_3_szp/tridex_mount4.jpg =400x)
-
-
 
 # Physical connections
 
