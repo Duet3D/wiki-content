@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2024-01-05T17:26:03.326Z
+date: 2024-01-05T17:29:27.170Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -40,6 +40,7 @@ M557 X-140:140 Y-90:80 S10                      ; Define mesh grid for probe 1 (
 * In M558, the K parameter sets the probe number. If you have more than one probe, you need to set the K parameter so each probe is unique.
 * In M558, the C parameter defines the CAN address ("120") and the pin name ("i2c.ldc1612"). You may need to change the CAN address to your specific configuration.
 * Measure the G31 offset of the probe from the nozzle in X and Y: [Test and calibrate a Z probe - measuring probe x y offset](/User_manual/Connecting_hardware/Z_probe_testing#measuring-probe-x-y-offset)
+* M308 P parameter pin name is `120.temp0` for Duet 3 Scanning Z Probe, and `121.temp2` for Duet 3 Roto Toolboard.
 * Set the G31 Z trigger height to the height where the SZP coil is 4-5mm from the bed. The coil should be mounted higher than the nozzle, but not so high that the nozzle hits the bed when scanning.
 
 ## Calibration
