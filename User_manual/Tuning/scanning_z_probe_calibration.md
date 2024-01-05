@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: false
-date: 2024-01-05T17:14:02.740Z
+date: 2024-01-05T17:25:47.721Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -20,17 +20,17 @@ Duet3D have boards that use the LDC1612 chip, including the [Duet 3 Scanning Z P
 
 The following Gcodes are used to configure the SZP:
 [M558](/User_manual/Reference/Gcodes/M558) - Sets probe number (K parameter), type (P), input pin (C), feed rate (F) and travel speed (T)
-[G31](/User_manual/Reference/Gcodes/G31) - Sets probe offsets, adjustments for temperature
 [M308](/User_manual/Reference/Gcodes/M308) - Set SZP temperature sensor
+[G31](/User_manual/Reference/Gcodes/G31) - Sets probe offsets, adjustments for temperature
 [M557](/User_manual/Reference/Gcodes/M557) - Define mesh grid
 
 Add the following to your config.g. Some values will be dependent on your specific setup. See the Calibration section below for determining the M558.2 values.
 
 ```
 ; Scanning Z probe
-M558 K1 P11 C"120.i2c.ldc1612" F36000 T36000
-M308 A"SZP coil" S10 Y"thermistor" P"120.temp0" ; thermistor on coil
-G31 K1 Z2 Y-17
+M558 K1 P11 C"120.i2c.ldc1612" F36000 T36000    ; configure SZP as probe 1, type 11, on CAN address 120
+M308 A"SZP coil" S10 Y"thermistor" P"120.temp0" ; thermistor on SZP coil
+G31 K1 Z2 Y-17                                  ; define probe 1 offsets and trigger height
 M558.2 K1 S15 R101133                           ; set drive current and reading offset
 M557 X-140:140 Y-90:80 S10                      ; Define mesh grid for probe 1 (overwrites probe 0 mesh grid)
 ```
