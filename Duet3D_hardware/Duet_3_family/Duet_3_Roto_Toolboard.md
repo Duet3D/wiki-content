@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-01-05T21:47:39.281Z
+date: 2024-01-05T22:01:59.187Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -304,6 +304,9 @@ Here is an example point map form the SZP on a Duet 3 Mainboard 6HC
 ![image_792points.png](/duet_boards/duet_3_can_expansion/duet_3_szp/image_792points.png =800x)
 Example mesh of 792 points that took ~20 seconds to produce.
 
+### Mounting
+
+The bottom of the SZP coil should be around 1 to 2mm above the tip of the nozzle, so that when scanning the bed the G31 trigger height can be set to around 2mm to avoid the nozzle contacting the bed, while keeping the coil fairly close to the bed.
 
 ### Configuration
 
