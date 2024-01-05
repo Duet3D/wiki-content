@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2023-12-14T13:44:18.233Z
+date: 2024-01-05T14:41:00.422Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -153,7 +153,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | IO_3 | io3.in | 30V tolerant. |
 | ^^ | TEMP_0 | temp0 |  |
 | ^^ | TEMP_1 | temp1 |  |
-| ^^ | TEMP_2 | temp2 |  |
+| ^^ | TEMP_2 | temp2 | Scanning Z Probe coil thermistor |
 | ^^ | LED | led |  |
 
 ## Input/Output
