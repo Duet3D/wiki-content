@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-01-06T11:32:50.152Z
+date: 2024-01-06T11:35:09.673Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -163,7 +163,7 @@ All boards in the system must have different CAN addresses. SZPs are shipped set
 * Send command `M952 B# A##` where ## is the new address you want to use, e.g. `M952 B120 A100`.
 * Power the system down and up again, or send `M999 B120`. This will cause the SZP to restart with the new address.
 * Send command `M122 B100` (or whatever address you chose) to verify that you can communicate with the SZP at its new address
-* You can now power up the next SZP and commission it in the same way if you have moe than one in the system
+* You can now power up the next SZP and commission it in the same way if you have more than one in the system
 
 ## Testing communication
 
