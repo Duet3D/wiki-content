@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-01-05T22:01:32.033Z
+date: 2024-01-06T11:32:50.152Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -121,7 +121,7 @@ LEDs are provided to indicate the following:
 
 | Label | Colour | Function |
 |--|--|--|
-| **ACT ** | Green | Indicates activity on the CAN-FD bus |
+| **ACT** | Green | Indicates activity on the CAN-FD bus |
 | **STATUS** | Red | Status LED. See description below |
 
 **Status LED:** In normal use, the red LED flashes slowly in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
