@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-01-06T11:40:44.343Z
+date: 2024-01-06T11:46:55.475Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -208,13 +208,14 @@ Duet 3 expansion boards and tool boards have a bootstrap loader written to the s
 
 ### Configuration
 
-Add the following to your config.g:
+To use the scanning Z probe as a secondary Z probe, assuming you already have a primary Z probe used for Z homing, add the following to your config.g:
 ```
 ; Scanning Z probe
 M558 K1 P11 C"120.i2c.ldc1612" F36000 T36000
 M308 A"SZP coil" S10 Y"thermistor" P"120.temp0" ; thermistor on coil
 ```
 
+* The K1 parameter configures it as Z probe 1 so as to leave your primary probe as Z probe 0
 * If you change the CAN address, the CAN address in M558 C parameter and M308 P parameter will need to change.
 
 ### Calibration and usage
@@ -226,13 +227,13 @@ For SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/T
 
 Add the following to your config.g:
 ```
-M955 P120.0 I10 ; Add accelerometer on SZP with CAN address 120 and specify orientation
+M955 P120.0 I20 ; Add accelerometer on SZP with CAN address 120 and specify orientation
 ```
 See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
 
 ### Orientation
 
-The Duet 3 Scanning Z Probe has an XYZ arrow to aid orientation of the accelerometer, see image below. The Z axis is  in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine, but it may not be possible, so this is configurable in M955. 
+The Duet 3 Scanning Z Probe has an XYZ arrow to aid orientation of the accelerometer, see image below. The Z axis is  in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine (equivalent to I20 in the M955 command), but as that alignment may not be convenient it is configurable in M955. 
 
 ![accelerometer_szp.png](/duet_boards/duet_3_can_expansion/duet_3_szp/accelerometer_szp.png =500x)
 
