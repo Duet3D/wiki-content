@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-01-06T11:35:58.211Z
+date: 2024-01-06T11:40:44.343Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -190,10 +190,10 @@ To check versions are the same:
 
 * Send `M115` and `M115 B#` (where # is the SZP CAN address) to report the firmware version of the mainboard and the SZP.
 * If they are not the same version, download the matching version firmware files from the [RepRapFirmware Github repository](https://github.com/Duet3D/RepRapFirmware/releases).
-* The firmware filename is Duet3Firmware_SZP.bin and this needs to be uploaded to the /firmware folder of the SD card on the attached SBC, or the SD card in the Duet 3 main board if it is running in standalone mode.
-* Update the firmware by using the `M997 B#` command, where # is the CAN address of the new board.
+* The firmware filename is Duet3Firmware_SZP.bin and this needs to be uploaded through Duet Web Control, which will place it in the **/firmware** folder of the SD card on the attached SBC, or the SD card in the Duet 3 main board if it is running in standalone mode.
+* After uploading the file, Duet Web Control should prompt you to install it. To force to update manually use the `M997 B#` command, where # is the CAN address of the new board.
 
-Factory resetting the board using the CAN reset jumper will cause the bootloader to request the firmware file from the mainboard.
+Factory resetting the board using the CAN reset jumper will also cause the bootloader to request the firmware file from the mainboard.
 
 ## Update the bootloader
 
