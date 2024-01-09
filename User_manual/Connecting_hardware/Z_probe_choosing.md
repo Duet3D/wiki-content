@@ -2,7 +2,7 @@
 title: Choosing a Z probe
 description: 
 published: true
-date: 2024-01-09T10:03:40.394Z
+date: 2024-01-09T10:07:40.131Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:24:45.655Z
@@ -21,8 +21,9 @@ There are many types of Z probe available. This table may help you to choose one
 | Under-bed FSRs or piezos | Small | Light | Any | High or medium | For FSRs use JohnSL interface board. Mainly used with delta printers. Trigger height may vary a little with probing position. |
 | Inductive | Large | Heavy | Steel, or aluminium without glass on top (thin PEI is OK) | Medium | Most types need 12V or 24V power. Trigger height may vary with supply voltage and temperature. |
 | Capacitive | Very large | Heavy | Any | Low | Trigger height is affected by temperature and humidity |
-| BLTouch | Medium | Medium | Any | Medium | Needs an expansion pin assigned for probe control. Closed-source and patented, unlike many of the alternatives. |
-| Servo deployed switch | Medium | Medium | Any | Medium | Needs an expansion pin assigned for probe control. See [http://reprap.org/wiki/Z_probe#Microswitch](http://reprap.org/wiki/Z_probe#Microswitch). |  |
+| BLTouch | Medium | Medium | Any | Medium | Needs an expansion pin assigned for probe control. |
+| Servo deployed switch | Medium | Medium | Any | Medium | Needs an expansion pin assigned for probe control. See [http://reprap.org/wiki/Z_probe#Microswitch](http://reprap.org/wiki/Z_probe#Microswitch). |
+| Magnetic/Other Mechanism dock/undock Switch | Medium | Medium | Any | Medium | Uses a docking mechanism with magnets/slot or some other way of pickup up and putting down the switch repeatedly and reliably (e.g. [Elucid Probe](https://euclidprobe.github.io/)). See [http://reprap.org/wiki/Z_probe#Microswitch](http://reprap.org/wiki/Z_probe#Microswitch). ||
 
 **Important note!**
 
