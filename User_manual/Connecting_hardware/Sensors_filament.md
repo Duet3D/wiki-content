@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2023-04-26T13:55:27.310Z
+date: 2024-01-09T17:31:19.626Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -135,7 +135,7 @@ Brief explanation of parameters:
 * Dnn Extruder drive number (0, 1, 2...),
 * Pnn Type of sensor: 0=none, 1=simple sensor (high signal when filament present), 2=simple sensor (low signal when filament present), 3=Duet3D rotating magnet sensor, 4=Duet3D rotating magnet sensor with microswitch, 5 = Duet3D laser sensor, 6 = Duet3D laser sensor with microswitch, 7 = pulse-generating sensor
 * C"nn" - Where "nn" is the pin name the filament sensor is connected to (RRF 3 only)
-* Sn 0 = disable filament monitoring (default), 1 = enable filament monitoring when printing from SD card. Filament monitors accumulate calibration data (where applicable) even when filament monitoring is disabled.
+* Sn 0 = disable filament monitoring (default), 1 = enable filament monitoring when printing a file from SD card, in standalone or SBC mode. Filament monitors accumulate calibration data (where applicable) even when filament monitoring is disabled.
 * Raa:bb Allow the filament movement reported by the sensor to be between aa% and bb% of the commanded values; if it is outside these values and filament monitoring is enabled, the print will be paused
 * Enn minimum extrusion length before a commanded/measured comparison is done, default 3mm
 * An (firmware 2.03 and later) 1 = check All extruder motion, 0 = only check extruder motion of printing moves (moves with both movement and forward extrusion)
