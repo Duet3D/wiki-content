@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: 
 published: true
-date: 2023-12-18T21:21:29.322Z
+date: 2024-01-09T15:17:16.071Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -100,12 +100,13 @@ As of RRF 3.4 these are:
 | MaxBedHeaters | 12 | 2 | 4 | 2 | The maximum number of bed heaters |
 | MaxChamberHeaters | 4 | 2 | 4 | 2 | The maximum number of chamber heaters |
 | MaxZProbes | 4 | 4 | 4 | 2 | The maximum number of probes |
-| MaxGpInPorts | 32 (16 in RRF3.3) | 32 (16 in RRF3.3) | 20 | 10 | The maximum number of general purpose input ports. |
+| MaxGridProbePoints | 441 (961 in RRF 3.5) | 441 | 441 | 441 | The maximum number of mesh bed compensation points |
+| MaxGpInPorts | 32 (16 in RRF 3.3) | 32 (16 in RRF3.3) | 20 | 10 | The maximum number of general purpose input ports. |
 | MaxGpOutPorts | 32 | 32 | 20 | 10 | The maximum number of general purpose output ports |
-| MaxAxes | 15 (30 in RRF3.5) | 10 | 10 | 6 | The maximum number of movement axes |
-| MaxDriversPerAxis | 8 | 4 | 6 (5 in RRF3.3) | 4 | The maximum number of stepper drivers assigned to one axis |
+| MaxAxes | 15 (30 in RRF 3.5) | 10 | 10 | 6 | The maximum number of movement axes |
+| MaxDriversPerAxis | 8 | 4 | 6 (5 in RRF 3.3) | 4 | The maximum number of stepper drivers assigned to one axis |
 | MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
-| MaxAxesPlusExtruders | 25 (32 in RRF3.5) | 12 | 12 | 7 | The maximum number of axes + extruders |
+| MaxAxesPlusExtruders | 25 (32 in RRF 3.5) | 12 | 12 | 7 | The maximum number of axes + extruders |
 | MaxHeatersPerTool | 8 | 2 | 8 | 2 | The maximum number of heaters per tool |
 | MaxExtrudersPerTool | 8 | 5 | 8 | 4 | The maximum number of extruders per tool |
 | MaxFans | 20 | 20 | 12 | 6 | The maximum number of fans |
