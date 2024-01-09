@@ -2,7 +2,7 @@
 title: Mesh bed compensation
 description: 
 published: true
-date: 2022-11-04T11:52:31.958Z
+date: 2024-01-09T17:09:22.538Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T15:16:32.300Z
@@ -67,9 +67,37 @@ Example for a delta printer:
 M557 R130 S20 ; probe within a radius of 130mm from the centre with a mesh spacing of 20mm
 ```
 
-There is a firmware-dependent limit of 441 on the number probe points allowed. If you exceed that limit, an error message will be returned when you run the M557 command, and you should increase the mesh spacing (S parameter) to reduce the number of probe points.
+There is a firmware-dependent limit of 441 in RRF 3.4 (971 for 6HC/6XD in RRF 3.5) on the number probe points allowed. If you exceed that limit, an error message will be returned when you run the M557 command, and you should increase the mesh spacing (S parameter) to reduce the number of probe points.
 
 Using a small number of points (ie. 9) is akin to using the older style simple planar correction.
+
+## Selective probing
+
+From RRF 3.5, for Duet 3 mainboards, RepRapFirmware now supports selective probing using `G29 S4`. This allows you to skip specific probe points defined by the mesh, for example to miss out points where there are holes, or if your probe is affected by magnets in certain places. RRF will interpolate the missing points.
+
+To do this, the probe points file (default /sys/probePoints.csv) needs to be manually created, then activated:
+
+1. Create a valid probe points file; the default file name is `/sys/probePoints.csv`. The format of a probe points file is similar to a height map file except for the following:
+  * The first line must start with "RepRapFirmware probe points file v2" instead of "RepRapFirmware height map file v2" (the rest of the line is not processed)
+  * The fourth and subsequent lines have the value 1 at points that are to be probed if they are reachable and 0 in points that are to be omitted.
+2. Send an appropriate `G29 S4` command, eg `G29 S4 P"probePoints.csv"`, to activate the probe points file.
+3. When `G29 S0` is called subsequently, the grid definition defined in the probe points file is used instead of the grid defined by M557, and reachable points are probed or not as indicated in the file.
+
+For this M557:
+```
+M557 X-85:85 Y-85:85 P5 ; 5x5 grid, origin at centre
+```
+where 9 probe points are over magnets, an example probePoints.csv file would be:
+```
+RepRapFirmware probe points file v2
+axis0,axis1,min0,max0,min1,max1,radius,spacing0,spacing1,num0,num1
+X,Y,-85.00,85.00,-85.00,85.00,-1.00,42.50,42.50,5,5
+ 0,  1,  0,  1,  0
+ 1,  1,  1,  1,  1
+ 0,  1,  0,  1,  0
+ 1,  1,  1,  1,  1
+ 0,  1,  0,  1,  0
+```
 
 # Running bed mesh compensation
 
