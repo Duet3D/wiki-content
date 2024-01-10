@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2024-01-10T15:05:22.863Z
+date: 2024-01-10T23:13:47.442Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z
@@ -73,8 +73,10 @@ If you are unable to directly cable the Duet to your network router, you can con
   Subnet Mask – 255.255.255.0
   Default gateway - leave blank
   * Set the IP address and subnet Mask in config.g on the **Duet** as follows:
-  IP address – 192.168.2.1
-  Subnet Mask – 255.255.255.0
+  ```
+  M552 P192.168.2.1 S1 ; IP address
+  M553 P255.255.255.0  ; Subnet mask
+  ```
 * Note: it is important to ensure that the last values of the IP address for Duet and computer are different.
 * Then connect to the Duet by opening a browser and going to `192.168.2.1`
 * If you are using a PC that is connected to both your network and to the Duet, you can bridge the two network connections on your PC, to allow other devices connected to your network to connect to the Duet. This will only work when the PC is on, though.
