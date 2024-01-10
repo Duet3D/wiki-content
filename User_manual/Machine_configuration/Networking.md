@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2022-09-27T13:55:17.492Z
+date: 2024-01-10T15:05:22.863Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z
@@ -67,15 +67,18 @@ If you are unable to directly cable the Duet to your network router, you can con
 
 ![networking_05.png](/manual/configuration/networking_05.png)
 
-* In the Properties windows you will need to set the IP address and subnet masks of your PC to settings that are DIFFERENT from your normal network settings. In the illustration below, the network uses 192.168.**1**.# addresses, so we'll set up the PC/Duet subnet to use 192.168.**2**.# addresses:
-  * IP – 192.168.2.2
-  * Subnet Mask – 255.255.255.0
-* Set the IP address and subnet Mask in config.g on the Duet as follows:
-  * IP – 192.168.2.1
-  * Subnet Mask – 255.255.255.0
+* In Properties you will need to set the IP address and subnet masks of your PC to settings that are DIFFERENT from your normal network settings. In the illustration below, the network uses 192.168.**1**.# addresses, so we'll set up the PC/Duet subnet to use 192.168.**2**.# addresses.
+  * Set the IP address and subnet Mask in Properties on the **PC** as follows:
+  IP address – 192.168.2.2
+  Subnet Mask – 255.255.255.0
+  Default gateway - leave blank
+  * Set the IP address and subnet Mask in config.g on the **Duet** as follows:
+  IP address – 192.168.2.1
+  Subnet Mask – 255.255.255.0
 * Note: it is important to ensure that the last values of the IP address for Duet and computer are different.
-* Then connect to the Duet by opening a browser and going to 192.168.2.2
+* Then connect to the Duet by opening a browser and going to `192.168.2.1`
 * If you are using a PC that is connected to both your network and to the Duet, you can bridge the two network connections on your PC, to allow other devices connected to your network to connect to the Duet. This will only work when the PC is on, though.
+* The process is largely the same for connecting other Operating Systems (eg Linux and MacOS) to Duet.
 
 **Note:** the IP addresses in the following diagram are an example of how a network may be configured. Your network may use different IP addresses and ranges.
 
