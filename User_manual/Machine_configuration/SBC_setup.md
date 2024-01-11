@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-01-11T17:44:56.973Z
+date: 2024-01-11T17:45:55.508Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -52,7 +52,7 @@ If you want to install DSF on an existing Raspberry Pi OS installation, or on a 
 1. Click 'No'. The image will be flashed to the SD card, and will take about 5 minutes.
 1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
 
-
+<p style="clear:both"></p>
 
 ## Other image flashing programs
 
@@ -66,6 +66,8 @@ If you want to install DSF on an existing Raspberry Pi OS installation, or on a 
 1. Under Windows, MacOS and Linux, flash the file using  using [balenaEtcher](https://www.balena.io/etcher/){target=_blank}
 1. Select the image, select the SD card. Click flash. Will take about 5 minutes.
 1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
+
+<p style="clear:both"></p>
 
 # 2. Setup wifi
 
