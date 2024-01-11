@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2022-09-15T12:16:31.699Z
+date: 2024-01-11T17:44:56.973Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -34,6 +34,27 @@ If you want to install DSF on an existing Raspberry Pi OS installation, or on a 
 
 > If you are planning to use the SBC for more than plain 3D printing or if you have an SBC with little RAM + external display, it is HIGHLY recommended to obtain a **class A1- or A2-rated microSD** card instead of the shipped SD card. If your SD card speed is insufficient, you may experience occasional problems when data between the SBC and Duet is exchanged. 
 {.is-warning}
+
+# Tabs {.tabset}
+
+## Raspberry Pi Imager
+
+![sbc_setup_10.png](/manual/configuration/sbc_setup_10.png =50%x){.align-right}
+
+1. If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/){target=_blank}
+1. You will need at least an 8Gb class 10 SD card.
+1. There are multiple programs to write an image file to an SD card. We recommend using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}, which has versions for Windows, MacOS, Linux and Raspberry Pi.
+1. You need to use the latest Raspberry Pi image **setup for Duet 3** that is available from the Duet 3D software site. You may choose the lite image for a GUI-less setup and the full variant for setups where a display is attached:
+[https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
+[https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip){target=_blank}
+1. Open Raspberry Pi Imager, select the Raspberry Pi version, select the image, select the SD card, then click 'Next'. 
+1. **DO NOT** apply any customisations. The current Duet image version (as of Jan 2024) runs on Buster, and applying customisations will stop it working. 
+1. Click 'No'. The image will be flashed to the SD card, and will take about 5 minutes.
+1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
+
+
+
+## Other image flashing programs
 
 ![sbc_setup_01.png](/manual/configuration/sbc_setup_01.png =50%x){.align-right}
 
