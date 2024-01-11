@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: true
-date: 2023-06-16T11:10:44.605Z
+date: 2024-01-11T16:37:42.576Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -83,6 +83,7 @@ If you get a temperature reading of "-273°C", this indicates an open circuit, i
 * Check the wiring for breaks
 * Measure the resistance of the wires that connect to the Duet, and that it corresponds with what the firmware expects
 * Check that the configuration is set correctly for the temperature sensor.
+
 If you get a temperature reading of "2000°C", this indicates a dead short between the temperature sensor pins on the Duet, or mis-configured firmware.
 * Check your M305/M308 configuration
 * Check the wiring isn't grounding out to something
