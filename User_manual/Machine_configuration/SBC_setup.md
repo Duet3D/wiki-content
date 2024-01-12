@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-01-11T17:45:55.508Z
+date: 2024-01-12T15:03:35.752Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -48,7 +48,7 @@ If you want to install DSF on an existing Raspberry Pi OS installation, or on a 
 [https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
 [https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip){target=_blank}
 1. Open Raspberry Pi Imager, select the Raspberry Pi version, select the image, select the SD card, then click 'Next'. 
-1. **DO NOT** apply any customisations. The current Duet image version (as of Jan 2024) runs on Buster, and applying customisations will stop it working. 
+1. **DO NOT** apply any OS customisations. The current Duet image version (as of Jan 2024) runs on Buster, and applying customisations will stop it working. 
 1. Click 'No'. The image will be flashed to the SD card, and will take about 5 minutes.
 1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
 
@@ -179,9 +179,15 @@ In the future it is the intention that all the required interaction between a us
 
 ## Connecting via SSH
 
+### Enable SSH
+
 DuetPi lite (no GUI) has SSH enabled by default and wpa_supplicant.conf is present on the boot partition, because usually you don't have a display attached to those setups.
 
-DuetPi (with GUI) does not have SSH enabled by default, but you can enable it by putting an empty "ssh" file on the boot partition.
+DuetPi (with GUI) does not have SSH enabled by default, but you can enable it by:
+* putting an empty "ssh" file on the boot partition, or
+* connecting to DWC and sending `M586 P2 T1 S1`. This makes a persistant change, DO NOT add this line to config.g.
+
+### Connect using 
 
 Under **Windows** the easiest way is via “Putty”:
 
@@ -189,7 +195,7 @@ Under **Windows** the easiest way is via “Putty”:
 * Enter duet3.local or your SBC IP address and select ssh. 
 ![sbc_setup_07.png](/manual/configuration/sbc_setup_07.png)
 
-* Agree to the security alert - its Putty Saying it has never connected to this SSH server before.
+* Agree to the security alert - it is Putty Saying it has never connected to this SSH server before.
 * Login with username “pi” and password “raspberry”
 
 Under **macOS and Linux** the "ssh" program is accessible from the command line. [macOS guide here.](http://osxdaily.com/2017/04/28/howto-ssh-client-mac/)
@@ -274,5 +280,3 @@ The name of the printer is its hostname on the network, you will need to connect
 * Select “Finish” and reboot.
 
 When you next boot with a screen, or log in with VNC, Chromium may give you the following warning. Select “unlock Profile and Relaunch”.
-
-![sbc_setup_08.png](/manual/configuration/sbc_setup_08.png)
