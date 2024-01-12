@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2023-12-20T14:50:05.017Z
+date: 2024-01-12T13:23:41.555Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6391,13 +6391,20 @@ M585 X100 F600 E3 L0 S0 ; probe X until E0 endstop goes low
 ### Examples
 <br>
 <pre class="cblock">
+; standalone mode
 M586 P0 S1 ; enable HTTP
 M586 P1 S0 ; disable FTP
-M586 P2 S1 ; enable Telnet 
+M586 P2 S1 ; enable Telnet
+; SBC mode
+; NOTE: In SBC mode sending these makes a persistant change, do not add to config.g
+M586 P0 T1 S1 ; enable HTTPS
+M586 P1 T1 S1 ; disable SFTP
+M586 P2 T1 S1 ; enable SSH
 </pre>
 
 ### Notes
 
+* Standalone mode does not support any secure protocols (M586 ... T1), ie HTTP, FTP and Telnet only. SBC mode can support HTTPS, SFTP and SSH. 
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
 * In SBC mode, `M586 I` is not supported. Configure ufw or another firewall to restrict protocol access per adapter if required.
 * M586 with no S parameter reports the current support for the available protocols.
