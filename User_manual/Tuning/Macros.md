@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2023-01-18T15:57:34.224Z
+date: 2024-01-12T09:53:44.578Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -158,7 +158,7 @@ See [Selecting a tool](/User_manual/Reference/Gcodes/T) for more details.
 * **pause.g** is run when you pause a print.
 * **resume.g** is run when you resume a print.
 * **cancel.g** is optional, but if present is run when you cancel a paused print.
-* **stop.g** is optional, but if present is run when a print finishes normally with an M0 command at the end of the print job.
+* **stop.g** is optional, but if present is run when a print finishes normally with an M0 command at the end of the print job. (from RRF 3.5b1, When a print file completes normally then file stop.g is run automatically even if the print file did not end with a M0 command)
 * **sleep.g** If [M1](/User_manual/Reference/Gcodes/M1)) is issued the firmware finishes any moves left in its buffer, then shuts down, the macro file sleep.g is run before all heaters and drives are turned off.
 * **filament-change.g** is run if a [M600](/User_manual/Reference/Gcodes/M600) command is encountered when printing from SD card. if that file is not found then **pause.g** is run instead.
 
@@ -170,15 +170,11 @@ The Duet can be [configured to detect a power failure](/User_manual/Tuning/Resum
 
 See [User manual: Using triggers to control the Duet](/User_manual/Tuning/Triggers) for an example of usage.
 
-## 3D scanner control
-
-[M752](/User_manual/Reference/Gcodes/M752) runs two macros before and after a 3d scan: before the SCAN command is sent to the scanner, the macro file **scan_pre.g** is executed and when the scan has finished, the macro file **scan_post.g** is run.
-
 ## daemon.g
 
 From RRF3.1.0 and later the file /sys/daemon.g can be used to execute regular tasks. The firmware looks for the file, if the file exists it executes it and once the end of file is reached it waits. If the file is not found it waits and then looks for it again. In RRF 3.3 The wait time was increased form 1 second to 10 seconds. If you want a shorter update time then put a while loop inside the daemon.g with `G4 S1` in it for 1 second repeats.
 
-This can be used in combination with [Conditional Gcode](/User_manual/Reference/Gcode_meta_commands) to check the object model to look for a particular condition, and then take an action.
+This can be used in combination with [GCode Meta Commands](/User_manual/Reference/Gcode_meta_commands) to check the object model to look for a particular condition, and then take an action.
 
 Caution must be taken not to start a loop that takes a long time to complete, without having a `G4 P500` or similar command to hand control back to the main process every half a second or so.
 
