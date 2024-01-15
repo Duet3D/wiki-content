@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-01-15T15:09:45.986Z
+date: 2024-01-15T15:42:42.623Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -24,11 +24,23 @@ SBC mode allows part of the functionality to be handled by the SBC. This offers 
 - Optional webcam integration
 - Optional HTTPS support
 
-Duet 3 mainboards are supplied with an SD card pre-loaded with the Raspberry Pi OS + DSF, suitable for use with Raspberry Pi 3 or 4. This guide assumes you are using a Raspberry Pi and the SD card image specifically set up for Duet 3. In the future other SBCs may be officially supported. 
+# Tabs {.tabset}
 
-Most of the time you can start at Step 2 below, as you will receive an SD card pre-flashed with the Raspberry Pi OS + DSF. If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, start at step 1.
+This guide assumes you are using a Raspberry Pi and the SD card image specifically set up for Duet 3 in SBC mode. In the future other SBCs may be officially supported. 
 
 If you want to install DSF on an existing Raspberry Pi OS installation, or on a custom Debian board/installation, please see this page: [Duet Software Framework (DSF) on other boards](/User_manual/Machine_configuration/DSF_Other){target=_blank}
+
+## RepRapFirmware 3.5
+
+Duet 3 mainboards are supplied with an SD card that is set up for standalone mode (ie a Duet mainboard *without* a connected SBC). You will need to flash the SD card with the SBC image; see step 1 below.
+
+## RepRapFirmware 3.4 and earlier
+
+Duet 3 mainboards are supplied with an SD card split into two partitions; one FAT32 partition with the files needed for standalone mode, and one partition pre-loaded with the Raspberry Pi OS + DSF, suitable for use with Raspberry Pi 3 or 4.
+
+Most of the time you can start at Step 2 below, as you will receive an SD card pre-flashed with the Raspberry Pi OS + DSF. If you want to use the whole capacity of the SD card for an SBC installation, start at step 1.
+
+If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, start at step 1. 
 
 # 1. Flash the image file
 
@@ -75,7 +87,7 @@ If you want to install DSF on an existing Raspberry Pi OS installation, or on a 
 
 1. Navigate to the “boot” partition on the SD card *(note on Windows the other partition will be inaccessible and give an error if you try and access it, this is normal as it is formatted in a filesystem that Windows does not support).*
 
-1. Create a [new file named “wpa_supplicant.conf”](https://www.raspberrypi-spy.co.uk/2017/04/manually-setting-up-pi-wifi-using-wpa_supplicant-conf/) (exact naming is critical, do not have a ".txt" at the end of the file).
+1. Create a [new file named “wpa_supplicant.conf”](https://www.raspberrypi-spy.co.uk/2017/04/manually-setting-up-pi-wifi-using-wpa_supplicant-conf/){target=_blank} (exact naming is critical, do not have a ".txt" at the end of the file).
 
 1. In a text editor add the following:
 ```
@@ -101,7 +113,7 @@ network={
 1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, and connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
 1. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
 1. It is acceptable, especially with longer ribbon cables than shown here, to route the cable around the back of the SBC, however pin 1 must connect as shown.
-1. Ensure the USB supply is sufficient to power the peripherals attached to the Pi, especially screens that do not have a separate power supply. [See here for more details on 5v power jumper position selection](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v). 
+1. Ensure the USB supply is sufficient to power the peripherals attached to the Pi, especially screens that do not have a separate power supply. [See here for more details on 5v power jumper position selection](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v){target=_blank}. 
 1. Using a Pi4 may require a separate power supply for both the Duet and Pi4 due to power draw. The same holds true if using peripherals that draw power via USB.
 
 <p style="clear:both"></p>
@@ -110,7 +122,7 @@ network={
 [![duet_3_mb6xd_getting_connected_sbc.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_getting_connected_sbc.jpg =50%x){.align-right}](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_getting_connected_sbc.jpg){target=_blank}
 1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, and connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
 1. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
-1. Ensure the USB supply is sufficient to power the peripherals attached to the Pi, especially screens that do not have a separate power supply. [See here for more details on 5v power jumper position selection](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview#h-5v). 
+1. Ensure the USB supply is sufficient to power the peripherals attached to the Pi, especially screens that do not have a separate power supply. [See here for more details on 5v power jumper position selection](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview#h-5v){target=_blank}. 
 1. Using a Pi4 may require a separate power supply for both the Duet and Pi4 due to power draw. The same holds true if using peripherals that draw power via USB.
 
 <p style="clear:both"></p>
@@ -130,9 +142,9 @@ network={
 
 1. If you have a screen attached when power is applied you will see the SBC boot up. Once bootup is complete the Chromiun browser will launch DuetWebControl in full screen. press F11 if you want to exit fullscreen.
 
-1. If you are connecting over the network then go to [`http://duet3.local/`](http://duet3.local/) *note the SBC takes about 1 minute to boot for the first time and about 30 seconds subsequently.*
+1. If you are connecting over the network then go to [`http://duet3.local/`](http://duet3.local/){target=_blank} *note the SBC takes about 1 minute to boot for the first time and about 30 seconds subsequently.*
 
-If [`http://duet3.local/`](http://duet3.local/) does not show Duet Web Control (DWC) then follow these trouble shooting steps:
+If [`http://duet3.local/`](http://duet3.local/){target=_blank} does not show Duet Web Control (DWC) then follow these trouble shooting steps:
 
 ## Troubleshooting
 
@@ -153,17 +165,17 @@ If [`http://duet3.local/`](http://duet3.local/) does not show Duet Web Control (
 
 * You may have mis-configured the wpa_supplicant.conf. If possible plug the SBC into your router using an Ethernet cable temporarily to reconfigure Wifi. If that is not possible then try adding the wpa_supplicant.conf file to the "boot" partition of the SD card again.
 * If neither work then try temporarily connecting a screen and keyboard to the SBC to see whats going on.
-* If you are using a screen and keyboard temporarily, then follow [this guide to get wifi  running](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md).
-* If you are using Ethernet temporarily then follow Step 5 - Accessing the SBC through SSH/VNC, below to get command line/VNC access to your SBC, then you can [follow this guide to get wifi running](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md).
+* If you are using a screen and keyboard temporarily, then follow [this guide to get wifi  running](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md){target=_blank}.
+* If you are using Ethernet temporarily then follow Step 5 - Accessing the SBC through SSH/VNC, below to get command line/VNC access to your SBC, then you can [follow this guide to get wifi running](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md){target=_blank}.
 
 ### DWC does not appear correctly (500 error)
 
-![sbc_setup_05.png](/manual/configuration/sbc_setup_05.png =50%x){.align-right}If you get a "HTTP ERROR 500 - This page is not working" response either when going to [`http://duet3.local/`](http://duet3.local/) or to the IP address, then the SBC is on the network, but Duet Software Framework (the Duet3 software that runs on the SBC) is not operating correctly.
+![sbc_setup_05.png](/manual/configuration/sbc_setup_05.png =50%x){.align-right}If you get a "HTTP ERROR 500 - This page is not working" response either when going to [`http://duet3.local/`](http://duet3.local/){target=_blank} or to the IP address, then the SBC is on the network, but Duet Software Framework (the Duet3 software that runs on the SBC) is not operating correctly.
 
 * The most likely cause of this is that it cannot connect to the Duet 3 Mainboard. 
 * Check the ribbon cable is installed correctly.
-* Check that the mainboard has firmware installed (follow the "Updating Duet 3 mainboard firmware via USB" part of [this documentation](/User_manual/Overview/Getting_started_Duet_3_MB6HC)).
-* If none of these steps work see the [Troubleshooting - SBC communications](https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide#troubleshooting) documentation.
+* Check that the mainboard has firmware installed (follow the "Updating Duet 3 mainboard firmware via USB" part of [this documentation](/User_manual/Overview/Getting_started_Duet_3_MB6HC){target=_blank}).
+* If none of these steps work see the [Troubleshooting - SBC communications](https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide#troubleshooting){target=_blank} documentation.
 
 ### Gcode commands not being accepted
 
@@ -191,14 +203,14 @@ DuetPi (with GUI) does not have SSH enabled by default, but you can enable it by
 
 Under **Windows** the easiest way is via “Putty”:
 
-* Download & Install [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+* Download & Install [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html){target=_blank}.
 * Enter duet3.local or your SBC IP address and select ssh. 
 ![sbc_setup_07.png](/manual/configuration/sbc_setup_07.png)
 
 * Agree to the security alert - it is Putty Saying it has never connected to this SSH server before.
 * Login with username “pi” and password “raspberry”
 
-Under **macOS and Linux** the "ssh" program is accessible from the command line. [macOS guide here.](http://osxdaily.com/2017/04/28/howto-ssh-client-mac/)
+Under **macOS and Linux** the "ssh" program is accessible from the command line. [macOS guide here.](http://osxdaily.com/2017/04/28/howto-ssh-client-mac/){target=_blank}
 
 * open a Terminal window and send the following ssh command:
   `ssh pi@duet3.local`
@@ -227,13 +239,13 @@ If you prefer a desktop environment to a command line then you can use the realV
   * Choose advanced options -> resolution and select the resolution you would like to use (you may find better performance using a medium resolution, not the highest)
   * Save and reboot when prompted
 
-* Install the [realVNC client](https://www.realvnc.com/en/connect/download/viewer/) on the machine you want to use to connect. You can use the free version non commercially.
+* Install the [realVNC client](https://www.realvnc.com/en/connect/download/viewer/){target=_blank} on the machine you want to use to connect. You can use the free version non commercially.
 
 * Once installed open the realVNC client, go to "file" -> "new connection" and use duet3.local or the IP address of your SBC to connect. the username and password are the same as for ssh.
 
 # 6. Useful commands
 
-For a full list of SBC-related commands, see this page in the [DSF Github repository](https://github.com/Duet3D/DuetSoftwareFramework/tree/master/src/DuetPiManagementPlugin).
+For a full list of SBC-related commands, see this page in the [DSF Github repository](https://github.com/Duet3D/DuetSoftwareFramework/tree/master/src/DuetPiManagementPlugin){target=_blank}.
 
 ## Shutdown or Reboot SBC
 
@@ -257,22 +269,22 @@ sudo apt dist-upgrade
 
 This will install the latest software components and the latest RepRapFirmware version on your Duet 3. You can do this regularly to update the system as new firmware is released.
 
-To switch between stable/release package feed and unstable/beta package feed, see [DSF installation](https://docs.duet3d.com/User_manual/Machine_configuration/DSF_RPi#software-installation).
+To switch between stable/release package feed and unstable/beta package feed, see [DSF installation](https://docs.duet3d.com/User_manual/Machine_configuration/DSF_RPi#software-installation){target=_blank}.
 
 # 7. Configuring system files
 
-By this step you should have Duet Web Control showing when you go to [`http://duet3.local/`](http://duet3.local/) or the IP address of your SBC.
+By this step you should have Duet Web Control showing when you go to [`http://duet3.local/`](http://duet3.local/){target=_blank} or the IP address of your SBC.
 
 ![sbc_setup_06.png](/manual/configuration/sbc_setup_06.png =800x)
 
 The default SD card image does not come with the system files configured for your printer - there are many different types of machines that are supported  so **you need to generate a config.g, homing files, and other system macro files that are required**.
 
-The online [RepRapFirmware configuration tool](https://configtool.reprapfirmware.org/) has been updated to support the generation of config files for RRF3. Though you may still need to manually implement some of the more advanced features. 
+The online [RepRapFirmware configuration tool](https://configtool.reprapfirmware.org/){target=_blank} has been updated to support the generation of config files for RRF3. Though you may still need to manually implement some of the more advanced features. 
 
 * If you have a set of files for your printer for Duet 2 use those as the start point for the values used in the config tool.
 * If you do not have a set of Duet 2 config files then use the config tool to generate a set with everything as closely matched to your printer as possible, and then carefully commision the printer to verify proper operation.
 
-The changes required to create a set of Duet 3 config files is outside the scope of this guide. Please see the [Migrating from RRF2 to RRF3](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3) guide for a list of the gcodes that need changing to get a config.g setup for duet 3.
+The changes required to create a set of Duet 3 config files is outside the scope of this guide. Please see the [Migrating from RRF2 to RRF3](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3){target=_blank} guide for a list of the gcodes that need changing to get a config.g setup for duet 3.
 
 Once you have a set of system files they can be uploaded via the "system" tab in DWC.
 
@@ -288,7 +300,7 @@ The name of the printer is its hostname on the network, you will need to connect
 `sudo raspi-config`
 
 * Select “System Options” -> Hostname-> “OK”-> and set the new printername/hostname.
-* Note the hostname must confirm to [certain limitations to](http://man7.org/linux/man-pages/man7/hostname.7.html) be valid.
+* Note the hostname must confirm to [certain limitations](http://man7.org/linux/man-pages/man7/hostname.7.html){target=_blank} to be valid.
   * Valid characters for hostnames are letters from a to z,
   * the digits from 0 to 9, 
   * the hyphen (-).
