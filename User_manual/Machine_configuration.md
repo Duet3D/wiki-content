@@ -2,7 +2,7 @@
 title: User manual: Machine configuration
 description: 
 published: true
-date: 2022-05-09T13:23:57.747Z
+date: 2024-01-15T16:13:49.893Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:58:06.577Z
@@ -36,7 +36,7 @@ Configuration (General Cartesian) -->
 [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup)
 [Duet Software Framework (DSF) on Raspberry Pi](/User_manual/Machine_configuration/DSF_RPi) - using DuetPi image from Duet3D
 [Duet Software Framework (DSF) on other boards](/User_manual/Machine_configuration/DSF_Other) - installing DSF on Raspberry Pi OS or a custom Debian board/installation
-
+[SBC update from Buster to Bookworm](/How_to_guides/SBC_Buster_to_Bookworm)
 
 # CAN Expansion
 
