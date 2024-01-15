@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-01-12T15:03:35.752Z
+date: 2024-01-15T15:09:45.986Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -231,7 +231,22 @@ If you prefer a desktop environment to a command line then you can use the realV
 
 * Once installed open the realVNC client, go to "file" -> "new connection" and use duet3.local or the IP address of your SBC to connect. the username and password are the same as for ssh.
 
-# 6. Update firmware
+# 6. Useful commands
+
+For a full list of SBC-related commands, see this page in the [DSF Github repository](https://github.com/Duet3D/DuetSoftwareFramework/tree/master/src/DuetPiManagementPlugin).
+
+## Shutdown or Reboot SBC
+
+Rather than just yanking the power cord from the SBC, from RRF 3.4, you can command a 'graceful' shutdown or reboot of the SBC from DWC, by sending:
+```
+M999 B-1 P"OFF" ; Shut down SBC
+M999 B-1 ; Reboot SBC
+```
+Or connect via SSH, or open a terminal, and send `shutdown -h now` to shutdown, or `shutdown -r now` to reboot.
+
+If you have a keyboard and monitor connected to your SBC, or connect via VNC, you can simply use the Operating system shutdown and reboot menu option.
+
+## Update firmware
 
 Once your Raspberry Pi has established an internet connection, it is recommended to install the latest updates. To do so, connect via SSH or VNC (see above) to your Raspberry Pi or open a terminal (if you have keyboard and monitor connected) and run:
 
