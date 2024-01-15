@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-01-14T17:49:03.851Z
+date: 2024-01-15T14:11:23.081Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3153,7 +3153,7 @@ The values specified will be subtracted from the coordinates given in G0, G1 and
 ### Parameters
 
 * **Pn** Tool number (optional, supported in RRF 3.01 and later only)
-* **Snnn** positive length to retract, in mm
+* **Snnn** positive length to retract and un-retract, in mm
 * **Rnnn** positive or negative additional length to un-retract, in mm, default zero
 * **Fnnn** retraction feedrate, in mm/min
 * **Tnnn** feedrate for un-retraction if different from retraction, mm/min (RepRapFirmware 1.16 and later only)
@@ -6730,11 +6730,13 @@ The purpose of input shaping is to reduce ringing (also called ghosting).
 ##### Parameters
 
 * **P"type"** Type of input shaping to use, not case sensitive. 
-RRF 3.4 supports "none", "zvd", "zvdd", "zvddd", "mzv", "ei2", "ei3" and "custom".
-RRF 3.3 supports "none" or "daa", and if no P parameter is given but the F parameter is given then "daa" is assumed, for compatibility with previous releases. 
+  RRF 3.4 supports "none", "zvd", "zvdd", "zvddd", "mzv", "ei2", "ei3" and "custom".
+  RRF 3.3 supports "none" or "daa", and if no P parameter is given but the F parameter is given then "daa" is assumed, for compatibility with previous releases. 
 * **Fnnn** Frequency of ringing to cancel in Hz
 * **Snnn** (optional) Damping factor of ringing to be cancelled, default 0.1.
-* **Lnnn** (optional) Minimum acceleration allowed, default 10mm/sec^2. Input shaping will not be applied if it requires the average acceleration to be reduced below this value.
+* **Lnnn** (optional) 
+	RRF 3.5.0-rc.1 and earlier: Minimum acceleration allowed, default 10mm/sec^2. Input shaping will not be applied if it requires the average acceleration to be reduced below this value.
+  RRF 3.5.0-rc.2 and later: Minimum fraction of the original acceleration or feed rate to which the acceleration or feed rate may be reduced in order to apply input shaping. The default is 0.25 and the acceptable range is 0.01 to 1.0.
 * **Hnn:nn...** Amplitudes of each impulse except the last, normally below 1.0. Only used with P"custom" parameter.
 * **Tnn:nn** Durations of each impulse except the last. Only used with P"custom" parameter.
 
@@ -6754,6 +6756,11 @@ M593 P"custom" H0.4:0.7 T0.0135:0.0135 ; use custom input shaping
 M593 P"daa" F40.5 ; use DAA to cancel ringing at 40.5Hz
 M593 P"none"      ; disable DAA
 </pre>
+
+
+##### Notes
+
+The L parameter has changed in RRF 3.5.0-rc.2 and is now the minimum fraction of the original acceleration or feed rate to which the acceleration or feed rate may be reduced in order to apply input shaping. For example, if the commanded feedrate is F1000, L0.25 would allow the feedrate to reduce to F250, while L0.75 would only allow it to reduce to F750. So the ***least*** amount of reduction of acceleration or feed rate is from the ***highest*** L value.
 
 ##### Information about the Input Shapers
 
