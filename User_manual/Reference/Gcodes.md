@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-01-15T14:11:23.081Z
+date: 2024-01-15T15:16:45.771Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3921,13 +3921,10 @@ Supported in RepRapFirmware v3.4 and later
 
 ### Notes
 
-If the P parameter is not provided, the current tool is assumed. If the S parameter is not provided, the existing coefficients are reported.
-
-The units of S are PWM fraction (on a scale of 0 to 1) per mm/sec of filament forward movement.
-
-### Calibration
-
-Heat the nozzle and let the temperature stabilise. Then commence extrusion at a fast rate (as fast as the extruder can reasonable manage without skipping) and watch the temperature. If there is an initial drop, then increase the feedforward. What you are looking for is either the temperature remaining steady, or rising by a small amount followed by a drop below target of a similar amount. When extrusion stops the reverse will happen, i.e. with no feedforward the temperature will rise and then gradually return to target.
+* If the P parameter is not provided, the current tool is assumed. If the S parameter is not provided, the existing coefficients are reported.
+* The units of S are PWM fraction (on a scale of 0 to 1) per mm/sec of filament forward movement.
+* This feature is intended for high flow hot ends or pellet extruders. It's not needed on regular hot ends with a 0.4mm or similar size nozzle where the temperature drop caused by extrusion is less than 1C.
+* For calibration and examples, see the [heater feedforward](/User_manual/Connecting_hardware/Heaters_tuning#heater-feedforward) section of the 'Tuning the heater temperature control' wiki page.
 
 ## M350: Set microstepping mode
 
