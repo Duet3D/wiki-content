@@ -2,7 +2,7 @@
 title: Updating SBC from Buster to Bookworm
 description: Guide to update a Single Board Computer (SBC) running Duet Software Framework from Buster to Bookworm
 published: true
-date: 2024-01-15T16:11:48.467Z
+date: 2024-01-15T16:12:20.231Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T16:11:48.467Z
@@ -10,7 +10,7 @@ dateCreated: 2024-01-15T16:11:48.467Z
 
 # Introduction
 
-Bookworm is the latest version of the Raspberry Pi Operating System, based on Debian. For an overview, see the [Raspberry Pi ne](https://www.raspberrypi.com/news/bookworm-the-new-version-of-raspberry-pi-os/)
+Bookworm is the latest version of the Raspberry Pi Operating System, based on Debian. For an overview, see the [Raspberry Pi news article](https://www.raspberrypi.com/news/bookworm-the-new-version-of-raspberry-pi-os/) on it.
 
 
 # Updating to Bookworm
