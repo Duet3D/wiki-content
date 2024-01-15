@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-01-15T15:42:42.623Z
+date: 2024-01-15T15:45:41.060Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -24,11 +24,13 @@ SBC mode allows part of the functionality to be handled by the SBC. This offers 
 - Optional webcam integration
 - Optional HTTPS support
 
-# Tabs {.tabset}
-
 This guide assumes you are using a Raspberry Pi and the SD card image specifically set up for Duet 3 in SBC mode. In the future other SBCs may be officially supported. 
 
 If you want to install DSF on an existing Raspberry Pi OS installation, or on a custom Debian board/installation, please see this page: [Duet Software Framework (DSF) on other boards](/User_manual/Machine_configuration/DSF_Other){target=_blank}
+
+<p style="clear:both"></p>
+
+# Tabs {.tabset}
 
 ## RepRapFirmware 3.5
 
