@@ -2,7 +2,7 @@
 title: Community Projects
 description: Hardware and software projects started by community members to extend the Duet ecosystem. 
 published: true
-date: 2023-12-06T13:57:40.313Z
+date: 2024-01-16T12:39:12.910Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:54:58.958Z
@@ -23,6 +23,7 @@ Below are a number of repositories for example machine configurations. These are
 * [pfn's Voron 2.4 config](https://github.com/pfn/voron2-rrf-config)
 * [jay_s_uk's Voron 0.2 config](https://github.com/jaysuk/jays_voron_0.2) Triple boot (Klipper, Marlin, RRF) Voron configuration files.
 * [OwenD's macro library](https://github.com/owendare/RepRapFirmware-Macros) A large collection of macros and conditional g-code examples.
+* [CNC configs and macros](https://forum.duet3d.com/topic/19388/repository-for-cnc-config-s-and-macro-s) Forum sticky post with user CNC configs and useful macros.
 
 # Hardware Projects
 
