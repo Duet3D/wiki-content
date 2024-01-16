@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-01-06T11:46:55.475Z
+date: 2024-01-16T17:27:00.333Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -90,11 +90,18 @@ The bottom of the SZP coil should be around 1 to 2mm above the tip of the nozzle
 Here is an example with it mounted on a Mini Stealth Burner tool on a Voron:
 ![tridex_mount4.jpg](/duet_boards/duet_3_can_expansion/duet_3_szp/tridex_mount4.jpg =400x)
 
+Note: this board is a v0.1 development board; CAN_L and CAN_H are swapped on the silkscreen.
+
 # Physical connections
 
 ## Wiring diagram
 
-*To follow*
+Wiring on v1.0 board is:
+GND - 5V - CAN_L - CAN_H
+
+![szp_wiring_01.jpg](/duet_boards/duet_3_can_expansion/duet_3_szp/szp_wiring_01.jpg =400x)
+
+*Wiring diagram to follow*
 
 <!---
 ## Wiring notes
