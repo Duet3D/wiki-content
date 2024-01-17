@@ -1,14 +1,14 @@
 ---
 title: Connecting an accelerometer
-description: This is a description of the experimental accelerometer support in RRF 3.3 and later.
+description: This is a description of the accelerometer support in RRF 3.3 and later.
 published: true
-date: 2023-06-22T01:13:01.667Z
+date: 2024-01-17T17:29:59.526Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
 ---
 
-![accelerometer_03.jpg](/manual/sensors/accelerometer_03.jpg =800x)
+![profile1.png](/manual/inputshaping/profile1.png =800x)
 # Introduction
 
 RepRapFirmware 3.3 and later include support for connecting accelerometers. The primary purpose is to identify the ringing frequencies of the mechanics so that DAA and in future other forms of input shaping can be used to reducing ringing.
@@ -23,13 +23,19 @@ Duet 3 mainboards also support CAN-bus connected boards with either built-in or 
 
 ## Supported accelerometers
 
-RRF 3.3 and 3.4beta1 support one type of accelerometer, the LIS3DH. We chose this chip because of its low cost and because it provides a mechanism to read all the data stored in its FIFO in a single block command.
+**RRF 3.3** supports one type of accelerometer, the LIS3DH. We chose this chip because of its low cost and because it provides a mechanism to read all the data stored in its FIFO in a single block command.
 
-RRF 3.4beta2 and later support the LIS3DH and the LIS3DSH (note the extra S). Connection via SPI and configuration are exactly the same as for the LIS3DH. Compared to the LIS3DH, the LIS3DSH has higher resolution, more convenient sampling rates, and produces a cleaner signal.
+**RRF 3.4beta2** added support for the LIS3DSH (note the extra S). Connection via SPI and configuration are exactly the same as for the LIS3DH. Compared to the LIS3DH, the LIS3DSH has higher resolution, more convenient sampling rates, and produces a cleaner signal.
 
-Breakout boards using the LIS3DH or LIS3DSH are readily available from eBay, Amazon and other retailers such as [SparkFun](https://www.sparkfun.com/){target=_blank}, [Adafruit](https://www.adafruit.com/){target=_blank}, [Digikey](https://www.digikey.com/) [The Pi Hut (UK)](https://thepihut.com/){target=_blank}, [HobbyTronics (UK)](https://www.hobbytronics.co.uk/){target=_blank} and [Pimoroni (UK)](https://shop.pimoroni.com/){target=_blank}. The Adafruit and SparkFun boards are also available from Digikey. There are two different versions of the Adafruit LIS3DH board; either can be used.
+**RRF 3.5.0-rc.2** added support for the LIS2DW. Connection via SPI and configuration are exactly the same as for the LIS3DH/LIS3DSH. 
 
-Accelerometer boards using the LIS3DSH are readily available via eBay, Amazon and other retailers.
+Duet3D have a number of boards with a built-in accelerometer:
+* [Duet3D Accelerometer](https://docs.duet3d.com/Duet3D_hardware/Accessories/Duet3D_Accelerometer){target=_blank}, using the LIS3DH, designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards.
+* [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) (v1.1 and later) Duet 3 CAN-FD toolboard with LIS3DH accelerometer.
+* [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) Duet 3 CAN-FD toolboard with LIS2DW accelerometer.
+* [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe) Duet 3 CAN-FD scanning Z probe board with LIS2DW accelerometer.
+
+Accelerometer boards using the LIS3DH / LIS3DSH / LIS2DW are available from eBay, Amazon and other retailers such as [SparkFun](https://www.sparkfun.com/){target=_blank}, [Adafruit](https://www.adafruit.com/){target=_blank}, [Digikey](https://www.digikey.com/) [The Pi Hut (UK)](https://thepihut.com/){target=_blank}, [HobbyTronics (UK)](https://www.hobbytronics.co.uk/){target=_blank} and [Pimoroni (UK)](https://shop.pimoroni.com/){target=_blank}. The Adafruit and SparkFun boards are also available from Digikey. There are two different versions of the Adafruit LIS3DH board; either can be used.
 
 # Limitations
 
@@ -38,75 +44,104 @@ Accelerometer boards using the LIS3DSH are readily available via eBay, Amazon an
 
 # Wiring
   
-## Tabs {.tabset}
+# Tabs {.tabset}
 
-### Direct SPI connection to a Duet mainboard
+## Direct SPI connection to a Duet mainboard
 
-To use a direct connection, connect the accelerometer SDA (also called MOSI), SDO (also called MISO), SCL and GND pins to the corresponding pins on the SPI/temperature daughterboard connector. You can also pick up +3.3V on the daughterboard connector to feed to the VCC pin of the accelerometer.
+To use a direct connection, connect the accelerometer SDA (also called MOSI), SDO (also called MISO), SCL and GND pins to the corresponding pins on the SPI/temperature daughterboard (TEMP_DB) connector. You can also pick up +3.3V on the daughterboard connector to feed to the VCC pin of the accelerometer.
 
-Two further signals must be connected on the accelerometer breakout board: CS and INT1. The INT1 pin must be connected to a Duet pin with interrupt capability. **The CS pin should be separated from other signal wires if possible because it is sensitive to interference, especially when using a Duet 3 Mini or Duet 3 MB6HC** (see note below).
+Two further signals must be connected on the accelerometer breakout board: CS and INT1. The INT1 pin must be connected to a Duet pin with interrupt capability. **The CS pin should be separated from other signal wires if possible because it is sensitive to interference, especially when using a Duet 3 Mini or Duet 3 MB6HC** (see note in 'Wiring recommendations').
+
+
+### Wiring schemes
+
+There are two basic wiring schemes:
+* All wires connect to the temperature daughterboard connector (supported by all Duet mainboards)
+* CS and INT1 wires are connected to IO_n.out and IO_n.in of any IO connector, all other wires connect to the TEMP_DB connector.<br>This is supported by all Duet 3 mainboards, useful if there are signalling problems, or if you have the maximum number of temperature daughterboards and want to have the accelerometer permanently connected.
 
 ![accelerometer_01.jpg](/manual/sensors/accelerometer_01.jpg =x400){target=_blank} ![accelerometer_02.jpg](/manual/sensors/accelerometer_02.jpg =x400){target=_blank}
 
-The photo on the left shows a sample cable that connects the Adafruit LIS3DH board to the temperature daughterboard connector on a Duet 2 WiFi, Ethernet, Maestro or Duet 3 MB6HC if no temperature daughterboards are in use. The photo on the right shows a sample cable that connects a LIS3DH or LIS3DSH board to a Duet 3 Mini 5+ or Duet 3 MB6HC. This wiring scheme has been designed to keep the wire carrying CS away from the other signal wires. 
+**Note: the pictures above show an alternative wiring scheme, using pin 7 for INT1 and pin 9 for CS on the TEMP_DB connector. We now recommend using pin 1 for CS and pin 3 for INT1 on the TEMP_DB connector.**
 
-Both cables are wired as follows:
+The photo on the left shows a sample cable that connects the Adafruit LIS3DH board to the temperature daughterboard connector on a Duet 3 MB6HC/6XD, Duet 3 Mini 5+ (>RRF 3.4.5), Duet 2 WiFi/Ethernet/Duex/Maestro. 
 
-| Wire# | Accelerometer signal | Duet signal |
+The photo on the right shows a sample cable that connects a LIS3DH or LIS3DSH board to a Duet 3 Mini 5+, Duet 3 MB6HC or Duet 3 MB6XD. This wiring scheme has been designed to keep the wire carrying CS away from the other signals.
+
+We recommend cables are wired as follows to the TEMP_DB and/or IO connector:
+
+| Wire# | Accelerometer signal | Duet 3 MB6HC | Mini 5+ (>RRF 3.4.5), Duet 3 MB6XD,<br>Duet 2 WiFi/Ethernet/Duex/Maestro | Duet 3 Mini 5+ (<=RRF 3.4.5),<br>MB6HC, MB6XD |
 |:---|:---|
-| 1 | not connected | not connected |
-| 2 | GND | GND |
-| 3 | not connected | not connected |
-| 4 | SCL | SPI_SCK |
-| 5 | SDA | SPI_MOSI |
-| 6 | SDO | SPI_MISO |
-| 7 | INT1 | IO_3.IN (Duet 3 Mini)|
-| ^^ | ^^ | SPI.CS2 (MB6HC)|
-| ^^ | ^^ | SPI.CS3 (Duet 2, MB6XD)|
-| ^^ | ^^ | TWCK0 (Maestro)|
-| 8 | 3V3 or VCC | +3V3 |
-| 9 | CS | IO_3.OUT (Duet 3 Mini) |
-| ^^ | ^^ | SPI.CS3 (MB6HC)|
-| ^^ | ^^ | SPI.CS4 (Duet 2, MB6XD)|
-| ^^ | ^^ | TWD0 (Maestro)|
-| 10 | not connected | not connected |
+| 1 | CS | SPI.CS1 | SPI.CS2 | IO_n.OUT |
+| 2 | GND | GND |||
+| 3 | INT1 | SPI.CS0 | SPI.CS1 | IO_n.IN |
+| 4 | SCL | SPI_SCK |||
+| 5 | SDA | SPI_MOSI |||
+| 6 | SDO | SPI_MISO |||
+| 7 | not connected | not connected |||
+| 8 | 3V3 or VCC | +3V3 |||
+| 9 | not connected | not connected |||
+| 10 | not connected | not connected |||
 
-#### Tabs {.tabset}
+### Temperature daughterboards
 
-##### Duet 3 MB6HC and 6XD
+If you have no temperature daughterboards, you can plug the accelerometer directly into the TEMP_DB socket, and configure it in config.g. You can leave it permanently connected if you wish. 
 
-On **Duet 3 MB6HC** and **Duet 3 MBXD** you can use either of the wiring schemes, ie connect all wires to the temperature daughterboard connector, or connect CS and INT1 to IO_n.out and IO_n.in. 
+If you have at least one temperature daughterboard connected, note that the accelerometer uses the same pins for communication that are used for the temperature daughterboards. Because of this, you may not be able to have both running at the same time. We generally recommend removing the temperature daughterboards, configuring the accelerometer using the pin names, running the accelerometer as required, then replace the temperature daughterboards and reconfigure when complete. 
 
-##### Duet 3 Mini 5+
+However, if you want to have your accelerometer permanently connected along with your temperature daughterboards, there are a number of things you can do: 
+* If your Duet mainboard supports more than one temperature daughterboard (Duet 3 MB6HC/6XD, Duet 2 WiFi/Ethernet/Duex/Maestro), and you have one temperature daughterboards installed, you can connect the accelerometer to the top of the temperature daughterboard. The first temperature daughterboard passes pin 7 and pin 9 (SPI.CS3 and SPI.CS4 on Duet 3 6XD and Duet 2, SPI.CS2 and SPI.CS3 on Duet 3 6HC) to the pin positions directly above pin 1 and pin 3. This is so that a second daughter board stacked on top automatically uses these alternative SPI.CS pins. The accelerometer will also use these alternative CS pins; see below for specific assignments.
+* If you have a Duet 3 mainboard, and have the maximum number of temperature daughterboards (1 for Mini 5+, 2 for 6HC and 6XD), you can connect the accelerometer on top of the temperature daughterboards and leave it there permanently, so long as you use the wiring scheme that routes CS and INT1 to an IO connector.
 
-On **Duet 3 Mini 5+** only the IO_n.IN pins have interrupt capability, so choose one of the IO_n ports with both input and output connections, for example IO_3. Connect the accelerometer CS pin to IO_3.OUT and the accelerometer INT1 pin to IO_3.IN.
+### Wiring recommendations
 
-##### Duet 2 WiFi and Ethernet
+* TO DO: Wire length/quality recommendations here. 
+* Some users on the forum have suggested using USB3 cable for longer runs. For a guide to wiring USB3 cables, see [the Team Gloomy guide here](https://teamgloomy.github.io/fly_e3_pro_v3_accelerometer.html){target=_blank}.
 
-On **Duet 2 WiFi and Ethernet** all the SPI CS pins have interrupt capability, so you can use any two spare CS pins on the temperature daughterboard connector.  For example, on a Duet 2 WiFi or Ethernet you could connect the accelerometer CS pin to SPI.CS4, and the INT1 pin to SPI.CS3. 
+**Note:** some users have found it difficult to get SPI-connected accelerometers to work with the Duet 3 Mini 5+. We have found that one reason for this is that transitions on SDO are capacitively coupled into CS in the cable, especially if these signals use adjacent conductors. This causes a glitch on CS of a few nanoseconds, which is sufficient to cause the accelerometer to stop transmitting. This is why we recommend that you keep the CS signal away from other signal wires. Where this has not been done and the CS wire runs next to the SDO wire, a resistor with value between 100 ohms and 1K in series with SDO at the accelerometer end of the cable has solved the problem for some users.
 
-**Note:** if you already have one temperature daughterboard plugged into the main board and you wish to connect to SPI.CS4 and SPI.CS3 on the top of that daughter board, the daughter board passes SPI.CS4 and SPI.CS3 to the pin positions directly above the SPI.CS2 and SPI.CS1 pins on the main board. This is so that a second daughter board stacked on top automatically uses SPI.CS4 and SPI.CS3 instead of SPI.CS2 and SPI.CS1.
+### Wiring notes for each board
 
-##### Duet 2 Maestro
+### Tabs {.tabset}
 
-On the **Duet 2 Maestro** use the same connections as for Duet 2 WiFi/Ethernet except that pins spi.cs4 and spi.cs3 on the daughter board connector are replaced by twd0 and twck0. 
+#### Duet 3 MB6HC
 
-#### Wiring recommendations
+On **Duet 3 MB6HC** you can use either of the wiring schemes, i.e. connect all wires to the temperature daughterboard connector, or connect CS and INT1 to IO_n.out and IO_n.in. 
 
-TO DO: Wire length/quality recommendations here. Some users on the forum have suggested using USB3 cable for longer runs.
+Using the wiring scheme that connects all wires to the TEMP_DB connector, the CS pin connects to SPI.CS1 and the INT1 pin to SPI.CS0. If you stack this on top of a temperature daughterboard, the CS pin connects to SPI.CS3, and the INT1 pin to SPI.CS2. You can stack the connector on top of two temperature daughterboards, but only if you connect CS and INT1 to IO_n.out and IO_n.in. 
 
-**Note:** some users have found it difficult to get SPI-connected accelerometers to work with the Duet 3 Mini. We have found that one reason for this is that transitions on SDO are capacitively coupled into CS in the cable, especially if these signals use adjacent conductors. This causes a glitch on CS of a few nanoseconds, which is sufficient to cause the accelerometer to stop transmitting. This is why we recommend that you keep th CS signal away from other signal wires. Where this has not been done and the CS wire runs next to the SDO wire, a resistor with value between 100 ohms and 1K in series with SDO at the accelerometer end of the cable has solved the problem for some users.
+#### Duet 3 MB6XD
 
+On **Duet 3 MBXD** you can use either of the wiring schemes, i.e. connect all wires to the temperature daughterboard connector, or connect CS and INT1 to IO_n.out and IO_n.in. 
 
-### Duet 3 CAN-bus connected boards
+Using the wiring scheme that connects all wires to the TEMP_DB connector, the CS pin connects to SPI.CS2 and the INT1 pin to SPI.CS1. If you stack this on top of a temperature daughterboard, the CS pin connects to SPI.CS4, and the INT1 pin to SPI.CS3. You can stack the connector on top of two temperature daughterboards, but only if you connect CS and INT1 to IO_n.out and IO_n.in.
 
-#### Tabs {.tabset}
+#### Duet 3 Mini 5+
 
-##### Duet 3 Toolboard 1LC v1.1
+On **Duet 3 Mini 5+** running RRF 3.5/3.4.6 and later, you can use either of the wiring schemes, i.e. connect all wires to the temperature daughterboard connector, or connect CS and INT1 to IO_n.out and IO_n.in. Using the wiring scheme that connects all wires to the TEMP_DB connector, the CS pin connects to SPI.CS2 and the INT1 pin to SPI.CS1. You can't stack the connector on top of a temperature daughterboard, unless you connect CS and INT1 to IO_n.out and IO_n.in.
 
-The accelerometer is built-in to the Toolboard, so no wiring (beyond connecting the Toolboard to the Duet 3 mainboard via Can bus) is necessary. Check that the accelerometer is recognised by sending `M122 B[board_CAN_address]` (eg `M122 B121`) and look for a line that reads "Accelerometer detected: yes, status: 00". 
+In RRF 3.4 and earlier, only the IO_n.IN pins have interrupt capability, so choose one of the IO_n ports with both input and output connections. For example, using IO_3, connect the accelerometer CS pin to IO_3.OUT and the accelerometer INT1 pin to IO_3.IN.
 
-##### Sammy-C21
+#### Duet 2 WiFi/Ethernet and Duex
+
+On **Duet 2 WiFi/Ethernet** all the SPI CS pins have interrupt capability. Using the wiring scheme that connects all wires to the TEMP_DB connector, the CS pin connects to SPI.CS2 and the INT1 pin to SPI.CS1. If you stack this on top of a temperature daughterboard, the CS pin connects to SPI.CS4, and the INT1 pin to SPI.CS3. You can't stack the accelerometer cable on top of two temperature daughterboards.
+
+On **Duet 2 Duex** all the SPI CS pins have interrupt capability. Using the wiring scheme that connects all wires to the TEMP_DB connector, the CS pin connects to SPI.CS6 and the INT1 pin to SPI.CS5. If you stack this on top of a temperature daughterboard, the CS pin connects to SPI.CS8, and the INT1 pin to SPI.CS7. You can't stack the accelerometer cable on top of two temperature daughterboards.
+
+#### Duet 2 Maestro
+
+On the **Duet 2 Maestro** all the SPI CS pins have interrupt capability. Using the recommended wiring scheme connects the CS pin to SPI.CS2 and the INT1 pin to SPI.CS1. If you stack this on top of temperature daughterboard, the CS pin connects to twd0, and the INT1 pin to twck0. You can't stack the accelerometer cable on top of two temperature daughterboards.
+
+## Duet 3 CAN-bus connected boards
+
+### Tabs {.tabset}
+
+#### Duet 3 Toolboards
+
+A number of Duet 3 toolboards have the accelerometer built-in; see list in 'Supported accelerometers' at the top of this page. These are all CAN-FD connected, so no wiring (beyond connecting the Toolboard to the Duet 3 mainboard via CAN bus) is necessary. Check that the accelerometer is recognised by sending `M122 B[board_CAN_address]` (eg `M122 B121`) and look for a line that reads "Accelerometer detected: yes, status: 00". 
+
+Duet 3 Toolboard 1LC v1.0 and earlier do not have a built-in accelerometer.
+
+#### Sammy-C21
 
 Version 3.3beta3 of the sample Sammy-C21 firmware is configured to support a LIS3DH connected via I2C at address 0x18. You need to supply 3.3V power and ground to the LIS3DH, which you can obtain from the Sammy-C21 if you have not converted it to 5V operation. The SDA and SCL pins of the accelerometer must be connected to pins PA22 and PA23 of the Sammy-C21 respectively. The INT1 accelerometer pin must be connected to PA13.
 
@@ -118,47 +153,58 @@ Use command [M955](/User_manual/Reference/Gcodes/M955) to create an acceleromete
 
 To check current settings, send `M955 P[n]`, where [n] is the device-number. For an accelerometer connected locally via SPI, this will be P0. For an accelerometer on a CAN-connected board, use the form P[board-address.device-number], for example P121.0.
 
-
 When connecting using SPI,  C parameter of M955 is used in the following manner:
 
 `C"aaa+bbb" Pins to use for CS and INT (in that order) when connecting the accelerometer via SPI`
 
 ## Tabs {.tabset}
 
+### Duet 3 MB6HC
 
+Depending on how you have wired it, use one of the following commands to tell RRF about the accelerometer:
 
+`M955 P0 C"spi.cs1+spi.cs0" ; all wires connected to temp DB connector, no temperature daughterboard`
+`M955 P0 C"spi.cs3+spi.cs2" ; all wires connected to temp DB connector, stacked on temperature daughterboard`
+`M955 P0 C"io3.out+io3.in"  ; CS and INT1 connected to IO3`
 
-### Duet 3 MB6HC and MB6XD
+### Duet 3 MB6XD
 
-Depending on how you have wired it, use one of these commands to tell RRF about the accelerometer:
+Depending on how you have wired it, use one of the following commands to tell RRF about the accelerometer:
 
-`M955 P0 C"spi.cs3+spi.cs2" ; all wires connected to temp DB connector`
-`M955 P0 C"io3.out+io3.in" ; CS and INT1 connected to IO3`
+`M955 P0 C"spi.cs2+spi.cs1" ; all wires connected to temp DB connector, no temperature daughterboard`
+`M955 P0 C"spi.cs4+spi.cs3" ; all wires connected to temp DB connector, stacked on temperature daughterboard`
+`M955 P0 C"io3.out+io3.in"  ; CS and INT1 connected to IO3`
 
 ### Duet 3 Mini 5+
 
-From RRF 3.5beta4/3.4.6 you can connect an accelerometer to the SPI DB header Use this command to tell RRF about the accelerometer if using one connected to an IO port:
+From RRF 3.5beta4/3.4.6 you can connect an accelerometer with all wires connected to the TEMP_DB connector. Use the following command to tell RRF about the accelerometer:
 
-`M955 P0 C"spi.cs1+spi.cs0" "`
+`M955 P0 C"spi.cs2+spi.cs1" ; all wires connected to temp DB connector, no temperature daughterboard`
 
-Use this command to tell RRF about the accelerometer if using one connected to an IO port:
+Use this command to tell RRF about the accelerometer if CS and INT1 are connected to an IO port:
 
-`M955 P0 C"io3.out+io3.in"`
+`M955 P0 C"io3.out+io3.in"  ; CS and INT1 connected to IO3`
 
-### Duet 2 WiFi and Ethernet
+### Duet 2 WiFi/Ethernet, Duex
 
-Use this command to tell RRF about the accelerometer:
+Use one of the following commands to tell RRF about the accelerometer:
 
-`M955 P0 C"spi.cs4+spi.cs3"`
+`M955 P0 C"spi.cs2+spi.cs1" ; all wires connected to temp DB connector, no temperature daughterboard`
+`M955 P0 C"spi.cs4+spi.cs3" ; all wires connected to temp DB connector, stacked on one temperature daughterboard`
+
+For an accelerometer connected to a Duex, use one of the following commands:
+`M955 P0 C"spi.cs6+spi.cs5" ; all wires connected to temp DB connector, no temperature daughterboard`
+`M955 P0 C"spi.cs8+spi.cs7" ; all wires connected to temp DB connector, stacked on one temperature daughterboard`
+
 
 ### Duet 2 Maestro
 
-Use this command to tell RRF about the accelerometer:
+Use one of the following commands to tell RRF about the accelerometer:
 
-`M955 P0 C"twd0+twck0"`
+`M955 P0 C"spi.cs2+spi.cs1" ; all wires connected to temp DB connector, no temperature daughterboard`
+`M955 P0 C"twd0+twck0"      ; all wires connected to temp DB connector, stacked on one temperature daughterboard`
 
-
-### Duet 3 Toolboard 1LC v1.1 and later
+### Duet 3 Toolboards
 
 You do not need to tell RRF about the accelerometer with M955; it will use the default M955 settings. However, you can use M955 if necessary to set accelerometer orientation, sampling rate or resolution. The P parameter is the CAN address of the Toolboard and accelerometer device number, eg P121.0. For example:
 
@@ -174,8 +220,9 @@ You do not need to tell RRF about the accelerometer with M955; it will use the d
 
 Accelerometer boards usually have an XYZ arrow to aid orientation. The Z axis is generally in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine.
 
-![accelerometer_duet3_tb_1lc_v1.3_top.jpg](/manual/sensors/accelerometer_duet3_tb_1lc_v1.3_top.jpg =225x){target=_blank} ![accelerometer_adafruit_lis3dh.jpg](/manual/sensors/accelerometer_adafruit_lis3dh.jpg =225x){target=_blank} ![accelerometer_sparkfun_lis3dh.jpg](/manual/sensors/accelerometer_sparkfun_lis3dh.jpg =225x){target=_blank}
-![duet3d_accelerometer_top.jpg](/hardware/accelerometer/duet3d_accelerometer_top.jpg =225x){target=_blank}
+![accelerometer_duet3_tb_1lc_v1.3_top.jpg](/manual/sensors/accelerometer_duet3_tb_1lc_v1.3_top.jpg =225x){target=_blank} ![duet3d_accelerometer_top.jpg](/hardware/accelerometer/duet3d_accelerometer_top.jpg =225x){target=_blank} 
+![accelerometer_adafruit_lis3dh.jpg](/manual/sensors/accelerometer_adafruit_lis3dh.jpg =225x){target=_blank} ![accelerometer_sparkfun_lis3dh.jpg](/manual/sensors/accelerometer_sparkfun_lis3dh.jpg =225x){target=_blank}
+
 
 You can add parameter I (uppercase 'i') to the M955 command if you need to change the default orientation.
 
@@ -205,7 +252,19 @@ For most purposes the default sampling rate and resolution should suffice. The d
 
 # Using accelerometers
 
+# Tabs {.tabset}
+
+## RRF 3.4 and later
+
+From RRF 3.4, accelerometer data is collected, evaluated and interpreted in the [Input Shaping Plugin](/User_manual/Tuning/Input_shaping_plugin).
+You can run the accelerometer commands manually, and record the results. See the "RRF 3.3 and manual commands" tab for details. 
+Note the 'Accelerometer' plugin (shipped with RRF 3.3) has been replaced by the 'Input Shaping Plugin'.
+
+## RRF 3.3 and manual commands
+
 Prior to making measurements with the accelerometer, disable any input shaping (including DAA if you are using it), unless of course you are trying to establish the effect of using input shaping.
+
+### Collecting data
 
 Use command [M956](/User_manual/Reference/Gcodes/M956) to collect accelerometer data. RRF 3.3 only supports capture mode A0 (immediate capture), but the A parameter must be present. Here is a typical command to capture data for a travel move in the X direction:
 
@@ -231,7 +290,7 @@ G1 X-50 G4 S2 G1 X50 F20000 M400 M956 P121.0 S1000 A0
 
 RRF 3.4beta1 and later allow you to name the file that data is written to using an additional F parameter. The name should end in .csv so that the Accelerometer plugin for Duet Web Control recognises it.
 
-## Retrieving the data
+### Retrieving the data
 
 A successful M956 command causes a new file to be created in /sys/accelerometers. The filename includes the CAN address of the board to which the accelerometer is connected, and the date and time that the data was captured. It is in comma-separated-variable format so it can be imported into a spreadsheet. When browsing these files in DWC you may need to click the Refresh button to make DWC aware of newly-created files.
 
@@ -243,12 +302,12 @@ The last line of the file will report the average data rate and the number of ov
 * Reduce the number of samples requested, or the number of axes sampled
 * Use a lower sampling rate
 
-## Analysing the data
+### Analysing the data
 
 Duet Web Control 3.3 includes an Accelerometer plugin that can be used to display the accelerometer data and its Fourier transform. To enable it, first go to Settings/General/Built-in Plugins and start it. Then go to Settings/Machine Specific/Accelerometer.
 
 [![accelerometer_03.jpg](/manual/sensors/accelerometer_03.jpg =800x)](/manual/sensors/accelerometer_03.jpg){target=_blank}
 
-## Configure the Input Shaper
+# Configure the Input Shaper
 
 [Input shaping](/User_manual/Tuning/Input_shaping)
