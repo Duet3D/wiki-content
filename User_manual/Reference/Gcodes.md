@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-01-15T15:16:45.771Z
+date: 2024-01-18T16:19:02.033Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -887,6 +887,8 @@ If a "normal" **Z parameter** is given instead of -9999 or lower, then the bed i
 The **H parameter** is an optional height correction for that probe point. It allows for the Z probe having a trigger height that varies with XY position. The nominal trigger height of the Z probe (e.g. at bed centre) is declared in the Z parameter of the G31 command in the config.g file. When you probe using G30 and the probe triggers, the firmware will assume that the nozzle is at the nominal trigger height plus the value you have in the H parameter. For example, when doing delta calibration, it can account for the change in trigger height caused by effector tilt, if the vertical offset caused by the tilt has been measured.
 
 The **K parameter** is applicable to all G30 commands. It is the Z probe number, default 0. It is not remembered between G30 commands, it always defaults to 0.
+
+Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0-rc.3 and later.
 
 ## G31: Set or Report Current Probe status
 
@@ -4952,7 +4954,7 @@ Defines the points for for G32 bed probing. The P value is the index of the poin
 * **Pnnn** Z probe type
 * **C"name"** Specifies the input pin and the optional modulation pin. This parameter is mandatory, except for probe type 0 (manual probing) and 10 (Z motor stall detection).
 * **Hnnn** Dive height (mm). The height above the trigger height from which probing starts.
-* **Fnnn** or **Fnnn:nnn** Feed rate (i.e. probing speed, mm/min). Initial fast probe followed by probing at second speed supported in RRF 3.3 and later.
+* **Fnnn** or **Fnnn:nnn** or **Fnnn:nnn:nnn** Feed rate (i.e. probing speed, mm/min). Initial fast probe followed by probing at second speed supported in RRF 3.3 and later. Third speed for scanning Z probe supported in RRF 3.5.0-rc.3 and later.
 * **Tnnn** Travel speed to and between probe points (mm/min). This is also the Z lift speed after probing. The corresponding axis speed limits set by M203 will be used instead if they are lower.
 * **Knnn** Sets/selects Z probe number. If there is no K parameter then 0 is used. You can ignore this parameter if you have only one Z probe.
 * **Rnnn** Z probe recovery time before the probing move is started, default zero (seconds). This is to allow the probe to settle after executing a travel move to the coordinates to probe.
@@ -5010,7 +5012,10 @@ The **C** parameter specifies the input pin and the optional modulation pin. See
 
 The **H** parameter defines the Z probe dive height, which is the height above the trigger height from which probing starts. The default is 3mm or 5mm depending on firmware version. You may wish to increase it during initial calibration. When using mesh bed compensation or running G30 commands with specified XY coordinates (for example from the bed.g file), the firmware moves the Z probe to this height above where it expects the bed to be before commencing probing. The maximum depth of probing from this position is twice the dive height. A large dive height will tolerate a very uneven bed or poor calibration. A small dive height will make probing faster, because the Z probe has less distance to travel before reaching the bed. Default value if omitted is 5mm.
 
-From RRF 3.3 you can provide two **F** parameters instead of one, where the second is lower than the first, for example F1000:500. When doing a plain G30 command, an additional probe will be done using the first speed to establish the approximate bed position, before one or more additional probes are done using the second speed. The first speed will not be used when probing at a defined point or when mesh bed probing.
+The **F** parameter:
+* With a single value for the **F** parameter, this defines the probing feed rate (i.e. probing speed), in mm/min.
+* From RRF 3.3 you can provide two **F** parameters instead of one, where the second is lower than the first, for example F1000:500. When doing a plain G30 command, an additional probe will be done using the first speed to establish the approximate bed position, before one or more additional probes are done using the second speed. The first speed will not be used when probing at a defined point or when mesh bed probing.
+* From RRF 3.5.0-rc.3 the **F** parameter can take up to three values. The third value is the scanning speed for scanning Z probes, and is only used by them, and only reports by M558 for scanning Z probes. If a scanning Z probe is used as an ordinary Z probe with G30 (which is be supported in rc3) then the first two speeds given in the F parameter will be used, as usual. In RRF 3.5.0-rc.2 and earlier, the first F speed was also used as the scanning speed.
 
 The **A** and **S** parameters control multiple probing. Probing is repeated until two consecutive probe attempts produce results that differ by no more than the S parameter; then the average of those two results is used. For example, S-1 would force averaging. However, if the number of attempts specified by the A parameter is reached without getting two consecutive results within tolerance of each other, no further probe attempts are made and the average result of all the attempts is used.
 
