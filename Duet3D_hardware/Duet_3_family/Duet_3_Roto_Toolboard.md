@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-01-05T22:01:59.187Z
+date: 2024-01-18T14:57:45.880Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -30,8 +30,8 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 | **Thermistor/PT1000 inputs** | 3 x inputs, 2 optimised for 100K thermistors and PT1000 sensors, 1 used for the coil temperature on the SZP coil.|
 | **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2,3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
 | **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. 1 x footprint for a switch or optical proximity sensor|
-| **Accelerometer** | Integrated LIS2DW accelerometer |
-| **Inductive Sensor** | Integrated LDC1612 inductive sensor for scanning Z probe |
+| **Accelerometer** | Integrated [LIS2DW12](https://www.st.com/en/mems-and-sensors/lis2dw12.html) accelerometer |
+| **Inductive Sensor** | Integrated [LDC1612](https://www.ti.com/product/LDC1612) inductive sensor for scanning Z probe |
 | **Power monitoring** | VIN voltage reporting |
 
 *^1^ Note further thermal testing may allow higher extruder current for Extruders other than the Revo Roto which should not exceed 600mA current*
