@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2023-12-20T16:25:25.101Z
+date: 2024-01-18T17:28:42.718Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -16,7 +16,14 @@ We chose CAN-FD because it is highly tolerant of noise (in particular, the groun
 
 # Wiring scheme
 
-The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus should be terminated by 120 ohm resistors at each end.
+To connect a mainboard and expansion board, both boards need power and a CAN cable connecting the boards.
+
+## Power wiring
+
+> All connected CAN boards must share a common ground connection. If you are using more than one power supply, you **must** connect the negative terminals of the power supplies together. 
+{.is-warning}
+
+Typically they will all be powered from the same power supply, so this will automatically be the case. However, if you use (for example) one power supply for the main board and a different power supply for an expansion board, you must connect the negative output terminals of the two power supplies together.
 
 ## Mainboard connections
 
@@ -40,11 +47,9 @@ If a **Tool Distribution Board** is at the end of the CAN bus, then leave the CA
 > 
 {.is-danger}
 
-## Grounding
-
-All connected CAN boards must share a common ground connection. Typically they will all be powered from the same power supply, so this will automatically be the case. However, if you use (for example) one power supply for the main board and a different power supply for an expansion board, you must connect the negative output terminals of the two power supplies together.
-
 ## Cables
+
+The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus should be terminated by 120 ohm resistors at each end.
 
 Unshielded twisted pair cable is normally used; however over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
 
@@ -67,6 +72,10 @@ The colours of the wires going to the pins on the right is hard to see because t
 ![can_basics_03.jpg](/manual/configuration/can_basics_03.jpg =600x)
 
 Having just the middle 2 pins wired is OK, but they are crossed so this cable is no good for CAN (it's a cable that was supplied with an ADSL or DSL modem). This is common for cables made from non-twisted-pair cable that is either flat with a seam on one side, or half-round.
+
+## CAN bus topology
+
+To come
 
 # CAN addresses
 
