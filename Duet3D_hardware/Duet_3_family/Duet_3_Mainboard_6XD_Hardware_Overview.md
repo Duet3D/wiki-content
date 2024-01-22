@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2023-12-20T16:46:35.243Z
+date: 2024-01-22T18:35:05.245Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -314,7 +314,7 @@ IO_5-IO_8 are also available as opto-isolated inputs and outputs
 
 #### Opto-isolated Inputs
 
-The opto-isolated inputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
+The opto-isolated inputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with. Note there inputs are designed for digital signals only.
 
 ![Diagram showing the connection of the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_opto_in.png =600x)
 
