@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2024-01-21T12:16:08.259Z
+date: 2024-01-22T13:04:47.523Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -12,7 +12,7 @@ dateCreated: 2021-10-05T15:57:39.091Z
 
 If you are planning to use servo motors, or your stepper motors are rated above the current limit of your Duet, or if they need higher voltage than the Duet can provide, then you need external servo or stepper motor drivers. These generally have optically isolated step/dir/enable inputs can usually be controlled with step/direction pulses from a Duet board.
 
-Duet3D sell expansion boards to connect external drivers to Duet mainboards; see Connection options below. This page mainly deals with connecting an external stepper driver to the external driver pins (Duet 3 Mini 5+, Duet 2 Maestro) or the expansion connector or CONN_LCD pins (Duet 2 WiFi/Ethernet).
+Duet3D sell expansion boards to connect external drivers to Duet mainboards; see Connection options below. This page mainly deals with connecting an external stepper driver to the external driver pins (Duet 3 Mini 5+) or the expansion connector or CONN_LCD pins (Duet 2 WiFi/Ethernet).
 
 See the linked pages for connecting external stepper/servo drivers to [Duet 3 Mainboard 6XD](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview), [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) and for connecting stepper motors with an encoder for position feedback with the [Duet 3 Expansion 1HCL](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL). For Duet 2 there is an [Expansion Breakout Board](/Duet3D_hardware/Duet_2_family/Duet_Expansion_Breakout_Board)
 
@@ -22,15 +22,14 @@ Ideally, motors should be run at between 60% and 85% of their rated current. The
 
 | | Max motor current (peak) | Max motor voltage | 
 |---|---|
-| Duet 3 Mainboard 6HC | 6.3A | 32V | 
+| Duet 3 Mainboard 6HC | 6.3A | 48V (v1.01 and earier 32V) 
 | Duet 3 Mainboard 6XD | NA | NA |
-| Duet 3 Expansion 3HC v1.02 | 6.3A | 50V (v1.01 and earier 32V)
-| Duet 3 Expansion 1HCL | 6.3A | 50V
+| Duet 3 Expansion 3HC v1.02 | 6.3A | 48V (v1.01 and earier 32V)
+| Duet 3 Expansion 1HCL | 6.3A | 48V
 | Duet 3 Tool Board 1LC | 1.6A | 32V
 | Duet 3 Expansion 1XD | NA | NA
 | Duet 3 Mini 5+ | 2.0A | 25V | 
 | Duet 2 WiFi/Ethernet | 2.4A | 25V | 
-| Duet 2 Maestro | 1.6A | 25V | 
 
 # Connection options
 
