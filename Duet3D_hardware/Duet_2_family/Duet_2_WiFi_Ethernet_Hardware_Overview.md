@@ -2,7 +2,7 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2023-06-14T10:11:05.719Z
+date: 2024-01-22T17:42:37.253Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z
@@ -13,6 +13,8 @@ dateCreated: 2021-04-27T14:41:40.953Z
 # Introduction
 
 The Duet 2 WiFi and Ethernet are the 2nd generation of Duet 3D motion control electronics. They are an advanced 32-bit controller for 3D printers and other CNC machines.
+
+> The Duet 2 Wifi External Antenna and Duet 2 Ethernet are Not Recommended for New Designs. The Duet 2 Wifi with Internal Antenna is End Of Life.{.is-info}
 
 # Features
 
@@ -237,11 +239,11 @@ In the table below, multiple names on a line are aliases for a single pin. Some 
 | Z_STOP | zstop | |
 | E0_STOP | e0stop | |
 | E1_STOP | e1stop | |
-| EXPANSION HEADER E2_STOP (pin 4) | exp.e2stop, exp.4 | duex.e2stop |
-| EXPANSION HEADER E3_STOP (pin 9) | exp.e3stop, exp.9 | duex.e3stop, duex.cs6 |
-| EXPANSION HEADER E4_STOP (pin 14) | exp.e4stop, exp.14 | duex.e4stop, duex.cs7 |
-| EXPANSION HEADER E5_STOP (pin 19) | exp.e5stop, exp.19 | duex.e5stop, duex.cs8 |
-|| EXPANSION HEADER E6_STOP (pin 24) | exp.e6stop, exp.24 | duex.e6stop |
+| EXPANSION HEADER E2_STOP (pin 4) | exp.e2stop, exp.4 |  |
+| EXPANSION HEADER E3_STOP (pin 9) | exp.e3stop, exp.9 | duex.cs6 |
+| EXPANSION HEADER E4_STOP (pin 14) | exp.e4stop, exp.14 | duex.cs7 |
+| EXPANSION HEADER E5_STOP (pin 19) | exp.e5stop, exp.19 | duex.cs8 |
+|| EXPANSION HEADER E6_STOP (pin 24) | exp.e6stop, exp.24 |  |
 | **Miscellaneous** |||
 | Probe IN | zprobe.in | |
 | Probe MOD | zprobe.mod | |
@@ -255,9 +257,9 @@ In the table below, multiple names on a line are aliases for a single pin. Some 
 | SPIO CS3 (Temp DB, pin 7) | spi.cs3 | |
 | SPIO CS4 (Temp DB, pin 9) | spi.cs4 | |
 | EXPANSION HEADER CS5 (pin 50) | spi.cs5, exp.50 | duex.cs5 |
-| EXPANSION HEADER E3_STOP (pin 9) | spi.cs6, exp.9 | duex.cs6 |
-| EXPANSION HEADER E4_STOP (pin 14) | spi.cs7, exp.14 | duex.cs7 |
-| EXPANSION HEADER E5_STOP (pin 19) | spi.cs8, exp.19 | duex.cs8 |
+| EXPANSION HEADER E3_STOP (pin 9) | spi.cs6, exp.e3stop, exp.9 | duex.cs6 |
+| EXPANSION HEADER E4_STOP (pin 14) | spi.cs7, exp.e4stop, exp.14 | duex.cs7 |
+| EXPANSION HEADER E5_STOP (pin 19) | spi.cs8, exp.e5stop, exp.19 | duex.cs8 |
 
 
 | **Pins on additional SX1509B expander** |
@@ -378,6 +380,20 @@ See the Duet 2 WiFi and Ethernet wiring diagrams above for the expansion connect
 The Duet 2 WiFi and Ethernet both use the same Duet 2 base controller board. The difference is only in the communications module. This base controller board has gone through a number of PCB design revisions. The revision number is marked on the silkscreen on the board, to the left of the large processor chip. The linked page has more  information on the [Version Numbering](/Duet3D_hardware/Hardware_overview#version-numbering) system.
 
 ## Tabs {.tabset}
+
+### PCB revision v1.06
+
+The following changes were necessary due to component availability issues, they do not result in functional changes to the design:.
+
+* Changed the 5V buck regulator to AP64200 due to part availability issues.
+* Various passive component changes to support the new regulator.
+
+In addition the following improvements to the design were made:
+
+* Split the 5V rail into 5V_INT and 5V_EXT. this provides additional protection to some of the more sensitive components on the board from abuse in the form or feeding >5V into a 5V pin.
+* Added TVS diodes to improve ESD protection
+* Increase the pad size for the VIN screw terminal pins
+
 
 ### PCB revision v1.05
 
