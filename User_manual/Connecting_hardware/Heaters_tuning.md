@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2024-01-12T17:58:57.184Z
+date: 2024-01-23T09:24:55.173Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -55,11 +55,13 @@ Each heating controller performs temperature monitoring to try to detect fault c
 > **Warning!** Tuning will always overshoot the target temperature. You need to be aware of this when choosing the target temperature. The heater itself is switched off when the target temperature is reached, so the overshoot is purely due to excess thermal mass in the heater and poor coupling to the thermistor.
 {.is-warning}
 
-# Tabs {.tabset}
+## Running auto-tuning
 
-## RepRapFirmware v3.2 and later
+## Tabs {.tabset}
 
-### Overview
+### RepRapFirmware v3.2 and later
+
+#### Overview
 
 RepRapFirmware 3.2 introduced a new heater tuning algorithm. This algorithm is more accurate than the old one (especially in measuring the dead time), often completes more quickly than the old algorithm, and is more portable to expansion and tool board firmware (auto-tuning of heaters connected to Duet 3 expansion and tool boards is implemented in RRF 3.3). 
 
@@ -71,7 +73,7 @@ M303 H1 S240 ; auto tune heater 1, default PWM (100%), 240C target
 M303 ; report the auto-tune status or last result
 ```
 
-### Tuning tools
+#### Tuning tools
 
 RRF 3.2 also allows for tuning a tool, rather than just a heater, which tunes the heater with related fans both off and on. The purpose of this is to allow the heater control to implement feedforward, which monitors fan PWM changes and adjusts the heater power, before the PID algorithm recognises that something has changed.
 
@@ -79,7 +81,7 @@ RRF 3.2 also allows for tuning a tool, rather than just a heater, which tunes th
 M303 T0 S205 ; tune the primary heater of tool 0
 ```
 
-### Notes
+#### Notes
 
 * The new algorithm allows for the setting of the ambient temperature (A parameter) for tuning a heater that has been on and has not cooled down to ambient temperature. The tuning cycle hysteresis (Y parameter) and Fan PWM (F parameter) can also be set.
 
@@ -92,15 +94,13 @@ M303 T0 S205 ; tune the primary heater of tool 0
 * When tuning a hot end heater, move the nozzle close to the bed, i.e. within 1mm. The tuning will then compensate for the effect of the hot end fans (hot end cooling fan, and part cooling fan if tuning the heater as a tool).
 
 
-## RepRapFirmware v1.18 to v3.1.1
+### RepRapFirmware v1.18 to v3.1.1
 
 The S parameter is the temperature to heat up to. The default value depends on which heater you are tuning. During auto tuning, the heater will be run at the specified power until this temperature is reached and then it will be switched off; so the temperature will overshoot the target somewhat
 
 There is also an optional P parameter, which is the PWM value to use. Unless your heater is greatly over-powered, use the default PWM value of 1.0.
 
-# Notes on auto-tuning
-
-# All RepRapFirmware versions
+## Notes - all firmware versions
 
 * Only one heater may be auto tuned at a time.
 
