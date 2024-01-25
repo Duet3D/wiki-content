@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2024-01-25T16:36:10.312Z
+date: 2024-01-25T16:36:21.639Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -163,7 +163,7 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 | tach (yellow or green) | (see note) | tach |
 | PWM (blue) | out[n]- / FAN[n]- | out[n]- |
 
-### Notes
+#### Notes
 
 * RepRapFirmware expects a connected 4-wire fan to adhere to the [Intel 4-Wire Pulse Width Modulation (PWM) Controlled Fans specification](https://web.archive.org/web/20110726062453/http://www.formfactors.org/developer/specs/4_Wire_PWM_Spec.pdf).
 * This means that the expected Pulses Per Revolution (PPR) from the tacho is 2, and the RPM reading calculated assumes that.
