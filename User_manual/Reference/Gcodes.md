@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-01-23T12:01:09.131Z
+date: 2024-01-25T12:24:34.660Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8189,7 +8189,7 @@ In RepRapFirmware on the Duet series, module numbers are as follows:
 
 * 0 - main firmware, specific for Duet board. Needs appropriate IAP (In-App Programmer, specific to Duet board) binary to be able to flash update.
 * 1 - web server firmware, filename DuetWiFiServer.bin (WiFi-equipped Duets only)
-* 2 - web server file system, filename DuetWebControl.bin (needed only when using RepRapFirmware 1.18 series and earlier for Duet 2 WiFi)
+* 2 - update DSF packages in SBC mode (requires v3.5.0-rc.3 or newer)
 * 3 - put the WiFi module into bootloader mode, so that firmware can be uploaded directly via its serial port. Also used to update bootloader on CAN-connected Duet 3 expansion boards.
 * 4 - PanelDue firmware (RRF 3.2 and later; see [PanelDue firmware update instructions](/User_manual/RepRapFirmware/Updating_PanelDue){target=_blank}).
 
@@ -8197,7 +8197,13 @@ With all firmware versions up to RRF v3.2.2, all firmware update files are store
 
 On Duet 3 only this command take an optional B (board number) parameter which is the CAN address of the board to be updated, default 0 (i.e. main board).
 
-The optional **P** parameter can be used to provide the filename of the file to be used for updating a module. This can either only be a filename in which case it will prepend directories.firmware to it (0:/firmware) or can be an absolute path to the file to be used. It is not allowed to use P parameter and multiple modules, e.g. S1:4. (RRF 3.3 and later)
+The optional **P** parameter can be used to provide the filename of the file to be used for updating a module. This can either only be a filename in which case it will prepend directories.firmware to it (0:/firmware) or can be an absolute path to the file to be used. It is not allowed to use P parameter and multiple modules, e.g. S1:4. (RRF 3.3 and later).
+
+In SBC mode, `M997 S2` can be used to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). It also supports two optional arguments:
+* `F"<feed>"` - Set package feed for DSF packages where `<feed>` can be `stable` (default), `unstable`, `stable-x.y`, or `unstable-x.y` where x.y corresponds to a version [e.g. 3.4 or 3.5])
+* `V"<version>"` - Install a specific DSF/RRF combination (may not be used together with `M997 F`). Example: `M997 S2 V"3.5.0-rc.2"`
+
+When using firmware v1.18 or older, `M997 S2` updates the web server file system (DuetWebControl.bin).
 
 See [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank} for detailed documentation.
 
