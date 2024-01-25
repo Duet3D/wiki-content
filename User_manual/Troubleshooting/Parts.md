@@ -2,7 +2,7 @@
 title: Connector and spare part numbers
 description: This is a growing list of connectors and spare part numbers. If a spare part is required that is not on the list please check the source on github or ask on the forums 
 published: true
-date: 2022-06-22T09:47:36.552Z
+date: 2024-01-25T09:27:39.005Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:43:02.549Z
@@ -59,6 +59,24 @@ The fork connectors for the power supply are a generic "blue" max  2.5mm^2 like 
 **OUT2**, **IO_1** and **IO_2**: 3-pin JST PH
 
 **TEMP_0 and TEMP_1**: 2-pin JST PH
+
+## Connectors used on Duet 3 Roto Toolboard
+
+**CAN and power**: XT30 2+2
+
+**Stepper motor**: 4-pin Molex Microfit 2x2
+
+**OUT_0, TEMP_0, TEMP_1**: 2-pin Molex Microfit
+
+**OUT_2**: 3-pin Molex Microfit
+
+**IO_1, IO_2, LED**: 3-pin JST PH2.0 	
+
+**OUT_1, IO_0**: 4-pin JST PH2.0 	
+
+**IO_3**: 4-pin footprint to mount ITR20001/T reflective optical sensor
+
+**SZP, I2C**: 4-pin 0.5mm pitch FFC
 
 ## Voltage regulators
 
