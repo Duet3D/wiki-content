@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2024-01-25T16:36:21.639Z
+date: 2024-01-25T17:21:10.476Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -172,11 +172,23 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 * For more information, see [this forum thread](https://forum.duet3d.com/topic/25511/).
 
 
-### Tabs {.tabset}
+#### Tabs {.tabset}
 
-#### Duet 3
+##### Duet 3
 
-On **Duet 3**, there are 4-pin fan headers specifically for these kinds of fan, which should plug straight in. Configure the fan with the PWM signal inverted and define the pin the tacho is connected to (see section below for firmware configuration).
+On **Duet 3**, there are **4-pin fan headers** specifically for these kinds of fan, which should plug straight in. Configure the fan with the PWM signal inverted and define the pin the tacho is connected to (see section below for firmware configuration).
+
+If you want to connect a 4-pin fan to a **2-pin fan header**, you can use a spare io.in pin for tacho, and connect fan -ve wire to any available GND pin on the board. For example, if you are using OUT7 and IO4.in on a MB6HC, use the following wiring scheme:
+
+| Fan wires | Fan connector pin |
+| 4-wire | 2-pin |
+|---|---|
+| PWM (blue) | out7 (pin) |
+| +ve (red or yellow) | out7 V_OUTLC2 |
+| tach (yellow or green) | io4.in |
+| -ve (black) | io4 GND |
+
+See section below for firmware configuration.
 
 The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as the PWM pin. If you want to connect a 4-wire fan to this, you will need to rewire the fan connector.
 
@@ -189,7 +201,7 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 | -ve (black) | Connect to an available GND pin on the board |
 
 
-#### Duet 2
+##### Duet 2
 
 NOTE: on **Duet 2** with only 2-pin fan connectors, the recommended connections are:
 * Negative (black) wires: connect to the - pin of an always-on fan connector.
@@ -281,6 +293,7 @@ M950 F2 C"out4+out4.tach" ; Fan 2 uses out4, and using out4.tach as a tacho inpu
 
 : 4-wire PWM fan and tacho
 M950 F3 C"!out5+out5.tach" ; Fan 3 uses out5, but we are using a PWM fan so the output needs to be inverted, and using out5.tach as a tacho input
+M950 F3 C"!out7+io4.in" ; 4-wire fan connected to 2-pin header on 6HC, io4.in for tacho input
 ```
 When using M950 to create a fan, the port name string may be either a single port, or two ports separated by the '+' sign. The second port is used to read the fan tacho. **Any CAN address at the start of the port name string applies to both port names.**
 
