@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-01-18T14:57:45.880Z
+date: 2024-01-25T09:20:04.305Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -106,8 +106,8 @@ Duet 3 Toolboard 1LC provides the following connectors:
 | 4-pin Molex Microfit 2x2 | DRIVER_0 | Stepper motor connection |
 | 3-pin JST PH | LED | Connection for Neopixel LEDs |
 | 2-pin Molex Microfit | OUT_0 | High current output intended for an extruder heater, maximum current 3.4A, this is VIN voltage only.<br>There is no flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
-| 2-pin JST PH | TEMP_1 | Thermistor or PT1000 input |
-| 2-pin JST PH | TEMP_0 | Thermistor or PT1000 input |
+| 2-pin Molex Microfit | TEMP_1 | Thermistor or PT1000 input |
+| 2-pin Molex Microfit | TEMP_0 | Thermistor or PT1000 input |
 | 4-pin 0.5mm pitch FFC | SZP | Connection for a Duet 3 Scanning Z Probe Coil |
 | 3-pin JST PH | IO_2 | 3.3V, io2.in, GND, for endstop/ Z-probe/ Filament monitor.<br>Input is 30V-tolerant |
 | 3-pin Molex Microfit | OUT_2 | Medium current 5V output intended for, 5V Fan maximum current 0.6A, as part of the overall 5V power budget. Has optional Tacho input. Intended for the heatsink cooling fan on a Revo Roto <br>There is no flyback diode on this output, so if you connect an inductive load, you must use an external flyback diode. |
