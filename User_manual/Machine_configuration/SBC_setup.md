@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-01-15T15:45:41.060Z
+date: 2024-01-25T17:20:32.451Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -54,6 +54,8 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
 ## Raspberry Pi Imager
 
 ![sbc_setup_10.png](/manual/configuration/sbc_setup_10.png =50%x){.align-right}
+
+![raspi_imager_otherimage.png](/manual/configuration/raspi_imager_otherimage.png =50%x){.align-right}
 
 1. If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/){target=_blank}
 1. You will need at least an 8Gb class 10 SD card.
