@@ -2,7 +2,7 @@
 title: Updating SBC from Buster to Bookworm
 description: Guide to update a Single Board Computer (SBC) running Duet Software Framework from Buster to Bookworm
 published: true
-date: 2024-01-25T17:23:50.338Z
+date: 2024-01-25T17:31:13.030Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T16:11:48.467Z
@@ -19,7 +19,7 @@ We recommend flashing an SD card with our new Bookworm based version of DuetPi, 
 
 To update a Buster-based SBC to Bookworm, follow these steps:
 
-1. Enable SFTP via `M568 P1 T1 S1`
+1. Enable SFTP via `M586 P1 T1 S1`
 2. Load FileZilla and connect via sftp (pi/raspberry)
 3. Copy everything from `/opt/dsf/sd` to local PC except for firmware directory
 
