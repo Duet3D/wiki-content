@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2023-03-25T21:57:23.688Z
+date: 2024-01-25T16:36:10.312Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -153,7 +153,7 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 
 ### Connecting a 4-wire fan
 
-4-wire fans have a separate PWM input wire and an RPM sensor. On **Duet 3**, there are 4-pin fan headers specifically for these kinds of fan, which should plug straight in. Configure the fan with the PWM signal inverted and define the pin the tacho is connected to (see section below for firmware configuration).
+4-wire fans have a separate PWM input wire and an RPM sensor. 
 
 | Fan wires | Fan connector pin ||
 | 4-wire | 2-pin | 4-pin |
@@ -163,12 +163,20 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 | tach (yellow or green) | (see note) | tach |
 | PWM (blue) | out[n]- / FAN[n]- | out[n]- |
 
-NOTE: on **Duet 2** with only 2-pin fan connectors, the recommended connections are:
-* Negative (black) wires: connect to the - pin of an always-on fan connector.
-* Positive (red or yellow): connect to the + pin of an always-on fan connector; or if VIN is 24V and you are using a 12V fan, to the +12V output of a buck converter fed from VIN.
-* Tacho wire (yellow or green): optionally, connect the tacho wire of a 4-wire fan to the cathode of a small signal diode (1N4148 should be OK) and connect the anode of the diode to any available digital input pin, to provide a reading of the fan RPM. For example, on Duet 2 WiFi/Ethenet connect it to pin PB6, and on Duet 2 Maestro use one of the four expansion pins. In RRF 2.x, only Duet 2 WiFi/Ethernet expansion pin PB6 supports tacho, and is defined by default. Or you can leave it not connected. 
-* PWM control (blue) wire: connect it to the FAN- pin of your chosen controlled fan connector.
-* Configure the fan with the PWM signal inverted and define the pin the tacho wire is connected to with pullup resistor enabled (see section below for firmware configuration)
+### Notes
+
+* RepRapFirmware expects a connected 4-wire fan to adhere to the [Intel 4-Wire Pulse Width Modulation (PWM) Controlled Fans specification](https://web.archive.org/web/20110726062453/http://www.formfactors.org/developer/specs/4_Wire_PWM_Spec.pdf).
+* This means that the expected Pulses Per Revolution (PPR) from the tacho is 2, and the RPM reading calculated assumes that.
+* The Intel fan specification also says that the fan must be able to go down to 30% PWM or lower. Below 30% PWM the fan is allowed to continue at the 30% PWM level, or go slower, or turn off. So at zero PWM the fan may still be at 30%. Most Noctua fans turn off at zero PWM.
+* If the speed control of a 4-wire fan is not working well, i.e. fan speed does not scale well with PWM setting, you may be able to improve the response by connecting an external pullup resistor between the PWM input and +5V. 10K ohm would be a good starting point.
+* For more information, see [this forum thread](https://forum.duet3d.com/topic/25511/).
+
+
+### Tabs {.tabset}
+
+#### Duet 3
+
+On **Duet 3**, there are 4-pin fan headers specifically for these kinds of fan, which should plug straight in. Configure the fan with the PWM signal inverted and define the pin the tacho is connected to (see section below for firmware configuration).
 
 The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as the PWM pin. If you want to connect a 4-wire fan to this, you will need to rewire the fan connector.
 
@@ -180,13 +188,17 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 | tach (yellow or green) | tach |
 | -ve (black) | Connect to an available GND pin on the board |
 
-#### Notes
 
-* RepRapFirmware expects a connected 4-wire fan to adhere to the [Intel 4-Wire Pulse Width Modulation (PWM) Controlled Fans specification](https://web.archive.org/web/20110726062453/http://www.formfactors.org/developer/specs/4_Wire_PWM_Spec.pdf).
-* This means that the expected Pulses Per Revolution (PPR) from the tacho is 2, and the RPM reading calculated assumes that.
-* The Intel fan specification also says that the fan must be able to go down to 30% PWM or lower. Below 30% PWM the fan is allowed to continue at the 30% PWM level, or go slower, or turn off. So at zero PWM the fan may still be at 30%. Most Noctua fans turn off at zero PWM.
-* If the speed control of a 4-wire fan is not working well, i.e. fan speed does not scale well with PWM setting, you may be able to improve the response by connecting an external pullup resistor between the PWM input and +5V. 10K ohm would be a good starting point.
-* For more information, see [this forum thread](https://forum.duet3d.com/topic/25511/).
+#### Duet 2
+
+NOTE: on **Duet 2** with only 2-pin fan connectors, the recommended connections are:
+* Negative (black) wires: connect to the - pin of an always-on fan connector.
+* Positive (red or yellow): connect to the + pin of an always-on fan connector; or if VIN is 24V and you are using a 12V fan, to the +12V output of a buck converter fed from VIN.
+* Tacho wire (yellow or green): optionally, connect the tacho wire of a 4-wire fan to the cathode of a small signal diode (1N4148 should be OK) and connect the anode of the diode to any available digital input pin, to provide a reading of the fan RPM. For example, on Duet 2 WiFi/Ethenet connect it to pin PB6, and on Duet 2 Maestro use one of the four expansion pins. In RRF 2.x, only Duet 2 WiFi/Ethernet expansion pin PB6 supports tacho, and is defined by default. Or you can leave it not connected. 
+* PWM control (blue) wire: connect it to the FAN- pin of your chosen controlled fan connector.
+* Configure the fan with the PWM signal inverted and define the pin the tacho wire is connected to with pullup resistor enabled (see section below for firmware configuration)
+
+
 
 ## Duet 2: Using 12V fans when VIN is 24V
 
