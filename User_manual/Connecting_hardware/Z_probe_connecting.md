@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2023-12-10T22:53:02.084Z
+date: 2024-01-29T16:19:32.258Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -253,7 +253,9 @@ Select mode 5 (P5) in the M558 command. Invert the probe output by prefixing the
 
 **If you have a choice between a PNP or a NPN sensor, choose the NPN one because they are simpler to connect to a Duet.**
 
-Connect the PNP sensor output wire to one end of a resistor (call this R1), and connect one end of another resistor (call this R2) to GND on the Z-probe connector. Connect the free ends of R1 and R2 together and to the IN pin of the Z-probe connector.
+Connect the PNP sensor output/signal wire to one end of a resistor (call this R1), and connect one end of another resistor (call this R2) to GND on the IOx/Z-probe connector. Connect the free ends of R1 and R2 together and to the IN pin of the IOx/Z-probe connector. Connect the PNP sensor V+ to VCC and GND to GND.
+
+![sensors_probe_pnp.png](/manual/sensors/sensors_probe_pnp.png)
 
 For **Duet 3**: all IOx.in inputs have a 27K pullup resistor to +3.3V, therefore the value of R2 must be low enough to defeat this. We suggest R2 = 2.2K. Then the value of R1 should be 4.7K to 6.8K if the sensor is powered from +12V; or use 10K to 15K if the sensor is powered from +24V.
 
