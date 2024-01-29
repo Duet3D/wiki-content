@@ -2,7 +2,7 @@
 title: Updating SBC from Buster to Bookworm
 description: Guide to update a Single Board Computer (SBC) running Duet Software Framework from Buster to Bookworm
 published: true
-date: 2024-01-29T12:10:09.264Z
+date: 2024-01-29T12:39:42.996Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T16:11:48.467Z
@@ -28,18 +28,23 @@ To update a Buster-based SBC to Bookworm, follow these steps:
 4. Flash new image, possibly with customisations
   Use the steps outlined here: [Flash the Image File](https://docs.duet3d.com/en/User_manual/Machine_configuration/SBC_setup#h-1-flash-the-image-file) to flash a few SD card. If possible it is recommended to use a different card so you have the old card to fall back to if you have and issues.
 
-5. To restore the config files, you have two options. If you need to restore your `gcodes` directory as well, the following first option is recommended. 
 
-## Restore backup via SFTP
+## Restoring the backup
+
+To restore the config files, you have two options. If you need to restore your `gcodes` directory as well, the following first option, via SFTP, is recommended. 
+
+Note in either case external plugins will need to be re-installed.
+
+### Restore backup via SFTP
 
 1. Insert the microSD card in the Raspberry Pi
 2. Start your machine, connect to it in DWC and then enable SFTP again via `M586 P1 T1 S1` (see above)
 3. Connect via FileZilla, potentially using your new credentials. You may see a warning message when connecting for the first time again due to the different SSH/SFTP certificate. Accept it and continue
-2. Restore contents from local SD folder via FileZilla to `/opt/dsf/sd`
-3. Power-cycle everything (reboot Duet+Pi)
-4. Optionally turn off SFTP again via `M586 P1 T1 S0`
+4. Restore contents from local SD folder via FileZilla to `/opt/dsf/sd`
+5. Power-cycle everything (reboot Duet+Pi)
+6. Optionally turn off SFTP again via `M586 P1 T1 S0`
 
-## Restore backup without SFTP
+### Restore backup without SFTP
 
 1. When the image has been flashed, eject the microSD card and insert it in your PC again. When done, enter the first partition which holds `config.txt` etc.
 2. Copy your backed up directories (`sys` etc.) to the root directory of that partition
