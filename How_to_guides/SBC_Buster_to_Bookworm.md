@@ -1,8 +1,8 @@
 ---
 title: Updating SBC from Buster to Bookworm
-description: Guide to update a Single Board Computer (SBC) running Duet Software Framework from Buster to Bookworm
+description: Guide to update a Raspberry Pi Single Board Computer (SBC) running Duet Software Framework from Buster to Bookworm
 published: true
-date: 2024-01-29T12:39:42.996Z
+date: 2024-01-29T17:21:06.352Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T16:11:48.467Z
