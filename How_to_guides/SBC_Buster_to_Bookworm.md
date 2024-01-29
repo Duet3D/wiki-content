@@ -2,7 +2,7 @@
 title: Updating SBC from Buster to Bookworm
 description: Guide to update a Single Board Computer (SBC) running Duet Software Framework from Buster to Bookworm
 published: true
-date: 2024-01-29T12:08:49.813Z
+date: 2024-01-29T12:10:09.264Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T16:11:48.467Z
@@ -45,7 +45,4 @@ To update a Buster-based SBC to Bookworm, follow these steps:
 2. Copy your backed up directories (`sys` etc.) to the root directory of that partition
 3. Eject the microSD card again
 4. Insert it in the Pi
-5. Boot the image on the Pi, connect to it in DWC and then Enable SFTP again (see above)
-6. Restore contents from local SD folder
-7. Power-cycle everything (reboot Duet and Pi)
-7. Optionally turn off SFTP again
+5. Boot the image on the Pi. All the files should be restored automatically. **Note that this works only on the first start of the new image!**
