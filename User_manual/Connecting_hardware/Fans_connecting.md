@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2024-01-25T17:21:10.476Z
+date: 2024-01-29T12:43:32.494Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -155,12 +155,12 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 
 4-wire fans have a separate PWM input wire and an RPM sensor. 
 
-| Fan wires | Fan connector pin ||
-| 4-wire | 2-pin | 4-pin |
+| Fan wires | Duet fan connector pin ||
+| 4-wire | 2-pin (Duet 2/3) | 4-pin (Duet 3) |
 |---|---|---|
-| -ve (black) | (see note) | GND |
+| -ve (black) | (see tabs below) | GND |
 | +ve (red or yellow) | V_OUT+ / V_FAN+ | V_OUT+ / V_FAN+ |
-| tach (yellow or green) | (see note) | tach |
+| tach (yellow or green) | (see tabs below) | tach |
 | PWM (blue) | out[n]- / FAN[n]- | out[n]- |
 
 #### Notes
