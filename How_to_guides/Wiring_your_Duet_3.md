@@ -2,7 +2,7 @@
 title: Wiring your Duet 3 mainboard
 description: This guide covers connecting hardware, such as power, heaters, motors, endstops, fans, temperature sensors etc., to your Duet 3 mainboard.
 published: true
-date: 2022-12-13T14:23:11.038Z
+date: 2024-01-29T18:28:22.722Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-31T12:27:10.363Z
@@ -92,7 +92,7 @@ Standard red/blue/yellow automotive crimp tools will crimp these terminals. Ther
 
 JST-VH crimps require a minimum of 22AWG wire (20AWG or 0.5mm2 recommended. Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way, but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heat shrink sleeving over the insulation to bulk up the insulation. 
 
-You will need a suitable crimping tool for the crimp pins, for example Engineer PA21. The PA21 is designed to handle the longer flanges of the VH crimps that grip the insulation. Use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation. The large side of a ratchet crimping tool, such as the HT-225D, may also be able to crimp the VH series. The Iwiss SN-2549 ratchet cripping tool claims to be compatible with JST VH crimp pins and all other pin connectors currently use by Duets. Alternatively you can solder the wire to the crimp pin.
+You will need a suitable crimping tool for the crimp pins, for example Engineer PA21. The PA21 is designed to handle the longer flanges of the VH crimps that grip the insulation. Use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation. The large side of a ratchet crimping tool, such as the HT-225D, may also be able to crimp the VH series. The Iwiss SN-2549 ratchet cripping tool claims to be compatible with JST VH crimp pins and all other pin connectors currently use by Duets. 
 
 <p style="clear:both"></p>
 
