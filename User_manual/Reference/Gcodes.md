@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-01-29T12:19:44.048Z
+date: 2024-01-29T15:05:26.256Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7695,6 +7695,9 @@ M915 X Y S5 R2
 ### Notes
 
 * **S parameter** For most drivers, values range from -64 to +63. For TMC2209 drivers (Duet 3 Mini 5+, Duet 3 Toolboard 1LC) values range from -128 to +127. Lower values make stall detection more sensitive. Values below -10 are not recommended. S3 is a good starting point for many motors.
+* **T parameter** 
+  * For all versions of RRF before 3.5.0-rc.3, on TMC2160/5160/2240, the T parameter is not processed correctly, and might affect whether stalls are recognised instead of setting the coolstep parameters. This is fixed in RRF 3.5.0-rc.3 and later. 
+  * Setting incorrect coolstep parameters could result in motor current being reduced too much, which could result in layer shifts. Users should only use the T parameter if they have read the driver datasheet and know what they are doing.
 * If any of the S, F, T and R parameters are absent, the previous values for those parameters associated with the specified drivers will continue to be used. 
 * If all the parameters are absent, the existing settings for the specified drive(s) will be reported.
 * See the Trinamic TMC2660 and TMC2130 datasheets for more information about the operation and limitations of motor stall detection.
