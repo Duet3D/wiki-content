@@ -2,7 +2,7 @@
 title: Choosing stepper motors
 description: This page provides in depth consideration for choosing stepper motors
 published: true
-date: 2022-06-13T16:48:37.630Z
+date: 2024-01-30T10:02:58.342Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T11:49:00.204Z
@@ -17,7 +17,7 @@ dateCreated: 2021-10-05T11:49:00.204Z
 * Size: Nema 17 is the most popular size used in 3D printers. Nema 14 is an alternative in a highly-geared extruder. Use Nema 23 motors if you cannot get sufficient torque from long Nema 17 motors. Duet 3 6HC/3HC can drive Nema 34 motors too.
 * Avoid motors with rated voltage (or product of rated current and phase resistance) > 4V or inductance > 4mH.
 * Choose 0.9deg/step motors where you want extra positioning accuracy, e.g. for the tower motors of a delta printer. Otherwise choose 1.8deg/step motors.
-* If you use any 0.9deg/step motors, or high torque motors, use 24V power so that you will be able to maintain torque at higher speeds.
+* If you use any 0.9deg/step motors, or high torque motors, always use 24V or higher VIN power voltage (subject to the maximum voltage supported by the Duet) so that you will be able to maintain torque at higher speeds.
 * If using a highly-geared extruder (for example, an extruder that uses a flexible drive cable to transmit the torque from the motor to a worm reduction gear), use a short low-inductance 1.8deg/step motor to drive it.
 
 The following sections discuss stepper motor features and specifications in more detail.
@@ -89,7 +89,7 @@ Example: a 1.8deg/step (i.e. 200 steps/rev) motor with 4mH inductance run at 1.5
 
 In practice the torque will drop off sooner than this because of the back emf caused by motion, and because the above doesn't allow for the winding resistance. Low inductance motors also have low back emf due to rotation.
 
-What this means is that if we want to achieve high speeds, we need low inductance motors and high supply voltage. The maximum recommended supply voltage for Duet 2 WiFi/Ethernet is 25V, for Duet 2 Maestro is 28V, and for Duet 3 is 32V.
+What this means is that if we want to achieve high speeds, we need low inductance motors and high supply voltage. For the maximum recommended supply voltage, see the board specification pages for your Duet mainboards, expansion and tool boards.
 
 ## Resistance and rated voltage
 
