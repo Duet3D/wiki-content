@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2023-11-22T17:04:15.042Z
+date: 2024-01-31T14:57:45.677Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -73,7 +73,9 @@ Connect the LED strips to the 3-pin connector labelled NP_LED.
 * Connect the +5V pin of the LED strip either to the EXT_5V_IN pin of the NP_LED connector, or to an external +5V power supply.
 * Connect the data input line of the LED strip to the NEOPIXEL_DO pin of the Duet.
 
-You will need to supply external 5V power to the adjacent 5V_IN connector, unless you connected the 5V line of your LED strip directly to an external 5V supply. The 5V regulator on the Duet 3 Mini is rated at 1A total and can only power a very small number of LEDs.
+You will need to supply external 5V power to the adjacent 5V_IN connector, unless you connected the 5V line of your LED strip directly to an external 5V supply.
+
+The 5V regulator on the Duet 3 Mini is rated at 1A total and can only power a very small number of LEDs. Note that the 5V_EXT rail is normally isolated from the on-board 5V supply and must be always powered via 5V_EXT_IN.
 
 For control of RGB backlights on 12864 displays, the display's RGB LED data line should be connected to pin 5 of the 12864_EXP1 connector. See [Connecting 12864 displays](/User_manual/Connecting_hardware/Display_12864).
 
