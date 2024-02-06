@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-02-06T16:50:44.899Z
+date: 2024-02-06T19:46:56.263Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2416,17 +2416,22 @@ This example sets the current line number to 123. Thus the expected next line af
 * **Pnn** Debug module number
 * **Sn** Debug on (S1), off (S0). S0 is equivalent to D0. S1 is equivalent to D{0xFFFF}.
 * **Dnnn** Set/clear individual debug flags for the specified module
+* **Bnnnn** Redirect debug output and allocate buffer memory (RRF 3.5.0 post RC3 only)
 
 ### Examples
 <br>
 <pre class="cblock">
 M111
-M111 P1 S1 ; enable debugging for module 1
+M111 P1 S4 ; enable all debugging for module 4
+M111 P4 D2 ; enable just bit 1 debugging information for module 4
+M111 B1024 ; allocate a 1K debug buffer (RRF 3.5.0 post RC3 only)
 </pre>
 
-Enable or disable debugging features for the module number specified by the P parameter. M111 without parameters lists all the modules, their numbers, and whether debugging is enabled for each..
+Enable or disable debugging features for the module number specified by the P parameter. M111 without parameters lists all the modules, their numbers, and whether debugging is enabled for each.
 
-Note, print quality may be affected when debug output is enabled because of the volume of data sent to USB. Debug output should normally be used only for debugging firmware, or when instructed to help with diagnosis of particular issues.
+Debug output is normally sent to the USB port, and any debug output generated from an interrupt service routine is discarded. However, in RRF 3.5.0 post RC3 you can use M111 with the B parameter to allocate a debug buffer instead; in which case debug output is written to the buffer (even when it comes from an interrupt service routine) and is later extracted and written as a generic message to all active input channels. The B parameter is the debug buffer size in bytes and must be an exact power of 2. Debug data that can't be written to the buffer because it is full is discarded.
+
+Note, print quality may be affected when debug output is enabled because of the volume of data sent to USB. After the B parameter is used to allocate a debug buffer, if excessive amounts of debug data are generated then HTTP disconnections may occur. Debug output should normally be used only for debugging firmware, or when instructed to help with diagnosis of particular issues.
 
 The details of what debugging information is output when debugging is enabled varies from one firmware revision to another, so it is not specified here.
 
