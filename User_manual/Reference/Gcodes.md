@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-01-29T15:05:26.256Z
+date: 2024-02-06T14:47:27.488Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5735,9 +5735,9 @@ M569.7 P40.0 C"out1"   ; driver 0 on board 40 uses port out1 on board 40 to cont
 
 ### Notes
 
-When the motor driver is enabled, the specified output port will be turned on at the same time to release the brake. When the motor driver is disabled, the output port will be turned off. Idle current mode does not count as disabled.
-
-Note: after M569.7 is executed, the port will be initially off. Therefore, M569.7 should be executed before the motor is first enabled.
+* When the motor driver is enabled, the specified output port will be turned on at the same time to release the brake. When the motor driver is disabled, the output port will be turned off. Idle current mode does not count as disabled.
+* After M569.7 is executed, the port will be initially off. Therefore, M569.7 should be executed before the motor is first enabled.
+* As long as the brake solenoid max current draw is <2A and it is rated for the VIN voltage used, it can be directly controlled by OUT pins (Duet 3) or FAN pins (Duet 2) which have flyback diodes, at VIN voltage (not using 5V/12V onboard regulator). If the current required is >2A, a heater output can be used, however you must add a flyback diode in parallel with the brake solenoid.
 
 ## M569.8: Read motor force via secondary CAN bus
 
