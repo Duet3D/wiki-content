@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-02-06T14:47:27.488Z
+date: 2024-02-06T16:50:44.899Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -208,9 +208,14 @@ RepRapFirmware allows multiple G- and M-commands to be included in a single line
 
 ## Command queueing
 
-RepRapFirmware stores regular G0, G1, G2 and G3 movement commands in a 'move queue' internally for execution, equivalent to a look-ahead buffer. These commands are acknowledged when they are placed in the queue. This means that there is no appreciable delay before a command is acknowledged, unless the move queue is full; and that sequences of line segments can be plotted without coming to a stop between one and the next. 
+RepRapFirmware stores regular G0, G1, G2 and G3 movement commands in a 'move queue' internally for execution, equivalent to a look-ahead buffer. These commands are acknowledged when they are placed in the queue. This means that there is no appreciable delay before a command is acknowledged unless the move queue is full, and that sequences of line segments can be plotted without coming to a stop between one and the next. 
 
-Some non-movement commands are also queued when executed from a job file or a macro, in a 'deferred command queue'. This operates in parallel to the 'move queue', and together the two queues operate as a single logical queue, and generally can be considered as one queue. M3, M4, M5, M42, M104, M106, M107, M117, M140, M141, M144, M280, M300 and M568 commands are all queued.
+Some non-movement commands are also queued when executed from a job file or a macro, in a 'deferred command queue'. This operates in parallel to the 'move queue', and together the two queues operate as a single logical queue, and generally can be considered as one queue. 
+
+Non-movement commands behave like this:
+* Some commands wait for all movement to stop. This applies to configuration commands such as M93, M906, M201, M569 etc., commands that do probing, G4, M400, and T commands. In most (but not all) cases, when configuration commands are used in reporting-only mode if that is supported (i.e. with no parameters or a reduced set of parameters), they don't wait for movement to stop.
+* Some are always executed immediately.
+* Some commands may be put in a queue to delay their execution until the most recent movement command from the same input channel has completed. This only happens if the command comes from a File channel (i.e. it is in a job file) and its parameters do not contain any expressions, i.e. there are no parameter values in { }. The M-commands this applies to are: M3 and M5 when not in laser mode; M4, M42, M104, M106, M107, M117, M140, M141, M144, M280, M300 and M568. The only G command this applies to is G10 and only if it does not contain the L parameter and does contain at least one P, R, S or axis letter parameter.
 
 As soon as one of these commands is received it is acknowledged and stored locally in the queue. If the queue is full, then the acknowledgement is delayed until space for storage in the queue is available. PC host programs rely on this for flow control when the controller electronics does not support device level flow control.
 
