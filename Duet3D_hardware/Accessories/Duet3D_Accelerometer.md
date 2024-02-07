@@ -2,7 +2,7 @@
 title: Duet3D Accelerometer
 description: A standalone accelerometer board using the LIS3DH MEMS digital motion sensor. It designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards
 published: true
-date: 2024-02-07T13:04:28.960Z
+date: 2024-02-07T13:22:49.584Z
 tags: 
 editor: markdown
 dateCreated: 2023-06-22T01:09:12.785Z
@@ -14,17 +14,18 @@ Various Duet 3 toolboards have a builtin accelerometer. However for systems not 
 
 # Features
 
----|---|
-| **Accelerometer** | [LIS3DH](https://www.st.com/en/mems-and-sensors/lis3dh.html) |
-| **Supply voltage** | 3.3V - Do not connect to 5V it will be damaged |
-| **Interface** | SPI Slave - Duet Mainboard is SPI master|
-| **LED** | There is a green LED on the board to indicate power ins applied|
-| **Additional details** | See the [Datasheet](https://www.st.com/resource/en/datasheet/lis3dh.pdf)|
+| | Duet3D Accelerometer v0.2 | Duet3D Accelerometer v1.0 |
+|---|---|
+| **Accelerometer** | [LIS3DH](https://www.st.com/en/mems-and-sensors/lis3dh.html){target=_blank} | [LIS2DW12](https://www.st.com/en/mems-and-sensors/lis2dw12.html){target=_blank} |
+| **Supply voltage** | 3.3V - Do not connect to 5V it will be damaged ||
+| **Interface** | SPI Slave - Duet Mainboard is SPI master||
+| **LED** | There is a green LED on the board to indicate power is applied ||
+| **Additional details** | [LIS3DH datasheet](https://www.st.com/resource/en/datasheet/lis3dh.pdf){target=_blank} | [LIS2DW12 datasheet](https://www.st.com/resource/en/datasheet/lis2dw12.pdf){target=_blank} |
 
 ## Firmware notes
 
 * **Duet3D Accelerometer v0.2** is compatible RepRapFirmware v3.4.6 or v3.5beta4 and later
-* **Duet3D Accelerometer v1.0** is compatible RepRapFirmware v3.5 and later
+* **Duet3D Accelerometer v1.0** is compatible RepRapFirmware v3.5.0-rc.2 and later
 
 # Physical properties and connections
 
@@ -36,7 +37,7 @@ Various Duet 3 toolboards have a builtin accelerometer. However for systems not 
 
 The hole in the PCB is 6.1mm so it can be mounted using a standard 3d printing nozzle as well as systems like the Revo nozzles:
 
-![Duet3d accelerometer on revo micro](/hardware/accelerometer/duet3d_accelerometer_on_revo_micro.jpg  =400x)
+![Duet3d accelerometer on revo micro](/hardware/accelerometer/duet3d_accelerometer_on_revo_micro.jpg =400x)
 
 The accelerometer needs to be firmly mounted for data collection so it the nozzle is <6mm (such as the revo) use a m4 washer between the flanged top of the revo heatbreak and the accelerometer PCB. This is not necessary for V6 and similar nozzles.
 
@@ -50,9 +51,7 @@ Manually set the active and standby temperature to 0°C before using the IS plug
 
 ## 3D model
 
-A STEP 3D model is available on github, here:
-https://github.com/Duet3D/Duet3D-Accelerometer/tree/main/Duet3D%20Accelerometer%20v0.2
-
+A STEP 3D model is [available on github.](https://github.com/Duet3D/Duet3D-Accelerometer/tree/main/Duet3D%20Accelerometer%20v0.2){target=_blank}
 
 ## Wiring Diagram
 
@@ -89,3 +88,15 @@ In all the images below the image of the accelerometer is shown as if stood in f
 See the [connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) page for details on how to configure and use the accelerometer
 
 See the [input shaping](/User_manual/Tuning/Input_shaping) page for details on how to use input shaping.
+
+# Revision History
+
+# Tabs{.tabset}
+
+## Revision 1.0
+
+* LIS3DH accelerometer replaced with LIS2DW12
+
+## Revision 0.2
+
+* Initial version
