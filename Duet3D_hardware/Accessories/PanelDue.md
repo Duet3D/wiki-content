@@ -2,7 +2,7 @@
 title: Duet3D PanelDue
 description: 
 published: true
-date: 2023-11-02T17:35:43.184Z
+date: 2024-02-08T14:24:57.079Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-17T14:02:21.351Z
@@ -109,7 +109,7 @@ The version 2.0 and v3.0 dimensions are shown below
 
 [![paneldue_controller_dimensions.png](/hardware/paneldue/paneldue_controller_dimensions.png =400x)](/hardware/paneldue/paneldue_controller_dimensions.png){target=_blank}
 
-#### LCDs
+### PanelDue Controller LCDs
 
 Check the documentation for the specific screen you purchase if you do not get it directly from Duet3D or a reseller. The standard dimensions are shown:
 
