@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-01-22T18:35:05.245Z
+date: 2024-02-08T20:02:24.477Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -450,7 +450,7 @@ This diagram shows connection to a "typical" optoisolated stepper motor driver
 
 [![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png){target=_blank} [![duet_3_mb6xd_ext_driver.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg =400x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg){target=_blank}
 
-For firmware configuration, including mapping drives to axes, configuring enable polarity, and configuruing step timing, see the [Connecting external stepper and servo drivers](/User_manual/Connecting_hardware/Motors_connecting_external) wiki page.
+For firmware configuration, including mapping drives to axes, configuring enable polarity, and configuring step timing, see the [Connecting external stepper and servo drivers](/User_manual/Connecting_hardware/Motors_connecting_external) wiki page.
 
 ## Connecting a PanelDue
 
