@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-02-06T19:46:56.263Z
+date: 2024-02-13T16:57:37.839Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7018,17 +7018,12 @@ M667 S1
 
 ### Notes
 
-M667 S0 selects Cartesian mode (unless the printer is configured as a delta using the M665 command). Forward motion of the X motor moves the head in the +X direction. Similarly for the Y motor and Y axis, and the Z motor and Z axis. This is the default state of the firmware on power up.
-
-M667 S1 selects CoreXY mode. Forward movement of the X motor moves the head in the +X and +Y directions. In firmware 1.19 and later, forward movement of the Y motor moves the head in the +X and -Y directions.
-
-M667 S2 selects CoreXZ mode. Forward movement of the X motor moves the head in the +X and +Z directions. In firmware 1.19 and later, forward movement of the Z motor moves the head in the -X and +Z directions.
-
-In versions of RRF prior to 2.03, additional parameters X, Y and Z may be given to specify factors to scale the motor movements by for the corresponding axes. For example, to specify a CoreXZ machine in which the Z axis moves 1/3 of the distance of the X axis for the same motor movement, use M667 S2 Z3. The default scaling factor after power up is 1.0 for all axes.
-
-In RRF 2.03 and later the XYZ parameters are no longer supported. Use the M669 XYZ parameters to alter the movement matrix instead.
-
-To change the motor directions, see the M569 command.
+* M667 S0 selects Cartesian mode (unless the printer is configured as a delta using the M665 command). Forward motion of the X motor moves the head in the +X direction. Similarly for the Y motor and Y axis, and the Z motor and Z axis. This is the default state of the firmware on power up.
+* M667 S1 selects CoreXY mode. Forward movement of the X motor moves the head in the +X and +Y directions. In firmware 1.19 and later, forward movement of the Y motor moves the head in the +X and -Y directions.
+* M667 S2 selects CoreXZ mode. Forward movement of the X motor moves the head in the +X and +Z directions. In firmware 1.19 and later, forward movement of the Z motor moves the head in the -X and +Z directions.
+* In versions of RRF prior to 2.03, additional parameters X, Y and Z may be given to specify factors to scale the motor movements by for the corresponding axes. For example, to specify a CoreXZ machine in which the Z axis moves 1/3 of the distance of the X axis for the same motor movement, use M667 S2 Z3. The default scaling factor after power up is 1.0 for all axes.
+* In RRF 2.03 and later the XYZ parameters are no longer supported. Use the M669 XYZ parameters to alter the movement matrix instead.
+* To change the motor directions, see the M569 command.
 
 ## M669: Set kinematics type and kinematics parameters
 
@@ -7061,11 +7056,10 @@ M669 must come earlier in config.g than any [M671](/User_manual/Reference/Gcodes
 
 ##### Notes
 
-All these parameters are optional. The movement coefficient matrices are initialised to suitable value for the kinematics type you selected in the M667 or M669 command, but you can modify them using these parameters. If you send M669 with no parameters, the existing matrix will be reported.
-
-Note: when CoreXZ kinematics is selected, the default matrix assumes there is a 3:1 reduction on the Z axis, as in the original CoreXZ design described at on the [RepRap forums here](https://reprap.org/forum/read.php?2,377858){target=_blank}. If your CoreXZ printer has a different reduction or no reduction then you will need to use the Z parameter to change the Z line of the matrix. For example, if there is no Z reduction then use Z1:0:-1.
-
-In RRF 3, segmentation is not used unless the S and/or T parameter is given. Segmenting moves is useful when faster pause response is wanted.
+* All these parameters are optional. The movement coefficient matrices are initialised to suitable value for the kinematics type you selected in the M667 or M669 command, but you can modify them using these parameters. If you send M669 with no parameters, the existing matrix will be reported.
+* When CoreXZ kinematics is selected, the default matrix assumes there is a 3:1 reduction on the Z axis, as in the original CoreXZ design described at on the [RepRap forums here](https://reprap.org/forum/read.php?2,377858){target=_blank}. If your CoreXZ printer has a different reduction or no reduction then you will need to use the Z parameter to change the Z line of the matrix. For example, if there is no Z reduction then use Z1:0:-1.
+* In RRF 3, segmentation is not used unless the S and/or T parameter is given. Segmenting moves is useful when faster pause response is wanted.
+* For more information on configuring a machine with specific kinematics, see [Machine configuration](/User_manual/Machine_configuration)
 
 ##### Examples
 
@@ -7096,6 +7090,8 @@ Kinematics is modified CoreXY, matrix:
 0 0 0 1.00
 </pre>
 
+For more information on 
+
 #### Linear Delta
 
 *RRF 2.03 and later only*
@@ -7109,9 +7105,9 @@ Kinematics is modified CoreXY, matrix:
 
 ##### Notes
 
-This is used when a 4th axis is added to a linear Delta, to carry the extruder and follow in Z. It specifies the XY offsets of the extruder outputs on additional towers, relative to machine centre in the M669 command. See [Adding additional towers to carry flying extruders](https://docs.duet3d.com/User_manual/Machine_configuration/Configuration_linear_delta#adding-additional-towers-to-carry-flying-extruders){target=_blank}.
-
-In RRF 3, segmentation is not used unless the S and/or T parameter is given. Segmenting moves is useful when faster pause response is wanted.
+* This is used when a 4th axis is added to a linear Delta, to carry the extruder and follow in Z. It specifies the XY offsets of the extruder outputs on additional towers, relative to machine centre in the M669 command. See [Adding additional towers to carry flying extruders](https://docs.duet3d.com/User_manual/Machine_configuration/Configuration_linear_delta#adding-additional-towers-to-carry-flying-extruders){target=_blank}.
+* In RRF 3, segmentation is not used unless the S and/or T parameter is given. Segmenting moves is useful when faster pause response is wanted.
+* For more information on configuring a machine with specific kinematics, see [Machine configuration](/User_manual/Machine_configuration)
 
 #### Serial SCARA
 
@@ -7136,7 +7132,8 @@ M669 K4 P300 D250 A-90:90 B-135:135 C0:0:0 S100 X300 Y0
 
 ##### Notes
 
-The minimum and maximum arm angles are also the arm angles assumed by the firmware when the homing switches are triggered. The P, D, A and B parameters are mandatory. The C, X and Y parameters default to zero, and the segmentation parameters default to firmware-dependent values.
+* The minimum and maximum arm angles are also the arm angles assumed by the firmware when the homing switches are triggered. The P, D, A and B parameters are mandatory. The C, X and Y parameters default to zero, and the segmentation parameters default to firmware-dependent values.
+* For more information on configuring a machine with specific kinematics, see [Machine configuration](/User_manual/Machine_configuration)
 
 #### Polar
 
@@ -7153,9 +7150,9 @@ The minimum and maximum arm angles are also the arm angles assumed by the firmwa
 
 ##### Notes
 
-The **A** and **F** parameters only apply to normal moves not to G1 H2 (individual motor) moves. The intention is that when printing well away from the centre, the normal X and Y limits set by M201 and M203 are sufficient. When printing at a small radius, movement may need to be slowed down to limit the turntable speed and acceleration.
-
-There is currently no facility for offsetting the radius arm sideways from the centre of rotation of the turntable, or for moving the origin.
+* The **A** and **F** parameters only apply to normal moves not to G1 H2 (individual motor) moves. The intention is that when printing well away from the centre, the normal X and Y limits set by M201 and M203 are sufficient. When printing at a small radius, movement may need to be slowed down to limit the turntable speed and acceleration.
+* There is currently no facility for offsetting the radius arm sideways from the centre of rotation of the turntable, or for moving the origin.
+* For more information on configuring a machine with specific kinematics, see [Machine configuration](/User_manual/Machine_configuration)
 
 ## M670: Set IO port bit mapping
 
