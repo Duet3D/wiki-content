@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-02-13T16:57:37.839Z
+date: 2024-02-14T13:57:47.498Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -303,7 +303,12 @@ Blah blah
 
 ## G0: Rapid move
 
-Same as G1 except when in Laser and CNC mode, where moves are executed at the maximum feedrate available. See 'G1: Controlled linear' move for usage.
+Same as G1 except as follows:
+
+* When in Laser or CNC mode, the move is executed at the maximum feedrate available. The F parameter (if present) is ignored.
+* In some architectures such as Scara and Polar the move will not necessarily be in a straight line.
+
+See 'G1: Controlled linear' move for usage.
 
 ## G1: Controlled linear move
 
