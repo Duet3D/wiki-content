@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-02-14T16:00:08.161Z
+date: 2024-02-15T15:20:11.205Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7964,7 +7964,10 @@ M950 P0 C"exp.heater3"         ; create output/servo port 0 attached to heater 3
 M950 R0 C"pwm_pin+forward_pin+reverse_pin" Qfff Laa:bb
 </pre>
 
-* C can have 1, 2 or 3 pins. The first pin defined is a pwm capable pin to set the spindle speed. If a second pin is defined it is used as spindle on/off, if three pins are defined then the second pin is spindle forward and the third is spindle reverse.
+* C can have 1, 2 or 3 pins. 
+  * The first pin defines a pwm-capable pin to set the spindle speed. 
+  * If a second pin is defined it is used as spindle on/off. 
+  * If a third pin is defined it is used as spindle forward/reverse.
 * "fff" is the PWM frequency as usual
 * "Laa:bb" sets the RPM range as "aa" to "bb". "Lbb" just sets the max RPM to "bb". Default RPM values are 60 min 10000 max
 
