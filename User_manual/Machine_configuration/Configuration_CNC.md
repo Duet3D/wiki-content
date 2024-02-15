@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a CNC machine
 description: This page describes the hardware and wiring, and changes to the RepRapFirmware files required to support a CNC.
 published: true
-date: 2024-02-15T15:20:44.394Z
+date: 2024-02-15T15:30:24.059Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:34:29.590Z
@@ -63,7 +63,9 @@ When a job is paused the coordinates and spindle RPM are saved to slot 1 automat
 
 ## Example configuration and macros
 
-* Oozenest maintains a collection of configuration files and macros for their Workbee machines, see 
+* [CNC configs and macros](https://forum.duet3d.com/topic/19388/repository-for-cnc-config-s-and-macro-s) Forum sticky post with user CNC configs and useful macros.
+
+* [Ooznest Learning Portal](https://learn.ooznest.co.uk/) Ooznest maintains a collection of configuration files, macros and a more CNC-orientated version of DWC for their Workbee machines
 
 # Notes
 
