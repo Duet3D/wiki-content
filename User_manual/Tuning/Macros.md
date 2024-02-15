@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2024-01-12T09:53:44.578Z
+date: 2024-02-15T16:45:46.538Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -150,7 +150,7 @@ There are normally three specified tool change macros (any of which can contain 
 * Actions to do with the new tool before it is selected - macro name: **tpreN.g** where N is the tool number;
 * Actions to do with the new tool after it is selected - macro name: **tpostN.g** where N is the tool number.
 
-See [Selecting a tool](/User_manual/Reference/Gcodes/T) for more details.
+See [Selecting a tool](/User_manual/Reference/Gcodes/T) and [Multiple tools and tool change macros](/User_manual/Tuning/Tool_changing) for more details.
 
 ## Start, pause, stop and power fail
 
