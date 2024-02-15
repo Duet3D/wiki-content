@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2023-12-19T15:21:38.816Z
+date: 2024-02-15T14:00:28.418Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -250,7 +250,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | IO_2 | io2.in | ^^ |
 | ^^ | io2.out | ^^ |
 | IO_3 | io3.in | ^^ |
-| ^^ | io3.out | ^^ |
+| ^^ | io3.out, 12864 neopixel pin | ^^ |
 | IO_4 | io4.in | ^^ |
 | ^^ | io4.out, pson | ^^ |
 | IO_5 | io5.in | Input only |
