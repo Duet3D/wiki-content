@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-02-15T15:20:11.205Z
+date: 2024-02-15T16:16:03.074Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -477,12 +477,12 @@ In a similar manner, if the requested axis position gets very large then accurac
 
 ## G2: Controlled Arc Move
 
-Clockwise arc move. Supported by RRF_1.18 and later.
+Clockwise arc move. Supported by RRF 1.18 and later in FDM mode, RRF 1.20 and later in CNC mode, and RRF 2.01 and later in Laser mode.
 See 'G3: Controlled Arc Move' for usage.
 
 ## G3: Controlled Arc Move
 
-Counter-clockwise arc move. Supported by RRF_1.18 and later.
+Counter-clockwise arc move. Supported by RRF 1.18 and later in FDM mode, RRF 1.20 and later in CNC mode, and RRF 2.01 and later in Laser mode.
 
 ### Usage
 
@@ -517,12 +517,13 @@ G2 X100 Y50 R200            ; (draw a clockwise arc with radius 200 from the cur
 ### Notes
 
 * If the required parameters are present in a G2/G3 command, RRF does not report errors in arc commands where the parameters describe an arc that is invalid. It will attempt to draw the ‘best fit’ arc, then complete the move with a linear move to the endpoint. For example, if the generated Gcode is:
-<br>
-<pre class="cblock">
-G1 X50 Y0
-G2 X60 Y0 J10
-</pre>
-RRF will aim to finish the move +10 along the X axis. The J parameter sets the arc centre to Y10 (J is relative to the current Y position). So it draws the arc, to X60 Y10 (a 3/4 circle going clockwise with G2), then a linear move to X60 Y0. If this last linear move is unwanted, the command should be `G2 X60 Y10 J10`. This is inconsistent with the NIST standard, where invalid arcs should result in an error. This is scheduled to be fixed in RRF 3.5.1.
+  <br>
+  <pre class="cblock">
+  G1 X50 Y0
+  G2 X60 Y0 J10
+  </pre>
+  <br>
+  RRF will aim to finish the move +10 along the X axis. The J parameter sets the arc centre to Y10 (J is relative to the current Y position). So it draws the arc, to X60 Y10 (a 3/4 circle going clockwise with G2), then a linear move to X60 Y0. If this last linear move is unwanted, the command should be `G2 X60 Y10 J10`. This is inconsistent with the NIST standard, where invalid arcs should result in an error. This is scheduled to be fixed in RRF 3.5.1.
 * **RRF 3.3 and later:** Use of I, J and K parameters depends on the plane selected with G17, G18 or G19. Use I and J for the XY plane (G17), I and K for XZ plane (G18), and J and K for YZ plane (G19).
 * RRF maintains a flag for feed rate (F parameter). For all G1/2/3 moves (and G0 moves in FDM mode) the following is true:
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for feed rate.
@@ -4275,6 +4276,8 @@ M425 X0.15 Y0.23 S5
 
 ## M450: Report Printer Mode
 
+Supported by RRF 1.20 and later.
+
 ### Parameters
 
 * none
@@ -4298,6 +4301,8 @@ PrinterMode:CNC
 The default at power up is FFF.
 
 ## M451: Select FFF Printer Mode
+
+Supported by RRF 1.20 and later.
 
 ### Parameters
 
@@ -4380,6 +4385,8 @@ M452 P2 R255 F200 ; switch to laser mode using the heater 2 (E1 heater) output p
 * See also [Configuring RepRapFirmware for a laser engraver/cutter](/User_manual/Machine_configuration/Configuration_laser){target=_blank}.
 
 ## M453: Select CNC Device Mode
+
+Supported by RRF 1.20 and later.
 
 ### {.tabset}
 
