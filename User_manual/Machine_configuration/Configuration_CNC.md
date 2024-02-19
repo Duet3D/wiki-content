@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a CNC machine
 description: This page describes the hardware and wiring, and changes to the RepRapFirmware files required to support a CNC.
 published: true
-date: 2024-02-15T15:30:24.059Z
+date: 2024-02-19T09:38:00.700Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:34:29.590Z
@@ -16,7 +16,7 @@ To configure RepRapFirmware for a CNC machine, follow the instructions for confi
 
 * **RepRapFirmware has a default minimum movement speed of 0.5mm/sec, or 30mm/minute**. 
   Gcode commands sent with a slower feedrate than this (e.g. drilling) will automatically run at this speed. 
-  In firmware 2.03 and later this can be changed using the I ('i') parameter of the [M203](/User_manual/Reference/Gcodes/M203) command. For example, for a 5mm/minute minimum speed, send:
+  In firmware 2.03 and later this can be changed using the I ('i') parameter of the [M203](/User_manual/Reference/Gcodes/M203) command. For example, for a 10mm/minute minimum speed, send:
   ```
   M203 I10 ; set minimum speed to 10mm/min 
   ```
