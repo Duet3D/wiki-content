@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2023-05-23T15:00:26.027Z
+date: 2024-02-19T14:29:37.338Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -69,7 +69,7 @@ If the macro file is not found then default processing occurs as shown in the ta
 | expansion-timeout | 0 | 0 | CAN address of the board that has stopped communicating | Inform user via console and continue (likely to be changed before RRF 3.5 release) | Error
 | heater-fault | Heater # | Heater fault type code | CAN address of board controlling the heater | Faulty heater turned off (before the event is raised). Pause print using pause.g and inform user via message box | Error |
 | driver-error | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Pause print without running pause.g and inform user via message box | Error |
-| filament-error | Extruder # | [Filament error type code](/User_manual/Connecting_hardware/Sensors_filament#event-system-filament-error-events) | CAN address of board hosting the filament monitor | Pause print using pause.g and inform user via message box | Error |
+| filament-error | Extruder # | [Filament error type code](/User_manual/Connecting_hardware/Sensors_filament#event-system-filament-error-events) | CAN address of board hosting the filament monitor | Pause print using pause.g and inform user via message box. Note, if you use the M591 S2 parameter to enable filament monitoring even when not printing from SD card, and an error occurs when not printing from SD card, then pausing the print will fail and error messages will be generated. You should provide your own filament-error event handler when using M591 S2. | Error |
 | driver-stall | Local driver # | 0 | CAN address of board with driver | Inform user via console and continue | Warning |
 | driver-warning | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Inform user via console and continue | Warning |
 
@@ -78,15 +78,28 @@ Once processing is completed the event is removed from the queue. If an event of
 ## Handling events in macros
 As described above events call specific macros (e.g. filament-error.g) and pass macro parameters to those macros.
 
-For more information about macro parameters see:
-https://docs.duet3d.com/en/User_manual/Reference/Gcode_meta_commands#macro-parameters
+For more information about macro parameters see the [Gcode Meta Commands wiki page](/User_manual/Reference/Gcode_meta_commands#macro-parameters).
 
-as an example:
-filament-error.g could contain:
+as an example, filament-error.g could contain:
 
 `echo "filament error from filament monitor: "^{param.B}^"."^{param.D}^" : "^{param.P}^" ,"^{param.S}`
 
 to print the particular issue.
+
+# Simulating events
+
+[M957](/User_manual/Reference/Gcodes#m957-raise-event) can be used to raise an event, that allows to testing the event handling macros without having to cause a hardware or other fault.
+
+*Supported in RepRapFirmware 3.4 and later for raising events*
+
+M997 is used to raise an event or trigger internally as if the event had actually occurred, and execute any related handler macro for that event or trigger. 
+
+**Parameters**
+* E"type" Event type name
+* Dnn Device number to which the event relates
+* Bnn (optional) CAN address of the board that the event should appear to originate from
+* Pnn (optional) Additional data about the event (unsigned integer)
+* S"text" (optional) Short test string to be appended to the event message
 
 
 # Changes in behaviour since RRF 3.3
