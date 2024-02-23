@@ -2,7 +2,7 @@
 title: Events
 description: in RRF3.4b7 the first version of a new event handling system has been introduced. An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2024-02-19T14:29:37.338Z
+date: 2024-02-23T16:28:48.523Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -23,8 +23,8 @@ An event is one of the following:
 * Heater fault
 * Filament error     
 * Driver stall     
-* Driver error (e.g. over temperature shutdown, short-to-ground, or closed loop driver error failure to achieve the requested position)
-* Driver warning (e.g. over temperature warning, or phase disconnected)
+* Driver error (e.g. over temperature shutdown, short-to-ground, or closed loop driver position difference error limit exceeded)
+* Driver warning (e.g. over temperature warning, or phase disconnected, or closed loop driver position difference warning limit exceeded)
 * Expansion board timeout (RRF 3.5.0-beta.4 and later only)
 * Expansion board reconnect (RRF 3.5.0-beta.4 and later only)
 
