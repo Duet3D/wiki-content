@@ -2,7 +2,7 @@
 title: Duet 3 Family
 description: 
 published: true
-date: 2023-12-05T17:37:56.582Z
+date: 2024-02-23T13:14:58.980Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:14:53.360Z
@@ -40,7 +40,8 @@ dateCreated: 2021-06-03T16:14:53.360Z
 
 # Direct Expansion
 
-[Duet 3 Expansion Mini 2+](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_Mini_2+)
+[Duet 3 Expansion Mini 2+](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_Mini_2+) (Duet 3 Mini 5+ only)
+[Duet 3 WiFi Module](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#wifi-v102) (Duet 3 6HC v1.02 and later only)
 
 # Motor position sensing
 
