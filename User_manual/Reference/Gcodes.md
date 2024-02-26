@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-02-26T16:16:12.450Z
+date: 2024-02-26T16:19:16.323Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3836,7 +3836,7 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 * **P"pin_name"** The name of the control board pin that this sensor uses. For thermistors it is the thermistor input pin name, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. For sensors connected to the SPI bus it is the name of the output pin used as the chip select.
 * **Y"sensor_type"** The sensor and interface type, one of: "thermistor", "pt1000", "rtd-max31865", "thermocouple-max31855", "thermocouple-max31856", "linear-analog", "dht21", "dht22", "dht-humidity", "bme280", "bme-pressure", "bme-humidity", "current-loop-pyro", "drivers", "mcu-temp" (see note below regarding "mcu-temp" support on Duet 3 Mini 5+). Duet WiFi/Ethernet with an attached DueX2 or DueX5 also support "drivers-duex". "dht11" is supported in firmware up to RRF 3.3, but removed from RRF 3.4 onward. "bme280" is only supported in RRF 3.5 and later, and only on Duet 3 boards.
 * **A"name"** Sensor name (optional), displayed in the web interface
-* **Uu, Vv** (RRF 3.5 and later, optional, default zero) Temperature reading adjustment parameters. The temperature in °C read from the sensor is adjusted as follows: `adjustedReading = (rawReading * (1 + u)) + v`
+* **Uu, Vv** (RRF 3.5 and later, optional, default zero) Temperature reading offset and slope adjustment parameters. The temperature in °C read from the sensor is adjusted as follows: `adjustedReading = (rawReading * (1.0 + v)) + u`
 
 **Additional parameters for thermistors**
 
