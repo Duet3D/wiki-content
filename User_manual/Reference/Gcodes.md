@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-02-26T16:10:21.704Z
+date: 2024-02-26T16:16:12.450Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7939,6 +7939,7 @@ M950 F0 C"!1.out3+out3.tach" Q450 ; Create Fan 0 on expansion board 1, output OU
 * **Fnn** Fan number
 * **C"name"** Pin name(s) and optional inversion status. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 250 for fans.
+* **Knn** (RRF 3.5 and later, optional, default 2) Number of pulses output by the tacho per revolution of the fan.
 
 When using M950 to create a fan, the port name string may be either a single port, or two ports separated by the '+' sign. The second port is used to read the fan tacho. **Any CAN address at the start of the port name string applies to both port names.**
 
