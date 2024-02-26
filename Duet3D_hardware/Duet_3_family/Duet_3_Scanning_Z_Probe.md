@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-01-16T17:27:00.333Z
+date: 2024-02-26T17:56:37.688Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -92,6 +92,11 @@ Here is an example with it mounted on a Mini Stealth Burner tool on a Voron:
 
 Note: this board is a v0.1 development board; CAN_L and CAN_H are swapped on the silkscreen.
 
+### STEP file
+
+The STEP file for the board is available here:
+https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0
+
 # Physical connections
 
 ## Wiring diagram
@@ -100,8 +105,6 @@ Wiring on v1.0 board is:
 GND - 5V - CAN_L - CAN_H
 
 ![szp_wiring_01.jpg](/duet_boards/duet_3_can_expansion/duet_3_szp/szp_wiring_01.jpg =400x)
-
-*Wiring diagram to follow*
 
 <!---
 ## Wiring notes
