@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2023-10-22T18:23:13.188Z
+date: 2024-02-28T09:59:28.285Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -206,8 +206,6 @@ Tabs and space characters may be used freely between variable names, keywords, l
 
 Sub-expressions may be enclosed in { } or in ( ). However, standard CNC GCode uses ( ) to enclose comments. So in CNC mode, RepRapFirmware treats ( ) as enclosing subexpressions when they appear inside { } and as enclosing comments when they do not. Therefore, when RepRapFirmware is running in CNC mode, any use of ( ) to enclose a subexpression or function parameter list must be within an expression enclosed in { }.
 
-Expression length is limited to 100 characters.
-
 ## Types
 
 The available types of expressions and variables are: **bool**, **int**, **float**, **string**, **DateTime**, **object** and **array**. The only operations available on values of type **object** are comparison with **null** and taking a member. The only operations available on values of type **array** are taking the length (unary prefix operator #) and indexing (operator [ ] ).
@@ -240,7 +238,7 @@ Integer literals may be expressed in decimal format (e.g. *4321*) or hexadecimal
 
 Floating point literals may be expressed in fixed-point simple format (e.g. *165.32*) or scientific format (e.g. *6.2e6*).
 
-String literals are surrounded by double quote characters (e.g. *"Hello world"*). To include a double-quote character in a string iteral, use two double-quote characters (e.g. *"Here is some ""quoted text"""*).
+String literals are surrounded by double quote characters (e.g. *"Hello world"*). To include a double-quote character in a string iteral, use two double-quote characters (e.g. *"Here is some ""quoted text"""*). String literals are limited to 100 characters.
 
 Character literals (supported in RRF 3.5.0-rc.1 and later) are surrounded by single quote characters (e.g. 'a').
 
