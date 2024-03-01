@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on other boards
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2023-06-21T09:55:11.913Z
+date: 2024-03-01T11:17:34.522Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-15T10:49:14.406Z
@@ -129,9 +129,11 @@ If you are using a different board than the Raspberry Pi and if your SPI device 
 
 ## GPIO Transfer Ready Pin
 
-The link between Duet and SBC requires an extra GPIO pin so that the Duet can flag when it is ready to exchange data. This port defaults to [pin 25](https://pinout.xyz/pinout/pin22_gpio25#) on the Raspberry Pi. Furthermore DSF uses `libgpiod` to access this pin.
+The link between Duet and SBC requires an extra GPIO pin so that the Duet can flag when it is ready to exchange data. This port defaults to [pin 25](https://pinout.xyz/pinout/pin22_gpio25#) on the Raspberry Pi 3 and 4. Furthermore, DSF uses `libgpiod` to access this pin.
 
-*The following steps can be skipped if a Raspberry Pi is used.*
+If you are using a Raspberry Pi 5, you may need to replace `gpiochip0` with `gpiochip4` in `/opt/dsf/conf/config.json`. The compatible Bookworm-based image makes this change automatically when it starts for the first time.
+
+*The following steps are not required if a Raspberry Pi is used.*
 
 ### Identifying the right pin
 
