@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-03-01T18:04:02.715Z
+date: 2024-03-01T18:04:24.285Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -544,7 +544,7 @@ For further information on CAN connectivity, see [CAN connection](/User_manual/M
 
 ### Bus termination
 
-There is a 120R bus termination fitted to the CAN-FD bus on the 6HC boards, so normally this board must be at the end of the bus. From **v1.02 and later boards**, there are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. It is only required if a 6HC board is to be used as an expansion board, and not placed at the end of the bus but somewhere in between.
+There is a 120R bus termination fitted to the CAN-FD bus on the 6HC boards, so normally this board must be at the end of the bus. From **v1.02 and later boards**, there are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. It is only required if a 6HC board is to be used as an expansion board and not placed at the end of the bus but somewhere in between.
 
 ### Removing the bus termination
 
