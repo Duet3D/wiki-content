@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-01T09:41:08.891Z
+date: 2024-03-01T10:20:22.445Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8072,6 +8072,8 @@ This command can also be used to change the normal data rate, for example if the
 * Change the data rate of the main board last. Then the main board should be able to communicate with all the expansion boards again.
 
 ## M953: Set CAN-FD bus fast data rate
+
+*Provisional specification - not yet implemented*
 
 This command allows the bandwidth of the CAN bus to be optimised, by increasing the data rate during transmission of CAN-FD data packets by means of the BRS (bit rate switch) feature. The maximum speed supported by CAN-FD is 8Mbits/sec but the practical limit depends on the cable length, cable quality, number of devices on the bus and CAN interface hardware used. The rate specified will be rounded down to the nearest achievable rate.
 
