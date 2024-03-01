@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-02-08T20:02:24.477Z
+date: 2024-03-01T18:07:08.815Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -476,11 +476,24 @@ The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a
 
 The CAN BUS is connected via RJ11 and at least 2-core twisted pair wiring. 6-core RJ11 wiring is more common, and can be used, though only one pair of wires are used.
 
-The Duet 3 Mainboard 6XD has support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.4.6) only **CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics. 
-
-There is a termination resistor fitted on each CAN bus, so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers on the underside of the board that allow the termination resistor to be removed, however this is not required in normal operation.
+The Duet 3 Mainboard 6XD has support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.5 and earlier) only **CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics. 
 
 For further information on CAN connectivity, see [CAN connection](/User_manual/Machine_configuration/CAN_connection)
+
+### Bus termination
+
+There is a 120R bus termination fitted to the CAN-FD bus so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, , however this is not required in normal operation. It is only required if a 6HC board is to be used as an expansion board and not placed at the end of the bus but somewhere in between.
+
+### Removing the bus termination
+
+On the back side of the board are 2 drill to disconnect jumpers per bus:
+![6xd_can_termination_drillable.png](/duet_boards/duet_3_mb6xd/6xd_can_termination_drillable.png)
+
+To disconnect the termination resistors, use a small drill bit ~2mm **by hand** to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. **Do not drill all the way through the board**, the copper layer is approx 70um thick (i.e. very thin!) once its removed test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.
+
+Both jumpers must be disconnected or connected. do not do only one.
+
+If in the future you want to add the termination resistor back into the circuit the jumper can be bridged with solder.
 
 
 # Revision History
