@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2024-02-26T13:46:17.919Z
+date: 2024-03-01T13:51:01.614Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -438,6 +438,15 @@ From v1.2 the footprints for an ITR20001/T or TCRT1000/1010 reflective optical s
 * Provided a path to ground, via 100K resistors from the mounting holes to make it easier for static charge build up on the exstruder to dissapate if the Toolboard is mounted on the Hemera XS
 * Changed to higher power protection resistors for the thermistor inputs to better resist ESD/short from thermistor to 24V.
 * Changed the circuit around the VSSA fuse to make it more robust to ESD events.
+
+## PCB revision v1.2a
+
+Small revision to v1.2, still in production concurrent to version 1.3 while the original mounting hole patter is still in demand.
+
+* Provided a path to ground, via 100K resistors from the mounting holes to make it easier for static charge build up on the exstruder to dissapate if the Toolboard is mounted on the Hemera XS
+* Changed to higher power protection resistors for the thermistor inputs to better resist ESD/short from thermistor to 24V.
+* Changed the circuit around the VSSA fuse to make it more robust to ESD events.
+
 
 ## PCB revision v1.2
 
