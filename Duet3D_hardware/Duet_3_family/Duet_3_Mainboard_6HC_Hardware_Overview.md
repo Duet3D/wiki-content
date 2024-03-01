@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-03-01T18:04:24.285Z
+date: 2024-03-01T18:07:06.801Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -551,7 +551,7 @@ There is a 120R bus termination fitted to the CAN-FD bus on the 6HC boards, so n
 On the back side of the board are 2 drill to disconnect jumpers per bus:
 ![6hc_can_termination_drillable.png](/duet_boards/duet_3_mb6hc/6hc_can_termination_drillable.png)
 
-To disconnect the termination resistors, use a small drill bit ~2mm **by hand** to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. **Do not drill all the way through the board**,the copper layer is approx 70um thick (i.e. very thin!) once its removed test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.
+To disconnect the termination resistors, use a small drill bit ~2mm **by hand** to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. **Do not drill all the way through the board**, the copper layer is approx 70um thick (i.e. very thin!) once its removed test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.
 
 Both jumpers must be disconnected or connected. do not do only one.
 
