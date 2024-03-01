@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-02-26T16:22:42.289Z
+date: 2024-03-01T09:33:33.729Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2707,7 +2707,7 @@ MCU temperature: min 43.8C, current 43.9C, max 44.1C
 
 ## M135: Set PID sample interval
 
-*NOTE: removed in RRF 2.03beta2*
+*Available only in RRF 2.02 and earlier. In RRF 2.03 and later the interval is fixed at 250ms.*
 
 ### Parameters
 
