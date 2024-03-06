@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-01T10:20:22.445Z
+date: 2024-03-06T15:31:10.797Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6946,6 +6946,27 @@ This command establishes a "no entry" zone for the toolhead reference point. If 
 *Supported in firmware 2.02 and later.*
 
 This command behaves like [M226](/User_manual/Reference/Gcodes/M226){target=_blank} except that if macro file filament-change.g exists in /sys on the SD card, it is run in preference to pause.g. 
+
+## M606: Fork input file reader
+
+### Parameters
+
+* **S[mode]**> Mode, must be 1 (other values are reserved for future use).
+
+### Example
+
+```M606 S1 ; Fork input reader```
+
+This command is only supported on firmware configurations that support two or more motion systems that execute asynchronously with respect to each other.
+
+If the S1 parameter is present and the command occurs within a job from SD card or other storage media, it causes the input stream to be forked. From that point on, each motion system can read and execute commands from the job file independently of other motion systems. In consequence, when the movement queue of one motion system becomes full, or one motion system is waiting for a tool change or other action to complete, the other motion system(s) can still read and execute commands. In the event that this command is executed from a job file when the input stream has already been forked, it is ignored.
+
+If the S1 parameter is present and the command is used from an input channel other than a file stream then a warning is issued but it is otherwise ignored.
+
+If this command is run without the S parameter then the firmware just reports whether a job is being run from storage media, and if so whether the input stream for that media has been forked.
+
+See also the M596 command that selects a motion system, and the M598 command which is used to synchronise forked input streams at particular point in the file.
+
 
 ## M650: Set peel move parameters
 
