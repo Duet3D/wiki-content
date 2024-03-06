@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-06T15:31:10.797Z
+date: 2024-03-06T15:39:26.154Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6959,7 +6959,11 @@ This command behaves like [M226](/User_manual/Reference/Gcodes/M226){target=_bla
 
 This command is only supported on firmware configurations that support two or more motion systems that execute asynchronously with respect to each other.
 
-If the S1 parameter is present and the command occurs within a job from SD card or other storage media, it causes the input stream to be forked. From that point on, each motion system can read and execute commands from the job file independently of other motion systems. In consequence, when the movement queue of one motion system becomes full, or one motion system is waiting for a tool change or other action to complete, the other motion system(s) can still read and execute commands. In the event that this command is executed from a job file when the input stream has already been forked, it is ignored.
+If the S1 parameter is present and the command occurs within a job from SD card or other storage media, or within a macro file invoked by such a job, it causes the input stream to be forked. From that point on, each motion system can read and execute commands from the job file and any macro files invoked by it independently of other motion systems. In consequence, when the movement queue of one motion system becomes full, or one motion system is waiting for a tool change or other action to complete, the other motion system(s) can still read and execute commands.
+
+When the input stream is forked, all local variables belonging to the un-forked input stream are copied to the forks. If the command occurs in a macro then the return 
+
+In the event that this command with the S1 parameter is executed from a job file when the input stream has already been forked, it is ignored.
 
 If the S1 parameter is present and the command is used from an input channel other than a file stream then a warning is issued but it is otherwise ignored.
 
