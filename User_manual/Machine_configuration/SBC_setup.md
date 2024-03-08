@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-01-25T17:22:53.715Z
+date: 2024-03-08T12:07:17.617Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -268,12 +268,14 @@ Once your Raspberry Pi has established an internet connection, it is recommended
 
 ```
 sudo apt update
-sudo apt dist-upgrade
+sudo apt upgrade
 ```
 
 This will install the latest software components and the latest RepRapFirmware version on your Duet 3. You can do this regularly to update the system as new firmware is released.
 
 To switch between stable/release package feed and unstable/beta package feed, see [DSF installation](https://docs.duet3d.com/User_manual/Machine_configuration/DSF_RPi#software-installation){target=_blank}.
+
+Users of 3.5.0 or later can use `M997 S2` instead of the package upgrade commands above, however be advised that this M-code only install security- and Duet-related updates. Furthermore, `M997 S2 F"stable/unstable"` lets you switch the package feed and `M997 S2 V"version"` lets you downgrade to a specific version (e.g. `3.4.6`). 
 
 # 7. Configuring system files
 
