@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2023-03-14T19:08:02.884Z
+date: 2024-03-11T15:16:10.481Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -336,4 +336,4 @@ Ensure you have can communication (the status light is flashing in sync with the
 ## Revision v0.9
 
 * initial prototpye distributed.
-Prototype wiring is the same as version 1.0 wiring.
+Prototype wiring is the same as version 1.0 wiring but the SPI daughterboard connector is not functional.
