@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-07T23:26:28.951Z
+date: 2024-03-13T12:01:36.287Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6962,7 +6962,7 @@ This command is only supported on firmware configurations that support two or mo
 
 If the S1 parameter is present and the command occurs within a job from SD card or other storage media, or within a macro file invoked by such a job, it causes the input stream to be forked. From that point on, each motion system can read and execute commands from the job file and any macro files invoked by it independently of other motion systems. In consequence, when the movement queue of one motion system becomes full, or one motion system is waiting for a tool change or other action to complete, the other motion system(s) can still read and execute commands.
 
-When the input stream is forked, all local variables belonging to the un-forked input stream are copied to the forks. If the command occurs in a macro then the return 
+When the input stream is forked, all local variables belonging to the un-forked input stream are copied to the fork(s). If the command occurs in a macro then the return stack is also copied to the forks, so that each fork will execute the remainder of all the macro files in the stack. 
 
 In the event that this command with the S1 parameter is executed from a job file when the input stream has already been forked, it is ignored.
 
