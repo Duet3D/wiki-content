@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-13T12:01:36.287Z
+date: 2024-03-13T17:40:53.397Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4236,7 +4236,8 @@ The flags string may include one or more of the following letters:
 * v: Verbose: include values that are rarely needed and not normally returned
 * n: include fields with null values
 * o: include obsolete fields (v3.3 and newer)
-* d: limit the depth of the reported tree to the specified number following the letter d. Objects at the maximum depth will be returned as {}.
+* d: limit the depth of the reported tree to the specified number following the letter 'd'. Objects at the maximum depth will be returned as {}.
+* a: use this only when the key requested is an array, e.g. "tools" or "move.axes". When an array contains a lot of data, it may not be possible to return the entire array in one go. This parameter directs RRF to fetch array elements starting at the number that follows the letter 'a', default 0. The "next" field in the reply indicates the index of the first array element that was not fetched, or 0 if there are no more elements to fetch.
 
 The flags string may optionally use spaces or commas to separate the individual flags
 
@@ -4246,6 +4247,8 @@ The response is a JSON object of the following form:
 If the key string is malformed or refers to a property that does not exist in the object model, the result field is **null**.
 
 For details of the Object Model supported by RepRapFirmware, see [Object Model of RepRapFirmware](https://github.com/Duet3D/RepRapFirmware/wiki/Object-Model-Documentation){target=_blank}.
+
+Note: as of RRF 3.5.0 some arrays in the M409 response may be truncated under some conditions, to ensure that the response will fit in the available buffer space. Currently the only array affected is move.axes[] which is truncated to 9 elements unless the 'f' flag is included. To retrieve the entire array, make a request for key "move.axes" with flag "a0".
 
 ## M425: Configure backlash compensation
 
