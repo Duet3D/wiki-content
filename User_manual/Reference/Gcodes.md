@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-13T17:40:53.397Z
+date: 2024-03-15T15:00:01.887Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6971,7 +6971,7 @@ In the event that this command with the S1 parameter is executed from a job file
 
 If the S1 parameter is present and the command is used from an input channel other than a file stream then a warning is issued but it is otherwise ignored.
 
-If this command is run without the S parameter then the firmware just reports whether a job is being run from storage media, and if so whether the input stream for that media has been forked.
+If this command is run without the S parameter then the firmware just reports whether the input stream that runs stored jobs has been forked.
 
 See also the M596 command that selects a motion system, and the M598 command which is used to synchronise forked input streams at particular point in the file.
 
