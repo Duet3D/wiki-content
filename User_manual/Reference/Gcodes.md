@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-15T15:00:01.887Z
+date: 2024-03-21T10:14:02.849Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2513,7 +2513,7 @@ M115 B1
 Board EXP3HC firmware 3.0beta1 2019-10-28b1
 </pre>
 
-## M116: Wait
+## M116: Wait for temperature to be reached
 
 ### Parameters
 
@@ -2942,7 +2942,7 @@ M150 X2 R0 U255 B0 P255 S1 F0  ; right encoder led
 
 ### Notes
 
-* In older firmware versions this command is only supported on controllers that have an output connector for DotStar or NeoPixel LEDs. More recent firmwares remove this limitation.
+* In older firmware versions this command is only supported on controllers that have an output connector for DotStar or NeoPixel LEDs (e.g. all Duet 3 main boards). More recent firmwares remove this limitation. However, when using an output other than the dedicated LED output, in order to meet the precise timing requirement of Neopixel LEDs, RRF waits for all motion to stop and then disables interrupts while sending the LED data. During this time input data from UARTs may be lost, especially if there are a lot of LEDs to update. Therefore you should use the dedicated LED port if available.
 * The specified RGB values will be sent to the number of LEDs in the LED strip as specified by the S parameter, pushing the existing colours along the strip. To set all the LEDs the same colour, make the S parameter equal to or a little longer than the number of LEDs in the strip.
 * Caution: in early firmware versions, if the S parameter is omitted then as many LEDs as can be set in a single chunk will be addressed which depends on the board (e.g. 60 RGBW neopixels on Duet2). We recommend users always explicitly set the number of LEDs to address, rather than rely on this behaviour as the number of LEDs addressed in a single chunk may change in the future.
 * If a Neopixel LED strip is assigned to a pin that that cannot generate the WS2812 LED timing in hardware, then motion will be suspended while the LED strip is being written.
