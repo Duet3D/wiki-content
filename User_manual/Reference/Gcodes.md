@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-21T22:42:20.802Z
+date: 2024-03-21T22:58:36.499Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2942,11 +2942,11 @@ M150 X2 R0 U255 B0 P255 S1 F0  ; right encoder led
 
 ### Usage
 
-LED strips are updated by one or more M150 commands. Setting an LED strip to one colour only requires a single M150 command. Setting different colours along an LED string requires multiple M150 commands, and the LEDs will be set once the final command is sent.
+* LED strips are updated by one or more M150 commands. 
 * The specified RGB(WPY) values will be sent to the number of LEDs in the LED strip as specified by the S parameter.
-* To set all the LEDs the same colour, make the S parameter equal to or a little longer than the number of LEDs in the strip, with the command containing F0 (or omit as F0 is the default).
-* If there are further LEDs to be set in different colours, each previous M150 command should set the F parameter to F1, with the last M150 command setting it to F0 (or omit as F0 is the default).
-* Each M150 command before the final F0 will set the next number of LEDs, defined by the S parameter, to the RGB(WPY) values specified in the M150 command.
+* Setting an LED strip to one colour only requires a single M150 command. Make the S parameter equal to or a little longer than the number of LEDs in the strip, with the command containing F0 (or omit as F0 is the default).
+* Setting different colours along an LED string requires multiple M150 commands, and the LEDs will be set once the final command is sent. Each previous M150 command should set the F parameter to F1, with the last M150 command setting it to F0 (or omit as F0 is the default). Each M150 command before the final F0 will set the next number of LEDs, defined by the S parameter, to the RGB(WPY) values specified in that M150 command.
+* When a new M150 command, or set of M150 commands, are sent, the new RGB(WPY) values overwrite the existing ones, from the beginning of the strip. Only as many LEDs as the M150 commands specify get changed, leaving any LEDs further along the strip with their prior values.
 
 <br>
 <pre class="cblock">
@@ -2955,7 +2955,6 @@ M150 E0 R255 U0 B0 P255 S10 F1  ; Sets first 10 LEDs to red
 M150 E0 R0 U255 B0 P255 S10 F1  ; Sets next 10 LEDs to green
 M150 E0 R0 U0 B255 P255 S10 F0  ; Sets next 10 LEDs to blue, and send to LED strip
 </pre>
-
 
 ### Notes
 
