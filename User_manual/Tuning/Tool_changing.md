@@ -2,7 +2,7 @@
 title: Multiple tools and Tool change macros
 description: 
 published: true
-date: 2024-02-15T17:18:10.068Z
+date: 2024-03-21T14:50:14.237Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:26:56.963Z
@@ -40,8 +40,9 @@ If Tn is used to select tool n but that tool is already active, the command does
 
 **Note:** Prior to RRF 3.3, when changing tools, tool change macro files are not run unless all axes have been homed. In RRF 3.3 and later, tool change macro files are run **regardless of whether axes have been homed or not**. You can use conditional GCode to choose which commands are executed if axes have been homed/not homed.
 
-1. If another tool is already selected, the current coordinates are saved to memory slot 2 automatically (see [G60](/User_manual/Reference/Gcodes/G60)), then run macro **tfree#.g** where # is the number of that tool.
-1. If another tool is already selected, deselect it and set its heaters to their standby temperatures (as defined by the R parameter in the most recent G10/M568 command for that tool)
+1. If the new tool number is not the same as the old tool number, including if either old or new tool number is -1 (i.e. no tool), the current coordinates are saved to memory slot 2 automatically (see [G60](/User_manual/Reference/Gcodes/G60)). 
+1. Run macro **tfree#.g** where # is the number of the old tool.
+1. If a tool is already selected, deselect it and set its heaters to their standby temperatures (as defined by the R parameter in the most recent G10/M568 command for that tool)
 1. Run macro **tpre#.g** where # is the number of the new tool
 1. Set the new tool to its operating temperatures specified by the S parameter in the most recent G10/M568 command for that tool
 1. Run macro **tpost#.g** where # is the number of the new tool. Typically this file would contain at least a M116 command to wait for its temperatures to stabilise.
