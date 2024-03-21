@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2024-01-31T14:57:45.677Z
+date: 2024-03-21T11:44:03.710Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -87,6 +87,8 @@ A signal for controlling Neopixel strips can be output on pin 5 of the CONN_LCD 
 * Connect the GND pin of the LED strip to an available GND pin on the Duet, or to a GND shared with the Duet GND.
 * Connect the +5V pin of the LED strip to an available 5V pin on the Duet (note current limitations below), or to an external +5V power supply.
 * Connect the data input line of the LED strip to pin 5 of the CONN_LCD connector.
+
+Note that movement will be suspended any time M150 is used to update LEDs. So OK at the start/end of a print, or the end of heating up, but not a good idea during a print. This is because the CONN_LCD port doesn't have hardware DMA support for LEDs, the CPU has to stop all other activity including step pulse generation in order to generate the correct pulses.
 
 The signal level on pin 5 of the CONN_LCD connector is 3.3V so you need to level shift it to 5V. You should to do one of the following:
 * Level shift the signal to 5V. A non-inverting 74HCT series gate or buffer such as 74HCT08 can be used to do this.
