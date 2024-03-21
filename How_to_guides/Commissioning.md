@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: true
-date: 2024-01-11T16:37:42.576Z
+date: 2024-03-21T11:10:45.330Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -280,15 +280,26 @@ See [Configuring endstop switches](/User_manual/Connecting_hardware/Sensors_ends
 
 # 10. Check Stepper Motors 
 
-Before conducting this step, temporarily allow axis movement without homing:
-* Navigate to 'Control > Console' and enter `M564 S0 H0`. You can also enter GCodes into the field in the centre of the bar at the top of the page, however you won't see any response.
-* Navigate back to 'Control > Dashboard'. 
 
-[![commissioning_09_motors_01.png](/guides/commissioning/commissioning_09_motors_01.png =50%x){.align-right}](/guides/commissioning/commissioning_09_motors_01.png){target=_blank}**Check the operation of your stepper motors.**
+[![commissioning_09_motors_01.png](/guides/commissioning/commissioning_09_motors_01.png =50%x){.align-right}](/guides/commissioning/commissioning_09_motors_01.png){target=_blank}**Check the operation of your X, Y, Z and other axes stepper motors.**
+* To conduct this step, temporarily allow axis movement without homing:
+  * Navigate to 'Control > Console' and enter `M564 S0 H0`. You can also enter GCodes into the field in the centre of the bar at the top of the page.
+  * Navigate back to 'Control > Dashboard'. 
 * Using the Machine Movement panel, move each stepper motor, individually, 1 mm in each direction by pressing the '< #-1' and '#+1 >' buttons for each axis, where # is the axis. 
-* If any motors move in the wrong direction, we will fix them in the next step.
+* If any motors move in the wrong direction, we will fix them after checking the extruder motors.
 * Note: for cartesian kinematics, where only one motor moves for each X, Y and Z axis, this is straightforward. If you have a CoreXY, delta or Scara, see [User manual: Testing stepper motors](/User_manual/Connecting_hardware/Motors_testing) for the correct motor movements.
 * Note: a stepper can't be moved before homing, unless the [M564](/User_manual/Reference/Gcodes/M564) command is used to override this safety default.
+
+[![dwc23_12_tool_states.png](/manual/dwc/dwc23_12_tool_states.png =50%x){.align-right}](/manual/dwc/dwc23_14_machine_control_09.png){target=_blank}[![dwc23_14_machine_control_09.png](/manual/dwc/dwc23_14_machine_control_09.png =50%x){.align-right}](/manual/dwc/dwc23_14_machine_control_09.png){target=_blank}**Check the operation of your extruder stepper motors.**
+* To conduct this step, temporarily allow extruder movement without heating:
+  * Navigate to 'Control > Console' and enter `M302 P1`. You can also enter GCodes into the field in the centre of the bar at the top of the page.
+  * Navigate back to 'Control > Dashboard'.
+* Check that the tool you are testing is active; in the Tools + Extra panel, the tool should be highlighted blue, and the heater should be active. Make sure temperatures are set to 0 to avoid heating up the hot end.
+* Ideally, test the extruder motor without filament loaded, and observe the extruder gears to check which way they are turning. If you can't see them, start with no filament loaded, place some filament in the extruder so it just catches on the extruder gears, then command a short extrusion, to test which way the filament is pushed.
+* Use the Extrusion Control panel to move the extruder motor. Select a small feed amount, eg 5mm, and slow feedrate, eg 1mm/s, and press the Retract and Extrude buttons to test which way the extruder moves.
+* If the extruder motor moves in the wrong direction, we will fix it in the next step.
+* If the Retract and Extrude buttons are greyed out, check that the tool is selected and active, that the M302 command has been sent. If it is still greyed out, check in config.g that your tool definition (M563) includes the extruder drive (D parameter), eg M563 P0 D0 H1 F0.
+* Finish by re-applying cold extrusion prevention, with `M302 P0`.
 
 **Reversing a Stepper Motor**
 * To reverse the direction of a stepper motor, navigate to 'Files > System' and open the config.g file.
@@ -305,7 +316,11 @@ The distance an axis moves is defined by:
   * the number of steps your stepper motors takes to make a full rotation (which is set physically by the stepper motors type) multiplied by the microstepping (set by [M350](/User_manual/Reference/Gcodes/M350), 
   * and the number of steps per mm to move the axis (set by [M92](/User_manual/Reference/Gcodes/M92))
   
-These should have been set correctly during [Configuring firmware](/How_to_guides/Configuring_firmware). Test by moving each axis a bit further (+/-10mm, then +/-100mm) and measure the distance moved with a ruler. If an axis moves too far, or not far enough, check the values you set for microstepping (M350) and steps per mm (M92).
+These should have been set correctly during [Configuring firmware](/How_to_guides/Configuring_firmware). 
+
+Test the X, Y, Z and any other axis motor by moving each axis a bit further (+/-10mm, then +/-100mm) and measure the distance moved with a ruler. If an axis moves too far, or not far enough, check the values you set for microstepping (M350) and steps per mm (M92).
+
+Testing and calibrating extruder motors is covered in the next guide, [Calibration](/How_to_guides/Calibration)
 
 **Test homing**
 
