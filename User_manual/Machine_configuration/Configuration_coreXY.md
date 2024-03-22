@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for CoreXY Printer
 description: This page describes how to set up the configuration files for CoreXY printers, the same firmware binary also supports Cartesian, Delta and other printers kinematics .
 published: true
-date: 2024-02-13T16:32:55.426Z
+date: 2024-03-22T13:11:58.678Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T16:28:00.743Z
@@ -81,7 +81,7 @@ M667 S2 Z3 ; switch to CoreXZ mode and multiply motor movements by 3 for the Z a
 
 For the most part, configuration of motors and axes for CoreXY is the same as for Cartesian, though it should be noted that the 'X' and 'Y' motors defined in [M584](/User_manual/Reference/Gcodes/M584) don't move only the X or Y axis; a move by just one motor moves both axes equally, and will move the tool diagonally. See 'Testing motor movement' below.
 
-This also means that CoreXY machines are capable of higher speeds in X and Y directions than 45 degree diagonal moves, because both motors contribute to pure X or pure Y motion, whereas just one motor is used to perform diagonal motion. RepRapFirmware makes use of this to maximise performance. So on a CoreXY machine, the maximum XY speeds (set by [M201](/User_manual/Reference/Gcodes/M201)) and accelerations (set by [M203](/User_manual/Reference/Gcodes/M203)) can be set to 1.4 times (i.e. sqrt(2)) the 'normal' X and Y values.
+Unlike some other firmwares, for CoreXY and similar kinematics RRF allows for the fact that the maximum speed and acceleration the machine is capable of varies with the direction of the move. CoreXY machines are capable of higher speeds in X and Y directions than 45 degree diagonal moves, because both motors contribute to pure X or pure Y motion, whereas just one motor is used to perform diagonal motion. RepRapFirmware makes use of this to maximise performance. So for best performance on a CoreXY machine, the maximum XY speeds (set by [M201](/User_manual/Reference/Gcodes/M201)) and accelerations (set by [M203](/User_manual/Reference/Gcodes/M203)) can be set to 1.4 times (i.e. sqrt(2)) the 'normal' X and Y values.
 
 It is also recommended to set jerk policy 1 in [M566](/User_manual/Reference/Gcodes/M566), e.g.
 ```
