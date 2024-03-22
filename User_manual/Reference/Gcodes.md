@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-22T13:15:09.190Z
+date: 2024-03-22T15:05:58.013Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3416,7 +3416,7 @@ Supported in firmware version 1.19 and later.
 * **Sn** Message box mode (see below), default 1 
 * **Tn** Timeout in seconds, only used if the mode is 0, 1, 3, or 4 or more with a cancel button. The message will be cancelled after this amount of time if the user does not cancel it before then. A zero or negative value means that the message does not time out (it may still be cancelled by the user if it has a Close button). For modes 0 and 1 there is a default timeout of 10 seconds if no T parameter is provided. For other modes the default is no timeout.
 * **X, Y, Z,,,** 0 = no special action (default), 1 = display jog buttons alongside the message to allow the user to adjust the head position on the specified axis. Only valid in with message box modes S2 and S3.
-* **Jn** (RRF 3.5 and later only, optional) If message box mode >= 4: 0 = no Cancel button (default), 1 = display a Cancel button.
+* **Jn** (RRF 3.5 and later only, optional) If message box mode >= 4: 0 = no Cancel button (default), 1 = display a Cancel button (job/macro is cancelled immediately when pressed).
 * **K{"choice1","choice1",...}**  (RRF 3.5 and later only) List of choices, required (and only used) when S=4.
 * **Lnnn** (RRF 3.5 and later only, optional) Minimum accepted value (S=5 or S=6), or minimum number of characters (S=7).
 * **Hnnn** (RRF 3.5 and later only, optional) Maximum accepted value (S=5 or S=6), or maximum number of characters (S=7).
@@ -3440,13 +3440,10 @@ S7: (RRF 3.5 and later) Prompt for a string value. L is the minimum number of ch
 
 ### Notes
 
-The combination S0 T0 is not permitted, because that would generate a message box with no close button and that never times out, which would lock up the user interface.
-
-Duet Web Control 2.03 and later support HTML messages but that may not be displayed correctly on an attached PanelDue.
-
-When using Duet 3 with attached SBC, DSF versions before v3.1.1 support only non-blocking calls are supported in DuetSoftwareFramework. M291 is fully supported in DSF v3.1.1 and later.
-
-The limit in RRF 3.4 and later is 256 characters in the entire GCode command. Before 3.4 is was 200 characters, in RRF2 it's 160 characters.
+* The combination S0 T0 is not permitted, because that would generate a message box with no close button and that never times out, which would lock up the user interface.
+* Duet Web Control 2.03 and later support HTML messages but that may not be displayed correctly on an attached PanelDue.
+* When using Duet 3 with attached SBC, DSF versions before v3.1.1 support only non-blocking calls are supported in DuetSoftwareFramework. M291 is fully supported in DSF v3.1.1 and later.
+* The limit in RRF 3.4 and later is 256 characters in the entire GCode command. Before 3.4 is was 200 characters, in RRF2 it's 160 characters.
 
 ### Examples
 <br>
