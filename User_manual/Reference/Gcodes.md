@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-22T15:05:58.013Z
+date: 2024-03-22T15:39:26.002Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5042,13 +5042,15 @@ A Z probe may be a switch, an IR proximity sensor, or some other device. The **P
 * P10 means use Z motor stall detection as the Z probe trigger.
 * P11 means a scanning Z probe with an analog output (supported from RRF 3.5.0-beta.4). Such probes must be calibrated before use (see M558.1).
 
-Z probe types 4, 6 and 7 (used in RRF 2.x) are no longer supported. Instead, use type 5 (filtered digital) or 8 (unfiltered digital) and use the C parameter to specify the input. 
+Probe types 4, 6 and 7 (used in RRF 2.x) are no longer supported. Instead, use type 5 (filtered digital) or 8 (unfiltered digital) and use the C parameter to specify the input. 
+
+Probes connected to Duet 3 expansion or tool boards are limited to types 8 and 9. Firmware 3.5 also supports type 11.
+
+Only one Type 2 probe can be configured, and if using Duet 3 then it must be connected to the Duet 3 main board, not to a CAN-connected expansion or tool board.
 
 M558 with P parameter deletes the existing probe with that K number (if any) and creates a new Z probe. This resets the G31 values for that probe to default values.
 
-If your Z probe is connected to the Z endstop input, **in RRF 3.0 on Duet 2 boards only** (not in RRF 3.01 and later, and not in RRF 3.0 on Duet 3), that input is by default pre-assigned to be used by the Z endstop, so you must free it up first with `M574 Z0 P"nil"`.
-
-Only one Type 2 probe can be configured, and if using Duet 3 then it must be connected to the Duet 3 main board, not to a CAN-connected expansion or tool board.
+**In RRF 3.0 on Duet 2 boards only** (not in RRF 3.01 and later, and not in RRF 3.0 on Duet 3), if your Z probe is connected to the Z endstop input, that input is by default pre-assigned to be used by the Z endstop, so you must free it up first with `M574 Z0 P"nil"`.
 
 The **C** parameter specifies the input pin and the optional modulation pin. See [Pin names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank} for a list of available pins and their names to use. Invert the input by prefixing the input pin with ! character, when using an NPN output inductive or capacitive sensor or using an NO switch (not recommended, use a NC switch instead). The pullup resistor on the Z probe input is disabled by default. Enable it by prefixing the input pin (C parameter) with the ^ character. Enable pullup resistor with ^ if using Duet 2, running RRF3, using the Z probe input pin, and the probe type is a switch or BLTouch.
 
