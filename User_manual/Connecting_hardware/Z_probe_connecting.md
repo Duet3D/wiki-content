@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2024-03-22T16:35:38.244Z
+date: 2024-03-22T16:39:15.904Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -205,6 +205,8 @@ See also [DC42's web page on the IR sensor](https://miscsolutions.wordpress.com/
 ## Duet3D Smart Effector
 
 See this guide for configuring the strain gauge-based probing on the Smart Effector: [Smart effector and carriage adapters for delta printer](/Duet3D_hardware/Accessories/Smart_Effector)
+
+You can connect a Smart Effector to a Duet 3 Expansion board as a digital probe, but programming it via an expansion board is not supported.
 
 ## RepRapPro 3-wire IR sensor (as shipped with Ormerod 1)
 
