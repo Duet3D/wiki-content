@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2024-03-22T14:38:38.614Z
+date: 2024-03-22T15:19:40.250Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -229,8 +229,10 @@ The following named constants are provided:
 | line | int | The current line number in the file being executed |
 | null | object | The null object |
 | pi | float | Pi (3.14159265...) |
-| result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 if it returned an error, or -1 if it was a blocking M291 message box command that had a Cancel button, and either the Cancel button was pressed or the message box timed out.  Meta commands do not change 'result'. |
+| result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 if it returned an error, or -1 if it was a blocking M291 message box command that had a Cancel button, and either the Cancel button was pressed or the message box timed out.^1^  Meta commands do not change 'result'. |
 | true | bool | Boolean true |
+
+^1^ In RRF 3.5.0-rc3 and earlier, pressing 'Cancel' or M291 timing out will cancel the current job/macro, and any subsequent lines in the job/macro are not processed, rather than set result to -1. See [this discussion on the Duet3D forums](https://forum.duet3d.com/topic/34945/meta-gcode-result-variable-inconsistent-with-docs) for a workaround.
 
 ## Literals
 
