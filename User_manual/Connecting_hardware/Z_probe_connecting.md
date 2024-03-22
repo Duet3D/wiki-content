@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2024-01-29T16:21:57.097Z
+date: 2024-03-22T16:35:38.244Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -59,7 +59,7 @@ The [M558](/User_manual/Reference/Gcodes/M558) Gcode configures the firmware for
 #### RepRapFirmware 3.x
 
 * If updating from RRF 2.x, and the probe used type 4, 6 or 7, use type 5 or 8 instead, and define the pin the probe is connected to with the C parameter in M558.
-* Probes connected to Duet 3 expansion boards must be probe type 8 or 9 (stall homing not currently supported on expansion boards).
+* Probes connected to Duet 3 expansion boards must be probe type 8 or 9 (stall homing not currently supported on expansion boards). Firmware 3.5 also supports type 11.
 * In firmware versions from 3.2, you can use the F parameter in M558 to specify a fast Z feedrate for the first probing move, followed by a slower second probing move, for any probe. eg M558 F600:120
 
 The following table gives an overview of the different Z probe modes.
@@ -74,6 +74,7 @@ The following table gives an overview of the different Z probe modes.
 | 8 | Digital probe, unfiltered | HIGH during probing, LOW at other times |
 | 9 | BLTouch | OUT (Duet 3) and MOD (Duet 2 Maestro) can be configured to control deployment/retraction. MOD on Duet 2 WiFi/Ethernet is not PWM capable, so use heater pin on expansion port instead. |
 | 10 | Z motor stall detection | Not used |
+| 11 | Scanning Z probe with an analog output (from RRF 3.5.0-beta.4) | |
 
 **Z Probe Mode details**
 
@@ -111,6 +112,10 @@ Special mode for BLTouch probe. Supported in firmware 1.21 and later.
 ##### Mode 10
 
 Use the Z motor stall detection as the Z probe trigger. Supported in firmware 1.21 and later. There are limitations to [stall detection](/User_manual/Connecting_hardware/Sensors_stall_detection) and it is not always appropriate for accurate Z probing, however there is a [detailed discussion on the forum](https://forum.duet3d.com/topic/4772/motor-stall-detection-as-z-probe) and some users have had success.
+
+##### Mode 11
+
+Scanning Z probe with an analog output (supported from RRF 3.5.0-beta.4). Such probes must be calibrated before use (see M558.1). See [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe), [Duet 3 Roto toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) and [Scanning Z probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
 
 #### RepRapFirmware 2.x
 
