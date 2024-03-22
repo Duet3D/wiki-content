@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2024-03-01T12:27:24.120Z
+date: 2024-03-22T14:38:38.614Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -219,7 +219,7 @@ The following implicit type conversions will be performed when necessary:
 
 ## Named constants
 
-The following names constants are provided:
+The following named constants are provided:
 
 | Name | Type | Meaning |
 |:---|:---|
@@ -229,7 +229,7 @@ The following names constants are provided:
 | line | int | The current line number in the file being executed |
 | null | object | The null object |
 | pi | float | Pi (3.14159265...) |
-| result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 if it returned an error, or -1 if it was a blocking M291 message box command that had a Close button, and either the Close button was pressed or the message box timed out. Meta commands do not change 'result'. |
+| result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 if it returned an error, or -1 if it was a blocking M291 message box command that had a Cancel button, and either the Cancel button was pressed or the message box timed out.  Meta commands do not change 'result'. |
 | true | bool | Boolean true |
 
 ## Literals
