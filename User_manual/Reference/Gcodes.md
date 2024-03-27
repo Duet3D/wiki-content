@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-03-22T15:39:26.002Z
+date: 2024-03-27T11:48:39.912Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2379,7 +2379,14 @@ Deprecated in RepRapFirmware. Use M106 S0 instead.
 
 ## M108: Cancel Heating
 
-Breaks out of an M109, M116, M190 or M191 wait-for-temperature loop, continuing the print job. Use this command with caution! If cold extrusion prevention is enabled (see M302) and the extruder temperature is too low, this will start "printing" without extrusion. If cold extrusion prevention is disabled and the hot-end temperature is too low, the extruder may jam.
+### Description
+
+Breaks out of an M109, M116, M190 or M191 wait-for-temperature loop, continuing the print job. 
+
+### Notes
+
+* Use this command with caution! If cold extrusion prevention is enabled (see M302) and the extruder temperature is too low, this will start "printing" without extrusion. If cold extrusion prevention is disabled and the hot-end temperature is too low, the extruder may jam.
+* M108 will only work if sent from an input channel that is not blocked. So if you send e.g. M109 or M190 from the DWC console and then send M108 from that console, the M108 will be blocked by the M109 or M190.
 
 ## M109: Set Extruder Temperature and Wait
 
