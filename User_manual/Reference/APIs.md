@@ -2,7 +2,7 @@
 title: APIs
 description: Links to the API documentation
 published: true
-date: 2022-09-26T10:04:55.772Z
+date: 2024-03-27T11:54:06.726Z
 tags: 
 editor: markdown
 dateCreated: 2022-09-26T10:04:52.535Z
@@ -10,7 +10,7 @@ dateCreated: 2022-09-26T10:04:52.535Z
 
 # Introduction
 
-RepRapFirmware and Duet Software Framework have APIs that are accessible of the network (RepRapFirmware and Duet Software Framework), or directly on the SBC(Duet Software Frame Work). 
+RepRapFirmware (RRF) and Duet Software Framework (DSF) have APIs that are accessible over the network (RepRapFirmware and Duet Software Framework), or directly on the SBC (Duet Software Framework). 
 
 The API documentation is hosted on github within the project repositories.
 
