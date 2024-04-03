@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-03-01T18:07:06.801Z
+date: 2024-04-03T14:09:59.443Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -68,7 +68,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **Fuses** | 15A for V_Fused, 15A for OUT0. |
 | **12V current limit** | 800ma (total for out3-8 ports, when 12V selected) |
-| **5V and 3.3V current limit** | 800mA total on 5V and 3.3V, of which no more than 500mA from 3.3V. |
+| **5V and 3.3V current limit** | 800mA total on 5V and 3.3V, of which no more than 300mA from 3.3V. |
 
 ### Revision v1.01 and earlier
 
