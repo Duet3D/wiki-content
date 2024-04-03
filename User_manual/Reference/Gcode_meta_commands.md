@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2024-04-03T08:39:56.094Z
+date: 2024-04-03T13:59:02.941Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -51,7 +51,7 @@ There must be no spaces between the > or >> symbol and \<filename>. The default 
 Example:
 
 ```
-echo >"mymacro.g" "G1 F3000 X"^{move.axes[0].max-10} ; move to 10mm below axis max when the macro was generated
+echo >"mymacro.g" "G1 F3000 X{move.axes[0].max-10}" ; move to 10mm below axis max when the macro was generated
 echo >>"mymacro.g" "G1 F3000 Y{move.axes[1].max-10}" ; move to 10mm below axis max when the macro is executed
 ```
 
