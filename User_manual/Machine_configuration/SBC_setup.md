@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-03-08T12:08:30.571Z
+date: 2024-04-03T16:54:12.894Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -306,7 +306,7 @@ The name of the printer is its hostname on the network, you will need to connect
 `sudo raspi-config`
 
 * Select “System Options” -> Hostname-> “OK”-> and set the new printername/hostname.
-* Note the hostname must confirm to [certain limitations](http://man7.org/linux/man-pages/man7/hostname.7.html){target=_blank} to be valid.
+* Note the hostname must conform to [certain limitations](http://man7.org/linux/man-pages/man7/hostname.7.html){target=_blank} to be valid.
   * Valid characters for hostnames are letters from a to z,
   * the digits from 0 to 9, 
   * the hyphen (-).
