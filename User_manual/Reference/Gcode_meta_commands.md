@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2024-03-22T15:19:40.250Z
+date: 2024-04-03T08:39:56.094Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -155,7 +155,8 @@ Example:
 
 ### Variable assignment
 
-`set <existing-variable-name> = <expression>`
+`set var.<existing-local-variable-name> = <expression>`
+`set global.<existing-global-variable-name> = <expression>`
 
 This re-assigns an existing variable (which must be of the form *var.name* or *global.name*) to have the value *expression*.
 
