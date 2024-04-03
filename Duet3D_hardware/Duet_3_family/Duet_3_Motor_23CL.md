@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2023-12-11T20:23:54.439Z
+date: 2024-04-03T12:46:09.684Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -12,7 +12,7 @@ dateCreated: 2023-01-09T19:18:18.412Z
 
 # Introduction
 
-The Duet 3 Motor 23CL (M23CL) is a family of Closed loop, CAN-FD connected NEMA 23 motors, fully integrated in to the Duet 3 ecosystem. They optionally integrate a brake to hold the motor in position when power is off. Connection to the Duet 3 CAN-FD bus and power use industrial M8 connectors. Multiple M23CLs can be connected to the bus, either via an M8 Y splitter or a distribution board/box.
+The Duet 3 Motor 23CL (M23CL) is a family of Closed loop, CAN-FD connected NEMA 23 motors, fully integrated in to the Duet 3 ecosystem. They optionally integrate a brake to hold the motor in position when power is off. Connection to the Duet 3 CAN-FD bus and power use industrial M8 connectors. Multiple M23CLs can be connected to the bus, either via an M8 T splitter or a distribution board/box.
 
 Note the M23CL series are in active development and this documentation will be expanded as we confirm specifics of each motor variant, along with bus distribution options.
 
@@ -69,6 +69,24 @@ The STEP files are available [from Github here](https://github.com/Duet3D/Duet3-
 
 [![Image showing the connections on a Duet 3 Motor 23CL](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connection.png =600x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connection.png){target=_blank}
 
+## Power wiring
+
+Connect power and ground to the M8 3-way power connector.
+
+## CAN wiring
+
+The M23CL has two pairs of CAN_L and CAN_H connectors on a M8 4-way connector, one each for the incoming and outgoing signal. To connect it to the CAN bus, you can:
+
+* daisy chain the M23CL between other M23CLs, expansion or tool boards on the CAN bus. Connect the 'incoming' CAN cable to one CAN_L/CAN_H pair, and connect the outgoing CAN_L/CAN_H pair to the incoming pair of the next M23CL, expansion or tool board. 
+
+* have the M23CL as the last (or only) device on the CAN bus. The M23CL is supplied without CAN termination, so is easiest to use between other boards. If a M23CL needs to be the last device on the bus, there is a solder jumper on the PCB inside the motor to enable termination, but you would have to take the rear cover off the motor to access it. We recommend using external termination if the M23CL is the last device on the CAN bus. Connect a 120 ohm resistor between the pins on the 'outgoing' wire pair, between CAN_H and CAN_L. 
+
+* use a [Duet 3 Tool Distribution board](/Duet3D_hardware/Duet_3_family/Duet_3_Tool_Distribution_Board), and wire each M23CL to the distrbution board with four wires. CAN Bus termination can then be done on the Tool Distribution board.
+
+CAN bus connections between a M23CL and other M23CLs, expansion or tool boards can be made using standard M8 cables and T splitters. 
+
+* M8 cables are widely available. Generally, you can use 4-wire M8 cables. What kind you need will depend largely on your application.
+* T splitters (not Y splitters, they tend to have the wrong connections) with 4 positions on all connectors such as [this one from TE Connectivity](https://www.te.com/usa-en/product-T4082102004-000.html) (widely available from Mouser/Digikey/RS/Farnell etc) should work. Plugging in with the middle connector of the T may obstruct the M23CL power connector, so either use the other female connector of the T, or have a short jumper cable between the T and the M23CL.
 
 # Encoders
 
@@ -78,9 +96,11 @@ The M23CL incorporates a hall effect position sensor sensing a magnet on the mot
 
 # Commissioning
 
-See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
+## Initial CAN settings
 
-All boards in the system must have different CAN addresses. Duet 3 Motor 23CLs are shipped set to a default CAN address of 123. They will also revert to 123 if you use the can reset button (not exposed on prototypes). Therefore, if you have more than one new M23CL or other Duet3d CAN-FD connected expansion board, only one of them must be powered up and connected to the CAN bus at a time so the address can be changed from the default. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that M23CL, you can connect the next one; and so on. See the section: [Set the CAN address](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL#set-the-can-address) below for how to change the default address.
+All boards in the system must have different CAN addresses. Duet 3 Motor 23CLs are shipped set to a default CAN address of 123. They will also revert to 123 if you use the CAN reset button (not exposed on prototypes). Therefore, if you have more than one new M23CL or other Duet3d CAN-FD connected expansion board, only one of them must be powered up and connected to the CAN bus at a time so the address can be changed from the default. So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier). When you have changed the CAN address of that M23CL, you can connect the next one; and so on. See the section: [Set the CAN address](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL#set-the-can-address) below for how to change the default address.
+
+See also [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
 
 ## Startup Time
 
