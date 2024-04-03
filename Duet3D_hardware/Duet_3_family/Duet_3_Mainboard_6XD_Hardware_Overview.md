@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-03-01T18:07:08.815Z
+date: 2024-04-03T14:13:09.637Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -64,7 +64,8 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **Opto Isolated Outputs** | Max voltage 55V, max current 50mA |
 | **Driver Error inputs** | Selectable 10K pullup resistor to +5V or 10K pull down to GND. Input voltage limits: -1V to +24V. |
 | **Fuses** | 15A for V_FUSED, 3A for each bank of medium current outputs/ |
-| **5V current limit** | 3A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power, and any connected SBC powered by the Duet. |
+| **5V current limit** | 2A total on 5V including any PanelDue or other display, and any endstops/Z probes that draw significant power, and any SBC powered by the Duet. |
+| **3.3V current limit** | No more than 300mA from 3.3V external. |
 | **12V current limit** | 800mA (only used for fan outputs OUT_3 thru OUT_8, when selected) |
 
 ## Firmware notes
