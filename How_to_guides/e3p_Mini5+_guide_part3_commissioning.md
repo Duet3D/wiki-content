@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+ Guide Part 3: Commissioning
 description: Ender 3 Pro and Duet 3 Mini 5+ Guide Part 3:  Commissioning
 published: true
-date: 2024-04-04T11:17:01.668Z
+date: 2024-04-04T11:19:09.221Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-11T18:26:23.148Z
@@ -156,11 +156,11 @@ Turn the bed heater off (0c).
 When the bed temp drops below 45c the case fan should stop spinning.
 
 If you encounter a heater fault, check this page: Spurious heater faults and how to avoid them
-
+<!---
 # Testing the 12864 LCD
 
 Insert wisdom here.
-
+-->
 # Calibrate CPU Temp Reading
 
 The CPU on the Duet has an internal temperature sensor, which can be very useful for gauging the temperature of the electronics case and the stepper drivers. However, before it can provide a useful result, it must be calibrated.
