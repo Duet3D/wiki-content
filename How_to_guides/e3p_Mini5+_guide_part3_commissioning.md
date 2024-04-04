@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+ Guide Part 3: Commissioning
 description: Ender 3 Pro and Duet 3 Mini 5+ Guide Part 3:  Commissioning
 published: false
-date: 2024-04-04T11:15:27.192Z
+date: 2024-04-04T11:16:01.224Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-11T18:26:23.148Z
@@ -18,6 +18,8 @@ This guide will cover the first steps you should take to get connected to the Du
 This will test motor movement, endstop triggering, heater function, fan control, homing behaviour, and the LCD.
 
 Though this guide is specific to the Ender 3, the procedures shown here are the same for any printer during first commissioning.
+
+Note this guide is still under development.
 
 ## Other guides in this series
 
