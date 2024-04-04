@@ -1,8 +1,8 @@
 ---
 title: Duet 3 Mini 5+ Guide Part 3: Commissioning
 description: Ender 3 Pro and Duet 3 Mini 5+ Guide Part 3:  Commissioning
-published: false
-date: 2024-04-04T11:16:01.224Z
+published: true
+date: 2024-04-04T11:17:01.668Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-11T18:26:23.148Z
