@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2022-02-11T10:24:38.842Z
+date: 2024-04-04T14:49:46.092Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -22,7 +22,7 @@ See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection).
 * 2-way barrier strip for power in.
 * Four 2-way JST VH connectors for power out to tool boards, individually fused (5A fuses supplied).
 * Two RJ11 connectors for CAN bus in/out to connect to Duet 3 main board and expansion boards.
-* Four 4-pin JST ZH connectors to connect CAN bus to four Tool Boards.
+* Four 4-pin JST ZH connectors with 1m, 28AWG wires to connect CAN bus to four Tool Boards.
 * Four pairs of 2-pin jumpers to bypass unused tool board CAN connectors.
 * CAN bus termination jumper, for use if the CAN_OUT RJ11 port is not used.
 
