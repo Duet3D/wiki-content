@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+ Guide Part 3: Commissioning
 description: Ender 3 Pro and Duet 3 Mini 5+ Guide Part 3:  Commissioning
 published: false
-date: 2022-05-30T09:58:01.003Z
+date: 2024-04-04T11:15:27.192Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-11T18:26:23.148Z
@@ -176,10 +176,11 @@ To calculate the offset value, use (Tr-Tc). This value may be positive or negati
 In the Gcode Console, send M912 P0 S#, where # is the offset value obtained by (Tr-Tc). After a few seconds the CPU temperature should then read about the same as room temperature.
 
 To make the calibration permanent, you must add that M912 P0 S# command to config.g. It doesn't matter where, but I put it near the end, before the M501 command and the T0 command.
-
+<!---
 # Calibrating the CPU Temp 2
 
 Insert wisdom here.
+-->
 
 # Tuning Fans
 
