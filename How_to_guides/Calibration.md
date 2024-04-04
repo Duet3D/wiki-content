@@ -2,7 +2,7 @@
 title: Calibrating your Duet-based machine
 description: 
 published: true
-date: 2022-08-12T11:26:08.795Z
+date: 2024-04-04T13:48:05.222Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
@@ -246,6 +246,41 @@ This technique is called a 'binary search'. You can use it to tune all the setti
 * [Connect an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer){target=_blank}
 * [Input shaping](/User_manual/Tuning/Input_shaping){target=_blank}
 * Keep in mind that you have to retune Pressure Advance after you have configured Input Shaping. The Pressure Advance will differ from shaper to shaper and from frequency to frequency.
+* You can set up input shaping without an accelerometer, by printing a test print. See below.
+
+### Klipper version 
+
+See [https://www.klipper3d.org/Resonance_Compensation.html](https://www.klipper3d.org/Resonance_Compensation.html)
+
+You will need to make some adjustments for RepRapFirmware. For the Klipper test tower, you can add a custom Gcode script, to change parameters as the part prints. For example in PrusaSlicer, add the following custom g-code in Printer Settings>After Layer Change G-Code to test at different accelerations:
+
+```
+;Try Input Shapers
+{if layer_z >= 0.2}M201 X1000 Y1000{endif}
+{if layer_z >= 5.0}M201 X2000 Y2000{endif}
+{if layer_z >= 10.0}M201 X3000 Y3000{endif}
+{if layer_z >= 15.0}M201 X4000 Y4000{endif}
+{if layer_z >= 20.0}M201 X5000 Y5000{endif}
+{if layer_z >= 25.0}M201 X6000 Y6000{endif}
+{if layer_z >= 30.0}M201 X7000 Y7000{endif}
+```
+Ideally, turn off Mesh Bed Compensation when printing. You can also modify the script and reslice, to do the same tests for speed and jerk. Once you have measured the ringing frequency, try out the different input shapers with the following (adjust 'F39' to your measured frequency):
+```
+;Try Input Shapers
+{if layer_z >= 0.2}M593 P"none"{endif}
+{if layer_z >= 5.0}M593 P"mzv" F39 S0.0{endif}
+{if layer_z >= 10.0}M593 P"zvd" F39 S0.0{endif}
+{if layer_z >= 15.0}M593 P"zvdd" F39 S0.0{endif}
+{if layer_z >= 20.0}M593 P"zvddd" F39 S0.0{endif}
+{if layer_z >= 25.0}M593 P"ei2" F39 S0.0{endif}
+{if layer_z >= 30.0}M593 P"ei3" F39 S0.0{endif}
+```
+
+### Marlin version
+
+See [https://marlinfw.org/tools/input_shaping/freq-calibr.html](https://marlinfw.org/tools/input_shaping/freq-calibr.html)
+This uses less plastic than the Klipper version.
+Note you will need to adjust start and end gcode.
 
 # 7. Optimal slicer settings
 
