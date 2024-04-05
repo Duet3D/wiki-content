@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-04-03T12:46:09.684Z
+date: 2024-04-05T21:40:53.597Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -154,10 +154,14 @@ The calibration procedure measures magnet offsets and attempts to corrects for t
 
 A little more than one full rotation of the motor is performed in each direction. Unlike other tuning moves it is recommended the motor is not connected to any axis or other load for this calibration routine.
 
-Once you are satisfied that the motor can freely make up to 1.5 rotations in either direction, run the following command:
+Once you are satisfied that the motor can freely make up to 1.5 rotations in either direction, run the following commands:
 
+`M17 ; this will enable all motors you can be more specific e.g. M17 X the driver you are tuning need to be enabled before tuning
+`
+
+`
 M569.6 P##.# V2 ; Where P##.# is the driver address to tune
-
+`
 Once this has been performed successfully, the values will be written to non-volatile memory and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V2 command again, or checked by running the M569.6 ... V3 command.
 
 The firmware will output the highest deviation of expected position vs encoder position recorded. 
