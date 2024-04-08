@@ -2,7 +2,7 @@
 title: Duet3D Filament Monitor
 description: 
 published: true
-date: 2023-12-14T14:30:00.249Z
+date: 2024-04-08T10:59:44.132Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -311,6 +311,7 @@ Changes to the magnetic assembly and housing design. No change to the PCB design
 
 * Magnetic assembly changed from a ring magnet to a rod magnet.
 * Enclosure modified slightly to accommodate new magnetic assembly.
+* PCB silkscreen changed from 1.7b to 3.0 but PCB otherwise unchanged.
 
 ## PCB Revision 1.7b
 
