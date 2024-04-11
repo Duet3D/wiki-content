@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-04-05T21:40:53.597Z
+date: 2024-04-11T13:38:14.033Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -67,7 +67,8 @@ The STEP files are available [from Github here](https://github.com/Duet3D/Duet3-
 
 ## Connection Diagram
 
-[![Image showing the connections on a Duet 3 Motor 23CL](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connection.png =600x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connection.png){target=_blank}
+[![Image showing the connections on a Duet 3 Motor 23CL](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connections_d1.1.png =600x)](duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connections_d1.1.png){target=_blank}
+
 
 ## Power wiring
 
@@ -203,14 +204,14 @@ M569.1 P71.0 T3 E2:4 R100 I0 D0 ; Configure the M23CL at CAN address 71
 M569 P70.0 D4 S1 ; Set into closed-loop drive mode (D4) and not reversed (S1) 
 M569 P71.0 D4 S1 ; Set into closed-loop drive mode (D4) and not reversed (S1) 
 M584 X70.0 Y71.0 ; set X and Y drivers
-
+M906 X1600 Y1600 ; set the max current to use for X and Y
 M350 X32 Y32 ; set steps/mm to 32 for open loop mode operation
 M92 X160 Y160 ; steps/mm for a 20 tooth gt2 pulley for open loop operation
 ```
 
 Note the initial PID values will need to be [tuned to the particular motion system](https://docs.duet3d.com/en/User_manual/Tuning/Duet_3_1HCL_tuning).
 
-In contrast to usual drivers, the closed loop axes can have their holding current set to zero using M917, with negligible detrimental effect. Whilst a normal driver may slip if it's holding current is set to zero, a closed loop driver will notice that it has slipped an apply a current to return the drive to it's intended position. Setting a holding current of zero will also mean less current is used, so the motor runs cooler. However, a holding current can still be set using M917 if desired.
+In contrast to usual drivers, the closed loop axes can have their holding current set to zero using M917, with negligible detrimental effect. Whilst a normal driver may slip if it's holding current is set to zero, a closed loop driver will notice that it has slipped an apply a current to return the drive to it's intended position. Setting a holding current of zero will also mean less current is used, so the motor runs cooler. However, a holding current can still be set using M917 if desired. That aside you must still set the maximum current per axis using M906. if you do not then the motor will not move, or will only vibrate slightly.
 
 ## Tuning the PID for the closed loop
 
