@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-04-11T13:38:14.033Z
+date: 2024-04-11T14:49:11.430Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -205,7 +205,9 @@ M569 P70.0 D4 S1 ; Set into closed-loop drive mode (D4) and not reversed (S1)
 M569 P71.0 D4 S1 ; Set into closed-loop drive mode (D4) and not reversed (S1) 
 M584 X70.0 Y71.0 ; set X and Y drivers
 M906 X1600 Y1600 ; set the max current to use for X and Y
-M350 X32 Y32 ; set steps/mm to 32 for open loop mode operation
+
+; M350 and M92 are optional, only required if open loop operation is planned:
+M350 X32 Y32 ; set steps/mm to 32 for open loop mode operation 
 M92 X160 Y160 ; steps/mm for a 20 tooth gt2 pulley for open loop operation
 ```
 
