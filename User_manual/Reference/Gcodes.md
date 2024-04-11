@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-11T16:01:11.219Z
+date: 2024-04-11T17:07:40.720Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2084,6 +2084,9 @@ M82 ; absolute extrusion mode
 ### Description
 
 Makes the extruder interpret extrusion as absolute positions.
+
+>It is strongly recommended to use relative extrusion, not absolute extrusion. This is especially true for multi tool systems.{.is-info}
+
 
 ### Notes
 
