@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2024-04-11T13:22:46.091Z
+date: 2024-04-11T13:38:04.044Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -322,7 +322,7 @@ M569.1 P51.0 T2 C2500 S400 R100 I0 D0 E4:6  ; Configure the 1HCL board at CAN ad
 M569 P50.0 D4 S1 ; Configure the motor on the 1HCL at can address 50 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M569 P51.0 D4 S1 ; Configure the motor on the 1HCL at can address 51 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M584 X50.0 Y51.0 ; set X and Y drivers
-M906 X2400 Y2400 ; set the max current to use for X and Y
+M906 X1000 Y1000 ; set the max current to use for X and Y
 M917 X0 Y0 ; Set the closed loop axes to have a holding current of zero
 M92 X80 Y80 ; steps/mm 
 ```
