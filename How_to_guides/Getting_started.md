@@ -2,7 +2,7 @@
 title: How To Guides
 description: 
 published: true
-date: 2022-02-21T13:35:15.040Z
+date: 2024-04-11T19:36:10.261Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-05T13:42:15.895Z
@@ -55,23 +55,10 @@ Calibrating a delta printer
 [Ender 3 Pro and Duet 3 Mini 5+ Guide Part 1: Wiring](/How_to_guides/e3p_Mini5+_guide_part1_wiring)
 [Ender 3 Pro and Duet 3 Mini 5+ Guide Part 2: Configuration](/How_to_guides/e3p_Mini5+_guide_part2_configuration)
 [Ender 3 Pro and Duet 3 Mini 5+ Guide Part 3: Commissioning](/How_to_guides/e3p_Mini5+_guide_part3_commissioning)
-Ender 3 Pro and Duet 3 Mini 5+ Guide Part 4: Calibration
 
 <!--
 ## Duet 3 MB6HC
 
 VORON PRINTER RUN DUET 3 6HC/ TOOLBOARD
 
-
-## Duet 2 Maestro
-
-Ender 3 Pro and Duet Maestro Guide Part 1: Wiring
-Ender 3 Pro and Duet Maestro Guide Part 2: Configuration
-Ender 3 Pro and Duet Maestro Guide Part 3: Commissioning
-Ender 3 Pro and Duet Maestro Guide Part 4: Calibration
-Ender 3 Pro and Duet Maestro Guide Part 5: Upgrades
-
-Upgrade your Creality Ender 3 Pro with the Duet 2 Maestro
-
-Duet 2 Maestro in FlashForge Creator Pro (2016) and a smart 12864 LCD
 -->
