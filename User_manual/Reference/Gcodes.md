@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-05T13:55:58.955Z
+date: 2024-04-11T12:10:53.779Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3462,7 +3462,7 @@ if (input == 1)
 </pre>
 <br>
 <pre class="cblock">
-M291 R"Title" P"Request for string" S7 L5 H40 F"desfault string"
+M291 R"Title" P"Request for string" S7 L5 H40 F"default string"
 echo {input^" entered by user"}
 </pre>
 
