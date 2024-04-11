@@ -2,7 +2,7 @@
 title: How-to guides
 description: 
 published: true
-date: 2024-04-11T19:49:53.234Z
+date: 2024-04-11T19:50:34.046Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-04T12:18:03.082Z
@@ -16,6 +16,6 @@ dateCreated: 2021-06-04T12:18:03.082Z
 [Configuring RepRapFirmware for your machine](/How_to_guides/Configuring_firmware)
 [Commissioning your machine](/How_to_guides/Commissioning)
 [Calibrating your Duet-based machine](/How_to_guides/Calibration)
-[Other How To guides](How_to_guides/Getting_started)
+[Other How To guides](Getting_started)
 
 [<- Back to home](/home)
