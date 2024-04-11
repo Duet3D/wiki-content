@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2023-06-12T16:38:56.226Z
+date: 2024-04-11T13:22:19.366Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -314,22 +314,22 @@ Two general types of encoder can be used for feedback:
 * A quadrature encoder connected to the Quadrature Input interface. This works with common 5V optical encoders that are frequently supplied with closed loop stepper motors.
 * An SPI connection that can communicate with supported encoders that communicate over SPI. Initially this is the AS5047D encoder sensing a magnet on the motor shaft. In the future other SPI encoders may be supported.
 
-Here's an sample excerpt from a config.g file for RRF 3.4 to drive the X and Y motors from 1HCL  boards configured at CAN addresses 50 and 51, with quadrature encoders. **Note, some parameters have changed in RRF 3.5**.
+Here's an sample excerpt from a config.g file for RRF 3.5 to drive the X and Y motors from 1HCL  boards configured at CAN addresses 50 and 51, with quadrature encoders. **Note, some parameters have changed in RRF 3.5, if using RRF 3.4its recommended to upgrade to RRF 3.5**.
 
 ```
-M569.1 P50.0 T2 C5 R100 I0 D0 ; Configure the 1HCL board at CAN address 50 with a quadrature encoder on the motor shaft that has 5 steps per motor full step. 
-M569.1 P51.0 T2 C5 R100 I0 D0  ; Configure the 1HCL board at CAN address 51 with a quadrature encoder on the motor shaft that has 5 steps per motor full step. 
+M569.1 P50.0 T2 C2500 S400 R100 I0 D0 E4:6 ; Configure the 1HCL board at CAN address 50 with a quadrature encoder on the motor shaft that has 2500 PPR with a motor with 400 full steps per revolution (0.9degrees). 
+M569.1 P51.0 T2 C2500 S400 R100 I0 D0 E4:6  ; Configure the 1HCL board at CAN address 51 with a quadrature encoder on the motor shaft that has 2500 PPR with a motor with 400 full steps per revolution (0.9degrees). 
 M569 P50.0 D4 S1 ; Configure the motor on the 1HCL at can address 50 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M569 P51.0 D4 S1 ; Configure the motor on the 1HCL at can address 51 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M584 X50.0 Y51.0 ; set X and Y drivers
+M906 X2400 Y2400 ; set the max current to use for X and Y
 M917 X0 Y0 ; Set the closed loop axes to have a holding current of zero
-M350 X32 Y32 ; set steps/mm to 32 to make full use of the encoder resolution
-M92 X160 Y160 ; steps/mm for a 20 tooth gt2 pulley
+M92 X80 Y80 ; steps/mm 
 ```
 
 Note the initial PID values show will need to be tuned to the particular motor.
 
-In contrast to usual drivers, the closed loop axes can have their holding current set to zero using M917, with negligible detrimental effect. Whilst a normal driver may slip if it's holding current is set to zero, a closed loop driver will notice that it has slipped an apply a current to return the drive to it's intended position. Setting a holding current of zero will also mean less current is used, so the motor runs cooler. However, a holding current can still be set using M917 if desired.
+In contrast to usual drivers, the closed loop axes can have their holding current set to zero using M917, with negligible detrimental effect. Whilst a normal driver may slip if it's holding current is set to zero, a closed loop driver will notice that it has slipped an apply a current to return the drive to it's intended position. Setting a holding current of zero will also mean less current is used, so the motor runs cooler. However, a holding current can still be set using M917 if desired. That aside you must still set the maximum current per axis using M906. if you do not then the motor will not move, or will only vibrate slightly.
 
 ## Tuning the PID for the closed loop
 
