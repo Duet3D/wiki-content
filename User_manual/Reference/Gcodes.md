@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-11T18:34:16.633Z
+date: 2024-04-11T19:22:55.060Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2094,6 +2094,9 @@ Makes the extruder interpret extrusion as absolute positions.
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for the extruder absolute/relative positioning state.
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default M82 (absolute) is used.
   * The flag state is saved when a macro starts and is restored when a macro ends.
+
+In absolute extrusion only the counter 
+
 
 ## M83: Set extruder to relative mode
 
