@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+ Guide Part 3: Commissioning
 description: Ender 3 Pro and Duet 3 Mini 5+ Guide Part 3:  Commissioning
 published: true
-date: 2024-04-04T11:19:09.221Z
+date: 2024-04-11T19:37:03.051Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-11T18:26:23.148Z
@@ -200,4 +200,6 @@ Bear in mind that cooling performance may be slightly impacted by reducing the P
 
 # Calibration
 
-This concludes the commissioning stage of the guide. The next guide will cover initial calibration.
+This concludes the commissioning stage of the guide. 
+
+For claibration please see the general RRF [Calibration guide](/How_to_guides/Calibration)
