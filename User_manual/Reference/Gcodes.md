@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-11T20:46:29.866Z
+date: 2024-04-13T13:19:03.409Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -920,7 +920,7 @@ Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0-rc.3 and
 * **Xnnn** Probe X offset^1^
 * **Ynnn** Probe Y offset^1^
 * **U,V,W,A,B,C...nnn** Probe Offsets for all axes except Z^1^
-* **Znnn** Trigger Z height
+* **Znnn** Trigger Z height (default 0.7)
 * **Snnn** Calibration temperature^2^
 * **Tnnn or Tnnn:nnn** Temperature coefficient^3^
 * **Knnn** Selects the Z probe number. If there is no K parameter then the current Z probe number is used. The current Z probe number is 0 at startup.
