@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2022-07-29T14:16:46.622Z
+date: 2024-04-15T11:17:49.684Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -299,7 +299,9 @@ Copy `M115` and paste into terminal and then hit enter. You will see OK when a s
 
 #### WiFi status LED and antenna
 
-Your Duet WiFi will either have a blue LED on the WiFi module, or a green LED next to the WiFi module. This flashes once when power is connected, flashes a number of times when enabled and searching for a network to connect to, and is lit permanently when connected to a WiFi network. Duet 2 WiFi with external antenna has no WiFi LED. If you have a Duet with external antenna, don't forget to plug in the external antenna!
+Your Duet WiFi will either have a blue LED on the WiFi module, or a green LED next to the WiFi module. This flashes once when power is connected, flashes a number of times when enabled and searching for a network to connect to, and is lit permanently when connected to a WiFi network. Duet 2 WiFi with external antenna has no WiFi LED. 
+
+**If you have a Duet with external antenna, don't forget to plug in the external antenna!**
 
 #### Set WiFi to idle mode
 
