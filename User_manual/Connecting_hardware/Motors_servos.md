@@ -2,7 +2,7 @@
 title: Connecting hobby servos and DC motors
 description: This page deals with connecting hobby servos and DC motors to Duet mainboards.
 published: true
-date: 2024-04-16T12:35:12.632Z
+date: 2024-04-16T12:55:24.344Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-12T16:04:36.467Z
@@ -69,7 +69,7 @@ Servos that are commanded beyond their movement limits usually stall. This heats
 
 * Ensure that the Duet can supply the stall current. If not, use an external power supply.
 * Be very careful not to command the servo beyond its working range; often small, cheap servos have a working range of 10° to 170°, so sending `M280 P# S0` or `M280 P# S180` will result in a stall. 
-* If a stall can't be avoided, command the servo to move, hold it for a short time, then use `M42 P# S0` to stop commanding the servo (replace # by the pin number or GpOut number as usual). This removes power from the servo, so unless there is a force acting on the servo arm, it should just remain in place.
+* If a stall can't be avoided, command the servo to move, hold it for a short time, then use `M42 P# S0` to stop commanding the servo (replace # by the pin number or GpOut number as usual). This effectively removes power from the servo, so unless there is a force acting on the servo arm, it should just remain in place.
 
 ## Regenerative braking
 
@@ -144,7 +144,10 @@ Duet 3 MB6HC example
 M950 S1 C"out9" ; assign GPIO port 1 to out9 (Servo header), servo mode
 
 ;move servo with
-M280 P1 S80
+M280 P1 S80  ; set 80deg servo position on GPIO port 1
+
+;turn off servo with
+M42 P1 S0
 ```
 Duet 2 example
 ```
@@ -153,6 +156,9 @@ M950 S0 C"exp.heater3"  ; assign GPIO port 0 to heater3 on expansion connector, 
 
 ;move servo with
 M280 P0 S80  ; set 80deg servo position on GPIO port 0
+
+;turn off servo with
+M42 P0 S0
 ```
 
 ### RepRapFirmware 2.x
@@ -165,6 +171,9 @@ M307 H3 A-1 C-1 D-1 ; disable heater 3
 
 ;move servo with
 M280 P3 I1 S80  ; set Heater 3 pin to 80deg servo position, inverted
+
+;turn off servo with
+M42 P3 I1 S0
 ```
 
 # Connecting DC motors
