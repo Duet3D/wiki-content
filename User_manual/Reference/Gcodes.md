@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-13T13:19:03.409Z
+date: 2024-04-16T08:22:29.326Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1196,7 +1196,7 @@ All coordinates from now on are absolute, relative to the origin of the machine.
 * RRF maintains a flag for the absolute/relative positioning state. As such, the following is true:
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for the absolute/relative positioning state.
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default G90 (absolute) is used.
-  * The flag state is saved when a macro starts and is restored when a macro ends.
+  * The flag state is saved when a macro starts and is restored when a macro ends. This applies only to macros, not to job files. Changes made during job files persist for the session or until they are changed again.
 
 ## G91: Set to Relative Positioning
 
@@ -1218,7 +1218,7 @@ All coordinates from now on are relative to the last position.
 * RRF maintains a flag for the absolute/relative positioning state. As such, the following is true:
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for the absolute/relative positioning state.
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default G90 (absolute) is used.
-  * The flag state is saved when a macro starts and is restored when a macro ends.
+  * The flag state is saved when a macro starts and is restored when a macro ends. This applies only to macros, not to job files. Changes made during job files persist for the session or until they are changed again.
 
 ## G92: Set User Position
 
@@ -1264,7 +1264,7 @@ G93 is Inverse Time Mode. In inverse time feed rate mode, an F word means the mo
 * RRF maintains a flag for the feed rate mode selected, which is either Inverse Time Mode or Units per Minute. As such, the following is true:
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for the feed rate mode state.
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no feed rate mode is specified in config.g, the default G94 (Units per Minute) is used.
-  * The flag state is saved when a macro starts and is restored when a macro ends.
+  * The flag state is saved when a macro starts and is restored when a macro ends. This applies only to macros, not to job files. Changes made during job files persist for the session or until they are changed again.
 
 ## G94: Feed Rate Mode (Units per Minute)
 
@@ -1289,7 +1289,7 @@ G94 is Units per Minute Mode. In units per minute feed mode, an F word is interp
 * RRF maintains a flag for the feed rate mode selected, which is either Inverse Time Mode or Units per Minute. As such, the following is true:
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for the feed rate mode state.
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no feed rate mode is specified in config.g, the default G94 (Units per Minute) is used.
-  * The flag state is saved when a macro starts and is restored when a macro ends.
+  * The flag state is saved when a macro starts and is restored when a macro ends. This applies only to macros, not to job files. Changes made during job files persist for the session or until they are changed again.
 
 # M-commands
 
@@ -2093,7 +2093,7 @@ Makes the extruder interpret extrusion as absolute positions.
 * RRF maintains a flag for the extruder absolute/relative positioning state. As such, the following is true:
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for the extruder absolute/relative positioning state.
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default M82 (absolute) is used.
-  * The flag state is saved when a macro starts and is restored when a macro ends.
+  * The flag state is saved when a macro starts and is restored when a macro ends. This applies only to macros, not to job files. Changes made during job files persist for the session or until they are changed again.
 
 In **absolute extrusion mode only** the virtual extruder counter is incremented when an extruder is commanded to move. This single global  counter is visible with the "E" parameter of the M114 response and in the object model at `move.virtualEPos`. This counter is also set by G92 E"nn" so G92 E0 sets it to 0. This behaviour is there to allow old slicers and other clients which do not understand multiple tool machines to work with absolute extrusion mode. It does not work well with multiple tools, hence why relative extrusion mode is recommended. The virtual E position is reset when a print is started.
 
@@ -2157,7 +2157,7 @@ Makes the extruder interpret extrusion values as relative positions.
 * RRF maintains a flag for the extruder absolute/relative positioning state. As such, the following is true:
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for the extruder absolute/relative positioning state.
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default M82 (absolute) is used.
-  * The flag state is saved when a macro starts and is restored when a macro ends.
+  * The flag state is saved when a macro starts and is restored when a macro ends. This applies only to macros, not to job files. Changes made during job files persist for the session or until they are changed again.
 
 ## M84: Stop idle hold
 
