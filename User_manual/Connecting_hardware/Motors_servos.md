@@ -2,7 +2,7 @@
 title: Connecting hobby servos and DC motors
 description: This page deals with connecting hobby servos and DC motors to Duet mainboards.
 published: true
-date: 2022-02-16T17:44:05.430Z
+date: 2024-04-16T12:35:12.632Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-12T16:04:36.467Z
@@ -67,8 +67,9 @@ Your servo's stall current should not exceed the Duet's available current (see *
 
 Servos that are commanded beyond their movement limits usually stall. This heats up both the servo and the Duet. The servo is likely to burn out if held in this state. So:
 
-* Ensure that the Duet can supply the stall current.
-* Either be very careful not to command the servo beyond its working range, or else command the servo to move, hold it for a short time, then use M280 P# S0 to stop commanding the servo (replace # by the pin number or GpOut number as usual).
+* Ensure that the Duet can supply the stall current. If not, use an external power supply.
+* Be very careful not to command the servo beyond its working range; often small, cheap servos have a working range of 10° to 170°, so sending `M280 P# S0` or `M280 P# S180` will result in a stall. 
+* If a stall can't be avoided, command the servo to move, hold it for a short time, then use `M42 P# S0` to stop commanding the servo (replace # by the pin number or GpOut number as usual). This removes power from the servo, so unless there is a force acting on the servo arm, it should just remain in place.
 
 ## Regenerative braking
 
