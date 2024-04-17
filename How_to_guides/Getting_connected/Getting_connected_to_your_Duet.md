@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2024-04-15T11:43:34.506Z
+date: 2024-04-17T14:34:12.485Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -128,7 +128,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 ### macOS
 
 [![02_connect_via_usb_03.jpg](/guides/getting_connected/02_connect_usb_03.jpg =50%x){.align-right}](/guides/getting_connected/02_connect_usb_03.jpg){target=_blank}**macOS** users have no drivers to install. 
-* To check the Duet is recognised open Applications > Utilities > System Information, under Hardware > USB for a 'Duet' entry. 
+* To check the Duet is recognised open Applications > Utilities > System Information, under Hardware > USB for a 'Duet' entry. It may also show as a 'Communication Device' if connected through a USB hub.
 * For the Serial Port name, open Applications > Utilities > Terminal, then run `ls /dev/tty.*` The Duet uses a port with USB in the name, e.g. `/dev/tty.usbmodem1411`
 
 <p style="clear:both"></p>
