@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-18T14:33:09.909Z
+date: 2024-04-18T14:34:29.245Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4149,7 +4149,7 @@ RepRapFirmware does not adjust the extrusion factor to account for the layer hei
 
 ### Parameters
 
-* **Sn** (RRF 3.5.0 and later only, optional, default 0) 0 = release all axes and extruders owned by the current motion system except for axes/extruders needed by he current tool, 1 = do not release axes or extruders
+* **Sn** (RRF 3.5.0 and later only, optional, default 0) 0 = release all axes and extruders owned by the current motion system except for axes/extruders needed by the current tool, 1 = do not release axes or extruders
 
 ### Examples
 <br>
