@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-16T08:22:29.326Z
+date: 2024-04-18T14:33:09.909Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4147,15 +4147,20 @@ RepRapFirmware does not adjust the extrusion factor to account for the layer hei
 
 ## M400: Wait for current moves to finish
 
+### Parameters
+
+* **Sn** (RRF 3.5.0 and later only, optional, default 0) 0 = release all axes and extruders owned by the current motion system except for axes/extruders needed by he current tool, 1 = do not release axes or extruders
+
 ### Examples
 <br>
 <pre class="cblock">
-M400
+M400     ; wait until motion stops, in RRF 3.5.0 and later with multiple motion systems release owned axes and extruders
+M400 S1  ; wait until motion stops, do not release any axes or extruders
 </pre>
 
 ### Notes
 
-Finishes all current moves and and thus clears the buffer. That's identical to G4 P0.
+Finishes all current moves and and thus clears the buffer. That's identical to G4 P0 except that G4 P0 does not release any axes or extruders.
 
 ## M401: Deploy z-probe
 
