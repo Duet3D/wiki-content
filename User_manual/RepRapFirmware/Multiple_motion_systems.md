@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2024-02-20T09:58:29.239Z
+date: 2024-04-19T23:13:23.534Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -38,7 +38,7 @@ Use the [M597](https://docs.duet3d.com/en/User_manual/Reference/Gcodes#m597-coll
 
 # Synchronising the motion systems
 
-There will be times when the two motion systems need to be synchronised. For example, when the two motion systems are used to drive the two print heads of a IDEXY machine independently, they will need to synchronise at each layer change because they share a common Z axis. Use the M598 command to cause the movement system that reaches the command first to wait for the other one to catch up. uUpon reaching the M598 command, each motion system will release the axes that it owns, but not any extruders used by a tool that it owns.
+There will be times when the two motion systems need to be synchronised. For example, when the two motion systems are used to drive the two print heads of a IDEXY machine independently, they will need to synchronise at each layer change because they share a common Z axis. Use the M598 command to cause the movement system that reaches the command first to wait for the other one to catch up. Upon reaching the M598 command, each motion system will release the axes that it owns, but not any extruders used by a tool that it owns.
 
 Certain other commands will also cause synchronisation
 
