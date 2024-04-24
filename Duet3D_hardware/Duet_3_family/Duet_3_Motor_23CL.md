@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-04-24T12:26:46.724Z
+date: 2024-04-24T12:27:02.874Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -74,7 +74,7 @@ The STEP files are available [from Github here](https://github.com/Duet3D/Duet3-
 
 Connect power and ground to the M8 3-way power connector.
 
-**Note** In v1.0 of the Duet 3 Motor23CL pin 3 of the power connector is internally connected GND however in a future version it may have a different use. Best practive is to leave it unconnected to make the motors swappable iwt future versions without any wiring changes. It will not cause an issue in the v1.0 motors to connected it to GND.
+**Note** In v1.0 of the Duet 3 Motor23CL pin 3 of the power connector is internally connected GND however in a future version it may have a different use. Best practive is to leave it unconnected to make the motors swappable iwt future versions without any wiring changes. It will not cause an issue **in the v1.0 motors** to connected it to GND.
 
 ## CAN wiring
 
