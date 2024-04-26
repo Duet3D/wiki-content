@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on other boards
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2024-03-01T11:17:34.522Z
+date: 2024-04-26T08:47:34.756Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-15T10:49:14.406Z
@@ -89,9 +89,9 @@ If you wish to use the latest unstable/beta DSF components, you can run the foll
 wget -q https://pkg.duet3d.com/duet3d.gpg
 wget -q https://pkg.duet3d.com/duet3d-unstable.list
 sudo mv duet3d.gpg /etc/apt/trusted.gpg.d/
-sudo mv duet3d-unstable.list /etc/apt/sources.list.d/duet3d-unstable.list
+sudo mv duet3d-unstable.list /etc/apt/sources.list.d/duet3d.list
 sudo chown root:root /etc/apt/trusted.gpg.d/duet3d.gpg
-sudo chown root:root /etc/apt/sources.list.d/duet3d-unstable.list
+sudo chown root:root /etc/apt/sources.list.d/duet3d.list
 ```
 
 Once this is done, install HTTPS support for APT, update the package feeds, and install the DSF bundle:
