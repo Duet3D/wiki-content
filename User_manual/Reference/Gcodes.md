@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-18T14:34:29.245Z
+date: 2024-04-26T18:56:54.492Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1508,7 +1508,7 @@ M5 ; turn off spindle/laser
 * **CNC mode:**
   * M5 will stop the spindle of the current tool (if any) or all defined spindles if the current tool has no spindle assigned or there is no active tool.
 
-## M17: Enable all stepper motors
+## M17: Enable motors
 
 Available in RepRapFirmware 3.3beta2 and later.
 
@@ -1531,9 +1531,9 @@ M17
 M17 X E0
 </pre>
 
-Enables all stepper motors when used without parameters. Stepper motors can also be enabled selectively. For example, M17 X E0:2 will enable the X, extruder 0 and extruder 2 motors. Use this command to energise a motor for stealthChop tuning, followed by a short pause eg G4 P100 to allow the driver to establish the motor parameters.
+Enables all axis and extruder motors when used without parameters. Motors can also be enabled selectively. For example, M17 X E0:2 will enable the X, extruder 0 and extruder 2 motors. Use this command to energise a motor for stealthChop tuning, followed by a short pause eg G4 P100 to allow the driver to establish the motor parameters.
 
-## M18: Disable all stepper motors
+## M18: Disable motors
 
 ### Parameters
 
@@ -1554,7 +1554,7 @@ M18
 M18 X E0
 </pre>
 
-Disables stepper motors and allows axes to move 'freely.' Stepper motors can be disabled selectively. For example, M18 X E0:2 will disable the X, extruder 0 and extruder 2 motors. Also see M84.
+Disables motors and allows axes to move 'freely.' When used without parameters, all axis and extruder motors are disabled. Motors can be disabled selectively. For example, M18 X E0:2 will disable the X, extruder 0 and extruder 2 motors. See also M84.
 
 ## M20: List SD card
 
