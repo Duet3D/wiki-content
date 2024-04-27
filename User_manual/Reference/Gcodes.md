@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-26T18:56:54.492Z
+date: 2024-04-27T22:36:57.628Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -114,8 +114,8 @@ In RepRapFirmware, some parameters can be followed by more than one number, with
 | Ynnn | A Y coordinate, usually to move to. This can be an Integer or Fractional number. |
 | Znnn | A Z coordinate, usually to move to. This can be an Integer or Fractional number. |
 | U,V,W | Additional axis coordinates |
-| Innn | Parameter - X-offset in arc move (*Not yet implemented in RepRapFirmware*); integral (Ki) in PID Tuning; signal inversion |
-| Jnnn | Parameter - Y-offset in arc move (*Not yet implemented in RepRapFirmware*) |
+| Innn | Parameter - X-offset in arc move; integral (Ki) in PID Tuning; signal inversion |
+| Jnnn | Parameter - Y-offset in arc move |
 | Dnnn | Parameter - used for diameter; derivative (Kd) in PID Tuning; drive number |
 | Hnnn | Parameter - used for heater number in PID Tuning |
 | Fnnn | Feedrate in mm per minute. (Speed of print head movement) |
