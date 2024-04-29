@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-27T22:36:57.628Z
+date: 2024-04-29T09:02:05.477Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -108,19 +108,21 @@ In RepRapFirmware, some parameters can be followed by more than one number, with
 | Gnnn | Standard GCode command, such as move to a point |
 | Mnnn | RepRap-defined command, such as turn on a cooling fan |
 | Tnnn | Select tool nnn. In RepRap, a tool is typically associated with a nozzle, which may be fed by one or more extruders. |
-| Snnn | Command parameter, such as time in seconds; temperatures; voltage to send to a motor |
+| Snnn | Command parameter, such as time in seconds; temperatures |
 | Pnnn | Command parameter, such as time in milliseconds; proportional (Kp) in PID Tuning |
 | Xnnn | A X coordinate, usually to move to. This can be an Integer or Fractional number. |
 | Ynnn | A Y coordinate, usually to move to. This can be an Integer or Fractional number. |
 | Znnn | A Z coordinate, usually to move to. This can be an Integer or Fractional number. |
 | U,V,W | Additional axis coordinates |
-| Innn | Parameter - X-offset in arc move; integral (Ki) in PID Tuning; signal inversion |
+| A,B,C | Additional axis coordinates in some commands, used for various purposes in others |
+| Dnnn | Parameter - used for diameter; derivative (Kd) in PID Tuning; drive number; or additonal axis |
+| Innn | Parameter - X-offset in arc move; integral (Ki) in PID Tuning |
 | Jnnn | Parameter - Y-offset in arc move |
-| Dnnn | Parameter - used for diameter; derivative (Kd) in PID Tuning; drive number |
-| Hnnn | Parameter - used for heater number in PID Tuning |
+| K n | Typically used for Z probe number
+| Hnnn | Parameter - usually used for a heater number |
 | Fnnn | Feedrate in mm per minute. (Speed of print head movement) |
 | Rnnn | Parameter - used for temperatures |
-| Qnnn | Parameter - not currently used |
+| Qnnn | Parameter - usually a frequency |
 | Ennn | Length of filament to move through the extruder. This is exactly like X, Y and Z, but for the length of filament to consume. Where a tool has more than one extruder drive then Ennn:nnn:nnn etc is supported to allow for the individual morement of each to be controlled directly |
 | Nnnn | Line number. Used to request repeat transmission in the case of communications errors. Optional |
 | *nnn | Checksum. Used to check for communications errors. Optional |
