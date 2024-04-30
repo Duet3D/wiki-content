@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-29T09:02:05.477Z
+date: 2024-04-30T07:44:03.198Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6846,13 +6846,14 @@ The purpose of input shaping is to reduce ringing (also called ghosting).
 * **P"type"** Type of input shaping to use, not case sensitive. 
   RRF 3.4 supports "none", "zvd", "zvdd", "zvddd", "mzv", "ei2", "ei3" and "custom".
   RRF 3.3 supports "none" or "daa", and if no P parameter is given but the F parameter is given then "daa" is assumed, for compatibility with previous releases. 
-* **Fnnn** Frequency of ringing to cancel in Hz
+* **Fnnn** Centre frequency of ringing to cancel in Hz
 * **Snnn** (optional) Damping factor of ringing to be cancelled, default 0.1.
 * **Lnnn** (optional) 
-	RRF 3.5.0-rc.1 and earlier: Minimum acceleration allowed, default 10mm/sec^2. Input shaping will not be applied if it requires the average acceleration to be reduced below this value.
-  RRF 3.5.0-rc.2 and later: Minimum fraction of the original acceleration or feed rate to which the acceleration or feed rate may be reduced in order to apply input shaping. The default is 0.25 and the acceptable range is 0.01 to 1.0.
-* **Hnn:nn...** Amplitudes of each impulse except the last, normally below 1.0. Only used with P"custom" parameter.
-* **Tnn:nn** Durations of each impulse except the last. Only used with P"custom" parameter.
+	RRF 3.4.x and earlier: Minimum acceleration allowed, default 10mm/sec^2. Input shaping will not be applied if it requires the average acceleration to be reduced below this value.
+  RRF 3.5.x: Minimum fraction of the original acceleration or feed rate to which the acceleration or feed rate may be reduced in order to apply input shaping. The default is 0.25 and the acceptable range is 0.01 to 1.0.
+  RRF 3.6.0 and later: this parameter is ignored.
+* **Hnn:nn...** Only used with P"custom" parameter. In RRF 3.5.x and earlier these are the cumulative amplitudes of each impulse except the last, so each is larger than the previous one, and the amplitude of the last will be set by RRF to 1.0. In RRF 3.6.0 and later these are the individual amplitudes of each impulse except the last, and the amplitude of the last impulse will be set by RRF to 1.0 minus the sum of the other amplitudes.
+* **Tnn:nn** Only used with P"custom" parameter. In RRF 3.5.x and earlier these are the durations of each impulse except the last. In RRF 3.6.0 and later these are the cumulative delays of each impulse except the first (the first has zero delay).
 
 ##### Examples
 
