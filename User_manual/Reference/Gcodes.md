@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-30T07:44:03.198Z
+date: 2024-04-30T10:49:42.346Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2096,12 +2096,14 @@ Makes the extruder interpret extrusion as absolute positions.
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for the extruder absolute/relative positioning state.
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no absolute/relative positioning is specified in config.g, the default M82 (absolute) is used.
   * The flag state is saved when a macro starts and is restored when a macro ends. This applies only to macros, not to job files. Changes made during job files persist for the session or until they are changed again.
-
-In **absolute extrusion mode only** the virtual extruder counter is incremented when an extruder is commanded to move. This single global  counter is visible with the "E" parameter of the M114 response and in the object model at `move.virtualEPos`. This counter is also set by G92 E"nn" so G92 E0 sets it to 0. This behaviour is there to allow old slicers and other clients which do not understand multiple tool machines to work with absolute extrusion mode. It does not work well with multiple tools, hence why relative extrusion mode is recommended. The virtual E position is reset when a print is started.
+* In **absolute extrusion mode only** the virtual extruder counter is incremented when an extruder is commanded to move. This single global  counter is visible with the "E" parameter of the M114 response and in the object model at `move.virtualEPos`. This counter is also set by G92 E"nn" so G92 E0 sets it to 0. This behaviour is there to allow old slicers and other clients which do not understand multiple tool machines to work with absolute extrusion mode. It does not work well with multiple tools, hence why relative extrusion mode is recommended. The virtual E position is reset when a print is started.
 
 #### Example Behaviour
 
-**Single extruder**
+#### Tabs {.tabset}
+
+##### Single extruder
+
 `M82 ; set to absolute mode`
 `M114`
 Response (abridged):
@@ -2121,7 +2123,8 @@ Response (abridged):
 `.. E:11.000 E0:21.0 ..`
 So the virtual E position has incremented form 0 to 11, but the E0 counter was not reset by G92 E0, so has continued to count up from 10, so is now at 21.
 
-**Multiple extruders**
+##### Multiple extruders
+
 `M82 ; set to absolute mode`
 `M114`
 Response (abridged):
