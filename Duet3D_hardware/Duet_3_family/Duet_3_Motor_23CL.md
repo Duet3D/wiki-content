@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-04-24T12:27:02.874Z
+date: 2024-04-30T08:34:11.734Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -27,6 +27,8 @@ Note the M23CL series are in active development and this documentation will be e
 | **Detent torque** | 0.4 Kg/cm || 0.86 Kg/cm||
 | **Full step angle^1^** | 1.8deg ||||
 | **Max current/phase** | 2.8A || 2.8A ||
+| **Resistance/phase**| 1.13 ohms||0.9 ohms||
+| **Inductance/phase**| 3.6 mH|| 2.5 mH||
 | **Rotor inertia** | 0.3Kg/cm^2 || 0.48Kg/cm^2 ||
 | **Motor section length** | 56mm || 76mm||
 | **Total length** | 157±1mm | 107±1mm | 177±1mm | 127±1mm |
