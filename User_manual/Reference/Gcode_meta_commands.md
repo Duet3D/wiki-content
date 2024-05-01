@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2024-04-03T13:59:02.941Z
+date: 2024-05-01T19:45:40.567Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -186,7 +186,7 @@ G1 X{move.axes[0].max-10} Y{move.axes[1].min+10}
 
 Using an expression to replace a parameter letter, or to replace the command number after the initial G or M, is not supported. (so  for example *G1 {global.extruder_axis}^2* is not supported)
 
-If a parameter of a G- or M-command requires multiple values and you want to use expressions for some or all of them, then when using RRF 3.3 and later the parameter must be expressed like this:
+If a parameter of a G- or M-command requires multiple values and you want to use expressions for some or all of them, then when using RRF 3.5 and later the parameter must be expressed like this:
 
 `{ <expression_1>, <expression_2>, <expression_3> ... }`
 
