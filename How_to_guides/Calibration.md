@@ -2,7 +2,7 @@
 title: Calibrating your Duet-based machine
 description: 
 published: true
-date: 2024-04-04T13:48:05.222Z
+date: 2024-05-02T11:48:03.895Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
@@ -250,9 +250,9 @@ This technique is called a 'binary search'. You can use it to tune all the setti
 
 ### Klipper version 
 
-See [https://www.klipper3d.org/Resonance_Compensation.html](https://www.klipper3d.org/Resonance_Compensation.html)
+See [https://www.klipper3d.org/Resonance_Compensation.html](https://www.klipper3d.org/Resonance_Compensation.html){target=_blank}
 
-You will need to make some adjustments for RepRapFirmware. For the Klipper test tower, you can add a custom Gcode script, to change parameters as the part prints. For example in PrusaSlicer, add the following custom g-code in Printer Settings>After Layer Change G-Code to test at different accelerations:
+Download the 'ringing_tower.stl' from the Klipper page and use their print setting recommendations. To show the effect of different speeds/accelerations/jerk in RepRapFirmware, you can add a custom Gcode script to change parameters as the part prints. For example in PrusaSlicer, add the following custom g-code in 'Printer Settings>After Layer Change G-Code' to test at different accelerations:
 
 ```
 ;Try Input Shapers
@@ -264,21 +264,23 @@ You will need to make some adjustments for RepRapFirmware. For the Klipper test 
 {if layer_z >= 25.0}M201 X6000 Y6000{endif}
 {if layer_z >= 30.0}M201 X7000 Y7000{endif}
 ```
-Ideally, turn off Mesh Bed Compensation when printing. You can also modify the script and reslice, to do the same tests for speed and jerk. Once you have measured the ringing frequency, try out the different input shapers with the following (adjust 'F39' to your measured frequency):
+Ideally, turn off Mesh Bed Compensation when printing. You can also modify the script and reslice, to do the same tests for speed and jerk. 
+
+Once you have measured the ringing frequency, try out the different input shapers with the following macro (adjust the F parameter to your chosen 'Shaper centre frequency', and the S parameter to your chosen 'Damping factor'):
 ```
 ;Try Input Shapers
 {if layer_z >= 0.2}M593 P"none"{endif}
-{if layer_z >= 5.0}M593 P"mzv" F39 S0.0{endif}
-{if layer_z >= 10.0}M593 P"zvd" F39 S0.0{endif}
-{if layer_z >= 15.0}M593 P"zvdd" F39 S0.0{endif}
-{if layer_z >= 20.0}M593 P"zvddd" F39 S0.0{endif}
-{if layer_z >= 25.0}M593 P"ei2" F39 S0.0{endif}
-{if layer_z >= 30.0}M593 P"ei3" F39 S0.0{endif}
+{if layer_z >= 5.0}M593 P"mzv" F39 S0.1{endif}
+{if layer_z >= 10.0}M593 P"zvd" F39 S0.1{endif}
+{if layer_z >= 15.0}M593 P"zvdd" F39 S0.1{endif}
+{if layer_z >= 20.0}M593 P"zvddd" F39 S0.1{endif}
+{if layer_z >= 25.0}M593 P"ei2" F39 S0.1{endif}
+{if layer_z >= 30.0}M593 P"ei3" F39 S0.1{endif}
 ```
 
 ### Marlin version
 
-See [https://marlinfw.org/tools/input_shaping/freq-calibr.html](https://marlinfw.org/tools/input_shaping/freq-calibr.html)
+See [https://marlinfw.org/tools/input_shaping/freq-calibr.html](https://marlinfw.org/tools/input_shaping/freq-calibr.html){target=_blank}
 This uses less plastic than the Klipper version.
 Note you will need to adjust start and end gcode.
 
