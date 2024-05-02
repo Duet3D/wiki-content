@@ -1,9 +1,9 @@
 ---
 title: RepRapFirmware overview
-description: 
+description: Description for RepRapFirmware including the capabilities and limitations of configuration.
 published: true
-date: 2024-01-09T15:17:16.071Z
-tags: 
+date: 2024-05-02T08:58:28.324Z
+tags: overview, kinematics, limitations
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
 ---
