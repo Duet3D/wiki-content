@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-04-30T10:49:42.346Z
+date: 2024-05-02T15:04:17.019Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4939,7 +4939,7 @@ Sets the Gateway IP address of the RepRap machine to (in this case) 192.168.1.1.
 
 ### Notes
 
-* In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
+* In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g. Also make sure to set a static IP address *before* trying to set a static gateway or DNS server.
 * A restart may be required before the new gateway IP address is used. 
 * If no 'P' field is specified, this echoes the existing Gateway IP address configured.
 * DuetWifiFirmware versions 1.18 and earlier do not support setting the gateway address.
