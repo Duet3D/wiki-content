@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Serial SCARA printer
 description: This page describes how to set up the configuration files for Serial SCARA printers.
 published: true
-date: 2022-05-14T16:36:58.258Z
+date: 2024-05-06T07:46:04.991Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T17:10:46.643Z
@@ -240,7 +240,7 @@ If a motor moves the wrong way, you can reverse it by changing the corresponding
 
 **Important!** From a firmware perspective, the true arms are the lines from the proximal joint to the distal joint, and from the distal joint to the nozzle. If you have joints and/or a nozzle offset to one side from the physical arm, then the physical arms will not coincide with the true arms. In the following, it is the angles of the true arms that you need to measure, so *arm* means the line of the true arm.
 
-Initially you may not know the exact joint at which the proximal and distal homing switches trigger. Calibrate them as follows:
+Initially you may not know the exact point at which the proximal and distal homing switches trigger. Calibrate them as follows:
 
 * Choose which direction you want for the X axis.
 * When the proximal *arm* is pointing along the X axis, the proximal joint is at zero angle.
