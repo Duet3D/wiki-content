@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-05-03T10:43:15.989Z
+date: 2024-05-07T11:32:16.413Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -194,11 +194,13 @@ Duet 3 Motor 23CL is supported in RRF 3.5 and later.
 
 Please see the current RepRapFirmware limitations at [Duet 3 firmware with CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
-## Microstepping
+## Steps/mm & Microstepping
 
 While in closed loop mode step pulses are not sent to the stepper motor driver in the same manner as an open loop driver, however the firmware still uses microsteps internally to represent moves.
 
-The M23CL will autoset the correct settings for closed loop mode. In open loop mode microstepping can be set as normal using M350 and M92 should be set to match that microstepping as normal.
+In order to get correct function follow this process:
+1. Set the step/mm and microstepping as normal for open loop mode and test in open loop mode (i.e. 16 microstepping with interpolation is recommended). There is a calculator built into the [config tool](https://configtool.reprapfirmware.org/Configuration) to assist with determining the correct steps/mm for belts/leadscrews etc.
+1. In closed loop and assisted open loop mode, RRF will use the same full-steps/mm that the configured microstepping and steps/mm imply. No changes in M350 or M92 are required for correct functioning in closed loop mode.
 
 ### Summary of control
 
@@ -223,9 +225,9 @@ M569 P71.0 D4 S1 ; Set into closed-loop drive mode (D4) and not reversed (S1)
 M584 X70.0 Y71.0 ; set X and Y drivers
 M906 X1600 Y1600 ; set the max current to use for X and Y
 
-; M350 and M92 are optional, only required if open loop operation is planned:
-M350 X32 Y32 ; set steps/mm to 32 for open loop mode operation 
-M92 X160 Y160 ; steps/mm for a 20 tooth gt2 pulley for open loop operation
+; M350 and M92 are required:
+M350 X16 Y16 I1 ; set steps/mm to 16 with interpolation for open loop mode operation 
+M92 X80 Y800 ; steps/mm for a 20 tooth gt2 pulley.
 ```
 
 Note the initial PID values will need to be [tuned to the particular motion system](https://docs.duet3d.com/en/User_manual/Tuning/Duet_3_1HCL_tuning).
