@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-05-07T11:37:19.203Z
+date: 2024-05-07T11:38:57.661Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -199,7 +199,7 @@ Please see the current RepRapFirmware limitations at [Duet 3 firmware with CAN e
 While in closed loop mode step pulses are not sent to the stepper motor driver in the same manner as an open loop driver, however the firmware still uses microsteps internally to represent moves.
 
 In order to get correct function follow this process:
-1. Set the step/mm and microstepping as normal for open loop mode and test in open loop mode (i.e. 16 microstepping with interpolation is recommended). There is a calculator built into the [config tool](https://configtool.reprapfirmware.org/Configuration) to assist with determining the correct steps/mm for belts/leadscrews etc.
+1. Set the step/mm and microstepping as normal for open loop mode and test the configuration in open loop mode first. (i.e. 16 microstepping with interpolation is recommended). There is a calculator built into the [config tool](https://configtool.reprapfirmware.org/Configuration) to assist with determining the correct steps/mm for belts/leadscrews etc.
 1. In closed loop and assisted open loop mode, RRF will use the same full-steps/mm that the configured microstepping and steps/mm imply. No changes in M350 or M92 are required for correct functioning in closed loop mode.
 
 ### Summary of control
