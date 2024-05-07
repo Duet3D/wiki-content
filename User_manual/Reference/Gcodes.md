@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-05-07T13:34:50.479Z
+date: 2024-05-07T13:35:55.539Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -390,7 +390,7 @@ In **RRF 3.x**:
 | **Parameter** | **Meaning** |
 | G1 Xnnn Ynnn Znnn H0 (default) | Ignore endstops while moving but apply axis limits. Don't allow movement if the axis has not previously been homed unless M564 has been used to allow it. |
 | G1 Xnnn Ynnn Znnn H1 | Sense endstops while moving (ignoring the axis limits) and stop when the endstop is hit. On Delta, Scara and Polar machines, axis letters refer to individual motors. |
-| G1 Xnnn Ynnn Znnn H2 | Ignore endstops and axis limits while moving. Also ignore if axis has not been homed. On Delta, Scara, Polar and Core XY machines axis letters refer to individual towers. |
+| G1 Xnnn Ynnn Znnn H2 | Ignore endstops and axis limits while moving. Also ignore if axis has not been homed. On Delta, Scara, Polar and Core XY machines axis letters refer to individual towers (delta) or individual join motors (scara) or A/B motors (CoreXY). |
 | G1 Xnnn Ynnn Znnn H3 | Sense endstops while measuring axis length, setting the appropriate M208 limit to the measured position at which the endstop switch triggers. |
 | G1 Xnnn Ynnn Znnn H4 | Sense endstops while moving, update the current position at which the endstop switch triggers (supported in RRF 3.2 and later). |
 
