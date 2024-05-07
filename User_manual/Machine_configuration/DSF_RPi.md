@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2024-04-26T08:46:08.706Z
+date: 2024-05-07T13:06:17.981Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -79,11 +79,10 @@ In a similar process to the above, this assumes that the stable packages are a l
 
 ## Downgrade packages
 
+### From Unstable to latest Stable
 > These steps are only applicable when downgrading beta/rc versions from the **unstable** package feed. They do not have an effect if you are already on the latest **stable** version. {.is-warning}
 
-> Downgrading **stable** packages is **NOT** recommended. If you encounter problems after an upgrade, create a new thread on the [forum](https://forum.duet3d.com) instead. If you do need to downgrade anyway, skip the following step 1 and replace `/stable` with `=X.Y.Z` (`=.X.Y.Z-1` for RepRapFirmware) where `X.Y.Z` equals your desired *stable* package version (e.g. `3.4.4`). Be aware that successive `apt upgrade` calls will upgrade everything to the latest version again. {.is-info}
-
-> Users of the latest DuetPi Bookworm image using v3.5 or newer can run `M997 S2 F"unstable"` followed by `M997 S2 V"<version>"` instead of the following. Replace `<version>` with a verison of your choice, e.g. `3.5.1`. {.is-info}
+> Users of the latest DuetPi Bookworm image using v3.5 or newer can run `M997 S2 F"stable"` followed by `M997 S2 V"<version>"` instead of the following. Replace `<version>` with a verison of your choice, e.g. `3.5.1`. {.is-info}
 
 To downgrade from an installed version to a earlier release requires a few extra steps to remove files newer than the release version. This example demonstates downgrading from an unstable release to a stable release, the process is similar for downgrading to an unstable release.  Follow these steps:
 
@@ -117,6 +116,45 @@ To downgrade from an installed version to a earlier release requires a few extra
    ```
    sudo apt install -y --allow-downgrades duetsoftwareframework/stable duetcontrolserver/stable duetwebserver/stable duetpluginservice/stable duettools/stable duetruntime/stable duetwebcontrol/stable duetpimanagementplugin/stable
    ```
+
+### Downgrading to a Specific Version
+
+> Downgrading **stable** packages is **NOT** recommended. If you encounter problems after an upgrade, create a new thread on the [forum](https://forum.duet3d.com) instead. If you do need to downgrade anyway use `=X.Y.Z` (`=.X.Y.Z-1` for RepRapFirmware) where `X.Y.Z` equals your desired *stable* package version (e.g. `apt download reprapfirmware=3.4.5-1`). Be aware that successive `apt upgrade` calls will upgrade everything to the latest version again. {.is-info}
+
+> Users of the latest DuetPi Bookworm image using v3.5 or newer can run `M997 S2 F"stable"` followed by `M997 S2 V"<version>"` instead of the following. Replace `<version>` with a verison of your choice, e.g. `3.5.1`. {.is-info}
+
+This example demonstates downgrading from an unstable release to a specific stable release, the process is similar for downgrading to an unstable release.  Follow these steps:
+
+1. Change back unstable to stable in /etc/apt/sources.list.d/duet3d.list:
+   ```
+   sudo rm -f /etc/apt/sources.list.d/duet3d-unstable.list
+   sudo bash -c "echo 'deb https://pkg.duet3d.com/ stable-3.4 armv7' > /etc/apt/sources.list.d/duet3d.list"
+   ```
+
+1. Refresh the package lists:
+   ```
+   sudo apt update
+   ```
+
+1. Remove potentially left-over RRF packages
+   ```
+   rm -f ./reprapfirmware*.deb
+   ```
+
+1. Download the latest stable RepRapFirmware package
+   ```
+   apt download reprapfirmware=3.4.5-1
+   ```
+
+1. Downgrade RepRapFirmware
+   ```
+   sudo dpkg -i --force-depends ./reprapfirmware*.deb
+   ```
+
+1. Downgrade DSF
+   ```
+   sudo apt install -y --allow-downgrades duetsoftwareframework=3.4.5 duetcontrolserver=3.4.5 duetwebserver=3.4.5 duetpluginservice=3.4.5 duettools=3.4.5 duetruntime=3.4.5 duetwebcontrol=3.4.5 duetpimanagementplugin=3.4.5
+
 
 # Virtual SD card
 
