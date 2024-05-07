@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-05-02T15:04:17.019Z
+date: 2024-05-07T13:34:50.479Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -371,9 +371,9 @@ The meaning of the H parameter is as follows:
 
 * **H0** no special action (default)
 * **H1** terminate the move when the endstop switch is triggered and set the axis position to the axis limit defined by M208. On delta printers, H1 also selects individual motor mode as for H2. Normally used with relative motor coordinates (see G91).
-* **H2** Individual motor mode. X refers to the X motor, Y refers to the Y motor, and so on. Normally used with relative motor coordinates (see G91).
+* **H2** Individual motor mode. X refers to the X motor or motors, Y refers to the Y motor or motors, and so on. Normally used with relative motor coordinates (see G91).
 * **H3** terminate the move when the endstop switch is triggered and set the axis limit to the current position, overriding the value that was set by M208.
-* **H4** terminate the move when the endstop switch is triggered and update the current position (supported in RRF 3.2-b4 or newer)
+* **H4** terminate the move when the endstop switch is triggered and update the current position (supported in RRF 3.2 or later)
 
 The meaning of the S parameter has changed over successive versions of RepRapFirmware. It currently sets the laser power when M452 Laser mode is set, but was also used for homing behaviour. See below.
 
