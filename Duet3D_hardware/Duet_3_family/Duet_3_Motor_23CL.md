@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-05-07T11:32:16.413Z
+date: 2024-05-07T11:37:19.203Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -236,7 +236,7 @@ In contrast to usual drivers, the closed loop axes can have their holding curren
 
 ## Tuning the PID for the closed loop
 
-See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning) for details on tuning the M23CL. The section on PID tuning applies to both the 1HCL and the M23CL
+>See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning) for details on tuning the M23CL. The section on PID tuning applies to both the 1HCL and the M23CL.{.is-info}
 
 ## Temperature sensor
 
@@ -270,6 +270,10 @@ If a brake is present the M23CL will disable it when the motors are enabled (M17
 # Revisions
 
 ## Tabs {.tabset}
+
+### v1.0
+* Changed to 76mm motor as the first production model
+* All other specifications set as per the details above.
 
 ### Prototpye
 
