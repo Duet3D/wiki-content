@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2024-04-11T13:38:04.044Z
+date: 2024-05-07T11:41:40.671Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -287,9 +287,21 @@ Please see the current RepRapFirmware limitations at [Duet 3 firmware with CAN e
 
 ## Tabs {.tabset}
 
-### RRF 3.5beta4 or later
+### RRF 3.5.1 and later
 
-The microstepping doesn't matter in 3.5b4 and later, for any encoder type.
+While in closed loop mode step pulses are not sent to the stepper motor driver in the same manner as an open loop driver. However microsteps and steps/mm are used to calculate the correct amount of rotation required in closed loop mode
+
+In order to get correct function follow this process:
+1. Set the step/mm and microstepping as normal for open loop mode and test the configuration in open loop mode first. (i.e. 16 microstepping with interpolation is recommended). There is a calculator built into the [config tool](https://configtool.reprapfirmware.org/Configuration) to assist with determining the correct steps/mm for belts/leadscrews etc.
+1. In closed loop and assisted open loop mode, RRF will use the same full-steps/mm that the configured microstepping and steps/mm imply. No changes in M350 or M92 are required for correct functioning in closed loop mode.
+
+#### Summary of control
+
+1. RepRapFirmware on the main board rounds the endpoint or extrusion amount to whole microsteps.
+1. RepRapFirmware sends the move details over the CAN-FD bus, including the move length for each motor measured in whole microsteps.
+1. In open loop mode, microsteps are generated at the appropriate times.
+1. In closed loop mode, the motor position is calculated from the movement parameters as a floating point number of full steps.
+
 
 ### RRF 3.5beta3 and earlier
 
