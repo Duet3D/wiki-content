@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2024-05-07T11:41:40.671Z
+date: 2024-05-07T11:45:12.323Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -297,8 +297,8 @@ In order to get correct function follow this process:
 
 #### Summary of control
 
-1. RepRapFirmware on the main board rounds the endpoint or extrusion amount to whole microsteps.
-1. RepRapFirmware sends the move details over the CAN-FD bus, including the move length for each motor measured in whole microsteps.
+1. RepRapFirmware on the main board rounds the axes endpoint to whole microsteps. (Extruder movements are kept unrounded)
+1. RepRapFirmware sends the move details over the CAN-FD bus, including the move length for each axis motor measured in whole microsteps. (Whole and part microsteps for extruders)
 1. In open loop mode, microsteps are generated at the appropriate times.
 1. In closed loop mode, the motor position is calculated from the movement parameters as a floating point number of full steps.
 
