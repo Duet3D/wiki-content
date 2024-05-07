@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-05-07T13:36:17.172Z
+date: 2024-05-07T13:38:56.301Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2447,7 +2447,7 @@ Breaks out of an M109, M116, M190 or M191 wait-for-temperature loop, continuing 
 ### Parameters
 
 * **Snnn** minimum target temperature, waits until within 2.5C of target if heating
-* **Rnnn** accurate target temperature, waits until within 2.5C of target always
+* **Rnnn** accurate target temperature, waits until within 2.5C of target if heating or cooling down
 * **Tn** optional tool number
 
 ### Examples
