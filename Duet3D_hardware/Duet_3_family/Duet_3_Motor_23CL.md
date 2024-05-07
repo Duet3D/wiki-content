@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-05-07T11:38:57.661Z
+date: 2024-05-07T11:45:18.860Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -196,7 +196,7 @@ Please see the current RepRapFirmware limitations at [Duet 3 firmware with CAN e
 
 ## Steps/mm & Microstepping
 
-While in closed loop mode step pulses are not sent to the stepper motor driver in the same manner as an open loop driver, however the firmware still uses microsteps internally to represent moves.
+While in closed loop mode step pulses are not sent to the stepper motor driver in the same manner as an open loop driver. However microsteps and steps/mm are used to calculate the correct amount of rotation required in closed loop mode
 
 In order to get correct function follow this process:
 1. Set the step/mm and microstepping as normal for open loop mode and test the configuration in open loop mode first. (i.e. 16 microstepping with interpolation is recommended). There is a calculator built into the [config tool](https://configtool.reprapfirmware.org/Configuration) to assist with determining the correct steps/mm for belts/leadscrews etc.
@@ -204,8 +204,8 @@ In order to get correct function follow this process:
 
 ### Summary of control
 
-1. RepRapFirmware on the main board rounds the endpoint or extrusion amount to whole microsteps.
-1. RepRapFirmware sends the move details over the CAN-FD bus, including the move length for each motor measured in whole microsteps.
+1. RepRapFirmware on the main board rounds the axes endpoint to whole microsteps. (Extruder movements are kept unrounded)
+1. RepRapFirmware sends the move details over the CAN-FD bus, including the move length for each axis motor measured in whole microsteps. (Whole and part microsteps for extruders)
 1. In open loop mode, microsteps are generated at the appropriate times.
 1. In closed loop mode, the motor position is calculated from the movement parameters as a floating point number of full steps.
 
