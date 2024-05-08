@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-05-07T13:38:56.301Z
+date: 2024-05-08T10:02:07.944Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3479,7 +3479,7 @@ Supported in firmware version 1.19 and later.
 * **P"message"** The message to display, which must be enclosed in double quotation marks. If the message itself contains a double quotation mark, use two double quotation marks to represent it. Maximum length <250 chars. Limited by total gcode length limit of 256 characters.
 * **R"message"** Optional title for the message box. Must be enclosed in double quotation marks too. Maximum length 60 chars
 * **Sn** Message box mode (see below), default 1 
-* **Tn** Timeout in seconds, only used if the mode is 0, 1, 3, or 4 or more with a cancel button. The message will be cancelled after this amount of time if the user does not cancel it before then. A zero or negative value means that the message does not time out (it may still be cancelled by the user if it has a Close button). For modes 0 and 1 there is a default timeout of 10 seconds if no T parameter is provided. For other modes the default is no timeout.
+* **Tn** Timeout in seconds, only used if the mode is 0, 1, 3, or mode 4 or higher with a cancel button. The message will be cancelled after this amount of time if the user does not cancel it before then. A zero or negative value means that the message does not time out (it may still be cancelled by the user if it has a Close button). For modes 0 and 1 there is a default timeout of 10 seconds if no T parameter is provided. For other modes the default is no timeout.
 * **X, Y, Z,,,** 0 = no special action (default), 1 = display jog buttons alongside the message to allow the user to adjust the head position on the specified axis. Only valid in with message box modes S2 and S3.
 * **Jn** (RRF 3.5 and later only, optional) If message box mode >= 4: 0 = no Cancel button (default), 1 = display a Cancel button (job/macro is cancelled immediately when pressed).
 * **K{"choice1","choice1",...}**  (RRF 3.5 and later only) List of choices, required (and only used) when S=4.
