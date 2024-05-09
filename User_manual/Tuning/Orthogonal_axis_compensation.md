@@ -2,7 +2,7 @@
 title: Orthogonal axis compensation with M556
 description: 
 published: true
-date: 2023-01-13T23:28:39.446Z
+date: 2024-05-09T23:50:31.111Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-06T14:44:11.234Z
@@ -77,7 +77,7 @@ Measure all three pairs of axes: XY, YZ and XZ and write down the measurement fo
 
 The format for the M556 command is
 `M556 S[d] X[XY] Y[YZ] Z[XZ]`
-where [d] is the distance in mm you measured on the guage between the projection and the end of the screw. Suppose d = 75, and the XY, YZ and XZ measurements are XY = -0.65, YZ = 0.9, and XZ = 0.2. Then send:
+where [d] is the distance in mm you measured on the guage between the projection and the end of the screw. Suppose d = 75, and the XY, YZ and ZX measurements are XY = -0.65, YZ = 0.9, and ZX = 0.2. Then send:
 ```
 M556 S75 X-0.65 Y0.9 Z0.2
 ```
@@ -102,7 +102,7 @@ This is a newer method to determine the skew factor. It also requires a number o
 
 ## Print the calibration parts
 
-Print a test square, e.g. [this calibration square on Thingiverse](https://www.thingiverse.com/thing:2563185). This has squares for both horizontal (XY) and vertical (XZ, YZ) axes.
+Print a test square, e.g. [this calibration square on Thingiverse](https://www.thingiverse.com/thing:2563185). This has squares for both horizontal (XY) and vertical (YZ, ZX) axes.
 You can print a cube, but make sure that the corners don't bulge if you are measuring across them, to get an accurate measurement.
 
 ## Measure the diagonals
@@ -116,44 +116,51 @@ Use these diagrams for reference:
 <br>
 <pre class="cblock">
     Y                     Z                     Z
-    ^     B-------C       ^     B-------C       ^     B-------C
-    |    /       /        |    /       /        |    /       /
-    |   /       /         |   /       /         |   /       /
+    ^  E--B-------C       ^  E--B-------C       ^  E--B-------C
+    |  | /       /        |  | /       /        |  | /       /
+    |  |/       /         |  |/       /         |  |/       /
     |  A-------D          |  A-------D          |  A-------D
-    +-------------->X     +-------------->X     +-------------->Y
-    XY SKEW               XZ SKEW               YZ SKEW
+    +-------------->X     +-------------->Y     +-------------->X
+    XY SKEW               YZ SKEW               ZX SKEW
 </pre>
 
 ## Calculate the skew factor
 
 Skew factors can be calculated and set manually:
 
-`AB = SQRT ( 2 * AC * AC + 2 * BD * BD - 4 * AD * AD ) / 2`
+`AB = SQRT (( AC * AC + BD * BD - 2 * AD * AD ) / 2))`
+This calulates the length of the other side of a parallelogram, from the diagonals and the given side length.
 `Skew factor = TAN ( PI / 2 - ACOS ( ( AC * AC - AB * AB - AD * AD ) / ( 2 * AB * AD )))`
+This calculates the angle BAD using the Law of Cosines in radians, subtracts that from pi/2 radians (90°) to get the angle EAB, then calculates the TAN of this (ie EB / AE) to get the skew factor.
+
+Note that if the angle BAD is acute (ie AC is greater than BD, as in the diagrams above) the skew factor should be negative, and if the angle is obtuse (ie AC is less than BD) the skew factor should be positive.
 
 Or you can use the following Gcode in RRF v3.x to calculate the skew factor. Copy it into a macro and upload it to your Duet. Edit the AC, BD and AD values to your measured values:
 ```
 var AC = 331.229
 var BD = 241.842
 var AD = 200
-var Skew_mm = 0
+var axis = "X" ; X = XY, Y = YZ, Z = ZX
 
 ; Compute skew
+var skew_mm = 0
 var AB = sqrt((2 * (var.AC * var.AC)) + (2 * (var.BD * var.BD)) - (4 * (var.AD * var.AD)))/2
-var Skew = tan(pi/2-acos((var.AC * var.AC - var.AB * var.AB - var.AD * var.AD)/(2 * var.AB * var.AD)))
+var skew = -tan(pi/2-acos((var.AC * var.AC - var.AB * var.AB - var.AD * var.AD)/(2 * var.AB * var.AD)))
 if (var.AC-var.BD>=0)
-	set var.Skew_mm = sqrt(var.AB * var.AB - var.AD * var.AD)
+	set var.skew_mm = -sqrt(var.AB * var.AB - var.AD * var.AD)
 else
-	set var.Skew_mm = -sqrt(var.AB * var.AB - var.AD * var.AD)
+	set var.skew_mm = sqrt(var.AB * var.AB - var.AD * var.AD)
 
-echo "Skew factor:", var.Skew
-echo "Skew distance @", var.AD, "mm:", var.Skew_mm, "mm"
+echo "Inputs: AC = " ^ var.AC ^ ", BD = " ^ var.BD ^ ", AD = " ^ var.AD ^ ", axis = " ^ var.axis
+echo "Skew factor: " ^ var.skew ^ " Skew distance @ " ^ var.AD ^ "mm: " ^ var.skew_mm ^ "mm"
+echo "Send either: M556 S1 " ^ var.axis ^ var.skew ^ " or: M556 S" ^ var.AD , var.axis ^ var.skew_mm
 ```
 Example output on running the above macro:
 ```
 M98 P"0:/macros/Skew calculator.g"
-Skew factor: 0.3201567
-Skew distance @ 200 mm: 64.03204 mm
+Inputs: AC = 331.229, BD = 241.842, AD = 200, axis = X
+Skew factor: -0.3201567 Skew distance @ 200mm: -64.0320358mm
+Send either: M556 S1 X-0.3201567 or: M556 S200 X-64.0320358
 ```
 Note: the skew value in the above example is very large! Most skew factors will be much smaller. A skew distance of 2mm at 200mm gives a skew factor of 2 / 200 = 0.01
 
@@ -162,22 +169,22 @@ Calculate values for all axes (XY, XZ and/or YZ) that require them.
 ## Configuring M556
 
 You can configure M556 either directly with the calculated Skew factor or with Skew distance and AD length. Axes can be set individually, or all at once.
-Suppose the AD and XY measurements are AD = 200 and XY = 64.03204. Then send:
+Suppose the AD and XY measurements are AD = 200 and XY = -64.03204. Then send:
 ```
-M556 S200 X64.03204 ; set XY Skew distance @  200 mm:  64.03204 mm
+M556 S200 X-64.03204 ; set XY Skew distance @ 200mm: -64.03204mm
 ; or send:
 M556 S1 X0.3201567
 ```
 For multiple axes, you may send something like:
 ```
-M556 S200 X64.03204 Y-3.1 Z2.25
+M556 S200 X-64.03204 Y-3.1 Z2.25
 ; or send:
-M556 S1 X0.32016 Y-0.01550 Z0.01125
+M556 S1 X-0.32016 Y-0.01550 Z0.01125
 ```
 You can check the skew compensation used by sending M556, e.g.:
 ```
 M556
-Axis compensations - XY: 0.32016, YZ: -0.01550, ZX: 0.01125
+Axis compensations - XY: -0.32016, YZ: -0.01550, ZX: 0.01125
 ```
 Your machine will now correct for the angles between the axes when it prints.
 
