@@ -2,7 +2,7 @@
 title: Using the Sammy-C21 development board with Duet 3
 description: 
 published: true
-date: 2024-01-02T11:03:16.733Z
+date: 2024-05-10T10:05:12.653Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:28:45.749Z
@@ -57,7 +57,7 @@ If you did not order the Sammy-C21 with the Duet3D bootloader pre-installed, and
 
 # Loading firmware
 
-With the bootloader installed, the Sammy-C21 will request firmware file Duet3Firmware-SAMMYC21.bin. We suggest that you install our sample firmware binary initially to check that everything is working, before making your own modifications. You can find our sample firmware in [this project on Github](https://github.com/Duet3D/Duet3Expansion). When the firmware is running and CAN communication with the Duet 3 main board is established, the green LED on the SammyC21 should blink in sync with the DIAG LED on the Duet 3 main board.
+With the bootloader installed, the Sammy-C21 will request firmware file Duet3Firmware_SAMMYC21.bin from the main board over the CAN bus. We suggest that you install our sample firmware binary initially to check that everything is working, before making your own modifications. You can find our sample firmware in [this project on Github](https://github.com/Duet3D/Duet3Expansion). When the firmware is running and CAN communication with the Duet 3 main board is established, the green LED on the SammyC21 should blink in sync with the STATUS LED on the Duet 3 main board (labelled DIAG on older Duets).
 
 If firmware is installed but unresponsive, you can force the bootloader to fetch new firmware by tying pin PB09 to ground while you power up the Sammy-C21.
 
