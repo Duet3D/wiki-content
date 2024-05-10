@@ -2,7 +2,7 @@
 title: Orthogonal axis compensation with M556
 description: 
 published: true
-date: 2024-05-10T09:25:19.587Z
+date: 2024-05-10T09:27:42.712Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-06T14:44:11.234Z
@@ -126,7 +126,7 @@ Use these diagrams for reference:
 
 ## Calculate the skew factor
 
-Skew factors can be calculated and set manually:
+Skew factors can be calculated manually:
 
 `AB = SQRT (( AC * AC + BD * BD - 2 * AD * AD ) / 2))`
 This calulates the length of the side of a parallelogram AB, from the diagonals AC and BD, and the given side length AD.
@@ -173,7 +173,7 @@ Suppose the AD and XY measurements are AD = 200 and XY = -64.03204. Then send:
 ```
 M556 S200 X-64.03204 ; set XY Skew distance @ 200mm: -64.03204mm
 ; or send:
-M556 S1 X0.3201567
+M556 S1 X-0.3201567
 ```
 For multiple axes, you may send something like:
 ```
