@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2023-06-13T15:41:40.425Z
+date: 2024-05-10T11:47:48.284Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -109,8 +109,9 @@ Sensorless homing means not using endstop switches, but instead detecting the st
 
 ### 1. Enable sensorless homing
 
-* Change your endstop type to "sensorless" in config.g. To change your endstop, you must change the [M574](/User_manual/Reference/Gcodes/M574) command in config.g. For example, `M574 X1 S3` and `M574 Y1 S3` sets the X and Y endstops to sensorless homing at the axes low end. This is required. 
-* Include the following [M915](/User_manual/Reference/Gcodes/M915) command in config.g. `M915 X Y R0 F0`. This sets up the last main command needed for sensorless homing.  Save your changes. Do not press "yes" for restart. There are other changes that must still be made.
+* Change your endstop type to "sensorless" in config.g. To change your endstop, you must change the [M574](/User_manual/Reference/Gcodes/M574) command in config.g. Sensorless homing can work at either end of each axis, ie the low or high end. For example, `M574 X1 S3` sets the X endstop to sensorless homing at the axes low end, while `M574 Y2 S3` sets Y endstops to sensorless homing at the axes high end.  
+* Include the following [M915](/User_manual/Reference/Gcodes/M915) command in config.g. `M915 X Y R0 F0`. This sets up the last main command needed for sensorless homing.  
+* Save your changes. You can restart if you wish, for the new config.g to take effect, but there are other changes that must still be made before it will work.
 
 ### 2. Change your homing files' structures
 
@@ -145,7 +146,7 @@ In the example in step 2, the F parameters of the G1 commands for X and Y are qu
 
 Motor stalls are more easily identified by the firmware and quieter if the motor current is low. Using your existing motor current setting ([M906](/User_manual/Reference/Gcodes/M906) in config.g), configure your motor current reduction using the first [M913](/User_manual/Reference/Gcodes/M913) in the homing files. This is done through editing X and Y values which set the motor current to use during homing as a percentage of the M906 setting. Try to use as low a current as possible, such that the axis still moves with other settings (eg acceleration, jerk) set normally.  For example, if your X and Y motors were set to 1000mA in M906, try M913 X40 Y40 for 400mA on each axis. Save your changes.
 
-At this point, restart your Duet board.
+At this point, restart your Duet board, if you didn't in step 1.
 
 ### 5: Test your changed homing files. 
 
@@ -193,15 +194,12 @@ This is not a one and done procedure, as each printer is a little different. The
 1) [M915](/User_manual/Reference/Gcodes/M915).
 
 A baseline range for these commands (all found in your config.g) can be found below.:
-
-M906 X300-500 Y300-500
-
-M201 X300-500 Y300-500
-
-M566 X300-800 Y300-800
-
-M915 S1-6
-
+```
+M906 X300-500 Y300-500 ; motor currents
+M201 X300-500 Y300-500 ; acceleration
+M566 X300-800 Y300-800 ; max speed change/jerk
+M915 S1-6              ; configure motor stall detection
+```
 These commands may also be changed from the terminal, which I highly recommend you do during your test prints. I have found my best results with stall detection with the above ranges.
 
 Step 4 starts by making sure your M915 command in your rehome.g and slicer is M915 X Y S3 R1 F1. Start off by making sure the above listed commands are at the highend of the range. Once your print is going and stall detection is flashing in the console, start lowering each variable one at a time by 100. If you reach the bottom of the range and your stall detection is still triggering frequently, you need to lower your sensitivity.
