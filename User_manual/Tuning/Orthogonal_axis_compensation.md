@@ -2,7 +2,7 @@
 title: Orthogonal axis compensation with M556
 description: 
 published: true
-date: 2024-05-09T23:50:31.111Z
+date: 2024-05-10T09:25:19.587Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-06T14:44:11.234Z
@@ -129,11 +129,11 @@ Use these diagrams for reference:
 Skew factors can be calculated and set manually:
 
 `AB = SQRT (( AC * AC + BD * BD - 2 * AD * AD ) / 2))`
-This calulates the length of the other side of a parallelogram, from the diagonals and the given side length.
-`Skew factor = TAN ( PI / 2 - ACOS ( ( AC * AC - AB * AB - AD * AD ) / ( 2 * AB * AD )))`
-This calculates the angle BAD using the Law of Cosines in radians, subtracts that from pi/2 radians (90°) to get the angle EAB, then calculates the TAN of this (ie EB / AE) to get the skew factor.
+This calulates the length of the side of a parallelogram AB, from the diagonals AC and BD, and the given side length AD.
+`Skew factor = -TAN ( PI / 2 - ACOS ( ( AC * AC - AB * AB - AD * AD ) / ( 2 * AB * AD )))`
+This calculates the angle BAD in radians, using the Law of Cosines, subtracts that from pi/2 radians (90°) to get the angle EAB, then calculates the TAN of this (ie EB / AE, which is what you measure using the first method) to get the skew factor.
 
-Note that if the angle BAD is acute (ie AC is greater than BD, as in the diagrams above) the skew factor should be negative, and if the angle is obtuse (ie AC is less than BD) the skew factor should be positive.
+Note: if the angle BAD is acute (ie AC is greater than BD, as in the diagrams above) the skew factor should be negative, and if the angle is obtuse (ie AC is less than BD) the skew factor should be positive.
 
 Or you can use the following Gcode in RRF v3.x to calculate the skew factor. Copy it into a macro and upload it to your Duet. Edit the AC, BD and AD values to your measured values:
 ```
@@ -144,7 +144,7 @@ var axis = "X" ; X = XY, Y = YZ, Z = ZX
 
 ; Compute skew
 var skew_mm = 0
-var AB = sqrt((2 * (var.AC * var.AC)) + (2 * (var.BD * var.BD)) - (4 * (var.AD * var.AD)))/2
+var AB = sqrt((var.AC * var.AC + var.BD * var.BD - 2 * var.AD * var.AD)/2)
 var skew = -tan(pi/2-acos((var.AC * var.AC - var.AB * var.AB - var.AD * var.AD)/(2 * var.AB * var.AD)))
 if (var.AC-var.BD>=0)
 	set var.skew_mm = -sqrt(var.AB * var.AB - var.AD * var.AD)
