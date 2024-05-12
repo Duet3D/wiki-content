@@ -2,7 +2,7 @@
 title: Orthogonal axis compensation with M556
 description: 
 published: true
-date: 2024-05-10T09:27:42.712Z
+date: 2024-05-12T09:11:22.707Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-06T14:44:11.234Z
@@ -137,32 +137,32 @@ Note: if the angle BAD is acute (ie AC is greater than BD, as in the diagrams ab
 
 Or you can use the following Gcode in RRF v3.x to calculate the skew factor. Copy it into a macro and upload it to your Duet. Edit the AC, BD and AD values to your measured values:
 ```
-var AC = 331.229
-var BD = 241.842
+; Inputs
+var AC = 302.44199
+var BD = 292.11101
 var AD = 200
 var axis = "X" ; X = XY, Y = YZ, Z = ZX
 
 ; Compute skew
-var skew_mm = 0
 var AB = sqrt((var.AC * var.AC + var.BD * var.BD - 2 * var.AD * var.AD)/2)
-var skew = -tan(pi/2-acos((var.AC * var.AC - var.AB * var.AB - var.AD * var.AD)/(2 * var.AB * var.AD)))
-if (var.AC-var.BD>=0)
-	set var.skew_mm = -sqrt(var.AB * var.AB - var.AD * var.AD)
-else
-	set var.skew_mm = sqrt(var.AB * var.AB - var.AD * var.AD)
+var BAD = acos((var.AC * var.AC - var.AB * var.AB - var.AD * var.AD)/(2 * var.AB * var.AD))
+var skew = -tan(pi/2 - var.BAD)
+var AE = sin(var.BAD) * var.AB
+var EB = var.skew * var.AE
+var skewAtbaseHeight = var.skew * var.AD
 
-echo "Inputs: AC = " ^ var.AC ^ ", BD = " ^ var.BD ^ ", AD = " ^ var.AD ^ ", axis = " ^ var.axis
-echo "Skew factor: " ^ var.skew ^ " Skew distance @ " ^ var.AD ^ "mm: " ^ var.skew_mm ^ "mm"
-echo "Send either: M556 S1 " ^ var.axis ^ var.skew ^ " or: M556 S" ^ var.AD , var.axis ^ var.skew_mm
+echo "Inputs: AC = " ^ var.AC ^ "mm, BD = " ^ var.BD ^ "mm, AD = " ^ var.AD ^ "mm, axis = " ^ var.axis
+echo "Calculated: Skew = " ^ var.skew ^ " or " ^ degrees(var.BAD)-90 ^ "° AB = " ^ var.AB ^ "mm, AE = " ^ var.AE ^ "mm, EB = " ^ var.EB ^ "mm, Skew @ " ^ var.AD ^ "mm = " ^ var.skewAtbaseHeight ^ "mm"
+echo "Send either: M556 S1 " ^ var.axis ^ var.skew ^ " or: M556 S" ^ var.AD , var.axis ^ var.skewAtbaseHeight
 ```
 Example output on running the above macro:
 ```
 M98 P"0:/macros/Skew calculator.g"
-Inputs: AC = 331.229, BD = 241.842, AD = 200, axis = X
-Skew factor: -0.3201567 Skew distance @ 200mm: -64.0320358mm
-Send either: M556 S1 X-0.3201567 or: M556 S200 X-64.0320358
+Inputs: AC = 302.4420mm, BD = 292.1110mm, AD = 200mm, axis = X
+Calculated: Skew = -0.0349208 or -2.0000076° AB = 220.0000mm, AE = 219.8660mm, EB = -7.6778984mm, Skew @ 200mm = -6.9841623mm
+Send either: M556 S1 X-0.0349208 or: M556 S200 X-6.9841623
 ```
-Note: the skew value in the above example is very large! Most skew factors will be much smaller. A skew distance of 2mm at 200mm gives a skew factor of 2 / 200 = 0.01
+Note: the skew value in the above example is quite large! Most skew factors will be much smaller. A skew distance of 2mm at 200mm gives a skew factor of 2 / 200 = 0.01, or around 0.57° from square. If you get figures much higher than this, it would be better to try and get the frame mechanically squarer.
 
 Calculate values for all axes (XY, XZ and/or YZ) that require them.
 
