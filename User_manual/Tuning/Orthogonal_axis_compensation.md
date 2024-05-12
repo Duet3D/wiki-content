@@ -2,7 +2,7 @@
 title: Orthogonal axis compensation with M556
 description: 
 published: true
-date: 2024-05-12T09:11:22.707Z
+date: 2024-05-12T10:59:00.067Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-06T14:44:11.234Z
@@ -128,15 +128,18 @@ Use these diagrams for reference:
 
 Skew factors can be calculated manually:
 
-`AB = SQRT (( AC * AC + BD * BD - 2 * AD * AD ) / 2))`
-This calulates the length of the side of a parallelogram AB, from the diagonals AC and BD, and the given side length AD.
-`Skew factor = -TAN ( PI / 2 - ACOS ( ( AC * AC - AB * AB - AD * AD ) / ( 2 * AB * AD )))`
-This calculates the angle BAD in radians, using the Law of Cosines, subtracts that from pi/2 radians (90°) to get the angle EAB, then calculates the TAN of this (ie EB / AE, which is what you measure using the first method) to get the skew factor.
+`AB = SQRT (( AC * AC + BD * BD - 2 * AD * AD ) / 2 ))`
+This calulates the length of the side AB of a parallelogram, from the diagonals AC and BD, and the given side length AD. AD should equal BC, and AB should equal CD.
+`Angle_BAD = ACOS (( AC * AC - AB * AB - AD * AD ) / ( 2 * AB * AD ))`
+This calculates the angle BAD in radians, using the Law of Cosines.
+`Skew factor = -TAN ( PI / 2 - Angle_BAD )`
+This subtracts angle BAD from pi/2 radians (90°) to get the angle EAB (which is the angle of the skew), then calculates the TAN of this (ie EB / AE, which is what you measure using the first method) to get the skew factor.
 
-Note: if the angle BAD is acute (ie AC is greater than BD, as in the diagrams above) the skew factor should be negative, and if the angle is obtuse (ie AC is less than BD) the skew factor should be positive.
+Note: if the angle BAD is acute (ie AC is greater than BD, as in the diagrams above) the skew factor should be negative, and if the angle is obtuse (ie AC is less than BD) the skew factor should be positive. The negative TAN sets this correctly, for RepRapFirmware.
 
 Or you can use the following Gcode in RRF v3.x to calculate the skew factor. Copy it into a macro and upload it to your Duet. Edit the AC, BD and AD values to your measured values:
 ```
+; Save to 0:/macros/Skew calculator.g
 ; Inputs
 var AC = 302.44199
 var BD = 292.11101
