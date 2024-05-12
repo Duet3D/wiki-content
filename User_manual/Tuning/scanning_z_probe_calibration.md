@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2024-01-05T22:06:25.039Z
+date: 2024-05-12T08:34:01.616Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -57,7 +57,7 @@ To calibrate the probe:
   For example, if the trigger height is set to 3mm, and the bed error is expected to be not more than 1mm, the minimum height would be 2mm. 
 * Run `M558.2 K1 S-1` to calibrate the drive level. If it is successful then it should report the resulting drive level. 
 * You can also use `M558.2 K1` with no S parameter to report the current drive level (S parameter) and reading offset (R parameter). 
-* Add an M558.2 command in config.g to set that drive level, e.g. if the reported drive level after calibration was 15 and it is probe #1, then use `M558.2 K1 S15`. Add this later in config.g than the M558 K1 command that configures the probe.
+* Add an M558.2 command in config.g to set that drive level, e.g. if the probe number is #1,and the reported drive level after calibration was 15 and reading offset is 101133, then use `M558.2 K1 S15 R101133`. Add this later in config.g than the M558 K1 command that configures the probe.
 * Also check that the Z probe reading is sensible when the sensor is a long way above the bed. The aim is to get sensible readings (i.e. not 999999) from the minimum height to "infinite" height.
 * A typical drive level is around 15.
 
