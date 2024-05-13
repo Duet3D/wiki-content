@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-05-13T15:40:47.665Z
+date: 2024-05-13T15:49:25.078Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5207,7 +5207,7 @@ Related commands: [G29](/User_manual/Reference/Gcodes/G29){target=_blank}, [G30]
 
 See also: [Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing){target=_blank}, [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting){target=_blank}
 
-## M558.1: Calibrate height vs reading of scanning Z probe
+## M558.1: Calibrate, set or report height vs reading of scanning Z probe
 
 Supported from RRF 3.5.0-rc.1
 
@@ -5218,45 +5218,99 @@ Supported from RRF 3.5.0-rc.1
 * **Ann.n** (optional) Linear coefficient of the output, in mm per count
 * **Bnn.n** (optional, ignored unless A parameter is also present, default 0.0) Quadratic coefficient of the output, in mm^2 per count
 * **Cnn.n** (optional, ignored unless A parameter is also present, default 0.0) Cubic coefficient of the output, in mm^3 per count
-If the A parameter is present then the equation to calculate the actual height of the Z probe is set to this:
+
+### Usage
+
+M558.1 Knn Sn.n
+M558.1 Knn Ann.n Bnn.n Cnn.n
+M558.1 Knn
+
+### Description
+
+M558.1 is used to define the coefficients that calculate the height from the scanning Z probe reading. This can be done either by setting these coefficients directly, or by instigating a calibration move. Both are done with M558.1. If at least the A parameter is present, then the equation to calculate the actual height of the Z probe is set to this:
 
 <br>
 <pre class="cblock">
 height = trigger_height + A * (probe_reading - probe_threshold) + B * (probe_reading - probe_threshold)^2 + C * (probe_reading - probe_threshold)^3
 </pre>
 
-where trigger_height and probe_threshold are as set by G31.
+where trigger_height is the G31 Z parameter, and probe_threshold (or trigger value) is the G31 P parameter. 
+Note that the probe_threshold (G31 P parameter trigger value) is set for the trigger_height (G31 Z parameter) during M588.1 calibration.
 
-If the A parameter is not present but the S parameter is present then the probe is raised or lowered to (trigger_height + S_parameter) at the current XY position, then readings are taken as the probe is gradually lowered to (trigger_height - S_parameter). The readings are used to compute, store and report new values of A, B, C and the trigger threshold.
-
-If neither the A nor the S parameter is present, the current A, B and C values are reported.
-
-##### Order dependency
+### Order dependency
 
 Before M558.1 is used the probe must be defined as a scanning Z probe using M558, the probe trigger height must be set using G31, the axes must have been homed, the sensor must be over the bed surface and not too close to the edges of the bed, and the sensor drive current should have been set using M558.2 if necessary.
 
-## M558.2: Calibrate or set drive level and reading offset for scanning Z probe
+### Examples
+<br>
+<pre class="cblock">
+M558.1 K1 S1.7 ; Use probe 1 to calibrate probe, scanning 1.7mm above and below trigger height set by G31 Z parameter
+M558.1 K1 A-2.865e-4 B2.598e-10 C2.937e-17 ; Set coefficients for probe 1
+M558.1 K1 ; report coefficients in use on probe 1
+</pre>
+
+In the first example, if `G31 Z2` was set, the probe would calibrate in the range Z3.7 to Z0.3.
+
+### Notes
+
+* If the A parameter is not present but the S parameter is present then the probe is raised or lowered to (trigger_height + S_parameter) at the current XY position, then readings are taken as the probe is gradually lowered to (trigger_height - S_parameter). The readings are used to compute, store and report new values of A, B, C and the trigger threshold.
+* If neither the A nor the S parameter is present, the current A, B and C values are reported, eg
+<br>
+<pre class="cblock">
+M558.1 K1
+Scanning probe coefficients [1.840e-1, -2.865e-4, 2.598e-10, 2.937e-17]
+</pre>
+* The first coefficient is the difference in reading from the target reading at the trigger height during calibration, and automatically generated.
+* The second, third and fourth coefficients are the A, B and C parameters.
+
+See also: [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
+
+## M558.2: Calibrate, set or report drive current and reading offset for scanning Z probe
 
 Supported from RRF 3.5.0-rc.1
 
 ### Parameters
 
 * **Knn** (optional) Z probe number, default 0. The probe must be of a scanning type (see M558).
-* **Snn** Drive level to set, or -1 to determine drive level and reading offset automatically. For LDC1612-based probes, when setting the current this should be in the range 0 to 31.
+* **Snn** Drive current to set, or -1 to determine drive current and reading offset automatically. For LDC1612-based probes, when setting the current this should be in the range 0 to 31.
 * **Rnnnn** (optional, default zero) Offset to subtract from the raw sensor reading. Only used if the S parameter is present and >= 0.
 
-This command is used to set the drive current of scanning Z probes that use the LDC1612 chip. If the drive current is set too low, the sensor wil not work when it is close to the bed. If the drive current is set too high, it will not work when the sensor is distant from the bed. Use M122 B# (where # is the CAN address of the board that carries the sensor) to determine whether the sensor is working normally.
+### Usage
 
-When using this command with S-1 to determine the optimum drive current automatically, the sensor should first be placed at the lower distance limit (closest distance from the metal bed surface) of the intended operating range.
+M558.2 Knn S-1
+M558.2 Knn Snn Rnnnn
+M558.2 Knn
 
-The R parameter (reading offset) will be subtracted from the raw reading from the sensor in order to make the displayed Z probe reading more readable. You can use a value of zero (the default), but then you will see large readings with only the last few digits changing.
+### Description
 
-If M558 is used with no S parameter then the current drive level and offset are reported.
+This command is used to set the drive current of scanning Z probes that use the LDC1612 chip. If the drive current is set too low, the sensor will not work when it is close to the bed. If the drive current is set too high, it will not work when the sensor is distant from the bed. Use M122 B# (where # is the CAN address of the board that carries the sensor) to determine whether the sensor is working normally.
 
-##### Order dependency
+### Order dependency
 
 Before M558.2 is used the probe must be defined as a scanning Z probe using M558.
-After M558.2 is used to change the drive level and/or offset, M558.1 should be used to recalibrate the probe.
+After M558.2 is used to change the drive current and/or reading offset, M558.1 should be used to recalibrate the probe.
+
+### Examples
+
+<br>
+<pre class="cblock">
+M558.2 K1 S-1 ; calibrate coil drive current and reading offset on probe 1, at current Z height
+M558.2 K1 Snn Rnnnn ; set coil drive current and reading offset on probe 1
+M558.2 K1 ; report coefficients in use on probe 1
+</pre>
+
+### Notes
+
+* When using this command with S-1 to determine the optimum drive current automatically, the sensor should first be placed at the lower distance limit (closest distance from the metal bed surface) of the intended operating range.
+* The R parameter (reading offset) will be subtracted from the raw reading from the sensor in order to make the displayed Z probe reading more readable. You can use a value of zero (the default), but then you will see large readings with only the last few digits changing.
+* If M558 is used with no S parameter then the current drive level and offset are reported, eg
+<br>
+<pre class="cblock">
+M558.2 K1
+Sensor drive current is 15, offset is 139919
+</pre>
+
+See also: [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
 
 ## M559: Upload file
 
