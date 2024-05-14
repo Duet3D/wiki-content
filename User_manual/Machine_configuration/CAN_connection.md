@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-01-19T00:52:54.588Z
+date: 2024-05-14T15:22:42.719Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -26,6 +26,41 @@ If all boards are powered from the same power supply, they will automatically be
 A power supply needs to be able to provide enough current for all the boards connected to it; see [Choosing the power supply](/User_manual/Connecting_hardware/Power_choosing) for guidance. If you have a lot of boards, you may need to have more than one power supply. You may also want to run  boards on power supplies that supply different voltages, eg some on 24V and some on 48V (for high voltage stepper drivers, for example). This is supported, so long as the PSUs are wired to share a common ground.
 
 # CAN wiring
+
+## CAN introduction
+
+CAN-FD (and CAN) is a linear bus system, using a pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and shielded over long distances and/or for particularly noisy environments.
+
+Apart from the devices at each end of the CAN bus, each device on the CAN bus needs CAN wires from the previous device, and CAN wires to the next device. The devices at the end of the bus need to 'terminate' the bus. 
+
+In the pair of wires, the CAN_H and CAN_L wires should remain wired separately, so the CAN_H wire always connects to the CAN_H input and output on the device, and the CAN_L wire always connects to the CAN_L input or output.
+
+You can have short stubs attached to the CAN bus. These devices are not terminated. See 'Stubs' section below for more details.
+
+## Cables
+
+Unshielded twisted pair cable, ideally 2 X 24AWG with an impedence of 120ohms, is normally used. However over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
+
+![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =400x)
+
+Twisted pair cables terminated in RJ11 connectors are sold in some countries as "High Speed ADSL cables". One supplier of such cables is [Kenable](https://www.kenable.co.uk/en/search?controller=search&search_query=high+speed+adsl). Note, **ADSL and telephone cables made with flat wire often cross the connections, making them unsuitable**. See the images below.
+
+You can also make up your own cables. Kits of RJ11 (usually 6P4W) connectors and the corresponding assembly tool are readily available.  For the cable, you can buy unshielded twisted pair cable (e.g. Lapp 0035101 has two twisted pairs, so suitable for connecting a Tool Board to a Tool Distribution Board); or buy a length of twisted pair ribbon cable and separate it into individual pairs; or for short distances, use telephone cable.
+
+This image shows a cable made to connect a Duet 3 Mini to a Tool Distribution Board.
+
+### Example of a good cable:
+
+![can_basics_02.jpg](/manual/configuration/can_basics_02.jpg =600x)
+
+The colours of the wires going to the pins on the right is hard to see because they are white with a stripe, as is usual for twisted pairs; but the order of colours is the same at both ends.
+
+### Example of an unsuitable cable:
+
+![can_basics_03.jpg](/manual/configuration/can_basics_03.jpg =600x)
+
+Having just the middle 2 pins wired is OK, but they are crossed so this cable is no good for CAN (it's a cable that was supplied with an ADSL or DSL modem). This is common for cables made from non-twisted-pair cable that is either flat with a seam on one side, or half-round.
+
 
 ## Connections
 
@@ -76,41 +111,17 @@ Note only the first and last CAN-FD devices on the bus should have the terminati
 
 ### Daisy chain
 
-Typically, the CAN bus is wired in a daisy-chain-style between boards. At one end will be the mainboard, with the CAN bus connecting to each subseqent board.
+Typically, the CAN bus is wired in a daisy-chain-style between boards. At one end will be the mainboard, with the CAN bus connecting to each subseqent board. 
 
 ### Stubs
 
-Stubs are branches off the CAN bus that are a single twisted pair of wires, connecting to a single board. Stubs should be no more than 1m long, and should preferably use ferrite beads to suppress ringing.
+Stubs are branches off the CAN bus that are a single twisted pair of wires, connecting to a single board. The maximum recommended stub length for the 1Mbit/sec signalling rates used by Duet is 1m, and should preferably use ferrite beads to suppress ringing. The total length of all stubs should not be more than 5m.
 
-The CAN bus on Duet 3 boards normally runs at 1Mbit/sec by default. If the bit rate is increased using M952. At higher speeds, reflections caused by stubs would be more significant, making it more important to keep stubs short and/or use ferrite beads.
+The CAN bus on Duet 3 boards normally runs at 1Mbit/sec by default. If the bit rate is increased using M952, signal reflections caused by stubs will be more significant, making it more important to keep stubs short and/or use ferrite beads.
 
 ### Termination
 
 The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs to be terminated by 120 ohm resistors at each end, and there should be no terminators on other boards.
-
-## Cables
-
-Unshielded twisted pair cable is normally used; however over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
-
-![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =400x)
-
-Twisted pair cables terminated in RJ11 connectors are sold in some countries as "High Speed ADSL cables". One supplier of such cables is [Kenable](https://www.kenable.co.uk/en/search?controller=search&search_query=high+speed+adsl). Note, **ADSL and telephone cables made with flat wire often cross the connections, making them unsuitable**. See the images below.
-
-You can also make up your own cables. Kits of RJ11 (usually 6P4W) connectors and the corresponding assembly tool are readily available.  For the cable, you can buy unshielded twisted pair cable (e.g. Lapp 0035101 has two twisted pairs, so suitable for connecting a Tool Board to a Tool Distribution Board); or buy a length of twisted pair ribbon cable and separate it into individual pairs; or for short distances, use telephone cable.
-
-This image shows a cable made to connect a Duet 3 Mini to a Tool Distribution Board.
-
-### Example of a good cable:
-
-![can_basics_02.jpg](/manual/configuration/can_basics_02.jpg =600x)
-
-The colours of the wires going to the pins on the right is hard to see because they are white with a stripe, as is usual for twisted pairs; but the order of colours is the same at both ends.
-
-### Example of an unsuitable cable:
-
-![can_basics_03.jpg](/manual/configuration/can_basics_03.jpg =600x)
-
-Having just the middle 2 pins wired is OK, but they are crossed so this cable is no good for CAN (it's a cable that was supplied with an ADSL or DSL modem). This is common for cables made from non-twisted-pair cable that is either flat with a seam on one side, or half-round.
 
 # CAN addresses
 
