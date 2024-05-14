@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-05-14T16:20:32.889Z
+date: 2024-05-14T23:40:10.943Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -29,25 +29,25 @@ A power supply needs to be able to provide enough current for all the boards con
 
 ## Introduction
 
-CAN-FD (and CAN) is a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and shielded over long distances and/or for particularly noisy environments.
+CAN-FD (and CAN) is a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and shielded over long distances and/or for particularly noisy environments. The total length of the CAN bus can be up to 40m.
 
-Apart from the devices at each end of the CAN bus, each device on the CAN bus needs CAN wires from the previous device, and CAN wires to the next device. The devices at the end of the bus need to 'terminate' the bus. 
+Apart from the devices at each end of the CAN bus, each device on the CAN bus needs CAN wires from the previous device, and CAN wires to the next device. The devices at each end of the bus need to 'terminate' the bus. 
 
-In the pair of wires, the CAN_H and CAN_L wires should remain wired separately, so the CAN_H wire always connects to the CAN_H input and output on the device, and the CAN_L wire always connects to the CAN_L input and output.
+Within the pair of wires, the CAN_H and CAN_L wires should remain wired separately, so the CAN_H wire always connects to the CAN_H input and output on the device, and the CAN_L wire always connects to the CAN_L input and output.
 
-You can have devices attached to the CAN bus by short 'stubs'. These devices are not terminated. See 'Stubs' section below for more details.
+You can have devices attached to the CAN bus by short 'stubs', which only have an input. These devices are not terminated. See 'Stubs' section below for more details.
 
 ## Cables
 
-Unshielded twisted pair cable, ideally 2 X 24AWG with an impedence of 120ohms, is normally used. However over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
-
-![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =400x)
+Unshielded twisted pair cable is normally used, ideally 2 X 24AWG with an impedence of 120ohms. However over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
 
 Twisted pair cables terminated in RJ11 connectors are sold in some countries as "High Speed ADSL cables". One supplier of such cables is [Kenable](https://www.kenable.co.uk/en/search?controller=search&search_query=high+speed+adsl). Note, **ADSL and telephone cables made with flat wire often cross the connections, making them unsuitable**. See the images below.
 
 You can also make up your own cables. Kits of RJ11 (usually 6P4W) connectors and the corresponding assembly tool are readily available.  For the cable, you can buy unshielded twisted pair cable (e.g. Lapp 0035101 has two twisted pairs, so suitable for connecting a Tool Board to a Tool Distribution Board); or buy a length of twisted pair ribbon cable and separate it into individual pairs; or for short distances, use telephone cable.
 
-This image shows a cable made to connect a Duet 3 Mini to a Tool Distribution Board.
+![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =400x)
+
+The image above shows a cable made to connect a Duet 3 Mini to a Tool Distribution Board.
 
 ### Example of a good cable:
 
@@ -61,8 +61,26 @@ The colours of the wires going to the pins on the right is hard to see because t
 
 Having just the middle 2 pins wired is OK, but they are crossed so this cable is no good for CAN (it's a cable that was supplied with an ADSL or DSL modem). This is common for cables made from non-twisted-pair cable that is either flat with a seam on one side, or half-round.
 
+## Wiring scheme
 
-## Connections
+> The polarity of the connections between boards matters. In all cases, connect CAN_H on one board to CAN_H on the next board, and similarly connect CAN_L to CAN_L.
+> {.is-warning}
+
+### Daisy chain
+
+Typically, the CAN bus is wired in a daisy-chain-style between boards. At one end will be the mainboard, with the CAN bus connecting to each subseqent board. 
+
+### Stubs
+
+Stubs are branches off the CAN bus that are a single twisted pair of wires, connecting to a single board. The maximum recommended stub length for the 1Mbit/sec signalling rates used by Duet is 1m, and should preferably use ferrite beads to suppress ringing. The total length of all stubs should not be more than 5m.
+
+The CAN bus on Duet 3 boards normally runs at 1Mbit/sec by default. If the bit rate is increased using M952, signal reflections caused by stubs will be more significant, making it more important to keep stubs short and/or use ferrite beads.
+
+### Termination
+
+The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs to be terminated by 120 ohm resistors at each end, and there should be no terminators on other boards.
+
+## Connecting boards together
 
 ### Mainboard connections
 
@@ -103,25 +121,6 @@ Normally you can daisy-chain expansion boards together, simply by plugging in a 
 * Alternatively, they can be wired as 'stubs', which reduces the wiring to the board. Run two twisted pairs, one from the previous board and one from the next, to a junction point no more than 1m from the toolboard, then use a single twisted pair cable to connect the toolboard to that junction. Remove the termination resistor. See the section below on stubs for more details.
 
 Note only the first and last CAN-FD devices on the bus should have the termination resistor fitted.
-
-## Wiring scheme
-
-> The polarity of the connections between boards matters. In all cases, connect CAN_H on one board to CAN_H on the next board, and similarly connect CAN_L to CAN_L.
-> {.is-warning}
-
-### Daisy chain
-
-Typically, the CAN bus is wired in a daisy-chain-style between boards. At one end will be the mainboard, with the CAN bus connecting to each subseqent board. 
-
-### Stubs
-
-Stubs are branches off the CAN bus that are a single twisted pair of wires, connecting to a single board. The maximum recommended stub length for the 1Mbit/sec signalling rates used by Duet is 1m, and should preferably use ferrite beads to suppress ringing. The total length of all stubs should not be more than 5m.
-
-The CAN bus on Duet 3 boards normally runs at 1Mbit/sec by default. If the bit rate is increased using M952, signal reflections caused by stubs will be more significant, making it more important to keep stubs short and/or use ferrite beads.
-
-### Termination
-
-The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs to be terminated by 120 ohm resistors at each end, and there should be no terminators on other boards.
 
 # CAN addresses
 
