@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-05-14T15:22:42.719Z
+date: 2024-05-14T16:20:32.889Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -27,15 +27,15 @@ A power supply needs to be able to provide enough current for all the boards con
 
 # CAN wiring
 
-## CAN introduction
+## Introduction
 
-CAN-FD (and CAN) is a linear bus system, using a pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and shielded over long distances and/or for particularly noisy environments.
+CAN-FD (and CAN) is a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and shielded over long distances and/or for particularly noisy environments.
 
 Apart from the devices at each end of the CAN bus, each device on the CAN bus needs CAN wires from the previous device, and CAN wires to the next device. The devices at the end of the bus need to 'terminate' the bus. 
 
-In the pair of wires, the CAN_H and CAN_L wires should remain wired separately, so the CAN_H wire always connects to the CAN_H input and output on the device, and the CAN_L wire always connects to the CAN_L input or output.
+In the pair of wires, the CAN_H and CAN_L wires should remain wired separately, so the CAN_H wire always connects to the CAN_H input and output on the device, and the CAN_L wire always connects to the CAN_L input and output.
 
-You can have short stubs attached to the CAN bus. These devices are not terminated. See 'Stubs' section below for more details.
+You can have devices attached to the CAN bus by short 'stubs'. These devices are not terminated. See 'Stubs' section below for more details.
 
 ## Cables
 
