@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-05-16T15:18:11.646Z
+date: 2024-05-16T18:02:55.860Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -70,7 +70,7 @@ Typically, the CAN bus is wired in a daisy-chain-style between boards. At one en
 
 ![can_basics_wiring_02.png](/manual/configuration/can_basics_wiring_02.png =800x){target=_blank}
 
-Daisy-chaining can be mixed with stubs to create create the CAN bus that best suits your requirements.
+Daisy-chaining can be mixed with stubs to create the CAN bus that best suits your requirements.
 
 ### Stubs
 
@@ -82,7 +82,7 @@ In the above diagram, Expansion 2 and Expansion 3 are on a single stub. It may b
 
 The CAN bus on Duet 3 boards normally runs at 1Mbit/sec by default. If the bit rate is increased using M952, signal reflections caused by stubs will be more significant, making it more important to keep stubs short and/or use ferrite beads.
 
-Stubs can be mixed with daisy-chaining to create create the CAN bus that best suits your requirements.
+Stubs can be mixed with daisy-chaining to create the CAN bus that best suits your requirements.
 
 ### Termination
 
