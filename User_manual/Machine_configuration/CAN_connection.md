@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-05-14T23:40:10.943Z
+date: 2024-05-16T09:35:34.174Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -23,13 +23,15 @@ To connect a mainboard and expansion board, both boards need power, and a CAN ca
 
 If all boards are powered from the same power supply, they will automatically be sharing a common ground. However, if you use (for example) one power supply for the main board and a different power supply for an expansion board, you must connect the negative output terminals of the two power supplies together.
 
-A power supply needs to be able to provide enough current for all the boards connected to it; see [Choosing the power supply](/User_manual/Connecting_hardware/Power_choosing) for guidance. If you have a lot of boards, you may need to have more than one power supply. You may also want to run  boards on power supplies that supply different voltages, eg some on 24V and some on 48V (for high voltage stepper drivers, for example). This is supported, so long as the PSUs are wired to share a common ground.
+A power supply needs to be able to provide enough current for all the boards connected to it; see [Choosing the power supply](/User_manual/Connecting_hardware/Power_choosing){target=_blank} for guidance. If you have a lot of boards, you may need to have more than one power supply. You may also want to run  boards on power supplies that supply different voltages, eg some on 24V and some on 48V (for high voltage stepper drivers, for example). This is supported, so long as the PSUs are wired to share a common ground.
 
 # CAN wiring
 
 ## Introduction
 
 CAN-FD (and CAN) is a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and shielded over long distances and/or for particularly noisy environments. The total length of the CAN bus can be up to 40m.
+
+![can_basics_wiring_01.png](/manual/configuration/can_basics_wiring_01.png =800x){target=_blank}
 
 Apart from the devices at each end of the CAN bus, each device on the CAN bus needs CAN wires from the previous device, and CAN wires to the next device. The devices at each end of the bus need to 'terminate' the bus. 
 
@@ -41,25 +43,21 @@ You can have devices attached to the CAN bus by short 'stubs', which only have a
 
 Unshielded twisted pair cable is normally used, ideally 2 X 24AWG with an impedence of 120ohms. However over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
 
-Twisted pair cables terminated in RJ11 connectors are sold in some countries as "High Speed ADSL cables". One supplier of such cables is [Kenable](https://www.kenable.co.uk/en/search?controller=search&search_query=high+speed+adsl). Note, **ADSL and telephone cables made with flat wire often cross the connections, making them unsuitable**. See the images below.
-
-You can also make up your own cables. Kits of RJ11 (usually 6P4W) connectors and the corresponding assembly tool are readily available.  For the cable, you can buy unshielded twisted pair cable (e.g. Lapp 0035101 has two twisted pairs, so suitable for connecting a Tool Board to a Tool Distribution Board); or buy a length of twisted pair ribbon cable and separate it into individual pairs; or for short distances, use telephone cable.
-
-![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =400x)
-
-The image above shows a cable made to connect a Duet 3 Mini to a Tool Distribution Board.
+Twisted pair cables terminated in RJ11 connectors are sold in some countries as "High Speed ADSL cables". One supplier of such cables is [Kenable](https://www.kenable.co.uk/en/search?controller=search&search_query=high+speed+adsl){target=_blank}. Note, **ADSL and telephone cables made with flat wire often cross the connections, making them unsuitable**. See the images below.
 
 ### Example of a good cable:
 
-![can_basics_02.jpg](/manual/configuration/can_basics_02.jpg =600x)
-
-The colours of the wires going to the pins on the right is hard to see because they are white with a stripe, as is usual for twisted pairs; but the order of colours is the same at both ends.
+![can_basics_02.jpg](/manual/configuration/can_basics_02.jpg =50%x){.align-right}{target=_blank} The colours of the wires going to the pins on the right is hard to see because they are white with a stripe, as is usual for twisted pairs; but the order of colours is the same at both ends.
 
 ### Example of an unsuitable cable:
 
-![can_basics_03.jpg](/manual/configuration/can_basics_03.jpg =600x)
+![can_basics_03.jpg](/manual/configuration/can_basics_03.jpg =50%x){.align-right}{target=_blank} Having just the middle 2 pins wired is OK, but they are crossed so this cable is no good for CAN (it's a cable that was supplied with an ADSL or DSL modem). This is common for cables made from non-twisted-pair cable that is either flat with a seam on one side, or half-round.
 
-Having just the middle 2 pins wired is OK, but they are crossed so this cable is no good for CAN (it's a cable that was supplied with an ADSL or DSL modem). This is common for cables made from non-twisted-pair cable that is either flat with a seam on one side, or half-round.
+### Make your own cables
+
+![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =50%x){.align-right}{target=_blank} You can also make up your own cables. Kits of RJ11 (usually 6P4W) connectors and the corresponding assembly tool are readily available.  For the cable, you can buy unshielded twisted pair cable (e.g. Lapp 0035101 has two twisted pairs, so suitable for connecting a Tool Board to a Tool Distribution Board); or buy a length of twisted pair ribbon cable and separate it into individual pairs; or for short distances, use telephone cable.
+
+This image shows a cable made to connect a Duet 3 Mini to a Tool Distribution Board.
 
 ## Wiring scheme
 
