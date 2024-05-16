@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-05-16T09:35:34.174Z
+date: 2024-05-16T14:10:05.503Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -27,7 +27,7 @@ A power supply needs to be able to provide enough current for all the boards con
 
 # CAN wiring
 
-## Introduction
+## Overview
 
 CAN-FD (and CAN) is a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and shielded over long distances and/or for particularly noisy environments. The total length of the CAN bus can be up to 40m.
 
@@ -67,6 +67,8 @@ This image shows a cable made to connect a Duet 3 Mini to a Tool Distribution Bo
 ### Daisy chain
 
 Typically, the CAN bus is wired in a daisy-chain-style between boards. At one end will be the mainboard, with the CAN bus connecting to each subseqent board. 
+
+![can_basics_wiring_02.png](/manual/configuration/can_basics_wiring_02.png =800x){target=_blank}
 
 ### Stubs
 
