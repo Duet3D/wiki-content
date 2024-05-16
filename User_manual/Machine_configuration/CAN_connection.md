@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-05-16T14:10:05.503Z
+date: 2024-05-16T15:18:11.646Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -70,15 +70,23 @@ Typically, the CAN bus is wired in a daisy-chain-style between boards. At one en
 
 ![can_basics_wiring_02.png](/manual/configuration/can_basics_wiring_02.png =800x){target=_blank}
 
+Daisy-chaining can be mixed with stubs to create create the CAN bus that best suits your requirements.
+
 ### Stubs
 
-Stubs are branches off the CAN bus that are a single twisted pair of wires, connecting to a single board. The maximum recommended stub length for the 1Mbit/sec signalling rates used by Duet is 1m, and should preferably use ferrite beads to suppress ringing. The total length of all stubs should not be more than 5m.
+Stubs are branches off the CAN bus that are a single twisted pair of wires. The maximum recommended stub length for the 1Mbit/sec signalling rates used by Duet is 1m, and should preferably use ferrite beads to suppress ringing. Stubs can have multiple boards on them, but the total length of the stub should still not be more than 1m. The total length of all stubs should not be more than 5m.
+
+![can_basics_wiring_03.png](/manual/configuration/can_basics_wiring_03.png =800x){target=_blank}
+
+In the above diagram, Expansion 2 and Expansion 3 are on a single stub. It may be convenient to terminate the CAN bus on Expansion 3, and remove the termination on Expansion 4, if the wire lengths require it. Then Expansion 4 is on a stub.
 
 The CAN bus on Duet 3 boards normally runs at 1Mbit/sec by default. If the bit rate is increased using M952, signal reflections caused by stubs will be more significant, making it more important to keep stubs short and/or use ferrite beads.
 
+Stubs can be mixed with daisy-chaining to create create the CAN bus that best suits your requirements.
+
 ### Termination
 
-The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs to be terminated by 120 ohm resistors at each end, and there should be no terminators on other boards.
+The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs to be terminated by 120 ohm resistors at each end, and there should be no terminators on other boards. Most boards supplied by Duet3D have CAN bus termination built-in. Most mainboards have it enabled by default, and it is usually selectable, either with a jumper or a soldered connection, on expansion and tool boards.
 
 ## Connecting boards together
 
@@ -86,9 +94,9 @@ The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs t
 
 The **Duet 3 Mainboard 6HC and 6XD** have an RJ11 CAN connector. Earlier versions have a permanent termination resistor, so must be at one end of the CAN bus. Later versions have a cuttable trace to allow the termination resistor to be taken out of circuit.
 
-The 6HC and 6XD have support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.4.6) **only CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 is for future expansion, and can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics.
+The 6HC and 6XD have support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.5.1) **only CAN1** is used for connecting CAN-FD Duet 3 Main, Expansion and Tool boards. CAN0 is for future expansion, and can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics.
 
-The **Duet 3 Mini 5+** has a 2-pin Molex connector instead of the RJ11 connector, and a built-in termination resistor. It has only one CAN-FD bus, for connecting CAN-FD Duet 3 Expansion and Tool boards.
+The **Duet 3 Mini 5+** has a 2-pin Molex KK connector instead of the RJ11 connector, and a built-in termination resistor. It has only one CAN-FD bus, for connecting CAN-FD Duet 3 Expansion and Tool boards.
 
 ### Expansion board connections
 
