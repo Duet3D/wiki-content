@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-05-13T15:49:25.078Z
+date: 2024-05-17T08:14:25.148Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8395,7 +8395,7 @@ In RepRapFirmware on the Duet series, module numbers are as follows:
 * 0 - main firmware, specific for Duet board. Needs appropriate IAP (In-App Programmer, specific to Duet board) binary to be able to flash update.
 * 1 - web server firmware, filename DuetWiFiServer.bin (WiFi-equipped Duets only)
 * 2 - update DSF packages in SBC mode (requires v3.5.0-rc.3 or newer)
-* 3 - put the WiFi module into bootloader mode, so that firmware can be uploaded directly via its serial port. Also used to update bootloader on CAN-connected Duet 3 expansion boards.
+* 3 - update the bootloader on a CAN-connected Duet 3 expansion board. In older Duet 2 firmware versions, was used to put the WiFi module into bootloader mode, so that firmware can be uploaded directly via its serial port. 
 * 4 - PanelDue firmware (RRF 3.2 and later; see [PanelDue firmware update instructions](/User_manual/RepRapFirmware/Updating_PanelDue){target=_blank}).
 
 With all firmware versions up to RRF v3.2.2, all firmware update files are stored in the ‘0:/sys/’ directory. From RRF v3.3, to avoid too many files in this folder, all firmware update files are stored in ‘0:/firmware/’ directory.
