@@ -2,7 +2,7 @@
 title: User manual: Connecting hardware
 description: 
 published: true
-date: 2022-06-29T20:48:48.608Z
+date: 2024-05-20T15:40:44.846Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:51:46.990Z
@@ -55,6 +55,7 @@ Crimping guide (TO DO)
 
 [Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing)
 [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)
+[Connecting a Z probe - BLTouch](/User_manual/Connecting_hardware/Z_probe_BLTouch)
 [Test and calibrate a Z probe](/User_manual/Connecting_hardware/Z_probe_testing)
 [Setting up automatic probing of the print bed](/User_manual/Connecting_hardware/Z_probe_auto_probing)
 [Bed levelling using multiple independent Z motors](/User_manual/Connecting_hardware/Z_probe_auto_levelling)
