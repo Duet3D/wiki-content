@@ -2,7 +2,7 @@
 title: Connecting a Z probe - BLTouch
 description: This page covers wiring and configuration of the BLTouch and similar probes
 published: true
-date: 2024-05-20T15:11:02.464Z
+date: 2024-05-20T15:22:23.707Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-20T15:11:02.464Z
@@ -18,29 +18,25 @@ These instructions, except where stated, cover BLTouch and similar probes:
 
 ## BLTouch
 
-[BLTouch](https://www.antclabs.com/bltouch-v3){target=_blank}
+Manufacturer's website: [BLTouch](https://www.antclabs.com/bltouch-v3){target=_blank}
 
 ## Creatlity CR Touch
 
-[Creality CR Touch](https://www.creality3dofficial.com/products/creality-bl-touch){target=_blank}
+Manufacturer's website: [Creality CR Touch](https://www.creality3dofficial.com/products/creality-bl-touch){target=_blank}
 
 ## BIQU MicroProbe
 
-[BIQU MicroProbe V1.0 and V2.0](https://biqu.equipment/products/microprobe-v1-0-for-b1-printers-h2-extruders-ender-3){target=_blank}
+Manufacturer's website: [BIQU MicroProbe V1.0 and V2.0](https://biqu.equipment/products/microprobe-v1-0-for-b1-printers-h2-extruders-ender-3){target=_blank}
 
 ## TH3D EZABL
 
-[TH3D EZABL](https://www.th3dstudio.com/product/ezabl-ng-auto-bed-leveling-kit-for-unified-2-klipper-marlin-firmware/){target=_blank}
+Manufacturer's website: [TH3D EZABL](https://www.th3dstudio.com/product/ezabl-ng-auto-bed-leveling-kit-for-unified-2-klipper-marlin-firmware/){target=_blank}
 See the connection and configuration guide on the [TH3D site](https://support.th3dstudio.com/helpcenter/duet-board-setup-information/){target=_blank}.
 
 ## Touch-Mi
 
-[Auto Leveling sensor "Touch-MI"](https://www.hotends.fr/en/-accessories/64-capteur-auto-leveling-touch-mi.html){target=_blank}
+Manufacturer's website: [Auto Leveling sensor "Touch-MI"](https://www.hotends.fr/en/-accessories/64-capteur-auto-leveling-touch-mi.html){target=_blank}
 See the Touch-Mi section at the bottom of the page.
-
-# Troubleshooting
-
-See: [BLTouch Troubleshooting](/User_manual/Troubleshooting/BLTouch_troubleshooting){target=_blank}
 
 # Pinout and wire colours
 
@@ -321,6 +317,10 @@ The BL Touch will continue to cycle deploy in the test mode, to end the test mod
 Test deployprobe.g and retractprobe.g  are working correctly by sending M401 to deploy the probe, and M402 to retract the probe.
 
 Before trying to home (and smashing your hot end into the bed repeatedly when it doesn't work), conduct the tests and calibrate the Z probe as described here; see [Test and calibrate the Z probe](/User_manual/Connecting_hardware/Z_probe_testing)
+
+# Troubleshooting
+
+See: [BLTouch Troubleshooting](/User_manual/Troubleshooting/BLTouch_troubleshooting){target=_blank}
 
 # Touch-Mi
 
