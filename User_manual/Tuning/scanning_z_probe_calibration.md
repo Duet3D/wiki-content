@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2024-05-20T16:19:29.025Z
+date: 2024-05-20T16:52:39.375Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -66,7 +66,7 @@ To calibrate the probe:
 * You can also use `M558.2 K1` with no S parameter to report the current drive level (S parameter) and reading offset (R parameter). 
 * Add an M558.2 command in config.g to set that drive level and reading offset. E.g. if the probe number is #1,and the reported drive level after calibration was 15 and reading offset is 101133, then use `M558.2 K1 S15 R101133`. Add this later in config.g than the M558 K1 command that configures the probe.
 * Also check that the Z probe reading is sensible when the sensor is a long way above the bed. The aim is to get sensible readings (i.e. not 999999) from the minimum height to "infinite" height.
-* A typical drive level is around 15 for the 12mm coil. 
+* A typical drive level is around 15 for the 12mm coil. Higher or lower drive level settings may cause sporadic 999999 readings. If you get these, try adjusting the Z height you do the `M558.2 K1 S-1` calibration at.
 * The reading vs. height then needs to be calibrated, using M558.1. If you have another way of determining Z=0 (e.g. another Z probe, or touch the nozzle to the build plate and set G92 Z0) then it's best to do this immediately before scanning rather than try to save the calibration. 
 
 ## Example mesh.g file
@@ -93,6 +93,14 @@ Note that in the above example:
 * The M208 commands are likewise specific to a tool changer. 
 * The G1 X0 Y0 command sends the probe to the centre of the bed (on a machine with the X0 Y0 origin in the centre). 
 * The M558.1 does the reading vs. height calibration. In this case, the S1.7 causes the probe to move 1.7mm either side of the trigger height. If the trigger height is 2mm, it will go from 3.7mm down to 0.3mm.
+
+# Using the SZP to set Z height
+
+A scanning Z probe is designed to do just that; scan the bed to create a bed mesh. With careful calibration it should be possible to use it as a probe to set the Z height. However, inductive probes are susceptible to temperature, and will give different readings at different temperatures at the same height.
+
+Testing is currently ongoing to produce a good method to calibrate the SZP for different temperatures. These instructions will be updated when testing is complete, and recommendations can be made.
+
+For now, we recommend using another method to set the Z height.
 
 # Other analog probes
 
