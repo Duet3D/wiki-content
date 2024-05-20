@@ -2,7 +2,7 @@
 title: Connecting a Z probe - BLTouch
 description: This page covers wiring and configuration of the BLTouch and similar probes
 published: true
-date: 2024-05-20T15:22:23.707Z
+date: 2024-05-20T15:43:26.470Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-20T15:11:02.464Z
@@ -67,7 +67,7 @@ If in doubt, check the orientation of the connector on the probe PCB by using a 
 
 ## BIQU MicroProbe
 
-The BIQU MicroProbe is physically a drop-in replacement for the BLTouch, so the above information should apply. Note that it is configured differently, and there is a difference between the V1 and V2 probe. See the BBT Microprobe tab of the [TeamGloomy instructions here](https://teamgloomy.github.io/fly_e3_pro_v3_bltouch.html#overview){target=_blank} for configuration.
+The BIQU MicroProbe is physically a drop-in replacement for the BLTouch, so the above information should apply. Note that it is configured differently, and there is a difference between the V1 and V2 probe. See the BTT Microprobe tab of the [TeamGloomy instructions here](https://teamgloomy.github.io/fly_e3_pro_v3_bltouch.html#overview){target=_blank} for configuration.
 
 ## Creality CR Touch wire colours
 
@@ -179,6 +179,8 @@ Connect the BLTouch to the Z probe connector as follows:
 With older BLTouch (before V3.0), the output is 5V by default. The Z probe input on the Duet 2 Maestro is 30V tolerant, so it doesn't matter whether you reduce the output of the BLTouch to 3.3V or leave it at 5V.
   
 # Configuration
+
+**Note:** The **BIQU/BTT Microprobe** is configured differently from the BLTouch, and there is a difference between the V1 and V2 probe. See the BTT Microprobe tab of the [TeamGloomy instructions here](https://teamgloomy.github.io/fly_e3_pro_v3_bltouch.html#overview){target=_blank} for configuration.
 
 ## Tabs {.tabset}
 
