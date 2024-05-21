@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2024-05-21T09:25:38.390Z
+date: 2024-05-21T12:49:48.243Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -292,9 +292,19 @@ For a detailed description of connecting the following probes, See [Connecting a
 
 See [Connecting a Z probe - BLTouch](/User_manual/Connecting_hardware/Z_probe_BLTouch){target=_blank}
 
+##### Wiring the BLTouch
+
+See [BLTouch wiring here](https://docs.duet3d.com/User_manual/Connecting_hardware/Z_probe_BLTouch#wiring)
+
+##### Software setup
+
+See [BLTouch configuration here](https://docs.duet3d.com/User_manual/Connecting_hardware/Z_probe_BLTouch#configuration)
+
 ## Creality CR Touch
 
 See [Connecting a Z probe - BLTouch](/User_manual/Connecting_hardware/Z_probe_BLTouch){target=_blank}
+##### Creality CR Touch wire colours
+See [BLTouch wiki page here](https://docs.duet3d.com/User_manual/Connecting_hardware/Z_probe_BLTouch#creality-cr-touch-wire-colours)
 
 ## BIQU MicroProbe V1.0 and V2.0
 
@@ -302,12 +312,10 @@ See [Connecting a Z probe - BLTouch](/User_manual/Connecting_hardware/Z_probe_BL
 
 ## Touch-Mi
 
-[Auto Leveling sensor "Touch-MI"](https://www.hotends.fr/en/-accessories/64-capteur-auto-leveling-touch-mi.html){target=_blank}
 See the Touch-Mi section at the bottom of the page here: [Connecting a Z probe - BLTouch](/User_manual/Connecting_hardware/Z_probe_BLTouch){target=_blank}
 
 ## TH3D EZABL
 
-[TH3D EZABL](https://www.th3dstudio.com/product/ezabl-ng-auto-bed-leveling-kit-for-unified-2-klipper-marlin-firmware/){target=_blank}
 See the connection and configuration guide on the [TH3D site](https://support.th3dstudio.com/helpcenter/duet-board-setup-information/){target=_blank}.
 
 # Deployable contact probes
