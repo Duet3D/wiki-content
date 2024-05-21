@@ -2,7 +2,7 @@
 title: Multiple tools and Tool change macros
 description: 
 published: true
-date: 2024-05-21T14:50:30.238Z
+date: 2024-05-21T15:13:22.978Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:26:56.963Z
@@ -48,20 +48,17 @@ If Tn is used to select tool n but that tool is already active, the command does
 1. Use the new tool.
 
 **Important notes:**
-* Prior to RRF 3.3, when changing tools, tool change macro files are not run unless all axes have been homed. In RRF 3.3 and later, tool change macro files are run **regardless of whether axes have been homed or not**. You can use [conditional GCode](/User_manual/Reference/Gcode_meta_commands) to choose which commands are executed if axes have been homed/not homed.
+* Prior to RRF 3.3, when changing tools, tool change macro files are not run unless all axes have been homed. In RRF 3.3 and later, tool change macro files are run **regardless of whether axes have been homed or not**. You can use [meta GCode](/User_manual/Reference/Gcode_meta_commands) to choose which commands are executed if axes have been homed/not homed.
 * G28 **should not be used** to home axes in tool change macros. If you do need to home axes, it is best to put the homing commands directly in the tool change macro.
+* Meta Gcode command 'abort' **should not be used** in tool change macros, or any macro called from tool change macros, as it will leave the tool change process in an unknown state, as it exits all currently-running macros without running any more commands.
 
-Example of the above notes:
+Example of using conditional Gcode in a tool change macro (this would usually go in **tpre#.g**):
 ```
 if (move.axes[0].homed) ; check if X axis is homed
     echo "X axis homed, continuing with tool change"
-else                    ; home X axis, not using G28
-    G91                 ; relative positioning
-    G1 H1 X-250 F3600   ; move to X axis endstop and stop there
-    G90                 ; absolute positioning
-    echo "X axis homed, continuing with tool change"
-
-; rest of tool change commands below here
+    ; rest of tool change commands here
+else 
+    echo "Tool change FAILED, X not homed!"
 ```
 
 ## Selecting tool in config.g
