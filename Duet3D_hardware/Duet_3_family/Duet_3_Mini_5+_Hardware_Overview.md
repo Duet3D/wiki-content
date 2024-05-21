@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2024-02-15T14:00:28.418Z
+date: 2024-05-21T09:52:36.171Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -294,7 +294,7 @@ The individual IO_x connectors have the following capabilities:
 | 3 | no | yes | yes | Shared with  backlight control on 12864 displays having Neopixel backlights |
 | 4 | no | no | no | IO4_OUT is shared with PSON output |
 | 5 | no | no | n/a | 3-pin connector, input only |
-| 6 | no | no | n/a | 3-pin connector, input only |
+| 6 | no | yes | n/a | 3-pin connector, input only |
 
 ## Power distribution
 
