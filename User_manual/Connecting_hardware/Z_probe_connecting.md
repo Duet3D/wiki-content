@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2024-05-20T15:34:01.113Z
+date: 2024-05-21T09:25:38.390Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -292,7 +292,7 @@ For a detailed description of connecting the following probes, See [Connecting a
 
 See [Connecting a Z probe - BLTouch](/User_manual/Connecting_hardware/Z_probe_BLTouch){target=_blank}
 
-## Creatlity CR Touch
+## Creality CR Touch
 
 See [Connecting a Z probe - BLTouch](/User_manual/Connecting_hardware/Z_probe_BLTouch){target=_blank}
 
