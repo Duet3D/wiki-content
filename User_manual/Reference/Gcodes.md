@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-05-21T14:14:25.686Z
+date: 2024-05-22T09:54:18.796Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1170,6 +1170,8 @@ RepRapFirmware implements G68 for the XY plane only. Coordinate rotation is not 
 * The selected plane is not XY;
 * G53 is in effect;
 * A system macro (i.e. one that is invoked automatically, such as homing or tool change) is being run.
+
+Note: if G69 coordinate rotaton is in effect and you use one of G54 thru G59.3 to switch to a different workplace coordinate system, the rotation origin will move in line with the origin of the workplace coordinate system.
 
 ## G69: Cancel coordinate rotation
 
