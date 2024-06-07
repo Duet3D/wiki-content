@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-06-07T09:16:47.116Z
+date: 2024-06-07T11:02:56.373Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4306,6 +4306,7 @@ PanelDue currently uses only M408 S0 and M408 S1.
 * **K"key"** Key string, default empty
 * **F"flags"** Flags string, default empty
 * **Rnnn** Pass through request to RepRapFirmware (only for SBC mode, v3.5.2 or later)
+* **Innn** Increment sequence number of the given key (reserved for internal usage ONLY)
 
 ### Examples
 <br>
