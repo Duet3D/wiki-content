@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-06-07T08:54:53.196Z
+date: 2024-06-07T09:16:47.116Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4345,6 +4345,8 @@ If the key string is malformed or refers to a property that does not exist in th
 For details of the Object Model supported by RepRapFirmware, see [Object Model of RepRapFirmware](https://github.com/Duet3D/RepRapFirmware/wiki/Object-Model-Documentation){target=_blank}.
 
 Note: as of RRF 3.5.0 some arrays in the M409 response may be truncated under some conditions, to ensure that the response will fit in the available buffer space. Currently the only array affected is move.axes[] which is truncated to 9 elements unless the 'f' flag is included. To retrieve the entire array, make a request for key "move.axes" with flag "a0".
+
+SBC note: When keys are queried that are provided by DSF, potential flags are ignored.
 
 ## M425: Configure backlash compensation
 
