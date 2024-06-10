@@ -2,7 +2,7 @@
 title: Duet3D IR Probe
 description: 
 published: true
-date: 2023-12-14T14:22:35.389Z
+date: 2024-06-10T12:26:49.179Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T15:22:57.157Z
@@ -29,6 +29,9 @@ The IR sensor comes with:
 * 2x M2.5-0.45mm pitch x 8mm Countersunk PZ screw
 
 ![ir_probe_kit.jpg](/hardware/ir_probe/ir_probe_kit.jpg =400x)
+
+### 3d Model
+Here is a [STEP format model of the Duet3D IR_Probe](https://github.com/Duet3D/Duet-2-Hardware/blob/master/Duet_Expansion/MiniLedSensor.stp){target=_blank}.
 
 # Wiring, configuration and commissioning
 
