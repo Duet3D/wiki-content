@@ -2,7 +2,7 @@
 title: Connector and spare part numbers
 description: This is a growing list of connectors and spare part numbers. If a spare part is required that is not on the list please check the source on github or ask on the forums 
 published: true
-date: 2024-06-13T19:39:48.050Z
+date: 2024-06-13T19:40:26.183Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:43:02.549Z
@@ -12,7 +12,7 @@ dateCreated: 2021-12-05T22:43:02.549Z
 
 # Duet 3
 
-## Connectors used on main and expansion boards
+## Connectors used on main and on most expansion boards
 
 2.54mm Molex compatible connectors are used for everything except stepper motor and medium-current outputs. These are widely available from the usual electronic component distributors, and on eBay.
 
