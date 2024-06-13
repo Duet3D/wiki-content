@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2023-05-25T00:30:08.645Z
+date: 2024-06-13T15:08:09.330Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -11,7 +11,9 @@ dateCreated: 2021-11-30T12:57:13.348Z
 # Notes before you start
 
 <!-- * These instructions are focussed on updating firmware on current boards, and to RepRapFirmware 3.x. If you need instructions for older boards or older versions of the firmware, see [Installing and Updating Firmware (Legacy) **UPDATE LINK**]() -->
-* These instructions are for updating firmware on Duet 3 (all boards, in standalone mode), Duet 2 WiFi, Ethernet and Maestro boards only. Updating firmware for Duet 3 using a Single Board Computer (eg Raspberry Pi) is quite different. For Duet 3 + SBC firmware update information, see [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
+> **For updating the firmware on a Duet board in SBC mode, see [SBC setup for Duet](/User_manual/Machine_configuration/SBC_setup).**
+The instructions below are for updating the firmware on Duet 3 (all boards, in standalone mode), Duet 2 WiFi, Ethernet and Maestro boards only. Using them to update a Duet board using a Single Board Computer (eg Raspberry Pi) may leave your board in an unresponsive state. 
+{.is-warning}
 * Check that you have [downloaded the correct firmware](https://github.com/Duet3D/RepRapFirmware/releases) before installing it. See section below regarding which files are needed for each board.
 * Make sure you download and save the files as bin or zip and check the files sizes match.
 * Backup your SD card and download a copy of your current firmware version in case you need to revert the firmware.
@@ -46,7 +48,7 @@ Each Duet board needs up to four files to fully update the firmware and software
 
 **Firmware binary** - This is the main firmware for the Duet boards, and there is a specific version for each Duet board. The main firmware for all boards except Duet 3 Mini 5+ is supplied as a .bin file; for the Duet 3 Mini 5+ it is a .uf2 file.
 
-**In-App programmer (IAP) binary** - This file is needed on the SD card and does the job of programming the firmware. There is a specific version for each Duet board. They don’t change with every firmware release, but new versions often accompany major firmware releases. You will get a message if it is missing, with the filename it expects, and (in DWC 3.3 and later) the location it expects to find it. Download the correct file from the matching firmware release, don't just rename an existing IAP file.
+**In-App programmer (IAP) binary** - This file is needed on the SD card and does the job of programming the firmware. There is a specific version for each Duet board. They don’t change with every firmware release, but new versions often accompany major firmware releases. You will get a message if it is missing, with the filename it expects, and (in DWC 3.3 and later) the location it expects to find it. If it is missing, check the firmware version your Duet is currently using, and download the iap file from the matching firmware version on the [Duet3D Github repository](https://github.com/Duet3D/RepRapFirmware/releases/). If the IAP file isn't included in the 'Assets' list of that firmware release, it should be in the .zip file for that release.
 
 **WiFi firmware binary** - Required for the ESP8266-based WiFi board on the Duet 2 WiFi and Duet 3 Mini 5+ WiFi. Use the same version that is supplied with the firmware you are flashing.
 
@@ -114,6 +116,7 @@ Download file Duet2and3Firmware-3.3.zip from [the Github repository here](https:
 
 The version 3.01 and later binaries are too large to be installed by the IAP program supported by version 1.x and 2.x firmware. Therefore you cannot upgrade directly from version 1.x or 2.x firmware to 3.01 or later firmware. This is the procedure:
 
+* Make sure you have an 'iap4e.bin' (for Duet 2 WiFi/Ethernet) or 'iap4s.bin' (for Duet 2 Maestro) file in your SD card /sys folder. This is the 'In-App Programmer' that flashes the firmware, and without it the firmware update will fail. See the 'Required files' section above for details where to download this if it is missing.
 * Download file Duet2and3Firmware-3.0.zip from [the Github repository here](https://github.com/Duet3D/RepRapFirmware/releases/tag/3.0)
 * Follow the 'Usual procedure' instructions below to update the firmware.
 * Send M115 and check the response to confirm that you are running version 3.0 firmware
@@ -137,6 +140,9 @@ Should you need to recreate the SD card see the [SD card page](https://docs.duet
 
 # Usual procedure
 
+> **For updating the firmware on a Duet board in SBC mode, see [SBC setup for Duet](/User_manual/Machine_configuration/SBC_setup).**
+The instructions below are for updating the firmware on Duet boards, in standalone mode. Using them to update a Duet board using a Single Board Computer (eg Raspberry Pi) may leave your board in an unresponsive state. 
+{.is-warning}
 1. Choose which version of RRF you want to use to update your Duet. Download the firmware zip bundle (named Duet2and3Firmware-X.X.zip, where X.X is the firmware version number), or individual binary files, from the [Duet3D Github repository](https://github.com/Duet3D/RepRapFirmware/releases).
 For the latest stable release, use [https://github.com/Duet3D/RepRapFirmware/releases/latest](https://github.com/Duet3D/RepRapFirmware/releases/latest)
 1. Connect to DuetWebControl.
@@ -208,9 +214,12 @@ You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).
   * Jumpering the erase jumper
   
   ![firmware_update_02_erase_pins.jpg](/manual/configuration/firmware_update_02_erase_pins.jpg =400x)
-* Remove the erase jumper once the Diag LED lights up. This means you are successfully in programming mode. On the MB6HC board it will light up very dimly. On the MB6XD board it will not light up at all, so just wait a few seconds before removing it.
-![firmware_update_01_reset_switch.jpg](/manual/configuration/firmware_update_01_reset_switch.jpg =400x)
+* Remove the erase jumper after a couple of seconds. 
+  * On the MB6HC board it will either light up very dimly or be off. 
+  * On the MB6XD board it will not light up at all, so just wait a few seconds before removing it.
+  * On Duet 2, the Diag LED will light up. 
 * Then press the **Reset** button (if one is present).
+![firmware_update_01_reset_switch.jpg](/manual/configuration/firmware_update_01_reset_switch.jpg =400x)
 * Now use either Bossa or SAM-BA to flash the firmware to the Duet (see below).
 * Duet 3 MB6XD pre-production (green) boards only: if you moved the Driver Enable Polarity Select jumper, move it back to the original position.
 
