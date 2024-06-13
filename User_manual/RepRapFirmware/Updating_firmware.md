@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2024-06-13T15:08:09.330Z
+date: 2024-06-13T15:18:35.425Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -214,12 +214,13 @@ You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).
   * Jumpering the erase jumper
   
   ![firmware_update_02_erase_pins.jpg](/manual/configuration/firmware_update_02_erase_pins.jpg =400x)
-* Remove the erase jumper after a couple of seconds. 
-  * On the MB6HC board it will either light up very dimly or be off. 
-  * On the MB6XD board it will not light up at all, so just wait a few seconds before removing it.
-  * On Duet 2, the Diag LED will light up. 
+* Remove the erase jumper after a few seconds. 
 * Then press the **Reset** button (if one is present).
 ![firmware_update_01_reset_switch.jpg](/manual/configuration/firmware_update_01_reset_switch.jpg =400x)
+* Check the DIAG LED, which will indicate if the Duet is in programming mode. See the wiring schematic of your board to find the location of this LED, though it is usually near the reset button. 
+  * On the MB6HC board the DIAG LED will either light up very dimly or not light up at all. 
+  * On the MB6XD board it will not light up at all.
+  * On Duet 2, the Diag LED (between the USB connector and the SD card socket) will light up. 
 * Now use either Bossa or SAM-BA to flash the firmware to the Duet (see below).
 * Duet 3 MB6XD pre-production (green) boards only: if you moved the Driver Enable Polarity Select jumper, move it back to the original position.
 
