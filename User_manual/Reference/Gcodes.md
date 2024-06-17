@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-06-07T11:02:56.373Z
+date: 2024-06-17T20:58:34.498Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8157,7 +8157,7 @@ M950 P0 C"exp.heater3"         ; create output/servo port 0 attached to heater 3
 
 <br>
 <pre class="cblock">
-M950 R0 C"pwm_pin+forward_pin+reverse_pin" Qfff Laa:bb
+M950 R0 C"pwm_pin + on/off_pin + forward/reverse_pin" Qfff Laa:bb
 </pre>
 
 * C can have 1, 2 or 3 pins. 
