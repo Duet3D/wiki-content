@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2024-06-19T11:08:46.942Z
+date: 2024-06-19T11:09:12.011Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -90,12 +90,6 @@ Refer to the [Duet 2 WiFi and Ethernet wiring diagram](/Duet3D_hardware/Duet_2_f
 You can pick up +3.3V and ground from the Expansion connector and/or CONN_LCD.
 
 **Important! External drivers must always be connected to the expansion connector of the Duet or to the CONN_LCD port.** The 3-pin pads on the Duet near to the stepper drivers are test pads and are not suitable for connecting external drivers.
-
-## Duet 2 Maestro
-
-If the drivers require no more than about 2mA @ 3V on the step, dir and enable inputs, then you can drive them directly from the **Duet 2 Maestro** external driver pins. See the [Duet 2 Maestro wiring diagram](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro#wiring-diagram) for pin locations.
-
-One forum user created an external driver board for Maestro, see [this forum thread](https://forum.duet3d.com/topic/10314/).
 
 # Connecting stepper drivers
 
