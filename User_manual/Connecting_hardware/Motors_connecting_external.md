@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2024-01-22T13:04:47.523Z
+date: 2024-06-19T11:08:46.942Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -40,8 +40,8 @@ There are a number of options available to connect external stepper/servo driver
 | [Duet 3 Mainboard 6HC](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | None | CAN bus |
 | [Duet 3 Mainboard 6XD](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | Headers for six external drivers with 5V signalling (no on-board drivers) | CAN bus |
 | [Duet 3 Mini 5+](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | External driver pins (2 drives, 3.3V single-ended signalling) | CAN bus |
-| [Duet 2 WiFi/Ethernet](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | Expansion connector (5 drives, 3.3V single-ended signalling), CONN_LCD (2 drives, 3.3V single-ended signalling) | [DueX2/5](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) (3 drives, 3.3V single-ended signalling), [Duet Expansion Breakout Board](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_Expansion_Breakout_Board) (5 drives, differential signalling -3.6V to +3.6V, or 5V single-ended) |
-| [Duet 2 Maestro](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro) | External driver pins (2 drives, 3.3V single-ended signalling) | None |
+| [Duet 2 WiFi/Ethernet](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | Expansion connector (5 drives, 3.3V single-ended signalling), CONN_LCD (2 drives, 3.3V single-ended signalling) | [DueX2/5](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) (3 spare when used in Duex2 mode, 3.3V single-ended signalling), [Duet Expansion Breakout Board](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_Expansion_Breakout_Board) (5 drives, differential signalling -3.6V to +3.6V, or 5V single-ended) |
+
 
 There are two options for Duet 3 CAN-connected expansion boards:
 
