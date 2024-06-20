@@ -2,7 +2,7 @@
 title: Filaments
 description: DWC and RRF implement a mechanism to simplify the loading and unloading of filaments into tools that have exactly one extruder drive. The purpose of this is to allow for easier filament exchanges and to keep track of the used materials.
 published: true
-date: 2024-06-14T17:00:21.487Z
+date: 2024-06-20T13:33:58.360Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:42:10.493Z
@@ -40,7 +40,6 @@ Create a filament by clicking on 'New Filament', and give it a name, followed by
 
 Alternatively, you can also upload filament configurations that were previously downloaded as a .zip file, by clicking the 'Upload Filament Configs', then browse to and select the filament .zip file, to add them to your filament library.
 
-
 ![filaments_dwc3_05.png](/manual/configuration/filaments_dwc3_05.png){target=_blank}
 
 Right-clicking on a filament name will allow you to download, duplicate, rename or delete the filament. You can't rename or delete a filament that is in use.
@@ -55,7 +54,7 @@ The 'Filament' entries are folders on the SD card, in the /filaments folder. Cli
 
 ## config.g
 
-In addition to the macros for loading and unloading a filament, you can also use the M703 gcode to load a custom filament specific config.g to modify settings pertinent to your chosen filament.
+You can use the [M703](/User_manual/Reference/Gcodes/M703){target=_blank} gcode to load a filament-specific config.g to modify settings pertinent to your chosen filament.
 
 After assigning a filament to a tool, this command may be used to run /filaments/\<filament-name>/config.g to set parameters like temperatures, extrusion factor, retract distance, etc. If no filament is loaded, the code completes without a warning.
 
@@ -78,7 +77,7 @@ These settings will then override those loaded at boot time in /sys/config.g
 
 ## load.g
 
-As mentioned before, the purpose of the new filament mechanism is to simplify the process of loading and unloading macros. Hence the load macro is invoked for a given tool with one extruder when it is explicitly loaded. An example for a load macro (for ABS in this case) may look like this:
+The purpose of the filament mechanism is to simplify the process of loading and unloading macros. Hence the load macro is invoked for a given tool with one extruder when it is explicitly loaded. An example for a load macro (for ABS in this case) may look like this:
 
 ```
 M291 P"Please wait while the nozzle is being heated up" R"Loading ABS" T5 ; Display message
@@ -142,19 +141,23 @@ If a filament is already loaded and you only want to change it, there is another
 
 # Tool configuration
 
-If you have more than one extruder drive per tool, some special considerations have to be made to configure the tool for the Filament functionality to work.
+If you have more than one extruder drive per tool, some special considerations have to be made to configure the tool for the Filament functionality to work. In a system where there is more than one extruder per tool, you can define which extruder to use as the 'tool' extruder in the tool definition with the [M563](/User_manual/Reference/Gcodes/M563) L parameter:
+
+* **Lnnn** Drive to use for filament mapping. By default RRF will use the first and only extruder drive if this parameter is not specified
+
+L0 is the first extruder drive (D0), L1 is the second (D1) etc. Eg if the tool uses M563 D0:1, and the filament extruder is drive 1, add L1 to the M563 command in config.g.
 
 ## Multiple Material Units
 
-To do
+Set up tools for each MMU slot. Changing tools should be covered already, and changing filament once a tool has been selected is the same as on a single extruder machine. It shouldn't particularly matter if you select the extruder at the nozzle (assuming there is one) or the MMU extruder, as the 'filament' extruder.
 
 ## Mixing nozzles
 
-To do
+Set up a combined tool for all filaments (eg T0) and a tool for each extruder (eg T1, T2 and T3). When changing filament, change to the tool that represents the filament to be changed, change filament normally, then switch back to T0.
 
 ## Push-pull extruders
 
-To do
+Where a tool has an extruder at the nozzle, and another extruder to feed filament from the remote spool, the two extruders effectively work in tandem. Again, it doesn't matter too much which you set as the 'filament' extruder.
 
 # GCodes
 
