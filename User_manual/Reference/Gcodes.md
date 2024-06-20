@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-06-17T20:58:34.498Z
+date: 2024-06-20T14:16:32.267Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2184,15 +2184,21 @@ Makes the extruder interpret extrusion values as relative positions.
 ### Examples
 <br>
 <pre class="cblock">
-M84
-M84 E0:1:2:3:4
+M84            ; Disable all motors
+M84 S10        ; Set idle time out to 10 seconds
+M84 E0:1:2:3:4 ; Disable specific motors
 </pre>
 
-Stop the idle hold on all axis and extruder. Be aware that by disabling idle hold during printing, you will get quality issues.
+### Description
 
-For example, "M84 S10" will idle the stepper motors after 10 seconds of inactivity.
+Stops the idle hold on all axis and extruder, effectively disabling the specified motor, or all motors, the same as [M18](/User_manual/Reference/Gcodes/M18). Be aware that by disabling idle hold during printing, you will get quality issues.
+Also used to set the idle timeout for all motors. For example, `M84 S10` will idle the stepper motors after 10 seconds of inactivity. The idle current is set by the [M906](/User_manual/Reference/Gcodes/M906) I parameter.
 
-You can disable individual motors with the standard X, Y, Z etc switches.
+### Notes
+
+* For example, `M84 S10` will idle the stepper motors after 10 seconds of inactivity.
+* You can disable individual motors with the standard X, Y, Z etc switches.
+* Setting `M84 S0` does NOT mean "never idle hold" (ie motors stay on all the time, at full current), and S0 is an invalid setting. The correct way to set no idle hold (ie motors are 'always on') is to use M906 I parameter to set the idle hold to the required level, eg `M906 I100`.
 
 ## M92: Set axis steps per unit
 
