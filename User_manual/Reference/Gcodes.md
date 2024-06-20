@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-06-20T14:16:32.267Z
+date: 2024-06-20T14:53:38.599Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2556,42 +2556,44 @@ Note: there is no agreed definition of what the response to M114 should be. We t
 ### Parameters
 
 * *This command can be used without any additional parameters.*
-* **Pnnn** Electronics type (See Notes)
-* **Bnnn** Board number (RRF3/Duet 3 only, see Notes)
+* **Bnnn** Board number (RRF v3.x and later, Duet 3 only)
+* **Pnnn** Electronics type (support for P parameter removed from RRF 3.5 and later)
 
 ### Examples
-<br>
-<pre class="cblock">
-M115
-M115 P2
-</pre>
 
-Request the Firmware Version and Capabilities of the current microcontroller.
-
-The details are returned to the host computer as key:value pairs separated by spaces and terminated with a linefeed.:
 <br>
 <pre class="cblock">
 M115
 FIRMWARE_NAME: RepRapFirmware for Duet 2 WiFi/Ethernet FIRMWARE_VERSION: 2.04RC1 ELECTRONICS: Duet WiFi 1.0 or 1.01 FIRMWARE_DATE: 2019-07-14b1
 </pre>
 
-See the M408 command for a more comprehensive report on machine capabilities.
-
-### Notes
-
-The 'P' parameter is used tell the firmware about the hardware on which it is running, if RRF can't identify it. Should only be used in config.g, if you're having problems. If the P parameter is present then the integer argument specifies the hardware being used. The following are supported on first-generation Duets:
-
-* M115 P0 - Automatic board type selection if supported, or default if not
-* M115 P1 - Duet 0.6
-* M115 P2 - Duet 0.7
-* M115 P3 - Duet 0.85
-
-The 'B' parameter is used on Duet 3 only, using RRF3. M115 can take an optional B (board number) parameter which is the CAN address of the board to be queried, default 0 (i.e. main board). Example:
 <br>
 <pre class="cblock">
 M115 B1
 Board EXP3HC firmware 3.0beta1 2019-10-28b1
 </pre>
+
+### Description
+
+Request the Firmware Version and Capabilities of the current microcontroller.
+The details are returned to the host computer as key:value pairs separated by spaces and terminated with a linefeed.
+See the [M408](/User_manual/Reference/Gcodes/M408) command for a more comprehensive report on machine capabilities.
+
+### Notes
+
+The **B** parameter is used on Duet 3 only, in RRF v3.x and later. M115 can take an optional B (board number) parameter which is the CAN address of the board to be queried, default 0 (i.e. main board).
+
+The **P** parameter is no longer supported, and has been removed from RRF 3.5 and later, to save memory on Duet 2.
+
+It is used tell the firmware about the hardware on which it is running, if RRF can't identify it. Should only be used in config.g, if you're having problems. If the P parameter is present then the integer argument specifies the hardware being used. 
+
+In RRF v2.x to v3.4.x, only Duet 2 hardware could be specified. This was mainly used for internal testing.
+
+In RRF v1.x, the following are supported on first-generation Duets:
+* M115 P0 - Automatic board type selection if supported, or default if not
+* M115 P1 - Duet 0.6
+* M115 P2 - Duet 0.7
+* M115 P3 - Duet 0.85
 
 ## M116: Wait for temperature to be reached
 
