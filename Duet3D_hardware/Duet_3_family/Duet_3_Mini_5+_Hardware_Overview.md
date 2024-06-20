@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2024-05-21T09:52:36.171Z
+date: 2024-06-20T10:22:02.933Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -336,10 +336,10 @@ VFUSED is distributed across the board as follows:
 
 5V input can come from one of these sources:
 
-* **Onboard 5V regulator:** Once 3.3V and other onboard demands are met approximately 700mA remains for use on the 5V_EXT rail.
-* **USB:** Can supply both 5V_INT and 5V_EXT. limits based on USB specification. 
-* **5V_EXT_INPUT**: With the 5V_SELECT jumper set to this position, 5V is passed through to both 5V_EXT and 5V_INT from the EXT_5V header. When using EXT_5V, add jumper to Int_5V_Disable, to disable the onboard 5V regulator. The EXT_5V header also has a pin for controlling an external power supply (note signal shared with io4.out). This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. 
-* **5V_SBC:** In some, limited, cases it may be desirable to power the board from the 5V output of a SBC connected to the SBC header. Note that the total power of the Duet+ peripherals must be factored into the SBC power budget. Also note that powering the SBC from the duet is not supported.
+* **Onboard 5V regulator:** Once 3.3V and other onboard demands are met approximately 700mA remains for use on the 5V_EXT rail. No jumpers required on 5V_SELECT or Int_5V_Disable.
+* **USB:** Can supply both 5V_INT and 5V_EXT. Limits based on USB specification. No jumpers required on 5V_SELECT or Int_5V_Disable.
+* **5V_EXT_IN**: Put a jumper on 5V_SELECT pins between 5V_COM and 5V_EXT_IN. When using EXT_5V, add jumper to Int_5V_Disable, to disable the onboard 5V regulator. With the 5V_SELECT jumper set to this position, 5V is passed through to both 5V_EXT and 5V_INT from the EXT_5V header. The EXT_5V header also has a pin for controlling an external power supply (note signal shared with io4.out). This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. 
+* **5V_SBC:** In some, limited, cases it may be desirable to power the board from the 5V output of a SBC connected to the SBC header. Put a jumper on the 5V SELECT pins between '5V_SBC' and '5V_COM', and put another jumper on 'Internal 5V disable'. Note that the total power of the Duet+ peripherals must be factored into the SBC power budget. Also note that powering the SBC from the Duet is not supported.
 
 ### 3.3V
 
