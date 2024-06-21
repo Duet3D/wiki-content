@@ -2,7 +2,7 @@
 title: Events
 description: An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2024-04-29T08:56:02.549Z
+date: 2024-06-21T09:46:59.569Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -66,7 +66,7 @@ If the macro file is not found then default processing occurs as shown in the ta
 | Event type & macro file name | D macro parameter | P macro parameter | B macro parameter | Default action if macro file not found | Log level |
 |:---|:---|
 | expansion-reconnect | 0 | 0 | CAN address of the board that has stopped communicating | Inform user via console and continue (likely to be changed before RRF 3.5 release) | Error
-| expansion-timeout | 0 | 0 | CAN address of the board that has stopped communicating | Inform user via console and continue (likely to be changed before RRF 3.5 release) | Error
+| expansion-timeout | 0 | 0 | CAN address of the board that has stopped communicating | Inform user via console and continue. | Error
 | heater-fault | Heater # | Heater fault type code | CAN address of board controlling the heater | Faulty heater turned off (before the event is raised). Pause print using pause.g and inform user via message box | Error |
 | driver-error | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Pause print without running pause.g and inform user via message box | Error |
 | filament-error | Extruder # | [Filament error type code](/User_manual/Connecting_hardware/Sensors_filament#event-system-filament-error-events) | CAN address of board hosting the filament monitor | Pause print using pause.g and inform user via message box. Note, if you use the M591 S2 parameter to enable filament monitoring even when not printing from SD card, and an error occurs when not printing from SD card, then pausing the print will fail and error messages will be generated. You should provide your own filament-error event handler when using M591 S2. | Error |
