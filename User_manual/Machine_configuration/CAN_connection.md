@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-05-17T14:11:26.948Z
+date: 2024-06-26T09:19:38.804Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -358,8 +358,9 @@ Duet 3 expansion board: flashes when it receives any message, other than a time 
 If you need to factory reset a board:
 
 * On Duet 3 Expansion 3HC, set all four address switches off
-* On boards having two buttons (e.g. TOOL1LC), power the system up while holding both buttons down
-* On those boards having a reset jumper (e.g. EXP1XD), fit the jumper and then power up the board
+* On boards having two buttons (e.g. Toolboard 1LC), power the system up while holding both buttons down
+* On boards having one button (e.g. Scanning Z Probe, Motor 23CL), power the system up while holding the button down
+* On those boards having a reset jumper (e.g. 1XD, 1HCL, Roto Toolboard), fit the jumper and then power up the board. Remove the reset jumper after firmware update.
 
 The board will reset its address and CAN bus speed to default and request firmware from the main board.
 
