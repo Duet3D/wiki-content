@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-05-07T09:39:56.672Z
+date: 2024-06-28T10:42:35.257Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -52,7 +52,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 
 | **NOTES** |
 |---|---|
-| ^1^ Note that the board is rated to 18A on the '15A high current output'; however it is supplied with a 15A fuse fitted (18A are difficult to source). If you need 18A on the this output then you need to fit a 20A fuse and take further precautions against over-current. |
+| ^1^ Note that the board is rated to 18A on the '15A high current output'; however it is supplied with a 15A fuse fitted (18A are difficult to source). If you need 18A on this output then you need to fit a 20A fuse and take further precautions against over-current. |
 
 ## Operating limits
 
