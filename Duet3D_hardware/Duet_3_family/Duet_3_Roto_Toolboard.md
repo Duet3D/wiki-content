@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-01-25T09:20:04.305Z
+date: 2024-06-30T07:44:54.561Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -258,6 +258,14 @@ All boards in the system must have different CAN addresses. Toolboards are shipp
 Check that you can communicate with the Roto toolboard, by sending 
 
 `M115 B120`
+
+Result should be something like
+
+`Duet TOOL1RR firmware version 3.5.2 (2024-06-10 13:24:08)`
+
+For a full report, send
+
+`M122 B120`
 
 The status of the accelerometer and Inductive probe is listed at the end of the report.
 
