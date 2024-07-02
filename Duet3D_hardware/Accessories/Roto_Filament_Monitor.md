@@ -2,7 +2,7 @@
 title: Duet3D Roto Filament Monitor
 description: 
 published: true
-date: 2024-07-02T13:23:59.236Z
+date: 2024-07-02T13:42:12.111Z
 tags: 
 editor: markdown
 dateCreated: 2024-07-02T13:06:07.052Z
@@ -95,7 +95,7 @@ The filament monitor action button virtual pin name is "<board_id>.i2c.mfm.butto
 
 That would set the button up as input #2. you can then use that input to trigger a macro as described here:
 
-https://docs.duet3d.com/en/User_manual/Tuning/Triggers
+[https://docs.duet3d.com/en/User_manual/Tuning/Triggers]
 
 So for example, this button mapped to input #2 can then be used to trigger a macro:
 `M581 P2 S0 T2 R2    ; trigger2.g will be called by the Roto MFM button only when a file is not printing`
