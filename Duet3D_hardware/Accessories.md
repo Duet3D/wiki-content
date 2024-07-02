@@ -2,7 +2,7 @@
 title: Accessories
 description: 
 published: true
-date: 2023-06-21T21:17:34.883Z
+date: 2024-07-02T13:21:46.408Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:18:25.503Z
@@ -18,7 +18,8 @@ Hardware information on Duet3D-produced accessories
 
 ## Filament monitors
 
-[Duet3D Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor)
+[Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor)
+[Duet3D Roto Filament Monitor](/Duet3D_hardware/Accessories/Roto_Filament_Monitor)
 
 ## Probes and carriages
 
@@ -37,3 +38,7 @@ Hardware information on Duet3D-produced accessories
 ## Standalone accelerometer
 
 [Duet3D Accelerometer](/Duet3D_hardware/Accessories/Duet3D_Accelerometer)
+
+# Discontinued accessories
+
+[Duet3D Laser Filament Monitor](/Duet3D_hardware/Accessories/Laser_Filament_Monitor) (Discontinued 2019)
