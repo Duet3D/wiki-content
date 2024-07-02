@@ -2,7 +2,7 @@
 title: Duet3D Roto Filament Monitor
 description: 
 published: true
-date: 2024-07-02T13:22:32.756Z
+date: 2024-07-02T13:23:59.236Z
 tags: 
 editor: markdown
 dateCreated: 2024-07-02T13:06:07.052Z
@@ -45,7 +45,7 @@ Follow the [E3D documentation](https://e3d-online.com/pages/roto-assembly-guide)
 
 ### FFC to Roto Filament Monitor
 
-Fit the Flat Flexible Cable (FFC) to the Roto MFM connecter:
+Fit the Flat Flexible Cable (FFC) to the Roto MFM connector:
 * **VERY Carefully** open the connector by sliding the plastic lock out from the connector by ~1mm. This is very easy to break and takes very little force to open
 * Place the FFC connector into the connector, contacts facing down
 * Gently slide the plastic lock back into place
