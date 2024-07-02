@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-06-20T14:53:38.599Z
+date: 2024-07-02T08:27:56.134Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7937,6 +7937,8 @@ M916
 ### Notes
 
 RepRapFirmware also requires macro file **/sys/resurrect-prologue.g** to be present on the SD card before you can use M916. This file is executed after the heater temperatures have been set, but before waiting for them to reach the assigned temperatures. You should put commands in this file to home the printer as best as you can without disturbing the print on the bed. To wait for the heaters to reach operating temperature first, use command M116 at the start of the file.
+
+See this page for more details: [Setting up to resume a print after a power failure or planned power down](/User_manual/Tuning/Resume){target=_blank}
 
 Version 1.19 of RepRapFirmware does not support M916 but you can achieve the same effect using command **M98 P/sys/resurrect.g**.
 
