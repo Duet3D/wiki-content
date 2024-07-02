@@ -2,7 +2,7 @@
 title: Duet3D Roto Filament Monitor
 description: 
 published: true
-date: 2024-07-02T13:16:16.642Z
+date: 2024-07-02T13:21:29.188Z
 tags: 
 editor: markdown
 dateCreated: 2024-07-02T13:06:07.052Z
@@ -12,7 +12,7 @@ dateCreated: 2024-07-02T13:06:07.052Z
 
 # Introduction
 
-The Duet3D filament monitors sense filament movement and so can indicate that filament has run out, jammed or has been ground in the extruder. In addition skipping extruder motor steps can be detected. This version is a derivative of the [Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor), shrunk down and designed to fit in the sensor module slot on the E3D Revo Roto.  It uses a rotating magnet to very accurately detect filament movement and is  mechanically very tightly coupled to the Revo Roto extruder. Electronically it is directly connected to the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard).
+Duet3D filament monitors sense filament movement and so can indicate that filament has run out, jammed or has been ground in the extruder. In addition skipping extruder motor steps can be detected. This version is a derivative of the [Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor), shrunk down and designed to fit in the sensor module slot on the E3D Revo Roto.  It uses a rotating magnet to very accurately detect filament movement and is  mechanically very tightly coupled to the Revo Roto extruder. Electronically it is directly connected to the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard).
 
 
 # Hardware
