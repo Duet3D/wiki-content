@@ -1,8 +1,8 @@
 ---
-title: Duet3D Filament Monitor
+title: Duet3D Magnetic Filament Monitor
 description: 
 published: true
-date: 2024-04-08T10:59:44.132Z
+date: 2024-07-02T08:12:14.192Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
