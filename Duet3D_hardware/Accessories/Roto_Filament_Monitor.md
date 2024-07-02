@@ -2,7 +2,7 @@
 title: Duet3D Roto Filament Monitor
 description: 
 published: false
-date: 2024-07-02T13:06:07.052Z
+date: 2024-07-02T13:09:01.029Z
 tags: 
 editor: markdown
 dateCreated: 2024-07-02T13:06:07.052Z
@@ -12,12 +12,11 @@ dateCreated: 2024-07-02T13:06:07.052Z
 
 # Introduction
 
-The Duet3D filament monitors sense filament movement and so can indicate a that filament has run out, jammed or has been ground in the extruder. In addition skipping extruder motor steps can be detected. This version is a derivative of the [Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor), shunk down and designed to fit in the sensor module slot on the E3D Revo Roto.  It uses a rotating magnet to very accurately detect filament movement and is mechnically very tightly coupled to the Roto extruder. Electronically it is directly connected to the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard).
+The Duet3D filament monitors sense filament movement and so can indicate that filament has run out, jammed or has been ground in the extruder. In addition skipping extruder motor steps can be detected. This version is a derivative of the [Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor), shrunk down and designed to fit in the sensor module slot on the E3D Revo Roto.  It uses a rotating magnet to very accurately detect filament movement and is  mechanically very tightly coupled to the Revo Roto extruder. Electronically it is directly connected to the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard).
 
 
 # Hardware
 
-## Hardware specification
 
 |---|---|
 | **Magnetic Encoder** | [AS5601](https://ams.com/as5601)  |
@@ -27,7 +26,7 @@ The Duet3D filament monitors sense filament movement and so can indicate a that 
 | **LEDs** | Red and Green LEDs for state indication |
 | **Button** | Button to trigger macros |
 
-![Annotated image of the Roto Filament Monitor showing the location of the sction button and the LEDS](/hardware/roto_filament_monitor/rotofilamentmonitor_0.2_description.png  =400x)
+![Annotated image of the Roto Filament Monitor showing the location of the action button and the LEDs](/hardware/roto_filament_monitor/rotofilamentmonitor_0.2_description.png  =400x)
 
 
 # Mounting
@@ -35,7 +34,7 @@ The Duet3D filament monitors sense filament movement and so can indicate a that 
 ![The Duet3 Roto filament monitor mounted in the E3D Revo Roto extruder, showing the Duet3 Roto Toolboard on the front of the extruder and the FFC connection between the filament monitor and the toolboard.](/hardware/roto_filament_monitor/duet3_rfm_mounted_s.jpg)
 
 
-The monitor installs directly into the E3D Revo Roto sensor slot, replacing the filament presence sensor (if fitted). 
+The monitor is installed directly into the E3D Revo Roto sensor slot, replacing the filament presence sensor (if fitted). 
 
 
 ### Preparation
@@ -78,7 +77,7 @@ The FFC connector can only fit correctly with the contacts down. do not use a lo
 
 # Configuration
 
-### Configuring the Filament Montitor
+### Configuring the Filament Monitor
 
 The filament monitor virtual pin name is "<board_id>.i2c.mfm" so a typical configuration command would be:
 
