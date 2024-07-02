@@ -2,7 +2,7 @@
 title: Duet3D Roto Filament Monitor
 description: 
 published: true
-date: 2024-07-02T13:11:59.335Z
+date: 2024-07-02T13:15:38.778Z
 tags: 
 editor: markdown
 dateCreated: 2024-07-02T13:06:07.052Z
@@ -66,6 +66,8 @@ Insert the Roto FM into the sensor slot, so the FFC will forms an "S" bend.
 ![duet3_rfm_roto_fitting.jpg](/hardware/roto_filament_monitor/duet3_rfm_roto_fitting.jpg)
 
 Complete the reassembly of the E3D Revo Roto, referring to the e3d documentation as required.
+
+![duet3_rfm_roto_fitting2.jpg](/hardware/roto_filament_monitor/duet3_rfm_roto_fitting2.jpg)
 
 # Wiring
 
