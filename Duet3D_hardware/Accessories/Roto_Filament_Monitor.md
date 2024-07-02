@@ -1,8 +1,8 @@
 ---
 title: Duet3D Roto Filament Monitor
 description: 
-published: false
-date: 2024-07-02T13:09:01.029Z
+published: true
+date: 2024-07-02T13:11:59.335Z
 tags: 
 editor: markdown
 dateCreated: 2024-07-02T13:06:07.052Z
