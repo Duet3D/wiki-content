@@ -2,7 +2,7 @@
 title: Duet3D Roto Filament Monitor
 description: 
 published: true
-date: 2024-07-02T13:21:29.188Z
+date: 2024-07-02T13:22:32.756Z
 tags: 
 editor: markdown
 dateCreated: 2024-07-02T13:06:07.052Z
@@ -39,7 +39,7 @@ The monitor is installed directly into the E3D Revo Roto sensor slot, replacing 
 
 ### Preparation
 
-Follow the [E3D documentation](https://e3d-online.com/pages/roto-assembly-guide) to remove the heatsink cooling can and the existing sensor module if fitted.
+Follow the [E3D documentation](https://e3d-online.com/pages/roto-assembly-guide) to remove the heatsink cooling fan and the existing sensor module if fitted.
 
 [Mount Roto toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard#mounting) to the Revo Roto extruder if not already fitted.
 
