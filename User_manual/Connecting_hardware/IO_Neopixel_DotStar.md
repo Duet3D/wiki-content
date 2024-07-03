@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2024-03-21T11:47:22.676Z
+date: 2024-07-03T14:51:08.644Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -10,9 +10,27 @@ dateCreated: 2021-11-10T16:54:19.555Z
 
 # Introduction
 
-Duet 3 Mainboard 6HC and 6XD support both DotStar and NeoPixel LED strips. Duet 3 Mini 5+ supports NeoPixel only. Duet 2 WiFi and Ethernet supports NeoPixel from RRF 3.3. You can also use an Arduino to interface LED strips to a Duet.
+Duet boards support the connection of LEDs, which can be controlled by RepRapFirmware.
+
+If you need more LEDs than are directly supported, there are a couple of other ways to connect LEDs:
+* You can use an Arduino to interface LED strips to a Duet. See [this forum thread](https://forum.duet3d.com/topic/13600/how-can-i-control-addressable-rgb-leds){target=_blank}
+* You can use the [Adafruit NeoDriver](https://www.adafruit.com/product/5766){target=_blank} board. See [this forum thread](https://forum.duet3d.com/topic/13600/how-can-i-control-addressable-rgb-leds/){target=_blank}
 
 # LED support in RepRapFirmware
+
+## Dotstar LEDs
+
+Only **Duet 3 Mainboard 6HC and 6XD** support Dotstar LEDs, and only on the dedicated LED connector. No other Duet boards support Dotstar LEDs. The maximum number of DotStar LEDs supported per strip is several thousand, for all firmware versions (Duet 3 6HC and 6XD only).
+
+## Neopixel LEDs
+
+**All Duet 3 boards** support NeoPixel LED strips. 
+* Mainboards support NeoPixel LEDs on the dedicated LED connector, and on IO#.out ports. 
+* Expansion boards and toolboards boards support NeoPixel LEDs on IO#.out ports.
+
+**Duet 2 WiFi and Ethernet** supports NeoPixel LEDs from RRF 3.3. 
+
+**Duet 2 Maestro** supports NeoPixel LEDs from RRF 3.5. However, it is currently not working correctly (RRF 3.5.2), as the timing is incorrect, so LEDs are not controllable.
 
 The maximum number of Neopixel LEDs supported per strip depends on the firmware version:
 
@@ -26,9 +44,8 @@ The maximum number of Neopixel LEDs supported per strip depends on the firmware 
 | Duet 2 Maestro | See below^**^ || - | - | - | - | - | - |
 
 ^*^Limited only by available RAM
-^**^Neopixel support may work in RRF 3.5 on the Duet 2 Meastro, however this has not been tested by Duet3D. The maximum number supported would be limited by available RAM.
+^**^In RRF 3.5, Neopixel support was added for the Duet 2 Meastro. However this has not been tested by Duet3D. The maximum number supported would be limited by available RAM.
 
-The maximum number of DotStar LEDs supported per strip is several thousand, for all firmware versions (Duet 3 6HC and 6XD only).
 
 ## Tabs {.tabset}
 
@@ -102,7 +119,7 @@ To control RGB backlights on 12864 displays, see [Connecting 12864 displays](/Us
 
 ## Other outputs (RRF 3.5 and later)
 
-In RRF 3.5 and later, Neopixel LED strips can also be controlled by any pin that can be used as a low voltage digital output, on mainboards or expansion boards; for example an IO_OUT port on a Duet 3 series board.
+In RRF 3.5 and later, Neopixel LED strips can also be controlled by any pin that can be used as a low voltage digital output, on mainboards or expansion boards; for example an IO#.out port on a Duet 3 series board.
 
 Connect the LED strips as follows:
 * Connect the GND pin of the LED strip to an available GND pin on the Duet, or to a GND shared with the Duet GND.
@@ -115,7 +132,7 @@ Connect the LED strips as follows:
 * If you use any pins apart from the ones that are designed for that purpose (i.e. the dedicated ones on the Duet 3 boards), then movement will be suspended any time M150 is used to update those LEDs. So OK at the start/end of a print, or the end of heating up, but not a good idea during a print. This is because if the port the LEDs are connected to doesn't have hardware support for LEDs, the CPU has to stop all other activity including step pulse generation in order to generate the correct pulses. Exception: addressing the first or only LED strip configured on a RP2040-based expansion board will not cause movement to be suspended.
 * If you specify too many LEDs then you may run out of RAM, especially on Duet 2, TOOL1LC and EXP1XD. Set the M950 U parameter to the number of LEDs you have on the strip.
 * The M950 Q parameter is only used when the port is the dedicated LED port on a Duet 3 series board. Otherwise it is ignored.
-* When using general purpose output pins (i.e. not the LED ports on Duet 3 series boards) to control LEDs, the signalling level will be 3.3V; whereas almost all types pf Neopixel LED require at least 3.5V signals for reliable operation. You should to do one of the following:
+* When using general purpose output pins (i.e. not the LED ports on Duet 3 series boards) to control LEDs, the signalling level will be 3.3V; whereas almost all types of Neopixel LED require at least 3.5V signals for reliable operation. You should to do one of the following:
   * Try it! Sometimes the LEDs work okay with 3.3V signalling. 
   * Level shift the signal to 5V. A non-inverting 74HCT series gate or buffer such as 74HCT08 can be used to do this.
   * Use Neopixels that accept 3.3V signals (they exist now but are not common)
