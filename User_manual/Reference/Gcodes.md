@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-03T12:18:18.501Z
+date: 2024-07-03T15:34:09.644Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8416,7 +8416,7 @@ In RepRapFirmware on the Duet series, module numbers are as follows:
 
 * 0 - main firmware, specific for Duet board. Needs the appropriate IAP (In-App Programmer, specific to the Duet board) binary present on the SD card to be able to install the firmware.
 * 1 - WiFi module firmware, filename DuetWiFiServer.bin or DuetWiFiModule-32S3.bin depending on the board (WiFi-equipped Duets only)
-* 2 - update DSF packages in SBC mode (requires v3.5.0-rc.3 or newer)
+* 2 - update DSF packages in SBC mode (requires v3.5 or newer)
 * 3 - update the bootloader on the CAN-connected Duet 3 expansion board specified by the B parameter. In older Duet 2 firmware versions, was used to put the WiFi module into bootloader mode, so that firmware can be uploaded directly via its serial port. 
 * 4 - update PanelDue firmware (RRF 3.2 and later; see [PanelDue firmware update instructions](/User_manual/RepRapFirmware/Updating_PanelDue){target=_blank}).
 
@@ -8426,8 +8426,8 @@ On Duet 3 only this command take an optional B (board number) parameter which is
 
 The optional **P** parameter can be used to provide the filename of the file to be used for updating a module. This can either only be a filename in which case it will prepend directories.firmware to it (0:/firmware) or can be an absolute path to the file to be used. It is not allowed to use P parameter and multiple modules, e.g. S1:4. (RRF 3.3 and later).
 
-In SBC mode, `M997 S2` can be used to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). It also supports two optional arguments:
-* `F"<feed>"` - Set package feed for DSF packages where `<feed>` can be `stable` (default), `unstable`, `stable-x.y`, or `unstable-x.y` where x.y corresponds to a version [e.g. 3.4 or 3.5])
+In SBC mode from RRF 3.5 and later, `M997 S2` can be used to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). It also supports two optional arguments:
+* `F"<feed>"` - Set package feed for DSF packages where `<feed>` can be `stable` (default), `unstable`, `stable-x.y`, or `unstable-x.y` where x.y corresponds to a version. e.g. 3.4 or 3.5.
 * `V"<version>"` - Install a specific DSF/RRF combination (may not be used together with `M997 F`). Example: `M997 S2 V"3.5.0-rc.2"`
 
 When using firmware v1.18 or older, `M997 S2` updates the web server file system (DuetWebControl.bin).
