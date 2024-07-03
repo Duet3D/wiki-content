@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2024-02-15T16:45:46.538Z
+date: 2024-07-03T13:15:40.596Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -166,9 +166,9 @@ The Duet can be [configured to detect a power failure](/User_manual/Tuning/Resum
 
 ## Triggers
 
-[M581](/User_manual/Reference/Gcodes/M581) can be used to setup the external triggers (switches etc). These triggers carry out actions defined in **trigger#.g**
+[M581](/User_manual/Reference/Gcodes/M581) can be used to setup external triggers (switches etc) that run the actions defined in **sys/trigger#.g** macros. These can be used for things like Emergency Stop buttons, door switches, using endstop switches as limit switches, turning an external PSU on and off, etc.
 
-See [User manual: Using triggers to control the Duet](/User_manual/Tuning/Triggers) for an example of usage.
+See [User manual: Connecting an Emergency Stop](https://docs.duet3d.com/en/User_manual/Connecting_hardware/IO_E_stop) and [User manual: Using triggers to control the Duet](/User_manual/Tuning/Triggers) for examples of usage.
 
 ## daemon.g
 
