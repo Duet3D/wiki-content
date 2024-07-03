@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-03T12:14:08.980Z
+date: 2024-07-03T12:18:18.501Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5914,7 +5914,7 @@ Supported for drivers attached to:
 * **Pn.n** Motor CAN board address (if applicable) and driver number
 * **C"port"** Port name of the brake control port. **The port must be on the same CAN board as the driver.** The CAN address does not need to be specified in the port name, but if it is then it must be the same as the driver CAN address. In RRF3.5 and later, when this parameter is present the delay between brake on and motor off is set to the default value unless the S parameter is present.
 * **Snnn** (optional, RRF 3.5 and later only) Delay in milliseconds between de-energising the brake solenoid (to activate the brake) and disabling the driver when M18 or M84 is used to turn off the motor. This is to allow the brake to engage fully before the motor current is turned off.
-* **Vnn** (optional, supported in RRF 3.5 and later on EXP1HCL and M23CL that accept 48V VIN) Brake voltage. If the VIN voltage is or rises above this value, PWM will be used to reduce the average brake voltge to this value. Caution: use this option only in conjunction with a port that supports PWM! All Duet 3 OUT ports support PWM.
+* **Vnn** (optional, supported in RRF 3.5 and later on EXP1HCL and M23CL that accept 48V VIN) Brake voltage. If the VIN voltage is or rises above this value, PWM will be used to reduce the average brake voltage to this value. Caution: use this option only in conjunction with a port that supports PWM! All Duet 3 OUT ports support PWM.
 
 ### Examples
 <br>
