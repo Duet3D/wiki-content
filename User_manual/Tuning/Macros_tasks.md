@@ -2,7 +2,7 @@
 title: Setting up macro files for common tasks
 description: You can use macro files to automate common tasks. A macro file is simply a text file on the SD card containing a sequence of GCode commands.
 published: true
-date: 2022-05-16T11:46:12.186Z
+date: 2024-07-03T13:14:51.153Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:28:44.097Z
@@ -77,7 +77,7 @@ Once macros are setup then can be run from the macro page or directly from the m
 
 ![macros_03.png](/manual/configuration/macros_03.png =800x)
 
-## From the Panel Due
+## From the PanelDue
 
 Macros can be selected from the macro page on the Panel Due:
 
@@ -90,3 +90,9 @@ A number of macros can be displayed on the control page as well for quick access
 (*4.3 inch screen pictured*)
 
 See the previous section on how to choose the order that the macros are displayed.
+
+## From triggers
+
+[M581](/User_manual/Reference/Gcodes/M581) can be used to setup external triggers (switches etc) that run the actions defined in **sys/trigger#.g** macros. These can be used for things like Emergency Stop buttons, door switches, using endstop switches as limit switches, turning an external PSU on and off, etc.
+
+See [User manual: Connecting an Emergency Stop](https://docs.duet3d.com/en/User_manual/Connecting_hardware/IO_E_stop) and [User manual: Using triggers to control the Duet](/User_manual/Tuning/Triggers) for examples of usage.
