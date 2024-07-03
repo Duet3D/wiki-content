@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-04-24T07:37:51.340Z
+date: 2024-07-03T16:24:17.226Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -263,18 +263,27 @@ If you have a keyboard and monitor connected to your SBC, or connect via VNC, yo
 
 ## Update firmware
 
-Once your Raspberry Pi has established an internet connection, it is recommended to install the latest updates. To do so, connect via SSH or VNC (see above) to your Raspberry Pi or open a terminal (if you have keyboard and monitor connected) and run:
+Once your Raspberry Pi has established an internet connection, it is recommended to install the latest updates. The following commands will install the latest software components and the latest RepRapFirmware version on your Duet 3. You can do this regularly to update the system as new firmware is released.
+
+In **RRF 3.5 and later**, users running the latest Bookworm-based DuetPi image can use `M997 S2` to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). Note that this M-code only installs security- and Duet-related software updates.
+
+In **RRF 3.4.x and earlier**, or users running on earlier Buster-based DuetPi images, connect via SSH or VNC (see above) to your Raspberry Pi or open a terminal (if you have keyboard and monitor connected) and run:
 
 ```
 sudo apt update
 sudo apt upgrade
 ```
 
-This will install the latest software components and the latest RepRapFirmware version on your Duet 3. You can do this regularly to update the system as new firmware is released.
+## Switch between releases
 
-To switch between stable/release package feed and unstable/beta package feed, see [DSF installation](https://docs.duet3d.com/User_manual/Machine_configuration/DSF_RPi#software-installation){target=_blank}.
+In **RRF 3.5 and later**, users running the latest Bookworm-based DuetPi image can use `M997 S2` with two optional parameters to switch between release versions.
+* `F"<feed>"` - Set package feed for DSF packages where `<feed>` can be `stable` (default), `unstable`, `stable-x.y`, or `unstable-x.y` where x.y corresponds to a version. e.g. 3.4 or 3.5.
+* `V"<version>"` - Install a specific DSF/RRF combination (may not be used together with `M997 F`). Example: `M997 S2 V"3.5.0-rc.2"`
 
-Users of 3.5.0 or later running the latest Bookworm-based DuetPi image can use `M997 S2` instead of the commands above, however be advised that this M-code only installs security- and Duet-related software updates. Furthermore, `M997 S2 F"stable/unstable"` lets you switch the package feed and `M997 S2 V"version"` allows you to downgrade to a specific DSF/DWC/RRF version (e.g. `3.4.6`). 
+For example, `M997 S2 F"unstable"` switches to the 'unstable' package feed, and `M997 S2 V"3.5.0-rc.2"` downgrades to the specificied DSF/DWC/RRF version. 
+
+In **RRF 3.4.x and earlier**, to switch between stable/release package feed and unstable/beta package feed, see [DSF installation](https://docs.duet3d.com/User_manual/Machine_configuration/DSF_RPi#software-installation){target=_blank}.
+
 
 # 7. Configuring system files
 
@@ -293,11 +302,49 @@ The changes required to create a set of Duet 3 config files is outside the scope
 
 Once you have a set of system files they can be uploaded via the "system" tab in DWC.
 
-# 8. Changing the SBC hostname
+# 8. Other useful commands
+
+This is a list of commands whose use differs from when used in standalone mode. See the Gcode dictionary entry for usage.
+
+## SD card
+
+* In SBC mode and RRF v3.4 or newer these codes may be used to mount/unmount block devices or remote endpoints using the mount command. 
+* These commands should go in **dsf-config.g** NOT config.g.
+
+[M21](/User_manual/Reference/Gcodes/M21){target=_blank} Initialize SD card (mount device)
+[M22](/User_manual/Reference/Gcodes/M22){target=_blank} Release SD card (unmount device)
+
+
+## Networking
+
+[M540](/User_manual/Reference/Gcodes/M540){target=_blank} Set MAC address
+[M550](/User_manual/Reference/Gcodes/M550){target=_blank} Set Name (see 'Changing the SBC hostname' below)
+
+M540 and M550 commands, if needed, should go in **dsf-config.g** NOT config.g.
+
+Sending any of the following command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
+
+[M552](/User_manual/Reference/Gcodes/M552){target=_blank} Set IP address, enable/disable network interface^1^
+[M553](/User_manual/Reference/Gcodes/M553){target=_blank} Set Netmask
+[M554](/User_manual/Reference/Gcodes/M554){target=_blank} Set Gateway
+[M586](/User_manual/Reference/Gcodes/M586){target=_blank} Configure network protocols
+[M587](/User_manual/Reference/Gcodes/M587){target=_blank} Add WiFi host network to remembered list, or list remembered networks
+[M588](/User_manual/Reference/Gcodes/M588){target=_blank} Forget WiFi host network
+[M589](/User_manual/Reference/Gcodes/M589){target=_blank} Configure access point parameters
+
+## Changing the SBC hostname
 
 This is an optional step if you only have a single duet3 on your network. It is required if you have more than one duet 3 as each duet 3 on a network needs a unique host name.
 
-The name of the printer is its hostname on the network, you will need to connect to the SBC over SSH or VNC (as described above) in order to run the Raspberry Pi configuration utility and change the hostname. In future there will be an easier way to set the hostname within DuetWebControl. *Note that you cannot currently use the gcode command M550 to set your printer hostname*
+## Tabs {.tabset}
+
+### RRF/DSF 3.5 and later
+
+Use [M550](/User_manual/Reference/Gcodes/M550){target=_blank}. This command should go in **dsf-config.g** NOT config.g.
+
+### RRF/DSF 3.4.x and earlier
+
+The name of the printer is its hostname on the network, you will need to connect to the SBC over SSH or VNC (as described above) in order to run the Raspberry Pi configuration utility and change the hostname. *Note that you cannot use the gcode command M550 to set your printer hostname*
 
 * Connect via ssh or VNC.
 * At a command prompt type
