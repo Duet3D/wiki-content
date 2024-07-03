@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-03T16:48:51.360Z
+date: 2024-07-03T16:50:04.698Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -308,10 +308,10 @@ This is a list of commands whose use differs from when used in standalone mode. 
 
 ## Virtual SD card
 
-In SBC mode and RRF v3.4 or newer these codes may be used to mount/unmount block devices or remote endpoints using the mount command. These commands should go in **dsf-config.g** NOT config.g.
+In SBC mode and RRF v3.4 or newer these commands may be used to mount/unmount block devices or remote endpoints using the mount command. These commands should go in **dsf-config.g** NOT config.g.
 
-[M21](/User_manual/Reference/Gcodes/M21){target=_blank} Initialize SD card (mount device)
-[M22](/User_manual/Reference/Gcodes/M22){target=_blank} Release SD card (unmount device)
+[M21](/User_manual/Reference/Gcodes/M21){target=_blank} Mount device (Initialize SD card)
+[M22](/User_manual/Reference/Gcodes/M22){target=_blank} Unmount device (Release SD card)
 
 
 ## Networking
