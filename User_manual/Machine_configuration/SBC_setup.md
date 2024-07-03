@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-03T16:24:17.226Z
+date: 2024-07-03T16:47:42.886Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -308,8 +308,7 @@ This is a list of commands whose use differs from when used in standalone mode. 
 
 ## SD card
 
-* In SBC mode and RRF v3.4 or newer these codes may be used to mount/unmount block devices or remote endpoints using the mount command. 
-* These commands should go in **dsf-config.g** NOT config.g.
+In SBC mode and RRF v3.4 or newer these codes may be used to mount/unmount block devices or remote endpoints using the mount command. These commands should go in **dsf-config.g** NOT config.g.
 
 [M21](/User_manual/Reference/Gcodes/M21){target=_blank} Initialize SD card (mount device)
 [M22](/User_manual/Reference/Gcodes/M22){target=_blank} Release SD card (unmount device)
@@ -317,14 +316,14 @@ This is a list of commands whose use differs from when used in standalone mode. 
 
 ## Networking
 
+M540 and M550 commands, if needed, should go in **dsf-config.g** NOT config.g.
+
 [M540](/User_manual/Reference/Gcodes/M540){target=_blank} Set MAC address
 [M550](/User_manual/Reference/Gcodes/M550){target=_blank} Set Name (see 'Changing the SBC hostname' below)
 
-M540 and M550 commands, if needed, should go in **dsf-config.g** NOT config.g.
+Sending any of the following command makes a persistent change. They do not need to be added to dsf-config.g. They should NOT be included in config.g.
 
-Sending any of the following command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
-
-[M552](/User_manual/Reference/Gcodes/M552){target=_blank} Set IP address, enable/disable network interface^1^
+[M552](/User_manual/Reference/Gcodes/M552){target=_blank} Set IP address, enable/disable network interface
 [M553](/User_manual/Reference/Gcodes/M553){target=_blank} Set Netmask
 [M554](/User_manual/Reference/Gcodes/M554){target=_blank} Set Gateway
 [M586](/User_manual/Reference/Gcodes/M586){target=_blank} Configure network protocols
