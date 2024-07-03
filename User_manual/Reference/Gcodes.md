@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-03T12:12:37.052Z
+date: 2024-07-03T12:14:08.980Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5920,7 +5920,7 @@ Supported for drivers attached to:
 <br>
 <pre class="cblock">
 M569.7 P40.0 C"out1"    ; driver 0 on board 40 uses port out1 on board 40 to control the brake
-M569.7 P0.2 C"out9" S20 ; driver 2 on mainboard uses port out9 to control the brake
+M569.7 P0.2 C"out9" S20 ; driver 2 on mainboard uses port out9 to control the brake, with 20ms delay
 </pre>
 
 ### Notes
