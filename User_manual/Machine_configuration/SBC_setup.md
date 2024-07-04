@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-03T16:50:04.698Z
+date: 2024-07-04T13:53:11.071Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -257,7 +257,7 @@ Rather than just yanking the power cord from the SBC, from RRF 3.4, you can comm
 M999 B-1 P"OFF" ; Shut down SBC
 M999 B-1 ; Reboot SBC
 ```
-Or connect via SSH, or open a terminal, and send `shutdown -h now` to shutdown, or `shutdown -r now` to reboot.
+Or connect via SSH, or open a terminal, and send `sudo systemctl poweroff` to shutdown, or `sudo systemctl reboot` to reboot.
 
 If you have a keyboard and monitor connected to your SBC, or connect via VNC, you can simply use the Operating system shutdown and reboot menu option.
 
