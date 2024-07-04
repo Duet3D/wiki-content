@@ -2,7 +2,7 @@
 title: Choosing the power supply
 description: 
 published: true
-date: 2023-04-26T12:48:58.717Z
+date: 2024-07-04T23:28:54.714Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T16:29:11.925Z
@@ -47,6 +47,16 @@ The Duet 2 Maestro uses TMC2224 drivers, which work best with lower current moto
 * PanelDue: with a 7" screen attached it draws about 3.5W.
 * Duet: allow 2W.
 * Add the power requirement of any lighting and any servos etc. that you intend to use.
+
+## Inrush current
+
+Inrush current is the maximum current drawn by an electrical circuit at the time it is turned on. This applies more for boards with lots of capacitance, and especially systems with a number of boards and M23CLs where there is a large total capacitance.
+
+Generally, this applies if you use a relay between the DC PSU and Vin to control power to the machine, i.e. the power supply is already switched on. It also applies to switching power to anything with a lot of capacitance across the power lines. It's not the same if power is applied by switching on the power supply, as those are likely to have current limits/soft start/over current protection of some sort.
+
+If your PSU is switching on power with a relay then you should use an inrush current thermistor in series with the Vin line, e.g. [https://www.mouser.co.uk/c/circuit-protection/thermistors/inrush-current-limiters/](https://www.mouser.co.uk/c/circuit-protection/thermistors/inrush-current-limiters/){target=_blank}
+
+The thermistor should be matched to the Duet board. For example, the M23CL is fused internally to 2A, so a 2A current limiting thermistor is appropriate.
 
 # Types of power supply
 
