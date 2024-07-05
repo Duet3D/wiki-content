@@ -2,7 +2,7 @@
 title: Choosing the power supply
 description: 
 published: true
-date: 2024-07-05T09:11:07.679Z
+date: 2024-07-05T23:30:20.117Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T16:29:11.925Z
@@ -50,13 +50,20 @@ The Duet 2 Maestro uses TMC2224 drivers, which work best with lower current moto
 
 ## Inrush current
 
-Inrush current is the maximum current drawn by an electrical circuit at the time it is turned on. This applies more for boards with lots of capacitance, and especially systems with a number of boards and particularly the Duet 3 M23CL, where there is a large total capacitance.
+Inrush current is the maximum current drawn by an electrical circuit at the time it is turned on. This becomes an issue for boards with lots of capacitance, and especially systems with a number of boards and particularly the Duet 3 M23CL, where there is a large total capacitance.
 
 Generally, this applies if you use a relay between the DC PSU and Vin to control power to the machine, i.e. the power supply is already switched on, and a relay is used to turn on power to the controller boards. It also applies to switching on power to anything with a lot of capacitance across the power lines. It does not apply if power is applied by switching on the power supply, as those are likely to have current limits/soft start/over current protection of some sort.
 
 If your PSU is switching on power with a relay then you should use an inrush current thermistor in series with the Vin line, e.g. [https://www.mouser.co.uk/c/circuit-protection/thermistors/inrush-current-limiters/](https://www.mouser.co.uk/c/circuit-protection/thermistors/inrush-current-limiters/){target=_blank}
 
-The thermistor should be matched to the Duet boards in the system. For example, the M23CL is fused internally to 2A, so a 2A current limiting thermistor is appropriate.
+A single inrush current limiter can be used in series with each pair of relay contacts that switches VIN to one or more boards. If there is more than one relay (or multiple pairs of contacts on a single relay) switching VIN to different boards, each contact pair should have its own current limiter.
+
+The inrush current limiter should be matched to the Duet board or boards in the system. For example, if supplying a single board like a M23CL, the M23CL is fused internally to 2A, so a 2A current limiting thermistor is appropriate. To calculate the inrush current for a larger system, calculate the maximum current for each board supplied via that thermistor (see the 'Total power needed' section above for guidance on how to do that) and add those currents up. 
+
+Note that OUT ports on boards should not be used to switch power to other boards directly. This is for 3 reasons:
+1. inrush current might blow the OUT port mosfet
+1. OUT ports switch the ground side not the VIN side so the common ground between boards is lost
+1. RRF isn't really designed to allow a CAN-connected board to go offline and then online again (although it's possible to manage that in particular circumstances).
 
 # Types of power supply
 
