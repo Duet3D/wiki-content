@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-03T15:34:09.644Z
+date: 2024-07-06T15:21:41.209Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3565,6 +3565,7 @@ Supported in firmware version 1.19 and later.
 
 * **Snnn** frequency in Hz
 * **Pnnn** duration in milliseconds
+* **Cnnn** custom buzzer port (only in RRF 3.6 or later, must be PWM-capable)
 
 ### Examples
 <br>
@@ -3585,6 +3586,10 @@ M300 S2000 P200
 G4 P200
 M300 S2500 P300
 G4 P300
+</pre>
+or
+<pre class="cblock">
+M300 C"io5.out"
 </pre>
 
 See also [Macros, sounds section](/User_manual/Tuning/Macros#sounds){target=_blank}
