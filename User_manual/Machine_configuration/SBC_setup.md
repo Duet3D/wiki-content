@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-04T13:53:11.071Z
+date: 2024-07-06T00:19:26.776Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -60,11 +60,17 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
 1. If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/){target=_blank}
 1. You will need at least an 8Gb class 10 SD card.
 1. There are multiple programs to write an image file to an SD card. We recommend using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}, which has versions for Windows, MacOS, Linux and Raspberry Pi.
-1. You need to use the latest Raspberry Pi image **setup for Duet 3** that is available from the Duet 3D software site. You may choose the lite image for a GUI-less setup and the full variant for setups where a display is attached:
-[https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
-[https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip){target=_blank}
+1. Use the latest Raspberry Pi image **setup for Duet 3** that is available from the Duet 3D package server. You may choose the full image for setups where a display is attached, or the lite image for a GUI-less and/or older Raspberry Pis with less memory:
+  **Bookworm DuetPi 64-bit images**
+  Recommended for most installations
+  [http://pkg.duet3d.com/DuetPi-arm64.zip](http://pkg.duet3d.com/DuetPi-arm64.zip){target=_blank}
+  [http://pkg.duet3d.com/DuetPi-lite-arm64.zip](http://pkg.duet3d.com/DuetPi-lite-arm64.zip){target=_blank}
+  **Bookworm DuetPi 32-bit images**
+  Recommended for RPi with 1GB RAM or less
+  [https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
+  [https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip){target=_blank}
 1. Open Raspberry Pi Imager, select the Raspberry Pi version, select the image (under OS choose other then scrool right down to "Use Custom", select the SD card, then click 'Next'.
-1. You may apply OS customisations like WiFi and locale settings. Press `OK` when done.
+1. Apply OS customisations such as username and password, Wi-Fi credentials, device hostname, time zone, keyboard layout and remote connectivity. If you don’t configure your Raspberry Pi via OS customisation settings, Raspberry Pi OS will ask you for the same information at first boot during the configuration wizard. Press `OK` when done.
 1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
 
 <p style="clear:both"></p>
@@ -85,6 +91,8 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
 <p style="clear:both"></p>
 
 # 2. Setup wifi
+
+This step is unnecessary if you have set up WiFi in the Raspberry Pi Imager. It is also not supported for the current 'Bookworm' images, only older 'Buster' versions.
 
 1. This step is optional if you are going to connect to the SBC using an Ethernet network, or if you are going to plug a monitor, keyboard and mouse into the SBC.
 
@@ -214,6 +222,9 @@ Under **Windows** the easiest way is via “Putty”:
 * Login with username “pi” and password “raspberry”
 
 Under **macOS and Linux** the "ssh" program is accessible from the command line. [macOS guide here.](http://osxdaily.com/2017/04/28/howto-ssh-client-mac/){target=_blank}
+
+
+
 
 * open a Terminal window and send the following ssh command:
   `ssh pi@duet3.local`
