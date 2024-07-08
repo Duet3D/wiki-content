@@ -2,7 +2,7 @@
 title: WiFi troubleshooting
 description: 
 published: true
-date: 2023-04-12T15:42:27.031Z
+date: 2024-07-08T11:47:02.595Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T00:23:04.224Z
@@ -20,7 +20,7 @@ If you find that your web browser repeatedly disconnects from the Duet, typicall
 * If the disconnection always happens when you switch to the GCode Files page in Duet Web Control, see [Network disconnections after uploading large files](/User_manual/RepRapFirmware/SD_card#network-disconnections-after-uploading-large-files).
 * Run `M122` from either the web interface (if you can reconnect) or from USB. In the Network diagnostics, check the **WiFi signal strength**, also called **RSSI**. Values in the range -30 to -50 are good, -50 to -60 is OK, -60 to -70 is marginal. Anything below -70 is weak and likely be unreliable. See below for how to improve RSSI.
 * Also in the M122 Network diagnostics check the WiFi Module Reset Reason. It should be "turned on by main processor". If it is anything else (e.g. "exception"), report the problem on the forum.
-* In Duet Web Control, on the Settings/General tab check that "Maximum number of AJAX retries" is at least 3.
+* In Duet Web Control, in the Settings > Machine specific > Communication section, check that "Maximum number of AJAX retries" is at least 3.
 * Are the disconnections related to another device that uses the 2.4GHz band? Typical devices that may cause problems include cordless telephones, baby monitors, and leaky microwave ovens.
 * Try changing the channel on your WiFi router. Most routers default to Auto, but can be set to use a fixed channel instead. The channels overlap, so it is common to use channel 1, 6 or 11. This may also help if another device is causing interference.
   * Particularly if using channel 1, change the router WiFi channel. Duets with onboard WiFi antennas may be more susceptible to interference from the Duet itself at this frequency. Try channel 6 or 11.
