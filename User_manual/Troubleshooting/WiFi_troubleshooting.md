@@ -2,7 +2,7 @@
 title: WiFi troubleshooting
 description: 
 published: true
-date: 2024-07-08T11:47:02.595Z
+date: 2024-07-08T17:00:36.014Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T00:23:04.224Z
@@ -25,9 +25,9 @@ If you find that your web browser repeatedly disconnects from the Duet, typicall
 * Try changing the channel on your WiFi router. Most routers default to Auto, but can be set to use a fixed channel instead. The channels overlap, so it is common to use channel 1, 6 or 11. This may also help if another device is causing interference.
   * Particularly if using channel 1, change the router WiFi channel. Duets with onboard WiFi antennas may be more susceptible to interference from the Duet itself at this frequency. Try channel 6 or 11.
 * Is the connection stable when the printer is idle, but unreliable when printing? If so then there may be too few CPU cycles to service the network interface, because of an excessive step pulse rate.
-  * Check the M122 report after a disconnection during a print, or after completing the print, and look at the MaxReps figure in the Move diagnostics. 
+  * Check the M122 report after a disconnection during a print, or after completing the print, and look at the number of 'hiccups' ('MaxReps' in old firmware versions) figure in the 'DDARing' or 'Move' section of the diagnostics. 
   * This value should be kept below about 50. If it is higher, reduce either microstepping (M350) or maximum speed (M203).
-  * Please note, MaxReps is reset when you run M122 so only the value the first time you run M122 after a disconnection or completion of a print is significant.
+  * Please note, hiccups and MaxReps is reset when you run M122 so only the value the first time you run M122 after a disconnection or completion of a print is significant.
 * Also if the connection is stable when the printer is idle but not when printing: could it be temperature-related? Does the disconnection occur when the CPU temperature displayed in DWC reaches a certain value? If so, try cooling the Duet with a fan, if you are not doing so already.
 * If unable to connect to your wireless network at boot up, try deleting all saved wifi networks with `M588 S"*"` (That is, using an asterix for the network name), then re-adding it with M587. For example, `M587 S"networkname" P"password"`.
 * You can manually reset the wifi module if you have console access via USB, or a PanelDue. Send `M552 S0`, to disable networking, followed by `M552 S1` to enable networking.
