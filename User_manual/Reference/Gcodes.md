@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-06T15:21:41.209Z
+date: 2024-07-10T10:43:23.724Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3363,11 +3363,15 @@ Sets extrude factor override percentage. In the case of RepRapFirmware, sets the
 M226
 </pre>
 
-### Notes
+### Description
 
 Initiates a pause in the same way as if the pause button is pressed, except that execution of all prior GCode commands in the same input stream is completed first. Then the SD card input stream is paused and file sys/pause.g is run.
 
-M226 is intended for use in the GCode file being printed, for example to pause after a particular layer has completed. So it waits until all the moves in the queue have been completed. M25 is intended for use from a different source of GCodes (such as the web interface console, PanelDue or a Macro), so if you need to pause from those use M25 instead.
+### Notes
+
+* Use M226 when a pause is required in the GCode file being printed, for example to pause after a particular layer has completed. It waits until all the moves in the queue have been completed. 
+* Use [M600](/User_manual/Reference/Gcodes/M600) when a pause is required to change filament in the GCode file being printed.
+* Use [M25](/User_manual/Reference/Gcodes/M25) when a pause is required from a different source of GCodes (such as the web interface console, PanelDue or a Macro).
 
 ## M260: i2c Send and/or request Data
 
