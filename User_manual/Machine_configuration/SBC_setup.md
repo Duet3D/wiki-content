@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-10T14:12:51.365Z
+date: 2024-07-10T19:58:11.725Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -151,7 +151,7 @@ network={
 
 # 4. First Boot
 
-> Note that these steps assume the hostname of your SBC is "duet3" if you have changed it then the mDNS resolution will be the new hostname, not "duet3".
+> Note: these steps assume the hostname of your SBC is "duet3". If you have changed it then the mDNS resolution will be the new hostname, not "duet3".
 {.is-info}
 
 
@@ -198,9 +198,11 @@ Ensure there is no SD card in the Duet itself. In order to run in SBC connected 
 
 # 5. Accessing the SBC through SSH/VNC
 
-*Note this is optional if you have a screen and keyboard attached to the SBC*
+> Note: this step is optional if you have a screen and keyboard attached to the SBC
+> Note: this step assumes the username of your SBC is "duet3" and password is "raspberry". If you have changed these, use the new ones in place of "duet3" and "raspberry".
+{.is-info}
 
-In the future it is the intention that all the required interaction between a user and the Duet 3, including the SBC, can be done through Duet Web Control. At this point in time it is necessary to have either a ssh command line, or VNC connection, in order to update the Duet Software Framework software that runs on the SBC.
+In RRF 3.5 and later, most of the required interaction between a user and the Duet 3, including the SBC, can be done through Duet Web Control. In RRF 3.4.x and earlier, it is necessary to have either a ssh command line, or VNC connection, in order to update the Duet Software Framework software that runs on the SBC.
 
 # Tabs {.tabset}
 
