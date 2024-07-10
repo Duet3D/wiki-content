@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-06T00:19:26.776Z
+date: 2024-07-10T14:12:51.365Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -90,9 +90,11 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
 
 <p style="clear:both"></p>
 
-# 2. Setup wifi
+# 2. Setup WiFi
 
-This step is unnecessary if you have set up WiFi in the Raspberry Pi Imager. It is also not supported for the current 'Bookworm' images, only older 'Buster' versions.
+> This step is unnecessary if you have set up WiFi in the Raspberry Pi Imager. 
+> This method of setting up WiFi is also not supported for the current 'Bookworm' images, only older 'Buster' versions.
+{.is-info}
 
 1. This step is optional if you are going to connect to the SBC using an Ethernet network, or if you are going to plug a monitor, keyboard and mouse into the SBC.
 
@@ -149,17 +151,19 @@ network={
 
 # 4. First Boot
 
+> Note that these steps assume the hostname of your SBC is "duet3" if you have changed it then the mDNS resolution will be the new hostname, not "duet3".
+{.is-info}
+
+
 1. Turn on power to Duet and SBC.
 
-1. If you have a screen attached when power is applied you will see the SBC boot up. Once bootup is complete the Chromiun browser will launch DuetWebControl in full screen. press F11 if you want to exit fullscreen.
+1. If you have a screen attached when power is applied you will see the SBC boot up. Once bootup is complete the Chromiun browser will launch DuetWebControl in full screen. Press F11 if you want to exit fullscreen.
 
 1. If you are connecting over the network then go to [`http://duet3.local/`](http://duet3.local/){target=_blank} *note the SBC takes about 1 minute to boot for the first time and about 30 seconds subsequently.*
 
 If [`http://duet3.local/`](http://duet3.local/){target=_blank} does not show Duet Web Control (DWC) then follow these trouble shooting steps:
 
 ## Troubleshooting
-
-*Note that these steps assume the hostname of your SBC is "duet3" if you have changed it then the mDNS resolution will be the new hostname, not "duet3".  Also note that you cannot use the gcode command M550 to set your printer hostname.*
 
 ### Duet 3 and SBC not communicating
 
