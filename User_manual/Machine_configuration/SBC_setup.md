@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-10T19:58:11.725Z
+date: 2024-07-11T14:22:57.793Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -69,7 +69,7 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
   Recommended for RPi with 1GB RAM or less
   [https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
   [https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip){target=_blank}
-1. Open Raspberry Pi Imager, select the Raspberry Pi version, select the image (under OS choose other then scrool right down to "Use Custom", select the SD card, then click 'Next'.
+1. Open Raspberry Pi Imager, select the Raspberry Pi version, select the image (under OS choose other then scroll right down to "Use Custom", select the SD card, then click 'Next'.
 1. Apply OS customisations such as username and password, Wi-Fi credentials, device hostname, time zone, keyboard layout and remote connectivity. If you don’t configure your Raspberry Pi via OS customisation settings, Raspberry Pi OS will ask you for the same information at first boot during the configuration wizard. Press `OK` when done.
 1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
 
