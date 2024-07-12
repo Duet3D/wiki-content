@@ -1,8 +1,8 @@
 ---
 title: Single Board Computer (SBC) setup for Duet 3
-description: Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or 4. This page will outline how to get setup initially, and what to do if there are issues. 
+description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-11T14:22:57.793Z
+date: 2024-07-12T08:24:04.735Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
