@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-12T08:02:35.150Z
+date: 2024-07-12T12:16:35.973Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6586,7 +6586,7 @@ M585 X100 F600 E3 L0 S0 ; probe X until E0 endstop goes low
 * **Hnn** Remote server IP address (only applicable for MQTT, see also M586.4)
 * **Rnn** TCP port number to use for the specified protocol. Ignored unless S = 1. If this parameter is not provided then the default port for that protocol and TLS setting is used. When S=0 the default port numbers are 80, 21 and 23 respectively.
 * **Tnn** 0 = don't use TLS, 1 = use TLS. Ignored unless S = 1. If this parameter is not provided, then TLS will be used if the firmware supports it and a security certificate has been configured. If T1 is given but the firmware does not support TLS or no certificate is available, then the protocol will not be enabled and an error message will be returned.
-* **C"\<site>"** (RRF 3.2 and later only) Set or reset allowed site for cross-origin HTTP requests
+* **C"\<site>"** (RRF 3.2 and later only) Set or reset allowed site for Cross-Origin Resource Sharing (CORS) HTTP requests
 
 **Note**: TLS has not yet been implemented in RepRapFirmware, therefore T1 will not work.
 
