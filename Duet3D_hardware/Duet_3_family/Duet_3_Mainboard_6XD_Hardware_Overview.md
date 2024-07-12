@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-05-15T15:32:54.012Z
+date: 2024-07-12T10:19:06.291Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -505,6 +505,11 @@ If in the future you want to add the termination resistor back into the circuit 
 # Revision History
 
 # Tabs{.tabset}
+## Revision 1.01
+
+* Change the 5V_EXT_SBC and 5V_EXT-5V_INT jumper headers to not be populated y default.
+* added hardware to provide USB Host support in future firmware.
+
 ## Revision 1.0
 
 * Added a Jumper to connect the external SD card on the PanelDue header to GND (allows older versions of PanelDue with out a card detect pin to be used.
