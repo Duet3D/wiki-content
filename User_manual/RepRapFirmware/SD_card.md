@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2024-07-04T16:21:46.583Z
+date: 2024-07-12T13:56:27.625Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -32,7 +32,7 @@ If you need to replace the micro SDHC card, we recommend you choose:
 * of up to 32GB capacity, formatted as below. RepRapFirmware does not support SD cards formatted in exFAT format. 
 * Larger capacity cards can be used, but RepRapFirmware can only read the first volume on the card, and this must be no larger than 32GB, or it will be formatted in exFAT format.
 * consider a microSD card with an A1 or A2 rating, particularly for SBC. They're better suited for SBC operation and improve overall responsiveness of the SBC.
-* condider an 'industrial' microSD card, which generally have higher endurance, reliability, extended temperature range, and longevity.
+* consider an 'industrial' microSD card, which generally have higher endurance, reliability, extended temperature range, and longevity.
 
 # Formatting
 
