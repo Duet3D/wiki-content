@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2024-07-15T15:51:47.602Z
+date: 2024-07-15T15:53:59.344Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -303,12 +303,10 @@ The individual IO_x connectors have the following capabilities:
 Supply 12V-24V input power (11-25V absolute minimum/maximum) between the GND and VIN terminals.
 
 VIN is split via two fuses:
+* V_FUSED: 10A :  All on board power demands, other than OUT0 (Normally used for heated bed
+* OUT0_FUSE: 15A: Directly to the V_OUT0 terminal
 
-V_FUSED: 10A :  All on board power demands, other than OUT0 (Normally used for heated bed
-
-OUT0_FUSE: 15A: Directly to the V_OUT0 terminal
-
-VFUSED is distributed across the board as follows:
+V_FUSED is distributed across the board as follows:
 
 * 12V Regulator
 * 5V regulator
