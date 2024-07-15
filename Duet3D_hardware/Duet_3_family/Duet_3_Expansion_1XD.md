@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2023-06-02T11:05:10.091Z
+date: 2024-07-15T15:56:26.454Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -216,6 +216,11 @@ See "Set the CAN address" below.
 ## Power
 
 Supply between 12V and 48V to the 2-pin JST VH VIN power connector on the board, observing the correct polarity.
+
+> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+>
+> OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
+{.is-info}
 
 # Commissioning
 
