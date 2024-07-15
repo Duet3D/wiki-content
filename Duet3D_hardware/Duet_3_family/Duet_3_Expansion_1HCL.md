@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2024-05-07T11:45:12.323Z
+date: 2024-07-15T16:01:07.811Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -194,6 +194,15 @@ The individual IO_x connectors have the following capabilities:
 | pdec.a, pdec.b. pdec.n | No | No | No | digital inputs |
 
 **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
+
+## Power distribution
+
+Supply between 12V and 48V to the 2-way barrier strip power connector on the board, observing the correct polarity.
+
+> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+>
+> OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
+{.is-info}
 
 # Encoders
 
