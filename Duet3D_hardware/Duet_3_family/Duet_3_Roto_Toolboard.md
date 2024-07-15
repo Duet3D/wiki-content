@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-06-30T07:44:54.561Z
+date: 2024-07-15T16:07:32.339Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -170,6 +170,15 @@ The individual IO_x connectors have the following capabilities:
 | IO_3 | No | No | No | Input only, no output pin |
 
 *Serial connection not currently supported in Firmware
+
+## Power distribution
+
+Supply between 12V and 32V to the appropriate pins of the XT30 2+2 connector on the board, observing the correct polarity.
+
+> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+>
+> OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
+{.is-info}
 
 ## CAN
 
