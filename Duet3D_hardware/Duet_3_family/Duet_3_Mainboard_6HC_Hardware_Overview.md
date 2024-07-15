@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-06-28T10:42:35.257Z
+date: 2024-07-15T15:50:21.515Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -388,6 +388,11 @@ On the Duet 3 Mainboard 6HC prototype v0.5 boards the capabilities are different
 ### VIN (Input voltage from PSU)
 
 VIN in the range 12V-48V must be provided to the Duet (12V-32V before v1.02). In addition the same, or a different voltage can be provided specifically for the very high current OUT0 circuit. This allows for a heated bed or similar to be run from an alternative power supply. If that is not required the same VIN can be supplied to the OUT0 input.
+
+> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+>
+> OUT ports on the board should NOT be used to switch power to other boards directly. See the note at the end of the 'inrush current' section at the link above.  
+{.is-info}
 
 ### 12V
 
