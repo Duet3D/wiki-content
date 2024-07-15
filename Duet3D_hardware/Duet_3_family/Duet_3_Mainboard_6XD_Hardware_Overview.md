@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-07-12T10:19:06.291Z
+date: 2024-07-15T15:52:55.630Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -345,19 +345,21 @@ Supply 12V-24V input power (11-30V absolute minimum/maximum) between the GND and
 
 VIN is split via four fuses:
 
-V_FUSED: 15A :  All on board power demands, other than those specified below
-
-VLC1_FUSE: 3A :  OUT3-OUT5 when the select jumper is on VIN
-
-VLC2_FUSE: 3A :  OUT6-OUT8 when the select jumper is on VIN
-
-VFUSED_IO: 300mA: VIN current for the Opto-isolated Output headers IO_5-IO_8
+* V_FUSED: 15A :  All on board power demands, other than those specified below
+* VLC1_FUSE: 3A :  OUT3-OUT5 when the select jumper is on VIN
+* VLC2_FUSE: 3A :  OUT6-OUT8 when the select jumper is on VIN
+* VFUSED_IO: 300mA: VIN current for the Opto-isolated Output headers IO_5-IO_8
 
 V_FUSED is distributed across the board as follows:
 
 * 12V Regulator
 * 5V regulator
 * OUT 0 - OUT 2 headers
+
+> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+>
+> OUT ports on the board should NOT be used to switch power to other boards directly. See the note at the end of the 'inrush current' section at the link above.  
+{.is-info}
 
 ### 12V
 
