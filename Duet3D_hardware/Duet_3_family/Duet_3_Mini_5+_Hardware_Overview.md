@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2024-06-20T10:22:02.933Z
+date: 2024-07-15T15:51:47.602Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -315,6 +315,11 @@ VFUSED is distributed across the board as follows:
 * Stepper drivers (including external driver header)
 * OUT 1 and OUT 2 headers
 * V_OUTLC1 and V_OUTLC2 selection jumpers
+
+> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+>
+> OUT ports on the board should NOT be used to switch power to other boards directly. See the note at the end of the 'inrush current' section at the link above.  
+{.is-info}
 
 ### 12V
 
