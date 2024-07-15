@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2024-03-11T15:18:11.750Z
+date: 2024-07-15T16:02:37.614Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -215,6 +215,11 @@ These voltages are divided for internal and external use, with external 3.3V and
 **Max 12V current:** The two banks of Low Current outputs (OUT3-5, OUT6-8) can be separately selected to be powered by either VIN or internal 12V. Total 12V fan current draw must not exceed 800mA.
 
 **Max 5V and 3.3V current:** Up to 800mA from 3.3V and 5V combined, of which no more than 500mA from 3.3V.
+
+> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+>
+> OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
+{.is-info}
 
 ## CAN
 
