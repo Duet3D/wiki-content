@@ -2,7 +2,7 @@
 title: Calibrating your Duet-based machine
 description: 
 published: true
-date: 2024-05-02T11:48:03.895Z
+date: 2024-07-15T14:51:06.816Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
@@ -284,8 +284,29 @@ See [https://marlinfw.org/tools/input_shaping/freq-calibr.html](https://marlinfw
 This uses less plastic than the Klipper version.
 Note you will need to adjust start and end gcode.
 
-# 7. Optimal slicer settings
+# 7. Suggested slicer settings
 
-* Default slicer profiles are available for the Ender 3 Pro and Duet 3 Mini 5+:
-* Cura:
-* PrusaSlicer:
+Below are some suggested slicer settings to improve compatibility with RepRapFirmware.
+
+## PrusaSlicer:
+
+(Tested on Prusaclider 2.8, may be in different places on older versions)
+
+Printers > General > Firmware > G-code flavor: choose "RepRapFirmware"
+Printers > General > Firmware > G-code thumbnails: set "160x160/QOI" for compatibility with PanelDue
+Printers > General > Advanced > Use relative E distances: enable this
+Printers > Machine limits > General > How to apply limits: choose "Use for time estimate" to stop Prusaslicer overriding speed, acceleration and jerk settings in config.g
+
+To get the layer count correct on the DWC progress chart, add `;LAYER:[layer_num]` to the custom gcode tab under the "Before layer change" G-code section.
+
+## Cura
+
+Settings > Printer > Manage Printers > (select printer) > Machine Settings > Printer (tab) > G-code flavor: select RepRap
+In Print settings:
+Special Modes > Relative Extrusion: check this is ticked, it should be if G-code flavor: RepRap is selected
+
+To enable firmware retraction, you need the Printer Settings plugin in Cura.
+
+## Orcaslicer
+
+Suggestions welcome!
