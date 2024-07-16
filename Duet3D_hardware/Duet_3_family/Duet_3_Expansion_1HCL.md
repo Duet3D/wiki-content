@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2024-07-15T16:01:07.811Z
+date: 2024-07-16T14:16:41.765Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -195,7 +195,7 @@ The individual IO_x connectors have the following capabilities:
 
 **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
-## Power distribution
+## Power wiring
 
 Supply between 12V and 48V to the 2-way barrier strip power connector on the board, observing the correct polarity.
 
