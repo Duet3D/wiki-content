@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2023-10-19T09:01:57.327Z
+date: 2024-07-16T15:34:26.523Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -23,7 +23,7 @@ RepRapFirmware from v3.5 adds support for BME280 sensors
 
 # General recommendations
 
-* DHT22 and BME280 are recommended. DHT21 is also supported, but is less accurate. DHT11 support has been removed from current firmware. 
+* The BME280 is recommended. DHT22 is supported, but is becoming harder to find. DHT21 is also supported, but is less accurate. DHT11 support has been removed from current firmware. 
 * DHT22/21/11 connect using 3 wires. As well as +3.3V and ground, the DHT sensor needs a combined input-output line. This is usually connected to one of the SPI CS lines on the Temperature Daughterboard connector, or one of the IOx.OUT pins.
 * BME280 connect using 6 wires, and connects to pins on the Temperature Daughterboard connector.
 * In RRF 3, the humidity and pressure (BME280 only) channels of the same sensor are configured as piggyback sensors off the main sensor.
@@ -33,6 +33,23 @@ RepRapFirmware from v3.5 adds support for BME280 sensors
 Which sensor you use will depend on your application. DHT sensors can be bought as a bare sensor, on a PCB, or as a wired version in a large plastic case.
 
 # Tabs {.tabset}
+
+## BME280
+
+Relatively low-cost, the BME280 from Bosch usually comes packaged on a small breakout board, and can measure humidity, temperature and barometric pressure.
+
+* Humidity: ±3% accuracy
+* Temperature: -40 to 85°C temperature readings ±1°C accuracy
+* Pressure: 300 to 1100 hPa with ±1 hPa absolute accuracy
+* Sensing period: 1 Hz sampling rate (once every second)
+* Dimensions: vary
+
+### Notes
+
+* BME280 sensors are only supported on Duet 3, not Duet 2.
+* BME280 sensors are only supported in RepRapFirmware 3.5 and later.
+* RepRapFirmware currently supports BME280 sensors using SPI, not I2C. Breakout boards need to have the appropriate pins accessible. For example, [this board from Adafruit](https://www.adafruit.com/product/2652) or [this one from Sparkfun](https://www.sparkfun.com/products/13676) should work fine. Many boards available have only 4 pins; these are I2C only, and are not supported.
+* The BMP280 (temperature and barometric pressure only) is not supported.
 
 ## DHT22
 
@@ -66,23 +83,6 @@ Usually cheapest, with limited range for temperature and humidity, but small and
 * Temperature: 0-50°C temperature readings ±2°C accuracy
 * Sensing period: 1 Hz sampling rate (once every second)
 * Dimensions: 22.5mm x 12mm x 5.5mm
-
-## BME280
-
-Still relatively low-cost, the BME280 from Bosch usually comes packaged on a small breakout board, and can measure humidity, temperature and barometric pressure.
-
-* Humidity: ±3% accuracy
-* Temperature: -40 to 85°C temperature readings ±1°C accuracy
-* Pressure: 300 to 1100 hPa with ±1 hPa absolute accuracy
-* Sensing period: 1 Hz sampling rate (once every second)
-* Dimensions: vary
-
-### Notes
-
-* BME280 sensors are only supported on Duet 3, not Duet 2.
-* BME280 sensors are only supported in RepRapFirmware 3.5 and later.
-* RepRapFirmware currently supports BME280 sensors using SPI, not I2C. Breakout boards need to have the appropriate pins accessible. For example, [this board from Adafruit](https://www.adafruit.com/product/2652) or [this one from Sparkfun](https://www.sparkfun.com/products/13676) should work fine. Many boards available have only 4 pins; these are I2C only, and are not supported.
-* The BMP280 (temperature and barometric pressure only) is not supported.
 
 # Connecting a DHT sensor
 
