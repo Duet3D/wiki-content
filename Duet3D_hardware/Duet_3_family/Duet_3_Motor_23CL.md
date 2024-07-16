@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-05-07T11:45:18.860Z
+date: 2024-07-16T14:11:53.943Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -74,9 +74,17 @@ The STEP files are available [from Github here](https://github.com/Duet3D/Duet3-
 
 ## Power wiring
 
-Connect power and ground to the M8 3-way power connector.
+Supply between 12V and 48V to the M8 3-way power connector on the motor, observing the correct polarity.
 
-**Note** In v1.0 of the Duet 3 Motor23CL pin 3 of the power connector is internally connected GND however in a future version it may have a different use. Best practive is to leave it unconnected to make the motors swappable iwt future versions without any wiring changes. It will not cause an issue **in the v1.0 motors** to connected it to GND.
+> If you use a relay to control VIN power to the motor, ie the power supply is already switched on, and a relay is used to turn on power to the motor, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+>
+> OUT ports on the mainboard should NOT be used to switch power to expansion boards, tool boards or CAN-connected motors directly. See the note at the end of the 'inrush current' section at the link above.  
+{.is-info}
+
+
+
+
+**Note** In v1.0 of the Duet 3 Motor23CL pin 3 of the power connector is internally connected GND however in a future version it may have a different use. Best practice is to leave it unconnected to make the motors swappable iwt future versions without any wiring changes. It will not cause an issue **in the v1.0 motors** to connected it to GND.
 
 ## CAN wiring
 
