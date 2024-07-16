@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: true
-date: 2024-03-21T11:10:45.330Z
+date: 2024-07-16T21:18:26.097Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -200,6 +200,7 @@ If you encounter any errors, see [User manual: Tuning the heater temperature con
 {.is-warning}
 
 When 'homing' your machine, each axis will move towards the end of its travel. It expects to trigger a switch, which will set the axis location. Simple microswitches, hall sensors or optical sensors can be used.
+* Check that your endstops are configured correctly by sending `M574` in the console.
 * It is important that you check that the Duet is receiving a signal from your endstops, if you have them fitted. Failure to do so could cause damage to your printer!
 * You want the firmware to report them as 'not stopped' when they are not triggered, and 'at max/min stop' when they are triggered.
 * On Duet 2 WiFi/Ethernet, there is an endstop status LED between each motor driver.
@@ -208,9 +209,13 @@ You can check the status of your endstops a number of ways:
 
 ## Tabs {.tabset}
 
+### DWC Status panel
+[![commissioning_08_endstops_01.png](/guides/commissioning/commissioning_08_endstops_01.png =50%x){.align-right}](/guides/commissioning/commissioning_08_endstops_01.png){target=_blank}In DWC v3.5 and later, the endstop status is indicated in the Status panel. If the endstop is triggered, a green square will highlight the axis that is triggered. If there is no green square, it is not triggered.
+* Press and hold each endstop switch, and check the axis label changes colour.
+
 ### M119
 
-[![wiring_d2we_06_test_endstop_01.png](/guides/wiring/wiring_d2we_06_test_endstop_01.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_01.png){target=_blank}The simplest way of checking endstop status is to send [M119](/User_manual/Reference/Gcodes/M119), and this can be sent from DWC or if connected by serial terminal over USB.
+[![wiring_d2we_06_test_endstop_01.png](/guides/wiring/wiring_d2we_06_test_endstop_01.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_01.png){target=_blank}Send [M119](/User_manual/Reference/Gcodes/M119) to check endstop status. This can be sent from DWC or if connected by serial terminal over USB.
 * In DWC, go to Control > Console and type in `M119` in the text box, then press return or the 'Send' button. You should get the endstop status response in the area below.
 * If connected to the Duet by a serial terminial over USB, type `M119` and press return; the Duet will respond with the endstop status.
 * Press and hold an endstop switch, and sent the command again, and you should see the status response of that switch change.
