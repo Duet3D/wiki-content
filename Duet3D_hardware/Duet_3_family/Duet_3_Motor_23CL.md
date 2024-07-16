@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-07-16T14:11:53.943Z
+date: 2024-07-16T14:33:22.983Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -56,10 +56,11 @@ Note the M23CL series are in active development and this documentation will be e
 
 ## Dimensions
 
-[![Image showing the key dimensions of the Duet 3 motor 23CL v1.0 with brake - M23CL-76-2804B](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_m23cl-76-2804b_v1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_m23cl-76-2804b_v1.0_dimensions.png){target=_blank}
+[![Image showing the key dimensions of the Duet 3 motor 23CL v1.0 with brake - M23CL-76-2804B](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_m23cl-76-2804b_v1.0_dimensions_d1.1.png =500x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_m23cl-76-2804b_v1.0_dimensions_d1.1.png){target=_blank}
 
 
-[![Image showing the key dimensions of the Duet 3 motor 23CL v1.0 without brake - M23CL-76-2804](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_m23cl-76-2804_v1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_m23cl-76-2804_v1.0_dimensions.png){target=_blank}
+
+[![Image showing the key dimensions of the Duet 3 motor 23CL v1.0 without brake - M23CL-76-2804](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_m23cl-76-2804_v1.0_dimensions_d1.1.png =500x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_m23cl-76-2804_v1.0_dimensions_d1.1.png){target=_blank}
 
 ## 3D model
 
