@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2024-07-15T16:02:37.614Z
+date: 2024-07-16T14:17:14.174Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -206,7 +206,7 @@ Except as noted in the table below, an IO_x_IN pin can always be used to provide
 
 ^1^ Note: to use IO 0 with I2C the protection bypass resistor must be fitted to bypass the 10K series resistor. If this is fitted then IO0.in is no longer protected sufficiently against over voltage/over current. Also note that RepRapFirmware does not currently support I2C on Duet 3 boards.
 
-## Power distribution
+## Power wiring
 
 VIN in the range 12V-48V  (12V-32V v1.01 and earlier) must be provided to the Duet expansion board. The board produces onboard 12V, 5V and 3.3V, from VIN  (12V will not be produced if only 12V is provided as VIN).
 
