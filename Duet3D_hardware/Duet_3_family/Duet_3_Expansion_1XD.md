@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2024-07-15T15:56:26.454Z
+date: 2024-07-16T14:08:31.671Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -158,6 +158,15 @@ The individual IO_x connectors have the following capabilities:
 
 **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
+## Power distribution
+
+Supply between 12V and 48V to the 2-pin JST VH VIN power connector on the board, observing the correct polarity.
+
+> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+>
+> OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
+{.is-info}
+
 ## External Stepper Connection
 
 The Duet 3 Expansion 1XD v1.0 offers two methods of connecting to external stepper and servo drivers that accept a 5V step/dir/enable signal. Many drivers will work fine in single ended mode, which requires less wiring. Differential mode should be more resistant to electrical noise. Some drivers will only work with differential mode.
@@ -212,15 +221,6 @@ Just behind the RJ11 connectors is a 4-pin terminal block. On the last board in 
 ### Address
 
 See "Set the CAN address" below.
-
-## Power
-
-Supply between 12V and 48V to the 2-pin JST VH VIN power connector on the board, observing the correct polarity.
-
-> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
->
-> OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
-{.is-info}
 
 # Commissioning
 
