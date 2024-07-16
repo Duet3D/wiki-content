@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: true
-date: 2024-07-16T21:18:26.097Z
+date: 2024-07-16T21:19:06.181Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -212,6 +212,8 @@ You can check the status of your endstops a number of ways:
 ### DWC Status panel
 [![commissioning_08_endstops_01.png](/guides/commissioning/commissioning_08_endstops_01.png =50%x){.align-right}](/guides/commissioning/commissioning_08_endstops_01.png){target=_blank}In DWC v3.5 and later, the endstop status is indicated in the Status panel. If the endstop is triggered, a green square will highlight the axis that is triggered. If there is no green square, it is not triggered.
 * Press and hold each endstop switch, and check the axis label changes colour.
+
+<p style="clear:both"></p>
 
 ### M119
 
