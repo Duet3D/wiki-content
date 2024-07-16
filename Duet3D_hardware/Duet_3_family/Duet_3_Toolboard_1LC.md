@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2024-07-15T16:05:06.794Z
+date: 2024-07-16T14:17:41.837Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -240,7 +240,7 @@ The individual IO_x connectors have the following capabilities:
 | IO_2 | No | No | No | Input only, no output pin |
 | IO_3 | No | No | No | Input only, no output pin |
 
-## Power distribution
+## Power wiring
 
 Supply between 12V and 32V to the 2-pin JST VH power connector on the board, observing the correct polarity.
 
