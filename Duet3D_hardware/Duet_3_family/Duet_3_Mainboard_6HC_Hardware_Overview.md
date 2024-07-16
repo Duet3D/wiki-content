@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-07-16T14:12:23.383Z
+date: 2024-07-16T14:15:28.608Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -383,7 +383,7 @@ On the Duet 3 Mainboard 6HC prototype v0.5 boards the capabilities are different
 | 7 | yes | no | no | In current firmware builds, dedicated to supporting a PanelDue, may not be used for any other purpose |
 | 8 | no | no | yes |  |
 
-## Power wiring
+## Power distribution
 
 ### VIN (Input voltage from PSU)
 
