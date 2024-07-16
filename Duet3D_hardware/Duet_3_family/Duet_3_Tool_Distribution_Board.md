@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2024-07-15T16:57:48.081Z
+date: 2024-07-16T14:51:11.396Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -53,6 +53,8 @@ The Duet 3 Tool Distribution Board is supplied with:
 ## Power distribution
 
 Supply between 12V and 32V to the 2-way barrier strip power connector on the board, observing the correct polarity.
+
+Use the four 2-way JST VH connectors for power out to tool boards. Each output is individually fused, with a supplied 5A fuse.
 
 > If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
 >
