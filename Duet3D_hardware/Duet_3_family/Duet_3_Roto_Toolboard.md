@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-07-15T16:07:32.339Z
+date: 2024-07-16T14:23:34.541Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -171,9 +171,9 @@ The individual IO_x connectors have the following capabilities:
 
 *Serial connection not currently supported in Firmware
 
-## Power distribution
+## Power wiring
 
-Supply between 12V and 32V to the appropriate pins of the XT30 2+2 connector on the board, observing the correct polarity.
+Supply between 12V and 32V to the appropriate pins of the XT30 2+2 power connector on the Toolboard through a fuse and observing the correct polarity. Inline blade fuse holders are readily available, pick the lowest rated fuse appropriate for your heater and motor current draw.
 
 > If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
 >
@@ -182,13 +182,11 @@ Supply between 12V and 32V to the appropriate pins of the XT30 2+2 connector on 
 
 ## CAN
 
+See also [CAN Connection Basics](/User_manual/Machine_configuration/CAN_connection){target=_blank}.
+
 It is possible to connect a Roto Toolboard directly to the Duet 3 Mainboard 6HC, 6XD, Duet 3 Mini 5+, or daisy chain it with other toolboards or any Duet 3 Expansion board.
 
-### Power connection
-
-Supply between 12V and 32V to the XT30 2+2 power connector on the Toolboard through a fuse and observing the correct polarity. Inline blade fuse holders are readily available, pick the lowest rated fuse appropriate for your heater and motor current draw.
-
-#### CAN Connection
+### CAN Connection
 
 The XT30(2+2) pre-wired cables supplied with the boards have different wire colours depending on the wiring batch.
 
@@ -198,22 +196,22 @@ The XT30(2+2) pre-wired cables supplied with the boards have different wire colo
 | CAN L | White | White | Green | 
 
 
-#### Tabs {.tabset}
+### Tabs {.tabset}
 
-##### Duet 3 Mainboard 6HC, 6XD, and Expansion boards
+#### Duet 3 Mainboard 6HC, 6XD, and Expansion boards
 
 Connect the RJ11 socket on the Duet 3 Mainboard 6HC, 6XD or Expansion board, pins 3 and 4 (the middle 2 pins) of the RJ11 connector to pins 4 and 3 of the Toolboard, making sure you get them the right way round i.e. CAN1_H in the Duet to CAN_H on the Toolboard. Don't connect anything to pins 2 and 5 of the RJ11 connector on the Duet.
 
 [![Direct connection of a Roto toolboard to the Duet 3 6HC](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_6hc_direct_connection_d1.0.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_6hc_direct_connection_d1.0.png){target=_blank}
 
 
-##### Duet 3 Mini 5+
+#### Duet 3 Mini 5+
 
 On the Duet 3 Mini 5+ connect the CAN_FD socket to the 2 CAN pins on the Toolboard, and terminate the other 2 CAN pins.
 
 [![Duet 3 Roto Toolbpoard connected to Duet 3 mini 5+](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_mini5+_direct_connection_d1.0.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_mini5+_direct_connection_d1.0.png){target=_blank}
 
-##### Duet 3 Tool Distribution Board
+#### Duet 3 Tool Distribution Board
 
 You can use the Roto tool board with the existing Tool Distribution Board (TDB) like this:
 
@@ -228,13 +226,13 @@ If it's more than 1m:
 * Run two twisted pairs from the 4-pin connector on the TDB to a junction point no more than 1m from the Roto Tool Board, then use the Roto Tool Board cable to connect the Roto Tool Board to that junction.
 
 
-##### Daisy Chaining
+#### Daisy Chaining
 
 Multiple Duet 3 Roto toolboards can be connected by daisy chaining the CAN bus connection. Ideally the stubs of the bus should be kept as short as possible so the Daisy chaining should be made at the XT30 connector. Connect two wires for CAN_L, and two wires for CAN_H. Ideally these wires should be twisted in two pairs (CAN_H and CAN_L in 1 pair, the second CAN_H and CAN_L in the other pair). One pair then goes to the  mainboard or other CAN-FD board earlier in the bus, the other pair goes to the next Roto Toolboard. 
 
 Note only the last CAN-FD device on the bus should have the termination resistor fitted.
 
-#### Terminating resistor
+### Terminating resistor
 
 Fit the 2.0mm pitch jumper on the CAN Termination resistor jumper pins if the Roto Toolboard is to be the last device on the CAN_FD bus.
 
