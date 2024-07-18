@@ -2,7 +2,7 @@
 title: Connecting a Z probe - BLTouch
 description: This page covers wiring and configuration of the BLTouch and similar probes
 published: true
-date: 2024-05-20T15:43:26.470Z
+date: 2024-07-18T16:00:29.477Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-20T15:11:02.464Z
@@ -133,9 +133,9 @@ If you have the older BLTouch (before V3.0), the output is 5V by default. Howeve
 * **Either:** Connect a 240 ohm resistor between Probe GND and Probe IN.
 * **Or:** Cut the PCB trace on the BLTouch to reduce the output to 3.3V as described in the instructions for your BLTouch version. See [https://www.antclabs.com/](https://www.antclabs.com/){target=_blank}
 
-All BLTouch V3.0 and later are 3.3V output by default, though can be set to 5V output.
+This does not apply to other probes, eg BLTouch V3.0 and later, BIQU Microprobe, Creality CR Touch, which output 3.3V by default. Though be aware some can be changed to 5V output. 
 
-The Z probe input on the Duet 2 WiFi/Ethernet rev 1.04 and later is 30V tolerant, so it doesn't matter whether you reduce the output of the BLTouch to 3.3V or leave it at 5V.
+Also does not apply to Duet 2 WiFi/Ethernet rev 1.04 and later as the Z probe input is 30V tolerant, so it doesn't matter whether you reduce the output of the probe to 3.3V or leave it at 5V.
 
 ### Duet 2 WiFi/Ethernet with Duex 2, Duex 5 or Expansion Breakout Board
 
@@ -160,9 +160,9 @@ If you have the older BLTouch (before V3.0), the output is 5V by default. Howeve
 * **Either:** Connect a 240 ohm resistor between Probe GND and Probe IN.
 * **Or:** Cut the PCB trace on the BLTouch to reduce the output to 3.3V as described in the instructions for your BLTouch version. See [https://www.antclabs.com/](https://www.antclabs.com/){target=_blank}
 
-All BLTouch V3.0 and later are 3.3V output by default, though can be set to 5V output.
+This does not apply to other probes, eg BLTouch V3.0 and later, BIQU Microprobe, Creality CR Touch, which output 3.3V by default. Though be aware some can be changed to 5V output. 
 
-The Z probe input on the Duet 2 WiFi/Ethernet rev 1.04 and later is 30V tolerant, so it doesn't matter whether you reduce the output of the BLTouch to 3.3V or leave it at 5V.
+Also does not apply to Duet 2 WiFi/Ethernet rev 1.04 and later as the Z probe input is 30V tolerant, so it doesn't matter whether you reduce the output of the probe to 3.3V or leave it at 5V.
 
 ### Duet 2 Maestro
 
