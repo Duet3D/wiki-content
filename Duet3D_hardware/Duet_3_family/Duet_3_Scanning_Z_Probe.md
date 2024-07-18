@@ -2,19 +2,19 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-07-16T15:22:38.595Z
+date: 2024-07-18T16:37:20.197Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
 ---
 
-![duet_3_szp_with_12mm_coil.jpg](/duet_boards/duet_3_can_expansion/duet_3_szp/duet_3_szp_with_12mm_coil.jpg =600x)
+![duet_3_szp_with_12mm_coil.jpg](/duet_boards/duet_3_can_expansion/duet_3_szp/duet_3_szp_with_12mm_coil.jpg =600x){target=_blank}
 
 # Introduction
 
 The Duet 3 Scanning Z probe is a CAN-FD connected inductive sensing board, with compatible inductive PCB coils. It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly. An accelerometer has been added to the PCB as well to allow for the SZP board to also be used for input shaping calibration.
 
-![image_792points.png](/duet_boards/duet_3_can_expansion/duet_3_szp/image_792points.png =800x)
+![image_792points.png](/duet_boards/duet_3_can_expansion/duet_3_szp/image_792points.png =800x){target=_blank}
 Example mesh of 792 points that took ~20seconds to produce.
 
 
@@ -23,11 +23,11 @@ Example mesh of 792 points that took ~20seconds to produce.
 ## Hardware specification
 
 |---|---|
-| **Processor** | [ATSAMC21G18A](https://www.microchip.com/en-us/product/ATSAMC21G18A) |
+| **Processor** | [ATSAMC21G18A](https://www.microchip.com/en-us/product/ATSAMC21G18A){target=_blank} |
 | **Processor features** | 32-bit, 48MHz ARM Cortex M0+, 256KB Flash, 32KB RAM |
 | **Networking/Comms** | CAN-FD interconnect to Duet 3 Tool Distribution Board or Duet 3 Mainboard; serial port |
-| **Scanning IC** | [LDC1612](https://www.ti.com/product/LDC1612) |
-| **Accelerometer** | [LIS2DW12](https://www.st.com/en/mems-and-sensors/lis2dw12.html)  |
+| **Scanning IC** | [LDC1612](https://www.ti.com/product/LDC1612){target=_blank} |
+| **Accelerometer** | [LIS2DW12](https://www.st.com/en/mems-and-sensors/lis2dw12.html){target=_blank}  |
 | **Power monitoring** | VIN voltage reporting |
 | **Input power voltage** | 5V |
 | **Power Consuption** | <200mA |
@@ -37,16 +37,15 @@ Example mesh of 792 points that took ~20seconds to produce.
 
 * Compatible RepRapFirmware versions: RRF 3.5 or later
 
-<!--- Upsate with links
 ## Open source
 
 Importantly Duets are Open:
 
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE).
-* All hardware [source files](https://github.com/Duet3D/Duet3-SZP) are available on Github.
-* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
---->
+* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE){target=_blank}.
+* All hardware [source files](https://github.com/Duet3D/Duet3-ScanningZProbe){target=_blank} are available on Github.
+* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl){target=_blank} web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware){target=_blank} are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank} and [Eclipse](https://eclipse.org/){target=_blank} using open tools means the barrier to getting involved is as low as possible.
+
 
 # Physical properties
 
@@ -56,11 +55,6 @@ There are three M2 mounting holes and overall dimensions are 38mmx20mm
 
 [![Diagram showing the dimensions and mounting holes for the Duet 3 SZP v1.0](/duet_boards/duet_3_can_expansion/duet_3_szp/szp_dimensions.png)](/duet_boards/duet_3_can_expansion/duet_3_szp/szp_dimensions.png){target=_blank}
 
-<!---
-### 3d Model
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/Toolboard_1LC_v1.3/Duet3_TB_1LC_v1.3_STEP.zip){target=_blank}.
---->
-
 ## Coil dimensions
 
 ## Tabs {.tabset}
@@ -69,33 +63,30 @@ The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Tool
 
 ![Diagram showing the outer dimensions of the 12mm Coil](/duet_boards/duet_3_can_expansion/duet_3_szp/12mm.png =500x)
 
-<!---
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/Toolboard_1LC_v1.3/Duet3_TB_1LC_v1.3_STEP.zip){target=_blank}.
---->
-
 ### 15mm Coil
 
 ![Diagram showing the outer dimensions of the 15mm Coil](/duet_boards/duet_3_can_expansion/duet_3_szp/15mm.png =500x)
 
-<!---
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Toolboard-1LC/blob/master/Toolboard_1LC_v1.3/Duet3_TB_1LC_v1.3_STEP.zip){target=_blank}.
---->
-
 ## Mounting
 
-The SZP board can be mounted anywhere within reach of the supplied FFC cable (100mm).
-
-The bottom of the SZP coil should be around 1 to 2mm above the tip of the nozzle, so that when scanning the bed the G31 trigger height can be set to around 2mm to avoid the nozzle contacting the bed, while keeping the coil fairly close to the bed.
+* The SZP board can be mounted anywhere within reach of the supplied FFC cable (100mm).
+* Duet3D supply two coils, a 12mm coil and a 15mm coil. In theory the 12mm coils are higher resolution than the 15mm coils but we need more testing to confirm which is best, so we provide both.
+* Make sure there is no metal in the 30mm ABOVE the coil, or it will pick this up and give false readings
+* The bottom of the SZP coil should be around 1 to 2mm above the tip of the nozzle. The G31 Z trigger height can be set to around 2mm, so the coil is 4mm from the bed, to avoid the nozzle contacting the bed while keeping the coil close enough to the bed to get an accurate reading.
+* Route the SZP ribbon cable away from the coil, ie make sure it doesn't go over the coil
+* Ensure that the ribbon cable is FULLY inserted into the tiny connector, at both ends. Try reseating this if you continue to get erratic readings
+* You can use M2.5 countersunk screws (often supplied with smaller fans) to mount the coil, which stick out about 0.7mm. M3 countersunk screws stick out a bit further. There are M3 screws with low profile heads, usually between 0.8mm and 1mm; search for "m3 ultra low profile thin head".
 
 Here is an example with it mounted on a Mini Stealth Burner tool on a Voron:
+
 ![tridex_mount4.jpg](/duet_boards/duet_3_can_expansion/duet_3_szp/tridex_mount4.jpg =400x)
 
 Note: this board is a v0.1 development board; CAN_L and CAN_H are swapped on the silkscreen.
 
 ### STEP file
 
-The STEP file for the board is available here:
-https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0
+The STEP file for the SZP board is available here: [https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0](https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0)
+STEP files of both coils are available [on Github here](https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/coils/v0.2){target=_blank}.
 
 # Physical connections
 
@@ -104,17 +95,8 @@ https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0
 Wiring on v1.0 board is:
 GND - 5V - CAN_L - CAN_H
 
-![szp_wiring_01.jpg](/duet_boards/duet_3_can_expansion/duet_3_szp/szp_wiring_01.jpg =400x)
+![szp_wiring_01.jpg](/duet_boards/duet_3_can_expansion/duet_3_szp/szp_wiring_01.jpg =400x){target=_blank}
 
-<!---
-## Wiring notes
-
-* **JST ZH:** (CAN, v1.0 headers) These are difficult to crimp because they are so small, so Duet3D supply pre-terminated connectors. You can connect longer wires to them by hand soldering or using small size (white) solder sleeves.
-**NOTE:** Some of the supplied JST ZH pre-terminated connectors may have a different order for the colours of the wires! Please check your wiring before powering on.
-* **Screw terminals:** These are not high current so fitting the wires directly into the screw terminals is fine. Using small ferrules is also fine; Duet3D supply 0.5mm^2 white ferrules.
-* We recommend connecting the hot end metalwork to ground on the toolboard via a resistor (10k to 1M Ohm), if it is not grounded through its mounting system. This will prevent the hot end building up static charge, which might otherwise occur as filament is extruded and may then flash over to the tool board thermistor input, causing damage.
-* On the v1.3 toolboard the mounting screw holes are all grounded via 100K resistors to provide a path to ground for any static build up in the extruders, assuming the toolboard is mounted to the extruder.
---->
 ## Description of Connections
 
 Duet 3 Scanning Z probe has the following connectors:
@@ -123,7 +105,6 @@ Duet 3 Scanning Z probe has the following connectors:
 |--
 | 4-pin JST PA | GND, 5V, CAN_L, CAN_H| +5V power and CAN|
 | 4-pin 0.5mm pitch FFC | Temp, VSSA, COILA, COILB | Connection for FFC cable to coil|
-
 
 ## LED indications
 
@@ -134,11 +115,11 @@ LEDs are provided to indicate the following:
 | **ACT** | Green | Indicates activity on the CAN-FD bus |
 | **STATUS** | Red | Status LED. See description below |
 
-**Status LED:** In normal use, the red LED flashes slowly in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
+**Status LED:** In normal use, the red LED flashes slowly in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes){target=_blank}.
 
 ## Power wiring
 
-Supply 5V to the GND and 5V pins of the 4-pin JST PA power connector on the board, observing the correct polarity.
+Supply 5V to the GND and 5V pins of the 4-pin JST PA power/CAN connector on the board, observing the correct polarity. Connect 5V and GND pins to a source of 5V (e.g. an IO port on the Duet 3 mainboard, expansion board or toolboard).
 
 > If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
 >
@@ -147,7 +128,9 @@ Supply 5V to the GND and 5V pins of the 4-pin JST PA power connector on the boar
 
 ## CAN
 
-Connect the 4-pin CAN and power connector to a source of 5V (e.g. an IO port on the Duet 3 mainboard), connect the CAN to the CAN-FD bus. If just using an SZP and a mainboard with no tool boards or other Duet 3 expansion boards, CAN can be connected directly to:
+Connect CAN-FD wires to CAN_H and CAN_L pins of the 4-pin CAN and power connector. Connect the CAN_H and CAN_L pins to the CAN-FD bus. 
+
+If just using an SZP and a mainboard with no tool boards or other Duet 3 expansion boards, CAN can be connected directly to:
 * the two-pin KK CAN connector on the Duet 3 Mini 5+
 * the RJ11 CAN1 port (not CAN0) on Duet 3 Mainboard 6HC and 6XD
 
