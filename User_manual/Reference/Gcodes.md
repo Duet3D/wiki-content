@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-12T12:16:35.973Z
+date: 2024-07-19T13:54:30.518Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4724,7 +4724,7 @@ Save current parameters to the sys/config-override.g on the SD card, similar to 
 * M307 auto tune results
 * PID parameters, if you used M301 to override the auto tune PID settings
 * Delta printer M665 and M666 settings
-* Any M208 axis limits that were determined using a G1 S3 move
+* Any M208 axis limits that were determined using a G1 H3 (or S3 in RRF 2.x and earlier) move
 * If the P31 parameter is used, the G31 trigger height, trigger value and X and Y offsets for each possible Z probe type (in older firmware versions the G31 parameters are stored even if the P31 parameter is not present)
 * If the P10 parameter is present, the G10 tool offsets
 
