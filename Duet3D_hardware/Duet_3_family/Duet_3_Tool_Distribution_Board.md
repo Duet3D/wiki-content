@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2024-07-19T14:14:09.057Z
+date: 2024-07-19T16:25:22.504Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -73,38 +73,60 @@ The Tool Distribution Board does this by extending the CAN bus internally.
 
 ## Connecting expansion and tool boards
 
-Tool Distribution Board supplies convenient places to connect either a loop in the CAN bus (4-wire connection) or a stub (2-wire connection). Connect expansion and tool boards by:
+Tool Distribution Board supplies convenient places to connect either a loop in the CAN bus (4-wire connection) or a stub (2-wire connection). The type of connection can be mixed as necessary, so long as the continuity of the CAN bus is preserved. Connect expansion and tool boards by:
 
 ### 4-wire connection
 
+Expansion and tool boards that have a two pairs of CAN pins, or two RJ11 ports, can be connected as a loop in the CAN bus. This includes the **Duet 3 1LC, 3HC, 1XD, 1HCL and M23CL**.
+
 [![duet_3_tdb_can_wiring_01.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_01.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_01.jpg){target=_blank}Originally, the Tool Distribution Board was developed to provide an easy way to connect [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) boards. The supplied cables connect directly to that board, but can be adapted to connect other 4-wire boards. To connect:
 * Remove the CAN bypass jumpers from the selected Tool output
-* Connect the cable between the Tool Distribution Board and tool board
+* Connect the cable between the Tool Distribution Board and expansion or tool board
 * Of the four wires, one pair carries the CAN bus to the tool board, and the other returns from the board, to loop on to the next tool output.
 * Make sure CAN_H wires connect to CAN_H pins only, and CAN_L wires connect to CAN_L pins only.
+* Up to four expansion or tool boards can be connected.
 
 <p style="clear:both"></p>
 
-[![duet_3_tdb_can_wiring_02.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_02.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_02.jpg){target=_blank}As the Tool Distribution Board is just providing a convenient place to connect a loop in the CAN bus, multiple boards can be connected in each loop from the board:
+[![duet_3_tdb_can_wiring_02.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_02.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_02.jpg){target=_blank}As the Tool Distribution Board is just providing a convenient place to connect a loop in the CAN bus, multiple boards can be connected in each loop from the board.
 * Remove the CAN bypass jumpers from the selected Tool output
 * Connect the cable between the Tool Distribution Board and multiple boards
 * The CAN loop extends from the CAN_OUT pair of pins of the Tool Distribution Board, through each  expansion board, and back to the CAN_IN pair of pins.
 * Make sure CAN_H wires connect to CAN_H pins only, and CAN_L wires connect to CAN_L pins only.
-
-### 2-wire connection
-
-To do
-
-[![duet_3_tdb_can_wiring_03.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_03.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_03.jpg){target=_blank}Expansion boards as stubs
+* This allows for more than one board to be connected per tool connection, and more than four boards in total.
 
 <p style="clear:both"></p>
 
-[![duet_3_tdb_can_wiring_04.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_04.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_04.jpg){target=_blank}Expansion boards as stubs
+Boards with a 2-pin only connection, eg **Duet 3 Roto toolboard, Scanning Z Probe, and mainboards when used as an expansion board**, can use a 4-wire connection, by wiring a loop of CAN wires, and having a short 'stub' of a pair of wires off the loop, connected to the board.
+(Picture to come)
+
+### 2-wire connection
 
 
-### Unused connection
+Some expansion and tool boards only have a two-pin CAN connection, eg Duet 3 Roto toolboard, Scanning Z Probe, and mainboards when used as an expansion board. This necessitates a two-wire connection. Though actually all expansion, tool, and mainboards-as-expansion boards can be connected using just two CAN wires. This is like a branch off the main CAN bus, and is called a 'stub'. There are some rules to stubs:
+* The maximum recommended stub length for the 1Mbit/sec signalling rates used by Duet is 1m, and should preferably use ferrite beads to suppress ringing.
+* Stubs can have multiple boards on them, but the total length of the stub should still not be more than 1m. 
+* The total length of all stubs should not be more than 5m.
+* The CAN bus on Duet 3 boards normally runs at 1Mbit/sec by default. If the bit rate is increased using M952, signal reflections caused by stubs will be more significant, making it more important to keep stubs short and/or use ferrite beads.
+* Stubs can be mixed with daisy-chaining to create the CAN bus that best suits your requirements.
+* Do not terminate the CAN bus at the end of a stub, unless it is the last, or only, stub.
 
-If no expansion or tool board is to be connected to a tool connector, leave the CAN bypass jumpers in place. This allows the CAN bus to continue on to the next tool connector, or the CAN OUT RJ11 connector.
+[![duet_3_tdb_can_wiring_03.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_03.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_03.jpg){target=_blank}To connect a stub to the Tool Distribution Board:
+* Fit both CAN bypass jumpers to the selected Tool output
+* Connect a 2-wire cable between the Tool Distribution Board and the expansion or tool board
+* Use either pair of pins for one board, or both for two boards (as in the images to the right)
+* Make sure CAN_H wires connect to CAN_H pins only, and CAN_L wires connect to CAN_L pins only.
+* The Tool Distribution Boards can support up to eight boards directly connected in this way, but make sure the total length of the stubs is less than 5m.
+
+
+<p style="clear:both"></p>
+
+[![duet_3_tdb_can_wiring_04.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_04.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_04.jpg){target=_blank}Stubs can support more than one board, so long as the total length of the stub is under 1m.
+
+
+### Unused tool connections
+
+If no expansion or tool board is to be connected to a tool connector, leave the CAN bypass jumpers in place. This allows the CAN bus to continue on to the next tool connector, to the termination jumper, or the CAN OUT RJ11 connector.
 
 ## Termination
 
