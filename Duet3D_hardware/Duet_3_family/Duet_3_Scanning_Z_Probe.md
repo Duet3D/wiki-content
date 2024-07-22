@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-07-22T15:35:09.124Z
+date: 2024-07-22T15:35:49.313Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -38,7 +38,8 @@ Example mesh of 792 points that took ~20seconds to produce.
 | **Maximum ambient temperature** | 75°C |
 | **Absolute maximum board temperature** | 85°C |
 
-Note: The coil PCB can likely cope with higher temperatures than those quoted above, having no active components. Duet-supplied FFC cables are rated at 80°C, but cables are available with a higher temperature rating.
+Note: The coil PCB can likely cope with higher temperatures than those quoted above, having no active components. 
+Duet-supplied FFC cables are rated at 80°C, but cables are available with a higher temperature rating.
 
 ## Firmware notes
 
