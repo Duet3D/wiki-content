@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-07-16T14:33:22.983Z
+date: 2024-07-22T10:55:33.654Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -33,8 +33,8 @@ Note the M23CL series are in active development and this documentation will be e
 | **Motor section length** | 56mm || 76mm||
 | **Total length** | 157±1mm | 107±1mm | 177±1mm | 127±1mm |
 | **Brake** | 24V, 1.5Nm| No Brake fitted| 24V, 1.5Nm| No Brake fitted|
-| **Ambient temperature**|-20°C to +50°C|||
-| **Max motor & controller temperature**|85°C|||
+| **Ambient temperature**|-20°C to +50°C||||
+| **Max motor & controller temperature**|85°C||||
 | **Input voltage** | 12V to 48V ||||
 | **Processor** | Microchip ATSAME51G19A ||||
 | **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit ||||
