@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-07-22T15:35:49.313Z
+date: 2024-07-23T11:54:45.758Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -138,11 +138,19 @@ Supply 5V to the GND and 5V pins of the 4-pin JST PA power/CAN connector on the 
 
 Connect CAN-FD wires to CAN_H and CAN_L pins of the 4-pin CAN and power connector. Connect the CAN_H and CAN_L pins to the CAN-FD bus. 
 
+[![duet_3_tdb_can_wiring_04.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_04.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_04.jpg){target=_blank}If adding the SZP to an existing Duet 3 toolboard 1LC, connect the CAN wires to one pair of wires from 1LC, and power the SZP from an IO port.
+
+This image shows the 1 LC connected to a Duet 3 Tool Distribution Board, but the 1LC could just as easily be connected to a main board.
+
+<p style="clear:both"></p>
+
 If just using an SZP and a mainboard with no tool boards or other Duet 3 expansion boards, CAN can be connected directly to:
 * the two-pin KK CAN connector on the Duet 3 Mini 5+
 * the RJ11 CAN1 port (not CAN0) on Duet 3 Mainboard 6HC and 6XD
 
-For further information on CAN connectivity, see [CAN connection](/User_manual/Machine_configuration/CAN_connection)
+For further information on CAN connectivity, see [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
+
+
 
 
 #### Terminating resistor
