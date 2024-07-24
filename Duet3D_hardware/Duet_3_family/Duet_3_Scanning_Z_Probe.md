@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-07-23T11:54:45.758Z
+date: 2024-07-24T09:51:58.352Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -187,9 +187,17 @@ All boards in the system must have different CAN addresses. SZPs are shipped set
 
 Check that you can communicate with the SZP by sending 
 
+`M115 B120`
+
+Result should be something like
+
+`Duet SZP firmware version 3.5.2 (2024-06-10 13:24:08)`
+
+For a full report, send
+
 `M122 B120`
 
-The status of the accelerometer and Inductive probe is listed at the end of the report.
+The status of the accelerometer and Inductive sensor are listed at the end of the report.
 
 ## Factory Reset
 
