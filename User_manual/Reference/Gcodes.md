@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-19T13:54:30.518Z
+date: 2024-07-24T08:30:54.871Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6181,7 +6181,8 @@ This sets the communications parameters of the serial comms channel specified by
 
 * **Pnnn** Serial channel number
 * **Bnnn** Baud rate, default 57600 (same as the default PanelDue baud rate)
-* **Snnn** Mode: 0 = PanelDue; 1 (default) = PanelDue mode, checksum or CRC required; 2 = raw mode; 3 = raw mode with checksum or CRC required; 4 = PanelDue mode, CRC required; 5 = disabled; 6 = raw mode, CRC required; 7 = Modbus RTU (if supported). Modes 2 and 3 are only supported in RRF 3.01 and later. Modes 4 and 6 are only supported in RRF 3.4 and later. Mode 5 is ony supported in RRF 3.6 and later. Mode 7 is supported by RRF 3.6 on some hardware.
+* **C"port_name"** Port name for Transmit/!Receive control of the RS485 transceiver when the mode is Modbus RTU (S7). Not required when running on Duet hardware with a built-in RS485 transceiver. Not required if the transceiver module does automatic transmit/receive switching (note that such transceivers may not work with some Modbus devices).
+* **Snnn** Mode: 0 = PanelDue; 1 (default) = PanelDue mode, checksum or CRC required; 2 = raw mode; 3 = raw mode with checksum or CRC required; 4 = PanelDue mode, CRC required; 5 = disabled; 6 = raw mode, CRC required; 7 = Modbus RTU (if supported).
 
 ### Examples
 <br>
@@ -6191,7 +6192,9 @@ M575 P1 B57600 S1
 
 ### Description
 
-P0 specifies the main serial interface (typically a USB port, or serial-over-USB), while P1 specifies an auxiliary serial port (for example, the port used to connect a PanelDue) and P2 specifies a second auxiliary port if there is one. The B parameter is the required baud rate (this parameter is typically ignored if the port is a true USB port).
+P0 specifies the main serial interface (typically a USB port), while P1 specifies an auxiliary serial port (for example, the port used to connect a PanelDue) and P2 specifies a second auxiliary port if there is one. The B parameter is the required baud rate (this parameter is ignored if the port is a true USB port).
+
+Modes 2 and 3 are supported in RRF 3.01 and later. Modes 4 and 6 are supported in RRF 3.4 and later. Mode 5 is supported in RRF 3.6 and later. Mode 7 is supported by RRF 3.6 and later on some boards.
 
 ### Notes
 
