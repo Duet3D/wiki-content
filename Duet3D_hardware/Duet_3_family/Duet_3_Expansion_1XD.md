@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2024-07-24T13:55:46.597Z
+date: 2024-07-24T13:56:32.343Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -43,7 +43,7 @@ The Duet 3 Expansion 1XD board provides step, direction and enable outputs to in
 
 * Compatible RepRapFirmware versions: RRF 3.x
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
-* The 1XD will NOT support input shaping after RRF version 3.5 and therefore it should not be used to control primary axis motors.
+* The 1XD will NOT support input shaping after RRF version 3.5 and therefore it should not be used to control primary axis motors when running RRF v3.6 and later.
 
 ## Open source
 
