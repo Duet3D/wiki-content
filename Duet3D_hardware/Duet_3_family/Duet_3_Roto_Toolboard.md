@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-07-16T14:23:34.541Z
+date: 2024-07-24T08:59:16.700Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -264,7 +264,7 @@ All boards in the system must have different CAN addresses. Toolboards are shipp
 
 Check that you can communicate with the Roto toolboard, by sending 
 
-`M115 B120`
+`M115 B121`
 
 Result should be something like
 
@@ -272,7 +272,7 @@ Result should be something like
 
 For a full report, send
 
-`M122 B120`
+`M122 B121`
 
 The status of the accelerometer and Inductive probe is listed at the end of the report.
 
@@ -344,7 +344,7 @@ For SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/T
 
 Add the following to your config.g:
 ```
-M955 P121.0 I10 ; Add accelerometer on SZP with CAN address 120 and specify orientation
+M955 P121.0 I10 ; Add accelerometer on Roto with CAN address 121 and specify orientation
 ```
 See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
 
