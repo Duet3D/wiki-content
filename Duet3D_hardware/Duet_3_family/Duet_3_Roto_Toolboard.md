@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-07-24T08:59:16.700Z
+date: 2024-07-25T10:15:24.799Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -373,7 +373,11 @@ See [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)
 
 ## Connecting a filament monitor
 
-Connector IO_1 or IO2, provides a 3.3V supply and 3.3V input signal level, suitable for a Duet3D Rotating Magnet filament monitor. 
+For filament monitoring, we recommend using the [Duet3D Roto Filament Monitor](/Duet3D_hardware/Accessories/Roto_Filament_Monitor), which is designed specifically to work with the Roto Toolboard and extruder.
+
+It is also still possible to use the [Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor)
+
+Connector IO_1 or IO2 provides a 3.3V supply and 3.3V input signal level, suitable for a Duet3D Rotating Magnet filament monitor. 
 
 See [Connecting and configuring a filament runout sensor](/User_manual/Connecting_hardware/Sensors_filament)
 
