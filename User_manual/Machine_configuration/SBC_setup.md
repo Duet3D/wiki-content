@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-12T08:24:04.735Z
+date: 2024-07-26T09:04:27.572Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -356,7 +356,9 @@ This is an optional step if you only have a single duet3 on your network. It is 
 
 ### RRF/DSF 3.5 and later
 
-Use [M550](/User_manual/Reference/Gcodes/M550){target=_blank}. This command should go in **dsf-config.g** NOT config.g.
+Send [M550](/User_manual/Reference/Gcodes/M550){target=_blank} to change the hostname, in SBC mode this change is permanent and `M550` does not need to be put in `config.g` unless you wish to use a slightly different name with spaces and/or alternative casing (e.g. to change the displayed hostname `ender3pro` to `Ender 3 Pro`, use `M550 P"Ender 3 Pro"`). 
+
+In order to change the SBC hostname, the DuetPiManagementPlugin must be running.
 
 ### RRF/DSF 3.4.x and earlier
 
