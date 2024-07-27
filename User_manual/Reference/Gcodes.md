@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-25T12:11:40.027Z
+date: 2024-07-27T09:19:30.382Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3439,6 +3439,7 @@ Request data (synchronously) from a Modbus slave device.
 * **Ann** Modbus device address
 * **Rnn** Register number to start from
 * **Bnn** How many 16-bit registers to request
+* **Fn** (optional) Modbus function code, either 3 (Read Holding Registers) or 4 (Read Input Registers, default)
 * **V"name"** (optional) name of variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Order dependency
