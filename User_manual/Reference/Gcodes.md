@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-07-27T09:19:30.382Z
+date: 2024-08-06T15:13:39.743Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2504,7 +2504,7 @@ This example sets the current line number to 123. Thus the expected next line af
 <br>
 <pre class="cblock">
 M111
-M111 P1 S4 ; enable all debugging for module 4
+M111 P4 S1 ; enable all debugging for module 4
 M111 P4 D2 ; enable just bit 1 debugging information for module 4
 M111 B1024 ; allocate a 1K debug buffer (RRF 3.5.0 post RC3 only)
 </pre>
