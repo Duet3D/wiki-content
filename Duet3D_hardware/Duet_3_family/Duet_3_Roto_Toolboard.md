@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-07-25T10:15:24.799Z
+date: 2024-08-07T15:35:47.611Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -383,7 +383,7 @@ See [Connecting and configuring a filament runout sensor](/User_manual/Connectin
 
 ## Adding an IO_3 Reflective Optical Sensor
 
-An ITR20001/T reflective optical sensor can be soldered onto the header on the board
+An ITR20001/T reflective optical sensor can be soldered onto the pads on the board, for example to implement a tool docking sensor. It is connected to pin io3_in.
 
 ![Renders of an ITR20001/T reflective optical sensor on the Roto toolboard ](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_opto.png =300x)
 
