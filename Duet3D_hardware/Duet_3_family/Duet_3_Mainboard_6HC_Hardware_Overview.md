@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-08-08T15:30:52.059Z
+date: 2024-08-08T15:34:07.551Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -345,7 +345,7 @@ On the version 1.02 boards the individual IO_x connectors have the following add
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no |  |
 | 1 | yes | no | no |  |
-| 2 | no | no | no | A jumper is provided to bypass the 10K input protection resistor to allow I2C to be used on this port. |
+| 2 | no | no | no | A jumper is provided to bypass the 10K input protection resistor to allow I2C to be used on this port.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
 | 5 | no | yes | yes |  |
