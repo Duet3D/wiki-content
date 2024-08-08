@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2024-05-17T12:18:26.795Z
+date: 2024-08-08T16:40:21.651Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -272,10 +272,10 @@ Turn the heater on from cold and time how long it takes for an obvious change to
 If necessary you can make manual adjustments to the M307 model parameters, as follows:
 
 * If during initial heating the temperature undershoots the target:
-  * RRF 3.3 and later: increase the R parameter by 5% or 10%
+  * RRF 3.3 and later: reduce the R parameter by 5% or 10%
   * RRF 3.2 and earlier: reduce the A parameter by 5% or 10%
 * If during initial heating the temperature overshoots the target:
-  * RRF 3.3 and later: reduce the R parameter by 5% or 10%
+  * RRF 3.3 and later: increase the R parameter by 5% or 10%
   * RRF 3.2 and earlier: increase the A parameter by 5% or 10%
 * Adjusting dead time (M307 D parameter):
   * If the response to temperature changes caused externally (e.g. the print cooling fan turning on) is too slow, reduce the D parameter. 
