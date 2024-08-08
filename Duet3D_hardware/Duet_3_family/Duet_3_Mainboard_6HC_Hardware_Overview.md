@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-07-16T14:15:28.608Z
+date: 2024-08-08T15:30:52.059Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -331,7 +331,9 @@ There are 9 IO headers on board. Each has pins for input, output, 3.3V, 5V and G
 
 Except as noted in the table below, an IO_x_IN pin can always be used to provide a digital input (e.g. for endstop inputs or filament monitors), and an IO_x_OUT pin can always be used to provide a digital output.
 
-IO output pins can be used as inputs, but are only 3.3V tolerant. IO input pins can be used as outputs, but have 10K protection resistors in series with them, so you would need to bypass these to use them as outputs. 
+Additionally:
+* IO output pins can be used as inputs, but are only 3.3V tolerant. When using a io_out pin as an input, you need to either enable the pullup resistor using the ^ character at the start of the port name, or use an external pullup resistor to +3.3V.
+* IO input pins can be used as outputs, but have 10K protection resistors in series with them, so you would need to bypass these to use them as outputs. Warning: it can be easy to damage the board irreparably doing this, and modifying your board will invalidate the warranty.
 
 ## Tabs {.tabset}
 
