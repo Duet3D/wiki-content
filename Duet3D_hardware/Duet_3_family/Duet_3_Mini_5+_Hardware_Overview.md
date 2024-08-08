@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2024-07-15T15:53:59.344Z
+date: 2024-08-08T16:23:24.577Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -282,7 +282,10 @@ There are 7 IO headers on board. IO_0 to IO_4 have pins for input, output, 3.3V,
 
 Except as noted in the table below, an IO_x_IN pin can always be used to provide a digital input (e.g. for endstop inputs or filament monitors), and an IO_x_OUT pin can always be used to provide a digital output.
 
-IO output pins can be used as inputs, but are only 3.3V tolerant. IO input pins can be used as outputs, but have 10K protection resistors in series with them, so you would need to bypass these to use them as outputs. On board revision v1.01 and later only, jumpers allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
+Additionally:
+* IO output pins can be used as inputs, but are only 3.3V tolerant. When using a io_out pin as an input, you need to either enable the pullup resistor using the ^ character at the start of the port name, or use an external pullup resistor to +3.3V.
+* IO input pins can be used as outputs, but have 10K protection resistors in series with them, so you would need to bypass these to use them as outputs. Warning: it can be easy to damage the board irreparably doing this, and modifying your board will invalidate the warranty.
+* On board revision v1.01 and later only, jumpers allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
 
 The individual IO_x connectors have the following capabilities:
 
