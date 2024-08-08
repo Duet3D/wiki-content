@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-07-15T15:52:55.630Z
+date: 2024-08-08T15:36:43.913Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -292,6 +292,10 @@ RepRapFirmware 3 can be configured to map these ports to the appropriate functio
 
 Except as noted in the table below, an IO_x_IN pin can always be used to provide a digital input (e.g. for endstop inputs or filament monitors), and an IO_x_OUT pin can always be used to provide a digital output.
 
+Additionally:
+* IO output pins can be used as inputs, but are only 3.3V tolerant. When using a io_out pin as an input, you need to either enable the pullup resistor using the ^ character at the start of the port name, or use an external pullup resistor to +3.3V.
+* IO input pins can be used as outputs, but have 10K protection resistors in series with them, so you would need to bypass these to use them as outputs. Warning: it can be easy to damage the board irreparably doing this, and modifying your board will invalidate the warranty.
+
 Some ports have further capabilities as shown in this table
 
 #### Specific capabilities
@@ -301,7 +305,7 @@ Capabilities of IO_0 to IO_8 are shown below.
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no | Shared with PanelDue header for UART connection|
 | 1 | yes | no | no |  |
-| 2 | no | no | no | I2C bypass jumper provided.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
+| 2 | no | no | no | A jumper is provided to bypass the 10K input protection resistor to allow I2C to be used on this port.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
 | 5 | no | yes | no |  |
