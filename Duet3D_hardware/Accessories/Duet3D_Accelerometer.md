@@ -2,7 +2,7 @@
 title: Duet3D Accelerometer
 description: A standalone accelerometer board using the LIS3DH MEMS digital motion sensor. It designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards
 published: true
-date: 2024-02-07T13:22:49.584Z
+date: 2024-08-12T18:42:06.062Z
 tags: 
 editor: markdown
 dateCreated: 2023-06-22T01:09:12.785Z
@@ -81,7 +81,7 @@ In all the images below the image of the accelerometer is shown as if stood in f
 | +Z to +Z | ![](/hardware/accelerometer/orientation/20.png){target=_blank}<br>`M955 P[##] I20` | ![](/hardware/accelerometer/orientation/21.png){target=_blank}<br>`M955 P[##] I21` | NA | ![](/hardware/accelerometer/orientation/24.png){target=_blank}<br>`M955 P[##] I24` | ![](/hardware/accelerometer/orientation/25.png){target=_blank}<br>`M955 P[##] I25` | NA |
 | +Z to -X | NA | ![](/hardware/accelerometer/orientation/41.png){target=_blank}<br>`M955 P[##] I41` | ![](/hardware/accelerometer/orientation/42.png){target=_blank}<br>`M955 P[##] I42` | NA | ![](/hardware/accelerometer/orientation/45.png){target=_blank}<br>`M955 P[##] I45` | ![](/hardware/accelerometer/orientation/46.png){target=_blank}<br>`M955 P[##] I46` |
 | +Z to -Y | ![](/hardware/accelerometer/orientation/50.png){target=_blank}<br>`M955 P[##] I50` | NA | ![](/hardware/accelerometer/orientation/52.png){target=_blank}<br>`M955 P[##] I52` | ![](/hardware/accelerometer/orientation/54.png){target=_blank}<br>`M955 P[##] I54` | NA | ![](/hardware/accelerometer/orientation/56.png){target=_blank}<br>`M955 P[##] I56` |
-| +Z to -Z | ![](/hardware/accelerometer/orientation/60.png){target=_blank}<br>`M955 P[##] I60` | ![](/hardware/accelerometer/orientation/61.png){target=_blank}<br>`M955 P[##] I61` | NA | ![](/hardware/accelerometer/orientation/64.png){target=_blank}<br>`M955 P[##] I64` | ![](//hardware/accelerometer/orientation/65.png){target=_blank}<br>`M955 P[##] I65` | NA |
+| +Z to -Z | ![](/hardware/accelerometer/orientation/60.png){target=_blank}<br>`M955 P[##] I60` | ![](/hardware/accelerometer/orientation/61.png){target=_blank}<br>`M955 P[##] I61` | NA | ![](/hardware/accelerometer/orientation/64.png){target=_blank}<br>`M955 P[##] I64` | ![](/hardware/accelerometer/orientation/65.png){target=_blank}<br>`M955 P[##] I65` | NA |
 
 # Configuration and use
 
