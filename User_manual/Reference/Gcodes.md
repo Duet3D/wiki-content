@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-06T15:13:39.743Z
+date: 2024-08-12T14:17:46.443Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2738,8 +2738,8 @@ The 'P' parameter is used to report specific information. The details vary betwe
   * NOTE: M122 P1 subfunction is provided for factory testing purposes only, so the details are liable to be changed without notice
 * P100 print a summary of recent moves (only if move logging is enabled in the firmware build)
 * P101 print the status of an attached DueX expansion board (Duet 2 only)
-* P102 print how long it takes to evaluate the square root of a 62-bit unsigned integer
-* P103 print how long it takes to evaluate sine and cosine
+* P102 print how long it takes to evaluate square roots (the type of square root depends on firmware version)
+* P103 print how long it takes to evaluate sine and cosine (not supported on expansion boards)
 * P104 print how long it takes to write a file to the SD card (specify the file size in Mbytes in the S parameter, default 10)
 * P105 print the sizes of various objects used by RepRapFirmware
 * P106 print the addresses of various objects used by RepRapFirmware
