@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-14T17:20:10.366Z
+date: 2024-08-14T17:27:23.847Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3388,7 +3388,7 @@ M260 A"x71" B19 R2            ; send 19 to address 71 (hex) and read 2 bytes bac
 
 Hex addresses are only supported in firmware 2.02 and later.
 
-## M260.1: Modbus write registers
+## M260.1: Modbus write registers or coils
 
 *Supported from firmware version 3.6*
 
@@ -3398,8 +3398,9 @@ Write data to a Modbus slave device.
 
 * **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Modbus mode using M575.
 * **Ann** Modbus slave device address
-* **Rnn** First Modbus register number to send data to
-* **Bnn:nn:nn...** 16-bit words to send
+* **Fn** (optional) Modbus function code, must be one of: 5 (Write Single Coil), 2 (Write Single Register), 15 (Write Multiple VCoils), 16 (Write Multiple Registers, default)
+* **Rnn** First Modbus coil or register number to write to
+* **Bnn:nn:nn...** One value per coil or register to write. If writing registers, each value is a 16-bit word to write. If writing coils, each value is zero to set coil off, nonzero to set coil on.
 
 ### Order dependency
 
@@ -3427,7 +3428,7 @@ Deprecated in RRF 2.02 and later. Use M260 instead.
 M261 A99 B5 ; Request 5 bytes from Address 99
 </pre>
 
-## M261.1: Modbus read input registers
+## M261.1: Modbus read registers, coils or inputs
 
 *Supported from firmware version 3.6*
 
@@ -3438,8 +3439,8 @@ Request data (synchronously) from a Modbus slave device.
 * **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Modbus mode using M575.
 * **Ann** Modbus device address
 * **Rnn** Register number to start from
-* **Bnn** How many 16-bit registers to request
-* **Fn** (optional) Modbus function code, either 3 (Read Holding Registers) or 4 (Read Input Registers, default)
+* **Bnn** How many registers,coils or inputs to request
+* **Fn** (optional) Modbus function code, must be one of: 1 (Read Coils), 2 (Read Discrete Inputs), 3 (Read Holding Registers), 4 (Read Input Registers, default)
 * **V"name"** (optional) name of variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Order dependency
