@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-14T17:27:23.847Z
+date: 2024-08-14T17:29:24.078Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3398,7 +3398,7 @@ Write data to a Modbus slave device.
 
 * **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Modbus mode using M575.
 * **Ann** Modbus slave device address
-* **Fn** (optional) Modbus function code, must be one of: 5 (Write Single Coil), 2 (Write Single Register), 15 (Write Multiple VCoils), 16 (Write Multiple Registers, default)
+* **Fn** (optional) Modbus function code, must be one of: 5 (Write Single Coil), 6 (Write Single Register), 15 (Write Multiple Coils), 16 (Write Multiple Registers, default)
 * **Rnn** First Modbus coil or register number to write to
 * **Bnn:nn:nn...** One value per coil or register to write. If writing registers, each value is a 16-bit word to write. If writing coils, each value is zero to set coil off, nonzero to set coil on.
 
