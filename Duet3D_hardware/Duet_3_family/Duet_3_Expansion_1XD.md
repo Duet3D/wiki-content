@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2024-07-24T13:56:32.343Z
+date: 2024-08-20T09:23:26.968Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -31,13 +31,14 @@ The Duet 3 Expansion 1XD board provides step, direction and enable outputs to in
 ## Operating limits
 
 |---|---|
-| External stepper driver output | Each pin can source/sink a max of 10mA. |
-| Medium current outputs | OUT0/1 up to 2A each |
-| Input power voltage | 12V to 48V |
-| Power input connector rated current | 10A maximum, or fused limit (whichever is lower)
-| Inputs/Outputs | All inputs are 30V-tolerant |
-| Fuses | 5A |
-| 5V current limit | 300mA peak total, 50mA continuous |
+| **External stepper driver output** | Each pin can source/sink a max of 10mA. |
+| **Medium current outputs** | OUT0/1 up to 2A each |
+| **Input power voltage** | 12V to 48V |
+| **Power input connector rated current** | 10A maximum, or fused limit (whichever is lower)
+| **Inputs/Outputs** | All inputs are 30V-tolerant |
+| **Fuses** | 5A |
+| **5V current limit** | 300mA peak total, 50mA continuous |
+| **Maximum ambient temperature** | 70°C |
 
 ## Firmware notes
 
