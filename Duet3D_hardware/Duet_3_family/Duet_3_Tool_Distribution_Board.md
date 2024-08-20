@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2024-07-19T16:25:22.504Z
+date: 2024-08-20T09:41:15.640Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -27,8 +27,18 @@ See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection).
 
 The Duet 3 Tool Distribution Board is supplied with:
 * Four 4-pin JST ZH connectors with 1m cables to connect CAN bus to four Tool Boards. The cables supplied are 28AWG.
+* JST VH crimps and 2-way shells for power wiring. 
 * Four pairs of 2-pin jumpers to bypass unused tool board CAN connectors.
 * CAN bus termination jumper, for use if the CAN_OUT RJ11 port is not used.
+
+## Operating limits
+
+|---|---|
+| **Input power voltage** | 12V to 32V |
+| **Power input connector rated current** | 20A maximum, or fused limit (whichever is lower)
+| **Power output connector rated current** | 5A for each tool power output |
+| **Fuses** | 4x 5A fuses for each tool power output |
+| **Maximum ambient temperature** | 70°C |
 
 # Physical properties
 
