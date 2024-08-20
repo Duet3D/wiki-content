@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-08-08T15:36:43.913Z
+date: 2024-08-20T09:20:19.928Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -67,6 +67,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **5V current limit** | 2A total on 5V including any PanelDue or other display, and any endstops/Z probes that draw significant power, and any SBC powered by the Duet. |
 | **3.3V current limit** | No more than 300mA from 3.3V external. |
 | **12V current limit** | 800mA (only used for fan outputs OUT_3 thru OUT_8, when selected) |
+| **Maximum ambient temperature** | 70°C |
 
 ## Firmware notes
 
