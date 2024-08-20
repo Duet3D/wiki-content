@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-08-07T15:35:47.611Z
+date: 2024-08-20T09:25:08.522Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -46,6 +46,7 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 | **Fuses** | None onboard. Use Duet 3 Tool Distribution Board (5A fitted), or if directly connected to a power supply, use inline fuse holder with 5A or lower fuse depending on required current draw. |
 | **5V current limit** | 700mA |
 | **3.3V current limit** | 200mA |
+| **Maximum ambient temperature** | 70°C |
 
 
 ## Firmware notes
