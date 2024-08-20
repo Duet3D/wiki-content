@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2024-07-16T14:17:41.837Z
+date: 2024-08-20T09:24:34.970Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -50,6 +50,7 @@ To make it easy to connect multiple direct driver extruders in a tool changer or
 | **Fuses** | None onboard. Use Duet 3 Tool Distribution Board (5A fitted), or if directly connected to mainboard, use inline fuse holder with 5A fuse. |
 | **5V / 3.3V current limit** | 300mA peak, 50mA continuous (combined 5V and 3.3V total current limit) |
 | **12V current limit** | 800ma total (OUT_1 and OUT_2 pins only, when 12V selected) |
+| **Maximum ambient temperature** | 70°C |
 
 ## Firmware notes
 
