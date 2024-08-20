@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2024-07-16T14:16:41.765Z
+date: 2024-08-20T09:23:48.190Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -42,6 +42,7 @@ The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, co
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **12V current limit** | 200mA |
 | **5V and 3.3V current limit** | 100mA total on 5V and 3.3V |
+| **Maximum ambient temperature** | 70°C |
 
 ## Compatible motors
 
