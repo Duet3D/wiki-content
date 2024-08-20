@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2024-08-08T16:28:00.643Z
+date: 2024-08-20T09:19:13.978Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -59,6 +59,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 | **Fuses** | 10A for V_FUSED, 15A for OUT0 (e.g. for a heated bed). |
 | **5V current limit** | 1.0A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power. |
 | **12V current limit** | 800mA (only used for outputs OUT_3 thru OUT_6, when selected) |
+| **Maximum ambient temperature** | 70°C |
 
 ## Firmware notes
 
