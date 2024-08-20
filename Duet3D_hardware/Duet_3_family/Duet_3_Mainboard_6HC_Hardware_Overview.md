@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-08-08T15:35:20.710Z
+date: 2024-08-20T09:18:34.004Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -69,6 +69,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **Fuses** | 15A for V_Fused, 15A for OUT0. |
 | **12V current limit** | 800ma (total for out3-8 ports, when 12V selected) |
 | **5V and 3.3V current limit** | 800mA total on 5V and 3.3V, of which no more than 300mA from 3.3V. |
+| **Maximum ambient temperature** | 70°C |
 
 ### Revision v1.01 and earlier
 
@@ -81,6 +82,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **Fuses** | 15A for V_Fused, 15A for OUT0. |
 | **5V current limit** | 3A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power, and any connected SBC powered by the Duet. **Note: future versions of Duet 3 MB6HC are likely to have the 5V current limit reduced to about 1.0A, which will make about 0.7A available for use by external devices.** |
 | **12V current limit** | 800ma (out4-out9 pins only, when 12V selected) |
+| **Maximum ambient temperature** | 70°C |
 
 
 
