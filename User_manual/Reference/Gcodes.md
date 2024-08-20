@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-14T17:29:24.078Z
+date: 2024-08-20T11:52:26.604Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3450,7 +3450,7 @@ The port used by the P parameter must already have been set to Modbus mode using
 ### Examples
 <br>
 <pre class="cblock">
-M261 P1 A80 R10 B2 V"var.modbusData" ; (RepRapFirmware) Read registers 10 and 11 from Modbus station 80 via the first aux port and store the result in var.modbusData
+M261 P1 A80 R10 B2 V"modbusData" ; (RepRapFirmware) Read registers 10 and 11 from Modbus station 80 via the first aux port and store the result in var.modbusData
 </pre>
 
 
