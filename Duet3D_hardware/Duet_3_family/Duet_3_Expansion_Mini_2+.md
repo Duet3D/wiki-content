@@ -2,7 +2,7 @@
 title: Duet 3 Expansion Mini 2+
 description: The Duet 3 Expansion Mini 2+ is a two driver expansion board designed to connect directly onto the expansion header of the Duet 3 mini 5+ mainboard. It provides 2 x TMC 2209 stepper motors drivers.
 published: true
-date: 2022-02-11T10:23:04.536Z
+date: 2024-08-20T09:51:24.579Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T10:24:30.415Z
@@ -33,6 +33,8 @@ The main hardware features of the Duet 3 Expansion Mini 2+ are listed below.
 | **Stepper drivers** | Up to 2.0A peak current (TBC) |
 | **Input power voltage** | 11V to 25V (Via the Duet 3 Mini 5+ expansion header) |
 | **Fuses** | No on board fuses, shared V_FUSED protection from  Duet 3 Mini 5+ |
+| **Maximum ambient temperature** | 70°C |
+
 
 ## Firmware notes
 
