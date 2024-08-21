@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Filament Monitor
 description: 
 published: true
-date: 2024-07-02T13:22:03.549Z
+date: 2024-08-21T14:28:32.034Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -31,7 +31,7 @@ The filament monitor consists of a PCB which senses the rotation of a diametrica
 | **Comms** | single wire protocol designed for compatibility with Duet 2 endstop inputs and Duet 3 IO connectors |
 | **Magnetic Encoder** | [AS5601](https://ams.com/as5601)  |
 | **Input power voltage** | 3.3V (5V compatible with a drillable via)|
-| **Max Ambient Temperature** | 75C |
+| **Maximum ambient temperature** | 85°C |
 
 
 # Tabs {.tabset}
