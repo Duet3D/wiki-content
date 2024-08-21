@@ -2,7 +2,7 @@
 title: Duet3D PanelDue
 description: 
 published: true
-date: 2024-02-08T14:24:57.079Z
+date: 2024-08-21T14:27:11.059Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-17T14:02:21.351Z
@@ -31,6 +31,8 @@ The PanelDue is a colour touch screen controller for the Duet and other 3D print
 * 2-wire async serial interface with 3.3V signal level (5V tolerant input). This is presented as a 4 pin header with 5V, Gnd and the two serial wires.
 * Connections to the onboard micro SD card socket as well as the PanelDue serial and power connections are all available via a 10-way ribbon cable.  A 300mm long ribbon cable  is the maximum recommended length.
 * PanelDue can display 7 tool/bed/chamber heaters in total on 5" and 7" screens.
+* Maximum ambient temperature: 50°C
+
 
 ![paneldue_7i_top.png](/hardware/paneldue/paneldue_7i_top.jpg =500x)
 
@@ -62,6 +64,8 @@ The original version of the PanelDue was a controller board that plugged into a 
 * Connections to the external SD card socket that is included on most compatible displays is available via a 10-way ribbon cable connector on version 2.0 PanelDue boards.
 * 4-wire cable to connect the PanelDue to your controller board for the serial and power connections.
 * PanelDue can display 7 tool/bed/chamber heaters in total on 5" and 7" screens, and 5 heaters on 4.3" screens.
+* Maximum ambient temperature: 50°C
+
 
 A PanelDue v1.1 with a  5" screen:
 
