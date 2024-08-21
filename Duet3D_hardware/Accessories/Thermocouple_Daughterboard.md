@@ -2,7 +2,7 @@
 title: Duet3D Thermocouple daughterboard
 description: Overview of the Duet 3D Thermocouple daughter board.
 published: true
-date: 2022-06-28T11:52:23.164Z
+date: 2024-08-21T16:02:08.687Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T12:01:36.003Z
@@ -18,7 +18,7 @@ The Duet range of machine controllers support one or more temperature daughterbo
 
 ## Supported hardware
 
-Each daughterboard supports 2 channels, ie two thermocouples per daughterboard. Duet mainboards and exapansion boards support none, one or two daughterboards. Refer to the table below.
+Each daughterboard supports 2 channels, ie two thermocouples per daughterboard. Duet mainboards and expansion boards support none, one or two daughterboards. Refer to the table below.
 
 | Duet board | Number of boards supported |
 |---|---|
@@ -44,6 +44,10 @@ There have been two versions of the thermocouple board.
 ## MAX31856 sensor IC details
 
 The MAX31856 performs cold-junction compensation and digitizes the signal from any type of thermocouple. The output data is formatted in degrees Celsius. This converter resolves temperatures to 0.0078125°C, allows readings as high as +1800°C and as low as -210°C (depending on thermocouple type), and exhibits thermocouple voltage measurement accuracy of ±0.15%.  See the [Maxim integrated website for more details on the MAX31856](https://www.maximintegrated.com/en/products/sensors/MAX31856.html){target=_blank}.
+
+## Operating limits
+
+* Maximum ambient temperature: 70°C
 
 ## Open source
 
