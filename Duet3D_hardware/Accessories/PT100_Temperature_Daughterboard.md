@@ -2,7 +2,7 @@
 title: Duet3D PT100 temperature sensor daughterboard
 description: Overview of the Duet3D PT100 daughterboard
 published: true
-date: 2022-06-29T10:49:55.478Z
+date: 2024-08-21T16:01:24.767Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T11:12:36.201Z
@@ -18,7 +18,7 @@ The Duet range of machine controllers support one or more temperature daughterbo
 
 ## Supported hardware
 
-Each daughterboard supports 2 channels, ie two thermocouples per daughterboard. Duet mainboards and exapansion boards support none, one or two daughterboards. Refer to the table below.
+Each daughterboard supports 2 channels, ie two thermocouples per daughterboard. Duet mainboards and expansion boards support none, one or two daughterboards. Refer to the table below.
 
 | Duet board | Number of boards supported |
 |---|---|
@@ -32,6 +32,10 @@ Each daughterboard supports 2 channels, ie two thermocouples per daughterboard. 
 | Duet 2 Maestro | 1 |
 
 Boards that support only one daughterboard can have either a Thermocouple or PT100 temperature sensor daughterboard connected, but not both.
+
+## Operating limits
+
+* Maximum ambient temperature: 70°C
 
 ## PT100 sensor support
 
