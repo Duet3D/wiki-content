@@ -2,7 +2,7 @@
 title: Duet3D Smart Effector and Carriage Adapters for delta printer
 description: 
 published: true
-date: 2023-12-14T14:20:22.375Z
+date: 2024-08-21T14:46:09.829Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T16:08:42.946Z
@@ -24,6 +24,7 @@ Note: the metal carriage and belt tensioner on the carriage adaptor plate is not
 * Power and signal connectors on top for connection to the 3D printer control electronics, to make removal of the hot end easier
 * Connectors on underside for hot end heater, hot end fan, print cooling fan and temperature sensor
 * Support for thermistor, or 2-wire PT100 temperature sensor with 2- or 4-wire connection back to electronics (version for 4-wire PT100 sensor available to special order)
+* Maximum ambient temperature: 85°C
 
 ## Compatibility
 
