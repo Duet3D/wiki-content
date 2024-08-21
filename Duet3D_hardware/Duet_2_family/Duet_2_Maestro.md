@@ -2,7 +2,7 @@
 title: Duet 2 Maestro
 description: 
 published: true
-date: 2022-02-11T11:03:28.878Z
+date: 2024-08-21T14:08:22.043Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-10T14:00:38.659Z
@@ -25,29 +25,29 @@ The main hardware features of the Duet 2 Maestro are listed below
 
 | Duet 2 Maestro ||
 |:---|:---|
-| Processor | 32-bit 120MHz ARM Cortex-M4 microcontroller, [SAM4S8C](https://www.microchip.com/wwwproducts/en/ATSAM4S8C) |
-| Processor features | 512Kb flash memory, 128Kb RAM, DMA and many peripherals. |
-| On-board stepper drivers | 5x Super quiet [TMC2224](https://www.trinamic.com/products/integrated-circuits/details/tmc2224-la/) stepper drivers. |
-| Stepper driver features | Up to 1.6A peak current, optional step interpolation from any lower microstepping setting to x256, SPI-controlled, stealthChop2 |
-| Heater outputs | 3 heater channels for a heated bed and dual extruders |
-| Thermistor/PT1000 inputs | 4 temperature sensor channels, optimised for 100K thermistors and PT1000 sensors |
-| Fan outputs | 3 PWM controlled fan connectors, 1 always-on fan connector. Voltage selectable between VIN, 5V or external supply, in 2 banks |
-| Endstop or filament monitor inputs | 5 on-board |
-| Z probe connector | 5-pin with IN/GND/MOD/3V3/5V pins |
-| Networking/Comms | Dedicated 10BaseT/100BaseTX Ethernet module; USB port; serial port. |
-| SD card interface | On-board high speed (15Mbytes/sec) SD card socket. Support for an optional external SD card socket. |
-| Power monitoring | VIN voltage monitoring allows for state save on power failure. |
+| **Processor** | 32-bit 120MHz ARM Cortex-M4 microcontroller, [SAM4S8C](https://www.microchip.com/wwwproducts/en/ATSAM4S8C) |
+| **Processor features** | 512Kb flash memory, 128Kb RAM, DMA and many peripherals. |
+| **On-board stepper drivers** | 5x Super quiet [TMC2224](https://www.trinamic.com/products/integrated-circuits/details/tmc2224-la/) stepper drivers. |
+| **Stepper driver features** | Up to 1.6A peak current, optional step interpolation from any lower microstepping setting to x256, SPI-controlled, stealthChop2 |
+| **Heater outputs** | 3 heater channels for a heated bed and dual extruders |
+| **Thermistor/PT1000 inputs** | 4 temperature sensor channels, optimised for 100K thermistors and PT1000 sensors |
+| **Fan outputs** | 3 PWM controlled fan connectors, 1 always-on fan connector. Voltage selectable between VIN, 5V or external supply, in 2 banks |
+| **Endstop or filament monitor inputs** | 5 on-board |
+| **Z probe connector** | 5-pin with IN/GND/MOD/3V3/5V pins |
+| **Networking/Comms** | Dedicated 10BaseT/100BaseTX Ethernet module; USB port; serial port. |
+| **SD card interface** | On-board high speed (15Mbytes/sec) SD card socket. Support for an optional external SD card socket. |
+| **Power monitoring** | VIN voltage monitoring allows for state save on power failure. |
 
 
 | EXPANSION ||
 |:---|:---|
-| Stepper driver expansion | Headers for two external stepper drivers with step/direction/enable interface and optional configuration via single wire UART (TMC2208 or TMC2224). |
-| PT100 and thermocouple support | Add-on daughter board available for PT100 or thermocouple support. Up to 2 daughter boards (4 channels) supported (second board available only if I2C expansion pins are not used) |
-| Servo support | One hobby servo output on the expansion header with 5V drive (shares the output with the Z probe MOD pin and the diagnostic LED) |
-| Z probe support | Support for a wide range of probes; IR sensors, BLTouch, Piezo, force-sensitive, inductive or capacitive probes. |
-| Filament monitor support | Support for the Duet3d Filament Monitor both [magnetic](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor) and [laser](/Duet3D_hardware/Accessories/Laser_Filament_Monitor) versions. |
-| LCD support | Dedicated connectors for [PanelDue](/Duet3D_hardware/Accessories/PanelDue) controller (full colour graphic touch screen controller) and 12864 mono graphics display (using ST7920 controller with 5V signal levels) |
-| Other I/O | 2 pins usable as analog inputs, GPIO, or UART. 2 pins usable as I2C or GPIO. |
+| **Stepper driver expansion** | Headers for two external stepper drivers with step/direction/enable interface and optional configuration via single wire UART (TMC2208 or TMC2224). |
+| **PT100 and thermocouple support** | Add-on daughter board available for PT100 or thermocouple support. Up to 2 daughter boards (4 channels) supported (second board available only if I2C expansion pins are not used) |
+| **Servo support** | One hobby servo output on the expansion header with 5V drive (shares the output with the Z probe MOD pin and the diagnostic LED) |
+| **Z probe support** | Support for a wide range of probes; IR sensors, BLTouch, Piezo, force-sensitive, inductive or capacitive probes. |
+| **Filament monitor support** | Support for the Duet3d Filament Monitor both [magnetic](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor) and [laser](/Duet3D_hardware/Accessories/Laser_Filament_Monitor) versions. |
+| **LCD support** | Dedicated connectors for [PanelDue](/Duet3D_hardware/Accessories/PanelDue) controller (full colour graphic touch screen controller) and 12864 mono graphics display (using ST7920 controller with 5V signal levels) |
+| **Other I/O** | 2 pins usable as analog inputs, GPIO, or UART. 2 pins usable as I2C or GPIO. |
 
 ### Notes
 **Discontinued:** Duet 2 Maestro discontinued June 2020
@@ -56,13 +56,14 @@ The main hardware features of the Duet 2 Maestro are listed below
 ## Operating limits
 
 |--|--|
-| Stepper drivers | Up to 1.6A peak current |
-| Heater outputs | Bed heater up to 18A, 2 x extruder heater up to 6A each |
-| Input power voltage | 11V to 25V |
-| Input connector rated current | 25A maximum |
-| Endstop/filament monitor inputs | STP pins are 30V-tolerant |
-| Z probe connector | IN pin is 30V-tolerant |
-| 5V current limit | 2.0A total on 5V and 3.3v, including the internal current consumption (around 200mA), any PanelDue or other display, and any endstops/Z probes that draw significant power. |
+| **Stepper drivers** | Up to 1.6A peak current |
+| **Heater outputs** | Bed heater up to 18A, 2 x extruder heater up to 6A each |
+| **Input power voltage** | 11V to 25V |
+| **Input connector rated current** | 25A maximum |
+| **Endstop/filament monitor inputs** | STP pins are 30V-tolerant |
+| **Z probe connector** | IN pin is 30V-tolerant |
+| **5V current limit** | 2.0A total on 5V and 3.3v, including the internal current consumption (around 200mA), any PanelDue or other display, and any endstops/Z probes that draw significant power. |
+| **Maximum ambient temperature** | 70°C |
 
 ## Firmware notes
 
