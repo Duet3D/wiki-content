@@ -2,7 +2,7 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2024-01-22T17:42:37.253Z
+date: 2024-08-21T14:03:38.356Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z
@@ -70,6 +70,7 @@ The feature diagram for v1.03 and earlier is below.
 | **Inputs/Outputs** | STP pins are 8V-tolerant on revision 1.04 and later, Z Probe IN pin is 30V-tolerant in revision 1.04 and later |
 | **Fuses** | 15A for bed, 7.5A for stepper drivers and extruder heaters, 1A for fans. |
 | **5V current limit** | 2.0A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power.
+| **Maximum ambient temperature** | 70°C |
 
 **Note: At high currents, it is essential to use either ferrules or solid core wire with the terminal blocks on the Duet 2 and DueX.**
 
