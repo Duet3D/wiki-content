@@ -2,7 +2,7 @@
 title: DueX2 and DueX5
 description: The DueX5 is an expansion board for the Duet 2 WiFi and Ethernet. The DueX2 was a similar board with only 2 drivers that is now discontinued.
 published: true
-date: 2023-11-24T16:06:05.582Z
+date: 2024-08-21T14:04:07.831Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-03T14:27:58.735Z
@@ -49,6 +49,7 @@ The DueX2 and DueX5 are based on the same PCB with 3 channels of steppers, heate
 | **12V current limit** | 2A total for fans and 12V header (when internal 12V is selected) |
 | **5V current limit** | (supplied by connected Duet 2) 1A total on PWM pins and fans (when internal 5V is selected) |
 | **External 5V current limit** | 3A maximum total peak current, 2A continuous total on PWM pins and fans (when external 5V is selected) |
+| **Maximum ambient temperature** | 70°C |
 
 **Note: At high currents, it is essential to use either ferrules or solid core wire with the terminal blocks on the Duet 2 and DueX2/5.**
 
