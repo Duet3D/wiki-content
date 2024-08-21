@@ -2,7 +2,7 @@
 title: Duet3D Roto Filament Monitor
 description: 
 published: true
-date: 2024-07-02T13:44:51.061Z
+date: 2024-08-21T14:43:48.509Z
 tags: 
 editor: markdown
 dateCreated: 2024-07-02T13:06:07.052Z
@@ -22,7 +22,7 @@ Duet3D filament monitors sense filament movement and so can indicate that filame
 | **Magnetic Encoder** | [AS5601](https://ams.com/as5601)  |
 | **Comms** | Direct I2C connection with the Roto Toolboard processor |
 | **Input power voltage** | 3.3V|
-| **Max Ambient Temperature** | 75C, limited by the Roto Toolboard |
+| **Max Ambient Temperature** | 70C, limited by the Roto Toolboard |
 | **LEDs** | Red and Green LEDs for state indication |
 | **Button** | Button to trigger macros |
 
