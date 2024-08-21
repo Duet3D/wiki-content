@@ -2,7 +2,7 @@
 title: Duet3D IR Probe
 description: 
 published: true
-date: 2024-06-10T12:26:49.179Z
+date: 2024-08-21T15:02:15.807Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-30T15:22:57.157Z
@@ -21,6 +21,10 @@ The sensor detects the target height by looking for the reflected light from two
 It connects to the Duet family of controllers through a dedicated probe header.
 
 # Hardware
+
+Operating limits:
+
+* Maximum ambient temperature: 85°C
 
 The IR sensor comes with:
 
