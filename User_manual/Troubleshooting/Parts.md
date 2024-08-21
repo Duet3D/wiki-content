@@ -2,7 +2,7 @@
 title: Connector and spare part numbers
 description: This is a growing list of connectors and spare part numbers. If a spare part is required that is not on the list please check the source on github or ask on the forums 
 published: true
-date: 2024-06-13T19:41:31.777Z
+date: 2024-08-21T13:57:51.422Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:43:02.549Z
@@ -16,67 +16,59 @@ dateCreated: 2021-12-05T22:43:02.549Z
 
 2.54mm Molex compatible connectors are used for everything except stepper motor and medium-current outputs. These are widely available from the usual electronic component distributors, and on eBay.
 
-* 2-way shell: 22-01-2025 or 22-01-3027 (or Würth Elektronik 61900211621)
-* 3-way shell : 22-01-2035 or 22-01-3037 (or 61900311621)
-* 4-way shell : 22-01-2045 or 22-01-3047  (or 61900411621)
-* 5-way shell : 22-01-2055 or 22-01-3057  (or 61900511621)
-* Crimp pins for all of the above: 08-50-0032 (for 22-01-20x5 series shells), 08-50-0113 or 08-50-0114 (for 22-01-30x7 shells), 61900113722DEC for the Würth Elektronik shells
+|---|---|
+| **2-way shell** | 22-01-2025 or 22-01-3027 (or Würth Elektronik 61900211621) |
+| **3-way shell** | 22-01-2035 or 22-01-3037 (or 61900311621) |
+| **4-way shell** | 22-01-2045 or 22-01-3047  (or 61900411621) |
+| **5-way shell** | 22-01-2055 or 22-01-3057  (or 61900511621) |
+| **Crimp pins for all of the above** | 08-50-0032 (for 22-01-20x5 series shells)</br>08-50-0113 or 08-50-0114 (for 22-01-30x7 shells)</br>61900113722DEC for the Würth Elektronik shells |
 
 Please note, the Molex KK compatible shells and crimp pins that we supply with Duets are usually made by Würth Elektronik. The crimp pins made by Würth should only be used with shells made by Würth.  In particular, they will not lock into Molex 22-01-20x5 shells.
 
 Stepper motor (4-pin) and medium-current (2-pin) outputs: JST VH series or compatible:
 
-* 2 way shell VHR-2N (JST) or VH396-02H (Valcon)
-* 4 way shell VHR-4N (JST) or VH396-04H (Valcon)
-* Crimps for the above: BVH-21T-P1.1B (JST) or VH396T-L (Valcon)
-
-6-pin SWD connector (JST ZH) : ZHR-6 (note it is normally easier to buy a pre crimped tail as JST ZH are quite fiddly to crimp)
+|---|---|
+| **2 way shell** | VHR-2N (JST) or VH396-02H (Valcon) |
+| **4 way shell** | VHR-4N (JST) or VH396-04H (Valcon) |
+| **Crimps for the above** | BVH-21T-P1.1B (JST) or VH396T-L (Valcon)
+| **6-pin SWD connector** | ZHR-6 (JST ZH) (note it is normally easier to buy a pre crimped tail as JST ZH are quite fiddly to crimp) |
 
 The fork connectors for the power supply are a generic "blue" max  2.5mm^2 like [this version from RS](https://uk.rs-online.com/web/p/fork-terminals/0534626/)  (many alternatives are available, for example from suppliers on eBay).
 
 ## Connectors used on Duet 3 Toolboard 1LC
 
-**Power in**: 2-pin JST VH (see above)
-
-**CAN**: 4-pin JST ZH. These are difficult to crimp because they are so small, so we supply pre-terminated connectors. You can connect longer wires to them by hand soldering or using small size (white) solder sleeves.
-
-**Stepper motor**: 4-pin JST PH
-
-**OUT_0**:  Suitable sized Ferrules (we supply 0.5mm^2 white ferrules)
+|---|---|
+| **Power in** | 2-pin JST VH (see above) |
+| **CAN** | 4-pin JST ZH. These are difficult to crimp because they are so small, so we supply pre-terminated connectors.</br>You can connect longer wires to them by hand soldering or using small size (white) solder sleeves. |
+| **Stepper motor** | 4-pin JST PH |
+| **OUT_0** | Suitable sized Ferrules (we supply 0.5mm^2 white ferrules) |
 
 ### Version 1.0 tool boards
 
-**Other screw terminals**: These are not high current so fitting the wires directly into the screw terminals is fine. Using small ferrules is also fine.
-
-**TEMP_1**: 2-pin JST ZH
-
-**IO_1** and **IO_2**: 3-pin JST ZH
+|---|---|
+| **Other screw terminals** | These are not high current so fitting the wires directly into the screw terminals is fine. Using small ferrules is also fine. |
+| **TEMP_1** | 2-pin JST ZH |
+| **IO_1** and **IO_2** | 3-pin JST ZH |
 
 ### Version 1.1 tool boards
 
-**OUT1** and **IO_0**: 4-pin JST PH
-
-**OUT2**, **IO_1** and **IO_2**: 3-pin JST PH
-
-**TEMP_0 and TEMP_1**: 2-pin JST PH
+|---|---|
+| **OUT1** and **IO_0** | 4-pin JST PH |
+| **OUT2**, **IO_1** and **IO_2** | 3-pin JST PH |
+| **TEMP_0 and TEMP_1** | 2-pin JST PH |
 
 ## Connectors used on Duet 3 Roto Toolboard
 
-**CAN and power**: XT30 2+2
-
-**Stepper motor**: 4-pin Molex Microfit 2x2
-
-**OUT_0, TEMP_0, TEMP_1**: 2-pin Molex Microfit
-
-**OUT_2**: 3-pin Molex Microfit
-
-**IO_1, IO_2, LED**: 3-pin JST PH2.0 	
-
-**OUT_1, IO_0**: 4-pin JST PH2.0 	
-
-**IO_3**: 4-pin footprint to mount ITR20001/T reflective optical sensor
-
-**SZP, I2C**: 4-pin 0.5mm pitch FFC
+|---|---|
+| **CAN and power** | XT30 2+2 |
+| **Stepper motor** | 4-pin Molex Microfit 2x2 | 
+| **OUT_0, TEMP_0, TEMP_1** | 2-pin Molex Microfit | 
+| **OUT_2** | 3-pin Molex Microfit | 
+| **IO_1, IO_2, LED** | 3-pin JST PH2.0 | 
+| **OUT_1, IO_0** | 4-pin JST PH2.0 | 
+| **IO_3** | 4-pin footprint to mount ITR20001/T reflective optical sensor | 
+| **SZP, I2C** | 4-pin 0.5mm pitch FFC | 
+| **FFC cable** | 4-way, 0.5mm pitch, opposite side contacts, Flat Flexible cable, eg [from Mouser](https://www.mouser.co.uk/c/connectors/ffc-fpc/ffc-fpc-jumper-cables/?contact%20location=Opposite%20Side%20Contacts&number%20of%20conductors=4%20Conductor&pitch=0.5%20mm).</br>Duet3D supply 50mm and 150mm long cables that are rated for 80C.</br>Different lengths, and higher temperature rated FFCs are available. | 
 
 ## Voltage regulators
 
