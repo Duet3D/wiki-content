@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-22T10:30:03.829Z
+date: 2024-08-22T10:38:35.992Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8452,6 +8452,68 @@ The event type names are firmware-dependent. In RepRapFirmware they are: heater-
 The meaning of the device number depends on the event type. For a driver error it is the driver number. For a heater fault it is the heater number. For a filament error it is the extruder number.
 
 The meaning of the optional additional parameter also depends on the event type. For example, for a driver error it is the driver status.
+
+## M970
+
+*Support in RepRapFirmware 3.6 and later*
+
+Motor drivers on Duet 3 6HC allow for direct control of the motor phases. This command allows setting the motion controller to use phase stepping instead of step and direction.
+
+Phase stepping can be enabled/disabled for each axis/extruder individually. 
+
+In phase stepping, the motor current is scaled based on the current speed and acceleration. The current will not exceed the value set by [M906](/User_manual/Reference/Gcodes/M906){target=_blank}.
+
+### Parameters
+
+* **X,Y,Z,E** 0 or 1 to disable/enable phase stepping for that axis.
+
+### Order dependency
+
+This command must appear after any M584 command that refers to the same axis.
+
+### Examples
+<br>
+<pre class="cblock">
+M917 X1 Y0 Z0 E1:0
+</pre>
+
+Enable phase stepping for `X` and `E0`, enable step direction for `Y`, `Z`, and `E1`.
+
+### Notes
+
+The standstill current factor set by [M917](/User_manual/Reference/Gcodes/M917){target=_blank} is also used to scale the motor current. The scaled current will be a minimum of the current * standstill current factor.
+
+## M970.1
+
+*Support in RepRapFirmware 3.6 and later*
+
+Configure the velocity constant used to scale the motor current in phase stepping.
+
+### Parameters
+
+* **X,Y,Z,E** Velocity constant, default 1000.0
+
+### Examples
+<br>
+<pre class="cblock">
+M917 X1000.0 Y2000.0 Z1000.0 E1000.0:1000.0
+</pre>
+
+## M970.2
+
+*Support in RepRapFirmware 3.6 and later*
+
+Configure the acceleration constant used to scale the motor current in phase stepping.
+
+### Parameters
+
+* **X,Y,Z,E** Acceleration constant, default 50000.0
+
+### Examples
+<br>
+<pre class="cblock">
+M917 X50000.0 Y50000.0 Z50000.0 E50000.0:50000.0
+</pre>
 
 ## M997: Perform in-application firmware update
 
