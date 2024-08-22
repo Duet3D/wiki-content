@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-20T11:52:26.604Z
+date: 2024-08-22T10:30:03.829Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6423,6 +6423,8 @@ M581 T2 P-1 ; don't invoke trigger 2 on any input change any more
 * Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
 * A maximum of 32 triggers can be configured on Duet 3 6HC/6XD, a maximum of 16 on Duet 3 Mini 5+ and Duet 2 WiFi/Ethernet/Maestro.
 * **Warning**: if executed during a job, and more than one line long the GCode within the trigger file may be executed between later commands from the job. Bounding the trigger file with M25 and M24 may help, but this will cause warnings if the trigger happens outside of a job. The use of M25/M24 will cause the execution of pause and resume system macros.
+
+For examples, see [Using triggers to control the Duet](/User_manual/Tuning/Triggers){target=_blank} and [Connecting and emergency stop](/User_manual/Connecting_hardware/IO_E_stop){target=_blank}.
 
 #### RepRapFirmware 3.0
 
