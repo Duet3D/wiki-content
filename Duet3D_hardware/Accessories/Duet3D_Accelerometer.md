@@ -2,7 +2,7 @@
 title: Duet3D Accelerometer
 description: A standalone accelerometer board using the LIS3DH MEMS digital motion sensor. It designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards
 published: true
-date: 2024-08-12T18:42:06.062Z
+date: 2024-08-22T14:44:50.767Z
 tags: 
 editor: markdown
 dateCreated: 2023-06-22T01:09:12.785Z
@@ -20,6 +20,7 @@ Various Duet 3 toolboards have a builtin accelerometer. However for systems not 
 | **Supply voltage** | 3.3V - Do not connect to 5V it will be damaged ||
 | **Interface** | SPI Slave - Duet Mainboard is SPI master||
 | **LED** | There is a green LED on the board to indicate power is applied ||
+| **Maximum ambient temperature** | 85°C |
 | **Additional details** | [LIS3DH datasheet](https://www.st.com/resource/en/datasheet/lis3dh.pdf){target=_blank} | [LIS2DW12 datasheet](https://www.st.com/resource/en/datasheet/lis2dw12.pdf){target=_blank} |
 
 ## Firmware notes
