@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-22T11:19:21.786Z
+date: 2024-08-22T14:18:45.276Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5818,7 +5818,10 @@ For RRF 3.4, if you are using a quadrature encoder on the motor shaft,  the enco
 
 ## M569.2: Read or write stepper driver register
 
-*Supported in RRF 3.3 and later on main boards with TMC22xx or TMC51xx stepper drivers.*
+*Duet 3 Expansion 1HCL reading of stepper driver registers fixed in RRF 3.5.1. 
+Supported in RRF 3.4.0 and later on main boards and CAN-connected boards with TMC22xx or TMC51xx stepper drivers. 
+Supported in RRF 3.3 and later on main boards only, with TMC22xx or TMC51xx stepper drivers.*
+
 
 ### Parameters
 
