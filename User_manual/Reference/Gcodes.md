@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-22T10:38:35.992Z
+date: 2024-08-22T11:18:33.196Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3409,8 +3409,57 @@ The port used by the P parameter must already have been set to Modbus mode using
 ### Examples
 <br>
 <pre class="cblock">
-M260 A5 R10 B956               ; write 956 to register 10 of the device at address 5
-M260 A8 R20 B123:456           ; write 123 to register 20 and 456 to register 21 of the device at address 8
+M260.1 P1 A5 R10 B956               ; write 956 to register 10 of the device at address 5
+M260.1 P1 A8 R20 B123:456           ; write 123 to register 20 and 456 to register 21 of the device at address 8
+</pre>
+
+## M260.2: UART write
+
+*Supported from firmware version 3.6*
+
+Write data to a generic UART device.
+
+### Parameters
+
+* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Modbus mode using M575.
+* **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
+
+### Order dependency
+
+The port used by the P parameter must already have been set to Modbus mode using [M575](/User_manual/Reference/Gcodes/M575).
+
+### Examples
+<br>
+<pre class="cblock">
+M260.2 P1 B20											; write 20 to register 10 of the device at address 5
+M260.2 P1 B72:101:108:108:111:32:119:111:114:108:100 	; write "Hello world" (when converted to ascii)
+M260.2 P1 B{0x02, 0x30, 0x03}								; writing data as hex
+M260.2 P1 B{0xFF01, 257}										; write 0x01:0x01 to UART as data is truncated to 1 byte
+</pre>
+
+## M260.3: Write to Nordson Ultimus V
+
+*Supported from firmware version 3.6*
+
+Write data to a Nordson Ultimus V via UART. https://www.manualslib.com/manual/2917329/Nordson-Ultimus-V.html?page=46#manual
+- First the `ENQ` `ACK` handshake is completed.
+- `STX`, number of bytes, the checksum, and `ETX` are automatically added to the data provided to create the full message.
+- Reads the success of failure from the device.
+- Completes the transaction with `EOT`
+
+### Parameters
+
+* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Modbus mode using M575.
+* **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
+
+### Order dependency
+
+The port used by the P parameter must already have been set to Modbus mode using [M575](/User_manual/Reference/Gcodes/M575).
+
+### Examples
+<br>
+<pre class="cblock">
+M260.2 P1 B{0x50, 0x53, 0x20, 0x20, 0x30, 0x35, 0x30, 0x30}								; complete handshake then send "{STX}08PS  0500F0{ETX}"
 </pre>
 
 ## M261: i2c Request Data
@@ -3450,7 +3499,30 @@ The port used by the P parameter must already have been set to Modbus mode using
 ### Examples
 <br>
 <pre class="cblock">
-M261 P1 A80 R10 B2 V"modbusData" ; (RepRapFirmware) Read registers 10 and 11 from Modbus station 80 via the first aux port and store the result in var.modbusData
+M261.1 P1 A80 R10 B2 V"modbusData" ; (RepRapFirmware) Read registers 10 and 11 from Modbus station 80 via the first aux port and store the result in var.modbusData
+</pre>
+
+## M261.2: UART read
+
+*Supported from firmware version 3.6*
+
+Request data (synchronously) from a UART device.
+
+### Parameters
+
+* **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Modbus mode using M575.
+* **Bnn** How many bytes to read
+* **V"name"** (optional) name of variable to receive data into. If this parameter is not present then the data read is output to the console.
+
+### Order dependency
+
+The port used by the P parameter must already have been set to Modbus mode using [M575](/User_manual/Reference/Gcodes/M575).
+
+### Examples
+<br>
+<pre class="cblock">
+M261.2 P1 B2 V"data" 	; (RepRapFirmware) Read 2 bytes from the first aux port and store the result in var.data
+M261.2 P1 B0			; Clear UART buffer
 </pre>
 
 
@@ -8453,7 +8525,7 @@ The meaning of the device number depends on the event type. For a driver error i
 
 The meaning of the optional additional parameter also depends on the event type. For example, for a driver error it is the driver status.
 
-## M970
+## M970 Enable/disable phase stepping
 
 *Support in RepRapFirmware 3.6 and later*
 
@@ -8483,7 +8555,7 @@ Enable phase stepping for `X` and `E0`, enable step direction for `Y`, `Z`, and 
 
 The standstill current factor set by [M917](/User_manual/Reference/Gcodes/M917){target=_blank} is also used to scale the motor current. The scaled current will be a minimum of the current * standstill current factor.
 
-## M970.1
+## M970.1 Configure phase stepping velocity constant
 
 *Support in RepRapFirmware 3.6 and later*
 
@@ -8499,7 +8571,7 @@ Configure the velocity constant used to scale the motor current in phase steppin
 M917 X1000.0 Y2000.0 Z1000.0 E1000.0:1000.0
 </pre>
 
-## M970.2
+## M970.2 Configure phase stepping acceleration constant
 
 *Support in RepRapFirmware 3.6 and later*
 
