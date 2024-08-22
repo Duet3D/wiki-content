@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-22T11:18:33.196Z
+date: 2024-08-22T11:19:21.786Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3444,7 +3444,7 @@ M260.2 P1 B{0xFF01, 257}										; write 0x01:0x01 to UART as data is truncated
 Write data to a Nordson Ultimus V via UART. https://www.manualslib.com/manual/2917329/Nordson-Ultimus-V.html?page=46#manual
 - First the `ENQ` `ACK` handshake is completed.
 - `STX`, number of bytes, the checksum, and `ETX` are automatically added to the data provided to create the full message.
-- Reads the success of failure from the device.
+- Reads the success or failure message from the device.
 - Completes the transaction with `EOT`
 
 ### Parameters
