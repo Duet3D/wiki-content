@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-22T15:52:52.829Z
+date: 2024-08-22T15:54:37.130Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6309,7 +6309,7 @@ This sets the communications parameters of the serial comms channel specified by
 
 * **Pnnn** Serial channel number
 * **Bnnn** Baud rate, default 57600 (same as the default PanelDue baud rate)
-* **C"port_name"** Port name for Transmit/!Receive control of the RS485 transceiver when the mode is Modbus RTU (S7). Not required when running on Duet hardware with a built-in RS485 transceiver. Not required if the transceiver module does automatic transmit/receive switching (note that such transceivers may not work with some Modbus devices).
+* **C"port_name"** Port name for Transmit/!Receive control of the RS485 transceiver when the mode is Device and you are using it for Modbus RTU (S7). Not required when running on Duet hardware with a built-in RS485 transceiver. Not required if the transceiver module does automatic transmit/receive switching (note that such transceivers may not work with some Modbus devices).
 * **Snnn** Mode: 0 = PanelDue; 1 (default) = PanelDue mode, checksum or CRC required; 2 = raw mode; 3 = raw mode with checksum or CRC required; 4 = PanelDue mode, CRC required; 5 = disabled; 6 = raw mode, CRC required; 7 = Device, eg Modbus or UART (if supported).
 
 ### Examples
