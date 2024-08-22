@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-22T14:41:44.272Z
+date: 2024-08-22T15:52:52.829Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3399,7 +3399,7 @@ Write data to a Modbus slave device.
 
 ### Parameters
 
-* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Modbus mode using M575.
+* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
 * **Ann** Modbus slave device address
 * **Fn** (optional) Modbus function code, must be one of: 5 (Write Single Coil), 6 (Write Single Register), 15 (Write Multiple Coils), 16 (Write Multiple Registers, default)
 * **Rnn** First Modbus coil or register number to write to
@@ -3408,7 +3408,7 @@ Write data to a Modbus slave device.
 
 ### Order dependency
 
-The port used by the P parameter must already have been set to Modbus mode using [M575](/User_manual/Reference/Gcodes/M575).
+The port used by the P parameter must already have been set to Device mode using [M575](/User_manual/Reference/Gcodes/M575).
 
 ### Examples
 <br>
@@ -3425,13 +3425,13 @@ Write data to a generic UART device.
 
 ### Parameters
 
-* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Modbus mode using M575.
+* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
 * **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
 * **S"ascii data"** data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
 
 ### Order dependency
 
-The port used by the P parameter must already have been set to Modbus mode using [M575](/User_manual/Reference/Gcodes/M575).
+The port used by the P parameter must already have been set to Device mode using [M575](/User_manual/Reference/Gcodes/M575).
 
 ### Examples
 <br>
@@ -3455,13 +3455,13 @@ Write data to a Nordson Ultimus V via UART. https://www.manualslib.com/manual/29
 
 ### Parameters
 
-* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Modbus mode using M575.
+* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
 * **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
 * **S"ascii data"** data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
 
 ### Order dependency
 
-The port used by the P parameter must already have been set to Modbus mode using [M575](/User_manual/Reference/Gcodes/M575).
+The port used by the P parameter must already have been set to Device mode using [M575](/User_manual/Reference/Gcodes/M575).
 
 ### Examples
 <br>
@@ -3493,7 +3493,7 @@ Request data (synchronously) from a Modbus slave device.
 
 ### Parameters
 
-* **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Modbus mode using M575.
+* **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Device mode using M575.
 * **Ann** Modbus device address
 * **Rnn** Register number to start from
 * **Bnn** How many registers,coils or inputs to request
@@ -3502,7 +3502,7 @@ Request data (synchronously) from a Modbus slave device.
 
 ### Order dependency
 
-The port used by the P parameter must already have been set to Modbus mode using [M575](/User_manual/Reference/Gcodes/M575).
+The port used by the P parameter must already have been set to Device mode using [M575](/User_manual/Reference/Gcodes/M575).
 
 ### Examples
 <br>
@@ -3518,13 +3518,13 @@ Request data (synchronously) from a UART device.
 
 ### Parameters
 
-* **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Modbus mode using M575.
+* **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Device mode using M575.
 * **Bnn** How many bytes to read
 * **V"name"** (optional) name of variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Order dependency
 
-The port used by the P parameter must already have been set to Modbus mode using [M575](/User_manual/Reference/Gcodes/M575).
+The port used by the P parameter must already have been set to Device mode using [M575](/User_manual/Reference/Gcodes/M575).
 
 ### Examples
 <br>
@@ -6310,7 +6310,7 @@ This sets the communications parameters of the serial comms channel specified by
 * **Pnnn** Serial channel number
 * **Bnnn** Baud rate, default 57600 (same as the default PanelDue baud rate)
 * **C"port_name"** Port name for Transmit/!Receive control of the RS485 transceiver when the mode is Modbus RTU (S7). Not required when running on Duet hardware with a built-in RS485 transceiver. Not required if the transceiver module does automatic transmit/receive switching (note that such transceivers may not work with some Modbus devices).
-* **Snnn** Mode: 0 = PanelDue; 1 (default) = PanelDue mode, checksum or CRC required; 2 = raw mode; 3 = raw mode with checksum or CRC required; 4 = PanelDue mode, CRC required; 5 = disabled; 6 = raw mode, CRC required; 7 = Modbus RTU (if supported).
+* **Snnn** Mode: 0 = PanelDue; 1 (default) = PanelDue mode, checksum or CRC required; 2 = raw mode; 3 = raw mode with checksum or CRC required; 4 = PanelDue mode, CRC required; 5 = disabled; 6 = raw mode, CRC required; 7 = Device, eg Modbus or UART (if supported).
 
 ### Examples
 <br>
