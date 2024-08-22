@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-22T14:18:45.276Z
+date: 2024-08-22T14:41:44.272Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3375,15 +3375,18 @@ Send and/or receive data over the i2c bus. Supported in RepRapFirmware 1.21 and 
 
 * **Ann** I2C address
 * **Bnn:nn:nn...** Bytes to send (optional in firmware 2.02 and later)
+* **S"ascii data"** (since RRF 3.6) data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
 * **Rnn** Number of bytes to receive (optional) - firmware 2.02 and later only
 
 ### Examples
 <br>
 <pre class="cblock">
-M260 A5 B65                   ; Send 'A' to address 5 now
-M260 A"x7F" B65               ; Send 'A' to address 7F (hex)
-M260 A0 B82:101:112:82:97:112 ; Send 'RepRap' to address 0
+M260 A5 B65                   ; send 'A' to address 5 now
+M260 A"x7F" B65               ; send 'A' to address 7F (hex)
+M260 A0 B82:101:112:82:97:112 ; send 'RepRap' to address 0
 M260 A"x71" B19 R2            ; send 19 to address 71 (hex) and read 2 bytes back
+M260 A5 R2                    ; read 2 bytes of data from address 5
+M260 A5 S"Hello world"        ; send "Hello world" to address 5
 </pre>
 
 Hex addresses are only supported in firmware 2.02 and later.
@@ -3401,6 +3404,7 @@ Write data to a Modbus slave device.
 * **Fn** (optional) Modbus function code, must be one of: 5 (Write Single Coil), 6 (Write Single Register), 15 (Write Multiple Coils), 16 (Write Multiple Registers, default)
 * **Rnn** First Modbus coil or register number to write to
 * **Bnn:nn:nn...** One value per coil or register to write. If writing registers, each value is a 16-bit word to write. If writing coils, each value is zero to set coil off, nonzero to set coil on.
+* **S"ascii data"** data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
 
 ### Order dependency
 
@@ -3423,6 +3427,7 @@ Write data to a generic UART device.
 
 * **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Modbus mode using M575.
 * **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
+* **S"ascii data"** data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
 
 ### Order dependency
 
@@ -3431,10 +3436,11 @@ The port used by the P parameter must already have been set to Modbus mode using
 ### Examples
 <br>
 <pre class="cblock">
-M260.2 P1 B20											; write 20 to register 10 of the device at address 5
-M260.2 P1 B72:101:108:108:111:32:119:111:114:108:100 	; write "Hello world" (when converted to ascii)
-M260.2 P1 B{0x02, 0x30, 0x03}								; writing data as hex
-M260.2 P1 B{0xFF01, 257}										; write 0x01:0x01 to UART as data is truncated to 1 byte
+M260.2 P1 B20                                         ; write 20 to register 10 of the device at address 5
+M260.2 P1 B72:101:108:108:111:32:119:111:114:108:100  ; write "Hello world" (when converted to ascii)
+M260.2 P1 B{0x02, 0x30, 0x03}                         ; writing data as hex
+M260.2 P1 B{0xFF01, 257}                              ; write 0x01:0x01 to UART as data is truncated to 1 byte
+M260.2 P1 S"Hello world"                              ; write "Hello world" to UART
 </pre>
 
 ## M260.3: Write to Nordson Ultimus V
@@ -3451,6 +3457,7 @@ Write data to a Nordson Ultimus V via UART. https://www.manualslib.com/manual/29
 
 * **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Modbus mode using M575.
 * **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
+* **S"ascii data"** data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
 
 ### Order dependency
 
@@ -3459,7 +3466,8 @@ The port used by the P parameter must already have been set to Modbus mode using
 ### Examples
 <br>
 <pre class="cblock">
-M260.2 P1 B{0x50, 0x53, 0x20, 0x20, 0x30, 0x35, 0x30, 0x30}								; complete handshake then send "{STX}08PS  0500F0{ETX}"
+M260.3 P1 B{0x50, 0x53, 0x20, 0x20, 0x30, 0x35, 0x30, 0x30}  ; complete handshake then send "{STX}08PS  0500F0{ETX}"
+M260.3 P1 S"PS  0500"                                        ; complete handshake then send "{STX}08PS  0500F0{ETX}"
 </pre>
 
 ## M261: i2c Request Data
