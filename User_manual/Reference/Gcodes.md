@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-22T15:54:37.130Z
+date: 2024-08-27T11:42:40.080Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4175,6 +4175,7 @@ Supported in RepRapFirmware v3.4 and later
 * If the P parameter is not provided, the current tool is assumed. If the S parameter is not provided, the existing coefficients are reported.
 * The units of S are PWM fraction (on a scale of 0 to 1) per mm/sec of filament forward movement.
 * This feature is intended for high flow hot ends or pellet extruders. It's not needed on regular hot ends with a 0.4mm or similar size nozzle where the temperature drop caused by extrusion is less than 1C.
+* Feedforward is not applied to nonprinting moves, i.e. extruder moves only, with no other movement parameters. Typically these are retract, reprime, and filament loading moves.
 * For calibration and examples, see the [heater feedforward](/User_manual/Connecting_hardware/Heaters_tuning#heater-feedforward) section of the 'Tuning the heater temperature control' wiki page.
 
 ## M350: Set microstepping mode
@@ -7046,13 +7047,14 @@ M592 D0 A0.01 B0.0005 ; set parameters for extruder drive 0<br>
 M592 D0 ; report parameters for drive 0
 </pre>
 
-### Notes
+### Description
 
 Most extruder drives use toothed shafts to grip the filament and drive it through the hot end. As the extrusion speed increases, so does the back pressure from the hot end, and the increased back pressure causes the amount of filament extruded per step taken by the extruder stepper motor to reduce. This may be because at high back pressures, each tooth compresses and skates over the surface of the filament for longer before it manages to bite. See [RepRap forum post here](http://forums.reprap.org/read.php?262,802277){target=_blank} and the [graph here](http://forums.reprap.org/file.php?262,file=100851,filename=graph.JPG){target=_blank} for an example.
 
-Nonlinear extrusion is an experimental feature in RepRapFirmware to compensate for this effect. The amount of extrusion requested is multiplied by (1 + min(L, A*v + B*v^2)) where v is the requested extrusion speed (calculated from the actual speed at which the move will take place) in mm/sec.
+### Notes
 
-Nonlinear extrusion is not applied to extruder-only movements such as retractions and filament loading.
+* Nonlinear extrusion is an experimental feature in RepRapFirmware to compensate for this effect. The amount of extrusion requested is multiplied by (1 + min(L, A*v + B*v^2)) where v is the requested extrusion speed (calculated from the actual speed at which the move will take place) in mm/sec.
+* Nonlinear extrusion is not applied to extruder-only movements such as retractions and filament loading.
 
 ## M593: Configure Input Shaping
 
