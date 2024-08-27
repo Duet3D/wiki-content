@@ -2,7 +2,7 @@
 title: Test homing behaviour
 description: Verify that your printer touches each endstop when homing.
 published: true
-date: 2021-12-15T22:34:47.251Z
+date: 2024-08-27T16:25:05.326Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T10:47:29.043Z
@@ -28,7 +28,7 @@ On a Cartesian or CoreXY printer, test X homing first, then Y homing, then Z hom
 
 # What to look for as the printer begins to move
 
-On a Cartesian or CoreXY printer, the axis being homed should begin to move at a medium speed in the direction that will eventually trip the endstop. It is normal for an axis to trigger the stop, back off, and move more slowly to trigger it again. When you do Homa All, the X and Y axes will usually be homed simultaneously, followed by Z.
+On a Cartesian or CoreXY printer, the axis being homed should begin to move at a medium speed in the direction that will eventually trip the endstop. It is normal for an axis to trigger the stop, back off, and move more slowly to trigger it again. When you do Home All, the X and Y axes will usually be homed simultaneously, followed by Z.
 
 A delta printer will home all three towers at the same time and each should stop when its endstop switch is triggered.  Once all three towers have triggered during the medium speed move, all three will back off, and move more slowly to trigger again. Then they will lower themselves a small amount.
 
