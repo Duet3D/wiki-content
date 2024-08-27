@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-08-20T09:25:08.522Z
+date: 2024-08-27T11:43:32.777Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -22,7 +22,7 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 
 |---|---|
 | **Processor** | [ATSAME51G19A](https://www.microchip.com/en-us/product/ATSAME51G19A){target=_blank} |
-| **Processor features** | 32-bit, 120MHz ARM Cortex M4F|
+| **Processor features** | 32-bit, 120MHz ARM Cortex M4F, 512KB Flash, 192KB RAM |
 | **Networking/Comms** | CAN-FD interconnect to Duet 3 CAN-FD bus |
 | **On-board stepper driver** | 1 x [TMC2240](https://www.analog.com/en/products/tmc2240.html){target=_blank} |
 | **Stepper driver features** | Up to 1A^1^ peak current, microstep interpolation from any setting to x256, stall detection |
