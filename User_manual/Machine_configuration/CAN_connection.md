@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-07-16T15:26:34.863Z
+date: 2024-08-28T16:26:19.170Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -338,9 +338,9 @@ The red LED behaviour is:
 | Number of flashes | Meaning |
 |:---|:---|
 | 2 | Invalid firmware |
-| 3 | Bad firmware CRC |
+| 3 | Bad firmware CRC. This is normal if the firmware has been erased. The bootloader will go on to attempt to load firmware over CAN. |
 | 4 | The bootloader requested a firmware data block from the main board, but the main board didn't respond in time. Check that the main board is powered and flashing its STATUS LED once per second, then check the CAN connection between the main board and the expansion board. |
-| 5 | The bootloader requested firmware but the main board reported that it didn't have the correct firmware file |
+| 5 | The bootloader requested firmware but the main board reported that it didn't have the correct firmware file. The main board should also report that it received a request for a firmware file that it didn't have. Check that the **/firmware** folder of the main board or attached SBC contains the correct file and upload it from Duet Web Control if necessary. |
 | 6 | The bootloader requested firmware but the main board reported that the file offset requested by the bootloader was beyond the length of the file |
 | 7 | The bootloader requested firmware but the main board encountered some other error in trying to fetch and return a block of firmware data |
 | 8 | Bootloader internal error (no buffer available) |
