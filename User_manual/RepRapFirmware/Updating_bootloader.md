@@ -2,7 +2,7 @@
 title: Updating the bootloader on Duet 3 expansion and tool boards
 description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
 published: true
-date: 2024-08-28T16:33:02.508Z
+date: 2024-08-28T16:35:39.469Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:04:31.062Z
@@ -77,10 +77,10 @@ If it reports **Bootloader ID: not available** then your board is using a versio
   *This is to prevent the old bootloader loading new firmware, which will immediately protect the old bootloader again.*
 * Connect the Atmel ICE to the 6-pin SWD connector on the target board, and to the PC via USB
 * Power up the target board
-* Load Atmel Studio on the PC
+* Load Atmel Studio or Microchip Studio on the PC
 * Select Tools->Device Programming
 * Select the ICE tool
-* Select MCU type ATSAME51N19A for a EXP3HC expansion board, or ATSAMC21G18A for a TOOL1LC or EXP1XD board
+* Select MCU type ATSAME51N19A for a EXP3HC expansion board, ATSAMC21G18A for a TOOL1LC or EXP1XD board, or ATSAME51J19A for a TOOL1RR board
 * Press the Read button next to the Device Signature box and check that it reads the ID and voltage
 * Select Memories
 * Press the Erase Now button next to Erase Chip. 
