@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-08-20T09:20:19.928Z
+date: 2024-08-28T10:38:59.592Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -450,16 +450,18 @@ Power overdraw conditions may result in poor communication between the Pi and Du
 ## Connecting External Motor Drivers
 
 The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. Note that:
-* The Step and Dir outputs from the 6XD are either low (when "on") or floating/high-impedance when "off". 
-* The Enable output is either low when "on" and high impedance when "off", or vice versa, depending on the position of the 'Driver Enable Polarity' (En_Pol) jumper.
-* To connect a Pololu/StepStick/similar driver to the 6XD a 10K pullup resistor is needed from the Step/Dir/En lines to +5V. 
-Note the 6XD will generate negative-going step pulses, and this will only work if the driver samples steps on the leading edge of the pulse. For stepstick and similar drivers, that will depend on the driver chip. Otherwise, add an inverter between the step output and the driver. The enable signal can be flipped using M569 R parameter, and direction can be flipped using M569 S parameter.
+* The **Step** and **Dir** outputs from the 6XD are either low (when "on") or floating/high-impedance when "off". 
+  * The 6XD will generate negative-going step pulses, and this will only work if the driver samples steps on the leading edge of the pulse. For stepstick and similar drivers, that will depend on the driver chip. Otherwise, add an inverter between the step output and the driver.
+  * Direction can be flipped using M569 S parameter.
+* The **Enable** output is either low when "on" and high impedance when "off", or vice versa, depending on the position of the 'Driver Enable Polarity' (En_Pol) jumper.
+  * The jumper just sets the default value in case a M569 command with R parameter isn't seen. The main aim of this is to power up with the drivers disabled.
+  * The enable signal can be flipped using M569 R parameter.
 
 This diagram shows connection to a "typical" optoisolated stepper motor driver
 
 [![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png){target=_blank} [![duet_3_mb6xd_ext_driver.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg =400x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg){target=_blank}
 
-This diagram shows connection to a stepper motor driver that has +5V inputs and a common ground.
+To connect a Pololu/StepStick/similar driver to the 6XD, a 10K pullup resistor is needed from each of the Step/Dir/En lines to +5V. This diagram shows connection to a stepper motor driver that has +5V inputs and a common ground.
 
 [![Connection of Driver 0 on the Duet 3 MB 6XD to a stepper motor driver with +5V inputs and common ground](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn_2.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn_2.png){target=_blank}
 
