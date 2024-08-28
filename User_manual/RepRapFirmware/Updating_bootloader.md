@@ -2,7 +2,7 @@
 title: Updating the bootloader on Duet 3 expansion and tool boards
 description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
 published: true
-date: 2024-08-28T16:35:39.469Z
+date: 2024-08-28T16:36:39.103Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:04:31.062Z
@@ -89,7 +89,7 @@ If it reports **Bootloader ID: not available** then your board is using a versio
 * Find USER_WORD_0.NVMCRTL_BOOTPROT and set it to 0kbytes.
 * Press Program to update the fuses.
 * Select Memories
-* Browse to the correct bootloader file for the target board, then press program. If using the .bin file then it will ask you for the memory address to start programming from; the default that it offers should be correct.
+* Browse to the correct bootloader file for the target board, then press program. If using the .bin file then it will ask you for the memory address to start programming from; the default that it offers (normally zero) should be correct.
 * Make sure the it reports verification succeeded.
 
 ## Confirmation of bootloader version
