@@ -2,7 +2,7 @@
 title: Updating the bootloader on Duet 3 expansion and tool boards
 description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
 published: true
-date: 2024-08-28T16:32:45.558Z
+date: 2024-08-28T16:33:02.508Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:04:31.062Z
@@ -33,7 +33,7 @@ Here is a list of expansion boards and corresponding bootloader files:
 
 * You must be running RepRapFirmware 3.2.2 or later.
 * Ensure that you have a stable power supply providing power to the Duet 3 main board and to the expansion board or tool board. If the power fails during the update process, the bootloader may be only partially written, in which case it will need to be updated using the second method.
-* If you are updating the bootloader in-situ in a 3D printer, ensure that all motors are turned off using M18, and all fans and heaters are turned off. That will maximise the reserve power in the event of a power cut while the bootloader is being updated.
+* If you are updating the bootloader in-situ in a 3D printer or other machine, ensure that all motors are turned off using M18, and all fans and heaters are turned off. That will maximise the reserve power in the event of a power cut while the bootloader is being updated.
 * If you are updating a version 0.6 TOOL1LC board then we recommend that you disconnect the hot end heater before updating the bootloader. You can reconnect it (with power off) after the bootloader has been updated and you have checked that the tool board responds to commands.
 
 ## Process
