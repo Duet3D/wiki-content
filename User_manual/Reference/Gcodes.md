@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-08-29T08:40:13.768Z
+date: 2024-08-29T10:16:40.424Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8166,7 +8166,7 @@ From RepRapFirmware 3.2.0 and later, more granular logging is available. There a
 
 Also see [M118](/User_manual/Reference/Gcodes/M118){target=_blank}.
 
-## M950: Create heater, fan, spindle or GPIO/servo pin
+## M950: Create heater, fan, spindle, LED strip or GPIO/servo pin
 
 *Supported in RepRapFirmware 3.*
 
