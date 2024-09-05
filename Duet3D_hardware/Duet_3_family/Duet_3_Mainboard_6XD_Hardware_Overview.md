@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-08-28T10:38:59.592Z
+date: 2024-09-05T14:08:58.737Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -152,7 +152,7 @@ A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainbo
 | **1 x 3-pin Jumper** |  OUT_6-OUT8 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each, 3A total ). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
 | **1 x 2-pin KK connector** | V+ GND | Always on V_FUSED supply, do not draw more than 2A from this connector |
 | **1 x 2-pin KK connector** | 12V GND | Always on 12V supply (*see note 1 below*) |
-| **1 x 3-pin KK connector** | LASER/VFD | 5V buffered output, along with 5V and ground supply (*see note 2 below*). Provides a 5V PWM signal to drive hobby servos, and PWM->analog controls for VFDs or Lasers. |
+| **1 x 3-pin KK connector** | LASER/VFD | 5V buffered output, along with 5V and ground supply (*see note 2 below*). Provides a 5V PWM signal to drive hobby servos, and PWM->analog controls for VFDs or Lasers. The control signal for this output is shared with OUT6, so don't use OUT6 if you use this connector. |
 | **1 x 2x5 IDC connector** | PanelDue_SD | Connects the [PanelDue](/Duet3D_hardware/Accessories/PanelDue) UART and shared SPI bus for external SD card. Powered from 5V supply (*see note 2*).|
 | ^^ | ^^ | **Note** The PanelDue UART is shared with io0.in and io0.out pins on the IO_0 header. |
 | **1 x 2-pin Jumper** |  PD_CD_OVERRIDE | *v1.0 boards and later.* Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
@@ -230,8 +230,8 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | out4.tach | ^^ |
 | ^^ | OUT 5 | out5 | ^^ |
 | ^^ | ^^ | out5.tach | ^^ |
-| Outputs (2-pin) | OUT 6 | out6 | ^^ |
-| ^^ | OUT 7 | out7 | ^^ |
+| Outputs (2-pin) | OUT 6 | out6, laser, vfd | Fans, pumps. 2A limit per pin on VIN, 3A limit per bank of 3, 800mA limit total on internal 12V.<br>Pin shared with VFD/Laser/Servo drive header |
+| ^^ | OUT 7 | out7 | Fans, pumps. 2A limit per pin on VIN, 3A limit per bank of 3, 800mA limit total on internal 12V |
 | ^^ | OUT 8 | out8 | ^^ |
 | Temperature inputs | TEMP 0 | temp0 | Thermistors and PT1000 sensors|
 | ^^ | TEMP 1 | temp1 |^^ |
@@ -274,7 +274,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | DRIVER 4| driver4.err | ^^ |
 | ^^ | DRIVER 5| driver5.err | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
-| ^^ | LASER/VFD | laser, vfd | 5V PWM signal  |
+| ^^ | LASER/VFD | laser, vfd, out6 | 5V PWM signal. Pin shared with OUT6  |
 | ^^ | DOTSTAR | led | For controlling DotStar or NeoPixel LEDs (firmware 3.5.0-beta.4 and later only)
 
 ## Input/Output Port capabilities
