@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-09-06T09:10:12.228Z
+date: 2024-09-06T11:38:09.050Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -99,6 +99,10 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a featu
 
 [![Diagram showing the critical dimensions of the Duet3 6XD v1.0, v1.01, v1.02](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0-1.02_dimensions_d1.2.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0-1.02_dimensions_d1.2.png){target=_blank}
 
+### 3D Model
+
+A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainboard-6XD/blob/master/v1.0/Duet3_MB_6XD_STEP.zip){target=_blank}.
+
 ## Mounting
 
 The mounting holes are isolated and not plated through, they have a keep out area around the M4 clearance hole of an additional 2.2mm radius. Any metallic mounting solution should be kept inside this keep-out area.
@@ -111,10 +115,6 @@ In many applications passive cooling will be sufficient, especially if the board
 
 The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is dissipated via the PCB so heatsinks on the FETs or other ICs are largely ineffective.
 
-
-## 3D Model
-
-A STEP file is available on [GitHub here](https://github.com/Duet3D/Duet3-Mainboard-6XD/blob/master/v1.0/Duet3_MB_6XD_STEP.zip){target=_blank}.
 
 # Physical connections
 
@@ -305,7 +305,7 @@ Capabilities of IO_0 to IO_8 are shown below.
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no | Shared with PanelDue header for UART connection|
-| 1 | yes | no | no |  |
+| 1 | yes | no | no | Shared with RS485 header on v1.02 and later |
 | 2 | no | no | no | A jumper is provided to bypass the 10K input protection resistor to allow I2C to be used on this port.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
@@ -514,6 +514,12 @@ If in the future you want to add the termination resistor back into the circuit 
 # Revision History
 
 # Tabs{.tabset}
+## Revision 1.02
+
+* Changed the Step, Dir and Enable outputs to have active pullups for beter compatibility with some servo drivers
+* Added hardware support for RS485 on UART 1 shared with IO1)
+* Minor changes to USB host support circuit.
+
 ## Revision 1.01
 
 * Change the 5V_EXT_SBC and 5V_EXT-5V_INT jumper headers to not be populated y default.
