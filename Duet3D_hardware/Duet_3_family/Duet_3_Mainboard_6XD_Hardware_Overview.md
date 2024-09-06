@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-09-05T14:08:58.737Z
+date: 2024-09-06T09:10:12.228Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -97,7 +97,7 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a featu
 
 ## Dimensions
 
-[![Diagram showing the critical dimensions of the Duet3 6XD v1.0 and v0.1](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_dimensions_d1.1.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_dimensions_d1.1.png){target=_blank}
+[![Diagram showing the critical dimensions of the Duet3 6XD v1.0, v1.01, v1.02](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0-1.02_dimensions_d1.2.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0-1.02_dimensions_d1.2.png){target=_blank}
 
 ## Mounting
 
