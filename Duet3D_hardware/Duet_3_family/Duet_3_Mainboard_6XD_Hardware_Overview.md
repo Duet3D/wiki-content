@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-09-06T11:38:09.050Z
+date: 2024-09-06T12:06:58.928Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -47,7 +47,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **Servo support** | One output with 5V signal level for hobby servo, laser or VFD converter |
 | **LCD support** | PanelDue, or via HDMI touch screen attached to the SBC. |
 | **LED strip support** | Neopixel (max. 60 LEDs) or DotStar |
-
+| **RS485 Support** | V1.02 or later, firmware support fro MODBUS RTU from RRF 3.6.0 |
 
 ## Operating limits
 
@@ -122,14 +122,18 @@ The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is 
 
 ## Tabs{.tabset}
 
-### Revision 1.0
-
+### Revision 1.02
 [![Duet3 Mainboard 6XD v1.0 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_wiring_latest.png =700x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_wiring_latest.png){target=_blank}
+
+
+### Revision 1.0, 1.01
+
+[![Duet3 Mainboard 6XD v1.0 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.6_wiring.png =700x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_d1.6_wiring.png){target=_blank}
 
 
 ### Revision 0.1
 
-[![Duet3 Mainboard 6XD prototype v0.1 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_d1.3_wiring.png =500x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_d1.3_wiring.png){target=_blank}
+[Duet3 Mainboard 6XD prototype v0.1 Wiring Diagram](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v0.1_d1.3_wiring.png){target=_blank}
 
 
 #### Errata
@@ -518,6 +522,7 @@ If in the future you want to add the termination resistor back into the circuit 
 
 * Changed the Step, Dir and Enable outputs to have active pullups for beter compatibility with some servo drivers
 * Added hardware support for RS485 on UART 1 shared with IO1)
+* Reset External header position moved slightly.
 * Minor changes to USB host support circuit.
 
 ## Revision 1.01
