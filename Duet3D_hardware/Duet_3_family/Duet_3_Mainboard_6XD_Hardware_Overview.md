@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-09-06T12:06:58.928Z
+date: 2024-09-06T12:51:50.822Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -176,6 +176,7 @@ The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is 
 | **1 x 2-pin Jumper** | IO2_I2C_Byp | Jumper to allow the 10K resistors on IO2.in to be bypassed with 470R resistors. This is required to use IO2 for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | **4 x 2-pin KK connectors** | IO_5_ISO_IN-IO_8_ISO_IN | Differential signal, opto-isolated inputs for IO5.in - IO8.in, rated to 30V. |
 | **4 x 4-pin KK connectors** | IO_5_ISO_OUT-IO_8_ISO_OUT | Differential signal, opto-isolated outputs for IO5.in - IO8.in. Each output is fused at 50mA |
+| **1 x 3-pin KK connectors** | RS485 | RS485/MODBUS RTU port, shares the pins/ UART1 with IO1.in - IO1.out. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
 | **3 x 2-pin Jumpers for 5V selection** | Int 5V EN | Enable the on board 5V regulator  |
 | ^^ | 5V_EXT-5V_INT | Bridge internal 5V to External 5V. **Caution** This removes the protection for the internal 5V circuit from overvoltage on the external 5V.
@@ -241,7 +242,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | TEMP 1 | temp1 |^^ |
 | ^^ | TEMP 2 | temp2 |^^ |
 | ^^ | TEMP 3 | temp3 |^^ |
-| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc |
+| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc<br> ***Note** `io0.in/out` are shared with the PanelDue port <br> ***Note** `io1.in/out` are shared with the RS485 port |
 | ^^ | ^^ | io0.out | ^^ |
 | ^^ | IO_1 | io1.in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
