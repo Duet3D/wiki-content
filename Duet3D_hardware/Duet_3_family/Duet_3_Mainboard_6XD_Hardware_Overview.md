@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-09-06T13:09:23.714Z
+date: 2024-09-06T13:10:25.811Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -531,7 +531,7 @@ If in the future you want to add the termination resistor back into the circuit 
 ## Revision 1.02
 
 * Changed the Step, Dir and Enable outputs to have active pullups for beter compatibility with some servo drivers
-* Added hardware support for RS485 on UART 1 shared with IO1)
+* Added hardware support for RS485 on UART 1 shared with IO1), a 3 pin RS485 header and an RS485 enable jumper
 * Reset External header position moved slightly.
 * Minor changes to USB host support circuit.
 
