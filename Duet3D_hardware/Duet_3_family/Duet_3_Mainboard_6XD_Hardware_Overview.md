@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-09-06T12:51:50.822Z
+date: 2024-09-06T13:09:23.714Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -176,7 +176,7 @@ The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is 
 | **1 x 2-pin Jumper** | IO2_I2C_Byp | Jumper to allow the 10K resistors on IO2.in to be bypassed with 470R resistors. This is required to use IO2 for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | **4 x 2-pin KK connectors** | IO_5_ISO_IN-IO_8_ISO_IN | Differential signal, opto-isolated inputs for IO5.in - IO8.in, rated to 30V. |
 | **4 x 4-pin KK connectors** | IO_5_ISO_OUT-IO_8_ISO_OUT | Differential signal, opto-isolated outputs for IO5.in - IO8.in. Each output is fused at 50mA |
-| **1 x 3-pin KK connectors** | RS485 | RS485/MODBUS RTU port, shares the pins/ UART1 with IO1.in - IO1.out. |
+| **1 x 3-pin KK connectors** | RS485 | (v1.02 and onwards) RS485/MODBUS RTU port, shares the pins/ UART1 with IO1.in - IO1.out. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
 | **3 x 2-pin Jumpers for 5V selection** | Int 5V EN | Enable the on board 5V regulator  |
 | ^^ | 5V_EXT-5V_INT | Bridge internal 5V to External 5V. **Caution** This removes the protection for the internal 5V circuit from overvoltage on the external 5V.
@@ -242,7 +242,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | TEMP 1 | temp1 |^^ |
 | ^^ | TEMP 2 | temp2 |^^ |
 | ^^ | TEMP 3 | temp3 |^^ |
-| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc<br> ***Note** `io0.in/out` are shared with the PanelDue port <br> ***Note** `io1.in/out` are shared with the RS485 port |
+| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc<br> ***Note** `io0.in/out` are shared with the PanelDue port <br> ***Note** `io1.in/out` are shared with the RS485 port from V1.02 onwards|
 | ^^ | ^^ | io0.out | ^^ |
 | ^^ | IO_1 | io1.in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
@@ -333,7 +333,6 @@ on the Duet 3 Mainboard 6XD the opto-isolated IO 5 input port schematic is as fo
 
 ![schematic showing the circuit for the Duet 3 MB6XD opto-isolated inputs](/duet_boards/duet_3_mb6xd/6xd_opto_input_schematic.png =600x)
 
-
 #### Opto-isolated Outputs
 
 The opto-isolated outputs can be wired either NPN or PNP, depending on the requirements of the system they are interfacing with.
@@ -345,7 +344,17 @@ on the Duet 3 Mainboard 6XD the opto-isolated IO 5 output port schematic is as f
 
 ![Schematic of the opto-isolated output circuit on the Duet3 Mainboard 6XD](/duet_boards/duet_3_mb6xd/6xd_opto_output_schematic.png =600x)
 
+#### RS485 - MODBUS RTU
 
+From board revision v1.02 there is hardware support for a MODBUS RTU from the RS485 header. This is shared with the IO1 GPIO channel so if used then do not connect endstops or anything else to the IO1 signals.
+
+To enable the RS485 transceiver there is an RS485 enable jumper:
+
+![rs485_en_jumper.png](/duet_boards/duet_3_mb6xd/rs485_en_jumper.png)
+
+Use [M575](/User_manual/Reference/Gcodes/M575) to setup the port as MODBUS RTU
+
+See [M260.1](/User_manual/Reference/Gcodes/M260_1) and [M261.1](/User_manual/Reference/Gcodes/m261_1) for how to read and write to the MODBUS device
 
 ## Power distribution
 
