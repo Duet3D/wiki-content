@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-09-05T11:25:53.063Z
+date: 2024-09-10T15:13:27.886Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8569,6 +8569,8 @@ Enable phase stepping for `X` and `E0`, enable step direction for `Y`, `Z`, and 
 ### Notes
 
 The standstill current factor set by [M917](/User_manual/Reference/Gcodes/M917){target=_blank} is also used to scale the motor current. The scaled current will be a minimum of the current * standstill current factor.
+
+Stall detect is not supported while phase stepping is enabled.
 
 ## M970.1 Configure phase stepping velocity constant
 
