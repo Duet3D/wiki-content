@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2024-05-20T16:52:39.375Z
+date: 2024-09-11T15:22:58.099Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -57,7 +57,9 @@ M557 X-140:140 Y-90:80 S10                      ; Define mesh grid for probe 1 (
 [M558.1](/User_manual/Reference/Gcodes/M558_1) - Calibrate height vs reading of scanning Z probe 
 [M558.2](/User_manual/Reference/Gcodes/M558_2) - Calibrate or set drive level and reading offset for scanning Z probe
 
-To calibrate the probe: 
+### Drive level and reading offset
+
+To calibrate drive level and reading offset: 
 * Position the sensor above the bed at the minimum height that you expect to use it. 
   For example, if the trigger height is set to 2mm (G31 Z2), and the bed error is expected to be not more than 1mm, the minimum height would be 2mm. 
 * Run `M558.2 K1 S-1` to calibrate the drive level. If it is successful then it should report the resulting drive level. 
@@ -67,8 +69,22 @@ To calibrate the probe:
 * Add an M558.2 command in config.g to set that drive level and reading offset. E.g. if the probe number is #1,and the reported drive level after calibration was 15 and reading offset is 101133, then use `M558.2 K1 S15 R101133`. Add this later in config.g than the M558 K1 command that configures the probe.
 * Also check that the Z probe reading is sensible when the sensor is a long way above the bed. The aim is to get sensible readings (i.e. not 999999) from the minimum height to "infinite" height.
 * A typical drive level is around 15 for the 12mm coil. Higher or lower drive level settings may cause sporadic 999999 readings. If you get these, try adjusting the Z height you do the `M558.2 K1 S-1` calibration at.
-* The reading vs. height then needs to be calibrated, using M558.1. If you have another way of determining Z=0 (e.g. another Z probe, or touch the nozzle to the build plate and set G92 Z0) then it's best to do this immediately before scanning rather than try to save the calibration. 
 
+### Height vs reading
+
+The height vs. reading then needs to be calibrated, using [M558.1](/User_manual/Reference/Gcodes/M558_1). If you have another way of determining Z=0 (e.g. another Z probe, or touch the nozzle to the build plate and set G92 Z0) then it's best to do this immediately before scanning rather than try to save the calibration. An example of this is in the mesh.g file shown below. 
+
+To calibrate manually:
+* Move the probe so it is over your normal Z datum reference point, ie when you home Z.
+* Send an appropriate M558.1 command. The K parameter chooses the probe number. The S parameter defines the range either side of the trigger height that the probe will scan, and use for calibration.
+* For example, a trigger height of 2mm (set by `G31 K1 Z2`) means the nozzle is 2mm from the bed, and the coil is 4mm from the bed, when triggered. Setting an S parameter of less than 2, eg 1.7, will calibrate the probe in the range 3.7mm to 0.3mm, ie 2+1.7 to 2-1.7. Send `M558.1 K1 S1.7`.
+* After calibrating, send `M558.1 K1` to see the results. It should report something like:
+  ```
+  M558.1 K1
+  Scanning probe coefficients [1.840e-1, -2.865e-4, 2.598e-10, 2.937e-17]
+  ```
+  This can be saved to config.g, but note that SZP coil readings change with temperature, so this calibration may not be suitable at all temperatures. That is why it's worth doing each time you do a bed scan.
+  
 ## Example mesh.g file
 
 An example mesh.g file, which is run when a [G29](/User_manual/Reference/Gcodes/G29) command is sent (to do a bed mesh scan), might be:
@@ -92,7 +108,18 @@ Note that in the above example:
 * The T-1 is there because this is a tool changer and the scanning probe is on the pickup head. 
 * The M208 commands are likewise specific to a tool changer. 
 * The G1 X0 Y0 command sends the probe to the centre of the bed (on a machine with the X0 Y0 origin in the centre). 
-* The M558.1 does the reading vs. height calibration. In this case, the S1.7 causes the probe to move 1.7mm either side of the trigger height. If the trigger height is 2mm, it will go from 3.7mm down to 0.3mm.
+* The M558.1 does the height vs reading calibration. In this case, the S1.7 causes the probe to move 1.7mm either side of the trigger height. If the trigger height is 2mm, it will go from 3.7mm down to 0.3mm.
+
+A simplified mesh.g file might be:
+
+```
+M557 X-135:145 Y-145:145 P10 ; Define grid for mesh bed compensation, origin in bed centre
+G29 S2                       ; Disable mesh bed compensation
+G28 Z                        ; Home Z
+G1 Z6                        ; To avoid backlash move to point higher than start of calibration
+M558.1 K1 S1.7               ; Calibrate probe
+G1 Z6                        ; Move up at end of calibration
+```
 
 # Using the SZP to set Z height
 
