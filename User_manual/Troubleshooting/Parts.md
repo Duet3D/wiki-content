@@ -2,7 +2,7 @@
 title: Connector and spare part numbers
 description: This is a growing list of connectors and spare part numbers. If a spare part is required that is not on the list please check the source on github or ask on the forums 
 published: true
-date: 2024-08-21T13:57:51.422Z
+date: 2024-09-12T08:06:15.675Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:43:02.549Z
@@ -202,7 +202,7 @@ U3 - 5V Duet 2 WiFi / Ethernet / Maestro: A4403GEUTR-T (tricky to solder QFN chi
 
 If the TFT panel of a **non-integrated** PanelDue assembly suddenly refuses to light up, chances are that the backlight inverter chip has failed. This is a 6-pin chip marked L6CE or L6EN or L6GE or similar (the Pin 1 marking bar can easily be mistaken for a letter I in front of the L). The part number is MP3202DJ. It is available from RS Components, Digikey and Mouser, and also on eBay and Ali Express.
 
-The backlight inverter of the integrated PanelDues rarely fails, but if it does then the part number is on most of them is PT4110 in SOT-89-5 package. One batch of PanelDue 7i was made using MP3302 instead due to component shortages; these must be replaced with tne same type because another change was made to accommodate them.
+The backlight inverter of the integrated PanelDues rarely fails, but if it does then the part number is on most of them is PT4110 in SOT-89-5 package. One batch of PanelDue 7i was made using MP3302 instead due to component shortages; these must be replaced with the same type because another change was made to accommodate them.
 
 ## SD card socket
 
@@ -210,6 +210,6 @@ Used on all Duet 2 and 3 main boards. The recommended part is Würth Elektronik 
 
 ## Micro USB socket
 
-Used on all Duet 2 and 3 main boards except MB6XD, and PanelDue v2 and v3 (but not 5i and 7i). The recommended part is Amphenol FCI 10103594-0001LF
+Used on all Duet 2 and 3 main boards except MB6XD, later MB6HC and Duet 3 Mini Ethernet boards, and PanelDue v2 and v3 (but not 5i and 7i). The recommended part is Amphenol FCI 10103594-0001LF
 
 For PanelDue 5i and 7i, a compatible part is Würth Elektronik 614105150721
