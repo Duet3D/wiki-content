@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-09-10T15:13:27.886Z
+date: 2024-09-17T13:20:23.987Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7841,12 +7841,14 @@ Updates the machine's local date and time or reports them if no parameters are s
 * **Pnnn** Current date in the format YYYY-MM-DD
 * **Snnn** Current time in the format HH:MM:SS
 * **Tnnn** (Supported by DSF v3.3 and later) Timezone to set (e.g *Europe/Berlin*)
+* **Annn** (Supported by DSF v3.5.3 and later) Automatically set date and time via NTP
 
 ### Examples
 <br>
 <pre class="cblock">
 M905 P2016-10-26 S00:23:12
-M905 P2016-10-26 S00:23:12 T"Europe/Berlin" ; DSF v3.3 and later only
+M905 P"2016-10-26" S"00:23:12" T"Europe/Berlin" ; DSF v3.3 and later only
+M905 A0 P"2024-09-17" S"15:19:54" T"Europe/Berlin" ; DSF v3.5.3 and later only
 </pre>
 
 ### Notes
