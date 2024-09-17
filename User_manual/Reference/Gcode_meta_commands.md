@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2024-09-17T06:39:21.995Z
+date: 2024-09-17T06:47:16.937Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -365,27 +365,27 @@ The following functions are supported, with their conventional meanings:
 | asin | float->float | Result is in radians |
 | atan | float->float | Result is in radians |
 | atan2 | (float, float)->float | Result is in radians |
-| ceil | float->int or float->float | Result is **int** if it fits in a 32-bit signed integer, else float  (available in RRF 3.5.0-beta.4 and later). |
+| ceil | float->int or float->float | Result is **int** if it fits in a 32-bit signed integer, else float  (available in RRF 3.5.0 and later). |
 | cos | float->float | Argument must be in radians |
-| datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a **DateTime**, or a string with format "yyyy-mm-ddThh:mm:ss" to a **DateTime**. Available in RRF 3.4 and later. |
+| datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a **DateTime**, or a string with format "yyyy-mm-ddThh:mm:ss" to a **DateTime**. Available in RRF 3.4.0 and later. |
 | degrees | float->float | Converts radians to degrees |
 | exists | name  -> bool | Yields true if 'name' is a valid variable or object model element name and is not null (available in RRF 3.3beta3 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
-| exp | float->float | returns *e* raised to the operand (supported in RRF 3.5beta3 and later) |
+| exp | float->float | returns *e* raised to the operand (supported in RRF 3.5.0 and later) |
 | fileexists | string -> bool | Yields true if the string parameter is the name of a file in the file system (available in RRF 3.5.0beta1 and later). |
-| fileread | (string, int, int, char)  -> array | Returns an array of elements read from a single-line CSV or similar file (available in RRF 3.5.0rc1 and later). The string parameter is the name of the file to read. The first integer parameter is the number of elements to skip; the second is the maximum number of elements to read; and the character is the field separator, typically ','. See note at the end of this table.|
+| fileread | (string, int, int, char)  -> array | Returns an array of elements read from a single-line CSV or similar file (available in RRF 3.5.0 and later). The string parameter is the name of the file to read. The first integer parameter is the number of elements to skip; the second is the maximum number of elements to read; and the character is the field separator, typically ','. See note at the end of this table.|
 | floor | float->int or float->float | Result is **int** if it fits in a 32-bit signed integer, else float |
 | isnan | float->bool | Returns true if the operand is a NaN (Not-a-Number) e.g. sqrt(-1) |
 | log | float->float | returns the natural logarithm of the operand (supported in RRF 3.5beta3 and later) |
 | max | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
 | min | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
 | mod | (int, int)->int or (float, float)->float | Returns the remainder from dividing the first operand by the second operand |
-| pow | (float, float)->float or (int, int)->int | Returns the first operand to the power of the second operand  (supported in RRF 3.5beta3 and later). In RRF 3.5.0-beta.4 and later the result type is **int** if the operatnds are int, the second operand is non-negative, and the result fits in an **int**. |
+| pow | (float, float)->float or (int, int)->int | Returns the first operand to the power of the second operand  (supported in RRF 3.5beta3 and later). In RRF 3.5.0 and later the result type is **int** if the operatnds are int, the second operand is non-negative, and the result fits in an **int**. |
 | radians | float->float | Converts degrees to radians |
 | random | int->int | Operand must >= 1. Returns a pseudo-random integer in the range 0 to one less than the operand. |
 | sin | float->float | Argument must be in radians |
 | sqrt | float->float | Returns the square root of the operand |
 | tan | float->float | Argument must be in radians |
-| vector | (int, T) -> array of T | (RRF 3.5beta2 and later) Returns an array with the number of elements equal to the first operand and each element a copy of the second operand
+| vector | (int, T) -> array of T | (RRF 3.5.0 and later) Returns an array with the number of elements equal to the first operand and each element a copy of the second operand
 
 ### Notes on the fileread function
 
@@ -395,7 +395,7 @@ Each element (including each skipped element) must be one of the following:
 - a character in single quotes
 - empty (in which case a corresponding null element is included in the array).
 
-Leading and trailing spaces and tabs around each element are ignored. If the file cannot be pened and read, or if any elements do not confirm to the above. then the command containing the fileread call will be aborted.
+Leading and trailing spaces and tabs around each element are ignored. If the file cannot be opened and read, or if any elements do not confirm to the above. then the command containing the fileread call will be aborted.
 
 If the element is a quoted string, then characters within it that match the separator character are not treated as separators, and each consecutive pair of double-quote characters is replaced by a one double quote character.
 
