@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2024-05-01T19:48:38.054Z
+date: 2024-09-17T06:39:21.995Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -188,11 +188,11 @@ Using an expression to replace a parameter letter, or to replace the command num
 
 If a parameter of a G- or M-command requires multiple values and you want to use expressions for some or all of them, then when using RRF 3.5 and later the whole parameter must be an array expression (see later); for example:
 ```
-M201 {var.e0Accel, var.e1Accel}
+M201 E{var.e0Accel, var.e1Accel}
 ```
 RRF 3.4 and earlier *in standalone mode only* supported this form instead:
 ```
-M201 {var.e0Accel}:{var.e1Accel}
+M201 E{var.e0Accel}:{var.e1Accel}
 ```
   
 # Expressions
