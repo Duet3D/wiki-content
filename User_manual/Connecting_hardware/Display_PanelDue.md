@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2023-04-05T10:25:43.277Z
+date: 2024-09-18T15:56:17.627Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -113,12 +113,12 @@ In tests using standard 28awg 1.27mm spaced ribbon cable, 400mm worked reliably 
 
 **Caution:** if you are using a thermocouple and/or PT100 daughter board, the use of long ribbon cables between the Duet and PanelDue may affect communication between the Duet and the daughter boards, because the ribbon cable connection to the SD card on PanelDue uses the same SPI bus as the daughter boards.
 
-## Duet 3 MB6HC using ribbon cable
+## Duet 3 MB6HC v1.01a and earlier using ribbon cable
 
 > **NOTE:** SD cards attached to the Duet and/or PanelDue are only supported in standalone mode, and are not supported in SBC mode (i.e. using a Raspberry Pi). If using SBC mode, you could use a USB stick attached to the Pi instead. You will need to reflash the RPi SD card with the latest version of the DuetPi image to enable external storage access in DWC, as the image configuration has changed.
 {.is-info}
 
-Although the Duet 3 MB6HC does not have a connector for the PanelDue ribbon cable, if access to the SD card on PanelDue is required then this is possible using a special wiring arrangement. You must use RepRapFirmware 3.4 or later, and you must enable the external SD card using this command:
+Although the Duet 3 MB6HC v1.01a and earlier does not have a connector for the PanelDue ribbon cable, if access to the SD card on PanelDue is required then this is possible using a special wiring arrangement. You must use RepRapFirmware 3.4 or later, and you must enable the external SD card using this command:
 
 `M950 D1 C"cs_pin+cd_pin"`
 
@@ -161,7 +161,11 @@ The card detect signal (CD) is used to tell the Duet whether a card is inserted 
 
 **Duet 3** boards do support the card detect signal. Newer versions of the PanelDue 5i and 7i (v1.01 and later of the 5i and v2.01 and later of the 7i) provide this signal. 
 
-However, if you use a non-integrated versions of PanelDue or older versions of PanelDue 5i and 7i with Duet 3, it is necessary to ground the card detect signal, or the firmware will permanently think no card is inserted. There are a number of ways to achieve this.
+However, if you use a non-integrated versions of PanelDue or older versions of PanelDue 5i and 7i with Duet 3, it is necessary to ground the card detect signal, or the firmware will permanently think no card is inserted. 
+
+On **Duet 3 Mainboard 6HC v1.02** and later, and **Duet 3 Mainboard 6XD v1.0** and later, there is a jumper to ground the card detect signal.
+
+If you are using an older version Duet 3 board, or Duet 3 Mini 5+, there are a number of ways to achieve this.
 
 ## Tabs {.tabset}
 
@@ -216,22 +220,24 @@ These restrictions are largely removed in later versions of the PanelDue firmwar
 
 Display options, eg show multiple heaters/tools. To do.
 
-# Using the external SD card socket on the LCD panel
+# Using external SD card sockets
+
+Note that the SPI interface provided by an external SD card socket is much slower than the on-board SD card socket built into the Duet. Therefore we recommend that you do not upload files to this card over the network. Use the external SD card socket only if you want to write files to the SD card on a PC and then move the SD card to your printer.
+
+To access a second SD card socket, you will need these firmware versions:
+
+* DuetWiFiFirmware/RepRapFirmware 1.16 or later
+* DuetWebControl 1.13 or later
+* PanelDue firmware 1.15c or later (if SD card socket is on the PanelDue)
+
+## Using the external SD card socket on the PanelDue LCD panel
 
 > Caution! Do not use an SD extender cable from the SD socket on the Panel Due. Some types of SD card extender cable have been found to damage the SD card socket. **Damage to the SD card socket from using an extender cable is not covered by the warranty.**
 {.is-danger}
 
-**This information also applies to a stand alone SD or micro SD card socket**
+You can use the external SD card socket on the LCD panel if you have used a ribbon cable as described in "Option 2: Ribbon cable" above. 
 
-You can use the external SD card socket on the LCD panel if you have used a ribbon cable as described above. Please note, the SPI interface provided by this SD card socket is much slower than the on-board SD card socket built into the Duet. Therefore we recommend that you do not upload files to this card over the network. Use the external SD card socket only if you want to write files to the SD card on a PC and then move the SD card to your printer.
-
-To access the second SD card socket, you will need these firmware versions:
-
-* DuetWiFiFirmware/RepRapFirmware 1.16 or later
-* DuetWebControl 1.13 or later
-* PanelDue firmware 1.15c or later
-
-## Using the SD card socket with other PanelDue version and Duet version combinations
+### Using the SD card socket with other PanelDue and Duet version combinations
 
 You will need to make a custom 5-way cable using this table of connections. For the PanelDue 1.1, the X5 connector pins are numbered from the bottom end of the connector (the end close to the X5 legend).
 
@@ -242,3 +248,33 @@ You will need to make a custom 5-way cable using this table of connections. For 
 | CLK | 3 | 4 | SPI0_SCK | 4 |
 | DIN | 4 | 5 | SPI0_MOSI | 5 |
 | CS | 5 | 3 | SPI0_CS0 | 3 |
+
+## Connecting a separate SD card socket
+
+You can connect an external SD or micro SD card reader to the PanelDue connector on the Duet independently of the PanelDue. See these threads on the forum for examples:
+SD card reader: [https://forum.duet3d.com/topic/36499/6xd-sd-card-reader](https://forum.duet3d.com/topic/36499/6xd-sd-card-reader)
+Micro SD card reader: [https://forum.duet3d.com/topic/25272/external-sd-card-reader-mount-error-duet2-wifi](https://forum.duet3d.com/topic/25272/external-sd-card-reader-mount-error-duet2-wifi)
+
+### SD card socket wiring
+
+Note the following:
+* Wiring will depend on what pins are broken out to a connector from the SD card socket pins. 
+* Specific SD card readers may require either 3.3V or 5V, check the SD card reader documentation.
+* RepRapFirmware communicates with the SD card reader over SPI, rather than the faster SDIO mode. 
+* SD card readers may be labelled with the SDIO pin names rather than the SPI mode pin names.
+* See notes above in the 'Wiring' section to connect a SD card reader to a Duet 3 6HC v1.01a and earlier, which has no PanelDue connector.
+* See notes above in the 'Wiring' section regarding the 'Card detect signal'. 
+
+|---|---|
+| Duet PanelDue pin#/</br>ribbon cable wire# | SD/Micro SD socket || Notes |
+| ^^ | SPI mode pin name | SDIO mode pin name | ^^ |
+| 1) 5V_EXT | VDD || Check if SD card reader requires 3.3V or 5V |
+| 2) GND | GND/VSS/VSS1/VSS2 || |
+| 3) SPIO_CS0 | CS | CD/DAT3 | |
+| 4) SPIO_SCK | SCLK | CLK | |
+| 5) SPIO_MOSI | DI | CMD | |
+| 6) SPIO_MISO | DO | DAT0 | |
+| 7) PD_SD_CD | Card detect || often not broken out to connector |
+| 8) 3.3V EXT | VDD || Check if SD card reader requires 3.3V or 5V |
+| 9) IO_0_IN | - | - | Not connected |
+| 10) IO_0_OUT | - | - | Not connected |
