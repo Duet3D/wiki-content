@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-09-17T13:20:23.987Z
+date: 2024-09-18T11:04:29.402Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5549,6 +5549,7 @@ In firmware 1.20 and later, M562 with no parameters will clear a heater fault on
 * **Fnnn** Fan number(s) to use as print cooling fans for this tool (RepRapFirmware 1.16 and later)
 * **Xnnn** Axis or axes to map X movement to (RepRapFirmware 1.16 and later)
 * **Ynnn** Axis or axes to map Y movement to (RepRapFirmware 1.19 and later)
+* **Znnn** Axis or axes to map Z movement to (RepRapFirmware 3.5 and later)
 * **Lnnn** Drive to use for filament mapping. By default RRF will use the first and only extruder drive if this parameter is not specified (supported by RRF >= 2.02)
 * **Rnn** Spindle number (RRF >= 3.3)
 
@@ -5593,7 +5594,7 @@ M563 P0 D0 H1 F0:1 ; tool 0 uses extruder drive 0 and heater 1. Fan 0 and Fan 1 
 M563 P0 R0 ; assign spindle 0 to tool 0
 </pre>
 
-**X, Y** The X and Y mapping option is used to create tools on machines with multiple independent X and/or Y carriages. The additional carriages are set up as axes U, V etc. (see M584) and the X mapping option in M563 defines which carriage or carriages are used. Axes are mapped in the order XYZUVWABC, where X=0, Y=1, Z=2, U=3 etc, not by driver number.
+**X, Y, Z** The X, Y and Z mapping options are used to create tools on machines with multiple independent X, Y and/or Z carriages. The additional carriages are set up as axes U, V etc. (see M584) and the X/Y/Z mapping option in M563 defines which carriage or carriages are used. Axes are mapped in the order XYZUVWABC, where X=0, Y=1, Z=2, U=3 etc, not by driver number.
 
 **S** As shown in the example above the S parameter can be used to give a tool a name. RepRapFirmware supports an additional form of the M563 command. The command:
 <br>
