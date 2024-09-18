@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2023-11-22T13:09:11.719Z
+date: 2024-09-18T10:15:14.423Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -364,18 +364,26 @@ With both tools at the same Z height, or the difference accounted for in the G10
 1. Mark a dot on the printbed near the center (does not have to be exact).
 1. Move T0 on the X axis so it is as near as possible over the marked dot, make a note of the X and Y co-ordinates, move the X axis out the way.
 1. Move T1 on the U axis so it is as near as possible over the marked dot, make a note of the U and Y co-ordinates.
-1. Subtract the U co-ordinates from the X co-ordinates and you have the rough offsets for U and Y. For the U value, increase or decrease the value of M208 Uxxx by the U offset, so that when the U axis is homed and then travels back to the spot it is above it for the same X co-ordinate as the X axis. For the Y co-ordinate add it to the G10 P1 Yx.x tool definition.
+1. Subtract the U co-ordinates from the X co-ordinates and you have the rough offsets for U and Y. 
+1. For the U co-ordinate offset, increase or decrease the value of the U axis homing position with `M208 Uxxx` (may be the maximum or minimum depending on which end U homes to) by the U offset, so that when the U axis is homed and then travels back to the spot it is above it for the same X co-ordinate as the X axis. 
+1. For the Y co-ordinate offset, add it to the `G10 P1 Yx.x` tool definition.
 1. With the new values in effect (either reboot after updating config.g or enter them into the gcode console to test them temporarily) repeat the testing above the dot, both axis should now be above the dot with the same X and Y co-ordinate.
 
 Now the tools are roughly aligned, fine alignment can be conducted in a number of ways. One method is to print a dual extruder print with lines, or triangles of varying spacing and then work out where they align:
 
-![configure_idex_01.jpg](/manual/configuration/configure_idex_01.jpg =300x)
+![configure_idex_01.jpg](/manual/configuration/configure_idex_01.jpg =300x) ![configure_idex_02.jpg](/manual/configuration/configure_idex_02.jpg =300x)
 
-the two parts of this file are printed with the two tools and the line that most closely aligned is selected. If the line 3 left from the center is the closes, and the variation is 0.2mm then the U axis is 0.6mm too far to the left.
 
-The process is repeated with the model rotated 90 degrees for the Y axis.
+The two parts of this file are printed with the two tools and the line that most closely aligned is selected. For example, if the line 3 left from the center is the closest, and the variation is 0.2mm, then the U axis is 0.6mm too far to the left.
 
-![configure_idex_02.jpg](/manual/configuration/configure_idex_02.jpg =300x)
+To account for this, do one of these:
+* Either: adjust the M208 U axis homing position as before.
+* Or: adjust the `G10 P1 Ux.x` (U axis, not X axis) position in the tool definition.
+
+For example, if the current M208 (assuming U homes to the maximum end) `M208 ... U360.3 ... S0`, and U is 0.4mm to the right, the new M208 U value should be 360.3 + 0.4, i.e. `M208 ... U360.7 ... S0`
+If you want to adjust the position using G10, set `G10 P# U-0.4`, because you want it to move to the left. 
+
+The process is repeated with the model rotated 90 degrees for the Y axis. Adjust the Y offset in the `G10 P1 Yx.x` tool definition.
 
 The STL files and OpenScad document are available on the [Think3dPrint3d Github](https://github.com/T3P3/BigBox_Mods/tree/master/calibration%20objects) as IDEXcalibration_reg.stl and IDEXcalibration_var.stl. Print the 'reg' one with the X axis and the 'var' one with the U axis.
 
