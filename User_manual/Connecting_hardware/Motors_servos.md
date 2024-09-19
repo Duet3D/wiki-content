@@ -2,7 +2,7 @@
 title: Connecting hobby servos and DC motors
 description: This page deals with connecting hobby servos and DC motors to Duet mainboards.
 published: true
-date: 2024-04-16T12:55:24.344Z
+date: 2024-09-19T12:28:04.478Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-12T16:04:36.467Z
@@ -83,7 +83,8 @@ Current limit is the total for 5V and 3.3v. Subtract any current draw, including
 
 |  | 5V current limit |
 |---|---|
-| Duet 3 Mainboard 6HC | 3.0 A |
+| Duet 3 Mainboard 6HC v1.02 and later | 800mA total including 3.3V requirements |
+| Duet 3 Mainboard 6HC v1.01a and earlier | 3A |
 | Duet 3 Mini 5+ | 1.0 A |
 | Duet 2 WiFi / Ethernet / Maestro | 2.0 A |
 
@@ -93,7 +94,7 @@ Current limit is the total for 5V and 3.3v. Subtract any current draw, including
 
 ### Duet 3 Mainboard 6HC
 
-On Duet 3 MB6HC, the internal and external 5V are separated, but the built-in 5V regulator regulates the external +5V rail (this was to provide consistent power for an attached RPi). This means that if a servo pumps power into external +5V, the internal 5V power will drop out for a short time, causing the board to reset. Again, any other devices connected to external +5V e.g. PanelDue may be damaged. Even small '9g' servos may be able to do this.
+On Duet 3 MB6HC v1.01a or earlier, the internal and external 5V are separated, but the built-in 5V regulator regulates the external +5V rail. This means that if a servo pumps power into external +5V, the internal 5V power will drop out for a short time, causing the board to reset. Again, any other devices connected to external +5V e.g. PanelDue may be damaged. Even small '9g' servos may be able to do this.
 
 ### Duet 3 Mini 5+
 
