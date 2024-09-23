@@ -2,7 +2,7 @@
 title: Power Wiring
 description: 
 published: true
-date: 2024-09-23T11:20:55.616Z
+date: 2024-09-23T11:26:01.729Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-29T09:54:45.515Z
@@ -59,9 +59,9 @@ The metal parts of your machine generally need to be connected to a common groun
 Ideally, run the earthing wire from the power outlet (NOT the earth terminal of the PSU) to a common grounding point (e.g. a bolt on the frame), and then run that on to the earth on the PSU. Then run grounding wires from all components that require grounding to this common grounding point.
 
 > **It is NOT recommended to:**
-> \> connect the frame to the PSU negative output. This can cause electrocution in case of a power supply internal fault.
-> \> connect the PSU negative output to earth ground. This can trip the RCD or harm the power supply. 
-> \> connect the PSU negative output mains neutral. This can lead to electrocutions if the power supply has an internal fault.
+> \- connect the frame (or common grounding point) to the PSU negative output. This can cause electrocution in case of a power supply internal fault.
+> \- connect the PSU negative output to earth ground. This can trip the RCD or harm the power supply. 
+> \- connect the PSU negative output mains neutral. This can lead to electrocutions if the power supply has an internal fault.
 {.is-warning}
 
 
