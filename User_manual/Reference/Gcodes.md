@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-09-23T09:13:21.029Z
+date: 2024-09-24T13:27:20.504Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7077,8 +7077,8 @@ The purpose of input shaping is to reduce ringing (also called ghosting).
 	RRF 3.4.x and earlier: Minimum acceleration allowed, default 10mm/sec^2. Input shaping will not be applied if it requires the average acceleration to be reduced below this value.
   RRF 3.5.x: Minimum fraction of the original acceleration or feed rate to which the acceleration or feed rate may be reduced in order to apply input shaping. The default is 0.25 and the acceptable range is 0.01 to 1.0.
   RRF 3.6.0 and later: this parameter is ignored.
-* **Hnn:nn...** Only used with P"custom" parameter. In RRF 3.5.x and earlier these are the cumulative amplitudes of each impulse except the last, so each is larger than the previous one, and the amplitude of the last will be set by RRF to 1.0. In RRF 3.6.0 and later these are the individual amplitudes of each impulse except the last, and the amplitude of the last impulse will be set by RRF to 1.0 minus the sum of the other amplitudes.
-* **Tnn:nn** Only used with P"custom" parameter. In RRF 3.5.x and earlier these are the durations of each impulse except the last. In RRF 3.6.0 and later these are the cumulative delays of each impulse except the first (the first has zero delay).
+* **Hnn:nn...** Only used with P"custom" parameter. In RRF 3.5.x and earlier these are the cumulative amplitudes of each impulse except the last, so each is larger than the previous one, and the amplitude of the last will be set by RRF to 1.0. In RRF 3.6.0 and later these are the individual amplitudes of each impulse except the last, and the amplitude of the last impulse will be set by RRF to 1.0 minus the sum of the other amplitudes (therefore the amlitudes provided must sum to less than 1.0).
+* **Tnn:nn** Only used with P"custom" parameter. In RRF 3.5.x and earlier these are the durations of each impulse except the last. In RRF 3.6.0 and later these are the cumulative delays of each impulse except the first (the first has zero delay) in seconds, and must be strictly increasing.
 
 ##### Examples
 
