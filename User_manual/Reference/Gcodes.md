@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-09-24T13:27:20.504Z
+date: 2024-09-24T13:48:29.104Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2500,6 +2500,7 @@ This example sets the current line number to 123. Thus the expected next line af
 * **Dnnn** Set/clear individual debug flags for the specified module
 * **Bnnnn** Redirect debug output and allocate buffer memory (RRF 3.5.0 post RC3 only)
 
+
 ### Examples
 <br>
 <pre class="cblock">
@@ -2516,6 +2517,10 @@ Debug output is normally sent to the USB port, and any debug output generated fr
 Note, print quality may be affected when debug output is enabled because of the volume of data sent to USB. After the B parameter is used to allocate a debug buffer, if excessive amounts of debug data are generated then HTTP disconnections may occur. Debug output should normally be used only for debugging firmware, or when instructed to help with diagnosis of particular issues.
 
 The details of what debugging information is output when debugging is enabled varies from one firmware revision to another, so it is not specified here.
+
+Starting from v3.6.0-beta.1, `M111 P-1` can be used to set debug logging parameters for DCS in SBC mode. Additional parameters for `M111 P-1` include:
+* **Snnn** Set debug level (one of `trace`, `debug`, `info`, `warning`, `error`, `fatal`)
+* **Onnn** Output log messages as generic messages via DWC (e.g. `O1`)
 
 ## M112: Emergency Stop
 
