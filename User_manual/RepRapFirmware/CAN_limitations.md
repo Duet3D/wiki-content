@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.4) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2024-09-25T07:24:11.409Z
+date: 2024-09-25T07:24:46.563Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -20,7 +20,7 @@ We do not intend to remove these in future firmware versions.
 
 * After upgrading firmware on an expansion or tool board, its configuration settings are lost. You must restart the main board, or at least re-run config.g. Duet Web Control usually offers a main board restart automatically after auto-installing firmware on an expansion or tool board.
 * A heater on an expansion or tool board can only be controlled by a temperature sensor on the same expansion board. This is a safety precaution, because it ensures that temperature control is maintained even if CAN communication is lost.
-* Filament monitors must be connected to the same board as the corresponding extruder motor. This use so that the firmware can correlate the measured filament movement and the commanded extruder movement in real time.
+* Filament monitors must be connected to the same board as the corresponding extruder motor. This is so that the firmware can correlate the measured filament movement and the commanded extruder movement in real time.
 
 # Semi-permanent limitations
 
