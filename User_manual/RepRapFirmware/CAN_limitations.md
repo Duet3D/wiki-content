@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.4) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2024-04-25T12:02:45.714Z
+date: 2024-09-25T07:16:59.936Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -30,26 +30,36 @@ We have no current plans to remove the following limitations, although removing 
 * Ports used for spindle control must be on the main board
 * DHT temperature/humidity sensors connected to expansion boards are not supported.
 * Where an expansion board supports multiple drives, or a main board is used as an expansion board, if multiple motion systems are used then the drivers on that board may not be split between motion systems (i.e. all drivers in use must at any time be used by just one motion system).
-
+* Accelerometers connected to main boards used as expansion boards are not supported.
+* A Smart Effector connected to a tool or expansion board cannot be reprogrammed using M672.
 # Temporary limitations
 
 We plan to remove these in future firmware releases.
 
-* ~~Heater tuning is not yet supported on expansion or tool boards (M303).~~ Support is included in release 3.3
-* ~~Endstop switches and Z probes connected to the main board cannot control motors on an expansion board.~~ This is fixed in release 3.3.
-* ~~The main board does not react to heater faults on expansion boards by pausing the print.~~ This restriction is removed in firmware 3.4.
-* ~~MCU temperatures and monitored voltages on expansion boards are not yet reported in the object model (but can be queried using M122).~~ This restriction is removed in firmware 3.4.
-* ~~A thermostatically-controlled fan on an expansion board can only be controlled by a temperature sensor on the same expansion board.~~ This restriction is removed in firmware 3.4.
-* ~~Due to CAN latency the motors connected to expansion boards may slightly overshoot the position at which the endstop or Z probe was triggered. This would not usually matter for an endstop switch, but it does mean that if the Z motor(s) is/are connected to an expansion board then repeated probing with a Z probe (e.g. for mesh bed compensation) is not advisable.~~ This restriction is removed in firmware 3.4.
-* ~~Stalls of expansion board motors are not yet reported.~~ This restriction is removed in firmware 3.4.
-* ~~Change of stepper driver status on expansion boards are not proactively reported (but can be queried using M122). e.g. overheat warnings, short to ground etc.~~ This restriction is removed in firmware 3.4.
-* Stalls of expansion board motors cannot be used for homing. We expect to remove this restriction in firmware 3.6.
+Limitations in firmware 3.6 and earlier:
+* Stalls of expansion board motors cannot be used for homing. We expect to remove this restriction in firmware 3.7.
 * Cold extrusion prevention is not enforced on extruders driven from CAN-connected expansion boards. We expect to remove this restriction in firmware 3.5.
-* When filament monitors are configured on expansion boards, the "calibrated" values in the object model are not updated; however they can be queried using M591 as usual. We expect to remove this restriction in firmware 3.5.
 * The M571 command cannot be used in conjunction with extruders driven from CAN-connected expansion boards.
-* The tower motors of a delta printer cannot be driven via CAN-connected expansion boards. Workaround: use M669 to enable segmentation with short (e.g. 1mm) segments.
-* Input shaping is not supported on axis motors driven by expansion boards. We expect to remove this restriction in firmware 3.5.
 * Using the reset button on the Duet 3 mainboards does not reset the expansion boards. they need to be reset explicitly (M999 Bnn). A soft reset of the mainboard (M999) will cause the expansion boards to reset.
-* In firmware 3.5 the machine coordinates in the object model are updated in semi-real-time (every 250ms) instead of at tne end of each move; however this does not work if the Z axis is driven by an expansion board.
-* Accelerometers connected to main boards used as expansion boards are not supported.
-* A Smart Effector connected to a tool or expansion boadr cannot be rpogrammed using M672.
+
+Additional limitations in firmware 3.5 and earlier:
+* The tower motors of a delta printer cannot be driven via CAN-connected expansion boards.
+* In firmware 3.5 the machine coordinates in the object model are updated in semi-real-time (every 250ms) instead of at tne end of each move; however this does not work for axes driven by a CAN-connected expansion board.
+
+Additional limitations in firmware 3.4 and earlier:
+* When filament monitors are configured on expansion boards, the "calibrated" values in the object model are not updated; however they can be queried using M591 as usual.
+* Input shaping is not supported on axis motors driven by expansion boards.
+
+Additional limitations in firmware 3.3 and earlier:
+* The main board does not react to heater faults on expansion boards by pausing the print.
+* MCU temperatures and monitored voltages on expansion boards are not yet reported in the object model, although they can be queried using M122.
+* A thermostatically-controlled fan on an expansion board can only be controlled by a temperature sensor on the same expansion board.
+* Due to CAN latency the motors connected to expansion boards may slightly overshoot the position at which the endstop or Z probe was triggered. This would not usually matter for an endstop switch, but it does mean that if the Z motor(s) is/are connected to an expansion board then repeated probing with a Z probe (e.g. for mesh bed compensation) is not advisable.
+* Stalls of expansion board motors are not reported.
+* Change of stepper driver status on expansion boards are not proactively reported, e.g. overheat warnings, short to ground etc. although they can be queried using M122.
+
+Additional limitations in firmware 3.2 and earlier:
+* Heater tuning (M303) is not supported on expansion or tool boards (M303).
+* Endstop switches and Z probes connected to the main board cannot control motors on an expansion board.
+
+
