@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.4) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2024-09-25T07:19:46.387Z
+date: 2024-09-25T07:21:17.554Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -37,21 +37,21 @@ We have no current plans to remove the following limitations, although removing 
 
 We plan to remove these in future firmware releases.
 
-Limitations in firmware 3.6 and earlier:
+## Limitations in firmware 3.6 and earlier
 * Stalls of expansion board motors cannot be used for homing. We expect to remove this restriction in firmware 3.7.
 * The M571 command cannot be used in conjunction with extruders driven from CAN-connected expansion boards.
 * Using the reset button on the Duet 3 mainboards does not reset the expansion boards. they need to be reset explicitly (M999 Bnn). A soft reset of the mainboard (M999) will cause the expansion boards to reset.
 
-Additional limitations in firmware 3.5 and earlier:
+## Additional limitations in firmware 3.5 and earlier
 * The tower motors of a delta printer cannot be driven via CAN-connected expansion boards.
 * In firmware 3.5 the machine coordinates in the object model are updated in semi-real-time (every 250ms) instead of at tne end of each move; however this does not work for axes driven by a CAN-connected expansion board.
 
-Additional limitations in firmware 3.4 and earlier:
+## Additional limitations in firmware 3.4 and earlier
 * When filament monitors are configured on expansion boards, the "calibrated" values in the object model are not updated; however they can be queried using M591 as usual.
 * Input shaping is not supported on axis motors driven by expansion boards.
 * Cold extrusion prevention is not enforced on extruders driven from CAN-connected expansion boards.
 
-Additional limitations in firmware 3.3 and earlier:
+## Additional limitations in firmware 3.3 and earlier
 * The main board does not react to heater faults on expansion boards by pausing the print.
 * MCU temperatures and monitored voltages on expansion boards are not yet reported in the object model, although they can be queried using M122.
 * A thermostatically-controlled fan on an expansion board can only be controlled by a temperature sensor on the same expansion board.
@@ -59,6 +59,6 @@ Additional limitations in firmware 3.3 and earlier:
 * Stalls of expansion board motors are not reported.
 * Change of stepper driver status on expansion boards are not proactively reported, e.g. overheat warnings, short to ground etc. although they can be queried using M122.
 
-Additional limitations in firmware 3.2 and earlier:
+## Additional limitations in firmware 3.2 and earlier
 * Heater tuning (M303) is not supported on expansion or tool boards (M303).
 * Endstop switches and Z probes connected to the main board cannot control motors on an expansion board.
