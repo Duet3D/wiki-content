@@ -2,7 +2,7 @@
 title: Bed levelling using multiple independent Z motors
 description: 
 published: true
-date: 2023-12-06T15:41:57.531Z
+date: 2024-10-01T12:05:00.876Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T14:47:18.994Z
@@ -177,6 +177,8 @@ When homing, RRF3 will home both axes, and stop each motor when each endstop is 
 
 See below for an example of Z axis levelling in RepRapFirmware 2.x, on Duet 2. This can be applied to other axes, if necessary.
 
+**NOTE:** use G1 H# moves in RRF 2.02 and 1.23 or later, and G1 S# moves in earlier RRF versions.
+
 #### Step 1: Connect the motors on Z and E0
 See the wiring diagram for your Duet board for motor connections.
 * Connect one motor to the Z motor header, and one motor to the E0 motor header.
@@ -193,16 +195,16 @@ See the wiring diagram for your Duet board for motor connections.
 G91
 
 ; Lift Z without endstop protection
-G1 S2 Z2 F6000
+G1 H2 Z2 F6000
 
 ; Course home X and Y
-G1 X-215 Y-215 F4200 S1
+G1 H1 X-215 Y-215 F4200
 
 ; Move away from the endstops
 G1 X5 Y5 F6000
 
 ; Fine home X and Y
-G1 X-215 Y-215 F360 S1
+G1 H1 X-215 Y-215 F360
 
 M98 Phomez.g
 ```
@@ -211,7 +213,7 @@ M98 Phomez.g
 
 * The M584 line is critical, it's combining the axes. The P3 parameter only shows 3 axes to hide the U axis.
 * Because we'll split the axes during the homing we have to configure everything for U: acceleration, endstops, etc.
-* Don't forget to configure the new motor too.
+* Don't forget to configure the new motor too, by adding Unnn values to M350, M92, M566, M203, M201 and M906.
 ```
 M208 X0 Y0 Z0 U0 S1 ; Set axis minima
 M208 X210 Y210 Z200 U200 S0 ; Set axis maxima
@@ -250,14 +252,15 @@ M84 S2 ; Set idle timeout
 ```
 ; Lift Z relatively to current position
 G91
-G1 S2 Z2 F6000
+G1 H2 Z2 F6000
 
 ; split Z motor control to Z and U
 ; for it to work we have to show U (param P4) in the UI
 M584 Z2 U3 P4
 
 ; Move Z and U  down until the switches triggers
-G1 S1 Z-205 U-205 F1000
+G1 H1 Z-205 U-205 F1000
+
 ; back to combined axes and hidden U
 M584 Z2:3 P3
 
@@ -269,6 +272,6 @@ G92 Z0
 
 ; lift Z after probing, without endstop protection
 G91
-G1 S2 Z10 F1000
+G1 H2 Z10 F1000
 G90
 ```
