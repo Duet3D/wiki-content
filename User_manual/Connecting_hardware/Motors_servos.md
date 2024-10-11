@@ -2,7 +2,7 @@
 title: Connecting hobby servos and DC motors
 description: This page deals with connecting hobby servos and DC motors to Duet mainboards.
 published: true
-date: 2024-10-11T18:57:22.481Z
+date: 2024-10-11T18:58:59.770Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-12T16:04:36.467Z
@@ -52,7 +52,7 @@ Connect the PWM wire to an appropriate PWM pin on the Duet. Most 5V servos seem 
 
 It is possible to use an OUT (Duet 3) or heater/fan (Duet 2, on-board headers) port instead. As this is a PWM-to-GND pin, you would need to use a pullup resistor to the servo power voltage (typically 5V) and specify inverted output in the M950 command.
 
-![servo-pull-up.jpeg](/manual/motors/servo-pull-up.jpeg =500x)
+[![servo-pull-up.jpeg](/manual/motors/servo-pull-up.jpeg =500x)](/manual/motors/servo-pull-up.jpeg){target=_blank}
 
 ## Important considerations when connecting servos!
 
