@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-08-27T11:43:32.777Z
+date: 2024-10-14T13:00:25.362Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -163,14 +163,12 @@ OUT_0, OUT_1 and OUT_2 are PWM-capable.
 
 The individual IO_x connectors have the following capabilities:
 
-| IO # | UART | Analog in? | PWM out? | Notes |
+| IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|
-| IO_0 | Yes* | Yes | Yes |  |
+| IO_0 | Yes | Yes | Yes | **Note:** RepRapFirmware does not currently support UART or I2C on Duet 3 expansion/tool boards. |
 | IO_1 | No | No | No | Input only, no output pin |
 | IO_2 | No | No | No | Input only, no output pin |
 | IO_3 | No | No | No | Input only, no output pin |
-
-*Serial connection not currently supported in Firmware
 
 ## Power wiring
 
