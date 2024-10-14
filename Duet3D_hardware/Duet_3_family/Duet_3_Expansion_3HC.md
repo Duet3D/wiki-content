@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2024-08-20T09:24:11.867Z
+date: 2024-10-14T09:11:24.919Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -196,16 +196,18 @@ RepRapFirmware 3 can be configured to map these ports to the appropriate functio
 
 Except as noted in the table below, an IO_x_IN pin can always be used to provide a digital input (e.g. for endstop inputs or filament monitors), and an IO_x_OUT pin can always be used to provide a digital output. On the version 0.6 and 1.0 boards the individual IO_x connectors have the following additional capabilities:
 
-| IO # | UART? | Analog in? | PWM out? | Notes |
+| IO # | UART/I2C? | Analog in? | PWM out? | Notes |
 |:---|:---|
-| 0 | yes | yes | no | Can be used with I2C from v1.01 onwards ^1^  |
-| 1 | yes | yes | yes |  |
-| 2 | yes | yes | no |  |
+| 0 | yes^1^ | yes | no | Can be used with I2C from v1.01 onwards ^2^  |
+| 1 | yes^1^ | yes | yes |  |
+| 2 | yes^1^ | yes | no |  |
 | 3 | no | no | no |  |
 | 4 | no | no | yes |  |
 | 5 | no | yes | no |  |
 
-^1^ Note: to use IO 0 with I2C the protection bypass resistor must be fitted to bypass the 10K series resistor. If this is fitted then IO0.in is no longer protected sufficiently against over voltage/over current. Also note that RepRapFirmware does not currently support I2C on Duet 3 boards.
+^1^ Serial connection not currently supported in Firmware
+
+^2^ Note: to use IO 0 with I2C the protection bypass resistor must be fitted to bypass the 10K series resistor. If this is fitted then IO0.in is no longer protected sufficiently against over voltage/over current. Also note that RepRapFirmware does not currently support I2C on Duet 3 boards.
 
 ## Power wiring
 
