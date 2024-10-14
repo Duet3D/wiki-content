@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2024-08-20T09:23:48.190Z
+date: 2024-10-14T12:55:38.644Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -190,11 +190,12 @@ The individual IO_x connectors have the following capabilities:
 | IO # | UART/I2C? | Analog in? | PWM out? | Notes |
 |:---|:---|
 | IO_0 | No | Yes | Yes |  |
-| IO_1 | Yes | No | Yes | io1 in/out are theoretically capable of I2C but this isn't implemented at present |
+| IO_1 | Yes^1^ | No | Yes | **Note:** RepRapFirmware does not currently support UART or I2C on Duet 3 expansion/tool boards. |
 | pa20 | No | No | No | digital in/out , brought out to a test pad only |
 | pdec.a, pdec.b. pdec.n | No | No | No | digital inputs |
 
-**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
+^1^ UART serial connection is not currently supported in RepRapFirmware for expansion/tool boards. While io1 in/out are theoretically capable of I2C, this also is not implemented in RepRapFirmware at present.
+
 
 ## Power wiring
 
