@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-08-28T16:26:19.170Z
+date: 2024-10-17T15:08:09.294Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -49,7 +49,9 @@ You can have devices attached to the CAN bus by short 'stubs', which only have a
 
 Unshielded twisted pair cable is normally used, ideally 2 X 24AWG with an impedence of 120ohms. However over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
 
-Twisted pair cables terminated in RJ11 connectors are sold in some countries as "High Speed ADSL cables". One supplier of such cables is [Kenable](https://www.kenable.co.uk/en/search?controller=search&search_query=high+speed+adsl){target=_blank}. Note, **ADSL and telephone cables made with flat wire often cross the connections, making them unsuitable**. See the images below.
+You can use either RJ11 and/or RJ12 cables and connectors. RJ11 is 6P2C (6 positions, 2 contacts), RJ12 is 6P6C (6 positions, 6 contacts). Some wires are also supplied 6P4C (6 positions, 4 contacts). In all cases, only the middle pair are used in a Duet CAN systems.
+
+Twisted pair cables terminated in RJ11/RJ12 connectors are sold in some countries as "High Speed ADSL cables". One supplier of such cables is [Kenable](https://www.kenable.co.uk/en/search?controller=search&search_query=high+speed+adsl){target=_blank}. Note, **ADSL and telephone cables made with flat wire often cross the connections, making them unsuitable**. See the images below.
 
 ### Example of a good cable:
 
@@ -61,7 +63,9 @@ Twisted pair cables terminated in RJ11 connectors are sold in some countries as 
 
 ### Make your own cables
 
-![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =50%x){.align-right}{target=_blank} You can also make up your own cables. Kits of RJ11 (usually 6P4W) connectors and the corresponding assembly tool are readily available.  For the cable, you can buy unshielded twisted pair cable (e.g. Lapp 0035101 has two twisted pairs, so suitable for connecting a Tool Board to a Tool Distribution Board); or buy a length of twisted pair ribbon cable and separate it into individual pairs; or for short distances, use telephone cable.
+![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =50%x){.align-right}{target=_blank} You can also make up your own cables. Kits of RJ11 (usually 6P4C) connectors and the corresponding assembly tool are readily available.  For the cable, you can buy unshielded twisted pair cable (e.g. Lapp 0035101 has two twisted pairs, so suitable for connecting a Tool Board to a Tool Distribution Board); or buy a length of twisted pair ribbon cable and separate it into individual pairs; or for short distances, use telephone cable.
+
+Note that when crimping RJ11 connectors, it is possible to over-crimp them, causing the contacts on the connector to be pressed down so far that they don't make contact with the inside the socket. Check this if you have communication problems.
 
 This image shows a cable made to connect a Duet 3 Mini to a Tool Distribution Board.
 
