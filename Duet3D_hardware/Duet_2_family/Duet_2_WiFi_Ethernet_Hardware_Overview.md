@@ -2,7 +2,7 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2024-08-21T14:03:38.356Z
+date: 2024-10-17T11:49:18.687Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z
@@ -34,7 +34,7 @@ The feature diagram for v1.03 and earlier is below.
 | **On-board Stepper drivers** | 5 x [TMC2660](https://www.trinamic.com/products/integrated-circuits/details/tmc2660c-pa/){target=_blank} ||
 | **Stepper driver features** | Up to 2.4A peak current, up to x256 microstepping, optional x16 interpolation on x16 microstepping, stall detection ||
 | **High current outputs** | 1 x 15A^1^, 2 x 6A each ||
-| **Medium current outputs** | 3 x PWM-controlled outputs, 2 x always-on outputs, voltage selectable between VIN, 5V or external supply (all outputs together); 6 more PWM-controlled outputs on expansion board ||
+| **Medium current outputs** | 3 x PWM-controlled outputs, 2 x always-on outputs, voltage selectable between VIN, 5V or external supply (all outputs together), total current limit 1A^2^; 6 more PWM-controlled outputs on expansion board ||
 | **Thermistor/PT1000 inputs** | 3, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy ||
 | **Inputs/Outputs** | 5 on-board I/O connectors for endstop and filament monitors (STP pins are 8V-tolerant on revision 1.04 and later), 7 more on expansion header ||
 | **Endstop or filament monitor inputs** | See under Inputs/Outputs ||
@@ -58,7 +58,8 @@ The feature diagram for v1.03 and earlier is below.
 
 | **NOTES** |
 |---|
-| ^1^ Note that the board is rated to 18A on the bed heater channel however from version 1.04 forwards they are supplied with a 15A fuse fitted (18A are difficult to source). If you need 18A on the bed heater channel then you need to fit a 20A fuse and take further precautions against over current. |
+| ^1^ The board is rated to 18A on the bed heater channel, however from version 1.04 forwards they are supplied with a 15A fuse fitted (18A are difficult to source). If you need 18A on the bed heater channel then you need to fit a 20A fuse and take further precautions against over current. |
+| ^2^ The medium current output circuit is fused at 1A. The individual outputs are rated for 1A continuous, but 1.5A for short periods, e.g. fan starting up. The fuse can be increased to 2A as long as the individual outputs will be used within their ratings. |
 
 ## Operating limits
 
