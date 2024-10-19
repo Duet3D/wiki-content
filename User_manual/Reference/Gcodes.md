@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-10-17T11:24:53.744Z
+date: 2024-10-19T20:27:56.045Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4138,7 +4138,7 @@ Note that from RRF 3.4.0 beta 8, "drivertemp" will be changed to "drivers" to ma
 
 ### Notes
 
-* This code replaces M305 in RepRapFirmware 3. In earlier versions of RepRapFirmware, sensors only existed in combination with heaters, which necessitated the concept of a "virtual heater" to represent a sensor with no associated heater (e.g. MCU temperature sensor). RepRapFirmware 3 allows sensors to be defined independently of heaters, up to a max of 32 sensors. The association between heaters and sensors is defined using M950.
+* This code replaces M305 in RepRapFirmware 3. In earlier versions of RepRapFirmware, sensors only existed in combination with heaters, which necessitated the concept of a "virtual heater" to represent a sensor with no associated heater (e.g. MCU temperature sensor). RepRapFirmware 3 allows sensors to be defined independently of heaters. The association between heaters and sensors is defined using M950.
 * M308 can be used in the following ways:
   * **M308 Snn Y"type" [other parameters]**: delete sensor nn if it exists, create a new one with default settings, and configure it using the other parameters. At least the pin name must also be provided, unless the sensor doesn't use a pin (e.g. MCU temperature sensor).
   * **M308 Snn**: report the settings of sensor nn, this will also report the last error on that sensor if applicable
