@@ -2,7 +2,7 @@
 title: Neopixel and DotStar LEDs
 description: 
 published: true
-date: 2024-07-03T14:51:08.644Z
+date: 2024-10-20T15:54:19.394Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-10T16:54:19.555Z
@@ -51,14 +51,16 @@ The maximum number of Neopixel LEDs supported per strip depends on the firmware 
 
 ### RRF 3.5 and later
 
-* Multiple LED strips are supported, up to 5 in a system (mainboard + expansion boards). 
-* LED strips can be connected to the dedicated LED connector (Duet 3, 5V signalling) and/or any pin that can be used as a digital output, on mainboards or expansion boards (these pins will need level shifting from 3.3V to 5V, see Connections section below). 
+* Multiple LED strips are supported:
+  * Duet 3: up to 5 in a system (mainboard + expansion boards)
+  * Duet 2 WiFi/Ethernet: up to 2 LED strips, limited by RAM 
+* LED strips can be connected to the dedicated LED connector (Duet 3, 5V signalling) and/or any pin that can be used as a digital output, on mainboards or expansion boards (these pins may need level shifting from 3.3V to 5V, see Connections section below). 
 
 ### RRF 3.4 and earlier
 
 * Only one LED strip is supported, connected to the dedicated LED connector on the main board (except as noted below for the Duet 3 Mini 5+):
   * Duet 3: DOTSTAR/NEOPIXEL pins, 5V signalling
-  * Duet 2 WiFi/Ethernet: (RRF 3.3 and later) CONNLCD pin 5, 3.3V signalling (will need level shifting from 3.3V to 5V, see Connections section below). 
+  * Duet 2 WiFi/Ethernet: (RRF 3.3 and later) CONNLCD pin 5, 3.3V signalling (may need level shifting from 3.3V to 5V, see Connections section below). 
 * On the Duet 3 Mini 5+, an additional RGB LED output is available on the 12864_EXP1 header, to support the backlight on LCD screens. See [Connecting 12864 or other display](/User_manual/Connecting_hardware/Display_12864).
 
 # Connections
@@ -107,7 +109,8 @@ A signal for controlling Neopixel strips can be output on pin 5 of the CONN_LCD 
 
 Note that movement will be suspended any time M150 is used to update LEDs. So OK at the start/end of a print, or the end of heating up, but not a good idea during a print. This is because the CONN_LCD port doesn't have hardware DMA support for LEDs, the CPU has to stop all other activity including step pulse generation in order to generate the correct pulses to set the LEDs.
 
-The signal level on pin 5 of the CONN_LCD connector is 3.3V so you need to level shift it to 5V. You should to do one of the following:
+The signal level on pin 5 of the CONN_LCD connector is 3.3V so you may need to level shift it to 5V. You should to do one of the following:
+* Try it! LEDs often work okay with 3.3V signalling. 
 * Level shift the signal to 5V. A non-inverting 74HCT series gate or buffer such as 74HCT08 can be used to do this.
 * Use Neopixels that accept 3.3V signals (they exist now but are not common)
 * Reduce the supply voltage to the LED strip below 5V. You could probably get away with using a single 1N400x diode to drop the 5V power voltage to the entire strip, or see [this Hackaday article](https://hackaday.com/2017/01/20/cheating-at-5v-ws2812-control-to-use-a-3-3v-data-line/)
@@ -133,7 +136,7 @@ Connect the LED strips as follows:
 * If you specify too many LEDs then you may run out of RAM, especially on Duet 2, TOOL1LC and EXP1XD. Set the M950 U parameter to the number of LEDs you have on the strip.
 * The M950 Q parameter is only used when the port is the dedicated LED port on a Duet 3 series board. Otherwise it is ignored.
 * When using general purpose output pins (i.e. not the LED ports on Duet 3 series boards) to control LEDs, the signalling level will be 3.3V; whereas almost all types of Neopixel LED require at least 3.5V signals for reliable operation. You should to do one of the following:
-  * Try it! Sometimes the LEDs work okay with 3.3V signalling. 
+  * Try it! LEDs often work okay with 3.3V signalling. 
   * Level shift the signal to 5V. A non-inverting 74HCT series gate or buffer such as 74HCT08 can be used to do this.
   * Use Neopixels that accept 3.3V signals (they exist now but are not common)
   * Reduce the supply voltage to the LED strip below 5V. You could probably get away with using a single 1N400x diode to drop the 5V power voltage to the entire strip, or see [this Hackaday article](https://hackaday.com/2017/01/20/cheating-at-5v-ws2812-control-to-use-a-3-3v-data-line/)
