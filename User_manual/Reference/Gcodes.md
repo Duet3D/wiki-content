@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-10-19T20:27:56.045Z
+date: 2024-10-22T09:35:09.248Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1575,6 +1575,7 @@ Disables motors and allows axes to move 'freely.' When used without parameters, 
 * **Snnn** Output style: 0 = text (default), 2 = JSON, 3 = Verbose JSON
 * **P"path"** Folder to list, defaults to the standard folder for GCode files (0:/gcodes in RepRapFirmware)
 * **Rnnn** Number of files to skip, default 0, S2 and S3 only
+* **Cnnn** Maximum number of items to return (only RRF 3.6-beta.2 and newer)
 
 ### Examples
 <br>
