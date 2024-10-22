@@ -2,7 +2,7 @@
 title: Connecting a Z probe - BLTouch
 description: This page covers wiring and configuration of the BLTouch and similar probes
 published: true
-date: 2024-07-18T16:00:29.477Z
+date: 2024-10-22T14:58:55.553Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-20T15:11:02.464Z
@@ -139,19 +139,21 @@ Also does not apply to Duet 2 WiFi/Ethernet rev 1.04 and later as the Z probe in
 
 ### Duet 2 WiFi/Ethernet with Duex 2, Duex 5 or Expansion Breakout Board
 
-First, you need to allocate an unused heater expansion channel to reconfigure as the servo control for the BLTouch. For example, if the E2Heat output is unused, you can use heater 3 which corresponds to the PWM1 connector.
+On the Duex and EBoB, connect the BLTouch +5V, control and GND wires to an available three-pin PWM output. Connect the BLTouch out and GND wires to the Duet Z Probe connector.
+
+On the Duex, heater outputs and PWM outputs share the same signal, ie the same signal controls PWM1 as e2heat, PWM2 is shared with e3heat, PWM3 is shared with e4heat, etc. You need to use a PWM connector whose matching heater is free.
 
 If you have a Duex v0.9 or v0.9a board, check that you have a jumper on the "5V AUX JUMPER SELECT PINS" between the 5V AUX and 5V INT pins. See [this thread](https://forum.duet3d.com/topic/10654/bl-touch-and-the-duex-5/64){target=_blank} on the forum for details.
 
 Connect the BLTouch as follows:
 
-| Duet Z Probe connector pin | DueX PWM connector pin | BLTouch pin | Colour |
+| Duet Z Probe connector pin | DueX/EBoB PWM connector pin | BLTouch pin | Colour |
 |:---|:---|:---|:---|
 | IN | - | Out | White|
 | GND | - | GND | Black|
-| - | +5V | +5V | Red|
-| - | PWM | Control | Orange or yellow|
 | - | GND | GND | Brown or blue |
+| - | +5V AUX | +5V | Red|
+| - | E#_PWM or HEATER#_PWM | Control | Orange or yellow|
 
 #### For all Duet 2 WiFi/Ethernet boards prior to version 1.04
 
