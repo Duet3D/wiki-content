@@ -2,7 +2,7 @@
 title: Connecting a Z probe - BLTouch
 description: This page covers wiring and configuration of the BLTouch and similar probes
 published: true
-date: 2024-10-22T15:02:03.852Z
+date: 2024-10-23T23:01:59.051Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-20T15:11:02.464Z
@@ -56,7 +56,7 @@ When viewed from the side with the PCB, as above, the pinout and wire colours fo
 
 For clone and BLTouch kits supplied by other companies, e.g. Creality, the wiring colours may be different. For example, we have seen:
 
-| PCB pinout (Left to Rigth) | GND | +5V | Control | GND | Out 
+| PCB pinout (Left to Right) | GND | +5V | Control | GND | Out 
 |:--|:--|:--|:--|:--|:--
 | Creality kit (some versions) | White | Black | Yellow | Blue | Red |
 | Creality kit (most common) | White | Black | Yellow | Red | Blue |
