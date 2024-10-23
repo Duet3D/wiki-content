@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-10-22T10:09:23.692Z
+date: 2024-10-23T09:05:51.920Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8499,17 +8499,12 @@ M955 P121.0 I10                ; configure accelerometer on toolboard with CAN a
 
 ### Notes
 
-The **P** parameter selects which accelerometer to use and is mandatory. To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**. Use **P0** for an accelerometer connected locally (i.e. on the mainboard) via SPI.
-
-If none of the other parameters are provided, the current configuration of the specified accelerometer is reported. Otherwise the configuration of that accelerometer is adjusted according to the I, S, and R parameters. These configuration settings persist until they are changed.
-
-The **C** parameter is needed only when the accelerometer is connected to a mainboard, and defines the pins used for the CS and INT signals. It is not needed when using a toolboard with integrated accelerometer.
-
-The **I** (orientation) parameter tells the firmware which of the 24 possible orientations the accelerometer chip is in relative to the printer axes. It is expressed as a 2-digit number. The first digit specifies which machine direction the Z axis of the accelerometer chip (usually the top face of the chip) faces, as follows: 0 = +X, 1 = +Y, 2 = +Z, 4 = -X, 5 = -Y, 6 = -Z. The second digit expresses which direction the X axis of the accelerometer chip faces, using the same code. If the accelerometer chip axes line up with the machine axis, the orientation is 20. This is the default orientation if no orientation has been specified.
-
-The **S** and **R** parameters control how the accelerometer is programmed. The R parameter is ignored unless the S parameter is also provided. If S is provided but R is missing, a default resolution is used. The sensor resolution will be adjusted to be no greater than the value of the R parameter (or the minimum supported resolution if greater), then the sensor sampling rate will be adjusted to a value supported at that resolution that is close to the S parameter. The actual rate and resolution selected can be found by using M955 with just the P parameter.
-
-For more information on connecting accelerometers, see the [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) wiki page.
+* The **P** parameter selects which accelerometer to use and is mandatory. To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**. Use **P0** for an accelerometer connected locally (i.e. on the mainboard) via SPI.
+* If none of the other parameters are provided, the current configuration of the specified accelerometer is reported. Otherwise the configuration of that accelerometer is adjusted according to the I, S, and R parameters. These configuration settings persist until they are changed.
+* The **C** parameter is needed only when the accelerometer is connected to a mainboard, and defines the pins used for the CS and INT signals. It is not needed when using a toolboard with integrated accelerometer.
+* The **I** (orientation) parameter tells the firmware which of the 24 possible orientations the accelerometer chip is in relative to the printer axes. It is expressed as a 2-digit number. The first digit specifies which machine direction the Z axis of the accelerometer chip (usually the top face of the chip) faces, as follows: 0 = +X, 1 = +Y, 2 = +Z, 4 = -X, 5 = -Y, 6 = -Z. The second digit expresses which direction the X axis of the accelerometer chip faces, using the same code. If the accelerometer chip axes line up with the machine axis, the orientation is 20. This is the default orientation if no orientation has been specified.
+* The **S** and **R** parameters control how the accelerometer is programmed. The R parameter is ignored unless the S parameter is also provided. If S is provided but R is missing, a default resolution is used. The sensor resolution will be adjusted to be no greater than the value of the R parameter (or the minimum supported resolution if greater), then the sensor sampling rate will be adjusted to a value supported at that resolution that is close to the S parameter. The actual rate and resolution selected can be found by using M955 with just the P parameter.
+* For more information on connecting accelerometers, see the [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) wiki page.
 
 ## M956: Collect accelerometer data and write to file
 
@@ -8527,7 +8522,8 @@ This command causes the specified number of accelerometer samples to be collecte
 
 ### Notes
 
-The **P** parameter selects which accelerometer to use and is mandatory. To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**.
+* The **P** parameter selects which accelerometer to use and is mandatory. 
+* To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**.
 
 ## M957: Raise event
 
@@ -8553,11 +8549,11 @@ Raise a heater fault from expansion board at CAN address 2 on heater 1
 
 ### Notes
 
-The event type names are firmware-dependent. In RepRapFirmware they are: heater-fault, driver-error, filament-error, driver-warning. However, in RRF 3.4.0 it is necessary to use underscore "\_" in place of dash "-" when using these event names in M957. Future versions of RRF will allow the dash character to be used instead but will still allow underscore for backwards compatibility.
-
-The meaning of the device number depends on the event type. For a driver error it is the driver number. For a heater fault it is the heater number. For a filament error it is the extruder number.
-
-The meaning of the optional additional parameter also depends on the event type. For example, for a driver error it is the driver status.
+* **E** parameter: the event type names are firmware-dependent. In RepRapFirmware they are: heater-fault, driver-error, filament-error, driver-warning. However, in RRF 3.4.0 it is necessary to use underscore "\_" in place of dash "-" when using these event names in M957. Future versions of RRF will allow the dash character to be used instead but will still allow underscore for backwards compatibility.
+* **D** parameter: the meaning of the device number depends on the event type. For a driver error it is the driver number. For a heater fault it is the heater number. For a filament error it is the extruder number.
+* **P** parameter: (non-negative integer) additional information about the event, e.g. the subtype of a heater fault or a filament error. The meaning of the optional additional parameters also depends on the event type. For example, for a driver error it is the driver status.
+* **S** parameter: the full text string describing the fault (the same string that is written to the log file, if the event is logged). This is intended to be suitable to show to the user.
+* For more information, see the [Events](/User_manual/RepRapFirmware/Events) wiki page.
 
 ## M970 Enable/disable phase stepping
 
