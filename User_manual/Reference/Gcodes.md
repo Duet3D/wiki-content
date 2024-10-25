@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-10-23T09:05:51.920Z
+date: 2024-10-25T08:17:26.798Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5191,11 +5191,13 @@ M557 R150 S15
 
 ##### Description
 
-Defines the grid for [G29 Mesh Bed probing](/User_manual/Reference/Gcodes/G29){target=_blank}. For Cartesian printers, specify minimum and maximum X and Y values to probe and the probing interval. For Delta printers, specify the probing radius. If you define both, the probing area will be the intersection of the rectangular area and the circle. There is a firmware-dependent maximum number of probe points supported. Currently this is 441 for the Duet 2 and Duet 3 (enough for a 21x21 grid), and 121 on the Duet 06/085 (enough for a 11x11 grid).
+Defines the grid for [G29 Mesh Bed probing](/User_manual/Reference/Gcodes/G29){target=_blank}. 
 
 ##### Notes
 
-In RRF >= 3.3beta2 it is possible to use an arbitrary axes pair for probing, e.g. X-A or U-C. When using **Raaa** to define a radius this will default to X-Y.
+* In RRF 3.3beta2 and later, it is possible to use an arbitrary axes pair for probing, e.g. X-A or U-C. When using **Raaa** to define a radius this will default to X-Y.
+* For Cartesian printers, specify minimum and maximum X and Y values to probe and the probing interval. For Delta printers, specify the probing radius. If you define both, the probing area will be the intersection of the rectangular area and the circle. 
+* There is a firmware-dependent maximum number of probe points supported: RRF 3.5 - 961 (6HC/XD only, 31x31 grid) or 441 (Duet 3 Mini 5+ and Duet 2, 21x21 grid); RRF 3.4 - 441; RRF 1.x - 121 on the Duet 06/085 (enough for a 11x11 grid).
 
 #### Define G32 probe points
 
