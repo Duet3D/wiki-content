@@ -2,7 +2,7 @@
 title: Setting up macro files for common tasks
 description: You can use macro files to automate common tasks. A macro file is simply a text file on the SD card containing a sequence of GCode commands.
 published: true
-date: 2024-07-03T13:14:51.153Z
+date: 2024-10-28T12:47:01.752Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:28:44.097Z
@@ -61,9 +61,9 @@ Macros can be run from any source of code:
 * From a console connected by USB/telnet/DWC etc
 * From another macro - they can be nested.
 
-To run a macro the M98 gcode is used:
+To run a macro the [M98](/User_manual/Reference/Gcodes/M98) gcode is used:
 
-[M98 P"mymacro.g"](/User_manual/Reference/Gcodes/M98)
+`M98 P"mymacro.g"`
 
 ## From Duet Web Control
 
