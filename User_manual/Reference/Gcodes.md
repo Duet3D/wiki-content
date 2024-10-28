@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-10-28T12:37:33.999Z
+date: 2024-10-28T12:43:12.800Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4928,7 +4928,7 @@ This command can be used to allow multiple configurations to be maintained easil
 <br>
 <pre class="cblock">
 M505 P"config1"
-M98 P"config.g"`
+M98 P"config.g"
 </pre>
 
 The first line changes the config file folder to /sys/config1 and the second one executes file config.g in that folder. To select an alternative configuration, only the first line needs to be edited.
