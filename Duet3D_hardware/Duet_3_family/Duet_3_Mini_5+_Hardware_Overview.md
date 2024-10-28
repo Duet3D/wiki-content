@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2024-10-14T12:07:02.399Z
+date: 2024-10-28T08:56:04.702Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -420,6 +420,12 @@ You will need to remove the bootloader protection by doing Erase Chip first and 
 # Revision History
 
 # Tabs{.tabset}
+
+## Revision 1.03
+
+Ethernet Only
+
+* Changed connector to USB-C
 
 ## Revision 1.02(a)
 
