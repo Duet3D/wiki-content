@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-10-25T08:21:41.087Z
+date: 2024-10-28T12:37:33.999Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8097,7 +8097,7 @@ RepRapFirmware also requires macro file **/sys/resurrect-prologue.g** to be pres
 
 See this page for more details: [Setting up to resume a print after a power failure or planned power down](/User_manual/Tuning/Resume){target=_blank}
 
-Version 1.19 of RepRapFirmware does not support M916 but you can achieve the same effect using command **M98 P/sys/resurrect.g**.
+Version 1.19 of RepRapFirmware does not support M916 but you can achieve the same effect using command **M98 P"/sys/resurrect.g"**.
 
 ## M917: Set motor standstill current reduction
 
