@@ -2,7 +2,7 @@
 title: 12864 display menu system
 description: 
 published: true
-date: 2023-05-03T14:54:26.139Z
+date: 2024-10-28T16:28:19.636Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-08T15:18:45.632Z
@@ -21,6 +21,9 @@ Support for 12864 displays was originally introduced for Duet 2 Maestro. 12864 s
 * Duet Maestro - RRF 2.x and 3.x
 
 See [Connecting 12864 and other displays](/User_manual/Connecting_hardware/Display_12864) for details.
+
+**NOTE:** on **Single Board Computer** (SBC, i.e. Raspberry Pi) setups where a 12864 display is connected to a supported Duet board (see above), the file and macro list are unavailable in the 12864 menus. This is because the SBC presents a virtual SD card rather than a physical one that the 12864 system can not access.
+See [this thread on the forum](https://forum.duet3d.com/topic/32997/duet-3-sbc-with-12864-display-sd-card-access) for a workaround to allow access to specific macros.
 
 # Configuration
 
@@ -100,6 +103,8 @@ The V parameter in the 'button' command specifies the button's visibility with v
 | 20 | visible when the current or default tool has a temperature fault |
 | 28 | visible when the bed heater has a temperature fault |
 
+In RRF 3.5.0-beta.4 and later the value can instead be an expresison enclosed in { } that yields a Boolean value, for example: `V{heat.heaters[0].current>60}`
+
 The N parameter in the "value" and "alter" commands specifies the value to display or change as follows:
 
 | Value(s) | Alterable? | Meaning |
@@ -138,6 +143,8 @@ The N parameter in the "value" and "alter" commands specifies the value to displ
 
 (3) = implemented in firmware 2.03RC1 and later only
 
+In RRF 3.5.0-beta.4 and later, in a "value" command the value can instead be an expression enclosed in { } that yields the value to be displayed, for example: `N{heat.heaters[0].current}`
+
 ## File format for 'image' command
 
 Byte 0: image width in pixels (call this W)
@@ -164,7 +171,14 @@ button R39 C0 T"Preheat ABS" A"M98 P#0" L"/macros/Preheat ABS"
 button R51 C0 T"Select file to print" A"menu" L"listFiles"
 ```
 
-File "listFiles"
+**Note:** From RRF 3.5, the firmware expects M98 commands to have the macro name or path/name in quotes. See [this thread on the forum](https://forum.duet3d.com/topic/35429/3-5rc4-12864-display-menu-m98). The above should work in RRF 3.5 and earlier version. It could be rewritten as:
+
+```
+button R27 C0 T"Preheat PLA" A"M98 P""/macros/Preheat PLA"""
+```
+However, this may then not work in earlier versions of RRF.
+
+File "listFiles":
 
 ```
 text R0 C0 F0 T"Select file to print  "
