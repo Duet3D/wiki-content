@@ -2,7 +2,7 @@
 title: BLTouch Troubleshooting
 description: Getting the most out of your BLTouch on the Duet.
 published: true
-date: 2022-01-18T16:53:59.132Z
+date: 2024-10-28T13:12:53.765Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T23:15:24.992Z
@@ -33,7 +33,7 @@ The BLTouch is an attractive Z probe option because it works on any surface, is 
 * **Update Duet Firmware.** Firmware version 1.21 and 2.01 have some BLTouch specific improvements which will let you get the best performance from the probe. See here for a [firmware upgrade walkthrough](/User_manual/RepRapFirmware/Updating_firmware).
 * **Use Probe Type 9.** RRF now has a dedicated BLTouch [M558 probe type](/User_manual/Reference/Gcodes/M558). Older firmware versions used type 5, but this method is no longer recommended. 
 * **Double Check Deployprobe.g and Retractprobe.g** Make sure your deploy and retract macros located in the sys folder are configured correctly. Make sure the servo commands reference the servo index number created by an [M950](/User_manual/Reference/Gcodes/M950) command (RRF 3.x) or the heater pin number (RRF 2.x) you have chosen to use.
-* **Don't use M98 PDeployprobe.g** The old way (RRF before 1.21/2.01) using probe type 5 required you to use M98 PDeployprobe.g and M98 PRetractprobe.g to deploy and retract the pin. Type 9 now handles the deployment internally. If you need to manually deploy and retract, use [M401](/User_manual/Reference/Gcodes/M401) and [M402](/User_manual/Reference/Gcodes/M402), respectively. This allows the Duet to keep track of the deployment state of the pin. [G30](/User_manual/Reference/Gcodes/G30) and [G29](/User_manual/Reference/Gcodes/G29) will automatically deploy as needed when using Type 9.
+* **Don't use M98 P"deployprobe.g"**. The old way (RRF before 1.21/2.01) using probe type 5 required you to use `M98 P"Deployprobe.g"` and `M98 P"Retractprobe.g"` to deploy and retract the pin. Type 9 now handles the deployment internally. If you need to manually deploy and retract, use [M401](/User_manual/Reference/Gcodes/M401) and [M402](/User_manual/Reference/Gcodes/M402), respectively. This allows the Duet to keep track of the deployment state of the pin. [G30](/User_manual/Reference/Gcodes/G30) and [G29](/User_manual/Reference/Gcodes/G29) will automatically deploy as needed when using Type 9.
 * **Measure your Trigger Height.** To get a proper first layer height, the distance from the nozzle tip to the bed must be known at the point when the probe triggers. [Follow this guide to measure it](/User_manual/Connecting_hardware/Z_probe_testing#calibrate-the-z-probe-trigger-height).
 * **Measure your XY Offset.** To get accurate probe results, the Duet needs to know how far the BLTouch is from the nozzle in X and Y. To measure this, place a piece of paper on the bed and use tape to hold it in place. Move the nozzle down until the it touches the paper and leaves a small imprint. Make note of the current X and Y coordinate. Use a marker to make the spot clearly visible. Now jog the print head in X and Y until the BLTouch pin is on the exact spot you marked. Make note of the new X and Y coordinates. The difference between the two will be your X Y offset in the G31 command.
 * **Modify your M558 and G31.** The BLTouch behaviour is controlled by the [M558](/User_manual/Reference/Gcodes/M558) and [G31](/User_manual/Reference/Gcodes/G31) commands in config.g. Here is what an ideal set of commands should look like. 
