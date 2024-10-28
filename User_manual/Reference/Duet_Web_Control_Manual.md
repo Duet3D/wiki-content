@@ -2,7 +2,7 @@
 title: Duet Web Control Manual
 description: Duet Web Control is a browser based user interface for RepRapFirmware that runs in most modern browsers that support HTML 5.
 published: true
-date: 2022-06-29T20:42:56.241Z
+date: 2024-10-28T12:48:19.642Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T14:41:33.290Z
@@ -309,7 +309,7 @@ Feed and feedrate amounts can be edited by right-clicking on the number, in a si
 
 ![dwc23_14_machine_control_10.png](/manual/dwc/dwc23_14_machine_control_10.png =800x)
 
-Manual fan control allows direct selection of specific fans and the setting of their speed. Fans that are assigned to specific tools will not show until the related tool is activated. Thermostatically controlled fans will show (when their tool is active), but are not controllable; the fan slider will be greyed out when selected.
+Fan control shows the current duty cycle/speed for each fan when selected, and allows direct selection of fans and manual setting of their speed. The 'Tool fan' is the controllable fan of the currently selected tool. All Gcode/manually controlled fans should be shown. Thermostatically controlled fans are not displayed, and are not controllable.
 
 ## Macros
 
@@ -436,7 +436,7 @@ This shows the setting for, and allows the override of, the print speed factor. 
 
 ![dwc23_17_status_13.png](/manual/dwc/dwc23_17_status_13.png)
 
-Shows the current tool’s Tool Fan (print cooling fan) slider, with the current setting as a %. Click ‘Change Visibity’ to show other fans configured in config.g. related to the currently active tool’s print cooling fan (as different tools may use different print cooling fans etc). Thermostatic fans are not displayed.
+Shows the current duty cycle/speed for each fan, and allows direct selection of fans and manual setting of their speed. The 'Tool fan' is the controllable fan of the currently selected tool. All Gcode/manually controlled fans should be shown. Thermostatically controlled fans are not shown, and are not controllable. Click ‘Change Visibity’ to show/hide fans.
 
 ## Extrusion Factors
 
@@ -552,7 +552,7 @@ Right-clicking on files gives various options. ‘Download File’, ‘Rename’
 
 ![dwc23_22_system_03.png](/manual/dwc/dwc23_22_system_03.png =800x)
 
-Click ‘Save’ to save changes. If you edit the config.g file, you will be prompted to reboot the Duet to use your new config.g when you save. Setting changes to config.g do not come into effect until the duet is rebooted, or you run M98 P"config.g". Changes to other system macros such as the homing, tool change, pause etc macros come into effect without rebooting as they are read every time the printer is homed, tools are changed, a print is paused etc.
+Click ‘Save’ to save changes. If you edit the config.g file, you will be prompted to reboot the Duet to use your new config.g when you save. Setting changes to config.g do not come into effect until the duet is rebooted, or you run `M98 P"config.g"`. Changes to other system macros such as the homing, tool change, pause etc macros come into effect without rebooting as they are read every time the printer is homed, tools are changed, a print is paused etc.
 
 The contents of the system macros is outside of the scope of this manual. There are documentation pages dedicated to the specific settings within config.g, see [Firmware configuration](/User_manual/Machine_configuration/Configuration_cartesian) documentation.
 
