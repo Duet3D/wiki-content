@@ -2,7 +2,7 @@
 title: Bed levelling using multiple independent Z motors
 description: 
 published: true
-date: 2024-10-01T12:05:00.876Z
+date: 2024-10-28T14:37:35.581Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T14:47:18.994Z
@@ -206,7 +206,7 @@ G1 X5 Y5 F6000
 ; Fine home X and Y
 G1 H1 X-215 Y-215 F360
 
-M98 Phomez.g
+M98 P"homez.g"
 ```
 
 #### Step 3: Edit your config.g 
