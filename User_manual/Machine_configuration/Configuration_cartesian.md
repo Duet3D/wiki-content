@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Cartesian printer
 description: This page describes how to set up the configuration files for Cartesian printers, and forms the basis for setting up all printer types. However, the same firmware binary also supports Delta, CoreXY and other printers kinematics.
 published: true
-date: 2022-03-01T07:05:40.017Z
+date: 2024-10-28T12:53:32.069Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-16T20:09:06.405Z
@@ -761,7 +761,7 @@ The homeall.g file is used when all axes are to be homed. You could make it by c
 
 **Note:** you must not use a G28 command within homeall.g (or any other homing file). But you can invoke one of your other homing files using the M98 command, for example:
 
-M98 P"homex.g"
+`M98 P"homex.g"`
 
 Here is a sample homeall.g file for a machine with X and Y endstop switches at the low end and using a Z probe for Z homing:
 
