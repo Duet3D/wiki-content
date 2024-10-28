@@ -2,7 +2,7 @@
 title: Choosing a Z probe
 description: 
 published: true
-date: 2024-10-28T16:34:13.553Z
+date: 2024-10-28T16:42:03.899Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:24:45.655Z
@@ -16,7 +16,7 @@ There are many types of Z probe available. This table may help you to choose one
 |:---|:---|
 | Duet3D Smart Effector | Medium | Light | Any | Very high | Intended for delta printers only, but has been used on at least one CoreXY printer. See [Duet3D Smart Effector](/Duet3D_hardware/Accessories/Smart_Effector) |
 | DC42 IR Sensor | Small | Light | Most | Usually high when used with opaque bed surfaces, medium or low with transparent surfaces | Transparent surfaces (glass, PEI etc.) must be backed with a matt black surface and must not be coated with glue, hairspray etc. See [dc42's blog](https://miscsolutions.wordpress.com/mini-height-sensor-board/). |
-| Duet3D Scanning Z Probe | Medium/Small | Light | Steel, or aluminium without glass on top (thin PEI is OK) | high but requires calibration | Due to temperature variation of inductive sensing, requires a calibration step and/or temperature compensation. When combined with a Duet 3 Roto toolboard, the sensor coil is small and light. If the scanning Z probe control board is required then the light sensor coil is combined with a small additioal control board making the overall size larger, although the control board can be mounted further away from the bed on the effector assembly. See [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe) |
+| Duet3D Scanning Z Probe | Medium/Small | Light | Steel, or aluminium without glass on top (thin PEI is OK) | high but requires calibration | Inductive sensing is subject to temperature variation, and requires a calibration step and/or temperature compensation. The [Duet 3 Roto toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) has SZP support built-in, and combined with the sensor coil makes a small and light package. For applications that don't have SZP support natively, the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe) board is required, combined with the sensor coil. This makes the overall size larger, although the small control board can be mounted further away from the bed on the effector assembly. |
 | Hot end mounted piezo | Medium | Light | Any | Very high | See [precisionpiezo.co.uk](https://www.precisionpiezo.co.uk/shop). |
 | Under-bed FSRs or piezos | Small | Light | Any | High or medium | For FSRs use JohnSL interface board. Mainly used with delta printers. Trigger height may vary a little with probing position. |
 | Inductive | Large | Heavy | Steel, or aluminium without glass on top (thin PEI is OK) | Medium | Most types need 12V or 24V power. Trigger height may vary with supply voltage and temperature. |
