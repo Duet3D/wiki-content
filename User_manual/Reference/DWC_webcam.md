@@ -2,7 +2,7 @@
 title: Connecting a web camera to Duet Web Control
 description: Duet 2 and Duet 3 mainboards do not support a directly-connected web camera. However, you can buy a suitable Wifi or Ethernet IP camera and then configure Duet Web Control to include an image from the camera on the Print page.
 published: true
-date: 2023-12-12T16:44:41.690Z
+date: 2024-10-30T09:55:11.713Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T15:12:46.132Z
@@ -14,15 +14,17 @@ Duet 2 and Duet 3 mainboards do not support a directly-connected web camera. How
 
 **Important**: You must choose a camera that has the facility to return a static JPEG image in response to a HTTP request. Not all IP cameras have this facility. Sadly, none of the major browsers supports including a RTSP camera video stream in a web page.
 
-# Generic setup instructions
+# IP cameras
+
+## Generic setup instructions
 
 * Connect the camera to your Wifi or Ethernet network according to the manufacturer's instructions.
 * Identify your camera's IP address and the HTTP port and URL that return a static JPEG image. You may find [https://www.ispyconnect.com/sources.aspx](https://www.ispyconnect.com/sources.aspx) useful.
 * In Duet Web Control, go to Settings, User Interface. At the bottom right is the Webcam Integration panel. Configure the URL there.
 
-# Specific cameras
+## Specific cameras
 
-## Raspberry Pi with camera add-on
+### Raspberry Pi with camera add-on
 
 This is known to work. You can use OctoPrint to host a video camera feed. However there is a lighter weight solution. Here is a summary of the process of installing MotionEyeOS on a RaspberryPi with a camera attached.
 
@@ -47,7 +49,7 @@ This is known to work. You can use OctoPrint to host a video camera feed. Howeve
 
 For more details on this setup process please visit [https://betrue3d.dk](https://betrue3d.dk/rpi-zero-wireless-video-for-duet-using-motioneye-os/){target=_blank}
 
-## Raspberry Pi with UV4L
+### Raspberry Pi with UV4L
 
 If using a Raspberry Pi cam, UV4L is a nice lightweight option, and has a built-in webserver for streaming. There’s a guide on [Github here](https://github.com/tomconn/RaspberryPiStreaming).
 
@@ -57,7 +59,7 @@ Roughly:
 3. Set the duet webcam url to be 
 `http://[raspberry pi ip address]:8080/stream/snapshot.jpeg?delay_s=0`
 
-## Sannce I21AG
+### Sannce I21AG
 
 * Download and install the Sannce Cam app on your smartphone.
 * Connect the camera to your WiFi network using the smartphone app.
@@ -74,7 +76,7 @@ Roughly:
 This embeds a video stream directly from the camera in your browser. 
 * Note - if you go to `http://[ip-address:port]/index.htm` and click on Videostream mode, you can use the motors onboard the camera to focus on various parts of your print.
 
-## WyzeCamV2
+### WyzeCamV2
 
 The following instructions were contributed by forum user Foden.
 
@@ -82,15 +84,26 @@ Purchased some of these beauties, [Amazon (Canada)](https://www.amazon.ca/Wyze-W
 
 The cameras will also work, generally, in low to no light, I forgot where i got the info but think it just needs a file in the config folder called 'autonight.conf.sw' and all it contains is '-S'
 
-# Motion on a Raspberry Pi Running DSF
+# Cameras connected to a Raspberry Pi Running DSF
 
-## Description
+> In **RRF 3.5 and later**, use the Spyglass camera plugin for cameras connected to the RPi via the CSI connector, and Motion for USB-connected cameras.
+> 
+> For **RRF 3.4 and earlier**, use the Motion plugin for all cameras.
+{.is-info}
+
+## Spyglass
+
+(Info to come)
+
+## Motion
+
+### Description
 
 From RRF 3.4, the Duet3D-provided Raspberry Pi images for Duet Software Framework come with the [motion](https://github.com/Motion-Project/motion){target=_blank} streaming service installed. A compatible camera can be connected to the Rapsberry Pi using the Raspberry Pi camera connectors or USB, and can then be used through DWC and controlled through the [Motion Webcam Plugin](https://github.com/Duet3D/MotionWebcamServerPlugin/releases){target=_blank}.
 
 Motion is a program that monitors the video signal from one or more cameras and is able to detect if a significant part of the picture has changed. Or in other words, it can detect motion. It is generally used in security cameras. It can also stream the camera view, using a built-in webserver, which is what DWC uses.
 
-## Camera check
+### Camera check
 
 When you connect a camera to the Raspberry Pi, it is set up as a device in the /dev folder as a 'video' device. You can check what devices are connected by sending `v4l2-ctl --list-devices` in the Raspberry Pi's terminal.
 ```
@@ -108,7 +121,7 @@ HP Webcam 3100: HP Webcam 3100 (usb-3f980000.usb-1.5):
 ```
 In the above, /dev/video0 is a Raspberry Pi Camera, and /dev/video1 is a USB webcam.
 
-## Installation
+### Installation
 
 * Download the .zip file of the plugin without extracting it, using the version that matches the firmware version of your Duet, from [Motion Webcam Plugin](https://github.com/Duet3D/MotionWebcamServerPlugin/releases){target=_blank}. 
 * Install the plugin in DWC by going to Settings > Plugins > External plugins, then select 'Install plugins' and upload the .zip file.
@@ -118,13 +131,13 @@ This plugin runs the Motion webcam streaming service as a DSF plugin.
 
 More information on configuration parameters can be found on the [Motion documentation pages](https://motion-project.github.io/motion_config.html){target=_blank}.
 
-## Configuration
+### Configuration
 
-## Tabs {.tabset}
+### Tabs {.tabset}
 
-### Single camera
+#### Single camera
 
-#### Motion settings
+##### Motion settings
 
 The Motion configuration file `motion.conf` is created in `0:/sys/motion.conf`, and can be edited in DWC. The default configuration uses the default `/dev/video0` device node. Depending on your choice of camera (see 'Camera check' section above), you may need to change this in `motion.conf`.
 
@@ -152,7 +165,7 @@ After you make changes to motion.conf, you will need to restart the Motion Plugi
 
 Reported in 'top' (run from RPi terminal), Motion's CPU utilisation on a RPi4 is around 40-50% for 1280x720 @ 25fps, and around 30% for 800x600 @ 25fps, when the stream is being displayed. It drops to below 10% CPU utilisation when not being displayed.
 
-#### Setup in DWC
+##### Setup in DWC
 
 To configure this service in DWC, go to the `Settings` -> `General` page and make the following changes:
 
@@ -162,11 +175,11 @@ To configure this service in DWC, go to the `Settings` -> `General` page and mak
 - If you have made changes to motion.conf, restart Motion by going to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again.
 - Go to the `Job` -> `Webcam` page to see your live stream
 
-### Multiple cameras
+#### Multiple cameras
 
 It is easiest to set up one camera first, to check everything is working, before setting up multiple cameras.
 
-#### Motion settings
+##### Motion settings
 
 To use more than one camera, Motion splits the configuration into a main configuraton named `motion.conf` and a configuration for each camera. For this example, they are called `camera1.conf` and `camera2.conf`. There are all created and stored in `0:/sys/`, and can be edited in DWC.
 
@@ -215,7 +228,7 @@ stream_port 8082
 ```
 After you make changes to motion.conf or camera#.conf, you will need to restart the Motion Plugin to make the settings take effect. Go to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again. Check that your changes have taken effect, by checking the Job > Webcam page.
 
-#### Setup in DWC
+##### Setup in DWC
 
 To configure this service for multiple cameras in DWC, go to the `Settings` -> `General` page and make the following changes:
 
@@ -226,17 +239,17 @@ To configure this service for multiple cameras in DWC, go to the `Settings` -> `
 - If you have made changes to motion.conf or camera#.conf, restart Motion by going to Settings > Plugins > External plugins, click 'Stop' to stop the plugin, wait a couple of seconds, then click 'Start' again.
 - Go to the `Job` -> `Webcam` page to see your live stream
 
-## Build instructions
+### Build instructions
 
 (Not generally needed if you are using the 'Release' version of the plugin that matches your RRF version.)
 
 Create a ZIP file of every file but `README.md` in this directory and make sure `plugin.json` is at the root level. Once created, the ZIP can be installed as a third-party plugin.
 
-## Logging
+### Logging
 
 Unfortunately the motion service outputs info and warning log messages even if the log level is initially set to not output these, so by default this plugin's configuration suppresses all the log messages and only sends them to the `duetpluginservice` journal log.
 
-### Checking the journald log (recommended way)
+#### Checking the journald log (recommended way)
 
 To view the log of the motion service, open a Linux console (or connect over SSH) and run
 
@@ -247,11 +260,11 @@ journalctl -u duetpluginservice -f
 Then restart the Motion Webcam Server plugin and look for potential errors.
 
 
-### Modify plugin manifest to see all messages in DWC
+#### Modify plugin manifest to see all messages in DWC
 
 To see all the output messages from the motion service directly in DWC, open `plugin.json` and set `sbcOutputRedirected` from `false` to `true`. Then build the plugin again and overwrite the existing installation.
 Once the plugin is restarted, all the log messages are written to the DWC console.
 
-### Increasing the log level
+#### Increasing the log level
 
 If you need further details, you can reset `log_level` in `motion.conf` from `3` (critical) to `6` (notice). Note that a restart of the plugin is required whenever the config file is modified.
