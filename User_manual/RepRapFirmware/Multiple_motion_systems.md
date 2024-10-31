@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2024-04-19T23:13:23.534Z
+date: 2024-10-31T11:45:05.930Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -10,7 +10,7 @@ dateCreated: 2022-03-22T10:08:15.620Z
 
 # Overview
 
-RepRapFirmware 3.5 provides experimental support for multiple motion systems that move asynchronously with respect to each other. Each motion system has its own current tool. A single GCode job file or input stream controls all the motion systems. Additional commands in the GCode stream specify which motion system each command is destined for. Some commands (in particular M400) cause motion to be synchronised, i.e. when the command is reached the system waits for all commands for any motion system prior to that command to complete before continuing.
+RepRapFirmware 3.5 provides experimental support for multiple motion systems that move asynchronously with respect to each other. Each motion system has its own current tool. A single GCode job file or input stream controls all the motion systems. Additional commands in the GCode stream specify which motion system each command is destined for. Some commands (in particular [M400](/User_manual/Reference/Gcodes/M400)) cause motion to be synchronised, i.e. when the command is reached the system waits for all commands for any motion system prior to that command to complete before continuing.
 
 The primary application is to speed up printing by having the printer work on separate parts of a large print concurrently, or to print two different objects at the same time.
 
@@ -18,7 +18,7 @@ The primary application is to speed up printing by having the printer work on se
 
 -   Due to memory limitations, RRF on Duet 2 series boards does not support this feature. All Duet 3 main boards support it, however performance on Duet 3 Mini might be limiting.
 -   Only two motion systems are currently supported. In the future we may increase this limit on Duet 3 MB6HC and MB6XD boards.
--   By default, the second motion queue is only three elements long. Use the M595 command to lengthen it, for example: M595 Q1 P60 will increase it to 60 elements (the same number as in the primary movement queue on MB6HC and MB6XD boards).
+-   By default, the second motion queue is only three elements long. Use the [M595](/User_manual/Reference/Gcodes/M595) command to lengthen it, for example: `M595 Q1 P60` will increase it to 60 elements (the same number as in the primary movement queue on MB6HC and MB6XD boards).
 -   At any time, each motion system “owns” a set of physical axes and extruders. It may also own a tool. No other motion system can use those axes/extruders or that tool until the owning motion system releases it. See below for details of ownership of axes and extruders.
 -   For any two axes owned by different motion systems, those axes may not share a motor. For example, on a CoreXY machine the X and Y axes cannot be owned by different motion systems.
 
@@ -26,11 +26,11 @@ The primary application is to speed up printing by having the printer work on se
 
 Use the [M596](https://docs.duet3d.com/en/User_manual/Reference/Gcodes#m596-select-movement-queue-number) command to specify which motion system any motion or tool operations in the following commands should be targeted at. The selection of target motion system remains in force until one of the following occurs:
 
--   Another M596 command is encountered
+-   Another [M596](/User_manual/Reference/Gcodes/M596) command is encountered
 -   The current macro ends. The motion system selected immediately prior to calling the macro is selected.
--   A M121 (pop stack) command is executed. The motion system selected immediately prior to executing the corresponding M120 (push stack) command is selected.
--   The job is terminated by end-of file or by a M0, M1 or M2 command. Motion system 0 is selected.
--   M32 or M23 is executed to start a new file or to prepare to start a file. Motion system 0 is selected.
+-   A [M121](/User_manual/Reference/Gcodes/M121) (pop stack) command is executed. The motion system selected immediately prior to executing the corresponding [M120](/User_manual/Reference/Gcodes/M120) (push stack) command is selected.
+-   The job is terminated by end-of file or by a [M0](/User_manual/Reference/Gcodes/M0), [M1](/User_manual/Reference/Gcodes/M1) or [M2](/User_manual/Reference/Gcodes/M2) command. Motion system 0 is selected.
+-   [M32](/User_manual/Reference/Gcodes/M32) or [M23](/User_manual/Reference/Gcodes/M23) is executed to start a new file or to prepare to start a file. Motion system 0 is selected.
 
 # Avoiding collisions
 
@@ -38,9 +38,12 @@ Use the [M597](https://docs.duet3d.com/en/User_manual/Reference/Gcodes#m597-coll
 
 # Synchronising the motion systems
 
-There will be times when the two motion systems need to be synchronised. For example, when the two motion systems are used to drive the two print heads of a IDEXY machine independently, they will need to synchronise at each layer change because they share a common Z axis. Use the M598 command to cause the movement system that reaches the command first to wait for the other one to catch up. Upon reaching the M598 command, each motion system will release the axes that it owns, but not any extruders used by a tool that it owns.
+There will be times when the two motion systems need to be synchronised. For example, when the two motion systems are used to drive the two print heads of a IDEXY machine independently, they will need to synchronise at each layer change because they share a common Z axis. 
+* Use the [M598](/User_manual/Reference/Gcodes/M598) command to cause the movement system that reaches the command first to wait for the other one to catch up. Upon reaching the M598 command, each motion system will release the axes that it owns, but not any extruders used by a tool that it owns.
+* Use [M400](/User_manual/Reference/Gcodes/M400) to wait until all motion stops, and release all owned axes and extruders
+* Use `M400 S1` or `G4 P0` to wait until all motion stops, but NOT release any owned axes and extruders
 
-Certain other commands will also cause synchronisation
+Certain other commands will also cause synchronisation (details to follow).
 
 # Command execution using multiple motion queues
 
