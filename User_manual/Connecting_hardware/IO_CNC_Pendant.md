@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2023-10-20T11:32:23.466Z
+date: 2024-11-05T14:31:02.930Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -39,6 +39,11 @@ Install Arduino IDE 1.8.1 on your PC and create a new sketch called CNC-pendant.
 
 For wiring differences and hardware changes needed if using an Arduino Micro or Nano, see the comments at the start of the CNC-pendant.ino file.
 
+Note: If you experience issues with skipped steps when using the encoder, a possible fix has been posted on the Duet forum by user morgoth90 here: [https://forum.duet3d.com/topic/36798/cnc-pendant-encoder-skipping-step](https://forum.duet3d.com/topic/36798/cnc-pendant-encoder-skipping-step){target=_blank}.
+
+They wrote: "After a few fast encoder rotations the detected pulses disalign resulting in two stray pulses after each detected movement. This behaviour is probably caused by some missed pulse but as result will ignore the first movement in the opposite direction. After some tests I fixed the issue rewriting the encoder code using the arduino Encoder library."
+
+Replace the `RotaryEncoder.cpp` and `RotaryEncoder.h` files in the CNC-pendant sketch with those from the forum thread. Feedback welcome.
 
 # Wiring
 
