@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2024-04-17T14:34:12.485Z
+date: 2024-11-06T14:36:32.283Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -136,7 +136,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 ### Linux
 
 [![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =50%x){.align-right}](/guides/getting_connected/02_connect_usb_04.png){target=_blank}**Linux** users have no drivers to install. 
-* To check the Duet is recognised open a Terminal window and send lsusb, which should show an entry for the Duet. 
+* To check the Duet is recognised open a Terminal window and send `lsusb`, which should show an entry for the Duet. 
 * For the Serial Port name, send `ls /dev/tty*` which should show an entry `/dev/ttyACM[number]`. This is the port the Duet is using.
 
 <p style="clear:both"></p>
