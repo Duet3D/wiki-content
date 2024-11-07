@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2024-11-07T17:16:38.602Z
+date: 2024-11-07T22:57:37.963Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -296,7 +296,8 @@ You must be on a recent Debian/Ubuntu release (`bullseye`/`bionic` respectively)
   ```
 * Select the port from the drop down menu, it is usually `ttyACM0`.
 * Browse to the firmware binary file to be installed, and select it.
-* **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*, then press *Write*.  ![firmware_update_05_bossa.png](/manual/configuration/firmware_update_05_bossa.png =552x)
+* **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*, then press *Write*.  
+![firmware_update_05_bossa.png](/manual/configuration/firmware_update_05_bossa.png =552x)
 * When the write completes, press *Verify* to confirm, then when complete, the reset button on the Duet.
 * It is also possible to use the bossac command line tool. Replace [path to file] with the path and name of the firmware binary, then send: 
   `bossac -b -e -w -v -R [path to file]`
