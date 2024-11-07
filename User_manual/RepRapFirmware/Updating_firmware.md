@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2024-10-14T08:46:28.510Z
+date: 2024-11-07T16:45:03.569Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -230,70 +230,145 @@ You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).
 
 Bossa is available for Windows, Apple macOS and Linux. 
 
-**macOS users:** please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x) to resolve some issues with Bossa.
-
 **Duet 3 MB6HC and MB6XD:** When BOSSA is used to flash the SAME70 processor in the MB6HC, the processor uses the USB port in high speed mode (unlike the processors used in other Duets). This means that the length and quality of the USB cable is especially important. USB cables that can be used to send GCode commands and receive replies to/from a Duet MB6HC/MB6XD that is running RepRapFirmware may not be suitable for flashing the firmware using BOSSA.
 
 **Duet 3 MB6XD:** You must use the Duet3D version of BOSSA. If the Bossa port does not appear on the PC, check that the Driver Enable Polarity jumper is not in the wrong position (see earlier).
 
 #### Tabs {.tabset}
 
-##### Windows and macOS
+##### Windows
 
 * Download one of:
-  * [Duet3D version of Bossa](https://github.com/Duet3D/BOSSA/releases/tag/1.9.1a-duet3d) (Windows only .exe file; supports 6HC/6XD)
-  * [ShumaTech Bossa v1.9.1](https://github.com/shumatech/BOSSA/releases/tag/1.9.1) (Windows/Mac installer, does not support 6HC/6XD).
-* Load Bossa. It usually detects the correct COM port automatically.
-* Check boxes *Erase all*, *Lock*, and *Boot to flash*
-* Browse to the firmware binary file to be installed, then press Write.
-![paneldue_firmware_flashing.jpg](/hardware/paneldue/paneldue_firmware_flashing.jpg =500x)
-*Note: picture of BOSSA above shows PanelDue firmware flashing, not RepRapFirmware flashing!*
-* When the write completes, press *Verify*
-* It is also possible to use the command line version (bossac) with this command line (replace COMxx by the correct COM port number): 
-  `bossac --port=COMxx -b -U -e -w -v path\Duet2CombinedFirmware.bin -R`
+  * [Duet3D version of Bossa](https://github.com/Duet3D/BOSSA/releases/tag/1.9.1a-duet3d) (Windows only .exe file; supports Duet 2 and Duet 3 6HC/6XD)
+  * [ShumaTech Bossa v1.9.1](https://github.com/shumatech/BOSSA/releases/tag/1.9.1) (Windows/Mac installer, supports Duet 2, does not support Duet 3 6HC/6XD).
+* Open Bossa. It should detect the correct COM port automatically, if not press 'Refresh' and select the port from the drop down menu.
+* Browse to the firmware binary file to be installed, and select it.
+* **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*, then press *Write*.
+![firmware_update_06_bossa.png](/manual/configuration/firmware_update_06_bossa.png =500x)
+* When the write completes, press *Verify* to confirm, then when complete, the reset button on the Duet.
+* It is also possible to use bossac command line tool. Replace COMxx with the correct COM port number, and [path to file] with the path and name of the firmware binary, then send: 
+  `bossac -b -U -e -w -v -R --port=COMxx [path to file]`
 
-##### Linux and DuetPi (after March 2022)
+##### macOS
 
-DuetPi releases newer than March 2022 contain a precompiled `bossac` binary that may be used with the Duet 2 or Duet 3 MB 6 HC/XD. To flash the firmware again using a Linux terminal, run:
+Currently, Bossa for macOS only supports flashing Duet 2 WiFi/Ethernet/Maestro boards, and NOT Duet 3 MB6HC/6XD boards. 
+
+For Duet 3 MB6HC/6XD boards, we recommend using a Windows PC, Raspberry Pi, or other Linux PC/installation/virtual machine. Intel-based Macs can boot into a Linux Live USB. See the other tabs here for guides. For ARM-based Macs, installing Windows 11 for ARM as a virtual machine also works.
+
+Please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x) for more details and other work arounds.
+
+Flashing with Bossa on macOS:
+
+* Download [ShumaTech Bossa v1.9.1](https://github.com/shumatech/BOSSA/releases/tag/1.9.1) (Windows/Mac installer, supports Duet 2, does not support Duet 3 6HC/6XD).
+* Open Bossa. It should detect the correct port automatically, if not press 'Refresh' and select the port from the drop down menu.
+* Browse to the firmware binary file to be installed, and select it.
+* **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*, then press *Write*.
+![firmware_update_06_bossa.png](/manual/configuration/firmware_update_07_bossa.png =500x)
+* When the write completes, press *Verify* to confirm, then when complete, the reset button on the Duet.
+* It is also possible to use the bossac command line tool. Send `ls /dev/tty.*` to find the correct port name. Replace `tty.usbmodem[xxx]` with this, and [path to file] with the path and name of the firmware binary, then send: 
+  `bossac -b -U -e -w -v -R --port=/dev/tty.usbmodem[xxx] [path to file]`
+
+
+##### Raspberry Pi running DuetPi (after March 2022)
+
+DuetPi releases from March 2022 contain a precompiled command-line `bossac` binary that may be used with the Duet 2 or Duet 3 MB6HC/XD. To flash the firmware using a Linux terminal, run:
 ```
-bossac -e -w -v -b [file location and name]
+bossac -e -w -v -b -R [file location and name]
 ```
 where [file location and name] is where the firmware binary file is saved, eg `/opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin`
 
-##### Linux and Raspberry Pi 
+##### Linux - Debian/Ubuntu/Raspberry Pi OS
 
-* Install Bossa with the following commands:
-  ```
-  sudo apt update && sudo apt install -y libwxgtk3.0-dev libreadline-dev
-  git clone https://github.com/shumatech/BOSSA
-  cd BOSSA
-  make
-  ```
-* then send:
-  ```
-  ~/BOSSA/bin/bossac -e -w -v -b [file location and name]
-  ```
-  where [file location and name] is where the firmware binary file is saved, eg `/opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin`
+A pre-compiled version of Bossa can be downloaded and installed from Linux package servers. This will run on Linux installations, virtual machines and Live USBs (tested working with a Ubuntu 24.10 Live USB, running on a 2013 Intel MacBook Pro 06/11/2024),
 
-##### Linux and Debian/Ubuntu
+You must be on a recent Debian/Ubuntu release (`bullseye`/`bionic` respectively) in order to be able to install a BOSSA version that is capable of flashing the processor of the Duet 3 MB6HC/6XD. 
 
-You must be on a recent Debian/Ubuntu release (`bullseye`/`bionic` respectively) in order to be able to install a BOSSA version that is capable of flashing the processor of the Duet 3 MB 6 HC or XD. 
-
-* Install BOSSA first:
+* Open a Terminal window and install BOSSA:
   ```
-  sudo apt install bossa-cli bossa
+  sudo apt install bossa-cli bossa -y
   ```
-* Launch it:
+* Launch the GUI version of Bossa with:
   ```
   bossa
   ```
-* Check boxes *Erase all*, *Lock*, and *Boot to flash*
-* Browse to the firmware binary file to be installed, then press Write.
-![paneldue_firmware_flashing.jpg](/hardware/paneldue/paneldue_firmware_flashing.jpg =500x)
-*Note: picture of BOSSA above shows PanelDue firmware flashing, not RepRapFirmware flashing!*
-* When the write completes, press *Verify*
-* It is also possible to use the command line version (bossac) with this command line (use `--port=/dev/ttyACM0` or similar if bossac fails to auto-detect the right serial port): 
-  `bossac -b -U -e -w -v path\Duet2CombinedFirmware.bin -R`
+* If Bossa opens looking like this (it does if you run it from a Ubuntu Live USB):
+  ![firmware_update_05_bossa.png](/manual/configuration/firmware_update_04_bossa.png =448x)
+  Close and re-launch with:
+  ```
+  sudo bossa
+  ```
+* Select the port from the drop down menu, it is usually `ttyACM0`.
+* Browse to the firmware binary file to be installed, and select it.
+* **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*, then press *Write*.  ![firmware_update_05_bossa.png](/manual/configuration/firmware_update_05_bossa.png =552x)
+* When the write completes, press *Verify* to confirm, then when complete, the reset button on the Duet.
+* It is also possible to use the bossac command line tool. Replace [path to file] with the path and name of the firmware binary, then send: 
+  `bossac -b -e -w -v -R [path to file]`
+  Use `--port=/dev/ttyACM0` (or find port name with `ls /dev/tty*`) if bossac fails to auto-detect the right serial port.
+
+##### Compiling Bossa
+
+This has been tested working with a Ubuntu 24.10 Live USB, running on a 2013 Intel MacBook Pro (06/11/2024).
+
+This method should also work with most Linux distros (eg Ubuntu, Debian), Raspberry Pi OS, Linux virtual machines and Live USBs. It does require an internet connection, to download and install software.
+
+* If running from a USB drive, create a Linux Live USB install. For example, see [Ubuntu documentation here](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview). Plug the USB stick into your PC, and boot from it. Once booted (no need to install Linux, run it from the USB stick), open the Terminal application, and send the following commands.
+* Download and install the required libraries and commands to compile Bossa:
+  ```
+  sudo apt update && sudo apt install -y libwxgtk3.2-dev libreadline-dev git make g++
+  ```
+* Download and compile the Duet3D version of Bossa with the following commands:
+  ```
+  git clone https://github.com/Duet3D/BOSSA
+  cd BOSSA
+  make
+  CD bin
+  ```
+* Download the Duet mainboard firmware binary from [https://github.com/Duet3D/RepRapFirmware/releases/latest/](https://github.com/Duet3D/RepRapFirmware/releases/latest/), or get the firmware binary you need individually with one of these commands. Files will be saved to the folder you are currently in, ie `~/BOSSA/bin/`:
+  ```
+  wget https://github.com/Duet3D/RepRapFirmware/releases/latest/download/Duet3Firmware_MB6HC.bin
+  wget https://github.com/Duet3D/RepRapFirmware/releases/latest/download/Duet3Firmware_MB6XD.bin
+  wget https://github.com/Duet3D/RepRapFirmware/releases/latest/download/Duet2CombinedFirmware.bin
+  wget https://github.com/Duet3D/RepRapFirmware/releases/latest/download/DuetMaestroFirmware.bin
+  ```
+* To start the GUI version of Bossa send:
+  ```
+  ./bossa
+  ```
+  ![firmware_update_05_bossa.png](/manual/configuration/firmware_update_05_bossa.png =552x)
+  If Bossa starts looking like this:
+  ![firmware_update_05_bossa.png](/manual/configuration/firmware_update_04_bossa.png =448x)
+  Run:
+  ```
+  sudo ./bossa
+  ```
+* 
+* For the command-line version bossa, send: (change firmware name to match your board):
+  ```
+  sudo ./bossac -e -w -U -v -b -R Duet3Firmware_MB6HC.bin
+  ```
+  where [file location and name] is where the firmware binary file is saved, eg `/opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin`
+
+
+
+* Launch the GUI version of Bossa from within the ~/BOSSA/bin/ folder with:
+  ```
+  ./bossa
+  ```
+* If Bossa opens looking like this (it does if you run it from a Ubuntu Live USB):
+  ![firmware_update_05_bossa.png](/manual/configuration/firmware_update_04_bossa.png =448x)
+  Close and re-launch with:
+  ```
+  sudo ./bossa
+  ```
+* Select the port from the drop down menu, it is usually `ttyACM0`.
+* Browse to the firmware binary file to be installed, and select it.
+* **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*, then press *Write*.
+![firmware_update_05_bossa.png](/manual/configuration/firmware_update_05_bossa.png =552x)
+* When the write completes, press *Verify* to confirm, then when complete, the reset button on the Duet.
+* It is also possible to use the bossac command line tool. Replace [path to file] with the path and name of the firmware binary, then send: 
+  `bossac -b -e -w -v -R [path to file]`
+  Use `--port=/dev/ttyACM0` (or find port name with `ls /dev/tty*`) if bossac fails to auto-detect the right serial port.
+
 
 ### SAM-BA
 
