@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2024-11-07T16:45:03.569Z
+date: 2024-11-07T17:11:31.238Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -204,25 +204,24 @@ The Duet 3 Mini 5+ supports an easy mechanism for updating the firmware directly
 ## All other Duet boards
 
 You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).  
-* Download the main firmware file from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases){target=blank}
+* ![firmware_update_02_erase_pins.jpg](/manual/configuration/firmware_update_02_erase_pins.jpg =50%x){.align-right}![firmware_update_01_reset_switch.jpg](/manual/configuration/firmware_update_01_reset_switch.jpg =50%x){.align-right}Download the main firmware file from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases){target=blank}
 * Verify that the downloaded firmware file has the correct size, as shown on the page you downloaded it from.
 * Duet 3 MB6XD pre-production (green) boards only: if the Driver Enable Polarity Select jumper is fitted and in the position closest to the microcontroller, temporarily move it to the other position (the position closest to the edge of the board)
 * Connect the Duet to your PC via USB.
 * Verify that the 5V and 3.3V LED are on before continuing.
 * Erase the firmware on the Duet by either:
   * Pressing the **Erase** button (next to the reset button on older Duets); or
-  * Jumpering the erase jumper
-  
-  ![firmware_update_02_erase_pins.jpg](/manual/configuration/firmware_update_02_erase_pins.jpg =400x)
+  * Jumpering the erase jumper (green circle in image on right)
 * Remove the erase jumper after a few seconds. 
-* Then press the **Reset** button (if one is present).
-![firmware_update_01_reset_switch.jpg](/manual/configuration/firmware_update_01_reset_switch.jpg =400x)
+* Then press the **Reset** button  (orange circle in image on right).
 * Check the DIAG LED, which will indicate if the Duet is in programming mode. See the wiring schematic of your board to find the location of this LED, though it is usually near the reset button. 
   * On the MB6HC board the DIAG LED will either light up very dimly or not light up at all. 
   * On the MB6XD board it will not light up at all.
   * On Duet 2, the Diag LED (between the USB connector and the SD card socket) will light up. 
 * Now use either Bossa or SAM-BA to flash the firmware to the Duet (see below).
 * Duet 3 MB6XD pre-production (green) boards only: if you moved the Driver Enable Polarity Select jumper, move it back to the original position.
+
+<p style="clear:both"></p>
 
 ## {.tabset}
 
@@ -253,9 +252,7 @@ Bossa is available for Windows, Apple macOS and Linux.
 
 Currently, Bossa for macOS only supports flashing Duet 2 WiFi/Ethernet/Maestro boards, and NOT Duet 3 MB6HC/6XD boards. 
 
-For Duet 3 MB6HC/6XD boards, we recommend using a Windows PC, Raspberry Pi, or other Linux PC/installation/virtual machine. Intel-based Macs can boot into a Linux Live USB. See the other tabs here for guides. For ARM-based Macs, installing Windows 11 for ARM as a virtual machine also works.
-
-Please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x) for more details and other work arounds.
+For Duet 3 MB6HC/6XD boards, we recommend using a Windows PC, Raspberry Pi, or other Linux PC/installation/virtual machine. Intel-based Macs can boot into a Linux Live USB; see the other tabs here for guides. For ARM-based Macs, installing Windows 11 for ARM as a virtual machine also works. Please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x) for more details and other work arounds.
 
 Flashing with Bossa on macOS:
 
