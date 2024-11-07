@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2024-11-07T17:11:31.238Z
+date: 2024-11-07T17:15:10.570Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -204,7 +204,7 @@ The Duet 3 Mini 5+ supports an easy mechanism for updating the firmware directly
 ## All other Duet boards
 
 You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).  
-* ![firmware_update_02_erase_pins.jpg](/manual/configuration/firmware_update_02_erase_pins.jpg =50%x){.align-right}![firmware_update_01_reset_switch.jpg](/manual/configuration/firmware_update_01_reset_switch.jpg =50%x){.align-right}Download the main firmware file from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases){target=blank}
+* ![firmware_update_02_erase_pins.jpg](/manual/configuration/firmware_update_02_erase_pins.jpg =300x){.align-right}![firmware_update_01_reset_switch.jpg](/manual/configuration/firmware_update_01_reset_switch.jpg =300x){.align-right}Download the main firmware file from [https://github.com/Duet3D/RepRapFirmware/releases](https://github.com/Duet3D/RepRapFirmware/releases){target=blank}
 * Verify that the downloaded firmware file has the correct size, as shown on the page you downloaded it from.
 * Duet 3 MB6XD pre-production (green) boards only: if the Driver Enable Polarity Select jumper is fitted and in the position closest to the microcontroller, temporarily move it to the other position (the position closest to the edge of the board)
 * Connect the Duet to your PC via USB.
@@ -327,26 +327,6 @@ This method should also work with most Linux distros (eg Ubuntu, Debian), Raspbe
   wget https://github.com/Duet3D/RepRapFirmware/releases/latest/download/Duet2CombinedFirmware.bin
   wget https://github.com/Duet3D/RepRapFirmware/releases/latest/download/DuetMaestroFirmware.bin
   ```
-* To start the GUI version of Bossa send:
-  ```
-  ./bossa
-  ```
-  ![firmware_update_05_bossa.png](/manual/configuration/firmware_update_05_bossa.png =552x)
-  If Bossa starts looking like this:
-  ![firmware_update_05_bossa.png](/manual/configuration/firmware_update_04_bossa.png =448x)
-  Run:
-  ```
-  sudo ./bossa
-  ```
-* 
-* For the command-line version bossa, send: (change firmware name to match your board):
-  ```
-  sudo ./bossac -e -w -U -v -b -R Duet3Firmware_MB6HC.bin
-  ```
-  where [file location and name] is where the firmware binary file is saved, eg `/opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin`
-
-
-
 * Launch the GUI version of Bossa from within the ~/BOSSA/bin/ folder with:
   ```
   ./bossa
