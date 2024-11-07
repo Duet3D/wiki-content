@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2024-07-12T13:56:27.625Z
+date: 2024-11-07T23:56:37.669Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -28,23 +28,26 @@ It is possible to connect a second, low-speed SD card socket to most Duets (Duet
 
 If you need to replace the micro SDHC card, we recommend you choose:
 
-* a branded card with a speed rating of Class 4 at a minimum, Class 10 preferred. 
-* of up to 32GB capacity, formatted as below. RepRapFirmware does not support SD cards formatted in exFAT format. 
-* Larger capacity cards can be used, but RepRapFirmware can only read the first volume on the card, and this must be no larger than 32GB, or it will be formatted in exFAT format.
-* consider a microSD card with an A1 or A2 rating, particularly for SBC. They're better suited for SBC operation and improve overall responsiveness of the SBC.
-* consider an 'industrial' microSD card, which generally have higher endurance, reliability, extended temperature range, and longevity.
+* A branded card with a speed rating of Class 4 at a minimum, Class 10 preferred. 
+* Capacity is not important (128GB cards have been tested, and work, theoretically up to 2TB cards will work), it just needs to be formatted as FAT32. RepRapFirmware does not support SD cards formatted in exFAT format. 
+* Larger capacity cards can be used, but RepRapFirmware can only read the first volume on the card.
+* Consider a microSD card with an A1 or A2 rating, particularly for SBC. They're better suited for SBC operation and improve overall responsiveness of the SBC.
+* Consider an 'industrial' microSD card, which generally have higher endurance, reliability, extended temperature range, and longevity.
 
 # Formatting
 
 If you need to reformat the micro SDHC card:
 
 * If the capacity of the card is 4GB or lower, use FAT16 format
-* If the capacity is more than 4GB (up to 32GB), use FAT32 format
+* If the capacity is more than 4GB, use FAT32 format
 * All cards should be formatted with 512 byte sectors
 * For best upload speed choose the largest cluster size available, which is normally 64kB for FAT16 and 32kB for FAT32.
-* Use the [official SD Card formatting tool](https://www.sdcard.org/downloads/formatter/index.html){target=_blank} for best results with cards up to 32GB.
-* For SD cards larger than 32GB, or to format a FAT32 partition with 64kB clusters, use Windows Disk Management to format the card with a 32GB FAT32 partition as its first partition. (See [this forum thread](https://forum.duet3d.com/topic/29544/){target=_blank}.)
+* You can use the [official SD Card formatting tool](https://www.sdcard.org/downloads/formatter/index.html){target=_blank} for best results with cards up to 32GB.
 * **DO NOT** use Windows 'Quick Erase'. This generally does not create a clean FAT32 partition.
+* You can format SD cards larger than 32GB, up to 2TB, as FAT32.
+  * **Windows 11** apparently now allows you to format FAT32 to any size SD card (not tested). In the past, it was limited to 32GB, and any larger cards were formatted as ExFAT. So users of older Windows versions may need a utility such as: [http://ridgecrop.co.uk/index.htm?guiformat.htm](http://ridgecrop.co.uk/index.htm?guiformat.htm). 
+  * **MacOS** and **Linux** can format any size card as FAT32 natively. 
+  * For more information on formatting large SD cards, see [this forum thread](https://forum.duet3d.com/topic/36414/using-sd-cards-with-capacity-32gb){target=_blank}.
 
 # SD card structure
 
