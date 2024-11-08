@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2024-11-07T22:57:37.963Z
+date: 2024-11-08T11:06:10.865Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -280,6 +280,7 @@ A pre-compiled version of Bossa can be downloaded and installed from Linux packa
 
 You must be on a recent Debian/Ubuntu release (`bullseye`/`bionic` respectively) in order to be able to install a BOSSA version that is capable of flashing the processor of the Duet 3 MB6HC/6XD. 
 
+* To run from a USB drive, create a Linux Live USB install in your normal OS. For example, see [Ubuntu documentation here](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview). Plug the USB stick into your PC, and boot from it. Once booted (no need to install Linux, run it from the USB stick), send the following commands.
 * Open a Terminal window and install BOSSA:
   ```
   sudo apt install bossa-cli bossa -y
@@ -296,9 +297,11 @@ You must be on a recent Debian/Ubuntu release (`bullseye`/`bionic` respectively)
   ```
 * Select the port from the drop down menu, it is usually `ttyACM0`.
 * Browse to the firmware binary file to be installed, and select it.
-* **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*, then press *Write*.  
+* **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*.  
 ![firmware_update_05_bossa.png](/manual/configuration/firmware_update_05_bossa.png =552x)
-* When the write completes, press *Verify* to confirm, then when complete, the reset button on the Duet.
+* Press *Write*. When the write completes, press *Verify* to confirm. 
+  You may get some extra warning messages during these stages, but it should be fine to ignore them and continue. I found Bossa also pops the 'Info' dialogue box, that needs to be clicked 'OK' to dismiss, underneath the 'Progress' dialogue box, and is just about accessible after Write, but is not after Verify, so Bossa gets stuck. It should be okay to quit Bossa, using Ctrl-c in the Terminal. 
+* When complete, press the reset button on the Duet.
 * It is also possible to use the bossac command line tool. Replace [path to file] with the path and name of the firmware binary, then send: 
   `bossac -b -e -w -v -R [path to file]`
   Use `--port=/dev/ttyACM0` (or find port name with `ls /dev/tty*`) if bossac fails to auto-detect the right serial port.
@@ -309,7 +312,6 @@ This has been tested working with a Ubuntu 24.10 Live USB, running on a 2013 Int
 
 This method should also work with most Linux distros (eg Ubuntu, Debian), Raspberry Pi OS, Linux virtual machines and Live USBs. It does require an internet connection, to download and install software.
 
-* If running from a USB drive, create a Linux Live USB install. For example, see [Ubuntu documentation here](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview). Plug the USB stick into your PC, and boot from it. Once booted (no need to install Linux, run it from the USB stick), open the Terminal application, and send the following commands.
 * Download and install the required libraries and commands to compile Bossa:
   ```
   sudo apt update && sudo apt install -y libwxgtk3.2-dev libreadline-dev git make g++
@@ -350,11 +352,14 @@ This method should also work with most Linux distros (eg Ubuntu, Debian), Raspbe
 
 ### SAM-BA
 
-SAM-BA is available for Windows and Linux.
+SAM-BA is available for Windows and Linux. Only Duet 2 WiFi/Ethernet/Maestro flashing is supported. See 'Bossa' tab for flashing Duet 3 MB6HC/6XD.
 
 * Download and install SAM-BA version 2.17 from [Microchip](http://www.microchip.com/en-us/development-tool/SAM-BA-IN-SYSTEM-PROGRAMMER)
 * Load SAM-BA. It usually detects the correct COM port automatically.
-  * For Duet WiFi/Ethernet, select **at91sam4e8-ek**. For Maestro, select **at91sam4s8-ek**. Press **Connect**. A connection error will be reported if the wrong board is selected.
+  * For Duet 2 WiFi/Ethernet, select **at91sam4e8-ek**. 
+  * For Duet 2 Maestro, select **at91sam4s8-ek**. 
+  
+* Press **Connect**. A connection error will be reported if the wrong board is selected.
 
 ![firmware_update_03_samba1.jpg](/manual/configuration/firmware_update_03_samba1.jpg =500x)
 
