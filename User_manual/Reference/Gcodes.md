@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-10-28T12:43:12.800Z
+date: 2024-11-08T21:25:58.663Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8578,7 +8578,7 @@ This command must appear after any M584 command that refers to the same axis.
 ### Examples
 <br>
 <pre class="cblock">
-M917 X1 Y0 Z0 E1:0
+M970 X1 Y0 Z0 E1:0
 </pre>
 
 Enable phase stepping for `X` and `E0`, enable step direction for `Y`, `Z`, and `E1`.
