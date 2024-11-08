@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-11-08T21:31:08.542Z
+date: 2024-11-08T22:04:27.255Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1561,11 +1561,16 @@ Enables all axis and extruder motors when used without parameters. Motors can al
 ### Examples
 <br>
 <pre class="cblock">
-M18
-M18 X E0
+M18        ; Disable all axis and extruder motors
+M18 X E0:2 ; Disable X, extruder 0 and extruder 2 motors.
 </pre>
 
-Disables motors and allows axes to move 'freely.' When used without parameters, all axis and extruder motors are disabled. Motors can be disabled selectively. For example, M18 X E0:2 will disable the X, extruder 0 and extruder 2 motors. See also M84.
+### Notes
+
+* Stops the idle hold on all axis and extruder, effectively disabling the specified motor, or all motors. Disables motors and allows axes to move 'freely.' 
+* When used without parameters, all axis and extruder motors are disabled. 
+* Individual motors can be disabled with the X, Y, Z etc axis switches.
+* Be aware that by disabling idle hold during printing, you will get quality issues.
 
 ## M20: List SD card
 
@@ -2175,6 +2180,8 @@ Makes the extruder interpret extrusion values as relative positions.
   * The flag state is saved when a macro starts and is restored when a macro ends. This applies only to macros, not to job files. Changes made during job files persist for the session or until they are changed again.
 
 ## M84: Stop idle hold
+
+*Deprecated in RRF 3.6.0-beta.2 and later. Use M18 to disable motors, and M906 T# to set idle timeout*
 
 ### Parameters
 
@@ -7877,6 +7884,7 @@ Sets the peak currents to send to the stepper motors for each axis. The values a
 * **Znnn** Z drive peak motor current
 * **Ennn** E drive(s) peak motor current(s)
 * **Innn** Motor current idle factor (0..100)
+* **Tnnn** Idle time-out in seconds (RRF 3.6.0-beta.2 and later)
 
 ### Order dependency
 
@@ -7890,22 +7898,19 @@ M906 X300 Y500 Z200 E350:350
 
 ### Notes
 
-RRF uses peak current. Divide by 1.414 for RMS current as used in Marlin implementations for Trinamic drivers
+* RRF uses peak current. Divide by 1.414 for RMS current as used in Marlin implementations for Trinamic drivers
+* Current setting on the various Duet boards are as follows:
+  * Duet 2 WiF/Ethernet is done in steps of 100mA and is rounded down.
+  * Duet Maestro is in steps of 50mA and rounded down.
+  * Duet 3 MB6HC and EXP3HC is in steps of 26.2mA.
+  * Duet 3 Mini5+ is in steps of 74mA (provisionally), rounded down.
+  * Duet 3 1LC toolboard is in steps of 50mA, rounded down.
 
-Current setting on the various Duet boards are as follows:
-* Duet 2 WiF/Ethernet is done in steps of 100mA and is rounded down.
-* Duet Maestro is in steps of 50mA and rounded down.
-* Duet 3 MB6HC and EXP3HC is in steps of 26.2mA.
-* Duet 3 Mini5+ is in steps of 74mA (provisionally), rounded down.
-* Duet 3 1LC toolboard is in steps of 50mA, rounded down.
-
-The **I** parameter is the percentage of normal that the motor currents should be reduced to when the printer becomes idle but the motors have not been switched off. The default value is 30% and will always be at least 100mA - starting from RRF 2.02 setting it to 0 will disable the steppers after timeout like M18|M84 do and if an axis is related to the motor, throw out the "homing" of it, since it is likely that the position cannot be precisely determined anymore. Note that the idle current is applied globally for all motors and cannot be set per axis.
-
-Every driver that is assigned must have its current set using M906. Not setting a current will default a low current (approx 1/32 of the driver max current), however M906 will report 0 until a current is assigned. Disable the driver explicitly if you do not want any current sent to a driver that is assigned.
-
-As a rule of thumb, the recommendation is to set M906 to use 60-85% of the rated maximum current for the motor. Though you can go above or below as needed, and will have to tune for a balance of motor temperature, motor torque, and noise level. You can also use the EMF calculator ([reprapfirmware.org](https://www.reprapfirmware.org/){target=_blank} and click on EMF calculator) to play with different values to see how it changes behaviour.
-
-RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M906 Z200, not M906 Z200:200
+* The **I** parameter is the percentage of normal that the motor currents should be reduced to when the printer becomes idle but the motors have not been switched off. The default value is 30% and will always be at least 100mA - starting from RRF 2.02 setting it to 0 will disable the steppers after timeout like M18|M84 do and if an axis is related to the motor, throw out the "homing" of it, since it is likely that the position cannot be precisely determined anymore. Note that the idle current is applied globally for all motors and cannot be set per axis.
+* Every driver that is assigned must have its current set using M906. Not setting a current will default a low current (approx 1/32 of the driver max current), however M906 will report 0 until a current is assigned. Disable the driver explicitly if you do not want any current sent to a driver that is assigned.
+* As a rule of thumb, the recommendation is to set M906 to use 60-85% of the rated maximum current for the motor. Though you can go above or below as needed, and will have to tune for a balance of motor temperature, motor torque, and noise level. You can also use the EMF calculator ([reprapfirmware.org](https://www.reprapfirmware.org/){target=_blank} and click on EMF calculator) to play with different values to see how it changes behaviour.
+* The **T** parameter (RRF 3.6.0-beta.2 and later) is used to set the idle timeout for all motors (M84 was previously used for this). For example, M906 T10 will idle the stepper motors after 10 seconds of inactivity. Setting `M906 T0` does NOT mean "never idle hold" (ie motors stay on all the time, at full current), and T0 is an invalid setting. The correct way to set no idle hold (ie motors are 'always on') is to use M906 I parameter to set the idle hold to the required level, eg `M906 I100`.
+* RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M906 Z200, not M906 Z200:200
 
 ## M911: Configure auto save on loss of power
 
