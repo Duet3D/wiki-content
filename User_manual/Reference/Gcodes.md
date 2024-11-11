@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-11-11T11:03:49.464Z
+date: 2024-11-11T15:01:12.616Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4176,18 +4176,21 @@ Supported in RepRapFirmware v3.4 and later
 
 ### Usage
 
-* M309 Pn Saaa:bbb
+* M309 Pn Saaa:bbb Tddd:eee:fff Aggg
 
 ### Parameters
 
 * **Pn** Tool number
-* **Saaa:bbb:ccc...** Feedforward coefficients. The number of coefficients provided must equal the number of heaters configured for the tool when it was created (see M563).
+* **Saaa:bbb:ccc...** Feedforward PWM coefficients. The number of coefficients provided must equal the number of heaters configured for the tool when it was created (see M563).
+* **Tddd:eee:fff...** Feedforward temperature increase coefficients. The number of coefficients provided must equal the number of heaters configured for the tool when it was created (see M563). Supported in RRF 3.6.0-beta.2 and later.
+* **Aggg** Feedforward advance time in milliseconds, maximum 100. RRF will attempt to apply the temperature and PWM adjustment this time in advance of the start of the corresponding move. This advance time may not always be achieved, for example when commencing movement from standstill. Supported in RRF 3.6.0-beta.2 and later.
 
 ### Notes
 
 * If the P parameter is not provided, the current tool is assumed. If the S parameter is not provided, the existing coefficients are reported.
 * The units of S are PWM fraction (on a scale of 0 to 1) per mm/sec of filament forward movement.
-* This feature is intended for high flow hot ends or pellet extruders. It's not needed on regular hot ends with a 0.4mm or similar size nozzle where the temperature drop caused by extrusion is less than 1C.
+* The units of T are degrees Celsius per mm/sec of filament forward movement.
+* This feature is intended for high flow hot ends or pellet extruders. It's not normally needed on regular hot ends with a 0.4mm or similar size nozzle where the temperature drop caused by extrusion is less than 1C.
 * Feedforward is not applied to nonprinting moves, i.e. extruder moves only, with no other movement parameters. Typically these are retract, reprime, and filament loading moves.
 * For calibration and examples, see the [heater feedforward](/User_manual/Connecting_hardware/Heaters_tuning#heater-feedforward) section of the 'Tuning the heater temperature control' wiki page.
 
