@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-11-11T10:52:00.828Z
+date: 2024-11-11T11:03:49.464Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8638,17 +8638,17 @@ This command triggers a firmware update if the necessary files are present on th
 ### Examples
 <br>
 <pre class="cblock">
-M997                  ; update firmware on mainboard (S0 is the default)
-M997 B121             ; update firmware on CAN connected expansion/tool board
-M997 S1               ; update firmware on WiFi module (standalone only)
+M997                                 ; update firmware on mainboard (S0 is the default)
+M997 B121                            ; update firmware on CAN-connected expansion/tool board at CAN address 121
+M997 S1                              ; update firmware on WiFi module (standalone only)
 M997 S1 P"0:/sys/DuetWiFiServer.bin" ; update firmware on WiFi module with specific file (standalone only)
-M997 S0:1             ; update firmware modules 0 and 1 (mainboard and WiFi module, standalone only)
-M997 S2               ; update DSF (SBC mode only)
-M997 S2 F"unstable"   ; Set package feed for DSF packages (SBC mode only)
-M997 S2 F"stable-3.5" ; Set package feed and version for DSF packages (SBC mode only)
-M997 S2 V"3.5.0-rc.2" ; Install a specific DSF/RRF combination (SBC mode only)
-M997 S3 B121          ; update bootloader on CAN connected expansion/tool board 
-M997 S4               ; update firmware on connected PanelDue
+M997 S0:1                            ; update firmware modules 0 and 1 (mainboard and WiFi module, standalone only)
+M997 S2                              ; update DSF (SBC mode only)
+M997 S2 F"unstable"                  ; Set package feed for DSF packages (SBC mode only)
+M997 S2 F"stable-3.5"                ; Set package feed and version for DSF packages (SBC mode only)
+M997 S2 V"3.5.0-rc.2"                ; Install a specific DSF/RRF combination (SBC mode only)
+M997 S3 B121                         ; update bootloader on CAN-connected expansion/tool board at CAN address 121
+M997 S4                              ; update firmware on connected PanelDue
 </pre>
 
 ### Notes
