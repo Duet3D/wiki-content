@@ -2,7 +2,7 @@
 title: Connecting endstop switches
 description: 
 published: true
-date: 2023-04-19T15:08:05.240Z
+date: 2024-11-13T12:55:58.891Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-20T14:14:43.144Z
@@ -202,26 +202,66 @@ For more detail on specific types of printers see:
 
 # Test endstop switches
 
-## Testing endstop switches using M119
-
-If you don't have access to your Duet from a browser, you can send [M119](/User_manual/Reference/Gcodes/M119) commands from USB or PanelDue to read the endstop state while doing the tests listed above. You can also run M119 from the console in DWC, if you don't have the endstop status available.
-
-## Testing endstop switches using the web interface
-
-Early versions of DWC (v1.x, v2.x) displayed the endstop status in DWC. This was removed in DWC v3.0. As of DWC v3.3, you can install the Endstops Monitor plugin if you need it; see [Duet3D github repository here](https://github.com/Duet3D/DSF-Plugins/releases) for the latest version. 
+Apply power to the printer. You need only 5V power for this test, so we suggest you leave the main power turned off and just connect the printer to a PC via the USB cable. Note: if you have a PanelDue with 7" screen then USB power may not be sufficient.
 
 Note: the following does not work if you are using stall detection instead of wired endstops.
 
-* Apply power to the printer. You need only 5V power for this test, so we suggest you leave the main power turned off and just connect the printer to a PC via the USB cable. Note: if you have a PanelDue with 7" screen then USB power may not be sufficient.
-* Connect to your printer from a web browser, then:
-  * If you are using Duet Web Control v3.3 or later, install the Endstops Monitor plugin. When loaded it creates a new **Endstops** tab on the **Settings -> Machine** page. 
-  * If you are using Duet Web Control v3.0 to 3.2, send M119 in the Gcode console
-  * If you are using Duet Web Control v2.x, select the **Machine Specific** page. 
-  * If you are using Duet Web Control v1.22.6 or earlier, select the **Settings** page, then the **Machine Properties** tab.
-   
-*In the **Endstops** or **Endstop Hit** column you can see the state of each endstop.*
+## Tabs {.tabset}
 
+### Testing endstop switches using the web interface
+
+#### DWC Status panel
+[![commissioning_08_endstops_01.png](/guides/commissioning/commissioning_08_endstops_01.png =50%x){.align-right}](/guides/commissioning/commissioning_08_endstops_01.png){target=_blank}In DWC v3.5 and later, the endstop status is indicated in the Status panel. If the endstop is triggered, a green square will highlight the axis that is triggered. If there is no green square, it is not triggered.
+* Press and hold each endstop switch, and check the axis label changes colour.
+
+#### DWC Old versions
+
+To check the endstop status in older versions of Duet Web Console/RepRapFirmware, if you are using:
+* Duet Web Control v3.5 or later, see above, 'M119' or 'Object model browser' tabs
+* Duet Web Control v3.3 or v3.4, see 'Endstop plugin', 'M119' or 'Object model browser' tabs
+* Duet Web Control v3.0 to 3.2, see 'M119' or 'Object model browser' tabs
+
+Early versions of DWC (v1.x, v2.x) displayed the endstop status in DWC. You can also check the endstop status with M119.
+* If you are using Duet Web Control v2.x, select the **Machine Specific** page. 
+* For Duet Web Control v1.22.6 or earlier, select the **Settings** page, then the **Machine Properties** tab.
+
+Check by:
+* In the **Endstops** or **Endstop Hit** column you can see the state of each endstop.
 * Test that the Endstop Hit value displayed is **No** when the corresponding axis is not pushed against the endstop, and **Yes** when it is
+
+
+<p style="clear:both"></p>
+
+### M119
+
+[![wiring_d2we_06_test_endstop_01.png](/guides/wiring/wiring_d2we_06_test_endstop_01.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_01.png){target=_blank}Send [M119](/User_manual/Reference/Gcodes/M119) to check endstop status in all versions of DWC/RRF. This can be sent from DWC, a PanelDue, or over USB, if connected by serial terminal.
+* In DWC, go to Control > Console and type in `M119` in the text box, then press return or the 'Send' button. You should get the endstop status response in the area below.
+* If connected to the Duet by a serial terminial over USB, or PanelDue, type `M119` and press return; the Duet will respond with the endstop status.
+* Press and hold an endstop switch, and sent the command again, and you should see the status response of that switch change.
+
+<p style="clear:both"></p>
+
+### Object model browser
+
+[![wiring_d2we_06_test_endstop_02.png](/guides/wiring/wiring_d2we_06_test_endstop_02.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_02.png){target=_blank}[![wiring_d2we_06_test_endstop_03.png](/guides/wiring/wiring_d2we_06_test_endstop_03.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_03.png){target=_blank}You can check the endstops status in the DWC Object model browser in RRF/DWC v3.0 and later. The RepRapFirmware Object model shows all the firmware variables and values.
+* Enable the Object model browser by going to 'Settings > Plugins > Integrated plugins' ('Settings > General > Built-in Plugins' in older versions of DWC) and click 'Start' on the 'Object Model Browser'.
+* A new menu option 'Object Model' will appear; select it.
+* Navigate to 'sensors > endstops'. Expand the numbered sections. Trigger an endstop, and it will show as 'triggered = true' if correctly configured.
+
+<p style="clear:both"></p>
+
+### Endstop plugin
+
+[![wiring_d2we_06_test_endstop_04.png](/guides/wiring/wiring_d2we_06_test_endstop_04.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_04.png){target=_blank}[![wiring_d2we_06_test_endstop_05.png](/guides/wiring/wiring_d2we_06_test_endstop_05.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_05.png){target=_blank}In DWC/RRF 3.3 and 3.4, you can install a plugin to show endstop status.
+* Go to [https://github.com/Duet3D/DSF-Plugins/releases/](https://github.com/Duet3D/DSF-Plugins/releases/){target=_blank}
+* Download the "EndstopsMonitor-xxx.zip", where "xxx" is the version number, and matches the version of DWC you are running (check on the 'Setting > General' page).
+* Go to 'Settings > Plugins > External plugins' ('Settings > Machine-specific > Machine-specific plugins' in older versions of DWC) and click 'Install plugin'.
+* Navigate to the "EndstopsMonitor-X.X.zip" you downloaded, select and click 'Open'.
+* Click through the next few windows, reading the information and warnings.
+* Once installed, click on 'Start'. 
+* You can now see the endstop status in 'Settings > Machine-specific > Endstops'.
+
+<p style="clear:both"></p>
 
 # Troubleshooting
 
