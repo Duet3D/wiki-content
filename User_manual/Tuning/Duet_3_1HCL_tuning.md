@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2023-06-10T14:17:39.096Z
+date: 2024-11-13T10:41:24.802Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -214,9 +214,73 @@ Once the plugin is installed & enabled, a new 'Closed Loop' item should appear o
 
 This plugin is essentially a GUI for the [M569.5](/User_manual/Reference/Gcodes/M569_5) command - a command to record data from the closed loop system.
 
-### Manual Tuning when using RepRapFirmware 3.4.x
+## Manual Tuning 
 
-Use the plugin to execute the step manoeuvre alongside the step manoeuvre. The settings shown below will record the response to a sidden change in desired position of 4 full steps. You must previously have run the required encoder calibration for the motor - see above.)
+## Tabs {.tabset}
+
+### RepRapFirmware 3.5.x
+
+- You must previously have run the required encoder calibration for the motor - see above.
+- Use the M203 and M201 commands to set the maximum speed and acceleration of the axes concerned at least as high as you will ever want them to go
+- Position the axis or axes to leave plenty of room for positive motion of the motor you want to tune. On a Cartesian machine you should normally start with the head close to the minimum X and Y values. On a CoreXY machine with the standard matrix, when tuning the X motor you should start near the minimum X and Y values, and when tuning the Y motor you should start close to minimum X and maximum Y.
+- Make sure the motor is in closed loop mode
+- Load the Closed Loop plugin and select Step Manoeuvre. A Step Manoeuvre Parameters panel should be shown. If it isn't then you have an old version of the Closed Loop plugin and you should download a later version.
+- Start by setting the speed and acceleration parameters to modest values, and the movement length short (e.g. 25mm) in case you haven't set a suitable initial position
+- In the plugin, select the driver you wish to tune
+- In the Record panel select Current and Target Position, PID Control signal, and all five PID terms
+- Select a modest P value e.g. 30. Set the I, D, A and V vales to zero
+- Select 2000 samples collected at 2000 samples per second
+
+![plugin_settings.png](/manual/closed_loop_tuning/plugin_settings.png)
+
+- Press Update to set the values
+- Press Record to execute the movement and record the data. The motor will forwards by the specified amount and back again.
+- Open the captured data file and select all available variables to plot except for the ID control signal. The plot should look something like this:
+
+![plugin_plot1.png](/manual/closed_loop_tuning/plugin_plot1.png)
+
+In this case there are modest damped oscillations in the PID P term dring the steady speed segments of the moves. If the oscillations are more severe, try reducing the P value.
+
+Now you can try higher speeds and accelerations. You may need to increase the move length to make sure thet there is a steady speed section in each move. At ths stage, don't worry if you get some "Failed to maintain position" errors, because we haven't finished tuning yet. However, if you see any "Phase A short to ground" errors (and/or similar Phase B errors) then you will need to reset the driver. To do this use M18, then M17 to disable and re-enable it. Then select a lower maximum speed and try again.
+
+I ended up using speed 200mm/sec, acceleration 10000mm/sec^2, and move length 50mm (still with P=30 and all the other PID terms zero). The plot looked like this:
+
+![plugin_plot2.png](/manual/closed_loop_tuning/plugin_plot2.png)
+
+Notice that compared to the first plot, the peak PID P term has increased (note the change in axis scale on the right hand side).
+
+Now it's time to tune the A and V PID terms. First we want to tune the A term to eliminate the peaks in the PID P term during the acceleration and deceleration segments, which I have circled in orange in the above plot. Here's the same move but with the PID A term set to 100000:
+
+![plugin_plot3.png](/manual/closed_loop_tuning/plugin_plot3.png)
+
+The peaks in the P term have reduced from about 200 to less than 150 (note the change in scale on the right hand side again). Increasing the A term further to 200000 largely eliminated the peaks:
+
+![plugin_plot4.png](/manual/closed_loop_tuning/plugin_plot4.png)
+
+At the same time the "Failed to maintain position" errors went away.
+
+Now that the A term is tuned we can tune the V term. The aim here is to reduce the average value of the PID P term during the steady speed segments, which I have indicated by the orange arrows in the previous plot. In this example a value of 400 gave me this plot, in which the average PID P term is close to zero:
+
+![plugin_plot5.png](/manual/closed_loop_tuning/plugin_plot5.png)
+
+Next we want to reduce the amount of ripple on the P term. This can be done by using a nonzero D term. Setting the D term too high will make the motor sound raucous, so don't set it higher than necessary. I ended up with a value of 0.2 and this plot:
+
+![plugin_plot6.png](/manual/closed_loop_tuning/plugin_plot6.png)
+
+The remaining value to tune is the PID I parameter. This parameter is responsible for reducing the steady-state error to zero over a period of time. To see this error, turn off the display of all values except Current Error:
+
+![plugin_plot7.png](/manual/closed_loop_tuning/plugin_plot7.png)
+
+I have added orange arrows to highlight the error. Reduce it by adding a nonzero PID I parameter.
+If you use too large a value for the I term, the position will oscillate. In this example, using an I term of 1000 reduce the error to zero in less than 100ms:
+
+![plugin_plot8.png](/manual/closed_loop_tuning/plugin_plot8.png)
+
+Now check the behaviour of the motor at a range of lower speeds. In this case I found that the motor noise was a little unpleasant at low speeds. I reduced the PID D term from 0.2 to 0.1 to make it more acceptable.
+
+### RepRapFirmware 3.4.x
+
+Use the plugin to execute the step manoeuvre. The settings shown below will record the response to a sidden change in desired position of 4 full steps. You must previously have run the required encoder calibration for the motor - see above.
 
 ![duet_3_1hcl_manual_tuning_02.png](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_manual_tuning_02.png =800x)
 
@@ -306,6 +370,15 @@ In order to reduce this noise, the D term can be set to zero, however this will 
 A better way to reduce noise is to accept a slightly worse step response by reducing the P term. This in turn will reduce the optimum D term, which will reduce the noise.
 
 It is a matter of personal preference weighing up the sound of the motors against the decreased accuracy.
+
+## Setting parameters for Assisted Open Loop mode in RRF 3.5 and later
+
+If you wish to use Assisted Open Loop mode instead of Closed Loop mode then tuning is much simpler:
+
+- The PID P term should be set to 200. You should not need to change it.
+- The PID I term is not used.
+- The PID D term can typically be set to zero.
+- The A and V terms will not affect the PID P term, so you can't tune them in the same way. However, you may be able to achieve slightly higher speeds and/or accelerations by using nonzero A and/or V terms.
 
 # Reporting failure to maintain position
 
