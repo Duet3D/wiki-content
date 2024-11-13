@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2024-11-13T10:41:24.802Z
+date: 2024-11-13T11:13:14.568Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -235,6 +235,7 @@ This plugin is essentially a GUI for the [M569.5](/User_manual/Reference/Gcodes/
 
 - Press Update to set the values
 - Press Record to execute the movement and record the data. The motor will forwards by the specified amount and back again.
+- (Note the 'Auto Tune' function has been removed from the closed loop plug-in v3.5.1 and later.)
 - Open the captured data file and select all available variables to plot except for the ID control signal. The plot should look something like this:
 
 ![plugin_plot1.png](/manual/closed_loop_tuning/plugin_plot1.png)
