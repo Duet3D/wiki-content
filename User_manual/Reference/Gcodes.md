@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-11-15T10:19:05.279Z
+date: 2024-11-15T10:20:58.741Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2254,8 +2254,7 @@ RepRapFirmware uses floating point maths so it is possible to use floating point
 <br>
 <pre class="cblock">
 M98 P"mymacro.g" ; Runs the macro in the file mymacro.g
-M98 P"macro.g" S100 Y"string" ; Runs macro.g, passes the values for parameters S and Y to the macro
-
+M98 P"macro.g" S100 Y"string" ; Runs macro.g, passes the values for parameters S and Y to the macro</br>
 ; within macros
 M98 R1 ; macro can be paused from this point onwards
 </pre>
