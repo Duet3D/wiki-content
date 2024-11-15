@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-11-11T15:01:12.616Z
+date: 2024-11-15T10:19:05.279Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2247,25 +2247,30 @@ RepRapFirmware uses floating point maths so it is possible to use floating point
 
 ### Parameters
 
-* **P"nnn"** Macro filename^1^
-* **Rn** (when no P parameter is provided, RRF 3.4 and later) This is used within a macro file to indicate whether the macro can be paused from this point on. 1 = remainder of current macro can be paused **and the macro restarted from the beginning after resuming**, 0 = remainder of current macro cannot be paused. By default, a macro cannot be paused except in the case of power failure. **Do not use R1 in system macros** such as tool change macros, homing macros, pause.g or resume.g.
-* If the P parameter is provided then any additional parameters will be passed to the macro^2^
+* **P"nnn"** Macro filename (in RRF 3.x and later, quotation marks around the filename are mandatory)
+* **Rn** When no P parameter is provided, indicates if macro can be paused from this point onwards. (RRF 3.4 and later, see Notes for usage)
 
 ### Examples
 <br>
 <pre class="cblock">
-M98 P"mymacro.g"
+M98 P"mymacro.g" ; Runs the macro in the file mymacro.g
+M98 P"macro.g" S100 Y"string" ; Runs macro.g, passes the values for parameters S and Y to the macro
+
+; within macros
+M98 R1 ; macro can be paused from this point onwards
 </pre>
-
-Runs the macro in the file mymacro.g. Macro calls can be nested (i.e. a macro can call another macro).
-
-The filename may include a path to a subdirectory. For relative paths, the default folder is /sys. Absolute file paths are also supported starting with "0:/" for the internal SD card or "1:/" for the external SD card if fitted.
 
 ### Notes
 
-^1^ In RRF 3.x, quotation marks around the filename are mandatory. In RRF2.x and earlier, string can be enclosed in quotes if required. See [Quoted Strings](/User_manual/Reference/Gcodes#quoted-strings){target=_blank} for details. 
-
-^2^ In RRF 3.3 and later M98 supports additional parameters used to pass information to the macro being called. See the [GCode Meta Commands](/User_manual/Reference/Gcode_meta_commands){target=_blank} documentation for the details.
+* Macro calls can be nested (i.e. a macro can call another macro).
+* **P** parameter:
+  * In RRF 3.x and later, quotation marks around the filename are mandatory. In RRF2.x and earlier, string can be enclosed in quotes if required. See [Quoted Strings](/User_manual/Reference/Gcodes#quoted-strings){target=_blank} for details.
+  * The filename may include a path to a subdirectory. For relative paths, the default folder is /sys. Absolute file paths are also supported starting with "0:/" for the internal SD card or "1:/" for the external SD card if fitted.
+  * If the P parameter is provided then any additional parameters will be passed to the macro. In RRF 3.3 and later M98 supports additional parameters used to pass information to the macro being called. See the [GCode Meta Commands, Macro parameters](/User_manual/Reference/Gcode_meta_commands#macro-parameters){target=_blank} documentation for the details.
+* **R** parameter: this is used within a macro file to indicate whether the macro can be paused from this point on. 
+  * 0 = (default) remainder of current macro cannot be paused. By default, a macro cannot be paused except in the case of power failure.
+  * 1 = remainder of current macro can be paused **and the macro restarted from the beginning after resuming**, 
+  * **Do not use R1 in system macros** such as tool change macros, homing macros, pause.g or resume.g.
 
 ## M99: Return from Macro/Subprogram
 
