@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-08-20T09:18:34.004Z
+date: 2024-11-18T14:14:49.637Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -571,6 +571,10 @@ If in the future you want to add the termination resistor back into the circuit 
 # Revision History
 
 # Tabs{.tabset}
+
+## Revision v1.02b
+- Minor changes to USB host support circuit.
+- Slik screen changes to aid clarity.
 
 ## Revision v1.02a
 - Added a pull down resistor to keep the WiFi module (if present) disabled during board powerup
