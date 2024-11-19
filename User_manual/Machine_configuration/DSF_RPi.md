@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2024-11-19T19:47:35.394Z
+date: 2024-11-19T19:51:36.299Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -49,7 +49,7 @@ This assumes that the unstable packages are a later version than the currently i
 
 1. Change stable to unstable in /etc/apt/sources.list.d/duet3d.list:
    ```
-   sudo rm -f /etc/apt/sources.list.d/duet3d-stable.list
+   sudo rm -f /etc/apt/sources.list.d/duet3d.list
    sudo bash -c "echo 'deb https://pkg.duet3d.com/ unstable armv7' > /etc/apt/sources.list.d/duet3d.list"
    ```
    
@@ -68,7 +68,7 @@ In a similar process to the above, this assumes that the stable packages are a l
 1. Change stable to unstable in /etc/apt/sources.list.d/duet3d.list:
    ```
    sudo rm -f /etc/apt/sources.list.d/duet3d.list
-   sudo bash -c "echo 'deb https://pkg.duet3d.com/ unstable armv7' > /etc/apt/sources.list.d/duet3d.list"
+   sudo bash -c "echo 'deb https://pkg.duet3d.com/ stable armv7' > /etc/apt/sources.list.d/duet3d.list"
    ```
 1. Update your system:
    ```
