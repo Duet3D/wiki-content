@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-11-26T13:23:22.475Z
+date: 2024-11-26T13:25:35.789Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3412,7 +3412,7 @@ Hex addresses are only supported in firmware 2.02 and later.
 
 *Supported from firmware version 3.6*
 
-Write data to a Modbus slave device.
+Write data to a Modbus slave device using standard Modbus protocol. If the device you wish to commuicatre with does not use the standard Modbus-RTU command set then you may be able to communicate with it using M260.4 instead.
 
 ### Parameters
 
@@ -3488,6 +3488,8 @@ M260.3 P1 S"PS  0500"                                        ; complete handshak
 </pre>
 
 ## M260.4: Raw Modbus transaction
+
+*Supported from firmware version 3.6*
 
 Perform a non-standard transaction with a Modbus slave device. The request and response muct both start with the slave address and end with two CRC-16 bytes, but the data between them need not conform to the Modbus-RTU specification. RepRapFirmware prepends the slave address to the fata and appends the CRC when sending. After receiving the specified number of bytes, RepRapFirmware checks that the received slave address and CRC are correct and removes them from the returned data. It is up to the user to check the other values in the response.
 
