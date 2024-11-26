@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-11-22T11:15:30.000Z
+date: 2024-11-26T13:23:22.475Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3391,9 +3391,9 @@ Send and/or receive data over the i2c bus. Supported in RepRapFirmware 1.21 and 
 ### Parameters
 
 * **Ann** I2C address
-* **Bnn:nn:nn...** Bytes to send (optional in firmware 2.02 and later)
-* **S"ascii data"** (since RRF 3.6) data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
 * **Rnn** Number of bytes to receive (optional) - firmware 2.02 and later only
+* **Bnn:nn:nn...** Bytes to send (optional in firmware 2.02 and later)
+* **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
 
 ### Examples
 <br>
@@ -3421,7 +3421,7 @@ Write data to a Modbus slave device.
 * **Fn** (optional) Modbus function code, must be one of: 5 (Write Single Coil), 6 (Write Single Register), 15 (Write Multiple Coils), 16 (Write Multiple Registers, default)
 * **Rnn** First Modbus coil or register number to write to
 * **Bnn:nn:nn...** One value per coil or register to write. If writing registers, each value is a 16-bit word to write. If writing coils, each value is zero to set coil off, nonzero to set coil on.
-* **S"ascii data"** data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
+* **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
 
 ### Order dependency
 
@@ -3444,7 +3444,7 @@ Write data to a generic UART device.
 
 * **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
 * **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
-* **S"ascii data"** data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
+* **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
 
 ### Order dependency
 
@@ -3462,7 +3462,7 @@ M260.2 P1 S"Hello world"                              ; write "Hello world" to U
 
 ## M260.3: Write to Nordson Ultimus V
 
-*Supported from firmware version 3.6*
+*Supported on Duet 3 boards from firmware version 3.6*
 
 Write data to a Nordson Ultimus V via UART. https://www.manualslib.com/manual/2917329/Nordson-Ultimus-V.html?page=46#manual
 - First the `ENQ` `ACK` handshake is completed.
@@ -3474,7 +3474,7 @@ Write data to a Nordson Ultimus V via UART. https://www.manualslib.com/manual/29
 
 * **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
 * **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
-* **S"ascii data"** data to send. Each character is converted to the corresponding int value of the ascii for that character. Ignored if **B** is present
+* **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
 
 ### Order dependency
 
@@ -3485,6 +3485,28 @@ The port used by the P parameter must already have been set to Device mode using
 <pre class="cblock">
 M260.3 P1 B{0x50, 0x53, 0x20, 0x20, 0x30, 0x35, 0x30, 0x30}  ; complete handshake then send "{STX}08PS  0500F0{ETX}"
 M260.3 P1 S"PS  0500"                                        ; complete handshake then send "{STX}08PS  0500F0{ETX}"
+</pre>
+
+## M260.4: Raw Modbus transaction
+
+Perform a non-standard transaction with a Modbus slave device. The request and response muct both start with the slave address and end with two CRC-16 bytes, but the data between them need not conform to the Modbus-RTU specification. RepRapFirmware prepends the slave address to the fata and appends the CRC when sending. After receiving the specified number of bytes, RepRapFirmware checks that the received slave address and CRC are correct and removes them from the returned data. It is up to the user to check the other values in the response.
+
+### Parameters
+
+* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
+* **Ann** Modbus slave device address
+* **Rnn** Number of bytes to receive excluding the slave address and the CRC
+* **Bnn:nn:nn...** Values to send excluding the slave address and the CRC
+* **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
+
+### Order dependency
+
+The port used by the P parameter must already have been set to Device mode using [M575](/User_manual/Reference/Gcodes/M575).
+
+### Examples
+<br>
+<pre class="cblock">
+M260.4 P1 A1 B{0x06:0x00:0x01:0x12:0x34} R5
 </pre>
 
 ## M261: i2c Request Data
