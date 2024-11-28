@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2024-11-28T15:17:16.194Z
+date: 2024-11-28T15:20:00.993Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -57,8 +57,6 @@ echo >>"mymacro.g" "G1 F3000 Y{move.axes[1].max-10}" ; move to 10mm below axis m
 
 Example writing a single long line:
 (*Note that the line is started with a ">>>" echo, subsquent elements are added with ">>>" and the final element in the line is added with a ">>" which appends the newline character*)
-
-
 
 ```
 echo >>>"data.csv" move.axes[0].machinePosition^","^move.axes[1].machinePosition^","^move.axes[2].machinePosition
