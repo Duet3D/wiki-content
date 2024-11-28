@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2024-07-16T15:34:26.523Z
+date: 2024-11-28T17:04:52.072Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -88,6 +88,32 @@ Usually cheapest, with limited range for temperature and humidity, but small and
 
 # Tabs {.tabset}
 
+
+## BME280 sensors
+
+### Cable recommendations
+
+BME280 sensors should be less sensitive to interference than DHT sensors, but the cable should still be kept away from stepper motor cables.
+
+### Wiring
+
+Using the Temperature Daughterboard connector (TEMP_DB), connect the SDI (may be labelled as SDA), SDO and SCK (SCL) pins of the BME280 to MOSI, MISO and SCK respectively. Also connect CS (may be labelled CSB) to your chosen spi.cs pin, 3.3V power and ground.
+
+| Duet SPI Daughterboard connector |||| BME280 |
+|---|---|
+| Pin # | Pin name ||| Pin name / alternate name |
+| | 6HC, 3HC | 6XD | Mini 5+ | |
+| 1 | spi.cs1 | spi.cs2 || CS / CSB |
+| 2 | GND ||| GND |
+| 3 | spi.cs0 | spi.cs1 || (alternative for CS / CSB) |
+| 4 | SPIO_SCK ||| SCK / SCL |
+| 5 | SPIO_MOSI ||| SDI / SDA |
+| 6 | SPIO_MISO ||| SDO |
+| 7 | spi.cs2 | spi.cs3 | not connected | (alternative for CS / CSB) |
+| 8 | +3.3V ||| VCC |
+| 9 | spi.cs3 | spi.cs4 | not connected | (alternative for CS / CSB) |
+| 10 | not connected ||| - |
+
 ## DHT22/21/11 sensors
 
 ### Cable recommendations
@@ -115,31 +141,6 @@ Connect the DHT I/O line to both IOx.IN and the IOx.OUT pin of an IO connector. 
 #### Duet 2
 
 Connect the DHT I/O line to one of the SPI CS lines on the temperature daughterboard connector. This connector also provides +3.3V and ground. For systems running RRF 3 with no DueX expansion connected, some of the expansion connector pins could be used instead, for example the E2 to E6 endstop pins (E0 and E1 on the Duet cannot be used).
-
-## BME280 sensors
-
-### Cable recommendations
-
-BME280 sensors should be less sensitive to interference than DHT sensors, but the cable should still be kept away from stepper motor cables.
-
-### Wiring
-
-Using the Temperature Daughterboard connector (TEMP_DB), connect the SDI (may be labelled as SDA), SDO and SCK (SCL) pins of the BME280 to MOSI, MISO and SCK respectively. Also connect CS (may be labelled CSB) to your chosen spi.cs pin, 3.3V power and ground.
-
-| Duet SPI Daughterboard connector |||| BME280 |
-|---|---|
-| Pin # | Pin name ||| Pin name / alternate name |
-| | 6HC, 3HC | 6XD | Mini 5+ | |
-| 1 | spi.cs1 | spi.cs2 || CS / CSB |
-| 2 | GND ||| GND |
-| 3 | spi.cs0 | spi.cs1 || (alternative for CS / CSB) |
-| 4 | SPIO_SCK ||| SCK / SCL |
-| 5 | SPIO_MOSI ||| SDI / SDA |
-| 6 | SPIO_MISO ||| SDO |
-| 7 | spi.cs2 | spi.cs3 | not connected | (alternative for CS / CSB) |
-| 8 | +3.3V ||| VCC |
-| 9 | spi.cs3 | spi.cs4 | not connected | (alternative for CS / CSB) |
-| 10 | not connected ||| - |
 
 # Configuring a DHT sensor
 
