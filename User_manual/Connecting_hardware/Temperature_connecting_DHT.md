@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2024-11-28T17:04:52.072Z
+date: 2024-11-28T17:10:26.651Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -146,6 +146,24 @@ Connect the DHT I/O line to one of the SPI CS lines on the temperature daughterb
 
 # Tabs {.tabset}
 
+## BME280 sensors
+
+In RRF 3, [M308](/User_manual/Reference/Gcodes/M308) is used to define the BME280 sensor. Use the following parameters:
+
+* **Sn** Sensor number.
+* **P"pin_name"** See section above for pins to use with each Duet version.
+* **Y"sensor_type"** "bme280", "bme-pressure", "bme-humidity" (RRF3.5 and later on Duet 3 only)
+* **A"name"** Sensor name (optional), displayed in the web interface
+
+The BME280 has a primary output for temperature, secondary output for pressure, and third for the humidity values. A primary sensor is created for temperature, eg `S11`, and "bme-pressure" will be attached to this sensor as a secondary output by using its full sensor number (including the leading S) and the output's index separated by a dot, eg `S11.1`. "bme-humidity" is attached in the same way as the third output.
+
+Example:
+```
+m308 s11 y"bme280" p"spi.cs1" a"Ambient temp"
+m308 s12 y"bme-pressure" p"s11.1" a"Pressure[hPa]"
+m308 s13 y"bme-humidity" p"s11.2" a"Humidity[%]"
+```
+
 ## DHT22/21/11 sensors
 
 ### RepRapFirmware 3.x
@@ -196,24 +214,6 @@ Example:
 ;DHT Sensor on Temperature Daughterboard SPI CS1 pin
 M305 P103 X400 T22 S"DHT Temperature" 
 M305 P104 X450 T22 S"DHT Humidity [%]"
-```
-
-## BME280 sensors
-
-In RRF 3, [M308](/User_manual/Reference/Gcodes/M308) is used to define the BME280 sensor. Use the following parameters:
-
-* **Sn** Sensor number.
-* **P"pin_name"** See section above for pins to use with each Duet version.
-* **Y"sensor_type"** "bme280", "bme-pressure", "bme-humidity" (RRF3.5 and later on Duet 3 only)
-* **A"name"** Sensor name (optional), displayed in the web interface
-
-The BME280 has a primary output for temperature, secondary output for pressure, and third for the humidity values. A primary sensor is created for temperature, eg `S11`, and "bme-pressure" will be attached to this sensor as a secondary output by using its full sensor number (including the leading S) and the output's index separated by a dot, eg `S11.1`. "bme-humidity" is attached in the same way as the third output.
-
-Example:
-```
-m308 s11 y"bme280" p"spi.cs1" a"Ambient temp"
-m308 s12 y"bme-pressure" p"s11.1" a"Pressure[hPa]"
-m308 s13 y"bme-humidity" p"s11.2" a"Humidity[%]"
 ```
 
 # Displaying DHT data
