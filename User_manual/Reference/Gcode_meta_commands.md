@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2024-09-17T06:47:16.937Z
+date: 2024-11-28T15:17:16.194Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -46,7 +46,7 @@ To append to a file without adding a newline character at the end, so that multi
 
 `echo >>><filename> <expression>, <expression>, ...`
 
-There must be no spaces between the > or >> symbol and \<filename>. The default folder for the file is /sys.
+There must be no spaces between the >,>> or >>> symbol and \<filename>. The default folder for the file is /sys.
 
 Example:
 
@@ -54,6 +54,18 @@ Example:
 echo >"mymacro.g" "G1 F3000 X{move.axes[0].max-10}" ; move to 10mm below axis max when the macro was generated
 echo >>"mymacro.g" "G1 F3000 Y{move.axes[1].max-10}" ; move to 10mm below axis max when the macro is executed
 ```
+
+Example writing a single long line:
+(*Note that the line is started with a ">>>" echo, subsquent elements are added with ">>>" and the final element in the line is added with a ">>" which appends the newline character*)
+
+
+
+```
+echo >>>"data.csv" move.axes[0].machinePosition^","^move.axes[1].machinePosition^","^move.axes[2].machinePosition
+echo >>>"data.csv" ","^heat.heaters[0].current^","^heat.heaters[2].current^","^heat.heaters[3].current
+echo >>"data.csv" ","^sensors.filamentMonitors[0].position^","^sensors.filamentMonitors[1].position^","^sensors.filamentMonitors[2].position
+```
+If you needs to write a new file with multiple entries on a single line and the file may already exist, use M472 to delete it first. You can use the fileexists() condition to only delete the file if it exists.
 
 ## Conditional construct
 
