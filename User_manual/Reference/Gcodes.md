@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-11-26T13:25:35.789Z
+date: 2024-11-29T16:43:52.094Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3491,7 +3491,7 @@ M260.3 P1 S"PS  0500"                                        ; complete handshak
 
 *Supported from firmware version 3.6*
 
-Perform a non-standard transaction with a Modbus slave device. The request and response muct both start with the slave address and end with two CRC-16 bytes, but the data between them need not conform to the Modbus-RTU specification. RepRapFirmware prepends the slave address to the fata and appends the CRC when sending. After receiving the specified number of bytes, RepRapFirmware checks that the received slave address and CRC are correct and removes them from the returned data. It is up to the user to check the other values in the response.
+Perform a non-standard transaction with a Modbus slave device. The request and response must both start with the slave address and end with two CRC-16 bytes, but the data between them need not conform to the Modbus-RTU specification. RepRapFirmware prepends the slave address to the data and appends the CRC when sending. After receiving the specified number of bytes, RepRapFirmware checks that the received slave address and CRC are correct and removes them from the returned data. It is up to the user to check the other values in the response.
 
 ### Parameters
 
@@ -8594,7 +8594,7 @@ Raise a heater fault from expansion board at CAN address 2 on heater 1
 * **S** parameter: the full text string describing the fault (the same string that is written to the log file, if the event is logged). This is intended to be suitable to show to the user.
 * For more information, see the [Events](/User_manual/RepRapFirmware/Events) wiki page.
 
-## M970 Enable/disable phase stepping
+## M970: Enable/disable phase stepping
 
 *Support in RepRapFirmware 3.6 and later*
 
@@ -8623,7 +8623,7 @@ Enable phase stepping for `X` and `E0`, enable step direction for `Y`, `Z`, and 
 * The standstill current factor set by [M917](/User_manual/Reference/Gcodes/M917){target=_blank} is also used to scale the motor current. The scaled current will be a minimum of the current * standstill current factor.
 * Stall detect is not supported while phase stepping is enabled.
 
-## M970.1 Configure phase stepping velocity constant
+## M970.1: Configure phase stepping velocity constant
 
 *Support in RepRapFirmware 3.6 and later*
 
@@ -8639,7 +8639,7 @@ Configure the velocity constant used to scale the motor current in phase steppin
 M970.1 X1000.0 Y2000.0 Z1000.0 E1000.0:1000.0
 </pre>
 
-## M970.2 Configure phase stepping acceleration constant
+## M970.2: Configure phase stepping acceleration constant
 
 *Support in RepRapFirmware 3.6 and later*
 
