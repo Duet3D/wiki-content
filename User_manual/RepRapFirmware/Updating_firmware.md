@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2024-11-08T11:06:10.865Z
+date: 2024-11-29T16:17:53.548Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -229,9 +229,13 @@ You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).
 
 Bossa is available for Windows, Apple macOS and Linux. 
 
-**Duet 3 MB6HC and MB6XD:** When BOSSA is used to flash the SAME70 processor in the MB6HC, the processor uses the USB port in high speed mode (unlike the processors used in other Duets). This means that the length and quality of the USB cable is especially important. USB cables that can be used to send GCode commands and receive replies to/from a Duet MB6HC/MB6XD that is running RepRapFirmware may not be suitable for flashing the firmware using BOSSA.
+#### Notes
 
-**Duet 3 MB6XD:** You must use the Duet3D version of BOSSA. If the Bossa port does not appear on the PC, check that the Driver Enable Polarity jumper is not in the wrong position (see earlier).
+* **Duet 3 MB6HC and MB6XD:** When BOSSA is used to flash the SAME70 processor in the MB6HC, the processor uses the USB port in high speed mode (unlike the processors used in other Duets). This means that the length and quality of the USB cable is especially important. USB cables that can be used to send GCode commands and receive replies to/from a Duet MB6HC/MB6XD that is running RepRapFirmware may not be suitable for flashing the firmware using BOSSA.
+
+* **Duet 3 MB6XD:** You must use the Duet3D version of BOSSA. If the Bossa port does not appear on the PC, check that the Driver Enable Polarity jumper is not in the wrong position (see earlier).
+
+* If you have problems getting Bossa to connect to the Duet and you have an attached PaneDue, switch the PanelDue to the Setup page to stop it sending data to the Duet.
 
 #### Tabs {.tabset}
 
