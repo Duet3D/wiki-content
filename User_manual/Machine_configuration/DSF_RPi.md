@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on Raspberry Pi
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2024-11-19T19:51:36.299Z
+date: 2024-11-29T14:43:40.825Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-25T12:15:12.719Z
@@ -12,11 +12,11 @@ dateCreated: 2022-01-25T12:15:12.719Z
 
 Duet Software Framework (DSF) is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3. This is refered to running in "SBC" mode, as opposed to running in "standalone" mode wihtout an SBC. Running in SBC mode is optional, it brings with it the potential to use the SBC to handle the networking and UI functions  of the system. In addition it provides an [API](https://github.com/Duet3D/DuetSoftwareFramework/wiki/API-Overview){target=_blank} on the SBC to build plugins and other applications that work with the Duet controlled system.
 
-Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3 or 4. For a standard setup, the [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank} page gives an outline how to get setup initially, and what to do if there are issues.
+Duet 3 mainboards are supplied with an SD card loaded with the Raspberry Pi OS suitable for Raspberry Pi 3B+ or later. For a standard setup, the [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank} page gives an outline how to get setup initially, and what to do if there are issues.
 
 # Prerequisites
 
-Duet Software Framework utilises .NET 6 so an ARMv7 processor is required for operation. This means a Raspberry Pi 3 or newer is required. Support for the Raspberry Pi Zero 2W will be added as part of the upcoming 3.4 software release.
+Duet Software Framework utilises .NET 6 so a 64-bit ARMv7 processor is required for operation. This means a Raspberry Pi 3 or newer. Support for the Raspberry Pi Zero 2W was added as part of the 3.4 software release.
 
 * DuetPi (Raspberry Pi 3 or newer)
 
