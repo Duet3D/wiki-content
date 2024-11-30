@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2024-09-11T15:22:58.099Z
+date: 2024-11-30T16:33:22.105Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -119,6 +119,7 @@ G28 Z                        ; Home Z
 G1 Z6                        ; To avoid backlash move to point higher than start of calibration
 M558.1 K1 S1.7               ; Calibrate probe
 G1 Z6                        ; Move up at end of calibration
+G29 S0 K1                    ; Scan bed and create mesh
 ```
 
 # Using the SZP to set Z height
