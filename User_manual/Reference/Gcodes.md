@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-11-29T16:43:52.094Z
+date: 2024-12-01T12:41:24.485Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1946,6 +1946,8 @@ M37 S0 exits simulation mode and prints the total time taken by simulated moves 
 M37 with no S parameter prints the time taken by the simulation, from the time it was first entered using M37 S1, up to the current point (if simulation mode is still active) or the point that the simulation was ended (if simulation mode is no longer active).
 
 ## M38: Compute SHA1 hash of target file
+
+*Deprecated and removed from ReprapFirmware 3.5.2 and later.*
 
 Used to compute a hash of a file on the SD card and returns a hexadecimal string which is the SHA1 of the file. 
 
