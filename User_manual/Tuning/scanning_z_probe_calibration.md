@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2024-11-30T16:33:22.105Z
+date: 2024-12-02T12:30:33.522Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -60,8 +60,11 @@ M557 X-140:140 Y-90:80 S10                      ; Define mesh grid for probe 1 (
 ### Drive level and reading offset
 
 To calibrate drive level and reading offset: 
+* Set the Z datum (Z=0), either by homing Z using another probe, or by moving the nozzle to just touch the bed and send G92 Z0.
 * Position the sensor above the bed at the minimum height that you expect to use it. 
-  For example, if the trigger height is set to 2mm (G31 Z2), and the bed error is expected to be not more than 1mm, the minimum height would be 2mm. 
+  * This will usually be the G31 Z parameter trigger height.
+  * This height should also allow the nozzle to pass over the whole bed without dragging on it, with a little extra height (eg 1mm) for safety. 
+  * For example, if the trigger height is set to 2mm (G31 Z2), and the bed error is expected to be not more than 1mm, the minimum height would be 2mm. 
 * Run `M558.2 K1 S-1` to calibrate the drive level. If it is successful then it should report the resulting drive level. 
   * If it is unsuccessful, send the command again a few more times, until you get a positive result
   * If it is continuously unsuccessful, check the ribbon cable is seated properly in the connectors, the ribbon cable is away from the coil, and there's no metal above the probe (see 'Mounting' above)
