@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a CNC machine
 description: This page describes the hardware and wiring, and changes to the RepRapFirmware files required to support a CNC.
 published: true
-date: 2024-02-19T09:38:00.700Z
+date: 2024-12-03T15:21:49.492Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:34:29.590Z
@@ -59,7 +59,7 @@ G1 R1 X0 Y0          ; Go back to the last cut move X y Position - avoiding item
 G1 R1 X0 Y0 Z5 F6000 ; Go to 5mm above position of the last cut move
 ```
 
-When a job is paused the coordinates and spindle RPM are saved to slot 1 automatically. Be sure that the stop.g file exists, otherwise pausing a job will also disable the stepper drivers and the machine would need to be homed again.
+When a job is paused the coordinates and spindle RPM are saved to slot 1 automatically.
 
 ## Example configuration and macros
 
@@ -77,9 +77,10 @@ When a job is paused the coordinates and spindle RPM are saved to slot 1 automat
 
 * In CNC mode, if a line of GCode does not begin with G or M (after skipping N and the line number, if present) but the previous command was G0, G1, G2 or G3, then the line is taken to be another G0, G1, G2 or G3 command.
 
-* In CNC mode, round brackets in a line are treated as enclosing comments. This means that if you use expressions in GCode, if you use round brackets within expressions then the whole expression must be enclosed in { }. This would normally be the case anyway when using expressions as parameters to regular GCode commands, so this only affects the use of round brackets in GCode meta commands such as if, while, var, global, echo and so on.
-
-* When using Gcode meta commands, sub-expressions may be enclosed in { } or in ( ). However, standard CNC GCode uses ( ) to enclose comments (see note above). So in CNC mode, RepRapFirmware treats ( ) as enclosing subexpressions when they appear inside { } and as enclosing comments when they do not. Therefore, when RepRapFirmware is running in CNC mode, any use of ( ) to enclose a subexpression or function parameter list must be within an expression enclosed in { }.
+* In CNC mode, round brackets ( ) in a line are treated as enclosing comments. However:
+  * Usually, when using Gcode meta commands, sub-expressions may be enclosed in { } or in ( ).
+  * To avoid being parsed as a comment, any use of ( ) to enclose a subexpression or function parameter list must be within an expression enclosed in { }.
+  * This would normally be the case anyway when using expressions as parameters in regular GCode commands, so this only affects the use of ( ) in GCode meta commands such as if, while, var, global, echo and so on.
 
 ## Using specialised GCodes
 
