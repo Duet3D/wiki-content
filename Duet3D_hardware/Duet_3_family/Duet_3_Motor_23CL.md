@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-12-04T12:32:53.796Z
+date: 2024-12-04T16:41:28.651Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -12,7 +12,7 @@ dateCreated: 2023-01-09T19:18:18.412Z
 
 # Introduction
 
-The Duet 3 Motor 23CL (M23CL) is a family of Closed loop, CAN-FD connected NEMA 23 motors, fully integrated in to the Duet 3 ecosystem. They optionally integrate a brake to hold the motor in position when power is off. Connection to the Duet 3 CAN-FD bus and power use industrial M8 connectors. Multiple M23CLs can be connected to the bus, either via an M8 T splitter or a distribution board/box.
+The Duet 3 Motor 23CL (M23CL) is a family of closed loop, CAN-FD connected NEMA 23 motors, fully integrated in to the Duet 3 ecosystem. They optionally integrate a brake to hold the motor in position when power is off. Connection to the Duet 3 CAN-FD bus and power use industrial M8 connectors. Multiple M23CLs can be connected to the bus, either via an M8 T splitter or a distribution board/box.
 
 Note the M23CL series are in active development and this documentation will be expanded as we confirm specifics of each motor variant, along with bus distribution options.
 
@@ -49,8 +49,7 @@ Note the M23CL series are in active development and this documentation will be e
 
 ## Firmware notes
 
-* Compatible RepRapFirmware versions: RRF 3.4.4 and later
-* General Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
+* See 'Firmware' section below
 
 # Physical properties
 
@@ -90,7 +89,11 @@ The M23CL has two pairs of CAN_L and CAN_H connectors on a M8 4-way connector, o
 
 * daisy chain the M23CL between other M23CLs, expansion or tool boards on the CAN bus. Connect the 'incoming' CAN cable to one CAN_L/CAN_H pair, and connect the outgoing CAN_L/CAN_H pair to the incoming pair of the next M23CL, expansion or tool board. 
 
-* have the M23CL as the last (or only) device on the CAN bus. The M23CL is supplied without CAN termination, so is easiest to use between other boards. If a M23CL needs to be the last device on the bus, there is a solder jumper on the PCB inside the motor to enable termination, but you would have to take the rear cover off the motor to access it. We recommend using external termination if the M23CL is the last device on the CAN bus. Connect a 120 ohm resistor between the pins on the 'outgoing' wire pair, between CAN_H and CAN_L. 
+* have the M23CL as the last (or only) device on the CAN bus. The M23CL is supplied without CAN termination, so is easiest to use between other boards. If the M23CL is the last device on the CAN bus, we recommend using external termination. Connect a 120 ohm resistor between the pins on the 'outgoing' wire pair, between CAN_H and CAN_L.
+
+<!--*
+If a M23CL needs to be the last device on the bus, there is a solder jumper on the PCB inside the motor to enable termination, but you would have to take the rear cover off the motor to access it. 
+-->
 
 * use a [Duet 3 Tool Distribution board](/Duet3D_hardware/Duet_3_family/Duet_3_Tool_Distribution_Board), and wire each M23CL to the distribution board with four wires. CAN Bus termination can then be done on the Tool Distribution board.
 
@@ -116,7 +119,7 @@ In this mode the driver behaves in a similar way to the drivers on the 6HC main 
 In this mode an error signal is computed from the difference between the desired motor position and the position reported by the encoder. This error signal is used to apply a torque to correct the error via a modified PID controller. Warning and error events can be generated when the error exceeds configurable thresholds. When the controller is unable to achieve the desired position, it will recover to the correct position when either the obstruction is removed or a command is sent to move the axis or extruder to a position that can be achieved. Maximum speed is reduced compared to open loop mode. The PID controller must be tuned for best response.
 
 ## Assisted open loop mode
-*Supported in firmware 3.5.0 and later only*. In this mode the motor is operated as if in open loop mode, but whenever it is detected that the error between desired and actual position is getting too high, the motor current is automatically increased until the error is reduced. This allows a low initial current to be used, which makes the motor quieter at standstill and low motor speeds. As with closed loop mode, warning and error events can be generated when the error exceeds configurable thresholds. However, if the position requested cannot be achieved and the error exceeds approximately 4 full motor steps, the position will not be corrected when the obstruction is removed or the motor is commanded to a position that can be reached. No further out-of-position events will be generated until the command to enter assisted open loop mode is repeated. Unlike closed loop mode, good operation can be achieved with little or no tuning.
+In this mode the motor is operated as if in open loop mode, but whenever it is detected that the error between desired and actual position is getting too high, the motor current is automatically increased until the error is reduced. This allows a low initial current to be used, which makes the motor quieter at standstill and low motor speeds. As with closed loop mode, warning and error events can be generated when the error exceeds configurable thresholds. However, if the position requested cannot be achieved and the error exceeds approximately 4 full motor steps, the position will not be corrected when the obstruction is removed or the motor is commanded to a position that can be reached. No further out-of-position events will be generated until the command to enter assisted open loop mode is repeated. Unlike closed loop mode, good operation can be achieved with little or no tuning.
 
 # Commissioning
 
