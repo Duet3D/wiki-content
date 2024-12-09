@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-12-01T12:41:24.485Z
+date: 2024-12-09T16:15:23.418Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4525,6 +4525,7 @@ The flags string may include one or more of the following letters:
 * o: include obsolete fields (v3.3 and newer)
 * d: limit the depth of the reported tree to the specified number following the letter 'd'. Objects at the maximum depth will be returned as {}.
 * a: use this only when the key requested is an array, e.g. "tools" or "move.axes". When an array contains a lot of data, it may not be possible to return the entire array in one go. This parameter directs RRF to fetch array elements starting at the number that follows the letter 'a', default 0. The "next" field in the reply indicates the index of the first array element that was not fetched, or 0 if there are no more elements to fetch.
+* p: this indicates that the requesting device is PanelDue or a similar device. It causes RRF not to return fields that are not of interest to PanelDue, thereby shortening the response. Supported in RRF 3.6.0-beta.3 and later; ignored by earlier RRF versions.
 
 The flags string may optionally use spaces or commas to separate the individual flags
 
