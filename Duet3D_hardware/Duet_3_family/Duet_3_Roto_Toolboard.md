@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-10-14T13:00:25.362Z
+date: 2024-12-10T17:42:19.414Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -189,10 +189,10 @@ It is possible to connect a Roto Toolboard directly to the Duet 3 Mainboard 6HC,
 
 The XT30(2+2) pre-wired cables supplied with the boards have different wire colours depending on the wiring batch.
 
-| CAN | Prototpyes and initial V1.0 | Later V1.0 | Moulded connector |
+| CAN | Prototpyes and initial V1.0 | Later V1.0 | Moulded connector | Moulded connector (first version) |
 |:---|:---|
-| CAN H | Blue | Yellow | Yellow |
-| CAN L | White | White | Green | 
+| CAN H | Blue | Yellow | Yellow | Yellow |
+| CAN L | White | White | White | Green | 
 
 
 ### Tabs {.tabset}
