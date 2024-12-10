@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: Description for RepRapFirmware including the capabilities and limitations of configuration.
 published: true
-date: 2024-05-02T08:58:28.324Z
+date: 2024-12-10T16:02:33.065Z
 tags: overview, kinematics, limitations
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -87,9 +87,46 @@ See the wiki page on the [SD card](/User_manual/RepRapFirmware/SD_card).
 
 # Firmware configuration limits
 
-RepRapFirmware has some configuration limits. Note that the total system limits are set by the mainboard. Expansion boards can be configured within the full capabilities of their hardware, subject to the overall system limits. You can check the configuration limits of the firmware version you are running by opening the 'Object Model' plugin in DWC, and checking the 'limits' section.
+RepRapFirmware has some configuration limits. Note that:
+* The total system limits are set by the mainboard. 
+* Expansion boards can be configured within the full capabilities of their hardware, subject to the overall system limits.
+* There are also some firmware configuration limitations with CAN expansion on Duet 3, see [CAN expansion limitations](/User_manual/RepRapFirmware/CAN_limitations).
+* You can check the configuration limits of the firmware version you are running by opening the 'Object Model' plugin in DWC, and checking the 'limits' section. 
+* The limits depend on firmware version, see relevant tab below. Bold figures indicate change from previous firmware version.
 
-As of RRF 3.4 these are:
+
+# Tabs {.tabset}
+
+## RepRapfirmware v3.6
+
+| | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Notes |
+|---|---|
+| MaxSensors | 56 | 56 | 32 | The maximum number of sensors |
+| MaxHeaters | 32 | 32 | 10 | The maximum number of heaters |
+| MaxPortsPerHeater | 3 | 2 | 2 | The maximum number of output ports per heater |
+| MaxMonitorsPerHeater | 3 | 3 | 3 | The maximum number of monitors per heater |
+| MaxBedHeaters | 12 | 2 | 4 | The maximum number of bed heaters |
+| MaxChamberHeaters | 4 | 2 | 4 | The maximum number of chamber heaters |
+| MaxZProbes | 4 | 4 | 4 | The maximum number of probes |
+| MaxGridProbePoints | 961 | 441 | 441 | The maximum number of mesh bed compensation points |
+| MaxGpInPorts | 32 | 32 | 20 | The maximum number of general purpose input ports. |
+| MaxGpOutPorts | 32 | 32 | 20 | The maximum number of general purpose output ports |
+| MaxAxes | 30 | 10 | 10 | The maximum number of movement axes |
+| MaxDriversPerAxis | 8 | 4 | 6 | The maximum number of stepper drivers assigned to one axis |
+| MaxExtruders | 16 | 5 | 7 | The maximum number of extruders |
+| MaxAxesPlusExtruders | 32 | 12 | 12 | The maximum number of axes + extruders |
+| MaxHeatersPerTool | 8 | 2 | 8 | The maximum number of heaters per tool |
+| MaxExtrudersPerTool | 8 | 5 | 8 | The maximum number of extruders per tool |
+| MaxFans | 20 | 20 | 12 | The maximum number of fans |
+| MaxTriggers | 32 | 16 | 16 | The maximum number of triggers |
+| MaxSpindles | 2 | 2 | 4 | Maximum number of configurable spindles |
+| MaxZProbeProgramBytes | 8 | 8 |  | Maximum number of bytes in a Z probe program |
+| MaxCanDrivers | 20 | 7 |  | The maximum number of CAN connected stepper drivers |
+| MaxCanBoards | 20 | 4 |  | The maximum number of CAN connected boards |
+
+*Note: Duet 2 Maestro no longer supported in RRF 3.6 and later.*
+
+## RepRapfirmware v3.5
 
 | | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Notes |
 |---|---|
@@ -100,13 +137,13 @@ As of RRF 3.4 these are:
 | MaxBedHeaters | 12 | 2 | 4 | 2 | The maximum number of bed heaters |
 | MaxChamberHeaters | 4 | 2 | 4 | 2 | The maximum number of chamber heaters |
 | MaxZProbes | 4 | 4 | 4 | 2 | The maximum number of probes |
-| MaxGridProbePoints | 441 (961 in RRF 3.5) | 441 | 441 | 441 | The maximum number of mesh bed compensation points |
-| MaxGpInPorts | 32 (16 in RRF 3.3) | 32 (16 in RRF3.3) | 20 | 10 | The maximum number of general purpose input ports. |
+| MaxGridProbePoints | **961** | 441 | 441 | 441 | The maximum number of mesh bed compensation points |
+| MaxGpInPorts | 32 | 32 | 20 | 10 | The maximum number of general purpose input ports. |
 | MaxGpOutPorts | 32 | 32 | 20 | 10 | The maximum number of general purpose output ports |
-| MaxAxes | 15 (30 in RRF 3.5) | 10 | 10 | 6 | The maximum number of movement axes |
-| MaxDriversPerAxis | 8 | 4 | 6 (5 in RRF 3.3) | 4 | The maximum number of stepper drivers assigned to one axis |
+| MaxAxes | **30** | 10 | 10 | 6 | The maximum number of movement axes |
+| MaxDriversPerAxis | 8 | 4 | 6 | 4 | The maximum number of stepper drivers assigned to one axis |
 | MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
-| MaxAxesPlusExtruders | 25 (32 in RRF 3.5) | 12 | 12 | 7 | The maximum number of axes + extruders |
+| MaxAxesPlusExtruders | **32** | 12 | 12 | 7 | The maximum number of axes + extruders |
 | MaxHeatersPerTool | 8 | 2 | 8 | 2 | The maximum number of heaters per tool |
 | MaxExtrudersPerTool | 8 | 5 | 8 | 4 | The maximum number of extruders per tool |
 | MaxFans | 20 | 20 | 12 | 6 | The maximum number of fans |
@@ -116,7 +153,60 @@ As of RRF 3.4 these are:
 | MaxCanDrivers | 20 | 7 |  |  | The maximum number of CAN connected stepper drivers |
 | MaxCanBoards | 20 | 4 |  |  | The maximum number of CAN connected boards |
 
-There are also some firmware configuration limitations with CAN expansion on Duet 3, see [CAN expansion limitations](/User_manual/RepRapFirmware/CAN_limitations).
+## RepRapfirmware v3.4
+
+| | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Notes |
+|---|---|
+| MaxSensors | 56 | 56 | 32 | 32 | The maximum number of sensors |
+| MaxHeaters | 32 | 32 | 10 | 4 | The maximum number of heaters |
+| MaxPortsPerHeater | 3 | 2 | 2 | 2 | The maximum number of output ports per heater |
+| MaxMonitorsPerHeater | 3 | 3 | 3 | 3 | The maximum number of monitors per heater |
+| MaxBedHeaters | 12 | 2 | 4 | 2 | The maximum number of bed heaters |
+| MaxChamberHeaters | 4 | 2 | 4 | 2 | The maximum number of chamber heaters |
+| MaxZProbes | 4 | 4 | 4 | 2 | The maximum number of probes |
+| MaxGridProbePoints | 441 | 441 | 441 | 441 | The maximum number of mesh bed compensation points |
+| MaxGpInPorts | **32** | **32** | 20 | 10 | The maximum number of general purpose input ports. |
+| MaxGpOutPorts | 32 | 32 | 20 | 10 | The maximum number of general purpose output ports |
+| MaxAxes | 15 | 10 | 10 | 6 | The maximum number of movement axes |
+| MaxDriversPerAxis | 8 | 4 | **6** | 4 | The maximum number of stepper drivers assigned to one axis |
+| MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
+| MaxAxesPlusExtruders | 25 | 12 | 12 | 7 | The maximum number of axes + extruders |
+| MaxHeatersPerTool | 8 | 2 | 8 | 2 | The maximum number of heaters per tool |
+| MaxExtrudersPerTool | 8 | 5 | 8 | 4 | The maximum number of extruders per tool |
+| MaxFans | 20 | 20 | 12 | 6 | The maximum number of fans |
+| MaxTriggers | 32 | 16 | 16 | 16 | The maximum number of triggers |
+| MaxSpindles | 2 | 2 | 4 | 2 | Maximum number of configurable spindles |
+| MaxZProbeProgramBytes | 8 | 8 |  |  | Maximum number of bytes in a Z probe program |
+| MaxCanDrivers | 20 | 7 |  |  | The maximum number of CAN connected stepper drivers |
+| MaxCanBoards | 20 | 4 |  |  | The maximum number of CAN connected boards |
+
+## RepRapfirmware v3.3
+
+| | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Duet 2 Maestro | Notes |
+|---|---|
+| MaxSensors | 56 | 56 | 32 | 32 | The maximum number of sensors |
+| MaxHeaters | 32 | 32 | 10 | 4 | The maximum number of heaters |
+| MaxPortsPerHeater | 3 | 2 | 2 | 2 | The maximum number of output ports per heater |
+| MaxMonitorsPerHeater | 3 | 3 | 3 | 3 | The maximum number of monitors per heater |
+| MaxBedHeaters | 12 | 2 | 4 | 2 | The maximum number of bed heaters |
+| MaxChamberHeaters | 4 | 2 | 4 | 2 | The maximum number of chamber heaters |
+| MaxZProbes | 4 | 4 | 4 | 2 | The maximum number of probes |
+| MaxGridProbePoints | 441 | 441 | 441 | 441 | The maximum number of mesh bed compensation points |
+| MaxGpInPorts | 16 | 16 | 20 | 10 | The maximum number of general purpose input ports. |
+| MaxGpOutPorts | 32 | 32 | 20 | 10 | The maximum number of general purpose output ports |
+| MaxAxes | 15 | 10 | 10 | 6 | The maximum number of movement axes |
+| MaxDriversPerAxis | 8 | 4 | 5 | 4 | The maximum number of stepper drivers assigned to one axis |
+| MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
+| MaxAxesPlusExtruders | 25 | 12 | 12 | 7 | The maximum number of axes + extruders |
+| MaxHeatersPerTool | 8 | 2 | 8 | 2 | The maximum number of heaters per tool |
+| MaxExtrudersPerTool | 8 | 5 | 8 | 4 | The maximum number of extruders per tool |
+| MaxFans | 20 | 20 | 12 | 6 | The maximum number of fans |
+| MaxTriggers | 32 | 16 | 16 | 16 | The maximum number of triggers |
+| MaxSpindles | 2 | 2 | 4 | 2 | Maximum number of configurable spindles |
+| MaxZProbeProgramBytes | 8 | 8 |  |  | Maximum number of bytes in a Z probe program |
+| MaxCanDrivers | 20 | 7 |  |  | The maximum number of CAN connected stepper drivers |
+| MaxCanBoards | 20 | 4 |  |  | The maximum number of CAN connected boards |
+
 
 # Firmware differences from other firmwares
 
