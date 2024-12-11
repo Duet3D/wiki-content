@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-07-26T09:04:27.572Z
+date: 2024-12-11T12:50:34.292Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -169,6 +169,12 @@ If [`http://duet3.local/`](http://duet3.local/){target=_blank} does not show Due
 
 * If the Duet is not showing up on the Pi when doing a lsusb it may be a power supply issue. Try powering the Duet and SBC separately and see if the problem is resolved.
 * Use of Pi cases that extend the GPIO pins or use the pins for external buttons or powering PWM fans will not work with the Duet.
+
+### "Warning: Lost connection to Duet (Timeout while waiting for transfer ready pin)" error
+
+This error, reported in the DWC console, is usually caused by:
+* Other wires running too close to the ribbon cable, creating interference. Heater and motor wires can be particularly noisy, route them as far away as possible. 
+* Ribbon cable too long, damaged or poorly connected. Check installation of ribbon cable.
 
 ### Duet 3/SBC not on the network (http://duet3.local does not work)
 
