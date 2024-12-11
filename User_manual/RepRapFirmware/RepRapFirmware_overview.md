@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: Description for RepRapFirmware including the capabilities and limitations of configuration.
 published: true
-date: 2024-12-11T12:55:11.465Z
+date: 2024-12-11T16:26:41.052Z
 tags: overview, kinematics, limitations
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -105,24 +105,24 @@ RepRapFirmware has some configuration limits. Note that:
 | MaxHeaters | 32 | 32 | 10 | The maximum number of heaters |
 | MaxPortsPerHeater | 3 | 2 | 2 | The maximum number of output ports per heater |
 | MaxMonitorsPerHeater | 3 | 3 | 3 | The maximum number of monitors per heater |
-| MaxBedHeaters | 12 | **4** | 4 | The maximum number of bed heaters |
-| MaxChamberHeaters | **8** | **4** | 4 | The maximum number of chamber heaters |
+| MaxBedHeaters | 12 | 4 | 4 | The maximum number of bed heaters |
+| MaxChamberHeaters | **8** | 4 | 4 | The maximum number of chamber heaters |
 | MaxZProbes | **8** | **8** | 4 | The maximum number of probes |
 | MaxGridProbePoints | 961 | 441 | 441 | The maximum number of mesh bed compensation points |
 | MaxGpInPorts | 56 | 56 | 20 | The maximum number of general purpose input ports. |
 | MaxGpOutPorts | 64 | 64 | 20 | The maximum number of general purpose output ports |
 | MaxAxes | 30 | 10 | 10 | The maximum number of movement axes |
 | MaxDriversPerAxis | 8 | 4 | 6 | The maximum number of stepper drivers assigned to one axis |
-| MaxExtruders | **20** | **8** | 7 | The maximum number of extruders |
+| MaxExtruders | 20 | 8 | 7 | The maximum number of extruders |
 | MaxAxesPlusExtruders | 32 | 12 | 12 | The maximum number of axes + extruders |
 | MaxHeatersPerTool | 20 | 2 | 8 | The maximum number of heaters per tool |
-| MaxExtrudersPerTool | **12** | **8** | 8 | The maximum number of extruders per tool |
+| MaxExtrudersPerTool | 12 | 8 | 8 | The maximum number of extruders per tool |
 | MaxFans | **32** | **32** | 12 | The maximum number of fans |
 | MaxTriggers | 32 | 16 | 16 | The maximum number of triggers |
 | MaxSpindles | 4 | 4 | 4 | Maximum number of configurable spindles |
 | MaxZProbeProgramBytes | 8 | 8 | 8 | Maximum number of bytes in a Z probe program |
-| MaxCanDrivers | **30** | **8** |  | The maximum number of CAN connected stepper drivers |
-| MaxCanBoards | 20 | **8** |  | The maximum number of CAN connected boards |
+| MaxCanDrivers | **30** | 8 |  | The maximum number of CAN connected stepper drivers |
+| MaxCanBoards | 20 | 8 |  | The maximum number of CAN connected boards |
 | MaxLedStrips | 5 | 5 | 2 | The maximum number of LED strips |
 
 *Note: Duet 2 Maestro no longer supported in RRF 3.6 and later.*
@@ -135,24 +135,24 @@ RepRapFirmware has some configuration limits. Note that:
 | MaxHeaters | 32 | 32 | 10 | 4 | The maximum number of heaters |
 | MaxPortsPerHeater | 3 | 2 | 2 | 2 | The maximum number of output ports per heater |
 | MaxMonitorsPerHeater | 3 | 3 | 3 | 3 | The maximum number of monitors per heater |
-| MaxBedHeaters | 12 | 2 | 4 | 2 | The maximum number of bed heaters |
-| MaxChamberHeaters | 4 | 2 | 4 | 2 | The maximum number of chamber heaters |
+| MaxBedHeaters | 12 | 4 | 4 | 2 | The maximum number of bed heaters |
+| MaxChamberHeaters | 4 | 4 | 4 | 2 | The maximum number of chamber heaters |
 | MaxZProbes | 4 | 4 | 4 | 2 | The maximum number of probes |
 | MaxGridProbePoints | **961** | 441 | 441 | 441 | The maximum number of mesh bed compensation points |
 | MaxGpInPorts | **56** | **56** | 20 | 10 | The maximum number of general purpose input ports. |
 | MaxGpOutPorts | **64** | **64** | 20 | 10 | The maximum number of general purpose output ports |
 | MaxAxes | **30** | 10 | 10 | 6 | The maximum number of movement axes |
 | MaxDriversPerAxis | 8 | 4 | 6 | 4 | The maximum number of stepper drivers assigned to one axis |
-| MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
+| MaxExtruders | **20** | **8** | 7 | 4 | The maximum number of extruders |
 | MaxAxesPlusExtruders | **32** | 12 | 12 | 7 | The maximum number of axes + extruders |
 | MaxHeatersPerTool | 20 | 2 | 8 | 2 | The maximum number of heaters per tool |
-| MaxExtrudersPerTool | 8 | 5 | 8 | 4 | The maximum number of extruders per tool |
+| MaxExtrudersPerTool | **12** | 8 | 8 | 4 | The maximum number of extruders per tool |
 | MaxFans | 20 | 20 | 12 | 6 | The maximum number of fans |
 | MaxTriggers | 32 | 16 | 16 | 16 | The maximum number of triggers |
-| MaxSpindles | **4** | **4** | 4 | 2 | Maximum number of configurable spindles |
+| MaxSpindles | 4 | 4 | 4 | 2 | Maximum number of configurable spindles |
 | MaxZProbeProgramBytes | 8 | 8 | 8 | 8 | Maximum number of bytes in a Z probe program |
-| MaxCanDrivers | 20 | 7 |  |  | The maximum number of CAN connected stepper drivers |
-| MaxCanBoards | 20 | 4 |  |  | The maximum number of CAN connected boards |
+| MaxCanDrivers | 20 | **8** |  |  | The maximum number of CAN connected stepper drivers |
+| MaxCanBoards | 20 | **8** |  |  | The maximum number of CAN connected boards |
 | MaxLedStrips | **5** | **5** | **2** |  | The maximum number of LED strips |
 
 ## RepRapfirmware v3.4
@@ -163,21 +163,21 @@ RepRapFirmware has some configuration limits. Note that:
 | MaxHeaters | 32 | 32 | 10 | 4 | The maximum number of heaters |
 | MaxPortsPerHeater | 3 | 2 | 2 | 2 | The maximum number of output ports per heater |
 | MaxMonitorsPerHeater | 3 | 3 | 3 | 3 | The maximum number of monitors per heater |
-| MaxBedHeaters | 12 | 2 | 4 | 2 | The maximum number of bed heaters |
-| MaxChamberHeaters | 4 | 2 | 4 | 2 | The maximum number of chamber heaters |
+| MaxBedHeaters | 12 | **4** | 4 | 2 | The maximum number of bed heaters |
+| MaxChamberHeaters | 4 | **4** | 4 | 2 | The maximum number of chamber heaters |
 | MaxZProbes | 4 | 4 | 4 | 2 | The maximum number of probes |
 | MaxGridProbePoints | 441 | 441 | 441 | 441 | The maximum number of mesh bed compensation points |
 | MaxGpInPorts | **32** | **32** | 20 | 10 | The maximum number of general purpose input ports. |
 | MaxGpOutPorts | 32 | 32 | 20 | 10 | The maximum number of general purpose output ports |
 | MaxAxes | 15 | 10 | 10 | 6 | The maximum number of movement axes |
 | MaxDriversPerAxis | 8 | 4 | **6** | 4 | The maximum number of stepper drivers assigned to one axis |
-| MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
+| MaxExtruders | 16 | **8** | 7 | 4 | The maximum number of extruders |
 | MaxAxesPlusExtruders | 25 | 12 | 12 | 7 | The maximum number of axes + extruders |
 | MaxHeatersPerTool | **20** | 2 | 8 | 2 | The maximum number of heaters per tool |
-| MaxExtrudersPerTool | 8 | 5 | 8 | 4 | The maximum number of extruders per tool |
+| MaxExtrudersPerTool | 8 | **8** | 8 | 4 | The maximum number of extruders per tool |
 | MaxFans | 20 | 20 | 12 | 6 | The maximum number of fans |
 | MaxTriggers | 32 | 16 | 16 | 16 | The maximum number of triggers |
-| MaxSpindles | 2 | 2 | 4 | 2 | Maximum number of configurable spindles |
+| MaxSpindles | **4** | **4** | 4 | 2 | Maximum number of configurable spindles |
 | MaxZProbeProgramBytes | 8 | 8 | 8 | 8 | Maximum number of bytes in a Z probe program |
 | MaxCanDrivers | 20 | 7 |  |  | The maximum number of CAN connected stepper drivers |
 | MaxCanBoards | 20 | 4 |  |  | The maximum number of CAN connected boards |
