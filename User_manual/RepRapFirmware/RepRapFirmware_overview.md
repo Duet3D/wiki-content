@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: Description for RepRapFirmware including the capabilities and limitations of configuration.
 published: true
-date: 2024-12-11T12:28:26.728Z
+date: 2024-12-11T12:55:11.465Z
 tags: overview, kinematics, limitations
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -115,7 +115,7 @@ RepRapFirmware has some configuration limits. Note that:
 | MaxDriversPerAxis | 8 | 4 | 6 | The maximum number of stepper drivers assigned to one axis |
 | MaxExtruders | **20** | **8** | 7 | The maximum number of extruders |
 | MaxAxesPlusExtruders | 32 | 12 | 12 | The maximum number of axes + extruders |
-| MaxHeatersPerTool | **20** | 2 | 8 | The maximum number of heaters per tool |
+| MaxHeatersPerTool | 20 | 2 | 8 | The maximum number of heaters per tool |
 | MaxExtrudersPerTool | **12** | **8** | 8 | The maximum number of extruders per tool |
 | MaxFans | **32** | **32** | 12 | The maximum number of fans |
 | MaxTriggers | 32 | 16 | 16 | The maximum number of triggers |
@@ -145,7 +145,7 @@ RepRapFirmware has some configuration limits. Note that:
 | MaxDriversPerAxis | 8 | 4 | 6 | 4 | The maximum number of stepper drivers assigned to one axis |
 | MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
 | MaxAxesPlusExtruders | **32** | 12 | 12 | 7 | The maximum number of axes + extruders |
-| MaxHeatersPerTool | 8 | 2 | 8 | 2 | The maximum number of heaters per tool |
+| MaxHeatersPerTool | 20 | 2 | 8 | 2 | The maximum number of heaters per tool |
 | MaxExtrudersPerTool | 8 | 5 | 8 | 4 | The maximum number of extruders per tool |
 | MaxFans | 20 | 20 | 12 | 6 | The maximum number of fans |
 | MaxTriggers | 32 | 16 | 16 | 16 | The maximum number of triggers |
@@ -173,7 +173,7 @@ RepRapFirmware has some configuration limits. Note that:
 | MaxDriversPerAxis | 8 | 4 | **6** | 4 | The maximum number of stepper drivers assigned to one axis |
 | MaxExtruders | 16 | 5 | 7 | 4 | The maximum number of extruders |
 | MaxAxesPlusExtruders | 25 | 12 | 12 | 7 | The maximum number of axes + extruders |
-| MaxHeatersPerTool | 8 | 2 | 8 | 2 | The maximum number of heaters per tool |
+| MaxHeatersPerTool | **20** | 2 | 8 | 2 | The maximum number of heaters per tool |
 | MaxExtrudersPerTool | 8 | 5 | 8 | 4 | The maximum number of extruders per tool |
 | MaxFans | 20 | 20 | 12 | 6 | The maximum number of fans |
 | MaxTriggers | 32 | 16 | 16 | 16 | The maximum number of triggers |
