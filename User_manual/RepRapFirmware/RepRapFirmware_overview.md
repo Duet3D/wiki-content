@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: Description for RepRapFirmware including the capabilities and limitations of configuration.
 published: true
-date: 2024-12-11T11:02:11.153Z
+date: 2024-12-11T12:28:26.728Z
 tags: overview, kinematics, limitations
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -106,7 +106,7 @@ RepRapFirmware has some configuration limits. Note that:
 | MaxPortsPerHeater | 3 | 2 | 2 | The maximum number of output ports per heater |
 | MaxMonitorsPerHeater | 3 | 3 | 3 | The maximum number of monitors per heater |
 | MaxBedHeaters | 12 | **4** | 4 | The maximum number of bed heaters |
-| MaxChamberHeaters | 8 | **4** | 4 | The maximum number of chamber heaters |
+| MaxChamberHeaters | **8** | **4** | 4 | The maximum number of chamber heaters |
 | MaxZProbes | **8** | **8** | 4 | The maximum number of probes |
 | MaxGridProbePoints | 961 | 441 | 441 | The maximum number of mesh bed compensation points |
 | MaxGpInPorts | 56 | 56 | 20 | The maximum number of general purpose input ports. |
