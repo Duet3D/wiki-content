@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-12-09T16:15:23.418Z
+date: 2024-12-11T16:23:00.879Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6013,7 +6013,7 @@ Collect performance data from a drive whilst in closed loop mode. Can be used al
 * **F"filename.csv"** Filename to write to, optional, defaults to *driveraddr_datetime.csv*. All files are stored in the *sys/closed-loop* directory.
 * **An** Mode: 0=record immediately, 1=record when the target position of the motor is next changed (i.e. on next move)
 * **Rnn** Sample rate. Measured in samples per second. If R0 is sent, the board will record as fast as possible.
-* **Dnn** Variable filter. Determines which variables are recorded. See below for a list of available variables and how they are represented.
+* **Dnn** Variables filter. Determines which variables are recorded. See below for a list of available variables and how they are represented.
 * **Vnn** Perform a tuning manoeuvre. Available manoeuvres described below.
 * **Snn** Number of samples to record. When recording with rate R0, this sample rate is limited depending on the number of variables being recorded. The command will report back the maximum allowable samples if the maximum is exceeded. The maximum allowable samples may differ between board types since it is dependant on the available RAM.
 * **Tnn** If performing a step tuning manoeuvre, this is the time in milliseconds over which to complete the step change, default 2.0
@@ -6052,6 +6052,15 @@ The following manoeuvres are available:
 | Step Manoeuvre | Applies a sudden change of 4 full steps to the PID target to view the step response of the PID controller. | 64 |
 
 ### Examples
+
+The usual way of generating a move and collecting the data is to send something like:
+<br>
+<pre class="cblock">
+M569.5 P50.0 S2000 A1 R0 D24831 V0 G1 H1 X5 F6000
+</pre>
+
+Using driver 0 attached to board 50 (P50.0) record 2000 samples (S2000) during the following move (A1) as fast as possible (R0) of variable IDs 1, 2, 4, 8, 16, 32, 64, 128, 8192 and 16384 (D24831) not using a tuning manoeuvre (V0). A homing move (G1 H1) follows, moving +5mm in the X axis at 6000mm/min (F6000, or 100mm/second), assuming the move started at X0. 
+
 <br>
 <pre class="cblock">
 M569.5 P50.0 S500 A0 R0 D6 V64
