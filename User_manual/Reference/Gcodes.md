@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-12-11T16:23:00.879Z
+date: 2024-12-11T16:51:50.482Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6056,10 +6056,10 @@ The following manoeuvres are available:
 The usual way of generating a move and collecting the data is to send something like:
 <br>
 <pre class="cblock">
-M569.5 P50.0 S2000 A1 R0 D24831 V0 G1 H1 X5 F6000
+M569.5 P50.0 S2000 A1 R0 D24831 V0 G91 G1 H1 X5 F6000 G90
 </pre>
 
-Using driver 0 attached to board 50 (P50.0) record 2000 samples (S2000) during the following move (A1) as fast as possible (R0) of variable IDs 1, 2, 4, 8, 16, 32, 64, 128, 8192 and 16384 (D24831) not using a tuning manoeuvre (V0). A homing move (G1 H1) follows, moving +5mm in the X axis at 6000mm/min (F6000, or 100mm/second), assuming the move started at X0. 
+Using driver 0 attached to board 50 (P50.0) record 2000 samples (S2000) during the following move (A1) as fast as possible (R0) of variable IDs 1, 2, 4, 8, 16, 32, 64, 128, 8192 and 16384 (D24831) not using a tuning manoeuvre (V0). A switch to relative positioning (G91) is followed by a homing move (G1 H1) follows, moving +5mm in the X axis at 6000mm/min (F6000, or 100mm/second), and then switched back to absolute positioning (G90).
 
 <br>
 <pre class="cblock">
