@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-12-11T16:51:50.482Z
+date: 2024-12-12T13:01:59.776Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2263,7 +2263,7 @@ M98 R1 ; macro can be paused from this point onwards
 
 ### Notes
 
-* Macro calls can be nested (i.e. a macro can call another macro).
+* Macro calls can be nested (i.e. a macro can call another macro). From RRF v3.4.0, the maximum stack depth is 10. This is the maximum number of macro calls and M120 commands that may be nested. However, there is also a limit on the number of open files, which is 20 on Duet 3 and 10 on Duet 2. For example, on Duet 2 if you have a print running from SD card and logging enabled, you will be limited to a macro nesting depth of 8.
 * **P** parameter:
   * In RRF 3.x and later, quotation marks around the filename are mandatory. In RRF2.x and earlier, string can be enclosed in quotes if required. See [Quoted Strings](/User_manual/Reference/Gcodes#quoted-strings){target=_blank} for details.
   * The filename may include a path to a subdirectory. For relative paths, the default folder is /sys. Absolute file paths are also supported starting with "0:/" for the internal SD card or "1:/" for the external SD card if fitted.
