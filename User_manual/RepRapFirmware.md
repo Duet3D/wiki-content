@@ -2,7 +2,7 @@
 title: User manual: RepRapFirmware
 description: 
 published: true
-date: 2022-09-26T10:06:16.191Z
+date: 2024-12-12T10:40:24.978Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:40:48.493Z
@@ -11,6 +11,7 @@ dateCreated: 2021-11-29T15:40:48.493Z
 # Firmware overview
 
 [RepRapFirmware Overview](/User_manual/RepRapFirmware/RepRapFirmware_overview)
+[RepRapFirmware Object Model](/User_manual/RepRapFirmware/Object_Model)
 [Migration from RRF2 to RRF3](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3)
 [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations)
 [SD Card](/User_manual/RepRapFirmware/SD_card)
