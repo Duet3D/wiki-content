@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-12-12T15:39:32.941Z
+date: 2024-12-12T15:43:19.591Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -288,7 +288,7 @@ If you have a keyboard and monitor connected to your SBC, or connect via VNC, yo
 
 Once your Raspberry Pi has established an internet connection, it is recommended to install the latest updates. The following commands will install the latest software components and the latest RepRapFirmware version on your Duet 3. You can do this regularly to update the system as new firmware is released.
 
-In **RRF 3.5 and later**, users running the latest Bookworm-based DuetPi image can use `M997 S2` to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). Note that this M-code only installs security- and Duet-related software updates.
+In **RRF 3.5 and later**, users running the latest Bookworm-based DuetPi image can use `M997 S2` to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). This can take a few minutes, so be patient! Note that this M-code only installs security- and Duet-related software updates.
 
 In **RRF 3.4.x and earlier**, or users running on earlier Buster-based DuetPi images, connect via SSH or VNC (see above) to your Raspberry Pi or open a terminal (if you have keyboard and monitor connected) and run:
 
