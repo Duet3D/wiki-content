@@ -2,7 +2,7 @@
 title: Tuning stepper motor drivers
 description: This article covers tuning Trinamic stepper motor drivers in Duet 3 MB6HC, EB3HC, Toolboard 1LC and Mini 5+, and Duet 2 WiFi / Ethernet and Maestro
 published: true
-date: 2022-05-12T11:19:51.268Z
+date: 2024-12-14T13:34:33.838Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-12T15:42:36.812Z
@@ -25,9 +25,10 @@ The Duet range of boards feature Trinamic stepper drivers, which have a number o
 
 | Board | Driver chip and Datasheet link | Microstep Interpolation | stealthChop | spreadCycle | stallGuard | coolStep |
 |:---|:---|
-| Duet 3 MB6HC Duet 3 EB3HC | [TMC2160](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2160A-datasheet_Rev1.06.pdf) or [TMC5160](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC5160A_Datasheet_Rev1.14.pdf) | Y | Y (SC2) | Y | Y (SG2) | Y |
-| Duet 3 Toolboard | [TMC2209](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2209_Datasheet_V105.pdf) | Y | Y (SC2) | Y | Y (SG4) | Y |
+| Duet 3 6HC <br> Duet 3 3HC <br>  Duet 3 1HCL <br> Motor 23CL | [TMC2160](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2160A-datasheet_Rev1.06.pdf) or [TMC5160](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC5160A_Datasheet_Rev1.14.pdf) | Y | Y (SC2) | Y | Y (SG2) | Y |
 | Duet 3 Mini 5+ | [TMC2209](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2209_Datasheet_V105.pdf) | Y | Y (SC2) | Y | Y (SG4) | Y |
+| Duet 3 Roto Toolboard | [TMC2240](https://www.analog.com/en/products/tmc2240.html) | Y | Y (SC2) | Y | Y (SG4) | Y |
+| Duet 3 Toolboard 1LC | [TMC2209](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2209_Datasheet_V105.pdf) | Y | Y (SC2) | Y | Y (SG4) | Y |
 | Duet 2 WiFi  and Ethernet | [TMC2660](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2660_datasheet_Rev1.07.pdf) | 16x only | N | Y | Y (SG2) | Y |
 | Duet 2 Maestro | [TMC2224](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC220x_TMC2224_Datasheet_Rev1.10.pdf) | Y | Y (SC2) | Y | N | N |
 
