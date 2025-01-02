@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2024-12-12T13:01:59.776Z
+date: 2025-01-02T08:15:26.616Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -925,12 +925,12 @@ Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0-rc.3 and
 * **Znnn** Trigger Z height (default 0.7)
 * **Snnn** Calibration temperature^2^
 * **Tnnn or Tnnn:nnn** Temperature coefficient^3^
-* **Knnn** Selects the Z probe number. If there is no K parameter then the current Z probe number is used. The current Z probe number is 0 at startup.
+* **Knnn** Selects the Z probe number. If there is no K parameter then Z probe 0 is used.
 * **Hnnn** Selects the sensor number (defined by M308) to use for temperature compensation when the S and T parameters are used.^2^
 
 ##### Notes
 
-^1^ X,Y,U,V,W,A,B,C...nnn offsets of the Z probe relative to the print head (i.e. the position when the empty tool is selected) can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X,Y,U,V,W,A,B,C...nnn offset.
+^1^ X,Y,U,V,W,A,B,C...nnn offsets of the Z probe relative to the print head reference point can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X,Y,U,V,W,A,B,C...nnn offset.
 
 ^2^ Optional parameter 'S' specifies the temperature in °C at which the specified Z parameter is correct. The default is current temperature. In RRF3 you must specify which temperature sensor to use in the 'H' parameter.
 
@@ -946,12 +946,12 @@ Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0-rc.3 and
 * **Znnn** Trigger Z height
 * **Snnn** Calibration temperature^2^
 * **Cnnn or Cnnn:nnn** Temperature coefficient^3^
-* **Knnn** Selects the Z probe number. If there is no K parameter then the current Z probe number is used. The current Z probe number is 0 at startup.
+* **Knnn** Selects the Z probe number. If there is no K parameter then Z probe 0 is used.
 * **Hnnn** Selects the sensor number (defined by M308) to use for temperature compensation when the C and S parameters are used.^2^
 
 ##### Notes
 
-^1^ X and Y offsets of the Z probe relative to the print head (i.e. the position when the empty tool is selected) can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X and Y offset.
+^1^ X and Y offsets of the Z probe relative to the print head reference point can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X and Y offset.
 
 ^2^ Optional parameter 'S' specifies the temperature in °C at which the specified Z parameter is correct. The default is current temperature. In RRF3 you must specify which temperature sensor to use in the 'H' parameter.
 
