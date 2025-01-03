@@ -2,7 +2,7 @@
 title: Connecting thermistors and PT1000 temperature sensors
 description: 
 published: true
-date: 2022-10-14T11:34:12.687Z
+date: 2025-01-03T11:40:58.525Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T16:02:20.373Z
@@ -320,6 +320,8 @@ Duets provide automatic, semi-automatic (in some cases) and manual methods of ca
 
 * When high resistance thermistors are used (e.g. the ones sold by Dyze Design and Slice Engineering), the readings at room temperature may be wildly inaccurate and cause heater faults unless the high-end ADC error is corrected.
 * Duet 3 Mainboard 6HC and 6XD have two banks of ADC inputs, and sometimes exhibit different errors on different ADC banks. The on-board hardware can only apply the same compensation to both banks. As a result, the hardware self-calibration isn't perfect.
+
+The ADC reading code was changed at firmware version 3.5.3 and this affected the calibration (see https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x#reprapfirmware-353); therefore if your Duet 3 Mini 5+,Duet 3 EXP3HC or Duet 3 Roto Toolboard was shipped with firmware earlier than 3.5.3 but has subsequently been upgraded to 3.5.3 or later then it likely requires re-calibration. See below for semi auto calibration.
 
 ## Auto-calibration
 
