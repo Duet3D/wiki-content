@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2024-10-14T12:55:38.644Z
+date: 2025-01-04T10:49:20.717Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -166,7 +166,7 @@ RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin number
 
 The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mainboard.
 
-| Function | Pin location | RRF3 Pin name | Notes |
+| Function | Pin location | Pin name | Notes |
 |---|---|---|
 | Outputs | OUT_0 | out0 | PWM |
 | ^^ | OUT_1 | out1 | PWM |
@@ -175,9 +175,13 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | IO_1 | io1.out | PWM |
 | ^^ | ^^ | io1.in | digital input |
 | ^^ | Test pad | pa20 | brought out to a test pad only |
-| ^^ | Quadrature input | pdec.a | used to connect a quadrature encoder. If no quadrature encoder is connected then they are available as digital inputs. |
+| ^^ | Quadrature Input | pdec.a | used to connect a quadrature encoder. If no quadrature encoder is connected then they are available as digital inputs.|
 | ^^ | ^^ | pdec.b | ^^ |
 | ^^ | ^^ | pdec.n | ^^ |
+| ^^ | SPI Encoder Input | pdec.a |Common with the Quadrature Input header. |
+| ^^ | ^^ | pdec.b | ^^ |
+| ^^ | ^^ | pdec.n | ^^ |
+| ^^ | ^^ | spi.cs0 | CS signal for the SPI encoder or for a SPI DB |
 | ^^ | TEMP_0 | temp0 | 2K2 pullup + filter, intended for thermistor/pt1000 |
 | ^^ | TEMP_1 | temp1 | ^^ |
 
