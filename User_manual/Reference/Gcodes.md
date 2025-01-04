@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-01-04T13:07:04.152Z
+date: 2025-01-04T13:08:48.068Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4166,14 +4166,14 @@ M308 S10 P"0.spi.cs1" Y"dht22" A"Filament Temp"       ; define DHT22 temperature
 M308 S11 P"S10.1" Y"dhthumidity" A"Filament Hum[%]"   ; Attach DHT22 humidity sensor to secondary output of temperature sensor
 </pre>
 
-To read mcu and  driver temperatures on an expansion board connected to a Duet 3 mainboard, set the CAN address in the P parameter. For example, a board at CAN address 1 would use:
+To read mcu and driver temperatures on an expansion board connected to a Duet 3 mainboard, put the CAN address at the start of a dummy P parameter. For example, a board at CAN address 1 would use:
 <br>
 <pre class="cblock">
 M308 S12 Y"mcu-temp" P"1.dummy" A"3HC MCU"
 M308 S13 Y"drivertemp" P"1.dummy" A"3HC Steppers"
 </pre>
 
-Note that from RRF 3.4.0 beta 8, "drivertemp" will be changed to "drivers" to match the main board.
+Note that from RRF 3.4.0 "drivertemp" is changed to "drivers" to match the main board.
 
 ### Notes
 
