@@ -2,7 +2,7 @@
 title: Updating the bootloader on Duet 3 expansion and tool boards
 description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
 published: true
-date: 2025-01-05T21:26:11.449Z
+date: 2025-01-05T21:37:04.010Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:04:31.062Z
@@ -66,9 +66,12 @@ If it reports **Bootloader ID: not available** then your board is using a versio
 
 ## Prerequisites
 
-* Atmel ICE with firmware version 1.29 or later (check in "Tool Information" tab on Device programming in Atmel Studio 7)
-* Adapter cable to connect the ICE to the 6-pin JST ZH connector on the expansion board or tool board
+* Atmel ICE with firmware version 1.29 or later (check in "Tool Information" tab on Device programming in Atmel Studio 7).
 * Windows PC running Atmel Studio 7 or Microchip Studio. It should also be possible to use Harmony but we have not tested this.
+* If the tool or expansion board has a 6-pin JST ZH SWD connector, an adapter cable to connect the ICE to this connector.
+* If the tool or expansion board does not have a 6-pin SWD connector then it will have 5 pads in line on the underside of the board with 2.54mm spacing. You can make contact to these using 5 pogo pins soldered to a piece of stripboard and use wires between the stripboard and the ICE.
+
+The ICE uses a standard 2x5 1.27mm pitch JTAG/SWD connector. Breakout boards for this type of connector are readily available.
 
 ## Process
 
