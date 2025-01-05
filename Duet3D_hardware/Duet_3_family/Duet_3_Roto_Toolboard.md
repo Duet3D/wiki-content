@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2025-01-05T21:14:23.705Z
+date: 2025-01-05T21:16:52.349Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -227,7 +227,9 @@ If it's more than 1m:
 
 #### Daisy Chaining
 
-Multiple Duet 3 Roto toolboards can be connected by daisy chaining the CAN bus connection. Ideally the stubs of the bus should be kept as short as possible so the Daisy chaining should be made at the XT30 connector. Connect two wires for CAN_L, and two wires for CAN_H. Ideally these wires should be twisted in two pairs (CAN_H and CAN_L in 1 pair, the second CAN_H and CAN_L in the other pair). One pair then goes to the  mainboard or other CAN-FD board earlier in the bus, the other pair goes to the next Roto Toolboard. 
+Multiple Duet 3 Roto toolboards can be connected by daisy chaining the CAN bus connection.
+- Ideally the stubs of the bus should be kept as short as possible so the Daisy chaining should be made at or close to the XT30 connector. Connect two wires for CAN_L, and two wires for CAN_H. Ideally these wires should be twisted in two pairs (CAN_H and CAN_L in 1 pair, the second CAN_H and CAN_L in the other pair). One pair then goes to the  mainboard or other CAN-FD board earlier in the bus, the other pair goes to the next Roto Toolboard.
+- In practice, stubs up to 1m long are usually satisfactory.
 
 Note only the last CAN-FD device on the bus should have the termination resistor fitted.
 
