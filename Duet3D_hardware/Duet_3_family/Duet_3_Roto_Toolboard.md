@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2025-01-05T21:16:52.349Z
+date: 2025-01-05T21:20:17.396Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -300,7 +300,7 @@ To check versions are the same:
 * The firmware filename is Duet3Firmware_TOOLRR.bin and this needs to be uploaded to the /firmware folder of the SD card on the attached SBC, or the SD card in the Duet 3 main board if it is running in standalone mode.
 * Update the firmware by using the `M997 B#` command, where # is the CAN address of the board.
 
-Factory resetting the board using the CAN reset jumper will cause the bootloader to request the firmware file from the mainboard.
+Factory resetting the board using the CAN reset jumper will cause the bootloader to erase the current firmware, reset the CAN address to the default value of 121, and request the firmware file from the mainboard.
 
 ## Updating the bootloader
 
