@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2025-01-05T21:05:37.085Z
+date: 2025-01-05T21:14:23.705Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -12,7 +12,7 @@ dateCreated: 2023-11-28T14:45:30.179Z
 
 # Introduction
 
-The Duet 3 Roto Toolboard is designed to integrate easily with the [E3D Revo Roto extruder](https://e3d-online.com/products/roto-extruder){target=_blank} and E3D Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a 2 or 3-wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. This tool board also provides dedicated connectors for a Duet 3 scanning Z probe coil (supplied as standard) and a Revo Roto specific version of the Duet3D Magnetic Filament Monitor (additional cost option). It also supports a 2, 3 or 4-wire part cooling fan and provides 4 IO ports for endstops, other types of filament monitor and/or Z probe, and a Neopixel LED header.
+The Duet 3 Roto Toolboard is designed to integrate easily with the [E3D Revo Roto extruder](https://e3d-online.com/products/roto-extruder){target=_blank} and E3D Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a 2 or 3-wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. This tool board also provides dedicated connectors for a Duet 3 scanning Z probe coil (supplied as standard) and a [Revo Roto specific version of the Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Roto_Filament_Monitor) (additional cost option). It also supports a 2, 3 or 4-wire part cooling fan and provides 4 IO ports for endstops, other types of filament monitor and/or Z probe, and a Neopixel LED header.
 
 This reduces the number of wires run to the print head to two power wires and a twisted pair for the CAN-FD bus. 
 
@@ -116,7 +116,7 @@ Duet 3 Toolboard 1LC provides the following connectors:
 | 3-pin JST PH | IO_1 | 3.3V, io1.in, GND, for endstop/ Z-probe/ Filament monitor.<br>Input is 30V-tolerant |
 | 4-pin JST PH | OUT_1 | 4-wire fan output (also accepts a 2- or 3-wire fan) intended for use as the print cooling fan.<br>1A total max current at VIN voltage.<br>This output is protected by a flyback diode.<br>**Note** When using a 4-wire fan, the tacho reading is valid at all PWM settings. |
 | 1 x 4-pin footprint | IO_3 | Footprint to mount a ITR20001/T reflective optical sensor are also added. <br> Example use case is a tool docking confirmation switch. |
-| 4-pin 0.5mm pitch FFC | I2C | For connecting the Revo Roto version of the Duet3D Magnetic Filamnent Monitor |
+| 4-pin 0.5mm pitch FFC | I2C | For connecting the [Revo Roto version of the Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) |
 
 
 ## LED indications
