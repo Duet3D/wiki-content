@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2024-12-10T17:42:19.414Z
+date: 2025-01-05T21:05:37.085Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -12,9 +12,9 @@ dateCreated: 2023-11-28T14:45:30.179Z
 
 # Introduction
 
-The Duet 3 Roto Toolboard is designed to integrate easily with the [E3D Revo Roto extruder](https://e3d-online.com/products/roto-extruder){target=_blank} and E3D Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a 2 or 3-wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. In addition a 2, 3 or 4-wire part cooling fan, 4 IO ports for endstops, filament monitor and/or Z probe, a neopixel header, and a Duet 3 scanning Z probe coil can be connected.
+The Duet 3 Roto Toolboard is designed to integrate easily with the [E3D Revo Roto extruder](https://e3d-online.com/products/roto-extruder){target=_blank} and E3D Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a 2 or 3-wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. This tool board also provides dedicated connectors for a Duet 3 scanning Z probe coil (supplied as standard) and a Revo Roto specific version of the Duet3D Magnetic Filament Monitor (additional cost option). It also supports a 2, 3 or 4-wire part cooling fan and provides 4 IO ports for endstops, other types of filament monitor and/or Z probe, and a Neopixel LED header.
 
-This reduces the number of wires needed to two power wires and a twisted pair for the CAN-FD bus. 
+This reduces the number of wires run to the print head to two power wires and a twisted pair for the CAN-FD bus. 
 
 # Features
 
@@ -28,7 +28,7 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 | **Stepper driver features** | Up to 1A^1^ peak current, microstep interpolation from any setting to x256, stall detection |
 | **High current outputs** | 1 x 3.4A, VIN voltage only (80W at 24V) |
 | **Thermistor/PT1000 inputs** | 3 x inputs, 2 optimised for 100K thermistors and PT1000 sensors, 1 used for the coil temperature on the SZP coil.|
-| **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2,3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
+| **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2, 3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
 | **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. 1 x footprint for a switch or optical proximity sensor|
 | **Accelerometer** | Integrated [LIS2DW12](https://www.st.com/en/mems-and-sensors/lis2dw12.html) accelerometer |
 | **Inductive Sensor** | Integrated [LDC1612](https://www.ti.com/product/LDC1612) inductive sensor for scanning Z probe |
@@ -38,14 +38,14 @@ This reduces the number of wires needed to two power wires and a twisted pair fo
 ## Operating limits
 
 |---|---|
-| **Stepper driver** | Up to 1A peak current, 1.1A RMS |
-| **High current output** | 1 x 3.4A |
+| **Stepper driver** | Firmware-limited to 1A peak current, 0.71A RMS^1^
+| **OUT_1 maximum current** | 3.4A |
 | **Input power voltage** | 12V to 32V |
 | **Power input max current** | 5A maximum)
 | **Inputs/Outputs** | IO_0, IO_1, IO_2 and IO_3 are 30V-tolerant |
-| **Fuses** | None onboard. Use Duet 3 Tool Distribution Board (5A fitted), or if directly connected to a power supply, use inline fuse holder with 5A or lower fuse depending on required current draw. |
-| **5V current limit** | 700mA |
-| **3.3V current limit** | 200mA |
+| **Fuses** | None onboard. Use Duet 3 Tool Distribution Board (5A fitted), or if directly connected to a power supply use an inline fuse holder with 5A or lower fuse depending on required current draw. |
+| **5V external load** | 700mA maximum |
+| **3.3V external load** | 200mA maximum |
 | **Maximum ambient temperature** | 70°C |
 
 
@@ -116,7 +116,7 @@ Duet 3 Toolboard 1LC provides the following connectors:
 | 3-pin JST PH | IO_1 | 3.3V, io1.in, GND, for endstop/ Z-probe/ Filament monitor.<br>Input is 30V-tolerant |
 | 4-pin JST PH | OUT_1 | 4-wire fan output (also accepts a 2- or 3-wire fan) intended for use as the print cooling fan.<br>1A total max current at VIN voltage.<br>This output is protected by a flyback diode.<br>**Note** When using a 4-wire fan, the tacho reading is valid at all PWM settings. |
 | 1 x 4-pin footprint | IO_3 | Footprint to mount a ITR20001/T reflective optical sensor are also added. <br> Example use case is a tool docking confirmation switch. |
-| 4-pin 0.5mm pitch FFC | I2C | Future Expansion|
+| 4-pin 0.5mm pitch FFC | I2C | For connecting the Revo Roto version of the Duet3D Magnetic Filamnent Monitor |
 
 
 ## LED indications
