@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-07T22:37:39.022Z
+date: 2025-01-07T22:49:40.171Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -170,7 +170,7 @@ Duet 3 Expansion 1HCL provides the following connectors:
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging |
 | **1 x 2-pin JST PA connector** | OUT_0 | Intended for PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
 | **1 x 3-pin jumper** | OUT_0_Select_V | The positive supply to the OUT_0 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_AUX supply (VA_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
-| **1 x 2-pin JST PA connector** | BRAKE| Intended for motor brake, Max current: 1A. See the section on Motor Brake voltage control below for more details about using >24V as V_BRAKE with a 24V brake|
+| **1 x 2-pin JST PA connector** | BRAKE| Intended for motor brake, Max current: 1A. See the section on mtor brake voltage control below for more details about using >24V as V_BRAKE with a 24V brake|
 | **1 x 3-pin jumper** | BRAKE_Select_V | The positive supply to the BRAKE connector is supplied from the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_AUX supply (VA_FUSED).|
 | **1 x 4-pin JST VH connector** | DRIVER 0 | Stepper motor connections. (See note on JST VH connectors in 'Wiring notes' above.) |
 | **1 x 2x5 IDC connector** | SPI | SPI encoder input/ SPI Daughterboard header - compatible with SPI daughterboards such as the PT100 and Thermocouple daughterboard |
@@ -279,6 +279,21 @@ Supply between 12V and 48V to the 2-way barrier strip power connector on the boa
 >
 > OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
 {.is-info}
+
+## Motor Brake Voltage
+
+It is possible to use a V_IN voltage higher than 24V to be used with a 24V brake.
+
+Use [M569.7](/User_manual/Reference/Gcodes/M569_7) to setup the brake pwm pin, and specify the voltage as follows:
+
+`M569.7 P50.0 C"brake.neg" V24 ; driver 0 on 1HCL v2.0 at address 50 uses the brake.neg port to control a 24V brake.`
+
+On v2.0 boards this is a fast brake control circuit designed to allow the brake to be engaged very quickly by dumping the energy the current in the brake solenoid coil. On v1.0/v1.0a boards use out1 or out0 as normal outputs
+
+Alternatively supply V_AUX (v2.0) or V_BRAKE (v1.0) with 24V and set the voltage select jumper to use that voltage.
+
+> To use the voltage adjustment feature of M569.7 **always jumper the brake to V_IN**. Do not supply V_AUX/V_BRAKE with higher than the voltage of your brake and then use that to power the brake - V_AUX/V_BRAKE is not monitored so M569.7 cannot adjust the voltage using PWM in that case.  
+{.is-warning}
 
 # Encoders
 
