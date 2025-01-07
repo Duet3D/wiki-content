@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-07T16:35:37.848Z
+date: 2025-01-07T21:57:01.242Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -82,7 +82,7 @@ Stepper motors can be purchased with integral optical shaft encoders. It is also
 
 ### Duet3D magnetic motor shaft encoders
 
-The [Duet3D magnetic encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) is a small board that mounts on the back of the stepper motor. It is supplied with a diametrically-magnetised disc magnet, which must be glued to the centre of the end of the shaft at the back of the motor. A jig should be used to centre the magnet accurately while the glue sets. Moredetials available on the [documetation page](/Duet3D_hardware/Accessories/Magnetic_Encoder).
+The [Duet3D magnetic encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) is a small board that mounts on the back of the stepper motor. It is supplied with a diametrically-magnetised disc magnet, which must be glued to the centre of the end of the shaft at the back of the motor. A jig should be used to centre the magnet accurately while the glue sets. More details available on the [documentation page](/Duet3D_hardware/Accessories/Magnetic_Encoder).
 
 ![magneticencoderv0.3_05_s.jpg](/hardware/magnetic_encoder/magneticencoderv0.3_05_s.jpg =x200)
 
@@ -95,9 +95,9 @@ A linear composite encoder comprises a linear quadrature encoder that tracks pos
 
 The Expansion 1HCL board supports the following modes of motor control:
 
-* Open loop mode. In this mode the driver behaves in a similar way to the drivers on the 6HC main board. If an encoder has been connected and calibrated then it is possible to collect data on the position error for short periods.
-* Closed loop mode. In this mode an error signal is computed from the difference between the desired motor position and the position reported by the encoder. This error signal is used to apply a torque to correct the error via a modified PID controller. Warning and error events can be generated when the error exceeds configurable thresholds. When the controller is unable to achieve the desired position, it will recover to the correct position when either the oibsructioin is removed or a command is sent to move the axis or extruder to a position that can be achieved. Maximum speed is reduced compared to open loop mode; a reasonable predictor of maximum speed is the "Speed at which torque starts to drop (high slip angle)" reported by our motor EMF estimator at https://www.reprapfirmware.org/emf.html, or the speed that correponds to about 10000 full steps per second if that is lower. The PID controller must be tuned for best response.
-* Assisted open loop mode (supported in firmware 3.5.0-beta.4 and later only). In this mode the motor is operated as if in open loop mode, but whenever it is detected that the error between desired and actual position is getting too high, the motor current is automatically increased until the error is reduced. This allows a low initial current to be used, which makes the motor quieter at standstill and low motor speeds. As with closed loop mode, warning and error events can be generated when the error exceeds configurable thresholds. However, if the position requested cannot be achieved and the error exceeds approximately 4 full motor steps, the position will not be corrected when the obstruction is removed or the motor is commanded to a position that can be reached. No further out-of-position events will be generated until the command to enter assisted open loop mode is repeated. Unlike closed loop mode, good operation can be achieved with little or no tuning.
+* **Open loop mode**. In this mode the driver behaves in a similar way to the drivers on the 6HC main board. If an encoder has been connected and calibrated then it is possible to collect data on the position error for short periods.
+* **Closed loop mode**. In this mode an error signal is computed from the difference between the desired motor position and the position reported by the encoder. This error signal is used to apply a torque to correct the error via a modified PID controller. Warning and error events can be generated when the error exceeds configurable thresholds. When the controller is unable to achieve the desired position, it will recover to the correct position when either the oibsructioin is removed or a command is sent to move the axis or extruder to a position that can be achieved. Maximum speed is reduced compared to open loop mode; a reasonable predictor of maximum speed is the "Speed at which torque starts to drop (high slip angle)" reported by our motor EMF estimator at https://www.reprapfirmware.org/emf.html, or the speed that correponds to about 10000 full steps per second if that is lower. The PID controller must be tuned for best response.
+* **Assisted open loop mode** (supported in firmware 3.5.0-beta.4 and later only). In this mode the motor is operated as if in open loop mode, but whenever it is detected that the error between desired and actual position is getting too high, the motor current is automatically increased until the error is reduced. This allows a low initial current to be used, which makes the motor quieter at standstill and low motor speeds. As with closed loop mode, warning and error events can be generated when the error exceeds configurable thresholds. However, if the position requested cannot be achieved and the error exceeds approximately 4 full motor steps, the position will not be corrected when the obstruction is removed or the motor is commanded to a position that can be reached. No further out-of-position events will be generated until the command to enter assisted open loop mode is repeated. Unlike closed loop mode, good operation can be achieved with little or no tuning.
 
 ## Firmware notes
 
@@ -116,11 +116,23 @@ Importantly Duets are Open:
 
 ## Dimensions
 
-[![Image showing the key dimensions of the Duet 3 1HCL](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_dimensions.png  =500x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_dimensions.png){target=_blank}
+## Tabs {.tabset}
 
-## 3D model
+### v2
 
-A STEP 3D model of the Duet 3 Expansion 1HCL is available [on github](https://github.com/Duet3D/Duet3-Expansion-1HCL/blob/main/v1.0/Duet3_Exp_1HCL.step){target=_blank}.
+[![Image showing the key dimensions of the Duet 3 1HCL v2.0](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v2.0_d1.0_dimensions.png  =500x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v2.0_d1.0_dimensions.png){target=_blank}
+
+#### 3D model
+
+A STEP 3D model of the Duet 3 Expansion 1HCL 2.0 is available [on github](https://github.com/Duet3D/Duet3-Expansion-1HCL/blob/main/v2.0/Duet3_Exp_1HCL.step){target=_blank}.
+
+### v1.0/v1.0a
+
+[![Image showing the key dimensions of the Duet 3 1HCL v1.0/v1.0a](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_dimensions.png  =500x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_dimensions.png){target=_blank}
+
+#### 3D model
+
+A STEP 3D model of the Duet 3 Expansion 1HCL v1.0 is available [on github](https://github.com/Duet3D/Duet3-Expansion-1HCL/blob/main/v1.0/Duet3_Exp_1HCL.step){target=_blank}.
 
 # Physical connections
 
@@ -128,11 +140,16 @@ A STEP 3D model of the Duet 3 Expansion 1HCL is available [on github](https://gi
 
 ## Tabs {.tabset}
 
+### V2.0
+
+[![Image showing all the connections on a Duet 3 1HCL v2.0 to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v2.0_wiring_diagram.svg =600x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v2.0_wiring_diagram.svg){target=_blank}
+
+
 ### V1.0a
-[![Image showing all the connections on a Duet 3 1HCL to aid wiring](/duet_boards/duet_3_can_expansion/duet3_eb_1hcl_v1.0a_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet3_eb_1hcl_v1.0a_d1.0_wiring.png){target=_blank}
+[![Image showing all the connections on a Duet 3 1HCL v1.0a to aid wiring](/duet_boards/duet_3_can_expansion/duet3_eb_1hcl_v1.0a_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet3_eb_1hcl_v1.0a_d1.0_wiring.png){target=_blank}
 
 ### V1.0
-[![Image showing all the connections on a Duet 3 1HCL to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png){target=_blank}
+[![Image showing all the connections on a Duet 3 1HCL v1.0 to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v1.0_d1.0_wiring.png){target=_blank}
 
 ## Wiring Notes
 
@@ -142,27 +159,57 @@ A STEP 3D model of the Duet 3 Expansion 1HCL is available [on github](https://gi
 
 Duet 3 Expansion 1HCL provides the following connectors:
 
+## Tabs {.tabset}
+
+### V2.0
+
+| Header | Label | Function |
+|--
+| **1 x 2-way barrier strip** | VIN, GND | Two screw terminals for VIN and GND. Max voltage 50V, max current 5A (fused limit) |
+| **1 x 2-pin JST VH connector** | V_AUX, GND | Input for auxilary voltage. this can provide an alternative input for the brake. It can also continue to power the 12V and thence 5V and 3.3V rails, while VIN is shut down. this allos for logic and closed loop position tracking to continue while the motor and output circuits are shut down. See the description on Auxilary Voltage input below. Max voltage 50V, max current 5A (fused limit) |
+| **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging |
+| **1 x 2-pin JST PA connector** | OUT_0 | Intended for PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
+| **1 x 3-pin jumper** | OUT_0_Select_V | The positive supply to the OUT_0 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_AUX supply (VA_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
+| **1 x 2-pin JST PA connector** | BRAKE| Intended for motor brake, Max current: 1A. See the section on Motor Brake voltage control below for more details about using >24V as V_BRAKE with a 24V brake|
+| **1 x 3-pin jumper** | BRAKE_Select_V | The positive supply to the BRAKE connector is supplied from the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_AUX supply (VA_FUSED).|
+| **1 x 4-pin JST VH connector** | DRIVER 0 | Stepper motor connections. (See note on JST VH connectors in 'Wiring notes' above.) |
+| **1 x 2x5 IDC connector** | SPI | SPI encoder input/ SPI Daughterboard header - compatible with SPI daughterboards such as the PT100 and Thermocouple daughterboard |
+| **1 x 2-pin JST PA connector** | TEMP_0 | Connections for thermistor or PT1000 sensors |
+| **1 x 2-pin JST PA connector** | TEMP_1 | Connections for thermistor or PT1000 sensors |
+| **1 x 5-pin JST PA connector** | IO_1 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
+| **1 x 2-pin jumper** | IO1_I2C | Add a jumper to bypass the 10k resistor on IO1.in, so it can be used for I2C. |
+| **1 x 5-pin JST PA connector** | IO_0 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
+| **1 x 8-pin JST PA connector** | Q_DIFF_IN | Differential quadrature encoder input |
+| **1 x 5-pin JST PA connector** | Q_SE_IN | Single ended quadrature encoder input |
+| **1 x 2-pin jumper** | Quad Mode<br> Fit For SE | Add a jumper to select singled ended quadrature encoder mode, remove the jumper to use differential quadrature encoder mode |
+| **1 x RJ11 CAN connector** | CAN_IN | RJ11 CAN connector |
+| **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector |
+| **1 x 2-pin JST PA header** | CAN RESET | CAN address reset jumper. See 'Commisioning' section below. |
+| **1 x 4-pin jumper** | Term_R | CAN bus terminaton jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
+
+### V1.0a/V1.0
+
 | Header | Label | Function |
 |--
 | **1 x 2-way barrier strip** | VIN, GND | Two screw terminals for VIN and GND. Max voltage 50V, max current 10A (fused limit) |
 | **1 x 2-pin JST VH connector** | V_BRAKE, GND | Input for separate voltage for brake. Max voltage 50V, max current 5A (fused limit) |
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging |
 | **1 x 2-pin KK connector** | OUT_0 | Intended for motor brake, or other PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
-| **1 x 3-pin KK header** | OUT_0_Select_V | The positive supply to the OUT_0 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_BRAKE supply (VB_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
+| **1 x 3-pin jumper** | OUT_0_Select_V | The positive supply to the OUT_0 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_BRAKE supply (VB_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
 | **1 x 2-pin KK connector** | OUT_1 | Intended for motor brake, or other PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
-| **1 x 3-pin KK header** | OUT_1_Select_V | The positive supply to the OUT_1 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_BRAKE supply (VB_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
+| **1 x 3-pin jumper** | OUT_1_Select_V | The positive supply to the OUT_1 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_BRAKE supply (VB_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
 | **1 x 4-pin JST VH connector** | DRIVER 0 | Stepper motor connections. (See note on JST VH connectors in 'Wiring notes' above.) |
 | **1 x 2x5 IDC connector** | SPI | SPI encoder input |
 | **1 x 2-pin KK connector** | TEMP_0 | Connections for thermistor or PT1000 sensors |
 | **1 x 2-pin KK connector** | TEMP_1 | Connections for thermistor or PT1000 sensors |
 | **1 x 5-pin KK connector** | IO_1 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
-| **1 x 2-pin KK header** | IO1_I2C | Add a jumper to bypass the 10k resistor on IO1.in, so it can be used for I2C. |
+| **1 x 2-pin jumper** | IO1_I2C | Add a jumper to bypass the 10k resistor on IO1.in, so it can be used for I2C. |
 | **1 x 5-pin KK connector** | IO_0 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
 | **1 x 5-pin KK connector** | Q_IN | Quadrature encoder input |
 | **1 x RJ11 CAN connector** | CAN_IN | RJ11 CAN connector |
 | **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector |
 | **1 x 2-pin KK header** | CAN RESET | CAN address reset jumper. See 'Commisioning' section below. |
-| **1 x 4-pin KK header** | Term_R | CAN bus terminaton jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
+| **1 x 4-pin jumper** | Term_R | CAN bus terminaton jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
 
 ## LED indications
 
