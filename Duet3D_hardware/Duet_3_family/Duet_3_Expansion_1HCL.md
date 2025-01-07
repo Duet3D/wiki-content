@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-07T21:57:26.221Z
+date: 2025-01-07T22:36:45.215Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -239,19 +239,20 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | Function | Pin location | Pin name | Notes |
 |---|---|---|
 | Outputs | OUT_0 | out0 | PWM |
-| ^^ | OUT_1 | out1 | PWM |
+| ^^ | OUT_1 | out1 | **V1.0/V1.01a ONLY** PWM |
+| Brake | BRAKE | brake.neg | **V2.0 ONLY** PWM, use in the M569.7 Command as the brake port |
 | Inputs/Outputs | IO_0 | io0.out | PWM |
 | ^^ | ^^ | io0.in | analog/digital input |
 | ^^ | IO_1 | io1.out | PWM |
 | ^^ | ^^ | io1.in | digital input |
-| ^^ | Test pad | pa20 | brought out to a test pad only |
 | ^^ | Quadrature Input | pdec.a | used to connect a quadrature encoder. If no quadrature encoder is connected then they are available as digital inputs.|
 | ^^ | ^^ | pdec.b | ^^ |
 | ^^ | ^^ | pdec.n | ^^ |
-| ^^ | SPI Encoder Input | pdec.a |Common with the Quadrature Input header. |
+| ^^ | SPI Encoder Input | pdec.a |**V1.0/V1.01a ONLY** Common with the Quadrature Input header. |
 | ^^ | ^^ | pdec.b | ^^ |
 | ^^ | ^^ | pdec.n | ^^ |
-| ^^ | ^^ | spi.cs0 | CS signal for the SPI encoder or for a SPI DB |
+| ^^ | ^^ | spi.cs0 | CS signal for the SPI encoder or for an SPI DB |
+| ^^ | ^^ | spi.cs1 | **V2.0 ONLY** CS signal for an SPI DB |
 | ^^ | TEMP_0 | temp0 | 2K2 pullup + filter, intended for thermistor/pt1000 |
 | ^^ | TEMP_1 | temp1 | ^^ |
 
@@ -265,7 +266,6 @@ The individual IO_x connectors have the following capabilities:
 |:---|:---|
 | IO_0 | No | Yes | Yes |  |
 | IO_1 | Yes^1^ | No | Yes | **Note:** RepRapFirmware does not currently support UART or I2C on Duet 3 expansion/tool boards. |
-| pa20 | No | No | No | digital in/out , brought out to a test pad only |
 | pdec.a, pdec.b. pdec.n | No | No | No | digital inputs |
 
 ^1^ UART serial connection is not currently supported in RepRapFirmware for expansion/tool boards. While io1 in/out are theoretically capable of I2C, this also is not implemented in RepRapFirmware at present.
@@ -288,17 +288,26 @@ The 1HCL supports a quadrature encoder connected to the Quadrature Input interfa
 
 ### Connecting a Quadrature Shaft Encoder
 
-Quadrature encoders (which may use optical or magnetic technology) have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output. The Duet 3 Expansion 1HCL has a 5-pin Molex KK connector for quadrature signals.
+Quadrature encoders (which may use optical or magnetic technology) have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output. The Duet 3 Expansion 1HCL v2.0 has both an 8-pin connector for differential and a 5 pin connector for single ended signals (v1.0/v1.0a hove only a 5-pin connector for single ended quadrature signals.
 
 *Note the index signal (N or Z) is not currently used*
-
-If the encoder has a single ended output then the signal lines connect to the 1HCL input: A to A_INPUT, B to B_INPUT, and 5V or VCC to the +5V and ground to ground. The Z or N can be left disconnected.
-
-If the encoder has a differential output then connect the A+, B+ to the signal inputs on the 1HCL. 5V/VCC to 5V and ground to ground. The A-,B- and Z+Z-/N+N- can be left disconnected.
 
 Here is a picture (courtesy of LDO motors) which shows a single ended and differential encoder output:
 
 ![Image showing both single ended and differential encoder connection schemes](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_encoders_01.png =600x)
+
+### Single Ended
+If the encoder has a single ended output then the signal lines connect to the 1HCL 5 pin single ended input: A to A_INPUT, B to B_INPUT, and 5V or VCC to the +5V and ground to ground. The Z or N can be left disconnected.
+
+### Differential
+
+### Tabs {.tabset}
+
+#### V2.0
+If the encoder has a differential output then connect the A+ to , B+ to the signal inputs on the 1HCL. 5V/VCC to 5V and ground to ground. The A-,B- and Z+Z-/N+N- can be left disconnected.
+
+#### V1.0, V1.0a
+If the encoder has a differential output then connect the A- to A-, A+ to A+ etc. 5V/VCC to 5V and ground to ground. The Z+Z-/N+N- can be left disconnected while the index pulse is not supported in firmware.
 
 ## Duet3D Magnetic Shaft Encoder
 
