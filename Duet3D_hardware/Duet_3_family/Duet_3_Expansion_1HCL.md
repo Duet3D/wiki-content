@@ -2,19 +2,17 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-04T10:49:20.717Z
+date: 2025-01-07T16:35:37.848Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
 ---
 
-![Photograph of a Duet 3 1HCL board shown at an angle](/duet_boards/duet_3_can_expansion/duet_3_1hcl/1hcl_angle_4_wb_sm.png =x400)
-
 # Introduction
 
 The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, combined with multiple interfaces for position feedback and firmware to implement closed loop position control. In addition it has a number of peripheral inputs and outputs for functions such as sensing motor temperature, controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the Duet 3 Mainboard 6HC, Duet 3 expansion boards, and the tool distribution board). Multiple Duet 3 Expansion 1HCL boards can be daisy chained on the bus, with power (up to 48V) provided locally. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
 
-![Photograph of a Duet 3 1HCL board shown from above](/duet_boards/duet_3_can_expansion/duet_3_1hcl/1hcl_overhead_wb_sm.png =x500)
+![Photograph of a Duet 3 1HCL v2.0 board shown from above](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_1hcl_v2.0_sm.jpg =x500)
 
 # Features
 
@@ -26,17 +24,36 @@ The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, co
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard. Optional on-board CAN bus termination. |
 | **On-board stepper driver** | 1 x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | SPI controlled, can be run in open loop or closed loop mode. Maximum motor current 6.3A peak per phase (4.45A RMS). |
-| **Encoder Inputs** | Quadrature or SPI bus |
+| **Encoder Inputs** | Single Ended/Differential Quadrature or SPI bus |
 | **Thermistor/PT1000 inputs** | 2 x thermistor/PT1000 inputs. This is intended to allow for motor temperature monitoring, potentially coupled with a cooling system controlled by one of the outputs. |
-| **Medium current outputs** | 2 x medium-current (2.5A max recommended) outputs at V_FUSED or VB_FUSED (V_BRAKE with fuse protection) voltage, with PWM capability and built-in flyback diodes. Optionally provide V_BRAKE at a different voltage from V_IN, to allow (for example) running the stepper motor at 48V and the brake at 24V. |
+| **Medium current output** | 1 x medium-current (2.5A max) output at V_FUSED or VA_FUSED (V_AUX with fuse protection) voltage, with PWM capability and built-in flyback diodes.
+| **Brake output** | 1 x Brake Solenoid (1A max) output at V_FUSED or VA_FUSED voltage. This circuit is designed to turn on/off very quickly to allow for fast brake engagement. It has with PWM capability so can be configured to support 24V brakes when V_IN is 48V. Alternatively provide V_AUX at 24V for the brake. (note before v2.0 this output was OUT1 so could be used for a brake or tother purpose, without the fast turn off) |
 | **Inputs/Outputs** | 2 x 3.3V-level PWM capable output (3mA max), 2 x digital inputs, protected against over-voltage. Example use: endstop switches. |
 
 ## Operating limits
 
+## Tabs {.tabset}
+
+### v2.0
+Absolute maximums:
+|:--|:--|
+| **Input voltage** | 12V to 50V |
+| **VIN current limit** | 5A maximum (fused limit) |
+| **Fuses** | 5A for V_IN to V_FUSED (max 5A), 5A for V_AUX to VA_FUSED |
+| **Stepper driver** | Up to 6.3A peak current per phase (4.45A RMS per phase; max. standstill current 4.45A) |
+| **Medium current output** | OUT0 up to 2.5A |
+| **Brake output** | up to 1A |
+| **Inputs/Outputs** | Inputs are 30V-tolerant |
+| **12V current limit** | 200mA |
+| **5V and 3.3V current limit** | 100mA total on 5V and 3.3V |
+| **Maximum ambient temperature** | 70°C |
+
+### v1.0, v1.0a
+Absolute maximums:
 |:--|:--|
 | **Input voltage** | 12V to 50V |
 | **VIN current limit** | 10A maximum (fused limit) |
-| **Fuses** | 5A for V_IN to V_FUSED (max 10A), 5A for V_BRAKE to VB_FUSED |
+| **Fuses** | 10A for V_IN to V_FUSED (max 10A), 5A for V_BRAKE to VB_FUSED |
 | **Stepper driver** | Up to 6.3A peak current per phase (4.45A RMS per phase; max. standstill current 4.45A) |
 | **Medium current outputs** | OUT0/1 up to 2.5A each |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
@@ -44,15 +61,18 @@ The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, co
 | **5V and 3.3V current limit** | 100mA total on 5V and 3.3V |
 | **Maximum ambient temperature** | 70°C |
 
+
 ## Compatible motors
 
 Use motors with 1.8 or more degrees per step. We advise against using 0.9deg motors because the maximum speed will be reduced. The positioning accuracy in closed-loop mode depends on the resolution of the encoder, not on the degrees/step of the motor.
 
-The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second. However, the maximum step rate may be much lower if the driver is not able to change the motor current fast enough because of high motor inductance. The calculator at [https://www.reprapfirmware.org/emf.html](https://www.reprapfirmware.org/emf.html){target=_blank} will estimate the maximum speeds for which full torque is available for a given motor and supply voltage. Good closed loop operation will typically be available up to the "high slip angle" speed.
+The maximum speed at which the firmware can drive the motor reliably in closed loop mode is about 5000 full steps/second. However, the maximum step rate may be much lower if the driver is not able to change the motor current fast enough because of high motor inductance.
+
+The calculator at [https://www.reprapfirmware.org/emf.html](https://www.reprapfirmware.org/emf.html){target=_blank} will estimate the maximum speeds for which full torque is available for a given motor and supply voltage. Good closed loop operation will typically be available up to the "high slip angle" speed.
 
 ## Compatible Encoders
 
-RRF 3.4 supports quadrature motor shaft encoders only. RRF 3.5 also supports Duet3D magnetic shaft encoders and linear composite encoders.
+RRF 3.4 supports quadrature motor shaft encoders only. RRF 3.5 and later also support Duet3D magnetic shaft encoders and linear composite encoders.
 
 Encoder resolutions of over 1000PPR (Pulses Per Revolution) or 4000CPR (Counts Per Revolution) are highly recommended. Note that generally PPR = CPR/4. Resolutions below this are unlikely to work well in most situations.
 
@@ -62,7 +82,10 @@ Stepper motors can be purchased with integral optical shaft encoders. It is also
 
 ### Duet3D magnetic motor shaft encoders
 
-The Duet3D magnetic motor encoder is a small board that mounts on the back of the stepper motor. It is supplied with a diametrically-magnetised disc magnet, which must be glued to the centre of the end of the shaft at the back of the motor. A jig should be used to centre the magnet accurately while the glue sets.
+The [Duet3D magnetic encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) is a small board that mounts on the back of the stepper motor. It is supplied with a diametrically-magnetised disc magnet, which must be glued to the centre of the end of the shaft at the back of the motor. A jig should be used to centre the magnet accurately while the glue sets. Moredetials available on the [documetation page](/Duet3D_hardware/Accessories/Magnetic_Encoder).
+
+![magneticencoderv0.3_05_s.jpg](/hardware/magnetic_encoder/magneticencoderv0.3_05_s.jpg =x200)
+
 
 ### Linear composite encoder
 
