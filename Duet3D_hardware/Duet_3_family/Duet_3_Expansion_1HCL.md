@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-07T22:36:45.215Z
+date: 2025-01-07T22:37:39.022Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -297,17 +297,18 @@ Here is a picture (courtesy of LDO motors) which shows a single ended and differ
 ![Image showing both single ended and differential encoder connection schemes](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet_3_1hcl_encoders_01.png =600x)
 
 ### Single Ended
-If the encoder has a single ended output then the signal lines connect to the 1HCL 5 pin single ended input: A to A_INPUT, B to B_INPUT, and 5V or VCC to the +5V and ground to ground. The Z or N can be left disconnected.
+If the encoder has a single ended output then the signal lines connect to the 1HCL 5 pin single ended input: A to A_INPUT, B to B_INPUT, and 5V or VCC to the +5V and ground to ground. The Z or N can be left disconnected while the index pulse is not supported in firmware.
 
 ### Differential
 
 ### Tabs {.tabset}
 
 #### V2.0
-If the encoder has a differential output then connect the A+ to , B+ to the signal inputs on the 1HCL. 5V/VCC to 5V and ground to ground. The A-,B- and Z+Z-/N+N- can be left disconnected.
+If the encoder has a differential output then connect the A- to A-, A+ to A+ etc. 5V/VCC to 5V and ground to ground. The Z+Z-/N+N- can be left disconnected while the index pulse is not supported in firmware.
 
 #### V1.0, V1.0a
-If the encoder has a differential output then connect the A- to A-, A+ to A+ etc. 5V/VCC to 5V and ground to ground. The Z+Z-/N+N- can be left disconnected while the index pulse is not supported in firmware.
+If the encoder has a differential output then connect the A+ to , B+ to the signal inputs on the 1HCL. 5V/VCC to 5V and ground to ground. The A-,B- and Z+Z-/N+N- can be left disconnected while the index pulse is not supported in firmware.
+
 
 ## Duet3D Magnetic Shaft Encoder
 
