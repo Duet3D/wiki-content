@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-07T22:49:40.171Z
+date: 2025-01-08T10:40:26.870Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -170,7 +170,7 @@ Duet 3 Expansion 1HCL provides the following connectors:
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging |
 | **1 x 2-pin JST PA connector** | OUT_0 | Intended for PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
 | **1 x 3-pin jumper** | OUT_0_Select_V | The positive supply to the OUT_0 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_AUX supply (VA_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
-| **1 x 2-pin JST PA connector** | BRAKE| Intended for motor brake, Max current: 1A. See the section on mtor brake voltage control below for more details about using >24V as V_BRAKE with a 24V brake|
+| **1 x 2-pin JST PA connector** | BRAKE| Intended for motor brake, Max current: 1A. See the section on motor brake voltage control below for more details about using >24V as V_BRAKE with a 24V brake|
 | **1 x 3-pin jumper** | BRAKE_Select_V | The positive supply to the BRAKE connector is supplied from the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_AUX supply (VA_FUSED).|
 | **1 x 4-pin JST VH connector** | DRIVER 0 | Stepper motor connections. (See note on JST VH connectors in 'Wiring notes' above.) |
 | **1 x 2x5 IDC connector** | SPI | SPI encoder input/ SPI Daughterboard header - compatible with SPI daughterboards such as the PT100 and Thermocouple daughterboard |
@@ -240,7 +240,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 |---|---|---|
 | Outputs | OUT_0 | out0 | PWM |
 | ^^ | OUT_1 | out1 | **V1.0/V1.01a ONLY** PWM |
-| Brake | BRAKE | brake.neg | **V2.0 ONLY** PWM, use in the M569.7 Command as the brake port |
+| Brake | BRAKE | brake | **V2.0 ONLY** PWM, use in the M569.7 Command as the brake port |
 | Inputs/Outputs | IO_0 | io0.out | PWM |
 | ^^ | ^^ | io0.in | analog/digital input |
 | ^^ | IO_1 | io1.out | PWM |
@@ -273,12 +273,19 @@ The individual IO_x connectors have the following capabilities:
 
 ## Power wiring
 
-Supply between 12V and 48V to the 2-way barrier strip power connector on the board, observing the correct polarity.
+Supply between 12V and 48V to the V_IN 2-way barrier strip power connector on the board, observing the correct polarity.
 
 > If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
 >
 > OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
 {.is-info}
+
+### Auxilary Voltage Input
+In some cases it is desirable to provide an seperate voltage input to the board that remains on when V_IN is removed. This can be the case for setups when a out of band safety circuit needs to cut the motor power immediately (i.e. an E-Stop). In those cases it may be desirable to maintian the logic circuitry running on the 1HCL and continue to read the encoder so that position tracking can be maintained. To do this provide 12V or greater to the V_AUX input.
+
+> Note this is available on v2.0 boards only. On earlier boards with as labelled "V_BRAKE" and deisgned to provide an alternative voltage to the output ports bredominatly for 24V brakes. see the section on Motor Brake Voltage below.  
+{.is-info}
+
 
 ## Motor Brake Voltage
 
@@ -286,9 +293,13 @@ It is possible to use a V_IN voltage higher than 24V to be used with a 24V brake
 
 Use [M569.7](/User_manual/Reference/Gcodes/M569_7) to setup the brake pwm pin, and specify the voltage as follows:
 
-`M569.7 P50.0 C"brake.neg" V24 ; driver 0 on 1HCL v2.0 at address 50 uses the brake.neg port to control a 24V brake.`
+`M569.7 P50.0 C"brake" V24 ; driver 0 on 1HCL v2.0 at address 50 uses the brake port to control a 24V brake.`
 
-On v2.0 boards this is a fast brake control circuit designed to allow the brake to be engaged very quickly by dumping the energy the current in the brake solenoid coil. On v1.0/v1.0a boards use out1 or out0 as normal outputs
+On v2.0 boards this is a fast brake control circuit designed to allow the brake to be engaged very quickly by dumping the energy the current in the brake solenoid coil.
+
+On v1.0/v1.0a boards use out1 or out0 as normal outputs:
+
+`M569.7 P50.0 C"out0" V24 ; driver 0 on 1HCL v2.0 at address 50 uses the out0 port to control a 24V brake.`
 
 Alternatively supply V_AUX (v2.0) or V_BRAKE (v1.0) with 24V and set the voltage select jumper to use that voltage.
 
@@ -497,6 +508,15 @@ After M569.7 is executed, the port will be initially off. Therefore, M569.7 shou
 # Revisions
 
 ## Tabs {.tabset}
+
+### Revision v2.0
+
+* Changed Molex KK connectors to JST PA connectors.
+* Added a differential quadrature encoder input and a method to select between that or single ended input with a jumper.
+* Changed OUT1 to a dedicated BRAKE header, including the fast brake engagement circuit also used on the M23CL.
+* V_AUX power input replaces V_BRAKE. V_AUX allows for backup power to be provided.
+* The SPI encoder header now supports a range of Duet3D SPI daughterboards (PT100/Thermocouple/SPI ADC).
+* Temperature input headers relocated to the side of the board.
 
 ### Revision v1.0a
 
