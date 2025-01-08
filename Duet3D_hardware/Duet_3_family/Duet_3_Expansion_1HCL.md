@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-08T10:40:26.870Z
+date: 2025-01-08T10:49:13.454Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -27,7 +27,7 @@ The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, co
 | **Encoder Inputs** | Single Ended/Differential Quadrature or SPI bus |
 | **Thermistor/PT1000 inputs** | 2 x thermistor/PT1000 inputs. This is intended to allow for motor temperature monitoring, potentially coupled with a cooling system controlled by one of the outputs. |
 | **Medium current output** | 1 x medium-current (2.5A max) output at V_FUSED or VA_FUSED (V_AUX with fuse protection) voltage, with PWM capability and built-in flyback diodes.
-| **Brake output** | 1 x Brake Solenoid (1A max) output at V_FUSED or VA_FUSED voltage. This circuit is designed to turn on/off very quickly to allow for fast brake engagement. It has with PWM capability so can be configured to support 24V brakes when V_IN is 48V. Alternatively provide V_AUX at 24V for the brake. (note before v2.0 this output was OUT1 so could be used for a brake or tother purpose, without the fast turn off) |
+| **Brake output** | 1 x Brake Solenoid (1A max) output at V_FUSED or VA_FUSED voltage. This circuit is designed to turn on/off very quickly to allow for fast brake engagement. It has PWM capability so can be configured to support 24V brakes when V_IN is 48V. Alternatively provide V_AUX at 24V for the brake. (note before v2.0 this output was OUT1 so could be used for a brake or other purpose, without the fast turn off) |
 | **Inputs/Outputs** | 2 x 3.3V-level PWM capable output (3mA max), 2 x digital inputs, protected against over-voltage. Example use: endstop switches. |
 
 ## Operating limits
@@ -96,7 +96,7 @@ A linear composite encoder comprises a linear quadrature encoder that tracks pos
 The Expansion 1HCL board supports the following modes of motor control:
 
 * **Open loop mode**. In this mode the driver behaves in a similar way to the drivers on the 6HC main board. If an encoder has been connected and calibrated then it is possible to collect data on the position error for short periods.
-* **Closed loop mode**. In this mode an error signal is computed from the difference between the desired motor position and the position reported by the encoder. This error signal is used to apply a torque to correct the error via a modified PID controller. Warning and error events can be generated when the error exceeds configurable thresholds. When the controller is unable to achieve the desired position, it will recover to the correct position when either the oibsructioin is removed or a command is sent to move the axis or extruder to a position that can be achieved. Maximum speed is reduced compared to open loop mode; a reasonable predictor of maximum speed is the "Speed at which torque starts to drop (high slip angle)" reported by our motor EMF estimator at https://www.reprapfirmware.org/emf.html, or the speed that correponds to about 10000 full steps per second if that is lower. The PID controller must be tuned for best response.
+* **Closed loop mode**. In this mode an error signal is computed from the difference between the desired motor position and the position reported by the encoder. This error signal is used to apply a torque to correct the error via a modified PID controller. Warning and error events can be generated when the error exceeds configurable thresholds. When the controller is unable to achieve the desired position, it will recover to the correct position when either the obstruction is removed or a command is sent to move the axis or extruder to a position that can be achieved. Maximum speed is reduced compared to open loop mode; a reasonable predictor of maximum speed is the "Speed at which torque starts to drop (high slip angle)" reported by our motor EMF estimator at https://www.reprapfirmware.org/emf.html, or the speed that  corresponds to about 10000 full steps per second if that is lower. The PID controller must be tuned for best response.
 * **Assisted open loop mode** (supported in firmware 3.5.0-beta.4 and later only). In this mode the motor is operated as if in open loop mode, but whenever it is detected that the error between desired and actual position is getting too high, the motor current is automatically increased until the error is reduced. This allows a low initial current to be used, which makes the motor quieter at standstill and low motor speeds. As with closed loop mode, warning and error events can be generated when the error exceeds configurable thresholds. However, if the position requested cannot be achieved and the error exceeds approximately 4 full motor steps, the position will not be corrected when the obstruction is removed or the motor is commanded to a position that can be reached. No further out-of-position events will be generated until the command to enter assisted open loop mode is repeated. Unlike closed loop mode, good operation can be achieved with little or no tuning.
 
 ## Firmware notes
@@ -153,7 +153,7 @@ A STEP 3D model of the Duet 3 Expansion 1HCL v1.0 is available [on github](https
 
 ## Wiring Notes
 
-* The 4 wire motor is a [JST VH series connector](http://www.jst-mfg.com/product/pdf/eng/eVH.pdf). These require a minimum of 22AWG wire (20AWG or 0.5mm^2^ recommended. Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way; but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heatshrink sleeving over the insulation to bulk up the insulation. You will need a suitable crimping tool for the crimp pins, for example Engineer PA21 (use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation). Alternatively you can solder the wire to the crimp pin.
+* The 4 wire motor is a [JST VH series connector](http://www.jst-mfg.com/product/pdf/eng/eVH.pdf). These require a minimum of 22AWG wire (20AWG or 0.5mm^2^ recommended. Most NEMA17 size stepper motor wire will not be thick enough to use in the normal way; but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heatshrink sleeving over the insulation to bulk up the insulation. You will need a suitable crimping tool for the crimp pins, for example Engineer PA21 (use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation). Alternatively you can solder the wire to the crimp pin.
 
 ## Description of Connections
 
@@ -166,26 +166,26 @@ Duet 3 Expansion 1HCL provides the following connectors:
 | Header | Label | Function |
 |--
 | **1 x 2-way barrier strip** | VIN, GND | Two screw terminals for VIN and GND. Max voltage 50V, max current 5A (fused limit) |
-| **1 x 2-pin JST VH connector** | V_AUX, GND | Input for auxilary voltage. this can provide an alternative input for the brake. It can also continue to power the 12V and thence 5V and 3.3V rails, while VIN is shut down. this allos for logic and closed loop position tracking to continue while the motor and output circuits are shut down. See the description on Auxilary Voltage input below. Max voltage 50V, max current 5A (fused limit) |
+| **1 x 2-pin JST VH connector** | V_AUX, GND | Input for auxiliary voltage. This can provide an alternative input for the brake. It can also continue to power the 12V and thence 5V and 3.3V rails, while VIN is shut down. This allows for logic and closed loop position tracking to continue while the motor and output circuits are shut down. See the description on Auxiliary Voltage input below. Max voltage 50V, max current 5A (fused limit) |
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging |
 | **1 x 2-pin JST PA connector** | OUT_0 | Intended for PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
 | **1 x 3-pin jumper** | OUT_0_Select_V | The positive supply to the OUT_0 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_AUX supply (VA_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
-| **1 x 2-pin JST PA connector** | BRAKE| Intended for motor brake, Max current: 1A. See the section on motor brake voltage control below for more details about using >24V as V_BRAKE with a 24V brake|
+| **1 x 2-pin JST PA connector** | BRAKE| Intended for a motor brake, Max current: 1A. See the section on motor brake voltage control below for more details about using >24V as V_BRAKE with a 24V brake|
 | **1 x 3-pin jumper** | BRAKE_Select_V | The positive supply to the BRAKE connector is supplied from the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_AUX supply (VA_FUSED).|
 | **1 x 4-pin JST VH connector** | DRIVER 0 | Stepper motor connections. (See note on JST VH connectors in 'Wiring notes' above.) |
 | **1 x 2x5 IDC connector** | SPI | SPI encoder input/ SPI Daughterboard header - compatible with SPI daughterboards such as the PT100 and Thermocouple daughterboard |
 | **1 x 2-pin JST PA connector** | TEMP_0 | Connections for thermistor or PT1000 sensors |
 | **1 x 2-pin JST PA connector** | TEMP_1 | Connections for thermistor or PT1000 sensors |
-| **1 x 5-pin JST PA connector** | IO_1 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
+| **1 x 5-pin JST PA connector** | IO_1 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signal levels with 470R series resistors. |
 | **1 x 2-pin jumper** | IO1_I2C | Add a jumper to bypass the 10k resistor on IO1.in, so it can be used for I2C. |
-| **1 x 5-pin JST PA connector** | IO_0 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
+| **1 x 5-pin JST PA connector** | IO_0 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signal levels with 470R series resistors. |
 | **1 x 8-pin JST PA connector** | Q_DIFF_IN | Differential quadrature encoder input |
 | **1 x 5-pin JST PA connector** | Q_SE_IN | Single ended quadrature encoder input |
 | **1 x 2-pin jumper** | Quad Mode<br> Fit For SE | Add a jumper to select singled ended quadrature encoder mode, remove the jumper to use differential quadrature encoder mode |
 | **1 x RJ11 CAN connector** | CAN_IN | RJ11 CAN connector |
 | **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector |
 | **1 x 2-pin JST PA header** | CAN RESET | CAN address reset jumper. See 'Commisioning' section below. |
-| **1 x 4-pin jumper** | Term_R | CAN bus terminaton jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
+| **1 x 4-pin jumper** | Term_R | CAN bus termination jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
 
 ### V1.0a/V1.0
 
@@ -194,22 +194,22 @@ Duet 3 Expansion 1HCL provides the following connectors:
 | **1 x 2-way barrier strip** | VIN, GND | Two screw terminals for VIN and GND. Max voltage 50V, max current 10A (fused limit) |
 | **1 x 2-pin JST VH connector** | V_BRAKE, GND | Input for separate voltage for brake. Max voltage 50V, max current 5A (fused limit) |
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging |
-| **1 x 2-pin KK connector** | OUT_0 | Intended for motor brake, or other PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
+| **1 x 2-pin KK connector** | OUT_0 | Intended for a motor brake, or other PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
 | **1 x 3-pin jumper** | OUT_0_Select_V | The positive supply to the OUT_0 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_BRAKE supply (VB_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
-| **1 x 2-pin KK connector** | OUT_1 | Intended for motor brake, or other PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
+| **1 x 2-pin KK connector** | OUT_1 | Intended for a motor brake, or other PWM-controllable devices (fans, heaters etc). Max current: 2.5A |
 | **1 x 3-pin jumper** | OUT_1_Select_V | The positive supply to the OUT_1 connector is the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_BRAKE supply (VB_FUSED). Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
 | **1 x 4-pin JST VH connector** | DRIVER 0 | Stepper motor connections. (See note on JST VH connectors in 'Wiring notes' above.) |
 | **1 x 2x5 IDC connector** | SPI | SPI encoder input |
 | **1 x 2-pin KK connector** | TEMP_0 | Connections for thermistor or PT1000 sensors |
 | **1 x 2-pin KK connector** | TEMP_1 | Connections for thermistor or PT1000 sensors |
-| **1 x 5-pin KK connector** | IO_1 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
+| **1 x 5-pin KK connector** | IO_1 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signal levels with 470R series resistors. |
 | **1 x 2-pin jumper** | IO1_I2C | Add a jumper to bypass the 10k resistor on IO1.in, so it can be used for I2C. |
-| **1 x 5-pin KK connector** | IO_0 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
+| **1 x 5-pin KK connector** | IO_0 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals level with 470R series resistors. |
 | **1 x 5-pin KK connector** | Q_IN | Quadrature encoder input |
 | **1 x RJ11 CAN connector** | CAN_IN | RJ11 CAN connector |
 | **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector |
 | **1 x 2-pin KK header** | CAN RESET | CAN address reset jumper. See 'Commisioning' section below. |
-| **1 x 4-pin jumper** | Term_R | CAN bus terminaton jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
+| **1 x 4-pin jumper** | Term_R | CAN bus termination jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
 
 ## LED indications
 
@@ -280,10 +280,10 @@ Supply between 12V and 48V to the V_IN 2-way barrier strip power connector on th
 > OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
 {.is-info}
 
-### Auxilary Voltage Input
-In some cases it is desirable to provide an seperate voltage input to the board that remains on when V_IN is removed. This can be the case for setups when a out of band safety circuit needs to cut the motor power immediately (i.e. an E-Stop). In those cases it may be desirable to maintian the logic circuitry running on the 1HCL and continue to read the encoder so that position tracking can be maintained. To do this provide 12V or greater to the V_AUX input.
+### Auxiliary Voltage Input
+In some cases it is desirable to provide a separate voltage input to the board that remains on when V_IN is removed. This can be the case for setups when a safety circuit needs to cut the motor power immediately (i.e. an E-Stop). In those cases it may be desirable to maintain the logic circuitry running on the 1HCL and continue to read the encoder so that position tracking can be maintained. To do this provide 12V or greater to the V_AUX input.
 
-> Note this is available on v2.0 boards only. On earlier boards with as labelled "V_BRAKE" and deisgned to provide an alternative voltage to the output ports bredominatly for 24V brakes. see the section on Motor Brake Voltage below.  
+> Note this is available on v2.0 boards only. On earlier boards with as labelled "V_BRAKE" and designed to provide an alternative voltage to the output ports predominantly for 24V brakes. see the section on Motor Brake Voltage below.  
 {.is-info}
 
 
@@ -291,7 +291,7 @@ In some cases it is desirable to provide an seperate voltage input to the board 
 
 It is possible to use a V_IN voltage higher than 24V to be used with a 24V brake.
 
-Use [M569.7](/User_manual/Reference/Gcodes/M569_7) to setup the brake pwm pin, and specify the voltage as follows:
+Use [M569.7](/User_manual/Reference/Gcodes/M569_7) to setup the brake PWM pin, and specify the voltage as follows:
 
 `M569.7 P50.0 C"brake" V24 ; driver 0 on 1HCL v2.0 at address 50 uses the brake port to control a 24V brake.`
 
@@ -314,7 +314,7 @@ The 1HCL supports a quadrature encoder connected to the Quadrature Input interfa
 
 ### Connecting a Quadrature Shaft Encoder
 
-Quadrature encoders (which may use optical or magnetic technology) have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output. The Duet 3 Expansion 1HCL v2.0 has both an 8-pin connector for differential and a 5 pin connector for single ended signals (v1.0/v1.0a hove only a 5-pin connector for single ended quadrature signals.
+Quadrature encoders (which may use optical or magnetic technology) have either a differential output (often shown as A+,A-, B+,B-,N+,N- or as A,A',B,B',N,N') or a single ended output. The Duet 3 Expansion 1HCL v2.0 has both an 8-pin connector for differential and a 5 pin connector for single ended signals (v1.0/v1.0a have only a 5-pin connector for single ended quadrature signals.
 
 *Note the index signal (N or Z) is not currently used*
 
@@ -460,7 +460,7 @@ M917 X0 Y0 ; Set the closed loop axes to have a holding current of zero
 M92 X80 Y80 ; steps/mm 
 ```
 
-Note the initial PID values show will need to be tuned to the particular motor.
+Note the initial PID values shown will need to be tuned to the particular motor.
 
 In contrast to usual drivers, the closed loop axes can have their holding current set to zero using M917, with negligible detrimental effect. Whilst a normal driver may slip if it's holding current is set to zero, a closed loop driver will notice that it has slipped an apply a current to return the drive to it's intended position. Setting a holding current of zero will also mean less current is used, so the motor runs cooler. However, a holding current can still be set using M917 if desired. That aside you must still set the maximum current per axis using M906. if you do not then the motor will not move, or will only vibrate slightly.
 
