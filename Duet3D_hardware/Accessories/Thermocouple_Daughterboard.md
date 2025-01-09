@@ -2,7 +2,7 @@
 title: Duet3D Thermocouple daughterboard
 description: Overview of the Duet 3D Thermocouple daughter board.
 published: true
-date: 2024-08-21T16:02:08.687Z
+date: 2025-01-09T18:05:00.102Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T12:01:36.003Z
@@ -23,13 +23,14 @@ Each daughterboard supports 2 channels, ie two thermocouples per daughterboard. 
 | Duet board | Number of boards supported |
 |---|---|
 | Duet 3 Mainboard 6HC | 2, stacked |
+| Duet 3 Mainboard 6XD | 2, stacked |
 | Duet 3 Mini 5+ | 1 |
 | Duet 3 Expansion 3HC | 2, stacked |
+| Duet 3 Expansion 1HCL | 1, v2.0 only |
 | Duet 3 Toolboard 1LC | 0 |
 | Duet 3 Expansion 1XD | 0 |
 | Duet 2 WiFi / Ethernet | 2, stacked |
 | DueX2 / DueX5 | 2, stacked |
-| Duet 2 Maestro | 1 |
 
 Boards that support only one daughterboard can have either a Thermocouple or PT100 temperature sensor daughterboard connected, but not both.
 
