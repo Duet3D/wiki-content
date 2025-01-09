@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2024-01-10T23:13:47.442Z
+date: 2025-01-09T14:54:53.592Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z
@@ -21,9 +21,9 @@ This document covers networking options in more detail, including setting up a D
 This is the standard setup, with the Duet 3 Mini 5+ WiFi (in standalone mode) or Duet 2 WiFi connecting to your network through a WiFi access point/router. This is covered in the [Getting Connected](/How_to_guides/Getting_connected/Getting_connected_to_your_Duet) guide. Briefly:
 
 * Connect to Duet, via USB and serial terminal, or via console if already connected to network.
-* Use [M587](/User_manual/Reference/Gcodes/M587) to add a WiFi host network to the remembered list of networks.
+* In the serial terminal, use [M587](/User_manual/Reference/Gcodes/M587) to add a WiFi host network to the remembered list of networks. Don't add M587 to config.g.
 * To set a static IP address, use the 'I' parameter in your M587 command. If you leave this out, the Duet IP address will be set by the router, using DHCP.
-* Use [M552](/User_manual/Reference/Gcodes/M552) S1 to turn on networking, and connect. You can specify the host network to connect to using the 'P' parameter, so long as the host network has already been stored using M587.
+* Use [M552](/User_manual/Reference/Gcodes/M552) S1 in config.g to turn on networking, and connect. You can specify the host network to connect to using the 'P' parameter, so long as the host network has already been stored using M587.
 
 **Note:** the IP addresses in the following diagram are an example of how a network may be configured. Your network may use different IP addresses and ranges.
 
