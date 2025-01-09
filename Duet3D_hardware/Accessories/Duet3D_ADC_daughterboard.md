@@ -2,7 +2,7 @@
 title: Duet3D ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: false
-date: 2025-01-09T18:02:17.231Z
+date: 2025-01-09T18:13:39.161Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -23,23 +23,53 @@ Each daughterboard supports 2 channels, ie two thermocouples per daughterboard. 
 | Duet board | Number of boards supported |
 |---|---|
 | Duet 3 Mainboard 6HC | 2, stacked |
+| Duet 3 Mainboard 6XD | 2, stacked |
 | Duet 3 Mini 5+ | 1 |
 | Duet 3 Expansion 3HC | 2, stacked |
+| Duet 3 Expansion 1HCL | 1, v2.0 only |
 | Duet 3 Toolboard 1LC | 0 |
 | Duet 3 Expansion 1XD | 0 |
-| Duet 2 WiFi / Ethernet | 2, stacked |
-| DueX2 / DueX5 | 2, stacked |
-| Duet 2 Maestro | 1 |
 
-Boards that support only one daughterboard can have either a Thermocouple or PT100 temperature sensor daughterboard connected, but not both.
+Boards that support only one daughterboard can have either a ADC, Thermocouple or PT100 temperature sensor daughterboard connected, but not two.
 
-## PT100 sensor support
+# Features
 
-The PT100 daughterboard uses the Maxim Integrated MAX31865 RTD sensor IC.  This IC supports 2,3 or 4 wire PT100 connections. The mode can be set using jumpers on the board. With the jumpers on/bridged the board expects a 2 wire PT100 sensor. With the jumpers off/cut a 4 wire PT100 sensor can be used. The change between older versions and 1.1 was to move from solder jumpers to pin jumpers.
+## Hardware specification
 
-## MAX31865 sensor IC details
+|---|---|
+| **ADC IC** | [ADS131A02](https://www.ti.com/product/ADS131A02){target=_blank}. 24-bit 128-kSPS 2-channel simultaneous-sampling delta-sigma ADC 
+| **Analog voltage input range** | 0-10V |
+| **Power monitoring** | VIN voltage reporting |
 
-An external resistor sets the sensitivity for the RTD being used (in the case of the Duet3D daughterboard this is a PT100) and a precision delta-sigma ADC converts the ratio of the RTD resistance to the reference resistance into digital form. High Accuracy: 15-Bit ADC Resolution; Nominal Temperature Resolution 0.03125°C (Varies Due to RTD Nonlinearity). Total Accuracy Over All Operating Conditions: 0.5°C (0.05% of Full Scale) max. For more information see the [Maxim Integrated MAX31865 product page](https://www.maximintegrated.com/en/products/interface/sensor-interface/MAX31865.html){target=_blank}.
+
+
+## Operating limits
+
+|---|---|
+| **Input power voltage** | 5V |
+| **Power consuption** | <200mA |
+| **Maximum ambient temperature** | 75°C |
+| **Absolute maximum board temperature** | 85°C |
+
+Note: The coil PCB can likely cope with higher temperatures than those quoted above, having no active components. 
+Duet-supplied FFC cables are rated at 80°C, but cables are available with a higher temperature rating.
+
+## Firmware notes
+
+* Compatible RepRapFirmware versions: RRF 3.6 or later
+
+# Physical properties
+
+## Dimensions
+
+
+
+
+
+## ADC Details
+
+
+
 
 ## Operating limits
 
