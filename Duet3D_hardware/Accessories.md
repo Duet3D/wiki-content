@@ -2,7 +2,7 @@
 title: Accessories
 description: 
 published: true
-date: 2024-07-02T13:21:46.408Z
+date: 2025-01-09T18:02:52.735Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:18:25.503Z
@@ -30,6 +30,10 @@ Hardware information on Duet3D-produced accessories
 
 [Duet3D PT100 temperature sensor daughterboard](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard)
 [Duet3D Thermocouple daughterboard](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard)
+
+## Analog Input
+
+[Duet3D High Resolution ADC](Duet3D_hardware/Accessories/Duet3D_ADC_daughterboard)
 
 ## Motor position sensing
 
