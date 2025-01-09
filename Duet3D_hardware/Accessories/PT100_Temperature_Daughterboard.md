@@ -2,7 +2,7 @@
 title: Duet3D PT100 temperature sensor daughterboard
 description: Overview of the Duet3D PT100 daughterboard
 published: true
-date: 2025-01-09T18:04:02.434Z
+date: 2025-01-09T18:05:17.697Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T11:12:36.201Z
@@ -23,6 +23,7 @@ Each daughterboard supports 2 channels, ie two PT100 sesnsors per daughterboard.
 | Duet board | Number of boards supported |
 |---|---|
 | Duet 3 Mainboard 6HC | 2, stacked |
+| Duet 3 Mainboard 6XD | 2, stacked |
 | Duet 3 Mini 5+ | 1 |
 | Duet 3 Expansion 3HC | 2, stacked |
 | Duet 3 Expansion 1HCL | 1, v2.0 only |
@@ -30,7 +31,6 @@ Each daughterboard supports 2 channels, ie two PT100 sesnsors per daughterboard.
 | Duet 3 Expansion 1XD | 0 |
 | Duet 2 WiFi / Ethernet | 2, stacked |
 | DueX2 / DueX5 | 2, stacked |
-| Duet 2 Maestro | 1 |
 
 Boards that support only one daughterboard can have either a Thermocouple or PT100 temperature sensor daughterboard connected, but not both.
 
