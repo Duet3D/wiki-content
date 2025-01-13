@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-13T12:58:29.705Z
+date: 2025-01-13T13:01:56.147Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -75,6 +75,8 @@ The calculator at [https://www.reprapfirmware.org/emf.html](https://www.reprapfi
 RRF 3.4 supports quadrature motor shaft encoders only. RRF 3.5 and later also support Duet3D magnetic shaft encoders and linear composite encoders.
 
 Encoder resolutions of over 1000PPR (Pulses Per Revolution) or 4000CPR (Counts Per Revolution) are highly recommended. Note that generally PPR = CPR/4. Resolutions below this are unlikely to work well in most situations.
+
+The Duet3D magnetic encoder is the most straighforward to calibrate.
 
 ### Quadrature motor shaft encoders
 
