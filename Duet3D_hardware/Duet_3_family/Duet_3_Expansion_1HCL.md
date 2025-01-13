@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-08T10:49:13.454Z
+date: 2025-01-13T12:41:40.460Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -37,7 +37,7 @@ The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, co
 ### v2.0
 Absolute maximums:
 |:--|:--|
-| **Input voltage** | 12V to 50V |
+| **Input voltage** | 24V to 50V |
 | **VIN current limit** | 5A maximum (fused limit) |
 | **Fuses** | 5A for V_IN to V_FUSED (max 5A), 5A for V_AUX to VA_FUSED |
 | **Stepper driver** | Up to 6.3A peak current per phase (4.45A RMS per phase; max. standstill current 4.45A) |
@@ -51,7 +51,7 @@ Absolute maximums:
 ### v1.0, v1.0a
 Absolute maximums:
 |:--|:--|
-| **Input voltage** | 12V to 50V |
+| **Input voltage** | 24V to 50V |
 | **VIN current limit** | 10A maximum (fused limit) |
 | **Fuses** | 10A for V_IN to V_FUSED (max 10A), 5A for V_BRAKE to VB_FUSED |
 | **Stepper driver** | Up to 6.3A peak current per phase (4.45A RMS per phase; max. standstill current 4.45A) |
@@ -96,7 +96,7 @@ A linear composite encoder comprises a linear quadrature encoder that tracks pos
 The Expansion 1HCL board supports the following modes of motor control:
 
 * **Open loop mode**. In this mode the driver behaves in a similar way to the drivers on the 6HC main board. If an encoder has been connected and calibrated then it is possible to collect data on the position error for short periods.
-* **Closed loop mode**. In this mode an error signal is computed from the difference between the desired motor position and the position reported by the encoder. This error signal is used to apply a torque to correct the error via a modified PID controller. Warning and error events can be generated when the error exceeds configurable thresholds. When the controller is unable to achieve the desired position, it will recover to the correct position when either the obstruction is removed or a command is sent to move the axis or extruder to a position that can be achieved. Maximum speed is reduced compared to open loop mode; a reasonable predictor of maximum speed is the "Speed at which torque starts to drop (high slip angle)" reported by our motor EMF estimator at https://www.reprapfirmware.org/emf.html, or the speed that  corresponds to about 10000 full steps per second if that is lower. The PID controller must be tuned for best response.
+* **Closed loop mode**. In this mode an error signal is computed from the difference between the desired motor position and the position reported by the encoder. This error signal is used to apply a torque to correct the error via a modified PID controller. Warning and error events can be generated when the error exceeds configurable thresholds. When the controller is unable to achieve the desired position, it will recover to the correct position when either the obstruction is removed or a command is sent to move the axis or extruder to a position that can be achieved. Maximum speed is reduced compared to open loop mode; a reasonable predictor of maximum speed is the "Speed at which torque starts to drop (high slip angle)" reported by our motor EMF estimator at https://www.reprapfirmware.org/emf.html, or the speed that  corresponds to about 5000 full steps per second if that is lower. The PID controller must be tuned for best response.
 * **Assisted open loop mode** (supported in firmware 3.5.0-beta.4 and later only). In this mode the motor is operated as if in open loop mode, but whenever it is detected that the error between desired and actual position is getting too high, the motor current is automatically increased until the error is reduced. This allows a low initial current to be used, which makes the motor quieter at standstill and low motor speeds. As with closed loop mode, warning and error events can be generated when the error exceeds configurable thresholds. However, if the position requested cannot be achieved and the error exceeds approximately 4 full motor steps, the position will not be corrected when the obstruction is removed or the motor is commanded to a position that can be reached. No further out-of-position events will be generated until the command to enter assisted open loop mode is repeated. Unlike closed loop mode, good operation can be achieved with little or no tuning.
 
 ## Firmware notes
@@ -283,7 +283,7 @@ Supply between 12V and 48V to the V_IN 2-way barrier strip power connector on th
 ### Auxiliary Voltage Input
 In some cases it is desirable to provide a separate voltage input to the board that remains on when V_IN is removed. This can be the case for setups when a safety circuit needs to cut the motor power immediately (i.e. an E-Stop). In those cases it may be desirable to maintain the logic circuitry running on the 1HCL and continue to read the encoder so that position tracking can be maintained. To do this provide 12V or greater to the V_AUX input.
 
-> Note this is available on v2.0 boards only. On earlier boards with as labelled "V_BRAKE" and designed to provide an alternative voltage to the output ports predominantly for 24V brakes. see the section on Motor Brake Voltage below.  
+> Note this is available on v2.0 boards only. On earlier boards this input was labelled "V_BRAKE" and designed to provide an alternative voltage to the output ports, predominantly for 24V brakes. See the section on Motor Brake Voltage below.  
 {.is-info}
 
 
