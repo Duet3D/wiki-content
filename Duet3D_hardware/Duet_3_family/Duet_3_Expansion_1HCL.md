@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-13T12:41:40.460Z
+date: 2025-01-13T12:49:23.374Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -350,7 +350,7 @@ See the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder)
 
 *This support is available on an experimental basis in RRF 3.5*
 
-Attach and connect the Duet3D magnetic shaft encoder as described above. Connect the linear quadrature encoder to the 5-pin Molex connector as described above for a quadrature shaft encoder.
+Attach and connect the Duet3D magnetic shaft encoder as described above. Connect the linear quadrature encoder to the quadrature encoder input as described above for a quadrature shaft encoder.
 
 # Commissioning
 
