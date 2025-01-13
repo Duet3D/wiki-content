@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2024-12-04T16:41:28.651Z
+date: 2025-01-13T14:46:17.369Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -215,7 +215,7 @@ In order to get correct function follow this process:
 
 1. RepRapFirmware on the main board rounds the axes endpoint to whole microsteps. (Extruder movements are kept unrounded)
 1. RepRapFirmware sends the move details over the CAN-FD bus, including the move length for each axis motor measured in whole microsteps. (Whole and part microsteps for extruders)
-1. In open loop mode, microsteps are generated at the appropriate times.
+1. In open loop mode and assisted open loop mode, microsteps are generated at the appropriate times.
 1. In closed loop mode, the motor position is calculated from the movement parameters as a floating point number of full steps.
 
 # Sample configuration examples
@@ -275,6 +275,11 @@ Where the "motorovertemp.g" macro can have whatever actions are appropriate. Thi
 Some versions of the M23CL have a motor holding brake solenoid fitted (all prototypes, and model numbers ending in "B") 
 
 If a brake is present the M23CL will disable it when the motors are enabled (M17 and enable it when the motors are disabled (M18).
+
+### Motor Brake Voltage
+It is possible to use a V_IN voltage higher than 24V to be used with the 24V brake fitted on some models. 
+
+The motor brake circuit is a fast brake control circuit designed to allow the brake to be engaged very quickly by dumping the energy the current in the brake solenoid coil. In addition it has a PWM control circuit that will limit the current in the brake coil if the sensed V_IN voltage is above 24V.
 
 # Revisions
 
