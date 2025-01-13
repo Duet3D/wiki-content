@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-13T12:49:23.374Z
+date: 2025-01-13T12:51:47.653Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -184,7 +184,7 @@ Duet 3 Expansion 1HCL provides the following connectors:
 | **1 x 2-pin jumper** | Quad Mode<br> Fit For SE | Add a jumper to select singled ended quadrature encoder mode, remove the jumper to use differential quadrature encoder mode |
 | **1 x RJ11 CAN connector** | CAN_IN | RJ11 CAN connector |
 | **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector |
-| **1 x 2-pin JST PA header** | CAN RESET | CAN address reset jumper. See 'Commisioning' section below. |
+| **1 x 2-pin JST PA header** | CAN RESET | CAN address reset jumper. See 'Commissioning' section below. |
 | **1 x 4-pin jumper** | Term_R | CAN bus termination jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
 
 ### V1.0a/V1.0
@@ -208,7 +208,7 @@ Duet 3 Expansion 1HCL provides the following connectors:
 | **1 x 5-pin KK connector** | Q_IN | Quadrature encoder input |
 | **1 x RJ11 CAN connector** | CAN_IN | RJ11 CAN connector |
 | **1 x RJ11 CAN connector** | CAN_OUT | RJ11 CAN connector |
-| **1 x 2-pin KK header** | CAN RESET | CAN address reset jumper. See 'Commisioning' section below. |
+| **1 x 2-pin KK header** | CAN RESET | CAN address reset jumper. See 'Commissioning' section below. |
 | **1 x 4-pin jumper** | Term_R | CAN bus termination jumpers. See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection). |
 
 ## LED indications
@@ -420,7 +420,7 @@ In order to get correct function follow this process:
 
 1. RepRapFirmware on the main board rounds the axes endpoint to whole microsteps. (Extruder movements are kept unrounded)
 1. RepRapFirmware sends the move details over the CAN-FD bus, including the move length for each axis motor measured in whole microsteps. (Whole and part microsteps for extruders)
-1. In open loop mode, microsteps are generated at the appropriate times.
+1. In open loop mode and assisted open loop mode, microsteps are generated at the appropriate times.
 1. In closed loop mode, the motor position is calculated from the movement parameters as a floating point number of full steps.
 
 
