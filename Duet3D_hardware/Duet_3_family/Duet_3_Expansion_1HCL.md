@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-13T12:51:47.653Z
+date: 2025-01-13T12:58:29.705Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -291,6 +291,12 @@ In some cases it is desirable to provide a separate voltage input to the board t
 
 It is possible to use a V_IN voltage higher than 24V to be used with a 24V brake.
 
+> Proceed with caution, always test these examples with low motor current and slow speeds first{.is-info}
+
+When the motor driver is enabled, the specified output port will be turned on at the same time to release the brake. When the motor driver is disabled, the output port will be turned off. Idle current mode does not count as disabled.
+
+After M569.7 is executed, the port will be initially off. Therefore, M569.7 should be executed before the motor is first enabled.
+
 Use [M569.7](/User_manual/Reference/Gcodes/M569_7) to setup the brake PWM pin, and specify the voltage as follows:
 
 `M569.7 P50.0 C"brake" V24 ; driver 0 on 1HCL v2.0 at address 50 uses the brake port to control a 24V brake.`
@@ -493,17 +499,7 @@ Where the "motorovertemp.g" macro can have whatever actions are appropriate. Thi
 
 ## Motor Brake Control
 
-Some motors have a motor brake fitted for an holding brake solenoid. As long as the solenoid max current draw is <2.5A it can be directly controlled by out 0 or out 1. If the Brake needs a different voltage from the VIN voltage used for the motor then that can supplied on the VBRAKE connector.
-
-This example sets out0 to control the brake using the [M569.7](https://docs.duet3d.com/User_manual/Reference/Gcodes#m5697-configure-motor-brake-port) command
-
-`M569.7 P50.0 C"out0"`
-
-***NOTE proceed with caution, always test these examples with low motor current and slow speeds first***
-
-When the motor driver is enabled, the specified output port will be turned on at the same time to release the brake. When the motor driver is disabled, the output port will be turned off. Idle current mode does not count as disabled.
-
-After M569.7 is executed, the port will be initially off. Therefore, M569.7 should be executed before the motor is first enabled.
+Some motors have a motor brake fitted for an holding brake solenoid. See the section above on "Motor Brake Voltage" for a description of how to set the correct jumper and M567.9 command depending on the board version.
 
 # Revisions
 
