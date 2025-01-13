@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2025-01-13T14:46:17.369Z
+date: 2025-01-13T17:26:04.463Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -35,7 +35,7 @@ Note the M23CL series are in active development and this documentation will be e
 | **Brake** | 24V, 1.5Nm| No Brake fitted| 24V, 1.5Nm| No Brake fitted|
 | **Ambient temperature**|-20°C to +50°C||||
 | **Max motor & controller temperature**|85°C||||
-| **Input voltage** | 12V to 48V ||||
+| **Input voltage** | 24V to 48V ||||
 | **Processor** | Microchip ATSAME51G19A ||||
 | **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit ||||
 | **Networking/comms** | CAN-FD bus for connection to the Duet 3 Mainboard. Optional on-board CAN-FD bus termination. ||||
@@ -74,7 +74,7 @@ The STEP files are available [from Github here](https://github.com/Duet3D/Duet3-
 
 ## Power wiring
 
-Supply between 12V and 48V to the M8 3-way power connector on the motor, observing the correct polarity.
+Supply between 24V and 48V to the M8 3-way power connector on the motor, observing the correct polarity.
 
 > If you use a relay to control VIN power to the motor, ie the power supply is already switched on, and a relay is used to turn on power to the motor, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
 >
