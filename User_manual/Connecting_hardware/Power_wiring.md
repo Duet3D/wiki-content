@@ -2,7 +2,7 @@
 title: Power Wiring
 description: 
 published: true
-date: 2024-09-23T11:26:01.729Z
+date: 2025-01-14T13:41:26.065Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-29T09:54:45.515Z
@@ -50,18 +50,21 @@ The gauge of wire should be appropriate to the current that the Duet will draw. 
 
 # Grounding
 
-The metal parts of your machine generally need to be connected to a common grounding point, to earth any static discharge and protect the user from electrocution from electrical faults. This includes:
-* Hot end and extruder metal parts
-  Running filament through the extruder can cause a static electricity build up, which can arc out through the stepper motor wiring, or through the wiring to the hot end (hot end heater or temperature sensor). Any of these may cause enough of an electrical discharge to corrupt memory on the MCU (leading to a crash, often reported as a 'Hardfault' reset in M122) or even damage or destroy the electronic components on the controller board.
-* Stepper motor casings
+Metal parts that can be touched by the user should be connected to mains ground/earth for safety, to earth any static discharge and protect the user from electrocution from electrical faults. Connectors that can be touched by the user, or that may be connected to other components that can be touched by the user, should also be kept close to mains ground/earth potential, which is done by connecting VIN negative to mains ground/earth. The following should be grounded:
+
+* **Power supply**
+  We recommend connecting PSU VIN negative to mains ground/earth. This can be done by connecting a -V terminal to the GND/Earth terminal on the PSU itself. This allows other connected components to be grounded via VIN negative.
+  **CAUTION!** if connecting the machine to a PC via USB or serial that uses a mains ground connection, then power both the PC and the 3D printer from the same wall socket, and don't power anything that isn't part of the same system from the same socket. See [USB Ground loops](/User_manual/Overview/USB_ground_loops).
+* **Hot end and extruder metal parts**
+  Running filament through the extruder can cause a static electricity build up, which can arc out through the stepper motor wiring, or through the wiring to the hot end (hot end heater or temperature sensor). Any of these may cause enough of an electrical discharge to corrupt memory on the MCU (leading to a crash, often reported as a 'Hardfault' reset in M122) or even damage or destroy the electronic components on the controller board. On Duet toolboards (Roto, 1LC v1.3 and later) the mounting screw holes are all grounded to VIN negative via 100K resistors to provide a path to ground for any static build up.
+* **Stepper motor casings**
   These should also be grounded, especially in belt-driven printers. Motion of the belts also causes static charge to build up, which eventually arcs over to the windings, and may damage the stepper driver or MCU. If the motors are screwed to a metal frame, grounding the frame is usually sufficient.
 
-Ideally, run the earthing wire from the power outlet (NOT the earth terminal of the PSU) to a common grounding point (e.g. a bolt on the frame), and then run that on to the earth on the PSU. Then run grounding wires from all components that require grounding to this common grounding point.
+Ideally, run the earthing wire from the power outlet to a common grounding point (e.g. a bolt on the frame), and then run that on to the earth on the PSU. On the PSU, connect the mains earth terminal on the PSU to a -V (i.e. VIN negative) terminal. Run grounding wires from all components that aren't grounded through VIN negative to the common grounding point.
 
 > **It is NOT recommended to:**
-> \- connect the frame (or common grounding point) to the PSU negative output. This can cause electrocution in case of a power supply internal fault.
-> \- connect the PSU negative output to earth ground. This can trip the RCD or harm the power supply. 
-> \- connect the PSU negative output mains neutral. This can lead to electrocutions if the power supply has an internal fault.
+> \- connect the frame (or common grounding point) to the PSU VIN negative output directly. This can cause electrocution in case of a power supply internal fault.
+> \- connect the PSU VIN negative output to mains neutral. This can lead to electrocutions if the power supply has an internal fault. Connect the PSU VIN negative output to mains earth.
 {.is-warning}
 
 
