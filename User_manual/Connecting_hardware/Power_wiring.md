@@ -2,7 +2,7 @@
 title: Power Wiring
 description: 
 published: true
-date: 2025-01-14T13:41:26.065Z
+date: 2025-01-14T14:14:21.827Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-29T09:54:45.515Z
@@ -50,7 +50,7 @@ The gauge of wire should be appropriate to the current that the Duet will draw. 
 
 # Grounding
 
-Metal parts that can be touched by the user should be connected to mains ground/earth for safety, to earth any static discharge and protect the user from electrocution from electrical faults. Connectors that can be touched by the user, or that may be connected to other components that can be touched by the user, should also be kept close to mains ground/earth potential, which is done by connecting VIN negative to mains ground/earth. The following should be grounded:
+Metal parts that can be touched by the user should be connected to mains ground/earth for safety, to discharge any static buildup and protect the user from electrocution from electrical faults. Connectors that can be touched by the user, or that may be connected to other components that can be touched by the user, should also be kept close to mains ground/earth potential, which is done by connecting VIN negative to mains ground/earth. The following should be grounded:
 
 * **Power supply**
   We recommend connecting PSU VIN negative to mains ground/earth. This can be done by connecting a -V terminal to the GND/Earth terminal on the PSU itself. This allows other connected components to be grounded via VIN negative.
