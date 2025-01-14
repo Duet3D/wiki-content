@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2024-12-12T15:43:19.591Z
+date: 2025-01-14T12:53:53.740Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -174,7 +174,8 @@ If [`http://duet3.local/`](http://duet3.local/){target=_blank} does not show Due
 
 This error, reported in the DWC console, is usually caused by:
 * Other wires running too close to the ribbon cable, creating interference. Heater and motor wires can be particularly noisy, route them as far away as possible. 
-* Ribbon cable too long, damaged or poorly connected. Check installation of ribbon cable.
+* Ribbon cable too long, damaged or poorly connected. Check installation of ribbon cable. Ribbon cable should ideally be not longer than 150mm.
+* Signal reflections have been reported by one user. This may have been caused by a ribbon cable that was too long, or damaged. 
 
 ### Duet 3/SBC not on the network (http://duet3.local does not work)
 
