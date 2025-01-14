@@ -2,7 +2,7 @@
 title: Duet3D ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-01-14T15:14:53.916Z
+date: 2025-01-14T15:15:24.790Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -124,7 +124,7 @@ The ADC daughterboard provides a filtered power pass though with appropriate gro
 1. Power supply noise can be minimised.
 1. Ground loops can be avoided
 
-Even if a separate supply is required for the sensors than for the duet (for example the Duet is running at 48V and the sensors need 30V. It is generally still a good option to use the power pass though. which the ground configured as below.
+Even if a separate supply is required for the sensors than for the Duet (for example the Duet is running at 48V and the sensors need 30V) it is generally still a good option to use the power pass through, with the ground configured as below.
 
 ### Using the Duet power supply to power the sensor(s)
 Connect either +VIN or +12V power from the Duet to the VIN terminal of the 2-pin connector on the daughter board (this is the left-hand terminal when looking into the 2-pin connector). You do not need to connect the right-hand terminal. Fit a jumper to the PWR_GND_SEL pins. This will connect the Power Ground terminals on the input terminal blocks to Duet ground.
