@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-01-14T10:37:10.622Z
+date: 2025-01-14T15:13:53.470Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4110,7 +4110,7 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 
 * **Sn** Sensor number
 * **P"pin_name"** The name of the control board pin that this sensor uses. For thermistors it is the thermistor input pin name, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. For sensors connected to the SPI bus it is the name of the output pin used as the chip select.
-* **Y"sensor_type"** The sensor and interface type, one of: "thermistor", "pt1000", "rtd-max31865", "thermocouple-max31855", "thermocouple-max31856", "linear-analog", "dht21", "dht22", "dht-humidity", "bme280", "bme-pressure", "bme-humidity", "current-loop-pyro", "drivers", "mcu-temp" (see note below regarding "mcu-temp" support on Duet 3 Mini 5+). Duet WiFi/Ethernet with an attached DueX2 or DueX5 also support "drivers-duex". "dht11" is supported in firmware up to RRF 3.3, but removed from RRF 3.4 onward. "bme280" is only supported in RRF 3.5 and later, and only on Duet 3 boards.
+* **Y"sensor_type"** The sensor and interface type, one of: <br>"thermistor",<br> "pt1000",<br> "rtd-max31865",<br> "thermocouple-max31855",<br> "thermocouple-max31856",<br> "linear-analog",<br> "dht21", "dht22", "dht-humidity",<br> "bme280", "bme-pressure","bme-humidity",<br> ads131.chan0.u, ads131.chan0.b, ads131.chan1,<br> "current-loop-pyro",<br>"drivers",<br>"mcu-temp" (see note below regarding "mcu-temp" support on Duet 3 Mini 5+).<br>Duet WiFi/Ethernet with an attached DueX2 or DueX5 also support "drivers-duex". 
 * **A"name"** Sensor name (optional), displayed in the web interface
 * **Uu, Vv** (RRF 3.5 and later, optional, default zero) Temperature reading offset and slope adjustment parameters. The temperature in °C read from the sensor is adjusted as follows: `adjustedReading = (rawReading * (1.0 + v)) + u`
 
@@ -4148,9 +4148,16 @@ M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
 
 **P"nnn" parameter for "dht-humidity", "bme-pressure" and "bme-humidity**
 
-DHT sensors provide a primary temperature output and an additional output providing humidity. To access the humidity output of a DHT sensor you must first configure the primary sensor of type "dht21" or "dht22". Then you can configure "dht-humidity" to be attached to the DHT sensor's secondary output, by specifying port ```P"Snnn.1"``` where **nnn** is the sensor number of the primary sensor.
+* DHT sensors provide a primary temperature output and an additional output providing humidity. To access the humidity output of a DHT sensor you must first configure the primary sensor of type "dht21" or "dht22". Then you can configure "dht-humidity" to be attached to the DHT sensor's secondary output, by specifying port ```P"Snnn.1"``` where **nnn** is the sensor number of the primary sensor.
 
-Similarly, BME280 sensors provide a primary temperature output and two additional outputs providing pressure and humidity. To access the additional output of a BME280 sensor you must first configure the primary sensor of type "bme280". Then you can configure sensor "bme-pressure" to be attached to the BME280 sensor's secondary output, by specifying port ```P"Snnn.1"``` where nnn is the sensor number of the primary sensor; and you can configure sensor "bme-humidity" to be attached to the BME280 sensor's secondary output by specifying port ```P"Snnn.2"```. If the BME280 is connected to a CAN-connected expansion board then you must also prefix the port name with the CAN address of that board, e.g. ```P"10.S20.1"```.
+* Similarly, BME280 sensors provide a primary temperature output and two additional outputs providing pressure and humidity. To access the additional output of a BME280 sensor you must first configure the primary sensor of type "bme280". Then you can configure sensor "bme-pressure" to be attached to the BME280 sensor's secondary output, by specifying port ```P"Snnn.1"``` where nnn is the sensor number of the primary sensor; and you can configure sensor "bme-humidity" to be attached to the BME280 sensor's secondary output by specifying port ```P"Snnn.2"```. If the BME280 is connected to a CAN-connected expansion board then you must also prefix the port name with the CAN address of that board, e.g. ```P"10.S20.1"```.
+
+**Additional notes on parameters for Duet 3 ADC daughterboard**
+
+* **Y"sensor_type"**  "ads131.chan0.u" or "ads131.chan0.b" depending on whether unipolar or bipolar operation is required
+* **P"pin_name"** <br>**Channel 0**: "spi.cs0" if using a 6HC main board, "spi.cs1" for other main boards; except that if this daughter board is fitted on top of another Duet3D daughter board then add 2 to the cs number. <br>**Channel 1**: "Sxx.1" where xx is the sensor number of the first channel <br>(note you need to prepend the expansion board CAN address if the sensor is on an expansion board)
+* **Bnnn** the reading required when the ADC reading is at minimum (typically with 0V output from the sensor). Defaults to 0 if not provided.
+* **Cnnn** the reading required when the ADC reading is at maximum (typically with 10V output from the sensor). Defaults to 100 if not provided.
 
 ### Examples
 <br>
@@ -4161,9 +4168,14 @@ M308 S1 P"spi.cs1" Y"thermocouple-max31856"           ; configure sensor 1 as K-
 M308 S1 P"spi.cs1" Y"rtd-max31865"                    ; configure sensor 1 as PT100 on pin spi.cs1
 M308 S10 Y"mcu-temp" A"MCU"                           ; defines sensor 10 as MCU temperature sensor
 M308 S11 Y"drivers" A"Duet stepper drivers"           ; defines sensor 11 as stepper driver temperature sensor
-M308 S12 Y"drivers-duex" A"Duex stepper drivers"      ; for Duet 2 WiFi/Ethernet with DueX2/5, defines sensor 12 as DueX2/5 stepper driver temps<br>
+M308 S12 Y"drivers-duex" A"Duex stepper drivers"      ; for Duet 2 WiFi/Ethernet with DueX2/5, defines sensor 12 as DueX2/5 stepper driver temps
 M308 S10 P"0.spi.cs1" Y"dht22" A"Filament Temp"       ; define DHT22 temperature sensor
 M308 S11 P"S10.1" Y"dhthumidity" A"Filament Hum[%]"   ; Attach DHT22 humidity sensor to secondary output of temperature sensor
+M308 S10 Y"ads131.chan0.u" P"spi.cs0" range default 0-100
+M308 S20 Y"ads131.chan0.u" P"123.spi.cs0" B0.0 C1000.0 ;sensor on expansion board with CAN address 123, range 0-1000
+M308 S12 Y"ads131.chan0.u" P"spi.cs3" B-10.0 C10000.0 range -10 to 10000, second ADC board stacked
+M308 S11 Y"ads131.chan1" P"S10.1" ;secondary sensor using default C and D values
+M308 S21 Y"ads131.chan1" P"123.S20.1" B0.0 C5000.0 ; second channel for sensor on expansion board with CAN address 123 range 0-5000
 </pre>
 
 To read mcu and driver temperatures on an expansion board connected to a Duet 3 mainboard, put the CAN address at the start of a dummy P parameter. For example, a board at CAN address 1 would use:
@@ -4172,8 +4184,6 @@ To read mcu and driver temperatures on an expansion board connected to a Duet 3 
 M308 S12 Y"mcu-temp" P"1.dummy" A"3HC MCU"
 M308 S13 Y"drivertemp" P"1.dummy" A"3HC Steppers"
 </pre>
-
-Note that from RRF 3.4.0 "drivertemp" is changed to "drivers" to match the main board.
 
 ### Notes
 
@@ -4187,6 +4197,10 @@ Note that from RRF 3.4.0 "drivertemp" is changed to "drivers" to match the main 
 * All Duets have some degree of auto-calibration to measure and cancel gain and offset errors in the analog-to-digital converters (ADC). The L and H parameters override auto-calibration. For more information on tuning Duet ADCs, see [Connecting thermistors and PT1000 temperature sensors - When to calibrate](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000#when-to-calibrate).
 * The Trinamic drivers used on Duets do not report temperature, rather they report one of: temperature OK, temperature overheat warning, and temperature overheat error. RRF translates these three states into readings of 0C, 100C and 130C.
 * mcu-temp on Duet 3 Mini 5+: The SAME54P20A chip used in the Duet 3 Mini 5+ does not have a functioning temperature sensor. In theory it does have an on-chip temperature sensor, but the errata document for the chip says it doesn't work. However, experimental support for the Duet 3 Mini 5+ on-chip MCU temperature sensor has been added in RepRapFirmware 3.3 beta 3. As the chip manufacturer advises that it is not supported and should not be used, we can't promise that it will give useful readings on all boards. It will be removed if it causes significant support issues. Please report any issues in the [Duet3D support forum](https://forum.duet3d.com/){target=_blank}.
+* From RRF 3.4.0 "drivertemp" is changed to "drivers" to match the main board.
+* "dht11" is supported in firmware up to RRF 3.3, but removed from RRF 3.4 onward. DHT11 sensors are no longer recommened for new designs so replace them with a BME280 sensor instead.
+* "bme280" is only supported in RRF 3.5 and later, and only on Duet 3 boards.
+* Duet3 ADC daughterboard sensors: "ads131.***"  are only supported in RRF 3.6 and later, and only on Duet 3 boards.
 * When converting from older versions of RRF to RRF3 you must replace each M305 command by a similar M308 command, which must be earlier in config.g than any M950 command that uses it. You must also use M950 to define each heater that you use, because there are no default heaters.
   Example - old code:
   <pre class="cblock">
