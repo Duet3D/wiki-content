@@ -2,7 +2,7 @@
 title: Duet3D ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-01-14T15:14:00.706Z
+date: 2025-01-14T15:14:53.916Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -114,7 +114,7 @@ Duet 3 ADC daughterboard has the following connectors:
 | Power Passthough^1^ | SENSOR VIN | VIN | 12-36V , 200mA max voltage supply for powering the connected analog device(s) |
 | ^^ | ^^ | PWR_GND | ground supply for external power supply if the Duet ground is not used, see the Power Pass Though section below  |
 Notes:
-^1^ User the power and ground pass through the ADC board is optional, see Power Pass Through section below
+^1^ Using the power and ground pass through the ADC board is optional, see Power Pass Through section below
 
 ## Power Pass Through
 
