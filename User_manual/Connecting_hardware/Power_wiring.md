@@ -2,7 +2,7 @@
 title: Power Wiring
 description: 
 published: true
-date: 2025-01-14T14:14:21.827Z
+date: 2025-01-14T14:16:51.048Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-29T09:54:45.515Z
@@ -60,7 +60,7 @@ Metal parts that can be touched by the user should be connected to mains ground/
 * **Stepper motor casings**
   These should also be grounded, especially in belt-driven printers. Motion of the belts also causes static charge to build up, which eventually arcs over to the windings, and may damage the stepper driver or MCU. If the motors are screwed to a metal frame, grounding the frame is usually sufficient.
 
-Ideally, run the earthing wire from the power outlet to a common grounding point (e.g. a bolt on the frame), and then run that on to the earth on the PSU. On the PSU, connect the mains earth terminal on the PSU to a -V (i.e. VIN negative) terminal. Run grounding wires from all components that aren't grounded through VIN negative to the common grounding point.
+Ideally, run the ground/earth wire from the power outlet to a common grounding point (e.g. a bolt on the frame), and then run that on to the earth on the PSU. On the PSU, connect the mains earth terminal on the PSU to a -V (i.e. VIN negative) terminal. Run grounding wires from all components that aren't grounded through VIN negative to the common grounding point.
 
 > **It is NOT recommended to:**
 > \- connect the frame (or common grounding point) to the PSU VIN negative output directly. This can cause electrocution in case of a power supply internal fault.
