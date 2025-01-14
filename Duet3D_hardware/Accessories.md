@@ -2,7 +2,7 @@
 title: Accessories
 description: 
 published: true
-date: 2025-01-09T18:02:52.735Z
+date: 2025-01-14T14:47:09.355Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:18:25.503Z
@@ -33,7 +33,7 @@ Hardware information on Duet3D-produced accessories
 
 ## Analog Input
 
-[Duet3D High Resolution ADC](Duet3D_hardware/Accessories/Duet3D_ADC_daughterboard)
+[Duet3D High Resolution ADC](/Duet3D_hardware/Accessories/Duet3D_ADC_daughterboard)
 
 ## Motor position sensing
 
