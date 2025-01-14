@@ -2,35 +2,36 @@
 title: Duet3D ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: false
-date: 2025-01-09T18:13:39.161Z
+date: 2025-01-14T12:23:17.259Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
 ---
 
-![pt100_db_v1.1_top.jpg](/hardware/temperature_db/pt100_db_v1.1_top.jpg =400x)
+![spi_adc_0.2_1_xs.jpg](/hardware/adc_db/spi_adc_0.2_1_xs.jpg =x300)
 
 # Introduction
 
-This daughterboard provides two high resolution analog-to-digital converter (ADC) channels. This is useful for reading analog signals such as pressure feedback from external hardware. This daughterboard is one of a number of SPI connected daughterboards that also includes the [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) and [Thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) daughterboards. 
+This daughterboard provides two high resolution analog-to-digital converter (ADC) channels. This is useful for reading analog signals such as pressure feedback from external hardware. This daughterboard is one of a number of SPI connected sensor boards that also include the [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) and [Thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) daughterboards. 
 
 # Features
 
 ## Supported hardware
 
-Each daughterboard supports 2 channels, ie two thermocouples per daughterboard. Duet mainboards and expansion boards support none, one or two daughterboards. Refer to the table below.
+Each daughterboard supports 2 channels, ie two seperate analog inputs per daughterboard. Duet mainboards and expansion boards support two, one or zero daughterboards. Refer to the table below.
 
-| Duet board | Number of boards supported |
-|---|---|
-| Duet 3 Mainboard 6HC | 2, stacked |
-| Duet 3 Mainboard 6XD | 2, stacked |
-| Duet 3 Mini 5+ | 1 |
-| Duet 3 Expansion 3HC | 2, stacked |
-| Duet 3 Expansion 1HCL | 1, v2.0 only |
-| Duet 3 Toolboard 1LC | 0 |
-| Duet 3 Expansion 1XD | 0 |
+| Duet board | Number of boards supported | Notes
+|---|---|--|
+| Duet 3 Mainboard 6HC | 2 | stacked|
+| Duet 3 Mainboard 6XD | 2 | stacked |
+| Duet 3 Mini 5+ | 1 | Direct connection fouls the TEMP0 connector so a short ribbon cable <100mm (not supplied) is required to connect the board |
+| Duet 3 Expansion 3HC | 2 | stacked |
+| Duet 3 Expansion 1HCL | 1 | v2.0 only. Direct connection fouls the DRIVER connector so a short ribbon cable <100mm (not supplied) is required to connect the board|
+| Duet 3 Toolboard 1LC | Not supported ||
+| Duet 3 Roto Toolboard | Not supported ||
+| Duet 3 Expansion 1XD | Not supported ||
 
-Boards that support only one daughterboard can have either a ADC, Thermocouple or PT100 temperature sensor daughterboard connected, but not two.
+Mainboards and expansion boards that support only one daughterboard can have either a ADC, Thermocouple or PT100 temperature sensor daughterboard connected, but not two. Those that support two SPI daughterboards can have different daughterboards connected.
 
 # Features
 
@@ -38,21 +39,18 @@ Boards that support only one daughterboard can have either a ADC, Thermocouple o
 
 |---|---|
 | **ADC IC** | [ADS131A02](https://www.ti.com/product/ADS131A02){target=_blank}. 24-bit 128-kSPS 2-channel simultaneous-sampling delta-sigma ADC 
-| **Analog voltage input range** | 0-10V |
-| **Power monitoring** | VIN voltage reporting |
-
-
+| **Analog voltage input range**||
+| Unipolar| 0 to +10V |
+| Bipolar| -5 to +5V |
 
 ## Operating limits
 
 |---|---|
-| **Input power voltage** | 5V |
-| **Power consuption** | <200mA |
-| **Maximum ambient temperature** | 75°C |
+| **Input power voltage** | 12-36V |
+| **Input power max current** | <200mA |
+| **Data signalling voltage** | 3.3V |
+| **Maximum ambient temperature** | 80°C |
 | **Absolute maximum board temperature** | 85°C |
-
-Note: The coil PCB can likely cope with higher temperatures than those quoted above, having no active components. 
-Duet-supplied FFC cables are rated at 80°C, but cables are available with a higher temperature rating.
 
 ## Firmware notes
 
@@ -66,19 +64,7 @@ Duet-supplied FFC cables are rated at 80°C, but cables are available with a hig
 
 
 
-## ADC Details
 
-
-
-
-## Operating limits
-
-* Maximum ambient temperature: 70°C
-
-## Open source
-
-* Hardware [source files](https://github.com/Duet3D/TempDaughterboards/tree/master/MAXTempRTD){target=_blank} are available on Github.
-* Duet hardware is built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank}. Using open tools means the barrier to getting involved is as low as possible.
 
 ## 3D model
 
