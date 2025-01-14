@@ -1,8 +1,8 @@
 ---
-title: Duet3D ADC daughterboard
+title: Duet 3 ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-01-14T15:15:24.790Z
+date: 2025-01-14T16:24:56.425Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
