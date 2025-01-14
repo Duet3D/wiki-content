@@ -2,7 +2,7 @@
 title: Duet3D ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: false
-date: 2025-01-14T12:23:17.259Z
+date: 2025-01-14T12:49:06.363Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -12,7 +12,7 @@ dateCreated: 2025-01-09T18:02:17.231Z
 
 # Introduction
 
-This daughterboard provides two high resolution analog-to-digital converter (ADC) channels. This is useful for reading analog signals such as pressure feedback from external hardware. This daughterboard is one of a number of SPI connected sensor boards that also include the [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) and [Thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) daughterboards. 
+The Duet 3 ADC daughterboard provides two high resolution analog-to-digital converter (ADC) channels. This is useful for reading analog signals such as pressure feedback from external hardware. This daughterboard is one of a number of SPI connected sensor boards that also include the [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) and [Thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) daughterboards. 
 
 # Features
 
@@ -60,15 +60,12 @@ Mainboards and expansion boards that support only one daughterboard can have eit
 
 ## Dimensions
 
+![duet3_adc_v0.1_d1.0_dimensions.png](/hardware/adc_db/duet3_adc_v0.1_d1.0_dimensions.png)
 
 
+### 3D model
 
-
-
-
-## 3D model
-
-The STEP file for the Duet3D PT100 temperature sensor daughterboard is shared on the [Duet3D github here](https://github.com/Duet3D/TempDaughterboards/blob/master/MAXTempRTD/MAXTempRTD.step){target=_blank}.
+The STEP file for the Duet 3 ADC daughterboard is shared on the [Duet3D github here](https://github.com/Duet3D/TempDaughterboards/blob/master/MAXTempRTD/MAXTempRTD.step){target=_blank}.
 
 # Installation and configuration
 
