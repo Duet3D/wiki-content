@@ -2,7 +2,7 @@
 title: Duet3D ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-01-14T14:46:25.381Z
+date: 2025-01-14T15:14:00.706Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -157,7 +157,7 @@ Connected to the terminal block labelled SENS1 use a M308 command with the follo
 
 * Sensor number (S): as required
 * Sensor type (Y) "ads131.chan0.u" or "ads131.chan0.b" depending on whether unipolar or bipolar operation is required
-* Port name (P) "spi.cs0" if using a 6HC main board, "spi.cs1" for other main boards; except that if this daughter board is fitted on top of another Duet3D daughter board then add 2 to the cs number as usual
+* Port name (P) "spi.cs0" if using a 6HC main board, "spi.cs1" for other main boards; except that if this daughter board is fitted on top of another Duet3D daughter board then add 2 to the cs number. (note you need to prepend the expansion board CAN address if the sensor is on an expansion board)
 * Zero reading (B): the reading required when the ADC reading is at minimum (typically with 0V output from the sensor). Defaults to 0 if not provided.
 * Full scale reading (C): the reading required when the ADC reading is at maximum (typically with 10V output from the sensor). Defaults to 100 if not provided.
 
