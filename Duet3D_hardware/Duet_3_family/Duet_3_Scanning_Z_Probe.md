@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2024-10-30T13:25:22.455Z
+date: 2025-01-14T13:08:58.457Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -91,7 +91,7 @@ Here is an example with it mounted on a Mini Stealth Burner tool on a Voron:
 
 Note: this board is a v0.1 development board; CAN_L and CAN_H are swapped on the silkscreen.
 
-### STEP file
+### 3D Model
 
 The STEP file for the SZP board is available here: [https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0](https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0)
 STEP files of both coils are available [on Github here](https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/coils/v0.2){target=_blank}.
