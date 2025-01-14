@@ -2,7 +2,7 @@
 title: Duet3D ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: false
-date: 2025-01-14T14:05:41.182Z
+date: 2025-01-14T14:46:06.474Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -31,7 +31,7 @@ Each daughterboard supports 2 channels, i.e. two separate analog inputs per daug
 | Duet 3 Roto Toolboard | Not supported ||
 | Duet 3 Expansion 1XD | Not supported ||
 
-Mainboards and expansion boards that support only one daughterboard can have either a ADC, Thermocouple or PT100 temperature sensor daughterboard connected, but not two. Those that support two SPI daughterboards can have different daughterboards connected.
+Mainboards and expansion boards that support only one daughterboard can have either an ADC, Thermocouple or PT100 temperature sensor daughterboard connected, but not two. Those that support two SPI daughterboards can have different daughterboards connected.
 
 # Features
 
@@ -119,12 +119,12 @@ Notes:
 ## Power Pass Through
 
 The ADC daughterboard provides a filtered power pass though with appropriate ground selection options to allow both the signal and power for an analog device to be connected. This is advantageous because:
-1. All the wring can terminate at the same point
-1. A single power supply can be used for both (assumming compatible voltages)
+1. All the wiring can terminate at the same point
+1. A single power supply can be used for both (assuming compatible voltages)
 1. Power supply noise can be minimised.
 1. Ground loops can be avoided
 
-Even if a seperate supply is required for the sensors than for the duet (for example the Duet is running at 48V and the sensors need 30V. It is generally still a good option to use the power pass though. which the ground configured as below.
+Even if a separate supply is required for the sensors than for the duet (for example the Duet is running at 48V and the sensors need 30V. It is generally still a good option to use the power pass though. which the ground configured as below.
 
 ### Using the Duet power supply to power the sensor(s)
 Connect either +VIN or +12V power from the Duet to the VIN terminal of the 2-pin connector on the daughter board (this is the left-hand terminal when looking into the 2-pin connector). You do not need to connect the right-hand terminal. Fit a jumper to the PWR_GND_SEL pins. This will connect the Power Ground terminals on the input terminal blocks to Duet ground.
@@ -149,7 +149,7 @@ Each ADC has an associated 3-pin header to select how the ADC reference input fo
 
 # Firmware configuration
 
-The daughter board is supported by firmware 3.6.0-beta.3 and later for Duet 3 main boards, 3HC and 1HCL expansion baords
+The daughter board is supported by firmware 3.6.0-beta.3 and later for Duet 3 main boards, 3HC and 1HCL expansion boards
 
 ## Configuring the first channel
 
