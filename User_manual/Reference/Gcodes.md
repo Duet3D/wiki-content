@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-01-14T16:42:32.874Z
+date: 2025-01-15T16:11:21.681Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1945,11 +1945,11 @@ M37 S0 exits simulation mode and prints the total time taken by simulated moves 
 
 M37 with no S parameter prints the time taken by the simulation, from the time it was first entered using M37 S1, up to the current point (if simulation mode is still active) or the point that the simulation was ended (if simulation mode is no longer active).
 
-## M38: Compute SHA1 hash of target file
+## M38: Compute CRC32 hash of target file
 
-*Deprecated and removed from ReprapFirmware 3.5.2 and later.*
+*From 3.6 onwards*
 
-Used to compute a hash of a file on the SD card and returns a hexadecimal string which is the SHA1 of the file. 
+Used to compute a hash of a file on the SD card and returns a hexadecimal string which is the CRC32 of the file. 
 
 ### Examples
 <br>
@@ -1960,6 +1960,8 @@ M38 gcodes/myfile.g
 ### Notes
 
 If the file cannot be found, then the string "Cannot find file" is returned instead.
+
+This used to compute the SHA1 hash  but that deprecated and removed from ReprapFirmware 3.5.2 and later.
 
 ## M39: Report SD card information
 
