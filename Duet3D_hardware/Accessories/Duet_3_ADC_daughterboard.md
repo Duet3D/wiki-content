@@ -2,7 +2,7 @@
 title: Duet 3 ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-01-14T16:24:56.425Z
+date: 2025-01-15T11:17:57.089Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -19,6 +19,8 @@ The Duet 3 ADC daughterboard provides two high resolution analog-to-digital conv
 ## Supported hardware
 
 Each daughterboard supports 2 channels, i.e. two separate analog inputs per daughterboard. Duet mainboards and expansion boards support two, one or zero daughterboards. Refer to the table below.
+
+Note the ADC Daughterboard is not supported on Duet 2 hardware.
 
 | Duet board | Number of boards supported | Notes
 |---|---|--|
@@ -46,8 +48,8 @@ Mainboards and expansion boards that support only one daughterboard can have eit
 ## Operating limits
 
 |---|---|
-| **Input power voltage** | 12-36V |
-| **Input power max current** | <200mA |
+| **Power pass through voltage** | 12-36V |
+| **Power pass through max current** | 200mA |
 | **Data signalling voltage** | 3.3V |
 | **Maximum ambient temperature** | 80°C |
 | **Absolute maximum board temperature** | 85°C |
