@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-01-15T16:11:21.681Z
+date: 2025-01-16T09:31:22.167Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -473,9 +473,15 @@ Feedrate is treated as simply another variable (like X, Y, Z, and E) to be linea
 
 #### Maximum Length of Moves
 
+##### Microstep counter limit
+
 The firmware keeps track of the exact number of microsteps sent to each movement axis using a 32-bit signed integer microstep counter, this limits the maximum absolute move and axis length to (2^31 - 1) microsteps. This does not apply to extruder drives. The firmware multiplies the requested axis position (after adding any offsets) by the steps/mm to get the required microstep position and the microstep counter accumulates across multiple moves, as the axis position increases it increments, as it decreases it decrements. The maximum size of the microstep counter is only an issue for situations where an axis needs to accommodate one or more moves or an overall axis length that would overflow the counter (i.e. an extremely long axis, or an extremely high resolution axis). In typical uses this is not a concern, for example on a standard linear axis using 160 microsteps/mm an axis of over 13km is supported. In cases where the microstep counter is not sufficient (e.g. a very high resolution rotary axis moving for a very long time) G92 can be used to set the origin to a new point on the axis and thus reset the counter.
 
 In a similar manner, if the requested axis position gets very large then accuracy will suffer, because it is held and calculated as a 32-bit float.
+
+##### Move time limit
+
+The maximum duration of a single move that RRF can handle is about 47 minutes on Duet 3 (which is 2^31 cycles of the 750kHz clock) and 38 minutes on Duet 2. If very long running moves are required (e.g. a long running rotary axis) then split the move into several commands each taking no more than about 30 minutes.
 
 ## G2: Controlled Arc Move
 
