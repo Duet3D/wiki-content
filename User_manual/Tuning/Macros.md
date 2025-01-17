@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2025-01-17T14:55:20.664Z
+date: 2025-01-17T15:01:28.015Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -17,6 +17,8 @@ RepRapFirmware allows for gcode sequences, called macros, to be stored on the SD
 Macros can be called from any source of gcode: the console, from a gcode printing off the SD card, from the PanelDue and from another user or system macro. [Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual) makes it easy to upload, edit and create new macros.
 
 Macros also allow for naming gcodes with easier to remember names. For example you can create a Macro for "Allow Cold Extrude" to call [M302 P1](/User_manual/Reference/Gcodes/M302).
+
+Note: if you try to execute a G- or M-command that RRF does not implement, it will execute a system macro of that name if it exists. For example, if you send G40 then it will execute /sys/G40.g if it exists; and if you send M48 then it will execute /sys/M48.g if it exists.
 
 The macro folder can divided into sub directories to more easily organise your macros by type.
 
