@@ -2,7 +2,7 @@
 title: Setting up macro files for common tasks
 description: You can use macro files to automate common tasks. A macro file is simply a text file on the SD card containing a sequence of GCode commands.
 published: true
-date: 2024-10-28T12:47:01.752Z
+date: 2025-01-17T15:00:56.148Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:28:44.097Z
@@ -15,6 +15,7 @@ You can use macro files to automate common tasks. A macro file is simply a text 
 If you want a macro file to appear in the list of macros shown by Duet Web Control and PanelDue, put it in the **/macros** folder of the SD card. If you don't want a macro to appear in the user interface, you can put it in the **/sys** folder. This folder already contains macros that are run automatically when certain events occur, for example the homing macros and the pause and resume macros.
 
 The SD card shipped with your Duet may already contain some files with UPPER_CASE names in **/macros**. These are used by the factory for testing new Duets. You may delete them.
+
 
 ## Examples
 
@@ -41,6 +42,8 @@ Half On
 On
 
 Note: versions of PanelDue prior to 1.20beta2 do not implement this feature.
+
+Note: if you try to execute a G- or M-command that RRF does not implement, it will execute a system macro of that name if it exists. For example, if you send G40 then it will execute /sys/G40.g if it exists; and if you send M48 then it will execute /sys/M48.g if it exists.
 
 # Running Macros
 
