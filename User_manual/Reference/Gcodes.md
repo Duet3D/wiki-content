@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-01-16T09:31:22.167Z
+date: 2025-01-17T13:18:04.704Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2946,7 +2946,7 @@ M143 P100 H3 X104 A2 C0 S65
 
 To control heaters via two thermistors, RepRapFirmware allows the configuration of extra heater protection elements whose index starts from 100. On the Duet 2 Wifi and Duet 2 Ethernet there are 8 extra heater protections available (100-107). See also [M305](/User_manual/Reference/Gcodes/M305){target=_blank}.
 
-### Order dependency
+##### Order dependency
 
 If the heater is a bed or chamber heater then the M143 command must come after the M140 or M141 command that declares the heater as a bed or chamber heater.
 
