@@ -2,7 +2,7 @@
 title: Duet 3 ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-01-15T11:17:57.089Z
+date: 2025-01-17T11:21:29.730Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -12,7 +12,7 @@ dateCreated: 2025-01-09T18:02:17.231Z
 
 # Introduction
 
-The Duet 3 ADC daughterboard provides two high resolution analog-to-digital converter (ADC) channels. This is useful for reading analog signals such as pressure feedback from external hardware. This daughterboard is one of a number of SPI connected sensor boards that also include the [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) and [Thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) daughterboards. 
+The Duet 3 ADC daughterboard provides two high resolution analog-to-digital converter (ADC) channels. These are useful for reading analog signals such as pressure feedback from external hardware. This daughterboard is one of a number of SPI connected sensor boards that also include the [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) and [Thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) daughterboards. 
 
 # Features
 
