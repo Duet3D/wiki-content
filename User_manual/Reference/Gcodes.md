@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-01-20T14:24:34.754Z
+date: 2025-01-20T14:37:47.566Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7506,7 +7506,7 @@ M655 B10 C"hello world" P1 R-4 E0.123
 M655 C"10:pump" P0 S22 F42.1
 </pre>
 
-### Descripton
+### Description
 
 This command allows standard main board firmware builds to control features on custom CAN-connected expansion boards in situations where standard commands such as M950 and M42 are not suitable, for example because they do not provide sufficient parameters. The main board firmware expects to receive a standard reply to it.
 
