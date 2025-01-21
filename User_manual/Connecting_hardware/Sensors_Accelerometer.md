@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the accelerometer support in RRF 3.3 and later.
 published: true
-date: 2025-01-21T15:10:43.833Z
+date: 2025-01-21T15:22:02.322Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -11,7 +11,7 @@ dateCreated: 2021-11-15T14:50:57.165Z
 ![profile1.png](/manual/inputshaping/profile1.png =800x)
 # Introduction
 
-RepRapFirmware 3.3 and later include support for connecting accelerometers. The primary purpose is to identify the ringing frequencies of the mechanics so that DAA and in future other forms of input shaping can be used to reducing ringing.
+RepRapFirmware 3.3 and later include support for connecting accelerometers. The primary purpose is to identify the ringing frequencies of the mechanics so that input shaping can be tuned to reducing ringing.
 
 # Supported hardware
 
@@ -28,7 +28,6 @@ RepRapFirmware 3.3 and later include support for connecting accelerometers. The 
 Duet 3 mainboards, Duet 2 WiFi/Ethernet and Duet 2 Maestro support a directly-connected accelerometer.
 * [Duet3D Accelerometer](https://docs.duet3d.com/Duet3D_hardware/Accessories/Duet3D_Accelerometer){target=_blank}, using the LIS3DH or LIS2DW, designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards.
 * Accelerometer boards using the LIS3DH / LIS3DSH / LIS2DW are available from eBay, Amazon and other retailers such as [SparkFun](https://www.sparkfun.com/){target=_blank}, [Adafruit](https://www.adafruit.com/){target=_blank}, [Digikey](https://www.digikey.com/) [The Pi Hut (UK)](https://thepihut.com/){target=_blank}, [HobbyTronics (UK)](https://www.hobbytronics.co.uk/){target=_blank} and [Pimoroni (UK)](https://shop.pimoroni.com/){target=_blank}. The Adafruit and SparkFun boards are also available from Digikey. There are two different versions of the Adafruit LIS3DH board; either can be used.
-
 
 Duet 3 mainboards also support CAN-bus connected boards with built-in accelerometers. Duet3D have a number of boards with a built-in accelerometer:
 
@@ -258,6 +257,8 @@ For most purposes the default sampling rate and resolution should suffice. The d
 LIS3DH: 1344 400 200 
 LIS3DSH: 1600 800 400
 LIS2DW: 1600 800 400 200
+
+The bandwidth is usually half the data rate, excep that on the LIS2DW when the data rate is 1600Hz the bandwidth is 400Hz. 
 
 # Using accelerometers
 
