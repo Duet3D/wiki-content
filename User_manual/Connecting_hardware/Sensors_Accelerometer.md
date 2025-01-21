@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the accelerometer support in RRF 3.3 and later.
 published: true
-date: 2025-01-21T15:10:18.176Z
+date: 2025-01-21T15:10:43.833Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -44,7 +44,7 @@ Duet 3 mainboards also support CAN-bus connected boards with wired accelerometer
 
 # Limitations
 
-* In RRF 3.3, data collection from accelerometers is currently only available when running the Duet in standalone mode. In RRF 3.4beta2 and later, data can be collected when running in SBC mode too.
+* In RRF 3.3, data collection from accelerometers is currently only available when running the Duet in standalone mode. In RRF 3.4 and later, data can be collected when running in SBC mode too.
 * Use of an accelerometer as a Z probe is not currently supported.
 
 # Wiring
