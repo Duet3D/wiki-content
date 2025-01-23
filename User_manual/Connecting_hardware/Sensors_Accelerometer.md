@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the accelerometer support in RRF 3.3 and later.
 published: true
-date: 2025-01-21T15:22:02.322Z
+date: 2025-01-23T18:26:47.429Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -252,13 +252,13 @@ Match the image to your Duet 3 Toolboard 1LC orientation, and note the I value a
 
 ## Sampling rate and resolution
 
-For most purposes the default sampling rate and resolution should suffice. The default is 1344Hz for the LIS3DH, and 1600Hz for the LIS3DSH and LIS2DW. You can add R and S parameters to M955 if you want to change them. See [M955](/User_manual/Reference/Gcodes/M955) for details. The sampling rates available that are likely to be useful for identifying resonances are:
+For most purposes the default sampling rate and resolution should suffice. The default is 1344Hz for the LIS3DH, and 1600Hz for the LIS3DSH and LIS2DW12. You can add R and S parameters to M955 if you want to change them. See [M955](/User_manual/Reference/Gcodes/M955) for details. The sampling rates available that are likely to be useful for identifying resonances are:
 
 LIS3DH: 1344 400 200 
 LIS3DSH: 1600 800 400
-LIS2DW: 1600 800 400 200
+LIS2DW12: 1600 800 400 200
 
-The bandwidth is usually half the data rate, excep that on the LIS2DW when the data rate is 1600Hz the bandwidth is 400Hz. 
+The bandwidth is usually half the data rate, excep that on the LIS2DW12 when the data rate is 1600Hz the bandwidth is 400Hz. 
 
 # Using accelerometers
 
