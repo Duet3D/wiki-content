@@ -1,8 +1,8 @@
 ---
 title: Duet3D Accelerometer
-description: A standalone accelerometer board using the LIS3DH MEMS digital motion sensor. It designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards
+description: A standalone accelerometer board using the LIS2DW12 MEMS digital motion sensor. It designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards
 published: true
-date: 2024-08-22T14:44:50.767Z
+date: 2025-01-25T12:29:20.513Z
 tags: 
 editor: markdown
 dateCreated: 2023-06-22T01:09:12.785Z
