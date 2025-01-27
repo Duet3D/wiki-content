@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2024-08-20T09:41:15.640Z
+date: 2025-01-27T00:13:31.733Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -79,7 +79,7 @@ The Tool Distribution Board provides flexibility in extending the CAN bus, offer
 
 The Tool Distribution Board does this by extending the CAN bus internally. 
 
-[![duet_3_tool_distribution_board_can_diagram.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_can_diagram.png =500x)](duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_can_diagram.png){target=_blank}
+[![duet_3_tool_distribution_board_can_diagram.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_can_diagram.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_can_diagram.png){target=_blank}
 
 ## Connecting expansion and tool boards
 
