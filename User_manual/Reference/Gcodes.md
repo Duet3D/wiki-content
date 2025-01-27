@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-01-20T14:37:47.566Z
+date: 2025-01-27T14:28:27.180Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5646,13 +5646,34 @@ Sensor drive current is 15, offset is 139919
 
 See also: [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
 
+
+## M558.3: Set touch mode parameters for analog Z probe
+
+### Parameters (provisional)
+
+* **Knn** Z probe number
+* **Sn** Mode to use: 0 = standard mode, 1 = touch mode
+* **Fnnn** Feed rate to use (mm/min) in touch mode
+* **Hn.nn** Nozzle height (mm) to be assumed when touch is detected, normally negative
+* **Vn.nn** Sensitivity to touch, between 0 (not at all sensitive) and 1.0 (very sensitive)
+
+Additional sensitivity parameters may be added in future to provide better control of touch recognition.
+
+### Notes
+
+* All parameters are optional. If the K parameter is not provided then probe 0 is assumed. If other parameters are not provided then their values remain unchanged. If no parameters (except possibly K) are provided then the existing values are reported.
+* In standard mode the output of an analog Z probe is compared with the threshold as the probing move progresses. When the probe output reaches the threshold, probing stops and the Z height is assumed to be equal to the trigger height. In RepRapFirmware both the threshold and trigger height are set using the G31 command.
+* In touch mode the output of the probe is monitored as the probing move progresses. When the rate of change reduces sharply (the exact details depending on the sensitivity parameters) it is assumed hat the nozzle has contacted the bed. The Z height is assumed to be the value set using the H parameter.
+* When an analog Z probe is created using M558, the mode is set to standard mode, the feed rate in touch mode (M558.3 F parameter) is set to the feed rate in standard mode (first or only value of the M558 F parameter) and the touch mode nozzle height and sensitivity assume default values. Fast-then-slow probing is not available in touch mode. 
+
+
 ## M559: Upload file
 
 ### Parameters
 
-* **P**"filename". File name to upload to. 
-* **S**nnn File size for binary transfer. If not present, the transfer is terminated by a M29 command
-* **C**nnn CRC-32 of the file (optional)
+* **P"filename"** File name to upload to. 
+* **Snnn** File size for binary transfer. If not present, the transfer is terminated by a M29 command
+* **Cnnn** CRC-32 of the file (optional)
 
 ### Examples
 <br>
