@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-01-27T14:28:27.180Z
+date: 2025-01-27T15:16:20.890Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5543,7 +5543,7 @@ See also: [Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing
 
 ## M558.1: Calibrate, set or report height vs reading of scanning Z probe
 
-Supported from RRF 3.5.0-rc.1
+Supported from RRF 3.5.0
 
 ### Parameters
 
@@ -5601,7 +5601,7 @@ See also: [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_ca
 
 ## M558.2: Calibrate, set or report drive current and reading offset for scanning Z probe
 
-Supported from RRF 3.5.0-rc.1
+Supported from RRF 3.5.0
 
 ### Parameters
 
@@ -5648,6 +5648,8 @@ See also: [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_ca
 
 
 ## M558.3: Set touch mode parameters for analog Z probe
+
+Supported from RRF 3.6.0
 
 ### Parameters (provisional)
 
