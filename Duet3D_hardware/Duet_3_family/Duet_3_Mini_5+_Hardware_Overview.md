@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-01-27T19:43:39.003Z
+date: 2025-01-27T20:11:42.216Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -189,8 +189,10 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
-| **1 x 2x5 IDC connector** | TEMPDB | For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface board. **Note** boards cannot be stacked so only 1 board at a time is supported. |
-| **1 x 3-pin Jumper** | 5V_SELECT | Source of optional External 5V input, see note 2 below |
+| **1 x 2x5 IDC connector** | SPI DB <br> TEMPDB <v1.03 | For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface board. **Note** boards cannot be stacked so only 1 board at a time is supported. |
+| **2 x 2-pin Jumper2** | SPI3_SELECT<br>SPI4_SELECT| *Version 1.03 and later*: only. Route the spi.cs3 and spi.cs4 signals to the SPI DB connector instead of the 12864 display EXT1 connector |
+| **1 x 3-pin Jumper** | 5V_SELECT | *v0.5-v1.02* Source of optional External 5V input, see note 2 below |
+| **2 x 3-pin Jumpers** | 5V_SELECT |*Version 1.03 and later*: Source of optional External 5V input, see note 2 below |
 | **1 x 2-pin Jumper** | Int_5V_Disable | Connect a jumper across this to disable the internal 5V regulator, see note 2 below |
 | **2 x 2x5 IDCs** | 12864_EXP1, 12864_EXP2 | Headers for connecting a 12864 display using  a ST7567 controller, see "Connecting a 12864 display" below. |
 | **1 x 3-pin KK connector** | NP_LED | This is to connect and power NeoPixel LED strips (DotStar LED strips are not supported) . Connect the  DO pin to Neopixel DI. External 5V must be supplied to the "EXT 5V" header to power the NeoPixel array, they cannot be powered from the onboard regulator. |
@@ -267,13 +269,15 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | IO_5 | io5.in | Input only |
 | IO_6 | io6.in | ^^ |
 | **SPI CS** |||
-| TEMPDB | spi.cs1 | Thermocouple or PT100 daughterboard |
+| SPI DB | spi.cs1 | *(Connector named TEMPDB before v1.03)* Thermocouple or PT100 daughterboard |
 | ^^ | spi.cs2 | ^^ |
+| ^^ | spi.cs3 | v1.03 and later only, shared with lcd.cs3 Jumper selectable |
+| ^^ | spi.cs4 | v1.03 and later only, shared with lcd.a0 Jumper selectable|
 | **Miscellaneous** |||
 | LASER/VFD | laser, vfd, out6 | Pin shared with OUT 6 and LASER/VFD connectors |
 | EXT 5V | pson, io4.out | For controlling an external PSU or SSR, shared with io4.out |
 | NEOPIXEL | led | For controlling Neopixel LEDs (firmware 3.5.0-beta.4 and later only)
-| 12864_EXP1 | lcd.a0,exp1.7 | (RRF 3.5.0-rc.1 and later only) Pin 7 of the EXP1 connector. Available for general output if no 12864 display is connected.
+| 12864_EXP1 | lcd.a0,exp1.7 | (RRF 3.5.0-rc.1 and later only) Pin 7 of the EXP1 connector. Available for general output if no 12864 display is connected.<br> shared with spi.cs4 on v1.03 and later
 | ^^ | enc.sw,exp1.9 | (RRF 3.5.0-rc.1 and later only) Pin 9 of the EXP1 connector. Available for general output if no 12864 display is connected.
 | ^^ | lcd.buzz,exp1.10 | (RRF 3.5.0-rc.1 and later only) Pin 10 of the EXP1 connector. Available for general output including PWM if no 12864 display is connected.
 | 12864_EXP2 | enc.b,exp2.6 | (RRF 3.5.0-rc.1 and later only) Pin 6 of the EXP2 connector. Available for general input (max 3.3V) and output if no 12864 display is connected. There is no protection on this pin.
