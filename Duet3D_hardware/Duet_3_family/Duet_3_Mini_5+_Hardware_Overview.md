@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2024-10-28T08:56:04.702Z
+date: 2025-01-27T11:25:13.974Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -63,7 +63,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 ## Firmware notes
 
-* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later
+* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later.
 * For **firmware update instructions**:
   * Standalone mode - [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. 
   * SBC mode - [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
@@ -87,7 +87,13 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a featu
 # Physical properties
 
 ## Dimensions
+## Tabs{.tabset}
 
+### v1.03
+Ethernet Only
+[![duet3_mini5+_v1.03_d1.0_dimensions.png](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_dimensions.png =500x)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_dimensions.png){target=_blank}
+
+### v0.5-v1.02
 [![duet_3_mini_5+_wifi_dimensions.png](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.1_dimensions.png =500x)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.1_dimensions.png){target=_blank}
 
 ## Mounting
