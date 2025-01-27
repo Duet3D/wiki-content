@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-01-27T12:57:39.472Z
+date: 2025-01-27T12:57:58.180Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -63,7 +63,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 ## Firmware notes
 
-* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later. The Duet3 Mini5+ ethernet v1.02 requires v 3.5 or later firmware.
+* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later. The Duet3 Mini 5+ Ethernet v1.03 requires v3.5 or later firmware.
 * For **firmware update instructions**:
   * Standalone mode - [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. 
   * SBC mode - [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
