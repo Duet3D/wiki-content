@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-01-27T12:57:58.180Z
+date: 2025-01-27T19:43:39.003Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -124,9 +124,13 @@ The STEP files for both boards are available [on Github here](https://github.com
 
 ## Tabs{.tabset}
 
+### Revision v1.03
+Ethernet only
+[![An image showing the connections for the Duet 3 Mini 5+ v1.03 Ethernet](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_wiring.png =x500)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_wiring.png){target=_blank}
+
 ### Revision v0.5 to v1.02
 
-[![An image showing the connections for the Duet 3 Mini 5+ board](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.5_wiring.png =x500)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.5_wiring.png){target=_blank}
+[![An image showing the connections for the Duet 3 Mini 5+ v0.5-v1.02 wifi and ethernet](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.5_wiring.png =x500)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.5_wiring.png){target=_blank}
 
 ### Revision 0.4
 <!--removed the picture, just have the link for this very old board to speed up page loading -->
@@ -147,7 +151,7 @@ Wiring diagram is similar to the v0.4
 ![10K pullup between RESET and 3.3V](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wiring_v0.2.jpg =x400)
 
 This prototype version of the Duet3 Mini 5+ had limited distribution
- -->
+
 #### Errata
 
 * The SCLK and MOSI signals on the PanelDue ribbon cable connector have 5V signal levels, however the PanelDue displays connect these signals directly to the SD card socket, therefore they should be 3.3V. **Do not use a SD card in the SD card socket of PanelDue.** Doing so may damage the card.
@@ -155,7 +159,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 * The wiring between the WiFi module and main processor was incorrect. All prototype boards have been modified to fix this.
 * The LED to indicate WiFi status is missing.
 * Pin 17 on the SBC header is labelled SBC_5V in error it should read SBC_3.3V
-
+ -->
 
 ## Description of Connections
 
