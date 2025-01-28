@@ -2,13 +2,13 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2025-01-28T11:34:47.981Z
+date: 2025-01-28T12:10:53.424Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
 ---
 
-![displays_paneldue_screen.jpg](/manual/displays/displays_paneldue_screen.jpg =500x)
+![displays_paneldue_screen.jpg](/manual/displays/displays_paneldue_screen.jpg =500x){target=_blank}
 
 # Introduction
 
@@ -54,25 +54,25 @@ A PanelDue can be connected to connector IO_0 using a 4-core cable wired like th
 
 | PanelDue pin | Wire colour | Duet 3 IO_0 pin | |
 |---|---|
-| +5V | Red | 5V_EXT (pin 5) | ![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =200x) |
+| +5V | Red | 5V_EXT (pin 5) | [![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =200x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg){target=_blank} |
 | GND | Black/yellow | GND (pin 3) | ^^ |
 | Dout | Blue | IO_0_IN (pin 2) | ^^ |
 | Din | Green | IO_0_OUT (pin 4) | ^^ |
 
-![displays_paneldue_d3_wiring_01.jpg](/manual/displays/displays_paneldue_d3_wiring_01.jpg =400x)
+[![displays_paneldue_d3_wiring_01.jpg](/manual/displays/displays_paneldue_d3_wiring_01.jpg =400x)](/manual/displays/displays_paneldue_d3_wiring_01.jpg){target=_blank}
 
-![displays_paneldue_d3_wiring_02.jpg](/manual/displays/displays_paneldue_d3_wiring_02.jpg =400x)
+[![displays_paneldue_d3_wiring_02.jpg](/manual/displays/displays_paneldue_d3_wiring_02.jpg =400x)](/manual/displays/displays_paneldue_d3_wiring_02.jpg){target=_blank}
 
 
 ### Duet 2 WiFi, Ethernet and Maestro
 
 For PanelDue 5i and 7i, connect the supplied 4-wire cable as shown.
 
-![displays_paneldue_d2_wiring_01.jpg](/manual/displays/displays_paneldue_d2_wiring_01.jpg =400x)
+[![displays_paneldue_d2_wiring_01.jpg](/manual/displays/displays_paneldue_d2_wiring_01.jpg =400x)](/manual/displays/displays_paneldue_d2_wiring_01.jpg){target=_blank}
 
 PanelDue V2
 
-![displays_paneldue_d2_wiring_02.png](/manual/displays/displays_paneldue_d2_wiring_02.png =600x)
+[![displays_paneldue_d2_wiring_02.png](/manual/displays/displays_paneldue_d2_wiring_02.png =600x)](/manual/displays/displays_paneldue_d2_wiring_02.png){target=_blank}
 
 ### Duet 2 WiFi v1.0 and v1.01
 
@@ -105,7 +105,7 @@ Older versions of the Duet 2 WiFi/Ethernet need both the 4-wire and ribbon cable
 
 Connect a 10-way ribbon cable between socket X5 on the PanelDue and socket CONN_SD (Duet 2) or PanelDue_SD (Duet 3). The connector is a standard 10 pin 2 row 2.54mm pitch box connector that accepts IDC connectors for 1.27mm ribbon cable.
 
-![displays_paneldue_ribbon_01.jpg](/manual/displays/displays_paneldue_ribbon_01.jpg =700x)
+[![displays_paneldue_ribbon_01.jpg](/manual/displays/displays_paneldue_ribbon_01.jpg =700x)](/manual/displays/displays_paneldue_ribbon_01.jpg){target=_blank}
 
 *(Photo from [www.flickr.com](https://www.flickr.com/photos/adafruit/12226184743){target=_blank})*
 
@@ -151,7 +151,7 @@ The required wiring is as follows
 
 If you have no temperature daughter boards installed, then one way to cable this is to use both the ribbon cable and the 4-way cable, and remove conductors 1, 9 and 10 of the ribbon cable as illustrated here. **Caution! Using a ribbon cable with all conductors present will feed +5V into the microcontroller!**
 
-![displays_mb6hc_ribbon_cable.jpg](/manual/displays/displays_mb6hc_ribbon_cable.jpg =300x)
+[![displays_mb6hc_ribbon_cable.jpg](/manual/displays/displays_mb6hc_ribbon_cable.jpg =300x)](/manual/displays/displays_mb6hc_ribbon_cable.jpg){target=_blank}
 
 ## Card detect signal
 
@@ -171,11 +171,11 @@ If you are using an older version Duet 3 board, or Duet 3 Mini 5+, there are a n
 
 ### Modify the PanelDue
 
-This mod will enable the card detect signal. See the pictures below showing how to modify a PanelDue 5i v1.0. Connect a wire (thin enamelled copper in this instance) from the SD card socket Card Detect pin to the appropriate pin on the ribbon cable connector.
+This mod will enable the card detect signal. See the pictures below (click for larger versions) showing how to modify a PanelDue 5i v1.0. Connect a wire (thin enamelled copper in this instance) between the SD card socket Card Detect pin and NC (pin 7, between DI and Dout) on the ribbon cable connector.
 
-![displays_5i_cd_mod_01.jpg](/manual/displays/displays_5i_cd_mod_01.jpg =400x) ![displays_5i_cd_mod_02.jpg](/manual/displays/displays_5i_cd_mod_02.jpg =400x)
+[![displays_5i_cd_mod_01.jpg](/manual/displays/displays_5i_cd_mod_01.jpg =400x)](/manual/displays/displays_5i_cd_mod_01.jpg){target=_blank} [![displays_5i_cd_mod_02.jpg](/manual/displays/displays_5i_cd_mod_02.jpg =400x)](/manual/displays/displays_5i_cd_mod_02.jpg){target=_blank}
 
-You can alternatively solder a jumper wire between GND and NC (pin 7, above Dout), though the firmware will see the SD card as always being present.
+You can alternatively solder a jumper wire between GND and NC (pin 7, above Dout) on the ribbon cable connector, though the firmware will see the SD card as always being present.
 
 ### Modify the ribbon cable
 
@@ -184,7 +184,7 @@ Modify the ribbon cable by connecting the card detect wire to ground. The firmwa
 ### Duet 3 Mini 5+
 
 On the Duet 3 Mini 5+ you can ground the card detect signal by bridging pins 2 and 4 of the EXP2 connector as shown here. The firmware will see the SD card as always being present.
-![displays_paneldue_ribbon_02.png](/manual/displays/displays_paneldue_ribbon_02.png =400x)
+[![displays_paneldue_ribbon_02.png](/manual/displays/displays_paneldue_ribbon_02.png =400x)](/manual/displays/displays_paneldue_ribbon_02.png){target=_blank}
 
 # Firmware configuration
 
