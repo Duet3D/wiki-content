@@ -2,7 +2,7 @@
 title: Duet 3 ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-01-17T11:21:29.730Z
+date: 2025-01-28T10:47:33.659Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -26,12 +26,13 @@ Note the ADC Daughterboard is not supported on Duet 2 hardware.
 |---|---|--|
 | Duet 3 Mainboard 6HC | 2 | stacked|
 | Duet 3 Mainboard 6XD | 2 | stacked |
-| Duet 3 Mini 5+ | 1 | Direct connection fouls the TEMP0 connector so a short ribbon cable <100mm (not supplied) is required to connect the board |
+| Duet 3 Mini 5+ | 1* | Direct connection fouls the TEMP0 connector so a short ribbon cable <100mm (not supplied) is required to connect the board |
 | Duet 3 Expansion 3HC | 2 | stacked |
 | Duet 3 Expansion 1HCL | 1 | v2.0 only. Direct connection fouls the DRIVER connector so a short ribbon cable <100mm (not supplied) is required to connect the board|
 | Duet 3 Toolboard 1LC | Not supported ||
 | Duet 3 Roto Toolboard | Not supported ||
 | Duet 3 Expansion 1XD | Not supported ||
+**Note,the Mini 5+ Ethernet v1.03 supports two SPI DB boards stacked, v1.02a and earlier support 1*
 
 Mainboards and expansion boards that support only one daughterboard can have either an ADC, Thermocouple or PT100 temperature sensor daughterboard connected, but not two. Those that support two SPI daughterboards can have different daughterboards connected.
 
