@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2024-11-07T23:56:37.669Z
+date: 2025-01-28T15:14:25.525Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -195,7 +195,7 @@ SD card longest block write time: 5.1ms, max retries 0
 
 If it responds with "SD card detected" in M122, it indicates that the Card Detect pin of the SD card is working (this is also the pin whose soldering causes the most trouble; see below).
 
-The interface speed in the same line gives an indication of whether the processor is able to communicate with the SD card at all. It should be 20MB/sec on a Duet WiFi/Ethernet, 15MB/sec on a Duet Maestro, 25MB/sec on Duet 3 MB6HX or MB6XD in standalone mode, and 22.5MB/sec on a Duet 3 Mini in standalone mode. Other numbers, eg 12MBs/sec, are odd and suggest an issue with the SD card. If the socket or processor is faulty but the card is detected, it usually drops to 0.2MB/sec.
+The interface speed in the same line gives an indication of whether the processor is able to communicate with the SD card at all. It should be 20MB/sec on a Duet WiFi/Ethernet, 15MB/sec on a Duet Maestro, 25MB/sec on Duet 3 MB6HC or MB6XD in standalone mode, and 22.5MB/sec on a Duet 3 Mini in standalone mode. Other numbers, eg 12MBs/sec, are odd and suggest an issue with the SD card. If the socket or processor is faulty but the card is detected, it usually drops to 0.2MB/sec.
 
 ### Check you have space on the SD card
 
