@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2024-09-18T15:56:17.627Z
+date: 2025-01-28T11:34:47.981Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -157,7 +157,7 @@ If you have no temperature daughter boards installed, then one way to cable this
 
 The card detect signal (CD) is used to tell the Duet whether a card is inserted or not. Non-integrated versions of PanelDue (V2, V3) and older versions of PanelDue 5i and 7i (v1.0 of the 5i and v2.0 of the 7i) do not provide a card detect signal.
 
-**Duet 2** boards do not support the card detect signal on the external SD card, so can never tell whether a card is inserted or not except by trying to read it, and can't detect a card being removed. No modifications are required connected older or newer PanelDue, or other external SD card adapters, to Duet 2 boards.
+**Duet 2** boards do not support the card detect signal on the external SD card, so can never tell whether a card is inserted or not except by trying to read it, and can't detect a card being removed. No modifications are required when connecting older or newer versions of PanelDue, or other external SD card adapters, to Duet 2 boards.
 
 **Duet 3** boards do support the card detect signal. Newer versions of the PanelDue 5i and 7i (v1.01 and later of the 5i and v2.01 and later of the 7i) provide this signal. 
 
