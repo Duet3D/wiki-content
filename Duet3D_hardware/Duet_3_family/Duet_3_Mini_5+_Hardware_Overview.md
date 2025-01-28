@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-01-27T20:11:42.216Z
+date: 2025-01-28T10:38:22.436Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -34,7 +34,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 | **Medium current outputs** | 4 x PWM-controlled outputs, of which 2 support tacho input. Voltage selectable between VIN and 12V in 2 banks ||
 | **Thermistor/PT1000 inputs** | 3 x inputs, optimised for 100K thermistors and PT1000 sensors ||
 | **Inputs/Outputs** | 5 x on-board I/O connectors plus 2 x input-only connectors for endstop, filament monitor, Z probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Also one output with 5V signal level for hobby servo, laser control or VFD. ||
-| **Power monitoring** | VIN voltage monitoring allows for state save on power failure. ||
+| **Power monitoring** | VIN voltage monitoring allows for the state to be saved on power failure. ||
 | **SD card interface** | On-board high speed SD card socket. ||
 
 
@@ -171,7 +171,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **2 x 4-pin KK connectors** | OUT_3, OUT_4 | Intended for PWM-controllable fans or other medium/low current loads. Flyback diodes are built-in to these outputs. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OULC1+ pin (+ve) and the OUT_n_NEG pin (-ve).
 | ^^ | ^^ | **Note:** OUT_3 and OUT_4 are protected by a flyback diode to V_FUSED. This does not provide protection if driving these outputs from a higher voltage than V_FUSED |
 | **1 x 3-pin Jumper** | OUT_3&4 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each ). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
-| **2 x 2-pin KK connectors** | OUT_5, OUT_6 | these are intended for PWM-controllable fans or other medium/low current loads. Flyback diodes are built-in to these outputs. **Note** out_6 PWM pin is shared with LASER/VFD |
+| **2 x 2-pin KK connectors** | OUT_5, OUT_6 | These are intended for PWM-controllable fans or other medium/low current loads. Flyback diodes are built-in to these outputs. **Note** out_6 PWM pin is shared with LASER/VFD |
 | ^^ | ^^ | **Note:** OUT_5 and OUT_6 are protected by a flyback diode to V_FUSED. This does not provide protection if driving these outputs from a higher voltage than V_FUSED |
 | **1 x 3-pin Jumper** | OUT_5&6 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each ). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
 | **5 x 4-pin KK connectors** | DRIVER_0, DRIVER_1, DRIVER_2, DRIVER_3, DRIVER_4 | Stepper motor connections, See "Connecting Stepper Motors" section below. |
@@ -184,7 +184,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **Reset** |  | Single push to reset the board. Double push to put the board into UF2 bootloader upload mode. See [User manual: Updating firmware - Duet 3 Mini 5+ via USB](/User_manual/RepRapFirmware/Updating_firmware#duet-3-mini-5-wifiethernet) |
 | **1 x JST ZH 6-pin connectors** | SWD | Connection for an SWD programming device such as an Atmel-ICE |
 | **1 x 2-pin KK connectors** | CAN | CAN-FD Bus connection for Duet 3 CAN-FD expansion boards. |
-| **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signals levels with 470R series resistors. IO_1,2,3 are PWM capable. |
+| **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signal levels with 470R series resistors. IO_1,2,3 are PWM capable. |
 | **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. Jumpers to allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
@@ -233,7 +233,7 @@ The red LED next to the Reset button is labelled "STATUS".  *On version 0.2 boar
 
 For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names).
 
-RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of gcode commands, eg M574, M558, M950.
+RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of gcode commands, e.g. M574, M558, M950.
 
 The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mini 5+.
 
@@ -253,11 +253,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | OUT_6 | out6, laser, vfd | Pin shared with OUT 6 and LASER/VFD connectors |
 | **Temperature inputs** |||
 | TEMP_0 | temp0 | |
-| TEMP_1 | temp1 | |
-| TEMP_2 | temp2 | |
-| **Inputs/Output** |||
-| IO_0 | io0.in | PanelDue, endstops, Z probes, filament monitors etc. Shares io0.out and io0.in pins with PanelDue_SD connector. |
-| ^^ | io0.out | ^^ |
+
 | IO_1 | io1.in | endstops, Z probes, filament monitors etc |
 | ^^ | io1.out | ^^ |
 | IO_2 | io2.in | ^^ |
@@ -276,12 +272,12 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | **Miscellaneous** |||
 | LASER/VFD | laser, vfd, out6 | Pin shared with OUT 6 and LASER/VFD connectors |
 | EXT 5V | pson, io4.out | For controlling an external PSU or SSR, shared with io4.out |
-| NEOPIXEL | led | For controlling Neopixel LEDs (firmware 3.5.0-beta.4 and later only)
-| 12864_EXP1 | lcd.a0,exp1.7 | (RRF 3.5.0-rc.1 and later only) Pin 7 of the EXP1 connector. Available for general output if no 12864 display is connected.<br> shared with spi.cs4 on v1.03 and later
-| ^^ | enc.sw,exp1.9 | (RRF 3.5.0-rc.1 and later only) Pin 9 of the EXP1 connector. Available for general output if no 12864 display is connected.
+| NEOPIXEL | led | For controlling Neopixel LEDs (firmware 3.5 and later only)
+| 12864_EXP1 | lcd.a0,exp1.7 | (RRF 3.5 and later only) Pin 7 of the EXP1 connector. Available for general output if no 12864 display is connected.<br> Shared with spi.cs4 on SPI DB header on v1.03 and later.
+| ^^ | enc.sw,exp1.9 | (RRF 3.5.0-rc.1 and later) Pin 9 of the EXP1 connector. Available for general output if no 12864 display is connected.
 | ^^ | lcd.buzz,exp1.10 | (RRF 3.5.0-rc.1 and later only) Pin 10 of the EXP1 connector. Available for general output including PWM if no 12864 display is connected.
-| 12864_EXP2 | enc.b,exp2.6 | (RRF 3.5.0-rc.1 and later only) Pin 6 of the EXP2 connector. Available for general input (max 3.3V) and output if no 12864 display is connected. There is no protection on this pin.
-| ^^ | enc.a,exp2.8 | (RRF 3.5.0-rc.1 and later only) Pin 8 of the EXP2 connector. Available for general input (max 3.3V) and output if no 12864 display is connected. There is no protection on this pin.
+| 12864_EXP2 | enc.b,exp2.6 | (RRF 3.5 and later) Pin 6 of the EXP2 connector. Available for general input (max 3.3V) and output if no 12864 display is connected. There is no protection on this pin.
+| ^^ | enc.a,exp2.8 | (RRF 3.5 and later) Pin 8 of the EXP2 connector. Available for general input (max 3.3V) and output if no 12864 display is connected. There is no protection on this pin.
 
 ## Input/Output
 
@@ -333,7 +329,7 @@ V_FUSED is distributed across the board as follows:
 * OUT 1 and OUT 2 headers
 * V_OUTLC1 and V_OUTLC2 selection jumpers
 
-> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
+> If you use a relay to control VIN power to the board, i.e. the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
 >
 > OUT ports on the board should NOT be used to switch power to other boards directly. See the note at the end of the 'inrush current' section at the link above.  
 {.is-info}
@@ -346,7 +342,31 @@ V_FUSED is distributed across the board as follows:
 
 ### 5V
 
-**5V**: Split up to 5V_EXT, 5V_INT. Those points can also be supplied by VBUS (i.e. USB) and from the 5V_SELECT jumper that selects between 5V_EXT_INPUT and 5V_SBC. (see 5V power options below for more details).
+### Tabs{.tabset}
+
+#### Revision v1.03
+Ethernet only
+
+**5V**: Split up to 5V_EXT, 5V_INT. Those points can also be supplied by USB (i.e. VBUS) and from the 5V SELECT jumpers that allow selection from 5V_EXT_INPUT and 5V_SBC.
+* **5V_EXT feeds**:
+  * IO headers
+  * 12864 display and PanelDue
+  * LASER/VFD header
+* **5V_INT feeds**:
+  * Internal and External 3.3V regulators
+  * External Driver header
+  * Internal 5V logic
+
+5V input can come from one of these sources:
+
+* **Onboard 5V regulator:** Once 3.3V and other onboard demands are met approximately 700mA remains for use on the 5V_EXT rail. No jumpers required on 5V_EXT_INPUT, 5V_SBC or Int_5V_Disable.
+* **USB:** Can supply both 5V_INT and 5V_EXT. Limits based on USB specification. No jumpers required on 5V_EXT_INPUT and 5V_SBC or Int_5V_Disable.
+* **5V_EXT_IN**: Put a jumper on 5V_EXT_INPUT, add jumper to Int_5V_Disable, to disable the onboard 5V regulator. With the 5V_EXT_INPUT jumper set to this position, 5V is passed through to both 5V_EXT and 5V_INT from the EXT_5V header. The EXT_5V header also has a pin for controlling an external power supply (note signal shared with io4.out). This allows for the board to be powered from 5V, with an external supply for VIN turned on and off as required. 
+* **5V_SBC:** In some, limited, cases it may be desirable to power the board from the 5V output of a SBC connected to the SBC header. Put a jumper 5V_SBC, and put another jumper on 'Internal 5V disable'. Note that the total power of the Duet+ peripherals must be factored into the SBC power budget. Also note that powering the SBC from the Duet is not supported.
+* **5V_EXT_IN** and **5V_SBC:**: With both jumpers fitted and suitable supply connected to 5V_EXT the external 5V supply can also supply the SBC. Note that the total 5V current draw on 5V_EXT should be no more than 2A. This includes any neopixels, the Duet5V power consumption and anything supplied to the SBC. Ensure you put a jumper on 'Internal 5V disable' as well.
+
+#### Revision v0.5-v1.02
+**5V**: Split up to 5V_EXT, 5V_INT. Those points can also be supplied by USB (i.e. VBUS) and from the 5V_SELECT jumper that selects between 5V_EXT_INPUT and 5V_SBC. 
 * **5V_EXT feeds**:
   * IO headers
   * 12864 display and PanelDue
@@ -384,6 +404,8 @@ M150 X2 R255 U255 B255 S3   ; set all 3 LEDs to white
 
 You can adjust the M150 command to change the backlight colours. Please note, interrupts are disabled for a short time while the backlight colours are changed, and printing will be paused during this time; therefore you should not change the backlight colours during a print.
 
+Note: (v1.03 only) the 12864 display cannot be used in conjunction with a second SPI DB as pins are shared.
+
 ### Connecting a PanelDue
 
 A [PanelDue](/Duet3D_hardware/Accessories/PanelDue) can be connected to IO_0 using a 4-wire cable. See [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#option-1-4-way-cable)
@@ -412,7 +434,7 @@ See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_conn
 
 See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
 
-The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a range of expansion devices. 
+The CAN-FD bus provides connectivity to compatible devices. Duet3D manufactures a range of expansion devices. 
 
 The CAN-FD bus is connected via a 2-pin KK connector. 2-core twisted pair wiring is recommended.
 
@@ -439,7 +461,10 @@ You will need to remove the bootloader protection by doing Erase Chip first and 
 
 Ethernet Only
 
-* Changed connector to USB-C
+* Changed USB connector to USB-C
+* Split the 5V_EXT_INPUT and 5V_SBC selection jumpers to allow the 5V_SBC to be powered from 5V_EXT.
+* Added drillable jumpers to allow the CAN termination resistors to be disconnected to make it easier to use the mini5+ as an expansion board.
+* Added option to connect two 12864 LCD pins to the SPI DB header to allow for a second SPI DB to be used if the 12864 display was not used.
 
 ## Revision 1.02(a)
 
