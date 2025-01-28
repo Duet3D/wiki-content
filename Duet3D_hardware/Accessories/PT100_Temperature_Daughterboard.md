@@ -2,7 +2,7 @@
 title: Duet3D PT100 temperature sensor daughterboard
 description: Overview of the Duet3D PT100 daughterboard
 published: true
-date: 2025-01-09T18:05:17.697Z
+date: 2025-01-28T10:47:15.823Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T11:12:36.201Z
@@ -12,27 +12,29 @@ dateCreated: 2021-09-07T11:12:36.201Z
 
 # Introduction
 
-The Duet range of machine controllers support one or more temperature daughterboards which provide expanded temperature sensor connectivity using Maxim integrated ICs. These daughterboards connect to the Duet digitally over SPI.
+The Duet range of machine controllers support one or more SPI daughterboards which provide expanded sensor connectivity. These daughterboards connect to the Duet digitally over SPI.
 
 # Features
 
 ## Supported hardware
 
-Each daughterboard supports 2 channels, ie two PT100 sesnsors per daughterboard. Duet mainboards and expansion boards support none, one or two daughterboards. Refer to the table below.
+Each daughterboard supports 2 channels, ie two PT100 sensors per daughterboard. Duet mainboards and expansion boards support none, one or two daughterboards. Refer to the table below.
 
 | Duet board | Number of boards supported |
 |---|---|
 | Duet 3 Mainboard 6HC | 2, stacked |
 | Duet 3 Mainboard 6XD | 2, stacked |
-| Duet 3 Mini 5+ | 1 |
+| Duet 3 Mini 5+ | 1* |
 | Duet 3 Expansion 3HC | 2, stacked |
 | Duet 3 Expansion 1HCL | 1, v2.0 only |
+| Duet 3 Roto Toolboard | Not supported ||
 | Duet 3 Toolboard 1LC | 0 |
 | Duet 3 Expansion 1XD | 0 |
 | Duet 2 WiFi / Ethernet | 2, stacked |
 | DueX2 / DueX5 | 2, stacked |
+**Note,the Mini 5+ Ethernet v1.03 supports two SPI DB boards stacked, v1.02a and earlier support 1*
 
-Boards that support only one daughterboard can have either a Thermocouple or PT100 temperature sensor daughterboard connected, but not both.
+Mainboards and expansion boards that support only one daughterboard can have either an ADC, Thermocouple or PT100 temperature sensor daughterboard connected, but not two. Those that support two SPI daughterboards can have different daughterboards connected.
 
 ## PT100 sensor support
 
