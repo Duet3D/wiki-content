@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-01-28T10:38:22.436Z
+date: 2025-01-28T10:41:06.548Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -189,7 +189,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
-| **1 x 2x5 IDC connector** | SPI DB <br> TEMPDB <v1.03 | For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface board. **Note** boards cannot be stacked so only 1 board at a time is supported. |
+| **1 x 2x5 IDC connector** | SPI DB | *(Connector named TEMPDB before v1.03)* <br> For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface board. **Note** boards cannot be stacked so only 1 board at a time is supported. |
 | **2 x 2-pin Jumper2** | SPI3_SELECT<br>SPI4_SELECT| *Version 1.03 and later*: only. Route the spi.cs3 and spi.cs4 signals to the SPI DB connector instead of the 12864 display EXT1 connector |
 | **1 x 3-pin Jumper** | 5V_SELECT | *v0.5-v1.02* Source of optional External 5V input, see note 2 below |
 | **2 x 3-pin Jumpers** | 5V_SELECT |*Version 1.03 and later*: Source of optional External 5V input, see note 2 below |
