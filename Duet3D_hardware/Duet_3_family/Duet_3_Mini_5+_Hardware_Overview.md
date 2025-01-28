@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-01-28T10:41:26.678Z
+date: 2025-01-28T17:47:47.285Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -27,13 +27,13 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 |  | **Duet 3 Mini 5+ WiFi** | **Duet 3 Mini 5+ Ethernet** |
 | **Processor** | [ATSAME54P20A](https://www.microchip.com/wwwproducts/en/ATSAME54P20A) ||
 | **Processor features** | 32-bit, 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache ||
-| **Networking/Comms** | 2.4GHz WiFi; USB port; serial port; CAN-FD bus | 10BaseT/100BaseTX Ethernet; USB port; serial port; CAN-FD bus |
+| **Networking/Comms** | 2.4GHz WiFi; USB port; CAN-FD bus | 10BaseT/100BaseTX Ethernet; USB port; serial port; CAN-FD bus |
 | **On-board stepper drivers** | 5 x [TMC2209](https://www.trinamic.com/products/integrated-circuits/details/tmc2209-la/) ||
 | **Stepper driver features** | Up to 2.0A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 ||
 | **High current outputs** | 1 x 15A, 2 x 5A each ||
 | **Medium current outputs** | 4 x PWM-controlled outputs, of which 2 support tacho input. Voltage selectable between VIN and 12V in 2 banks ||
 | **Thermistor/PT1000 inputs** | 3 x inputs, optimised for 100K thermistors and PT1000 sensors ||
-| **Inputs/Outputs** | 5 x on-board I/O connectors plus 2 x input-only connectors for endstop, filament monitor, Z probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Also one output with 5V signal level for hobby servo, laser control or VFD. ||
+| **Inputs/Outputs** | 5 x on-board I/O connectors plus 2 x input-only connectors for endstop, filament monitor, Z probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Also one output with 5V signal level for hobby servo, laser control or VFD. Two I/O connectors have serial UART support. ||
 | **Power monitoring** | VIN voltage monitoring allows for the state to be saved on power failure. ||
 | **SD card interface** | On-board high speed SD card socket. ||
 
@@ -438,6 +438,36 @@ The CAN-FD bus provides connectivity to compatible devices. Duet3D manufactures 
 
 The CAN-FD bus is connected via a 2-pin KK connector. 2-core twisted pair wiring is recommended.
 
+### Bus termination
+
+There are two 60R bus termination resistors fitted to the CAN-FD bus on Mini 5+ boards, so normally this board must be at the end of the CAN bus.
+
+### Removing the CAN bus termination
+
+If the board needs to be on the CAN bus between other boards, the CAN bus termination resistors should be disconnected or removed. This is NOT required in normal operation. It is only required if a Mini 5+ board is to be used as an expansion board and not placed at the end of the bus but somewhere in between.
+
+#### Board revision 1.03 and later
+
+From board revision 1.03 and later, there are two drill-to-disconnect jumpers that allow the termination resistor to be disconnected.
+
+To disconnect the termination resistors, use a small drill bit ~2mm by hand to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. Do not drill all the way through the board, the copper layer is approx 70um thick (i.e. very thin!) once its removed test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.
+
+Both jumpers must be disconnected or connected. Do not do only one.
+
+If in the future you want to add the termination resistor back into the circuit the jumper can be bridged with solder.
+
+#### Earlier boards
+
+[![duet_3_mini_5+_can_termination_01.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_can_termination_01.png =300x){.align-right}](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_can_termination_01.png) Board revisions earlier than v1.03 will require you to desolder the two termination resistors. You need to remove both resistors, marked on the PCB silkscreen as R96 and R97, located adjacent to the CAN pins. 
+*See image on right, resistors highlighted red. Click image for larger version.*
+
+Both resistors must be removed to disable the CAN termination. Do not do only one.
+
+To remove a 0402 component such as one of those resistors, we recommend using a soldering iron with a 45 degree bit just large enough to cover both pads of it. Put fresh solder on the bit and then apply it to the component for several seconds. Once the solder under the resistor has melted, the resistor will stick to the bit and can be lifted off.
+
+**NOTE:** Removing these termination resistors will void the warranty!
+
+<p style="clear:both"></p>
 
 # Programming the bootloader
 
