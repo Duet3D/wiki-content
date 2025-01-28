@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2024-09-06T13:10:25.811Z
+date: 2025-01-28T10:50:00.701Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -511,7 +511,7 @@ For further information on CAN connectivity, see [CAN connection](/User_manual/M
 
 ### Bus termination
 
-There is a 120R bus termination fitted to the CAN-FD bus so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, , however this is not required in normal operation. It is only required if a 6HC board is to be used as an expansion board and not placed at the end of the bus but somewhere in between.
+There is a 120R bus termination fitted to the CAN-FD bus so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, , however this is not required in normal operation. It is only required if a 6XD board is to be used as an expansion board and not placed at the end of the bus but somewhere in between.
 
 ### Removing the bus termination
 
