@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2024-12-02T12:30:33.522Z
+date: 2025-01-29T15:17:02.696Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -29,8 +29,11 @@ Duet3D have boards that use the LDC1612 chip, including the [Duet 3 Scanning Z P
 
 The following Gcodes are used to configure the SZP:
 [M558](/User_manual/Reference/Gcodes/M558) - Sets probe number (K parameter), type (P), input pin (C), feed rate (F) and travel speed (T)
-[M308](/User_manual/Reference/Gcodes/M308) - Set SZP temperature sensor
-[G31](/User_manual/Reference/Gcodes/G31) - Sets probe offsets, adjustments for temperature
+[M558.1](/User_manual/Reference/Gcodes/M558_1) - Calibrate height vs reading of scanning Z probe (see below)
+[M558.2](/User_manual/Reference/Gcodes/M558_2) - Calibrate or set drive level and reading offset for scanning Z probe (see below)
+[M558.3](/User_manual/Reference/Gcodes/M558_3) - Set scanning probe touch mode parameters (RRF 3.6.0-beta.3+2 and later only)
+[M308](/User_manual/Reference/Gcodes/M308) - Setup SZP temperature sensor
+[G31](/User_manual/Reference/Gcodes/G31) - Set probe offsets and temperature compensation
 [M557](/User_manual/Reference/Gcodes/M557) - Define mesh grid
 
 Add the following to your config.g. Some values will be dependent on your specific setup. See the Calibration section below for determining the M558.2 values.
@@ -125,13 +128,28 @@ G1 Z6                        ; Move up at end of calibration
 G29 S0 K1                    ; Scan bed and create mesh
 ```
 
-# Using the SZP to set Z height
+# Using the SZP in normal mode to set Z height
 
 A scanning Z probe is designed to do just that; scan the bed to create a bed mesh. With careful calibration it should be possible to use it as a probe to set the Z height. However, inductive probes are susceptible to temperature, and will give different readings at different temperatures at the same height.
 
 Testing is currently ongoing to produce a good method to calibrate the SZP for different temperatures. These instructions will be updated when testing is complete, and recommendations can be made.
 
 For now, we recommend using another method to set the Z height.
+
+# Using the SZP in touch mode to set Z height
+
+Firmware 3.6.0-beta.3+2 supports scanning probe touch mode experimentally. In touch mode the tool head bearing the sensor is lowered (or the bed raised) and the reading from the sensor is monitored, until the rate of change of the reading reduces sharply, which happens when the nozzle contacts the bed.
+
+Use of touch mode requires that the sensor continues to give good readings all the way from the height at which probing starts right down to when the nozzle contacts the bed. The selected drive level (see M558.2) and a suitable height of the sensor coil above the nozzle are critical to achieving this.
+
+Touch mode is enabled using the [M558.3](/User_manual/Reference/Gcodes/M558_3) command. You can use this command to turn touch mode on and off, and also to set the following parameters that are used in touch mode:
+- F parameter: probing speed in touch mode, default 150mm/min (2.5mm/sec). Slower probing speeds are generally more precise than high speeds.
+- V parameter: sensitivity (0.0 to 1.0), default 0.8. Higher sensitivity may improve accuracy and reduce the distance by which the nozzle pushes into the bed, but if it is too high then noise in the reading may cause a premature stop.
+- H parameter: nozzle height to be assumed when probing stops. Find this by experiment after choosing the V parameter. This will be negative, e.g. -0.1mm.
+
+You may wish to use the M913 command to reduce current to the Z motors when touch probing, to reduce the chance of damage if the touch is not detected.
+
+Touch probing must always be initiated with the nozzle above the bed. If the nozzle is already in contact with the bed when touch probing is initiated, the touch will probably not be detected.
 
 # Other analog probes
 
