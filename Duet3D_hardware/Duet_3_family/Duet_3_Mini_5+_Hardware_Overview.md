@@ -2,13 +2,13 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-01-28T17:47:47.285Z
+date: 2025-01-29T09:43:51.938Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
 ---
 
-![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =400x)
+[![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =400x)](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg){target=_blank}
 
 # Introduction
 
@@ -25,10 +25,10 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 | HARDWARE SPECIFICATION |||
 |:---|:---|
 |  | **Duet 3 Mini 5+ WiFi** | **Duet 3 Mini 5+ Ethernet** |
-| **Processor** | [ATSAME54P20A](https://www.microchip.com/wwwproducts/en/ATSAME54P20A) ||
+| **Processor** | [ATSAME54P20A](https://www.microchip.com/wwwproducts/en/ATSAME54P20A){target=_blank} ||
 | **Processor features** | 32-bit, 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache ||
 | **Networking/Comms** | 2.4GHz WiFi; USB port; CAN-FD bus | 10BaseT/100BaseTX Ethernet; USB port; serial port; CAN-FD bus |
-| **On-board stepper drivers** | 5 x [TMC2209](https://www.trinamic.com/products/integrated-circuits/details/tmc2209-la/) ||
+| **On-board stepper drivers** | 5 x [TMC2209](https://www.trinamic.com/products/integrated-circuits/details/tmc2209-la/){target=_blank} ||
 | **Stepper driver features** | Up to 2.0A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 ||
 | **High current outputs** | 1 x 15A, 2 x 5A each ||
 | **Medium current outputs** | 4 x PWM-controlled outputs, of which 2 support tacho input. Voltage selectable between VIN and 12V in 2 banks ||
@@ -75,14 +75,14 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 Importantly Duets are Open:
 
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mini5plus/blob/main/LICENSE)
-* All hardware [source files](https://github.com/Duet3D/Duet3-Mini5plus) are available on Github.
-* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mini5plus/blob/main/LICENSE){target=_blank}
+* All hardware [source files](https://github.com/Duet3D/Duet3-Mini5plus){target=_blank} are available on Github.
+* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl){target=_blank} web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware){target=_blank} are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank} and [Eclipse](https://eclipse.org/){target=_blank} using open tools means the barrier to getting involved is as low as possible.
 
 ## Feature Comparison
 
-See the [Hardware overview](/Duet3D_hardware/Hardware_overview) page for a feature comparison table between different versions of the Duet.
+See the [Hardware overview](/Duet3D_hardware/Hardware_overview){target=_blank} page for a feature comparison table between different versions of the Duet.
 
 # Physical properties
 
@@ -116,7 +116,7 @@ Due to this you would be unable to monitor the MCU temp in order to control fans
 
 ## 3D Model
 
-The STEP files for both boards are available [on Github here](https://github.com/Duet3D/Duet3-Mini5plus/tree/main/v1.01).
+The STEP files for both boards are available [on Github here](https://github.com/Duet3D/Duet3-Mini5plus/tree/main/v1.01){target=_blank}.
 
 # Physical connections
 
@@ -181,7 +181,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **1 x 2-pin KK connectors** | 12V | Always on 12V supply (*see note 1 below*) |
 | **Network** | **Ethernet** | 1 x RJ45 100BaseT Port. *non MDIX* connect to an Ethernet switch, hub or MDIX enabled laptop port. If connecting to a non MDIX enabled port use a crossover cable. Orange LED on Ethernet port indicates Ethernet enabled, green LED indicates network activity |
 | ^^ | **Wifi** | U.FL/IPEX push on connector for external antenna. *Note this connector is delicate, take care when plugging and unplugging*. "LED ESP": green LED indicates Wifi connection status |
-| **Reset** |  | Single push to reset the board. Double push to put the board into UF2 bootloader upload mode. See [User manual: Updating firmware - Duet 3 Mini 5+ via USB](/User_manual/RepRapFirmware/Updating_firmware#duet-3-mini-5-wifiethernet) |
+| **Reset** |  | Single push to reset the board. Double push to put the board into UF2 bootloader upload mode. See [User manual: Updating firmware - Duet 3 Mini 5+ via USB](/User_manual/RepRapFirmware/Updating_firmware#duet-3-mini-5-wifiethernet){target=_blank} |
 | **1 x JST ZH 6-pin connectors** | SWD | Connection for an SWD programming device such as an Atmel-ICE |
 | **1 x 2-pin KK connectors** | CAN | CAN-FD Bus connection for Duet 3 CAN-FD expansion boards. |
 | **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signal levels with 470R series resistors. IO_1,2,3 are PWM capable. |
@@ -189,7 +189,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
-| **1 x 2x5 IDC connector** | SPI DB | *(Connector named TEMPDB before v1.03)* <br> For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface board. **Note** on v1.02 and earlier boards cannot be stacked so only 1 board at a time is supported. |
+| **1 x 2x5 IDC connector** | SPI DB | *(Connector named TEMPDB before v1.03)* <br> For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard){target=_blank}, [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard){target=_blank} or [Duet3D Accelerometer](/Duet3D_hardware/Accessories/Duet3D_Accelerometer){target=_blank} interface board. **Note** on v1.02 and earlier boards cannot be stacked so only 1 board at a time is supported. |
 | **2 x 2-pin Jumper2** | SPI3_SELECT<br>SPI4_SELECT| *Version 1.03 and later*: only. Route the spi.cs3 and spi.cs4 signals to the SPI DB connector instead of the 12864 display EXT1 connector |
 | **1 x 3-pin Jumper** | 5V_SELECT | *v0.5-v1.02* Source of optional External 5V input, see note 2 below |
 | **2 x 3-pin Jumpers** | 5V_SELECT |*Version 1.03 and later*: Source of optional External 5V input, see note 2 below |
@@ -231,7 +231,7 @@ The red LED next to the Reset button is labelled "STATUS".  *On version 0.2 boar
 
 ## Pin names
 
-For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names).
+For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}.
 
 RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of gcode commands, e.g. M574, M558, M950.
 
@@ -289,7 +289,7 @@ OUT_0 to OUT_6 are all PWM-capable. OUT_6 is shared with LASER/VFD. See tables a
 
 There are 7 IO headers on board. IO_0 to IO_4 have pins for input, output, 3.3V, 5V and Gnd supplied. IO_5 and IO_6 have an input, 3.3V and Gnd supplied. This enables support for a wide range of endstops, probes, filament monitors and future low bandwidth devices. RepRapFirmware 3 can be configured to map these ports to the appropriate functions as required.
 
-![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =282x)
+[![duet_3_mb6hc_input_output.jpg](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg =282x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_input_output.jpg){target=_blank}
 
 Except as noted in the table below, an IO_x_IN pin can always be used to provide a digital input (e.g. for endstop inputs or filament monitors), and an IO_x_OUT pin can always be used to provide a digital output.
 
@@ -408,31 +408,31 @@ Note: (v1.03 only) the 12864 display cannot be used in conjunction with a second
 
 ### Connecting a PanelDue
 
-A [PanelDue](/Duet3D_hardware/Accessories/PanelDue) can be connected to IO_0 using a 4-wire cable. See [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#option-1-4-way-cable)
+A [PanelDue](/Duet3D_hardware/Accessories/PanelDue){target=_blank} can be connected to IO_0 using a 4-wire cable. See [Connecting a PanelDue](https://docs.duet3d.com/User_manual/Connecting_hardware/Display_PanelDue#option-1-4-way-cable){target=_blank}
 
 Alternatively, it can be connected using a ribbon cable plugged into the socket labelled PanelDue_SD, which enables access to the PanelDue SD card socket. However, there are some caveats:
 * The PanelDue connector shares the io0.out and io0.in pins, so IO_0 cannot be used at the same time.
-* Duet 3 boards support the card detect signal. Newer versions of the PanelDue 5i and 7i (v1.01 and later of the 5i and v2.01 and later of the 7i) provide this signal, but older versions will need to be modified. See [Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue#card-detect-signal)
+* Duet 3 boards support the card detect signal. Newer versions of the PanelDue 5i and 7i (v1.01 and later of the 5i and v2.01 and later of the 7i) provide this signal, but older versions will need to be modified. See [Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue#card-detect-signal){target=_blank}
 
 ## Connecting a Raspberry Pi
 
 The Duet 3 Mini+ cannot power the Pi. You must power the Pi separately. The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers or other USB power supplies cannot supply sufficient voltage. Therefore, we strongly recommend that you use the official Raspberry Pi PSU, or another PSU specifically designed to power a Raspberry Pi. If the red LED on the Pi is not continuously illuminated, the power supply is insufficient.
 
-In other respects, SBC connection to the Duet and configuration is the same for the Duet 3 Mini  as for the Duet 3 Mainboard 6HC. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup).
+In other respects, SBC connection to the Duet and configuration is the same for the Duet 3 Mini  as for the Duet 3 Mainboard 6HC. See [SBC Setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
 
 When using an attached Raspberry Pi or other SBC, the WiFi or Ethernet interface on the Duet 3 Mini+ is disabled.
 
 ## Connecting Stepper Motors
 
-See [Connecting stepper motors](/User_manual/Connecting_hardware/Motors_connecting).
+See [Connecting stepper motors](/User_manual/Connecting_hardware/Motors_connecting){target=_blank}.
 
 ## Connecting Fans
 
-See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting).
+See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting){target=_blank}.
 
 ## CAN-FD Bus expansion
 
-See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection)
+See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection){target=_blank}.
 
 The CAN-FD bus provides connectivity to compatible devices. Duet3D manufactures a range of expansion devices. 
 
@@ -458,7 +458,7 @@ If in the future you want to add the termination resistor back into the circuit 
 
 #### Earlier boards
 
-[![duet_3_mini_5+_can_termination_01.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_can_termination_01.png =300x){.align-right}](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_can_termination_01.png) Board revisions earlier than v1.03 will require you to desolder the two termination resistors. You need to remove both resistors, marked on the PCB silkscreen as R96 and R97, located adjacent to the CAN pins. 
+[![duet_3_mini_5+_can_termination_01.png](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_can_termination_01.png =300x){.align-right}](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_can_termination_01.png){target=_blank} Board revisions earlier than v1.03 will require you to desolder the two termination resistors. You need to remove both resistors, marked on the PCB silkscreen as R96 and R97, located adjacent to the CAN pins. 
 *See image on right, resistors highlighted red. Click image for larger version.*
 
 Both resistors must be removed to disable the CAN termination. Do not do only one.
@@ -477,9 +477,9 @@ The bootloader is in protected memory and should not need to be reprogrammed. If
 * Atmel ICE Basic
 * SEGGER J-Link BASE
 
-If using the Segger tool, see [this Adafruit page](https://learn.adafruit.com/how-to-program-samd-bootloaders/overview) for an overview of the process.
+If using the Segger tool, see [this Adafruit page](https://learn.adafruit.com/how-to-program-samd-bootloaders/overview){target=_blank} for an overview of the process.
 
-To connect the programmer to the Duet, you will need a SWD cable breakout board such as [this one](https://www.adafruit.com/product/2743) and a 6-pin JST ZH cable.
+To connect the programmer to the Duet, you will need a SWD cable breakout board such as [this one](https://www.adafruit.com/product/2743){target=_blank} and a 6-pin JST ZH cable.
 
 You will need to remove the bootloader protection by doing Erase Chip first and then setting USER_WORD_0.NVMCTRL_BOOTPROT to zero. After that you can program the bootloader binary into memory.
 
