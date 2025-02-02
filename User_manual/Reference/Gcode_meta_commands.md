@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-02-02T22:24:56.894Z
+date: 2025-02-02T22:27:53.405Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -379,6 +379,7 @@ The following functions are supported, with their conventional meanings:
 | cos | float->float | Argument must be in radians |
 | datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a **DateTime**, or a string with format "yyyy-mm-ddThh:mm:ss" to a **DateTime**. Available in RRF 3.4.0 and later. |
 | degrees | float->float | Converts radians to degrees |
+| drop | (string, int)->string or (array, int)->array | Returns all but the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0 and later)
 | exists | name  -> bool | Yields true if 'name' is a valid variable or object model element name and is not null (available in RRF 3.3.0 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
 | exp | float->float | Returns *e* raised to the operand (supported in RRF 3.5.0 and later) |
 | fileexists | string -> bool | Yields true if the string parameter is the name of a file in the file system (available in RRF 3.5.0 and later). |
@@ -395,6 +396,7 @@ The following functions are supported, with their conventional meanings:
 | random | int->int | Operand must >= 1. Returns a pseudo-random integer in the range 0 to one less than the operand. |
 | sin | float->float | Argument must be in radians |
 | sqrt | float->float | Returns the square root of the operand |
+| take | (string, int)->string or (array, int)->array | Returns the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0 and later)
 | tan | float->float | Argument must be in radians |
 | vector | (int, T) -> array of T | (RRF 3.5.0 and later) Returns an array with the number of elements equal to the first operand and each element a copy of the second operand
 
