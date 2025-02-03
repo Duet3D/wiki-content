@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-01-27T15:16:20.890Z
+date: 2025-02-03T10:30:25.847Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5299,12 +5299,10 @@ Set the firmware to a mode where its input and (especially) output behaves simil
 | 0 | RepRap_Firmware |
 | 1 | RepRap_Firmware |
 | 2 | Marlin |
-| 3 | Teacup |
-| 4 | Sprinter |
-| 5 | Repetier |
-| 6 | nanoDLP (RRF 2.02RC6 and later) |
-
-Currently, only RepRapFirmware, Marlin and nanoDLP emulations are supported.
+| 3 | not used |
+| 4 | not used |
+| 5 | not used |
+| 6 | nanoDLP (RRF 2.02 and later) |
 
 ## M556: Axis skew compensation
 
