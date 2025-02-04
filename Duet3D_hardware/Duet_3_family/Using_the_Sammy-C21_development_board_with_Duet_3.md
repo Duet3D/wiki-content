@@ -2,7 +2,7 @@
 title: Using the Sammy-C21 development board with Duet 3
 description: 
 published: true
-date: 2024-05-10T10:05:12.653Z
+date: 2025-02-04T11:49:07.428Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:28:45.749Z
@@ -12,9 +12,9 @@ dateCreated: 2021-07-14T14:28:45.749Z
 
 # Overview
 
-The Sammy-C21 from chip45.com is a low-cost development board based on the SAMC21G18A microcontroller, which is the same microcontroller used in the Tool Board and in other CAN-connected Duet3D products. Its small size and integrated CAN transceivers make it suitable for use as a basis for building custom add-ons to Duet3D systems.
+The Sammy-C21 from [chip45.com](https://www.chip45.com/Microcontroller-Modules-Boards/Sammy-C21-ATSAM-Duet3D::4.html) is a low-cost development board based on the SAMC21G18A microcontroller, which is the same microcontroller used in the Tool Board and in other CAN-connected Duet3D products. Its small size and integrated CAN transceivers make it suitable for use as a basis for building custom add-ons to Duet3D systems.
 
-The Sammy-C21 can be purchased from the manufacturer [chip45.com](https://www.chip45.com/atsamc21-duet3d-dual-can-bus.html) (Germany) and from [Filastruder](https://www.filastruder.com/products/sammy-c21-v1-0-duet3d-module) (US). Boards supplied by Filastruder should have the Duet3D bootloader pre-installed, and you can have the Duet3D CAN bootloader pre-installed as an option when ordering direct from chip45.
+The Sammy-C21 can be purchased from the manufacturer [chip45.com](https://www.chip45.com/Microcontroller-Modules-Boards/Sammy-C21-ATSAM-Duet3D::4.html) (Germany) and from [Filastruder](https://www.filastruder.com/products/sammy-c21-v1-0-duet3d-module) (US). Boards supplied by Filastruder should have the Duet3D bootloader pre-installed, and you can have the Duet3D CAN bootloader pre-installed as an option when ordering direct from chip45.
 
 Depending on what development you intend to do, you may also need the following:
 
