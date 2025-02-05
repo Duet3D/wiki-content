@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2025-01-17T15:01:28.015Z
+date: 2025-02-05T16:29:35.459Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -176,13 +176,26 @@ See [User manual: Connecting an Emergency Stop](https://docs.duet3d.com/en/User_
 
 ## daemon.g
 
-From RRF3.1.0 and later the file /sys/daemon.g can be used to execute regular tasks. The firmware looks for the file, if the file exists it executes it and once the end of file is reached it waits. If the file is not found it waits and then looks for it again. In RRF 3.3 The wait time was increased form 1 second to 10 seconds. If you want a shorter update time then put a while loop inside the daemon.g with `G4 S1` in it for 1 second repeats.
+From RRF3.1.0 and later the file /sys/daemon.g can be used to execute regular tasks. The firmware looks for the file, if the file exists it executes it and once the end of file is reached it waits. If the file is not found it waits for 10 seconds and then looks for it again. 
 
 This can be used in combination with [GCode Meta Commands](/User_manual/Reference/Gcode_meta_commands) to check the object model to look for a particular condition, and then take an action.
 
-Caution must be taken not to start a loop that takes a long time to complete, without having a `G4 P500` or similar command to hand control back to the main process every half a second or so.
+### Notes
 
-You can't directly edit a daemon.g file that is running on a Duet. To edit, right click on daemon.g in the SD card /sys folder and rename it to something else. This will stop the daemon.g file from running, and allow editing. Once the file has been edited, rename it back to daemon.g.
+* If you want a shorter update time then put a while loop inside the daemon.g with `G4 S1` in it for 1 second repeats. In RRF versions before 3.3 the wait time is 1 second. 
+* Caution must be taken not to start a loop that takes a long time to complete, without having a `G4 P500` or similar command to hand control back to the main process every half a second or so.
+* In RRF 3.5 and later, you can edit daemon.g directly. DWC renames the existing daemon.g to daemon.g.bak. If the previous daemon.g is still being executed (eg it has a 'while' loop so runs continuously), that means daemon.g.bak is being executed once it is updated. To force the new daemon.g to be used, restart the Duet. Alternatively, if you start your daemon.g file with the following, the macro will stop when daemon.g.bak is created. daemon.g.bak will then be deleted when daemon.g restarts.
+  ```
+  if fileexists("/sys/daemon.g.bak")
+      M472 P"/sys/daemon.g.bak"
+  while !fileexists("/sys/daemon.g.bak")
+      ...
+  ```
+* In RRF versions before 3.5, you can't directly edit a daemon.g file that is running on a Duet. To edit, right click on daemon.g in the SD card /sys folder and rename it to something else. This will stop the daemon.g file from running, and allow editing. Once the file has been edited, rename it back to daemon.g.
+
+### Examples
+
+To come
 
 ## runonce.g
 
