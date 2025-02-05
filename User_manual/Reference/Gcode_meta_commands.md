@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-02-05T13:42:09.131Z
+date: 2025-02-05T15:13:41.555Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -430,6 +430,8 @@ Caution must be taken not to start a loop that takes a long time to complete, wi
 
 
 # Examples of use
+
+Some examples using meta Gcode are listed below. There are also many examples and discussions on the [meta Gcode section of the forum](https://forum.duet3d.com/category/34/gcode-meta-commands).
 
 <details>
 <summary>Using conditional GCode commands in bed.g to calibrate a delta printer</summary>
