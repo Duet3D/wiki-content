@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-02-02T22:27:53.405Z
+date: 2025-02-05T13:42:09.131Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -431,10 +431,11 @@ Caution must be taken not to start a loop that takes a long time to complete, wi
 
 # Examples of use
 
-## Using conditional GCode commands in bed.g to calibrate a delta printer
+<details>
+<summary>Using conditional GCode commands in bed.g to calibrate a delta printer</summary>
 
 Example bed.g file for calibrating a delta printer using conditional GCode. At the start, it homes the printer only if it hasn't already been homed. Then it calibrates the printer by probing a number of points, starting again if probing fails. if calibration yields a standard deviation that is above a limit (set at the end of the loop, in this case >0.03mm), it repeats the calibration process. If calibration fails 5 times for any reason, it quits.
-
+  
 **NOTE:** If you use this method to iterate the levelling of a bed/gantry mounted on leadscrews (eg Cartesian, CoreXY etc), the maximum deviation corrected is still limited by the S parameter of [M671](/User_manual/Reference/Gcodes/M671) (default 1mm). If the maximum deviation exceeds this limit, the script will exit with "Error: Some computed corrections exceed configured limit of 1.00mm", as it would if G30 bed levelling was called manually.
 
 ```
@@ -505,3 +506,147 @@ while true
 echo "Auto calibration successful, deviation", move.calibration.final.deviation ^ "mm"
 G1 X0 Y0 Z150 F10000                ; get the head out of the way
 ```
+</details>
+
+<details>
+  <summary>Saving and restoring variables across a reset</summary>
+
+RepRapFirmware allows you to write variables to a files using the echo command (see above), that can then be read back at startup, or at a later time. 
+
+This is a set of macros that creates a file for each persistant global variable, saved in a /globals directory. They can then be saved and reloaded as necessary.
+
+persistentGlobal.g
+
+```
+var id = param.V                    ; name of the global variable
+var value = param.X                 ; value to save
+var filepath = "globals/"^{var.id}  ; internal file path where the global variable is saved
+
+; Save the global variable as a file so it is persistent
+echo > {var.filepath} "if exists(global."^{var.id}^")"
+echo >> {var.filepath} "    set global."^{var.id}^" = "^{var.value}
+echo >> {var.filepath} "else"
+echo >> {var.filepath} "    global "^{var.id}^" = "^{var.value}
+
+M98 P{var.filepath} ; load the global variable
+```
+  
+loadPersistentGlobal.g
+
+```
+var id = param.V            ; name of the global variable
+var defaultValue = param.X	; value to save if the global variable does not exist
+
+; Create file if does not exist
+if (!fileexists({"/sys/globals/"^var.id}))
+	M98 P"scripts/persistentglobal.g" V{var.id} X{var.defaultValue}
+
+; Load persistant global variable
+M98 P{"globals/"^var.id}
+
+```
+
+In config.g load any persistent globals that you want to use, ie...
+
+```
+; Load persistant global variables
+M98 P"scripts/loadPersistentGlobal.g" V"lastTool" X-2
+M98 P"scripts/loadPersistentGlobal.g" V"nozzleDiameters" X{null, null}
+M98 P"scripts/loadPersistentGlobal.g" V"nozzleHF" X{false, false}
+```
+
+Use case examples:
+* Saving tool number for tool changers (call from your tpre/tpost/tfree scripts)
+
+```
+if {param.T} == {global.lastTool}
+	pass
+else
+	M98 P"scripts/persistentglobal.g" V"lastTool" X{param.T}
+	echo "set tool num:", {param.T}
+```
+
+* Setting nozzle diameter and type
+
+```
+var tool = exists(param.T) ? param.T : max(state.currentTool, 0)
+var newDiameters = global.nozzleDiameters
+set var.newDiameters[var.tool] = param.D
+
+var newHF = global.nozzleHF
+var highFlow = exists(param.H) ? param.H > 0 : global.nozzleHF[var.tool]
+set var.newHF[var.tool] = var.highFlow
+
+echo "Setting T"^{var.tool}^" nozzle to "^{var.highFlow ? "HF " : ""}^{var.newDiameters[var.tool]}^"mm"
+
+M98 P"scripts/persistentglobal.g" V"nozzleDiameters" X{var.newDiameters}
+M98 P"scripts/persistentglobal.g" V"nozzleHF" X{var.newHF}
+```
+
+</details>
+
+<details>
+  <summary>Create a new filament with user input for the name and temperature</summary>
+
+```
+var name = ""
+if exists(param.F)
+    set var.name = param.F
+else
+    M291 R"Creating New Filament" P"Enter Filament Name" S7 H50 J1
+    set var.name = input
+
+var temperature = 0
+if exists(param.T)
+    set var.temperature = param.T
+else
+    M291 R"Creating New Filament" P{"Enter load/unload temperature for "^var.name} S5 L0 H350 J1
+    set var.temperature = input
+
+var dir = "/filaments/"^var.name^"/"
+var config = var.dir^"config.g"
+var load = var.dir^"load.g"
+var unload = var.dir^"unload.g"
+
+if (fileexists(var.config))
+    M291 R"Creating New Filament" P{"Filament "^var.name^" already exists, overwrite?"} S3
+
+echo "Creating directory "^var.dir
+M98 P"scripts/createDirectory.g" D{var.dir} ; Wraps M470 P{var.dir} because of a bug that stopped macro execution
+
+
+echo {"Creating filament "^var.name^" (un)loading at "^var.temperature^"C"}
+
+echo >var.load "M98 P""scripts/load.g"" F"""^{var.name}^""" T"^{var.temperature}
+echo >{var.unload} "M98 P""scripts/unload.g"" F"""^{var.name}^""" T"^{var.temperature}
+
+echo >{var.config} "var tool = state.currentTool"
+echo >>{var.config} "var nozzleDiameter = global.nozzleDiameters[var.tool]"
+echo >>{var.config} "var extruderDrive = tools[var.tool].filamentExtruder"
+echo >>{var.config} "set global.defaultFilamentTemperature = "^var.temperature
+echo >>{var.config} ""
+echo >>{var.config} "if (global.nozzleHF[var.tool])"
+echo >>{var.config} "    if (var.nozzleDiameter <= 0.25)"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+echo >>{var.config} "    elif (var.nozzleDiameter <= 0.4)"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+echo >>{var.config} "    elif (var.nozzleDiameter <= 0.6)"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+echo >>{var.config} "    elif (var.nozzleDiameter <= 0.8)"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+echo >>{var.config} "    else"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+echo >>{var.config} "else"
+echo >>{var.config} "    if (var.nozzleDiameter <= 0.25)"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+echo >>{var.config} "    elif (var.nozzleDiameter <= 0.4)"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+echo >>{var.config} "    elif (var.nozzleDiameter <= 0.6)"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+echo >>{var.config} "    elif (var.nozzleDiameter <= 0.8)"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+echo >>{var.config} "    else"
+echo >>{var.config} "        M572 D{var.extruderDrive} S{global.defaultPA}"
+```
+
+</details>
