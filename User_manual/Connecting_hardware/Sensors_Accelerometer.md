@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the accelerometer support in RRF 3.3 and later.
 published: true
-date: 2025-01-23T18:26:47.429Z
+date: 2025-02-06T13:22:02.013Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -98,10 +98,8 @@ However, if you want to have your accelerometer permanently connected along with
 
 ### Wiring recommendations
 
-* TO DO: Wire length/quality recommendations here. 
-* Some users on the forum have suggested using USB3 cable for longer runs. For a guide to wiring USB3 cables, see [the Team Gloomy guide here](https://teamgloomy.github.io/fly_e3_pro_v3_accelerometer.html){target=_blank}.
-
-**Note:** some users have found it difficult to get SPI-connected accelerometers to work with the Duet 3 Mini 5+. We have found that one reason for this is that transitions on SDO are capacitively coupled into CS in the cable, especially if these signals use adjacent conductors. This causes a glitch on CS of a few nanoseconds, which is sufficient to cause the accelerometer to stop transmitting. This is why we recommend that you keep the CS signal away from other signal wires. Where this has not been done and the CS wire runs next to the SDO wire, a resistor with value between 100 ohms and 1K in series with SDO at the accelerometer end of the cable has solved the problem for some users.
+* The Duet3D Accelerometer comes with a 1m 10-way ribbon cable, which is about the limit for the SPI bus on the accelerometer with this type of cable. 
+* Some users on the forum have suggested using USB3 cable for longer runs (up to 3m), as it uses twisted pairs and shielding to improve the signal. For a guide to wiring USB3 cables, see [the Team Gloomy guide here](https://teamgloomy.github.io/fly_e3_pro_v3_accelerometer.html){target=_blank}.
 
 ### Wiring notes for each board
 
@@ -124,6 +122,9 @@ Using the wiring scheme that connects all wires to the TEMP_DB connector, the CS
 On **Duet 3 Mini 5+** running RRF 3.5/3.4.6 and later, you can use either of the wiring schemes, i.e. connect all wires to the temperature daughterboard connector, or connect CS and INT1 to IO_n.out and IO_n.in. Using the wiring scheme that connects all wires to the TEMP_DB connector, the CS pin connects to SPI.CS2 and the INT1 pin to SPI.CS1. You can't stack the connector on top of a temperature daughterboard, unless you connect CS and INT1 to IO_n.out and IO_n.in.
 
 In RRF 3.4 and earlier, only the IO_n.IN pins have interrupt capability, so choose one of the IO_n ports with both input and output connections. For example, using IO_3, connect the accelerometer CS pin to IO_3.OUT and the accelerometer INT1 pin to IO_3.IN.
+
+**NOTE:** Some users have found it difficult to get SPI-connected accelerometers to work with the Duet 3 Mini 5+. We have found that one reason for this is that transitions on SDO are capacitively coupled into CS in the cable, especially if these signals use adjacent conductors. This causes a glitch on CS of a few nanoseconds, which is sufficient to cause the accelerometer to stop transmitting. This is why we recommend that you keep the CS signal away from other signal wires. Where this has not been done and the CS wire runs next to the SDO wire, a resistor with value between 100 ohms and 1K in series with SDO at the accelerometer end of the cable has solved the problem for some users.
+
 
 #### Duet 2 WiFi/Ethernet and Duex
 
