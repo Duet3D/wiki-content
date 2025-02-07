@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-01-13T14:53:45.979Z
+date: 2025-02-07T14:10:19.045Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -459,8 +459,8 @@ Two general types of encoder can be used for feedback:
 Here's an sample excerpt from a config.g file for RRF 3.5 to drive the X and Y motors from 1HCL  boards configured at CAN addresses 50 and 51, with quadrature encoders. **Note, some parameters have changed in RRF 3.5, if using RRF 3.4 its recommended to upgrade to RRF 3.5**.
 
 ```
-M569.1 P50.0 T2 C2500 S400 R100 I0 D0 E4:6 ; Configure the 1HCL board at CAN address 50 with a quadrature encoder on the motor shaft that has 2500 PPR with a motor with 400 full steps per revolution (0.9degrees). 
-M569.1 P51.0 T2 C2500 S400 R100 I0 D0 E4:6  ; Configure the 1HCL board at CAN address 51 with a quadrature encoder on the motor shaft that has 2500 PPR with a motor with 400 full steps per revolution (0.9degrees). 
+M569.1 P50.0 T2 C2500 S200 R100 I0 D0 E4:6 ; Configure the 1HCL board at CAN address 50 with a quadrature encoder on the motor shaft that has 2500 PPR with a motor with 200 full steps per revolution (1.8degrees). 
+M569.1 P51.0 T2 C2500 S200 R100 I0 D0 E4:6  ; Configure the 1HCL board at CAN address 51 with a quadrature encoder on the motor shaft that has 2500 PPR with a motor with 200 full steps per revolution (1.8degrees). 
 M569 P50.0 D4 S1 ; Configure the motor on the 1HCL at can address 50 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M569 P51.0 D4 S1 ; Configure the motor on the 1HCL at can address 51 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M584 X50.0 Y51.0 ; set X and Y drivers
