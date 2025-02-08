@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-02-03T17:27:32.780Z
+date: 2025-02-08T16:27:40.319Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7665,7 +7665,7 @@ Response to M669 (no parameters) on simple Cartesian machine:
 <br>
 <pre class="cblock">
 M669
-Kinematics is Cartesian, matrix:
+Kinematics is Cartesian, no segmentation, matrix::
 1.00 0 0
 0 1.00 0
 0 0 1.00
@@ -7681,14 +7681,13 @@ Note U motor values in X, Y, Z and U parameters come after the Z motor values. M
 <br>
 <pre class="cblock">
 M669
-Kinematics is modified CoreXY, matrix:
+Kinematics is CoreXY, no segmentation, modified matrix:
 1.00 1.00 0 0
 1.00 -1.00 0 -1.00
 0 0 1.00 0
 0 0 0 1.00
 </pre>
 
-For more information on 
 
 #### Linear Delta
 
