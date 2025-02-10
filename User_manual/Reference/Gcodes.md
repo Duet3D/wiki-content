@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-02-10T11:49:15.887Z
+date: 2025-02-10T12:37:53.615Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6966,7 +6966,7 @@ M586 P2 T1 S1 ; enable SSH
 
 * **U"username"** Username for authenticating with MQTT broker that does not allow anonymous login (not needed if broker supports anonymous login)
 * **K"password"** Password for authenticating with MQTT broker that does not allow anonymous login (only processed if the `U` parameter is also present; not needed if broker supports anonymous login).
-* **C"client-id"** Set fixed MQTT client ID, used with persistent sessions (not yet supported).
+* **C"client-id"** Set fixed MQTT client ID, used with persistent sessions (only supported and required in SBC mode).
 * **W"will-message"** Set message to send to subscribers when MQTT client does not disconnect from the broker gracefully (such as sudden shutdown of the board, network loss, etc). If not set, no message is sent to subscribers.
 * **T"will-topic"** The topic to publish the will message under (only processed if the `W` parameter is also present).
 * **Q"will-qos"** QOS level of the will message, from `0` to `2` (only processed if the `W` parameter is also present, optional). Defaults to `0` if not specified.
