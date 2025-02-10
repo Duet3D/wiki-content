@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-02-10T11:48:50.505Z
+date: 2025-02-10T11:49:15.887Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6974,7 +6974,7 @@ M586 P2 T1 S1 ; enable SSH
 * **S"subscribe-topic"** Add topic to subscribe to.
 * **On** Max QOS level of the subscription, from `0` to `2` (only processed if the `S` parameter is also present).
 
-**Notes for SBC mode**: Parameters C, U, K are always required in SBC mode and if possible, all the parameters should be set in a single line. This is not a requirement in standalone mode. Example:
+**Notes for SBC mode**: Parameters C, U, K are always required in SBC mode and if possible, all the parameters should be set in a single line. This is not a requirement in standalone mode.
 
 ### Example
 
