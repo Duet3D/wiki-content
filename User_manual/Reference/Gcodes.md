@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-02-08T16:27:40.319Z
+date: 2025-02-10T09:38:21.710Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6960,7 +6960,7 @@ M586 P2 T1 S1 ; enable SSH
 
 ## M586.4: Configure MQTT Client
 
-*Supported from firmware version 3.5, on WiFi-equipped Duet 3 series main boards running in standalone mode. Requires the WiFi interface to be running WiFi server version 2.1 or later.*
+*Supported from firmware version 3.5, on WiFi-equipped Duet 3 series main boards running in standalone mode. Requires the WiFi interface to be running WiFi server version 2.1 or later. Supported in SBC mode and Duet 3 series with ethernet networks from 3.6.0*
 
 ### Parameters
 
