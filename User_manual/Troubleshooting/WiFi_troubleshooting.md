@@ -2,7 +2,7 @@
 title: WiFi troubleshooting
 description: 
 published: true
-date: 2024-07-08T17:00:36.014Z
+date: 2025-02-11T12:22:49.680Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T00:23:04.224Z
@@ -29,6 +29,7 @@ If you find that your web browser repeatedly disconnects from the Duet, typicall
   * This value should be kept below about 50. If it is higher, reduce either microstepping (M350) or maximum speed (M203).
   * Please note, hiccups and MaxReps is reset when you run M122 so only the value the first time you run M122 after a disconnection or completion of a print is significant.
 * Also if the connection is stable when the printer is idle but not when printing: could it be temperature-related? Does the disconnection occur when the CPU temperature displayed in DWC reaches a certain value? If so, try cooling the Duet with a fan, if you are not doing so already.
+* Do you have a PanelDue connected to the Duet? If so, is the WiFi connection stable if you leave the PanelDue on its Setup page? If so then upgrading the PanelDue to firmware 3.5.1 or later may help.
 * If unable to connect to your wireless network at boot up, try deleting all saved wifi networks with `M588 S"*"` (That is, using an asterix for the network name), then re-adding it with M587. For example, `M587 S"networkname" P"password"`.
 * You can manually reset the wifi module if you have console access via USB, or a PanelDue. Send `M552 S0`, to disable networking, followed by `M552 S1` to enable networking.
 * Consider running the Duet WiFi in access point mode. This way the Duet creates a network which you can join from your wireless enabled device, (eg, PC, tablet, phone, etc.) and connect to the DWC to perform further configuration. See [M589](/User_manual/Reference/Gcodes/M589).
