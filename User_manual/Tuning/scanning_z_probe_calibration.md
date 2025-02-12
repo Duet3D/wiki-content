@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2025-01-29T15:17:02.696Z
+date: 2025-02-12T10:42:28.183Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -138,18 +138,30 @@ For now, we recommend using another method to set the Z height.
 
 # Using the SZP in touch mode to set Z height
 
-Firmware 3.6.0-beta.3+2 supports scanning probe touch mode experimentally. In touch mode the tool head bearing the sensor is lowered (or the bed raised) and the reading from the sensor is monitored, until the rate of change of the reading reduces sharply, which happens when the nozzle contacts the bed.
+Firmware 3.6.0-beta.4 and later support scanning probe touch mode experimentally. In touch mode the tool head bearing the sensor is lowered (or the bed raised) and the reading from the sensor is monitored, until the rate of change of the reading reduces sharply, which happens when the nozzle contacts the bed.
 
-Use of touch mode requires that the sensor continues to give good readings all the way from the height at which probing starts right down to when the nozzle contacts the bed. The selected drive level (see M558.2) and a suitable height of the sensor coil above the nozzle are critical to achieving this.
+Use of touch mode requires that the sensor continues to give good readings all the way from the height at which probing starts right down to when the nozzle contacts the bed. The selected drive level (see M558.2) and a suitable height of the sensor coil above the nozzle are critical to achieving this. See later for a workaround if you can't achieve this.
 
-Touch mode is enabled using the [M558.3](/User_manual/Reference/Gcodes/M558_3) command. You can use this command to turn touch mode on and off, and also to set the following parameters that are used in touch mode:
-- F parameter: probing speed in touch mode, default 150mm/min (2.5mm/sec). Slower probing speeds are generally more precise than high speeds.
-- V parameter: sensitivity (0.0 to 1.0), default 0.8. Higher sensitivity may improve accuracy and reduce the distance by which the nozzle pushes into the bed, but if it is too high then noise in the reading may cause a premature stop.
+The mechanics of the tool head mounting must be such that when the nozzle contacts the bed, continued operation of the Z motor(s) doesn't bring the sense coil any nearer to the bed. If the tool head tends to pivot about the X rail under these conditions, such pivoting must not bring the coil closer to the bed.
+
+It is highly desirable that there is come compliance in either the tool head mounting or the bed supports such that the Z motor(s) can overshoot Z=0 by a small amount without generating excessive forces.
+
+Touch mode is enabled using the [M558.3](/User_manual/Reference/Gcodes/M558_3) command. You can use this command to turn touch mode on and off, and also to set the following parameters that are used in touch mode. **The default values are likely to be changed in future firmware versions**.
+- F parameter: probing speed in touch mode, default 250mm/min (4.2mm/sec). Slower probing speeds are generally more precise than high speeds, however slow probing speeds are also more susceptable to false triggering caused by noise in the sensor readings.
+- V parameter: sensitivity (0.0 to 1.0), default 0.8. Higher sensitivity may improve accuracy and reduce the distance by which the nozzle pushes into the bed, but if it is too high then noise in the sensor reading may cause a premature stop.
 - H parameter: nozzle height to be assumed when probing stops. Find this by experiment after choosing the V parameter. This will be negative, e.g. -0.1mm.
 
 You may wish to use the M913 command to reduce current to the Z motors when touch probing, to reduce the chance of damage if the touch is not detected.
 
 Touch probing must always be initiated with the nozzle above the bed. If the nozzle is already in contact with the bed when touch probing is initiated, the touch will probably not be detected.
+
+When homing Z you may wish to use a 2-stage homing process:
+1. Set the drive current (M558.2) to a value that gives good readings from when the sensor is far from the bed down to when the nozzle is about 3mm above the bed. Set the trigger height (G31) to a value that gives good readings, perhaps 3 to 5mm.
+2. Set the probe to normal mode (M558.3).
+3. Execute G30 with a high probing speed, to probe down to the trigger height. This will get the nozzle to 3 to 5mm above the bed.
+4. If necessary, increase the drive current (M558.2) to a value that gives good readings from the normal mode trigger height right down to Z=0.
+5. Switch to touch mode (M558.3).
+6. Execute G30 again to probe in touch mode.
 
 # Other analog probes
 
