@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2024-11-13T11:13:14.568Z
+date: 2025-02-13T09:22:33.677Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -127,7 +127,7 @@ If you use a magnetic encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/
 
 #### Linear Composite Encoders (not supported before firmware 3.5)
 
-If you are using a linear composite encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1), then from the table above, manoeuvre 2 and manoeuvre 1 are required just once. Perform manoeuvre 2 (magnetic encoder calbration) first.
+If you are using a linear composite encoder (i.e. your [M569.1](/User_manual/Reference/Gcodes/M569_1) command includes T1), then from the table above, manoeuvre 2 and manoeuvre 1 are required just once. Perform manoeuvre 2 (magnetic encoder calibration) first.
 
 ### Running Quadrature Shaft Encoder Calibration at Power On
 
