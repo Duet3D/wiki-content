@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.4) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2025-02-13T16:53:47.716Z
+date: 2025-02-13T16:53:56.269Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -38,7 +38,7 @@ We have no current plans to remove the following limitations, although removing 
 We plan to remove these in future firmware releases.
 
 ## Limitations in firmware 3.6 and earlier
-* * Stalls of expansion board motors cannot be used for homing. We expect to remove this restriction in firmware 3.7.
+* Stalls of expansion board motors cannot be used for homing. We expect to remove this restriction in firmware 3.7.
 * Using the reset button on the Duet 3 mainboards does not reset the expansion boards, they need to be reset explicitly (`M999 Bnn`). A soft reset of the mainboard (`M999`) will cause the expansion boards to reset.
 * In the object model sub-object `sensors.filamentMonitors[].calibrated` is not available for filament monitors on CAN-connected board and will be reported as null.
 
