@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2025-01-13T18:07:48.901Z
+date: 2025-02-14T10:00:27.780Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -40,10 +40,9 @@ Below are the various modes provided by the Trinamic stepper drivers used in Due
 * The stall detection threshold has to be tuned to the particular stepper motors you use.
 * The stepper drivers only update the stall detection state every 1 or 4 full steps, depending on configuration. So the actual position of the stall is uncertain to either +/- half a full step or +/- 2 full steps. This means that when using stall detection to replace endstop switches, the position defined by the stall is much less accurate than with typical endstop switches.
 * Stall detection is not reliable at low motor speeds. It would typically give false stall indications at low speeds. To avoid this, the firmware allows you to set minimum speeds (in motor full steps per second) below which stall indications will be ignored. These values may need to be tuned to suit your requirements. It is easier to get reliable stall detection at higher motor speeds.
-* Stall detection is not reliable at motor speeds that are too high for the drivers to be able to supply sufficient voltage to maintain motor current. Therefore if you wish to use stall detection to detect skipped steps during printing, you must limit the motor speed to a value that does not require a higher voltage than your power supply provides (maximum 25V). See [Choosing Stepper Motors: Working out the power supply requirements](/User_manual/Connecting_hardware/Motors_choosing#working-out-the-power-supply-requirements).
+* Stall detection is not reliable at motor speeds that are too high for the drivers to be able to supply sufficient voltage to maintain motor current. Therefore if you wish to use stall detection to detect skipped steps during printing, you must limit the motor speed to a value that does not require a higher voltage than your power supply provides. See [Choosing Stepper Motors: Working out the power supply requirements](/User_manual/Connecting_hardware/Motors_choosing#working-out-the-power-supply-requirements).
 * The stall detection threshold varies a little with motor temperature, therefore the motor temperatures must not be allowed to vary widely.
 * Stall detection works by detecting an increase in the motor load. You may need to reduce acceleration and/or jerk to avoid false stall detection.
-* It is very likely that stall detection works better on low current high inductance motors than on  high current low inductance motors, although we have not verified this experimentally. Unfortunately, high inductance motors suffer from torque reduction and increased noise at lower speeds than low inductance motors do, so they are not recommended if you want high speed motion.
 
 # Minimum recommended speed for stall detection
 
@@ -51,9 +50,7 @@ A rough figure for the minimum speed in full steps per second (M915 H parameter)
 
 * Hmin = full_steps_per_rev * rated_current * actual_current/(sqrt(2) * pi * rated_holding_torque)
 
-where full_steps_per_rev is 200 or 400 (for 1.8 or 0.9deg motors),  currents are in amps, and holding torque is in Nm. From this it can be seen that stall detection at low speeds is easier at lower motor currents. This is one reason why motor current is often reduced during stall-detect homing.
-
-Attempt to keep the speed above 40mm/s.
+where full_steps_per_rev is 200 or 400 (for 1.8 or 0.9deg motors respectively), currents are in amps, and holding torque is in Nm. From this it can be seen that stall detection at low speeds is easier at lower motor currents. This is one reason why motor current is often reduced during stall-detect homing.
 
 # Background on stall detection
 
