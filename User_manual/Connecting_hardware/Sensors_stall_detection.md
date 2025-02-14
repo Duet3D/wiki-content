@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2025-02-14T10:02:09.004Z
+date: 2025-02-14T11:12:43.163Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -63,12 +63,12 @@ Stall detection is configured using the [M915](/User_manual/Reference/Gcodes/M91
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200 (try 400 for 0.9deg motors)
 * **Rn** Action to take on detecting a stall from any of these drivers, see 'Action to take on detecting a stall' section below.
 
-Additionally, the **TMC2209** stepper driver used in Duet 3 Mini 5+ (and Duet 3 Tool board TOOL1LC once stallGuard is implemented in firmware), features stallGuard 4. This is optimised for operation with stealthChop, while most other Trinamic drivers (e.g. TMC2160, TMC5160 and TMC2660) have stallGuard 2 which works with spreadCycle. You will need to adjust the speed at which stealthChop changes over to spreadCycle. This is set by [M569](/User_manual/Reference/Gcodes/M569) V parameter. The default is 2000.
+Additionally, the **TMC2209** stepper driver used in Duet 3 Mini 5+ and Duet 3 Tool board TOOL1LC features stallGuard 4. This is optimised for operation with stealthChop, while most other Trinamic drivers (e.g. TMC2160, TMC5160 and TMC2660) have stallGuard 2 which works with spreadCycle. To use stall detection with the TMC2209 you will need to put the driver into stealthChop mode and adjust the speed at which stealthChop changes over to spreadCycle. These are both set by [M569](/User_manual/Reference/Gcodes/M569) which provides the D parameter to set the driver mode (use D3 for stealthChop) and the V parameter for the changeover microstep interval.
 
-* Send M569 P[driver_number] to see current setting in mm/sec
+* Send M569 P[driver_number] with no othe rparameters to see current driver mode, V parameter and the speed that this corresponds to.
 * Reducing the V parameter increases the speed at which the driver changes from stealthChop to spreadCycle. Make sure that any stall detection happens while the driver is in stealthChop mode.
 
-## Stall detection sensitivity (S, F and H parameters)
+## Stall detection sensitivity (M915 S, F and H parameters)
 
 * Using F1 should reduce the likelihood of getting false stall reports, and it also allows stall detection to work at higher speeds. In the worst case (Duet + Duex 5) the stall status of each driver is checked every 100us. So if you use F0, the time between full steps must be at least 100us to guarantee that the stall is detected. With F1 this is reduced to 25us. However, F1 delays stall detection slightly, so you may wish to use F0 when using stall detection for sensorless homing.
 * Set the S parameter to the lowest value at which you do not get false stall reports. Typical values for nema 17 motors are between 1 and 3. False stall reports are most likely during fast travel moves, because the acceleration increases the load on the motor. False stall reports are also more likely when the motors are hot.
@@ -121,7 +121,7 @@ The next step is to change your homing files for X and Y ("homex.g" and "homey.g
 Your homex.g should look something like this:
 ```
 M400 ; Wait for current moves to finish
-M913 X70 Y70 ; drop motor current to 70%
+M913 X30 Y30 ; drop motor current to 30%
 M400 
 G91 ; relative positioning
 G1 H2 Z10 F12000    ; lift Z relative to current position
@@ -139,17 +139,21 @@ Your "homey.g" should look the same as this, just with Y variables instead of X.
 
 For another example, M913 X40 Y70 would command 40% and 70% of the total power found in the M906 command in config.g respective of X and Y.
 
+If you are using the Duert 3 Mini or another boar with TMC2209 drivers, then unless you want to run the driver in stealthChop mode all the time, you will need to use M560 to switch them to stealthChop mode before the homing move(s) and switch them back to spreadCycle afterwards
+
 ### 3: Adjust G1 feedrate parameters in all X and Y homing related commands
 
-In the example in step 2, the F parameters of the G1 commands for X and Y are quite high. This is because for sensorless homing, your printer must obtain a minimum required speed. Keep F above 3600 (3600mm/min or 60mm/sec). Save your changes.
+In the example in step 2, the F parameters of the G1 commands for X and Y are quite high. This is because for sensorless homing, your printer must obtain a minimum required speed. Keep F above 3000 (3000mm/min or 50mm/sec). Save your changes.
 
 ### 4: Configure M913 in homing files
 
-Motor stalls are more easily identified by the firmware and quieter if the motor current is low. Using your existing motor current setting ([M906](/User_manual/Reference/Gcodes/M906) in config.g), configure your motor current reduction using the first [M913](/User_manual/Reference/Gcodes/M913) in the homing files. This is done through editing X and Y values which set the motor current to use during homing as a percentage of the M906 setting. Try to use as low a current as possible, such that the axis still moves with other settings (eg acceleration, jerk) set normally.  For example, if your X and Y motors were set to 1000mA in M906, try M913 X40 Y40 for 400mA on each axis. Save your changes.
+Motor stalls are more easily identified by the firmware and quieter if the motor current is low. Using your existing motor current setting ([M906](/User_manual/Reference/Gcodes/M906) in config.g), configure your motor current reduction using the first [M913](/User_manual/Reference/Gcodes/M913) in the homing files. This is done through editing X and Y values which set the motor current to use during homing as a percentage of the M906 setting. Try to use as low a current as possible, such that the axis still executes the homing move reliably.  For example, if your X and Y motors were set to 1000mA in M906, try M913 X40 Y40 for 400mA on each axis. Save your changes.
 
-At this point, restart your Duet board, if you didn't in step 1.
+### 5: Consider reducing acceleration during homing moves
 
-### 5: Test your changed homing files. 
+At the start of the homing move the motor load will be higher than when running at a steady speed because of acceleration. In combination with the M913 current reduction, this may result in a premature stall. You can use the M201.1 command to reduce the acceleration used when executing sensorless homing moves.
+
+### 6: Test your changed homing files. 
 
 The homing files that you change should be X and Y or "home all" and X and Y
 
