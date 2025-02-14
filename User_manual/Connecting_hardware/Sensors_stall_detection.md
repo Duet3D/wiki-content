@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2025-02-14T10:00:27.780Z
+date: 2025-02-14T10:02:09.004Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -63,7 +63,7 @@ Stall detection is configured using the [M915](/User_manual/Reference/Gcodes/M91
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200 (try 400 for 0.9deg motors)
 * **Rn** Action to take on detecting a stall from any of these drivers, see 'Action to take on detecting a stall' section below.
 
-Additionally, the **TMC2209** stepper driver used in Duet 3 Mini 5+ (and Duet 3 Tool board TOOL1LC once stallGuard is implemented in firmware), features stallGuard 4. This is optimised for operation with stealthChop, while its predecessor stallGuard 2 (TMC5160 and TMC2260) works with spreadCycle. You will need to adjust the speed at which stealthChop changes over to spreadCycle. This is set by [M569](/User_manual/Reference/Gcodes/M569) V parameter. The default is 2000.
+Additionally, the **TMC2209** stepper driver used in Duet 3 Mini 5+ (and Duet 3 Tool board TOOL1LC once stallGuard is implemented in firmware), features stallGuard 4. This is optimised for operation with stealthChop, while most other Trinamic drivers (e.g. TMC2160, TMC5160 and TMC2660) have stallGuard 2 which works with spreadCycle. You will need to adjust the speed at which stealthChop changes over to spreadCycle. This is set by [M569](/User_manual/Reference/Gcodes/M569) V parameter. The default is 2000.
 
 * Send M569 P[driver_number] to see current setting in mm/sec
 * Reducing the V parameter increases the speed at which the driver changes from stealthChop to spreadCycle. Make sure that any stall detection happens while the driver is in stealthChop mode.
