@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-02-12T10:21:03.536Z
+date: 2025-02-17T11:01:11.183Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5399,7 +5399,7 @@ Defines the points for for G32 bed probing. The P value is the index of the poin
 
 * **Pnnn** Z probe type
 * **C"name"** Specifies the input pin and the optional modulation pin. This parameter is mandatory, except for probe type 0 (manual probing) and 10 (Z motor stall detection).
-* **Hnnn** Dive height (mm). The height above the trigger height from which probing starts.
+* **Hnnn** or **Hnnn:nnn** Dive height (mm). The height above the trigger height from which probing starts. Second probing height supported in RRF 3.5.1 and later, see notes below.
 * **Fnnn** or **Fnnn:nnn** or **Fnnn:nnn:nnn** Feed rate (i.e. probing speed, mm/min). Initial fast probe followed by probing at second speed supported in RRF 3.3 and later. Third speed for scanning Z probe supported in RRF 3.5.0-rc.3 and later.
 * **Tnnn** Travel speed to and between probe points (mm/min). This is also the Z lift speed after probing. The corresponding axis speed limits set by M203 will be used instead if they are lower.
 * **Knnn** Sets/selects Z probe number. If there is no K parameter then 0 is used. You can ignore this parameter if you have only one Z probe.
@@ -5458,7 +5458,12 @@ M558 with P parameter deletes the existing probe with that K number (if any) and
 
 The **C** parameter specifies the input pin and the optional modulation pin. See [Pin names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank} for a list of available pins and their names to use. Invert the input by prefixing the input pin with ! character, when using an NPN output inductive or capacitive sensor or using an NO switch (not recommended, use a NC switch instead). The pullup resistor on the Z probe input is disabled by default. Enable it by prefixing the input pin (C parameter) with the ^ character. Enable pullup resistor with ^ if using Duet 2, running RRF3, using the Z probe input pin, and the probe type is a switch or BLTouch.
 
-The **H** parameter defines the Z probe dive height, which is the height above the trigger height from which probing starts. The default is 3mm or 5mm depending on firmware version. You may wish to increase it during initial calibration. When using mesh bed compensation or running G30 commands with specified XY coordinates (for example from the bed.g file), the firmware moves the Z probe to this height above where it expects the bed to be before commencing probing. The maximum depth of probing from this position is twice the dive height. A large dive height will tolerate a very uneven bed or poor calibration. A small dive height will make probing faster, because the Z probe has less distance to travel before reaching the bed. Default value if omitted is 5mm.
+The **H** parameter:
+* Defines the Z probe dive height, which is the height above the trigger height from which probing starts. 
+* The default is 3mm or 5mm depending on firmware version. You may wish to increase it during initial calibration. 
+* When using mesh bed compensation or running G30 commands with specified XY coordinates (for example from the bed.g file), the firmware moves the Z probe to this height above where it expects the bed to be before commencing probing. The maximum depth of probing from this position is twice the dive height. 
+* A large dive height will tolerate a very uneven bed or poor calibration. A small dive height will make probing faster, because the Z probe has less distance to travel before reaching the bed. 
+* From RRF 3.5.1, the H parameter supports two dive heights. When probing multiple times at the same point, the second and subsequent probes use the second dive height and it is calculated relative to the height at which the probe last triggered. The idea is to speed up probing if you make the second dive height smaller than the first.
 
 The **F** parameter:
 * With a single value for the **F** parameter, this defines the probing feed rate (i.e. probing speed), in mm/min.
