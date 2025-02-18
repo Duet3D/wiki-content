@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2025-02-14T11:12:43.163Z
+date: 2025-02-18T12:47:43.570Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -139,7 +139,7 @@ Your "homey.g" should look the same as this, just with Y variables instead of X.
 
 For another example, M913 X40 Y70 would command 40% and 70% of the total power found in the M906 command in config.g respective of X and Y.
 
-If you are using the Duert 3 Mini or another boar with TMC2209 drivers, then unless you want to run the driver in stealthChop mode all the time, you will need to use M560 to switch them to stealthChop mode before the homing move(s) and switch them back to spreadCycle afterwards
+If you are using the Duert 3 Mini or another board with TMC2209 drivers, then unless you run the driver in stealthChop mode all the time, you will need to use M569 to switch them to stealthChop mode before the homing move(s) and switch them back to spreadCycle afterwards
 
 ### 3: Adjust G1 feedrate parameters in all X and Y homing related commands
 
