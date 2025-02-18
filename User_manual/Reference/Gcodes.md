@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-02-18T13:38:44.248Z
+date: 2025-02-18T14:12:57.675Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1802,6 +1802,7 @@ Note that if a pause is commanded while a macro is being executed, the pause wil
 
 * Snnn File position from start of file in bytes
 * Pnnn (Optional) Proportion of the first move to be skipped, default 0.0, must be less than 1.0
+* Xnnn, Ynnn, Znnn (Optional) If the command at the specified file position is a G2 or G3 command and the P parameter is nonzero then these are the coordinates of the centre of the arc for that command.
 
 ### Examples
 <br>
@@ -1809,7 +1810,7 @@ Note that if a pause is commanded while a macro is being executed, the pause wil
 M26 S49315
 </pre>
 
-Set the file offset in bytes from the start of the SD card file selected by M23. The offset must correspond to the start of a GCode command.
+Set the file offset in bytes from the start of the SD card file selected by M23. The offset must correspond to the start of a GCode command. This command is used when restarting a job that was interrupted, for example by a power failure.
 
 ## M27: Report SD print status
 
