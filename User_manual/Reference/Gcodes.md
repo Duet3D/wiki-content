@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-02-17T11:01:11.183Z
+date: 2025-02-18T13:34:33.947Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -914,9 +914,9 @@ Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0-rc.3 and
 
 ### Usage
 
-* G31 Pnnn Xnnn Ynnn Znnn Tnnn Snnn Knnn Hnnn ; RRF v3.3 and later
-* G31 Pnnn Xnnn Ynnn Znnn Cnnn Snnn Knnn Hnnn ; RRF v3.0 to v3.2
-* G31 Pnnn Xnnn Ynnn Znnn Cnnn Snnn Tnnn ; RRF v2.x and earlier
+* G31 Knn Pnnn Znnn [Xnnn Ynnn ...] [Snnn Hnnn Tnnn:nnn] ; RRF v3.3 and later
+* G31 Kn Pnnn Znnn [Xnnn Ynnn ...] [Snnn Hnnn Tnnn] ; RRF v3.0 to v3.2
+* G31 Pnnn Znnn [Xnnn Ynnn ...] [Snnn Tnnn] ; RRF v2.x and earlier
 
 ### Parameters
 
@@ -924,14 +924,12 @@ Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0-rc.3 and
 
 #### RepRapFirmware v3.3 and later
 
+* **Kn** Selects the Z probe number. If there is no K parameter then Z probe 0 is used.
 * **Pnnn** Trigger value
-* **Xnnn** Probe X offset^1^
-* **Ynnn** Probe Y offset^1^
-* **U,V,W,A,B,C...nnn** Probe Offsets for all axes except Z^1^
-* **Znnn** Trigger Z height (default 0.7)
+* **Znnn** Trigger Z height in mm (default 0.7)
+* **X,Y,U,V,W,A,B,C...nnn** Probe Offsets for all axes except Z^1^
 * **Snnn** Calibration temperature^2^
 * **Tnnn or Tnnn:nnn** Temperature coefficient^3^
-* **Knnn** Selects the Z probe number. If there is no K parameter then Z probe 0 is used.
 * **Hnnn** Selects the sensor number (defined by M308) to use for temperature compensation when the S and T parameters are used.^2^
 
 ##### Notes
@@ -941,18 +939,18 @@ Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0-rc.3 and
 ^2^ Optional parameter 'S' specifies the temperature in °C at which the specified Z parameter is correct. The default is current temperature. In RRF3 you must specify which temperature sensor to use in the 'H' parameter.
 
 ^3^ Optional parameter 'T' specifies one, or two, temperature coefficients of the Z parameter, default zero. This is useful for probes that are affected by temperature.
-* If one parameter is specified, it is the variation in Z parameter height with the change in sensor temperature in mm/°C. The parameter is applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 T0.02 S20 H2` when sensor 2 measures 26C would calculate trigger height as 1.2 + 0.02x6x6 = 1.92mm
+* If one parameter is specified, it is the variation in Z parameter height with the change in sensor temperature in mm/°C. The parameter is applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 T0.02 S20 H2` when sensor 2 measures 26C would calculate trigger height as 1.2 + 0.02x6 = 1.92mm
 * If two parameters are specified, the first is the variation in Z parameter height with the change in sensor temperature in mm/°C, and the second is variation in Z parameter height with the square of temperature. The parameters are applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 T0.03:0.02 S20 H2` when sensor 2 measures 26C would calculate trigger height as 1.2 + 0.03x6 + 0.02x6x6 = 2.1mm
 
 #### RepRapFirmware v3.0 to v3.2
 
+* **Kn** Selects the Z probe number. If there is no K parameter then Z probe 0 is used.
 * **Pnnn** Trigger value
+* **Znnn** Trigger Z height
 * **Xnnn** Probe X offset^1^
 * **Ynnn** Probe Y offset^1^
-* **Znnn** Trigger Z height
 * **Snnn** Calibration temperature^2^
 * **Cnnn or Cnnn:nnn** Temperature coefficient^3^
-* **Knnn** Selects the Z probe number. If there is no K parameter then Z probe 0 is used.
 * **Hnnn** Selects the sensor number (defined by M308) to use for temperature compensation when the C and S parameters are used.^2^
 
 ##### Notes
@@ -962,26 +960,26 @@ Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0-rc.3 and
 ^2^ Optional parameter 'S' specifies the temperature in °C at which the specified Z parameter is correct. The default is current temperature. In RRF3 you must specify which temperature sensor to use in the 'H' parameter.
 
 ^3^ Optional parameter 'C' specifies one, or two (RRF v3.2), temperature coefficients of the Z parameter, default zero. This is useful for probes that are affected by temperature.
-* If one parameter is specified, it is the variation in Z parameter height with the change in sensor temperature in mm/°C. The parameter is applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 C0.02 S20 H2` when sensor 2 measures 26C would calculate trigger height as 1.2 + 0.02x6x6 = 1.92mm
+* If one parameter is specified, it is the variation in Z parameter height with the change in sensor temperature in mm/°C. The parameter is applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 C0.02 S20 H2` when sensor 2 measures 26C would calculate trigger height as 1.2 + 0.02x6 = 1.92mm
 * If two parameters are specified (RRF v3.2), the first is the variation in Z parameter height with the change in sensor temperature in mm/°C, and the second is variation in Z parameter height with the square of temperature. The parameters are applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 C0.03:0.02 S20 H2` when sensor 2 measures 26C would calculate trigger height as 1.2 + 0.03x6 + 0.02x6x6 = 2.1mm
 
 #### RepRapFirmware v2.x and earlier
 
 * **Pnnn** Trigger value
+* **Znnn** Trigger Z height
 * **Xnnn** Probe X offset^1^
 * **Ynnn** Probe Y offset^1^
-* **Znnn** Trigger Z height
 * **Snnn** Calibration temperature^2^
 * **Cnnn** Temperature coefficient^3^
 * **Tnnn** (RRF 1.17 and later) Z probe type to which the S and C parameters apply, defaults to the current Z probe type as defined by M558 P parameter.^4^
 
 ##### Notes
 
-^1^ X and Y offsets of the Z probe relative to the print head (i.e. the position when the empty tool is selected) can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X and Y offset.
+^1^ X and Y offsets of the Z probe relative to the print head reference point (i.e. the position when the empty tool is selected) can be specified. This allows you to calculate your probe coordinates based on the geometry of the bed, without having to correct them for Z probe X and Y offset.
 
 ^2^ Optional parameter 'S' specifies the temperature in °C at which the specified Z parameter is correct. The default is current temperature. In RRF2 the bed temperature reading is used.
 
-^3^ Optional parameter 'C' specifies the temperature coefficient of the Z parameter, default zero. This is useful for probes that are affected by temperature. When the parameter is specified, it is the variation in Z parameter height with the change in sensor temperature in mm/°C. The parameter is applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 C0.02 S20` when the bed measures 26C would calculate trigger height as 1.2 + 0.02x6x6 = 1.92mm
+^3^ Optional parameter 'C' specifies the temperature coefficient of the Z parameter, default zero. This is useful for probes that are affected by temperature. When the parameter is specified, it is the variation in Z parameter height with the change in sensor temperature in mm/°C. The parameter is applied to the difference between current measured temperature and calibration temperature 'S'. For example, `G31 Z1.2 C0.02 S20` when the bed measures 26C would calculate trigger height as 1.2 + 0.02x6 = 1.92mm
 
 ^4^ Separate G31 parameters may be defined for different probe types (i.e. 0+4 for switches, 1+2 for IR probes and 3 for alternative sensors). To specify which probe you are setting parameters for, send a [M558](/User_manual/Reference/Gcodes/M558){target=_blank} command to select the probe type before sending the G31 command, or use the T parameter.
 
