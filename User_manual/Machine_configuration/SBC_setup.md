@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-01-14T12:53:53.740Z
+date: 2025-02-18T14:22:06.533Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -63,8 +63,8 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
 1. Use the latest Raspberry Pi image **setup for Duet 3** that is available from the Duet 3D package server. You may choose the full image for setups where a display is attached, or the lite image for a GUI-less and/or older Raspberry Pis with less memory:
   **Bookworm DuetPi 64-bit images**
   Recommended for most installations
-  [http://pkg.duet3d.com/DuetPi-arm64.zip](http://pkg.duet3d.com/DuetPi-arm64.zip){target=_blank}
-  [http://pkg.duet3d.com/DuetPi-lite-arm64.zip](http://pkg.duet3d.com/DuetPi-lite-arm64.zip){target=_blank}
+  [https://pkg.duet3d.com/DuetPi-arm64.zip](https://pkg.duet3d.com/DuetPi-arm64.zip){target=_blank}
+  [https://pkg.duet3d.com/DuetPi-lite-arm64.zip](https://pkg.duet3d.com/DuetPi-lite-arm64.zip){target=_blank}
   **Bookworm DuetPi 32-bit images**
   Recommended for RPi with 1GB RAM or less
   [https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
