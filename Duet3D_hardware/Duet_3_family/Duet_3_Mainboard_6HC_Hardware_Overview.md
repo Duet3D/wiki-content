@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2024-11-18T14:14:49.637Z
+date: 2025-02-21T09:12:41.982Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -406,7 +406,6 @@ The Duet 3 Mainboard 6HC produces 12V onboard from VIN. 12V will not be produced
 
 The Duet 3 Mainboard 6HC also produces onboard 5V and 3.3V, from VIN. These voltages are divided for internal and external use, with external 3.3V and 5V going to IO and other headers.
 
-External 5V power can be provided to the board by removing the jumper on 'Int 5V EN' and supplying 5V power to the 'EXT 5V' connector.
 
 ### Tabs {.tabset}
 
@@ -441,6 +440,8 @@ Previous versions of the Duet 3 Mainboard 6HC allowed for the Duet to power the 
 Due to this, the jumpers for 5V power between the Duet and SBC ('5V -> SBC' and 'SBC -> 5V*') are not populated on this board revision.
 
 #### v1.01, v1.0, v0.6
+
+External 5V power can be provided to the board by removing the jumper on 'Int 5V EN' and supplying 5V power to the 'EXT 5V' connector.
 
 5V produced by the internal regulator can also provide power to a connected SBC (Single Board Computer, eg Raspberry Pi), via protection that normally prevents the SBC from backfeeding the Duet. There is an array of jumpers to customise the 5V power setup as required:
 
