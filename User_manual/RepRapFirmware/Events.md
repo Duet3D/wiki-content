@@ -2,7 +2,7 @@
 title: Events
 description: An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2024-06-21T09:46:59.569Z
+date: 2025-02-23T21:28:15.194Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -92,7 +92,7 @@ to print the particular issue.
 
 *Supported in RepRapFirmware 3.4 and later for raising events*
 
-M997 is used to raise an event or trigger internally as if the event had actually occurred, and execute any related handler macro for that event or trigger. 
+M957 is used to raise an event or trigger internally as if the event had actually occurred, and execute any related handler macro for that event or trigger. 
 
 **Parameters**
 * E"type" Event type name
