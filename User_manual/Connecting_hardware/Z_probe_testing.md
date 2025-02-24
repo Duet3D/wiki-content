@@ -2,7 +2,7 @@
 title: Test and calibrate a Z probe
 description: 
 published: true
-date: 2022-11-12T16:56:12.180Z
+date: 2025-02-24T15:42:20.850Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T11:29:02.047Z
@@ -14,14 +14,14 @@ dateCreated: 2021-10-28T11:29:02.047Z
 
 * Apply power to the printer.
 * Connect to the printer from a browser.
-* If the probe needs to be deployed before use (e.g. BLTouch), test the deploy and retract functions, by sending M401 to deploy the probe and M402 to retract it.
+* If the probe needs to be deployed before use (e.g. BLTouch), test the deploy and retract functions, by sending `M401` to deploy the probe and `M402` to retract it.
 * With the Z probe deployed (if applicable) but not close enough to the bed to trigger it, check that the Z probe reading in Duet Web Control is zero or close to zero.
 * If your Z probe is of a type that produces a continuous output when triggered (for example IR, inductive, capacitive and switch-type probes), hold a surface below the Z probe to cause it to trigger (or jog the nozzle towards the bed until it is close enough to trigger). Check that the Z probe reading in DWC is correct (about 537 for the Mini Differential IR probe, and about 1000 for most other types).
 * If your Z probe produces a short pulse when it triggers (e.g. Smart Effector, Precision Piezo, FSRs with John SL board, BLTouch) then the pulse will probably be too short for you to see. Proceed to the dynamic test.
 
 ## Static test using Panel Due or a USB connection
 
-As above, but either monitor the Z probe reading in PanelDue if you have one, or send G31 via USB every time you want to read it.
+As above, but either monitor the Z probe reading in PanelDue if you have one, or send `G31` via USB every time you want to read it.
 
 # Dynamic test
 
@@ -36,16 +36,16 @@ As above, but either monitor the Z probe reading in PanelDue if you have one, or
 # Calibrate the Z probe trigger height
 
 1. Make sure the  dynamic test is successful (Z probe stops when it senses the bed) before doing this.
-1. Cancel any currently active mesh compensation with [M561](/User_manual/Reference/Gcodes/M561)
+1. Cancel any currently active mesh compensation with [`M561`](/User_manual/Reference/Gcodes/M561)
 1. Use the X and Y jog buttons to position the nozzle over the centre of the bed
-1. Jog the nozzle down until it is just touching the bed or just gripping a sheet of paper. If the firmware doesn't let you jog it down far enough, send M564 S0 to disable axis limits.
-1. Once you have the nozzle touching the bed, send command G92 Z0 to  tell the firmware that the head is at Z=0
+1. Jog the nozzle down until it is just touching the bed or just gripping a sheet of paper. If the firmware doesn't let you jog it down far enough, send `M564 S0` to disable axis limits.
+1. Once you have the nozzle touching the bed, send command `G92 Z0` to  tell the firmware that the head is at Z=0
 1. Jog the head up by 5 to 10mm
-1. Send command G30 S-1. The nozzle will descend or the bed rise until the probe triggers and the Z height at which the probe stopped will be reported in the console. If you are using a nozzle-contact Z probe, the trigger height will be slightly negative. For any other type of Z probe where the probe triggers before the nozzle contacts the bed, it will be positive.
+1. Send command `G30 S-1`. The nozzle will descend or the bed rise until the probe triggers and the Z height at which the probe stopped will be reported in the console. If you are using a nozzle-contact Z probe, the trigger height will be slightly negative. For any other type of Z probe where the probe triggers before the nozzle contacts the bed, it will be positive.
 1. Repeat  from step 5 two or three times to make sure that the  trigger height is consistent.
-1. In Duet Web Control, go to Settings -> System Editor and edit the config.g file. Set the Z parameter in the G31 command to the trigger height that was reported. Save the file.
-1. Open config-override.g and check that there are no G31 commands in it. If you find any, delete those lines and save the file.
-1. To apply the new trigger height, restart the Duet by sending M999 or pressing Emergency Stop.
+1. In Duet Web Control, go to Settings -> System Editor and edit the config.g file. Set the Z parameter in the `G31` command to the trigger height that was reported. Save the file.
+1. Open config-override.g and check that there are no `G31` commands in it. If you find any, delete those lines and save the file.
+1. To apply the new trigger height, restart the Duet by sending `M999` or pressing Emergency Stop.
 
 ## Fine tuning the trigger height
 
