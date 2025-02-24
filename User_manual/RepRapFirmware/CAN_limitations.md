@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.4) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2025-02-13T16:58:00.863Z
+date: 2025-02-24T16:13:32.110Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -32,6 +32,7 @@ We have no current plans to remove the following limitations, although removing 
 * Where an expansion board supports multiple drives, or a main board is used as an expansion board, if multiple motion systems are used then the drivers on that board may not be split between motion systems (i.e. all drivers in use must at any time be used by just one motion system).
 * Accelerometers connected to main boards used as expansion boards are not supported.
 * A Smart Effector connected to a tool or expansion board cannot be reprogrammed using M672.
+* The M670 command cannot be used on ports on CAN expansion boards.
 
 # Temporary limitations
 
