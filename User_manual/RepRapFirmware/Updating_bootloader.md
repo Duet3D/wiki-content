@@ -2,7 +2,7 @@
 title: Updating the bootloader on Duet 3 expansion and tool boards
 description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
 published: true
-date: 2025-01-05T21:40:53.006Z
+date: 2025-02-24T16:00:03.001Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:04:31.062Z
@@ -24,7 +24,7 @@ Here is a list of expansion boards and corresponding bootloader files:
 | Board | Bootloader file |
 |:---|:---|
 | Expansion 3HC, 1HCL, TOOL1RR, M23CL | Duet3Bootloader-SAME5x.bin |
-| Expansion 1XD, Toolboard 1LC | Duet3Bootloader-SAMC21.bin |
+| Expansion 1XD, Toolboard 1LC, Scanning Z Probe | Duet3Bootloader-SAMC21.bin |
 | Sammy-C21 development board | Duet3Bootloader-SAMMYC21.bin |
 
 # Updating the bootloader via CAN
