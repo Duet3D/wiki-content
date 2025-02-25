@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2025-02-13T09:22:33.677Z
+date: 2025-02-25T11:37:20.066Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -172,7 +172,7 @@ If tuning fails, the M569.6 command will report an error. In this case, check th
 
 ### Calibrating Magnetic Encoders
 
-Please read the following sections if you are using a magnetic encoder such as the Duet closed loop magnetic sensor, based on the AS5047D.
+Please read the following sections if you are using a magnetic encoder such as the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder).
 
 **Motivation**
 
