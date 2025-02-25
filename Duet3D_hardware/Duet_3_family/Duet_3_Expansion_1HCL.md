@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-02-07T14:10:19.045Z
+date: 2025-02-25T11:33:21.672Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -349,7 +349,7 @@ If the encoder has a differential output then connect the A+ to , B+ to the sign
 
 *This support is available from RRF 3.5*
 
-The Duet 3 Expansion 1HCL supports the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) board based on the AS5047D encoder IC. We supply this encoder on a Nema17 form factor PCB, designed to sense a diametrically magnetised magnet glued to the back of the motor shaft. We have also used this encoder board on a Nema23 motor using a printed adapter.
+The Duet 3 Expansion 1HCL supports the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder). We supply this encoder on a Nema17 form factor PCB, designed to sense a diametrically magnetised magnet glued to the back of the motor shaft. We have also used this encoder board on a Nema23 motor using a printed adapter.
 
 Connect the encoder board to the Duet 3 Expansion 1HCL to the 10-way box connector using a 10-way straight-through ribbon cable. The cable length should not exceed 200mm.
 
