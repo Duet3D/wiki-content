@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-02-25T11:33:21.672Z
+date: 2025-02-25T11:36:14.151Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -454,7 +454,7 @@ So in the case of a 4000CPR encoder on a 1.8 degree/step motor, microstepping sh
 Two general types of encoder can be used for feedback:
 
 * A quadrature encoder connected to the Quadrature Input interface. This works with common 5V optical encoders that are frequently supplied with closed loop stepper motors.
-* An SPI connection that can communicate with supported encoders that communicate over SPI. Initially this is the AS5047D encoder sensing a magnet on the motor shaft. In the future other SPI encoders may be supported.
+* An SPI connection that can communicate with supported encoders that communicate over SPI. Initially this is the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) sensing a magnet on the motor shaft. In the future other SPI encoders may be supported.
 
 Here's an sample excerpt from a config.g file for RRF 3.5 to drive the X and Y motors from 1HCL  boards configured at CAN addresses 50 and 51, with quadrature encoders. **Note, some parameters have changed in RRF 3.5, if using RRF 3.4 its recommended to upgrade to RRF 3.5**.
 
