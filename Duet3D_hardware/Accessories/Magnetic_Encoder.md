@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2025-02-25T11:39:01.660Z
+date: 2025-02-26T17:27:17.122Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -56,7 +56,7 @@ The STEP file is [hosted here](https://github.com/Duet3D/Duet3-Magnetic-Encoder/
 | Qty | Item | Remarks |
 |:---|:---|
 | 1 | Magnetic Encoder PCB | Included |
-| 1 | 6mm diameter x 4mm long diametrically-magnetised magnet | Included |
+| 1 | 6mm diameter x 4mm long diametrically-magnetised magnet | Included. A 6mm magnet was chosen because it fits even in recessed shaft NEMA 17 motors. |
 | 4 | 0.5mm M3 nylon washer | Included |
 | 4 | 1mm M3 nylon washer | Included |
 | 4 | 2mm M3 nylon washer | Included |
@@ -87,6 +87,39 @@ The jig can be printed using a reasonably tuned FDM 3d printer with a 0.4mm nozz
 * Follow the manufacturer's instructions for the adhesive regarding curing time, temperature and any pressure required.
 
 ![Image showing the before and after of the magnet placed in the alignment jig on the back of the Nema17 motor](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step2.png)
+
+### Notes on magnet placement
+
+These notes are mostly based on the manufacturer's [application note here](https://look.ams-osram.com/m/1f9fec31c21d8f4d/original/AnglePositionOnAxis-AN000271.pdf){target=_blank}.
+
+<details>
+<summary>Distance from magnet to sensor</summary>
+  Ideally there should be an air gap of no more than 1mm between magnet and sensor.
+</details>
+
+
+<details>
+<summary>Off-axis magnet placement and encoder errors</summary>
+  
+The better the magnet is centered on the shaft, the lower the encoder errors will be. See section 1.5 and 1.6 of the application note:
+
+> 1.5 Non-linearity definition
+The integral non linearity (INL) is one of the important parameters for position sensors in general. This parameter specifies the effective angle error from the total system. The magnetic position sensor system performance is mainly dependent on magnetic and mechanical constraints. Electrical errors from position sensor IC play mostly a minor role
+
+![e7c48b5b-5286-4dc4-8494-6d7f482cff5a-image.png](https://forum.duet3d.com/assets/uploads/files/1740484018413-e7c48b5b-5286-4dc4-8494-6d7f482cff5a-image.png) 
+
+![dbdfb8fb-1112-48e8-a981-72f9132840d2-image.png](https://forum.duet3d.com/assets/uploads/files/1740484073689-dbdfb8fb-1112-48e8-a981-72f9132840d2-image.png)
+  
+</details>
+
+<details>
+<summary>Magnets and temperature</summary>
+
+Check the maximum temperature the motor will get to and look at the specs of the magnets. We use high temperature magnets for mounting on the motor shaft (which is not needed in many cases but could help if running hot). A slightly wider diameter magnet will work slightly better for the same flux density, up to about 10mm. See section 1.5 and 1.6 of the application note.
+
+![518558fa-114b-4f8c-ba6e-1397ecbb46a7-image.png](https://forum.duet3d.com/assets/uploads/files/1736781301442-518558fa-114b-4f8c-ba6e-1397ecbb46a7-image.png) 
+
+</details>
 
 ## Step 3 - Mount Magnetic Encoder PCB on motor
 
