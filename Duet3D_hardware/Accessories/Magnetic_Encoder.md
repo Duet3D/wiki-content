@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2025-02-26T17:27:17.122Z
+date: 2025-02-27T16:39:16.503Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -90,34 +90,44 @@ The jig can be printed using a reasonably tuned FDM 3d printer with a 0.4mm nozz
 
 ### Notes on magnet placement
 
-These notes are mostly based on the manufacturer's [application note here](https://look.ams-osram.com/m/1f9fec31c21d8f4d/original/AnglePositionOnAxis-AN000271.pdf){target=_blank}.
-
-<details>
-<summary>Distance from magnet to sensor</summary>
-  Ideally there should be an air gap of no more than 1mm between magnet and sensor.
-</details>
-
+There are three main factors that affect the strength and linearity of the magnetic field that the sensor detects, listed below. These notes are based on the sensor manufacturer's [application note here](https://look.ams-osram.com/m/1f9fec31c21d8f4d/original/AnglePositionOnAxis-AN000271.pdf){target=_blank}.
 
 <details>
 <summary>Off-axis magnet placement and encoder errors</summary>
+  The linearity of the detected magnetic field changes with mechanical displacements in the x and y direction (ie if the magnet is off-centre). Ideally, the magnet should rotate over the sensor chip such that the center of the magnet, the center of rotation, and the center of the chip, are in one vertical line. The better the magnet is centered on the shaft, the lower the encoder errors will be. See section 1.5 and 1.6 of the application note:
+
+  > The integral non linearity (INL) is one of the important parameters for position sensors in general. This parameter specifies the effective angle error from the total system. The magnetic position sensor system performance is mainly dependent on magnetic and mechanical constraints. Electrical errors from position sensor IC play mostly a minor role
   
-The better the magnet is centered on the shaft, the lower the encoder errors will be. See section 1.5 and 1.6 of the application note:
+  [![Figure 7 Non Linearity of the angle output](/hardware/magnetic_encoder/mag_enc_installation_notes_04.png)](/hardware/magnetic_encoder/mag_enc_installation_notes_04.png){target=_blank}
 
-> 1.5 Non-linearity definition
-The integral non linearity (INL) is one of the important parameters for position sensors in general. This parameter specifies the effective angle error from the total system. The magnetic position sensor system performance is mainly dependent on magnetic and mechanical constraints. Electrical errors from position sensor IC play mostly a minor role
+  > The non-linearity parameter represents the difference between the measured and the ideal line. Offset angle components are not considered in this calculation. (Best-Line-Fit method).
 
-![e7c48b5b-5286-4dc4-8494-6d7f482cff5a-image.png](https://forum.duet3d.com/assets/uploads/files/1740484018413-e7c48b5b-5286-4dc4-8494-6d7f482cff5a-image.png) 
+  [![Figure 12 Non-Linearity change over horizontal misalignment](/hardware/magnetic_encoder/mag_enc_installation_notes_03.png)](/hardware/magnetic_encoder/mag_enc_installation_notes_03.png){target=_blank}
+  
+  A slightly wider diameter magnet will work slightly better for the same flux density, up to about 10mm. Duet3D chose a 6mm magnet because that fits even in recessed shaft NEMA 17 motors.
+  
+  [![Figure 13 Non-Linearity error over displacement](/hardware/magnetic_encoder/mag_enc_installation_notes_06.png)](/hardware/magnetic_encoder/mag_enc_installation_notes_06.png){target=_blank}
+  
+</details>
 
-![dbdfb8fb-1112-48e8-a981-72f9132840d2-image.png](https://forum.duet3d.com/assets/uploads/files/1740484073689-dbdfb8fb-1112-48e8-a981-72f9132840d2-image.png)
+<details>
+<summary>Distance from magnet to sensor</summary>
+  The vertical distance from the sensor surface to the magnet surface (air gap) is an
+important parameter for the linearity of the system. The strength of the magnetic field reduces as the distance between magnet and sensor increases. For the supplied 6mm magnet, there should be an air gap of no more than 1mm between magnet and sensor. See section 1.6.1 of the application note.
+  
+  [![Figure 9 shows the difference between 6 and 8 mm diameter magnet](/hardware/magnetic_encoder/mag_enc_installation_notes_01.png)](/hardware/magnetic_encoder/mag_enc_installation_notes_01.png){target=_blank}
+  
+  [![Figure 10 Nonlinearity and Automatic Gain Control (AGC) value over air gap. D6H2.5 magnet.](/hardware/magnetic_encoder/mag_enc_installation_notes_02.png)](/hardware/magnetic_encoder/mag_enc_installation_notes_02.png){target=_blank}
+
+  Figure 10 shows the tendency of the non-linearity choosing different air gaps. In addition the automatic gain control (AGC) value is shown. This value is increasing with increasing distance, reaching the limit at larger air gaps. The magnetic position sensor is still operating in this area, but with increased noise output.
   
 </details>
 
 <details>
 <summary>Magnets and temperature</summary>
+  The temperature will also affect the magnetic field, with higher temperatures reducing the strength of the magentic field. Check the maximum temperature the motor will get to and check the specification of the magnet. Duet3D supply high temperature magnets for mounting on the motor shaft, which should not be needed in most cases, but could help if the motor is running hot. See section 2.6 of the application note.
 
-Check the maximum temperature the motor will get to and look at the specs of the magnets. We use high temperature magnets for mounting on the motor shaft (which is not needed in many cases but could help if running hot). A slightly wider diameter magnet will work slightly better for the same flux density, up to about 10mm. See section 1.5 and 1.6 of the application note.
-
-![518558fa-114b-4f8c-ba6e-1397ecbb46a7-image.png](https://forum.duet3d.com/assets/uploads/files/1736781301442-518558fa-114b-4f8c-ba6e-1397ecbb46a7-image.png) 
+  [![Figure 18: Magnetic flux density Bz of N35H magnet at different temperature (same magnet)](/hardware/magnetic_encoder/mag_enc_installation_notes_05.png)](/hardware/magnetic_encoder/mag_enc_installation_notes_05.png){target=_blank}
 
 </details>
 
