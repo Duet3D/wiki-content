@@ -2,7 +2,7 @@
 title: Heater faults and how to avoid them
 description: RepRapFirmware monitors heater temperatures to check they are behaving as expected, to detect situations that might pose a danger. Sometimes, the firmware may mistakenly think there is a heater fault in certain situations. 
 published: true
-date: 2025-02-27T17:09:11.576Z
+date: 2025-02-27T17:18:39.391Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:56:18.764Z
@@ -87,7 +87,7 @@ The message in this case is "temperature excursion too large" or "temperature ex
 
 From RepRapFrimware v3.4 errors can be reported and handled through the [Event System](/User_manual/RepRapFirmware/Events). For heater faults, the following Heater Fault Types are returned to the heater event:
 
-| Event number | Object Model String | Description |
+| Heater fault type code | Heater fault type | Returned string |
 |:---|:---|:---|
 | 0 | failedToReadSensor | "failed to read sensor: " the sensor error message will be appended |
 | 1 | temperatureRisingTooSlowly | "temperature rising too slowly: expected ... measured ..." will be appended |
