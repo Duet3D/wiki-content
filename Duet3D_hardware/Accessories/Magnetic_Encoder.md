@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2025-02-27T16:39:16.503Z
+date: 2025-02-27T16:43:42.989Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -94,9 +94,9 @@ There are three main factors that affect the strength and linearity of the magne
 
 <details>
 <summary>Off-axis magnet placement and encoder errors</summary>
-  The linearity of the detected magnetic field changes with mechanical displacements in the x and y direction (ie if the magnet is off-centre). Ideally, the magnet should rotate over the sensor chip such that the center of the magnet, the center of rotation, and the center of the chip, are in one vertical line. The better the magnet is centered on the shaft, the lower the encoder errors will be. See section 1.5 and 1.6 of the application note:
+  The linearity of the detected magnetic field changes with mechanical displacements in the x and y direction (ie if the magnet is off-centre). Ideally, the magnet should rotate over the sensor chip such that the centre of the magnet, the centre of rotation, and the centre of the chip, are in one vertical line. The better the magnet is centred on the shaft, the lower the encoder errors will be. See section 1.5 and 1.6 of the application note.
 
-  > The integral non linearity (INL) is one of the important parameters for position sensors in general. This parameter specifies the effective angle error from the total system. The magnetic position sensor system performance is mainly dependent on magnetic and mechanical constraints. Electrical errors from position sensor IC play mostly a minor role
+  > The integral non linearity (INL) is one of the important parameters for position sensors in general. This parameter specifies the effective angle error from the total system. The magnetic position sensor system performance is mainly dependent on magnetic and mechanical constraints. Electrical errors from position sensor IC play mostly a minor role.
   
   [![Figure 7 Non Linearity of the angle output](/hardware/magnetic_encoder/mag_enc_installation_notes_04.png)](/hardware/magnetic_encoder/mag_enc_installation_notes_04.png){target=_blank}
 
