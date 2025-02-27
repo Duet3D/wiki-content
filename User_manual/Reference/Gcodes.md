@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-02-25T11:40:48.314Z
+date: 2025-02-27T11:55:17.750Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7182,19 +7182,19 @@ Note that filament monitoring in RRF is only active when printing from SD card.
   * 6 = Duet3D laser sensor with microswitch
   * 7 = pulse-generating sensor
 * **C"name"** Pin name the filament sensor is connected to (RRF3 only), see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. DueX2/5 users, see Notes below.
-* **Sn** 0 = disable filament monitoring (default), 1 = enable filament monitoring when printing from SD card, 2 = enable filament monitoring all the time (S2 is supported RRF 3.5.0-rc.1 and later only). Filament monitors accumulate calibration data (where applicable) even when filament monitoring is disabled.
+* **Sn** 0 = disable filament monitoring (default), 1 = enable filament monitoring when printing from SD card, 2 = enable filament monitoring all the time (S2 is supported RRF 3.5.0 and later ). Filament monitors accumulate calibration data (where applicable) even when filament monitoring is disabled.
 
-**Additional parameters for Duet3D laser filament monitor**
+**Additional parameters for Duet3D rotating magnet filament monitor**
 
 * **Raa:bb** Allow the filament movement reported by the sensor to be between aa% and bb% of the commanded values; if it is outside these values and filament monitoring is enabled, the print will be paused
 * **Enn** minimum extrusion length before a commanded/measured comparison is done, default 3mm
 * **An** 1 = check All extruder motion, 0 (default) = only check extruder motion of printing moves (moves with both movement and forward extrusion)
-* **Lnn** (firmware 3.2 and later) Calibration factor, default 1.0. The filament movement reported by the laser sensor is multiplied by this value before being compared with the commanded extrusion. Intended for use with sensors that use the laser to read movement of a wheel that is turned by the filament.
-
-**Additional parameters for Duet3D rotating magnet filament monitor**
-
 * **Lnn** Filament movement per complete rotation of the sense wheel, in mm
-* **R, E, A** As for Duet3D laser filament monitor
+
+**Additional parameters for Duet3D laser filament monitor**
+
+* **Lnn** (firmware 3.2 and later) Calibration factor, default 1.0. The filament movement reported by the laser sensor is multiplied by this value before being compared with the commanded extrusion. Intended for use with sensors that use the laser to read movement of a wheel that is turned by the filament.
+* **R, E, A** As for Duet3D magnetic filament monitor
 
 **Additional parameters for a pulse generating filament monitor**
 
