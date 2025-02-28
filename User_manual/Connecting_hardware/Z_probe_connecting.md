@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2024-09-17T12:44:38.017Z
+date: 2025-02-28T14:49:40.107Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -117,6 +117,13 @@ Use the Z motor stall detection as the Z probe trigger. Supported in firmware 1.
 
 Scanning Z probe with an analog output (supported from RRF 3.5.0-beta.4). Such probes must be calibrated before use (see M558.1). See [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe), [Duet 3 Roto toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) and [Scanning Z probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
 
+### Configuring multiple probes
+
+From RRF 3.1.0, you can define multiple probes.
+
+* The K parameter in M558 selects the Z probe number. If there is no K parameter then 0 is used. You can ignore this parameter if you have only one Z probe.
+* Z probe #0 can use probe types 0, 1, 2, 3, 5, 8, 9, 10 or 11 (RRF 3.5 and later). All other probes must be probe type 0, 8, 9, 10 or 11 (RRF 3.5 and later).
+
 ## RepRapFirmware 2.x
 
 The following table gives an overview of the different Z probe modes.
@@ -185,12 +192,24 @@ Special mode for BLTouch probe. Supported in firmware 1.21 and later.
 
 Use the Z motor stall detection as the Z probe trigger. Supported in firmware 1.21 and later. There are limitations to [stall detection](/User_manual/Connecting_hardware/Sensors_stall_detection) and it is not always appropriate for accurate Z probing, however there is a [detailed discussion on the forum](https://forum.duet3d.com/topic/4772/motor-stall-detection-as-z-probe) and some users have had success.
 
-### Configuring multiple probes
+# Controlling deployable probes
 
-From RRF 3.1.0, you can define multiple probes.
+Some probes, for example BLTouch, Creality CR Touch, BIQU Microprobe, Klicky and Euclid, need to run commands before and after probing, to enable them, e.g. a set of movement commands to pick them up, or control a servo to activate them. RRF has a mechanism to allow for this; when a probing command ([G29](/User_manual/Reference/Gcodes/G29), [G30](/User_manual/Reference/Gcodes/G30), or [G38.x](/User_manual/Reference/Gcodes/G38_3)) is called, RRF checks if there is a system macro called **deployprobe.g** in the /sys folder. If there is, it will run this before probing. At the end of the probing, RRF will run **retractprobe.g**.
 
-* The K parameter in M558 selects the Z probe number. If there is no K parameter then 0 is used. You can ignore this parameter if you have only one Z probe.
-* Z probe #0 can use probe types 0, 1, 2, 3, 5, 8, 9 or 10. All other probes must be probe type 0, 8, 9 or 10.
+From RRF 3.1, if you have more than one Z probe, you can use deployprobe0.g and retractprobe0.g for probe 0, deployprobe1.g and retractprobe1.g for probe 1 and so on. RRF first looks for deployprobeN.g (where N is the probe number). If that's not found and the probe number is 0 then it falls back to deployprobe.g. In RRF 3.5, it always falls back to deployprobe.g and it passes the probe number in the K parameter. Similar for the retractprobe.g macro.
+
+**NOTE: If you DO NOT have a Z probe that needs to deploy or retract, you must not have these files in the /sys/ directory, or the firmware will attempt to use them!**
+
+Additionally, if you have two probes, and one deploys (eg probe 0) and the other (eg probe 1) does not, ONLY have deployprobe0.g and retractprobe1.g in /sys, i.e. no deployprobe.g/retractprobe.g or deployprobe1.g/retractprobe1.g. Alternatively, in RRF 3.5 or later, use deployprobe.g/retractprobe.g only, but use [Meta Gcode](/User_manual/Reference/Gcode_meta_commands) and the passed probe number (K parameter) to control what happens when each probe is used.
+
+## Notes on probe deployment
+
+* Users can deploy and retract probes manually using [M401](/User_manual/Reference/Gcodes/M401) and [M402](/User_manual/Reference/Gcodes/M402)
+* G30 requests deployment of the probe before probing (unless the user has previously called M401 without subsequently calling M402) and retraction of the probe afterwards
+* In G29, if the probe is not a mode 9 probe (e.g. BLTouch) then it requests deployment at the start of the entire sequence and retraction at the end. If it is a mode 9 probe (e.g. BLTouch) then it requests deployment and retraction for each individual point.
+* Each probe keeps track of the deployment state. When the count goes from 0 to 1, the deployment macro is called. When it goes from 1 to 0 the retraction macro is called. Otherwise nothing is done apart from adjusting the count.
+* M401 will always call a deployment, M402 will always call a retraction, irrespective of the count, but the count is updated with the current state (deployed or retracted).
+* For G32 when not using a BLTouch it's typical to use M401 at the start and M402 at the end of bed.g, to avoid deploying and retracting the probe at each point. (edited) 
 
 # Connecting different types of Z probe
 
