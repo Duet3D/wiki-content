@@ -2,7 +2,7 @@
 title: Input shaping
 description: This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. 
 published: true
-date: 2024-09-05T08:55:11.584Z
+date: 2025-03-06T07:55:39.317Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T19:33:14.384Z
@@ -10,7 +10,7 @@ dateCreated: 2021-12-03T19:33:14.384Z
 
 # Introduction
 
-This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. Note, as at firmware version 3.4, input shaping is only applied to axis motors driven directly from the Duet3 main board, not to axis motors driven from CAN-connected expansion boards.
+This page describes the reasons for using input shaping and the support for input shaping in RepRapFirmware. In firmware version 3.4 and earlier input shaping is only applied to axis motors driven directly from the Duet3 main board, not to axis motors driven from CAN-connected expansion boards. Firmware 3.5 and later support input shaping on expansion boads too.
 
 # What is ringing?
 
