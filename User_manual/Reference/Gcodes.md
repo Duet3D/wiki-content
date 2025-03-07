@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-02-27T11:55:17.750Z
+date: 2025-03-07T10:01:31.281Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8300,7 +8300,7 @@ This sets the stall detection parameters and optionally the low-load current red
 * **Snnn** Stall detection threshold (see notes below)
 * **Fn** Stall detection filter mode, 1 = filtered (one reading per 4 full steps), 0 = unfiltered (default, 1 reading per full step)
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200
-* **Tnnn** (optional) Coolstep control register, 16-bit unsigned integer
+* **Tnnn** (optional) Coolstep control register (tcoolthrs), 16-bit unsigned integer
 * **Rn** Action to take on detecting a stall from any of these drivers: 0 = no action (default), 1 = just log it, 2 = pause print, 3 = pause print, execute /sys/rehome.g, and resume print.
 
 ### Order dependency
