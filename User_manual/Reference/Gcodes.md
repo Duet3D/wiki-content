@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-07T10:28:07.347Z
+date: 2025-03-08T12:08:01.796Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6009,7 +6009,7 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 * **Pnn** Motor driver number
 * **Tn** Encoder type: 0=none (default), 1=linear quadrature encoder plus Duet3D magnetic shaft encoder (RRF 3.5 and later only), 2=quadrature motor shaft encoder, 3=[Duet3D magnetic encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) (RRF 3.5 and later only)
 * **Cn.n** In RRF 3.4, for a quadrature motor shaft encoder (T2) this is the number of counts per full step. In RRF 3.5 and later, for a quadrature shaft encoder (T2) or linear composite encoder (T1) it is the number of quadrature encoder pulses per revolution. Not required for a magnetic shaft encoder.
-* **En.n:m.m** Error thresholds. If m.m is nonzero then whenever the actual position is more than m.m full motor steps of the desired position, this will be reported as a driver error. If n.n is nonzero and n.n < m.m then whenever the actual position is more than n.n full steps of the desired position but is less than m.m full steps, this will be reported as a pre-stall. (Default: m.m=2.0, n.n=1.0) The action that is taken on a stall/pre-stall can be configured using the [event system](/User_manual/RepRapFirmware/Events)
+* **En.n:m.m** Error thresholds. If m.m is nonzero then whenever the actual position is more than m.m full motor steps of the desired position, this will be reported as a driver error. If n.n is nonzero and n.n < m.m then whenever the actual position is more than n.n full steps of the desired position but is less than m.m full steps, this will be reported as a driver warning. (Default: m.m=2.0, n.n=1.0) The action that is taken on a error/warning can be configured using the [event system](/User_manual/RepRapFirmware/Events)
 * **Sn.n** (optional, RRF 3.5 and later only) Motor full steps per revolution, default 200.
 * **Rn.n** Proportional constant
 * **In.n** (optional) Integral constant
