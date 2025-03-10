@@ -2,7 +2,7 @@
 title: What to do if your Duet won't respond
 description: 
 published: true
-date: 2022-06-29T21:01:35.492Z
+date: 2025-03-10T16:01:51.931Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:52:16.731Z
@@ -16,7 +16,7 @@ dateCreated: 2021-12-05T22:52:16.731Z
 * Check the LEDs on the Duet:
   * **Duet 3 MB6HC**: There should be a red LED illuminated between the USB connector and SD card socket. The red 5V LED at the edge of the board should also be lit, so should the green 3.3V LED.
   * **Duet 3 Mini 5+**: The red 5V LED at the edge of the board should be lit, so should the green 3.3V LED.
-  * **Duet 2**: There should be a red LED illuminated between the USB connector and the Reset button. The red 5V LED at the edge of the board should also be lit, so should the green 3.3V LED.
+  * **Duet 2**: There should be a red LED illuminated between the USB connector and the Reset button, which indicates 5V power via USB. The red 5V LED at the edge of the board should also be lit, so should the green 3.3V LED.
 * If the red LED(s) are lit but not the green 3.3V LED then most likely there is a short between the 3.3V power rail and ground, or the 3.3V voltage regulator has failed. Disconnect the Duet from USB, then remove all endstop and Z probe connectors from the Duet. Duet 2: If you have a DueX2 or DueX5 connected as well, disconnect the ribbon cable joining them too. Then reconnect the USB cable and check the LEDs again.
 * The DIAG LED may or may not be lit, but can help diagnosis:
   * **Duet 3 MB6HC**: DIAG LED is between the reset switch and the SD card socket 
