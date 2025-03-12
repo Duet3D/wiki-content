@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2024-10-31T11:45:05.930Z
+date: 2025-03-12T12:37:15.432Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -22,7 +22,9 @@ The primary application is to speed up printing by having the printer work on se
 -   At any time, each motion system “owns” a set of physical axes and extruders. It may also own a tool. No other motion system can use those axes/extruders or that tool until the owning motion system releases it. See below for details of ownership of axes and extruders.
 -   For any two axes owned by different motion systems, those axes may not share a motor. For example, on a CoreXY machine the X and Y axes cannot be owned by different motion systems.
 
-# Selecting a motion queue
+# Enabling and selecting a motion queue
+
+If running from a file (i.e. a job or macro on the SD card), use [M606](/User_manual/Reference/Gcodes/M606), by adding `M606 S1` at the beginning of the file, to enable the forking of the file to each motion system queue.
 
 Use the [M596](https://docs.duet3d.com/en/User_manual/Reference/Gcodes#m596-select-movement-queue-number) command to specify which motion system any motion or tool operations in the following commands should be targeted at. The selection of target motion system remains in force until one of the following occurs:
 
@@ -49,6 +51,8 @@ Certain other commands will also cause synchronisation (details to follow).
 
 The way that command streams that use multiple motion systems are processed depends on the source of the command stream.
 
+## Command streams from USB, serial input and DWC console
+
 For command streams from USB, async serial input (including PanelDue) and the DWC console, the commands are processed by a single GCode processor. This means that the ability of the system to execution motion of both systems concurrently will be limited, because when there is a long block of motion commands for one system, the GCode processor must wait until it has queued all those commands before it can process subsequent commands that are targeted at another motion system.
 
 | Single Gcode Processor |||
@@ -65,7 +69,13 @@ For command streams from USB, async serial input (including PanelDue) and the DW
 | Aux2 | 10 | UART2 |
 | Autopause | 11 | |
 
-For command streams that originate from file, each motion system uses a separate GCode processor to process commands targeted at that motion system, skipping commands that are targeted at other motion systems. This is when there is a need to synchronise the motion systems at particular points in the file. For example, there may be blocks of motion commands for each motion system that can execute concurrently because each motion system operates within its own defined area, such that collisions will not occur. Subsequently it may be necessary to change these defined areas so that parts of the job that were not not accessible using the previous areas can be accessed. Or, where the motion systems share a common Z axis, it may be necessary for them to both complete the current layer of a 3D print before Z can be moved ready for the next layer.
+## Command streams from file
+
+For command streams that originate from file (i.e. job or macro on the SD card), each motion system uses a separate GCode processor to process commands targeted at that motion system, skipping commands that are targeted at other motion systems. 
+
+**Note:** to enable the separate Gcode processors, the file/macro should include an [M606](/User_manual/Reference/Gcodes/M606) command to fork the input file, and allow the input stream to be forked to each Gcode processor. Add `M606 S1` at the beginning of any file that uses multiple motion systems.
+
+This is when there is a need to synchronise the motion systems at particular points in the file. For example, there may be blocks of motion commands for each motion system that can execute concurrently because each motion system operates within its own defined area, such that collisions will not occur. Subsequently it may be necessary to change these defined areas so that parts of the job that were not not accessible using the previous areas can be accessed. Or, where the motion systems share a common Z axis, it may be necessary for them to both complete the current layer of a 3D print before Z can be moved ready for the next layer.
 
 The commands streams can be synchronised using a M598 command. Each GCode processor that reaches the M598 command will pause until all other processors have caught up.
 
