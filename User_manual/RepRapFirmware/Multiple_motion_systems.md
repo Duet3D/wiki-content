@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2025-03-12T12:37:15.432Z
+date: 2025-03-12T12:59:38.643Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -73,11 +73,13 @@ For command streams from USB, async serial input (including PanelDue) and the DW
 
 For command streams that originate from file (i.e. job or macro on the SD card), each motion system uses a separate GCode processor to process commands targeted at that motion system, skipping commands that are targeted at other motion systems. 
 
-**Note:** to enable the separate Gcode processors, the file/macro should include an [M606](/User_manual/Reference/Gcodes/M606) command to fork the input file, and allow the input stream to be forked to each Gcode processor. Add `M606 S1` at the beginning of any file that uses multiple motion systems.
+**Note:** to enable the separate command streams and Gcode processors, the file/macro should include an [M606](/User_manual/Reference/Gcodes/M606) command to fork the input file, and allow the input stream to be forked to each Gcode processor. Add `M606 S1` in the job file or in the start.g.file.
 
-This is when there is a need to synchronise the motion systems at particular points in the file. For example, there may be blocks of motion commands for each motion system that can execute concurrently because each motion system operates within its own defined area, such that collisions will not occur. Subsequently it may be necessary to change these defined areas so that parts of the job that were not not accessible using the previous areas can be accessed. Or, where the motion systems share a common Z axis, it may be necessary for them to both complete the current layer of a 3D print before Z can be moved ready for the next layer.
+The M606 command must be used in the job file if you want the second input stream to execute commands for the second movement system; otherwise commands for both movement system are executed by the primary file stream. When the job completes the secondary file stream is closed and commands in the stop.g file for both motion systems are executed by the primary stream.
 
-The commands streams can be synchronised using a M598 command. Each GCode processor that reaches the M598 command will pause until all other processors have caught up.
+There is usually a need to synchronise the motion systems at particular points in the file. For example, there may be blocks of motion commands for each motion system that can execute concurrently because each motion system operates within its own defined area, such that collisions will not occur. Subsequently it may be necessary to change these defined areas so that parts of the job that were not not accessible using the previous areas can be accessed. Or, where the motion systems share a common Z axis, it may be necessary for them to both complete the current layer of a 3D print before Z can be moved ready for the next layer.
+
+The commands streams can be synchronised using a [M598](/User_manual/Reference/Gcodes/M598) command. Each GCode processor that reaches the M598 command will pause until all other processors have caught up.
 
 ## How the queue works
 
