@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2025-03-14T14:33:13.638Z
+date: 2025-03-14T15:06:48.316Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -183,6 +183,7 @@ Once power is turned on, the filament monitor will flash the green LED 3 times t
 1. During and after the print, as soon as sufficient filament has been extruded you can use M591 D# (where # is the extruder number) to report the measured mm/rev averaged over the print thus far, and its variation. (>10mm of extrusion is required before calibration information is displayed)
 1. If you pause and then resume the print, calibration will be re-started and the values accumulated from before you paused will be discarded.
 1. The mm/rev value goes into the L parameter of the M591 command. Use a positive or negative sign as reported by M591. Set the R (tolerance) parameter to somewhat more than the reported variation.
+1. If the print is paused, calibration restarts when it is resumed.
 
 ### How it works
 
