@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2024-01-09T17:31:19.626Z
+date: 2025-03-14T14:31:53.174Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -175,19 +175,22 @@ Once power is turned on, the filament monitor will flash the green LED 3 times t
 
 ### Calibration
 
+>Note. For a successfull calibration the extruder steps/mm needs to be set correctly.{.is-info}
+
 1. If you haven't done so already, send the M591 command with the correct parameters to tell the firmware about the sensor.
 1. Run M591 D# where # is the extruder number and check that the sensor angle is reported, to confirm that communication from the filament monitor to the Duet is working.
 1. Start a print.
-1. During and after the print, as soon as sufficient filament has been extruded you can use M591 D# (where # is the extruder number) to report the measured mm/rev averaged over the print thus far, and its variation.
+1. During and after the print, as soon as sufficient filament has been extruded you can use M591 D# (where # is the extruder number) to report the measured mm/rev averaged over the print thus far, and its variation. (>10mm of extrusion is required before calibration information is displayed)
 1. If you pause and then resume the print, calibration will be re-started and the values accumulated from before you paused will be discarded.
 1. The mm/rev value goes into the L parameter of the M591 command. Use a positive or negative sign as reported by M591. Set the R (tolerance) parameter to somewhat more than the reported variation.
 
 ### How it works
 
 * While a file is being printed the Duet Firmware reads the angle from the Filament monitor.
-* The Duet firmware uses the parameters configured in M591 to determine the angle change that relates to a specific filament movement distance.
+* The Duet firmware uses the parameters configured in M591 to determine the angle change that relates to a specific filament movement distance. It assumes that the Extruder steps/mm is set correctly so a G1 E1 move = 1mm of filament movement through the filament monitor.
 * Once net extruder movement greater than the number of mm configured in the E parameter (for example 3mm) has been commanded, the extrusion measured by the filament monitor is compared with the amount of extrusion commanded.
 * If there is a difference between what has been commanded and what has been measured by the filament monitor that is greater than the configured tolerance (configured using the R parameter) the print is paused and an error is reported.
+* The min and max figures are updated, along with the measured value, on each comparison. The 'measured' value is the average value measured since calibration started assuming that no steps have been lost. The min and max are the minimum and maximum seen in calibration started.
 
 ## Troubleshooting
 
@@ -209,7 +212,7 @@ Typically errors 6 & 7 means that the magnet is too far away from the sensor chi
 
 ### Event System filament-error events
 
-From RepRapFrimware v3.4 errors can be reported and handled through the [Event System](/User_manual/RepRapFirmware/Events). for the filament monitor the following events are possible:
+From RepRapFirmware v3.4 errors can be reported and handled through the [Event System](/User_manual/RepRapFirmware/Events). for the filament monitor the following events are possible:
 
 | Event number | Object Model String | Description |
 |:---|:---|:---|
