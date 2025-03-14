@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2025-03-14T14:31:53.174Z
+date: 2025-03-14T14:33:13.638Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -16,7 +16,7 @@ The filament sensor may be a simple switch that detects the presence of filament
 
 The [Duet3D Rotating Magnet Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor) provides precise motion detection with direction:
 
-# How it works
+# Action on error
 
 Configure a filament monitor using [M591](/User_manual/Reference/Gcodes/M591). The action on a filament error depends on the version of RepRapFirmware your Duet is running.
 
