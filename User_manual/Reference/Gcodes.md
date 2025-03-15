@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-08T12:08:01.796Z
+date: 2025-03-15T08:35:45.379Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7773,8 +7773,8 @@ M669 K4 P300 D250 A-90:90 B-135:135 C0:0:0 S100 X300 Y0
 
 ### Parameters
 
-* **Pnn:nn:nn...** - List of logical port numbers that bits 0, 1, 2... control (supported in RRF2.x and earlier)
-* **Cnnn** - Used to specify the pin name(s) to be controlled (supported in RRF3 and later, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank})
+* **Pnn:nn:nn...** - List of port numbers that bits 0, 1, 2... control. In RRF2.x and earlier these are logical port numbers. In RRF 3.6.0-rc.2 and later these are GpOut port numbers that have previously been assiged using M950. RRF 3.x versions up to 3.6.0-rc.1 do not use this parameter.
+* **Cnnn** - Used to specify the pin name(s) to be controlled. Used only in RRF3.x versions up to 3.6.0-rc.1. See [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank})
 * **Tnnn** - Port switching time advance in milliseconds
 
 ### Examples
