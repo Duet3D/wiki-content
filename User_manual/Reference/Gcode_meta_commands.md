@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-03-18T08:16:33.257Z
+date: 2025-03-18T08:19:45.101Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -243,13 +243,13 @@ The following named constants are provided:
 
 ## Literals
 
-Integer literals may be expressed in decimal format (e.g. *4321*) or hexadecimal format (e.g. *0x3f*).
+Integer literals may be expressed in decimal format (e.g. *4321*), hexadecimal format (e.g. *0x3f*) or binary format (e.g. *0b1011*).
 
 Floating point literals may be expressed in fixed-point simple format (e.g. *165.32*) or scientific format (e.g. *6.2e6*).
 
 String literals are surrounded by double quote characters (e.g. *"Hello world"*). To include a double-quote character in a string iteral, use two double-quote characters (e.g. *"Here is some ""quoted text"""*). String literals are limited to 100 characters.
 
-Character literals (supported in RRF 3.5.0-rc.1 and later) are surrounded by single quote characters (e.g. 'a').
+Character literals (supported in RRF 3.5.0 and later) are surrounded by single quote characters (e.g. 'a').
 
 There are no literals of other types, however the Boolean constants **true** and **false** are available.
 
