@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-03-18T08:47:54.028Z
+date: 2025-03-18T14:03:59.620Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -383,12 +383,12 @@ The following functions are supported, with their conventional meanings:
 | cos | float->float | Argument must be in radians |
 | datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a **DateTime**, or a string with format "yyyy-mm-ddThh:mm:ss" to a **DateTime**. Available in RRF 3.4.0 and later. |
 | degrees | float->float | Converts radians to degrees |
-| drop | (string, int)->string or (array, int)->array | Returns all but the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0 and later)
+| drop | (string, int)->string or (array, int)->array | Returns all but the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0-rc.1 and later)
 | exists | name  -> bool | Yields **true** if *name* is a valid variable or object model element name and is not null (available in RRF 3.3.0 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
 | exp | float->float | Returns *e* raised to the operand (supported in RRF 3.5.0 and later) |
 | fileexists | string->bool | Yields **true** if the string parameter is the name of a file in the file system (available in RRF 3.5.0 and later). |
 | fileread | (string, int, int, char)->array | Returns an array of elements read from a single-line CSV or similar file (available in RRF 3.5.0 and later). The string parameter is the name of the file to read. The first integer parameter is the number of elements to skip; the second is the maximum number of elements to read; and the character is the field separator, typically ','. See note at the end of this table.|
-| find | (string, char)->int or (string, string)->int | Returns the index of the first occurrence of the character in the string, or the index in the first string at which the first occurrence of the second string starts; or -1 if the second argument does not occur in the first argument (available in RRF 3.6.0 and later)
+| find | (string, char)->int or (string, string)->int | Returns the index of the first occurrence of the character in the string, or the index in the first string at which the first occurrence of the second string starts; or -1 if the second argument does not occur in the first argument (available in RRF 3.6.0-rc.1 and later)
 | floor | float->int or float->float | Result is **int** if it fits in a 32-bit signed integer, else float |
 | isnan | float->bool | Returns **true** if the operand is a NaN (Not-a-Number) e.g. *sqrt(-1)* |
 | log | float->float | Returns the natural logarithm of the operand (supported in RRF 3.5.0 and later) |
@@ -400,7 +400,8 @@ The following functions are supported, with their conventional meanings:
 | random | int->int | Operand must >= 1. Returns a pseudo-random integer in the range 0 to one less than the operand. |
 | sin | float->float | Argument must be in radians |
 | sqrt | float->float | Returns the square root of the operand |
-| take | (string, int)->string or (array, int)->array | Returns the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0 and later)
+| square | float->float | Returns the square of the operand (available in RRF 3.6.0-rc.2 and later) |
+| take | (string, int)->string or (array, int)->array | Returns the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0-rc.1 and later)
 | tan | float->float | Argument must be in radians |
 | vector | (int, X) -> array | (RRF 3.5.0 and later) Returns an array with the number of elements equal to the first operand and each element a copy of the second operand
 
