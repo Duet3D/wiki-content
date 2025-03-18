@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-03-18T08:19:45.101Z
+date: 2025-03-18T08:47:54.028Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -217,12 +217,16 @@ Sub-expressions may be enclosed in { } or in ( ). However, standard CNC GCode us
 
 The available types of expressions and variables are: **bool**, **int**, **float**, **string**, **DateTime**, **object** and **array**. The only operations available on values of type **object** are comparison with **null** and taking a member. The only operations available on values of type **array** are taking the length (unary prefix operator #) and indexing (operator [ ] ).
 
+RepRapFirmware uses some additional types internally such as **driverId**, **ipAddress** and **macAddress**.
+
 ## Type conversions
 
 The following implicit type conversions will be performed when necessary:
 
 * from type **int** to type **float**
 * from any type to **string**
+
+Hint: to force an expression of any type to be converted to type **string**, concatenate it with the empty string using the ^ operator.
 
 ## Named constants
 
@@ -236,7 +240,7 @@ The following named constants are provided:
 | line | int | The current line number in the file being executed |
 | null | object | The null object |
 | pi | float | Pi (3.14159265...) |
-| result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 or greater if it returned an error, or -1 if it was a blocking M291 message box command that had a Cancel button, and either the Cancel button was pressed or the message box timed out.^1^  Meta commands do not change 'result'. |
+| result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 or greater if it returned an error, or -1 if it was a blocking M291 message box command that had a Cancel button and either the Cancel button was pressed or the message box timed out.^1^  Meta commands do not change 'result'. |
 | true | bool | Boolean true |
 
 ^1^ In RRF 3.5.0-rc3 and earlier, pressing 'Cancel' or M291 timing out will cancel the current job/macro, and any subsequent lines in the job/macro are not processed, rather than set result to -1. See [this discussion on the Duet3D forums](https://forum.duet3d.com/topic/34945/meta-gcode-result-variable-inconsistent-with-docs) for a workaround.
@@ -249,13 +253,13 @@ Floating point literals may be expressed in fixed-point simple format (e.g. *165
 
 String literals are surrounded by double quote characters (e.g. *"Hello world"*). To include a double-quote character in a string iteral, use two double-quote characters (e.g. *"Here is some ""quoted text"""*). String literals are limited to 100 characters.
 
-Character literals (supported in RRF 3.5.0 and later) are surrounded by single quote characters (e.g. 'a').
+Character literals (supported in RRF 3.5.0 and later) are surrounded by single quote characters (e.g. *'a'*).
 
-There are no literals of other types, however the Boolean constants **true** and **false** are available.
+There are no literals of other types, however named constants **true**, **false** and **null** are available.
 
 ## Object model properties
 
-Expressions may use the values of any properties in the RepRapFirmware Object Model (OM). See [Object Model of RepRapFirmware](https://github.com/Duet3D/RepRapFirmware/wiki/Object-Model-Documentation) to see what is available. An object model property selector must evaluate to a single string, numeric or Boolean value, unless it is the operand of the unary # operator in which case it must evaluate to an array or a string.
+Expressions may use the values of any properties in the RepRapFirmware Object Model (OM). See [Object Model of RepRapFirmware](https://github.com/Duet3D/RepRapFirmware/wiki/Object-Model-Documentation) to see what is available.
 
 ## Variables
 
@@ -275,7 +279,7 @@ Use `exists(\<variable>)` to check if a variable is defined. e.g.
 ```
 exists(global.defaultSpeed)
 ```
-**Note**: In CNC mode, round brackets in a line are treated as enclosing comments. This means that if you use expressions in GCode, if you use round brackets within expressions then the whole expression must be enclosed in { }. This would normally be the case anyway when using expressions as parameters to regular GCode commands, so this only affects the use of round brackets in GCode meta commands such as if, while, var, global, echo and so on. See [here](/User_manual/Machine_configuration/Configuration_CNC#differences-in-firmware-behaviour-between-cnc-mode-and-fdm-mode) for more information.
+**Note**: In CNC mode, round brackets in a line are treated as enclosing comments. This means that if you use expressions in GCode, if you use round brackets within expressions then the whole expression must be enclosed in { }. This would normally be the case anyway when using expressions as parameters to regular GCode commands, so this only affects the use of round brackets in GCode meta commands such as **if**, **while**, **var**, **global**, **echo** and so on. See [here](/User_manual/Machine_configuration/Configuration_CNC#differences-in-firmware-behaviour-between-cnc-mode-and-fdm-mode) for more information.
 
 ## Macro parameters
 
@@ -306,7 +310,7 @@ else
     echo "no move passed to macro.g"
 ```
 
-You cannot use P as a parameter (as P is already used to reference the gcode file that is being called by M98)
+You cannot use P or R as a parameter (as P is already used to reference the gcode file that is being called by M98 and R is used by restartable macros).
 
 When using a macro as custom gcode, do not use G, M, N, or T as parameters in a custom 'G' gcode file. Do not use G, M, or N as parameter in a custom 'M' gcode file.  There are no standard G or M commands that use these parameters and RRF will treat the parameter as being the start of the next command.
 
@@ -324,7 +328,7 @@ A sequence of expressions exclosed in { } and separated by commas is an array ex
 
 The unary prefix operator `#` can be applied to a value of array type to get the number of elements, and the indexing operator `[ ]` can be applied to extract a single element.
 
-Note, once created arrays are fixed length. The array values must be reassigned to a new array to change its length.
+Note, once created arrays are fixed length. An array variable must be reassigned to a new array to change its length.
 
 ## Unary prefix operators
 
@@ -346,8 +350,8 @@ Where an expression has multiple binary operators of the same precedence and par
 | / | 6 | (float,float)->float | Division |
 | + | 5 | (int,int)->int, (float,float)->float, (DateTime,int)->DateTime | Addition. When adding an int to a DateTime the second operand is in seconds. |
 | - | 5 | (int,int)->int, (float,float)->float, (DateTime,DateTime)->int, (DateTime,int)->DateTime | Subtraction. When subtracting one DateTime from another the result is in seconds. When subtracting an int from a DateTime the second operand is in seconds. |
-| = or == | 4 | (int,int)->bool, (float,float)->bool, (string,string)->bool | Equality |
-| != | 4 | (int,int)->bool, (float,float)->bool, (string,string)->bool | Inequality |
+| = or == | 4 | (X,X)->bool | Equality (X stands for any type) |
+| != | 4 | (X,X)->bool | Inequality (X stands for any type) |
 | < | 4 | (int,int)->bool, (float,float->bool | Less than |
 | <= | 4 | (int,int)->bool, (float,float)->bool | Less than or equal |
 | > | 4 | (int,int)->bool, (float,float)->bool | Greater than |
@@ -360,7 +364,7 @@ Where an expression has multiple binary operators of the same precedence and par
 
 ## Ternary operator
 
-The expression \<expr1> ? \<expr2> : \<expr3> evaluates \<expr2> if \<expr1> is true, otherwise \<expr3>. \<expr1> must be Boolean. \<expr3> may be another ternary expression. The ternary operator has precedence 1.
+The expression *expr1 ? expr2 : expr3* evaluates *expr2* if *expr1* is true, otherwise *expr3*. *expr1* must be Boolean. *expr3* may be another ternary expression. The ternary operator has precedence 1.
 
 ## Functions
 
@@ -380,25 +384,25 @@ The following functions are supported, with their conventional meanings:
 | datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a **DateTime**, or a string with format "yyyy-mm-ddThh:mm:ss" to a **DateTime**. Available in RRF 3.4.0 and later. |
 | degrees | float->float | Converts radians to degrees |
 | drop | (string, int)->string or (array, int)->array | Returns all but the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0 and later)
-| exists | name  -> bool | Yields true if 'name' is a valid variable or object model element name and is not null (available in RRF 3.3.0 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
+| exists | name  -> bool | Yields **true** if *name* is a valid variable or object model element name and is not null (available in RRF 3.3.0 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
 | exp | float->float | Returns *e* raised to the operand (supported in RRF 3.5.0 and later) |
-| fileexists | string -> bool | Yields true if the string parameter is the name of a file in the file system (available in RRF 3.5.0 and later). |
-| fileread | (string, int, int, char)  -> array | Returns an array of elements read from a single-line CSV or similar file (available in RRF 3.5.0 and later). The string parameter is the name of the file to read. The first integer parameter is the number of elements to skip; the second is the maximum number of elements to read; and the character is the field separator, typically ','. See note at the end of this table.|
-| find | (string, char)->int or (string, string)->int | Returns the index of the first occurrence of the character in the string, or the index in the first string at which the first occrrence of the second string starts; or -1 if the second argument does not occur in the first argument (available in RRF 3.6.0 and later)
+| fileexists | string->bool | Yields **true** if the string parameter is the name of a file in the file system (available in RRF 3.5.0 and later). |
+| fileread | (string, int, int, char)->array | Returns an array of elements read from a single-line CSV or similar file (available in RRF 3.5.0 and later). The string parameter is the name of the file to read. The first integer parameter is the number of elements to skip; the second is the maximum number of elements to read; and the character is the field separator, typically ','. See note at the end of this table.|
+| find | (string, char)->int or (string, string)->int | Returns the index of the first occurrence of the character in the string, or the index in the first string at which the first occurrence of the second string starts; or -1 if the second argument does not occur in the first argument (available in RRF 3.6.0 and later)
 | floor | float->int or float->float | Result is **int** if it fits in a 32-bit signed integer, else float |
-| isnan | float->bool | Returns true if the operand is a NaN (Not-a-Number) e.g. sqrt(-1) |
-| log | float->float | returns the natural logarithm of the operand (supported in RRF 3.5beta3 and later) |
+| isnan | float->bool | Returns **true** if the operand is a NaN (Not-a-Number) e.g. *sqrt(-1)* |
+| log | float->float | Returns the natural logarithm of the operand (supported in RRF 3.5.0 and later) |
 | max | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
 | min | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
 | mod | (int, int)->int or (float, float)->float | Returns the remainder from dividing the first operand by the second operand |
-| pow | (float, float)->float or (int, int)->int | Returns the first operand to the power of the second operand  (supported in RRF 3.5beta3 and later). In RRF 3.5.0 and later the result type is **int** if the operatnds are int, the second operand is non-negative, and the result fits in an **int**. |
+| pow | (float, float)->float or (int, int)->int | Returns the first operand to the power of the second operand  (supported in RRF 3.5.0 and later). The result type is **int** if the operands are int, the second operand is non-negative, and the result fits in an **int**. |
 | radians | float->float | Converts degrees to radians |
 | random | int->int | Operand must >= 1. Returns a pseudo-random integer in the range 0 to one less than the operand. |
 | sin | float->float | Argument must be in radians |
 | sqrt | float->float | Returns the square root of the operand |
 | take | (string, int)->string or (array, int)->array | Returns the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0 and later)
 | tan | float->float | Argument must be in radians |
-| vector | (int, T) -> array of T | (RRF 3.5.0 and later) Returns an array with the number of elements equal to the first operand and each element a copy of the second operand
+| vector | (int, X) -> array | (RRF 3.5.0 and later) Returns an array with the number of elements equal to the first operand and each element a copy of the second operand
 
 ### Notes on the fileread function
 
@@ -408,7 +412,7 @@ Each element (including each skipped element) must be one of the following:
 - a character in single quotes
 - empty (in which case a corresponding null element is included in the array).
 
-Leading and trailing spaces and tabs around each element are ignored. If the file cannot be opened and read, or if any elements do not confirm to the above. then the command containing the fileread call will be aborted.
+Leading and trailing spaces and tabs around each element are ignored. If the file cannot be opened and read, or if any elements do not confirm to the above, then the command containing the fileread call will be aborted.
 
 If the element is a quoted string, then characters within it that match the separator character are not treated as separators, and each consecutive pair of double-quote characters is replaced by a one double quote character.
 
