@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-01-29T09:43:51.938Z
+date: 2025-03-19T13:22:30.228Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -52,13 +52,14 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 |:---|:---|
 | **Stepper drivers** | Up to 2.0A peak current |
-| **High current outputs** | OUT0 up to 15A, OUT1/2 up to 5A each |
+| **High current outputs** | OUT0 up to 15A. OUT1/2 up to 5A each |
+| **Medium current outputs** | Up to 2A per output when powered from VIN. Up to 800mA total when powered from 12V |
 | **Input power voltage** | 11V to 25V |
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **Inputs/Outputs** | Inputs are 30V-tolerant |
 | **Fuses** | 10A for V_FUSED, 15A for OUT0 (e.g. for a heated bed). |
-| **5V current limit** | 1.0A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power. |
-| **12V current limit** | 800mA (only used for outputs OUT_3 thru OUT_6, when selected) |
+| **5V current limit** | 1A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power. |
+| **12V current limit** | 800mA total (only used for outputs OUT_3 thru OUT_6, when selected) |
 | **Maximum ambient temperature** | 70°C |
 
 ## Firmware notes
@@ -428,7 +429,13 @@ See [Connecting stepper motors](/User_manual/Connecting_hardware/Motors_connecti
 
 ## Connecting Fans
 
-See [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting){target=_blank}.
+The maximum current that fans can draw depends on the fan voltage, and how it is being powered.
+* VIN-powered fans are only limited by the connectors, which are rated at 2A.
+* Internally supplied 12V-powered fans are limited by a total current of 800mA, as that is what the 12V regulator can supply.
+* You can connect 5V fans to the internal 5V regulator by either bridging from a 5V pin to the centre pin of OUT_3&4 Select V or OUT_5&6 Select V (which will supply both connected fan headers with 5V), or supplying 5V directly to the fan and using the fan#- pin to control it). Internally supplied 5V-powered fans are limited by a total current of 1A (which is also used to supply power to other components, see Operating limits), as that is what the 5V regulator can supply.
+* You can use an external voltage regulator, and either supply the fans directly or using the centre pin of OUT_3&4 Select V or OUT_5&6 Select V. Current is limited by the connectors, which are rated at 2A.
+
+See also [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting){target=_blank}.
 
 ## CAN-FD Bus expansion
 
