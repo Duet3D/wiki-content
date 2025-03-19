@@ -2,7 +2,7 @@
 title: What to do if your Duet won't respond
 description: 
 published: true
-date: 2025-03-10T16:01:51.931Z
+date: 2025-03-19T15:13:18.039Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:52:16.731Z
@@ -30,8 +30,8 @@ dateCreated: 2021-12-05T22:52:16.731Z
   * the DIAG LED will turn on as power is applied, then turn off as soon as the firmware starts loading, usually less than 0.5 second.
   * In normal operation, it will turn back on if the probe type is set to M558 P1 in config.g. Removing the SD card and resetting should switch it off. Apart from this case, the DIAG LED should normally be off.
   * Errors in config.g may cause the Duet to get stuck in a boot loop, which will cause the DIAG LED to be on permanently. Remove SD card and reset.
-  * If the reset button is stuck in (rare), or has been mounted so it is pushed in by an enclosure, the Duet will get stuck in a boot loop, which will cause the DIAG LED to be on permanently. Check there is clearance around the reset button, or use some tweezers to gently pull the button out.
   * If the firmware has been erased the DIAG LED will be on permanently. 
+* If the reset button is stuck in (rare), or has been mounted so it is pushed in by an enclosure (also check connected PanelDue/12864 displays for this, by disconnecting them), the Duet will get stuck in a boot loop, which will cause the DIAG LED to be on permanently. Check there is clearance around the reset button, or use some tweezers to gently pull the button out.
 * If no LEDs are lit, then most likely your PC is not supplying power through the USB cable. Try a different cable and a different USB port. If necessary, use a powered USB hub.
 * Remove the SD card, as a corrupt or incorrectly configured config.g file can cause the firmware to continually reboot. There have also been occasions where the SD card causes a short circuit.
 
