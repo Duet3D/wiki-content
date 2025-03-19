@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2024-01-29T12:43:32.494Z
+date: 2025-03-19T14:50:14.680Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -25,18 +25,20 @@ The rotation speed of most commonly-available fans is usually voltage-controlled
 
 ## Duet boards and fan outputs
 
-| Duet board | Number of fan headers |||| Total maximum current limit | Supported voltages |
+| Duet board | Number of fan headers |||| Total maximum current limit | Current limit per connector | Supported voltages |
 |:---|:---|
-|  | Always-on | 2-pin | 3-pin | 4-pin | | |
-| [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | 1 | 3 | - | 3 | 800ma @ 12V, 10A @ VIN (fuse) | 12V / VIN / external power, in 2 banks |
-| [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | - | 2 | - | 2 | 800ma @ 12V, 7.5A @ VIN (fuse) | 12V / VIN / external power, in 2 banks |
-| [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC) | 1 | 3 | - | 3 | 800ma @ 12V, 7.5A @ VIN (fuse) | 12V / VIN / external power, in 2 banks |
-| [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) | - | - | 1 | 1 | (v1.0 board) 800ma @ 12V | 12V |
-| ^^ | ^^ | ^^ | ^^ | ^^ | (v1.1 board) 800ma @ 12V, 2A @ VIN | 12V / VIN |
-| [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) | - | 2 | - | - | 4A @ VIN | VIN |
-| [Duet 2 WiFi and Ethernet](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | 2 | 3 | - | - | 2A @ 5V (total 5V/3.3V), 1A @ VIN (fuse) | 5V / VIN / external power |
-| [DueX2 and DueX5](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) | 1 | 6 | - | - | 2A @ 5V (total 5V/3.3V), 1A @ VIN (fuse) | 5V / 12V / VIN / 5V external power |
-| [Duet 2 Maestro](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro) | 1 | 3 | - | - | 2A @ 5V (total 5V/3.3V) | 5V / VIN / external power, in 2 banks |
+|  | Always-on | 2-pin | 3-pin | 4-pin | | | |
+| [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | 1 | 3 | - | 3 | 800ma @ 12V, 10A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
+| [Duet 3 Mainboard 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | 1 | 3 | - | 3 | 800ma @ 12V, 10A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
+| [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | - | 2 | - | 2 | 800ma @ 12V, 7.5A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
+| [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC) | 1 | 3 | - | 3 | 800ma @ 12V, 7.5A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
+| [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) | - | - | 1 | 1 | (v1.0 board) 800ma @ 12V |  | 12V |
+| ^^ | ^^ | ^^ | ^^ | ^^ | (v1.1 board) 800ma @ 12V, 2A @ VIN |  | 12V / VIN |
+| [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) | - | - | 1 | 1 | 1A @ VIN, 0.6A @ 5V |  | 5V / VIN |
+| [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) | - | 2 | - | - | 4A @ VIN | 2A | VIN |
+| [Duet 2 WiFi and Ethernet](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | 2 | 3 | - | - | 2A @ 5V (total 5V/3.3V), 1A @ VIN (fuse) | 2A | 5V / VIN / external power |
+| [DueX2 and DueX5](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) | 1 | 6 | - | - | 2A @ 5V (total 5V/3.3V), 1A @ VIN (fuse) | 2A | 5V / 12V / VIN / 5V external power |
+| [Duet 2 Maestro](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro) | 1 | 3 | - | - | 2A @ 5V (total 5V/3.3V) | 2A | 5V / VIN / external power, in 2 banks |
 
 **Note:** fans can also be connected to spare heater outputs. These run on VIN voltage, and usually have enough current capacity for even the biggest fans.
 
