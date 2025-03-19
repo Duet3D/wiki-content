@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-15T08:43:18.881Z
+date: 2025-03-19T15:55:05.927Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6962,6 +6962,7 @@ M586 P2 T1 S1 ; enable SSH
 * In SBC mode, `M586 I` is not supported. Configure ufw or another firewall to restrict protocol access per adapter if required.
 * M586 with no S parameter reports the current support for the available protocols.
 * RepRapFirmware 1.18 and later enable only HTTP (or HTTPS if supported) protocol by default. If you wish to enable FTP and/or Telnet, enable them using this command once or twice in config.g.
+* To connect via FTP, use an FTP client such as FileZilla. In FileZilla, create a 'New site', give it a name, then set the 'Host' to the Duet's IP address or .local hostname. Set 'Logon Type' to 'Anonymous', and in 'Transfer Settings' check 'Limit number of simultaneous connections' and set 'Maximum number of connections' to 1. Then connect.
 
 ## M586.4: Configure MQTT Client
 
