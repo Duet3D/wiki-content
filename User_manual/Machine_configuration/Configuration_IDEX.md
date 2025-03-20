@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for an IDEX printer
 description: This page describes how to set up the configuration files for IDEX printers, the same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics .
 published: true
-date: 2024-09-18T10:15:14.423Z
+date: 2025-03-20T12:25:54.580Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T17:01:00.635Z
@@ -229,11 +229,10 @@ Note that axes are mapped in the order XYZUVWABC, where X=0, Y=1, Z=2, U=3 etc, 
 
 In this example we want to print one object using the X carriage and another identical object 100mm further along using the U carriage. So we specify X and U offsets of 50mm in opposite directions. However, tool offsets are given as the offset of the nozzle relative to the print head reference point, so the signs are opposite to what you might expect because tool offsets are subtracted from the required printing locations during printing. So we need to use an X offset of +50mm to force the X carriage to be 50mm lower along the X axis, and a U offset of -50mm to force the U carriage to print 50mm higher along the X axis.
 
-To get the firmware to extrude on both extruders equally, we use the M567 and M568 commands, which were originally provided to support mixing hot ends:
+To get the firmware to extrude on both extruders equally, we use the M567 commands, which was originally provided to support mixing hot ends:
 
 ```
 M567 P2 E1:1 ; set mix ratio 100% on both extruders
-M568 P2 S1 ; turn on mixing for tool 2
 ```
 
 ## Sample IDEX tool configuration
@@ -325,8 +324,6 @@ tpost2.g:
 M106 R2      ; restore print cooling fan speed
 M116 P2      ; wait for tool 2 heaters to reach operating temperature
 M83          ; relative extruder movement
-M567 P2 E1:1 ; set tool mix ratio
-M568 P2 S1   ; turn on mixing
 G1 E2 F3600  ; extrude 2mm from both extruders
 ```
 
