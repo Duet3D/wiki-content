@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-21T10:14:47.536Z
+date: 2025-03-21T13:04:32.878Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7794,6 +7794,7 @@ M670 T5 P2:3:8                            ; RRF 3.6.0-rc.2 or later
 
 * In RRF3, the P parameter is removed. Use the C parameter to specify the pin names to be used.
 * RepRapFirmware 1.19 and later provides an optional P parameter on the G1 command to allow I/O ports to be set to specified states for the duration of the move. The argument to the P parameter is a bitmap giving the required state of each port. The M670 command specifies the mapping between the bits of that argument and logical port numbers. Optionally, the T parameter can be used to advance the I/O port switching a short time before the corresponding move begins.
+* In all versions of RRF3 the ports used must be on the main board, not on a CAN-connected expansion board. On Duet 2 some or all of the ports may be on a DueX or additional SX1509B chip.
 
 ## M671: Define positions of Z pivot points or bed levelling screws
 
