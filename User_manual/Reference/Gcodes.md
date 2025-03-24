@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-21T13:06:32.409Z
+date: 2025-03-24T10:36:23.771Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6806,7 +6806,7 @@ For example, if you use M581 to support an out-of-filament sensor, then M582 all
 * **Ynnn** Driver number(s) for Y motor(s)
 * **Znnn** Driver number(s) for Z motor(s)
 * **Ennn** Driver number(s) for E motor(s)
-* **U, V, W, A, B, Cnnn** Driver number(s) for additional axes U, V, W, A, B and C (UVW available in RepRapFirmware 1.16 and later; UVWABC available in RepRapFirmware 1.19 and later; UVWABCD available in RepRapFirmware 3.0 and later; UVWABCDabcdefghijkl available in RepRapFirmware 3.3 and later; additionally mnopqrstuvwxyz are available in RepRapFirmware 3.5 and later on Duet 3 MB6HC and MB6XD only).
+* **U, V, W, A, B, Cnnn** Driver number(s) for additional axes (UVW available in RepRapFirmware 1.16 and later; UVWABC available in RepRapFirmware 1.19 and 2.x; UVWABCD available in RepRapFirmware 3.0 thru 3.2; UVWABCDabcdefghijkl available in RepRapFirmware 3.4; UVWABCDabcdef available in 3.5 and later except that ghijklmnopqrstuvwxyz are also available on Duet 3 MB6HC and MB6XD only).
 * **Rn** (optional, supported in RRF 3.2beta1 and later) 0 = axes created in this command are linear, 1 = axes created are rotational. If not present, then RRF 3.2beta3 and later assume UVW are linear and ABCD are rotational.
 * **Sn** (optional, supported in RRF 3.2beta3 and later) 0 = axes created in this command are treated as linear in feedrate calculations, 1 = axes created are treated as rotational in feedrate calculations. See section 2.1.2.5 of the NIST GCode standard for how the feedrate is interpreted. Default is S0 for linear axes and S1 for rotational axes (see the R parameter).
 * **Pnnn** Number of visible axes, defaults to the total number of axes configured, excluding extruder drives.
