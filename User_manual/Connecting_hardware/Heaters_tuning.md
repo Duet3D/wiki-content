@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2024-08-08T16:40:21.651Z
+date: 2025-03-24T12:55:48.784Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -121,6 +121,8 @@ Make sure there is no M301 command for the same heater after the M307 command, o
 
 # Troubleshooting
 
+See also [Heater faults and how to avoid them](/User_manual/Troubleshooting/Heater_faults).
+
 ## Error message
 
 **"Error: Heater 0 fault: temperature rising much more slowly than the expected 1.7°C/sec"** (reported by RRF 3.x)
@@ -144,7 +146,6 @@ When a heater goes into the fault state, an error message is generated giving th
 * A thermocouple or PT100 interface chip reported an error for several consecutive readings
 * During initial heating, the temperature was not rising as fast as expected. This can occur if you have a slow or low-powered heater and you have not tuned the heater model, so that your heater has a greater dead time or a lower gain than the default model
 * The heater reached the target temperature, but the temperature subsequently varied by more than +/-10C. This can occur if you are using unsuitable PID parameters, or if you turn on a very strong print cooling fan that cools the nozzle excessively.
-
 
 # Setting the model parameters manually
 
