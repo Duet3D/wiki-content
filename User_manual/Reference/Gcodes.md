@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-24T10:36:23.771Z
+date: 2025-03-25T13:20:48.106Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7463,7 +7463,7 @@ This command is used in print files when multiple movement systems are being use
 
 ## M599: Define keepout zone
 
-*Supported from firmware version 3.5b2 on Duet 3 main boards*
+*Supported in firmware version 3.5.0 later on Duet 3 main boards*
 
 ### Parameters
 
@@ -7480,14 +7480,16 @@ M599 X10:25 Y0:20
 
 ### Description
 
-This command establishes a "no entry" zone for the toolhead reference point. If any G0/G1/G2/G3 move attempts to move the toolhead reference point inside the no entry zone, the job will be aborted with an error message. In other words, in 3.5b2, the X, Y etc coordinates are in machine coordinates.
+This command establishes a "no entry" zone for the toolhead reference point. If any G0/G1/G2/G3 move attempts to move the toolhead inside the no entry zone, the job will be aborted with an error message.
+
+The X, Y etc. coordinates are machine coordinates, i.e. the area which the tool head reference point is not allowed to enter.
 
 ### Notes
 
 * You may specify any number of axes, up to the number that the machine has. 
 * If no axes are specified and the S parameter is not provided then the parameters and enabled/disabled state of the existing keepout zone will be reported.
 * Movement commands (G0, G1, G2 and G3) will normally be checked before starting the move.
-* The number of keepout zones supported is implementation dependent. In RRF 3.5b2 only one is supported.
+* The number of keepout zones supported is implementation dependent. In RRF 3.5.0 only one is supported.
 
 ## M600: Filament change pause
 
