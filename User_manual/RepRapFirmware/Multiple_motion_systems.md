@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2025-03-25T18:39:21.536Z
+date: 2025-03-25T20:03:27.954Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -87,9 +87,9 @@ The commands streams can be synchronised using a [M598](/User_manual/Reference/G
 | Input | Object Model input | Notes |
 |---|---|---|
 | File | 2 | First logical input. |
-| File2 | | Second logical input. File2 can not be used directly. |
+| File2 | 12 | Second logical input. File2 can not be used directly. |
 | Queue | 6 | Queue is used for commands received from File that need to be delayed to sync with movement |
-| Queue2 | | Second queue for second file stream. Queue2 does the same as Queue, but for File2. Queue2 can not be used directly. |
+| Queue2 | 13 | Second queue for second file stream. Queue2 does the same as Queue, but for File2. Queue2 can not be used directly. |
 
 The File and File2 channels are logically a single channel. When you start a GCode job, the job file is opened by both of them. If the job contains no commands to use the second motion system then File2 will quickly reach the end of file or the M0 command, and wait for File to catch up. The point of having two channels that are logically a single channel is so that one can get well ahead of the other. Whereas if you send commands for both motion systems through one of the other channels, then the most that one channel can get ahead of the other is limited by the length of the movement queue.
 
