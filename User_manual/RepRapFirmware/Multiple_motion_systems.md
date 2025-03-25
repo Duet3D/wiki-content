@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2025-03-25T20:03:27.954Z
+date: 2025-03-25T20:07:04.160Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -109,9 +109,9 @@ while {global.runContinuous == true}
 ```
 Each input can be allocated to a motion system, and remains on that motion system until switched back. If you allocate DWC (http) or the PanelDue (Aux) to motion system 1, then all inputs from that relate only to motion system 1. (That means both those UIs need to change motion systems depending on which axes are being jogged etc)
 
-If you are using multiple motion systems then you must explicitly set daemon.g to the motion system it applies to (and the same for all other single stream inputs, e.g. DWC).
+All channels default to motion system 0 oafter start up. If you want a channel to use the second motion system, that channel must use M596 to switch it to motion system 1.
 
-When a job file completes or executes M0/1/2, RRF waits for both motion system to stop.
+When a job file completes or executes M0/1/2, RRF waits for both motion systems to stop.
 
 ## Macros and motion systems
 
