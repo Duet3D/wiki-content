@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2025-03-12T12:59:38.643Z
+date: 2025-03-25T15:04:26.174Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -99,6 +99,7 @@ All user-accessible channels default to the primary motion system, but you can u
 ; The motor is defined as an extruder instead of an axis, then a dummy tool is created that uses it. 
 ; Then in daemon.g select that tool and send relative extrusion commands.
 
+M606 S1 ; enable forking of the file to each motion system queue
 M596 P1 ; use second motion system
 T1      ; select continuous tool
 G91     ; use relative extrusion
