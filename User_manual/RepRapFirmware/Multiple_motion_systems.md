@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2025-03-25T15:04:26.174Z
+date: 2025-03-25T18:39:21.536Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -53,7 +53,7 @@ The way that command streams that use multiple motion systems are processed depe
 
 ## Command streams from USB, serial input and DWC console
 
-For command streams from USB, async serial input (including PanelDue) and the DWC console, the commands are processed by a single GCode processor. This means that the ability of the system to execution motion of both systems concurrently will be limited, because when there is a long block of motion commands for one system, the GCode processor must wait until it has queued all those commands before it can process subsequent commands that are targeted at another motion system.
+For command streams from USB, async serial input (including PanelDue) and the DWC console, the commands are processed by a single GCode processor. This means that the ability of the system to execute motion of both systems concurrently may be limited. When there is a long block of motion commands for one system, the GCode processor must queue all those commands before it can process subsequent commands that are targeted at another motion system. If there are more move commands for one motion system than will fit it the queue (bearing in mind that segmentation may turn single move commands into multiple commands) then processing of subsequent commands destined for the other motion system will be delayed.
 
 | Single Gcode Processor |||
 | Input | Object Model input | Notes |
