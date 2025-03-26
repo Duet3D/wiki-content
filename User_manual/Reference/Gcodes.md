@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-26T10:46:57.953Z
+date: 2025-03-26T18:26:33.732Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7336,24 +7336,26 @@ M593 P"none"      ; disable DAA
 
 ##### Notes
 
-The L parameter has changed in RRF 3.5.0-rc.2 and is now the minimum fraction of the original acceleration or feed rate to which the acceleration or feed rate may be reduced in order to apply input shaping. For example, if the commanded feedrate is F1000, L0.25 would allow the feedrate to reduce to F250, while L0.75 would only allow it to reduce to F750. So the ***least*** amount of reduction of acceleration or feed rate is from the ***highest*** L value.
+The L parameter (which is not used in RRF 3.6.0 and later) changed in RRF 3.5.0 compared to previous versions; it is the minimum fraction of the original acceleration or feed rate to which the acceleration or feed rate may be reduced in order to apply input shaping. For example, if the commanded feedrate is F1000, L0.25 would allow the feedrate to reduce to F250, while L0.75 would only allow it to reduce to F750. So the ***least*** amount of reduction of acceleration or feed rate is from the ***highest*** L value.
 
 ##### Information about the Input Shapers
 
-| Input Shaper | Shaper Duration | Vibration reduction with default damping factor (0.1) |
+| Input Shaper | Shaper Duration | Band over which vibration reduced by at least 90% |
 |:---|:---|
-| ZVD | 1 / Frequency | ± 15% Frequency |
-| ZVDD | 1.5 / Frequency | |
-| ZVDDD | 2 / Frequency | |
-| MZV | 1 / Frequency | ± 4% Frequency |
-| EI2 | 1.5 / Frequency | ± 35% Frequency |
-| EI3 | 3 / Frequency | ± -45%...+50% Frequency |
+| ZV | 0.5 / Frequency | ± 6% Frequency
+| ZVD | 1 / Frequency | ± 20% Frequency |
+| ZVDD | 1.5 / Frequency | ± 30% Frequency |
+| ZVDDD | 2 / Frequency | ± 38% Frequency |
+| MZV | 1 / Frequency | ± 10% Frequency (also at least 80% reduction from -18% to +108%) |
+| EI2 | 1.5 / Frequency | ± 39% Frequency |
+| EI3 | 3 / Frequency | ± 50% Frequency |
+RepRapFirmware no longer supports ZV input shaping because of its poor performance.
 
 #### RepRapFirmware 3.2 and earlier
 
 ##### Parameters
 
-* **Fnnn** Frequency of ringing to cancel by DAA, in Hz. Zero or negative values disable DAA.
+* **Fnnn** Centre frequency of ringing to cancel by DAA, in Hz. Zero or negative values disable DAA.
 * **Lnnn** Minimum acceleration allowed, default 10mm/sec^2. DAA will not be applied if it requires the average acceleration to be reduced below this value.
 
 **Example (RRF 3.2 and earlier)**
