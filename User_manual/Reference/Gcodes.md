@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-26T18:26:33.732Z
+date: 2025-03-26T18:27:45.139Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7348,7 +7348,7 @@ The L parameter (which is not used in RRF 3.6.0 and later) changed in RRF 3.5.0 
 | ZVDDD | 2 / Frequency | ± 38% Frequency |
 | MZV | 1 / Frequency | ± 10% Frequency (also at least 80% reduction from -18% to +108%) |
 | EI2 | 1.5 / Frequency | ± 39% Frequency |
-| EI3 | 3 / Frequency | ± 50% Frequency |
+| EI3 | 2 / Frequency | ± 50% Frequency |
 RepRapFirmware no longer supports ZV input shaping because of its poor performance.
 
 #### RepRapFirmware 3.2 and earlier
