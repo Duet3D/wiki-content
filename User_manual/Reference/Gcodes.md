@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-25T13:20:48.106Z
+date: 2025-03-26T10:46:57.953Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3150,7 +3150,8 @@ Volumetric extrusion is an option you can set in some slicers whereby all extrus
 * **Unnn** Acceleration for U axis
 * **Vnnn** Acceleration for V axis
 * **Wnnn** Acceleration for W axis
-* **Ennn** Acceleration for extruder drives
+* **Ennn:nnn...** Acceleration for extruder drives
+* **Tn.nn** Acceleration time, only available in experimental firmware bulds that support S-curve acceleration
 
 ### Order dependency
 
@@ -3168,9 +3169,11 @@ Sets the acceleration that axes can do in mm/second^2 for print moves. For consi
 
 To calculate the maximum acceleration values for an axis an online [Maximum Acceleration Calculator](https://wilriker.github.io/maximum-acceleration-calculator){target=_blank} can be used.
 
-RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
+RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. However, each extruder may have a different setting.
 
-Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M201 Z100, not M201 Z100:100
+Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M201 Z100, not M201 Z100:100.
+
+In experimental 3.6.x firmware builds that support S-curve acceleration, the T parameter (acceleration time) specifies the time in seconds to go from zero to maximum acceleration. The jerk (maximum rate of change of acceleration) for each axis or extruder is then computed as the maximum acceleration for that axis or extruder divided by this acceleration time parameter. If the acceleration time is set to zero (which is the default) then S-curve acceleration is not used. If it is configured nonzero but not all local axes and extruders use phase stepping then S-curve acceleration is not used.
 
 ## M201.1: Set reduced acceleration for special move types
 
