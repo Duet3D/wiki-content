@@ -2,7 +2,7 @@
 title: Events
 description: An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2025-02-27T17:20:17.046Z
+date: 2025-03-26T10:13:14.857Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -65,7 +65,7 @@ If the macro file is not found then default processing occurs as shown in the ta
 
 | Event type & macro file name | D macro parameter | P macro parameter | B macro parameter | Default action if macro file not found | Log level |
 |:---|:---|
-| expansion-reconnect | 0 | 0 | CAN address of the board that has stopped communicating | Inform user via console and continue (likely to be changed before RRF 3.5 release) | Error
+| expansion-reconnect | 0 | 0 | CAN address of the board that has stopped communicating | Inform user via console and continue | Error
 | expansion-timeout | 0 | 0 | CAN address of the board that has stopped communicating | Inform user via console and continue. | Error
 | heater-fault | Heater # | [Heater fault type code](/User_manual/Troubleshooting/Heater_faults#event-system-heater-fault-events) | CAN address of board controlling the heater | Faulty heater turned off (before the event is raised). Pause print using pause.g and inform user via message box | Error |
 | driver-error | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Pause print without running pause.g and inform user via message box | Error |
