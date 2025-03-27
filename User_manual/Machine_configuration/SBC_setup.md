@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-03-27T17:15:52.550Z
+date: 2025-03-27T17:37:59.600Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -171,15 +171,19 @@ If you have changed it in the 'OS customisations' then use that hostname, not "d
 {.is-info}
 
 1. Turn on power to Duet and SBC.
+   **Note the SBC takes about 1 minute to boot for the first time (and reboots two or three times during this time) and about 30 seconds subsequently.**
 
-1. If you did’t configure your Raspberry Pi via OS customisation settings, Raspberry Pi OS will ask you for the same information at first boot. You will need to connect a screen and keyboard to see the messages.
-   * during the configuration wizard. Press `OK` when done.
+1. If you did’t configure your Raspberry Pi via 'OS customisation' settings in the Raspberry Pi Imager, Raspberry Pi OS will ask you for the same information at first boot. You will need to connect a screen and keyboard to see the messages.
+   * Set the keyboard language.
+   * Set the username and password
+   * Setup will exit and give you a command prompt. To setup WiFi and SSH, login with the username and password you just created, then type `sudo raspi-config` and press return.
+   * To set up WiFi, select 'System Options > Wireless LAN', select your country, then enter your SSID and WiFi password.
+   * To set up SSH, select 'Interface Options > SSH' and enable SSH.
+   * Tab to 'Finish' to exit the configuration tool.
 
-1. If you have a screen attached when power is applied you will see the SBC boot up. Once bootup is complete the Chromiun browser will launch DuetWebControl in full screen. Press F11 if you want to exit fullscreen.
+1. If you are using the 'full' version of DuetPi and have a screen attached, when power is applied you will see the SBC boot up. Once bootup is complete the Chromiun browser will launch DuetWebControl in full screen. Press F11 if you want to exit fullscreen and go to the RPi desktop.
 
 1. If you are connecting over the network then go to [`http://duet3.local/`](http://duet3.local/){target=_blank} 
-
-*note the SBC takes about 1 minute to boot for the first time (and reboots two or three times during this time) and about 30 seconds subsequently.*
 
 ## Troubleshooting
 
