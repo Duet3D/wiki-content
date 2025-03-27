@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-03-12T13:39:14.721Z
+date: 2025-03-27T16:58:49.115Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -49,18 +49,10 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
 > If you are planning to use the SBC for more than plain 3D printing or if you have an SBC with little RAM + external display, it is HIGHLY recommended to obtain a **class A1- or A2-rated microSD** card instead of the shipped SD card. If your SD card speed is insufficient, you may experience occasional problems when data between the SBC and Duet is exchanged. 
 {.is-warning}
 
-# Tabs {.tabset}
-
-## Raspberry Pi Imager
-
-![sbc_setup_10.png](/manual/configuration/sbc_setup_10.png =50%x){.align-right}
-
-![raspi_imager_otherimage.png](/manual/configuration/raspi_imager_otherimage.png =50%x){.align-right}
-
-1. If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/){target=_blank}
-1. You will need at least an 8Gb class 10 SD card.
-1. There are multiple programs to write an image file to an SD card. We recommend using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}, which has versions for Windows, MacOS, Linux and Raspberry Pi.
-1. Use the latest Raspberry Pi image **setup for Duet 3** that is available from the Duet 3D package server. You may choose the full image for setups where a display is attached, or the lite image for a GUI-less and/or older Raspberry Pis with less memory:
+* If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/){target=_blank}
+* You will need at least an 8Gb class 10 SD card. A class A1- or A2-rated microSD is highly recommended.
+* There are multiple programs to write an image file to an SD card. We recommend using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}, which has versions for Windows, MacOS, Linux and Raspberry Pi.
+* You can download the latest Raspberry Pi image **already setup for Duet 3**, available from the Duet 3D package server. Images are available for setups where a display is attached, or the 'lite' image suitable for a GUI-less install and/or older Raspberry Pis with less memory. There are also 64- and 32-bit versions of both of these:
   **Bookworm DuetPi 64-bit images**
   Recommended for most installations
   [https://pkg.duet3d.com/DuetPi-arm64.zip](https://pkg.duet3d.com/DuetPi-arm64.zip){target=_blank}
@@ -69,9 +61,23 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
   Recommended for RPi with 1GB RAM or less
   [https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
   [https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip){target=_blank}
-1. Open Raspberry Pi Imager, select the Raspberry Pi version, select the image (under OS choose other then scroll right down to "Use Custom", select the SD card, then click 'Next'.
-1. Apply OS customisations such as username and password, Wi-Fi credentials, device hostname, time zone, keyboard layout and remote connectivity. If you don’t configure your Raspberry Pi via OS customisation settings, Raspberry Pi OS will ask you for the same information at first boot during the configuration wizard. Press `OK` when done.
-1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
+* Alternatively, if you use the Raspberry Pi Imager, you can choose the DuetPi version from the  repository, see instructions below.
+
+# Tabs {.tabset}
+
+## Raspberry Pi Imager
+
+To write the Raspberry Pi image to the SD card:![sbc_setup_10.png](/manual/configuration/sbc_setup_10.png =50%x){.align-right}
+![raspi_imager_otherimage.png](/manual/configuration/raspi_imager_otherimage.png =50%x){.align-right}
+1. Open Raspberry Pi Imager, and:
+   * under 'Raspberry Pi Device' select 'Choose device' and select your RPi from the list
+   * under 'Operating System' select 'Choose OS' and
+   **EITHER** scroll to the bottom of the list and select 'Use Custom', then select the DuetPi image you downloaded (no need to unzip it)
+   **OR** choose the DuetPi version from the RPi imager repository, by scrolling down to 'Other specific-purpose OS > 3D printing > DuetPi' and select DuetPi version
+   * under 'Storage' select the SD card, then click 'Next'.
+1. You can setup the RPi so it doesn't need to be configured at startup, by using **'OS customisations'**. Click 'Edit settings' to set hostname, username, password, Wi-Fi credentials, and locale. If you want to connect to the RPi from a PC on the network (e.g. you are using the RPi 'headless', without a connected display), select 'Services' and 'Enable SSH' with 'Use password authentication'. 'Save' settings, then select 'Yes' to apply.
+1. If you don't setup 'OS customisations', you will need to connect a screen and keyboard to the Raspberry Pi at first boot to configure it. See 'First boot' section below.
+1. The DuetPi image will be written to the SD card. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
 
 <p style="clear:both"></p>
 
@@ -79,22 +85,28 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
 
 ![sbc_setup_01.png](/manual/configuration/sbc_setup_01.png =50%x){.align-right}
 
-1. You will need at least an 8Gb class 10 SD card.
+1. You will need at least an 8Gb class 10 SD card. A class A1- or A2-rated microSD is highly recommended.
 1. There are multiple programs to write an image file to an SD card. If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/){target=_blank}
-1. You need to use the latest Raspberry Pi image **setup for Duet 3** that is available from the Duet 3D software site. You may choose the lite image for a GUI-less setup and the full variant for setups where a display is attached:
-[https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
-[https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip){target=_blank}
-1. Under Windows, MacOS and Linux, flash the file using  using [balenaEtcher](https://www.balena.io/etcher/){target=_blank}
-1. Select the image, select the SD card. Click flash. Will take about 5 minutes.
-1. Once this is complete Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
+1. Download an appropriate DuetPi image from the links above.
+1. Under Windows, MacOS and Linux, flash the file using, for example, [balenaEtcher](https://www.balena.io/etcher/){target=_blank}
+1. Select the image, select the SD card. Click flash. It will take about 5 minutes to flash the image to the SD card.
+1. Once this is complete, Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
 
 <p style="clear:both"></p>
 
 # 2. Setup WiFi
 
-> This step is unnecessary if you have set up WiFi in the Raspberry Pi Imager. 
-> This method of setting up WiFi is also not supported for the current 'Bookworm' images, only older 'Buster' versions.
-{.is-info}
+# Tabs {.tabset}
+
+## Current DuetPi images (Bookworm)
+
+**This step is unnecessary if you have set up WiFi in the Raspberry Pi Imager.**
+
+If you did't setup 'OS customisations' in the Raspberry Pi Imager, you will need to connect a screen and keyboard to the Raspberry Pi at first boot to configure it. See 'First boot' section below.
+
+## Old DuetPi images (Buster)
+
+This method of setting up WiFi is not supported for the current 'Bookworm' images, only older 'Buster' versions.
 
 1. This step is optional if you are going to connect to the SBC using an Ethernet network, or if you are going to plug a monitor, keyboard and mouse into the SBC.
 
@@ -151,19 +163,24 @@ network={
 
 # 4. First Boot
 
-> Note: these steps assume the hostname of your SBC is "duet3". If you have changed it then the mDNS resolution will be the new hostname, not "duet3".
+> **Note**: these steps assume the hostname of your SBC is "duet3". 
+If you have changed it in the 'OS customisations' then use that hostname, not "duet3".
 {.is-info}
-
 
 1. Turn on power to Duet and SBC.
 
+1. If you did’t configure your Raspberry Pi via OS customisation settings, Raspberry Pi OS will ask you for the same information at first boot. You will need to connect a screen and keyboard to see the messages.
+   * during the configuration wizard. Press `OK` when done.
+
 1. If you have a screen attached when power is applied you will see the SBC boot up. Once bootup is complete the Chromiun browser will launch DuetWebControl in full screen. Press F11 if you want to exit fullscreen.
 
-1. If you are connecting over the network then go to [`http://duet3.local/`](http://duet3.local/){target=_blank} *note the SBC takes about 1 minute to boot for the first time and about 30 seconds subsequently.*
+1. If you are connecting over the network then go to [`http://duet3.local/`](http://duet3.local/){target=_blank} 
 
-If [`http://duet3.local/`](http://duet3.local/){target=_blank} does not show Duet Web Control (DWC) then follow these trouble shooting steps:
+*note the SBC takes about 1 minute to boot for the first time (and reboots two or three times during this time) and about 30 seconds subsequently.*
 
 ## Troubleshooting
+
+If [`http://duet3.local/`](http://duet3.local/){target=_blank} does not show Duet Web Control (DWC) then follow these trouble shooting steps:
 
 ### Duet 3 and SBC not communicating
 
