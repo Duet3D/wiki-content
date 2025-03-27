@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-03-27T17:00:23.613Z
+date: 2025-03-27T17:15:52.550Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -53,12 +53,10 @@ If your SD card supplied with the Duet 3 mainboard becomes damaged or lost, star
 * You will need at least an 8Gb class 10 SD card. A class A1- or A2-rated microSD is highly recommended.
 * There are multiple programs to write an image file to an SD card. We recommend using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}, which has versions for Windows, MacOS, Linux and Raspberry Pi.
 * You can download the latest Raspberry Pi image **already setup for Duet 3**, available from the Duet 3D package server. Images are available for setups where a display is attached, or the 'lite' image suitable for a GUI-less install and/or older Raspberry Pis with less memory. There are also 64- and 32-bit versions of both of these:
-  **Bookworm DuetPi 64-bit images**
-  Recommended for most installations
+  **Bookworm DuetPi 64-bit images** - Recommended for most installations
   [https://pkg.duet3d.com/DuetPi-arm64.zip](https://pkg.duet3d.com/DuetPi-arm64.zip){target=_blank}
   [https://pkg.duet3d.com/DuetPi-lite-arm64.zip](https://pkg.duet3d.com/DuetPi-lite-arm64.zip){target=_blank}
-  **Bookworm DuetPi 32-bit images**
-  Recommended for RPi with 1GB RAM or less
+  **Bookworm DuetPi 32-bit images** - Recommended for RPi with 1GB RAM or less
   [https://pkg.duet3d.com/DuetPi-lite.zip](https://pkg.duet3d.com/DuetPi-lite.zip){target=_blank}
   [https://pkg.duet3d.com/DuetPi.zip](https://pkg.duet3d.com/DuetPi.zip){target=_blank}
 * Alternatively, if you use the Raspberry Pi Imager, you can choose the DuetPi version from the  repository, see instructions below.
@@ -99,11 +97,11 @@ To write the Raspberry Pi image to the SD card:![sbc_setup_10.png](/manual/confi
 
 ## Current DuetPi images (Bookworm)
 
-**This step is unnecessary if you have set up WiFi in the Raspberry Pi Imager.**
+**This step is unnecessary if you have set up WiFi in 'OS customisations' in the Raspberry Pi Imager.**
 
-If you did't setup 'OS customisations' in the Raspberry Pi Imager, you will need to connect a screen and keyboard to the Raspberry Pi at first boot to configure it. See 'First boot' section below.
+If you did not setup 'OS customisations' in the Raspberry Pi Imager, you will need to connect a screen and keyboard to the Raspberry Pi at first boot to configure it. See 'First boot' section below.
 
-## Old DuetPi images (Buster)
+## Older DuetPi images (Buster)
 
 This method of setting up WiFi is not supported for the current 'Bookworm' images, only older 'Buster' versions.
 
@@ -124,7 +122,7 @@ network={
  psk="PASSWORD_OF_NETWORK" 
  }
 ```
-5. Replacing the SSID_OF_NETWORK with your wifi SSID and PASSWORD_OF_NETWORK with your password.
+5. Replace GB with your country code, the SSID_OF_NETWORK with your WiFi SSID and PASSWORD_OF_NETWORK with your password.
 
 1. Save and safely eject the SD card.
 
@@ -134,9 +132,11 @@ network={
 
 ### Duet 3 Mainboard 6HC
 [![sbc_setup_02.jpg](/manual/configuration/sbc_setup_02.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_02.jpg){target=_blank}[![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_03.jpg){target=_blank}
-1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, and connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
-1. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
+1. Put the SD card in the SBC.
+1. Connect the ribbon cable to the Duet 3 and SBC. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
 1. It is acceptable, especially with longer ribbon cables than shown here, to route the cable around the back of the SBC, however pin 1 must connect as shown.
+1. Connect a USB cable to the Duet 3 for power.
+1. **Ensure there is NO SD card in the Duet itself.**
 1. Ensure the USB supply is sufficient to power the peripherals attached to the Pi, especially screens that do not have a separate power supply. [See here for more details on 5v power jumper position selection](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v){target=_blank}. 
 1. Using a Pi4 may require a separate power supply for both the Duet and Pi4 due to power draw. The same holds true if using peripherals that draw power via USB.
 
@@ -144,8 +144,10 @@ network={
 
 ### Duet 3 Mainboard 6XD
 [![duet_3_mb6xd_getting_connected_sbc.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_getting_connected_sbc.jpg =50%x){.align-right}](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_getting_connected_sbc.jpg){target=_blank}
-1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3, and connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
-1. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
+1. Put the SD card in the SBC.
+1. Connect the ribbon cable to the Duet 3 and SBC. Note the orientation of the red stripe on the ribbon cable indicating pin 1. 
+1. Connect a USB cable to the Duet 3 for power.
+1. **Ensure there is NO SD card in the Duet itself.**
 1. Ensure the USB supply is sufficient to power the peripherals attached to the Pi, especially screens that do not have a separate power supply. [See here for more details on 5v power jumper position selection](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview#h-5v){target=_blank}. 
 1. Using a Pi4 may require a separate power supply for both the Duet and Pi4 due to power draw. The same holds true if using peripherals that draw power via USB.
 
@@ -154,9 +156,11 @@ network={
 ### Duet 3 Mini 5+
 
 [![sbc_setup_09.jpg](/manual/configuration/sbc_setup_09.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_09.jpg){target=_blank}
-1. Put the SD card in the SBC, connect the ribbon cable to the Duet 3. Note the orientation of the red stripe on the ribbon cable indicating pin 1.
+1. Put the SD card in the SBC.
+1. Connect the ribbon cable to the Duet 3 and SBC. Note the orientation of the red stripe on the ribbon cable indicating pin 1. 
+1. Connect a USB cable to the Duet 3 for power.
+1. **Ensure there is NO SD card in the Duet itself.** (Unlike in the picture shown!)
 1. The Duet 3 Mini+ cannot power the Pi. You must power the Pi separately. The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers or other USB power supplies cannot supply sufficient voltage. Therefore, we strongly recommend that you use the official Raspberry Pi PSU, or another PSU specifically designed to power a Raspberry Pi. If the red LED on the Pi is not continuously illuminated, the power supply is insufficient.
-1. Connect a USB cable to the Duet 3 for power. Ensure there is NO SD card in the Duet itself.
 
 <p style="clear:both"></p>
 
