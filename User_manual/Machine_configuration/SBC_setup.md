@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-03-27T16:58:49.115Z
+date: 2025-03-27T17:00:23.613Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -86,9 +86,8 @@ To write the Raspberry Pi image to the SD card:![sbc_setup_10.png](/manual/confi
 ![sbc_setup_01.png](/manual/configuration/sbc_setup_01.png =50%x){.align-right}
 
 1. You will need at least an 8Gb class 10 SD card. A class A1- or A2-rated microSD is highly recommended.
-1. There are multiple programs to write an image file to an SD card. If there are any issues with this step, try following the [Raspberry Pi documentation for flashing OS images](https://www.raspberrypi.org/documentation/installation/installing-images/){target=_blank}
 1. Download an appropriate DuetPi image from the links above.
-1. Under Windows, MacOS and Linux, flash the file using, for example, [balenaEtcher](https://www.balena.io/etcher/){target=_blank}
+1. There are multiple programs to write an image file to an SD card. Under Windows, MacOS and Linux, flash the file using, for example, [balenaEtcher](https://www.balena.io/etcher/){target=_blank}
 1. Select the image, select the SD card. Click flash. It will take about 5 minutes to flash the image to the SD card.
 1. Once this is complete, Windows may prompt you to format the disk. **Do not do this**, it is because Windows does not recognise one of the partitions on the image.
 
