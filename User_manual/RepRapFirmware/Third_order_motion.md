@@ -2,7 +2,7 @@
 title: Support for third-order motion control
 description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
 published: true
-date: 2025-03-28T10:38:05.686Z
+date: 2025-03-28T10:42:15.166Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
@@ -10,17 +10,17 @@ dateCreated: 2025-03-28T09:22:43.388Z
 
 # What is third-order motion control?
 ## First order motion control
-In a first order motion system, movement speed changes abruptly between moves. There is no continuous acceleration. In theory this required infinte force to be applied to change the speed, since the acceleration is also infinite. In practice the change in speed occurs over a finite amount of time, so the movement is not quite as commanded. If the motion system is driven by stepper motors and the finite acceleraiton causes the actual position differ from the commanded position by more than one full step then the motor will skip steps.
+In a first order motion system, movement speed changes abruptly between moves. There is no continuous acceleration. In theory this required infinite force to be applied to change the speed, since the acceleration is also infinite. In practice the change in speed occurs over a finite amount of time, so the movement is not quite as commanded. If the motion system is driven by stepper motors and the finite acceleration causes the actual position differ from the commanded position by more than one full step then the motor will skip steps.
 
 First order motion control is practical when the speeds are low and it is not critical that the actual position closely follows the commanded position.
 
 ## Second order motion control
-In a second order motion system, changes in speed are performed by accelerating between the two speeds at a constant rate. If using open-loop stepper motors, the actual position will lag the commanded position slightly during acceleration because the amount of force developed by a stepper motors depends on the amoubnt of lag. Similary, when decelerating the actual osition will lead the commanded position slightly. If the stepper motor(s) can supply sufficient force to achoeve the required acceleration with less than one full step of lag then no steps will be lost.
+In a second order motion system, changes in speed are performed by accelerating between the two speeds at a constant rate. If using open-loop stepper motors, the actual position will lag the commanded position slightly during acceleration because the amount of force developed by a stepper motors depends on the amount of lag. Similarly, when decelerating the actual position will lead the commanded position slightly. If the stepper motor(s) can supply sufficient force to achieve the required acceleration with less than one full step of lag then no steps will be lost.
 
 Second order motion control is practical in many applications. 3D printer firmwares (including RepRapFirmware) generally use second order motion control, except that if direction changes are to be made without coming to a complete stop then some degree of instantaneous speed change has to be accepted.
 
 ## Third order motion control
-In a third order motion system, acceleration is not allowed to change abruptly. Instead it is only permitted to change gradually at a rate called the "jerk". Note, the term "jerk" is commonly used to refer to instantaneous speed change when talking about 3D printers, however the more establisged use of "jerk" is to mean rate of change of acceleration.
+In a third order motion system, acceleration is not allowed to change abruptly. Instead it is only permitted to change gradually at a rate called the "jerk". Note, the term "jerk" is commonly used to refer to instantaneous speed change when talking about 3D printers, however the more established use of "jerk" is to mean rate of change of acceleration.
 
 The potential advantages of third-order motion control are:
 * Less tendency to excite high frequency resonances. However, in 3D printers the troublesome resonances are generally at lower frequencies, so input shaping is a much better way to reduce exciting them.
@@ -34,9 +34,9 @@ The main disadvantages of third-order motion control are:
 ## Phase stepping
 RepRapFirmware 3.6.0 for Duet 3 6HC provides an alternative mechanism for stepper motion control called phase stepping. When this is enabled, instead of calculating the time at which each microstep is due (which involves solving a quadratic equation when using second-order motion control, and would require solving a cubic equation when using third-order motion control), at approximately fixed intervals it calculates the required position of the stepper motor and then commands the driver to apply phase currents that correspond to that position.
 
-Calculating the required motor position only requires evaluation of a quadratic polynomial when using second order motion control, or a cubic polynomial for thir dorder motion control. Therefore **the experimental third-order motion control support can ony be enabed in firmware builds for the 6HC** and it can only be used when all axes and extruders that are driven by motors attached to the main board are configured to use phase stepping.
+Calculating the required motor position only requires evaluation of a quadratic polynomial when using second order motion control, or a cubic polynomial for third order motion control. Therefore **the experimental third-order motion control support can only be enabled in firmware builds for the 6HC** and it can only be used when all axes and extruders that are driven by motors attached to the main board are configured to use phase stepping.
 
-It is permitted to have additional axes and/or extruders driven from CAN-connected boards. However, third-order motion control is not currenty supported by CAN-connected boards. Because of this, the motion commands sent to CAN-connected boards will be second-order approximations of the third-order motion used on the man board. Therefore they will not be perfectly synchronised with the main board during acceleration and deceleration. This may be acceptable for axes that are not greatly involved in movement with extrusion. For example, it is likely that the Z axis of a 3D printer can be driven from a CAN-connected board without significant issues.
+It is permitted to have additional axes and/or extruders driven from CAN-connected boards. However, third-order motion control is not currently supported by CAN-connected boards. Because of this, the motion commands sent to CAN-connected boards will be second-order approximations of the third-order motion used on the man board. Therefore they will not be perfectly synchronised with the main board during acceleration and deceleration. This may be acceptable for axes that are not greatly involved in movement with extrusion. For example, it is likely that the Z axis of a 3D printer can be driven from a CAN-connected board without significant issues.
 
 Phase stepping is enabled using the [M970 command](/User_manual/Reference/Gcodes#m970-enabledisable-phase-stepping). Note, stall detection is not supported when using phase stepping; therefore if the machine uses stall-detect homing then the homing files should check which mode the axes being homes are in, disable phase stepping for those axes, perform the homing operation, then revert any axes to phase stepping that were using it. Object model field `move.axes[].phaseStep` can be used to establish whether an axis uses phase stepping.
 
@@ -45,7 +45,7 @@ In firmware builds that support it the M201 command accepts an additional parame
 
 If the acceleration time is set to zero (which is the default at startup) then second order motion control is used. If it is set nonzero but there are any axes or extruders that use local drivers and are not configured to use phase stepping, then second order motion control is used but a warning is generated whenever M201 is used. If it is set nonzero and all axes and extruders with local drivers use phase stepping, then third-order motion control is used.
 
-The acceleration time parameter is common to all axes and extruders, therefore maximum jerk (i.e. rate of change of acceleration) cannot be set individually for each axis or exruder. It is available in the object model field `move.accelerationTime`.
+The acceleration time parameter is common to all axes and extruders, therefore maximum jerk (i.e. rate of change of acceleration) cannot be set individually for each axis or extruder. It is available in the object model field `move.accelerationTime`.
 
 Object model field `move.usingSCurve` indicates whether or not third order motion control is in use.
 
