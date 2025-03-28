@@ -2,7 +2,7 @@
 title: Support for third-order motion control
 description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
 published: true
-date: 2025-03-28T10:30:21.486Z
+date: 2025-03-28T10:35:57.902Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
@@ -34,17 +34,17 @@ The main disadvantages of third-order motion control are:
 ## Phase stepping
 RepRapFirmware 3.6.0 for Duet 3 6HC provides an alternative mechanism for stepper motion control called phase stepping. When this is enabled, instead of calculating the time at which each microstep is due (which involves solving a quadratic equation when using second-order motion control, and would require solving a cubic equation when using third-order motion control), at approximately fixed intervals it calculates the required position of the stepper motor and then commands the driver to apply phase currents that correspond to that position.
 
-Calculating the required motor position only requires evaluation of a quadratic polynomial when using second order motion control, or a cubic polynomial for thir dorder motion control. Therefore **the experimental third-order motion control support is only available on the 6GHC and only when all axes and extruders that are driven by motors attached to the main board are set to use phase stepping**.
+Calculating the required motor position only requires evaluation of a quadratic polynomial when using second order motion control, or a cubic polynomial for thir dorder motion control. Therefore **the experimental third-order motion control support can ony be enabed in firmware builds for the 6HC** and it can only be used when all axes and extruders that are driven by motors attached to the main board are configured to use phase stepping.
 
 It is permitted to have additional axes and/or extruders driven from CAN-connected boards. However, third-order motion control is not currenty supported by CAN-connected boards. Because of this, the motion commands sent to CAN-connected boards will be second-order approximations of the third-order motion used on the man board. Therefore they will not be perfectly synchronised with the main board during acceleration and deceleration. This may be acceptable for axes that are not greatly involved in movement with extrusion. For example, it is likely that the Z axis of a 3D printer can be driven from a CAN-connected board without significant issues.
 
-Phase stepping is enabled using the [M970 command](/User_manual/Reference/Gcodes#m970-enabledisable-phase-stepping).
+Phase stepping is enabled using the [M970 command](/User_manual/Reference/Gcodes#m970-enabledisable-phase-stepping). Note, stall detection is not supported when using phase stepping; therefore if the machine uses stall-detect homing then the homing files should check which mode the axes being homes are in, disable phase stepping for those axes, perform the homing operation, then revert any axes to phase stepping that were using it. Object model field `move.axes[].phaseStep` can be used to establish whether an axis uses phase stepping.
 
 ## Enabling third-order motion control
 In firmware builds that support it the M201 command accepts an additional parameter `Tn.nn` where *n.nn* is a time in seconds called the acceleration time. This represent the time over which any axis or extruder may be accelerated from zero to its maximum acceleration as configured by M201. The jerk (i.e. maximum rate of change of acceleration) of an axis or extruder is calculated by dividing its maximum acceleration by the acceleration time.
 
 If the acceleration time is set to zero (which is the default at startup) then second order motion control is used. If it is set nonzero but there are any axes or extruders that use local drivers and are not configured to use phase stepping, then second order motion control is used but a warning is generated whenever M201 is used. If it is set nonzero and all axes and extruders with local drivers use phase stepping, then third-order motion control is used.
 
-The acceleration time parameter is common to all axes and extruders, therefore maximum jerk (i.e. rate of change of acceleration) cannot be set individually for each axis or exruder. It is available in the object model as `move.accelerationTime`.
+The acceleration time parameter is common to all axes and extruders, therefore maximum jerk (i.e. rate of change of acceleration) cannot be set individually for each axis or exruder. It is available in the object model field `move.accelerationTime`.
 
-Object model variable `move.usingSCurve` indicates whether or not third order motion control is in use.
+Object model field `move.usingSCurve` indicates whether or not third order motion control is in use.
