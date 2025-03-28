@@ -2,7 +2,7 @@
 title: Third-order motion profile support
 description: This page describes the experimental support for third-order motion profiles, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
 published: true
-date: 2025-03-28T10:12:03.720Z
+date: 2025-03-28T10:18:30.861Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
@@ -33,6 +33,8 @@ The main disadvantages of third-order motion control are:
 ## Phase stepping
 RepRapFirmware 3.6.0 for Duet 3 6HC provides an alternative mechanism for stepper motion control called phase stepping. When this is enabled, instead of calculating the time at which each microstep is due (which involves solving a quadratic equation when using second-order motion control, and would require solving a cubic equation when using third-order motion control), at approximately fixed intervals it calculates the required position of the stepper motor and then commands the driver to apply phase currents that correspond to that position.
 
-Calculating the required motor position only requires evaluation of a quadratic polynomial when using second order motion control, or a cubic polynomial for thir dorder motion control. Therefore the experimental third-order motion control support is only available when all axes and extruders that are driven by motors attached to the main board are set to use phase stepping.
+Calculating the required motor position only requires evaluation of a quadratic polynomial when using second order motion control, or a cubic polynomial for thir dorder motion control. Therefore **the experimental third-order motion control support is only available on the 6GHC and only when all axes and extruders that are driven by motors attached to the main board are set to use phase stepping**.
 
 It is permitted to have additional axes and/or extruders driven from CAN-connected boards. However, third-order motion control is not currenty supported by CAN-connected boards. Because of this, the motion commands sent to CAN-connected boards will be second-order approximations of the third-order motion used on the man board. Therefore they will not be perfectly synchronised with the main board during acceleration and deceleration. This may be acceptable for axes that are not greatly involved in movement with extrusion. For example, it is likely that the Z axis of a 3D printer can be driven from a CAN-connected board without significant issues.
+
+Phase stepping is enabled using the [M970 command](/User_manual/Reference/Gcodes#m970-enabledisable-phase-stepping).
