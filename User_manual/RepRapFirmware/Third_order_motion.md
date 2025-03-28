@@ -1,8 +1,8 @@
 ---
-title: Third-order motion profile support
-description: This page describes the experimental support for third-order motion profiles, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
+title: Support for third-order motion control
+description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
 published: true
-date: 2025-03-28T10:28:58.921Z
+date: 2025-03-28T10:30:21.486Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
