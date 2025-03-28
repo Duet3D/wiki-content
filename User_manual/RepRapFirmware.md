@@ -2,7 +2,7 @@
 title: User manual: RepRapFirmware
 description: 
 published: true
-date: 2024-12-12T10:40:24.978Z
+date: 2025-03-28T09:19:45.164Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T15:40:48.493Z
@@ -17,6 +17,7 @@ dateCreated: 2021-11-29T15:40:48.493Z
 [SD Card](/User_manual/RepRapFirmware/SD_card)
 [Events](/User_manual/RepRapFirmware/Events)
 [Multiple motion systems](/User_manual/RepRapFirmware/Multiple_motion_systems)
+[Experimental S-curve motion profile](/User_manual/RepRapFirmware/S_curve_motion)
 
 # Firmware updating
 
