@@ -2,7 +2,7 @@
 title: Support for third-order motion control
 description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
 published: true
-date: 2025-03-28T10:42:15.166Z
+date: 2025-03-28T11:16:05.005Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
@@ -51,3 +51,6 @@ Object model field `move.usingSCurve` indicates whether or not third order motio
 
 ## Input shaping and pressure advance
 Input shaping and pressure advance can be configured and used as normal when using third-order motion control.
+
+## Scanning Z probes
+When G29 is used to generate a height map using a scanning Z probe, when calculating when to take readings RepRapFirmware assumes that second order motion control is in use. If third order motion control is used then the positions at which readings are taken during the acceleration and deceleration segments of the scanning move will be inaccurate. Therefore, unless the acceleration and deceleration segments are very short, it is preferable to switch to second order motion prior to running G29 using a scanning probe.
