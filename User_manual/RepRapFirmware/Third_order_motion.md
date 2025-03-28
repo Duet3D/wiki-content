@@ -2,7 +2,7 @@
 title: Support for third-order motion control
 description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
 published: true
-date: 2025-03-28T11:16:05.005Z
+date: 2025-03-28T11:39:15.978Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
@@ -24,7 +24,7 @@ In a third order motion system, acceleration is not allowed to change abruptly. 
 
 The potential advantages of third-order motion control are:
 * Less tendency to excite high frequency resonances. However, in 3D printers the troublesome resonances are generally at lower frequencies, so input shaping is a much better way to reduce exciting them.
-* In order to apply extruder pressure advance, the extruder motion is modified by making the extrusion speed the commanded speed plus a component related to (typically proportional to) extruder acceleration. Since acceleration changes abruptly when using second order motion control, adding this extra component reduce the extrusion system to first order because it demands instantaneous changes in extrusion speed. If we switch to third order motion then we no longer need instantaneous changes t extrusion speed, making the extrusion second order.
+* In order to apply extruder pressure advance, the extruder motion is modified by making the extrusion speed the commanded speed plus a component related to (typically proportional to) extruder acceleration. Since acceleration changes abruptly when using second order motion control, adding this extra component reduce the extrusion system to first order because it demands instantaneous changes in extrusion speed. If we switch to third order motion then we no longer need instantaneous changes to extrusion speed, making the extrusion second order.
 
 The main disadvantages of third-order motion control are:
 * It is much more computationally expensive, because the equations of motion change from being quadratic to being cubic;
