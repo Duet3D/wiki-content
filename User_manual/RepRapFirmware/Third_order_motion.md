@@ -2,7 +2,7 @@
 title: Support for third-order motion control
 description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
 published: true
-date: 2025-03-28T10:35:57.902Z
+date: 2025-03-28T10:38:05.686Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
@@ -48,3 +48,6 @@ If the acceleration time is set to zero (which is the default at startup) then s
 The acceleration time parameter is common to all axes and extruders, therefore maximum jerk (i.e. rate of change of acceleration) cannot be set individually for each axis or exruder. It is available in the object model field `move.accelerationTime`.
 
 Object model field `move.usingSCurve` indicates whether or not third order motion control is in use.
+
+## Input shaping and pressure advance
+Input shaping and pressure advance can be configured and used as normal when using third-order motion control.
