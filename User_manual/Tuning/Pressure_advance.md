@@ -2,7 +2,7 @@
 title: Pressure advance
 description: Pressure advance aims to compensate for the elasticity of the filament and the extruder system.
 published: true
-date: 2022-04-27T14:04:24.542Z
+date: 2025-04-01T16:41:35.745Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:23:22.545Z
@@ -57,6 +57,11 @@ A good starting point for tuning for PLA is as follows:
 These are only starting points, your particular setup may require more or less. The only way to know for sure is an actual print test. Different materials may behave very differently.
 
 # Methods of finding the right amount of pressure advance
+
+> **Note**: When enabling and configuring pressure advance, the extruder acceleration (M201 E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk, M566 E parameter) divided by pressure advance (M572 S parameter).
+For example, if a machine used jerk 300 at a PA of 0.02 to 0.03, maximum extruder acceleration would be 300 / 0.02 = 10,000 to 300 / 0.03 = 15,000
+{.is-info}
+
 
 See the set of macros developed by Duet3D stalwart [Phaedrux](https://forum.duet3d.com/user/phaedrux) in [this forum thread](https://forum.duet3d.com/topic/6181/)
 
