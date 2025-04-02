@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-03-26T18:27:45.139Z
+date: 2025-04-02T09:46:43.230Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5662,16 +5662,14 @@ Supported from RRF 3.6.0
 * **Sn** Mode to use: 0 = standard mode, 1 = touch mode
 * **Fnnn** Feed rate to use (mm/min) in touch mode
 * **Hn.nn** Nozzle height (mm) to be assumed when touch is detected, normally negative
-* **Vn.nn** Sensitivity to touch, between 0 (not at all sensitive) and 1.0 (very sensitive)
-
-Additional sensitivity parameters may be added in future to provide better control of touch recognition.
+* **Vn.nn** Touch mode threshold, between 0.0 (very sensitive) and 10.0 (very insensitive).
 
 ### Notes
 
 * All parameters are optional. If the K parameter is not provided then probe 0 is assumed. If other parameters are not provided then their values remain unchanged. If no parameters (except possibly K) are provided then the existing values are reported.
 * In standard mode the output of an analog Z probe is compared with the threshold as the probing move progresses. When the probe output reaches the threshold, probing stops and the Z height is assumed to be equal to the trigger height. In RepRapFirmware both the threshold and trigger height are set using the G31 command.
 * In touch mode the output of the probe is monitored as the probing move progresses. When the rate of change reduces sharply (the exact details depending on the sensitivity parameters) it is assumed hat the nozzle has contacted the bed. The Z height is assumed to be the value set using the H parameter.
-* When an analog Z probe is created using M558, the mode is set to standard mode, the feed rate in touch mode (M558.3 F parameter) is set to the feed rate in standard mode (first or only value of the M558 F parameter) and the touch mode nozzle height and sensitivity assume default values. Fast-then-slow probing is not available in touch mode.
+* When an analog Z probe is created using M558, the mode is set to standard mode, the feed rate in touch mode (M558.3 F parameter) is set to the feed rate in standard mode (first or only value of the M558 F parameter) and the touch mode nozzle height and sensitivity assume default values. Fast-then-slow probing is not available in touch mode, however you can still use the M558 A parameter to probe multiple times.
 * More information is available at [Using the SZP in touch mode to set Z height](/User_manual/Tuning/scanning_z_probe_calibration#using-the-szp-in-touch-mode-to-set-z-height).
 
 
