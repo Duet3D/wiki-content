@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-03-28T15:10:50.808Z
+date: 2025-04-03T16:32:48.468Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -192,10 +192,19 @@ If [`http://duet3.local/`](http://duet3.local/){target=_blank} does not show Due
 ### "Could not connect to Duet: Timeout while waiting for transfer ready pin"
 
 * Check that the ribbon cable is correctly orientated on the RPi and Duet.
-* Check there is **no SD card in the Duet** mainboard SD card socket. If there is, remove it and press the Reset button on the Duet, then refresh the DWC page.
-* Check the firmware erase jumper is not on the Duet 'ERASE' pins. If it is, remove it. You will have to flash the firmware, as it will be erased. The easiest way to do this is to connect a USB cable between the RPi and Duet, open a command prompt (either open a terminal window or connect via SSH) and send `bossac -e -w -v -b -R /opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin` (firmware name will be dependent on the hardware you're using, [see here for list](/User_manual/RepRapFirmware/Updating_firmware#firmware-file-naming){target=_blank}). 
+* Check there is **no SD card in the Duet mainboard SD card socket**. If there is, remove it and press the Reset button on the Duet, then refresh the DWC page.
+* Check there is **no jumper on the Duet firmware 'ERASE' pins**. If it is, remove it. You will have to flash the firmware, as it will be erased; see below.
+* Check the Duet has firmware; the DIAG/STATUS LED should be flashing steadily, about half a second off and half a second on. If it is glowing dimly, or off, the firmware has been erase. You can also check by connecting a USB cable between the Duet and RPi, then send `lsusb` from the RPi terminal. If there is an entry for "Duet 3 motion system", it has firmware. If there is an entry for "Atmel ... bootloader" the firmware has been erased, and you will have to flash the firmware; see below.
 * If the Duet is powered via USB cable from the RPi, send `lsusb` from the RPi terminal. If the Duet is not showing up, it may be a power supply issue. Try powering the Duet and SBC separately and see if the problem is resolved.
 * Use of RPi cases that extend the GPIO pins or use the pins for external buttons or powering PWM fans will not work with the Duet.
+* Test the SBC GPIO capabilities, it's possible that the SPI controller has failed: https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide#testing-gpio-capability-of-the-sbc
+* Finally, it's possible that the buffer driver on the Duet has failed, that sets the transfer ready pin high, so the SBC knows it can communicate. Contact Duet3D.
+
+#### Flashing firmware from the SBC
+
+For 6HC/6XD, the easiest way to do this is to connect a USB cable between the RPi and Duet, open a command prompt (either open a terminal window or connect via SSH) and send `bossac -e -w -v -b -R /opt/dsf/sd/firmware/Duet3Firmware_MB6HC.bin` (firmware name will be dependent on the hardware you're using, [see here for list](/User_manual/RepRapFirmware/Updating_firmware#firmware-file-naming){target=_blank}). 
+
+Alternatively, and for Mini 5+, see [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}.
 
 ### "Warning: Lost connection to Duet (Timeout while waiting for transfer ready pin)" error
 
@@ -204,18 +213,18 @@ This error, reported in the DWC console usually during normal machine operation 
 * Other wires running too close to the ribbon cable, creating interference. Heater and motor wires can be particularly noisy, route them as far away as possible. 
 * Signal reflections have been reported by one user. This may have been caused by a ribbon cable that was too long, or damaged. 
 
+### WiFi not working at all
+
+You may have mis-configured the WiFi. 
+* Plug the SBC into your router using an Ethernet cable temporarily to reconfigure Wifi. Then follow 'Accessing the SBC through SSH/VNC' below to get command line/VNC access to your SBC, then you can [follow this guide to get wifi running](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md){target=_blank}.
+* Alternatively, temporarily connecting a screen and keyboard to the SBC, then follow [this guide to get wifi  running](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md){target=_blank}.
+* If you are using Ethernet temporarily 
+
 ### Duet 3/SBC not on the network (http://duet3.local does not work)
 
 ![sbc_setup_04.png](/manual/configuration/sbc_setup_04.png =50%x){.align-right}If you do not have a screen/keyboard attached to your SBC and your browser cannot connect over wifi all, you will get a message in your browser similar to the one on the right.
 * Log into your router and confirm that the SBC has received an IP address. If it is not shown at all move to the next section: wifi not working at all.
 * If an IP address is shown for the SBC, enter that address in the browser e.g. http://192.168.1.123 If this works then it is possible that your network or PC does not like the mDNS service used to provide the http://nnnnnn.local names. The best way around this is to reserve the IP address in your router so the SBC always receives the same address.
-
-### WiFi not working at all
-
-* You may have mis-configured the wpa_supplicant.conf. If possible plug the SBC into your router using an Ethernet cable temporarily to reconfigure Wifi. If that is not possible then try adding the wpa_supplicant.conf file to the "boot" partition of the SD card again.
-* If neither work then try temporarily connecting a screen and keyboard to the SBC to see whats going on.
-* If you are using a screen and keyboard temporarily, then follow [this guide to get wifi  running](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md){target=_blank}.
-* If you are using Ethernet temporarily then follow Step 5 - Accessing the SBC through SSH/VNC, below to get command line/VNC access to your SBC, then you can [follow this guide to get wifi running](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md){target=_blank}.
 
 ### DWC does not appear correctly (500 error)
 
