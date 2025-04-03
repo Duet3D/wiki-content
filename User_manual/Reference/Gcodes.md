@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-04-03T15:34:54.635Z
+date: 2025-04-03T15:50:44.521Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5868,15 +5868,15 @@ The model files and GCode files used by repraps generally render circles and oth
 
 **Z** parameter: When mesh bed compensation is used, movement may be jerky if the allowed Z jerk is too low, because the Z speed needs to change abruptly as the head moves between squares in the mesh.
 
+**E** parameter: Generally, extruder jerk can be set high, between 3000 and 6000 mm/min, otherwise it will limit the acceleration of other axes.
+
 **P** parameter: The default jerk policy is 0, which replicates the behaviour of earlier versions of RRF (jerk is only applied between two printing moves, or between two travel moves, and only if they both involve XY movement or neither does). Changing the jerk policy to 1 allows jerk to be applied between any pair of moves.
 
 ### Notes
 
-The minimum jerk speed supported in as at firmware version 2.02RC3 is 0.1mm/sec.
-
-RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
-
-Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M566 Z50, not M566 Z50:50
+* The minimum jerk speed supported in as at firmware version 2.02RC3 is 0.1mm/sec.
+* RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
+* Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M566 Z50, not M566 Z50:50
 
 ## M567: Set tool mix ratios
 
@@ -6421,7 +6421,7 @@ Pressure advance causes the extruder drive position to be advanced or retarded d
 ### Notes
 
 * If you configure Input Shaping, you will need to retune your Pressure Advance. It is recommend to first tune Input Shaping, then Pressure Advance, then Retraction.
-* When enabling and configuring pressure advance, the extruder acceleration (M201 E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk, M566 E parameter) divided by pressure advance (M572 S parameter). 
+* When enabling and configuring pressure advance, the extruder acceleration (M201 E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk, M566 E parameter) divided by pressure advance (M572 S parameter). For example, if a machine used jerk 300 at a PA of 0.02 to 0.03, maximum extruder acceleration would be 300 / 0.02 = 10,000 to 300 / 0.03 = 15,000. 
 * For more details such as tuning the value see [Pressure advance](/User_manual/Tuning/Pressure_advance){target=_blank}.
 
 ## M573: Report heater PWM
