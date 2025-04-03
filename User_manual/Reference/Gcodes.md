@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-04-03T13:47:04.356Z
+date: 2025-04-03T15:34:54.635Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6418,9 +6418,11 @@ This sets the pressure advance coefficient (S parameter) for the specified extru
 
 Pressure advance causes the extruder drive position to be advanced or retarded during printing moves by an additional amount proportional to the rate of extrusion. At the end of a move when the extrusion rate is decreasing, this may result in the extruder drive moving backwards (i.e. retracting). Therefore, if you enable this feature, you may need to reduce the amount of retraction you use in your slicing program to avoid over-retraction.
 
-If you configure Input Shaping, you will need to retune your Pressure Advance. It is recommend to first tune Input Shaping, then Pressure Advance, then Retraction.
+### Notes
 
-For more details such as tuning the value see [Pressure advance](/User_manual/Tuning/Pressure_advance){target=_blank}.
+* If you configure Input Shaping, you will need to retune your Pressure Advance. It is recommend to first tune Input Shaping, then Pressure Advance, then Retraction.
+* When enabling and configuring pressure advance, the extruder acceleration (M201 E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk, M566 E parameter) divided by pressure advance (M572 S parameter). 
+* For more details such as tuning the value see [Pressure advance](/User_manual/Tuning/Pressure_advance){target=_blank}.
 
 ## M573: Report heater PWM
 
