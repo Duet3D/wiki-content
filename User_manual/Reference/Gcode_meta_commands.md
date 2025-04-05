@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-03-18T14:03:59.620Z
+date: 2025-04-05T16:24:50.691Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -530,10 +530,10 @@ var value = param.X                 ; value to save
 var filepath = "globals/"^{var.id}  ; internal file path where the global variable is saved
 
 ; Save the global variable as a file so it is persistent
-echo > {var.filepath} "if exists(global."^{var.id}^")"
-echo >> {var.filepath} "    set global."^{var.id}^" = "^{var.value}
-echo >> {var.filepath} "else"
-echo >> {var.filepath} "    global "^{var.id}^" = "^{var.value}
+echo >{var.filepath}  "if exists(global."^{var.id}^")"
+echo >>{var.filepath} "    set global."^{var.id}^" = "^{var.value}
+echo >>{var.filepath} "else"
+echo >>{var.filepath} "    global "^{var.id}^" = "^{var.value}
 
 M98 P{var.filepath} ; load the global variable
 ```
