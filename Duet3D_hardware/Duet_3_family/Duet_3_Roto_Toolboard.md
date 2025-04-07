@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2025-01-05T21:20:17.396Z
+date: 2025-04-07T15:43:02.333Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -82,6 +82,8 @@ The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-Roto
 Mount on the side of the E3D Roto with standoffs/spacers sufficient to ensure none of the components or connectors on the back of the board can touch the metal heatsink or motor of the E3D Revo Roto extruder. The E3D Revo Roto extruder can use either M3 through bolts or M4 self tapping plastic screws for mounting into the mounting holes. See E3D documentation for further information.
 
 A simple spacer design is available [here](https://github.com/Duet3D/Duet3-RotoToolboard/blob/master/v1.0/roto%20spacer.step){target=_blank}.
+
+The mount for Roto and SZP coil board shown at the top of the page is available [here](https://github.com/Duet3D/Duet3-RotoToolboard/tree/master/mechanical){target=_blank}. Note that you may need to adjust the mount to get the SZP coil at the correct height for your nozzle.
 
 # Physical connections
 
