@@ -2,7 +2,7 @@
 title: Pressure advance
 description: Pressure advance aims to compensate for the elasticity of the filament and the extruder system.
 published: true
-date: 2025-04-01T16:41:35.745Z
+date: 2025-04-07T15:13:15.649Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:23:22.545Z
@@ -56,12 +56,23 @@ A good starting point for tuning for PLA is as follows:
 
 These are only starting points, your particular setup may require more or less. The only way to know for sure is an actual print test. Different materials may behave very differently.
 
-# Methods of finding the right amount of pressure advance
+# Calibrating pressure advance
 
-> **Note**: When enabling and configuring pressure advance, the extruder acceleration (M201 E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk, M566 E parameter) divided by pressure advance (M572 S parameter).
-For example, if a machine used jerk 300 at a PA of 0.02 to 0.03, maximum extruder acceleration would be 300 / 0.02 = 10,000 to 300 / 0.03 = 15,000
-{.is-info}
+## NOTE: Extruder speed, jerk and acceleration
 
+When enabling and configuring pressure advance, the extruder acceleration ([M201](/User_manual/Reference/Gcodes/M201) E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk) in mm/s, divided by pressure advance (M572 S parameter) in seconds, to avoid pressure advance causing the extruder motor to skip steps.
+
+**Extruder maximum speed** ([M203](/User_manual/Reference/Gcodes/M203) E parameter, mm/min) should be set to the maximum retraction speed, usually around 30 to 60mm/s, so 1800 to 3600mm/min. For normal extrusion moves, the speed is much lower than this. 
+
+**Extruder allowable instantaneous speed change (jerk)** ([M566](/User_manual/Reference/Gcodes/M566) E parameter, mm/min) can be set quite high to avoid acceleration being limited during printing moves, as long as this doesn't result in skipped steps. 
+
+**Extruder acceleration** ([M201](/User_manual/Reference/Gcodes/M201) E parameter, mm/sec^2) can be set higher if desired and that value will be used for retract and reprime moves. 
+
+Determine and test full-speed extruder moves before tuning PA, then check whether accleration is set correctly for your PA testing range. Note [M566](/User_manual/Reference/Gcodes/M566) reports jerk in mm/min, [M205](/User_manual/Reference/Gcodes/M205) reports jerk in mm/s. 
+
+For example, if a machine uses extruder jerk of 50mm/s (3,000mm/min) at a PA of 0.02s, maximum extruder acceleration would be 50 / 0.02 = 2,500mm/s^2. 
+
+## Methods of finding the right amount of pressure advance
 
 See the set of macros developed by Duet3D stalwart [Phaedrux](https://forum.duet3d.com/user/phaedrux) in [this forum thread](https://forum.duet3d.com/topic/6181/)
 
