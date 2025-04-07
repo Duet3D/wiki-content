@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2025-01-28T15:14:25.525Z
+date: 2025-04-07T14:29:53.069Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -61,7 +61,7 @@ These Duets use the following folder structure:
 
 `/gcodes` is used to hold g-code files for printing. You can use subfolders of /gcodes to organize these files. G-code files can also be located on an external SD card if one is connected.
 
-`/macros` is used to hold used-defined macro files. The names of these files appear as menu entries in DuetWebControl and on PanelDue. You can use subfolders of /macros to organize these files. See [Macros](/User_manual/Tuning/Macros) for examples of useful user macros.
+`/macros` is used to hold user-defined macro files. The names of these files appear as menu entries in DuetWebControl and on PanelDue. You can use subfolders of /macros to organize these files. See [Macros](/User_manual/Tuning/Macros) for examples of useful user macros.
 
 `/menu` This holds the files that define the menu layouts for 128x64 pixel monochrome displays. Compatible with Duet 3 mini 5+ and Duet 2 Maestro. For details, see [User manual: 12864 display menu system](/User_manual/Connecting_hardware/Display_12864_menu)
 
@@ -182,7 +182,7 @@ The Duet 2 WiFi **with pre-1.19 firmware** requires only /gcodes, /macros and /s
 
 ## SD Card
 
-A faulty SD card can cause a wide range of strange behaviour: inaccessible DWC, config.g not run at startup, slow downs printing, network disconnections, slow file transfer, corrupted files and almost any other problem that relies on accessing the SD card.
+A faulty SD card can cause a wide range of strange behaviour: inaccessible DWC, config.g not run at startup, slow-downs while printing, network disconnections, slow file transfer, corrupted files and almost any other problem that relies on accessing the SD card.
 
 ### Check the SD card interface
 
