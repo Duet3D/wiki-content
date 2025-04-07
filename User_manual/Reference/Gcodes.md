@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-04-03T15:50:44.521Z
+date: 2025-04-07T11:44:07.473Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6421,7 +6421,7 @@ Pressure advance causes the extruder drive position to be advanced or retarded d
 ### Notes
 
 * If you configure Input Shaping, you will need to retune your Pressure Advance. It is recommend to first tune Input Shaping, then Pressure Advance, then Retraction.
-* When enabling and configuring pressure advance, the extruder acceleration (M201 E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk, M566 E parameter) divided by pressure advance (M572 S parameter). For example, if a machine used jerk 300 at a PA of 0.02 to 0.03, maximum extruder acceleration would be 300 / 0.02 = 10,000 to 300 / 0.03 = 15,000. 
+* When enabling and configuring pressure advance, the extruder acceleration ([M201](/User_manual/Reference/Gcodes/M201) E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk) in mm/s, divided by pressure advance (M572 S parameter) in seconds. Note [M566](/User_manual/Reference/Gcodes/M566) reports jerk in mm/min, [M205](/User_manual/Reference/Gcodes/M205) reports jerk in mm/s. For example, if a machine used extruder jerk of 50mm/s (3,000mm/min) at a PA of 0.02s, maximum extruder acceleration would be 50 / 0.02 = 2,500mm/s^2. 
 * For more details such as tuning the value see [Pressure advance](/User_manual/Tuning/Pressure_advance){target=_blank}.
 
 ## M573: Report heater PWM
