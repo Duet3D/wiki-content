@@ -2,7 +2,7 @@
 title: Multiple tools and Tool change macros
 description: 
 published: true
-date: 2024-07-11T13:20:00.359Z
+date: 2025-04-08T14:10:36.772Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:26:56.963Z
@@ -39,6 +39,7 @@ If Tn is used to select tool n but that tool is already active, the command does
 1. Use the new tool.
 
 **Important notes:**
+* When a tool change is requested, RRF will run the tool change macros tfree#.g, tpre#.g and tpost#.g, where # is the appropriate tool number. If a tool-number-specific file is not found, RRF tries to run tfree.g, tpre.g or tpost.g (without a tool number), regardless of the tool number.
 * Prior to RRF 3.3, when changing tools, tool change macro files are not run unless all axes have been homed. In RRF 3.3 and later, tool change macro files are run **regardless of whether axes have been homed or not**. You can use [meta GCode](/User_manual/Reference/Gcode_meta_commands) to choose which commands are executed if axes have been homed/not homed.
 * G28 **should not be used** to home axes in tool change macros. If you do need to home axes, it is best to put the homing commands directly in the tool change macro.
 * Meta Gcode command 'abort' **should not be used** in tool change macros, or any macro called from tool change macros, as it will leave the tool change process in an unknown state, as it exits all currently-running macros without running any more commands.
