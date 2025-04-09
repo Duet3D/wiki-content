@@ -2,7 +2,7 @@
 title: Duet Web Control Manual
 description: Duet Web Control is a browser based user interface for RepRapFirmware that runs in most modern browsers that support HTML 5.
 published: true
-date: 2024-10-28T12:48:19.642Z
+date: 2025-04-09T07:28:25.106Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T14:41:33.290Z
@@ -57,7 +57,7 @@ From Duet Web Control v3.2, additional functionality is available in the form of
 
 ### Adding and removing 3rd Party Plugins
 
-*Caveat: Duet3D cannot be held responsible for changes in behaviour introduced by 3d party plugins. Proceed at your own risk!* You will be reminded of the risks and responsibilities anytime you install a 3rd party plugin that's not blessed by Duet3D.
+*Caveat: Duet3D cannot be held responsible for changes in behaviour introduced by 3rd party plugins. Proceed at your own risk!* You will be reminded of the risks and responsibilities anytime you install a 3rd party plugin that's not blessed by Duet3D.
 
 Plugins are usually distributed as zip files containing all the necessary files for the plugin to work. To add a Plugin to DWC, go to System and upload them using the Upload System Files button. After that, go to Machine Specific > External Plugins to activate it.
 
