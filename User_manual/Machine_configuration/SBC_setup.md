@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-04-03T16:32:48.468Z
+date: 2025-04-10T14:11:08.098Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -197,7 +197,7 @@ If [`http://duet3.local/`](http://duet3.local/){target=_blank} does not show Due
 * Check the Duet has firmware; the DIAG/STATUS LED should be flashing steadily, about half a second off and half a second on. If it is glowing dimly, or off, the firmware has been erase. You can also check by connecting a USB cable between the Duet and RPi, then send `lsusb` from the RPi terminal. If there is an entry for "Duet 3 motion system", it has firmware. If there is an entry for "Atmel ... bootloader" the firmware has been erased, and you will have to flash the firmware; see below.
 * If the Duet is powered via USB cable from the RPi, send `lsusb` from the RPi terminal. If the Duet is not showing up, it may be a power supply issue. Try powering the Duet and SBC separately and see if the problem is resolved.
 * Use of RPi cases that extend the GPIO pins or use the pins for external buttons or powering PWM fans will not work with the Duet.
-* Test the SBC GPIO capabilities, it's possible that the SPI controller has failed: https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide#testing-gpio-capability-of-the-sbc
+* [Test the SBC GPIO capabilities](https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide#testing-gpio-capability-of-the-sbc), it's possible that the SPI controller has failed.
 * Finally, it's possible that the buffer driver on the Duet has failed, that sets the transfer ready pin high, so the SBC knows it can communicate. Contact Duet3D.
 
 #### Flashing firmware from the SBC
