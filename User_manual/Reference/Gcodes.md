@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-04-14T13:22:37.736Z
+date: 2025-04-14T13:23:25.212Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7927,7 +7927,7 @@ RepRapFirmware 1.19 and later implements a filament management mechanism to load
 
 * *This command can be used without any additional parameters.*
 * **Snn** Filament to load
-* **Pnn** P0 sets loaded filament without running the filament load script; P1 (default) sets loaded filament and runs the load script
+* **Pnn** P0 sets loaded filament without running the filament load script; P1 (default) sets loaded filament and runs the load script (RRF3.6.0-rc2 and later)
 
 ### Examples
 <br>
@@ -7954,7 +7954,7 @@ This code is intended to unload the previously loaded filament from the selected
 ### Parameters
 
 * *This command can be used without any additional parameters.*
-* **Pnn** P0 sets loaded filament to null without running the filament unload script; P1 (default) sets loaded filament to null and runs the unload script
+* **Pnn** P0 sets loaded filament to null without running the filament unload script; P1 (default) sets loaded filament to null and runs the unload script (RRF3.6.0-rc2 and later)
 
 ### Examples
 <br>
