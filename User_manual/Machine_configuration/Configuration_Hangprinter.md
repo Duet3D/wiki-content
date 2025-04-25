@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Hangprinter
 description: This page describes how to set up the configuration files for Hangprinters. The same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics.
 published: true
-date: 2022-01-26T14:51:11.917Z
+date: 2025-04-25T00:06:40.100Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T11:56:32.634Z
@@ -48,6 +48,26 @@ M584 X0 Y1 Z2 E3 U4 P3
 ```
 
 In this example, the ABCD spool motors are connected to the X Y Z and E1 motor connectors respectively (Duet 2), and the extruder motor is connected to the E0 motor connector. The P3 parameter restricts the number of visible axes to 3.
+
+## Spool control
+
+The [M666](/User_manual/Reference/Gcodes/M666) parameters are used to configure the buildup compensation for the Hangprinter. Each parameter adjusts how the firmware compensates for the line buildup on the spools during operation.
+
+* **An** Anchor mode, default 1. Defines position of anchors, 0=None, 1=last-top, 2=all-top, 3-half-top. 
+* **Qnn** Spool buildup factor, default 0.007. Determines how much the firmware compensates for line buildup on the spools.
+* **Rnn:nn:nn:nn** Spool radii, default 75. Used for calculating the effective length of each line.
+* **Unn:nn:nn:nn** Mechanical advantages on ABCD, default 2.
+* **Onn:nn:nn:nn** Number of lines per spool, default 1.
+* **Lnn:nn:nn:nn** Motor gear teeth of ABCD axes, default 20.
+* **Hnn:nn:nn:nn** Spool gear teeth of ABCD axes, default 255.
+* **Jnn:nn:nn:nn** Full steps per motor revolution for the ABCD motors, default 25.
+* **Wnn** Weight of the mover in Kg, default 0. Impacts the force calculations during operation.
+* **Snn** Line spring constant, default 20000. Defines the spring constant for the line, which is important for understanding how the line will behave under tension. Lower values gives more flex compensation.
+* **Inn:nn:nn:nn** Minimum planned force in four directions in Newtons, default 0. This is a safety limit. Should affect only exceptional/wrong moves, for example moves outside of the reachable volume.
+* **Xnn:nn:nn:nn** Maximum planned force in four directions in Newtons, default 70. This is a safety limit. Will affect moves close to the limits of the reachable volume.
+* **Ynn:nn:nn:nn** Guy wire lengths, Needed for flex compenation. Guy wires go between spool and final line roller. If your spools are all mounted on the D-anchor, on the ceiling plate, then you're all good, and you don't need to configure M666 Y values explicitly. If your spools are not all on the D-anchor then you must measure guy wire lengths and set them here. If your spools are all mounted on their respective anchors, so that you have no guy wires, then you should configure zeroed guy wire lengths M666 Y0.0:0.0:0.0:0.0.
+* **Tnn** Desired target force in Newtons, default 20. The flex compensation algorithm aims for at least this amount of force in the ABC line directions at all times. It can be thought of as a minimum pre-tension value. It's recommended to set it around 10 times higher than your W (mover weight in kg) value.
+* **Cnn:nn:nn:nn** Torque constants, default 0. These are required for reading motor forces from ODrives. They are the same values as is configured in the ODrives themselves
 
 ## Changes to other commands
 
