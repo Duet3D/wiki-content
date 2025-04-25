@@ -2,14 +2,14 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-02-25T11:36:14.151Z
+date: 2025-04-25T00:32:19.988Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
 ---
 
 # Introduction
-
+ 
 The Duet 3 Expansion 1HCL board provides a high current Stepper motor driver, combined with multiple interfaces for position feedback and firmware to implement closed loop position control. In addition it has a number of peripheral inputs and outputs for functions such as sensing motor temperature, controlling a brake and axis endstop. It connects to the Duet 3 CAN-FD bus using RJ11 connectors (same as the Duet 3 Mainboard 6HC, Duet 3 expansion boards, and the tool distribution board). Multiple Duet 3 Expansion 1HCL boards can be daisy chained on the bus, with power (up to 48V) provided locally. This allows for very large machines to be constructed without a significant wiring burden and signal integrity issues.
 
 ![Photograph of a Duet 3 1HCL v2.0 board shown from above](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_1hcl_v2.0_sm.jpg =x500)
@@ -144,7 +144,7 @@ A STEP 3D model of the Duet 3 Expansion 1HCL v1.0 is available [on github](https
 
 ### V2.0
 
-[![Image showing all the connections on a Duet 3 1HCL v2.0 to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v2.0_d1.0_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v2.0_d1.0_wiring.png){target=_blank}
+[![Image showing all the connections on a Duet 3 1HCL v2.0 to aid wiring](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v2.0_d1.1_wiring.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_1hcl/duet3_eb_1hcl_v2.0_d1.1_wiring.png){target=_blank}
 
 
 
