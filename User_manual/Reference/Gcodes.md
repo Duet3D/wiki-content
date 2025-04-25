@@ -2,14 +2,14 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-04-18T08:22:07.670Z
+date: 2025-04-25T00:38:21.505Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
 ---
 
 # Introduction
-
+ 
 GCodes are a widely used machine control language. They are human readable and editable. This page describes the RepRapFirmware supported GCodes. RepRapFirmware follows the philosophy of "GCode everywhere", in essence the users or external program's interaction with the firmware should be through GCodes. There are GCodes for all supported control and configuration inputs along with status and debugging information.
 
 RepRapFirmware GCodes were originally based on the information from the [RepRap wiki GCode page](http://reprap.org/wiki/G-code){target=_blank}. There are some GCodes listed on that page that are not implemented in RepRapFirmware. More details can be found on the [GCodes not implemented](/User_manual/Reference/Gcodes_not_implemented){target=_blank} page.
@@ -4264,7 +4264,7 @@ M308 S13 Y"drivertemp" P"1.dummy" A"3HC Steppers"
 
 ##### MCU/motor driver temperature notes
 
-* The Trinamic drivers used on Duets do not report temperature, rather they report one of: temperature OK, temperature overheat warning, and temperature overheat error. RRF translates these three states into readings of 0C, 100C and 130C.
+* The Trinamic drivers used on Duets do not report temperature, rather they report one of: temperature OK, temperature overheat warning, and temperature overheat error. RRF translates these three states into readings of 0C, 100C and 150C.
 * mcu-temp on Duet 3 Mini 5+: The SAME54P20A chip used in the Duet 3 Mini 5+ does not have a functioning temperature sensor. In theory it does have an on-chip temperature sensor, but the errata document for the chip says it doesn't work. However, experimental support for the Duet 3 Mini 5+ on-chip MCU temperature sensor has been added in RepRapFirmware 3.3 beta 3. As the chip manufacturer advises that it is not supported and should not be used, we can't promise that it will give useful readings on all boards. It will be removed if it causes significant support issues. Please report any issues in the [Duet3D support forum](https://forum.duet3d.com/){target=_blank}.
 * From RRF 3.4.0 "drivertemp" is changed to "drivers" to match the main board.
 
