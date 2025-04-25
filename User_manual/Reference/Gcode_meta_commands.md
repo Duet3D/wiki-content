@@ -2,14 +2,14 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-04-24T21:01:01.587Z
+date: 2025-04-25T00:43:58.284Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
 ---
 
 # Introduction
-
+ 
 RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 
 RepRapFirmware 3.01 and later provide GCode programming constructs to allow conditional execution and iteration, and allow parameter values in GCode commands to be expressions instead of literals.
