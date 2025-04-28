@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-04-25T00:43:58.284Z
+date: 2025-04-28T16:46:35.148Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -350,8 +350,8 @@ Where an expression has multiple binary operators of the same precedence and par
 | / | 6 | (float,float)->float | Division |
 | + | 5 | (int,int)->int, (float,float)->float, (DateTime,int)->DateTime | Addition. When adding an int to a DateTime the second operand is in seconds. |
 | - | 5 | (int,int)->int, (float,float)->float, (DateTime,DateTime)->int, (DateTime,int)->DateTime | Subtraction. When subtracting one DateTime from another the result is in seconds. When subtracting an int from a DateTime the second operand is in seconds. |
-| = or == | 4 | (X,X)->bool | Equality (X stands for any type) |
-| != | 4 | (X,X)->bool | Inequality (X stands for any type) |
+| = or == | 4 | (X,X)->bool | Equality (X stands for any type). Either the two operands must have the same type or one of them must be the constant **null**. |
+| != | 4 | (X,X)->bool | Inequality (X stands for any type). Either the two operands must have the same type or one of them must be the constant **null**. |
 | < | 4 | (int,int)->bool, (float,float->bool | Less than |
 | <= | 4 | (int,int)->bool, (float,float)->bool | Less than or equal |
 | > | 4 | (int,int)->bool, (float,float)->bool | Greater than |
