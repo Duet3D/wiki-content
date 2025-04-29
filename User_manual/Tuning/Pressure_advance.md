@@ -2,7 +2,7 @@
 title: Pressure advance
 description: Pressure advance aims to compensate for the elasticity of the filament and the extruder system.
 published: true
-date: 2025-04-07T15:13:15.649Z
+date: 2025-04-29T15:17:24.613Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:23:22.545Z
@@ -60,13 +60,15 @@ These are only starting points, your particular setup may require more or less. 
 
 ## NOTE: Extruder speed, jerk and acceleration
 
-When enabling and configuring pressure advance, the extruder acceleration ([M201](/User_manual/Reference/Gcodes/M201) E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk) in mm/s, divided by pressure advance (M572 S parameter) in seconds, to avoid pressure advance causing the extruder motor to skip steps.
+With pressure advance enabled, RRF will automatically limit extruder acceleration ([M201 E](/User_manual/Reference/Gcodes/M201), mm/sec^2) to the lower of either the M201 E value, or the instantaneous speed change allowed ([M566 E](/User_manual/Reference/Gcodes/M566), aka jerk, converted to mm/s) divided by the pressure advance constant ([M572 S](/User_manual/Reference/Gcodes/M572), in seconds), to avoid pressure advance causing the extruder motor to skip steps. For extruder-only moves, only the M201 limit is applied.
 
-**Extruder maximum speed** ([M203](/User_manual/Reference/Gcodes/M203) E parameter, mm/min) should be set to the maximum retraction speed, usually around 30 to 60mm/s, so 1800 to 3600mm/min. For normal extrusion moves, the speed is much lower than this. 
+This means the extruder speed, acceleration and jerk settings are important to get right.
 
-**Extruder allowable instantaneous speed change (jerk)** ([M566](/User_manual/Reference/Gcodes/M566) E parameter, mm/min) can be set quite high to avoid acceleration being limited during printing moves, as long as this doesn't result in skipped steps. 
+**Extruder maximum speed** ([M203](/User_manual/Reference/Gcodes/M203) E parameter, mm/min) should be set to the maximum retraction speed achievable without skipping steps, usually around 30 to 60mm/s, so 1800 to 3600mm/min. For normal extrusion moves, the speed is much lower than this. 
 
-**Extruder acceleration** ([M201](/User_manual/Reference/Gcodes/M201) E parameter, mm/sec^2) can be set higher if desired and that value will be used for retract and reprime moves. 
+**Extruder allowable instantaneous speed change (jerk)** ([M566](/User_manual/Reference/Gcodes/M566) E parameter, mm/min) This largely depends on the extruder; a direct-drive NEMA17 motor can have jerk set between 2000 to 6000mm/min. Smaller, high-geared NEMA14 motors might be between 200 to 500mm/min as they can't tolerate high jerk values, but then these are often used for direct-drive hotends, for which the amount of PA needed is usually small. High jerk is also a problem for Flexi shaft remote extruders, so follow the manufacturers recommendation. Ideally, set jerk high enough to avoid acceleration being limited during printing moves, as long as this doesn't result in skipped steps. 
+
+**Extruder acceleration** ([M201](/User_manual/Reference/Gcodes/M201) E parameter, mm/sec^2) smaller, geared extruders will need lower acceleration, while larger NEMA17 direct-drive can be set higher. Settings in the range of 2000 to 4000mm/sec^2 should be fine, but test for skipped steps. This value will be used for extruder-only moves, like retract and reprime moves. 
 
 Determine and test full-speed extruder moves before tuning PA, then check whether accleration is set correctly for your PA testing range. Note [M566](/User_manual/Reference/Gcodes/M566) reports jerk in mm/min, [M205](/User_manual/Reference/Gcodes/M205) reports jerk in mm/s. 
 
