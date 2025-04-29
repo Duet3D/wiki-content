@@ -2,7 +2,7 @@
 title: Testing stepper motors
 description: 
 published: true
-date: 2022-02-11T15:06:12.899Z
+date: 2025-04-29T16:27:15.364Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-06T14:11:27.032Z
@@ -15,7 +15,11 @@ Before conducting this step, temporarily allow axis movement without homing by n
 M564 S0 H0
 ```
 
-Navigate back to the Machine Control page. At this time, we will check the operation of our stepper motors.
+> **NOTE:** `M564 S0 H0` may not work if your machine's kinematics use non-linear axes, eg **Delta**, **Scara** or **Polar**, because until RRF knows where the effector/head is, it has no idea how to move the motors to achieve a desired position. Use `G91` then `G1 H2` moves for testing (see 'Checking movement direction' below), or send `G92 X0 Y0 Z0` to set an approximate initial position.
+{.is-info}
+
+
+For machines with cartesian and CoreXY kinematics, navigate back to the Machine Control page. At this time, we will check the operation of our stepper motors.
 
 [![stepper_motors_testing_01.png](/manual/motors/stepper_motors_testing_01.png =600x)](/manual/motors/stepper_motors_testing_01.png){target=_blank}
 
