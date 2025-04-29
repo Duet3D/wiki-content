@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2025-02-03T16:53:35.164Z
+date: 2025-04-29T13:08:09.321Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -468,8 +468,10 @@ The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers t
   * The 6XD will generate negative-going step pulses, and this will only work if the driver samples steps on the leading edge of the pulse. For stepstick and similar drivers, that will depend on the driver chip. Otherwise, add an inverter between the step output and the driver.
   * Direction can be flipped using M569 S parameter.
 * The **Enable** output is either low when "on" and high impedance when "off", or vice versa, depending on the position of the 'Driver Enable Polarity' (En_Pol) jumper.
-  * The jumper just sets the default value in case a M569 command with R parameter isn't seen. The main aim of this is to power up with the drivers disabled.
-  * The enable signal can be flipped using M569 R parameter.
+  * The jumper sets the default value in case a M569 command with R parameter isn't seen. The main aim of this is to power up with the drivers disabled.
+  * The `M569 R#` parameter overrides the jumper. 
+  **R0** = signal not energised to enable the driver. On v1.01 and earlier boards this means high impedance; on v1.02 this means pulled to +5V. 
+  **R1** = signal energised to enable the driver. This means the output is pulled to low impedence.
 
 This diagram shows connection to a "typical" optoisolated stepper motor driver
 
