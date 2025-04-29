@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2025-02-25T11:37:20.066Z
+date: 2025-04-29T14:23:28.275Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -176,7 +176,7 @@ Please read the following sections if you are using a magnetic encoder such as t
 
 **Motivation**
 
-The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is difficult to align the centre of the magnet precisely with the centre of rotation, so the calibration procedure measures how offset the magnet is and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, this data is stored in non-volatile storage so that it only has to be run once. Of course, if you change your drive, move your magnet, or even remove the magnetic sensor board and re-attach it, you must re-run this calibration move.
+The magnetic sensor requires a magnet to be positioned on the back of the motor shaft. It is difficult to align the centre of the magnet precisely with the centre of rotation, so the calibration procedure measures how offset the magnet is and attempts to corrects for this in software. Since the magnet's position is not affected by cycling the printer's power, the calibration data is stored in non-volatile storage on the 1HCL, so that it only has to be run once. Note that if you replace the 1HCL, change the motor, move the encoder magnet, or remove the magnetic sensor board and re-attach it, you must re-run this calibration move.
 
 **Running the calibration procedure**
 
@@ -186,7 +186,7 @@ When you are satisfied that the motor can freely make up to 1.5 rotations in eit
 
 `M569.6 P##.# V2    ; Where P##.# is the driver address to tune`
 
-Once this has been performed successfully, the values will be written to non-volatile memory and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V2 command again, or checked by running the M569.6 ... V3 command.
+Once this has been performed successfully, the values will be written to non-volatile memory on the 1HCL and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V2 command again, or checked by running the M569.6 ... V3 command.
 
 The firmware will output the highest deviation of expected position vs encoder position recorded. This is useful as a proxy for how centered the magnet is.
 
