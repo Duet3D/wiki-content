@@ -2,7 +2,7 @@
 title: 12864 display menu system
 description: 
 published: true
-date: 2025-05-02T09:18:43.846Z
+date: 2025-05-02T09:19:42.328Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-08T15:18:45.632Z
@@ -171,7 +171,7 @@ button R39 C0 T"Preheat ABS" A"M98 P#0" L"/macros/Preheat ABS"
 button R51 C0 T"Select file to print" A"menu" L"listFiles"
 ```
 
-**Note:** From RRF 3.5, the firmware expects M98 commands to have the macro name or path/name in quotes. See [this thread on the forum](https://forum.duet3d.com/topic/35429/3-5rc4-12864-display-menu-m98). The above should work in RRF 3.5 and earlier version. It could be rewritten as:
+**Note:** From RRF 3.5.0 the firmware expects M98 commands to have the macro name or path/name in quotes. See [this thread on the forum](https://forum.duet3d.com/topic/35429/3-5rc4-12864-display-menu-m98). The above should work in RRF 3.5.0 and earlier version. It could be rewritten as:
 
 ```
 button R27 C0 T"Preheat PLA" A"M98 P""/macros/Preheat PLA"""
