@@ -2,7 +2,7 @@
 title: 12864 display menu system
 description: 
 published: true
-date: 2025-05-02T09:19:42.328Z
+date: 2025-05-02T09:25:10.970Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-08T15:18:45.632Z
@@ -82,7 +82,7 @@ The following commands are supported:
 An action string ('A' parameter) can be any of:
 
 * A Gcode command string (must begin with G, M or T). In such a string, #0 represents the full name of the current file, in double quotes. When executing the 'files' command, this is the file selected by the user. When executing the 'button' command, this is copied from the L parameter.
-* 'menu *name** chains to the menu file called *name*
+* 'menu *name*' chains to the menu file called *name*
 * 'return' returns to the parent menu
 
 Multiple actions can be specified, separated by the vertical-bar character, e.g. "M32 #0|return|return" but 'menu' if present may only be the last command.
