@@ -2,7 +2,7 @@
 title: 12864 display menu system
 description: 
 published: true
-date: 2025-05-02T09:25:10.970Z
+date: 2025-05-02T09:29:24.794Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-08T15:18:45.632Z
@@ -141,7 +141,7 @@ The N parameter in the "value" and "alter" commands specifies the value to displ
 
 (2) = alterable in firmware 2.02 and later only
 
-(3) = implemented in firmware 2.03RC1 and later only
+(3) = implemented in firmware 2.03 and later only
 
 In RRF 3.5.0 and later, in a "value" command the value can instead be an expression enclosed in { } that yields the value to be displayed, for example: `N{heat.heaters[0].current}`
 
