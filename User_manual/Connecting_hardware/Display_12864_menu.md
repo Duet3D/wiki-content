@@ -2,7 +2,7 @@
 title: 12864 display menu system
 description: 
 published: true
-date: 2024-10-28T16:28:19.636Z
+date: 2025-05-02T09:18:43.846Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-08T15:18:45.632Z
@@ -103,7 +103,7 @@ The V parameter in the 'button' command specifies the button's visibility with v
 | 20 | visible when the current or default tool has a temperature fault |
 | 28 | visible when the bed heater has a temperature fault |
 
-In RRF 3.5.0-beta.4 and later the value can instead be an expresison enclosed in { } that yields a Boolean value, for example: `V{heat.heaters[0].current>60}`
+In RRF 3.5.0 and later the value can instead be an expression enclosed in { } that yields a Boolean value, for example: `V{heat.heaters[0].current>60}`
 
 The N parameter in the "value" and "alter" commands specifies the value to display or change as follows:
 
@@ -143,7 +143,7 @@ The N parameter in the "value" and "alter" commands specifies the value to displ
 
 (3) = implemented in firmware 2.03RC1 and later only
 
-In RRF 3.5.0-beta.4 and later, in a "value" command the value can instead be an expression enclosed in { } that yields the value to be displayed, for example: `N{heat.heaters[0].current}`
+In RRF 3.5.0 and later, in a "value" command the value can instead be an expression enclosed in { } that yields the value to be displayed, for example: `N{heat.heaters[0].current}`
 
 ## File format for 'image' command
 
