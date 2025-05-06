@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Hangprinter
 description: This page describes how to set up the configuration files for Hangprinters. The same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics.
 published: true
-date: 2025-05-06T12:19:11.585Z
+date: 2025-05-06T12:21:00.425Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T11:56:32.634Z
@@ -45,7 +45,7 @@ To tell RepRapFirmware that your printer is a Hangprinter and to define its para
 
 Hangprinter kinematics assume a central XYZ origin. The XYZ coordinates in the ABCD parameters are the offset of each anchor from the line entry point on the effector, ie **not** the offset of the anchor from the nozzle.
 
-[![Hangprinter offsets](https://reprap.org/mediawiki/images/7/7d/Hangprinter_XY_calibration_from_above.png =50%x){target=_blank}](https://reprap.org/wiki/File:Hangprinter_XY_calibration_from_above.png)
+[![Hangprinter offsets](https://reprap.org/mediawiki/images/7/7d/Hangprinter_XY_calibration_from_above.png =481x){target=_blank}](https://reprap.org/wiki/File:Hangprinter_XY_calibration_from_above.png)
 *Image by Torbjørn Ludvigsen, from [reprap.org wiki](https://reprap.org/wiki/RepRap){target=_blank}, click image above for original.*
 
 You will need to create an invisible U axis to handle the D spool motor with [M584](/User_manual/Reference/Gcodes/M584), like this:
