@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Hangprinter
 description: This page describes how to set up the configuration files for Hangprinters. The same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics.
 published: true
-date: 2025-04-25T00:06:40.100Z
+date: 2025-05-06T12:19:11.585Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T11:56:32.634Z
@@ -16,15 +16,17 @@ dateCreated: 2022-01-26T11:56:32.634Z
 
 RepRapFirmware is configured at run-time by means of files in the /sys folder of the on-board SD card or attached Single Board Computer (SBC). You do not have to recompile RepRapFirmware to configure it, so if you wish to update the firmware on your Duet or other compatible electronics board, you can download a ready-built binary.
 
-**The easiest way to generate these files is using the [RepRapFirmware configuration tool](https://configtool.reprapfirmware.org/).** But this tool does not currently support Hangprinters, so you will need to edit the generated config.g file by hand to change the kinematics type to Hangprinter.
+**The easiest way to generate these files is using the [RepRapFirmware configuration tool](https://configtool.reprapfirmware.org/).** This tool does not currently support Hangprinters, so you will need to edit the generated config.g file by hand to change the kinematics type to Hangprinter.
 
-Hangprinters are supported in RepRapFirmware 1.20 and later. The support in the standard binaries does not include spool buildup compensation or support for Mechaduino motors in torque mode. Torbjørn Ludvigsen has a fork of RRF that includes these features.
+Hangprinter kinematics are supported in RepRapFirmware 1.20 and later. Spool build-up compensation was added in RepRapFirmware 3.3, and there are various improvements in 3.4 and 3.5. From RRF 3.5, Hangprinter kinematics are no longer supported in the default firmware binary for Duet 2 WiFi/Ethernet, due to memory limitations.
 
-The Hangprinter architecture in its current form was designed by Torbjørn Ludvigsen, his [github repository](https://gitlab.com/tobben/hangprinter) has a large amount of information and is a great place to start to understand the Hangprinter in general.
+The Hangprinter architecture in its current form was designed and developed by Torbjørn Ludvigsen, his [github repository](https://gitlab.com/tobben/hangprinter){target=_blank} has a large amount of information and is a great place to start to understand the Hangprinter in general.
 
 In brief, a Hangprinter has four positioning motors (A, B, C and D) mounted either on a large effector or mounted at the anchor points. Each motor drives a spool which draws in or lets out 2 or 3 lines that pass through eyelets and then go to fixed anchor points. The D spool has 3 lines connected to anchor points in the ceiling. The A, B and C spools each have 2 lines connected to anchor points on the floor. The Hangprinter is under very active development so this may not match the current state of the art.
 
-Additional info can be found at [Hangprinter.org](http://hangprinter.org/) or at the [Hangprinter RepRap Forum](https://reprap.org/forum/list.php?423), or [this thread in the Duet3D forum](https://forum.duet3d.com/topic/14215/).
+Additional info can be found at [Hangprinter.org](http://hangprinter.org/){target=_blank} or at the [Hangprinter RepRap Forum](https://reprap.org/forum/list.php?423){target=_blank}, or [this thread in the Duet3D forum](https://forum.duet3d.com/topic/14215/){target=_blank}.
+
+The Hangprinter kinematics can be used for other types of cable-driven machines, for example polargraph drawing machines. See [this thread in the Duet3D forum](https://forum.duet3d.com/topic/35248/) for an example.
 
 # Movement section of config.g file
 
@@ -38,8 +40,13 @@ To tell RepRapFirmware that your printer is a Hangprinter and to define its para
 * **Cxx:yy:zz** X, Y and Z coordinates of the C anchor
 * **Dzzz** Z coordinate of the D anchor (the XY coordinates of the D anchor are 0,0)
 * **Prr** Printable radius from the origin
-* **Snnn** Segments per second when smooth XY motion is approximated by means of segmentation
-* **Tnnn** Minimum segment length (mm) when smooth XY motion is approximated by means of segmentation
+* **Snnn** Segments per second when smooth XYZ motion is approximated by means of segmentation
+* **Tnnn** Minimum segment length (mm) when smooth XYZ motion is approximated by means of segmentation
+
+Hangprinter kinematics assume a central XYZ origin. The XYZ coordinates in the ABCD parameters are the offset of each anchor from the line entry point on the effector, ie **not** the offset of the anchor from the nozzle.
+
+[![Hangprinter offsets](https://reprap.org/mediawiki/images/7/7d/Hangprinter_XY_calibration_from_above.png =50%x){target=_blank}](https://reprap.org/wiki/File:Hangprinter_XY_calibration_from_above.png)
+*Image by Torbjørn Ludvigsen, from [reprap.org wiki](https://reprap.org/wiki/RepRap){target=_blank}, click image above for original.*
 
 You will need to create an invisible U axis to handle the D spool motor with [M584](/User_manual/Reference/Gcodes/M584), like this:
 
@@ -90,13 +97,16 @@ M584 X0 Y1 Z2 E3 U4 ; create U axis for the D motor, attached to the E1 motor co
 
 M669 K6 A0.0:-2163.0:-75.5 B-1841.0:741.0:-75.5 C1639.0:1404.0:-75.5 D3250.5 P1500 ; set Hangprinter kinematics parameters
 
-M92 X101.86 Y101.86 Z101.85 U101.86 ; set steps/mm for each spool
+M92 X101.86 Y101.86 Z101.85 U101.86 ; set steps/mm for each spool - SEE NOTES BELOW
 M203 X6000 Y6000 Z6000 U6000 E3600 ; maximum linear speeds mm/minute
 M906 X1000 Y1000 Y1000 U1000 E1000 ; set motor currents (mA)
 
 M208 S0 Z1500 ; maximum height 1500mm
 M208 S1 Z-5 ; minimum height -5mm
 ```
+
+### Notes
+* Hangprinter has no constant number of steps per millimeter, not even for pure line extension or retraction by the A, B, C, and D spools. So configured M92 values are not used. The M666 and M669 config values as well as the current position of the mover together determines the current number of steps per millimeter in each direction.
 
 # Homing
 
