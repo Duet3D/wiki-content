@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2025-03-17T08:22:39.175Z
+date: 2025-05-06T16:28:50.761Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -93,7 +93,7 @@ Note: this board is a v0.1 development board; CAN_L and CAN_H are swapped on the
 
 ### 3D Model
 
-The STEP file for the SZP board is available here: [https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0](https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0)
+The STEP file for the SZP board is available here: [https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0](https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/v1.0){target=_blank}
 STEP files of both coils are available [on Github here](https://github.com/Duet3D/Duet3-ScanningZProbe/tree/master/coils/v0.2){target=_blank}.
 
 # Physical connections
@@ -263,6 +263,13 @@ M955 P120.0 I20 ; Add accelerometer on SZP with CAN address 120 and specify orie
 See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
 
 ### Orientation
+
+> **NOTE:** there is an errata in the silkscreen orientation arrows on the SZP v1.0 PCB. The correct orientation is:
+The +X axis is in the direction of the +Y arrow
+The -Y axis is in the direction of the +X axis
+The +Z axis is  in the direction of the top face of the board/chip.
+See [this thread on the forum](https://forum.duet3d.com/topic/37785/szp-accelerometer-orientation-incorrect-silkscreen/3){target=_blank} for more details. This will be amended on future versions of the board.
+{.is-warning}
 
 The Duet 3 Scanning Z Probe has an XYZ arrow to aid orientation of the accelerometer, see image below. The Z axis is  in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine (equivalent to I20 in the M955 command), but as that alignment may not be convenient it is configurable in M955. 
 
