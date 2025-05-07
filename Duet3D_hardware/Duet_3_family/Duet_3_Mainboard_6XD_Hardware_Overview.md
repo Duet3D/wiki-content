@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2025-04-29T13:08:09.321Z
+date: 2025-05-07T16:16:09.198Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -147,7 +147,7 @@ The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is 
 |:---|:---|---|
 | **1 x 2-way barrier strip** | POWER IN, GND, VIN  | Two pins for the main VIN and GND, protected by a 15A fuse. |
 | **1 x 3-pin KK connector** | EXT 5V | Open drain mosfet output for controlling an ATX-style power supply or a SSR. The +5V pin can also be used to provide external 5V power. A small amount of 5V power can be drawn from this pin (through an internal 220 ohm resistor), so that the control terminals of an SSR can be connected directly between the +5V and PS_ON pins. |
-| **3 x 2-pin JST VH connectors** | OUT_0, OUT_1, OUT_2 | Intended for extruder heaters or similar high current resistive loads. Flyback diodes are built-in to these outputs. Maximum current 6A each, 15A total|
+| **3 x 2-pin JST VH connectors** | OUT_0, OUT_1, OUT_2 | Intended for extruder heaters or similar high current resistive loads. The out0, out1, out2 pins are PWM switched GND, the V_FUSED pins are fused input voltage. Flyback diodes are built-in to these outputs. Maximum current 6A each, 15A total|
 | **3 x 4-pin KK connectors** | OUT_3, OUT_4, OUT_5 | Intended for PWM-controllable fans or other medium current loads. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUTLC1+ pin (+ve) and the OUT_n_NEG pin (-ve).
 | ^^ | ^^ | **Note:** OUT_3, OUT_4, OUT_5 are protected by a flyback diode to V_OUTLC1. This does not provide protection if driving these outputs from a higher voltage than V_OUTLC1. V_OUTLC1 is fused with a 3A fuse.|
 | **1 x 3-pin Jumper** | OUT_3-OUT5 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each, 3A total). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
