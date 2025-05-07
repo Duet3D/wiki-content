@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-02-21T09:12:41.982Z
+date: 2025-05-07T16:13:59.284Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -196,7 +196,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 3-pin KK header** | 5V SELECT | *v1.02 and later boards.* 5V supply select, between 5V internal regulator (no jumper), 5V_EXT, and 5V_SBC. See Power distribution > 5V documentation below for details. |
 | **3 x 2-pin KK headers** | 5V Options | *v0.6 to v1.0a boards only, not populated on v1.0a*. 5V supply select. See Power distribution > 5V documentation below for details. |
 | **6 x 4-pin JST VH connector** | DRIVER_0, DRIVER_1, DRIVER_2, DRIVER_3, DRIVER_4, DRIVER_5 | Stepper motor connections. (see note on JST VH connectors) |
-| **3 x 2-pin JST VH connector** | OUT 1, OUT 2, OUT 3 | These are intended for extruder heaters or fans. Maximum recommended current 6A each. These outputs are protected by flyback diodes. |
+| **3 x 2-pin JST VH connector** | OUT 1, OUT 2, OUT 3 | These are intended for extruder heaters or fans. The ground side of OUT_N is switched by a mosfet.  Maximum recommended current 6A each. These outputs are protected by flyback diodes. |
 | **3 x 4-pin KK connectors with offset spigot** | OUT 4, OUT 5, OUT 6 | These medium current outputs are intended for PWM-controllable fans. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUT_LC_1 pin (+ve) and the OUT_n_NEG pin (-ve). Maximum recommended current 2A each when supplied by VIN. |
 | ^^ | ^^ | **Note:** These outputs are protected by a flyback diode connected to V_OUT_LC_1. Do not mix loads connected to V_OUT_LC_1 with the jumper set to 12V and loads connected to V_FUSED on the same bank. |
 | **1 x 3-pin KK header** | OUT4-OUT6_SelectV | The positive supply to the OUT 4, OUT 5 and OUT 6 connectors is the centre pin of the 3-pin jumper block labeled OUT4-OUT6_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
