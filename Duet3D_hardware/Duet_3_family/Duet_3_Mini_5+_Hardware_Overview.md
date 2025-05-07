@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-03-19T13:22:30.228Z
+date: 2025-05-07T16:17:04.694Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -168,7 +168,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 |:---|:---|---|
 | **1 x 4-way barrier strip** | POWER IN, GND, VIN  | Two pins for main VIN and GND
 | ^^ | OUT_0, V_OUT_0_OUT, OUT_0_NEG | Two pins for positive and negative OUT_0 terminals. OUT_0 is intended to drive a bed heater or other high current resistive load. If you connect an inductive load to this output, you must use a suitably rated external flyback diode. The ground side of OUT_0 is switched by the mosfet and the positive side is protected by a 15A fuse. |
-| **2 x 2-pin JST VH connectors** | OUT_1, OUT_2 | Intended for extruder heaters or similar medium/high current resistive loads. Flyback diodes are built-in to these outputs. Maximum recommended current 6A each. |
+| **2 x 2-pin JST VH connectors** | OUT_1, OUT_2 | Intended for extruder heaters or similar medium/high current resistive loads. The out1 and out2 pins are PWM switched GND, the V_FUSED pins are fused input voltage. Flyback diodes are built-in to these outputs. Maximum recommended current 6A each. |
 | **2 x 4-pin KK connectors** | OUT_3, OUT_4 | Intended for PWM-controllable fans or other medium/low current loads. Flyback diodes are built-in to these outputs. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OULC1+ pin (+ve) and the OUT_n_NEG pin (-ve).
 | ^^ | ^^ | **Note:** OUT_3 and OUT_4 are protected by a flyback diode to V_FUSED. This does not provide protection if driving these outputs from a higher voltage than V_FUSED |
 | **1 x 3-pin Jumper** | OUT_3&4 Select V | The positive supply to the above connectors is the centre pin of the 3-pin jumper block. A jumper in the "left" position will power them from the fused VIN supply (max 2A each ). A jumper in the "right" position will power them from the onboard 12V regulator (subject to overall 12V supply current *see note 1 below*). |
