@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-04-30T08:32:24.592Z
+date: 2025-05-09T08:21:41.637Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2257,14 +2257,14 @@ RepRapFirmware uses floating point maths so it is possible to use floating point
 
 ### Parameters
 
-* **P"nnn"** Macro filename (in RRF 3.x and later, quotation marks around the filename are mandatory)
-* **Rn** When no P parameter is provided, indicates if macro can be paused from this point onwards. (RRF 3.4 and later, see Notes for usage)
+* **P"nnn"** Macro filename. If no path is specified, the default folder is /sys.
+* **Rn** When M98 is used inside a macro and no P parameter is provided, indicates whether the macro can be paused from this point onwards and subsequently restarted from the beginning. (RRF 3.4 and later, see Notes for usage).
 
 ### Examples
 <br>
 <pre class="cblock">
-M98 P"mymacro.g" ; Runs the macro in the file mymacro.g
-M98 P"macro.g" S100 Y"string" ; Runs macro.g, passes the values for parameters S and Y to the macro</br>
+M98 P"mymacro.g" ; Runs the macro in the file /sys/mymacro.g
+M98 P"macro.g" S100 Y"string" ; Runs /sys/macro.g, passes the values for parameters S and Y to the macro</br>
 ; within macros
 M98 R1 ; macro can be paused from this point onwards
 </pre>
@@ -2273,7 +2273,7 @@ M98 R1 ; macro can be paused from this point onwards
 
 * Macro calls can be nested (i.e. a macro can call another macro). From RRF v3.4.0, the maximum stack depth is 10. This is the maximum number of macro calls and M120 commands that may be nested. However, there is also a limit on the number of open files, which is 20 on Duet 3 and 10 on Duet 2. For example, on Duet 2 if you have a print running from SD card and logging enabled, you will be limited to a macro nesting depth of 8.
 * **P** parameter:
-  * In RRF 3.x and later, quotation marks around the filename are mandatory. In RRF2.x and earlier, string can be enclosed in quotes if required. See [Quoted Strings](/User_manual/Reference/Gcodes#quoted-strings){target=_blank} for details.
+  * In RRF 3.x and later, quotation marks around the filename are mandatory. In RRF2.x and earlier, the filename can be enclosed in quotes if required. See [Quoted Strings](/User_manual/Reference/Gcodes#quoted-strings){target=_blank} for details.
   * The filename may include a path to a subdirectory. For relative paths, the default folder is /sys. Absolute file paths are also supported starting with "0:/" for the internal SD card or "1:/" for the external SD card if fitted.
   * If the P parameter is provided then any additional parameters will be passed to the macro. In RRF 3.3 and later M98 supports additional parameters used to pass information to the macro being called. See the [GCode Meta Commands, Macro parameters](/User_manual/Reference/Gcode_meta_commands#macro-parameters){target=_blank} documentation for the details.
 * **R** parameter: this is used within a macro file to indicate whether the macro can be paused from this point on. 
