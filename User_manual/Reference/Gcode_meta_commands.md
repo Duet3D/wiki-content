@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-04-28T16:46:35.148Z
+date: 2025-05-10T23:19:03.946Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -405,6 +405,10 @@ The following functions are supported, with their conventional meanings:
 | take | (string, int)->string or (array, int)->array | Returns the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0 and later) |
 | tan | float->float | Argument must be in radians |
 | vector | (int, X) -> array | (RRF 3.5.0 and later) Returns an array with the number of elements equal to the first operand and each element a copy of the second operand |
+
+### Notes on the random function
+
+The **random** function uses the hardware true random number generator if the microcontroller provides one. If the microcontroller doesn't provide one then an algorithmic pseudo random number generator is seeded by the system tick counter the first time it is called. The Duet 3 6HC, 6XD and Mini 5+ boards all use microcontrollers that provide a true random number generator.
 
 ### Notes on the fileread function
 
