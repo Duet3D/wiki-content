@@ -2,7 +2,7 @@
 title: Duet Web Control Manual
 description: Duet Web Control is a browser based user interface for RepRapFirmware that runs in most modern browsers that support HTML 5.
 published: true
-date: 2025-04-09T07:28:25.106Z
+date: 2025-05-12T15:01:15.857Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T14:41:33.290Z
@@ -49,8 +49,18 @@ Only the above combinations are supported. However, most Duet Web Control versio
 
 ## Browser Compatibility
 
-Chrome, Firefox and the Chrome-based version of Edge fully support Duet Web Control. Internet Explorer and older versions of Edge and Safari have problems, so avoid those.  Duet Web Control file editor works in Safari 10.0.1 and later (won't work in any earlier versions). These issues are due to some browsers failing to implement the HTML 5 standard.
+Chrome, Firefox and the Chrome-based version of Edge fully support Duet Web Control. Internet Explorer and older versions of Edge and Safari have problems, so avoid those. 
 
+Newer versions of DWC have dropped support for older browsers. Apple iOS/iPadOS versions tested recently:
+iOS 10.3.3 - up to RRF/DWC 3.4.6
+iOS 12.5.7, iPadOS 15.8.4 - up to RRF/DWC 3.5.4
+iOS 18.4 / iPadOS 18.4 - RRF/DWC 3.6.0-rc.2 shows correctly.
+
+Android / Chrome support will be similar, i.e. older versions won't display newer DWC versions. Generally, DWC will be supported on the last two major versions of the browser at the time of the DWC release. See [this thread on the Duet3D forum](https://forum.duet3d.com/topic/37833/getting-blank-page-for-dwc-on-ipad/10) for more information.
+
+<!--
+Duet Web Control file editor works in Safari 10.0.1 and later (won't work in any earlier versions). These issues are due to some browsers failing to implement the HTML 5 standard.
+-->
 ## Plugins
 
 From Duet Web Control v3.2, additional functionality is available in the form of plugins. There are a number of built-in plugins (see Settings > General > Plugins) and third party plugins can  be added in Setting > Machine-Specific > Plugins. As each Plugin is activated, it is added to the main menu.
