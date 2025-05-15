@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-05-09T08:21:41.637Z
+date: 2025-05-15T11:43:33.777Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2245,13 +2245,10 @@ M92 E420:500
 
 ### Notes
 
-Allows programming of steps per mm for motor drives. These values are reset to those set in config.g on power on, unless saved with M500. It will report the current steps/mm if you send M92 without any parameters.
-
-RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
-
-Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M92 Z80, not M92 Z80:80
-
-RepRapFirmware uses floating point maths so it is possible to use floating point numbers for steps/mm.
+* Allows programming of steps per mm for motor drives. These values are reset to those set in config.g on power on, unless saved with M500. It will report the current steps/mm if you send M92 without any parameters.
+* RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
+  Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M92 Z80, not M92 Z80:80
+* RepRapFirmware uses floating point maths so it is possible to use floating point numbers for steps/mm.
 
 ## M98: Call Macro/Subprogram
 
@@ -4420,11 +4417,10 @@ Assuming that in the first example the microstepping was initially at the defaul
 
 ### Notes
 
-RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
-
-Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M350 Z16, not M350 Z16,16
-
-Microstep interpolation at all microstep settings is supported on all Duet 3 boards with onboard drivers (TMC5160, TMC2160 or TMC2209), and on Duet 2 Maestro (TMC2224 drivers). The TMC2660 drivers used on the Duet 2 WiFi and Duet 2 Ethernet support microstep interpolation, but only when microstepping is set to 16. In other configurations, specifying I1 has no effect.
+* RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
+  Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M350 Z16, not M350 Z16,16
+* Microstep interpolation at all microstep settings is supported on all Duet 3 boards with onboard drivers (TMC5160, TMC2160 or TMC2209), and on Duet 2 Maestro (TMC2224 drivers). The TMC2660 drivers used on the Duet 2 WiFi and Duet 2 Ethernet support microstep interpolation, but only when microstepping is set to 16. In other configurations, specifying I1 has no effect.
+* When using external drivers, the microstepping mode (M350) is not controlled by firmware configuration. It is set by the external stepper driver, usually using jumpers to set the 'pulses per rotation'.
 
 ## M374: Save height map
 
@@ -8176,6 +8172,7 @@ M906 X300 Y500 Z200 E350:350
 * As a rule of thumb, the recommendation is to set M906 to use 60-85% of the rated maximum current for the motor. Though you can go above or below as needed, and will have to tune for a balance of motor temperature, motor torque, and noise level. You can also use the EMF calculator ([reprapfirmware.org](https://www.reprapfirmware.org/){target=_blank} and click on EMF calculator) to play with different values to see how it changes behaviour.
 * The **T** parameter (RRF 3.6.0-beta.2 and later) is used to set the idle timeout for all motors (M84 was previously used for this). For example, M906 T10 will idle the stepper motors after 10 seconds of inactivity. Setting `M906 T0` does NOT mean "never idle hold" (ie motors stay on all the time, at full current), and T0 is an invalid setting. The correct way to set no idle hold (ie motors are 'always on') is to use M906 I parameter to set the idle hold to the required level, eg `M906 I100`.
 * RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M906 Z200, not M906 Z200:200
+* When using external drivers, the motor current (M906) is not controlled by firmware configuration. It is set by the external stepper driver, usually using jumpers.
 
 ## M911: Configure auto save on loss of power
 
