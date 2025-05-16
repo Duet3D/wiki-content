@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-05-15T15:12:18.486Z
+date: 2025-05-16T16:10:48.352Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6976,7 +6976,7 @@ M586 P2 T1 S1 ; enable SSH
 
 * **U"username"** Username for authenticating with MQTT broker that does not allow anonymous login (not needed if broker supports anonymous login)
 * **K"password"** Password for authenticating with MQTT broker that does not allow anonymous login (only processed if the `U` parameter is also present; not needed if broker supports anonymous login).
-* **C"client-id"** Set fixed MQTT client ID, used with persistent sessions (only supported and required in SBC mode).
+* **C"client-id"** Set fixed MQTT client ID, used with persistent sessions (see notes).
 * **W"will-message"** Set message to send to subscribers when MQTT client does not disconnect from the broker gracefully (such as sudden shutdown of the board, network loss, etc). If not set, no message is sent to subscribers.
 * **T"will-topic"** The topic to publish the will message under (only processed if the `W` parameter is also present).
 * **Q"will-qos"** QOS level of the will message, from `0` to `2` (only processed if the `W` parameter is also present, optional). Defaults to `0` if not specified.
@@ -6984,11 +6984,9 @@ M586 P2 T1 S1 ; enable SSH
 * **S"subscribe-topic"** Add topic to subscribe to.
 * **On** Max QOS level of the subscription, from `0` to `2` (only processed if the `S` parameter is also present).
 
-**Notes for SBC mode**: Parameters C, U, K are always required in SBC mode and if possible, all the parameters should be set in a single line. This is not a requirement in standalone mode.
-
 ### Example
 
-#### In standalone mode:
+#### In standalone/SBC mode (RRF 3.6:
 
 <br>
 <pre class="cblock">
@@ -7000,17 +6998,25 @@ M118 P6 S"message" T"topic"         ; Publish message (See M118 for more details
 M586 P4 S0                          ; Disable MQTT protocol/client; disconnects from broker gracefully.
 </pre>
 
-For a full demonstration, see [this GitHub repository](https://github.com/Duet3D/MQTT-WPA2-Enterprise-Demo).
-
 #### In SBC mode:
 
 <br>
 <pre class="cblock">
-M586 C"duet" U"username" K"password" S"subscription" O2 ; configure MQTT parameters
+M586.4 C"duet" U"username" K"password" S"subscription" O2 ; configure MQTT parameters
 M586 P4 R1884 H192.168.10.244 S1    ; Enable MQTT protocol/client
 M118 P6 S"message" T"topic"         ; Publish message (See M118 for more details)
 M586 P4 S0                          ; Disable MQTT protocol/client; disconnects from broker 
 </pre>
+
+### Notes
+
+* In Standalone mode:
+  * In RRF 3.5 the C parameter is not supported. It is supported in RRF 3.6.
+  * Parameters can be set in a single line, or in multiple lines.
+* In SBC mode:
+  * In RRF 3.6 parameters C, U, K are optional. Parameters do not need to be set in a single line.
+  * In RRF 3.5 parameters C, U, K are always required. All the parameters should be set in a single line (see SBC example above).
+* For a full demonstration, see [this GitHub repository](https://github.com/Duet3D/MQTT-WPA2-Enterprise-Demo).
 
 ## M587: Add WiFi host network to remembered list, or list remembered networks
 
