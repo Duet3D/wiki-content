@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2025-04-07T15:43:02.333Z
+date: 2025-05-23T15:24:56.669Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -25,7 +25,7 @@ This reduces the number of wires run to the print head to two power wires and a 
 | **Processor features** | 32-bit, 120MHz ARM Cortex M4F, 512KB Flash, 192KB RAM |
 | **Networking/Comms** | CAN-FD interconnect to Duet 3 CAN-FD bus |
 | **On-board stepper driver** | 1 x [TMC2240](https://www.analog.com/en/products/tmc2240.html){target=_blank} |
-| **Stepper driver features** | Up to 1A^1^ peak current, microstep interpolation from any setting to x256, stall detection |
+| **Stepper driver features** | Up to 1.6A^1^ peak current, microstep interpolation from any setting to x256, stall detection |
 | **High current outputs** | 1 x 3.4A, VIN voltage only (80W at 24V) |
 | **Thermistor/PT1000 inputs** | 3 x inputs, 2 optimised for 100K thermistors and PT1000 sensors, 1 used for the coil temperature on the SZP coil.|
 | **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2, 3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
@@ -34,11 +34,11 @@ This reduces the number of wires run to the print head to two power wires and a 
 | **Inductive Sensor** | Integrated [LDC1612](https://www.ti.com/product/LDC1612) inductive sensor for scanning Z probe |
 | **Power monitoring** | VIN voltage reporting |
 
-*^1^ Note further thermal testing may allow higher extruder current for Extruders other than the Revo Roto which should not exceed 600mA current*
+*^1^ Maximum current is limited to 1.0A peak in firmware versions earlier than 3.6.0. The Revo Roto extruder motor should not be operated at more than 600mA.*
 ## Operating limits
 
 |---|---|
-| **Stepper driver** | Firmware-limited to 1A peak current, 0.71A RMS^1^
+| **Stepper driver** | Maximum 1.6A peak current, 1.13A RMS^1^
 | **OUT_1 maximum current** | 3.4A |
 | **Input power voltage** | 12V to 32V |
 | **Power input max current** | 5A maximum)
