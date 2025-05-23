@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-05-16T16:10:48.352Z
+date: 2025-05-23T15:50:52.519Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4551,7 +4551,7 @@ The values of this command are currently only used by the print monitor and only
 
 ## M408: Report JSON-style response
 
-**Deprecated in RRF 3.3 and later; planned for removal in RRF 3.5 and later.** Use M409 instead to get response from Object Model, which provides more information.
+**Deprecated in RRF 3.3 and later; planned for removal in RRF 3.7 and later.** Use M409 instead to get response from Object Model, which provides more information.
 
 ### Parameters
 
@@ -4566,7 +4566,7 @@ M408 S0
 
 ### Notes
 
-This reports a JSON-style response by specifying the desired type using the 'S' parameter. The following response types are supported:
+This reports a JSON-style response by specifying the desired type using the 'S' parameter. The following response types are supported in RRF 3.5 and earlier. Only types 0 and 1 are supported in RRF 3.6.0 and later.
 
 * Type 0 is a short-form response, similar to the response used by older versions of the web interface.
 * Type 1 is like type 0 except that static values are also included.
