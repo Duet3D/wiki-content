@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-05-25T23:29:10.360Z
+date: 2025-05-26T07:44:54.183Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6484,12 +6484,14 @@ The order of endstop switch pin names in M574 must match the order of Z motor dr
 ##### Notes
 
 * In RRF3, the M574 command allows for more flexibility than in RRF2. This includes supporting axes defined with multiple motors and multiple endstops (one per motor), use of non-default endstop inputs, and re-assigning endstop inputs.
-* Use a separate M574 command for each axis.
-* Parameter **P** gives the pin name(s) for the endstop(s) for the specified axis. If the number of pins matches the number of motors assigned to that axis, motors will be stopped individually when their endstop switches trigger.
-* For active low endstops, use type S1 and invert the input by prefixing the pin name with '!', for example `M574 X1 S1 P"!xstop"`. Invert the input when using an NPN output inductive or capacitive sensor, or using a NO switch (not recommended, use a NC switch instead).
-* The S2 option of M574 is intended for use only when axes other than Z are using the Z probe for homing. The only printers known that do this using Duet electronics are the RepRapPro Ormerod, Huxley Duo, and Mendel Tricolour machines. When using the Z probe to home Z, M574 Z has no bearing on the probe setup or usage. A Z probe and a Z endstop can both be configured at the same time. G30 calling the probe setup with M558, and G1 H1 Z moves calling the endstop configured with M574 Z.
+* Use a separate M574 command for each axis. For historical reasons, RRF currently allows multiple endstops to be declared using M574 in some situations, but this facility may be withdrawn in future versions.
+* For endstop types other than stall detecton, parameter **P** gives the pin name(s) for the endstop(s) for the specified axis. If the number of pins matches the number of motors assigned to that axis, motors will be stopped individually when their endstop switches trigger.
+* For active low endstops, use type S1 and invert the input by prefixing the pin name with '!', for example `M574 X1 S1 P"!xstop"`. Invert the input when using an NPN output normally-open inductive or capacitive sensor, or using a normally-open switch (not recommended, use a normally-closed switch instead).
+* The S2 option of M574 is intended for use only when axes other than Z are using the Z probe for homing. The only printers known to do this are the RepRapPro Ormerod, Huxley Duo, and Mendel Tricolour machines. When using the Z probe to home Z, M574 Z has no bearing on the probe setup or usage.
+* A Z probe and a Z endstop (e.g. a switch) can both be configured at the same time. G30 commands will use the probe setup with M558, and G1 H1 Z moves use the endstop configured with M574 Z.
 * Endstop type S4 means use motor stall detection (like S3) but if there are multiple motors dedicated to a single axis, stop each one individually as it stalls. S3 means use motor stall detection but if there are multiple motors dedicated to a single axis, stop all those motors when the first one stalls.
 * Pull up resistors on Duet 2/Duex5 inputs should be configured for connecting a digital inputs (like a switch, BLtouch, etc) only on inputs not labelled "n"Stop (xstop, ystop etc).
+* To un-configure an endstop and free up any associated input pins, set the endstop position of that axis to 'none'. For example, `M574 X0` will delete the X endstop and free up any inputs that it was using.
 
 #### M574 - RepRapFirmware 2.x and earlier
 
