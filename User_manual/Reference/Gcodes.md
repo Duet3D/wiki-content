@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-05-29T07:41:29.000Z
+date: 2025-05-29T07:44:31.449Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7668,7 +7668,7 @@ RepRapFirmware 2.03 and later can support any kinematics for which the movement 
 ### Parameters
 
 #### RRF 3.7.0 and later:
-* **K"*name*"** Kinematics type. "*name*" must be one of: "cartesian", "coreXY", "coreXZ",  "linearDelta", "scara", "coreXYU", "hangprinter", "polar", "coreXYUV", "fiveBarScara", "rotaryDelta", "markForged" or a custom kinematics name if using a custom build of RRF with additional kinematics support. Not all standard builds of RRF support all kinematics, in particular Duet 2 builds support a limited number. The K parameter may also be one of the kinematics numbers supported by RRF 3.6 and earlier, however this form of M669 is deprecated.
+* **K"*name*"** Kinematics type. "*name*" must be one of: "cartesian", "coreXY", "coreXZ",  "linearDelta", "scara", "coreXYU", "hangprinter", "polar", "coreXYUV", "fiveBarScara", "rotaryDelta", "markForged" or a custom kinematics name if using a custom build of RRF with additional kinematics support. Not all standard builds of RRF support all kinematics, in particular Duet 2 builds support a limited number. The K parameter may also be one of the kinematics numbers supported by RRF 3.6 and earlier, however this form of M669 is deprecated and may not be supported in future firmware versions.
 
 #### RRF 3.6.x and earlier:
 * **Knnn** Kinematics type: 0 = Cartesian, 1 = CoreXY, 2 = CoreXZ, 3 = linear delta, 4 = serial SCARA, 5 = CoreXYU, 6 = Hangprinter, 7 = polar, 8 = CoreXYUV, 9 = five-bar parallel SCARA, 10 = rotary delta, 11 = Markforged
