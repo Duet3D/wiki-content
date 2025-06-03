@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-05-10T23:19:03.946Z
+date: 2025-06-03T16:12:11.142Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -427,7 +427,11 @@ The number of array elements returned will be one greater than the number of sep
 # Notes
 
 ## Line Endings
-* If you are writing macros in a windows OS, set the EOL to be Linux-style (LF only). Windows default (CR LF) written macros work, but in some versions of RRF error messages count the CR and LF as two lines, so all line numbers were multiplied by 2.
+If you are writing macros in a windows OS, set the EOL to be Linux-style (LF only). Windows default (CR LF) written macros work, but in some versions of RRF error messages count the CR and LF as two lines, so all line numbers were multiplied by 2.
+
+## Indentation of comments
+
+From RepRapFirmware 3.6.0, the indentation of comment lines in meta GCode is no longer significant. This could cause the meaning of a sequence of commands to change, if a comment line was indented less than the previous command and the macro relied on that signifying the end of a block.
 
 ## daemon.g
 
