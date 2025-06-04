@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-06-04T13:33:41.499Z
+date: 2025-06-04T14:24:21.871Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3261,7 +3261,8 @@ If this command refers to any axes other than X, Y and Z then it must be later i
 
 ### Notes
 
-This command is provided as an alternative to [M566](/User_manual/Reference/Gcodes/M566){target=_blank} for compatibility with Marlin. In M566 the units are mm/min as with all other speeds. In M205 they are in mm/sec.
+* This command is provided as an alternative to [M566](/User_manual/Reference/Gcodes/M566){target=_blank} for compatibility with Marlin. In M566 the units are mm/min as with all other speeds. In M205 they are in mm/sec.
+* In RRF 3.6.0 and later, jerk limits set using M566 (or the default jerk limits if M566 has never been used) can no longer be exceeded by a subsequent M205 command. In config.g you should use M566 to set the maximum jerk values that the machine can use reliably. You may also set default values using M205 if you want these to be lower. In previous firmware versions, M566 and M205 both adjusted a single set of jerk limits. In this release, RRF maintains separate machine jerk limits and jerk limits for the current job. M566 sets both jerk limits, whereas M205 sets only the jerk limits for the current job. The current job jerk limits are constrained to be no higher than the machine jerk limits. This allows slicers to use M205 to change the allowed jerk without exceeding machine limits.
 
 ## M206: Offset axes
 
@@ -5874,6 +5875,7 @@ The model files and GCode files used by repraps generally render circles and oth
 
 ### Notes
 
+* In RRF 3.6.0 and later, jerk limits set using M566 (or the default jerk limits if M566 has never been used) can no longer be exceeded by a subsequent M205 command. In config.g you should use M566 to set the maximum jerk values that the machine can use reliably. You may also set default values using M205 if you want these to be lower. In previous firmware versions, M566 and M205 both adjusted a single set of jerk limits. In this release, RRF maintains separate machine jerk limits and jerk limits for the current job. M566 sets both jerk limits, whereas M205 sets only the jerk limits for the current job. The current job jerk limits are constrained to be no higher than the machine jerk limits. This allows slicers to use M205 to change the allowed jerk without exceeding machine limits.
 * The minimum jerk speed supported in as at firmware version 2.02 is 0.1mm/sec.
 * RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
 * Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M566 Z50, not M566 Z50:50
