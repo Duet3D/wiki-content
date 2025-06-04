@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-06-04T14:45:45.743Z
+date: 2025-06-04T14:55:03.344Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6424,6 +6424,7 @@ Pressure advance causes the extruder drive position to be advanced or retarded d
 ### Notes
 
 * If you configure Input Shaping, you will need to retune your Pressure Advance. It is recommend to first tune Input Shaping, then Pressure Advance, then Retraction.
+* When upgrading to RRF 3.6.0, when input shaping is used, pressure advance may need to be reduced compared to 3.5.x firmware.
 * When enabling and configuring pressure advance, the extruder acceleration ([M201](/User_manual/Reference/Gcodes/M201) E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk) in mm/s, divided by pressure advance (M572 S parameter) in seconds. Note [M566](/User_manual/Reference/Gcodes/M566) reports jerk in mm/min, [M205](/User_manual/Reference/Gcodes/M205) reports jerk in mm/s. For example, if a machine used extruder jerk of 50mm/s (3,000mm/min) at a PA of 0.02s, maximum extruder acceleration would be 50 / 0.02 = 2,500mm/s^2. 
 * For more details such as tuning the value see [Pressure advance](/User_manual/Tuning/Pressure_advance){target=_blank}.
 
