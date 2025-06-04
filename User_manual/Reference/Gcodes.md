@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-06-04T14:30:55.274Z
+date: 2025-06-04T14:45:45.743Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7751,7 +7751,7 @@ Kinematics is CoreXY, no segmentation, modified matrix:
 ##### Notes
 
 * This is used when a 4th axis is added to a linear Delta, to carry the extruder and follow in Z. It specifies the XY offsets of the extruder outputs on additional towers, relative to machine centre in the M669 command. See [Adding additional towers to carry flying extruders](https://docs.duet3d.com/User_manual/Machine_configuration/Configuration_linear_delta#adding-additional-towers-to-carry-flying-extruders){target=_blank}.
-* In RRF 3, segmentation is not used unless the S and/or T parameter is given. Segmenting moves is useful when faster pause response is wanted.
+* In RRF 3.6.0 and later, delta kinematics now uses segmentation. The default segmentation parameters (max 100 segments/second, minimum segment length 0.2mm) should be suitable for most delta printers. In earlier versions of RRF 3.x, segmentation is not used unless the S and/or T parameter is given. Segmenting moves is useful when faster pause response is wanted.
 * For more information on configuring a machine with specific kinematics, see [Machine configuration](/User_manual/Machine_configuration)
 
 #### Serial SCARA
