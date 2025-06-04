@@ -2,7 +2,7 @@
 title: Multiple tools and Tool change macros
 description: 
 published: true
-date: 2025-04-08T14:10:36.772Z
+date: 2025-06-04T14:39:42.704Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:26:56.963Z
@@ -69,6 +69,9 @@ In **RRF 3.3 and later**, tool change macro files are run **regardless of whethe
   G1 R2 Z0 ; drop Z to the saved position
   ```
 
+# Tool changer notes
+
+* From RRF 3.6.0, for tool changers and similar machines: when input shaping is used, there is a slight overlap between successive movement commands. This can cause problems if one of the moves performs a tool lock or unlock operation. For example, if the preceding move lines the tool up with the pickup head then that move may not be complete when the move to engage the lock commences. Therefore you should either disable input shaping before performing these sequences of moves, or use M400 before and after every movement command that controls a tool locking motor.
 
 # Sample macros
 
