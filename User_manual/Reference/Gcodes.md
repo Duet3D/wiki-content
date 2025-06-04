@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-06-03T15:37:31.547Z
+date: 2025-06-04T10:30:24.880Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4564,7 +4564,7 @@ The values of this command are currently only used by the print monitor and only
 M408 S0
 </pre>
 
-### Notes
+### Usage
 
 This reports a JSON-style response by specifying the desired type using the 'S' parameter. The following response types are supported in RRF 3.5 and earlier. Only types 0 and 1 are supported in RRF 3.6.0 and later.
 
@@ -4614,9 +4614,11 @@ The type 1 response comprises these fields plus some additional ones that do not
 
 The fields may be in any order in the response. Other implementations may omit fields and/or add additional fields.
 
-For a more detailed comparison of type 2 - 5, see [Status Responses](https://github.com/Duet3D/RepRapFirmware/wiki/JSON-responses){target=_blank}.
+### Notes
 
-PanelDue currently uses only M408 S0 and M408 S1.
+* In RRF 3.6.0, support for M408 with S parameter other than 0 and 1 has been removed. Note, M408 has been deprecated for a long time. M408 with S=0 and S=1 is still supported in RRF 3.6.0 for the benefit of users with very old PanelDue displays; however it is likely that we will need to remove this support in firmware 3.7.0 to free up flash memory space for other features.
+* For a more detailed comparison of type 2 - 5, see [Status Responses](https://github.com/Duet3D/RepRapFirmware/wiki/JSON-responses){target=_blank}.
+* PanelDue currently uses only M408 S0 and M408 S1.
 
 ## M409: Query object model
 
