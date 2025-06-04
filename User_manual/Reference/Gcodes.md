@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-06-04T13:27:40.755Z
+date: 2025-06-04T13:33:41.499Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8316,6 +8316,7 @@ This sets the stall detection parameters and optionally the low-load current red
 
 ##### Notes
 
+* In RRF 3.6.0, a homing move that uses stall endstops will be cancelled and an error message generated if the movement speed is too low for stall detection to be definitely feasible (also if it is too high when using TMC2209 or TMC2240 drivers). There are small speed ranges that will be rejected by this release but may in practice have worked on some boards using previous firmware versions, so please test stall homing after upgrading. 
 * In RRF 3.4.0 thru 3.4.5, motor stalls don't generate events when not printing from SD card. RRF 3.4.6 and later do generate events when not printing from SD card.
 * In RRF v3.4 and later, R2 and R3 both cause an event to be created when the driver stalls. 
 * To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. 
