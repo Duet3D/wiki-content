@@ -2,7 +2,7 @@
 title: Installing and Updating PanelDue Firmware
 description: This page describes how to update the PanelDue Firmware.
 published: true
-date: 2025-06-03T15:27:19.825Z
+date: 2025-06-04T10:51:45.629Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:21:58.270Z
@@ -28,12 +28,13 @@ With the PanelDue connected to the Duet, and powered up, click on "Setup" on the
 > Generally, use the same PanelDue firmware version as the RepRapFirmware version installed on the mainboard. For example, for RepRapFirmware 3.5.x, use PanelDue firmware 3.5.x.
 {.is-info}
 
-From **RepRapFirmware 3.6.0**, you will need to upgrade your PanelDue to firmware 3.5.1 or later. This is because some floating point values in the object model returned by M409 and HTTP call rr_model are now expressed using exponential format, which older versions of PanelDueFirmware don't handle. 
+From **RepRapFirmware 3.6.0** you will need to upgrade your PanelDue to firmware 3.5.1 or later. This is because some floating point values in the object model returned by M409 and HTTP call rr_model are now expressed using exponential format, which older versions of PanelDueFirmware don't handle. 
 
-From RepRapFirmware 3.1.1, 7i/5i/V3 and V2 (after August 2016) PanelDue can use the improved [PanelDue firmware version 3.2.x and later](https://github.com/Duet3D/PanelDueFirmware/releases/){target=_blank}. 
-Unfortunately, due to the lack of RAM, from this version PanelDue firmware will not run on V1 or early V2 PanelDue boards that use the ATSAM3S2B chip. See [PanelDue firmware notes](https://github.com/Duet3D/PanelDueFirmware/blob/master/whatsnew.md){target=_blank} for details.
+From **RepRapFirmware 3.7.x** including alpha, beta and RC versions, you will need to upgrade your PanelDue to firmware 3.5.2 or later. This is because of a change in the way that RRF reports delta kinematics.
 
-For all versions of RepRapFirmware up to RRF 3.1.1, and all versions of PanelDue, use [PanelDue firmware version 1.25.0](https://github.com/Duet3D/PanelDueFirmware/releases/tag/1.25.0){target=_blank}.
+From RepRapFirmware 3.1.1, PanelDue hardware versions 7i, 5i, V3 and those V2 with ATSAM3S4B processor (shipped after August 2016) can use the improved [PanelDue firmware version 3.2.x and later](https://github.com/Duet3D/PanelDueFirmware/releases/){target=_blank}. Unfortunately, due to the lack of RAM, this and later versions of PanelDue firmware will not run on V1 or early V2 PanelDue boards that use the ATSAM3S2B chip. See [PanelDue firmware notes](https://github.com/Duet3D/PanelDueFirmware/blob/master/whatsnew.md){target=_blank} for details.
+
+For all versions of RepRapFirmware prior to RRF 3.1.1 use [PanelDue firmware version 1.25.0](https://github.com/Duet3D/PanelDueFirmware/releases/tag/1.25.0){target=_blank} on all versions of PanelDue hardware.
 
 ## Find the correct file
 
@@ -93,7 +94,7 @@ ext - optional name extension; usually blank, 'logo' or 'nologo' (see note below
 
 **PanelDue V1/V2/V3**: For versions of PanelDue with a separate controller board that plugs into the back of the display, choose the file name with -v3- in it if you have a version 3 PanelDue controller, or the one with -v2- in it if you have a version 1 or 2 PanelDue controller, and the file name that ends with the screen size you are using.
 
-The files ending in '-7.0c' are for 7" displays using a CPLD controller (not sold by Duet3D or their distributors).
+The files ending in '-7.0C' are for 7" displays using a CPLD controller (not sold by Duet3D or their distributors).
 
 ## Logo and nologo versions
 
@@ -126,7 +127,7 @@ To update the PanelDue firmware, do one of the following:
 
 * in DWC, navigate to the '0:/firmware' (RRF 3.3 and later) or '0:/sys' (RRF 3.2) folder. Right click on the firmware file. If the firmware file name starts with "PanelDue" and ends in ".bin", an option to 'Install firmware file' will be offered. Select this to install the firmware on the PanelDue.
 * send `M997 S4`. This will install the PanelDue firmware, so long as the firmware file is named 'PanelDueFirmware.bin' If necessary, rename the PanelDue firmware file to 'PanelDueFirmware.bin'.
-* send, for example, `M997 S4 P"PanelDueFirmware-3.4.0-pre3-v3-7.0.bin"`. Use M997 with the P parameter to update the PanelDue firmware with a specific binary firmware file.
+* send, for example, `M997 S4 P"PanelDueFirmware-3.4.0-v3-7.0.bin"`. Use M997 with the P parameter to update the PanelDue firmware with a specific binary firmware file.
 
 Your Duet will attempt to Erase the PanelDue flash memory, and upload the PanelDue firmware. If you are updating from an old PanelDue version, you may need to press the 'erase' button on the PanelDue, followed by the 'reset' button first.
 
@@ -134,12 +135,12 @@ The Duet will upload and verify the firmware, then reset the PanelDue. You may n
 
 # Firmware update via USB
 
-If your Duet is running versions of RepRapFirmware older than RRF 3.2, you will need to update the PanelDue firmware via its USB port, by connecting it to a PC. Download the version
+If your Duet is running versions of RepRapFirmware older than RRF 3.2, or you are using V1 or V2 PanelDue hardware, you will need to update the PanelDue firmware via its USB port by connecting it to a PC. Download the version
 
 ## Requirements
 
 * Download and install Bossa 1.9.1 from [ShumaTech](http://www.shumatech.com/web/products/bossa){target=_blank}. Versions of bossa or bossac earlier than 1.8 will not be able to program the version 3.0 PanelDue board. Apple Macintosh users, please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x){target=_blank}
-* Download and unzip the appropriate PanelDue firmware file from the sources listed above.
+* Download the appropriate PanelDue firmware file from the sources listed above.
 
 ## Connect the PanelDue to the host computer
 
@@ -188,7 +189,7 @@ If you are unable to use the BOSSA application, try the command line tool.
 # Notes
 
 * On version 2.0 and earlier boards, whenever new firmware is uploaded, the touch panel calibration and touch pad orientation is lost. Therefore, on starting up the software enters the touch panel calibration phase. Touch the spots as instructed on the screen as accurately as possible. It is more accurate to use the tip of your fingernail or a stylus (print one!) rather than the pad of your finger. If the display is upside down or inverted left-right, you can correct it after touch calibration using the options provided on the Setup page.
-* The PanelDue controller board is supplied as standard with firmware for driving a 4.3 inch 480 x 272 pixel display. If you use a different display, then you will need to re-program the board with firmware for that display. There may be more recent firmware available even if you are using the recommended display.
+* Non-integrated PanelDue boards are supplied as standard with firmware for driving a 4.3 inch 480 x 272 pixel display. If you use a different display, then you will need to re-program the board with firmware for that display. There may be more recent firmware available even if you are using the 4.3 inch display.
 * If you have a PanelDue with a 7 inch TFT panel, then some PC USB ports and especially laptop USB ports may not be able to supply enough power to the PanelDue when the backlight is on. If you press Erase and Reset while the PanelDue it powered from your controller electronics, then the backlight should turn off, which should resolve the problem. Or you can disconnect the PanelDue control board from the TFT panel (unless you are using the integrated version), then upgrade the firmware, then reconnect it.
 * After you have connected the PanelDue to your 3D printer, you can still update the firmware using the same procedure. If you have a version 3.0 PanelDue then you must either disconnect it from your 3D printer first or power up your 3D printer. Version 2.0 and earlier can be updated without disconnecting them from your printer electronics even if the printer is not powered.
 
