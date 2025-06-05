@@ -2,7 +2,7 @@
 title: Duet 2 Maestro
 description: 
 published: true
-date: 2024-08-21T14:08:22.043Z
+date: 2025-06-05T13:53:29.455Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-10T14:00:38.659Z
@@ -67,7 +67,7 @@ The main hardware features of the Duet 2 Maestro are listed below
 
 ## Firmware notes
 
-* Compatible RepRapFirmware versions: RRF 2.x, RRF 3.x
+* Compatible RepRapFirmware versions: RRF 2.x, RRF 3.x up to 3.5.x. Not supported in RRF 3.6.0 or later because the MCU on the Maestro does not have floating point hardware.
 
 ## Open Source
 
