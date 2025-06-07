@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-06-05T13:49:44.583Z
+date: 2025-06-07T16:34:40.437Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3529,7 +3529,7 @@ The port used by the P parameter must already have been set to Device mode using
 ### Examples
 <br>
 <pre class="cblock">
-M260.4 P1 A1 B{0x06:0x00:0x01:0x12:0x34} R5
+M260.4 P1 A1 B{0x06, 0x00, 0x01, 0x12, 0x34} R5 ; send data as hex
 </pre>
 
 ## M261: i2c Request Data
