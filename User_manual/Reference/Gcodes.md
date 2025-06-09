@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-06-07T16:34:40.437Z
+date: 2025-06-09T07:56:12.972Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3521,6 +3521,7 @@ Perform a non-standard transaction with a Modbus slave device. The request and r
 * **Rnn** Number of bytes to receive excluding the slave address and the CRC
 * **Bnn:nn:nn...** Values to send excluding the slave address and the CRC
 * **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
+* **V"name"** (optional) name of variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Order dependency
 
