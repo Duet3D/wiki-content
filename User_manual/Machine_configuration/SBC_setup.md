@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-04-10T14:11:08.098Z
+date: 2025-06-10T15:35:37.148Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -322,15 +322,20 @@ Once you have a set of system files they can be uploaded via the "system" tab in
 
 # 8. Useful commands
 
-For a full list of SBC-related commands, see this page in the [DSF Github repository](https://github.com/Duet3D/DuetSoftwareFramework/tree/master/src/DuetPiManagementPlugin){target=_blank}.
+> In SBC mode, start the 'DuetPi Management Plugin' in DWC > Settings > Plugins ( > External Plugins in versions prior to RRF 3.6.0) to enable the extra Gcode commands listed below.
+{.is-info}
+
+
+For a full list of SBC-related commands, see this page in the [DuetPi Management Plugin Github repository](https://github.com/Duet3D/DuetSoftwareFramework/tree/master/src/DuetPiManagementPlugin){target=_blank}.
 
 ## Shutdown or Reboot SBC
 
-Rather than just yanking the power cord from the SBC, from RRF 3.4, you can command a 'graceful' shutdown or reboot of the SBC from DWC, by sending:
+Rather than just yanking the power cord from the SBC, from RRF 3.4, you can command a 'graceful' shutdown or reboot of the SBC from DWC, by sending (requires DuetPi Management Plugin):
 ```
 M999 B-1 P"OFF" ; Shut down SBC
 M999 B-1 ; Reboot SBC
 ```
+
 Or connect via SSH, or open a terminal, and send `sudo systemctl poweroff` to shutdown, or `sudo systemctl reboot` to reboot.
 
 If you have a keyboard and monitor connected to your SBC, or connect via VNC, you can simply use the Operating system shutdown and reboot menu option.
@@ -339,7 +344,7 @@ If you have a keyboard and monitor connected to your SBC, or connect via VNC, yo
 
 Once your Raspberry Pi has established an internet connection, it is recommended to install the latest updates. The following commands will install the latest software components and the latest RepRapFirmware version on your Duet 3. You can do this regularly to update the system as new firmware is released.
 
-In **RRF 3.5 and later**, users running the latest Bookworm-based DuetPi image can use `M997 S2` to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). This can take a few minutes, so be patient! Note that this M-code only installs security- and Duet-related software updates.
+In **RRF 3.5 and later**, users running the latest Bookworm-based DuetPi image can use `M997 S2` to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). This can take a few minutes, so be patient! Note that this M-code only installs security- and Duet-related software updates. (Requires DuetPi Management Plugin.)
 
 In **RRF 3.4.x and earlier**, or users running on earlier Buster-based DuetPi images, connect via SSH or VNC (see above) to your Raspberry Pi or open a terminal (if you have keyboard and monitor connected) and run:
 
@@ -352,7 +357,7 @@ Note that if you are running on RRF 3.4.x or earlier, you will not be able to up
 
 ## Switch between releases
 
-In **RRF 3.5 and later**, users running the latest Bookworm-based DuetPi image can use `M997 S2` with two optional parameters to switch between release versions.
+In **RRF 3.5 and later**, users running the latest Bookworm-based DuetPi image can use `M997 S2` with two optional parameters to switch between release versions. (Requires DuetPi Management Plugin.)
 * `F"<feed>"` - Set package feed for DSF packages where `<feed>` can be `stable` (default), `unstable`, `stable-x.y`, or `unstable-x.y` where x.y corresponds to a version. e.g. 3.4 or 3.5.
 * `V"<version>"` - Install a specific DSF/RRF combination (may not be used together with `M997 F`). Example: `M997 S2 V"3.5.0-rc.2"`
 
@@ -362,7 +367,7 @@ In **RRF 3.4.x and earlier**, to switch between stable/release package feed and 
 
 ## Virtual SD card
 
-In SBC mode and RRF v3.4 or newer these commands may be used to mount/unmount block devices or remote endpoints using the mount command. These commands should go in **dsf-config.g** NOT config.g.
+In SBC mode and RRF v3.4 or newer these commands may be used to mount/unmount block devices or remote endpoints using the mount command. These commands should go in **dsf-config.g** NOT config.g. (Requires DuetPi Management Plugin.)
 
 [M21](/User_manual/Reference/Gcodes/M21){target=_blank} Mount device (Initialize SD card)
 [M22](/User_manual/Reference/Gcodes/M22){target=_blank} Unmount device (Release SD card)
@@ -370,12 +375,12 @@ In SBC mode and RRF v3.4 or newer these commands may be used to mount/unmount bl
 
 ## Networking
 
-M540 and M550 commands, if needed, should go in **dsf-config.g** NOT config.g.
+M540 and M550 commands, if needed, should go in **dsf-config.g** NOT config.g. (Requires DuetPi Management Plugin.)
 
 [M540](/User_manual/Reference/Gcodes/M540){target=_blank} Set MAC address
 [M550](/User_manual/Reference/Gcodes/M550){target=_blank} Set Name (see 'Changing the SBC hostname' below)
 
-Sending any of the following command makes a persistent change. They do not need to be added to dsf-config.g. They should NOT be included in config.g.
+Sending any of the following command makes a persistent change. They do not need to be added to dsf-config.g. They should NOT be included in config.g. (Requires DuetPi Management Plugin.)
 
 [M552](/User_manual/Reference/Gcodes/M552){target=_blank} Set IP address, enable/disable network interface
 [M553](/User_manual/Reference/Gcodes/M553){target=_blank} Set Netmask
@@ -393,7 +398,7 @@ This is an optional step if you only have a single duet3 on your network. It is 
 
 ### RRF/DSF 3.5 and later
 
-Send [M550](/User_manual/Reference/Gcodes/M550){target=_blank} to change the hostname, in SBC mode this change is permanent and `M550` does not need to be put in `config.g` unless you wish to use a slightly different name with spaces and/or alternative casing (e.g. to change the displayed hostname `ender3pro` to `Ender 3 Pro`, use `M550 P"Ender 3 Pro"`). 
+Send [M550](/User_manual/Reference/Gcodes/M550){target=_blank} to change the hostname, in SBC mode this change is permanent and `M550` does not need to be put in `config.g` unless you wish to use a slightly different name with spaces and/or alternative casing, e.g. to change the displayed hostname `ender3pro` to `Ender 3 Pro`, use `M550 P"Ender 3 Pro"`. (Requires DuetPi Management Plugin.) 
 
 In order to change the SBC hostname, the DuetPiManagementPlugin must be running.
 
