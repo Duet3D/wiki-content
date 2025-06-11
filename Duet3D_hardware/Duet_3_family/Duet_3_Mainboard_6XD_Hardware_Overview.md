@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2025-06-11T10:29:02.523Z
+date: 2025-06-11T11:22:02.594Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -47,7 +47,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **Servo support** | One output with 5V signal level for hobby servo, laser or VFD converter |
 | **LCD support** | PanelDue, or via HDMI touch screen attached to the SBC. |
 | **LED strip support** | Neopixel (max. 60 LEDs) or DotStar |
-| **RS485 Support** | V1.02 or later, firmware support fro MODBUS RTU from RRF 3.6.0 |
+| **RS485 Support** | V1.02 or later, firmware support for MODBUS RTU from RRF 3.6.0 |
 
 ## Operating limits
 
