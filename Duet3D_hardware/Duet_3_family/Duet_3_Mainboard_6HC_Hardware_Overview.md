@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-06-11T11:22:40.889Z
+date: 2025-06-11T11:30:17.587Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -129,8 +129,9 @@ On Duet 3 Mainboard 6HC the mounting holes are isolated and not plated through, 
 
 Please note:
 
-* If you mount the board on a metal surface, use standoffs to ensure that the back of the board cannot short against the plate. A minimum standoff length of 5mm is advised, however larger is preferred for better cooling.
-* **Do not use metal washers under the mounting screws**, or screws with large heads (e.g. button head). Nylon washers are recommended and supplied with the board.  With a metal washer or large screw head there is a risk of creating a short.
+>If you mount the board on a metal surface, use standoffs to ensure that the back of the board cannot short against the plate. A minimum standoff length of 5mm is advised, however larger is preferred for better cooling.{.is-info}
+
+> **Do not use metal washers under the mounting screws**, or screws with large heads (e.g. button head). Nylon washers are recommended and supplied with the board.  With a metal washer or large screw head there is a risk of creating a short.{.is-warning}
 
 ## Cooling
 
@@ -191,7 +192,7 @@ On v0.5 boards the GND and V_FUSED legends on the underside of the board are the
 
 >The two banks of Low Current outputs (OUT4-6, OUT7-9) can be separately selected to be powered by either VIN or internal 12V. Total 12V fan current draw must not exceed 800mA.{.is-info}
 
->The separate OUT0 Power in allows for a different voltage to be supplied for the OUT0 high current output (e.g for a large bed heater). If this is not required VIN power must be applied to both the POWER IN and the OUT0 POWER IN terminals for OUT 0 to be powered.{.is-info}
+>The separate OUT0 Power in allows for a different voltage to be supplied for the OUT0 high current output (e.g. for a large bed heater). If this is not required VIN power must be applied to both the POWER IN and the OUT0 POWER IN terminals for OUT 0 to be powered.{.is-info}
 
 >The SBC_3.3V is purely to ensure logic levels are the same between the Duet and the SBC. Do not attempt to use this pin to apply, or draw, 3.3V.{.is-warning}
 
@@ -211,11 +212,11 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **3 x 2-pin JST VH connector** | OUT 1, OUT 2, OUT 3 | These are intended for extruder heaters or fans. The out1, out2, out3 pins are PWM switched GND, the V_FUSED pins are fused input voltage.  Maximum recommended current 6A each. These outputs are protected by flyback diodes. |
 | **3 x 4-pin KK connectors with offset spigot** | OUT 4, OUT 5, OUT 6 | These medium current outputs are intended for PWM-controllable fans. The connector fits a standard PC-type 4-pin PWM fan. Alternatively, a 2-pin fan may be connected between the V_OUT_LC_1 pin (+ve) and the OUT_n_NEG pin (-ve). Maximum recommended current 2A each when supplied by VIN. |
 | ^^ | ^^ | **Note:** These outputs are protected by a flyback diode connected to V_OUT_LC_1. Do not mix loads connected to V_OUT_LC_1 with the jumper set to 12V and loads connected to V_FUSED on the same bank. |
-| **1 x 3-pin KK header** | OUT4-OUT6_SelectV | The positive supply to the OUT 4, OUT 5 and OUT 6 connectors is the centre pin of the 3-pin jumper block labeled OUT4-OUT6_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
+| **1 x 3-pin KK header** | OUT4-OUT6_SelectV | The positive supply to the OUT 4, OUT 5 and OUT 6 connectors is the centre pin of the 3-pin jumper block labelled OUT4-OUT6_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin. |
 | ^^ | ^^ | *see note 1 below*. |
 | **3 x 2-pin KK connectors** | OUT 7, OUT 8, OUT 9 | These are intended for fans. Maximum recommended current 2A each when supplied by VIN. |
 | ^^ | ^^ | **Note:** These outputs are protected by a flyback diode connected to V_OUT_LC_2. Do not mix loads connected to V_OUT_LC_2 with the jumper set to 12V and loads connected to V_FUSED on the same bank. |
-| **1 x 3-pin KK header** | OUT7-OUT9_SelectV | The positive supply to the OUT 7, OUT 8 and OUT 9 connectors is the centre pin of the 3-pin jumper block labeled OUT7-OUT9_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin.|
+| **1 x 3-pin KK header** | OUT7-OUT9_SelectV | The positive supply to the OUT 7, OUT 8 and OUT 9 connectors is the centre pin of the 3-pin jumper block labelled OUT7-OUT9_SelectV. A jumper in the top position will power them from the fused VIN supply. Alternatively you can connect a 3-terminal buck regulator to the 3-pin jumper block to supply the required voltage to the centre pin.|
 | ^^ | ^^ | *see note 1 below*. |
 | **1 x 2-pin KK connector** | VFUSED | Always on, not switched. This is for powering an always-on fan or similar. Current limit 1.5A|
 | **1 x 2-pin KK connector** | RESET_EXT | For an external normally-open reset switch. |
@@ -232,7 +233,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **9 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4, IO_5, IO_6, IO_7, IO_8 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
 | **1 x 4-pin KK connector** | DS_LED | This is to connect and power DotStar LED strips. |
 | ^^ | ^^ | *see note 2 below*.
-| **1 x 2-pin KK connector** | RS485 | (v1.02c and later) IO1 is connected to this header via an RS485 tranceiver to allow connection of RS485 devices. The RS485_EN jumper must be fitted to connect IO2.in to the RS485 tranceiver. |
+| **1 x 2-pin KK connector** | RS485 | (v1.02c and later) IO1 is connected to this header via an RS485 transceiver to allow connection of RS485 devices. The RS485_EN jumper must be fitted to connect IO2.in to the RS485 transceiver. |
 | **1 x 2-pin jumper** | RS485 EN | Jumper to enable RS485 use by connecting IO1.in to the RS485 transceiver|
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | Only on v1.02b and earlier. Replaced with pogo pin contacts under the board from v1.02c and later. This is for firmware debugging|
 | **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Add a jumper to bypass the 10k resistor on IO2.in, so it can be used for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
@@ -327,9 +328,11 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | spi.cs1 | ^^ |
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
-| PanelDue | PanelDue | spi.cs4 | External SD card CS, note Io0 pins shared with io0 header.|
+| PanelDue | PanelDue | spi.cs4 | External SD card CS, note io0 pins shared with io0 header.|
 | ^^ | ^^ | io0.in | ^^ |
 | ^^ | ^^ | io0.out | ^^ |
+| RS485 | RS485 | io1.in | note io1 pins shared with io1 header.|
+| ^^ | ^^ | io1.out | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
 | ^^ | DOTSTAR | led | For controlling DotStar or NeoPixel LEDs (firmware 3.5.0-beta.4 and later only)
 
