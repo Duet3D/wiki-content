@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-06-11T11:02:23.008Z
+date: 2025-06-11T11:06:25.928Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -27,7 +27,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 |---|---|
 | **Processor** | [ATSAME70Q20B](https://www.microchip.com/en-us/product/ATSAME70Q20){target=_blank} or compatible|
 | **Processor features** | 32-bit, 300MHz ARM Cortex M7, 1Mb flash, 384Kb RAM, hardware floating point (double precision), DMA, 32Kb cache |
-| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, WiFi via optional Duet 3 WiFi Module (6HC v1.02 or later only, see 'Network, user interface and plugins' below) or via attached SBC; USB port; serial port; 2x CAN-FD bus |
+| **Networking/Comms** | 10BaseT/100BaseTX Ethernet, WiFi via optional Duet 3 WiFi Module (6HC v1.02 or later only, see 'Network, user interface and plugins' below) or via attached SBC; USB port; serial port; 2x CAN-FD bus; 1x RS485 (v1.02c and later) |
 | **On-board stepper drivers** | 6 x  [TMC2160a](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 |
 | **High current outputs** | 1 x 15A^1^, 3 x 6A each |
@@ -87,7 +87,8 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 
 ## Firmware notes
 
-* **Version 1.02 and later ** require RRF 3.4.5 or later (latest stable version is recommended)
+* **Version 1.02c and later ** require RRF 3.6.0 or later (latest stable version is recommended)
+* **Version 1.02-1.02b ** require RRF 3.4.5 or later (latest stable version is recommended)
 * **Version 1.01 and earlier ** are compatible RepRapFirmware version 3.0 and later (latest stable version is recommended)
 * For **firmware update instructions**:
   * Standalone mode - [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. 
