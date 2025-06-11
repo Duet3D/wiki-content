@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-06-11T11:30:17.587Z
+date: 2025-06-11T11:31:29.735Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -363,7 +363,7 @@ On the version 1.02 boards the individual IO_x connectors have the following add
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no |  |
-| 1 | yes | no | no |Combined with the RS485 header on v1.02c and later.<br> A jumper is provided to connect IO2.in to the RS485 hearer (RS485 EN) |
+| 1 | yes | no | no |Combined with the RS485 header on v1.02c and later.<br> A jumper is provided to connect IO1.in to the RS485 hearer (RS485 EN) |
 | 2 | no | no | no | A jumper is provided to bypass the 10K input protection resistor to allow I2C to be used on this port.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
