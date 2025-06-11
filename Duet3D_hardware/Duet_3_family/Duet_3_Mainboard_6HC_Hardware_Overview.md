@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-06-11T11:20:07.302Z
+date: 2025-06-11T11:22:40.889Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -47,7 +47,8 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **PT100 and thermocouple daughterboard support** | Supports 2 x daughterboards (4 channels) on board. 50+ via CAN-FD-connected expansion boards. |
 | **LCD support** | PanelDue, or via HDMI touch screen attached to the SBC. |
 | **LED strip support** | RGB/RGBW Neopixel or DotStar. Note: LEDs can draw a lot of current so external 5V supply is required to drive more than ~8, see the operating limits below. |
-| **Other expansion** | A huge variety supported via CAN-FD-connected expansion boards. WiFi via optional Duet 3 WiFi Module (6HC v1.02 or later only, see 'Network, user interface and plugins' below). |
+| **CAN-FD expansion** | A huge variety supported via CAN-FD-connected expansion boards. WiFi via optional Duet 3 WiFi Module (6HC v1.02 or later only, see 'Network, user interface and plugins' below). |
+| **RS485 Support** | V1.02c or later, firmware support for MODBUS RTU from RRF 3.6.0 |
 
 
 | **NOTES** |
@@ -304,7 +305,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | TEMP 1 | temp1 | |
 | ^^ | TEMP 2 | temp2 | |
 | ^^ | TEMP 3 | temp3 | |
-| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc <br> **note:** <br> 1) io0 pins common with PanelDue header<br> 2) io1 pins common with RS485 header|
+| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc <br> **note:** <br> 1) io0 pins common with PanelDue header<br> 2) io1 pins common with RS485 header (v1.02c and later)|
 | ^^ | ^^ | io0.out | ^^ |
 | ^^ | IO_1 | io1.in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
