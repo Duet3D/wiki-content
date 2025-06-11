@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-06-11T10:25:51.328Z
+date: 2025-06-11T11:02:23.008Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -85,7 +85,6 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **Maximum ambient temperature** | 70°C |
 
 
-
 ## Firmware notes
 
 * **Version 1.02 and later ** require RRF 3.4.5 or later (latest stable version is recommended)
@@ -99,9 +98,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 
 ## Open Source
 
-Importantly Duets are Open:
-
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE){target=_blank}.
+* The Duet3D Mainboard 6HC is Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE){target=_blank}.
 * All hardware [source files](https://github.com/Duet3D/Duet3-Mainboard-6HC){target=_blank} are available on Github.
 * Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl){target=_blank} web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware){target=_blank} are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
 * The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank} and [Eclipse](https://eclipse.org/){target=_blank} using open tools means the barrier to getting involved is as low as possible.
