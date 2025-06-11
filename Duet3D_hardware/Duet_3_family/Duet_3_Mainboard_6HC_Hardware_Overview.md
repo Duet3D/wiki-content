@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-06-10T08:59:33.757Z
+date: 2025-06-11T10:25:51.328Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -149,17 +149,22 @@ The STEP file for the Duet 3 Mainboard 6HC is shared on the [Duet3D github here]
 
 ## Tabs {.tabset}
 
+### Revision v1.02c
+
+[![Duet 3 MB 6HC v1.02c wiring diagram shwoing all the pin connections, click on the image for a larger version](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02c_d1.0_wiring.png =745x)](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02c_d1.0_wiring.png){target=_blank}
+
+
 ### Revision v1.02
 
 [![Duet 3 MB 6HC v1.02 wiring diagram shwoing all the pin connections, click on the image for a larger version](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_d1.1_wiring.png =745x)](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_d1.1_wiring.png){target=_blank}
 
 ### Revision v1.0 and v1.01
-
-[![duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png =745x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png){target=_blank}
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v1.0_v1.01.png){target=_blank}
 
 ### Revision v0.6
-
-[![duet_3_mb6hc_wiring_diagram_v0.6.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v0.6.png =500x)](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v0.6.png){target=_blank}
+<!--removed the picture, just have the link for this very old board to speed up page loading -->
+[duet_3_mb6hc_wiring_diagram_v0.6.png](/duet_boards/duet_3_mb6hc/duet_3_mb6hc_wiring_diagram_v0.6.png){target=_blank}
 
 ### Revision v0.5
 <!--removed the picture, just have the link for this very old board to speed up page loading -->
