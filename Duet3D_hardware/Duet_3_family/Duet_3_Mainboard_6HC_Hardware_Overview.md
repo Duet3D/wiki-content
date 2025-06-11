@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-06-11T11:06:25.928Z
+date: 2025-06-11T11:20:07.302Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -175,16 +175,24 @@ The STEP file for the Duet 3 Mainboard 6HC is shared on the [Duet3D github here]
 
 ## Wiring Notes
 
-|---|---|
-| **CAUTION!** | The pinout of the 5-pin connectors is not the same as on the 5-pin Z-probe connector on the Duet Maestro! It has been changed to reduce the risk of shorting +5V to +3.3V. |
-| **CAUTION!** | On v0.5 boards the GND and V_FUSED legends on the underside of the board are the wrong way round! The ones in the wiring diagram above are correct. This is the same for the jumper block OUT7 - OUT9 that provides power to these connectors respectively (see below).
-| **CAUTION!** | On v0.5 prototype boards, do not connect anything to the OUT pin of the IO_5 connector, because on these boards this pin is used to signal to the Raspberry Pi. The IO_5_OUT pin is available on v0.6 and later boards. |
+<!--
+ sections below removed as they pertain only to very old boards
 
-* The 4 wire motor and OUT1, OUT2 and OUT3 are [JST VH series connectors](http://www.jst-mfg.com/product/pdf/eng/eVH.pdf). They require a minimum of 22AWG wire (20AWG or 0.5mm^2^ recommended. Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way; but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heatshrink sleeving over the insulation to bulk up the insulation. You will need a suitable crimping tool for the crimp pins, for example Engineer PA21 (use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation). Alternatively you can solder the wire to the crimp pin
-* The default 5V power configuration is Internal-5V-EN jumpered, 5V->SBC jumpered (the Duet is powering the SBC) , SBC->5V not jumpered. If you want the SBC to provide 5V to the Duet then remove the jumper from Internal-5V-EN and place a jumper on SBC-5V (leaving the 5V->SBC jumper in place).  **NOTE** this bypasses the 5V protection and a fault on the SBC may damage the Duet. See [Power distribution, 5V](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v) section below.
-* The two banks of Low Current outputs (OUT4-6, OUT7-9) can be separately selected to be powered by either VIN or internal 12V. Total 12V fan current draw must not exceed 800mA.
-* The separate OUT0 Power in allows for a different voltage to be supplied for the OUT0 high current output (e.g for a large bed heater). If this is not required VIN power must be applied to both the POWER IN and the OUT0 POWER IN terminals for OUT 0 to be powered.
-* The SBC_3.3V is purely to ensure logic levels are the same between the Duet and the SBC. Do not attempt to use this pin to apply, or draw, 3.3V.
+**CAUTION!**  The pinout of the 5-pin connectors is not the same as on the 5-pin Z-probe connector on the Duet Maestro! It has been changed to reduce the risk of shorting +5V to +3.3V.
+On v0.5 boards the GND and V_FUSED legends on the underside of the board are the wrong way round! The ones in the wiring diagram above are correct. This is the same for the jumper block OUT7 - OUT9 that provides power to these connectors respectively (see below).
+ **CAUTION!**  On v0.5 prototype boards, do not connect anything to the OUT pin of the IO_5 connector, because on these boards this pin is used to signal to the Raspberry Pi. The IO_5_OUT pin is available on v0.6 and later boards.  -->
+
+
+
+> The 4 wire motor and OUT1, OUT2 and OUT3 are [JST VH series connectors](http://www.jst-mfg.com/product/pdf/eng/eVH.pdf). They require a minimum of 22AWG wire (20AWG or 0.5mm^2^ recommended. Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way; but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heatshrink sleeving over the insulation to bulk up the insulation. You will need a suitable crimping tool for the crimp pins, for example Engineer PA21 (use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation). Alternatively you can solder the wire to the crimp pin{.is-info}
+
+> The default 5V power configuration is Internal-5V-EN jumpered, 5V->SBC jumpered (the Duet is powering the SBC) , SBC->5V not jumpered. If you want the SBC to provide 5V to the Duet then remove the jumper from Internal-5V-EN and place a jumper on SBC-5V (leaving the 5V->SBC jumper in place).  **NOTE** this bypasses the 5V protection and a fault on the SBC may damage the Duet. See [Power distribution, 5V](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v) section below.{.is-info}
+
+>The two banks of Low Current outputs (OUT4-6, OUT7-9) can be separately selected to be powered by either VIN or internal 12V. Total 12V fan current draw must not exceed 800mA.{.is-info}
+
+>The separate OUT0 Power in allows for a different voltage to be supplied for the OUT0 high current output (e.g for a large bed heater). If this is not required VIN power must be applied to both the POWER IN and the OUT0 POWER IN terminals for OUT 0 to be powered.{.is-info}
+
+>The SBC_3.3V is purely to ensure logic levels are the same between the Duet and the SBC. Do not attempt to use this pin to apply, or draw, 3.3V.{.is-warning}
 
 ## Description of Connections
 
@@ -223,7 +231,9 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **9 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4, IO_5, IO_6, IO_7, IO_8 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
 | **1 x 4-pin KK connector** | DS_LED | This is to connect and power DotStar LED strips. |
 | ^^ | ^^ | *see note 2 below*.
-| **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | This is for firmware debugging|
+| **1 x 2-pin KK connector** | RS485 | (v1.02c and later) IO1 is connected to this header via an RS485 tranceiver to allow connection of RS485 devices. The RS485_EN jumper must be fitted to connect IO2.in to the RS485 tranceiver. |
+| **1 x 2-pin jumper** | RS485 EN | Jumper to enable RS485 use by connecting IO1.in to the RS485 transceiver|
+| **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | Only on v1.02b and earlier. Replaced with pogo pin contacts under the board from v1.02c and later. This is for firmware debugging|
 | **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Add a jumper to bypass the 10k resistor on IO2.in, so it can be used for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
 | **1 x 2x6 header** | ESP | *v1.02 and later boards*: Header to connect an ESP WiFi board. |
@@ -294,7 +304,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | TEMP 1 | temp1 | |
 | ^^ | TEMP 2 | temp2 | |
 | ^^ | TEMP 3 | temp3 | |
-| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc (note io0 pins common with PanelDue header) |
+| Input/Outputs | IO_0 | io0.in | Endstops, Z probes, filament monitors etc <br> **note:** <br> 1) io0 pins common with PanelDue header<br> 2) io1 pins common with RS485 header|
 | ^^ | ^^ | io0.out | ^^ |
 | ^^ | IO_1 | io1.in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
@@ -342,14 +352,14 @@ Additionally:
 
 ## Tabs {.tabset}
 
-### Duet 3 Mainboard 6HC v1.02
+### Duet 3 Mainboard 6HC v1.02 and later
 
 On the version 1.02 boards the individual IO_x connectors have the following additional capabilities:
 
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no |  |
-| 1 | yes | no | no |  |
+| 1 | yes | no | no |Combined with the RS485 header on v1.02c and later.<br> A jumper is provided to connect IO2.in to the RS485 hearer (RS485 EN) |
 | 2 | no | no | no | A jumper is provided to bypass the 10K input protection resistor to allow I2C to be used on this port.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
@@ -358,7 +368,7 @@ On the version 1.02 boards the individual IO_x connectors have the following add
 | 7 | no | yes | yes |  |
 | 8 | no | no | no |  |
 
-### Duet 3 Mainboard 6HC v0.6 and later
+### Duet 3 Mainboard 6HC v0.6 -v1.01
 
 On the version 0.6, 1.0 and 1.01 boards the individual IO_x connectors have the following additional capabilities:
 
