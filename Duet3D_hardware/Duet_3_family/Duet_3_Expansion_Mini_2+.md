@@ -2,7 +2,7 @@
 title: Duet 3 Expansion Mini 2+
 description: The Duet 3 Expansion Mini 2+ is a two driver expansion board designed to connect directly onto the expansion header of the Duet 3 mini 5+ mainboard. It provides 2 x TMC 2209 stepper motors drivers.
 published: true
-date: 2024-08-20T09:51:24.579Z
+date: 2025-06-11T11:01:36.711Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T10:24:30.415Z
@@ -46,9 +46,7 @@ The drivers are numbered "5" and "6" to reference them, for example to assign th
 
 ## Open Source
 
-Importantly Duets are Open:
-
-* The Duets are Open Hardware, https://github.com/Duet3D/Duet3-Mini5plus/blob/main/LICENSE
+* The Duet3 Mini2+ is Open Hardware, https://github.com/Duet3D/Duet3-Mini5plus/blob/main/LICENSE
 * All hardware [source files](https://github.com/Duet3D/Duet3-Mini5plus) are available on Github.
 * Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
 * The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Ecplise](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
