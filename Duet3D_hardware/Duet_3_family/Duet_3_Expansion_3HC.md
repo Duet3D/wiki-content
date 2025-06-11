@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2024-10-14T12:57:48.084Z
+date: 2025-06-11T10:32:51.519Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -45,6 +45,12 @@ The Duet 3 Expansion 3HC supports the following:
 
 * Compatible RepRapFirmware versions: RRF 3.x
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
+
+## Open source
+
+* The Duet3 3HC is Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Expansion-3HC/blob/master/LICENSE).
+* All hardware [source files](https://github.com/Duet3D/Duet3-Expansion-3HC/) are available on Github.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
 
 # Physical properties
 
