@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2025-05-07T16:16:09.198Z
+date: 2025-06-11T10:29:02.523Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -79,10 +79,7 @@ The main hardware features of the Duet 3 6XD are listed below.
   * [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits){target=_blank}
   * [CAN expansion configuration limitations](/User_manual/RepRapFirmware/CAN_limitations){target=_blank}
 
-## Source
-
-Importantly Duets are Open:
-
+## Open Source
 
 * The [schematic and BOM are available](https://github.com/Duet3D/Duet3-Mainboard-6XD/){target=_blank} are available on Github.
 * Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl){target=_blank} web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware){target=_blank} are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
