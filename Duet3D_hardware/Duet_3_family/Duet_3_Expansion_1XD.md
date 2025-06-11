@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2024-08-20T09:23:26.968Z
+date: 2025-06-11T10:29:42.508Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -48,9 +48,7 @@ The Duet 3 Expansion 1XD board provides step, direction and enable outputs to in
 
 ## Open source
 
-Importantly Duets are Open:
-
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE).
+* The Duet 3 1XD is Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE).
 * All hardware [source files](https://github.com/Duet3D/Duet3-Expansion-1XD) are available on Github.
 * Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
 * The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
