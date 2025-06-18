@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-06-11T11:31:29.735Z
+date: 2025-06-18T13:34:27.354Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -233,7 +233,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **9 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4, IO_5, IO_6, IO_7, IO_8 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
 | **1 x 4-pin KK connector** | DS_LED | This is to connect and power DotStar LED strips. |
 | ^^ | ^^ | *see note 2 below*.
-| **1 x 2-pin KK connector** | RS485 | (v1.02c and later) IO1 is connected to this header via an RS485 transceiver to allow connection of RS485 devices. The RS485_EN jumper must be fitted to connect IO2.in to the RS485 transceiver. |
+| **1 x 2-pin KK connector** | RS485 | (v1.02c and later) IO1 is connected to this header via an RS485 transceiver to allow connection of RS485 devices. The RS485_EN jumper must be fitted to connect IO1.in to the RS485 transceiver. |
 | **1 x 2-pin jumper** | RS485 EN | Jumper to enable RS485 use by connecting IO1.in to the RS485 transceiver|
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | Only on v1.02b and earlier. Replaced with pogo pin contacts under the board from v1.02c and later. This is for firmware debugging|
 | **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Add a jumper to bypass the 10k resistor on IO2.in, so it can be used for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
@@ -363,7 +363,7 @@ On the version 1.02 boards the individual IO_x connectors have the following add
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no |  |
-| 1 | yes | no | no |Combined with the RS485 header on v1.02c and later.<br> A jumper is provided to connect IO1.in to the RS485 hearer (RS485 EN) |
+| 1 | yes | no | no |Combined with the RS485 header on v1.02c and later.<br> A jumper is provided to connect IO1.in to the RS485 header (RS485 EN) |
 | 2 | no | no | no | A jumper is provided to bypass the 10K input protection resistor to allow I2C to be used on this port.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
