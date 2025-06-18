@@ -2,7 +2,7 @@
 title: What to do if your Duet won't respond
 description: 
 published: true
-date: 2025-03-19T15:13:18.039Z
+date: 2025-06-18T13:35:07.848Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:52:16.731Z
@@ -46,6 +46,12 @@ dateCreated: 2021-12-05T22:52:16.731Z
 
 # If the port still doesn't appear on the PC
 
-* If neither port is shown, then the Duet may be faulty or it may not have valid firmware installed. With USB power applied, erase the firmware. **Only erase the firmware if your board is completely unresponsive, or if instructed to do so by Duet3D.** On older boards do this by holding down the Erase button for at least 1 second, then press the Reset button. On newer boards there is no Erase button; so fit a jumper across the Erase pins, then connect to USB for a few seconds, then disconnect from USB, remove the jumper and connect to USB again. You may have to do this a couple of times if the Duet does not appear in the Device Manager.
-* The Bossa Port should appear in Device Manager; if it does then you can upload firmware using SAM-BA or Bossa as described in section "Fall-back procedure #2" in [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware).
+* If neither port is shown, then the Duet may be faulty or the firmware may be invalid or corrupted. Erase and reflash the firmware. 
+**Only erase the firmware if your board is completely unresponsive, or if instructed to do so by Duet3D.**
+* **Duet 3 Mini 5+**: The Mini 5+ has a different way of flashing the firmware compared to other boards. See [firmware update instructions here](/User_manual/RepRapFirmware/Updating_firmware#duet-3-mini-5-wifiethernet).
+* **All other mainboards**: With USB power applied, erase the firmware. 
+  * On older boards do this by holding down the Erase button for at least 1 second, then press the Reset button. 
+  On newer boards there is no Erase button; so fit a jumper across the Erase pins, then connect to USB for a few seconds, then disconnect from USB, remove the jumper and connect to USB again. 
+  You may have to do this a couple of times if the Duet does not appear in the Device Manager.
+  * The Bossa Port should appear in Device Manager; if it does then you can upload firmware using SAM-BA or Bossa as described in section "Fall-back procedure #2" in [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware).
 * If all the above steps fail and your Duet is still under warranty, contact your supplier (if you purchased your Duet direct from Duet3D then follow [the warranty return process](https://www.duet3d.com/page/warranty-policy))
