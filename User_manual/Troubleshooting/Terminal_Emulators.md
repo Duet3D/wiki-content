@@ -2,7 +2,7 @@
 title: Terminal Emulators
 description: There is no requirement to connect to your Duet hardware over USB for normal operation however for certain trouble shooting steps the use of a terminal emulator is required. This page provides some information on getting connected with one.
 published: true
-date: 2022-01-21T15:55:54.147Z
+date: 2025-06-18T18:44:45.258Z
 tags: yat, terminal emulator, troubleshooting
 editor: markdown
 dateCreated: 2021-10-31T18:10:59.107Z
@@ -64,6 +64,14 @@ For macOS, we recommend using [SerialTools](https://apps.apple.com/gb/app/serial
 ![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =600x)
 
 Install SerialTools and run it. Select the Duet from the 'Serial Port' drop down; it will be named something like "usbmodem1411". Baud rate should be 115200, and Local Echo should be ticked. Click 'Connect' to connect.
+
+SerialTools works, but is a bit finicky about input; you have to get the command right, without pressing delete or cursor keys. I think it sends each character to the Duet as you type them (raw mode), rather than when you press return. If you navigate away from SerialTools to another application, and then back, in the middle of writing the command, the command won't work. You should get an 'ok' when a command goes through correctly.
+
+## CoolTerm
+
+CoolTerm is more reliable than SerialTools, but is not on the AppStore. It's available from [freeware.the-meiers.org](https://freeware.the-meiers.org/). 
+
+Turn on the options for ‘line mode’ and ‘local echo’, for more reliable input and response.
 
 ## Screen
 
