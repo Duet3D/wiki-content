@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-06-23T13:22:51.670Z
+date: 2025-06-30T11:40:47.303Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -441,6 +441,10 @@ The [macro file /sys/daemon.g](/User_manual/Tuning/Macros#daemong) can be used t
 It is recommended to use a while loop inside the daemon.g file if you are using it to prevent the firmware having to open it every 10 seconds. E.g if you want a shorter update time then put a while loop inside the daemon.g with G4 S1 in it for 1 second repeats.
 
 Caution must be taken not to start a loop that takes a long time to complete, without having a G4 P500 or similar command to hand control back to the main process every half a second or so.
+
+## Meta Gcode evaluation in SBC mode
+
+In SBC mode only, DSF waits for pending codes to be executed before a meta code is evaluated. `M576 S0` is likely to help, to reduce the delay between SPI transfers. This will be addressed in RRF 3.7, see [this Github issue](https://github.com/Duet3D/DuetSoftwareFramework/issues/211).
 
 
 # Examples of use
