@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2024-11-06T14:36:32.283Z
+date: 2025-07-03T16:40:34.409Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -154,9 +154,9 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Install YAT
 
-[![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_01.jpg){target=_blank}We recommend downloading YAT. Other terminal emulation programs may work, eg PuTTY, but we've found YAT the most reliable. 
+[![YAT](/guides/getting_connected/03_connect_to_duet_win_01.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_01.png){target=_blank}We recommend downloading YAT. Other terminal emulation programs may work, eg PuTTY, but we've found YAT the most reliable. 
 
-[Download YAT here](https://sourceforge.net/projects/y-a-terminal/){target=_blank}. Install YAT using default options, then open it. If the "Terminal Settings" screen doesn't open automatically, select "Terminal" menu, then "Settings".
+[Download YAT here](https://sourceforge.net/projects/y-a-terminal/){target=_blank}. Install YAT using default options, then open it. 
 
 <p style="clear:both"></p>
 
@@ -165,19 +165,27 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 ### Select the COM port
 
-[![YAT](/guides/getting_connected/03_connect_to_duet_win_02.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_02.jpg){target=_blank}Select the correct COM port as the Serial Port. 
+[![YAT](/guides/getting_connected/03_connect_to_duet_win_02.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_02.png){target=_blank}If the "Terminal Settings" screen doesn't open automatically, select "Terminal" menu, then "Settings".
 
-If unsure of the COM port number, press **Windows Key + R** on your keyboard and type `devmgmt.msc`
-Your Duet will be listed under Ports (COM & LPT) as USB Serial Device (COM#) or similar. Use COM# as the Serial Port in YAT.
+Select the correct COM port as the Serial Port. 
+If unsure of the COM port number, press **Windows Key + R** on your keyboard and type `devmgmt.msc`. Your Duet will be listed under Ports (COM & LPT) as USB Serial Device (COM#) or similar. Use COM# as the Serial Port in YAT.
+
+For newer versions of RepRapFirmware (3.6 and later), on Duet 3 boards, the terminal emulator must raise the DTR line, otherwise RRF will not transmit data. Select "DTR on". 
+
+Older versions of YAT don't have this option, but DTR can be enabled on the connection screen. For older versions of RRF, it doesn't matter if this is enabled or disabled. 
+
 
 ### YAT settings
 
 
-[![YAT](/guides/getting_connected/03_connect_to_duet_win_03.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_03.jpg){target=_blank}Set YAT to use \<LF> as the end of line character. This will improve the readability of the messages coming from the Duet. Click "Text Settings" in the "Terminal Settings" and change "EOL sequence:" to \<LF>. Click "OK" to close Text Settings. Click "OK" again to close Terminal Settings. 
+[![YAT](/guides/getting_connected/03_connect_to_duet_win_03.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_03.png){target=_blank}Set YAT to use \<LF> as the end of line character. This will improve the readability of the messages coming from the Duet. Click "Text Settings" in the "Terminal Settings" and change "EOL sequence:" to \<LF>. Click "OK" to close Text Settings. Click "OK" again to close Terminal Settings.
 
 ### Connect to Duet
 
-[![YAT](/guides/getting_connected/03_connect_to_duet_win_01.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_01.jpg){target=_blank}Select "Terminal" menu, then "Open/Start" to connect to your Duet. Or click the green tick in the tool bar.
+[![YAT](/guides/getting_connected/03_connect_to_duet_win_01.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_01.png){target=_blank}Select "Terminal" menu, then "Open/Start" to connect to your Duet. Or click the green tick in the tool bar.
+
+If you didn't click "DTR on" in the Terminal Settings, click on the 'DTR' button with the red radio button, which should then turn green.
+
 
 <p style="clear:both"></p>
 
@@ -186,11 +194,25 @@ Your Duet will be listed under Ports (COM & LPT) as USB Serial Device (COM#) or 
 
 ## macOS
 
+### CoolTerm
+
+[![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_02.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_mac_02.png){target=_blank}We recommend using CoolTerm from [https://freeware.the-meiers.org/](https://freeware.the-meiers.org/). 
+
+Go to Options > Serial Port and select the Duet from the 'Port:' drop down menu; it will be named something like "usbmodem1411". Baud rate can be set to 115200. 
+
+Go to Options > Terminal > 'Line mode', which sends your command line when you press return rather than character by character ('raw mode'), and turn on 'Local Echo' so it shows the command you have sent.
+
+Click 'OK' to save the options, then click 'Connect'. For newer versions of RepRapFirmware (3.6 and later), on Duet 3 boards, the terminal emulator must raise the DTR line, otherwise RRF will not transmit data. CoolTerm should enable this automatically; check that the radio button next to 'DTR' is green, and click it if it is not. For older versions of RRF, it doesn't matter if this is enabled or disabled. 
+
 ### SerialTools
 
-[![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_mac_01.jpg){target=_blank}We recommend using SerialTools from the AppStore. You can also connect to your Duet using the built-in 'screen' command.
+[![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_01.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_mac_01.png){target=_blank}If you prefer to use an app from the Appstore, try [SerialTools](https://apps.apple.com/gb/app/serialtools/id611021963?mt=12){target=_blank}.
 
 Install SerialTools and run it. Select the Duet from the 'Serial Port' drop down; it will be named something like "usbmodem1411". Baud rate should be 115200, and Local Echo should be ticked. Click 'Connect' to connect.
+
+For newer versions of RepRapFirmware (3.6 and later), on Duet 3 boards, the terminal emulator must raise the DTR line, otherwise RRF will not transmit data. Click the checkbox next to "DTR". For older versions of RRF, it doesn't matter if this is enabled or disabled. 
+
+SerialTools is a bit finicky about text input; you have to get the Gcode command correct, without pressing delete or cursor keys. It sends each character to the Duet as you type them (raw mode), rather than when you press return. If you navigate away from SerialTools to another application, and then back, in the middle of writing the command, the command won't work. You should get an 'ok' when a command goes through correctly.
 
 ### Screen
 
@@ -198,7 +220,7 @@ Install SerialTools and run it. Select the Duet from the 'Serial Port' drop down
 
 If you want to use 'screen', open Applications > Utilities > Terminal. Run `screen /dev/tty.usbmodem1411 115200`, replacing "usbmodem1411" with the Serial Port name for your Mac, if different (see Step 2).
 
-You should see a blank screen, but see note on Duets with WiFi below. Hit enter and you should see OK returned. You are connected successfully.
+You should see a blank screen, but see note on Duets with WiFi below. Hit enter and you should see OK returned. You are connected successfully. To disconnect and return to the Terminal, type 'Ctrl-a k'.
 
 If you get an error, *"Sorry, could not find a PTY."* unplug the USB, plug it back in and try again.
 
