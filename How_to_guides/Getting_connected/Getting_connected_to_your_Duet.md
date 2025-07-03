@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2025-07-03T16:40:34.409Z
+date: 2025-07-03T23:55:25.671Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -196,7 +196,7 @@ If you didn't click "DTR on" in the Terminal Settings, click on the 'DTR' button
 
 ### CoolTerm
 
-[![SerialTools](/guides/getting_connected/03_connect_to_duet_mac_02.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_mac_02.png){target=_blank}We recommend using CoolTerm from [https://freeware.the-meiers.org/](https://freeware.the-meiers.org/). 
+[![CoolTerm](/guides/getting_connected/03_connect_to_duet_mac_02.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_mac_02.png){target=_blank}We recommend using CoolTerm from [https://freeware.the-meiers.org/](https://freeware.the-meiers.org/). 
 
 Go to Options > Serial Port and select the Duet from the 'Port:' drop down menu; it will be named something like "usbmodem1411". Baud rate can be set to 115200. 
 
@@ -240,9 +240,11 @@ Most likely, the first thing you will need to do on a Linux installation is to a
 
 ### CuteCom
 
-[![Cutecom](/guides/getting_connected/03_connect_to_duet_lin_01.jpg =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_lin_01.jpg){target=_blank}There are many options to connect using Linux. Our favourite is to use CuteCom, which is a GUI serial terminal.
+[![Cutecom](/guides/getting_connected/03_connect_to_duet_lin_01.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_lin_01.png){target=_blank}There are many options to connect using Linux. Our favourite is to use CuteCom, which is a GUI serial terminal.
 
 It's available in most package repositories, or install with `sudo apt install cutecom`. It should automatically detect the correct port (usually /dev/ttyACM0), and is configured correctly out of the box. Click 'Open' to connect.
+
+For newer versions of RepRapFirmware (3.6 and later), on Duet 3 boards, the terminal emulator must raise the DTR line, otherwise RRF will not transmit data. Click the checkbox next to "DTR", or in Settings set 'Flow Control' to 'Hardware'. For older versions of RRF, it doesn't matter if this is enabled or disabled. 
 
 ### Minicom
 
