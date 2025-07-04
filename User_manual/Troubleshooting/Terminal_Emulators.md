@@ -2,7 +2,7 @@
 title: Terminal Emulators
 description: There is no requirement to connect to your Duet hardware over USB for normal operation however for certain trouble shooting steps the use of a terminal emulator is required. This page provides some information on getting connected with one.
 published: true
-date: 2025-06-18T18:44:45.258Z
+date: 2025-07-04T13:38:06.993Z
 tags: yat, terminal emulator, troubleshooting
 editor: markdown
 dateCreated: 2021-10-31T18:10:59.107Z
@@ -10,15 +10,43 @@ dateCreated: 2021-10-31T18:10:59.107Z
 
 # Introduction
 
-It is not necessary to use USB with a Duet board for normal operation however there are a number of troubleshooting instructions that require connecting to the Duet over USB (normally when connecting over the network is not working for some reason).
+It is not necessary to use USB with a Duet board for normal operation, however there are some configuration and troubleshooting instructions that require connecting to the Duet over USB, for example when setting up networking, or when connecting over the network is not working for some reason.
 
-Different operating systems have different terminal emulator support built in. In windows it is necessary to instal a terminal emulator. Most Linux distributions have one built in, however a program with a GUI like CuteCom may make using it easier for people who prefer GUIs. CuteCom should also work on MacOS, other people may prefer [SerialTools](https://apps.apple.com/gb/app/serialtools/id611021963).
+Operating systems may have a terminal emulator support built in. In Windows it is necessary to install a terminal emulator. MacOS and most Linux distributions have one built in, however a program with a GUI will make using it easier for people who prefer GUIs.
+
+# Port settings
+
+## Finding the port name
+
+To find the port name, plug the Duet into your computer with a USB cable. Check that the Duet is seen on a port:
+* **Windows**: Check a USB device appears as a `COM[number]` port in the Device Manager under Ports (COM & LPT).
+* **macOS**: Open a Terminal window and send `ls /dev/tty.*`. The Duet uses a port with USB in the name, e.g. `/dev/tty.usbmodem1411`.
+* **Linux**: Open a Terminal window and send `lsusb`, which should show an entry for the Duet. For the Serial Port name, send `ls /dev/tty*` which should show an entry `/dev/ttyACM[number]`. This is the port the Duet is using.
+
+## Settings
+
+Terminal Emulators require you to configure the settings to connect to the Duet. 
+
+| Description | Setting |
+|---|---|
+|**Port** | Where the cable from the Duet is plugged in to your PC.<br>Windows: COM port<br>macOS: usbmodem#### port<br>Linux: /dev/ttyACM0 |
+**Baud rate/Bits per second** | Set between 9600 and 115200
+**Data Bits** | 8
+**Parity** | None
+**Stop bits** | 1
+**Flow Control** | See note below
+**Control Pins/Other settings** | Make sure DTR is enabled 
+
+**NOTE**: In RepRapFirmware v3.6.0 and later, DTR needs to be enabled, as the USB driver has changed to tinyusb. Most terminal emulators have a button or checkbox to enable DTR, or do it automatically, but some require 'Flow control' to be set to 'Hardware'. On YAT, doing this also enables RTS, which then stops YAT communicating with the Duet. So only enable DTR. On macOS and Linux, Minicom and Screen also enable DTR automatically.
+For earlier versions of RepRapFirmware, it does not matter how DTR is set. Leave Flow Control as 'None'.
 
 # Windows
 
+There are many terminal emulators available for windows, the simplest and most reliable we have found is Yet Another Terminal (YAT). Other options include PuTTY, CuteCom, CoolTerm, RealTerm, as well as many others. Check that they can send upper and lower case letters, as this may be necessary to set the WiFi SSID and password.
+
 ## YAT - terminal emulator for Windows ##
 
-There are many terminal emulators available for windows, the simplest and most reliable we have found is Yet Another Terminal (YAT). You can install it from [Sourceforge here](https://sourceforge.net/projects/y-a-terminal/)
+You can install YAT from [Sourceforge here](https://sourceforge.net/projects/y-a-terminal/)
 
 ### Line endings ###
 
@@ -57,6 +85,8 @@ If the COM post is not available that is outside the scope of these instructions
   
 # macOS
 
+Cutecom is also available for macOS.
+
 ## SerialTools
 
 For macOS, we recommend using [SerialTools](https://apps.apple.com/gb/app/serialtools/id611021963) from the AppStore. 
@@ -89,25 +119,25 @@ To exit 'screen', press CTRL-A then CTRL-\ to exit screen and return to terminal
 
 # Linux
 
-### CuteCom
+There are many options to connect using Linux. Our favourite is to use CuteCom, which is a GUI serial terminal. Alternatively, you can use a text-based serial terminal application such as Minicom, or the built-in 'screen' terminal.
 
-There are many options to connect using Linux. Our favourite is to use CuteCom, which is a GUI serial terminal. Cutecom is also available for macOS.
+## CuteCom
 
 ![Cutecom](/guides/getting_connected/03_connect_to_duet_lin_01.jpg =600x)
 
-It's available in most package repositories, or install with `sudo apt install cutecom`. It can also be downloaded from [here](https://gitlab.com/cutecom/cutecom/-/blob/master/README.md). It should automatically detect the correct port (usually /dev/ttyACM0), and is configured correctly out of the box. Click 'Open' to connect.
+Cutecom is available in most package repositories, or install with `sudo apt install cutecom`. It can also be downloaded from [here](https://gitlab.com/cutecom/cutecom/-/blob/master/README.md). It should automatically detect the correct port (usually /dev/ttyACM0), and is configured correctly out of the box. Click 'Open' to connect.
 
-### Minicom
+## Minicom
 
-Alternatively, you can use a text-based serial terminal application such as Minicom. Install with `sudo apt install minicom`, and run from a Terminal window with `minicom -s`, which starts it in setup mode. Select 'Serial port setup', then 'A', and change the port to '/dev/ttyACM0' (or the port name from step 2). Press return twice, then 'Exit'. The terminal will start. 
+Install with `sudo apt install minicom`, and run from a Terminal window with `minicom -s`, which starts it in setup mode. Select 'Serial port setup', then 'A', and change the port to '/dev/ttyACM0' (or the port name from step 2). Press return twice, then 'Exit'. The terminal will start. 
 
 ![Minicom](/guides/getting_connected/03_connect_to_duet_lin_02.png =600x)
 
 Press CTRL-A then W for linewrap, CTRL-A then U for CR at end of line, and CTRL-A then E for local echo. CTRL-A then X quits Minicom, releasing the port.
 
-### Screen
+## Screen
 
-Finally, you can use the built-in 'screen' terminal. However, you cannot see the commands you type in, and the responses from the Duet are not formatted nicely on the screen. If you want to use 'screen', do this:
+When running 'screen' you cannot see the commands you type in, and the responses from the Duet are not formatted nicely on the screen. If you want to use 'screen', do this:
 
 Run `screen /dev/ttyACM0 115200`. (Replace "ttyACM0" with the port name if it's different.) Hit enter and you should see OK returned. You are connected successfully.
 
