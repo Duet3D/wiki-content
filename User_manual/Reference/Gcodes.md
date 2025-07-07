@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-06-27T15:37:23.534Z
+date: 2025-07-07T07:50:38.337Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5403,7 +5403,7 @@ M557 P1 X30 Y40.5
 
 Defines the points for for G32 bed probing. The P value is the index of the point (indices start at 0) and the X and Y values are the position to move extruder 0 to to probe the bed. An implementation should allow a minimum of three points (P0, P1 and P2). This just records the point coordinates; it does not actually do the probing. See [G32](/User_manual/Reference/Gcodes/G32){target=_blank}. Defining the probe points in this way is deprecated in RepRapFirmware, you should define them in a bed.g file instead.
 
-## M558: Set Z probe type
+## M558: Create or modify probe
 
 ### {.tabset}
 
@@ -5411,14 +5411,14 @@ Defines the points for for G32 bed probing. The P value is the index of the poin
 
 ##### Parameters
 
-* **Pnnn** Z probe type
+* **Knnn** Sets/selects probe number. If there is no K parameter then 0 is used. You can ignore this parameter if you have only one probe.
+* **Pnnn** Probe type
 * **C"name"** Specifies the input pin and the optional modulation pin. This parameter is mandatory, except for probe type 0 (manual probing) and 10 (Z motor stall detection).
-* **Hnnn** or **Hnnn:nnn** Dive height (mm). The height above the trigger height from which probing starts. Second probing height supported in RRF 3.5.1 and later, see notes below.
-* **Fnnn** or **Fnnn:nnn** or **Fnnn:nnn:nnn** Feed rate (i.e. probing speed, mm/min). Initial fast probe followed by probing at second speed supported in RRF 3.3 and later. Third speed for scanning Z probe supported in RRF 3.5.0 and later.
+* **Hnnn** or **Hnnn:nnn** Dive height (mm). The height above the trigger height from which probing starts. The second dive height is supported in RRF 3.5.1 and later, see notes below.
+* **Fnnn** or **Fnnn:nnn** or **Fnnn:nnn:nnn** Feed rate (i.e. probing speed, mm/min). Initial fast probe followed by probing at second speed is supported in RRF 3.3 and later. Third speed for scanning Z probe is supported in RRF 3.5.0 and later.
 * **Tnnn** Travel speed to and between probe points (mm/min). This is also the Z lift speed after probing. The corresponding axis speed limits set by M203 will be used instead if they are lower.
-* **Knnn** Sets/selects Z probe number. If there is no K parameter then 0 is used. You can ignore this parameter if you have only one Z probe.
 * **Rnnn** Z probe recovery time before the probing move is started, default zero (seconds). This is to allow the probe to settle after executing a travel move to the coordinates to probe.
-* **Annn** Maximum number of times to probe each point, default 1. Maximum, as of 2.03, is 31. Setting M558 A parameter to anything >31 set it to 0 instead of to 31
+* **Annn** Maximum number of times to probe each point, default 1. Maximum, as of RRF 2.03, is 31. Setting M558 A parameter to anything >31 set it to 0 instead of to 31
 * **Snnn** Tolerance when probing multiple times, default 0.03mm
 * **Bn** If 1, turn off all heaters while probing, default (B0) leaves heaters on.
 
@@ -5429,9 +5429,9 @@ M558 must come before G31.
 ##### Examples
 <br>
 <pre class="cblock">
-M558 P5 C"e0stop" H5 F120 T3000  ; Z probe connected to Duet 2 E0 endstop input<br>
+M558 P5 C"e0stop" H5 F120 T3000  ; probe connected to Duet 2 E0 endstop input<br>
 M574 Z0 P"nil" ; (RRF 3.0 on Duet 2 ONLY) no Z endstop switch, free up Z endstop input
-M558 P5 C"zstop" H5 F120 T3000  ; Z probe connected to Duet 2 Z endstop input<br>
+M558 P5 C"zstop" H5 F120 T3000  ; probe connected to Duet 2 Z endstop input<br>
 ; BL Touch on Duet 3 Mini 5+
 M950 S0 C"io3.out" ; servo/gpio 0 is io3.out pin
 M558 P9 C"io3.in" H5 F500:120 T3000 ; BLTouch connected to io3.in pin
@@ -5448,32 +5448,32 @@ M558 P8 C"zprobe.in+zprobe.mod" R0.4 F1200 ; zprobe.mod is the programming pin f
 
 ##### Notes
 
-A Z probe may be a switch, an IR proximity sensor, or some other device. The **P** parameter selects which to use:
+A probe may be a switch, an IR proximity sensor, or some other device. The **P** parameter selects which type to use:
 
-* P0 indicates that no Z probe is present. Whenever Z probing is commanded, you will be prompted to jog the Z axis until the nozzle is just touching the bed and then signal completion.
+* P0 indicates that no probe is present. Whenever Z probing is commanded, you will be prompted to jog the Z axis until the nozzle is just touching the bed and then signal completion.
 * P1 specifies an unmodulated or smart IR probe, or any other probe type that emulates one (probe output is an analog signal that rises with decreasing nozzle height above the bed). If there is a control signal to the probe, it is driven high when the probe type is P1.
 * P2 specifies a simple modulated IR probe, where the modulation is commanded directly by the main board firmware using the control signal to the probe.
 * P3 is similar to P1 but drives the control signal to the probe low. This may be used to switch between different Z probes.
 * P5 selects a switch by default (normally closed) for bed probing between the In and Gnd pins of the IO connector (Duet 3) or Z-probe connector (Duet 2).
 * P8 is as P5 but is unfiltered, for faster response time.
 * P9 is as P5 but for a BLTouch probe that needs to be retracted and redeployed between probe points.
-* P10 means use Z motor stall detection as the Z probe trigger.
+* P10 means use Z motor stall detection as the probe trigger.
 * P11 means a scanning Z probe with an analog output (supported from RRF 3.5.0). Such probes must be calibrated before use (see M558.1).
 
-Probe types 4, 6 and 7 (used in RRF 2.x) are no longer supported. Instead, use type 5 (filtered digital) or 8 (unfiltered digital) and use the C parameter to specify the input. 
+Probe types 4, 6 and 7 (used in RRF 2.x) are not supported in RRF 3.x. Instead, use type 5 (filtered digital) or 8 (unfiltered digital) and use the C parameter to specify the input. 
 
-Probes connected to Duet 3 expansion or tool boards are limited to types 8 and 9. Firmware 3.5 also supports type 11.
+Probes connected to Duet 3 expansion or tool boards are limited to types 8 and 9. Firmware 3.5 and later also support type 11.
 
 Only one Type 2 probe can be configured, and if using Duet 3 then it must be connected to the Duet 3 main board, not to a CAN-connected expansion or tool board.
 
-M558 with P parameter deletes the existing probe with that K number (if any) and creates a new Z probe. This resets the G31 values for that probe to default values.
+M558 with P parameter deletes the existing probe with that K number (if any) and creates a new probe. This resets the G31 values for that probe to default values.
 
-**In RRF 3.0 on Duet 2 boards only** (not in RRF 3.01 and later, and not in RRF 3.0 on Duet 3), if your Z probe is connected to the Z endstop input, that input is by default pre-assigned to be used by the Z endstop, so you must free it up first with `M574 Z0 P"nil"`.
+**In RRF 3.0 on Duet 2 boards only** (not in RRF 3.01 and later, and not in RRF 3.0 on Duet 3), if your probe is connected to the Z endstop input, that input is by default pre-assigned to be used by the Z endstop, so you must free it up first with `M574 Z0 P"nil"`.
 
 The **C** parameter specifies the input pin and the optional modulation pin. See [Pin names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank} for a list of available pins and their names to use. Invert the input by prefixing the input pin with ! character, when using an NPN output inductive or capacitive sensor or using an NO switch (not recommended, use a NC switch instead). The pullup resistor on the Z probe input is disabled by default. Enable it by prefixing the input pin (C parameter) with the ^ character. Enable pullup resistor with ^ if using Duet 2, running RRF3, using the Z probe input pin, and the probe type is a switch or BLTouch.
 
 The **H** parameter:
-* Defines the Z probe dive height, which is the height above the trigger height from which probing starts. 
+* Defines the dive height when Z probing, which is the height above the trigger height from which probing starts. 
 * The default is 3mm or 5mm depending on firmware version. You may wish to increase it during initial calibration. 
 * When using mesh bed compensation or running G30 commands with specified XY coordinates (for example from the bed.g file), the firmware moves the Z probe to this height above where it expects the bed to be before commencing probing. The maximum depth of probing from this position is twice the dive height. 
 * A large dive height will tolerate a very uneven bed or poor calibration. A small dive height will make probing faster, because the Z probe has less distance to travel before reaching the bed. 
@@ -5482,7 +5482,7 @@ The **H** parameter:
 The **F** parameter:
 * With a single value for the **F** parameter, this defines the probing feed rate (i.e. probing speed), in mm/min.
 * From RRF 3.3 you can provide two **F** parameters instead of one, where the second is lower than the first, for example F1000:500. When doing a plain G30 command, an additional probe will be done using the first speed to establish the approximate bed position, before one or more additional probes are done using the second speed. The first speed will not be used when probing at a defined point or when mesh bed probing.
-* From RRF 3.5.0 the **F** parameter can take up to three values. The third value is the scanning speed for scanning Z probes, and is only used by them, and only reports by M558 for scanning Z probes. If a scanning Z probe is used as an ordinary Z probe with G30 (which is be supported in 3.5.0) then the first two speeds given in the F parameter will be used, as usual. In RRF 3.5.0-rc.2 and earlier, only two F parameters were supported, and the first F speed was also used as the scanning speed.
+* From RRF 3.5.0 the **F** parameter can take up to three values. The third value is the scanning speed for scanning Z probes, and is only used by them, and only reports by M558 for scanning Z probes. If a scanning Z probe is used as an ordinary Z probe with G30 (which is be supported in 3.5.0) then the first two speeds given in the F parameter will be used, as usual.
 
 The **A** and **S** parameters control multiple probing. Probing is repeated until two consecutive probe attempts produce results that differ by no more than the S parameter; then the average of those two results is used. For example, S-1 would force averaging. However, if the number of attempts specified by the A parameter is reached without getting two consecutive results within tolerance of each other, no further probe attempts are made and the average result of all the attempts is used.
 
@@ -5513,14 +5513,14 @@ See also: [Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing
 
 ##### Order dependency
 
-M558 must come before G31.
+M558 must come before any G31 command for the same probe.
 
 ##### Examples
 <br>
 <pre class="cblock">
-M558 P1 X1 Y0 Z1 F500 T5000 H3 ; Z probe is used for homing X and Z axes (RRF 1.19 and earlier)<br>
-M558 P4 H5 F120 T3000  ; Z probe connected to E0 endstop input<br>
-M558 P7 H5 F120 T3000  ; Z probe connected to Z endstop input<br>
+M558 P1 X1 Y0 Z1 F500 T5000 H3 ; probe is used for homing X and Z axes (RRF 1.19 and earlier)<br>
+M558 P4 H5 F120 T3000  ; probe connected to E0 endstop input<br>
+M558 P7 H5 F120 T3000  ; probe connected to Z endstop input<br>
 ; BLTouch on Duet Maestro
 M558 P9 H5 F120 T3000  ; BLTouch connected to Z probe IN pin
 ...
@@ -5534,9 +5534,9 @@ M280 P3 S10 I1 ; send control signal to BLTouch through heater 3 pin
 
 ##### Notes
 
-A Z probe may be a switch, an IR proximity sensor, or some other device. The **P** selects which to use:
+A probe may be a switch, an IR proximity sensor, or some other device. The **P** selects which to use:
 
-* P0 indicates that no Z probe is present. Whenever Z probing is commanded, you will be prompted to jog the Z axis until the nozzle is just touching the bed and then signal completion.
+* P0 indicates that no probe is present. Whenever Z probing is commanded, you will be prompted to jog the Z axis until the nozzle is just touching the bed and then signal completion.
 * P1 specifies an unmodulated or smart IR probe, or any other probe type that emulates one (probe output is an analog signal that rises with decreasing nozzle height above the bed). If there is a control signal to the probe, it is driven high when the probe type is P1.
 * P2 specifies a simple modulated IR probe, where the modulation is commanded directly by the main board firmware using the control signal to the probe.
 * P3 is similar to P1 but drives the control signal to the probe low. This may be used to switch between different Z probes.
@@ -5564,7 +5564,7 @@ Supported from RRF 3.5.0
 
 ### Parameters
 
-* **Knn** (optional) Z probe number, default 0. The probe must be of a scanning type (see M558).
+* **Knn** (optional) probe number, default 0. The probe must be of a scanning type (see M558).
 * **Sn.n** Height to scan above and below the trigger height, in mm
 * **Ann.n** (optional) Linear coefficient of the output, in mm per count
 * **Bnn.n** (optional, ignored unless A parameter is also present, default 0.0) Quadratic coefficient of the output, in mm^2 per count
@@ -5622,7 +5622,7 @@ Supported from RRF 3.5.0
 
 ### Parameters
 
-* **Knn** (optional) Z probe number, default 0. The probe must be of a scanning type (see M558).
+* **Knn** (optional) probe number, default 0. The probe must be of a scanning type (see M558).
 * **Snn** Drive current to set, or -1 to determine drive current and reading offset automatically. For LDC1612-based probes, when setting the current this should be in the range 0 to 31.
 * **Rnnnn** (optional, default zero) Offset to subtract from the raw sensor reading. Only used if the S parameter is present and >= 0.
 
@@ -5664,13 +5664,13 @@ Sensor drive current is 15, offset is 139919
 See also: [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
 
 
-## M558.3: Set touch mode parameters for analog Z probe
+## M558.3: Set touch mode parameters for analog probe
 
 Supported from RRF 3.6.0
 
 ### Parameters (provisional)
 
-* **Knn** Z probe number
+* **Knn** probe number
 * **Sn** Mode to use: 0 = standard mode, 1 = touch mode
 * **Fnnn** Feed rate to use (mm/min) in touch mode
 * **Hn.nn** Nozzle height (mm) to be assumed when touch is detected, normally negative
