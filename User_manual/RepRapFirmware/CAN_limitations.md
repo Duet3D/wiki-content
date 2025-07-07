@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.4) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2025-07-07T13:40:15.925Z
+date: 2025-07-07T13:41:47.771Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -37,6 +37,7 @@ We have no current plans to remove the following limitations, although removing 
 # Temporary limitations
 
 We plan to remove these in future firmware releases.
+# Tabs {.tabset}
 
 ## Limitations in firmware 3.6 and earlier
 * The M571 command cannot be used in conjunction with extruders driven from CAN-connected expansion boards, or IO on expansion boards.
