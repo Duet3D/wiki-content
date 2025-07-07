@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware (as at version 3.4) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2025-02-24T16:14:58.700Z
+date: 2025-07-07T13:40:15.925Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -26,7 +26,7 @@ We do not intend to remove these in future firmware versions.
 
 We have no current plans to remove the following limitations, although removing them would be technically possible.
 
-* Z probes connected to expansion or tool boards are limited to [types 8 and 9](/User_manual/Connecting_hardware/Z_probe_connecting). Firmware 3.5 and later also support type 11.
+* Z probes connected to expansion or tool boards are limited to [types 8, 9 and 11](/User_manual/Connecting_hardware/Z_probe_connecting). Firmware before 3.5 does not support type 11.
 * Ports used for spindle control or for laser control must be on the main board
 * DHT temperature/humidity sensors connected to expansion boards are not supported.
 * Where an expansion board supports multiple drives, or a main board is used as an expansion board, if multiple motion systems are used then the drivers on that board may not be split between motion systems (i.e. all drivers in use must at any time be used by just one motion system).
