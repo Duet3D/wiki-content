@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-07T15:37:41.775Z
+date: 2025-07-07T16:36:00.368Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3199,11 +3199,16 @@ In experimental 3.6.x firmware builds that support S-curve acceleration, the T p
 M201.1 X500 Y500 Z20 E500:500
 </pre>
 
+### Description
+
+Sets the acceleration that axes should use for special types of move that should be done using reduced acceleration.
+
 ### Notes
 
-Set the acceleration that axes should use for special types of move that should be done using reduced acceleration.
-
-These values are used for probing moves (because some types of Z probe can be triggered by high acceleration at the start of the move) and for moves that involve stall detection endstops (because high acceleration can bring the motor close to stalling). If a single E value is provided, that value is applied to all extruders. The values must be provided in mm/sec^2^ even if G20 has been used to set units to inches. M201.1 without parameters reports the current settings.
+* These values are used for probing moves (because some types of Z probe can be triggered by high acceleration at the start of the move) and for moves that involve stall detection endstops (because high acceleration can bring the motor close to stalling). 
+* If a single E value is provided, that value is applied to all extruders. The values must be provided in mm/sec^2^ even if G20 has been used to set units to inches. 
+* M201.1 without parameters reports the current settings.
+* In RepRapFirmware 3.6.0 and later, when stall detection is used to feed filament until it reaches the hot end using a G1 H1 E move, the acceleration is reduced to the E value specified by M201.1. This makes it easier to use stall detection to feed filament when the extruder drive motor runs at high speed or has high inertia.
 
 ## M203: Set maximum feedrate
 
@@ -7380,6 +7385,7 @@ M593 P"none"      ; disable input shaping
 ##### Notes
 
 * In RRF 3.6.0, the input shaping algorithm has been changed. The new algorithm has the advantage that it can be (and is) applied to any type of move, including short segmented moves. The disadvantage that it introduces artefacts at direction changes.
+* In RRF 3.6.0, the minimum input shaping frequency has been reduced to 4Hz for all boards.
 * The L parameter is not used in RRF 3.6.0 and later. The H and T changed compared to earlier  
 
 ##### Information about the Input Shapers
@@ -8402,7 +8408,7 @@ This sets the stall detection parameters and optionally the low-load current red
 
 ##### Notes
 
-* In RRF 3.6.0, a homing move that uses stall endstops will be cancelled and an error message generated if the movement speed is too low for stall detection to be definitely feasible (also if it is too high when using TMC2209 or TMC2240 drivers). There are small speed ranges that will be rejected by this release but may in practice have worked on some boards using previous firmware versions, so please test stall homing after upgrading. 
+* In RRF 3.6.0, a homing move that uses stall detect endstops will be cancelled and an error message generated if the movement speed is too low for stall detection to be definitely feasible (also if it is too high when using TMC2209 or TMC2240 drivers). There are small speed ranges that will be rejected by this release but may in practice have worked on some boards using previous firmware versions, so please test stall homing after upgrading. 
 * In RRF 3.4.0 thru 3.4.5, motor stalls don't generate events when not printing from SD card. RRF 3.4.6 and later do generate events when not printing from SD card.
 * In RRF v3.4 and later, R2 and R3 both cause an event to be created when the driver stalls. 
 * To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. 
