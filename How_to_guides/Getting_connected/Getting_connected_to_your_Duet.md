@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2025-07-03T23:55:25.671Z
+date: 2025-07-07T14:19:50.264Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -174,6 +174,7 @@ For newer versions of RepRapFirmware (3.6 and later), on Duet 3 boards, the term
 
 Older versions of YAT don't have this option, but DTR can be enabled on the connection screen. For older versions of RRF, it doesn't matter if this is enabled or disabled. 
 
+The rest of the default values, eg for Bits per second etc, should work.
 
 ### YAT settings
 
@@ -416,6 +417,10 @@ You can safely close Terminal at this point.
 
 > Duet Web Control (also known as DWC) is the user interface used over a network connection in a browser to configure and control a Duet. The manual for the use of the DWC is here: [Duet Web Control Manual](/User_manual/Reference/Duet_Web_Control_Manual)
 {.is-info}
+
+> Note that network connections to DWC are unsecured **http** sessions. Your browser may try to force using a more secure **https** session, and you may receive a warning when you try to connect to DWC. DWC in standalone mode does not support https connections. As the Duet is on your local network, it should be fine to ignore this warning and connect. 
+{.is-warning}
+
 
 [![06_dwc_01.jpg](/guides/getting_connected/06_dwc_01.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_01.jpg){target=_blank}[![06_dwc_02.jpg](/guides/getting_connected/06_dwc_02.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_02.jpg){target=_blank}Open your browser and type the IP address assigned to the Duet, eg **192.168.1.90**
 
