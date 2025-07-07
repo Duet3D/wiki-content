@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-07T07:50:38.337Z
+date: 2025-07-07T15:37:41.775Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3251,11 +3251,11 @@ M204 P500 T2000
 
 ### Notes
 
-Use M201 to set per-axis accelerations and extruder accelerations. RepRapFirmware applies the M204 accelerations to the move as a whole, and also applies the limits set by M201 to each axis and extruder.
-
-Values are in mm/s².
-
-This command is supported by firmware version 1.18 and later.
+* M204 sets travel and printing acceleration limits for the current job only.
+* Use M201 to set per-axis accelerations and extruder accelerations. RepRapFirmware applies the M204 accelerations to the move as a whole, and also applies the limits set by M201 to each axis and extruder.
+* RepRapFirmware applies M204 accelerations to the X and Y axes of the current tool. This includes active tools that map X/Y to additional axis (eg U/V). If additional axes are directly commanded (eg G1 commands to U/V axes) when the tool that maps these to X/Y is not selected, or the selected tool does not map X/Y to the other axes, then M204 limits will not be applied.
+* Values are in mm/s².
+* This command is supported by firmware version 1.18 and later.
 
 ## M205: Set max instantaneous speed change in mm/sec
 
@@ -6563,7 +6563,8 @@ Modes 2 and 3 are supported in RRF 3.01 and later. Modes 4 and 6 are supported i
 
 ### Notes
 
-In RRF 3.1 and later for Duet 3, the auxiliary serial port remains disabled until a M575 P1 command is received. This is to allow the IO_0 port to be used for other purposes. In RRF 3.2 and later on all boards, the auxilliary serial port(s) remain disabled until enabled using M575.
+* In RRF 3.1 and later for Duet 3, the auxiliary serial port remains disabled until a M575 P1 command is received. This is to allow the IO_0 port to be used for other purposes. In RRF 3.2 and later on all boards, the auxilliary serial port(s) remain disabled until enabled using M575.
+* In RRF 3.6.0 and later, the USB port can now be switched into PanelDue mode using M575.
 
 ## M576: Set SPI comms parameters
 
