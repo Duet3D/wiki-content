@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2024-11-05T14:31:02.930Z
+date: 2025-07-09T11:51:01.840Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -17,7 +17,8 @@ This is a DIY project to interface a popular style of CNC pendant to the PanelDu
 ![cnc_pendant_01.jpg](/manual/sensors/cnc_pendant_01.jpg =400x)
 
 * One wired CNC pendant similar to the image above. These are available in 4-axis versions (illustrated) and 6 axis versions (with the axis selector switch having additional position 5 and 6). Either will work.
-* One Arduino Pro Micro, Micro or Nano (Pro Micro preferred)
+* One Arduino Pro Micro (5V/16MHz version), Micro or Nano (Pro Micro preferred)
+  Note: the Pro Micro is not an official Arduino board. It was developed by Sparkfun, and clones are available from most electronics vendors. It is supported by the Arduino IDE.
 * One 10K wire-ended resistor
 * One 6.8K wire-ended resistor
 * 4-core unshielded cable, as long as you want. You could instead re-use the 18- or 20-core cable that comes with the pendant, but the 4-core cable is thinner. If you do not need the PanelDue pass through feature, then 3-core cable is sufficient.
@@ -89,6 +90,12 @@ The cut ends of the original 18- or 20-core cable, and the cores of the 4-core c
 [![cnc_pendant_02.jpg](/manual/sensors/cnc_pendant_02.jpg =600x)](/manual/sensors/cnc_pendant_02.jpg){target=_blank}
 
 As there are several wires that need to be connected to ground, it's easiest if you connect them together at the ground terminal of the rotary encoder, then run a single ground wire from there to the Arduino. That way you don't need to connect more than one wire to each pad of the Arduino, except that you need to connect both +5V from the 4-core cable and +5V for the encoder to the VCC terminal.
+
+## Arduino Pro Micro J1 jumper
+
+The Pro Micro has a 5V regulator on-board. If you supply 5V to the board, the 5V regulator may drag the output voltage down to between 4.6V and 4.9V. This may not be enough to power the encoder, and may also make the 3.3V signal marginal to the Duet (from TX0, via a voltage divider to reduce the voltage from 5V to ~3V), particularly if you are using a long cable. Either:
+* If you are supplying 5V to the Pro Micro, bridge J1 with a solder bridge to bypass the on-board 5V regulator. For more information on the J1 jumper see: [https://golem.hu/guide/bridging-j1-pro-micro/](https://golem.hu/guide/bridging-j1-pro-micro/)
+* If you can measure the voltage on TX0, adjust the resistor values of the voltage divider to set the signal voltage. It must remain under 3.3V, or risks damaging the Duet. Voltage divider calculator: [https://ohmslawcalculator.com/voltage-divider-calculator](https://ohmslawcalculator.com/voltage-divider-calculator). For example, with an input voltage (ie TX0 signal) of 4.6V, using R1 at 6.8k ohms and R2 at 10k ohms, you get an output voltage of 2.738V. If TX0 outputs 5V (ie if J1 is jumpered), using a 5.2k ohm resistor would give a 3.289V output. (5.1k ohm and 5.6k ohm are common resistor values, 5.2k ohm is not). Choose values for R1 and R2 that best suit your setup.
 
 ## Arduino Pro Micro to Duet wiring
 
