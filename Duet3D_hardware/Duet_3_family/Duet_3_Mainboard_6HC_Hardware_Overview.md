@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-06-18T13:34:27.354Z
+date: 2025-07-13T07:34:41.564Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -578,11 +578,43 @@ There is a 120R bus termination fitted to the CAN-FD bus on the 6HC boards, so n
 On the back side of the board are 2 drill to disconnect jumpers per bus:
 ![6hc_can_termination_drillable.png](/duet_boards/duet_3_mb6hc/6hc_can_termination_drillable.png)
 
-To disconnect the termination resistors, use a small drill bit ~2mm **by hand** to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. **Do not drill all the way through the board**, the copper layer is approx 70um thick (i.e. very thin!) once its removed test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.
+To disconnect the termination resistors, use a small drill bit ~2mm **by hand** to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. **Do not drill all the way through the board**, the copper layer is approx 70um thick (i.e. very thin!) once its removed test that the pads are actually disconnected by checking that there is no continuity between them with a multimeter.
 
 Both jumpers must be disconnected or connected. do not do only one.
 
 If in the future you want to add the termination resistor back into the circuit the jumper can be bridged with solder.
+
+## RS485
+
+Note to use RS485 you must fit the RS485_EN jumper in order to connect IO1 to the RS485 transciever. Do not connect anything to the IO1 header when using RS485.
+
+### Modbus RTU
+
+First set the serial port to device mode using [M575: Set serial comms parameters](/User_manual/Reference/Gcodes/M575). On the 6HC io1 is the secondary serial channel  so the command is:
+
+`
+M575 P2 S7
+`
+
+The gcode commands [M260.1: Modbus write registers or coils](/User_manual/Reference/Gcodes/M260_1) and [M261.1: Modbus read registers, coils or inputs](/User_manual/Reference/Gcodes/M261_1) are used to write to and read from MODBUS RTU devices over RS485
+
+It is also possible to communicate with non standard Modbus slave devices using [M260.4: Raw Modbus transaction](/User_manual/Reference/Gcodes/M260_4)  
+
+### Driver 5 Diag
+
+The 6HC design originally connected the diag outputs from the stepper motor drivers to the main processor however this functionally is not used by RepRapFirmware as the information is available on the internal stepper driver SPI bus. 
+
+In v1,02c the Driver 5 Diag connection was repurposed as the Transmit/Receive control of the RS485 transceiver. If you run an alternative firmware on the 6HVv1.02c or later that needs to use the diag output (e.g. for stall detection) then there is provision to connect the pin back to the diag function (note you will loose RS485 functionality.
+
+The schematic for the connection is:
+![duet3_6hcv1.02c_485_diag5_schematic.png](/duet_boards/duet_3_mb6hc/duet3_6hcv1.02c_485_diag5_schematic.png =400x)
+
+To make this change first remove the connection between MB_TXRXSW and PC10 by using a small drill bit ~2mm **by hand** to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. **Do not drill all the way through the board**, the copper layer is approx 70um thick (i.e. very thin!) once its removed test that the pads are actually disconnected by checking that there is no continuity between them with a multimeter.
+![duet3_6hcv1.02c_485_diag5_disconnect.png](/duet_boards/duet_3_mb6hc/duet3_6hcv1.02c_485_diag5_disconnect.png =400x)
+
+Then connect the DRIVER_5_DIAG0 to PC10 by bridging the jumper with solder:
+![duet3_6hcv1.02c_485_diag5_disconnect.png](/duet_boards/duet_3_mb6hc/duet3_6hcv1.02c_485_diag5_connect.png =400x)
+check for continuity using a multimeter.
 
 
 
