@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-07-13T07:34:41.564Z
+date: 2025-07-14T10:29:17.657Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -602,9 +602,9 @@ It is also possible to communicate with non standard Modbus slave devices using 
 
 ### Driver 5 Diag
 
-The 6HC design originally connected the diag outputs from the stepper motor drivers to the main processor however this functionally is not used by RepRapFirmware as the information is available on the internal stepper driver SPI bus. 
+The 6HC design originally connected the DIAG outputs from the stepper motor drivers to the main processor; however this functionally is not used by RepRapFirmware as the information is available on the internal stepper driver SPI bus. 
 
-In v1,02c the Driver 5 Diag connection was repurposed as the Transmit/Receive control of the RS485 transceiver. If you run an alternative firmware on the 6HVv1.02c or later that needs to use the diag output (e.g. for stall detection) then there is provision to connect the pin back to the diag function (note you will loose RS485 functionality.
+In v1.02c the Driver 5 DIAG connection was repurposed as the Transmit/Receive control of the RS485 transceiver. If you run an alternative firmware on the 6HC v1.02c or later that needs to use the diag output (e.g. for stall detection) then there is provision to connect the pin back to the diag function (note you will lose RS485 functionality).
 
 The schematic for the connection is:
 ![duet3_6hcv1.02c_485_diag5_schematic.png](/duet_boards/duet_3_mb6hc/duet3_6hcv1.02c_485_diag5_schematic.png =400x)
