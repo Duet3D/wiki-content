@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2025-07-16T12:02:51.901Z
+date: 2025-07-16T12:05:16.149Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -105,10 +105,10 @@ Wire the Arduino Pro Micro to the Duet 3 IO_0 connector or Duet 2 PanelDue conne
 |:----------|:-----|:------------|
 | VCC       | +5V | red |
 | GND       | GND | yellow |
-| TXO | Through 6K8 resistor to IO_0_IN (Duet 3) or URXD0 (Duet 2) | blue, from resistor junction to Duet |
-| GND | Through 10K resistor to IO_0_IN (Duet 3) or URXD0 (Duet 2) | ^^ |
+| TXO | Through 6K8 resistor to IO_0_IN (Duet 3) or URXD0 (Duet 2) **or** direct to Duet 3 IO0_IN | blue, from resistor junction to Duet |
+| GND | Through 10K resistor to IO_0_IN (Duet 3) or URXD0 (Duet 2) **or** omit for  Duet 3 | ^^ |
 
-If the pendant will be use donly woth Duet 3 electronics then you can dispense with the two resistors and connect TX0 directly to the IO0_IN pin 0f the Duet 3.
+If the pendant will be used only with Duet 3 electronics then you can dispense with the two resistors and connect TX0 directly to the IO0_IN pin 0f the Duet 3.
 
 [![cnc_pendant_03.jpg](/manual/sensors/cnc_pendant_03.jpg =600x)](/manual/sensors/cnc_pendant_03.jpg){target=_blank}
 
