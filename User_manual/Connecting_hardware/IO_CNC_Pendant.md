@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2025-07-11T09:31:56.948Z
+date: 2025-07-16T11:56:09.899Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -10,7 +10,7 @@ dateCreated: 2021-11-15T12:24:39.042Z
 
 # Introduction
 
-This is a DIY project to interface a popular style of CNC pendant to the PanelDue port of a Duet 3 or Duet 2 WiFi/Ethernet/Maestro.
+This is a DIY project to interface a popular style of CNC pendant to the PanelDue port of a Duet 3 or Duet 2 WiFi/Ethernet/Maestro. It allows you to jog the axes of the Duet by holding down the Enable button and turning the wheel. The rotary switches select which axis you jog and how much it moves for a given movement of the handwheel.
 
 # Parts needed
 
@@ -19,8 +19,8 @@ This is a DIY project to interface a popular style of CNC pendant to the PanelDu
 * One wired CNC pendant similar to the image above. These are available in 4-axis versions (illustrated) and 6 axis versions (with the axis selector switch having additional position 5 and 6). Either will work.
 * One Arduino Pro Micro (5V/16MHz version), Micro or Nano (Pro Micro preferred)
   Note: the Pro Micro is not an official Arduino board. It was developed by Sparkfun, and clones are available from most electronics vendors. It is supported by the Arduino IDE.
-* One 10K wire-ended resistor
-* One 6.8K wire-ended resistor
+* One 10K wire-ended resistor (optional if the pendant will be used only with a Duet 3 board)
+* One 6.8K wire-ended resistor (optional if the pendant will be used only with a Duet 3 board)
 * 4-core unshielded cable, as long as you want. You could instead re-use the 18- or 20-core cable that comes with the pendant, but the 4-core cable is thinner. If you do not need the PanelDue pass through feature, then 3-core cable is sufficient.
 * 4- or 5- way Molex KK connector shell and crimp pins to plug into the PanelDue port of the Duet (you should have received some of these with your Duet)
 * Small cable ties
@@ -109,6 +109,8 @@ Wire the Arduino Pro Micro to the Duet 3 IO_0 connector or Duet 2 PanelDue conne
 | GND       | GND | yellow |
 | TXO | Through 6K8 resistor to IO_0_IN (Duet 3) or URXD0 (Duet 2) | blue, from resistor junction to Duet |
 | GND | Through 10K resistor to IO_0_IN (Duet 3) or URXD0 (Duet 2) | ^^ |
+
+If the pendant will be use donly woth Duet 3 electronics then you can dispense with the two resistors and connect TX0 directly to the IO0_IN pin 0f the Duet 3.
 
 [![cnc_pendant_03.jpg](/manual/sensors/cnc_pendant_03.jpg =600x)](/manual/sensors/cnc_pendant_03.jpg){target=_blank}
 
