@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2025-07-16T12:05:16.149Z
+date: 2025-07-16T12:08:09.534Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -120,14 +120,14 @@ Before refitting the back of the pendant, put some Kapton tape or insulating tap
 
 ## PanelDue pass through
 
-To connect a PanelDue as well, the Arduino Pro Micro passes the PanelDue commands through to the Duet. The PanelDue can be connected at either end of the cable, i.e. close to the Arduino Pro Micro if you wanted to have a combined Pendant with PanelDue display, or at the Duet end if the PanelDue is mounted to the machine, and the Pendant is used remotely.
+To connect a PanelDue as well, the Arduino Pro Micro passes the PanelDue commands through to the Duet. The PanelDue can be connected at either end of the cable, i.e. close to the Arduino Pro Micro if you wanted to have a combined Pendant with PanelDue display, or at the Duet end if the PanelDue is mounted to the machine and the Pendant is used remotely.
 
 | PanelDue | Pro Micro / Duet | Wire colour |
 |:---------|:-----------------|:------------|
-| +5V      | +5V/VCC on Ardiuno or Duet | red  |
-| GND      | GND on Ardiuno or Duet | yellow |
+| +5V      | +5V/VCC on Arduino or Duet | red  |
+| GND      | GND on Arduino or Duet | yellow |
 | DIN      | **Duet** IO_0_OUT (Duet 3) or UTXD0 (Duet 2) | green |
-| DOUT     | **Pro Micro** RXI | blue wire of PanelDue cable to green wire of pendant cable |
+| DOUT     | **Arduino Pro Micro** RXI | blue wire of PanelDue cable to green wire of pendant cable |
 
 The DOUT signal from the PanelDue (which is usually the blue wire in a 4-core cable) must be connected to the RXI pin of the Arduino in the pendant (the green wire in the 4-core pendant cable is used in the wiring list). Connect the blue wire from PanelDue to the green wire of the pendant. Connect the DIN (green) PanelDue wire to the IO_0_OUT pin of the IO_0 connector (Duet 3), or the UTXD0 pin of the PanelDue connector (Duet 2). The +5V pin on the Duet connector goes to the +5V (red) wire of both the pendant and the PanelDue, likewise the ground connection goes to the yellow wires of both.
 
