@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2025-07-16T11:56:09.899Z
+date: 2025-07-16T12:02:51.901Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -40,11 +40,7 @@ Install Arduino IDE 1.8.1 on your PC and create a new sketch called CNC-pendant.
 
 For wiring differences and hardware changes needed if using an Arduino Micro or Nano, see the comments at the start of the CNC-pendant.ino file.
 
-Note: If you experience issues with skipped steps when using the encoder, a possible fix has been posted on the Duet forum by user morgoth90 here: [https://forum.duet3d.com/topic/36798/cnc-pendant-encoder-skipping-step](https://forum.duet3d.com/topic/36798/cnc-pendant-encoder-skipping-step){target=_blank}.
-
-They wrote: "After a few fast encoder rotations the detected pulses disalign resulting in two stray pulses after each detected movement. This behaviour is probably caused by some missed pulse but as result will ignore the first movement in the opposite direction. After some tests I fixed the issue rewriting the encoder code using the arduino Encoder library."
-
-Replace the `RotaryEncoder.cpp` and `RotaryEncoder.h` files in the CNC-pendant sketch with those from the forum thread. Feedback welcome.
+Note: If you experience issues with skipped steps when using the encoder, a possible fix has been posted on the Duet forum by user morgoth90 here: [https://forum.duet3d.com/topic/36798/cnc-pendant-encoder-skipping-step](https://forum.duet3d.com/topic/36798/cnc-pendant-encoder-skipping-step){target=_blank}. They wrote: "After a few fast encoder rotations the detected pulses disalign resulting in two stray pulses after each detected movement. This behaviour is probably caused by some missed pulse but as result will ignore the first movement in the opposite direction. After some tests I fixed the issue rewriting the encoder code using the Arduino Encoder library." If you want to implement this change, replace the `RotaryEncoder.cpp` and `RotaryEncoder.h` files in the CNC-pendant sketch with those from the forum thread. Feedback welcome.
 
 # Wiring
 
@@ -58,7 +54,9 @@ Thanks to forum user [jeffouille](https://forum.duet3d.com/topic/33892/){target=
 
 ## Cable
 
-If you are replacing the 18-or 20-core cable supplied with the pendant by 3- or 4-core cable, cut the 3- or 4-core cable to length and curl it if desired using the heat gun and a wooden dowel. Remove the back of the pendant and cut the 18- or 20-core cable close to the body of the pendant, making sure that you leave enough length for the individual wires to reach the Arduino, which will be installed in the top of the pendant. Remove the cut cable from the cable gland and feed the 4-core cable though it instead. Use tape or heatshrink on the outside of the 4-core cable to make it big enough for the cable gland to grip.
+If you are replacing the 18-or 20-core cable supplied with the pendant by 3- or 4-core cable, cut the 3- or 4-core cable to length, wind it around the wooden dowel and use the heat gun to set the curls.
+
+Remove the back of the pendant and cut the 18- or 20-core cable close to the body of the pendant, making sure that you leave enough length for the individual wires to reach the Arduino, which will be installed in the top of the pendant. Remove the cut cable from the cable gland and feed the 4-core cable though it instead. Use tape or heatshrink on the outside of the 4-core cable to make it big enough for the cable gland to grip.
 
 ## Pendant to Arduino Pro Micro wiring
 
@@ -89,7 +87,7 @@ The cut ends of the original 18- or 20-core cable, and the cores of the 4-core c
 
 [![cnc_pendant_02.jpg](/manual/sensors/cnc_pendant_02.jpg =600x)](/manual/sensors/cnc_pendant_02.jpg){target=_blank}
 
-As there are several wires that need to be connected to ground, it's easiest if you connect them together at the ground terminal of the rotary encoder, then run a single ground wire from there to the Arduino. That way you don't need to connect more than one wire to each pad of the Arduino, except that you need to connect both +5V from the 4-core cable and +5V for the encoder to the VCC terminal.
+As there are several wires that need to be connected to ground, it's easiest if you connect them together at the ground (black) terminal of the rotary encoder, then run a single wire from there to Arduino GND. That way you don't need to connect more than one wire to each pad of the Arduino, except that you need to connect both +5V from the 4-core cable and +5V for the encoder to the VCC terminal.
 
 <!-- Removed, see https://forum.duet3d.com/post/356707
 ## Arduino Pro Micro J1 jumper
