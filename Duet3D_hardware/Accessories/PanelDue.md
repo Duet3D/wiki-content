@@ -2,7 +2,7 @@
 title: Duet3D PanelDue
 description: 
 published: true
-date: 2024-08-21T14:27:11.059Z
+date: 2025-07-17T16:16:13.983Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-17T14:02:21.351Z
@@ -196,7 +196,7 @@ PanelDue V2
 
 ## Configuration
 
-**RepRapFirmware 3.x and later**: Using a PanelDue with Duet 3 and Duet 2 and RRF3 will require `M575 P1 S1 B57600` being present in config.g.
+**RepRapFirmware 3.x and later**: Using a PanelDue with Duet 3 and Duet 2 and RRF3 will require `M575 P1 S4 B57600` being present in config.g. Older versions of RRF and PanelDueFirware required `M575 P1 S1 B57600` but although this will still work with more recent firmnwares, it doesn't provide the same degree of protection against interference as the command that uses `S4`.
 
 **RepRapFirmware 2.x and earlier**: In RRF2 the command above was assumed as the default, so no additional configuration is required.
 
