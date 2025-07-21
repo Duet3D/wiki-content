@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-21T12:21:08.322Z
+date: 2025-07-21T12:23:15.924Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1924,6 +1924,8 @@ Sample response:
 The "fileName" and "offset" values are as given in the command. "data" is part or all of the base64-encoded thumbnail data starting at that offset. "next" is zero if there is no more data for that thumbnail, otherwise not all the thumbnail data was returned and "next" is the byte offset in the file of the rest of the thumbnail data. "err" is 0 if the command was successful, otherwise "err" is nonzero and the other fields may or may not be present. 
 
 ## M36.2: Return height map data
+
+*From 3.6.1 onwards*
 
 This command is similar to M36.1 but is used to fetch the data from a height map file. The offset value should be 0 for the first call for a given file, or the value returned in the "next" field by a previous M36.1 command for that file. The response is in JSON format.
 
