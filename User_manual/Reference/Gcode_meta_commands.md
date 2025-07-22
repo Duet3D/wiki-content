@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-06-30T11:40:47.303Z
+date: 2025-07-22T16:04:26.808Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -115,7 +115,7 @@ while <boolean-expression>
 
 The continue statement increments the iteration counter and transfers control back to the start of the loop, ready to evaluate the while-condition again.
 
-If a while loop is used in a GCode job file (not in a macro), it should have [M400](/User_manual/Reference/Gcodes/M400) at the end, and immediately before any uses of 'continue' within the loop.
+If a while loop is used in a GCode job file (not in a macro), it should have [M400](/User_manual/Reference/Gcodes/M400){target=_blank} at the end, and immediately before any uses of 'continue' within the loop.
 
 ### Nested loops
 
@@ -243,7 +243,7 @@ The following named constants are provided:
 | result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 or greater if it returned an error, or -1 if it was a blocking M291 message box command that had a Cancel button and either the Cancel button was pressed or the message box timed out.^1^  Meta commands do not change 'result'. |
 | true | bool | Boolean true |
 
-^1^ In RRF 3.5.0-rc3 and earlier, pressing 'Cancel' or M291 timing out will cancel the current job/macro, and any subsequent lines in the job/macro are not processed, rather than set result to -1. See [this discussion on the Duet3D forums](https://forum.duet3d.com/topic/34945/meta-gcode-result-variable-inconsistent-with-docs) for a workaround.
+^1^ In RRF 3.5.0-rc3 and earlier, pressing 'Cancel' or M291 timing out will cancel the current job/macro, and any subsequent lines in the job/macro are not processed, rather than set result to -1. See [this discussion on the Duet3D forums](https://forum.duet3d.com/topic/34945/meta-gcode-result-variable-inconsistent-with-docs){target=_blank} for a workaround.
 
 ## Literals
 
@@ -259,7 +259,7 @@ There are no literals of other types, however named constants **true**, **false*
 
 ## Object model properties
 
-Expressions may use the values of any properties in the RepRapFirmware Object Model (OM). See [Object Model of RepRapFirmware](https://github.com/Duet3D/RepRapFirmware/wiki/Object-Model-Documentation) to see what is available.
+Expressions may use the values of any properties in the RepRapFirmware Object Model (OM). See [Object Model of RepRapFirmware](https://github.com/Duet3D/RepRapFirmware/wiki/Object-Model-Documentation){target=_blank} to see what is available.
 
 ## Variables
 
@@ -279,7 +279,7 @@ Use `exists(<variable>)` to check if a variable is defined. e.g.
 ```
 exists(global.defaultSpeed)
 ```
-**Note**: In CNC mode, round brackets in a line are treated as enclosing comments. This means that if you use expressions in GCode, if you use round brackets within expressions then the whole expression must be enclosed in { }. This would normally be the case anyway when using expressions as parameters to regular GCode commands, so this only affects the use of round brackets in GCode meta commands such as **if**, **while**, **var**, **global**, **echo** and so on. See [here](/User_manual/Machine_configuration/Configuration_CNC#differences-in-firmware-behaviour-between-cnc-mode-and-fdm-mode) for more information.
+**Note**: In CNC mode, round brackets in a line are treated as enclosing comments. This means that if you use expressions in GCode, if you use round brackets within expressions then the whole expression must be enclosed in { }. This would normally be the case anyway when using expressions as parameters to regular GCode commands, so this only affects the use of round brackets in GCode meta commands such as **if**, **while**, **var**, **global**, **echo** and so on. See [here](/User_manual/Machine_configuration/Configuration_CNC#differences-in-firmware-behaviour-between-cnc-mode-and-fdm-mode){target=_blank} for more information.
 
 ## Macro parameters
 
@@ -370,7 +370,7 @@ The expression *expr1 ? expr2 : expr3* evaluates *expr2* if *expr1* is true, oth
 
 The following functions are supported, with their conventional meanings:
 
-(Please check the [changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x) to determine when a particular function was implemented, some functions are implemented in RRF3.1, or 3.2, or later)
+(Please check the [changelog](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x){target=_blank} to determine when a particular function was implemented, some functions are implemented in RRF3.1, or 3.2, or later)
 
 | Function name | Signature | Notes |
 |:---|:---|
@@ -435,7 +435,7 @@ From RepRapFirmware 3.6.0, the indentation of comment lines in meta GCode is no 
 
 ## daemon.g
 
-The [macro file /sys/daemon.g](/User_manual/Tuning/Macros#daemong) can be used to execute regular tasks. The firmware looks for the file, if the file exists it executes it and once the end of file is reached it waits. If the file is not found it waits for 10s and then looks for it again. 
+The [macro file /sys/daemon.g](/User_manual/Tuning/Macros#daemong){target=_blank} can be used to execute regular tasks. The firmware looks for the file, if the file exists it executes it and once the end of file is reached it waits. If the file is not found it waits for 10s and then looks for it again. 
 
 
 It is recommended to use a while loop inside the daemon.g file if you are using it to prevent the firmware having to open it every 10 seconds. E.g if you want a shorter update time then put a while loop inside the daemon.g with G4 S1 in it for 1 second repeats.
@@ -444,12 +444,15 @@ Caution must be taken not to start a loop that takes a long time to complete, wi
 
 ## Meta Gcode evaluation in SBC mode
 
-In SBC mode only, DSF waits for pending codes to be executed before a meta code is evaluated. `M576 S0` is likely to help, to reduce the delay between SPI transfers. This will be addressed in RRF 3.7, see [this Github issue](https://github.com/Duet3D/DuetSoftwareFramework/issues/211).
+In SBC mode only, DSF waits for pending codes to be executed before a meta code is evaluated. `M576 S0` is likely to help, to reduce the delay between SPI transfers. This will be addressed in RRF 3.7, see [this Github issue](https://github.com/Duet3D/DuetSoftwareFramework/issues/211){target=_blank}.
 
+## Job information and custom Object Model keys
+
+RepRapFirmware extracts data from the currently-running Gcode job when it runs, and stores it in the Object Model. From RRF 3.6.0, user-defined Object Model keys and values can be embedded in the Gcode file, which will be created in the OM when the Gcode file is run. See [Object Model documentation](/User_manual/RepRapFirmware/Object_Model#job-information-and-custom-object-model-keys){target=_blank}.
 
 # Examples of use
 
-Some examples using meta Gcode are listed below. There are also many examples and discussions on the [meta Gcode section of the forum](https://forum.duet3d.com/category/34/gcode-meta-commands).
+Some examples using meta Gcode are listed below. There are also many examples and discussions on the [meta Gcode section of the forum](https://forum.duet3d.com/category/34/gcode-meta-commands){target=_blank}.
 
 <details>
 <summary>Using conditional GCode commands in bed.g to calibrate a delta printer</summary>
