@@ -2,7 +2,7 @@
 title: Duet 3 ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-01-28T10:47:33.659Z
+date: 2025-07-24T17:26:52.457Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -193,6 +193,9 @@ The unipolar/bipolar selection will be set the same as for the first channel.
 # Revision history
 
 # Tabs {.tabset}
+## v0.3
+
+* Change to allow either the ADS131A02 or ADS131A04 to be used (note if the ADS131A04 is fitted, only the first two channels are available)
 
 ## v0.2
 
