@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2025-03-24T12:55:48.784Z
+date: 2025-07-25T14:42:53.815Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -16,8 +16,8 @@ This wiki page gives guidance on:
   * automatically using [M303](/User_manual/Reference/Gcodes/M303){target=_blank} to auto tune hot end and bed heaters
   * manually
 * Troubleshooting advice
-* Heater feedforward using [M309](/User_manual/Reference/Gcodes/M309)
-* Setting legacy heater PID parameters with [M301](/User_manual/Reference/Gcodes/M301)
+* Heater feedforward using [M309](/User_manual/Reference/Gcodes/M309){target=_blank}
+* Setting legacy heater PID parameters with [M301](/User_manual/Reference/Gcodes/M301){target=_blank}
 
 # Scope
 
@@ -65,7 +65,7 @@ Each heating controller performs temperature monitoring to try to detect fault c
 
 RepRapFirmware 3.2 introduced a new heater tuning algorithm. This algorithm is more accurate than the old one (especially in measuring the dead time), often completes more quickly than the old algorithm, and is more portable to expansion and tool board firmware (auto-tuning of heaters connected to Duet 3 expansion and tool boards is implemented in RRF 3.3). 
 
-Auto tuning is initiated by the [M303](/User_manual/Reference/Gcodes/M303) command, eg:
+Auto tuning is initiated by the [M303](/User_manual/Reference/Gcodes/M303){target=_blank} command, eg:
 
 ```
 M303 H1 S240 ; auto tune heater 1, default PWM (100%), 240C target
@@ -121,7 +121,7 @@ Make sure there is no M301 command for the same heater after the M307 command, o
 
 # Troubleshooting
 
-See also [Heater faults and how to avoid them](/User_manual/Troubleshooting/Heater_faults).
+See also [Heater faults and how to avoid them](/User_manual/Troubleshooting/Heater_faults){target=_blank}.
 
 ## Error message
 
@@ -285,9 +285,11 @@ If necessary you can make manual adjustments to the M307 model parameters, as fo
 
 # Heater feedforward
 
+## Extrusion rate to heater power feedforward
+
 The purpose of heater feedforward is to better maintain an even nozzle temperature in high flow rate extruders, by anticipating the additional heat needed when the flow rate increases, instead of waiting for the temperature to drop before power is increased. 
 
-[M309](/User_manual/Reference/Gcodes/M309) is used to set or report heater feedforward, and is supported in RepRapFirmware v3.4 and later.
+[M309](/User_manual/Reference/Gcodes/M309){target=_blank} is used to set or report heater feedforward, and is supported in RepRapFirmware v3.4 and later.
 
 ### Parameters
 
@@ -302,7 +304,7 @@ The purpose of heater feedforward is to better maintain an even nozzle temperatu
 
 ### Calibration
 
-![tuning_heaters_feedforward_01.png](/manual/configuration/tuning_heaters_feedforward_01.png)
+![tuning_heaters_feedforward_01.png](/manual/configuration/tuning_heaters_feedforward_01.png){target=_blank}
 
 * Heat the nozzle and let the temperature stabilise. 
 * While monitoring the temperature, extrude filament at close to the maximum rate for 20 seconds (as fast as the extruder can reasonable manage without skipping), then stop for another 20 seconds.
@@ -316,6 +318,78 @@ M309 P0 S0.01 ; Heater feedforward for tool 0
 ```
 
 In tests with 1.75mm PETG, we found 0.01 was about the right amount. 2.85mm filament will need more than 1.75mm, and high power heaters will need less than low power heaters. 
+
+## Heater temperature feedforward
+
+From RepRapFirmware 3.6.0, another form of heater feedforward control has been added. Heater temperature feedforward increases the heater temperature setpoint as extrusion speed increases. It is based on the work by user timschneider in [this Duet3D forum thread](https://forum.duet3d.com/topic/36364/feature-adaptive-feedforward-temperature-setpoint){target=_blank}
+
+[M309](/User_manual/Reference/Gcodes/M309){target=_blank} is used to set or report heater temperature feedforward, and is supported in RepRapFirmware v3.6.0 and later.
+
+### Parameters
+
+* **Pn** Tool number
+* **Tddd:eee:fff...** Feedforward temperature increase coefficients. The number of coefficients provided must equal the number of heaters configured for the tool when it was created (see M563). Supported in RRF 3.6.0 and later.
+* **Aggg** Feedforward advance time in milliseconds, maximum 100. RRF will attempt to apply the temperature and PWM adjustment this time in advance of the start of the corresponding move. This advance time may not always be achieved, for example when commencing movement from standstill. Supported in RRF 3.6.0 and later.
+
+### Notes
+
+* If the P parameter is not provided, the current tool is assumed.
+* The units of T are degrees Celsius per mm/sec of filament forward movement.
+* Feedforward is not applied to nonprinting moves, i.e. extruder moves only, with no other movement parameters. Typically these are retract, reprime, and filament loading moves.
+
+### Calibration
+
+* Find an **S** value that fits the filament/hot end/extruder/heater setup. See the "Extrusion rate to heater power feedforward" section above.
+* Find the lowest possible temperature `T_nom` for the filament at the slowest printing speed `F_nom`. e.g. extrude with F30 (0.5 mm/sec) and find the lowest temperature where the filament is melting and will bond with itself.
+* Then,
+  * either set the hotend temp to the highest possible temperature `T_max` you want to extrude the filament, and determine the maximal throughput for `T_max` at speed `F_max`
+  * or set the maximum extrusion rate/speed `F_max`, and increase the temperature `T_max` of the hotend until you are able to extrude at the desired speed.
+
+* In the slicer, use the determined maximum flow rate `F_max` as the flow limit in the slicer. Set the temp in the slicer to `T_nom`. 
+* Determine the M309 T parameter for the temp increase with `T = (T_max - T_nom) /(F_max-F_nom)`
+* Set an M309 command with P, S, T and A parameters as appropriate.
+
+### Examples
+
+#### PLA
+
+`T_nom`: 190°C
+`F_nom`: 30mm/min -> 0.5mm/s
+`T_max`: 230°C
+`F_max`: 480mm/min -> 8mm/s (20mm³/s for 1.75mm filament)
+
+T = (`T_max` - `T_nom`) /(`F_max` - `F_nom`) = 40°C / 7.5 mm/s = 5.33 °C / mm/s
+
+M309 command (send via console to test, add to config.g or filament configs to permanently enable):
+```
+M309 P0 S0.01 T5.33 A40
+```
+
+#### PETG
+
+`T_nom`: 190°C
+`F_nom`: 30mm/min -> 0.5mm/s
+`T_max`: 275°C
+`F_max`: 960mm/min -> 16mm/s (40mm³/s for 1.75mm filament)
+
+T = (`T_max` - `T_nom`) /(`F_max` - `F_nom`) = 85°C / 15.5 mm/s = 5.48 °C / mm/s
+For 24 mm³/s (1.75mm filament) this corresponds to around 245°C, which is sensible for standard petg.
+
+M309 command (send via console to test, add to config.g or filament configs to permanently enable):
+```
+M309 P0 S0.01 T5.48 A40
+```
+
+### Notes
+
+* You will need to tune Non Linear Extrusion ([M592](/User_manual/Reference/Gcodes/M592)) after appling heater feed forward. Disable NLE for heater feedforward tuning, and tune NLE after that.
+* To test the calibration, you have to move one non extruder axis with the extruder axis e.g.
+  ```
+  G90 G1 X0 F2000 G91 G1 E100 X100 F960 ; for flowrate at F_max (apply feed forward)
+  ```
+
+* The lookahead (M309 A parameter, set it to 40ms) will take care of the average and will keep the temp high for normal cruising speeds.
+* You may get heater errors when changing from slow to fast extrusion speed, as the hot end may heat slower than the M307 heater model predicts, due to the fast flow of filament through the hot end. You may need to increase the time and/or temperature of heater fault detection with [M570](/User_manual/Reference/Gcodes/M570).
 
 # Setting legacy PID parameters
 
