@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-21T12:23:15.924Z
+date: 2025-07-25T11:28:50.943Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8487,6 +8487,7 @@ M915 X Y S5 R2
 * If all the parameters are absent, the existing settings for the specified drive(s) will be reported.
 * See the Trinamic TMC2660 and TMC2130 datasheets for more information about the operation and limitations of motor stall detection.
 * See here for more detailed information on [Stall Detection and Sensorless Homing](/User_manual/Connecting_hardware/Sensors_stall_detection){target=_blank}.
+* In RRF 3.6.0 and later, when stall detect endstops are configured, G1 H1/H3/H4 moves are vetted to ensure that stall detection has been configured and suitable parameters and movement speed have been selected to make stall detection possible; otherwise the move is abandoned and an error message generated.
 
 ## M916: Resume print after power failure
 
