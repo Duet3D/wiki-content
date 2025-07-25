@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2025-07-25T14:42:53.815Z
+date: 2025-07-25T14:49:31.321Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -335,7 +335,14 @@ From RepRapFirmware 3.6.0, another form of heater feedforward control has been a
 
 * If the P parameter is not provided, the current tool is assumed.
 * The units of T are degrees Celsius per mm/sec of filament forward movement.
+* The lookahead (M309 A parameter, set it to 40ms) will take care of the average and will keep the temp high for normal cruising speeds.
 * Feedforward is not applied to nonprinting moves, i.e. extruder moves only, with no other movement parameters. Typically these are retract, reprime, and filament loading moves.
+* In order to test the calibration, you have to move one non extruder axis with the extruder axis e.g.
+  ```
+  G90 G1 X0 F2000 G91 G1 E100 X100 F960 ; for flowrate at F_max (apply feed forward)
+  ```
+* You will need to tune Non Linear Extrusion ([M592](/User_manual/Reference/Gcodes/M592)) after appling heater feed forward. Disable NLE for heater feedforward tuning, and tune NLE after that.
+* You may get heater errors when changing from slow to fast extrusion speed, as the hot end may heat slower than the M307 heater model predicts, due to the fast flow of filament through the hot end. You may need to increase the time and/or temperature of heater fault detection with [M570](/User_manual/Reference/Gcodes/M570).
 
 ### Calibration
 
@@ -379,17 +386,6 @@ M309 command (send via console to test, add to config.g or filament configs to p
 ```
 M309 P0 S0.01 T5.48 A40
 ```
-
-### Notes
-
-* You will need to tune Non Linear Extrusion ([M592](/User_manual/Reference/Gcodes/M592)) after appling heater feed forward. Disable NLE for heater feedforward tuning, and tune NLE after that.
-* To test the calibration, you have to move one non extruder axis with the extruder axis e.g.
-  ```
-  G90 G1 X0 F2000 G91 G1 E100 X100 F960 ; for flowrate at F_max (apply feed forward)
-  ```
-
-* The lookahead (M309 A parameter, set it to 40ms) will take care of the average and will keep the temp high for normal cruising speeds.
-* You may get heater errors when changing from slow to fast extrusion speed, as the hot end may heat slower than the M307 heater model predicts, due to the fast flow of filament through the hot end. You may need to increase the time and/or temperature of heater fault detection with [M570](/User_manual/Reference/Gcodes/M570).
 
 # Setting legacy PID parameters
 
