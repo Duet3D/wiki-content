@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-25T16:51:53.916Z
+date: 2025-07-25T21:46:32.586Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1036,7 +1036,11 @@ Probe toward workpiece, stop on contact, signal error if failure. Supported in R
 * **X,Y,Z,U,V,W,A,B,Cnnn**: Target position (up until RRF 3.1.1 these are expected to be machine coordinates)
 * **Pnn**: Probe number to use, default 0 (deprecated in RRF 3.3 and later)
 * **Knn**: Probe number to use, default 0 (RRF 3.3 and later)
-* **Fnnn***: Feed rate, i.e. probing speed, mm/min (RRF 3.6.0 and later).
+* **Fnnn***: Feed rate, i.e. probing speed, mm/min (RRF 3.6.0 and later). 
+
+### Description
+
+G38.x Straight Probe will perform a probing move in a straight line with the currently active or selected (**Pnnn**) probe. It will either move towards an obstacle (usually a workpiece) and stop on contact or move away from an obstacle until the probe loses contact.
 
 **Modes**
 
@@ -1051,11 +1055,11 @@ Probe toward workpiece, stop on contact, signal error if failure. Supported in R
 * No target coordinates given
 * Target coordinates equal to current position
 
-G38.x Straight Probe will perform a probing move in a straight line with the currently active or selected (**Pnnn**) probe. It will either move towards an obstacle (usually a workpiece) and stop on contact or move away from an obstacle until the probe loses contact.
+### Notes
 
-**Note**: for probing away the probe used does not have to be inverted. This command will take care of that.
-
-Feedrate used for this move is the configured feedrate of the used probe (see [M558 Fnnn](/User_manual/Reference/Gcodes/M558){target=_blank}).
+* For probing away the probe used does not have to be inverted. This command will take care of that.
+* Feedrate used for this move is the configured feedrate of the used probe (see [M558 Fnnn](/User_manual/Reference/Gcodes/M558){target=_blank}).
+* In RRF 3.6.0 and later, the **F** parameter can set the feed rate. If no F parameter is specified, probing speed defaults to the speed set by M558 for the Z probe used.
 
 ## G38.3: Straight Probe
 
