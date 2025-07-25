@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2024-06-19T11:09:12.011Z
+date: 2025-07-25T16:34:49.864Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -39,7 +39,7 @@ There are a number of options available to connect external stepper/servo driver
 |---|---|
 | [Duet 3 Mainboard 6HC](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | None | CAN bus |
 | [Duet 3 Mainboard 6XD](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | Headers for six external drivers with 5V signalling (no on-board drivers) | CAN bus |
-| [Duet 3 Mini 5+](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | External driver pins (2 drives, 3.3V single-ended signalling) | CAN bus |
+| [Duet 3 Mini 5+](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | External drivers pins (2 drives, 3.3V single-ended signalling) | CAN bus or if only 2 are needed use the [Duet 3 Expansion Mini 2XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_Mini_2XD) |
 | [Duet 2 WiFi/Ethernet](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | Expansion connector (5 drives, 3.3V single-ended signalling), CONN_LCD (2 drives, 3.3V single-ended signalling) | [DueX2/5](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) (3 spare when used in Duex2 mode, 3.3V single-ended signalling), [Duet Expansion Breakout Board](https://docs.duet3d.com/Duet3D_hardware/Duet_2_family/Duet_Expansion_Breakout_Board) (5 drives, differential signalling -3.6V to +3.6V, or 5V single-ended) |
 
 
@@ -58,7 +58,7 @@ The **Duet 3 Mainboard 6HC** has no on-board external driver pins. Use a CAN bus
 
 ## Duet 3 Mini 5+
 
-If the drivers require no more than about 2mA @ 3V on the step and dir inputs (there is no enable signal), then you can drive them directly from the **Duet 3 Mini 5+** external driver pins. See the [Duet 3 Mini 5+ wiring diagram](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview#wiring-diagram) for pin locations.
+If the drivers require no more than about 2mA @ 3V on the step and dir inputs (there is no enable signal), then you can drive them directly from the **Duet 3 Mini 5+** external driver pins. See the [Duet 3 Mini 5+ wiring diagram](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview#wiring-diagram) for pin locations. It is recommended to use the [Duet 3 Expansion Mini 2XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_Mini_2XD) if you want to connect 1 or 2 external drivers directly to the mini 5+ 
 
 Otherwise, use a CAN bus connected expansion board to provide signalling for the external driver, such as the [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) or [Duet 3 Expansion 1HCL](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL).
 
@@ -197,24 +197,24 @@ If noise is reduced then there are different settings to consider for the CFG pi
 To use external drivers to drive an axis instead of an internal driver, you need to remap the axis to the external driver using the [M584](/User_manual/Reference/Gcodes/M584) command. The drive numbers used in G-code correspond to the following driver labels on the board(s):
 
 | Drive number | Duet 3 board label | Duet 2 board label ||
-| | Mini 5+ | WiFi/Ethernet | Maestro |
+| | Mini 5+ | WiFi/Ethernet
 |:---|:---|
-| 0 | DRIVER_0 | X ||
-| 1 | DRIVER_1 | Y ||
-| 2 | DRIVER_2 | ZA ZB (Two headers wired in series) ||
-| 3 | DRIVER_3 | E0 ||
-| 4 | DRIVER_4 | E1 ||
-| 5 | DRIVER_5 (pins for external driver)  | E2 (On Expansion header, DueX2/5 or EBoB) | E2 (pins for external driver) |
-| 6 | DRIVER_6 (pins for external driver) | E3 (On Expansion header, DueX2/5 or EBoB) | E3 (pins for external driver) |
-| 7 | | E4 (On Expansion header, DueX5 or BoB) |  |
-| 8 | | E5 (On Expansion header, DueX5 or BoB) |  |
-| 9 | | E6 (On Expansion header, DueX5 or BoB) |  |
-| 10 | | On LCD_CONN header |  |
-| 11 | | On LCD_CONN header |  |
+| 0 | DRIVER_0 | X |
+| 1 | DRIVER_1 | Y |
+| 2 | DRIVER_2 | ZA ZB (Two headers wired in series) |
+| 3 | DRIVER_3 | E0 |
+| 4 | DRIVER_4 | E1 |
+| 5 | DRIVER_5 (pins for external driver)  | E2 (On Expansion header, DueX2/5 or EBoB) 
+| 6 | DRIVER_6 (pins for external driver) | E3 (On Expansion header, DueX2/5 or EBoB) | 
+| 7 | | E4 (On Expansion header, DueX5 or BoB) |  
+| 8 | | E5 (On Expansion header, DueX5 or BoB) |  
+| 9 | | E6 (On Expansion header, DueX5 or BoB) |  
+| 10 | | On LCD_CONN header |  
+| 11 | | On LCD_CONN header |  
 
 ## Configuring the Enable polarity
 
-Only relevant for Duet 3 MB6XD, Duet 3 Expansion 1XD and Duet 2 WiFi/Ethernet/Maestro. All other boards do not have enable signals.
+Only relevant for Duet 3 MB6XD, Duet 3 Expansion Mini 2XD, Duet 3 Expansion 1XD and Duet 2 WiFi/Ethernet. All other boards do not have jumper configurable enable signals.
 
 **Duet 3 Mainboard 6XD:** See [Duet 3 Mainboard 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) documentation.
 
