@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2025-06-11T11:22:02.594Z
+date: 2025-07-25T17:49:08.521Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -474,7 +474,7 @@ This diagram shows connection to a "typical" optoisolated stepper motor driver
 
 [![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png){target=_blank} [![duet_3_mb6xd_ext_driver.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg =400x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg){target=_blank}
 
-To connect a Pololu/StepStick/similar driver to the 6XD, a 10K pullup resistor is needed from each of the Step/Dir/En lines to +5V. This diagram shows connection to a stepper motor driver that has +5V inputs and a common ground.
+To connect a Pololu/StepStick/similar driver to the 6XD, when using a version 1.01 or earlier 6XD board a 10K pullup resistor is needed from each of the Step/Dir/En lines to +5V. This diagram shows connection to a stepper motor driver that has +5V inputs and a common ground. The resistors are not needed when using a version 1.02 or later board.
 
 [![Connection of Driver 0 on the Duet 3 MB 6XD to a stepper motor driver with +5V inputs and common ground](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn_2.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn_2.png){target=_blank}
 
