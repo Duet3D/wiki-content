@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-25T13:51:40.110Z
+date: 2025-07-25T14:20:30.049Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4403,7 +4403,7 @@ Supported in RepRapFirmware v3.4 and later
 
 ### Description
 
-Heater feedforward allows for better regulation of temperature control of tools, when subjected to changing fan speeds, extrusion rates or  RepRapFirmware supports a number of methods of heater feedforward:
+Heater feedforward allows for better regulation of heater temperature, when subjected to changing fan speeds or extrusion rates. RepRapFirmware supports a number of methods of heater feedforward:
 * Fan speed to heater power feedforward is calibrated during heater tuning with M303, and stored in the M307 K parameter. This increase heater power, to maintain current temperature, as fan speed increases.
 * Extrusion rate to heater power feedforward is configured by M309 S parameter. This increase heater power, to maintain current temperature, as extrusion rate increses.
 * In RRF 3.6.0 and later, heater temperature feedforward is configured by M309 T and A parameters. This changes the temperature setpoint as extrusion rate changes, so temperature can be set lower when going slow, and higher when going faster.
