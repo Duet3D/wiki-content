@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-25T14:20:30.049Z
+date: 2025-07-25T16:51:53.916Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1036,6 +1036,7 @@ Probe toward workpiece, stop on contact, signal error if failure. Supported in R
 * **X,Y,Z,U,V,W,A,B,Cnnn**: Target position (up until RRF 3.1.1 these are expected to be machine coordinates)
 * **Pnn**: Probe number to use, default 0 (deprecated in RRF 3.3 and later)
 * **Knn**: Probe number to use, default 0 (RRF 3.3 and later)
+* **Fnnn***: Feed rate, i.e. probing speed, mm/min (RRF 3.6.0 and later).
 
 **Modes**
 
@@ -4416,6 +4417,7 @@ Generally, heater feedforward is intended for high flow hot ends or pellet extru
 * The units of S are PWM fraction (on a scale of 0 to 1) per mm/sec of filament forward movement.
 * The units of T are degrees Celsius per mm/sec of filament forward movement.
 * Feedforward is not applied to nonprinting moves, i.e. extruder moves only, with no other movement parameters. Typically these are retract, reprime, and filament loading moves.
+* In RRF 3.6.0 and later, tool heater feedforward based on extrusion rate now works on heaters attached to CAN-connected expansion and tool boards.
 * For calibration and examples, see the [heater feedforward](/User_manual/Connecting_hardware/Heaters_tuning#heater-feedforward) section of the 'Tuning the heater temperature control' wiki page.
 
 ## M350: Set microstepping mode
@@ -8623,7 +8625,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **En** LED strip number
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535, default: 500 for GpOut pins, 250 for fans and heaters. Max value for heaters 1000, to avoid overheating the mosfets. For LED strips (supported in RRF 3.5.0 and later only) this is the LED clock frequency.
-* **Tn** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)). When creating a LED strip (supported in RRF 3.5.0 and later only): LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
+* **Tn** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)). When creating a LED strip (supported in RRF 3.5.0 and later only): LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them. When creating a spindle, type of spindle control (RRF 3.6.0 and later): T0 (default) = enable/direction inputs, T1 = forward/reverse inputs.
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 * **Kaaa(:bbb[:ccc])** (optional, RRF 3.5 and later) For spindles, these are the PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc]).
 * **Knn** (optional, RRF 3.5 and later) For fans, number of pulses output by the tacho per revolution of the fan, default: 2. Valid range: 0.5-20, 0.5-200 in RRF 3.6.0 and later.
@@ -8761,22 +8763,25 @@ M950 R0 C"!exp.heater3" L12000 ; Spindle 0 uses exp.heater3 as RPM pin and has a
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 0-65535.
 * **Lbbb** or **Laaa:bbb** (optional) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 * **Kaaa(:bbb[:ccc])** (optional, RRF 3.5 and later) PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc])
+* **Tn** (RRF 3.6.0 and later) Specifies type of spindle control: T0 (default) = enable/direction inputs, T1 = forward/reverse inputs.
 
 ##### Notes
 
-When using M950 to create a spindle use the following format:
-
-<br>
-<pre class="cblock">
-M950 R0 C"pwm_pin + on/off_pin + forward/reverse_pin" Qfff Laa:bb
-</pre>
-
+* When using M950 to create a spindle (with default T0 in RRF 3.6.0 and later), use the following format:
+  <pre class="cblock">
+  M950 R0 C"pwm_pin + on/off_pin + forward/reverse_pin" Qfff Laa:bb
+  </pre>
+* When using M950 to create a spindle, with T1 in RRF 3.6.0 and later, use the following format:
+  <pre class="cblock">
+  M950 R0 C"pwm_pin + forward_pin + reverse_pin" T1 Qfff Laa:bb
+  </pre>
 * C can have 1, 2 or 3 pins. 
   * The first pin defines a pwm-capable pin to set the spindle speed. 
   * If a second pin is defined it is used as spindle on/off. 
   * If a third pin is defined it is used as spindle forward/reverse.
 * **Qfff** is the PWM frequency as usual
 * **Laa:bb** sets the RPM range as "aa" to "bb". "Lbb" just sets the max RPM to "bb". Default RPM values are 60 min 10000 max
+* In RRF 3.6.0 and later, sending `M950 R#` were R# is the spindle number, reports on that spindle.
 
 #### SD card slot
 
