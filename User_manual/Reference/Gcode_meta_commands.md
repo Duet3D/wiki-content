@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-07-22T16:04:26.808Z
+date: 2025-07-28T13:36:17.554Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -116,6 +116,8 @@ while <boolean-expression>
 The continue statement increments the iteration counter and transfers control back to the start of the loop, ready to evaluate the while-condition again.
 
 If a while loop is used in a GCode job file (not in a macro), it should have [M400](/User_manual/Reference/Gcodes/M400){target=_blank} at the end, and immediately before any uses of 'continue' within the loop.
+
+**Caution!** If a loop iterates forever, you will not be able to break out of it except by resetting the machine. When writing a loop, we suggest that you always either ensure that the maxmum number of iterations is bounded and not too large, or there is a manual interaction in the loop (e.g. a M291 command) that provides a means to exit the loop.
 
 ### Nested loops
 
