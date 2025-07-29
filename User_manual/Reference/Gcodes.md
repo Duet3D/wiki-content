@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-29T07:21:20.738Z
+date: 2025-07-29T07:28:22.195Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3463,6 +3463,7 @@ Send and/or receive data over the i2c bus. Supported in RepRapFirmware 1.21 and 
 * **Rnn** Number of bytes to receive (optional) - firmware 2.02 and later only
 * **Bnn:nn:nn...** Bytes to send (optional in firmware 2.02 and later)
 * **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
+* **V"name"** (optional, from RRF 3.6.0) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Examples
 <br>
@@ -3569,7 +3570,7 @@ Perform a non-standard transaction with a Modbus slave device. The request and r
 * **Rnn** Number of bytes to receive excluding the slave address and the CRC
 * **Bnn:nn:nn...** Values to send excluding the slave address and the CRC
 * **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
-* **V"name"** (optional) name of variable to receive data into. If this parameter is not present then the data read is output to the console.
+* **V"name"** (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Order dependency
 
@@ -3589,6 +3590,7 @@ Deprecated in RRF 2.02 and later. Use M260 instead.
 
 * **Ann** I2C address
 * **Bnn** How many bytes to request
+* **V"name"** (optional, from RRF 3.6.0) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Examples
 <br>
@@ -3609,7 +3611,7 @@ Request data (synchronously) from a Modbus slave device.
 * **Rnn** Register number to start from
 * **Bnn** How many registers,coils or inputs to request
 * **Fn** (optional) Modbus function code, must be one of: 1 (Read Coils), 2 (Read Discrete Inputs), 3 (Read Holding Registers), 4 (Read Input Registers, default)
-* **V"name"** (optional) name of variable to receive data into. If this parameter is not present then the data read is output to the console.
+* **V"name"** (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Order dependency
 
@@ -3631,7 +3633,7 @@ Request data (synchronously) from a UART device.
 
 * **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Device mode using M575.
 * **Bnn** How many bytes to read
-* **V"name"** (optional) name of variable to receive data into. If this parameter is not present then the data read is output to the console.
+* **V"name"** (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Order dependency
 
