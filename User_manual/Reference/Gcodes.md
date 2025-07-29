@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-25T22:19:35.567Z
+date: 2025-07-29T07:21:20.738Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2493,14 +2493,14 @@ The first example turns on the default cooling fan at half speed. The second exa
 
 ### Notes - all firmware versions
 
-* The parameter **S** declares the PWM value (0.0-1.0 or >1.0-255, 0 is off in both cases). M106 S0 turns the fan off.
-* If an S parameter is provided but no other parameter is present, then the speeds of the print cooling fans associated with the current tool will be set (see the F parameter in the M563 command). If no tool is active then the speed of Fan 0 will be set. Either way, the speed is remembered so that it can be recalled using the R2 parameter (see below).
-* If no S parameter is given but the R1 parameter is used, the fan speed when the print was last paused will be set, this allows the pause.g macro to switch off the fans and have them resume when the print is resumed. If the R2 parameter is used, then the speeds of the print cooling fans associated with the current tool will be set to the remembered value (see above). R2 allows the configured fan speed to be passed between tools which is useful on multi extruder printers where the slicing software may not specify the fan speed on tool change and the tool change macros shut down fans when not in use.
-* The **T** and **H** parameters allow a fan to be configured to operate in thermostatic mode, for example to use one of the fan channels to control the hot end fan. In this mode the fan will be on when the temperature of any of the heaters listed in the H parameter is at or above the trigger temperature set by the T parameter, and off otherwise. Thermostatic mode can be disabled using parameter H-1. In RRF 3.4 and later, the fan will run at the PWM specified by the X (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the S parameter.
-* In firmware 1.19 and later, the T parameter may be of the form Taaa:bbb where aaa is the temperature at/below which the fan should be fully off and bbb is the temperature at which the fan should be fully on. The PWM will be set proportionally if the temperature is between these limits.
+* The parameter **S** declares the PWM value (0.0-1.0 or >1.0-255, 0 is off in both cases). **M106 S0** turns the fan off.
+* If an **S** parameter is provided but no other parameter is present, then the speeds of the print cooling fans associated with the current tool will be set (see the F parameter in the M563 command). If no tool is active then the speed of Fan 0 will be set.
+* The **R** parameter allows the fan speed to be set to a remenmbered value. When a pause is commanded, the speed of the print cooling fan for the current tool is remembered in restore point 1. When a tool change is commanded, the speed of the print cooling fan for the current tool is remembered in restore point 2. Either way, if no tool is active then the speed of fan 0 is remembered. These remembered speeds can be recalled using parameter **R1** or **R2** in a subsequent M106 command. In particular, using **M106 R1** in the resume.g macro allows the pause.g macro to switch off the fans and have them resume when the print is resumed. Similarly, using **M106 R2** in tpost#.g files allows the configured fan speed to be passed between tools, which is useful on multi extruder printers where the slicing software may not specify the fan speed on tool change.
+* The **T** and **H** parameters allow a fan to be configured to operate in thermostatic mode, for example to use one of the fan channels to control the hot end fan. In this mode the fan will be on when the temperature of any of the heaters listed in the **H** parameter is at or above the trigger temperature set by the **T** parameter, and off otherwise. Thermostatic mode can be disabled using parameter **H-1**. In RRF 3.4 and later, the fan will run at the PWM specified by the **X** (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the **S** parameter.
+* In firmware 1.19 and later, the **T** parameter may be of the form **Taaa:bbb** where *aaa* is the temperature at/below which the fan should be fully off and *bbb* is the temperature at which the fan should be fully on. The PWM will be set proportionally if the temperature is between these limits.
 * The **B** parameter sets the time for which the fan will be operated at full PWM when started from cold, to allow low fan speeds t be used. A value of 0.1 seconds is usually sufficient.
 * The **L** parameter defines the minimum PWM value that is usable with this fan. If a lower value is commanded that is not zero, it will be rounded up to this value.
-* The **X** parameter defines the maximum PWM value that is usable with this fan. The requested PWM value (S parameter) is scaled to be between 0 and X parameter value, and rounded up to the minimum if defined (L parameter). e.g. if X128 is set, S255 will set PWM to 128; S128 will set PWM to 64.
+* The **X** parameter defines the maximum PWM value that is usable with this fan. The requested PWM value (**S** parameter) is scaled to be between 0 and **X** parameter value, and rounded up to the minimum if defined (**L** parameter). e.g. if **X128** is set, **S255** will set PWM to 128; **S128** will set PWM to 64.
 
 ## M107: Fan Off
 
