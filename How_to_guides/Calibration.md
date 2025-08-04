@@ -2,7 +2,7 @@
 title: Calibrating your Duet-based machine
 description: 
 published: true
-date: 2024-07-15T14:51:06.816Z
+date: 2025-08-04T14:10:54.251Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
@@ -292,21 +292,22 @@ Below are some suggested slicer settings to improve compatibility with RepRapFir
 
 (Tested on Prusaclider 2.8, may be in different places on older versions)
 
-Printers > General > Firmware > G-code flavor: choose "RepRapFirmware"
-Printers > General > Firmware > G-code thumbnails: set "160x160/QOI" for compatibility with PanelDue
-Printers > General > Advanced > Use relative E distances: enable this
-Printers > Machine limits > General > How to apply limits: choose "Use for time estimate" to stop Prusaslicer overriding speed, acceleration and jerk settings in config.g
-
-To get the layer count correct on the DWC progress chart, add `;LAYER:[layer_num]` to the custom gcode tab under the "Before layer change" G-code section.
+* Printers > General > Firmware > G-code flavor: choose "RepRapFirmware".
+* Printers > General > Firmware > G-code thumbnails: set "160x160/QOI, 300x300/QOI" for compatibility with PanelDue; the first, smaller, thumbnail will be used by PanelDue, the second, larger, thumbnail will be used by DWC.
+* Printers > General > Advanced > Use relative E distances: enable this.
+* Printers > Machine limits > General > How to apply limits: choose "Use for time estimate" to stop Prusaslicer overriding speed, acceleration and jerk settings in config.g
+* To get the layer count correct on the DWC progress chart, add `;LAYER:[layer_num]` to the custom gcode tab under the "Before layer change" G-code section.
 
 ## Cura
 
-Settings > Printer > Manage Printers > (select printer) > Machine Settings > Printer (tab) > G-code flavor: select RepRap
-In Print settings:
-Special Modes > Relative Extrusion: check this is ticked, it should be if G-code flavor: RepRap is selected
-
-To enable firmware retraction, you need the Printer Settings plugin in Cura.
+* Settings > Printer > Manage Printers > (select printer) > Machine Settings > Printer (tab) > G-code flavor: select RepRap
+* In Print settings: Special Modes > Relative Extrusion: check this is ticked, it should be if G-code flavor: RepRap is selected
+* To enable firmware retraction, you need the Printer Settings plugin in Cura.
 
 ## Orcaslicer
 
-Suggestions welcome!
+* Printer settings > Basic information > Advanced > G-code flavor: choose "RepRapFirmware".
+* Printer settings > Basic information > Advanced > G-code thumbnails: set "160x160/QOI, 300x300/QOI" for compatibility with PanelDue; the first, smaller, thumbnail will be used by PanelDue, the second, larger, thumbnail will be used by DWC.
+* Printer settings > Basic information > Advanced > Use relative E distances: enable this.
+* Printer settings > Motion ability > Advanced > Emit limits to G-code: uncheck this to stop OrcaSlicer overriding speed, acceleration and jerk settings in config.g. Set the speeds, accelerations and jerk in that tab to the same as your config.g, for more accurate calculation of job time.
+* Printer settings > Machine G-code > Before layer change G-code: add `;LAYER:[layer_num]` to the custom gcode to get the layer count correct on the DWC progress chart.
