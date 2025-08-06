@@ -2,7 +2,7 @@
 title: Connecting endstop switches
 description: 
 published: true
-date: 2024-11-13T12:55:58.891Z
+date: 2025-08-06T09:10:56.726Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-20T14:14:43.144Z
@@ -100,7 +100,6 @@ RepRapFirmware 3.x: Set the endstop type to switch (S1) in the M574 command. If 
 
 RepRapFirmware 2.x and earlier: Set the signal polarity to active high (S1) in the M574 command. If you use normally-open microswitch contacts, then you will need to set the signal polarity to active low (S0) in the M574 command.
 
-
 ### Interference
 
 Wires connecting normally-open endstop switches are susceptible to capacitive interference pickup, in particular from nearby stepper motor cables but to a lesser extent from heater and fan cables. You can mitigate this to some extent by using lower value pullup resistors. A better solution is to change to normally-closed endstop switches if possible, or to use shielded cable to connect the normally-open endstop switch.
@@ -143,9 +142,17 @@ Note: opto endstops made to the Generation 7 design are often claimed to be 3.3V
 * If you are using Duet 3 then you can use the 5V pin on the IO_ connector to provide power to the opto endstop instead of using 3.3V power.
 * If you are using a Duet WiFi/Ethernet hardware rev 1.04 or later or a Duet Maestro, these boards can tolerate 5V on the endstop inputs. So you can provide them with a 5V supply instead (leaving the centre pin of the endstop connector not connected) and connect the outputs of your endstops directly to the STP/IN pins of the endstop connectors.
 
+## Inductive or capacitive sensor with NPN output
+
+See https://docs.duet3d.com/User_manual/Connecting_hardware/Z_probe_connecting#npn-output-normally-open-inductive-or-capacitive-sensor. Those instructions are for connecting a sensor used as a Z probe, but similar connections can be used for endstops. If connecting to a Duet 2 endstop input, connecting via a diode is reocmmended regardless of the board version.
+
+## Inductive or capacitive sensor with PNP output
+
+See https://docs.duet3d.com/User_manual/Connecting_hardware/Z_probe_connecting#pnp-output-normally-open-inductive-or-capacitive-sensor.
+
 # Multiple endstops on one axis
 
-RepRapFirmware only supports one endstop per motor per axis. If your axis only has one motor, you can only have one endstop. If your axis has two or more motors, you can have an endstop per motor, if the motors are plugged into their own stepper driver, and the motors can be homed individually to their own endstop. To do this, see the 'Axis levelling using endstops' section of [Bed levelling using multiple independent Z motors](/User_manual/Connecting_hardware/Z_probe_auto_levelling#axis-levelling-using-endstops)
+RepRapFirmware only supports one endstop per motor per axis at a time. If your axis only has one motor, you can only have one endstop. If your axis has two or more motors, you can have an endstop per motor, if the motors are plugged into their own stepper driver, and the motors can be homed individually to their own endstop. To do this, see the 'Axis levelling using endstops' section of [Bed levelling using multiple independent Z motors](/User_manual/Connecting_hardware/Z_probe_auto_levelling#axis-levelling-using-endstops).
 
 # Firmware configuration
 
