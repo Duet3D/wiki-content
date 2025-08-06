@@ -2,7 +2,7 @@
 title: Connecting endstop switches
 description: 
 published: true
-date: 2025-08-06T09:10:56.726Z
+date: 2025-08-06T09:13:23.240Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-20T14:14:43.144Z
@@ -144,11 +144,11 @@ Note: opto endstops made to the Generation 7 design are often claimed to be 3.3V
 
 ## Inductive or capacitive sensor with NPN output
 
-See https://docs.duet3d.com/User_manual/Connecting_hardware/Z_probe_connecting#npn-output-normally-open-inductive-or-capacitive-sensor. Those instructions are for connecting a sensor used as a Z probe, but similar connections can be used for endstops. If connecting to a Duet 2 endstop input, connecting via a diode is reocmmended regardless of the board version.
+See [NPN output normally-open inductive or capacitive sensor](/User_manual/Connecting_hardware/Z_probe_connecting#npn-output-normally-open-inductive-or-capacitive-sensor). Those instructions are for connecting a sensor used as a Z probe, but similar connections can be used for endstops. If connecting to a Duet 2 endstop input, connecting via a diode is reocmmended regardless of the board version.
 
 ## Inductive or capacitive sensor with PNP output
 
-See https://docs.duet3d.com/User_manual/Connecting_hardware/Z_probe_connecting#pnp-output-normally-open-inductive-or-capacitive-sensor.
+See [PNP output normally-open inductive or capacitive sensor](/User_manual/Connecting_hardware/Z_probe_connecting#pnp-output-normally-open-inductive-or-capacitive-sensor).
 
 # Multiple endstops on one axis
 
