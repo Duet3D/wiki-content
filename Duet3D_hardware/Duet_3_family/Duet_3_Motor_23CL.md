@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2025-01-13T17:26:04.463Z
+date: 2025-08-14T14:54:25.392Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -69,7 +69,17 @@ The STEP files are available [from Github here](https://github.com/Duet3D/Duet3-
 
 ## Connection Diagram
 
-[![Image showing the connections on a Duet 3 Motor 23CL](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connections.png =800x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_connections.png){target=_blank}
+## Tabs {.tabset}
+
+### v1.1, v1.2
+
+[![Image showing the connections on a Duet 3 Motor 23CL v1.2 or v1.1](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.2_connections_d1.0.png =800x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.2_connections_d1.0.png){target=_blank}
+
+### v1.0
+
+[![Image showing the connections on a Duet 3 Motor 23CL v1.0](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connections_d1.3.png =800x)](/duet_boards/duet_3_can_expansion/motor23cl/duet3_motor_23cl_v1.0_connections_d1.3.png){target=_blank}
+
+Note: Pin 3 of the POWER in connector in version v1.0 of the Duet 3 Motor23CL is internally connected GND, in later versions it is used for V_IN BACKUP so its recommended to not connect it in v1.0.
 
 
 ## Power wiring
@@ -81,7 +91,13 @@ Supply between 24V and 48V to the M8 3-way power connector on the motor, observi
 > OUT ports on the mainboard should NOT be used to switch power to expansion boards, tool boards or CAN-connected motors directly. See the note at the end of the 'inrush current' section at the link above.  
 {.is-info}
 
-**Note** In v1.0 of the Duet 3 Motor23CL pin 3 of the power connector is internally connected GND however in a future version it may have a different use. Best practice is to leave it unconnected to make the motors swappable with future versions without any wiring changes. It will not cause an issue **in the v1.0 motors** to connected it to GND.
+### VIN Backup
+
+Pin 3 of the POWER in connector in version v1.0 of the Duet 3 Motor23CL is internally connected GND. From o v1.1 it is connected to a separately fused V_IN_BACKUP circuit that just keeps the logic elements of the control board running, but not motor power, if V_IN power is removed. this allows a safety system to interrupt motor power, without the motor loosing encoder position.
+
+> In version 3.6 firmware when V_IN power is applied, the motor will attempt to move back to the position its commanded to be in as rapidly as it can. If the motor was moved while VIN power was not applied then this can cause undesirable results. This behaviour may be addressed in future firmware versions, until that time avoid moving the motor when in this state, alternatively if that's not possible (e.g. due to a Z axis that moves under load when not powered), use a Motor 23CL with a brake.
+{.is-warning}
+
 
 ## CAN wiring
 
@@ -197,7 +213,8 @@ The firmware will output the highest deviation of expected position vs encoder p
 
 # Firmware
 
-Duet 3 Motor 23CL is supported in RRF 3.5 and later.
+Duet 3 Motor 23CL v1.0 is supported in RRF 3.5 and later.
+Duet 3 Motor 23CL v1.2 is supported in RRF 3.6 and later.
 
 ## Limitations
 
@@ -279,11 +296,19 @@ If a brake is present the M23CL will disable it when the motors are enabled (M17
 ### Motor Brake Voltage
 It is possible to use a V_IN voltage higher than 24V to be used with the 24V brake fitted on some models. 
 
-The motor brake circuit is a fast brake control circuit designed to allow the brake to be engaged very quickly by dumping the energy the current in the brake solenoid coil. In addition it has a PWM control circuit that will limit the current in the brake coil if the sensed V_IN voltage is above 24V.
+The motor brake circuit is a fast brake control circuit designed to allow the brake to be engaged very quickly by dumping the energy in the current flowing in the brake solenoid coil. In addition it has a PWM control circuit that will limit the current in the brake coil if the sensed V_IN voltage is above 24V.
 
 # Revisions
 
 ## Tabs {.tabset}
+
+### v1.2
+* Change the main V_IN fuse to be replaceable (0157002.DRT)
+* Change the V_IN_BACKUP fuse to be a polyfuse (160mA)
+
+### v1.1
+* Changed Pin3 of power connector to V_IN_BACKUP
+* V_IN_BACKUP fused with the same fuse as V_IN
 
 ### v1.0
 * Changed to 76mm motor as the first production model
