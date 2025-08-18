@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-07-29T07:28:22.195Z
+date: 2025-08-18T14:39:38.408Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5157,26 +5157,47 @@ The output may be truncated if it is too long. M503 does **not** include values 
 
 ### Parameters
 
-* P"name" ; name of folder, default path is the existing sys path if a relative path is given
+* **P"name"** The folder name, default path is the existing sys path if a relative path is given
 
 ### Examples
 <br>
 <pre class="cblock">
 M505 P"experimental" ; change config file path from /sys/ to /sys/experimental/
+M505                 ; report the current sys files path
 </pre>
 
 ### Description
 
-Following this command, files that would normally be fetched from /sys/ (for example, homing files and system macro files in RepRapFirmware) are fetched from the specified folder instead. Any such files that are already being executed will continue to run.
+If the specified folder does not exist, an error message is returned. Otherwise, files that would normally be fetched from `/sys/` (for example, homing files and system macro files in RepRapFirmware) are subsequently fetched from the specified folder instead. Any such files that are already being executed will continue to run to completion.
 
-This command can be used to allow multiple configurations to be maintained easily. In RepRapFirmware the file /sys/config.g can contain just these two lines:
+This command can be used to allow multiple configurations to be maintained easily. In RepRapFirmware the file `/sys/config.g` can contain just these two lines:
 <br>
 <pre class="cblock">
 M505 P"config1"
 M98 P"config.g"
 </pre>
 
-The first line changes the config file folder to /sys/config1 and the second one executes file config.g in that folder. To select an alternative configuration, only the first line needs to be edited.
+The first line changes the config file folder to `/sys/config1` and the second one executes file `config.g` in that folder. To select an alternative configuration, only the first line needs to be edited.
+
+## M505.1: Set HTTP server root folder
+
+*This command is TEMPORARY and intended for development use only. It will be removed when per-user HTTP folders are implemented.*
+
+### Parameters
+
+* **P"name"** The folder name to use, default path is the existing HTTP root folder if a relative path is given
+
+### Examples
+<br>
+<pre class="cblock">
+M505.1 P"mcui"    ; change HTTP server root folder from "0:/www" to "0:/www/mcui"
+M505.1 P"0:/mcui" ; change HTTP server root folder to "0:/mcui"
+M505.1            ; report the current HTTP server root folder
+</pre>
+
+### Description
+
+If the specified folder does not exist, an error message is returned. Otherwise, the root folder of the HTTP server is changed from its previous value (default `0:/www`) to the specified folder.
 
 ## M540: Set MAC address
 
