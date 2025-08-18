@@ -1,8 +1,8 @@
 ---
 title: Duet 3 with CAN expansion firmware configuration limitations
-description: RepRapFirmware (as at version 3.4) for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
+description: RepRapFirmware for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2025-07-07T13:41:47.771Z
+date: 2025-08-18T10:35:24.207Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
