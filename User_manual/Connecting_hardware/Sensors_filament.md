@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2025-03-14T15:06:48.316Z
+date: 2025-08-18T10:43:27.188Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -29,7 +29,7 @@ In **RRF 3.4 and later**, the action on a filament error is to:
 * failing that the Duet enters the Pausing state, shows a message on all available targets with the type of filament error, and invokes system macro pause.g. The job is paused and will need manual intervention to resume the print.
 * Note if you use a filament-error macro, there is no pause unless you put an [M25](/User_manual/Reference/Gcodes/M25) in the macro. If the job is paused, it will require manual intervention, or [M24](/User_manual/Reference/Gcodes/M24) in the macro, to resume the print.
 
-**Note that filament monitoring in RRF is only active when printing from SD card.**
+**Note that filament monitoring in RRF is normally only active when printing from SD card. In RRF 3.5.1 and later firmware it is possible to configure the filament monitor to be active all the time with `M591 S2`**
 
 ### RepRapFirmware 3.2 and 3.3
 
@@ -54,7 +54,8 @@ In **RRF 3.2 and 3.3**, the action on a filament error is to:
 
 #### Duet 3
 
-**Important!** If you are using a Duet 3 or 3 Mini with tool or expansion boards, then **the filament monitor must be connected to the same board as the motor** for the extruder that it is monitoring. Filament monitors connected to tool and expansion boards are supported in RepRapFirmware 3.2beta4 and later.
+>**Important!** If you are using a Duet 3 or 3 Mini with tool or expansion boards, then **the filament monitor must be connected to the same board as the motor** for the extruder that it is monitoring. Filament monitors connected to tool and expansion boards are supported in RepRapFirmware 3.2 and later. Simple filament presence switches do not have this restriction from RRF3.5.2 and later.{.is-info}
+
 
 ##### Rotating magnet or pulsed filament monitor
 
