@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-07-28T13:36:17.554Z
+date: 2025-08-20T18:11:50.641Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -64,6 +64,8 @@ echo >>>"data.csv" ","^heat.heaters[0].current^","^heat.heaters[2].current^","^h
 echo >>"data.csv" ","^sensors.filamentMonitors[0].position^","^sensors.filamentMonitors[1].position^","^sensors.filamentMonitors[2].position
 ```
 If you needs to write a new file with multiple entries on a single line and the file may already exist, use M472 to delete it first. You can use the fileexists() condition to only delete the file if it exists.
+
+> Note echo only echos back to the input its sent from, or to a file. To get information to a different input (e.g. echo to the HTTP UI from a macro called from a different input) use [M118](/User_manual/Reference/Gcodes/M118).{.is-info}
 
 ## Conditional construct
 
