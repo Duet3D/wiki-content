@@ -2,7 +2,7 @@
 title: Duet 3 Family
 description: 
 published: true
-date: 2025-07-25T15:26:38.894Z
+date: 2025-08-26T15:52:21.424Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:14:53.360Z
@@ -13,7 +13,6 @@ dateCreated: 2021-06-03T16:14:53.360Z
 [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview)
 [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview)
 [Duet 3 Mainboard 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview)
-
 
 # CAN Expansion
 
