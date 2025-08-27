@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-08-18T14:39:38.408Z
+date: 2025-08-27T12:37:59.753Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4600,10 +4600,12 @@ This runs macro file **sys/retractprobe#.g** (where # is the probe number) if it
 
 ## M404: Filament diameter
 
+**Deprecated in RRF 3.6 and later; planned for removal in RRF 3.7.**
+
 ### Parameters
 
 * **Nnnn** Filament diameter (in mm)
-* **Dnnn** Nozzle diameter (in mm) (deprecated in 3.4-b1)
+* **Dnnn** Nozzle diameter (in mm) (ignored in firmware 3.4.0 and later)
 
 ### Examples
 <br>
@@ -4616,9 +4618,11 @@ M404 N3.0 D1.0 ; See note below about D parameter
 
 Enter the nominal filament width (3mm, 1.75mm) or will display nominal filament width without parameters.
 
-The 'D' parameter is used to properly detect the first layer height when files are parsed or a new print is being started. From RRF 3.4-b1 the D parameter is deprecated and no longer used in detecting the first layer height.
+In older versions of RRF the 'D' parameter was used to properly detect the first layer height when files are parsed or a new print is being started. From RRF 3.4.0 the D parameter is ignored and no longer used in detecting the first layer height.
 
-The values of this command are currently only used by the print monitor and only when the slicer reports the filament usage by volume instead of by length.
+The filament diameter specified using this command is only used by the print monitor, and only when the slicer is Pathio (which is no longer maintained) or a very old version of KissSlicer, because those slicers report the filament usage by volume instead of by length.
+
+The filament diameter specified using his command is separate from the per-extruder filament diameter specified using the M200 command and is not exposed in the object model.
 
 ## M408: Report JSON-style response
 
