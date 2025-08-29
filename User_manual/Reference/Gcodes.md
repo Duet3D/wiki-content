@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-08-29T08:08:01.460Z
+date: 2025-08-29T09:32:21.903Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3895,7 +3895,7 @@ The minimum temperatures for extrusion can be set using the Snnn parameter with 
 
 M302 with no parameters it will report the current cold extrusion state.
 
-One limitation of M302 is that it requires a thermistor to be present for the temperature to be monitored. If your system does not have a thermistor or heater to be monitored, you can define your tool in M563 without a heater to disable cold extrusion protection on that tool. Example: 
+One limitation of M302 is that it requires a heater with temperature sensor to be configured for the temperature to be monitored. If your system does not have a heater on this tool, you can define the tool in M563 without a heater to disable cold extrusion protection on that tool. Example: 
 <br>
 <pre class="cblock">
 M563 P0 S"Pump" D0 F0
