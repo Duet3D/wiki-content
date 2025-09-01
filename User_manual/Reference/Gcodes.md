@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-08-29T09:32:21.903Z
+date: 2025-09-01T17:10:44.003Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8020,6 +8020,8 @@ M671 X-15.0:100.0:215.0 Y220.0:-20.0:220.0 ; Z pivot points are at (-15,220), (1
 * The order of the X and Y coordinates is important; they relate to the order the motor drivers are defined in the [M584](/User_manual/Reference/Gcodes/M584){target=_blank} command. The first defined motor in M584 should be the first defined coordinates for X and Y in M671, and so on. For example, if you have M584 Z3:4:5 and M671 X[a]:[b]:[c] Y[a]:[b]:[c], the positions of X and Y for the motor on Z3 are defined by X[a],Y[a], Z4 by X[b],Y[b], and Z5 by X[c],Y[c].
 
 * The firmware algorithm assumes perfect gimbal joints at the pivot point, so that the bed is completely free to adopt the plane (or the twisted plane if there are 4 points) defined by the pivot points. In real printers this is rarely the case and the corrections are insufficient to level the bed, so multiple G32 commands need to be sent if the bed is a long way off level. The F parameter allows for the corrections calculated by the firmware to be multiplied by a factor so as to achieve faster convergence in this situation.
+
+* For more information on setting up bed levelling, see [Bed levelling using multiple independent Z motors](/User_manual/Connecting_hardware/Z_probe_auto_levelling)
 
 * For machines without multiple independently-driven Z axes, this command can also be used to define the positions of the bed levelling screws instead. Then bed probing can be used to calculate and display the adjustment required to each screw to level the bed. The thread pitch (P parameter) is used to translate the height adjustment needed to the number of turns of the levelling screws. See [Manual Bed Levelling Assistant](/User_manual/Connecting_hardware/Z_probe_manual_levelling){target=_blank}.
 
