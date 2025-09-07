@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-09-01T17:10:44.003Z
+date: 2025-09-07T13:26:28.959Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6806,10 +6806,10 @@ The optional P string is sent to the Roland if R is 1. It is permissible to call
 
 ##### Parameters
 
+* **Tnn** (required) Logical trigger number to associate the input(s) with, from zero up to a firmware-specific maximum
 * **P** Specify one or more input pin numbers that you created using M950 with the J parameter, or -1 to delete the trigger
-* **Tnn** Logical trigger number to associate the input(s) with, from zero up to a firmware-specific maximum
 * **S** Whether trigger occurs on an inactive-to-active edge of that input (S1, default), active-to-inactive edge (S0), or ignores that input (S-1).
-* **R** Condition: whether to trigger at any time (R0, default), only when printing a file from SD card (R1), or only when not printing a file from SD card (R2, supported in RRF 3.2 and later). R-1 temporarily disables the trigger.
+* **R** Enable condition: whether to trigger at any time (R0, default), only when printing a file from SD card (R1), or only when not printing a file from SD card (R2, supported in RRF 3.2 and later). R-1 temporarily disables the trigger.
 * **X**, **Y**, **Z** or any other axis letter: axis or axes whose endstop switches are to cause the trigger
 
 ##### Examples
@@ -6822,8 +6822,8 @@ M581 T2 P-1 ; don't invoke trigger 2 on any input change any more
 
 ##### Notes
 
-* When M581 is executed, if the T parameter is present but the other parameters are omitted, the trigger inputs and edge polarities for that trigger number are reported. Otherwise, the specified inputs and their polarities are added to the conditions that cause that trigger.
-* Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
+* When M581 is executed, the T parameter is required. If the other parameters are omitted, the trigger inputs and edge polarities for that trigger number are reported. Otherwise, if the P-1 parameter is provided, the trigger is deleted and any additional parameters are ignored. Otherwise, any inputs specified by the P parameter and/or axis endstops spewcify by the X, Y, Z... parameters are added to the conditions that cause that trigger with the polarity specified by the S parameter, and if the R parameter is provided then the trigger enable condition is updated.
+* Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions other than trigger 0 is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
 * A maximum of 32 triggers can be configured on Duet 3 6HC/6XD, a maximum of 16 on Duet 3 Mini 5+ and Duet 2 WiFi/Ethernet/Maestro.
 * **Warning**: if executed during a job, and more than one line long the GCode within the trigger file may be executed between later commands from the job. Bounding the trigger file with M25 and M24 may help, but this will cause warnings if the trigger happens outside of a job. The use of M25/M24 will cause the execution of pause and resume system macros.
 
