@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-09-07T13:26:28.959Z
+date: 2025-09-07T15:09:47.338Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6798,7 +6798,7 @@ M580 selects a Roland device for output if the R field is 1, and returns to nati
 
 The optional P string is sent to the Roland if R is 1. It is permissible to call this repeatedly with R set to 1 and different strings in the P field to communicate directly with a Roland.
 
-## M581: Configure external trigger
+## M581: Configure external trigger on inputs and/or endstops
 
 ### Tabs {.tabset}
 
@@ -6876,6 +6876,29 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 * A maximum of 16 triggers can be configured on Duet 2.
 * **Warning**: if executed during a build process, and more than one line long the GCode within the trigger file may be executed between later commands from the build file. Bounding the trigger file with M25 and M24 may help, but this will cause error warnings if the trigger happens outside of a build process. The use of M25/M24 will cause the execution of pause and resume system macros.
 
+## M581.1: Configure external trigger on expression
+
+*Supported in RRF 3.7 and later*
+
+##### Parameters
+
+* **Tnn** (required) Logical trigger number to associate the input(s) with, from zero up to a firmware-specific maximum
+* **P"expression"** Specify the expression to use, or P-1 to delete the trigger
+* **R** Enable condition: whether to trigger at any time (R0, default), only when printing a file from SD card (R1), or only when not printing a file from SD card (R2, supported in RRF 3.2 and later). R-1 temporarily disables the trigger.
+
+##### Examples
+<br>
+<pre class="cblock">
+M581.1 T2 P"sensors.gpIn[0] = 1" R1 ; invoke trigger 2 when the digital input configures using M950 J0 changes from inactive to active
+M581.1 T2 P-1 ; don't invoke trigger 2 on any input change any more
+</pre>
+
+##### Notes
+
+This is similar to M581 except that the trigger occurs when the value of the expression provided by the P parameter changes from false to true. The expression must yield a boolean result.
+
+M581 and M581.1 use the same set of trigger numbers. You can use either M581 T# P-1 or M581.1 T# P-1 to delete trigger number # regardless of whether it was created using M581 or M581.1. Likewise you can use M581 or M581.1 with just the T# parameter to report on trigger number # regardless of how it was created, or with just the T and R parameters to change the enable condition regardless of how the trigger was created.
+
 ## M582: Check external trigger
 
 ### Parameters
@@ -6895,6 +6918,8 @@ M582 T3 S1 ; set trigger #3 pending unconditionally
 Triggers set up by the M581 command are normally activated only when the specified inputs change state. This command provides a way of causing the trigger to be executed if the input is at a certain level. For each of the inputs associated with the trigger, the trigger condition will be checked as if the input had just changed from the opposite state to the current state. If the S1 parameter is used then the trigger will be activated unconditionally (RRF 3.5 and later only).
 
 For example, if you use M581 to support an out-of-filament sensor, then M582 allows you to check for out-of-filament just before starting a print.
+
+You can use M582 regardless of whether the trigger was created using M581 or M581.1.
 
 ## M584: Set drive mapping
 
