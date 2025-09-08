@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-09-08T11:28:01.719Z
+date: 2025-09-08T11:43:03.174Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6889,7 +6889,7 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 ##### Parameters
 
 * **Tnn** (required) Logical trigger number to associate the input(s) with, from zero up to a firmware-specific maximum
-* **P"expression"** Specify the expression to use, or P-1 to delete the trigger
+* **P"expression"** Specifies the object model expression to use, or use P-1 to delete the trigger
 * **R** Enable condition: whether to trigger at any time (R0, default), only when printing a file from SD card (R1), or only when not printing a file from SD card (R2, supported in RRF 3.2 and later). R-1 temporarily disables the trigger.
 
 ##### Examples
@@ -6901,9 +6901,13 @@ M581.1 T2 P-1                       ; don't invoke trigger 2 on any input change
 
 ##### Notes
 
-This is similar to M581 except that the trigger occurs when the value of the expression provided by the P parameter changes from false to true. The expression must yield a boolean result.
+This is similar to M581 except that the trigger occurs when the value of the expression provided by the P parameter changes from **false** to **true**. The expression must yield a boolean result.
 
-M581 and M581.1 use the same set of trigger numbers. You can use either M581 T# P-1 or M581.1 T# P-1 to delete trigger number # regardless of whether it was created using M581 or M581.1. Likewise you can use M581 or M581.1 with just the T# parameter to report on trigger number # regardless of how it was created, or with just the T and R parameters to change the enable condition regardless of how the trigger was created.
+If an error occurs while evaluating the expression during execution of M581.1 then an error message is returned and the trigger is not created. If no error occurs while executing M581.1 but an error occurs while evaluating the expression subsequently, an error message is reported to all input channels and the trigger is disabled.
+
+M581 and M581.1 use the same set of trigger numbers. Regardless of whether trigger number # was created using M581 or M581.1 you can use either `M581 T# P-1` or `M581.1 T# P-1` to delete it. Likewise you can use either `M581 T#` or `M581.1 T#` to report on it, and either `M581 T# Rn` or `M581.1 T# Rn` to change its enable condition.
+
+A trigger may be configured to respond to either input pin changes (M581) or to expression value changes (M581.1) but not both at the same time. Using M581.1 to create an expression-based trigger deletes any trigger conditions previously configured by M581 on the same trigger number; and vice versa.
 
 ## M582: Check external trigger
 
