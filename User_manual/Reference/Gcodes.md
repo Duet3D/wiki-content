@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-09-08T11:26:43.059Z
+date: 2025-09-08T11:28:01.719Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6817,8 +6817,8 @@ The optional P string is sent to the Roland if R is 1. It is permissible to call
 <br>
 <pre class="cblock">
 M581 T2 P0:3 S1 R1 ; invoke trigger 2 when an inactive-to-active edge is detected on input 0 or input 3 and a file is being printed from SD card
-M581 T3 X Y S1  ; invoke trigger 3 when the X or Y endstop switch is triggered
-M581 T2 P-1 ; don't invoke trigger 2 on any input change any more
+M581 T3 X Y S1     ; invoke trigger 3 when the X or Y endstop switch is triggered
+M581 T2 P-1        ; don't invoke trigger 2 on any input change any more
 </pre>
 
 ##### Notes
