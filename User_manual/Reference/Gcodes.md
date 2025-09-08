@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-09-08T07:45:17.574Z
+date: 2025-09-08T11:26:43.059Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6847,7 +6847,7 @@ For examples, see [Using triggers to control the Duet](/User_manual/Tuning/Trigg
 <br>
 <pre class="cblock">
 M581 P"e0stop+e1stop" T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 or E2 endstop input and a file is being printed from SD card
-M581 P"nil" T2 ; don't invoke trigger 2 on any input change any more
+M581 P"nil" T2              ; don't invoke trigger 2 on any input change any more
 </pre>
 
 ##### Notes
@@ -6896,7 +6896,7 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 <br>
 <pre class="cblock">
 M581.1 T2 P"sensors.gpIn[0] = 1" R1 ; invoke trigger 2 when the digital input configures using M950 J0 changes from inactive to active
-M581.1 T2 P-1 ; don't invoke trigger 2 on any input change any more
+M581.1 T2 P-1                       ; don't invoke trigger 2 on any input change any more
 </pre>
 
 ##### Notes
