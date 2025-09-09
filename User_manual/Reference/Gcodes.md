@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-09-09T08:08:40.814Z
+date: 2025-09-09T20:22:16.570Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4371,14 +4371,15 @@ M308 S21 Y"ads131.chan1" P"123.S20.1" B0.0 C5000.0 ; second channel for sensor o
 
 ### Notes
 
-* This code replaces M305 in RepRapFirmware 3. In earlier versions of RepRapFirmware, sensors only existed in combination with heaters, which necessitated the concept of a "virtual heater" to represent a sensor with no associated heater (e.g. MCU temperature sensor). RepRapFirmware 3 allows sensors to be defined independently of heaters. The association between heaters and sensors is defined using M950.
 * M308 can be used in the following ways:
   * **M308 Snn Y"type" [other parameters]**: delete sensor nn if it exists, create a new one with default settings, and configure it using the other parameters. At least the pin name must also be provided, unless the sensor doesn't use a pin (e.g. MCU temperature sensor).
   * **M308 Snn**: report the settings of sensor nn, this will also report the last error on that sensor if applicable
   * **M308 A"name"**: report the settings of the first sensor named "name"
   * **M308 Snn [any other parameters except Y]**: amend the settings of sensor nn
 * Sensor type names obey the same rules as [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}, i.e. case is not significant, neither are hyphen and underscore characters.
+* This [spreadsheet]( https://docs.google.com/spreadsheets/d/1BarZC6ZoZMMZEtqQEDzc9_jm_4lyDahxGNOvL-Pf_5s) can help to understand the U and V parameters for Linear Temperature Compensation
 * All Duets have some degree of auto-calibration to measure and cancel gain and offset errors in the analog-to-digital converters (ADC). The L and H parameters override auto-calibration. For more information on tuning Duet ADCs, see [Connecting thermistors and PT1000 temperature sensors - When to calibrate](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000#when-to-calibrate).
+* This code replaces M305 in RepRapFirmware 3. RepRapFirmware 3 allows sensors to be defined independently of heaters. The association between heaters and sensors is defined using M950.
 * When converting from older versions of RRF to RRF3 you must replace each M305 command by a similar M308 command, which must be earlier in config.g than any M950 command that uses it. You must also use M950 to define each heater that you use, because there are no default heaters.
   Example - old code:
   <pre class="cblock">
