@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-09-08T11:43:03.174Z
+date: 2025-09-09T08:08:40.814Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2619,7 +2619,7 @@ For example, the machine returns a string such as:
 C: X:10.000 Y:20.000 Z:5.000 E:51.000 E0:51.0 E1:0.0 Count 800 1600 2000 Machine 10.00 20.00 5.00 Bed comp 0.00
 </pre>
 
-The first E value (without an extruder number) is the current virtual extruder position, and is included for the benefit of GCode senders that don't understand multiple extruders. Note that the virtual extruder position is only incremented in absolute extrusion mode (M82), it can also be accessed in the object model at `move.virtualEPos`. M92 E"nn" sets the virtual extruder position to the number specified as "nn". The virtual E position is reset when a print is started, as are the individual E0, E1, etc counters. See the M82 section of this page for more information on absolute extrusion, the virtual extruder concept, and why it is generally better to use relative extrusion.
+The first E value (without an extruder number) is the current virtual extruder position, and is included for the benefit of GCode senders that don't understand multiple extruders. Note that the virtual extruder position is only incremented in absolute extrusion mode (M82), it can also be accessed in the object model at `move.virtualEPos`. G92 E"nn" sets the virtual extruder position to the number specified as "nn". The virtual E position is reset when a print is started, as are the individual E0, E1, etc counters. See the M82 section of this page for more information on absolute extrusion, the virtual extruder concept, and why it is generally better to use relative extrusion.
 
 The E0, E1 etc. values are for each individual extruder.
 
