@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-09-09T20:22:16.570Z
+date: 2025-09-11T15:25:34.430Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2069,7 +2069,8 @@ M42 switches a general purpose I/O pin which is defined by M950. Use M42 Px Sy t
 
 * Before you can use M42 you must create a GPIO port using M950. Then in the M42 command, the P parameter is the GPIO port number. 
 * The F (PWM frequency) and I (invert PWM) parameters are no longer supported in M42. Instead, use the Q (PWM frequency) and C (pin name, with ! to invert) parameters in M950 when you create the GPIO port.
-* In RRF 3.4, Duet 3 supports up to 32 outputs and 16 inputs, Duet 2 Wifi/Ethernet support up to 20 GPIO ports, and Duet 2 Maestro supports 10 GPIO ports. No GPIO ports are allocated by default.
+* No GPIO ports are allocated by default.
+* See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of inputs and outputs each Duet board and firmware version supports.
 
 #### RepRapFirmware 2.x
 
@@ -2311,7 +2312,7 @@ M98 R1 ; macro can be paused from this point onwards
 
 ### Notes
 
-* Macro calls can be nested (i.e. a macro can call another macro). From RRF v3.4.0, the maximum stack depth is 10. This is the maximum number of macro calls and M120 commands that may be nested. However, there is also a limit on the number of open files, which is 20 on Duet 3 and 10 on Duet 2. For example, on Duet 2 if you have a print running from SD card and logging enabled, you will be limited to a macro nesting depth of 8.
+* Macro calls can be nested (i.e. a macro can call another macro). From RRF v3.4.0, the maximum stack depth is 10. This is the maximum number of macro calls and M120 commands that may be nested. Deamon.g will also use up one of them. However, there is also a limit on the number of open files, which is 20 on Duet 3 and 10 on Duet 2. For example, on Duet 2 if you have a print running from SD card and logging enabled, you will be limited to a macro nesting depth of 8. 
 * **P** parameter:
   * In RRF 3.x and later, quotation marks around the filename are mandatory. In RRF2.x and earlier, the filename can be enclosed in quotes if required. See [Quoted Strings](/User_manual/Reference/Gcodes#quoted-strings){target=_blank} for details.
   * The filename may include a path to a subdirectory. For relative paths, the default folder is /sys. Absolute file paths are also supported starting with "0:/" for the internal SD card or "1:/" for the external SD card if fitted.
@@ -2908,7 +2909,7 @@ The sixth example sets the active/target bed temperature to absolute negative te
 
 * If a temperature close to absolute zero is set (strictly less than -273°C in RRF 3.3 and earlier, less than or equal to -273°C in RRF 3.4.0 and later), the bed heater will be switched off.
 * The 'H' parameter sets the heated bed heater number(s). If no heated bed is present, a negative value may be specified to disable it. M140 commands with H parameters would normally be used only in the config.g file.
-* On the Duet 3 MB6HC and MB6XD you can configure up to 12 bed heaters; on Duet 3 Mini 5+, 2 bed heaters; on Duet 2 WiFi/Ethernet, 4 bed heaters; on Duet 2 Maestro, 2 bed heaters.
+* See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of bed heaters each Duet board and firmware version supports.
 
 ## M141: Set Chamber Temperature (Fast) or Configure Chamber Heater
 
@@ -2938,7 +2939,7 @@ The third example specifies that chamber heater 1 uses heater 4.
 ### Notes
 
 * M141 commands with H parameters would normally be used only in the config.g file.
-* On the Duet 3 MB6HC and MB6XD you can configure up to 4 chamber heaters; on Duet 3 Mini 5+, 2 chamber heaters; on Duet 2 WiFi/Ethernet, 4 chamber heaters; on Duet 2 Maestro, 2 chamber heaters.
+* See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of chamber heaters each Duet board and firmware version supports.
 
 ## M143: Maximum heater temperature
 
@@ -3003,9 +3004,8 @@ If the heater is a bed or chamber heater then the M143 command must come after t
 
 ^1^ Supported in RepRapFirmware 1.20 and later. Starting from this version RepRapFirmware allows more granular control over the heater subsystem. By default each heater has one heater protection instance assigned to it, which is by default configured to generate a heater fault if the maximum heater temperature is exceeded.
 
-The default maximum temperature for all heaters was 300°C prior to RepRapFirmware version 1.13, and 262°C from 1.13. At RepRapFirmware 1.17 the default maximum temperatures were 262C for extruders and 125C for the bed. In more recent versions the default maximum heater temperature is 290C, to allow the hot end to be tightened at 285C as per the E3D recommendation. When the temperature of the heater exceeds this value a heater error will be triggered.
-
-With A0 set on RepRapFirmware 1.26.1, PS_ON is triggered after the fault has exisited for the duration defined by the S parameter set in M570.
+* The default maximum temperature for all heaters was 300°C prior to RepRapFirmware version 1.13, and 262°C from 1.13. At RepRapFirmware 1.17 the default maximum temperatures were 262C for extruders and 125C for the bed. In more recent versions the default maximum heater temperature is 290C, to allow the hot end to be tightened at 285C as per the E3D recommendation. When the temperature of the heater exceeds this value a heater error will be triggered.
+* With A0 set on RepRapFirmware 1.26.1, PS_ON is triggered after the fault has exisited for the duration defined by the S parameter set in M570.
 
 ## M144: Bed Standby
 
@@ -3668,11 +3668,9 @@ M280 P0 S80  ; set 80deg servo position on GPIO port 0
 
 ##### RRF 3.x notes
 
-Before you can use M280 you must create a GPIO port using M950. Then in the M280 command, the P parameter is the GPIO port number. 
-
-To invert the output, specify an inverted pin name in M950 when you create the GPIO port.
-
-In RRF 3.4, Duet 3 supports up to 32 output and 16 input ports, Duet 2 Wifi/Ethernet support up to 20 GPIO ports, and Duet 2 Maestro supports 10 GPIO ports. No GPIO ports are allocated by default.
+* Before you can use M280 you must create a GPIO port using M950. Then in the M280 command, the P parameter is the GPIO port number. 
+* To invert the output, specify an inverted pin name in M950 when you create the GPIO port.
+* See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of inputs and outputs each Duet board and firmware version supports.
 
 #### RepRapFirmware 2.x
 
@@ -3697,11 +3695,9 @@ The servo index is the same as the pin number for the M42 command.
 
 ### Notes
 
-S values below 544 are treated as angles, and 544 or greater as the pulse width in microseconds.
-
-The relationship between the S parameter and the pulse width output to the port is the same as in other 3D printer firmwares, so that devices such as BLTouch will perform the same way. However, **there is no standard for servos on the relationship between pulse width and servo angle**. Therefore, **for most servos the value of the S parameter does not equal the servo angle**. Almost all servos accept a pulse width range of at least 1us to 2us, which corresponds to an S parameter range of 44.2 to 141.2 degrees. So for many servos, values in the range 44.2 to 141.2 or alternatively 1000 to 2000 will cover the full operating range of the servo.
-
-See also [Using hobby servos and DC motors](/User_manual/Connecting_hardware/Motors_servos){target=_blank}.
+* S values below 544 are treated as angles, and 544 or greater as the pulse width in microseconds.
+* The relationship between the S parameter and the pulse width output to the port is the same as in other 3D printer firmwares, so that devices such as BLTouch will perform the same way. However, **there is no standard for servos on the relationship between pulse width and servo angle**. Therefore, **for most servos the value of the S parameter does not equal the servo angle**. Almost all servos accept a pulse width range of at least 1us to 2us, which corresponds to an S parameter range of 44.2 to 141.2 degrees. So for many servos, values in the range 44.2 to 141.2 or alternatively 1000 to 2000 will cover the full operating range of the servo.
+* See also [Using hobby servos and DC motors](/User_manual/Connecting_hardware/Motors_servos){target=_blank}.
 
 ## M290: Baby stepping
 
@@ -5466,7 +5462,7 @@ Defines the grid for [G29 Mesh Bed probing](/User_manual/Reference/Gcodes/G29){t
 
 * In RRF 3.3 and later, it is possible to use an arbitrary axes pair for probing, e.g. X-A or U-C. When using **Raaa** to define a radius this will default to X-Y.
 * For Cartesian printers, specify minimum and maximum X and Y values to probe and the probing interval. For Delta printers, specify the probing radius. If you define both, the probing area will be the intersection of the rectangular area and the circle. 
-* There is a firmware-dependent maximum number of probe points supported: RRF 3.5 - 961 (6HC/XD only, 31x31 grid) or 441 (Duet 3 Mini 5+ and Duet 2, 21x21 grid); RRF 3.4 - 441; RRF 1.x - 121 on the Duet 06/085 (enough for a 11x11 grid).
+* See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of probe points each Duet board and firmware version supports. Can be 961 (31x31 grid) or 441 (21x21 grid). In RRF 1.x - 121 on the Duet 06/085 (enough for a 11x11 grid).
 
 #### Define G32 probe points
 
@@ -6831,7 +6827,7 @@ M581 T2 P-1        ; don't invoke trigger 2 on any input change any more
 * Otherwise, any inputs specified by the P parameter and/or axis endstops specified by axis letter parameters are added to the conditions that cause that trigger with the polarity specified by the S parameter
 * If the R parameter is provided then the trigger enable condition is updated.
 * Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions other than trigger 0 is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
-* A maximum of 32 triggers can be configured on Duet 3 6HC/6XD, a maximum of 16 on Duet 3 Mini 5+ and Duet 2 WiFi/Ethernet/Maestro.
+* See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of triggers each Duet board and firmware version supports.
 * **Warning**: if executed during a job, and more than one line long the GCode within the trigger file may be executed between later commands from the job. Bounding the trigger file with M25 and M24 may help, but this will cause warnings if the trigger happens outside of a job. The use of M25/M24 will cause the execution of pause and resume system macros.
 
 For examples, see [Using triggers to control the Duet](/User_manual/Tuning/Triggers){target=_blank} and [Connecting and emergency stop](/User_manual/Connecting_hardware/IO_E_stop){target=_blank}.
@@ -6902,13 +6898,10 @@ M581.1 T2 P-1                       ; don't invoke trigger 2 on any input change
 
 ##### Notes
 
-This is similar to M581 except that the trigger occurs when the value of the expression provided by the P parameter changes from **false** to **true**. The expression must yield a boolean result.
-
-If an error occurs while evaluating the expression during execution of M581.1 then an error message is returned and the trigger is not created. If no error occurs while executing M581.1 but an error occurs while evaluating the expression subsequently, an error message is reported to all input channels and the trigger is disabled.
-
-M581 and M581.1 use the same set of trigger numbers. Regardless of whether trigger number # was created using M581 or M581.1 you can use either `M581 T# P-1` or `M581.1 T# P-1` to delete it. Likewise you can use either `M581 T#` or `M581.1 T#` to report on it, and either `M581 T# Rn` or `M581.1 T# Rn` to change its enable condition.
-
-A trigger may be configured to respond to either input pin changes (M581) or to expression value changes (M581.1) but not both at the same time. Using M581.1 to create an expression-based trigger deletes any trigger conditions previously configured by M581 on the same trigger number; and vice versa.
+* This is similar to M581 except that the trigger occurs when the value of the expression provided by the P parameter changes from **false** to **true**. The expression must yield a boolean result.
+* If an error occurs while evaluating the expression during execution of M581.1 then an error message is returned and the trigger is not created. If no error occurs while executing M581.1 but an error occurs while evaluating the expression subsequently, an error message is reported to all input channels and the trigger is disabled.
+* M581 and M581.1 use the same set of trigger numbers. Regardless of whether trigger number # was created using M581 or M581.1 you can use either `M581 T# P-1` or `M581.1 T# P-1` to delete it. Likewise you can use either `M581 T#` or `M581.1 T#` to report on it, and either `M581 T# Rn` or `M581.1 T# Rn` to change its enable condition.
+* A trigger may be configured to respond to either input pin changes (M581) or to expression value changes (M581.1) but not both at the same time. Using M581.1 to create an expression-based trigger deletes any trigger conditions previously configured by M581 on the same trigger number; and vice versa.
 
 ## M582: Check external trigger
 
@@ -6926,11 +6919,9 @@ M582 T3 S1 ; set trigger #3 pending unconditionally
 
 ### Notes
 
-Triggers set up by the M581 command are normally activated only when the specified inputs change state. This command provides a way of causing the trigger to be executed if the input is at a certain level. For each of the inputs associated with the trigger, the trigger condition will be checked as if the input had just changed from the opposite state to the current state. If the S1 parameter is used then the trigger will be activated unconditionally (RRF 3.5 and later only).
-
-For example, if you use M581 to support an out-of-filament sensor, then M582 allows you to check for out-of-filament just before starting a print.
-
-You can use M582 regardless of whether the trigger was created using M581 or M581.1.
+* Triggers set up by the M581 command are normally activated only when the specified inputs change state. This command provides a way of causing the trigger to be executed if the input is at a certain level. For each of the inputs associated with the trigger, the trigger condition will be checked as if the input had just changed from the opposite state to the current state. If the S1 parameter is used then the trigger will be activated unconditionally (RRF 3.5 and later only).
+* For example, if you use M581 to support an out-of-filament sensor, then M582 allows you to check for out-of-filament just before starting a print.
+* You can use M582 regardless of whether the trigger was created using M581 or M581.1.
 
 ## M584: Set drive mapping
 
