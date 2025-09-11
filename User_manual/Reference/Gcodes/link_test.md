@@ -2,7 +2,7 @@
 title: Test Gcode links
 description: 
 published: false
-date: 2024-11-29T16:47:33.722Z
+date: 2025-09-11T11:10:30.451Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-30T10:32:57.014Z
@@ -73,8 +73,9 @@ dateCreated: 2024-04-30T10:32:57.014Z
 [M32: Select file and start SD print](/User_manual/Reference/Gcodes/M32)
 [M36: Return file information](/User_manual/Reference/Gcodes/M36)
 [M36.1: Return embedded thumbnail data](/User_manual/Reference/Gcodes/M36_1)
+[M36.2: Return height map data](/User_manual/Reference/Gcodes/M36_2)
 [M37: Simulation mode](/User_manual/Reference/Gcodes/M37)
-[M38: Compute SHA1 hash of target file](/User_manual/Reference/Gcodes/M38)
+[M38: Compute CRC32 hash of target file](/User_manual/Reference/Gcodes/M38)
 [M39: Report SD card information](/User_manual/Reference/Gcodes/M39)
 [M42: Switch I/O pin](/User_manual/Reference/Gcodes/M42)
 [M73: Set remaining print time](/User_manual/Reference/Gcodes/M73)
@@ -172,6 +173,7 @@ dateCreated: 2024-04-30T10:32:57.014Z
 [M502: Revert stored parameters](/User_manual/Reference/Gcodes/M502)
 [M503: Print settings](/User_manual/Reference/Gcodes/M503)
 [M505: Set configuration file folder](/User_manual/Reference/Gcodes/M505)
+[M505.1: Set HTTP server root folder](/User_manual/Reference/Gcodes/M505_1)
 [M540: Set MAC address](/User_manual/Reference/Gcodes/M540)
 [M550: Set Name](/User_manual/Reference/Gcodes/M550)
 [M551: Set Password](/User_manual/Reference/Gcodes/M551)
@@ -181,9 +183,10 @@ dateCreated: 2024-04-30T10:32:57.014Z
 [M555: Set compatibility](/User_manual/Reference/Gcodes/M555)
 [M556: Axis skew compensation](/User_manual/Reference/Gcodes/M556)
 [M557: Set Z probe point or define probing grid](/User_manual/Reference/Gcodes/M557)
-[M558: Set Z probe type](/User_manual/Reference/Gcodes/M558)
+[M558: Create or modify probe](/User_manual/Reference/Gcodes/M558)
 [M558.1: Calibrate, set or report height vs reading of scanning Z probe](/User_manual/Reference/Gcodes/M558_1)
 [M558.2: Calibrate, set or report drive current and reading offset for scanning Z probe](/User_manual/Reference/Gcodes/M558_2)
+[M558.3: Set touch mode parameters for analog probe](/User_manual/Reference/Gcodes/M558_3)
 [M559: Upload file](/User_manual/Reference/Gcodes/M559)
 [M560: Upload file](/User_manual/Reference/Gcodes/M560)
 [M561: Set Identity Transform](/User_manual/Reference/Gcodes/M561)
@@ -215,7 +218,8 @@ dateCreated: 2024-04-30T10:32:57.014Z
 [M578: Fire inkjet bits](/User_manual/Reference/Gcodes/M578)
 [M579: Scale Cartesian axes](/User_manual/Reference/Gcodes/M579)
 [M580: Select Roland](/User_manual/Reference/Gcodes/M580)
-[M581: Configure external trigger](/User_manual/Reference/Gcodes/M581)
+[M581: Configure external trigger on inputs and/or endstops](/User_manual/Reference/Gcodes/M581)
+[M581.1: Configure external trigger on expression](/User_manual/Reference/Gcodes/M581_1)
 [M582: Check external trigger](/User_manual/Reference/Gcodes/M582)
 [M584: Set drive mapping](/User_manual/Reference/Gcodes/M584)
 [M585: Probe Tool](/User_manual/Reference/Gcodes/M585)
@@ -239,6 +243,7 @@ dateCreated: 2024-04-30T10:32:57.014Z
 [M606: Fork input file reader](/User_manual/Reference/Gcodes/M606)
 [M650: Set peel move parameters](/User_manual/Reference/Gcodes/M650)
 [M651: Execute peel move](/User_manual/Reference/Gcodes/M651)
+[M655: Send request to custom CAN-connected expansion board](/User_manual/Reference/Gcodes/M655)
 [M665: Set delta configuration](/User_manual/Reference/Gcodes/M665)
 [M666: Set delta endstop adjustment](/User_manual/Reference/Gcodes/M666)
 [M667: Select CoreXY or related mode](/User_manual/Reference/Gcodes/M667)
