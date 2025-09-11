@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-09-04T09:46:41.891Z
+date: 2025-09-11T15:59:47.447Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -166,6 +166,15 @@ This creates a new variable called *global.\<new-variable-name>* and initializes
 Example:
 
 `global T1heat=0`
+
+### Array-valued variable declaration
+
+Supported from RRF 3.5, allows a Gcode command that has a parameter that accepts multiple values separated by a colon (eg `M93 E350:400`) to accept expressions.
+
+In RRF 3.6 and later, the entire parameter must be an array expression enclosed in { }, e.g. `M92 E{global.e0StepsPerMm, 400}`.
+
+In RRF 3.5, each individual value can be an expression enclosed in { }, e.g. `M92 E{global.e0StepsPerMm}:400`
+
 
 ### Variable assignment
 
