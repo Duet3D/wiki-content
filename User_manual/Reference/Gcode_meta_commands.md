@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-09-11T15:59:47.447Z
+date: 2025-09-11T16:05:51.984Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -149,7 +149,7 @@ while <boolean-expression>
 
 ## Variables
 
-*Supported from RRF 3.3. Array-valued variables are supported from RRF 3.5*
+*Supported from RRF 3.3.*
 
 ### Local variable declaration
 
@@ -166,15 +166,6 @@ This creates a new variable called *global.\<new-variable-name>* and initializes
 Example:
 
 `global T1heat=0`
-
-### Array-valued variable declaration
-
-Supported from RRF 3.5, allows a Gcode command that has a parameter that accepts multiple values separated by a colon (eg `M93 E350:400`) to accept expressions.
-
-In RRF 3.6 and later, the entire parameter must be an array expression enclosed in { }, e.g. `M92 E{global.e0StepsPerMm, 400}`.
-
-In RRF 3.5, each individual value can be an expression enclosed in { }, e.g. `M92 E{global.e0StepsPerMm}:400`
-
 
 ### Variable assignment
 
@@ -276,7 +267,7 @@ Expressions may use the values of any properties in the RepRapFirmware Object Mo
 
 ## Variables
 
-*These are supported from RRF 3.3 in standalone mode and from 3.4 in SBC mode*
+*These are supported from RRF 3.3 in standalone mode and from 3.4 in SBC mode. Array-valued variables are supported from RRF 3.5.*
 
 The values of global variables that have been created using the '*global*' command can be retrieved using the syntax *global.\<variable name>*. Example:
 
@@ -292,7 +283,18 @@ Use `exists(<variable>)` to check if a variable is defined. e.g.
 ```
 exists(global.defaultSpeed)
 ```
-**Note**: In CNC mode, round brackets in a line are treated as enclosing comments. This means that if you use expressions in GCode, if you use round brackets within expressions then the whole expression must be enclosed in { }. This would normally be the case anyway when using expressions as parameters to regular GCode commands, so this only affects the use of round brackets in GCode meta commands such as **if**, **while**, **var**, **global**, **echo** and so on. See [here](/User_manual/Machine_configuration/Configuration_CNC#differences-in-firmware-behaviour-between-cnc-mode-and-fdm-mode){target=_blank} for more information.
+
+### Array-valued variables
+
+Supported from RRF 3.5, Gcode commands that have a parameter that accepts multiple values separated by a colon (eg `M93 E350:400`) can accept expressions.
+
+In RRF 3.6 and later, the entire parameter must be an array expression enclosed in { }, e.g. `M92 E{global.e0StepsPerMm, 400}`.
+
+In RRF 3.5, each individual value can be an expression enclosed in { }, e.g. `M92 E{global.e0StepsPerMm}:400`
+
+### Notes
+
+* In CNC mode, round brackets in a line are treated as enclosing comments. This means that if you use expressions in GCode, if you use round brackets within expressions then the whole expression must be enclosed in { }. This would normally be the case anyway when using expressions as parameters to regular GCode commands, so this only affects the use of round brackets in GCode meta commands such as **if**, **while**, **var**, **global**, **echo** and so on. See [here](/User_manual/Machine_configuration/Configuration_CNC#differences-in-firmware-behaviour-between-cnc-mode-and-fdm-mode){target=_blank} for more information.
 
 ## Macro parameters
 
