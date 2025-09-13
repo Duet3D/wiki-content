@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2025-07-16T12:08:09.534Z
+date: 2025-09-13T17:25:02.959Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -17,12 +17,12 @@ This is a DIY project to interface a popular style of CNC pendant to the PanelDu
 ![cnc_pendant_01.jpg](/manual/sensors/cnc_pendant_01.jpg =400x)
 
 * One wired CNC pendant similar to the image above. These are available in 4-axis versions (illustrated) and 6 axis versions (with the axis selector switch having additional position 5 and 6). Either will work.
-* One Arduino Pro Micro (5V/16MHz version), Micro or Nano (Pro Micro preferred)
-  Note: the Pro Micro is not an official Arduino board. It was developed by Sparkfun, and clones are available from most electronics vendors. It is supported by the Arduino IDE.
+* One Arduino Pro Micro (5V/16MHz version), Arduino Micro or Arduino Nano (Pro Micro preferred)
+  Note: the Pro Micro is not an official Arduino board. It was developed by Sparkfun. Clones are available from many sources. It is supported by the Arduino IDE.
 * One 10K wire-ended resistor (optional if the pendant will be used only with a Duet 3 board)
 * One 6.8K wire-ended resistor (optional if the pendant will be used only with a Duet 3 board)
 * 4-core unshielded cable, as long as you want. You could instead re-use the 18- or 20-core cable that comes with the pendant, but the 4-core cable is thinner. If you do not need the PanelDue pass through feature, then 3-core cable is sufficient.
-* 4- or 5- way Molex KK connector shell and crimp pins to plug into the PanelDue port of the Duet (you should have received some of these with your Duet)
+* 4-way (for Duet 2) or 5-way (for Duet 3) Molex KK connector shell and crimp pins to plug into the PanelDue port of the Duet (you should have received some of these with your Duet)
 * Small cable ties
 
 # Tools needed
@@ -36,7 +36,14 @@ This is a DIY project to interface a popular style of CNC pendant to the PanelDu
 
 # Programming the Arduino Pro Micro
 
-Install Arduino IDE 1.8.1 on your PC and create a new sketch called CNC-pendant. Then download all the files from the /src folder of [https://github.com/Duet3D/CNC-Pendant-Firmware](https://github.com/Duet3D/CNC-Pendant-Firmware) and put them in your sketch folder, overwriting the file CNC-pendant.ino file already there. Select board type Arduino Micro, connect the Arduino to your PC via USB, and program the sketch in it.
+- Install Arduino IDE on your PC. The version probably doesn't matter; we have used versions 1.8.1 and 2.3.6 successfully.
+- Create a new sketch called CNC-pendant.
+- In a web browser, go to [https://github.com/Duet3D/CNC-Pendant-Firmware](https://github.com/Duet3D/CNC-Pendant-Firmware).
+- If using RepRapFirmware 3.5.x or later, select the **crc16** branch. If using RepRapFirmware 3.4.x or earlier, use the **main** branch.
+- Download all the files from the **/src** folder and put them in your sketch folder, overwriting the **CNC-pendant.ino** file already there.
+- Select board type Arduino Micro.
+- Select processor type 5V/16MHz.
+- Connect the Arduino to your PC via USB, select the correct COM port, and program the sketch in it.
 
 For wiring differences and hardware changes needed if using an Arduino Micro or Nano, see the comments at the start of the CNC-pendant.ino file.
 
