@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2025-04-07T14:29:53.069Z
+date: 2025-09-16T12:23:05.379Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -177,6 +177,26 @@ The Duet 2 WiFi **with pre-1.19 firmware** requires only /gcodes, /macros and /s
     ├── precache-manifest.a4ab8f573fcc203b798fa7d11eee39d5.js.gz
     └── service-worker.js.gz
 ```
+
+# SD card maintenance
+
+Over time, the SD card may slowly fill up. This may affect performance.
+* Send `M39` to see how much space is available. Generally, try to keep at least 10% of free space (this can be less on high capacity SD cards).
+* Ensure that the SD card is formatted with the largest possible cluster size, usually 64kb.
+* If you upload a Gcode file and there is not enough space on the SD card, there will be an error message.
+* If the card gets very full then the free space may get fragmented, which will reduce performance uploading large GCode files and also increase the time taken to read them back when running them (this can show as 'Underruns' in the M122 report).
+* Gcode job files take up the most space on the SD card, so delete old jobs as necessary. You can download them before deleting if you need the backup (see backup section below).
+* Files in /firmware, /sys and /macros are generally small and rarely need pruning. /www may slowly get bigger, if you update firmware often. Create a new /www folder and unzip the contents of 'DuetWebControl-SD.zip' into it. You will need to copy across or reinstall any extra plugins.
+
+# Backing up the SD card
+
+There are a number of ways to backup the SD card contents:
+* DWC allows you to download files individually, or as a zip if you select multiple files. Download ing of folders is not supported. Select the file(s) you want, then right click to either 'Download File' (individual file) or 'Download as ZIP' (multiple files selected).
+* Enable FTP with `M586 P1 S1`, and connect via an FTP program such as FileZilla
+* rfm (RepRapFirmware File Manager) by @wilriker [Github](https://github.com/wilriker/rfm){target=_blank} [Forum thread](https://forum.duet3d.com/topic/10880/){target=_blank}
+* For SBC installations, duetbackup by @stuartofmt [Github](https://github.com/stuartofmt/duetBackup){target=_blank} [Forum thread](https://forum.duet3d.com/topic/34220/){target=_blank}
+
+
 
 # Troubleshooting SD Card issues
 
