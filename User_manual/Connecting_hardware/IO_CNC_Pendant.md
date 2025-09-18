@@ -2,7 +2,7 @@
 title: CNC Pendant
 description: 
 published: true
-date: 2025-09-13T17:25:02.959Z
+date: 2025-09-18T15:49:21.775Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T12:24:39.042Z
@@ -41,7 +41,7 @@ This is a DIY project to interface a popular style of CNC pendant to the PanelDu
 - In a web browser, go to [https://github.com/Duet3D/CNC-Pendant-Firmware](https://github.com/Duet3D/CNC-Pendant-Firmware).
 - If using RepRapFirmware 3.5.x or later, select the **crc16** branch. If using RepRapFirmware 3.4.x or earlier, use the **main** branch.
 - Download all the files from the **/src** folder and put them in your sketch folder, overwriting the **CNC-pendant.ino** file already there.
-- Select board type Arduino Micro.
+- Select board type Sparkfun Arduino Micro.
 - Select processor type 5V/16MHz.
 - Connect the Arduino to your PC via USB, select the correct COM port, and program the sketch in it.
 
