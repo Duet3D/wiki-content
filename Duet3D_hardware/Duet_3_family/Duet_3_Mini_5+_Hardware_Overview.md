@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-06-11T10:28:28.579Z
+date: 2025-09-21T13:15:43.957Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -491,6 +491,12 @@ You will need to remove the bootloader protection by doing Erase Chip first and 
 # Revision History
 
 # Tabs{.tabset}
+
+## Revision 1.03a
+
+Ethernet Only
+
+* Replaced the SD card filer/protection component that was no longer available with a functionally equivalent part. This will not change SD card perfomance or other functionality.
 
 ## Revision 1.03
 
