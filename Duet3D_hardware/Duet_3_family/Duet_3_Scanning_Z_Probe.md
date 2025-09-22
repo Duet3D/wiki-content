@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2025-06-11T11:00:55.703Z
+date: 2025-09-22T09:12:29.763Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -67,11 +67,11 @@ There are three M2 mounting holes and overall dimensions are 38mmx20mm
 
 ### 12mm Coil
 
-![Diagram showing the outer dimensions of the 12mm Coil](/duet_boards/duet_3_can_expansion/duet_3_szp/12mm.png =500x)
+![Diagram showing the outer dimensions of the 12mm Coil](/duet_boards/duet_3_can_expansion/duet_3_szp/szp_12mm_coil.png =500x)
 
 ### 15mm Coil
 
-![Diagram showing the outer dimensions of the 15mm Coil](/duet_boards/duet_3_can_expansion/duet_3_szp/15mm.png =500x)
+![Diagram showing the outer dimensions of the 15mm Coil](/duet_boards/duet_3_can_expansion/duet_3_szp/szp_15mm_coil.png =500x)
 
 ## Mounting
 
