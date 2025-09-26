@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-09-16T11:57:56.459Z
+date: 2025-09-26T15:36:01.084Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -510,7 +510,7 @@ The Duet 3 Mainboard 6HC can also be run in standalone mode (without the SBC) by
 
 The Ethernet port provides the ability to directly network to the board when not using an SBC. Along with the built-in SD card this allows the Mainboard to run in Standalone mode.
 
-### WIFI - v1.02
+### WIFI - Duet 3 6HC v1.02 or later
 
 The Duet 3 Wifi module is only supported on 6HC v1.02 and later mainboards, running RRF 3.5.0 or later.
 
@@ -537,6 +537,9 @@ Note that the wifi module is the second network interface on the 6HC (the ethern
 * Send `M552 I1 S1` to enable the WiFi interface in client mode and connect to an access point that you specified using M587. Send `M552 I1` or `M122` to see the configured IP address.
 
 * You can add this to config.g if you want WiFi to be enabled on boot.
+
+#### WiFi Module 3d Model
+[STEP File](https://github.com/Duet3D/Duet3-Wifi-Module/blob/main/Duet3_Wifi_Module_v0.1/Duet3_Wifi_Module_STEP.zip)
 
 ## Motion
 
