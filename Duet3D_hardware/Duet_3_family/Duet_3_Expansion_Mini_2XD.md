@@ -2,7 +2,7 @@
 title: Duet 3 Expansion Mini 2XD
 description: The Duet 3 Expansion Mini 2XD is an expansion board designed to connect two external drivers to the Duet 3 mini 5+ mainboard.
 published: true
-date: 2025-07-25T17:46:07.686Z
+date: 2025-09-26T14:53:07.678Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-25T16:27:40.851Z
@@ -61,6 +61,11 @@ These pictures show the Mini 2+ mounted but the procedure is the same of the Min
 Nylon standoffs are supplied with the Duet 3 Expansion Mini 2XD to mount it securely.
 
 * 11mm tall for 1.6mm PCB with 2.5mm holes -e.g. FIX-MADA-11 or TRDLCBST-7-01
+
+## 3D Model
+
+* [STEP file](/duet_boards/duet_3_mini_5_plus/duet3_exp_2xd_v0.1_step.zip)
+
 
 # Physical connections
 
