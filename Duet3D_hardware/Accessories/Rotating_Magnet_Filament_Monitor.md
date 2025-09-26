@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Filament Monitor
 description: 
 published: true
-date: 2024-08-21T14:28:32.034Z
+date: 2025-09-26T15:41:37.648Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-18T13:55:54.917Z
@@ -217,6 +217,9 @@ On systems that use a bowden tube it is also possible to mount the filament moni
 
 Note that when mounting after the extruder, ensure that the dust from the entruder teeth on the filament does not end up in the MFM as it can clogg the hobbed teeth in the MFM causing it to slip.
 
+## 3D Model
+
+[STEP file is available on Github](https://github.com/Duet3D/FilamentMonitors/tree/master/Filament_Monitor_Magnetic/version3/assembly)
 
 # Wiring
 
