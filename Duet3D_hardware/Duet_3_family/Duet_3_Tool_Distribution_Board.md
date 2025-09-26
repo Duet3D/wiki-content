@@ -2,30 +2,48 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2025-09-26T15:26:48.449Z
+date: 2025-09-26T16:37:21.129Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
 ---
 
-
-![duet_3_tool_distribution_board_v0.5_top.jpg](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_top.jpg =400x)
+![The Duet 3 Tool distribution board v1.0](/duet_boards/duet_3_can_expansion/tooldistributionboardv1_02_s.png)
 
 # Introduction
 
-The Duet 3 Tool Distribution Board is designed to simplify the connections of multiple [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC)s to the Duet 3 CAN-FD bus by providing breakout for CAN and power, bus pass-through and bus termination.
+The Duet 3 Tool Distribution Board is designed to simplify the connections of multiple [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC)s and/or [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard)s to the Duet 3 CAN-FD bus by providing breakout for CAN and power, bus pass-through and bus termination.
 
 See [CAN connection basics](/User_manual/Machine_configuration/CAN_connection).
 
+There was a major change between v0.5 and v1.0 to make wiring, especially of stubs, easier)
+
 # Features
 
+## Tabs {.tabset}
+
+### Revision v1.0
+
+* 2-way barrier strip for power in.
+* Four 2-way JST VH connectors for power out, individually fused (5A fuses supplied).
+* Four 4-pin JST PA connectors to extend the CAN-FD bus in a daisy chain.
+* Four 2-pin JST PA connectors to add devices on stubs
+* Two RJ11 connectors for CAN bus in/out to connect to Duet 3 main board and expansion boards.
+* CAN bus termination jumper pins.
+
+The Duet 3 Tool Distribution Board v1.0 is supplied with:
+* JST PA crimps and 4-pin and 2-pin JST PA shells for CAN wiring.
+* JST VH crimps and 2-way shells for power wiring. 
+* 2mm, 2-pin jumpers to bypass unused tool board CAN connectors and for CAN bus termination.
+
+### Revision v0.5
 * 2-way barrier strip for power in.
 * Four 4-pin JST ZH connectors to connect CAN bus to Tool Boards.
 * Four 2-way JST VH connectors for power out to tool boards, individually fused (5A fuses supplied).
 * Two RJ11 connectors for CAN bus in/out to connect to Duet 3 main board and expansion boards.
 * CAN bus termination jumper pins.
 
-The Duet 3 Tool Distribution Board is supplied with:
+The Duet 3 Tool Distribution Board v0.5 is supplied with:
 * Four 4-pin JST ZH connectors with 1m cables to connect CAN bus to four Tool Boards. The cables supplied are 28AWG.
 * JST VH crimps and 2-way shells for power wiring. 
 * Four pairs of 2-pin jumpers to bypass unused tool board CAN connectors.
@@ -48,6 +66,8 @@ The Duet 3 Tool Distribution Board is supplied with:
 
 ### Revision v1.0
 
+[![Dimensions of the Duet 3 tool distibution board v1.0 70mmx55mm, 3.2mm holes spaced at the corners 3.5mm inset in both directions](/duet_boards/duet_3_can_expansion/duet3_tooldistribution_v1.0_d1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet3_tooldistribution_v1.0_d1.0_dimensions.png){target=_blank}
+
 #### 3D Model
 
 [STEP file](https://github.com/Duet3D/Duet3-Tool-Distribution-Board/blob/master/Tool%20Distibution%20v1.0/ToolDistribution_v1.0.zip)
@@ -67,6 +87,14 @@ The Duet 3 Tool Distribution Board is supplied with:
 # Physical connections
 
 ## Wiring diagram
+
+## Tabs {.tabset}
+
+### Revision v1.0
+
+To follow
+
+### Revision v0.5
 
 [![duet_3_tool_distribution_board_v0.5_wiring.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_wiring.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_wiring.png){target=_blank}
 
@@ -122,6 +150,7 @@ Boards with a 2-pin only connection, eg **Duet 3 Roto toolboard, Scanning Z Prob
 
 ### 2-wire connection
 
+- requires updating for v1.0
 
 Some expansion and tool boards only have a two-pin CAN connection, eg Duet 3 Roto toolboard, Scanning Z Probe, and mainboards when used as an expansion board. This necessitates a two-wire connection. Though actually all expansion, tool, and mainboards-as-expansion boards can be connected using just two CAN wires. This is like a branch off the main CAN bus, and is called a 'stub'. There are some rules to stubs:
 * The maximum recommended stub length for the 1Mbit/sec signalling rates used by Duet is 1m, and should preferably use ferrite beads to suppress ringing.
@@ -155,3 +184,17 @@ CAN bus termination is required at each end of the CAN bus. The mainboard, usual
 Alternatively, you can put the termination on the last toolboard on the Tool Distribution Board.
 
 If there are further CAN expansion boards connected via the RJ11 CAN OUT connector, remove the termination jumper from the Tool Distribution Board. 
+
+# Revisions
+
+## Tabs {.tabset}
+
+### v1.0
+* Change 4 way can headers from JST ZH to JST PA.
+* Add 2 ways JST PA headers designed for connecting CAN stubs.
+* Change to a double RJ11 header for manufacturability
+* Change to 2mm can termination jumper for compatibility with 2mm jumpers used to bypass 4 pin headers.
+* Add power LEDs per power output, and one on the input.
+
+### v0.5
+* First production version.
