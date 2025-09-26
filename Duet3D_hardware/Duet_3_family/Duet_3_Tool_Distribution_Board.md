@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2025-01-27T00:13:31.733Z
+date: 2025-09-26T15:26:48.449Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -46,9 +46,19 @@ The Duet 3 Tool Distribution Board is supplied with:
 
 ## Tabs {.tabset}
 
+### Revision v1.0
+
+#### 3D Model
+
+[STEP file](https://github.com/Duet3D/Duet3-Tool-Distribution-Board/blob/master/Tool%20Distibution%20v1.0/ToolDistribution_v1.0.zip)
+
 ### Revision v0.5
 
 [![duet_3_tool_distribution_board_v0.5_dimensions.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_dimensions.png){target=_blank}
+
+#### 3D Model
+
+[STEP file](https://github.com/Duet3D/Duet3-Tool-Distribution-Board/blob/master/Tool%20Distribution%20v0.5/ToolDistribution_board_v0.5.step)
 
 ### Revision v0.4
 
