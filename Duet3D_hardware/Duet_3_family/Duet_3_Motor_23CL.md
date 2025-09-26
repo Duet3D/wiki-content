@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2025-08-28T16:16:44.174Z
+date: 2025-09-26T11:42:50.903Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -95,7 +95,9 @@ Supply between 24V and 48V to the M8 3-way power connector on the motor, observi
 
 ### VIN Backup
 
-Pin 3 of the POWER in connector in version v1.0 of the Duet 3 Motor23CL is internally connected GND. From o v1.1 it is connected to a separately fused V_IN_BACKUP circuit that just keeps the logic elements of the control board running, but not motor power, if V_IN power is removed. this allows a safety system to interrupt motor power, without the motor loosing encoder position.
+Pin 3 of the POWER in connector in version v1.0 of the Duet 3 Motor23CL is internally connected GND. From v1.1 it is connected to a separately fused V_IN_BACKUP circuit that just keeps the logic elements of the control board running, but not motor power, if V_IN power is removed. this allows a safety system to interrupt motor power, without the motor loosing encoder position.
+
+> When VIN power to the motor is reapplied by the safety relay an inrush of current will occur, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.{.is-warning}
 
 > In version 3.6 firmware when V_IN power is applied, the motor will attempt to move back to the position its commanded to be in as rapidly as it can. If the motor was moved while VIN power was not applied then this can cause undesirable results. This behaviour may be addressed in future firmware versions, until that time avoid moving the motor when in this state, alternatively if that's not possible (e.g. due to a Z axis that moves under load when not powered), use a Motor 23CL with a brake.
 {.is-warning}
