@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2025-09-27T10:17:50.194Z
+date: 2025-09-27T11:39:24.963Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -24,13 +24,14 @@ There was a major change between v0.5 and v1.0 to make wiring, especially of stu
 
 ### Revision v1.0
 
-* 2-way barrier strip for power in.
+* 2-way barrier strip for power in 12V-48V
 * Four 2-way JST VH connectors for power out, individually fused (5A fuses supplied).
 * Four 4-pin JST PA connectors to extend the CAN-FD bus in a daisy chain.
 * Four 2-pin JST PA connectors to add devices on stubs
 * Two RJ11 connectors for CAN bus in/out to connect to Duet 3 main board and expansion boards.
 * Two 2-Pin JST PA connectors as alternative ports for CAN bus in/out
 * CAN bus termination jumper pins.
+* LED indication for Power In and per fused power output.
 
 The Duet 3 Tool Distribution Board v1.0 is supplied with:
 * 1x 0.5m RJ11 cable
@@ -99,11 +100,11 @@ The Duet 3 Tool Distribution Board v0.5 is supplied with:
 
 ### Revision v1.0
 
-To follow
+[![duet3_toolbreakout_v1.0_d1.0_wiring.png](/duet_boards/duet_3_can_expansion/duet3_toolbreakout_v1.0_d1.0_wiring.png =700x)](/duet_boards/duet_3_can_expansion/duet3_toolbreakout_v1.0_d1.0_wiring.png){target=_blank}
 
 ### Revision v0.5
 
-[![duet_3_tool_distribution_board_v0.5_wiring.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_wiring.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_wiring.png){target=_blank}
+[![duet_3_tool_distribution_board_v0.5_wiring.png](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_wiring.png =700x)](/duet_boards/duet_3_can_expansion/duet_3_tool_distribution_board_v0.5_wiring.png){target=_blank}
 
 ## Power distribution
 
