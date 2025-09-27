@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2025-09-27T11:39:24.963Z
+date: 2025-09-27T11:45:34.272Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -108,7 +108,7 @@ The Duet 3 Tool Distribution Board v0.5 is supplied with:
 
 ## Power distribution
 
-Supply between 12V and 32V to the 2-way barrier strip power connector on the board, observing the correct polarity.
+Supply between 12V and 48V to the 2-way barrier strip power connector on the board, observing the correct polarity.
 
 Use the four 2-way JST VH connectors for power out to tool boards. Each output is individually fused, with a supplied 5A fuse.
 
