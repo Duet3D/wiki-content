@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2025-09-27T09:58:55.293Z
+date: 2025-09-27T10:17:50.194Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -29,6 +29,7 @@ There was a major change between v0.5 and v1.0 to make wiring, especially of stu
 * Four 4-pin JST PA connectors to extend the CAN-FD bus in a daisy chain.
 * Four 2-pin JST PA connectors to add devices on stubs
 * Two RJ11 connectors for CAN bus in/out to connect to Duet 3 main board and expansion boards.
+* Two 2-Pin JST PA connectors as alternative ports for CAN bus in/out
 * CAN bus termination jumper pins.
 
 The Duet 3 Tool Distribution Board v1.0 is supplied with:
