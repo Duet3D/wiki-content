@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2025-09-26T16:37:21.129Z
+date: 2025-09-27T09:58:55.293Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -32,9 +32,12 @@ There was a major change between v0.5 and v1.0 to make wiring, especially of stu
 * CAN bus termination jumper pins.
 
 The Duet 3 Tool Distribution Board v1.0 is supplied with:
+* 1x 0.5m RJ11 cable
+* Fork terminals for power wiring
 * JST PA crimps and 4-pin and 2-pin JST PA shells for CAN wiring.
 * JST VH crimps and 2-way shells for power wiring. 
 * 2mm, 2-pin jumpers to bypass unused tool board CAN connectors and for CAN bus termination.
+* M3 nylon washers for mounting
 
 ### Revision v0.5
 * 2-way barrier strip for power in.
@@ -44,10 +47,13 @@ The Duet 3 Tool Distribution Board v1.0 is supplied with:
 * CAN bus termination jumper pins.
 
 The Duet 3 Tool Distribution Board v0.5 is supplied with:
+* 1x 0.5m RJ11 cable
+* Fork terminals for power wiring
 * Four 4-pin JST ZH connectors with 1m cables to connect CAN bus to four Tool Boards. The cables supplied are 28AWG.
 * JST VH crimps and 2-way shells for power wiring. 
 * Four pairs of 2-pin jumpers to bypass unused tool board CAN connectors.
 * CAN bus termination jumper, for use if the CAN_OUT RJ11 port is not used.
+* M3 nylon washers for mounting
 
 ## Operating limits
 
