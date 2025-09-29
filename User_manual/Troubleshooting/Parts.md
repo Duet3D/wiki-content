@@ -2,7 +2,7 @@
 title: Connector and spare part numbers
 description: This is a growing list of connectors and spare part numbers. If a spare part is required that is not on the list please check the source on github or ask on the forums 
 published: true
-date: 2024-09-12T08:06:15.675Z
+date: 2025-09-29T09:05:36.387Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:43:02.549Z
@@ -14,7 +14,7 @@ dateCreated: 2021-12-05T22:43:02.549Z
 
 ## Connectors used on main and on most expansion boards
 
-2.54mm Molex compatible connectors are used for everything except stepper motor and medium-current outputs. These are widely available from the usual electronic component distributors, and on eBay.
+2.54mm Molex compatible connectors are used for everything except the medium-current outputs, and the stepper motor outputs on the 6HC and 3HC. These are widely available from the usual electronic component distributors, and on eBay.
 
 |---|---|
 | **2-way shell** | 22-01-2025 or 22-01-3027 (or Würth Elektronik 61900211621) |
@@ -25,15 +25,16 @@ dateCreated: 2021-12-05T22:43:02.549Z
 
 Please note, the Molex KK compatible shells and crimp pins that we supply with Duets are usually made by Würth Elektronik. The crimp pins made by Würth should only be used with shells made by Würth.  In particular, they will not lock into Molex 22-01-20x5 shells.
 
-Stepper motor (4-pin) and medium-current (2-pin) outputs: JST VH series or compatible:
+Medium-current (2-pin) outputs on Duet 3 boards, and stepper motor outputs (4-pin) on 6HC and 3HC: JST VH series or compatible:
 
 |---|---|
 | **2 way shell** | VHR-2N (JST) or VH396-02H (Valcon) |
 | **4 way shell** | VHR-4N (JST) or VH396-04H (Valcon) |
 | **Crimps for the above** | BVH-21T-P1.1B (JST) or VH396T-L (Valcon)
-| **6-pin SWD connector** | ZHR-6 (JST ZH) (note it is normally easier to buy a pre crimped tail as JST ZH are quite fiddly to crimp) |
 
 The fork connectors for the power supply are a generic "blue" max  2.5mm^2 like [this version from RS](https://uk.rs-online.com/web/p/fork-terminals/0534626/)  (many alternatives are available, for example from suppliers on eBay).
+
+The **6-pin SWD connector** on some Duet 3 boards is ZHR-6 (JST ZH). It is normally easier to buy a pre crimped tail as JST ZH are quite fiddly to crimp.
 
 ## Connectors used on Duet 3 Toolboard 1LC
 
