@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-09-11T15:25:34.430Z
+date: 2025-10-01T11:00:02.304Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1779,6 +1779,8 @@ The machine prints from the file selected with the M23 command. If the print was
 
 When this command is used to resume a print that was paused, the macro file **resume.g** is run prior to resuming the print.
 
+> If an axis or axes are un-homed resume.g will not run (see the equivalent behaviour in the documentation for [M25](/User_manual/Reference/Gcodes/M25). This is to allow pausing and resuming early in a job file where a machine may not yet be homed. If axes were homed when pause.g is run and subsequently become unhomed then resuming will cancel the print without running resume.g, or if axis movement when axes are not homed is permitted via [M564](/User_manual/Reference/Gcodes/M564), the print resumes without resume.g being run.{.is-info}
+
 ## M25: Pause SD print
 
 ### Examples
@@ -1799,7 +1801,9 @@ That means the longest it will take to pause is 1 move + 2 seconds. In most situ
 
 After movement is halted as described above but prior to the pause operation completing, the macro file **pause.g** is run. This allows the head to be moved away from the print, filament to be retracted, etc.
 
-Note that if a pause is commanded while a macro is being executed, the pause will be deferred until the macro has completed.
+> If a pause is commanded while a macro is being executed, the pause will be deferred until the macro has completed.{.is-info}
+
+> If an axis or axes are un-homed, pause.g will not run, but the machine will still be paused. This is to allow pausing and resuming early in a job file where a machine may not yet be homed. Also when a print is resumed with an axis un-homed, resume.g is not run, see [M24](/User_manual/Reference/Gcodes/M24).{.is-info}
 
 ## M26: Set SD position
 
