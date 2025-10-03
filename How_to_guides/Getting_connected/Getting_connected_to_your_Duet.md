@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2025-10-03T09:04:02.375Z
+date: 2025-10-03T09:07:40.329Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -167,11 +167,11 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 [![YAT](/guides/getting_connected/03_connect_to_duet_win_02.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_02.png){target=_blank}If the "Terminal Settings" screen doesn't open automatically, select "Terminal" menu, then "Settings".
 
-* **Select the correct COM port as the Serial Port.** 
+**Select the correct COM port as the Serial Port.** 
   If unsure of the COM port number, press **Windows Key + R** on your keyboard and type `devmgmt.msc`. Your Duet will be listed under Ports (COM & LPT) as USB Serial Device (COM#) or similar. Use COM# as the Serial Port in YAT.
 
-* **Select "DTR on".** 
-For newer versions of RepRapFirmware (3.6 and later), on Duet 3 boards, the terminal emulator must raise the DTR line, otherwise RRF will not transmit data.  
+**Select "DTR on"** 
+For newer versions of RepRapFirmware (3.6 and later), on Duet 3 boards, the terminal emulator **must raise the DTR line**, otherwise RRF will not transmit data.  
 Older versions of YAT don't have this option, but DTR can be enabled on the connection screen. For older versions of RRF, it doesn't matter if this is enabled or disabled. 
 
 The rest of the default values, eg for Bits per second etc, should work.
@@ -179,7 +179,8 @@ The rest of the default values, eg for Bits per second etc, should work.
 ### YAT settings
 
 
-[![YAT](/guides/getting_connected/03_connect_to_duet_win_03.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_03.png){target=_blank}Set YAT to use \<LF> as the end of line character. This will improve the readability of the messages coming from the Duet. Click "Text Settings" in the "Terminal Settings" and change "EOL sequence:" to \<LF>. Click "OK" to close Text Settings. Click "OK" again to close Terminal Settings.
+[![YAT](/guides/getting_connected/03_connect_to_duet_win_03.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_03.png){target=_blank}**Set YAT to use \<LF> as the end of line character**
+This will improve the readability of the messages coming from the Duet. Click "Text Settings" in the "Terminal Settings" and change "EOL sequence:" to \<LF>. Click "OK" to close Text Settings. Click "OK" again to close Terminal Settings.
 
 ### Connect to Duet
 
