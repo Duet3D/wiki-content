@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2025-05-23T15:24:56.669Z
+date: 2025-10-06T11:26:41.751Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -54,17 +54,6 @@ This reduces the number of wires run to the print head to two power wires and a 
 * Compatible RepRapFirmware versions: RRF 3.5 and later
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
-<!--- Updsate with links once published
-## Open source
-
-Importantly Duets are Open:
-
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet3-Mainboard-6HC/blob/master/LICENSE).
-* All hardware [source files](https://github.com/Duet3D/Duet3-Toolboard-1LC) are available on Github.
-* Both the [Duet Web Control](https://github.com/Duet3D/DuetWebControl) web interface and [RepRapFirmware](https://github.com/Duet3D/RepRapFirmware) are [Open Source Software]( http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
---->
-
 # Physical properties
 
 ## Dimensions
@@ -93,6 +82,8 @@ The mount for Roto and SZP coil board shown at the top of the page is available 
 
 
 
+
+
 ## Wiring notes
 
 * **XT30 2+2:** If you do not use a pre-assembled cable then the two CAN pins are best crimped using an engineer PA09 type crimper.
@@ -117,7 +108,7 @@ Duet 3 Toolboard 1LC provides the following connectors:
 | 4-pin JST PH | IO_0 | 5V, io0.in, GND, io0.out, for endstop/ Z-probe/ Filament monitor.<br>Input is 30V-tolerant |
 | 3-pin JST PH | IO_1 | 3.3V, io1.in, GND, for endstop/ Z-probe/ Filament monitor.<br>Input is 30V-tolerant |
 | 4-pin JST PH | OUT_1 | 4-wire fan output (also accepts a 2- or 3-wire fan) intended for use as the print cooling fan.<br>1A total max current at VIN voltage.<br>This output is protected by a flyback diode.<br>**Note** When using a 4-wire fan, the tacho reading is valid at all PWM settings. |
-| 1 x 4-pin footprint | IO_3 | Footprint to mount a ITR20001/T reflective optical sensor are also added. <br> Example use case is a tool docking confirmation switch. |
+| 1 x 4-pin footprint | IO_3 | In version 1.0 this footprint intended for a ITR20001/T reflective optical sensor is reversed however the IO pin can be used for other purposes. <br> Example use case is a tool docking confirmation switch. |
 | 4-pin 0.5mm pitch FFC | I2C | For connecting the [Revo Roto version of the Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) |
 
 
@@ -384,13 +375,14 @@ Connector IO_1 or IO2 provides a 3.3V supply and 3.3V input signal level, suitab
 
 See [Connecting and configuring a filament runout sensor](/User_manual/Connecting_hardware/Sensors_filament)
 
+<!--  Commented out until a new version with the correct footprint is released
 ## Adding an IO_3 Reflective Optical Sensor
 
 An ITR20001/T reflective optical sensor can be soldered onto the pads on the board, for example to implement a tool docking sensor. It is connected to pin io3_in.
 
 ![Renders of an ITR20001/T reflective optical sensor on the Roto toolboard ](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_opto.png =300x)
 
-
+-->
 
 
 # PCB Revision History
