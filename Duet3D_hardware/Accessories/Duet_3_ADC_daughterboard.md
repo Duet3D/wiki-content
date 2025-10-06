@@ -2,7 +2,7 @@
 title: Duet 3 ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-07-24T17:26:52.457Z
+date: 2025-10-06T14:11:46.157Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -166,9 +166,9 @@ Connected to the terminal block labelled SENS1 use a M308 command with the follo
 
 Examples:
 ```
-M308 S10 Y"ads131.chan0.u" P"spi.cs0" range default 0-100
-M308 S20 Y"ads131.chan0.u" P"123.spi.cs0" B0.0 C1000.0 ;sensor on expansion board with CAN address 123, range 0-1000
-M308 S12 Y"ads131.chan0.u" P"spi.cs3" B-10.0 C10000.0 range -10 to 10000, second ADC board stacked
+M308 S10 Y"ads131.chan0.u" P"spi.cs0" ; range default 0-100
+M308 S20 Y"ads131.chan0.u" P"123.spi.cs0" B0.0 C1000.0 ; sensor on expansion board with CAN address 123, range 0-1000
+M308 S12 Y"ads131.chan0.u" P"spi.cs3" B-10.0 C10000.0 ; range -10 to 10000, second ADC board stacked
 ```
 
 ## Configuring the second channel
