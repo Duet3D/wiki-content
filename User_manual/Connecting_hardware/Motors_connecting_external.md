@@ -2,7 +2,7 @@
 title: Connecting external stepper and servo motor drivers
 description: 
 published: true
-date: 2025-07-25T16:34:49.864Z
+date: 2025-10-06T11:33:53.157Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T15:57:39.091Z
@@ -91,7 +91,7 @@ You can pick up +3.3V and ground from the Expansion connector and/or CONN_LCD.
 
 **Important! External drivers must always be connected to the expansion connector of the Duet or to the CONN_LCD port.** The 3-pin pads on the Duet near to the stepper drivers are test pads and are not suitable for connecting external drivers.
 
-# Connecting stepper drivers
+# Connecting external drivers
 
 ## Connecting external stepper drivers with differential inputs
 
