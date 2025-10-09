@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-10-09T10:55:01.785Z
+date: 2025-10-09T13:00:06.065Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3544,7 +3544,7 @@ M260.2 P1 S"Hello world"                              ; write "Hello world" to U
 
 *Supported on Duet 3 boards from firmware version 3.6*
 
-Write data to a Nordson Ultimus V via UART. https://www.manualslib.com/manual/2917329/Nordson-Ultimus-V.html?page=46#manual
+Write data to a Nordson Ultimus V via UART. See the [Nordson Ultimus V manual here](https://www.manualslib.com/manual/2917329/Nordson-Ultimus-V.html?page=46#manual){target=_blank}
 - First the `ENQ` `ACK` handshake is completed.
 - `STX`, number of bytes, the checksum, and `ETX` are automatically added to the data provided to create the full message.
 - Reads the success or failure message from the device.
@@ -6641,19 +6641,21 @@ This sets the communications parameters of the serial comms channel specified by
 ### Examples
 <br>
 <pre class="cblock">
-M575 P1 B57600 S1
+M575 P1 B57600 S1 ; sets first auxiliary port (io0 on Duet 3) to PanelDue mode
+M575 P2 B9600 S7 ; sets second auxiliary port (io1 on Duet 3) to Device mode (eg for RS485)
 </pre>
-
-### Description
-
-P0 specifies the main serial interface (typically a USB port), while P1 specifies an auxiliary serial port (for example, the port used to connect a PanelDue) and P2 specifies a second auxiliary port if there is one. The B parameter is the required baud rate (this parameter is ignored if the port is a true USB port).
-
-Modes 2 and 3 are supported in RRF 3.01 and later. Modes 4 and 6 are supported in RRF 3.4 and later. Mode 5 is supported in RRF 3.6 and later. Mode 7 is supported by RRF 3.6 and later on some boards.
 
 ### Notes
 
+* **P parameter**
+  * P0 specifies the main serial interface, typically a USB port. 
+  * P1 specifies an auxiliary serial port (for example, the port used to connect a PanelDue, usually io0 on Duet 3) 
+  * P2 specifies a second auxiliary port if there is one (for example, the port used for RS485, usually io1 on Duet 3)
+* The **B parameter** is the required baud rate (this parameter is ignored if the port is a true USB port).
+* The **S parameter** defines the mode. Modes 2 and 3 are supported in RRF 3.01 and later. Modes 4 and 6 are supported in RRF 3.4 and later. Mode 5 is supported in RRF 3.6 and later. Mode 7 is supported by RRF 3.6 and later on some boards.
 * In RRF 3.1 and later for Duet 3, the auxiliary serial port remains disabled until a M575 P1 command is received. This is to allow the IO_0 port to be used for other purposes. In RRF 3.2 and later on all boards, the auxilliary serial port(s) remain disabled until enabled using M575.
 * In RRF 3.6.0 and later, the USB port can now be switched into PanelDue mode using M575.
+
 
 ## M576: Set SPI comms parameters
 
