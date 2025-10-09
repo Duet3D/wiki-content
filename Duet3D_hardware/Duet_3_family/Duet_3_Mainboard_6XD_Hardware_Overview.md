@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2025-07-25T17:49:08.521Z
+date: 2025-10-09T12:43:05.735Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -351,7 +351,7 @@ To enable the RS485 transceiver there is an RS485 enable jumper:
 
 Use [M575](/User_manual/Reference/Gcodes/M575) to setup the port as MODBUS RTU
 
-See [M260.1](/User_manual/Reference/Gcodes/M260_1) and [M261.1](/User_manual/Reference/Gcodes/m261_1) for how to read and write to the MODBUS device
+See [M260.1](/User_manual/Reference/Gcodes/M260_1) and [M261.1](/User_manual/Reference/Gcodes/M261_1) for how to read and write to the MODBUS device
 
 ## Power distribution
 
