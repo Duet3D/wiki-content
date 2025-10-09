@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-10-01T11:00:02.304Z
+date: 2025-10-09T10:55:01.785Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3282,11 +3282,17 @@ M203 X6000 Y6000 Z300 E10000
 
 ### Notes
 
-Sets the maximum feedrates that your machine can do in mm/min
+* Sets the maximum feedrates that your machine can do in mm/min
+* RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
+  Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M203 Z300, not M203 Z300,300
+* RepRapFirmware has a default minimum movement speed of 0.5mm/sec, or 30mm/minute. Gcode commands sent with a slower feedrate than this (e.g. drilling) will automatically run at this speed. 
+  In firmware 2.03 and later this can be changed using the I ('i') parameter of the [M203](/User_manual/Reference/Gcodes/M203) command. For example, for a 10mm/minute minimum speed, send:
+  <br>
+  <pre class="cblock">
+  M203 I10 ; set minimum speed to 10mm/min 
+  </pre>
+* RRF also has an 'Absolute Minimum Feedrate' of 0.01mm/sec or 0.6mm/minute. Setting M203 I0 will use this as the minimum feedrate. If you need even lower feedrates, eg for micromachining, we recommend scaling (see [Duet3D forum thread here for example](https://forum.duet3d.com/topic/31858/duet2-wifi-generating-polygons-instead-of-circles){target=_blank}).
 
-RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
-
-Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M203 Z300, not M203 Z300,300
 
 ## M204: Set printing and travel accelerations
 
