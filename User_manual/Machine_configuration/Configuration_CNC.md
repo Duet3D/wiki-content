@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a CNC machine
 description: This page describes the hardware and wiring, and changes to the RepRapFirmware files required to support a CNC.
 published: true
-date: 2024-12-03T15:21:49.492Z
+date: 2025-10-09T10:50:16.871Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:34:29.590Z
@@ -20,6 +20,7 @@ To configure RepRapFirmware for a CNC machine, follow the instructions for confi
   ```
   M203 I10 ; set minimum speed to 10mm/min 
   ```
+  RRF also has an 'Absolute Minimum Feedrate' of 0.01mm/sec or 0.6mm/minute. Setting M203 I0 will use this as the minimum feedrate. If you need even lower feedrates, eg for micromachining, we recommend scaling (see [Duet3D forum thread here for example](https://forum.duet3d.com/topic/31858/duet2-wifi-generating-polygons-instead-of-circles){target=_blank}).
 * To put the firmware in CNC mode use the M453 command, see [M453 Select CNC device mode](/User_manual/Reference/Gcodes/M453).
 
   * In RepRapFirmware v3.3 and later, use the [M950](/User_manual/Reference/Gcodes/M950) command to configure which outputs to use for spindle motor control. 
@@ -35,7 +36,7 @@ To configure RepRapFirmware for a CNC machine, follow the instructions for confi
 
 * If you are going to use work offsets, by ending the config.g file with a [G54](/User_manual/Reference/Gcodes/G54) command, those will be used by default. To modify the offsets use [G10](/User_manual/Reference/Gcodes/G10) commands, eg G10 L2 P1 or G10 L20 P1 commands.
 
-* If your machine is slow-moving, turning off microstep interpolation set by [M350](/User_manual/Reference/Gcodes/M350) I parameter may be necessary. [A forum user reports](https://forum.duet3d.com/post/333683) that "the lowest speed limit for interpolation to always work well is too high for my CNC, it created wobbly lines while turning a cone".
+* If your machine is slow-moving, turning off microstep interpolation set by [M350](/User_manual/Reference/Gcodes/M350) I parameter may be necessary. [A forum user reports](https://forum.duet3d.com/post/333683){target=_blank} that "the lowest speed limit for interpolation to always work well is too high for my CNC, it created wobbly lines while turning a cone".
 
 ## pause.g changes
 
@@ -63,9 +64,9 @@ When a job is paused the coordinates and spindle RPM are saved to slot 1 automat
 
 ## Example configuration and macros
 
-* [CNC configs and macros](https://forum.duet3d.com/topic/19388/repository-for-cnc-config-s-and-macro-s) Forum sticky post with user CNC configs and useful macros.
+* [CNC configs and macros](https://forum.duet3d.com/topic/19388/repository-for-cnc-config-s-and-macro-s){target=_blank} Forum sticky post with user CNC configs and useful macros.
 
-* [Ooznest Learning Portal](https://learn.ooznest.co.uk/) Ooznest maintains a collection of configuration files, macros and a more CNC-orientated version of DWC for their Workbee machines
+* [Ooznest Learning Portal](https://learn.ooznest.co.uk/){target=_blank} Ooznest maintains a collection of configuration files, macros and a more CNC-orientated version of DWC for their Workbee machines
 
 # Notes
 
@@ -86,11 +87,11 @@ When a job is paused the coordinates and spindle RPM are saved to slot 1 automat
 
 Many CNC machines and CNC gcode generators use specialised, or non-standard GCodes to perform certain functions. The [GCode dictionary](/User_manual/Reference/Gcodes) shows the list of currently supported GCodes, and see this link for a list of [GCodes not implemented](/User_manual/Reference/Gcodes_not_implemented).
 
-In RepRapFirmware 2.03 and later, if you try to execute a G- or M-command that RRF does not implement, it will execute a system macro of that name if it exists. For example, if you send G40 then it will execute /sys/G40.g if it exists; and if you send M48 then it will execute /sys/M48.g if it exists. So you can script any custom GCodes that you need. See [this forum thread](https://forum.duet3d.com/topic/14930/) for an example.
+In RepRapFirmware 2.03 and later, if you try to execute a G- or M-command that RRF does not implement, it will execute a system macro of that name if it exists. For example, if you send G40 then it will execute /sys/G40.g if it exists; and if you send M48 then it will execute /sys/M48.g if it exists. So you can script any custom GCodes that you need. See [this forum thread](https://forum.duet3d.com/topic/14930/){target=_blank} for an example.
 
 ## Movement in Inches
 
-If your CNC machine and GCode work in inches then see the documentation for [G20](/User_manual/Reference/Gcodes/G20). See [this forum thread](https://forum.duet3d.com/topic/5889/) for a more detailed discussion.
+If your CNC machine and GCode work in inches then see the documentation for [G20](/User_manual/Reference/Gcodes/G20). See [this forum thread](https://forum.duet3d.com/topic/5889/){target=_blank} for a more detailed discussion.
 
 # Connecting a spindle
 
