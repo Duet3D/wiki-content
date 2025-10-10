@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-10T14:15:26.485Z
+date: 2025-10-10T16:36:39.790Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -22,12 +22,20 @@ From RepRapFirmware 3.6, Duet 3 mainboards 6HC, 6XD and Mini 5+ support RS485 se
 
 # Requirements
 
-* Duet 3 Mainboard - 6HC, 6XD or Mini 5+
-* 
+* Duet 3 Mainboard - 6HC, 6XD or Mini 5+ (not supported on Duet 2 due to memory limitations)
+* A UART to RS485 adapter. 
+  * Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, have an RS485 adapter built-in. 
+  * For other Duet 3 boards, UART to RS485 adapters are available cheaply from many online sellers. Look for one using MAX485 or MAX3485 chip, with automatic Tx/Rx switching. Jay from TeamGloomy did a round-up here: [TeamGloomy github.io](https://teamgloomy.github.io/adapters_rs485.html)
+* Wiring
+* An RS485 device, such as a sensor, relay, PLC or VFD.
 
 # Wiring
 
+
+
 # Configuration
+
+Setting up and using RS485 and Modbus uses the following Gcodes:
 
 [M575](/User_manual/Reference/Gcodes/M575) - Set up Duet output port
 [M261.1](/User_manual/Reference/Gcodes/M261_1) - read data from a device
@@ -42,7 +50,7 @@ M575 P2 B9600 S7
 
 ## Request data from device
 
-From input registers:
+Sending this from the console will receive the data as hexidecimal:
 
 ```
 M261.1 P2 A1 R1 B2 F4
