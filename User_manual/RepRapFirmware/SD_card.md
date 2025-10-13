@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2025-09-16T12:23:05.379Z
+date: 2025-10-13T19:50:06.530Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -16,7 +16,7 @@ This guide deals with SD cards for use in the Duet SD card socket, for all Duets
 
 # General Notes
 
-All Duets have a built-in micro SDHC card socket. **Duet 2 WiFi/Ethernet** are supplied with a compatible SD card. **Duet 3** is also supplied with an SD card, formatted with two partitions; one for standalone mode, and one for use in a Raspberry Pi in SBC mode.
+All Duet Mainboards have a built-in micro SDHC card socket and are supplied with an SD card, formatted for standalone mode. The card can be imaged for SBC mode if required.
 
 In normal use, you should never need to remove the SD card from its socket. You can transfer files to/from the SD card over the web interface.
 
