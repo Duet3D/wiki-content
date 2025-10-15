@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-15T18:12:14.937Z
+date: 2025-10-15T23:43:04.229Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -69,9 +69,8 @@ For other Duet 3 boards with external RS485 transceivers
 
 ### Wiring multiple devices
 
+* Multiple devices can be wired in a daisy-chain or bus topology.
 
-
-For a deep dive into the wiring specifics, see (for example) [Guidelines for Proper Wiring of an RS-485 (TIA/EIA-485-A) Network](https://www.analog.com/en/resources/technical-articles/rs485-cable-specification-guide--maxim-integrated.html){target=_blank}
 
 ## Firmware configuration
 
