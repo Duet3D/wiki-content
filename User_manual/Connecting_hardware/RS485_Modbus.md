@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-15T00:10:24.201Z
+date: 2025-10-15T13:11:11.169Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -17,43 +17,78 @@ From RepRapFirmware 3.6, Duet 3 mainboards 6HC, 6XD and Mini 5+ support RS485 se
 RS485 is a serial communication standard, and is one of the most widely used. It has a number of advantages over other standards that make it particularly suitable for noisy industrial areas.
 
 * Long Communication Distances: devices can communicate with each other over a long distance (up to 1200m) using RS485 communication. 
-* High Data Rates: RS-485 supports a wide range of data rates, from a few hundred bits per second to 10 mbit/s.
-* Multidrop Configuration: RS-485 supports multiple devices connected to the same communication bus. This enables the creation of complex networks with a single communication line.
+* High Data Rates: RS485 supports a wide range of data rates, from a few hundred bits per second to 10 mbit/s.
+* Multidrop Configuration: RS485 supports multiple devices connected to the same communication bus. This enables the creation of complex networks with a single communication line.
 * Robust Performance in Noisy Environments: RS485 uses differential signaling, where data is transmitted as the voltage difference between two lines, with voltage levels from -7V to +12V. This provides better noise immunity and reduces the impact of common-mode interference. Along with shielded and twisted pair cabling, this helps maintain reliable communication in the presence of interference.
-* Cost-Effective Networking: Building RS-485 networks is cost-effective, especially for applications where long distances and multiple devices need to be connected. The simplicity of the standard contributes to lower implementation costs.
-* Wide Industry Adoption: RS-485 has been widely adopted in industrial and building automation, HVAC systems, process control, and other applications. Its acceptance as an industry standard contributes to the availability of compatible devices and components.
+* Cost-Effective Networking: Building RS485 networks is cost-effective, especially for applications where long distances and multiple devices need to be connected. The simplicity of the standard contributes to lower implementation costs.
+* Wide Industry Adoption: RS485 has been widely adopted in industrial and building automation, HVAC systems, process control, and other applications. Its acceptance as an industry standard contributes to the availability of compatible devices and components.
 
 ## What is Modbus RTU?
 
+Modbus RTU (Remote Terminal Unit) is a communications protocol in industrial automation, recognized for its simplicity and efficiency in allowing reliable communication between devices over serial connections such as RS485, and is widely supported.
 
+Modbus RTU works on a master-slave architecture. Each Modbus message follows a structured format consisting of an address field, function code, data field, and checksum. The master initiates a request, specifying the starting address and required Modbus registers, while the slave responds with the requested data. The protocol supports both RTU communication (binary encoding for efficiency) and ASCII mode (human-readable but slower).
+
+Diving further into the specifics of the Modbus RTU protocol is beyond the scope of this documentation. There are many guides available, for example see [Modbus RTU: A Comprehensive Guide to Understanding and Implementing the Protocol](https://www.wevolver.com/article/modbus-rtu-a-comprehensive-guide-to-understanding-and-implementing-the-protocol){target=_blank}
 
 # Requirements
 
 * Duet 3 Mainboard - 6HC, 6XD or Mini 5+ (not supported on Duet 2 due to memory limitations)
 * A UART to RS485 adapter or transceiver. 
   * Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, have an RS485 adapter built-in. 
-  * For other Duet 3 boards, UART to RS485 adapters are available cheaply from many online sellers. Look for one using MAX485 or MAX3485 chip, with automatic Tx/Rx switching. Jay from TeamGloomy did a round-up here: [TeamGloomy github.io](https://teamgloomy.github.io/adapters_rs485.html)
-* Wiring
+  * For other Duet 3 boards, RS485 transceivers are available cheaply from many online sellers. Look for one using MAX485 or MAX3485 chip. Most support automatic Tx/Rx switching, but some devices may not support this. There are also RS485 transceivers that have an extra input for firmware control of Tx/Rx switching, which you will need a spare pin to control. Jay from TeamGloomy did a round-up here: [TeamGloomy github.io](https://teamgloomy.github.io/adapters_rs485.html){target=_blank}
+* Wiring - see below
 * An RS485 device, such as a sensor, relay, PLC or VFD.
 
-# Wiring
+# Hardware configuration and wiring
 
-Selecting the right twisted pair cable is crucial for RS-485 communication. The cable’s twisted pairs reduce interference, and matching impedance (around 120 ohms) is essential. Choose an appropriate category (e.g. Cat 5e), consider shielding for high interference, and use termination resistors. Factor in distance, flexibility, and durability, ensuring compatibility with RS-485 connectors (e.g., DB-9, DB-25) for reliable performance.
+## Hardware
 
-# Configuration
+Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, with an RS485 adapter built-in:
+* These boards have hardware support for the MODBUS RTU from the RS485 header. This is shared with the IO1 GPIO channel so if used, do not connect endstops or anything else to the IO1 pins.
+* Fit the RS485_EN jumper to enable the RS485 transciever (see wiring diagrams for location)
+* Wire the device to the RS485 header on the Duet. 
 
-Setting up and using RS485 and Modbus uses the following Gcodes:
+For other Duet 3 boards with external RS485 transceivers
+* Wire power and 
 
-[M575](/User_manual/Reference/Gcodes/M575) - Set up Duet output port
+## Wiring
+
+* For short cable runs to individual devices, generally the cable does not need to be twisted pair, shielded or have additional termination.
+* For longer runs with the bus supporting multiple devices, twisted pair cable reduces interference, ideally with matching impedance (around 120 ohms). Choose an appropriate cable category (e.g. Cat 5e), consider shielding for high interference environments, and use termination resistors. Factor in distance, flexibility, and durability, ensuring compatibility with RS-485 connectors (e.g. DB-9, DB-25) for reliable performance.
+* 
+
+For a deep dive into the wiring specifics, see (for example) [Guidelines for Proper Wiring of an RS-485 (TIA/EIA-485-A) Network](https://www.analog.com/en/resources/technical-articles/rs485-cable-specification-guide--maxim-integrated.html){target=_blank}
+
+## Firmware configuration
+
+Configure the firmware to use the RS485 transceiver with [M575](/User_manual/Reference/Gcodes/M575), where:
+* **Pnnn**: Serial channel number. Note that P0 = USB, P1 = io0, P2 = io1
+* **Bnnn**: Baud rate, default 57600bps. Set this to match your device
+* **Snnn**: serial port mode. 1 by default, set to 7 for 'Device' for Modbus
+* **C"port_name"**: Port name for firmware Transmit/Receive control of the RS485 transceiver.
+  Not required when running on Duet hardware with a built-in RS485 transceiver.
+  Not required if the transceiver module does automatic transmit/receive switching (note that such transceivers may not work with some Modbus devices).
+
+Add one of the following examples to config.g:
+
+* For Duet 3 boards with built-in RS485 transceivers, or mainboards using an external RS485 transceiver with automatic Tx/Rx switching:
+  ```
+  M575 P2 B9600 S7 ; enable RS485 on serial channel 2 (io1), baud rate 9600bps, mode 7 (device/Modbus)
+  ```
+* for mainboards using an external RS485 transceiver with firmware Tx/Rx switching:
+  ```
+  M575 P2 B9600 S7 C"io2.out"; enable RS485 on serial channel 2 (io1), baud rate 9600bps, mode 7 (device/Modbus)
+  ```
+
+# Using Modbus RTU with RRF
+
+The Modbus RTU implementation in RepRapFirmware uses Gcode to form the message, so knowledge of the underlying message structure is not generlly necessary. You will need your device's documentation to know the device address (usually set to a default initially), and the registers, coils and/or inputs that need to be read or written to.
+
 [M261.1](/User_manual/Reference/Gcodes/M261_1) - read data from a device
 [M260.1](/User_manual/Reference/Gcodes/M260_1) - write data to a device
 [M260.4](/User_manual/Reference/Gcodes/M260_4) - Raw Modbus transaction
 
-## Setup port
-
-```
-M575 P2 B9600 S7
-```
 
 ## Request data from device
 
