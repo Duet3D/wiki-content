@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-10T16:36:39.790Z
+date: 2025-10-15T00:10:24.201Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -12,18 +12,25 @@ dateCreated: 2025-10-10T14:15:26.485Z
 
 From RepRapFirmware 3.6, Duet 3 mainboards 6HC, 6XD and Mini 5+ support RS485 serial data transmission standard and the Modbus RTU (Remote Terminal Unit) protocol. These can be used to interface with a wide range of devices, including sensors, relays, Programmable Logic Controllers (PLCs), Variable Frequency Drives (VFDs) and other devices.
 
-## What is RS485
+## What is RS485?
 
+RS485 is a serial communication standard, and is one of the most widely used. It has a number of advantages over other standards that make it particularly suitable for noisy industrial areas.
 
+* Long Communication Distances: devices can communicate with each other over a long distance (up to 1200m) using RS485 communication. 
+* High Data Rates: RS-485 supports a wide range of data rates, from a few hundred bits per second to 10 mbit/s.
+* Multidrop Configuration: RS-485 supports multiple devices connected to the same communication bus. This enables the creation of complex networks with a single communication line.
+* Robust Performance in Noisy Environments: RS485 uses differential signaling, where data is transmitted as the voltage difference between two lines, with voltage levels from -7V to +12V. This provides better noise immunity and reduces the impact of common-mode interference. Along with shielded and twisted pair cabling, this helps maintain reliable communication in the presence of interference.
+* Cost-Effective Networking: Building RS-485 networks is cost-effective, especially for applications where long distances and multiple devices need to be connected. The simplicity of the standard contributes to lower implementation costs.
+* Wide Industry Adoption: RS-485 has been widely adopted in industrial and building automation, HVAC systems, process control, and other applications. Its acceptance as an industry standard contributes to the availability of compatible devices and components.
 
-## What is Modbus RTU
+## What is Modbus RTU?
 
 
 
 # Requirements
 
 * Duet 3 Mainboard - 6HC, 6XD or Mini 5+ (not supported on Duet 2 due to memory limitations)
-* A UART to RS485 adapter. 
+* A UART to RS485 adapter or transceiver. 
   * Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, have an RS485 adapter built-in. 
   * For other Duet 3 boards, UART to RS485 adapters are available cheaply from many online sellers. Look for one using MAX485 or MAX3485 chip, with automatic Tx/Rx switching. Jay from TeamGloomy did a round-up here: [TeamGloomy github.io](https://teamgloomy.github.io/adapters_rs485.html)
 * Wiring
@@ -31,7 +38,7 @@ From RepRapFirmware 3.6, Duet 3 mainboards 6HC, 6XD and Mini 5+ support RS485 se
 
 # Wiring
 
-
+Selecting the right twisted pair cable is crucial for RS-485 communication. The cable’s twisted pairs reduce interference, and matching impedance (around 120 ohms) is essential. Choose an appropriate category (e.g. Cat 5e), consider shielding for high interference, and use termination resistors. Factor in distance, flexibility, and durability, ensuring compatibility with RS-485 connectors (e.g., DB-9, DB-25) for reliable performance.
 
 # Configuration
 
