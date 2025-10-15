@@ -2,7 +2,7 @@
 title: Duet3D Documentation
 description: Introduction to the Duet3D range of control electronics
 published: true
-date: 2025-06-18T13:30:18.968Z
+date: 2025-10-15T10:50:34.915Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-20T11:08:57.551Z
@@ -20,7 +20,7 @@ Duet3D control [hardware](/Duet3D_hardware) is split into the [Duet 3 Family](/D
 
 # Overview of Duet3D firmware and software
 
-Duet3D control hardware runs advanced firmware called [RepRapFirmware](/User_manual/RepRapFirmware). This runs directly on the microprocessors on Duet 2 and Duet 3 mainboards, along with Duet 3 expansion boards. RepRapFirmware is extremely configurable and flexible, supporting a wide range of machine kinematics, large numbers of axes, tools and ancillaries. RepRapFirmware is actively under development and so is constantly improving with new features added each release. See the [RepRapFirmware github project](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x) for all the recent changes.
+Duet3D control hardware runs advanced firmware called [RepRapFirmware](/User_manual/RepRapFirmware). This runs directly on the microprocessors on Duet 2 and Duet 3 mainboards, along with Duet 3 expansion boards. RepRapFirmware is extremely configurable and flexible, supporting a wide range of machine kinematics, large numbers of axes, tools and ancillaries. RepRapFirmware is actively under development and so is constantly improving with new features added each release. See the [RepRapFirmware github project](https://github.com/Duet3D/RepRapFirmware/wiki/Changelog-RRF-3.x){target=_blank} for all the recent changes.
 
 <!-- TODO add a Duet Software Framework Overview -->
 When using Duet 3 mainboards it is possible to connect a Single Board Computer (SBC) such as a Raspberry Pi directly to the Duet over a high speed SPI bus. With DuetSoftwareFramework (DSF) running on the SBC, you can use a directly connected display to show the User interface, make use of the SBC's networking capabilities and make use of a powerful API to interface third-party applications and plugins as tightly as needed to the machine control flow.
@@ -34,9 +34,9 @@ The documentation is split into hardware reference pages, a Software manual and 
 
 The hardware reference pages have a detailed pinout to aid in wiring, along with pin descriptions and limitations. Please familiarise yourself with the Duet3D hardware you are using, especially poarities and voltage limits before connecting power and other elements of your machine. 
 
-The software user manual contains information about how to configure RepRapFirmware, DuetWebControl and DuetSoftwareFramework. the firmware is extremely configurable so we suggest starting with the [Getting Started](https://docs.duet3d.com/en/User_manual/Overview) page and using the [Config Tool](https://configtool.reprapfirmware.org/Start) Config Tool to get a baseline configuration.
+The software user manual contains information about how to configure RepRapFirmware, DuetWebControl and DuetSoftwareFramework. the firmware is extremely configurable so we suggest starting with the [Getting Started](/User_manual/Overview) page and using the [Config Tool](https://configtool.reprapfirmware.org/Start){target=_blank} Config Tool to get a baseline configuration.
 
 # How to get support
 
-We provide support through our forum, please sign up and post any questions there: [https://forum.duet3d.com/](https://forum.duet3d.com/)
+We provide support through our forum, please sign up and post any questions there: [https://forum.duet3d.com/](https://forum.duet3d.com/){target=_blank}
 
