@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-15T14:12:50.271Z
+date: 2025-10-15T18:12:14.937Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -38,7 +38,7 @@ Diving further into the specifics of the Modbus RTU protocol is beyond the scope
   * Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, have an RS485 adapter built-in. 
   * For other Duet 3 boards, RS485 transceivers are available cheaply from many online sellers. Look for one using MAX485 or MAX3485 chip. Most support automatic Tx/Rx switching, but some devices may not support this. There are also RS485 transceivers that have an extra input for firmware control of Tx/Rx switching, which you will need a spare pin to control. Jay from TeamGloomy did a round-up here: [TeamGloomy github.io](https://teamgloomy.github.io/adapters_rs485.html){target=_blank}
 * Wiring - see below
-* An RS485 device, such as a sensor, relay, PLC or VFD.
+* An RS485 device, such as a sensor, relay, PLC or VFD, with its datasheet
 
 # Hardware configuration and wiring
 
@@ -47,16 +47,29 @@ Diving further into the specifics of the Modbus RTU protocol is beyond the scope
 Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, with an RS485 adapter built-in:
 * These boards have hardware support for the MODBUS RTU from the RS485 header. This is shared with the IO1 GPIO channel so if used, do not connect endstops or anything else to the IO1 pins.
 * Fit the RS485_EN jumper to enable the RS485 transciever (see wiring diagrams for location)
-* Wire the device to the RS485 header on the Duet, and provide power to it as necessary. 
 
 For other Duet 3 boards with external RS485 transceivers
-* Wire power and 
+* Select an IO header on the Duet to use. This needs to be UART capable, and is usually either IO0 or IO1.
+* Wire Duet io#.out to RS485 transceiver TX pin, and io#.in to RX pin. Wire VCC to voltage as appropriate (usually 3.3V or 5V) on the Duet, and GND to GND on the Duet.
 
 ## Wiring
 
+### Wire specification
+
 * For short cable runs to individual devices, generally the cable does not need to be twisted pair, shielded or have additional termination.
 * For longer runs with the bus supporting multiple devices, twisted pair cable reduces interference, ideally with matching impedance (around 120 ohms). Choose an appropriate cable category (e.g. Cat 5e), consider shielding for high interference environments, and use termination resistors. Factor in distance, flexibility, and durability, ensuring compatibility with RS-485 connectors (e.g. DB-9, DB-25) for reliable performance.
-* 
+
+### Wiring the device
+
+* Wire the device to the RS485 header on the Duet or the RS485 transceiver.
+  * On 6HC and 6XD mainboards with built-in RS485 transceiver, the pins are 485_A and 485_B.
+  * On external RS485 transceivers, the pins may be marked A/+/A+/D+ and B/-/B-/D-.
+* The device datasheet should say which wires should connect to which RS485 pin.
+* Provide power to the device as necessary, either from an external PSU, or from the Duet.
+
+### Wiring multiple devices
+
+
 
 For a deep dive into the wiring specifics, see (for example) [Guidelines for Proper Wiring of an RS-485 (TIA/EIA-485-A) Network](https://www.analog.com/en/resources/technical-articles/rs485-cable-specification-guide--maxim-integrated.html){target=_blank}
 
@@ -67,8 +80,7 @@ Configure the firmware to use the RS485 transceiver with [M575](/User_manual/Ref
 * **Bnnn**: Baud rate, default 57600bps. Set this to match your device
 * **Snnn**: serial port mode. 1 by default, set to 7 for 'Device' for Modbus
 * **C"port_name"**: Port name for firmware Transmit/Receive control of the RS485 transceiver.
-  Not required when running on Duet hardware with a built-in RS485 transceiver.
-  Not required if the transceiver module does automatic transmit/receive switching (note that such transceivers may not work with some Modbus devices).
+  Note: Not required when running on Duet hardware with a built-in RS485 transceiver. Not required if the transceiver module does automatic transmit/receive switching (note that such transceivers may not work with some Modbus devices).
 
 Add one of the following examples to config.g:
 
@@ -81,14 +93,13 @@ Add one of the following examples to config.g:
   M575 P2 B9600 S7 C"io1.out"; enable RS485 on serial channel 2 (io1), baud rate 9600bps, mode 7 (device/Modbus), using io1.out to control Tx/Rx switching
   ```
 
-# Using Modbus RTU with RRF
+# Communicating with devices
 
-The Modbus RTU implementation in RepRapFirmware uses Gcode to form the message, so knowledge of the underlying message structure is not generlly necessary. You will need your device's documentation to know the device address (usually set to a default initially), and the registers, coils and/or inputs that need to be read or written to.
+The Modbus RTU implementation in RepRapFirmware uses Gcode to form the Modbus message, so knowledge of the underlying message structure is not generlly necessary. You will need your device's documentation to know the device address (usually set to a default initially), and the registers, coils and/or inputs that need to be read or written to.
 
 [M261.1](/User_manual/Reference/Gcodes/M261_1) - read data from a device
 [M260.1](/User_manual/Reference/Gcodes/M260_1) - write data to a device
 [M260.4](/User_manual/Reference/Gcodes/M260_4) - Raw Modbus transaction
-
 
 ## Request data from device
 
