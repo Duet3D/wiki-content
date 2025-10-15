@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-15T13:11:11.169Z
+date: 2025-10-15T14:12:50.271Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -33,8 +33,8 @@ Diving further into the specifics of the Modbus RTU protocol is beyond the scope
 
 # Requirements
 
-* Duet 3 Mainboard - 6HC, 6XD or Mini 5+ (not supported on Duet 2 due to memory limitations)
-* A UART to RS485 adapter or transceiver. 
+* Duet 3 Mainboard - 6HC, 6XD or Mini 5+ (Duet 2 not supported due to memory limitations)
+* An RS485 adapter or transceiver. 
   * Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, have an RS485 adapter built-in. 
   * For other Duet 3 boards, RS485 transceivers are available cheaply from many online sellers. Look for one using MAX485 or MAX3485 chip. Most support automatic Tx/Rx switching, but some devices may not support this. There are also RS485 transceivers that have an extra input for firmware control of Tx/Rx switching, which you will need a spare pin to control. Jay from TeamGloomy did a round-up here: [TeamGloomy github.io](https://teamgloomy.github.io/adapters_rs485.html){target=_blank}
 * Wiring - see below
@@ -47,7 +47,7 @@ Diving further into the specifics of the Modbus RTU protocol is beyond the scope
 Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, with an RS485 adapter built-in:
 * These boards have hardware support for the MODBUS RTU from the RS485 header. This is shared with the IO1 GPIO channel so if used, do not connect endstops or anything else to the IO1 pins.
 * Fit the RS485_EN jumper to enable the RS485 transciever (see wiring diagrams for location)
-* Wire the device to the RS485 header on the Duet. 
+* Wire the device to the RS485 header on the Duet, and provide power to it as necessary. 
 
 For other Duet 3 boards with external RS485 transceivers
 * Wire power and 
@@ -78,7 +78,7 @@ Add one of the following examples to config.g:
   ```
 * for mainboards using an external RS485 transceiver with firmware Tx/Rx switching:
   ```
-  M575 P2 B9600 S7 C"io2.out"; enable RS485 on serial channel 2 (io1), baud rate 9600bps, mode 7 (device/Modbus)
+  M575 P2 B9600 S7 C"io1.out"; enable RS485 on serial channel 2 (io1), baud rate 9600bps, mode 7 (device/Modbus), using io1.out to control Tx/Rx switching
   ```
 
 # Using Modbus RTU with RRF
