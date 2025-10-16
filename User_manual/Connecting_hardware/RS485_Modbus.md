@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-15T23:43:04.229Z
+date: 2025-10-16T18:01:52.134Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -40,9 +40,9 @@ Diving further into the specifics of the Modbus RTU protocol is beyond the scope
 * Wiring - see below
 * An RS485 device, such as a sensor, relay, PLC or VFD, with its datasheet
 
-# Hardware configuration and wiring
+# Hardware configuration
 
-## Hardware
+## Enabling the RS485 transceiver
 
 Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, with an RS485 adapter built-in:
 * These boards have hardware support for the MODBUS RTU from the RS485 header. This is shared with the IO1 GPIO channel so if used, do not connect endstops or anything else to the IO1 pins.
@@ -51,6 +51,7 @@ Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later,
 For other Duet 3 boards with external RS485 transceivers
 * Select an IO header on the Duet to use. This needs to be UART capable, and is usually either IO0 or IO1.
 * Wire Duet io#.out to RS485 transceiver TX pin, and io#.in to RX pin. Wire VCC to voltage as appropriate (usually 3.3V or 5V) on the Duet, and GND to GND on the Duet.
+* If using an RS485 transceiver that allows firmware control of Tx/Rx switching, wire the pin on the transceiver to a spare io#.out pin, e.g. io2.out.
 
 ## Wiring
 
@@ -70,7 +71,9 @@ For other Duet 3 boards with external RS485 transceivers
 ### Wiring multiple devices
 
 * Multiple devices can be wired in a daisy-chain or bus topology.
-
+* Connect the A pin to the A pin of each subsequent device. Connect the B pin to the B pin of each subsequent device. Do not connect A to B, or B to A.
+* Twisted pair cabling, shielding and termination may be required for longer runs.
+* Ground any shielding at one end, ideally the Duet mainboard end.
 
 ## Firmware configuration
 
@@ -94,13 +97,29 @@ Add one of the following examples to config.g:
 
 # Communicating with devices
 
-The Modbus RTU implementation in RepRapFirmware uses Gcode to form the Modbus message, so knowledge of the underlying message structure is not generlly necessary. You will need your device's documentation to know the device address (usually set to a default initially), and the registers, coils and/or inputs that need to be read or written to.
+The Modbus RTU implementation in RepRapFirmware uses Gcode to form the Modbus message, so knowledge of the underlying message structure is not generlly necessary. You will need your device's documentation to know the device address (usually set to a default initially), the commands supported, and the registers, coils and/or inputs that need to be read or written to.
 
 [M261.1](/User_manual/Reference/Gcodes/M261_1) - read data from a device
 [M260.1](/User_manual/Reference/Gcodes/M260_1) - write data to a device
 [M260.4](/User_manual/Reference/Gcodes/M260_4) - Raw Modbus transaction
 
-## Request data from device
+Pnn Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Device mode using M575.
+Ann Modbus device address
+Rnn Register number to start from
+Bnn How many registers,coils or inputs to request
+Fn (optional) Modbus function code, must be one of: 1 (Read Coils), 2 (Read Discrete Inputs), 3 (Read Holding Registers), 4 (Read Input Registers, default)
+V"name" (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
+
+Pnn Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
+Ann Modbus slave device address
+Fn (optional) Modbus function code, must be one of: 5 (Write Single Coil), 6 (Write Single Register), 15 (Write Multiple Coils), 16 (Write Multiple Registers, default)
+Rnn First Modbus coil or register number to write to
+Bnn:nn:nn... One value per coil or register to write. If writing registers, each value is a 16-bit word to write. If writing coils, each value is zero to set coil off, nonzero to set coil on.
+S"ascii data" data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if B parameter is present.
+
+## Testing communications with device
+
+### Requesting data
 
 Sending this from the console will receive the data as hexidecimal:
 
@@ -122,7 +141,7 @@ M261.1 P2 A1 R260 B1 F3
 Received 0000
 ```
 
-## Send data to device
+### Sending data
 
 Eg changing device address
 
