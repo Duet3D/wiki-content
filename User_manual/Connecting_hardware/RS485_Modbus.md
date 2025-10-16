@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-16T18:01:52.134Z
+date: 2025-10-16T18:21:15.009Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -103,69 +103,61 @@ The Modbus RTU implementation in RepRapFirmware uses Gcode to form the Modbus me
 [M260.1](/User_manual/Reference/Gcodes/M260_1) - write data to a device
 [M260.4](/User_manual/Reference/Gcodes/M260_4) - Raw Modbus transaction
 
-Pnn Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Device mode using M575.
-Ann Modbus device address
-Rnn Register number to start from
-Bnn How many registers,coils or inputs to request
-Fn (optional) Modbus function code, must be one of: 1 (Read Coils), 2 (Read Discrete Inputs), 3 (Read Holding Registers), 4 (Read Input Registers, default)
-V"name" (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
-
-Pnn Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
-Ann Modbus slave device address
-Fn (optional) Modbus function code, must be one of: 5 (Write Single Coil), 6 (Write Single Register), 15 (Write Multiple Coils), 16 (Write Multiple Registers, default)
-Rnn First Modbus coil or register number to write to
-Bnn:nn:nn... One value per coil or register to write. If writing registers, each value is a 16-bit word to write. If writing coils, each value is zero to set coil off, nonzero to set coil on.
-S"ascii data" data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if B parameter is present.
 
 ## Testing communications with device
 
-### Requesting data
+### Read data from device
 
-Sending this from the console will receive the data as hexidecimal:
+Use M261.1 to read data from a Modbus RTU device, where the parameters are:
+
+* **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Device mode using M575.
+* **Ann** Modbus device address
+* **Rnn** Register number to start from
+* **Bnn** How many registers,coils or inputs to request
+* **Fn** (optional) Modbus function code, must be one of: 1 (Read Coils), 2 (Read Discrete Inputs), 3 (Read Holding Registers), 4 (Read Input Registers, default)
+* **V"name"** (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
+
+Sending a correctly formed M261.1 command like the following example from the console will receive the data as hexidecimal:
 
 ```
 M261.1 P2 A1 R1 B2 F4
 Received 00de 0228
 ```
 
+This is the temperature and pressure reading from XY-MD01 sensor. 00de = 222 in decimal, which is divided by 10 to get 22.2°C. 0228 = 552 decimal, which is 55.2% humidity.
+
 From holding/keep registers (ie device settings)
 
 ```
-M261.1 P2 A1 R257 B1 F3
+M261.1 P2 A1 R257 B1 F3 ; register for device address
 Received 0001
-M261.1 P2 A1 R258 B1 F3
+M261.1 P2 A1 R258 B1 F3 : register for device baud rate (2580 hex = 9600bps)
 Received 2580
-M261.1 P2 A1 R259 B1 F3
+M261.1 P2 A1 R259 B1 F3 : register for temperature correction
 Received 0000
-M261.1 P2 A1 R260 B1 F3
+M261.1 P2 A1 R260 B1 F3 : register for humidity correction
 Received 0000
 ```
 
-### Sending data
+### Write data to device
 
-Eg changing device address
+Use M260.1 to write data to a Modbus RTU device, where the parameters are:
+
+* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
+* **Ann** Modbus slave device address
+* **Fn** (optional) Modbus function code, must be one of: 5 (Write Single Coil), 6 (Write Single Register), 15 (Write Multiple Coils), 16 (Write Multiple Registers, default)
+* **Rnn** First Modbus coil or register number to write to
+* **Bnn:nn:nn...** One value per coil or register to write. If writing registers, each value is a 16-bit word to write. If writing coils, each value is zero to set coil off, nonzero to set coil on.
+* **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if B parameter is present.
+
+For example, changing the device address
 
 ```
 M260.1 P2 A1 F6 R257 B3
-(didn't cycle power)
-M261.1 P2 A1 R1 B2 F4
-Received 00e0 022d
 (cycled power)
-M261.1 P2 A1 R1 B2 F4
-Error: M261.1: no or bad response from Modbus device
 M261.1 P2 A3 R1 B2 F4
 Received 00df 022f
 ```
 
-# Examples
-
-## Connecting a temperature and humidity sensor
-
-XY-MD01
-
-## Connecting a VFD/spindle
-
-
-## Connecting a PLC
-
+# Using data from devices
 
