@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-16T18:21:15.009Z
+date: 2025-10-17T21:39:19.787Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -95,7 +95,9 @@ Add one of the following examples to config.g:
   M575 P2 B9600 S7 C"io1.out"; enable RS485 on serial channel 2 (io1), baud rate 9600bps, mode 7 (device/Modbus), using io1.out to control Tx/Rx switching
   ```
 
-# Communicating with devices
+# Testing communications with device
+
+## Gcode commands
 
 The Modbus RTU implementation in RepRapFirmware uses Gcode to form the Modbus message, so knowledge of the underlying message structure is not generlly necessary. You will need your device's documentation to know the device address (usually set to a default initially), the commands supported, and the registers, coils and/or inputs that need to be read or written to.
 
@@ -103,10 +105,7 @@ The Modbus RTU implementation in RepRapFirmware uses Gcode to form the Modbus me
 [M260.1](/User_manual/Reference/Gcodes/M260_1) - write data to a device
 [M260.4](/User_manual/Reference/Gcodes/M260_4) - Raw Modbus transaction
 
-
-## Testing communications with device
-
-### Read data from device
+## Read data from device
 
 Use M261.1 to read data from a Modbus RTU device, where the parameters are:
 
@@ -139,7 +138,13 @@ M261.1 P2 A1 R260 B1 F3 : register for humidity correction
 Received 0000
 ```
 
-### Write data to device
+Or to retrieve all of them at once:
+```
+M261.1 P2 A1 R257 B4 F3
+Received 0001 2580 0000 0000
+```
+
+## Write data to device
 
 Use M260.1 to write data to a Modbus RTU device, where the parameters are:
 
@@ -161,3 +166,28 @@ Received 00df 022f
 
 # Using data from devices
 
+Generally, you will want to use the data retrievd from the Modbus RTU connected device. RepRapFirmware provides the M261.1 V parameter to read the data into a variable. Note that:
+* If the V parameter is not present, then the data read is output to the console in hexidecimal.
+* The variable created by the V parameter is an array, even if only one register/coil is read.
+* The variable created by the V parameter only exists within the scope (the scope of a local variable is the remainder of the block in which it is declared), so you will need to assign the value to a global variable if you want to use the value outside of the scope or macro.
+* Data returned by the V parameter is converted from hexidecimal to decimal.
+* Typically, the data returned from Modbus is one or more registers and the data may need to be converted or scaled.
+
+For example, to use the temperature and humidity values returned by a Modbus sensor, first declare a couple of global variables (in config.g):
+```
+global temperature = 0
+global humidity = 0
+```
+Then create a macro which reads the data from the sensor, and sets the global variables. Note that the variable 'modbusResult' only exists within the scope of the macro:
+```
+M261.1 P2 A1 R1 B2 F4 V"modbusResult"
+set global.temperature = var.modbusResult[0]/10
+set global.humidity = var.modbusResult[1]/10
+echo global.temperature ^ "°C, " ^ global.humidity ^ "%RH"
+```
+Result:
+```
+M98 P"0:/macros/Modbus read.g"
+21.40000°C, 58.10000%RH
+```
+The values can be accessed by the object model, and used by other processes.
