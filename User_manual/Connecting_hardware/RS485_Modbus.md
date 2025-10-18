@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-17T21:39:19.787Z
+date: 2025-10-18T11:31:21.381Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -11,6 +11,8 @@ dateCreated: 2025-10-10T14:15:26.485Z
 # Introduction
 
 From RepRapFirmware 3.6, Duet 3 mainboards 6HC, 6XD and Mini 5+ support RS485 serial data transmission standard and the Modbus RTU (Remote Terminal Unit) protocol. These can be used to interface with a wide range of devices, including sensors, relays, Programmable Logic Controllers (PLCs), Variable Frequency Drives (VFDs) and other devices.
+
+Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, have an RS485 adapter built-in. For Mini 5+ and older versions of 6HC and 6XD, external RS485 transceivers can be used.
 
 ## What is RS485?
 
