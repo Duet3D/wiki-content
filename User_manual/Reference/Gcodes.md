@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-10-13T10:12:29.766Z
+date: 2025-10-21T14:14:54.543Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4725,7 +4725,7 @@ M409 F"v"          ; report the whole object model to the default depth
 
 The key string is just the path to the object model variables wanted, with the following extensions:
 
-* An element that is an array may be followed by either [*number*] to select just one element, or by to select all elements and report the results as an array
+* An element that is an array may be followed by either [*number*] to select just one element, or by [] to select all elements and report the results as an array
 * The path may be preceded by # in which case the path must refer to an array and just the number of array elements is returned
 
 An empty key string selects the entire object model. Note, the entire object model may be very large, so there is typically insufficient buffer space to construct a JSON response that represents the whole object model. For this reason, RepRapFirmware sets a default maximum depth of 1 if the key string is empty or not present and the 'f' flag is not included in the flags string.
