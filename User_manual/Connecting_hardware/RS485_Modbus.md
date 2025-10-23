@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-23T16:43:23.293Z
+date: 2025-10-23T19:03:58.482Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -241,4 +241,6 @@ See [this thread on the Duet3D forum](https://forum.duet3d.com/topic/38619){targ
 
 ## Variable Frequency Drives and spindles
 
-Millenium Machines and user @ninemile have made great strides in getting VFDs to talk to RRF via RD485 and Modbus. 
+[Millenium Machines](https://www.millennium-machines.com/){target=_blank} and user @NineMile have made great strides in getting VFDs to talk to RRF via RS485 and Modbus. They have created a "daemon macro framework for RepRapFirmware v3.6+, which helps to implement RS485 Spindle Control, Monitoring and Feedback across different VFD types." See the [ArborCTL github repository here](https://github.com/MillenniumMachines/ArborCTL){target=_blank} for details.
+
+Currently supported VFDs are the Shihlin SL3 and Huanyang HY02D223B.
