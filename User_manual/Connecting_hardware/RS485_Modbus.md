@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-23T19:03:58.482Z
+date: 2025-10-23T20:49:57.427Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -237,7 +237,10 @@ See the example above.
 
 ## Programmable Logic Controllers
 
-See [this thread on the Duet3D forum](https://forum.duet3d.com/topic/38619){target=_blank}
+Examples on the Duet3D forum:
+[Duet 6XD to a Productivity P1-550 PLC](https://forum.duet3d.com/topic/38619){target=_blank}.
+[Duet 6XD to a Mitsubishi FX3u-485ADP-MB PLC with RS485 Adapter](https://forum.duet3d.com/topic/35977){target=_blank}, with 60+ SMT PnP Electric Feeders connected to it. See towards the end of the thread.
+[Duet 6HC with external RS485 transceiver to a Beckhoff CX7080 PLC](https://forum.duet3d.com/topic/38315){target=_blank}
 
 ## Variable Frequency Drives and spindles
 
