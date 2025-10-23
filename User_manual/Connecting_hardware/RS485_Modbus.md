@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-23T20:49:57.427Z
+date: 2025-10-23T20:52:14.744Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -229,7 +229,7 @@ The values can be accessed by the object model, and used by other processes.
 
 # Support for other Modbus devices
 
-This secton will be added to as more Modbus devices are connected to Duet mainboards and RRF.
+This section will be added to as more Modbus devices are connected to Duet mainboards and RRF.
 
 ## Environmental sensors
 
