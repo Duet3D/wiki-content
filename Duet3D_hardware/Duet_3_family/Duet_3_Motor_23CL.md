@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2025-09-26T11:42:50.903Z
+date: 2025-10-24T18:29:28.060Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -165,7 +165,7 @@ Check that you can communicate with the M23CL, by sending:
 
 `M115 B123`
 
-If that fails try depressing the CAN_RST switch and powering up, then down again, this will reset the CAN-FD bus settings to the default (address 123, bus speed 1Mbps)
+If that fails try pressing and holding the CAN_RST switch when powering up, release the switch and power down, then power up again. This will reset the CAN-FD bus settings to the default (address 123, bus speed 1Mbps)
 
 ## Update the bootloader
 
@@ -182,6 +182,8 @@ The M23CL will be shipped with firmware loaded during production. You can check 
 To update the firmware get the [latest version from the RepRapFirmware github.](https://github.com/Duet3D/RepRapFirmware/releases). It is highly recommended to upgrade all the firmware in your Duet 3 system together so that the versions do not get out of sync.
 
 Send `M997 B##` to carry out a firmware update. The bootloader will request the Duet3Firmware_M23CL.bin from the Duet 3 main board, which needs to be in the /firmware folder.
+
+A firmware update can also be forced manually. Press and hold the CAN_RST switch when powering up, then release the switch. The bootloader will request new firmware from the Duet 3 main board. Note that this also resets the CAN address to the default 123, so it's best if it is the only expansion board connected to the main board, to avoid CAN address conflicts.
 
 ## Set the CAN address
 
@@ -203,12 +205,10 @@ A little more than one full rotation of the motor is performed in each direction
 
 Once you are satisfied that the motor can freely make up to 1.5 rotations in either direction, run the following commands:
 
-`M17 ; this will enable all motors you can be more specific e.g. M17 X the driver you are tuning need to be enabled before tuning
-`
+`M17 ; this will enable all motors you can be more specific e.g. M17 X the driver you are tuning need to be enabled before tuning`
 
-`
-M569.6 P##.# V2 ; Where P##.# is the driver address to tune
-`
+`M569.6 P##.# V2 ; Where P##.# is the driver address to tune`
+
 Once this has been performed successfully, the values will be written to non-volatile memory and remembered each time the power is cycled. The tuning can be re-run by simply running the M569.6 ... V2 command again, or checked by running the M569.6 ... V3 command.
 
 The firmware will output the highest deviation of expected position vs encoder position recorded. 
