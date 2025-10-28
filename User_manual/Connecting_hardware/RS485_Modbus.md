@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-28T17:48:04.277Z
+date: 2025-10-28T17:48:43.129Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -229,7 +229,7 @@ M260.4 P2 A1 B{0x04, 0x00, 0x01, 0x00, 0x01} R4
 Received 04 02 00 dd
 ```
 
-In this example, after the device address and CRC are checked and removed, we received back the function code, 
+In this example, after the device address and CRC are checked and removed, we received back the function code, the number of bytes returned, and the two bytes for the temperature.
 
 # Using data from devices
 
