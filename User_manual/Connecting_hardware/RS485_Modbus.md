@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-23T20:52:14.744Z
+date: 2025-10-28T17:48:04.277Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -198,6 +198,38 @@ M260.1 P2 A1 F6 R257 B3
 M261.1 P2 A3 R1 B2 F4
 Received 00df 022f
 ```
+
+## Raw Modbus transaction
+
+Sometimes a Modbus device may not adhere strictly to the Modbus RTU protocol, or have additional functions or settings that can be accessed by sending special commands. The device datasheet should outline what the device expects, and RepRapFirmware can send these commands using [M260.4](/User_manual/Reference/Gcodes/M260_4).
+
+As an example, the datasheet of the XY-MD01 environment sensor shows the following format is required to retrieve the temperature:
+
+| Master Read Temperature Command Frame (0x04) ||||||||
+|---|---|
+| Device<br>Address | Function<br>Code | Starting<br>Address Hi | Starting<br>Address Li | Quantity Hi | Quantity Li | CRC Hi | CRC Li |
+| 0x01 | 0x04 | 0x00 | 0x01 | 0x00 | 0x01 | 0x60 | 0x0A |
+| Response Temperature Value from Slave ||||||||
+| Device<br>Address | Function<br>Code | Bytes | Temp Hi | Temp Li | CRC Hi | CRC Li ||
+| 0x01 | 0x04 | 0x02 | 0x01 | 0x31 | 0x79 | 0x74 |
+
+From this, you can create the Modbus command using M260.4. The parameters are:
+
+* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
+* **Ann** Modbus slave device address
+* **Rnn** Number of bytes to receive excluding the slave address and the CRC
+* **Bnn:nn:nn...** Values to send excluding the slave address and the CRC
+* **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if B parameter is present.
+* **V"name"** (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
+
+RepRapFirmware will still need the serial port (P parameter) and Modbus device address (A parameter), and will calculate the CRC for you. It will also need to know how many bytes to return from the response (R parameter). Then the B parameter holds the values in hex you want to send, in this example the function code, two bytes for the address, and two bytes for the number of registers to return.
+
+```
+M260.4 P2 A1 B{0x04, 0x00, 0x01, 0x00, 0x01} R4
+Received 04 02 00 dd
+```
+
+In this example, after the device address and CRC are checked and removed, we received back the function code, 
 
 # Using data from devices
 
