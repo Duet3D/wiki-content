@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a CNC machine
 description: This page describes the hardware and wiring, and changes to the RepRapFirmware files required to support a CNC.
 published: true
-date: 2025-10-09T10:50:16.871Z
+date: 2025-10-30T15:42:43.075Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:34:29.590Z
@@ -95,6 +95,8 @@ If your CNC machine and GCode work in inches then see the documentation for [G20
 
 # Connecting a spindle
 
+## Using 0 to 10V variable voltage control 
+
 Most CNC Variable Frequency Drives (VFD) expect a 0 to 10V variable voltage to control the spindle. The Duet outputs a PWM signal, so you will need a PWM to analog converter. There are 2 sorts of PWM to analog converter widely available, as shown here:
 
 ![configure_cnc_01.png](/manual/configuration/configure_cnc_01.png =800x)
@@ -116,6 +118,12 @@ If #3 doesn't work due to insufficient voltage input from the Duet, try removing
 ![configure_cnc_02.png](/manual/configuration/configure_cnc_02.png =400x)
 
 Don't use this scheme with more than 5V input, because it bypasses the input reverse polarity protection.
+
+## Using RS485/Modbus RTU control
+
+From RepRapFirmware 3.6, Duet 3 mainboards (6HC, 6XD and Mini 5+) support the RS485 serial data transmission standard and the Modbus RTU (Remote Terminal Unit) protocol.
+
+Many VFDs support RS485 control of the spindle, and support for a few popular ones has been added by user @NineMile at [Millenium Machines](https://www.millennium-machines.com/){target=_blank}. See [Connecting RS485 and Modbus RTU devices](/User_manual/Connecting_hardware/RS485_Modbus) for details.
 
 # Connecting a CNC pendant
 
