@@ -1,8 +1,8 @@
 ---
-title: Connecting RS485 and Modbus devices
+title: Connecting RS485 and Modbus RTU devices
 description: 
 published: false
-date: 2025-10-30T15:26:54.228Z
+date: 2025-10-30T15:27:56.290Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -15,6 +15,7 @@ dateCreated: 2025-10-10T14:15:26.485Z
 Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, have an RS485 adapter built-in. For Mini 5+ and older versions of 6HC and 6XD, external RS485 transceivers can be used.
 
 *Image: A Duet 3 Mainboard 6XD v1.02 connected to a Modbus RTU temperature and humidity sensor, using the built-in RS485 adapter.*
+
 ## What is RS485?
 
 RS485 is a serial communication standard, and is one of the most widely used. It has a number of advantages over other standards that make it particularly suitable for noisy industrial areas.
