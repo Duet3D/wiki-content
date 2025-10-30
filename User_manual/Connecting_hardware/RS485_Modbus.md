@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-30T15:23:26.680Z
+date: 2025-10-30T15:26:54.228Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -14,7 +14,7 @@ dateCreated: 2025-10-10T14:15:26.485Z
 
 Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, have an RS485 adapter built-in. For Mini 5+ and older versions of 6HC and 6XD, external RS485 transceivers can be used.
 
-*Image: A Duet 3 Mainboard 6XD v1.02 connected to a Modbus RTU temperature and humitidy sensor, using the built-in RS485 adapter.*
+*Image: A Duet 3 Mainboard 6XD v1.02 connected to a Modbus RTU temperature and humidity sensor, using the built-in RS485 adapter.*
 ## What is RS485?
 
 RS485 is a serial communication standard, and is one of the most widely used. It has a number of advantages over other standards that make it particularly suitable for noisy industrial areas.
@@ -114,7 +114,7 @@ The Modbus RTU implementation in RepRapFirmware uses Gcode to form the Modbus me
 
 To use the Gcodes, you will need some information on your Modbus RTU device. Generally, the best place for this is the device's datasheet. 
 
-In the following sections, an XY-MD01 environment sensor, which measures temperature and humidity, is used as an example. You will need to know the Modbus device address, the register you need to read or write to, the values to write, and the Modbus function codes. This is the useful information from the [XY-MD01 sensor datasheet](https://www.hestore.hu/prod_getfile.php?id=18062){target=_blank}:
+In the following sections, an XY-MD01 environment sensor, which measures temperature and humidity, is used as an example. See the picture at the beginning of this page for the wiring setup. You will need to know the Modbus device address, the register you need to read or write to, the values to write, and the Modbus function codes. This is the useful information from the [XY-MD01 sensor datasheet](https://www.hestore.hu/prod_getfile.php?id=18062){target=_blank}:
 
 Product Name: Modbus RTU RS485 SHT20 Temperature Humidity Transmitter
 Product Number: XY-MD01
