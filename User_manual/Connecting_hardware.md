@@ -2,7 +2,7 @@
 title: User manual: Connecting hardware
 description: 
 published: true
-date: 2024-05-20T15:40:44.846Z
+date: 2025-10-30T15:32:07.078Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:51:46.990Z
@@ -70,6 +70,7 @@ Crimping guide (TO DO)
 [Controlling unused IO pins](/User_manual/Connecting_hardware/IO_GPIO)
 [Using triggers to control the Duet](/User_manual/Tuning/Triggers)
 [Neopixel and DotStar LEDs](/User_manual/Connecting_hardware/IO_Neopixel_DotStar)
+[Connecting RS485 and Modbus RTU devices](/User_manual/Connecting_hardware/RS485_Modbus)
 [CNC Pendant](/User_manual/Connecting_hardware/IO_CNC_Pendant)
 <!--
 Example guide: Using M581 - External Triggers and Building a Control Panel
