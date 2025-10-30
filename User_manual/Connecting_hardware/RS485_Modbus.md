@@ -1,8 +1,8 @@
 ---
 title: Connecting RS485 and Modbus RTU devices
 description: 
-published: false
-date: 2025-10-30T15:27:56.290Z
+published: true
+date: 2025-10-30T15:28:08.591Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
