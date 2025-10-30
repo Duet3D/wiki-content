@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus devices
 description: 
 published: false
-date: 2025-10-28T17:48:43.129Z
+date: 2025-10-30T15:23:26.680Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -10,10 +10,11 @@ dateCreated: 2025-10-10T14:15:26.485Z
 
 # Introduction
 
-From RepRapFirmware 3.6, Duet 3 mainboards 6HC, 6XD and Mini 5+ support RS485 serial data transmission standard and the Modbus RTU (Remote Terminal Unit) protocol. These can be used to interface with a wide range of devices, including sensors, relays, Programmable Logic Controllers (PLCs), Variable Frequency Drives (VFDs) and other devices.
+[![rs485_6xd_temp+rh_sensor.jpg](/manual/rs485_modbus/rs485_6xd_temp+rh_sensor.jpg =50%x){.align-right}](/manual/rs485_modbus/rs485_6xd_temp+rh_sensor.jpg){target=_blank}From RepRapFirmware 3.6, Duet 3 mainboards 6HC, 6XD and Mini 5+ support RS485 serial data transmission standard and the Modbus RTU (Remote Terminal Unit) protocol. These can be used to interface with a wide range of devices, including sensors, relays, Programmable Logic Controllers (PLCs), Variable Frequency Drives (VFDs) and other devices.
 
 Duet 3 Mainboard 6HC v1.02c and later, and Duet 3 Mainboard 6XD v1.02 and later, have an RS485 adapter built-in. For Mini 5+ and older versions of 6HC and 6XD, external RS485 transceivers can be used.
 
+*Image: A Duet 3 Mainboard 6XD v1.02 connected to a Modbus RTU temperature and humitidy sensor, using the built-in RS485 adapter.*
 ## What is RS485?
 
 RS485 is a serial communication standard, and is one of the most widely used. It has a number of advantages over other standards that make it particularly suitable for noisy industrial areas.
@@ -278,4 +279,4 @@ Examples on the Duet3D forum:
 
 [Millenium Machines](https://www.millennium-machines.com/){target=_blank} and user @NineMile have made great strides in getting VFDs to talk to RRF via RS485 and Modbus. They have created a "daemon macro framework for RepRapFirmware v3.6+, which helps to implement RS485 Spindle Control, Monitoring and Feedback across different VFD types." See the [ArborCTL github repository here](https://github.com/MillenniumMachines/ArborCTL){target=_blank} for details.
 
-Currently supported VFDs are the Shihlin SL3 and Huanyang HY02D223B.
+Currently supported VFDs (as of October 2025) are the Shihlin SL3, Huanyang HY02D223B and Yalang YL620A, with untested support of Huanyang GT-2R2G-2.
