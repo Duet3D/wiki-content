@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-10-21T14:14:54.543Z
+date: 2025-10-31T11:58:28.823Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -163,7 +163,29 @@ If present, the line number should be the first field in a line. For GCode store
 
 If checking is supported, the firmware expects line numbers to increase by 1 each line, and if that doesn't happen it is flagged as an error. But you can reset the count using M110 (see below).
 
+#### *: CRC
+From RRF version 3.4
+
+Example: 
+<br>
+<pre class="cblock">
+N100 G0 X100 F6000 *51369
+</pre>
+If present, the CRC should be the last field in a line, but before a comment. For GCode stored in files on SD cards the CRC is usually omitted.
+
+The CRC is appened in decimal and it must always be 5 digits.
+
+If checking is supported, the RepRap firmware checks the CRC against a locally-computed value and, if they differ, requests a repeat transmission of the line of the given number.
+
+**Method**
+
+Compute a [CRC16-CCITT](https://en.wikipedia.org/wiki/Cyclic_redundancy_check#Polynomial_representations) with initial value zero. Polynomial is x^16+x^12+x^5+1. 
+
+You can test your calculation using this [online tool](https://crccalc.com/?crc=N100%20G0%20X100%20F6000&method=CRC-16/XMODEM&datatype=ascii&outtype=dec)
+
 #### *: Checksum
+
+It is recommended to use a CRC, this is here only for legacy reasons.
 
 Example: *71
 
@@ -171,7 +193,7 @@ If present, the checksum should be the last field in a line, but before a commen
 
 If checking is supported, the RepRap firmware checks the checksum against a locally-computed value and, if they differ, requests a repeat transmission of the line of the given number.
 
-#### Method
+**Method**
 
 Example: N123 [...G Code in here...] *71
 
