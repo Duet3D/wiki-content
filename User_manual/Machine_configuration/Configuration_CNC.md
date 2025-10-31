@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a CNC machine
 description: This page describes the hardware and wiring, and changes to the RepRapFirmware files required to support a CNC.
 published: true
-date: 2025-10-30T15:42:43.075Z
+date: 2025-10-31T09:41:58.841Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:34:29.590Z
@@ -123,7 +123,7 @@ Don't use this scheme with more than 5V input, because it bypasses the input rev
 
 From RepRapFirmware 3.6, Duet 3 mainboards (6HC, 6XD and Mini 5+) support the RS485 serial data transmission standard and the Modbus RTU (Remote Terminal Unit) protocol.
 
-Many VFDs support RS485 control of the spindle, and support for a few popular ones has been added by user @NineMile at [Millenium Machines](https://www.millennium-machines.com/){target=_blank}. See [Connecting RS485 and Modbus RTU devices](/User_manual/Connecting_hardware/RS485_Modbus) for details.
+Many VFDs support RS485 control of the spindle, and support for a few popular ones has been added by user @NineMile at [Millennium Machines](https://www.millennium-machines.com/){target=_blank}. See [Connecting RS485 and Modbus RTU devices](/User_manual/Connecting_hardware/RS485_Modbus) for details.
 
 # Connecting a CNC pendant
 
