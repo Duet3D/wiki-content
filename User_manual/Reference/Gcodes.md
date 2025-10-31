@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-10-31T11:58:28.823Z
+date: 2025-10-31T12:06:51.707Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6677,6 +6677,25 @@ M575 P2 B9600 S7 ; sets second auxiliary port (io1 on Duet 3) to Device mode (eg
 * The **S parameter** defines the mode. Modes 2 and 3 are supported in RRF 3.01 and later. Modes 4 and 6 are supported in RRF 3.4 and later. Mode 5 is supported in RRF 3.6 and later. Mode 7 is supported by RRF 3.6 and later on some boards.
 * In RRF 3.1 and later for Duet 3, the auxiliary serial port remains disabled until a M575 P1 command is received. This is to allow the IO_0 port to be used for other purposes. In RRF 3.2 and later on all boards, the auxilliary serial port(s) remain disabled until enabled using M575.
 * In RRF 3.6.0 and later, the USB port can now be switched into PanelDue mode using M575.
+
+#### PanelDue mode vs Raw mode
+
+PanelDue mode is more resistant to interference and lost data because of the JSON structure and associated field identifiers, and makes it easier to distinguish the responses to particular commands from other data.
+
+here is an example of the M114 command and response sent in PanelDue mode
+<br>
+<pre class="cblock">
+M114
+{"seq":6,"resp":"X:10.000 Y:50.000 Z:1.000 U:0.000 E:0.000 E0:0.0 E1:0.0 Count 4800 4000 400 4000 Machine 10.000 50.000 1.000 0.000 Bed comp 0.000\n"}
+</pre>
+
+here is an example of the same command in raw mode
+<br>
+<pre class="cblock">
+M114
+X:10.000 Y:50.000 Z:1.000 U:0.000 E:0.000 E0:0.0 E1:0.0 Count 4800 4000 400 4000 Machine 10.000 50.000 1.000 0.000 Bed comp 0.000
+</pre>
+
 
 
 ## M576: Set SPI comms parameters
