@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on other boards
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2025-04-17T09:25:56.963Z
+date: 2025-11-03T10:29:06.374Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-15T10:49:14.406Z
@@ -247,4 +247,4 @@ When your setup is complete, have a look at the [regular guide](/User_manual/Mac
 
 # Troubleshooting
 
-Please see the [docs on GitHub](https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide#troubleshooting) for further information about potential problems. If that does not help, please consult the [forum](https://forum.duet3d.com).
+Please see the [SBC Setup Guide](https://docs.duet3d.com/en/User_manual/Machine_configuration/SBC_setup#h-9-troubleshooting) for further information.
