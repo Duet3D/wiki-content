@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-11-03T10:28:06.758Z
+date: 2025-11-03T10:34:28.194Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -429,7 +429,9 @@ This issue may occur when the link between Duet and SBC is interrupted. Possible
 - Poor wiring between the boards (intermittent connections)
 - Inproper grounding
 - Cable too long
-- Cable picking up noise from adjacent electronic components
+- Cable picking up noise from adjacent electronic components (stepper motor or big heater wires)
+
+If this issue occurs, make sure the ribbon cable has enough space to adjacent stepper motor or large heater wires that could induce interference. If the problem persists, shielding the cable using metal foil may help. Using a multimeter you can also check if all the wires of the ribbon cables have a good connection.
 
 ### Disable WiFi Power Saving on the Raspberry Pi
 
