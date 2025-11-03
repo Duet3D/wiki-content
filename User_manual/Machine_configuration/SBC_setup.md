@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Rapsberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-06-10T15:35:37.148Z
+date: 2025-11-03T10:28:06.758Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -419,3 +419,149 @@ The name of the printer is its hostname on the network, you will need to connect
 * Select “Finish” and reboot.
 
 When you next boot with a screen, or log in with VNC, Chromium may give you the following warning. Select “unlock Profile and Relaunch”.
+
+# 9. Troubleshooting
+
+## SPI connection reset
+
+This issue may occur when the link between Duet and SBC is interrupted. Possible causes include:
+
+- Poor wiring between the boards (intermittent connections)
+- Inproper grounding
+- Cable too long
+- Cable picking up noise from adjacent electronic components
+
+### Disable WiFi Power Saving on the Raspberry Pi
+
+In addition to those reasons, there have been been reports that power saving of the integrated Raspberry Pi WiFi adapter may cause problems with the SPI connection (see [here](https://forum.duet3d.com/post/280490) and [here](https://forum.duet3d.com/topic/25950/psa-disable-rpi-wifi-power-save)). To rule this out, you can try to disable WiFi power saving by running the following from a Linux shell (e.g. via SSH or from a terminal in the GUI version):
+```
+echo "# Disable power saving of the built-in WiFi adapter to avoid SPI connection problems" | sudo tee -a /etc/network/interfaces
+echo "allow-hotplug wlan0" | sudo tee -a /etc/network/interfaces
+echo "iface wlan0 inet manual" | sudo tee -a /etc/network/interfaces
+echo "post-up iw dev wlan0 set power_save off" | sudo tee -a /etc/network/interfaces
+sudo iw dev wlan0 set power_save off
+```
+
+## Failed to connect to Duet (DCS not started)
+
+If you get this message, it means that the main service communicating with RepRapFirmware failed to start.
+This usually means that the connection between the Duet and SBC has been interrupted.
+
+To acquire further details about this message, access the service logs from this particular unit by running `journalctl -u duetcontrolserver -e`.
+This will output the latest logs and it will - if applicable - report why DCS failed to start.
+
+### Timeout while waiting for transfer ready pin
+
+This error message means the service attempted to wait for a signal on the transfer ready pin (pin 22 on the expansion header) but it timed out while doing so. Interference or a bad connection may cause this.
+
+### Board is not available (no header)
+
+When DSF gets a signal over the transfer ready pin, it attempts to exchange data over SPI. If the received data is completely empty, this error message is generated.
+This error message indicates a problem with the SPI peripheral either on the Duet or on the SBC. Check the continuity between the SPI pins on the Duet and SBC sides.
+
+## Trivial checks
+
+If you get communication issues between the Duet and SBC, perform the following steps first:
+
+- Make sure there is no SD card present in the Duet
+- Make sure both the Duet and SBC are powered properly
+- Confirm that the red "DIAG" LED flashes in regular intervals
+- Try reseating the SBC cable between the Duet and SBC
+- Disable all third-party plugins (only v3.3 and newer)
+
+In case these steps haven't improved the situation, you can proceed with the following checks.
+
+## Measure continuity of the ribbon cable
+
+Disconnect the power source from your SBC and Duet. Then take a multimeter and check if there is continuity between the Duet and SBC of the following pins
+
+| Pin Number | Description |
+|------------|-------------|
+| 17 | +3.3V |
+| 19 | MOSI |
+| 20 | GND |
+| 21 | MISO |
+| 22 | TfrRdy |
+| 23 | SCLK |
+| 24 | CS0 |
+
+If there is no or bad continuity between any of the pins, consider replacing the cable.
+
+Note that pin 17 is required to turn on the TfrRdy and MISO pins unless you are using a Duet 3 MB6HC v1.0 or older.
+
+## Testing GPIO capability of the SBC
+
+*This type of check is recommended if you get "Timeout while waiting for transfer ready pin"*
+
+Power down the Duet as well as the SBC and disconnect the cable between the Duet and SBC.
+
+When done, take a jumper cable and connect the +3.3V line of your SBC to the `TfrRdy` pin.
+**Be careful and do not mix up the +5V pins with the +3.3V pin, else you will damage your SBC!**
+
+![image](https://user-images.githubusercontent.com/5919449/112157169-3d795480-8be7-11eb-9911-c8163b2194cf.png)
+
+When you are done, power up the SBC again. When it has finished booting, open a terminal and stop the DCS service via `sudo systemctl stop duetcontrolserver` first.
+Then run `gpioget gpiochip0 25`. It should output `1` to indicate that the GPIO pin reads the correct signal.
+After this, pull off the jumper cable and run the command again. This time it should output `0`.
+Note that the gpio chip name and the pin number may vary if you are not using a Raspberry Pi.
+
+If the expected results do not match the command outputs, it is likely that the GPIO peripheral of your SBC is damaged.
+In this case it is a good idea to replace the affected SBC.
+
+## Check SPI data lines in loopback mode
+
+*This type of check is recommended if you get "Board is not available"*
+
+Power down the Duet as well as the SBC and disconnect the cable between the Duet and SBC.
+
+When done, take a jumper cable and bridge the MOSI and MISO pins (pins `19` and `21` on the Raspberry Pi).
+
+![image](https://user-images.githubusercontent.com/5919449/112157208-4b2eda00-8be7-11eb-91ec-88886f6e1e27.png)
+
+After this power up the SBC again and open a terminal. Then run the following commands:
+
+```
+wget https://raw.githubusercontent.com/raspberrypi/linux/rpi-3.10.y/Documentation/spi/spidev_test.c
+gcc -o spidev_test spidev_test.c
+./spidev_test -D /dev/spidev0.0
+spi mode: 0
+bits per word: 8
+max speed: 500000 Hz (500 KHz)
+
+FF FF FF FF FF FF
+40 00 00 00 00 95
+FF FF FF FF FF FF
+FF FF FF FF FF FF
+FF FF FF FF FF FF
+DE AD BE EF BA AD
+F0 0D
+```
+
+Note the last section of the output above (`FF FF ...`) should match.
+If you get only `00` or `FF` there, it is likely that the SPI peripheral of your SBC is broken.
+
+## Web interface not updating
+
+If the web interface appears to be frozen but still reacts to incoming commands, it is very likely that you are trying to run an unsupported firmware version.
+To resolve this problem, the easiest solution is to send `M997` over the web interface or code console.
+
+In case this method does not resolve this problem, open a terminal and run `journalctl -u duetcontrolserver -f`.
+This will show you the log including new messages being written. If you see any kind of exception there, please file a new issue on [GitHub](https://github.com/Duet3D/DuetSoftwareFramework) and share the console output plus the output of `M122`.
+
+## Increasing log level
+
+To obtain more data for potential debugging it is possible to adjust the log level of the DCS service.
+This can be done by changing `LogLevel` in `/opt/dsf/conf/config.json` from `info` to `debug`.
+
+Once this change has been made, restart the DCS service to apply it (`sudo systemctl restart duetcontrolserver`).
+After that you can follow potential debug messages in a terminal by running `journalctl -u duetcontrolserver -f`.
+
+If you want to share a log of the events from today, the command `journalctl -u duetcontrolserver --no-pager --since today` may be useful.
+This command dumps the log content directly to the console so it can be easily copied from your terminal and pasted in a text file.
+
+Don't forget to change back the log level from `debug` to `info` when you are done, else you may get a lot more IO on your SD card over time.
+
+## Further troubleshooting
+
+If none of the described steps helped, please open a new thread on the [forum](https://forum.duet3d.com).
+Note that support requests on GitHub will be closed immediately.
