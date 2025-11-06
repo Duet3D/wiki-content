@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-06T14:00:36.310Z
+date: 2025-11-06T17:33:51.355Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2872,16 +2872,30 @@ The 'B' parameter is used in RepRapFirmware 3 on Duet 3 only, to report diagnost
 <br>
 <pre class="cblock">
 M122 B1
+
 Diagnostics for board 1:
-Board EXP3HC firmware 3.0beta1 2019-10-28b1
-Never used RAM 163.4Kb, max stack 376b
-HEAT 1284 CanAsync 1456 CanRecv 1424 TMC 168 AIN 532 MAIN 2220
-Driver 0: standstill, reads 26609, writes 11 timeouts 0, SG min/max 0/0
-Driver 1: standstill, reads 26611, writes 11 timeouts 0, SG min/max 0/0
-Driver 2: standstill, reads 26614, writes 11 timeouts 0, SG min/max 0/0
-Move hiccups: 0
-VIN: 24.4V, V12: 12.2V
-MCU temperature: min 43.8C, current 43.9C, max 44.1C
+Duet EXP3HC rev 1.01 or earlier firmware version 3.6.1 (2025-08-24 09:16:18)
+Bootloader ID: not available
+All averaging filters OK
+Never used RAM 169588, free system stack 164 words
+Tasks: Move(3,nWait 7,0.0%,122) TMC(2,nWait 6,7.8%,55) HEAT(2,nWait 6,0.0%,121) CanAsync(5,nWait 4,0.0%,70) CanRecv(3,nWait 1,0.0%,72) CanClock(5,nWait 1,0.0%,62) MAIN(1,running,90.9%,409) IDLE(0,ready,0.0%,39) AIN(2,delaying,1.2%,261), total 100.0%
+Owned mutexes:
+Last reset 00:07:25 ago, cause: software
+Last software reset data not available
+Moves scheduled 6213, hiccups 0 (0.00/0.23ms), segs 7, step errors 0 (types 0x0), maxLate 0 maxPrep 19, ebfmin 0.00 max 0.00
+Sync err accum 323, peak jitter -4/17, peak Rx delay 209, resyncs 0/0, no timer interrupt scheduled, next step interrupt due in 180 ticks, enabled
+VIN voltage: min 24.3, current 24.3, max 24.4
+V12 voltage: min 12.1, current 12.2, max 12.2
+MCU temperature: min 32.8C, current 33.0C, max 33.2C
+Driver 0: pos 356367, 423.7 steps/mm, ok, SG min 0, mspos 504, reads 5723, writes 18 timeouts 0
+Driver 1: pos 0, 80.0 steps/mm, standstill, SG min n/a, mspos 792, reads 5729, writes 12 timeouts 0
+Driver 2: pos 0, 80.0 steps/mm, standstill, SG min n/a, mspos 792, reads 5730, writes 12 timeouts 0
+Last sensors broadcast 0x00000000 found 0 53 ticks ago, 0 ordering errs, loop time 0
+CAN messages queued 4197, send timeouts 0, received 10122, lost 0, ignored 0, errs 0, boc 0, free buffers 38, min 38, error reg 0
+dup 0, oos 0/0/0/0, rxMotionDelay 299, adv 35425/71013
+=== Filament sensors ===
+Interrupt 1 to 4us, poll 2 to 146us
+Driver 0: pos 2160.0, errs: frame 0 parity 0 ovrun 0 pol 0 ovdue 0
 </pre>
 
 ## M135: Set PID sample interval
