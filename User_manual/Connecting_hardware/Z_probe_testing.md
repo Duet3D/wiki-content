@@ -2,7 +2,7 @@
 title: Test and calibrate a Z probe
 description: 
 published: true
-date: 2025-11-10T10:32:17.384Z
+date: 2025-11-10T10:38:14.507Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T11:29:02.047Z
@@ -72,6 +72,8 @@ G30 P9 X100 Y100 Z-9999 S-1
 M402
 ```
 adjust the X and Y position for a point within the bed limits:
+
+If you create a file called M48.g in the /sys folder, and copy the macro to it, you can call it by sending M48, if emulation of this m command is required.
 
 # Measuring Probe X Y Offset
 
