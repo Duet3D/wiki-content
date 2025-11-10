@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-06T17:33:51.355Z
+date: 2025-11-10T11:39:13.450Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -859,6 +859,7 @@ G29 S4 P"probePoints.csv" ; Load probe points file "probePoints.csv"
   - The fourth and subsequent lines have the value 1 at points that are to be probed if they are reachable and 0 in points that are to be omitted.
   2. Send an appropriate G29 S4 command, eg `G29 S4 P"probePoints.csv"`.
   3. When G29 S0 is called subsequently, the grid definition defined in the probe points file is used instead of the grid defined by M557, and reachable points are probed or not as indicated in the file.
+* If you have a probe that needs to be deployed and retracted (e.g. a BL touch) see the [Controlling deployable probes](/User_manual/Connecting_hardware/Z_probe_connecting#controlling-deployable-probes) documentation. **NOTE** If you have **deployprobe.g** or **retractprobe.g** in the /sys/ directory the firmware will attempt to use them, only have them if you need them.
 
 ## G30: Single Z-Probe
 
@@ -922,15 +923,13 @@ The **S parameter** on the last G30 command in the sequence indicates that a com
 * Linear delta kinematics: S-1 will report the Z offset for each probed point, but no calibration is done. S parameter values of 3, 4, 6, 7, 8 or 9 are for auto calibration. See [Calibrating a Delta Printer, setting up the bed.g file](/User_manual/Tuning/Delta_calibration#setting-up-the-bedg-file){target=_blank} for a more detailed explanation.
 * Rotary delta kinematics: S-1 will report the Z offset for each probed point, but no calibration is done. S parameter values of 3, 4, 5, or 7 are for auto calibration (experimental). <!--See [[Configuring RepRapFirmware for a Rotary Delta]] for a more detailed explanation.-->
 
-NOTE: From RepRapFirmware version 1.09 to 3.0, the number of factors may be 3, 4 or 5 when doing old-style auto bed compensation on a Cartesian or CoreXY printer. This form of bed compensation has been removed in RRF 3.01 and later.
+NOTE:
 
-If a "normal" **Z parameter** is given instead of -9999 or lower, then the bed is not probed, but instead that value is used as if the Z probe had triggered at that height.
-
-The **H parameter** is an optional height correction for that probe point. It allows for the Z probe having a trigger height that varies with XY position. The nominal trigger height of the Z probe (e.g. at bed centre) is declared in the Z parameter of the G31 command in the config.g file. When you probe using G30 and the probe triggers, the firmware will assume that the nozzle is at the nominal trigger height plus the value you have in the H parameter. For example, when doing delta calibration, it can account for the change in trigger height caused by effector tilt, if the vertical offset caused by the tilt has been measured.
-
-The **K parameter** is applicable to all G30 commands. It is the Z probe number, default 0. It is not remembered between G30 commands, it always defaults to 0.
-
-Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0 and later.
+* If a "normal" **Z parameter** is given instead of -9999 or lower, then the bed is not probed, but instead that value is used as if the Z probe had triggered at that height.
+* The **H parameter** is an optional height correction for that probe point. It allows for the Z probe having a trigger height that varies with XY position. The nominal trigger height of the Z probe (e.g. at bed centre) is declared in the Z parameter of the G31 command in the config.g file. When you probe using G30 and the probe triggers, the firmware will assume that the nozzle is at the nominal trigger height plus the value you have in the H parameter. For example, when doing delta calibration, it can account for the change in trigger height caused by effector tilt, if the vertical offset caused by the tilt has been measured.
+* The **K parameter** is applicable to all G30 commands. It is the Z probe number, default 0. It is not remembered between G30 commands, it always defaults to 0.
+* Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0 and later.
+* If you have a probe that needs to be deployed and retracted (e.g. a BL touch) see the [Controlling deployable probes](/User_manual/Connecting_hardware/Z_probe_connecting#controlling-deployable-probes) documentation. **NOTE** If you have **deployprobe.g** or **retractprobe.g** in the /sys/ directory the firmware will attempt to use them, only have them if you need them.
 
 ## G31: Set or Report Current Probe status
 
@@ -1082,6 +1081,7 @@ G38.x Straight Probe will perform a probing move in a straight line with the cur
 * For probing away the probe used does not have to be inverted. This command will take care of that.
 * Feedrate used for this move is the configured feedrate of the used probe (see [M558 Fnnn](/User_manual/Reference/Gcodes/M558){target=_blank}).
 * In RRF 3.6.0 and later, the **F** parameter can set the feed rate. If no F parameter is specified, probing speed defaults to the speed set by M558 for the Z probe used.
+* If you have a probe that needs to be deployed and retracted (e.g. a BL touch) see the [Controlling deployable probes](/User_manual/Connecting_hardware/Z_probe_connecting#controlling-deployable-probes) documentation. **NOTE** If you have **deployprobe.g** or **retractprobe.g** in the /sys/ directory the firmware will attempt to use them, only have them if you need them.
 
 ## G38.3: Straight Probe
 
