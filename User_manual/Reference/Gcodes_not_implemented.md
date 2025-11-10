@@ -2,7 +2,7 @@
 title: GCodes not implemented
 description:  This page lists GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware. 
 published: true
-date: 2023-05-04T09:45:28.150Z
+date: 2025-11-10T10:36:46.205Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:45:16.729Z
@@ -59,7 +59,7 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M41: Loop (No requirement, conditional GCode is moire powerful)
 * M43: Stand by on material exhausted (use M591)
 * M43: Pin report and debug (much of this functionality is available within M42, M581,M582, M583)
-* M48: Measure Z-Probe repeatability ([use a macro](https://forum.duet3d.com/topic/6962/))
+* M48: Measure Z-Probe repeatability ([use a macro](/User_manual/Connecting_hardware/Z_probe_testing#probe-consistency-test))
 * M93: Send axis_steps_per_unit (use M92)
 * M101: Turn extruder 1 on (Forward), Undo Retraction (use standard G1 commands, or G10 for firmware retraction)
 * M102: Turn extruder 1 on (Reverse) (use standard G1 commands, or G10 for firmware retraction)
