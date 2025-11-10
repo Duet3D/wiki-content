@@ -2,7 +2,7 @@
 title: Test and calibrate a Z probe
 description: 
 published: true
-date: 2025-02-24T15:42:20.850Z
+date: 2025-11-10T10:30:59.156Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-28T11:29:02.047Z
@@ -42,7 +42,7 @@ As above, but either monitor the Z probe reading in PanelDue if you have one, or
 1. Once you have the nozzle touching the bed, send command `G92 Z0` to  tell the firmware that the head is at Z=0
 1. Jog the head up by 5 to 10mm
 1. Send command `G30 S-1`. The nozzle will descend or the bed rise until the probe triggers and the Z height at which the probe stopped will be reported in the console. If you are using a nozzle-contact Z probe, the trigger height will be slightly negative. For any other type of Z probe where the probe triggers before the nozzle contacts the bed, it will be positive.
-1. Repeat  from step 5 two or three times to make sure that the  trigger height is consistent.
+1. Repeat  from step 5 two or three times to make sure that the  trigger height is consistent. ((see below for a macro to run a more in-depth probe consistency test)
 1. In Duet Web Control, go to Settings -> System Editor and edit the config.g file. Set the Z parameter in the `G31` command to the trigger height that was reported. Save the file.
 1. Open config-override.g and check that there are no `G31` commands in it. If you find any, delete those lines and save the file.
 1. To apply the new trigger height, restart the Duet by sending `M999` or pressing Emergency Stop.
@@ -50,6 +50,28 @@ As above, but either monitor the Z probe reading in PanelDue if you have one, or
 ## Fine tuning the trigger height
 
 After you've done the procedure above, you can fine tune your G31 Z value to get a good first layer. During a test print, watch the first layer go down and adjust the Z position using the baby stepping function. If you have to move the nozzle closer to the bed, increase the G31 Z value by the amount of baby stepping used. If you have to move the nozzle farther away from the bed, decrease the G31 Z value by the amount of baby stepping used.
+
+# Probe consistency test
+
+RepRapFirmware allows such a variety of Z probes and configurations that we don't have a built in M48 command, however the functionality can be implemented for a specific machine using a macro. Here is an example:
+
+```
+M291 P"Probe will be tested 10 times and return mean and standard deviation. Ok or Cancel?" R"WARNING" S3 ; User must click OK or cancel.
+G28
+M401
+G30 P0 X100 Y100 Z-9999
+G30 P1 X100 Y100 Z-9999
+G30 P2 X100 Y100 Z-9999
+G30 P3 X100 Y100 Z-9999
+G30 P4 X100 Y100 Z-9999
+G30 P5 X100 Y100 Z-9999
+G30 P6 X100 Y100 Z-9999
+G30 P7 X100 Y100 Z-9999
+G30 P8 X100 Y100 Z-9999
+G30 P9 X100 Y100 Z-9999 S-1
+M402
+```
+adjust the X and Y position for a point within the bed limits:
 
 # Measuring Probe X Y Offset
 
