@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2025-02-28T14:49:40.107Z
+date: 2025-11-10T12:06:15.995Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -72,7 +72,7 @@ The following table gives an overview of the different Z probe modes.
 | 3 | Analogue probe | LOW |
 | 5 | Digital probe | HIGH during probing, LOW at other times |
 | 8 | Digital probe, unfiltered | HIGH during probing, LOW at other times |
-| 9 | BLTouch | OUT (Duet 3) and MOD (Duet 2 Maestro) can be configured to control deployment/retraction. MOD on Duet 2 WiFi/Ethernet is not PWM capable, so use heater pin on expansion port instead. |
+| 9 | BLTouch | OUT (Duet 3) and MOD (Duet 2) can be configured to control deployment/retraction. MOD on Duet 2 WiFi/Ethernet is not PWM capable, so use heater pin on expansion port instead. |
 | 10 | Z motor stall detection | Not used |
 | 11 | Scanning Z probe with an analog output (from RRF 3.5.0) | N/A |
 
@@ -107,7 +107,7 @@ Similar to mode 5 except that the input is not filtered, for slightly faster res
 
 ##### Mode 9
 
-Special mode for BLTouch and similar probes, that need to be deployed and then retracted. Supported in firmware 1.21 and later.
+Special mode for BLTouch and similar probes, that need to be deployed and then retracted for each probe point. Supported in firmware 1.21 and later.
 
 ##### Mode 10
 
@@ -209,7 +209,9 @@ Additionally, if you have two probes, and one deploys (eg probe 0) and the other
 * In G29, if the probe is not a mode 9 probe (e.g. BLTouch) then it requests deployment at the start of the entire sequence and retraction at the end. If it is a mode 9 probe (e.g. BLTouch) then it requests deployment and retraction for each individual point.
 * Each probe keeps track of the deployment state. When the count goes from 0 to 1, the deployment macro is called. When it goes from 1 to 0 the retraction macro is called. Otherwise nothing is done apart from adjusting the count.
 * M401 will always call a deployment, M402 will always call a retraction, irrespective of the count, but the count is updated with the current state (deployed or retracted).
-* For G32 when not using a BLTouch it's typical to use M401 at the start and M402 at the end of bed.g, to avoid deploying and retracting the probe at each point. (edited) 
+* For G32 when not using a BLTouch it's typical to use M401 at the start and M402 at the end of bed.g, to avoid deploying and retracting the probe at each point. (edited)
+* All probe types run deployprobe.g and retractprobe.g. For most types it is run just once per set of points, but for type 9 it runs them on every probing operation.
+
 
 # Connecting different types of Z probe
 
