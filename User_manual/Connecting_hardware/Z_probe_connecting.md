@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2025-11-10T12:06:15.995Z
+date: 2025-11-11T07:41:09.186Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -200,7 +200,7 @@ From RRF 3.1, if you have more than one Z probe, you can use deployprobe0.g and 
 
 **NOTE: If you DO NOT have a Z probe that needs to deploy or retract, you must not have these files in the /sys/ directory, or the firmware will attempt to use them!**
 
-Additionally, if you have two probes, and one deploys (eg probe 0) and the other (eg probe 1) does not, ONLY have deployprobe0.g and retractprobe1.g in /sys, i.e. no deployprobe.g/retractprobe.g or deployprobe1.g/retractprobe1.g. Alternatively, in RRF 3.5 or later, use deployprobe.g/retractprobe.g only, but use [Meta Gcode](/User_manual/Reference/Gcode_meta_commands) and the passed probe number (K parameter) to control what happens when each probe is used.
+Additionally, if you have two probes, and one deploys (eg probe 0) and the other (eg probe 1) does not, ONLY have deployprobe0.g and retractprobe0.g in /sys, i.e. no deployprobe.g/retractprobe.g or deployprobe1.g/retractprobe1.g. Alternatively, in RRF 3.5 or later, use deployprobe.g/retractprobe.g only, but use [Meta Gcode](/User_manual/Reference/Gcode_meta_commands) and the passed probe number (K parameter) to control what happens when each probe is used.
 
 ## Notes on probe deployment
 
