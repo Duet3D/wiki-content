@@ -2,7 +2,7 @@
 title: Migration from RRF2 to RRF3
 description: RepRapFirmware 3 is the next generation of the leading 32-bit 3D printer firmware, developed by Duet3D and derived from the RepRapFirmware code base developed by Adrian Bowyer.
 published: true
-date: 2022-10-09T10:15:12.073Z
+date: 2025-11-13T10:31:02.262Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T20:21:14.611Z
@@ -178,7 +178,7 @@ When declaring an input pin (e.g. in the M574 command), a '^' character before t
 
 Example:
 
-`!^e1stop`
+`^e1stop`
 
 Some GCode commands accept more than one pin name. For example, the M453 command allows you to specify both forward and reverse spindle ports, the M574 command allows you to specify multiple endstop switches per axis, and the M558 command allows you to specify both input and output pins for the Z probe. You can use the + character to indicate multiple pins.
 
