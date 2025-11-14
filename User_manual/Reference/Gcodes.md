@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-11T09:53:33.879Z
+date: 2025-11-14T10:56:04.551Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2538,6 +2538,8 @@ Deprecated in RepRapFirmware. Use M106 S0 instead.
 ## M108: Cancel Heating
 
 ### Description
+
+Cancel the wait for a temperature or temperatures to be reached on heating or cooling.
 
 Breaks out of an M109, M116, M190 or M191 wait-for-temperature loop, continuing the print job. 
 
