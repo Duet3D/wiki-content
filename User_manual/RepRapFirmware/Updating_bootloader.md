@@ -2,7 +2,7 @@
 title: Updating the bootloader on Duet 3 expansion and tool boards
 description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
 published: true
-date: 2025-02-24T16:00:03.001Z
+date: 2025-11-14T11:59:13.099Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:04:31.062Z
@@ -83,7 +83,7 @@ The ICE uses a standard 2x5 1.27mm pitch JTAG/SWD connector. Breakout boards for
 * Load Atmel Studio or Microchip Studio on the PC
 * Select Tools->Device Programming
 * Select the ICE tool
-* Select MCU type ATSAME51N19A for a EXP3HC expansion board, ATSAMC21G18A for a TOOL1LC or EXP1XD board, or ATSAME51J19A for a TOOL1RR board
+* Select MCU type ATSAME51N19A for a EXP3HC expansion board, ATSAMC21G18A for a TOOL1LC or EXP1XD board, or ATSAME51G19A for a TOOL1RR board
 * Press the Read button next to the Device Signature box and check that it reads the ID and voltage
 * Select Memories
 * Press the Erase Now button next to Erase Chip. 
