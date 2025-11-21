@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-14T10:56:04.551Z
+date: 2025-11-21T10:39:35.198Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2680,7 +2680,7 @@ Board EXP3HC firmware 3.0beta1 2019-10-28b1
 
 ### Description
 
-Request the Firmware Version and Capabilities of the current microcontroller. See the [M408](/User_manual/Reference/Gcodes/M408) command for a more comprehensive report on machine capabilities.
+Request the Firmware Version and Capabilities of the current microcontroller. See the [M409](/User_manual/Reference/Gcodes/M409) command for a more comprehensive report on machine capabilities ([M408](/User_manual/Reference/Gcodes/M408) in RRF 3.2 and earlier).
 
 ### Notes
 
