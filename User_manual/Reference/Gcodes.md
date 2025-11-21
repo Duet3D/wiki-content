@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-21T10:39:35.198Z
+date: 2025-11-21T15:00:36.591Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6525,7 +6525,7 @@ M571 P3 F200 S1      ; turn on logical pin 3 while extrusion is commanded (RRF 2
 
 ### Description
 
-This turns the controlled pin output on whenever extrusion is being done, and turns it off when the extrusion is finished. The output could control a fan or a stirrer or anything else that needs to work just when extrusion is happening. It also can be used to control a laser beam. The S parameter sets the value of the PWM to the output. 0.0 is off; 1.0 is fully on.
+This turns the controlled pin output on whenever extrusion is being done, and turns it off when the extrusion is finished. The output could control a fan or a stirrer or anything else that needs to work just when extrusion is happening. The S parameter sets the value of the PWM to the output. 0.0 or a negative value means the output is off (whether or not extrusion is taking place); 1.0 means the output is fully on when extrusion is taking place and off at other times.
 
 ### Notes
 
