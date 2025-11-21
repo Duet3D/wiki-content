@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-21T16:10:58.462Z
+date: 2025-11-21T16:59:00.953Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6518,9 +6518,13 @@ For further details about heater fault handling see [Heater faults and how to av
 ### Examples
 <br>
 <pre class="cblock">
-M571 P3 S0.5         ; turn on GpOut port 3 at 50% PWM while extrusion is commanded (RRF 3.6.0 and later)
-M571 P"heater3" S0.5 ; turn on heater 3 output at 50% PWM while extrusion is commanded (RRF 3 up to 3.5.x)
-M571 P3 F200 S1      ; turn on logical pin 3 while extrusion is commanded (RRF 2)
+; RRF 3.6.0 and later
+M950 P3 C"io4.out"       ; set io4.out pin (PWM capable on 6HC) to GPIO port 3
+M571 P3 S0.5             ; turn on GpOut port 3 at 50% PWM while extrusion is commanded
+; RRF 3 up to 3.5.x
+M571 P"exp.heater3" S0.5 ; turn on heater 3 output at 50% PWM while extrusion is commanded
+; RRF 2
+M571 P3 F200 S1          ; turn on logical pin 3 while extrusion is commanded
 </pre>
 
 ### Description
