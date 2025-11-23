@@ -2,7 +2,7 @@
 title: Duet 2 Family
 description: 
 published: true
-date: 2021-08-10T14:13:03.895Z
+date: 2025-11-23T11:05:48.252Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:10:53.077Z
@@ -17,10 +17,38 @@ dateCreated: 2021-06-03T16:10:53.077Z
 [DueX2 and DueX5](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5)
 [Duet Expansion Breakout Board](/Duet3D_hardware/Duet_2_family/Duet_Expansion_Breakout_Board)
 
-# Duet 2 Maestro
+# Accessories
 
-[Duet 2 Maestro](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro)
+## Displays
 
-## Expansion
+[Duet3D PanelDue](/Duet3D_hardware/Accessories/PanelDue)
 
-[Dual Stepper Driver Expansion Module](/Duet3D_hardware/Duet_2_family/Dual_Stepper_Driver_Expansion_Module)
+## Filament monitors
+
+[Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor)
+[Duet3D Roto Filament Monitor](/Duet3D_hardware/Accessories/Roto_Filament_Monitor)
+
+## Probes and carriages
+
+[Duet3D IR Probe](/Duet3D_hardware/Accessories/IR_Probe)
+[Duet3D Smart Effector and Carriage Adapters for delta printer](/Duet3D_hardware/Accessories/Smart_Effector)
+
+## Temperature sensing
+
+[Duet3D PT100 temperature sensor daughterboard](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard)
+[Duet3D Thermocouple daughterboard](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard)
+
+## Standalone accelerometer
+
+[Duet3D Accelerometer](/Duet3D_hardware/Accessories/Duet3D_Accelerometer)
+
+# Discontinued
+
+## Duet 2 Maestro
+
+[Duet 2 Maestro](/Duet3D_hardware/Duet_2_family/Duet_2_Maestro) (discontinued June 2020)
+[Dual Stepper Driver Expansion Module](/Duet3D_hardware/Duet_2_family/Dual_Stepper_Driver_Expansion_Module) (for Duet Maestro)
+
+## Accessories
+
+[Duet3D Laser Filament Monitor](/Duet3D_hardware/Accessories/Laser_Filament_Monitor) (Discontinued 2019)
