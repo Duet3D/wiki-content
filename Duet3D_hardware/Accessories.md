@@ -2,7 +2,7 @@
 title: Accessories
 description: 
 published: true
-date: 2025-01-14T16:27:26.079Z
+date: 2025-11-23T10:41:19.085Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:18:25.503Z
@@ -10,7 +10,7 @@ dateCreated: 2021-06-03T16:18:25.503Z
 
 # Accessories
 
-Hardware information on Duet3D-produced accessories
+Hardware information on Duet3D-produced accessories that work with **Duet 2** and **Duet 3** mainboards.
 
 ## Displays
 
@@ -30,14 +30,6 @@ Hardware information on Duet3D-produced accessories
 
 [Duet3D PT100 temperature sensor daughterboard](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard)
 [Duet3D Thermocouple daughterboard](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard)
-
-## Analog Input
-
-[Duet 3 High Resolution ADC daughterboard](/Duet3D_hardware/Accessories/Duet_3_ADC_daughterboard)
-
-## Motor position sensing
-
-[Duet3D magnetic encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder)
 
 ## Standalone accelerometer
 
