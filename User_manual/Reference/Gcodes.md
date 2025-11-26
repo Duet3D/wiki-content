@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-26T10:36:17.808Z
+date: 2025-11-26T10:45:18.793Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8981,8 +8981,8 @@ Some CAN-connected expansion boards are too small to carry address selection swi
 * **Bn** Existing CAN address of expansion board to be changed, 1 to 125; or 0 to change the CAN bit rate of the main board.
 * **An** (optional) New CAN address of that board, 1 to 125. Ignored if the B parameter is 0.
 * **Sn.n** (optional, default 1000) Requested CAN bit rate in Kbits/second (1K = 1000). 
-* **T0.n** (optional, default 0.75) Fraction of the bit time between the bit start and the sample point. Ignored if the S parameter is not present.
-* **J0.n** (optional, default 0.21) Maximum jump time as a fraction of the bit time. Ignored if the S parameter is not present.
+* **T0.n** (optional, default 0.54) Fraction of the bit time between the bit start and the sample point. Ignored if the S parameter is not present.
+* **J0.n** (optional, default 0.17) Maximum jump time as a fraction of the bit time. Ignored if the S parameter is not present.
 
 ### Examples
 <br>
