@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-21T16:59:00.953Z
+date: 2025-11-26T10:24:32.365Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8972,17 +8972,17 @@ Height following mode allows the Z position of the tool to be controlled by a PI
 
 If commanding the motors to increase Z causes the sensor value to increase, then all of P, I and D must be positive. If commanding the motors to increase Z causes the sensor value to decrease, then all of P, I and D must be negative.
 
-## M952: Set CAN-FD expansion board address and/or normal data rate
+## M952: Set board CAN address and/or base data rate
 
-Some CAN-connected expansion boards are too small to carry address selection switches. Such boards default to a standard address, which can be changed using this command.
+Some CAN-connected expansion boards are too small to carry address selection switches. Such boards default to a standard address, which can be changed using this command. This command can also be used to change the CAN bit rate.
 
 ### Parameters
 
-* **Bn** Existing CAN address of expansion board to be changed, 1 to 125.
-* **An** New CAN address of that expansion board, 1 to 125.
-* **Sn.n** Requested bit rate in Kbits/second (1K = 1000) (optional, default 1000)
-* **T0.n** Fraction of the bit time between the bit start and the sample point (optional)
-* **J0.n** Maximum jump time as a fraction of the bit time (optional)
+* **Bn** Existing CAN address of expansion board to be changed, 1 to 125; or 0 to change the CAN bit rate of the main board.
+* **An** (optional) New CAN address of that board, 1 to 125. Ignored if the B parameter is 0.
+* **Sn.n** (optional, default 1000) Requested CAN bit rate in Kbits/second (1K = 1000). 
+* **T0.n** (optional, default 0.54) Fraction of the bit time between the bit start and the sample point. Ignored if the S parameter is not present.
+* **J0.n** (optional, default 0.17) Maximum jump time as a fraction of the bit time. Ignored if the S parameter is not present.
 
 ### Examples
 <br>
@@ -8993,11 +8993,18 @@ M952 B20 S500  ; change the CAN bit rate or expansion board 20 to 500kbps
 
 ### Notes
 
-The change of CAN address will not take place until the expansion board is restarted.
+This command serves two functions:
 
-This command can also be used to change the normal data rate, for example if the printer has CAN bus cables that are too long to support the standard data rate (1Mbits/sec in RepRapFirmware). All boards in the system on the same CAN bus must use the same CAN data rate. The procedure for changing the data rate is:
+1. To change the address of a CAN-cpnencted expansion board that does not have address switches. The change of CAN address will not take place until the expansion board is restarted.
+
+2. To change the CAN bit rate, for example if the printer has CAN bus cables that are too long to support the standard data rate. All boards in the system on the same CAN bus must use the same CAN data rate. The default value of 1000 is suitable if the total length of the CAN bus is no greater than 40m. If the bus is longer than this, use 500 (for up to 80m) or 250 (for up to 160m). Values other than 1000, 500 or 250 are not recommended because these are the only standard values supported by the version 3 bootloader and the CANiap32 files (used to update main-as-expansion boards over CAN).
+
+The procedure for changing the data rate is:
+
 * Use M952 to change the data rate on all the expansion boards, one at a time. After changing the data rate on each expansion board, you will no longer be able to communicate with it, and you may need to power it down or disconnect it from the CAN bus to prevent it interfering with subsequent CAN communications.
 * Change the data rate of the main board last. Then the main board should be able to communicate with all the expansion boards again.
+
+An alternative procedure is being introduced and will become available in RRF 3.7 and later.
 
 ## M953: Set CAN-FD bus fast data rate
 
