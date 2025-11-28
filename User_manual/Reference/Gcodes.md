@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-26T10:45:18.793Z
+date: 2025-11-28T10:20:22.022Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6905,6 +6905,7 @@ M581 T2 P-1        ; don't invoke trigger 2 on any input change any more
 * Otherwise, any inputs specified by the P parameter and/or axis endstops specified by axis letter parameters are added to the conditions that cause that trigger with the polarity specified by the S parameter
 * If the R parameter is provided then the trigger enable condition is updated.
 * Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions other than trigger 0 is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
+* T0 and T1 cannot be overridden with trigger files. i.e. sys/trigger0.g will be ignored, and T0 will always cause an emergency stop.
 * See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of triggers each Duet board and firmware version supports.
 * **Warning**: if executed during a job, and more than one line long the GCode within the trigger file may be executed between later commands from the job. Bounding the trigger file with M25 and M24 may help, but this will cause warnings if the trigger happens outside of a job. The use of M25/M24 will cause the execution of pause and resume system macros.
 
