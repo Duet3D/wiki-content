@@ -2,7 +2,7 @@
 title: DueX2 and DueX5
 description: The DueX5 is an expansion board for the Duet 2 WiFi and Ethernet. The DueX2 was a similar board with only 2 drivers that is now discontinued.
 published: true
-date: 2025-12-02T22:10:31.728Z
+date: 2025-12-02T22:16:24.671Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-03T14:27:58.735Z
@@ -31,7 +31,7 @@ The DueX2 and DueX5 are based on the same PCB with 3 channels of steppers, heate
 | **Heater outputs** | 5 x extruder heater (up to 6A each) || 2 x extruder heater (up to 6A each) |
 | **Thermistor/PT1000 inputs** | 5, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy || 2, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy |
 | **Fan outputs** | 6 PWM controlled outputs (from board revision v0.8) for fans and/or LEDs, with voltage selectable between 12V, 5V or VIN |||
-| **Inputs/Outputs** | 5 on-board inputs for endstops with 3.3V/5V voltage selection, 4 uncommitted general purpose I/O pins. || 2 on-board inputs for endstop with 3.3V/5V voltage selection, 4 uncommitted general purpose I/O pins. |
+| **Inputs/Outputs** | 5 on-board endstop inputs with 3.3V/5V voltage selection, 4 uncommitted general purpose I/O pins. || 2 on-board inputs with 3.3V/5V voltage selection, 4 uncommitted general purpose I/O pins. |
 | **Endstop inputs** | See under Inputs/Outputs |||
 | **Servo outputs** | 5, with 5V power and 5V signal levels. Control channel shared with heaters, so you can use unused heater channels to drive servos. || 2, with 5V power and 5V signal levels. Control channel shared with heaters, so you can use unused heater channels to drive servos.  |
 | **Endstop status LEDs** | Yes |||
