@@ -2,13 +2,13 @@
 title: DueX2 and DueX5
 description: The DueX5 is an expansion board for the Duet 2 WiFi and Ethernet. The DueX2 was a similar board with only 2 drivers that is now discontinued.
 published: true
-date: 2024-08-21T14:04:07.831Z
+date: 2025-12-02T22:10:31.728Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-03T14:27:58.735Z
 ---
 
-# Introduction
+# Introduction 
 
 The DueX5 is an expansion boards for the Duet 2 Wifi and Ethernet. It provides up to 5 additional stepper, heater etc channels to allow for 3D printers or other machines with more axis, multiple drivers per axis, tool changers etc.
 
@@ -31,7 +31,7 @@ The DueX2 and DueX5 are based on the same PCB with 3 channels of steppers, heate
 | **Heater outputs** | 5 x extruder heater (up to 6A each) || 2 x extruder heater (up to 6A each) |
 | **Thermistor/PT1000 inputs** | 5, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy || 2, optimised for 100k thermistors, can support PT1000 sensors with reduced accuracy |
 | **Fan outputs** | 6 PWM controlled outputs (from board revision v0.8) for fans and/or LEDs, with voltage selectable between 12V, 5V or VIN |||
-| **Inputs/Outputs** | 5 on-board I/O connectors for endstop with 3.3V/5V voltage selection (also usable as outputs), 4 uncommitted general purpose I/O pins. || 2 on-board I/O connectors for endstop with 3.3V/5V voltage selection (also usable as outputs), 4 uncommitted general purpose I/O pins. |
+| **Inputs/Outputs** | 5 on-board inputs for endstops with 3.3V/5V voltage selection, 4 uncommitted general purpose I/O pins. || 2 on-board inputs for endstop with 3.3V/5V voltage selection, 4 uncommitted general purpose I/O pins. |
 | **Endstop inputs** | See under Inputs/Outputs |||
 | **Servo outputs** | 5, with 5V power and 5V signal levels. Control channel shared with heaters, so you can use unused heater channels to drive servos. || 2, with 5V power and 5V signal levels. Control channel shared with heaters, so you can use unused heater channels to drive servos.  |
 | **Endstop status LEDs** | Yes |||
@@ -220,7 +220,7 @@ DueX boards provide the following connectors:
 | **1 x 3-pin jumper** | 5V AUX JUMPER SELECT | Selects between using internal 5V (supplied by connected Duet 2 WiFi/Ethernet) or external 5V (supplied to EXT 5V header). |
 | **1 x 3-pin jumper** | ENDSTOP VOLTAGE SELECT | Selects between +3.3V and +5V for endstop pins. |
 | **1 x 2x25 IDC connector** | INPUT | Use the supplied 50-pin ribbon cable to connect the DueX to the host Duet 2 WiFi/Ethernet expansion connector. |
-| **5 x 3-pin KK headers** | E2 STOP, E3 STOP, E4 STOP, E5 STOP, E6 STOP | I/O connectors for endstops |
+| **5 x 3-pin KK headers** | E2 STOP, E3 STOP, E4 STOP, E5 STOP, E6 STOP | Input connectors for endstops |
 | **5 x 2-way screw terminals, 3.5mm spacing** | E2 HEATER, E3 HEATER, E4 HEATER, E5 HEATER, E6 HEATER | Intended for high current output, eg extruder heaters or fans. Maximum recommended current 6A each. Note that the overall current limit (7.5A fused) means full current through them all at the same time. If you connect high-current inductive loads to these outputs, you must use external flyback diodes. |
 | **5 x 2-pin KK headers** | E2_THERMISTOR3, E3_THERMISTOR4, E4_THERMISTOR5, E5_THERMISTOR6, E6_THERMISTOR7 | Connections for thermistor or PT1000 sensors |
 
@@ -280,7 +280,7 @@ To see where these pins are, see the *Wiring diagram* section above.
 |:---|:---|
 | duex.e[2-6]heat, duex.pwm[1-5] | 3-7 | Heater/PWM headers | output only | yes | yes | Heater channels 3-7 are available as 5V active-high signals on the PWM1 - PWM5 connectors respectively. On the DueX2 versions before 0.8a, only heater channels 3-5 are available on PWM1 - PWM3. Caution: the heater output terminals will also be driven by the PWM signal or servo pulses. |
 | duex.fan[3-8] | 23-28 | Fan headers | output only | yes | no | Fans 3-8 on DueX2/5 |
-| duex.e[2-6]stop | 45-49 | Endstops headers | yes | no | no | Endstop connectors on DueX2/5 are input-only. |
+| duex.e[2-6]stop | 45-49 | Endstops headers | input only | no | no | Endstop connectors on DueX2/5 are input-only. |
 | duex.cs5 | 60 | Temp DB CS5 (pin 3) | yes | no | no | See notes below. Signal name: CS5 |
 | duex.cs6 | 61 | Temp DB CS6 (pin 1) | yes | no | no | See notes below. Signal name: CS6 |
 | duex.cs7 | 62 | Temp DB CS7 (pin 7) | yes | no | no | See notes below. Signal name: CS7 |
