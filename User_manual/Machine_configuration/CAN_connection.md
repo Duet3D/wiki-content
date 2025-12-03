@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2024-10-17T15:08:09.294Z
+date: 2025-12-03T10:09:53.077Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -96,7 +96,7 @@ Stubs can be mixed with daisy-chaining to create the CAN bus that best suits you
 
 ### Termination
 
-The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs to be terminated by 120 ohm resistors at each end, and there should be no terminators on other boards. Most boards supplied by Duet3D have CAN bus termination built-in. Mainboards have it enabled by default though can usually be removed by drilling out a PCB via. On expansion and tool boards termination is usually selectable, either with a jumper or a soldered connection. See individual board documentation to check how to enable/disable termination: [Duet 3 boards](/Duet3D_hardware/Duet_3_family){target=_blank}
+The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs to be terminated by 120 ohm resistors at each end, and there should be no terminators on other boards. Most boards supplied by Duet3D have CAN bus termination built-in. Mainboards have it enabled by default though it can usually be removed by drilling out the surfacelayer of a PCB via. On expansion and tool boards termination is usually selectable, either with a jumper or a soldered connection. See individual board documentation to check how to enable/disable termination: [Duet 3 boards](/Duet3D_hardware/Duet_3_family){target=_blank}
  
 ## Connecting boards together
 
@@ -205,6 +205,7 @@ If you have at most one board in each row of the above table in your system, you
 * Verify that you can communicate with the board at its default address. For example, to verify a tool board you could send M115 B121 or alternatively M122 B121
 * Use the [M952](/User_manual/Reference/Gcodes/M952) command to change the board address to the required one. For example, to change the address of a tool board to 20, use:
 `M952 B121 A20`
+The address change will not take effect until the board is powered down and up again, or M999 B# (where # is the old CAN address) is sent to it.
 * Power down the system and connect the next board to be configured
 * Power up the system and use M952 again to set the address of the new board, choosing a different new address this time
 * Repeat until you have configured all the boards
