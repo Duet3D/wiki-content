@@ -2,7 +2,7 @@
 title: GCodes not implemented
 description:  This page lists GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware. 
 published: true
-date: 2025-11-10T10:36:46.205Z
+date: 2025-12-03T10:25:22.846Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:45:16.729Z
@@ -14,30 +14,43 @@ For the detail on implemented GCodes see the [GCode](/User_manual/Reference/Gcod
 
 Note, in RepRapFirmware 2.03 and later, if you try to execute a G- or M-command that RRF does not implement, it will execute a system macro of that name if it exists. For example, if you send G40 then it will execute /sys/G40.g if it exists; and if you send M48 then it will execute /sys/M48.g if it exists.
 
-## GCodes not yet implemented but may be in the future
+## GCodes that can be implemented via macros.
+We believe a macro can be written to achieve the same functionality in a more flexible way
 
-When these are implemented depends very much on the demand.
-
-* G15/G16: Polar co-ordinates
-* G40: Compensation Off (CNC specific)
-* G80: Cancel Canned Cycle (CNC specific)
-* G93: Feed Rate Mode (Inverse Time Mode) - implemented experimentally in RRF 3.5beta1
-* G94: Feed Rate Mode (Units per Minute) - implemented experimentally in RRF 3.5beta1
-* M2: Program End - implemented in RRF 3.5beta1
-* M6: Tool change (although tool change macros and entering Tn commands allow for greater functionality)
 * M7: Mist Coolant On (CNC specific) (you can define a macro M7.g to implement this)
 * M8: Flood Coolant On (CNC specific) (you can define a macro M8.g to implement this)
 * M9: Coolant Off (CNC specific)(you can define a macro M9.g to implement this)
 * M10: Vacuum On (CNC specific) (you can define a macro M10.g to implement this)
 * M11: Vacuum Off (CNC specific)(you can define a macro M11.g to implement this)
-* M33: Stop and Close File and save restart.gcode (possibly not using this specific G-Code)
+* M40: Eject : define a macro to eject parts.
+* M48: Measure Z-Probe repeatability ([use a macro](/User_manual/Connecting_hardware/Z_probe_testing#probe-consistency-test))
+* M142: Holding Pressure (for vacuum tables) (you can define a macro M142.g to implement this if a pressure sensor is connected as a linear analog sensor)
+* M355: Turn case lights on/off (use a macro that calls M42 or M150, depending on the type of lights used.)
+* M126: Open Valve (Can use a servo on any PWM pin and M280, write a macro M126.g if required)
+* M127: Close Valve (Can use a servo on any PWM pin and M280, write a macro M127.g if required)
+* M146: Set Chamber Humidity (use a macro and M42 to control humidifier, M305 to view the humidity with a DHT sensor)
+* M240: Trigger camera (use a macro to call M42 to trigger a pin connected to a camera)
+* M240: Start conveyor belt motor / echo off (use a macro to control a conveyor axis/for echo debug use M111)
+* M241: Stop conveyor belt motor / echo on (use a macro to control a conveyor axis/for echo debug use M111)
+* M540: Enable/Disable "Stop SD Print on Endstop Hit" (A macro can be written than remaps endstops as triggers during a job and remaps them back as endstops during homing. Once mapped as triggers the trigger macros can carryout functionality such as pausing the job in progress.)
+
+
+## GCodes not yet implemented but may be in the future
+
+When/If these are implemented depends very much on the demand.
+
+* G15/G16: Polar co-ordinates
+* G40: Compensation Off (CNC specific)
+* G80: Cancel Canned Cycle (CNC specific)
+* M33: Stop and Close File and save restart gcode (possibly not using this specific G-Code) Pause already saves the powerfail-resume information.
+* M52: Adaptive Feed Control - Forward feed control set with M220, stepping back through the jb file is not supported.
 * M85: Set inactivity shut down timer (No demand)
 * M123: Tachometer value
-* M142: Holding Pressure (for vacuum tables)
+* M124: Immediate motor stop  - may be achieved sufficiently when feedhold is implemented.
 * M407: Display filament diameter (currently does the same as M404, possibly change to display measured diameter in future)
-* M590: Report current tool type and index (see M450)
+* M590: Report current tool type and index
 * M668: Set Z-offset compensations polynomial (currently only implemented in http://reprap.org/wiki/User:Foxkid dc42-cmm) fork.
-* M910: Set decay mode (Detailed driver configuration can be achieved using the "C" Parameter of M569)
+
 
 ## GCodes not implemented which are not planned for implementation
 
@@ -52,22 +65,19 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * G133: Measure steps to top
 * G161: Home axes to minimum (use G28, if that homes to max then consider a macro to move to 0,0,0 after homing)
 * G162: Home axes to maximum (use G28, if that homes to min then consider a macro to move to max,max,max after homing)
+* M6: Tool Change - Tool change macros and entering Tn commands allow for greater functionality
 * M31: Output time since last M109 or SD card start to serial (No demand)
 * M33: Get the long name for an SD card file or folder (Not required, other SD card M commands already support long file names)
 * M34: Set SD file sorting options (Not Required as the UI, e.g. DWC or PanelDue is better suited to handling how file lists are displayed)
-* M40: Eject (No requirement, define a macro to eject parts)
-* M41: Loop (No requirement, conditional GCode is moire powerful)
+* M41: Loop (No requirement, conditional GCode is more powerful)
 * M43: Stand by on material exhausted (use M591)
 * M43: Pin report and debug (much of this functionality is available within M42, M581,M582, M583)
-* M48: Measure Z-Probe repeatability ([use a macro](/User_manual/Connecting_hardware/Z_probe_testing#probe-consistency-test))
+* M53: Feed Stop Control - related to feedhold, once feedhold is implemented as a physical switch for feedhold can be mapped and unmapped using macros
 * M93: Send axis_steps_per_unit (use M92)
 * M101: Turn extruder 1 on (Forward), Undo Retraction (use standard G1 commands, or G10 for firmware retraction)
 * M102: Turn extruder 1 on (Reverse) (use standard G1 commands, or G10 for firmware retraction)
 * M103: Turn all extruders off, Extruder Retraction (use standard G1 commands, or G10 for firmware retraction + M18/M84 to turn of specific motors)
 * M113: Set Extruder PWM (No requirement)
-* M124: Immediate motor stop 
-* M126: Open Valve (Can use a servo on any PWM pin and M280)
-* M127: Close Valve (Can use a servo on any PWM pin and M280)
 * M128: Extruder Pressure PWM (use M42)
 * M129: Extruder pressure off (use M42)
 * M130: Set PID P value (use M301)
@@ -76,7 +86,6 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M133: Set PID I limit value (use M301)
 * M134: Write PID values to EEPROM (use M500)
 * M136: Print PID settings to host (use M301)
-* M146: Set Chamber Humidity (use a macro and M42 to control humidifier, M305 to view the humidity with a DHT sensor)
 * M149: Set temperature units (No demand, just use C)
 * M155: Automatically send temperatures (hosts should use polling)
 * M160: Number of mixed materials ( use M567)
@@ -94,20 +103,18 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M227: Enable Automatic Reverse and Prime (anti ooze strategy is better managed by the slicer)
 * M228: Disable Automatic Reverse and Prime (anti ooze strategy is better managed by the slicer)
 * M229: Enable Automatic Reverse and Prime (anti ooze strategy is better managed by the slicer)
-* M240: Trigger camera (use M42 to trigger a pin connected to a camera)
-* M240: Start conveyor belt motor / Echo off (use a macro to control a conveyor axis/for echo debug use M111)
-* M241: Stop conveyor belt motor / echo on (use a macro to control a conveyor axis/for echo debug use M111)
+* M240: Echo off (use M111)
+* M241: Echo on (use M111)
 * M245: Start cooler (use normal fan control M106 etc)
 * M246: Stop cooler (use normal fan control M106 etc)
 * M250: Set LCD contrast (better set using the LCD if its a smart LCD)
 * M251: Measure Z steps from homing stop (Delta printers) (No demand)
 * M306: Set home offset calculated from toolhead position (No demand)
 * M320: Activate autolevel (use bed probing, levelling Gcodes G29-G32)
-* M321: Deactivate autolevel
-* M322: Reset autolevel matrix
+* M321: Deactivate autolevel (use G29)
+* M322: Reset autolevel matrix  (use G29)
 * M323: Distortion correction on/off
 * M340: Control the servos (use M280)
-* M355: Turn case lights on/off (use M42 or M150)
 * M360: Report firmware configuration (use M503)
 * M360-M364: SCARA calibration codes (not required, use G1 S2 moves commands instead)
 * M365 SCARA scaling factor (use M579)
@@ -124,9 +131,8 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M530: Enable printing mode (not required)
 * M531: Set print name (not required)
 * M532: Set print progress (not required)
-* M540: Enable/Disable "Stop SD Print on Endstop Hit" (No demand)
 * M565: Set Z probe offset (see G31)
-* M600: Set line cross section (volume extrusion not supported)
+* M600: Set line cross section (no demand)
 * M605: Set dual x-carriage movement mode (no requirement use M563)
 * M700: Level plate (See G32)
 * M703: Get Board Type (use M115/M122)
@@ -136,4 +142,5 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M907: Set digital trimpot motor (use M906)
 * M908: Control digital trimpot directly (no requirement, use M906)
 * M909: Set microstepping (use M350)
+* M910: Set decay mode (Detailed driver configuration can be achieved using the "C" Parameter of M569)
 * M928: Start SD logging (See M929)
