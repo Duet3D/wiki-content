@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-03T10:51:14.692Z
+date: 2025-12-03T10:59:16.090Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -35,7 +35,9 @@ A power supply needs to be able to provide enough current for all the boards con
 
 ## Overview
 
-CAN-FD (and CAN) is a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and shielded over long distances and/or for particularly noisy environments. The total length of the CAN bus can be up to 40m.
+CAN-FD (and CAN) is a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and if necessary shielded over long distances and/or for particularly noisy environments.
+
+The total length of the CAN bus (i.e. maximum cable length between any pair of devices) can be up to about 40m when using the default bit rate of 1Mbit/sec. Lower bit rates allow correspondingly longer cables, e.g. 500kbit/sec allows up to about 80m.
 
 ![can_basics_wiring_01.png](/manual/configuration/can_basics_wiring_01.png =800x){target=_blank}
 
@@ -47,7 +49,7 @@ You can have devices attached to the CAN bus by short 'stubs', which only have a
 
 ## Cables
 
-Unshielded twisted pair cable is normally used, ideally 2 X 24AWG with an impedence of 120ohms. However over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
+Unshielded twisted pair cable is normally used, ideally 2 X 24AWG or thicker with an impedence of 120ohms. However over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
 
 You can use either RJ11 and/or RJ12 cables and connectors. RJ11 is 6P2C (6 positions, 2 contacts), RJ12 is 6P6C (6 positions, 6 contacts). Some wires are also supplied 6P4C (6 positions, 4 contacts). In all cases, only the middle pair are used in a Duet CAN systems.
 
@@ -96,7 +98,7 @@ Stubs can be mixed with daisy-chaining to create the CAN bus that best suits you
 
 ### Termination
 
-The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs to be terminated by 120 ohm resistors at each end, and there should be no terminators on other boards. Most boards supplied by Duet3D have CAN bus termination built-in. Mainboards have it enabled by default though it can usually be removed by drilling out the surfacelayer of a PCB via. On expansion and tool boards termination is usually selectable, either with a jumper or a soldered connection. See individual board documentation to check how to enable/disable termination: [Duet 3 boards](/Duet3D_hardware/Duet_3_family){target=_blank}
+The CAN-FD bus is a two-wire bus with 120 ohm nominal impedance. The bus needs to be terminated by 120 ohm resistors at each end, and there should be no terminators on other boards. Most boards supplied by Duet3D have CAN bus termination built-in. Mainboards have it enabled by default though it can usually be removed by drilling out the surface layer of a PCB via. On expansion and tool boards termination is usually selectable, either with a jumper or a soldered connection. See individual board documentation to check how to enable/disable termination: [Duet 3 boards](/Duet3D_hardware/Duet_3_family){target=_blank}
  
 ## Connecting boards together
 
