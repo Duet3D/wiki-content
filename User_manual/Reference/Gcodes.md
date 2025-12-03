@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-11-28T10:20:22.022Z
+date: 2025-12-03T16:52:35.647Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5897,7 +5897,7 @@ In firmware 1.20 and later, M562 with no parameters will clear a heater fault on
 * **Ynnn** Axis or axes to map Y movement to (RepRapFirmware 1.19 and later)
 * **Znnn** Axis or axes to map Z movement to (RepRapFirmware 3.5 and later)
 * **Lnnn** Drive to use for filament mapping. By default RRF will use the first and only extruder drive if this parameter is not specified (supported by RRF >= 2.02)
-* **Rnn** Spindle number (RRF >= 3.3)
+* **Rnn** Spindle number (RepRapFirmware 3.3 and later)
 
 ### Examples
 <br>
@@ -5942,27 +5942,25 @@ M563 P0 R0 ; assign spindle 0 to tool 0
 
 **X, Y, Z** The X, Y and Z mapping options are used to create tools on machines with multiple independent X, Y and/or Z carriages. The additional carriages are set up as axes U, V etc. (see M584) and the X/Y/Z mapping option in M563 defines which carriage or carriages are used. Axes are mapped in the order XYZUVWABC, where X=0, Y=1, Z=2, U=3 etc, not by driver number.
 
-**S** As shown in the example above the S parameter can be used to give a tool a name. RepRapFirmware supports an additional form of the M563 command. The command:
-<br>
-<pre class="cblock">
-M563 S1
-</pre>
-
-means add 1 (the value of the S parameter) to all tool numbers found in the remainder of the current input stream (e.g. the current file if the command is read from a file on the SD card), or until a new M563 command of this form is executed. The purpose of this is to provide compatibility between systems in which tool numbers start at 1, and programs such as slic3r that assume tools are numbered from zero.
+**S** As shown in the example above the S parameter can be used to give a tool a name. 
 
 RepRapFirmware maps the loaded filament on a per-extruder basis so if you have a mixing tool (one with more than one extruder), the **L** parameter tells the web interface which filament to display. If there is more than one extruder and the L parameter is omitted, no filament is displayed at all.
 
 ### Notes
 
-In **RepRapFirmware 3.x**, in order to avoid the serialised object model getting very large, the P parameter (tool number) may not exceed 49.
-
-M563 with just a P parameter just reports the existing configuration of the tool. Therefore, if you want to create a tool with no heaters and no extruders, you must provide at least one other parameter. For example, you can use the S parameter to name the tool.
-
-RepRapFirmware allows the deletion of existing tools if M563 is called in this way:
-<br>
-<pre class="cblock">
-M563 P1 D-1 H-1
-</pre>
+* In **RepRapFirmware 3.x**, in order to avoid the serialised object model getting very large, the P parameter (tool number) may not exceed 49.
+* M563 with just a P parameter just reports the existing configuration of the tool. Therefore, if you want to create a tool with no heaters and no extruders, you must provide at least one other parameter. For example, you can use the S parameter to name the tool.
+* RepRapFirmware allows the deletion of existing tools if M563 is called in this way:
+  <br>
+  <pre class="cblock">
+  M563 P1 D-1 H-1
+  </pre>
+* RepRapFirmware 3.0 and earlier supports an additional form of the M563 command. The command:
+  <br>
+  <pre class="cblock">
+  M563 S1
+  </pre>
+  means add 1 (the value of the S parameter) to all tool numbers found in the remainder of the current input stream (e.g. the current file if the command is read from a file on the SD card), or until a new M563 command of this form is executed. The purpose of this is to provide compatibility between systems in which tool numbers start at 1, and programs such as slic3r that assume tools are numbered from zero. This functionality has been deprecated and removed from RRF 3.1.0 and later.
 
 ## M564: Limit axes
 
@@ -8996,7 +8994,7 @@ M952 B20 S500  ; change the CAN bit rate or expansion board 20 to 500kbps
 
 This command serves two functions:
 
-1. To change the address of a CAN-cpnencted expansion board that does not have address switches. The change of CAN address will not take place until the expansion board is restarted.
+1. To change the address of a CAN-connected expansion board that does not have address switches. The change of CAN address will not take place until the expansion board is restarted.
 
 2. To change the CAN bit rate, for example if the printer has CAN bus cables that are too long to support the standard data rate. All boards in the system on the same CAN bus must use the same CAN data rate. The default value of 1000 is suitable if the total length of the CAN bus is no greater than 40m. If the bus is longer than this, use 500 (for up to 80m) or 250 (for up to 160m). Values other than 1000, 500 or 250 are not recommended because these are the only standard values supported by the version 3 bootloader and the CANiap32 files (used to update main-as-expansion boards over CAN).
 
