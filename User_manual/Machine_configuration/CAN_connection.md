@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-03T10:28:00.288Z
+date: 2025-12-03T10:37:57.941Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -319,10 +319,7 @@ Unless the bootloader has been corrupted, the expansion board firmware can be up
 
 * Ensure that the correct expansion board firmware binary (for example, Duet3Firmware-EXP3HC.bin for the 3-driver high current expansion board) is present in the /firmware folder (/sys folder for versions of RRF before 3.3) on the RPi if using it, or on the SD card if running standalone.
 * If the expansion board is already communicating with the main board, send M997 B# where # is the address of the expansion board. The expansion board will commence a firmware update and the DIAG LED will go out for a while. When the update is complete, it will flash and re-sync with the main board.
-* Alternatively, set the expansion board bootloader to request a firmware update:
-  * On **Duet 3 Expansion 3HC**, set the expansion board address to zero (switches all off) and press the Reset button on the expansion board to commence the firmware update (or power down, change the switches, and power up again). When re-syncing is complete, change the switches back to the correct board address and press Reset again (or power down, change the switches, and power up again).
-  * On **Duet 3 Toolboard 1LC**, hold down the two buttons while powering up to force a factory reset (which resets the CAN address to the default 121), and cause the board to request a firmware update. When re-syncing is complete, cycle power.
-  * On **Duet 3 Expansion 1XD** and **Duet 3 Expansion 1HCL**, fit the CAN reset jumper, then power up. The CAN address will be reset to default and the board will request a firmware update. When re-syncing is complete, turn off power, remove the CAN reset jumper, then power up again. 
+* Alternatively, use the CAN reset procedure (see later) on the expansion board to have it request a firmware update.
 * You can check the firmware version installed on an expansion board by sending M115 B# where has is the board CAN address.
 
 **Note**: after updating expansion board firmware, you must restart the main board or at least re-run config.g in order to create any sensors, heaters, fans etc. that you have configured on that board in config.g.
@@ -368,12 +365,11 @@ Duet 3 expansion board: flashes when it receives any message, other than a time 
 
 If you need to factory reset a board:
 
-* On Duet 3 Expansion 3HC, set all four address switches off
-* On boards having two buttons (e.g. Toolboard 1LC), power the system up while holding both buttons down
-* On boards having one button (e.g. Scanning Z Probe, Motor 23CL), power the system up while holding the button down
-* On those boards having a reset jumper (e.g. 1XD, 1HCL, Roto Toolboard), fit the jumper and then power up the board. Remove the reset jumper after firmware update.
+* On **Duet 3 Expansion 3HC**, set the expansion board address to zero (switches all off) and press the Reset button on the expansion board to commence the firmware update (or power down, change the switches, and power up again). When re-syncing is complete, change the switches back to the correct board address and press Reset again (or power down, change the switches, and power up again).
+* On **Duet 3 Toolboard 1LC**, hold down the two buttons while powering up to force a factory reset (which resets the CAN address to the default 121), and cause the board to request a firmware update. When re-syncing is complete, cycle power.
+* On **Duet 3 Toolboard 1RR**, **Duet 3 Expansion 1XD**, **Duet 3 Expansion 1HCL**, fit the CAN reset jumper, then power up. The CAN address will be reset to default and the board will request a firmware update. When re-syncing is complete, turn off power, remove the CAN reset jumper, then power up again. 
 
-The board will reset its address and CAN bus speed to default and request firmware from the main board.
+The board will reset its address to default. If the board has a version 3.0 or later bootloader, it will listen for CAN messages broadcast by the mani board at the default bit rate (1Mbit/sec) and also at 500kbit/sec and 250kbit/sec, and if messages are heard then set its bit rate to be the same. If the board has a bootloader with a version earlier than 3.0 then it will set the CAN bus speed to default 1Mbut/sec. In either case it will then request firmware from the main board.
 
 ## If the bootloader becomes corrupted
 
