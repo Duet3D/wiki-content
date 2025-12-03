@@ -2,7 +2,7 @@
 title: WiFi troubleshooting
 description: 
 published: true
-date: 2025-02-11T12:22:49.680Z
+date: 2025-12-03T17:02:09.258Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T00:23:04.224Z
@@ -16,6 +16,8 @@ If you find that your web browser repeatedly disconnects from the Duet, typicall
 
 * Make sure you are running the [latest stable versions](https://github.com/Duet3D/RepRapFirmware/releases) of the main firmware, the WiFi module firmware (DuetWiFiServer), and DuetWebControl.
   * In particular, Duet WiFi Server 1.19.2 and later (which requires DuetWiFiFirmware 1.19.2 too) tries harder to reconnect to your access point if the WiFi connection is lost. You can check which versions you are running on the Settings/General tab of Duet Web Control.
+* Make sure you are connecting to a 2.4GHz network. Most routers are able to create both 2.4GHz and 5GHz WiFi connections, but Duet WiFi boards currently only support 2.4GHz connections.
+  * Some routers aggressively use 'band steering' to make a WiFi device that is connected to 2.4GHz change to a 5GHz connection, which can generate disconnections. If the Duet initially connects, but is then disconnected, check the router settings and turn off band steering.
 * If an AJAX Error is reported, check the Error Reason given at the bottom of the error message box. If it is anything other than Timeout, this indicates mismatched versions of Duet Web Control, or possibly a bug. If you are running the current stable firmware versions, or later beta versions, report the problem on the forum.
 * If the disconnection always happens when you switch to the GCode Files page in Duet Web Control, see [Network disconnections after uploading large files](/User_manual/RepRapFirmware/SD_card#network-disconnections-after-uploading-large-files).
 * Run `M122` from either the web interface (if you can reconnect) or from USB. In the Network diagnostics, check the **WiFi signal strength**, also called **RSSI**. Values in the range -30 to -50 are good, -50 to -60 is OK, -60 to -70 is marginal. Anything below -70 is weak and likely be unreliable. See below for how to improve RSSI.
