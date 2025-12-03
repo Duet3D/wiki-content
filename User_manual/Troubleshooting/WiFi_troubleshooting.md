@@ -2,7 +2,7 @@
 title: WiFi troubleshooting
 description: 
 published: true
-date: 2025-12-03T17:05:20.543Z
+date: 2025-12-03T17:18:16.271Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T00:23:04.224Z
@@ -36,6 +36,10 @@ If you find that your web browser repeatedly disconnects from the Duet, typicall
 * You can manually reset the wifi module if you have console access via USB, or a PanelDue. Send `M552 S0`, to disable networking, followed by `M552 S1` to enable networking.
 * Consider running the Duet WiFi in access point mode. This way the Duet creates a network which you can join from your wireless enabled device, (eg, PC, tablet, phone, etc.) and connect to the DWC to perform further configuration. See [M589](/User_manual/Reference/Gcodes/M589).
 * If you are completely unable to connect, you can remove the SD card and edit the config.g files so that the network setup commands are run at startup.
+
+# WiFi scan
+
+If your Duet board is running RRF 3.5 or later with WiFi firmware 2.0 or later (send M122 to check), you can run a WiFi network scan with [M587.1](/User_manual/Reference/Gcodes/M587_1). It's best to connect via a serial terminal (eg YAT) via USB, as during the scan, any existing WiFi connection will be lost until the scan is complete. The scan should only take a couple of seconds to complete, and then send [M587.2](/User_manual/Reference/Gcodes/M587_2) to see the results. This will show the WiFi networks that the Duet can see.
 
 # How to improve RSSI
 
