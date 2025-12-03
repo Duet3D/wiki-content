@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-03T11:04:38.405Z
+date: 2025-12-03T11:10:37.267Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -217,6 +217,7 @@ The address change will not take effect until the board is powered down and up a
 It is possible to run a Duet 3 mainboard as an expansion board. This allows greater flexibility in machine design, with mainboards able to provide more stepper drivers and I/O. To do this:
 * The first mainboard (6HC, 6XD or Mini 5+) is set up as normal. 
 * Additional 6HC, 6XD or Mini 5+ boards to be used as expansion boards have just a single command in the config.g files on their SD cards, which is [M954](/User_manual/Reference/Gcodes/M954). You use this with the A parameter to specify the CAN address for that board to use. Give each board a unique CAN address.
+* If you have a large system which needs to use a lower CAN bit rate, use a `M952 B0 Snnn` command prior to the M954 command to set that bit rate first. Future firmware versions may allow the bit rate to be specified in the M954 command.
 * To allow for firmware updates via DWC you need to put a special IAP file in the /firmware folder of each mainboard-as-expansion-board SD card:
     * Duet 3 Mainboard 6HC - *Duet3_CANiap32_MB6HC.bin*
     Duet 3 Mainboard 6XD - *Duet3_CANiap32_MB6XD.bin*
