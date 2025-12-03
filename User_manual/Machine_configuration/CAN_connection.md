@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-03T10:09:53.077Z
+date: 2025-12-03T10:28:00.288Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -215,12 +215,12 @@ The address change will not take effect until the board is powered down and up a
 It is possible to run a Duet 3 mainboard as an expansion board. This allows greater flexibility in machine design, with mainboards able to provide more stepper drivers and I/O. To do this:
 * The first mainboard (6HC, 6XD or Mini 5+) is set up as normal. 
 * Additional 6HC, 6XD or Mini 5+ boards to be used as expansion boards have just a single command in the config.g files on their SD cards, which is [M954](/User_manual/Reference/Gcodes/M954). You use this with the A parameter to specify the CAN address for that board to use. Give each board a unique CAN address.
-* To allow for firmware updates via DWC you need to put a special IAP file in the /firmware folder of each mainboard-as-expansion-board SD card: 
-  Duet 3 Mainboard 6HC - *Duet3_CANiap32_MB6HC.bin*
-  Duet 3 Mainboard 6XD - *Duet3_CANiap32_MB6XD.bin*
-  Duet 3 Mini 5+ - *Duet3_CANiap32_Mini5plus.bin* 
-  
-* Once you have that IAP installed, firmware updates to all boards can be done by the normal zip file method in DWC on the first mainboard.
+* To allow for firmware updates via DWC you need to put a special IAP file in the /firmware folder of each mainboard-as-expansion-board SD card:
+    * Duet 3 Mainboard 6HC - *Duet3_CANiap32_MB6HC.bin*
+    Duet 3 Mainboard 6XD - *Duet3_CANiap32_MB6XD.bin*
+    Duet 3 Mini 5+ - *Duet3_CANiap32_Mini5plus.bin*
+* Once you have that IAP installed, firmware updates to all boards can be done by uploading firmware via DWC to the first mainboard. Note: older versions of these files support updating mainboard-as-expansion boards over CAN only when the default CAN bit rate (1Mbit/sec) is used. Newer versions of these files supplied with RRF 3.7 and later support updating when the bit rate is 1Mbit/sec, 500kbit/sec or 250kbit/sec.
+* It is not currently possible to upload these IAP files (or config.g, or any other file) to the SD card of a mainboard-as-expansion over CAN.
 * Note that mainboards have only a single CAN connector, so the mainboard-as-expansion-board is best made the last board in the CAN chain. If you have any additional expansion boards, they should go between the two mainboards.
 * The CAN addresses for each board do not need to be in sequential order along the CAN bus.
 * If you want to daisy chain multiple mainboards, as each board has only a single CAN connector and termination resistors, it is unlikely that you can go beyond 2 or 3 boards in the daisy chain before CAN voltage levels get too low. To overcome this, desolder and remove the CAN termination resistors of the intermediate boards. Newer boards will come with cuttable traces. For wiring, loop-on CAN wires from the one CAN connector.
