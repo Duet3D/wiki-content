@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-03T10:37:57.941Z
+date: 2025-12-03T10:51:14.692Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -345,15 +345,18 @@ The red LED behaviour is:
 | 5 | The bootloader requested firmware but the main board reported that it didn't have the correct firmware file. The main board should also report that it received a request for a firmware file that it didn't have. Check that the **/firmware** folder of the main board or attached SBC contains the correct file and upload it from Duet Web Control if necessary. |
 | 6 | The bootloader requested firmware but the main board reported that the file offset requested by the bootloader was beyond the length of the file |
 | 7 | The bootloader requested firmware but the main board encountered some other error in trying to fetch and return a block of firmware data |
-| 8 | Bootloader internal error (no buffer available) |
+| 8 | Bootloader internal error (no buffer available). Should not happen. |
 | 9 | Bootloader was unable to initialise the flash memory controller |
 | 10 | Bootloader was unable to unlock flash memory |
 | 11 | Bootloader was unable to erase flash memory |
 | 12 | Bootloader was unable to write flash memory |
 | 13 | Bootloader was unable to lock flash memory |
 | 14 | The VIN voltage was too low to to be considered safe to flash the bootloader |
+| 15 | Bootloader failed to identify which board type it is running on. This could occur if you downgrade the bootloader to an older version that does not support the board concerned. |
+| 16 | Assertion failure in bootloader. Should not happen. |
+| 17 | Version 3.0 or later bootloader heard no messages from the main board at any of the supported CAN bit rates, so it was unable to establish the bit rate in use |
 
-*Note: continuous rapid flashing indicated that the CAN connection is lost.*
+*Note: continuous rapid flashing indicates that the CAN connection is lost.*
 
 The green ACT LED behaviour is as follows:
 
@@ -369,7 +372,10 @@ If you need to factory reset a board:
 * On **Duet 3 Toolboard 1LC**, hold down the two buttons while powering up to force a factory reset (which resets the CAN address to the default 121), and cause the board to request a firmware update. When re-syncing is complete, cycle power.
 * On **Duet 3 Toolboard 1RR**, **Duet 3 Expansion 1XD**, **Duet 3 Expansion 1HCL**, fit the CAN reset jumper, then power up. The CAN address will be reset to default and the board will request a firmware update. When re-syncing is complete, turn off power, remove the CAN reset jumper, then power up again. 
 
-The board will reset its address to default. If the board has a version 3.0 or later bootloader, it will listen for CAN messages broadcast by the mani board at the default bit rate (1Mbit/sec) and also at 500kbit/sec and 250kbit/sec, and if messages are heard then set its bit rate to be the same. If the board has a bootloader with a version earlier than 3.0 then it will set the CAN bus speed to default 1Mbut/sec. In either case it will then request firmware from the main board.
+The board will reset its address to default and then:
+
+* If the board has a version 3.0 or later bootloader, it will listen for CAN messages broadcast by the main board at the default bit rate (1Mbit/sec) and also at 500kbit/sec and 250kbit/sec. If messages are heard then set its bit rate to be the same and then request firmware from the main board.
+* If the board has a bootloader with a version earlier than 3.0, it will set the CAN bus speed to default 1Mbit/sec and then request firmware from the main board. This will only succeed if the main board is using 1Mbit/sec.
 
 ## If the bootloader becomes corrupted
 
