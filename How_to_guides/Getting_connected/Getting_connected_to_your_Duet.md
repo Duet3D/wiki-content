@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2025-10-03T09:07:40.329Z
+date: 2025-12-03T17:09:03.169Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -371,6 +371,10 @@ At this point your Duet should be on the WiFi network. To connect to the Duet We
 
 > If you get an error, check the network SSID and password you entered with the M587 command. Make sure that the WiFi is in idle mode before sending M587, with M552 S0. Send M587 to get a list of remembered networks, though this does not show the password.
 {.is-info}
+
+> See [WiFi connection troubleshooting](/User_manual/Troubleshooting/WiFi_troubleshooting) for further steps to resolve WiFi connection issues. 
+{.is-info}
+
 
 > **M587** saves the SSID and password to the Duet 2 Wifi, and is persistent. You do not need to run this command every time the board is started. **M552 S1** starts the network, and this command **does** need to be run every time the board starts (so ensure it is in config.g so it runs automatically - editing config.g will be covered later)
 {.is-info}
