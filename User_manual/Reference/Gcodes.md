@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-12-03T16:52:35.647Z
+date: 2025-12-04T10:48:08.032Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6964,7 +6964,7 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 
 * **Tnn** (required) Logical trigger number to associate the input(s) with, from zero up to a firmware-specific maximum
 * **P"expression"** Specifies the object model expression to use, or use P-1 to delete the trigger
-* **R** Enable condition: whether to trigger at any time (R0, default), only when printing a file from SD card (R1), or only when not printing a file from SD card (R2, supported in RRF 3.2 and later). R-1 temporarily disables the trigger.
+* **R** Enable condition: whether to trigger at any time (R0, default), only when printing a file from SD card (R1), or only when not printing a file from SD card (R2). R-1 temporarily disables the trigger.
 
 ##### Examples
 <br>
