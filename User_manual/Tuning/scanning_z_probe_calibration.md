@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2025-03-03T10:39:11.414Z
+date: 2025-12-05T13:08:03.891Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -15,6 +15,10 @@ Induction-based probes need to have the sensor drive level calibrated and the re
 # LDC1612-based probes
 
 Duet3D have boards that use the LDC1612 chip, including the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe) and the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard).
+
+## Wiring
+
+See the individual pages on the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe) and the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) for how to wire up the board and connect the coil.
 
 ## Mounting
 
