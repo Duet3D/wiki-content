@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-11T16:25:21.933Z
+date: 2025-12-11T16:29:05.224Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -23,7 +23,7 @@ To connect a mainboard and expansion board, both boards need power, and a CAN ca
 
 If all boards are powered from the same power supply, they will automatically be sharing a common ground. However, if you use (for example) one power supply for the main board and a different power supply for an expansion board, you must connect the negative output terminals of the two power supplies together.
 
-A power supply needs to be able to provide enough current for all the boards connected to it; see [Choosing the power supply](/User_manual/Connecting_hardware/Power_choosing){target=_blank} for guidance. If you have a lot of boards, you may need to have more than one power supply. You may also want to run  boards on power supplies that supply different voltages, eg some on 24V and some on 48V (for high voltage stepper drivers, for example). This is supported, so long as the PSUs are wired to share a common ground.
+A power supply needs to be able to provide enough current for all the boards connected to it; see [Choosing the power supply](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing){target=_blank} for guidance. If you have a lot of boards, you may need to have more than one power supply. You may also want to run  boards on power supplies that supply different voltages, eg some on 24V and some on 48V (for high voltage stepper drivers, for example). This is supported, so long as the PSUs are wired to share a common ground.
 
 > If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
 >
@@ -334,7 +334,7 @@ Unless the bootloader has been corrupted, the expansion board firmware can be up
 If the longest distance between any two nodes on your CAN bus is greater then about 40m or the stubs are significantly longer than about 1m then you may need to reduce the CAN bit rate to achieve reliable communication. In order to simplify the process of updating firmware on the system, you should do the following:
 
 * Use the following bit rates only: 1Mbit/sec, 500kbit/sec or 250kbit/sec
-* Ensure that all tool boards and expansion boards have bootloader version 3.0 or later installed. These bootloaders can perform a CAN reset when the main board is configured to use any of these bit rates, whereas older bootloaders only work at 1Mbit/sec. Use M122 B# (where # is the CAN address of the board) to check the bootloader version on an expansion board. To update the bootloader, see [here](/Start_Here)https://docs.duet3d.com/en/User_manual/RepRapFirmware/Updating_bootloader).
+* Ensure that all tool boards and expansion boards have bootloader version 3.0 or later installed. These bootloaders can perform a CAN reset when the main board is configured to use any of these bit rates, whereas older bootloaders only work at 1Mbit/sec. Use M122 B# (where # is the CAN address of the board) to check the bootloader version on an expansion board. To update the bootloader, see [here](https://docs.duet3d.com/en/User_manual/RepRapFirmware/Updating_bootloader).
 * If you are using any Duet 3 main boards as expansion boards:
     * Ensure that the /firmware folders of the SD cards in those boards contains the latest version of the CANiap file for that board (old versions support only 1Mbit/sec).
 * Use `M952 B0 S###` (where ### is the required bit rate i.e. 500 or 250) at the start of the config.g file for the master main board and each main-board-as-expansion (for a mainboard-as-expansion, this command must be prior to the M954 command). Future firmware versions may allow the bit rate to be set in the M954 command instead.
