@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-11T12:54:04.877Z
+date: 2025-12-11T12:55:38.678Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -339,7 +339,7 @@ If the longest distance between any two nodes on your CAN bus is greater then ab
     * Ensure that the /firmware folders of the SD cards in those boards contains the latest version of the CANiap file for that board (old versions support only 1Mbit/sec);
 * Use `M952 B0 S###` (where ### is the required bit rate i.e. 500 or 250) at the start of the config.g file for the master main board and each main-board-as-expansion (for a mainboard-as-expansion, prior to the M954 command) by .
 
-The latest bootloaders and CANiap files can be downloaded from https://github.com/Duet3D/Duet3Bootloader/releases.
+The latest bootloaders and CANiap files can be downloaded from [here](https://github.com/Duet3D/Duet3Bootloader/releases).
 
 # Troubleshooting
 
