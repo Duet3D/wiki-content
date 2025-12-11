@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-03T11:10:37.267Z
+date: 2025-12-11T12:22:53.829Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -218,10 +218,11 @@ It is possible to run a Duet 3 mainboard as an expansion board. This allows grea
 * The first mainboard (6HC, 6XD or Mini 5+) is set up as normal. 
 * Additional 6HC, 6XD or Mini 5+ boards to be used as expansion boards have just a single command in the config.g files on their SD cards, which is [M954](/User_manual/Reference/Gcodes/M954). You use this with the A parameter to specify the CAN address for that board to use. Give each board a unique CAN address.
 * If you have a large system which needs to use a lower CAN bit rate, use a `M952 B0 Snnn` command prior to the M954 command to set that bit rate first. Future firmware versions may allow the bit rate to be specified in the M954 command.
-* To allow for firmware updates via DWC you need to put a special IAP file in the /firmware folder of each mainboard-as-expansion-board SD card:
-    * Duet 3 Mainboard 6HC - *Duet3_CANiap32_MB6HC.bin*
-    Duet 3 Mainboard 6XD - *Duet3_CANiap32_MB6XD.bin*
-    Duet 3 Mini 5+ - *Duet3_CANiap32_Mini5plus.bin*
+* To allow for firmware updates via DWC you need to put a special IAP file in the **/firmware** folder of the SD card in each mainboard-as-expansion:
+    * Duet 3 Mainboard 6HC used as expansion - *Duet3_CANiap32_MB6HC.bin*
+    Duet 3 Mainboard 6XD used as expansion - *Duet3_CANiap32_MB6XD.bin*
+    Duet 3 Mini 5+ used as expansion - *Duet3_CANiap32_Mini5plus.bin*
+    * It's OK to have all three of these files in the **/firmware folder** because the correct one will be selected automatically.
 * Once you have that IAP installed, firmware updates to all boards can be done by uploading firmware via DWC to the first mainboard. Note: older versions of these files support updating mainboard-as-expansion boards over CAN only when the default CAN bit rate (1Mbit/sec) is used. Newer versions of these files supplied with RRF 3.7 and later support updating when the bit rate is 1Mbit/sec, 500kbit/sec or 250kbit/sec.
 * It is not currently possible to upload these IAP files (or config.g, or any other file) to the SD card of a mainboard-as-expansion over CAN.
 * Note that mainboards have only a single CAN connector, so the mainboard-as-expansion-board is best made the last board in the CAN chain. If you have any additional expansion boards, they should go between the two mainboards.
@@ -324,8 +325,13 @@ Unless the bootloader has been corrupted, the expansion board firmware can be up
 * If the expansion board is already communicating with the main board, send M997 B# where # is the address of the expansion board. The expansion board will commence a firmware update and the DIAG LED will go out for a while. When the update is complete, it will flash and re-sync with the main board.
 * Alternatively, use the CAN reset procedure (see later) on the expansion board to have it request a firmware update.
 * You can check the firmware version installed on an expansion board by sending M115 B# where has is the board CAN address.
+* A main board used as an expansion board can be updated in the same way provided that the required *CANiap* file is present in the **/firmware folder** of its SD card.
 
 **Note**: after updating expansion board firmware, you must restart the main board or at least re-run config.g in order to create any sensors, heaters, fans etc. that you have configured on that board in config.g.
+
+# Using lower CAN bit rates
+
+To be completed.
 
 # Troubleshooting
 
