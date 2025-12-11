@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-11T12:22:53.829Z
+date: 2025-12-11T12:54:04.877Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -331,9 +331,25 @@ Unless the bootloader has been corrupted, the expansion board firmware can be up
 
 # Using lower CAN bit rates
 
-To be completed.
+If the longest distance between any two nodes on your CAN bus is greater then about 40m or the stubs are significantly longer than about 1m then you may need to reduce the CAN bit rate to achieve reliable communication. In order to simplify the process of updating firmware on the system, you should do the following:
+
+* Use the following bit rates only: 1Mbit/sec, 500kbit/sec or 250kbit/sec
+* Ensure that all tool boards and expansion boards have bootloader version 3.0 or later installed. These bootloaders can perform a CAN reset when the main board is configured to use any of these bit rates, whereas older bootloade only work at 1Mbit/sec. Use M122 B# (where # is the CAN address of the board) to check the bootloader version on an expansion board. To update the bootloader, see https://docs.duet3d.com/en/User_manual/RepRapFirmware/Updating_bootloader.
+* If you are using any Duet 3 main boards as expansion boards:
+    * Ensure that the /firmware folders of the SD cards in those boards contains the latest version of the CANiap file for that board (old versions support only 1Mbit/sec);
+* Use `M952 B0 S###` (where ### is the required bit rate i.e. 500 or 250) at the start of the config.g file for the master main board and each main-board-as-expansion (for a mainboard-as-expansion, prior to the M954 command) by .
+
+The latest bootloaders and CANiap files can be downloaded from https://github.com/Duet3D/Duet3Bootloader/releases.
 
 # Troubleshooting
+
+## Checking the CAN error statistics
+
+To check whether any CAN errors are occurring, use command `M122 B#` (where # is the CAN address of the board) to report diagnostics for each board in the system, and in the response look for a line similar to the following:
+
+`CAN messages queued 273022, send timeouts 0, received 380326, lost 0, ignored 0, errs 0, boc 0, free buffers 8, min 6, error reg 0`
+
+In a healthy system the values reported for `send timeouts`, `lost`, `ignored`, `errs` and `boc` should all be zero. Nonzero values may be reported if you have perform firmware updates or board resets since the system was powered on. If you see nonzero values at other times, compare the values reported by different boards. If just one tool or expansion board reports errors bit others report no errors, then the problem is likely to be with the CAN connecton to that board. If more then one tool/expansion board report errors but other tool/expansion boards report no errors, and the boards reporting errors are daisy-chained at the end of the bus farthest from the main board, then that provsed a clue about where the bad CAN connection is; or it cojld be that the boards reporting errors are powered from a separate PSU and that PSU doesnt have a common ground with the main board PSU.
 
 ## LED behaviour and error codes
 
