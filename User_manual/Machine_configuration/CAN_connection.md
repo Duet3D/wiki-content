@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-11T16:29:05.224Z
+date: 2025-12-12T15:56:22.800Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -35,25 +35,29 @@ A power supply needs to be able to provide enough current for all the boards con
 
 ## Overview
 
-CAN-FD (and CAN) is a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and if necessary shielded over long distances and/or for particularly noisy environments.
-
-The total length of the CAN bus (i.e. maximum cable length between any pair of devices) can be up to about 40m when using the default bit rate of 1Mbit/sec. Lower bit rates allow correspondingly longer cables, e.g. 500kbit/sec allows up to about 80m.
+CAN-FD (and CAN) is nominally a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and if necessary shielded over long distances and/or for particularly noisy environments.
 
 ![can_basics_wiring_01.png](/manual/configuration/can_basics_wiring_01.png =800x){target=_blank}
 
-Apart from the devices at each end of the CAN bus, each device on the CAN bus needs CAN wires from the previous device, and CAN wires to the next device. The devices at each end of the bus need to 'terminate' the bus. 
+Apart from the devices at each end of the CAN bus, each device on the CAN bus needs CAN wires from the previous device, and CAN wires to the next device. The devices at each end of the bus need to 'terminate' the bus with 120 ohm resistors to avoid reflections. 
 
 Within the pair of wires, the CAN_H and CAN_L wires should remain wired separately, so the CAN_H wire always connects to the CAN_H input and output on the device, and the CAN_L wire always connects to the CAN_L input and output.
 
-You can have devices attached to the CAN bus by short 'stubs', which only have an input. These devices are not terminated. See 'Stubs' section below for more details.
+Each board on the bus must be able to read the transmissions of every other board accurately. Typically the main board is placed at one end of the bus. However, the main board does not need to be at an end of the bus if the termination resistor on the board is disabled. In some machines, the total length of CAN cabling might be lower if the main board is not at one end of the bus.
+
+You can also have devices attached to the CAN bus by short 'stubs'. These devices are not terminated. See 'Stubs' section below for more details.
+
+There is a limit to the maximum length of the CAN bus. By "length" we mean the total length of cable that the signal must travel over when the two nodes that are most distant from each other communicate (where "most distant from each other" means the nodes connected to each other by the longest amount of cabling). Normally, this will be the total length of cable between the two nodes at either end of the bus that have the termination resistors, ignoring any stubs. It could be longer if you have a stub that is connected close to one end of the bus, and the length of the stub is longer than the distance between the point where the stub joins the bus and the end of the bus.
+
+The CAN bus length can be up to about 40m when using the default bit rate of 1Mbit/sec. Lower bit rates allow correspondingly longer cables, e.g. 500kbit/sec allows up to about 80m.
 
 ## Cables
 
-Unshielded twisted pair cable is normally used, ideally 2 X 24AWG or thicker with an impedence of 120ohms. However over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
+Unshielded twisted pair cable is normally used, ideally 2 X 24AWG or thicker with an impedence of 120ohms. However, over the short cable lengths typical of desktop 3D printers and CNC machines, the cable type is not critical. On very large printers, twisted pair cable must be used.
 
-You can use either RJ11 and/or RJ12 cables and connectors. RJ11 is 6P2C (6 positions, 2 contacts), RJ12 is 6P6C (6 positions, 6 contacts). Some wires are also supplied 6P4C (6 positions, 4 contacts). In all cases, only the middle pair are used in a Duet CAN systems.
+The larger Duet 3 boards provide 6-way modular connectors for the CAN bus. These are similar to standard Ethernet connectors but have 6 ways instead of 8. You can use RJ11 and/or RJ12 cables and connectors. RJ11 is 6P2C (6 positions, 2 contacts), RJ12 is 6P6C (6 positions, 6 contacts). Some wires are also supplied 6P4C (6 positions, 4 contacts). In all cases, only the middle pair are used in a Duet CAN systems.
 
-Twisted pair cables terminated in RJ11/RJ12 connectors are sold in some countries as "High Speed ADSL cables". One supplier of such cables is [Kenable](https://www.kenable.co.uk/en/search?controller=search&search_query=high+speed+adsl){target=_blank}. Note, **ADSL and telephone cables made with flat wire often cross the connections, making them unsuitable**. See the images below.
+Twisted pair cables terminated in RJ11/RJ12 connectors are sold in some countries as "High Speed ADSL cables". One supplier of such cables is [Kenable](https://www.kenable.co.uk/en/search?controller=search&search_query=high+speed+adsl){target=_blank}. Note, **ADSL and telephone cables made with flat wire often cross the connections, making them unsuitable for CAN**. See the images below.
 
 ### Example of a good cable:
 
