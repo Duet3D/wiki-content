@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-12T16:04:59.372Z
+date: 2025-12-12T16:09:06.647Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -227,7 +227,7 @@ It is possible to run a Duet 3 mainboard as an expansion board. This allows grea
     Duet 3 Mainboard 6XD used as expansion - *Duet3_CANiap32_MB6XD.bin*
     Duet 3 Mini 5+ used as expansion - *Duet3_CANiap32_Mini5plus.bin*
     * It's OK to have all three of these files in the **/firmware folder** because the correct one will be selected automatically.
-* Once you have that IAP installed, firmware updates to all boards can be done by uploading firmware via DWC to the first mainboard. Note: older versions of these files support updating mainboard-as-expansion boards over CAN only when the default CAN bit rate (1Mbit/sec) is used. Newer versions of these files supplied with RRF 3.7 and later support updating when the bit rate is 1Mbit/sec, 500kbit/sec or 250kbit/sec.
+* Once you have that IAP installed, firmware updates to all boards can be done by uploading firmware via DWC to the first mainboard. Note: older versions of these files support updating mainboard-as-expansion boards over CAN only when the default CAN bit rate (1Mbit/sec) is used. Newer versions of these files support updating when the bit rate is 1Mbit/sec, 500kbit/sec or 250kbit/sec.
 * It is not currently possible to upload these IAP files (or config.g, or any other file) to the SD card of a mainboard-as-expansion over CAN.
 * Note that mainboards have only a single CAN connector, so the mainboard-as-expansion-board is best made the last board in the CAN chain. If you have any additional expansion boards, they should go between the two mainboards.
 * The CAN addresses for each board do not need to be in sequential order along the CAN bus.
