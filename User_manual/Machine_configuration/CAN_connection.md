@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2025-12-12T15:56:22.800Z
+date: 2025-12-12T16:04:59.372Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -130,9 +130,9 @@ The Mini 5+ can also be used as expansion boards. See 'Mainboard used as expansi
 
 Most Duet 3 expansion boards (eg 3HC, 1XD, 1HCL) have two RJ11 connectors and two jumpers which can be fitted to provide termination. If the board is used at one end of the CAN bus, only one of the RJ11 connectors will be used and the termination jumpers should be fitted. If the board is used at an intermediate position then both RJ11 connectors will be used and the termination jumpers should **not** be fitted. Although the two RJ11 connectors are labelled CAN_IN and CAN_OUT, they are connected in parallel and it doesn't matter if the cables to them are swapped.
 
-The **Duet 3 Tool Board 1LC** is an exception, because it is too small to accommodate RJ11 connectors. Instead it has a single 4-pin JST ZH connector which is intended to be used for CAN_IN and CAN_OUT functionality. The Tool Distribution Board provides four similar JST ZH connectors. Preferably, connect each Tool Board to the Tool Distribution Board using two twisted pair cables, and remove the two jumpers on the Tool Distribution Board that are provided to bypass that connector. However, unless the cables are very long, you may get away with using a single twisted pair between the Tool Board and the Tool Distribution Board (thereby connecting the tool board as a stub) and leaving the jumpers in place.
+The **Duet 3 Tool Board 1LC** is an exception, because it is too small to accommodate RJ11 connectors for the (up to) four tool boards that it supports. Instead it has a single 4-pin JST ZH connector which is intended to be used for both CAN_IN and CAN_OUT functionality. The Tool Distribution Board provides four similar JST ZH connectors. Preferably, connect each Tool Board to the Tool Distribution Board using two twisted pair cables, and remove the two jumpers on the Tool Distribution Board that are provided to bypass that connector. However, unless the cables are very long, you may get away with using a single twisted pair between the Tool Board and the Tool Distribution Board (thereby connecting the tool board as a stub) and leaving the jumpers in place.
 
-If a **Tool Distribution Board** is at the end of the CAN bus, then leave the last CAN_OUT RJ11 connector not connected, and fit the termination jumper. On the Tool Distribution Board, CAN_IN and CAN_OUT are **not** interchangeable.
+If a **Tool Distribution Board** is at the end of the CAN bus, then leave the CAN_OUT RJ11 connector not connected, and fit the termination jumper. On the Tool Distribution Board, CAN_IN and CAN_OUT are **not** interchangeable.
 
 Some CAN expansion boards, like **Duet 3 Roto Toolboard**, **Duet 3 Scanning Z Probe** and **Sammy C21 development board**, and **mainboards used as expansion boards** have only two pins for CAN, rather than four. This means there is no CAN_IN with separate CAN_OUT. There are a number of different ways to wire these:
 
