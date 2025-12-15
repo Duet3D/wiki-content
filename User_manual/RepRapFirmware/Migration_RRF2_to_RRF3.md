@@ -2,7 +2,7 @@
 title: Migration from RRF2 to RRF3
 description: RepRapFirmware 3 is the next generation of the leading 32-bit 3D printer firmware, developed by Duet3D and derived from the RepRapFirmware code base developed by Adrian Bowyer.
 published: true
-date: 2025-12-15T08:48:16.714Z
+date: 2025-12-15T09:04:48.016Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T20:21:14.611Z
@@ -191,6 +191,20 @@ Example:
 `!^e1stop`
 
 The `!` and `^` characters can appear in either order.
+
+In a system with multiple CAN-connected boards, RRF needs to know which board the pin you are referring to is on. You can specify the CAN address of the board by prefixing the pin name with the CAN address of the board and a `.` character.
+
+Example:
+
+`!10.io1.in`
+
+If you don't specify a CAN address then RRF assumes that you are referring to a pin on the maon board.
+
+Occasionally a pin may be used in two different modes. Currently this applies donly to the `temp0` pin of the TOOL1LC board, which can use two dfferent types of analog-to-digital converter. The secondary mode can be selected by prefixing the pni name with `*`.
+
+Example:
+
+`*121.temp0`
 
 Some GCode commands accept more than one pin name. For example, the M453 command allows you to specify both forward and reverse spindle ports, the M574 command allows you to specify multiple endstop switches per axis, and the M558 command allows you to specify both input and output pins for the Z probe. You can use the + character to indicate multiple pins.
 
