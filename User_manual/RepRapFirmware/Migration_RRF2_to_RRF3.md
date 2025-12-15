@@ -2,7 +2,7 @@
 title: Migration from RRF2 to RRF3
 description: RepRapFirmware 3 is the next generation of the leading 32-bit 3D printer firmware, developed by Duet3D and derived from the RepRapFirmware code base developed by Adrian Bowyer.
 published: true
-date: 2025-11-13T10:31:02.262Z
+date: 2025-12-15T08:48:16.714Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T20:21:14.611Z
@@ -166,19 +166,31 @@ Example:
 
 These four all refer to the heater3 pin, either on the expansion connector (where it is  pin #8 of 50) or on the heater output terminal block of a DueX2 or DueX5. However, there is a difference. The DueX boards buffer and invert the signal. Therefore, when you use one of the forms prefixed with *DueX* the firmware knows it has to invert the signal, but it doesn't invert it if you use one of the other forms. In contrast, when you referred to logical pin 3 in previous versions of RRF, the firmware always inverted the signal - so if you were driving a servo or BLTouch from this pin you would have needed to use the I1 parameter in your M280 command.
 
-You may occasionally need to invert sense of a pin - for example, if you use a fan output to control the PWM input of a 4-wire fan instead of using it to switch the ground supply. You can indicate inversion by prefixing the pin name with exclamation mark.
+You may sometimes need to invert sense of a pin - for example, if you use a fan output to control the PWM input of a 4-wire fan instead of using it to switch the ground supply. You can indicate inversion by prefixing the pin name with exclamation mark.
 
 Example:
 
 `!fan2`
 
-This means the pin labelled FAN2 on the Duet, but with the drive signal inverted.
+This means the pin labelled FAN2 on the Duet, but with the drive signal inverted. You can also invert an input pin to make it active low instead of active high. Example:
 
-When declaring an input pin (e.g. in the M574 command), a '^' character before the name indicates that the pullup resistor should be enabled. Otherwise it is not enabled.
+`!e1stop`
+
+When declaring an input pin (e.g. in the M574 command), a `^` character before the name indicates that the pullup resistor should be enabled. Otherwise it is not enabled.
 
 Example:
 
 `^e1stop`
+
+You should never activate the pullup resistor on a Duet 3 board pin whose name ends in `.in`. These pins have a permanent pullup resistor connected to them along with an input protecton resistor. Enabling the internal pullup will reduce the noise margin because of the input protection resistor.
+
+You can both invert the sense of an input pin and activate its pullup resistor.
+
+Example:
+
+`!^e1stop`
+
+The `!` and `^` characters can appear in either order.
 
 Some GCode commands accept more than one pin name. For example, the M453 command allows you to specify both forward and reverse spindle ports, the M574 command allows you to specify multiple endstop switches per axis, and the M558 command allows you to specify both input and output pins for the Z probe. You can use the + character to indicate multiple pins.
 
