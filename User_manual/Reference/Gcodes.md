@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2025-12-04T10:48:08.032Z
+date: 2026-01-05T16:02:33.888Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2315,7 +2315,8 @@ M92 E420:500
 
 ### Notes
 
-* Allows programming of steps per mm for motor drives. These values are reset to those set in config.g on power on, unless saved with M500. It will report the current steps/mm if you send M92 without any parameters.
+* Allows programming of steps per mm for motor drives. These values are reset to those set in config.g on power on. 
+* Sending `M92` without any parameters will report the current steps/mm for each axis.
 * RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
   Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M92 Z80, not M92 Z80:80
 * RepRapFirmware uses floating point maths so it is possible to use floating point numbers for steps/mm.
