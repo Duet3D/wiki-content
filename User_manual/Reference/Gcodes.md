@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-01-05T16:49:23.528Z
+date: 2026-01-05T17:20:35.223Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -637,9 +637,10 @@ This form of the G10 command is recognised by having either or both of the L and
 
 ^2^It's usually a bad idea to put a non-zero Z value in as well unless the tools are loaded and unloaded by some sort of tool changer or are on independent carriages. When all the tools are in the machine at once they should all be positioned at the same Z height to avoid a lower tool colliding with the object while a higher tool is printing.
 
-Tool offsets are given as the offset of the nozzle relative to the print head reference point, so the signs are opposite to what you might expect because tool offsets are subtracted from the required printing locations during printing.
-
-Any parameter that you don't specify will automatically be set to the last value for that parameter. That usually means that you want explicitly to set Z0.0. RepRapFirmware will report the tool parameters if only the tool number is specified.
+* Tool offsets are given as the offset of the nozzle relative to the print head reference point, so the signs are opposite to what you might expect because tool offsets are subtracted from the required printing locations during printing.
+* Any parameter that you don't specify will automatically be set to the last value for that parameter. That usually means that you want explicitly to set Z0.0. RepRapFirmware will report the tool parameters if only the tool number is specified.
+* The G10 workplace offsets of all workplaces are saved automatically to override-config.g using `M500`. 
+* The G10 tool offsets of any tool offsets that were established by probing are saved automatically to override-config.g using `M500 P10`. 
 
 See also [M585](/User_manual/Reference/Gcodes/M585){target=_blank}.
 
@@ -1026,6 +1027,7 @@ It must also come after M584 if it references any axes beyond X and Y (RRF >=3.3
 * When used on its own this reports whether the Z probe is triggered, or gives the Z probe value in some units if the probe generates height values. If combined with a Z and P field (example: G31 P312 Z0.7) this will set the Z height to 0.7mm when the Z-probe value reaches 312 when a G28 Z0 (zero Z axis) command is sent. The machine will then move a further -0.7mm in Z to place itself at Z = 0. This allows non-contact measuring probes to approach but not touch the bed, and for the gap left to be allowed for. If the probe is a touch probe and generates a simple 0/1 off/on signal, then G31 Z0.7 will tell the RepRap machine that it is at a height of 0.7mm (as configured by Z0.7 in this example) when the probe is triggered.
 * If you are using the nozzle as a probe (for example with a peizo or switch that the hotend has a travel distance to trigger) then remember the Z offset may need to be negative (ie the probe triggers under Z0)
 * Separate G31 parameters may be defined for different probe types (i.e. 0+4 for switches, 1+2 for IR probes and 3 for alternative sensors). To specify which probe you are setting parameters for, send a [M558](/User_manual/Reference/Gcodes/M558){target=_blank} command to select the probe type before sending the G31 command, or use the T parameter.
+* The G31 parameters of each probe can be saved to override-config.g using `M500 P31`. 
 
 
 ## G32: Run bed.g macro
@@ -1193,16 +1195,19 @@ RepRapFirmware for Duets generally provides slots 0 thru 5. When a print is paus
 * **Bnnn** second centre coordinate in the selected plane (e.g. equivalent to Ynnn if the selected plane is XY)
 * **Rnnn** angle to rotate in degrees. Positive angles rotate anticlockwise when viewing the selected plane from above.
 
+### Description
+
 Rotates the coordinate system in the current plane as selected by [G17](/User_manual/Reference/Gcodes/G17){target=_blank}, [G18](/User_manual/Reference/Gcodes/G18){target=_blank} or [G19](/User_manual/Reference/Gcodes/G19){target=_blank}. You may either specify the coordinates of the two axes of the selected plan (e.g. X and Y if using the default XY plane or after G17) or you may specify A and B coordinates.
 
-RepRapFirmware implements G68 for the XY plane only. Coordinate rotation is not applied if any of the following is true:
+### Notes
 
-* The move is a G1 Hn or G0 Hn move with n != 0;
-* The selected plane is not XY;
-* G53 is in effect;
-* A system macro (i.e. one that is invoked automatically, such as homing or tool change) is being run.
-
-Note: if G68 coordinate rotaton is in effect and you use one of G54 thru G59.3 to switch to a different workplace coordinate system, the rotation origin will move in line with the origin of the workplace coordinate system.
+* RepRapFirmware implements G68 for the XY plane only. Coordinate rotation is not applied if any of the following is true:
+  * The move is a G1 Hn or G0 Hn move with n != 0;
+  * The selected plane is not XY;
+  * G53 is in effect;
+  * A system macro (i.e. one that is invoked automatically, such as homing or tool change) is being run.
+* If G68 coordinate rotaton is in effect and you use one of G54 thru G59.3 to switch to a different workplace coordinate system, the rotation origin will move in line with the origin of the workplace coordinate system.
+* In RRF 3.6.1 and later, the current G68 rotation parameters can be saved to override-config.g using `M500 P68`. 
 
 ## G69: Cancel coordinate rotation
 
@@ -3448,11 +3453,10 @@ M208 X-5:200 Y0:200 Z0:90 ; set axis minima and maxima
 
 ### Notes
 
-The values specified set the software limits for axis travel in the specified direction. The axis limits you set are also the positions assumed when an endstop is triggered.
-
-The min/max axis positions are +/- (2^31 - 1) microsteps. Position accuracy will start to suffer when the positions are outside approx. +/- 2^24 microsteps, because it is held and calculated as a 32-bit float. See also this note on [maximum length of moves](/User_manual/Reference/Gcodes#maximum-length-of-moves) in the G1 Gcode entry.
-
-The M208 minimum Z value applies to deltas. The M208 XY min/max and Z max values don't.
+* The values specified set the software limits for axis travel in the specified direction. The axis limits you set are also the positions assumed when an endstop is triggered.
+* The min/max axis positions are +/- (2^31 - 1) microsteps. Position accuracy will start to suffer when the positions are outside approx. +/- 2^24 microsteps, because it is held and calculated as a 32-bit float. See also this note on [maximum length of moves](/User_manual/Reference/Gcodes#maximum-length-of-moves) in the G1 Gcode entry.
+* The M208 minimum Z value applies to deltas. The M208 XY min/max and Z max values don't.
+* M208 axis limits for any axis whose values were found by probing or endstops will be saved to config-override.g using `M500`. Applies to Z max for LinearDelta and RotaryDelta if auto calibration was used, and to any axis limits probed using G1 H3 (or G1 S3 in RRF 2.x and earlier) moves.
 
 ## M220: Set speed factor override percentage
 
@@ -3904,16 +3908,14 @@ M301 H1 P20 I0.5 D100 ; Set PID values
 
 ### Notes
 
-Sets Proportional (P), Integral (I) and Derivative (D) values for hot end. See also M303
-
-* H: Is the heater number, and is compulsory. H0 is the bed, H1 is the first hot end, H2 the second etc.
-* P: Proportional value
-* I: Integral value
-* D: Derivative value
-
-The P, I and D values must be provided scaled by a factor of 255, for compatibility with older firmwares.
-
-Note: PID parameters are computed automatically when the M307 command is used to define the heater model, or from the default heater model if no M307 command is provided. You can use M301 to override those computed PID parameters, but this is not recommended because it prevents RepRapFirmware from using different PID parameters depending on the heating phase.
+* Sets Proportional (P), Integral (I) and Derivative (D) values for hot end. See also M303
+  * H: Is the heater number, and is compulsory. H0 is the bed, H1 is the first hot end, H2 the second etc.
+  * P: Proportional value
+  * I: Integral value
+  * D: Derivative value
+* The P, I and D values must be provided scaled by a factor of 255, for compatibility with older firmwares.
+* Note: PID parameters are computed automatically when the M307 command is used to define the heater model, or from the default heater model if no M307 command is provided. You can use M301 to override those computed PID parameters, but this is not recommended because it prevents RepRapFirmware from using different PID parameters depending on the heating phase.
+* In RRF 1.19 and earlier, if you used M301 to override the auto tune PID settings, the M301 parameters will be saved to config-override.g using `M500`.
 
 ## M302: Allow cold extrudes
 
@@ -4213,9 +4215,9 @@ M950 H0 C"bed_heat" Q100 T0 ; heater 0 uses the bed_heat pin, sensor 0, PWM freq
 
 ### Notes
 
-Each heater and its corresponding load may be approximated as a first order process with dead time, which is characterised by the gain, time constant and dead time parameters. The model can used to calculate optimum PID parameters (including using different values for the heating or cooling phase and the steady state phase), to better detect heater faults, and to calculate feed-forward terms to better respond to changes in the load. Normally these model parameters are found by auto tuning - see [M303](/User_manual/Reference/Gcodes/M303){target=_blank} and [Tuning heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning){target=_blank}.
-
-For those platforms that provide power voltage monitoring, the calibration voltage setting allows the heating controller to adjust the power automatically in response to changes in the power supply voltage. For example, if a bed or chamber heater is turned on or off, this may cause the power supply voltage to change a little, which if not corrected for would change the extruder heater power.
+* Each heater and its corresponding load may be approximated as a first order process with dead time, which is characterised by the gain, time constant and dead time parameters. The model can used to calculate optimum PID parameters (including using different values for the heating or cooling phase and the steady state phase), to better detect heater faults, and to calculate feed-forward terms to better respond to changes in the load. Normally these model parameters are found by auto tuning - see [M303](/User_manual/Reference/Gcodes/M303){target=_blank} and [Tuning heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning){target=_blank}.
+* For those platforms that provide power voltage monitoring, the calibration voltage setting allows the heating controller to adjust the power automatically in response to changes in the power supply voltage. For example, if a bed or chamber heater is turned on or off, this may cause the power supply voltage to change a little, which if not corrected for would change the extruder heater power.
+* M307 parameters for all heaters are saved to config-override.g using `M500`.
 
 ## M308: Set or report sensor parameters
 
@@ -7877,14 +7879,14 @@ M665 L250 R160 B80 H240 X0 Y0 Z0
 
 ### Notes
 
-The **X**, **Y** and **Z** parameters are the X, Y and Z tower angular offsets from the ideal (i.e. equilateral triangle) positions, in degrees, measured anti-clockwise looking down on the printer.
-
-In RRF 2.03 and later, multiple **L** values can be provided, for example:
-<br>
-<pre class="cblock">
-L260.1:260.2:260.0
-</pre>
-The values are the lengths of the rods to the X, Y and Z towers respectively. If more than 3 values are provided, the firmware assumes that there are as many towers as L values up to the maximum supported (currently 6). The XY coordinates of the additional towers must be defined subsequently using the M669 command. If only one L value is provided, the machine is assumed to have 3 towers with all rods having the same length.
+* The **X**, **Y** and **Z** parameters are the X, Y and Z tower angular offsets from the ideal (i.e. equilateral triangle) positions, in degrees, measured anti-clockwise looking down on the printer.
+* In RRF 2.03 and later, multiple **L** values can be provided, for example:
+  <br>
+  <pre class="cblock">
+  L260.1:260.2:260.0
+  </pre>
+  The values are the lengths of the rods to the X, Y and Z towers respectively. If more than 3 values are provided, the firmware assumes that there are as many towers as L values up to the maximum supported (currently 6). The XY coordinates of the additional towers must be defined subsequently using the M669 command. If only one L value is provided, the machine is assumed to have 3 towers with all rods having the same length.
+* M665 kinematics parameters are saved to config-override.g using `M500`, depending on selected kinematics. Calibration parameters for LinearDelta, RotaryDelta and Hangprinter are saved.
 
 ## M666: Set delta endstop adjustment
 
@@ -7906,7 +7908,8 @@ M666 X-0.1 Y+0.2 Z0
 
 ### Notes
 
-Positive endstop adjustments move the head closer to the bed when it is near the corresponding tower. Endstop corrections are expressed in mm.
+* Positive endstop adjustments move the head closer to the bed when it is near the corresponding tower. Endstop corrections are expressed in mm.
+* M666 parameters are saved to config-override.g using `M500`, depending on selected kinematics. Calibration parameters for LinearDelta, RotaryDelta and Hangprinter are saved.
 
 ## M667: Select CoreXY or related mode
 
