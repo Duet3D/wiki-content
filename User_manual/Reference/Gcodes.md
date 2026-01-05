@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-01-05T16:02:33.888Z
+date: 2026-01-05T16:49:23.528Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5148,12 +5148,14 @@ M500 P10:31
 
 Save current parameters to the sys/config-override.g on the SD card, similar to other firmware's storing to EEPROM. The parameters stored are:
 
-* M307 auto tune results
-* PID parameters, if you used M301 to override the auto tune PID settings
-* Delta printer M665 and M666 settings
-* Any M208 axis limits that were determined using a G1 H3 (or S3 in RRF 2.x and earlier) move
-* If the P31 parameter is used, the G31 trigger height, trigger value and X and Y offsets for each possible Z probe type (in older firmware versions the G31 parameters are stored even if the P31 parameter is not present)
-* If the P10 parameter is present, the G10 tool offsets
+* M665 and M666 kinematics calibration parameters, depending on selected kinematics. Calibration parameters for LinearDelta, RotaryDelta and Hangprinter are saved.
+* M307 heater model parameters for all heaters.
+* M208 axis limits for any axis whose values were found by probing or endstops. Applies to Z max for LinearDelta and RotaryDelta if auto calibration was used, and to any axis limits probed using G1 H3 (or G1 S3 in RRF 2.x and earlier) moves.
+* G10 workplace offsets of all workplaces
+* If parameter P10 is used, any tool offsets that were established by probing
+* If parameter P31 is used, the G31 parameters of each Z probe (in older firmware versions the G31 parameters are stored even if the P31 parameter is not present)
+* If parameter P68 is used, the current G68 rotation parameters (RRF 3.6.1 and later)
+* M301 PID parameters, if you used M301 to override the auto tune PID settings (RRF 1.19 and earlier)
 
 Ensure that M501 is at the end of config.g in order for the values in config-override.g to be loaded on startup.
 
