@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2025-09-26T15:36:01.084Z
+date: 2026-01-06T08:13:40.442Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -626,7 +626,7 @@ check for continuity using a multimeter.
 # Tabs{.tabset}
 
 ## Revision v1.02c
-- RS485 port added. This uses the UART on IO1 so IO1 cannot be used at the same time as the RS485 port. The individual, unused driver 5 diag pin was repurposed for the RS485 transceiver RX/TX switching pin. The SWD header was removed to fit the RS485 header in. The SWD pins are still available as pogo pin contacts under the PCB.
+- RS485 port added. This uses the UART on IO1 so IO1 cannot be used at the same time as the RS485 port. The individual, unused driver 5 diag pin was repurposed for the RS485 transceiver RX/TX switching pin. The SWD header was removed to fit the RS485 header in. 
 - SD card protection replaced with an alternative due to discontinuation of the previous IC.
 - 3.3V external LDO regulator changed to design used in other Duet 3 mainboards. 
 - minor changes to diodes to update to newer versions.
