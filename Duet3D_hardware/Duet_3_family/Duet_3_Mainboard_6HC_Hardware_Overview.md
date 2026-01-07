@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-01-06T08:15:23.223Z
+date: 2026-01-07T10:12:17.167Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -488,7 +488,7 @@ If you wish to power the Duet and SBC separately, both from external 5V power su
 
 Power the SBC from its own 5V supply that is specifically designed for the purpose.The official Raspberry Pi Power Supply is a good example of this. Additionally, the USB cable used to power the Pi must be of good quality.
 
-It is possible to power the Duet from the SBC is the Duet does not have higher current 5V devices connected (PanelDue, Neopixel/Dotstar LEDs) and the 5V power budget of the SBC power supply is not exceeded. See the 5V documentation above for how to set the selection jumpers.
+It is possible to power the Duet from the SBC, but only if the Duet does not have higher current 5V devices connected (PanelDue, Neopixel/Dotstar LEDs) and the 5V power budget of the SBC power supply is not exceeded. See the 5V documentation above for how to set the selection jumpers.
 
 The Pi may display a lightning bolt icon on the display (if connected) which is a good indication there is a power supply problem.
 
