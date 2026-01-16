@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-16T14:53:50.598Z
+date: 2026-01-16T15:10:32.280Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -40,6 +40,20 @@ The Duet3D DuetScreen is a colour touch screen controller for the Duet ...
 ### UART 
 
 ## Configuration
+
+# Using a DuetScreen
+
+## Tabs {.tabset}
+
+### Dashboard
+
+### Control
+
+### Files
+
+### Console
+
+### Settings
 
 
 # Updating DuetScreen Firmware
