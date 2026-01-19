@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-19T14:53:49.970Z
+date: 2026-01-19T15:12:58.556Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -19,52 +19,59 @@ The Duet3D DuetScreen is a colour touch screen controller for the Duet ...
 
 # Features
 
+## Hardware Specification
 
-# Dimensions
+## Operating limits
 
+## Firmware notes
 
-## Enclosures
+## Open Source
+
+# Physical properties
+
+## Dimensions
+
+## Mounting
+
+## 3D model and enclosure
 
 [Enclosure from Andy E?]
 
 # Connecting a DuetScreen
 
-## Warnings
-
-* All the power methods are **NOT** isolated. This means that if you connect the screen to a mainboard, the mainboard must be powered by the same power supply as the screen. If you do not do this, you may damage the screen or the mainboard.
-* The screen is designed to be powered by a 5V power supply. If you are using a 12V or 24V power supply, you will need to use a buck converter to step down the voltage to 5V. 
-
-  > **You will likely damage the screen and any connected devices if you do not do this**.
-  {.is-warning}
-
-
 ## Powering the Duet3D screen
+
+> All the power methods are **NOT** isolated. This means that if you connect the screen to a mainboard, the mainboard must be powered by the same power supply as the screen. If you do not do this, you may damage the screen or the mainboard.
+{.is-warning}
+
+> The screen is designed to be powered by a 5V power supply. If you are using a 12V or 24V power supply, you will need to use a buck converter to step down the voltage to 5V. 
+> **You will likely damage the screen and any connected devices if you do not do this**.
+{.is-warning}
+
 The Duet3D screen can be powered in the following ways:
 - **5V_IN**: This is the recommended method. 
 - **USB-C**: Relies on the connected host/device to supply sufficient power.
 - **UART5**: This is a legacy method for compatibility with PanelDue wiring. It is not recommended for new installations.
 
-> [!WARNING]
-
-
-
 ## USB Ports
 The Duet3D screen has two USB ports:
-- USB-A: This port is also a host port. 
-    - It can be used to connect to a Duet3D mainboard, wifi modules, or USB flash drives.
-- USB-C: This port can be a host or device port.
-    - It can be used to connect to a Duet3D mainboard, wifi modules, or USB flash drives in host mode.
-    - It can be used to connect to a PC in device mode for software debugging.
-    - It can be used to power the screen in either mode (assuming the attached device/host is able to supply power).
 
-> [!WARNING]
+**USB-A**: This port is also a host port. 
+- It can be used to connect to a Duet3D mainboard, wifi modules, or USB flash drives.
+
+**USB-C**: This port can be a host or device port.
+- It can be used to connect to a Duet3D mainboard, wifi modules, or USB flash drives in host mode.
+- It can be used to connect to a PC in device mode for software debugging.
+- It can be used to power the screen in either mode (assuming the attached device/host is able to supply power).
+
+
 > A Duet3D mainboard CANNOT provide power to the screen via the USB-C. Always power the screen via the 5V_IN port when using USB
+{.is-warning}
 
 USB hubs are supported **if they are NOT smart**. A smart hub is one that requires a driver to work. This includes most USB-C hubs. If you are using a USB-C hub, make sure it is a dumb hub. A dumb hub is one that does not require a driver to work. This includes most USB-A hubs. If in doubt, use a USB-A hub.
 
-
-
 ## Connecting to a Duet mainboard
+
 Multiple methods are available to connect the DuetScreen to a mainboard. The recommended method is to use a USB cable. This allows for the best performance and is the easiest to set up.
 
 ## Tabs {.tabset}
@@ -75,49 +82,54 @@ Multiple methods are available to connect the DuetScreen to a mainboard. The rec
     - If using the **USB-C** port, make sure to set the screen to USB **host mode**.
 2. In the GUI, select the USB connection method.
 
+
+> When the Duet3D screen detects a USB connection to a Duet3D mainboard, it will automatically send `M575 P0 S0` to configure the mainboard for USB communication.
 {.is-info}
-> Note: When the Duet3D screen detects a USB connection to a Duet3D mainboard, it will automatically send `M575 P0 S0` to configure the mainboard for USB communication.
 
 ### WiFi
 
+* The screen has a built-in WiFi module, it also supports external WiFi modules with the `RTL8188FU` chipset.
+* If using the built-in WiFi module, the USB-C port must be set to `Internal WiFi`, this is done in the “Settings” page in the GUI.
+* If using an external WiFi module, connect it to the USB-A port on the screen, or use the USB-C port and set it to `USB-C Host`.
+* There are multiple variants of the `RTL8188` chipset. Currently the screen only supports `RTL8188FU`. Other variants are unlikely to work.
+
+> You might need to reboot the screen after enabling the WiFi module.
+{.is-info}
+
+
+
 #### Connect the DuetScreen to a WiFi network
 
-There are a few methods to connect the Duet3D screen to a WiFi network. The recommended method is to use the `wpa_supplicant.conf` file. This file should be placed on the microSD card after it has been flashed.
+There are a couple of methods to connect the Duet3D screen to a WiFi network.
 
-1. You can copy a file called `wpa_supplicant.conf` to the root of the microSD card. This file should contain the WiFi credentials in the following format:
-    ```
-    ctrl_interface=/var/run/wpa_supplicant
-    update_config=1
-    ap_scan=1
+1. You can connect to a network using the Settings > Connections page in the GUI.
+This method is useful if you are setting up a single screen and you do not know the WiFi credentials in advance.
 
-    network={
-        ssid="your-SSID"
-        psk="your-PASSWORD"
-        key_mgmt=WPA-PSK
-    }
-    ```
-    - This method is the easiest if you are setting up multiple screens, or you know the WiFi credentials in advance.
-2. Alternatively, you can connect to a network using the “Settings” page in the GUI.
-    - This method is useful if you are setting up a single screen and you do not know the WiFi credentials in advance.
-    - The GUI is currently a placeholder and has some known issues.
+2. You can copy a file called `wpa_supplicant.conf` to the root of the microSD card. This file should be placed on the microSD card after it has been flashed. This method is the easiest if you are setting up multiple screens, or you know the WiFi credentials in advance.
+This file should contain the WiFi credentials in the following format:
+```
+ctrl_interface=/var/run/wpa_supplicant
+update_config=1
+ap_scan=1
 
+network={
+    ssid="your-SSID"
+    psk="your-PASSWORD"
+    key_mgmt=WPA-PSK
+}
+```
 
-{.is-info}
-> The screen has a built-in WiFi module, it also supports external WiFi modules with the `RTL8188FU` chipset.
-> - If using the built-in WiFi module, the USB-C port must be set to `Internal WiFi`, this is done in the “Settings” page in the GUI.
-> - If using an external WiFi module, connect it to the USB-A port on the screen, or use the USB-C port and set it to `USB-C Host`.
-> - There are multiple variants of the `RTL8188` chipset. Currently the screen only supports `RTL8188FU`. Other variants are unlikely to work.
-> You might need to reboot the screen after enabling the WiFi module.
+#### Connect the DuetScreen to a Duet Mainboard
 
 1. Ensure the Duet3D screen is connected to the same WiFi network as the mainboard.
-    - See the [Connecting the Duet3D screen to a WiFi network](#connecting-the-duet3d-screen-to-a-wifi-network) section above.
 2. In the GUI, select the WiFi connection method.
 4. Enter the IP address of the mainboard.
 
 ### UART
 
-> [!WARNING]
 > This method is for legacy support only to provide an easy upgrade path for PanelDue users. It is not recommended for new installations.
+{.is-info}
+
 
 1. Connect the Duet3D screen to the mainboard using a UART cable.
     - Use connector `UART Duet` on the screen.
@@ -134,14 +146,6 @@ For a Duet3 IO0 port for UART is as follows:
 | GND | GND|
 | io0.in | U5-T |
 
-
-### USB
-
-### WiFi
-
-### UART 
-
-## Configuration
 
 # Using a DuetScreen
 
