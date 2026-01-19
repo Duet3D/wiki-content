@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-19T15:13:33.920Z
+date: 2026-01-19T16:37:43.314Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -39,22 +39,22 @@ The Duet3D DuetScreen is a colour touch screen controller for the Duet ...
 
 # Connecting a DuetScreen
 
-## Powering the Duet3D screen
+## Powering the DuetScreen
 
-> All the power methods are **NOT** isolated. This means that if you connect the screen to a mainboard, the mainboard must be powered by the same power supply as the screen. If you do not do this, you may damage the screen or the mainboard.
+> All the power methods are **NOT** isolated. This means that if you connect the DuetScreen to a mainboard, the mainboard must be powered by the same power supply as the DuetScreen. If you do not do this, you may damage the DuetScreen or the mainboard.
 {.is-warning}
 
-> The screen is designed to be powered by a 5V power supply. If you are using a 12V or 24V power supply, you will need to use a buck converter to step down the voltage to 5V. 
-> **You will likely damage the screen and any connected devices if you do not do this**.
+> The DuetScreen is designed to be powered by a 5V power supply. If you are using a 12V or 24V power supply, you will need to use a buck converter to step down the voltage to 5V. 
+> **You will likely damage the DuetScreen and any connected devices if you do not do this**.
 {.is-warning}
 
-The Duet3D screen can be powered in the following ways:
+The DuetScreen can be powered in the following ways:
 - **5V_IN**: This is the recommended method. 
 - **USB-C**: Relies on the connected host/device to supply sufficient power.
 - **UART5**: This is a legacy method for compatibility with PanelDue wiring. It is not recommended for new installations.
 
 ## USB Ports
-The Duet3D screen has two USB ports:
+The DuetScreen has two USB ports:
 
 **USB-A**: This port is also a host port. 
 - It can be used to connect to a Duet3D mainboard, wifi modules, or USB flash drives.
@@ -62,10 +62,10 @@ The Duet3D screen has two USB ports:
 **USB-C**: This port can be a host or device port.
 - It can be used to connect to a Duet3D mainboard, wifi modules, or USB flash drives in host mode.
 - It can be used to connect to a PC in device mode for software debugging.
-- It can be used to power the screen in either mode (assuming the attached device/host is able to supply power).
+- It can be used to power the DuetScreen in either mode (assuming the attached device/host is able to supply power).
 
 
-> A Duet3D mainboard CANNOT provide power to the screen via the USB-C. Always power the screen via the 5V_IN port when using USB
+> A Duet3D mainboard CANNOT provide power to the DuetScreen via the USB-C. Always power the DuetScreen via the 5V_IN port when using USB
 {.is-warning}
 
 USB hubs are supported **if they are NOT smart**. A smart hub is one that requires a driver to work. This includes most USB-C hubs. If you are using a USB-C hub, make sure it is a dumb hub. A dumb hub is one that does not require a driver to work. This includes most USB-A hubs. If in doubt, use a USB-A hub.
@@ -78,34 +78,35 @@ Multiple methods are available to connect the DuetScreen to a mainboard. The rec
 
 ### USB
 1. Connect the DuetScreen to the mainboard using a USB cable.
-    - **Either** the **USB-A** and **USB-C** ports on the screen can be used.
-    - If using the **USB-C** port, make sure to set the screen to USB **host mode**.
+    - **Either** the **USB-A** and **USB-C** ports on the DuetScreen can be used.
+    - If using the **USB-C** port, make sure to set the DuetScreen to USB **host mode**.
 2. In the GUI, select the USB connection method.
 
 
-> When the Duet3D screen detects a USB connection to a Duet3D mainboard, it will automatically send `M575 P0 S0` to configure the mainboard for USB communication.
+> When the DuetScreen detects a USB connection to a Duet3D mainboard, it will automatically send `M575 P0 S0` to configure the mainboard for USB communication.
 {.is-info}
 
 ### WiFi
 
-* The screen has a built-in WiFi module, it also supports external WiFi modules with the `RTL8188FU` chipset.
-* If using the built-in WiFi module, the USB-C port must be set to `Internal WiFi`, this is done in the “Settings” page in the GUI.
-* If using an external WiFi module, connect it to the USB-A port on the screen, or use the USB-C port and set it to `USB-C Host`.
-* There are multiple variants of the `RTL8188` chipset. Currently the screen only supports `RTL8188FU`. Other variants are unlikely to work.
+* The DuetScreen has a built-in WiFi module. 
+  * If using the built-in WiFi module, the USB-C port must be set to `Internal WiFi`, this is done in the Settings > Connection page in the GUI.
+* The DuetScreen also supports external WiFi modules with the `RTL8188FU` chipset. 
+  * If using an external WiFi module, connect it to the USB-A port on the DuetScreen, or use the USB-C port and set it to `USB-C Host`.
+  * There are multiple variants of the `RTL8188` chipset. Currently the DuetScreen only supports `RTL8188FU`. Other variants are unlikely to work.
 
-> You might need to reboot the screen after enabling the WiFi module.
+> You might need to reboot the DuetScreen after enabling the WiFi module.
 {.is-info}
 
 
 
 #### Connect the DuetScreen to a WiFi network
 
-There are a couple of methods to connect the Duet3D screen to a WiFi network.
+There are a couple of methods to connect the DuetScreen to a WiFi network.
 
 1. You can connect to a network using the Settings > Connections page in the GUI.
-This method is useful if you are setting up a single screen and you do not know the WiFi credentials in advance.
+This method is useful if you are setting up a single DuetScreen and you do not know the WiFi credentials in advance.
 
-2. You can copy a file called `wpa_supplicant.conf` to the root of the microSD card. This file should be placed on the microSD card after it has been flashed. This method is the easiest if you are setting up multiple screens, or you know the WiFi credentials in advance.
+2. You can copy a file called `wpa_supplicant.conf` to the root of the microSD card. This file should be placed on the microSD card after it has been flashed. This method is the easiest if you are setting up multiple DuetScreens, or you know the WiFi credentials in advance.
 This file should contain the WiFi credentials in the following format:
 ```
 ctrl_interface=/var/run/wpa_supplicant
@@ -121,7 +122,7 @@ network={
 
 #### Connect the DuetScreen to a Duet Mainboard
 
-1. Ensure the Duet3D screen is connected to the same WiFi network as the mainboard.
+1. Ensure the DuetScreen is connected to the same WiFi network as the mainboard.
 2. In the GUI, select the WiFi connection method.
 4. Enter the IP address of the mainboard.
 
@@ -131,10 +132,10 @@ network={
 {.is-info}
 
 
-1. Connect the Duet3D screen to the mainboard using a UART cable.
-    - Use connector `UART Duet` on the screen.
+1. Connect the DuetScreen to the mainboard using a UART cable.
+   - Use connector `UART Duet` on the DuetScreen.
 2. In the GUI, select the UART connection method.
-3. Set the baud rate on the mainboard to `115200`. use `M575 P1 S1 B115200` in config.g, this is similar to connecting a PanelDue, other than the default baud rate is 115200
+3. Set the baud rate on the mainboard to `115200`. Use `M575 P1 S1 B115200` in config.g, this is similar to connecting a PanelDue, other than the default baud rate is 115200
 
 #### Wiring
 For a Duet3 IO0 port for UART is as follows:
@@ -175,54 +176,92 @@ For a Duet3 IO0 port for UART is as follows:
 
 ### Control
 
-![duetscreen-control-move-01.png](/hardware/duetscreen/duetscreen-control-move-01.png)
+[![duetscreen-control-move-01.png](/hardware/duetscreen/duetscreen-control-move-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
+
+[![duetscreen-control-tooltemp-01.png](/hardware/duetscreen/duetscreen-control-tooltemp-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-tooltemp-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
+
+[![duetscreen-control-heightmap-01.png](/hardware/duetscreen/duetscreen-control-heightmap-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-heightmap-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
+
+[![duetscreen-control-fan-01.png](/hardware/duetscreen/duetscreen-control-fan-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-fan-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
 
 ### Files
 
+[![duetscreen-files-macros-01.png](/hardware/duetscreen/duetscreen-files-macros-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-files-macros-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
+
+
 ### Console
 
+[![duetscreen-console-01.png](/hardware/duetscreen/duetscreen-console-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-console-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
+
+
 ### Settings
+
+[![duetscreen-settings-general-01.png](/hardware/duetscreen/duetscreen-settings-general-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-general-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
+
+[![duetscreen-settings-connection-01.png](/hardware/duetscreen/duetscreen-settings-connection-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-connection-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
+
+[![duetscreen-settings-display-01.png](/hardware/duetscreen/duetscreen-settings-display-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-display-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
+
+[![duetscreen-settings-developer-01.png](/hardware/duetscreen/duetscreen-settings-developer-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-developer-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
 
 
 # DuetScreen firmware
 
 ## Flashing a new DuetScreen
 1. Download the latest `sdcard.img` from the release page.
-2. Flash a microSD card with the image
-   - use [balenaEtcher](https://www.balena.io/etcher/) on Windows and MacOS
-   - use `dd` on Linux
-        - ```bash
-            sudo dd if=sdcard.img of=/dev/sdX bs=4M
-            ```
-3. Insert the microSD card into the Duet3D screen and power it on.
+2. Flash a microSD card with the image by:
+    - either use [balenaEtcher](https://www.balena.io/etcher/) on Windows, Linux and MacOS
+    - or use `dd` on Linux and MacOS
+   ```
+   sudo dd if=sdcard.img of=/dev/sd# bs=4M
+   ```
+3. Insert the microSD card into the DuetScreen and power it on.
 
 
 ## Updating DuetScreen
 
-Several methods are available to update the Duet3D screen.
+Several methods are available to update the DuetScreen.
 
 {.is-info}
 > Occasionally, an update may require the whole microSD card to be reflashed. This will be indicated in the release notes.
-> In this case, follow the instructions in the [Flashing a new Duet3D screen](#flashing-a-new-duet3d-screen) section above.
+> In this case, follow the instructions in the [Flashing a new DuetScreen](#Flashing-a-new-DuetScreen) section above.
 
 ### Using the GUI
 1. Copy the update file (`DuetScreen.tar.gz`) to the root directory of a USB flash drive.
-1. Insert the USB flash drive into the Duet3D screen.
-1. In the GUI you will be prompted to update the screen.
-1. If the update is successful, the screen will automatically reboot. This will appear as a brief flash and the GUI will return to the home screen.
+1. Insert the USB flash drive into the DuetScreen.
+1. In the GUI you will be prompted to update the DuetScreen.
+1. If the update is successful, the DuetScreen will automatically reboot. This will appear as a brief flash and the GUI will return to the Dashboard screen.
 1. The update will create an empty file called `upgraded` in the root directory of the USB flash drive. This file is used to indicate that the update was successful.
 
 ### Force Update
 1. If the GUI is not working, you can force an update by renaming the update file to `update.tar.gz` and placing it in the **root directory of the USB flash drive OR microSD** card.
-1. Insert the USB flash drive or microSD card into the Duet3D screen.
-1. *(If using a microSD card)* Power on the screen and it will automatically update.
+1. Insert the USB flash drive or microSD card into the DuetScreen.
+1. *(If using a microSD card)* Power on the DuetScreen and it will automatically update.
 1. The update will have succeeded if the `update.tar.gz` file is removed from the root directory of the flash drive or microSD card.
 
 ### Fallback
-1. If the screen is still not working, you will have to reflash the microSD card with the latest image, see "Flashing a new DuetScreen" above.
+1. If the DuetScreen is still not working, you will have to reflash the microSD card with the latest image, see [Flashing a new DuetScreen](#Flashing-a-new-DuetScreen) above.
 
 # Version History
 
