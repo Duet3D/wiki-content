@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-19T15:12:58.556Z
+date: 2026-01-19T15:13:33.920Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -171,10 +171,13 @@ For a Duet3 IO0 port for UART is as follows:
 
 [![duetscreen-dashboard-status-05.png](/hardware/duetscreen/duetscreen-dashboard-status-05.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-05.png){target=_blank}Text
 
+<p style="clear:both"></p>
+
 ### Control
 
 ![duetscreen-control-move-01.png](/hardware/duetscreen/duetscreen-control-move-01.png)
 
+<p style="clear:both"></p>
 
 
 ### Files
