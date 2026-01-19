@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-19T16:37:43.314Z
+date: 2026-01-19T16:39:10.706Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -245,7 +245,7 @@ Several methods are available to update the DuetScreen.
 
 {.is-info}
 > Occasionally, an update may require the whole microSD card to be reflashed. This will be indicated in the release notes.
-> In this case, follow the instructions in the [Flashing a new DuetScreen](#Flashing-a-new-DuetScreen) section above.
+> In this case, follow the instructions in the [Flashing a new DuetScreen](#flashing-a-new-duetscreen) section above.
 
 ### Using the GUI
 1. Copy the update file (`DuetScreen.tar.gz`) to the root directory of a USB flash drive.
@@ -261,7 +261,7 @@ Several methods are available to update the DuetScreen.
 1. The update will have succeeded if the `update.tar.gz` file is removed from the root directory of the flash drive or microSD card.
 
 ### Fallback
-1. If the DuetScreen is still not working, you will have to reflash the microSD card with the latest image, see [Flashing a new DuetScreen](#Flashing-a-new-DuetScreen) above.
+1. If the DuetScreen is still not working, you will have to reflash the microSD card with the latest image, see [Flashing a new DuetScreen](#flashing-a-new-duetscreen) above.
 
 # Version History
 
