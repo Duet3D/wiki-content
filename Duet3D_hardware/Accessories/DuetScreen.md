@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-19T16:39:10.706Z
+date: 2026-01-19T21:28:02.230Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -243,9 +243,9 @@ For a Duet3 IO0 port for UART is as follows:
 
 Several methods are available to update the DuetScreen.
 
-{.is-info}
 > Occasionally, an update may require the whole microSD card to be reflashed. This will be indicated in the release notes.
 > In this case, follow the instructions in the [Flashing a new DuetScreen](#flashing-a-new-duetscreen) section above.
+{.is-info}
 
 ### Using the GUI
 1. Copy the update file (`DuetScreen.tar.gz`) to the root directory of a USB flash drive.
