@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T13:35:38.507Z
+date: 2026-01-20T13:42:01.553Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -204,17 +204,25 @@ For a Duet3 IO0 port for UART is as follows:
 
 ## Tabs {.tabset}
 
-### Dashboard
+### Dashboard 
 
 [![Duet Screen Dashboard showing the Tools, temperature, temperatrue graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank} Text
 
 <p style="clear:both"></p>
 
-[![Duet Screen Dashboard showing the Tools, temperature, temperatrue graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank} Text
+[![Duet Screen Dashboard showing a job selected for printing, including a higher resolution thumbnail and additional information about the job](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png){target=_blank} Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-dashboard-status-01.png](/hardware/duetscreen/duetscreen-dashboard-status-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-01.png){target=_blank} 
+[![Duet Screen Dashboard showing a job printing, with the Status panel now open showing the details of the ongoing print](/hardware/duetscreen/duetscreen-dashboard-multitool-status-printing-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-status-printing-01.png){target=_blank} Text
+
+<p style="clear:both"></p>
+
+[![Duet Screen Dashboard showing a job printing, with the Status panel now open showing the details of the ongoing print](/hardware/duetscreen/duetscreen-dashboard-multitool-status-babystepping-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-status-babystepping-01.png){target=_blank} Text
+
+<p style="clear:both"></p>
+
+[![duetscreen-dashboard-status-01.png](/hardware/duetscreen/duetscreen-dashboard-status-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-01.png){target=_blank} Text
 
 <p style="clear:both"></p>
 
@@ -262,9 +270,11 @@ For a Duet3 IO0 port for UART is as follows:
 
 ### Console
 
-[![duetscreen-console-01.png](/hardware/duetscreen/duetscreen-console-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-console-01.png){target=_blank}Text
+[![The DuetScreen Console window, showing various commands and responses from the Duet](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png){target=_blank}Text
 
 <p style="clear:both"></p>
+
+
 
 
 ### Settings
