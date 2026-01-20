@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T13:27:39.807Z
+date: 2026-01-20T13:30:02.111Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -68,7 +68,7 @@ More information for developers is available on our github repositories (note cu
 
 The DuetScreen 7 has 6 mounting posts, these are M3 tapped, 10mm high posts soldered into the board. In many cases only the outer 4 will be required.
 
-> Do not over torque screws into these mounting posts. They are rated to 0.5 Nm, howeve to mount the screen there is no need to go above 0.2 Nm
+> Do not over torque screws into these mounting posts. They are rated to 0.5 Nm, however to mount the screen there is no need to go above 0.2 Nm
 {.is-info}
 
 
@@ -100,7 +100,7 @@ The DuetScreen can be powered in the following ways:
 The DuetScreen has two USB ports:
 
 **USB-A**: This port is a host port. 
-- Its primary purpose if for USB Flash drives to be conencted, currently for software upgrades and potentially for print files in the future.
+- Its primary purpose is for USB Flash drives to be connected, currently for software upgrades and potentially for print files in the future.
 - It is possible to use it to connect to a Duet3D mainboard, or external wifi module as well.
 
 **USB-C**: This port can be a host or device port.
@@ -117,7 +117,7 @@ The DuetScreen has two USB ports:
 
 ## Connecting to a Duet mainboard
 
-Multiple methods are available to connect the DuetScreen to a mainboard. The recommended method is to use a USB cable. This allows for a consistant connection, not reliant on a wifi network and is the easiest to set up.
+Multiple methods are available to connect the DuetScreen to a mainboard. The recommended method is to use a USB cable. This allows for a consistent connection, not reliant on a wifi network and is the easiest to set up.
 
 The Connection choice is made on the Settings->Connection screen:
 ![duetscreen-settings-connection-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-0.1.png)
@@ -138,9 +138,9 @@ The Connection choice is made on the Settings->Connection screen:
 ### WiFi
 
 * The DuetScreen has a built-in WiFi module. 
-  * If using the built-in WiFi module, set the Connection Methond to Network and the USB-C port to `Internal WiFi`, this is done in the Settings > Connection page in the GUI.
+  * If using the built-in WiFi module, set the Connection Method to Network and the USB-C port to `Internal WiFi`, this is done in the Settings > Connection page in the GUI.
 * The DuetScreen also supports external WiFi modules with the `RTL8188FU` chipset. 
-  * If using an external WiFi module, set the Connection Methond to Network and connect it to the USB-A port on the DuetScreen, or use the USB-C port and set it to `USB-C Host`.
+  * If using an external WiFi module, set the Connection Method to Network and connect it to the USB-A port on the DuetScreen, or use the USB-C port and set it to `USB-C Host`.
   * There are multiple variants of the `RTL8188` chipset. Currently the DuetScreen only supports `RTL8188FU`. Other variants are unlikely to work.
 
 > You might need to reboot the DuetScreen after enabling the WiFi module.
@@ -206,74 +206,74 @@ For a Duet3 IO0 port for UART is as follows:
 
 ### Dashboard
 
-[![duetscreen-dashboard-status-01.png](/hardware/duetscreen/duetscreen-dashboard-status-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-01.png){target=_blank} Text
+[![duetscreen-dashboard-status-01.png](/hardware/duetscreen/duetscreen-dashboard-status-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-01.png){target=_blank} Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-dashboard-status-02.png](/hardware/duetscreen/duetscreen-dashboard-status-02.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-02.png){target=_blank} Text
+[![duetscreen-dashboard-status-02.png](/hardware/duetscreen/duetscreen-dashboard-status-02.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-02.png){target=_blank} Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-dashboard-status-03.png](/hardware/duetscreen/duetscreen-dashboard-status-03.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-03.png){target=_blank} Text
+[![duetscreen-dashboard-status-03.png](/hardware/duetscreen/duetscreen-dashboard-status-03.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-03.png){target=_blank} Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-dashboard-status-04.png](/hardware/duetscreen/duetscreen-dashboard-status-04.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-04.png){target=_blank}Text
+[![duetscreen-dashboard-status-04.png](/hardware/duetscreen/duetscreen-dashboard-status-04.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-04.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-dashboard-status-05.png](/hardware/duetscreen/duetscreen-dashboard-status-05.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-05.png){target=_blank}Text
+[![duetscreen-dashboard-status-05.png](/hardware/duetscreen/duetscreen-dashboard-status-05.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-05.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
 ### Control
 
-[![duetscreen-control-move-01.png](/hardware/duetscreen/duetscreen-control-move-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move-01.png){target=_blank}Text
+[![duetscreen-control-move-01.png](/hardware/duetscreen/duetscreen-control-move-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-control-move-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-control-tooltemp-01.png](/hardware/duetscreen/duetscreen-control-tooltemp-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-tooltemp-01.png){target=_blank}Text
+[![duetscreen-control-tooltemp-01.png](/hardware/duetscreen/duetscreen-control-tooltemp-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-control-tooltemp-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-control-heightmap-01.png](/hardware/duetscreen/duetscreen-control-heightmap-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-heightmap-01.png){target=_blank}Text
+[![duetscreen-control-heightmap-01.png](/hardware/duetscreen/duetscreen-control-heightmap-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-control-heightmap-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-control-fan-01.png](/hardware/duetscreen/duetscreen-control-fan-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-fan-01.png){target=_blank}Text
+[![duetscreen-control-fan-01.png](/hardware/duetscreen/duetscreen-control-fan-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-control-fan-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
 
 ### Files
 
-[![duetscreen-files-macros-01.png](/hardware/duetscreen/duetscreen-files-macros-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-files-macros-01.png){target=_blank}Text
+[![duetscreen-files-macros-01.png](/hardware/duetscreen/duetscreen-files-macros-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-files-macros-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
 
 ### Console
 
-[![duetscreen-console-01.png](/hardware/duetscreen/duetscreen-console-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-console-01.png){target=_blank}Text
+[![duetscreen-console-01.png](/hardware/duetscreen/duetscreen-console-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-console-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
 
 ### Settings
 
-[![duetscreen-settings-general-01.png](/hardware/duetscreen/duetscreen-settings-general-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-general-01.png){target=_blank}Text
+[![duetscreen-settings-general-01.png](/hardware/duetscreen/duetscreen-settings-general-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-settings-general-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-settings-connection-01.png](/hardware/duetscreen/duetscreen-settings-connection-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-connection-01.png){target=_blank}Text
+[![duetscreen-settings-connection-01.png](/hardware/duetscreen/duetscreen-settings-connection-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-settings-connection-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-settings-display-01.png](/hardware/duetscreen/duetscreen-settings-display-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-display-01.png){target=_blank}Text
+[![duetscreen-settings-display-01.png](/hardware/duetscreen/duetscreen-settings-display-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-settings-display-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-settings-developer-01.png](/hardware/duetscreen/duetscreen-settings-developer-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-developer-01.png){target=_blank}Text
+[![duetscreen-settings-developer-01.png](/hardware/duetscreen/duetscreen-settings-developer-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-settings-developer-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
@@ -331,4 +331,5 @@ The (`DuetScreen.tar.gz`) will be available with all releases that do not requir
 
 ## Version 0.2
 - Initial internal development version
+
 
