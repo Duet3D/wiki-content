@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T15:38:10.317Z
+date: 2026-01-20T15:49:52.101Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -252,10 +252,11 @@ The **Jobs** tab shows the list of jobs in the /gcodes folder on the SD card, in
 
 [![Duet Screen Dashboard showing babystepping modal dialogue](/hardware/duetscreen/duetscreen-dashboard-multitool-status-babystepping-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-status-babystepping-01.png){target=_blank} Tapping on the Babystepping setting brings up the Babystepping dialogue box. Adjust babystepping as necessary.
 
+<p style="clear:both"></p>
 
 ### Control
 
-The Control screens give you more fine-grained control over your machine.
+The Control screens give you more fine-grained, manual control over your machine.
 
 [![Duet Screen Contol showing movement controls, with unhomed axes highlighted](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png){target=_blank}The initial **Move** tab gives you control over the axes, typically showing the X, Y and Z axes. Additional axes will show next to the Z axis.
 
@@ -280,7 +281,7 @@ On the right is the extrusion control for the current tool. Set the distance and
 
 <p style="clear:both"></p>
 
-[![Duet Screen Contol showing Bed Levelling controls, with a heightmap heatmap shown](/hardware/duetscreen/duetscreen-control-heightmap-02.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-heightmap-02.png){target=_blank}The **Bed Levelling** screen 
+[![Duet Screen Contol showing Bed Levelling controls, with a heightmap heatmap shown](/hardware/duetscreen/duetscreen-control-heightmap-02.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-heightmap-02.png){target=_blank}The **Bed Levelling** tab presents controls for True Bed Levelling ([G32](/User_manual/Reference/Gcodes/G32){target=_blank}) and Mesh Bed Compensation ([G29](/User_manual/Reference/Gcodes/G29){target=_blank}). Previously saved bed meshes can also be viewed and loaded.
 
 <p style="clear:both"></p>
 
