@@ -2,30 +2,61 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-19T21:28:02.230Z
+date: 2026-01-20T09:00:50.184Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
 ---
 
-[Image of DuetScreen]
-
-
-
+![duetscreen1_medium.jpg](/hardware/duetscreen/duetscreen1_medium.jpg)
 
 # Introduction
 
-The Duet3D DuetScreen is a colour touch screen controller for the Duet ...
+The Duet3D DuetScreen is a family of colour touch screen controllers for Duet 2 and Duet 3 Controllers. It is also compatible with other Controllers running RepRapFirmware. 
+
+The current hardware implementation is the DuetScreen 7, other screen sizes are planned in the future.
+
+The DuetScreen application is built on LVGL and provides a modern machine control UI,  initially focused on 3d printers. Its modular design allows for future versions for other machine types.
 
 # Features
 
 ## Hardware Specification
 
+### DuetScreen 7
+
+| HARDWARE SPECIFICATION ||
+|---|---|
+| **Processor** | Allwinner T113-S3|
+| **Processor features** | Dual-core ARM Cortex-A7, 1.2GHz, 128Mb RAM |
+| **Screen Resolution** | 1024*600 |
+| **Touch Screen** | 	Capacitive |
+| **Networking** | Onboard WiFi module, option for internal or external antenna |
+| **USB** | 2x USB 2.0 ports |
+| **Serial** | 3x UART, 1x USART ^1^|
+| **Other Comms** | 2x I2C ^1^ |
+| **Buzzer** | On Board Piezo Buzzer |
+| **Speaker** | Header to connect an 8 Ohm mono speaker |
+
+Note: ^1^ Not populated in version 1.0 hardware or explicitly supported in the DuetScreen software.
+
 ## Operating limits
 
-## Firmware notes
+|:--|:--|
+| **Input voltage** | 5V to 5.3V|
+| **Input current** | 250-500mA, depending on enabled feature and brightness, excluding external devices on USB ^2^|
+| **5V current on USB** | 500mA total ^2^ |
+| **Maximum ambient temperature** | 70°C |
 
-## Open Source
+Note: ^2^ See the [[powering the screen]](/Duet3D_hardware/Accessories/DuetScreen#powering-the-duetscreen) section below.
+
+## Software and Firmware notes
+
+### DuetScreen 
+The DuetScreen runs a lightweight version of linux based on [[Buildroot]](https://buildroot.org/), this is designed for embedded systems and allows for fast startup. The UI is built on [[LVGL]](https://lvgl.io/).
+
+More information for developers is available on our github repositories (note currently private, will be made public in due course):
+[DuetScreen](https://github.com/Duet3D/DuetScreen)
+[buildroot-duetscreen](https://github.com/Duet3D/buildroot-duetscreen)
 
 # Physical properties
 
@@ -35,18 +66,16 @@ The Duet3D DuetScreen is a colour touch screen controller for the Duet ...
 
 ## 3D model and enclosure
 
-[Enclosure from Andy E?]
+
 
 # Connecting a DuetScreen
 
 ## Powering the DuetScreen
 
-> All the power methods are **NOT** isolated. This means that if you connect the DuetScreen to a mainboard, the mainboard must be powered by the same power supply as the DuetScreen. If you do not do this, you may damage the DuetScreen or the mainboard.
+> All the power methods are **NOT** isolated. This means that if you connect the DuetScreen to a mainboard via USB or UART, the screen and the mainboard should share a common ground. The easiest way to do this is to power the screen from the mainboard. If you do not do this, you may damage the DuetScreen or the mainboard.
 {.is-warning}
 
-> The DuetScreen is designed to be powered by a 5V power supply. If you are using a 12V or 24V power supply, you will need to use a buck converter to step down the voltage to 5V. 
-> **You will likely damage the DuetScreen and any connected devices if you do not do this**.
-{.is-warning}
+
 
 The DuetScreen can be powered in the following ways:
 - **5V_IN**: This is the recommended method. 
