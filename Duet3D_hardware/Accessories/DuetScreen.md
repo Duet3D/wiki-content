@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T09:00:50.184Z
+date: 2026-01-20T10:30:25.170Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -62,9 +62,19 @@ More information for developers is available on our github repositories (note cu
 
 ## Dimensions
 
+![duetscreen_7v1.0_dimensions.png](/hardware/duetscreen/duetscreen_7v1.0_dimensions.png)
+
 ## Mounting
 
-## 3D model and enclosure
+The DuetScreen 7 has 6 mounting posts, these are M3 tapped, 10mm high posts soldered into the board. In many cases only the outer 4 will be required.
+
+> Do not over torque screws into these mounting posts. They are rated to 0.5 Nm, howeve to mount the scrteen there is no need to go above 0.2 Nm
+{.is-info}
+
+
+## 3D model
+
+## Enclosure
 
 
 
@@ -72,7 +82,7 @@ More information for developers is available on our github repositories (note cu
 
 ## Powering the DuetScreen
 
-> All the power methods are **NOT** isolated. This means that if you connect the DuetScreen to a mainboard via USB or UART, the screen and the mainboard should share a common ground. The easiest way to do this is to power the screen from the mainboard. If you do not do this, you may damage the DuetScreen or the mainboard.
+> All the power inputs are **NOT** isolated. This means that if you connect the DuetScreen to a mainboard via USB or UART, the screen and the mainboard should share a common ground. The easiest way to do this is to power the screen from the mainboard. If you do not do this, you may damage the DuetScreen or the mainboard.
 {.is-warning}
 
 
