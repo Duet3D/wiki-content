@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T11:10:02.698Z
+date: 2026-01-20T11:49:54.788Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -74,9 +74,15 @@ The DuetScreen 7 has 6 mounting posts, these are M3 tapped, 10mm high posts sold
 
 ## 3D model
 
+A zip of the STEP file for the screen is here: [duetscreen_7_1.0_step.zip](/hardware/duetscreen/duetscreen_7_1.0_step.zip)
+
 ## Enclosure
 
+### Duet3D reference enclosure
+This enclosure is designed by [chrishamm](https://forum.duet3d.com/user/chrishamm), The Zip file contains both the STEP file and a FreeCAD 1.0 project.
+[case_duetscreen_v1.0.zip](/hardware/duetscreen/case_duetscreen_v1.0.zip)
 
+Tony has made some minor tweaks to Christians design which are available here: [case_duetscreen_v1.0_tony_mod.zip](/hardware/duetscreen/case_duetscreen_v1.0_tony_mod.zip)
 
 # Connecting a DuetScreen
 
@@ -85,21 +91,21 @@ The DuetScreen 7 has 6 mounting posts, these are M3 tapped, 10mm high posts sold
 > All the power inputs are **NOT** isolated. This means that if you connect the DuetScreen to a mainboard via USB or UART, the screen and the mainboard should share a common ground. The easiest way to do this is to power the screen from the mainboard. If you do not do this, you may damage the DuetScreen or the mainboard.
 {.is-warning}
 
-
-
 The DuetScreen can be powered in the following ways:
-- **5V_IN**: This is the recommended method. 
-- **USB-C**: Relies on the connected host/device to supply sufficient power.
+- **5V_IN**: This is the recommended method when connecting over USB or WIFI. 
+- **USB-C**: This is fine when using WIFI.
 - **UART5**: This is a legacy method for compatibility with PanelDue wiring. It is not recommended for new installations.
 
 ## USB Ports
 The DuetScreen has two USB ports:
 
-**USB-A**: This port is also a host port. 
-- It can be used to connect to a Duet3D mainboard, wifi modules, or USB flash drives.
+**USB-A**: This port is a host port. 
+- Its primary purpose if for USB Flash drives to be conencted, currently for software upgrades and potentially for print files in the future.
+- It is possible to use it to connect to a Duet3D mainboard, or external wifi module as well.
 
 **USB-C**: This port can be a host or device port.
-- It can be used to connect to a Duet3D mainboard, wifi modules, or USB flash drives in host mode.
+- It can be used to connect to a Duet3D mainboard in host mode
+- It is possible to use it to add and external wifi modules or USB flash drives in host mode (although the USB A port may be easier)
 - It can be used to connect to a PC in device mode for software debugging.
 - It can be used to power the DuetScreen in either mode (assuming the attached device/host is able to supply power).
 
@@ -107,11 +113,14 @@ The DuetScreen has two USB ports:
 > A Duet3D mainboard CANNOT provide power to the DuetScreen via the USB-C. Always power the DuetScreen via the 5V_IN port when using USB
 {.is-warning}
 
-USB hubs are supported **if they are NOT smart**. A smart hub is one that requires a driver to work. This includes most USB-C hubs. If you are using a USB-C hub, make sure it is a dumb hub. A dumb hub is one that does not require a driver to work. This includes most USB-A hubs. If in doubt, use a USB-A hub.
+> USB hubs are supported **if they are NOT smart**. A smart hub is one that requires a driver to work. This includes most USB-C hubs. If you are using a USB-C hub, make sure it is a dumb hub. A dumb hub is one that does not require a driver to work. This includes most USB-A hubs. If in doubt, use a USB-A hub.{.is-info}
 
 ## Connecting to a Duet mainboard
 
-Multiple methods are available to connect the DuetScreen to a mainboard. The recommended method is to use a USB cable. This allows for the best performance and is the easiest to set up.
+Multiple methods are available to connect the DuetScreen to a mainboard. The recommended method is to use a USB cable. This allows for a consistant connection, not reliant on a wifi network and is the easiest to set up.
+
+The Connection choice is made on the Settings->Connection screen:
+[![duetscreen-settings-connection-01.png](/hardware/duetscreen/duetscreen-settings-connection-01.png)](/hardware/duetscreen/duetscreen-settings-connection-01.png){target=_blank}
 
 ## Tabs {.tabset}
 
