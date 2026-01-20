@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T13:30:02.111Z
+date: 2026-01-20T13:35:38.507Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -206,7 +206,15 @@ For a Duet3 IO0 port for UART is as follows:
 
 ### Dashboard
 
-[![duetscreen-dashboard-status-01.png](/hardware/duetscreen/duetscreen-dashboard-status-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-01.png){target=_blank} Text
+[![Duet Screen Dashboard showing the Tools, temperature, temperatrue graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank} Text
+
+<p style="clear:both"></p>
+
+[![Duet Screen Dashboard showing the Tools, temperature, temperatrue graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank} Text
+
+<p style="clear:both"></p>
+
+[![duetscreen-dashboard-status-01.png](/hardware/duetscreen/duetscreen-dashboard-status-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-01.png){target=_blank} 
 
 <p style="clear:both"></p>
 
