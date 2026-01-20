@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T10:30:25.170Z
+date: 2026-01-20T11:10:02.698Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -68,7 +68,7 @@ More information for developers is available on our github repositories (note cu
 
 The DuetScreen 7 has 6 mounting posts, these are M3 tapped, 10mm high posts soldered into the board. In many cases only the outer 4 will be required.
 
-> Do not over torque screws into these mounting posts. They are rated to 0.5 Nm, howeve to mount the scrteen there is no need to go above 0.2 Nm
+> Do not over torque screws into these mounting posts. They are rated to 0.5 Nm, howeve to mount the screen there is no need to go above 0.2 Nm
 {.is-info}
 
 
