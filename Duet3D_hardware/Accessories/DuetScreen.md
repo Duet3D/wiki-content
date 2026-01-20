@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T12:55:06.453Z
+date: 2026-01-20T13:19:59.209Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -120,7 +120,7 @@ The DuetScreen has two USB ports:
 Multiple methods are available to connect the DuetScreen to a mainboard. The recommended method is to use a USB cable. This allows for a consistant connection, not reliant on a wifi network and is the easiest to set up.
 
 The Connection choice is made on the Settings->Connection screen:
-![duetscreen-settings-connection-0.1_-_copy.png](/hardware/duetscreen/duetscreen-settings-connection-0.1_-_copy.png)
+![duetscreen-settings-connection-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-0.1.png)
 
 ## Tabs {.tabset}
 
