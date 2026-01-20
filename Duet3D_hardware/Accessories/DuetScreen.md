@@ -2,13 +2,13 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T13:42:01.553Z
+date: 2026-01-20T15:09:27.572Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
 ---
 
-![duetscreen1_medium.jpg](/hardware/duetscreen/duetscreen1_medium.jpg)
+![duetscreen1_medium.jpg](/hardware/duetscreen/duetscreen1_medium.jpg =700x)
 
 # Introduction
 
@@ -62,7 +62,7 @@ More information for developers is available on our github repositories (note cu
 
 ## Dimensions
 
-![duetscreen_7v1.0_dimensions.png](/hardware/duetscreen/duetscreen_7v1.0_dimensions.png)
+![duetscreen_7v1.0_dimensions.png](/hardware/duetscreen/duetscreen_7v1.0_dimensions.png =600x)
 
 ## Mounting
 
@@ -202,98 +202,127 @@ For a Duet3 IO0 port for UART is as follows:
 
 # Using a DuetScreen
 
+[![Duet Screen Dashboard showing a job printing, with the Status panel now open showing the details of the ongoing print](/hardware/duetscreen/duetscreen-dashboard-multitool-status-printing-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-status-printing-01.png){target=_blank}The Dashboard is the initial screen shown on the DuetScreen after startup.
+
+All other screens and functions are accessed using the menu buttons on the left of the screen. Some screens have tabs to switch between various controls. Buttons that you can interact with are generally highlighted. In the default theme:
+* **Orange** buttons indicate a button is used to change the physical state of a machine, e.g. turn on a heater or move an axis
+* **Blue** buttons indicate a button that changes a setting
+
+If there is too much information to fit in a display area, for example in the list of tools or the list of jobs, a scroll bar will show on the side of the display area. Tap and hold in the display area, then drag up and down to see the full list.
+
+There is an **Emergency Stop** button in the bottom left corner, and is shown on every screen. To use this, **press and drag it a short distance**. If you press it by mistake, it will not cause an emergency stop, but you will get a message.
+
+On pages with tabs, the DuetScreen will remember the last tab you visited if you navigate away. For example, if you are viewing the Control > Bed Levelling tab, then go to the Console, when you go back to Control, the Bed Levelling tab will be shown.
+
+<p style="clear:both"></p>
+
+
 ## Tabs {.tabset}
 
-### Dashboard 
+### Dashboard
 
-[![Duet Screen Dashboard showing the Tools, temperature, temperatrue graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank} Text
+The Dashboard screen gives you a quick overview of the state of your machine.
 
-<p style="clear:both"></p>
+[![Duet Screen Dashboard showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank}[![Duet Screen Dashboard showing a job selected for printing, including a higher resolution thumbnail and additional information about the job](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png){target=_blank}Tools, heaters and temperatures are displayed on the left. The currently-active tool, if any, will be highlighted. Tools can be set to active or standby, and heaters can be set to active, standby or off. Active and standby temperatures can be set. Tools, beds and chamber heaters are all displayed; tap and hold, then drag up and down to see the full list.
 
-[![Duet Screen Dashboard showing a job selected for printing, including a higher resolution thumbnail and additional information about the job](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png){target=_blank} Text
+Heater temperatures are shown on the graph. Heaters can be individually turned off and on by clicking their name next to the graph.
 
-<p style="clear:both"></p>
+On the right side of the Dashboard screen, there are two tabs.
+The **Jobs** tab shows the list of jobs in the /gcodes folder on the SD card, including sub-folders. The list can be ordered by Name, Date or Size. 
 
-[![Duet Screen Dashboard showing a job printing, with the Status panel now open showing the details of the ongoing print](/hardware/duetscreen/duetscreen-dashboard-multitool-status-printing-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-status-printing-01.png){target=_blank} Text
-
-<p style="clear:both"></p>
-
-[![Duet Screen Dashboard showing a job printing, with the Status panel now open showing the details of the ongoing print](/hardware/duetscreen/duetscreen-dashboard-multitool-status-babystepping-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-status-babystepping-01.png){target=_blank} Text
+Clicking on a job opens a window with more information on the job, with options to print or return to the file list.
 
 <p style="clear:both"></p>
 
-[![duetscreen-dashboard-status-01.png](/hardware/duetscreen/duetscreen-dashboard-status-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-01.png){target=_blank} Text
+[![Duet Screen Dashboard showing a job printing, with the Status panel now open showing the details of the ongoing print](/hardware/duetscreen/duetscreen-dashboard-multitool-status-printing-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-status-printing-01.png){target=_blank} The **Status** tab shows the progress of the current job, if one is running. It reports the current tool position at all times. Speed factor, extrusion factor and babystepping controls can be quickly accessed here.
+
+**Note: changing values in these dialogue boxes takes effect immediately, not when the dialogue box is closed.**
 
 <p style="clear:both"></p>
 
-[![duetscreen-dashboard-status-02.png](/hardware/duetscreen/duetscreen-dashboard-status-02.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-02.png){target=_blank} Text
+[![duetscreen-dashboard-status-04.png](/hardware/duetscreen/duetscreen-dashboard-status-04.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-04.png){target=_blank}Tapping on the Speed percentage brings up the Speed Factor dialogue box. Adjust the speed factor as necessary.
 
 <p style="clear:both"></p>
 
-[![duetscreen-dashboard-status-03.png](/hardware/duetscreen/duetscreen-dashboard-status-03.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-03.png){target=_blank} Text
+[![duetscreen-dashboard-status-03.png](/hardware/duetscreen/duetscreen-dashboard-status-03.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-03.png){target=_blank} Tapping on the Flow percentage brings up the Extrusion Factor dialogue box. Adjust the Extrusion factor as necessary.
 
 <p style="clear:both"></p>
 
-[![duetscreen-dashboard-status-04.png](/hardware/duetscreen/duetscreen-dashboard-status-04.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-04.png){target=_blank}Text
+[![Duet Screen Dashboard showing a job printing, with the Status panel now open showing the details of the ongoing print](/hardware/duetscreen/duetscreen-dashboard-multitool-status-babystepping-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-status-babystepping-01.png){target=_blank} Tapping on the Babystepping setting brings up the Babystepping dialogue box. Adjust babystepping as necessary.
 
-<p style="clear:both"></p>
-
-[![duetscreen-dashboard-status-05.png](/hardware/duetscreen/duetscreen-dashboard-status-05.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-status-05.png){target=_blank}Text
-
-<p style="clear:both"></p>
 
 ### Control
 
-[![duetscreen-control-move-01.png](/hardware/duetscreen/duetscreen-control-move-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-control-move-01.png){target=_blank}Text
+The Control screens give you more fine-grained control over your machine.
+
+[![duetscreen-control-move_unhomed-01.png](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png){target=_blank}The initial **Move** screen gives you control over the axes, typically showing the X, Y and Z axes. Additional axes will show next to the Z axis.
+
+There are buttons for homing all axes, individual axes, and disabling motors (M18). These all have confirmation dialogues, to avoid unexpected movement if you press them by mistake.
+
+If axes are unhomed, the homing buttons will be brighter, and the move buttons can not be used.
 
 <p style="clear:both"></p>
 
-[![duetscreen-control-tooltemp-01.png](/hardware/duetscreen/duetscreen-control-tooltemp-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-control-tooltemp-01.png){target=_blank}Text
+
+[![DuetScreen Control showing axes homed](/hardware/duetscreen/duetscreen-control-move_homed-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move_homed-01.png){target=_blank} Once homed, axes can be moved using the arrow buttons, or +/- buttons. Distance and Feedrate are set at the bottom of the screen.
+
+Babystepping can be adjusted using the controls on the right side.
 
 <p style="clear:both"></p>
 
-[![duetscreen-control-heightmap-01.png](/hardware/duetscreen/duetscreen-control-heightmap-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-control-heightmap-01.png){target=_blank}Text
+[![description](/hardware/duetscreen/duetscreen-control-temperature_multitool-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-temperature_multitool-01.png){target=_blank}The **Tool / Temperature** screen gives granular control over tool states.
+
+The currently-active tool, if any, will be highlighted. Tools can be set to active or standby, and heaters can be set to active, standby or off. Active and standby temperatures, and extrusion factor can be set. Filaments can be set, loaded and unloaded.
+
+On the right is the extrusion control for the current tool. Set the distance and feedrate, then use the Retract and Extrude buttons to move the filament.
 
 <p style="clear:both"></p>
 
-[![duetscreen-control-fan-01.png](/hardware/duetscreen/duetscreen-control-fan-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-control-fan-01.png){target=_blank}Text
+[![description](/hardware/duetscreen/duetscreen-control-heightmap-02.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-heightmap-02.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
+[![description](/hardware/duetscreen/duetscreen-control-fans-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-fans-01.png){target=_blank}Text
+
+<p style="clear:both"></p>
 
 ### Files
 
-[![duetscreen-files-macros-01.png](/hardware/duetscreen/duetscreen-files-macros-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-files-macros-01.png){target=_blank}Text
+[![description](/hardware/duetscreen/duetscreen-files_macros-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-files_macros-0.1.png){target=_blank}Text
 
 <p style="clear:both"></p>
+
+[![description](/hardware/duetscreen/duetscreen-files_jobs-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-files_jobs-0.1.png){target=_blank}Text
+
+<p style="clear:both"></p>
+
 
 
 ### Console
 
-[![The DuetScreen Console window, showing various commands and responses from the Duet](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png){target=_blank}Text
+[![duetscreen-console-01.png](/hardware/duetscreen/duetscreen-console-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-console-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
-
-
 
 
 ### Settings
 
-[![duetscreen-settings-general-01.png](/hardware/duetscreen/duetscreen-settings-general-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-settings-general-01.png){target=_blank}Text
+[![duetscreen-settings-general-01.png](/hardware/duetscreen/duetscreen-settings-general-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-general-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-settings-connection-01.png](/hardware/duetscreen/duetscreen-settings-connection-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-settings-connection-01.png){target=_blank}Text
+[![duetscreen-settings-connection-01.png](/hardware/duetscreen/duetscreen-settings-connection-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-connection-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-settings-display-01.png](/hardware/duetscreen/duetscreen-settings-display-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-settings-display-01.png){target=_blank}Text
+[![duetscreen-settings-display-01.png](/hardware/duetscreen/duetscreen-settings-display-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-display-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
 
-[![duetscreen-settings-developer-01.png](/hardware/duetscreen/duetscreen-settings-developer-01.png =70%x){.align-right}](/hardware/duetscreen/duetscreen-settings-developer-01.png){target=_blank}Text
+[![duetscreen-settings-developer-01.png](/hardware/duetscreen/duetscreen-settings-developer-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-developer-01.png){target=_blank}Text
 
 <p style="clear:both"></p>
+
 
 
 # DuetScreen Software
