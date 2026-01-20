@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T15:49:52.101Z
+date: 2026-01-20T17:11:58.402Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -221,7 +221,7 @@ On pages with tabs, the DuetScreen will remember the last tab you visited if you
 
 ### Dashboard
 
-The Dashboard screen gives you a quick overview of the state of your machine.
+The **Dashboard** screen gives you a quick overview of the state of your machine.
 
 [![Duet Screen Dashboard showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank}Tools, heaters and temperatures are displayed on the left. The currently-active tool, if any, will be highlighted. Tools can be set to active or standby, and heaters can be set to active, standby or off. Active and standby temperatures can be set. Tools, beds and chamber heaters are all displayed; tap and hold, then drag up and down to see the full list.
 
@@ -230,9 +230,11 @@ Heater temperatures are shown on the graph. Heaters can be individually turned o
 On the right side of the Dashboard screen, there are two tabs.
 The **Jobs** tab shows the list of jobs in the /gcodes folder on the SD card, including sub-folders. The list can be ordered by Name, Date or Size. 
 
+**Note:** job thumbnails will only show once you have clicked on the job to show the detail view (see below). Then the thumbnail will show in the Jobs list.
+
 <p style="clear:both"></p>
 
-[![Duet Screen Dashboard showing a job selected for printing, including a higher resolution thumbnail and additional information about the job](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png){target=_blank}Clicking on a job opens a window with more information on the job, with options to print or return to the file list.
+[![Duet Screen Dashboard showing a job selected for printing, including a higher resolution thumbnail and additional information about the job](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-start_print-0.1.png){target=_blank}Clicking on a job opens a window with more information on the job and the thumbnail (if available), with options to print or return to the file list.
 
 <p style="clear:both"></p>
 
@@ -256,7 +258,7 @@ The **Jobs** tab shows the list of jobs in the /gcodes folder on the SD card, in
 
 ### Control
 
-The Control screens give you more fine-grained, manual control over your machine.
+The **Control** screens give you more fine-grained, manual control over your machine.
 
 [![Duet Screen Contol showing movement controls, with unhomed axes highlighted](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png){target=_blank}The initial **Move** tab gives you control over the axes, typically showing the X, Y and Z axes. Additional axes will show next to the Z axis.
 
@@ -291,11 +293,13 @@ On the right is the extrusion control for the current tool. Set the distance and
 
 ### Files
 
-[![description](/hardware/duetscreen/duetscreen-files_macros-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-files_macros-0.1.png){target=_blank}Text
+The **Files** screen has two tabs, allowing access to files that have been uploaded to the SD card.
+
+[![DuetScreen Files screen showing the macros list](/hardware/duetscreen/duetscreen-files_macros-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-files_macros-0.1.png){target=_blank}The **Macros** tab shows the list of macros in the /macros folder on the SD card, including sub-folders. The list can be ordered by Name, Date or Size. Selecting a macro will give you the option of running the macro, or cancelling.
 
 <p style="clear:both"></p>
 
-[![description](/hardware/duetscreen/duetscreen-files_jobs-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-files_jobs-0.1.png){target=_blank}Text
+[![DuetScreen Files screen showing the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-files_jobs-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-files_jobs-0.1.png){target=_blank}The **Jobs** tab shows the list of jobs in the /gcodes folder on the SD card, including sub-folders, with any . The list can be ordered by Name, Date or Size. 
 
 <p style="clear:both"></p>
 
@@ -303,26 +307,32 @@ On the right is the extrusion control for the current tool. Set the distance and
 
 ### Console
 
-[![duetscreen-console-01.png](/hardware/duetscreen/duetscreen-console-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-console-01.png){target=_blank}Text
+[![DuetScreen Console screen showing serial terminal access and Gcode Glossary](/hardware/duetscreen/duetscreen-console-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-console-01.png){target=_blank}The **Console** screen provides a serial terminal for sending Gcode commands directly to the Duet. There is also a Gcode command glossary, with brief descriptions of all Gcodes.
 
 <p style="clear:both"></p>
 
 
 ### Settings
 
-[![duetscreen-settings-general-01.png](/hardware/duetscreen/duetscreen-settings-general-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-general-01.png){target=_blank}Text
+The **Settings** screens allow you to manage and fine tune the DuetScreen for your machine. There are four tabs.
+
+[![DuetScreen Settings General screen showing language, brightness and notification settings](/hardware/duetscreen/duetscreen-settings-general-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-general-01.png){target=_blank}The **General** tab has settings for initial DuetScreen setup, and message notification handling. 
 
 <p style="clear:both"></p>
 
-[![duetscreen-settings-connection-01.png](/hardware/duetscreen/duetscreen-settings-connection-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-connection-01.png){target=_blank}Text
+[![DuetScreen Settings Connection screen showing USB and WiFi connectivity options](/hardware/duetscreen/duetscreen-settings-connection-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-connection-01.png){target=_blank}The **Connection** tab configures which port to use to connect to the Duet mainboard (USB, WiFi or UART). 
+
+If WiFi is selected, it will search for WiFi SSIDs and show a list to connect to. The DuetScreen keeps a list of remembered WiFi SSIDs for easy connection. Once connected, enter the Duet IP address and password (if necessary) to connect.
 
 <p style="clear:both"></p>
 
-[![duetscreen-settings-display-01.png](/hardware/duetscreen/duetscreen-settings-display-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-display-01.png){target=_blank}Text
+[![DuetScreen Settings Display screen showing themes, fonts and colour options](/hardware/duetscreen/duetscreen-settings-display-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-display-01.png){target=_blank}The **Display** tab provides options for the customising the display. There are a number of different themes, and options for changing the fonts and the icon set.
+
+Using the "Custom" theme, you can also change the primary and secondary colour palette.
 
 <p style="clear:both"></p>
 
-[![duetscreen-settings-developer-01.png](/hardware/duetscreen/duetscreen-settings-developer-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-developer-01.png){target=_blank}Text
+[![DuetScreen Settings Developer screen showing advanced debug options](/hardware/duetscreen/duetscreen-settings-developer-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-developer-01.png){target=_blank}The **Developer** tab provides some advanced options to help debug issues with the DuetScreen.
 
 <p style="clear:both"></p>
 
