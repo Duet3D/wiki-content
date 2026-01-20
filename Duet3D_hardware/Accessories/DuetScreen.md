@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T13:19:59.209Z
+date: 2026-01-20T13:27:39.807Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -278,12 +278,14 @@ For a Duet3 IO0 port for UART is as follows:
 <p style="clear:both"></p>
 
 
-# DuetScreen firmware
+# DuetScreen Software
 
-## Flashing a new DuetScreen
-1. Download the latest `sdcard.img` from the release page.
-2. Flash a microSD card with the image by:
-    - either use [balenaEtcher](https://www.balena.io/etcher/) on Windows, Linux and MacOS
+## Writing DuetScreen Software to the SD card
+1. Download the latest `sdcard.img` from the [release page on Github](https://github.com/Duet3D/DuetScreen/tags).
+2. There are multiple programs to write an image file to an SD card:
+
+    - We recommend using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), which has versions for Windows, MacOS, Linux and Raspberry Pi.
+    - or use [balenaEtcher](https://www.balena.io/etcher/) on Windows, Linux and MacOS
     - or use `dd` on Linux and MacOS
    ```
    sudo dd if=sdcard.img of=/dev/sd# bs=4M
@@ -298,6 +300,8 @@ Several methods are available to update the DuetScreen.
 > Occasionally, an update may require the whole microSD card to be reflashed. This will be indicated in the release notes.
 > In this case, follow the instructions in the [Flashing a new DuetScreen](#flashing-a-new-duetscreen) section above.
 {.is-info}
+
+The (`DuetScreen.tar.gz`) will be available with all releases that do not require a full SD card image reflash.
 
 ### Using the GUI
 1. Copy the update file (`DuetScreen.tar.gz`) to the root directory of a USB flash drive.
@@ -319,8 +323,12 @@ Several methods are available to update the DuetScreen.
 
 # Tabs {.tabset}
 
-## Version 1
+## Version 1.0
+- No significant changes from v0.3
 
+## Version 0.3
+- Change non required connectors to DNP
 
-## Version 0.x 
+## Version 0.2
+- Initial internal development version
 
