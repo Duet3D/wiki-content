@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T11:49:54.788Z
+date: 2026-01-20T12:55:06.453Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -120,7 +120,7 @@ The DuetScreen has two USB ports:
 Multiple methods are available to connect the DuetScreen to a mainboard. The recommended method is to use a USB cable. This allows for a consistant connection, not reliant on a wifi network and is the easiest to set up.
 
 The Connection choice is made on the Settings->Connection screen:
-[![duetscreen-settings-connection-01.png](/hardware/duetscreen/duetscreen-settings-connection-01.png)](/hardware/duetscreen/duetscreen-settings-connection-01.png){target=_blank}
+![duetscreen-settings-connection-0.1_-_copy.png](/hardware/duetscreen/duetscreen-settings-connection-0.1_-_copy.png)
 
 ## Tabs {.tabset}
 
@@ -128,8 +128,9 @@ The Connection choice is made on the Settings->Connection screen:
 1. Connect the DuetScreen to the mainboard using a USB cable.
     - **Either** the **USB-A** and **USB-C** ports on the DuetScreen can be used.
     - If using the **USB-C** port, make sure to set the DuetScreen to USB **host mode**.
-2. In the GUI, select the USB connection method.
+2. On the Settings->Connection screen, select the USB connection method.
 
+![duetscreen-settings-connection-usb-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-usb-0.1.png)
 
 > When the DuetScreen detects a USB connection to a Duet3D mainboard, it will automatically send `M575 P0 S0` to configure the mainboard for USB communication.
 {.is-info}
@@ -137,15 +138,13 @@ The Connection choice is made on the Settings->Connection screen:
 ### WiFi
 
 * The DuetScreen has a built-in WiFi module. 
-  * If using the built-in WiFi module, the USB-C port must be set to `Internal WiFi`, this is done in the Settings > Connection page in the GUI.
+  * If using the built-in WiFi module, set the Connection Methond to Network and the USB-C port to `Internal WiFi`, this is done in the Settings > Connection page in the GUI.
 * The DuetScreen also supports external WiFi modules with the `RTL8188FU` chipset. 
-  * If using an external WiFi module, connect it to the USB-A port on the DuetScreen, or use the USB-C port and set it to `USB-C Host`.
+  * If using an external WiFi module, set the Connection Methond to Network and connect it to the USB-A port on the DuetScreen, or use the USB-C port and set it to `USB-C Host`.
   * There are multiple variants of the `RTL8188` chipset. Currently the DuetScreen only supports `RTL8188FU`. Other variants are unlikely to work.
 
 > You might need to reboot the DuetScreen after enabling the WiFi module.
 {.is-info}
-
-
 
 #### Connect the DuetScreen to a WiFi network
 
@@ -174,6 +173,8 @@ network={
 2. In the GUI, select the WiFi connection method.
 4. Enter the IP address of the mainboard.
 
+![duetscreen-settings-connection-wifi-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-wifi-0.1.png)
+
 ### UART
 
 > This method is for legacy support only to provide an easy upgrade path for PanelDue users. It is not recommended for new installations.
@@ -182,8 +183,11 @@ network={
 
 1. Connect the DuetScreen to the mainboard using a UART cable.
    - Use connector `UART Duet` on the DuetScreen.
-2. In the GUI, select the UART connection method.
+2. In the GUI, select the UART connection method, the USB-C Mode selection is irrelevant in this case.
 3. Set the baud rate on the mainboard to `115200`. Use `M575 P1 S1 B115200` in config.g, this is similar to connecting a PanelDue, other than the default baud rate is 115200
+
+
+![duetscreen-settings-connection-usb-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-uart-0.1.png)
 
 #### Wiring
 For a Duet3 IO0 port for UART is as follows:
