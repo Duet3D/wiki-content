@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-20T17:52:49.635Z
+date: 2026-01-21T09:13:32.648Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -31,7 +31,7 @@ The DuetScreen application is built on LVGL and provides a modern machine contro
 | **Screen Resolution** | 1024*600 |
 | **Touch Screen** | 	Capacitive |
 | **Networking** | Onboard WiFi module, option for internal or external antenna |
-| **USB** | 2x USB 2.0 ports |
+| **USB** | 1x USB-A and 1x USB-C 2.0 ports |
 | **Serial** | 3x UART, 1x USART ^1^|
 | **Other Comms** | 2x I2C ^1^ |
 | **Buzzer** | On Board Piezo Buzzer |
@@ -214,7 +214,7 @@ All other screens and functions are accessed using the menu buttons on the left 
 * **Orange** buttons indicate a button is used to change the physical state of a machine, e.g. turn on a heater or move an axis
 * **Blue** buttons indicate a button that changes a setting
 
-If there is too much information to fit in a display area, for example in the list of tools or the list of jobs, a scroll bar will show on the side of the display area. Tap and hold in the display area, then drag up and down to see the full list.
+If there is too much information to fit in a display area, for example in the list of tools or the list of jobs, a scroll bar will show on the side of the display area. Drag the list up and down to see the full list.
 
 There is an **Emergency Stop** button in the bottom left corner, and is shown on every screen. To use this, **press and drag it a short distance**. If you press it by mistake, it will not cause an emergency stop, but you will get a message.
 
@@ -229,7 +229,7 @@ On pages with tabs, the DuetScreen will remember the last tab you visited if you
 
 The **Dashboard** screen gives you a quick overview of the state of your machine.
 
-[![DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank}Tools, heaters and temperatures are displayed on the left. The currently-active tool, if any, will be highlighted. Tools can be set to active or standby, and heaters can be set to active, standby or off. Active and standby temperatures can be set. Tools, beds and chamber heaters are all displayed; tap and hold, then drag up and down to see the full list.
+[![DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank}Tools, heaters and temperatures are displayed on the left. The currently-active tool, if any, will be highlighted. Tools can be set to active or standby, and heaters can be set to active, standby or off. Active and standby temperatures can be set. Tools, beds and chamber heaters are all displayed; drag up and down to see the full list.
 
 Heater temperatures are shown on the graph. Heaters can be individually turned off and on by clicking their name next to the graph.
 
@@ -313,7 +313,7 @@ The **Files** screen has two tabs, allowing access to files that have been uploa
 
 ### Console
 
-[![DuetScreen Console screen showing serial terminal access and Gcode Glossary](/hardware/duetscreen/duetscreen-console-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-console-01.png){target=_blank}The **Console** screen provides a serial terminal for sending Gcode commands directly to the Duet. There is also a Gcode command glossary, with brief descriptions of all Gcodes.
+[![DuetScreen Console screen showing serial terminal access and Gcode Glossary](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png){target=_blank}The **Console** screen provides a serial terminal for sending Gcode commands directly to the Duet. There is also a Gcode command glossary, with brief descriptions of all Gcodes.
 
 <p style="clear:both"></p>
 
@@ -338,7 +338,7 @@ Using the "Custom" theme, you can also change the primary and secondary colour p
 
 <p style="clear:both"></p>
 
-[![DuetScreen Settings Developer screen showing advanced debug options](/hardware/duetscreen/duetscreen-settings-developer-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-developer-01.png){target=_blank}The **Developer** tab provides some advanced options to help debug issues with the DuetScreen.
+[![DuetScreen Settings Developer screen showing advanced debug options](/hardware/duetscreen/duetscreen-settings-developer-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-developer-01.png){target=_blank}The **Developer** tab provides some advanced options for debugging etc.
 
 <p style="clear:both"></p>
 
