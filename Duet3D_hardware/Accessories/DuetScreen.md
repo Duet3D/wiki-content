@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-21T09:13:32.648Z
+date: 2026-01-29T11:59:57.811Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -85,6 +85,11 @@ This enclosure is designed by [chrishamm](https://forum.duet3d.com/user/chrisham
 Tony has made some minor tweaks to Christians design which are available here: [case_duetscreen_v1.0_tony_mod.zip](/hardware/duetscreen/case_duetscreen_v1.0_tony_mod.zip){target=_blank}
 
 # Connecting a DuetScreen
+
+## Wiring Diagram
+
+[![Wiring Diagram for the DuetScreen 7 v1.0 shpwing the pinouts of the connectors and connector labels](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png)](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png){target=_blank}!
+
 
 ## Powering the DuetScreen
 
