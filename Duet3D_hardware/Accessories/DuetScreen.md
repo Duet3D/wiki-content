@@ -1,8 +1,8 @@
 ---
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
-published: false
-date: 2026-01-29T12:42:50.259Z
+published: true
+date: 2026-01-29T15:23:12.921Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
