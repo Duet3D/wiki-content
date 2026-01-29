@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: false
-date: 2026-01-29T12:34:18.979Z
+date: 2026-01-29T12:38:45.597Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -13,7 +13,7 @@ dateCreated: 2026-01-16T14:53:50.598Z
 
 # Introduction
 
-The Duet3D DuetScreen is a family of colour touch screen controllers for Duet 2 and Duet 3 Controllers. It is also compatible with other Controllers running RepRapFirmware. 
+The Duet3D DuetScreen is a family of colour touch screen controllers for Duet 2 and Duet 3 based machines. It is also compatible with other Controllers running RepRapFirmware. 
 
 The current hardware implementation is the DuetScreen 7, other screen sizes are planned in the future.
 
