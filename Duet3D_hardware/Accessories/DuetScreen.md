@@ -2,13 +2,14 @@
 title: Duet3D DuetScreen
 description: 
 published: false
-date: 2026-01-29T11:59:57.811Z
+date: 2026-01-29T12:27:54.827Z
 tags: 
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
 ---
 
-[![Image of DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen1_medium.jpg =700x)](/hardware/duetscreen/duetscreen1_medium.jpg){target=_blank}
+[![Image of DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen_7_v0.1_display_s.jpg )](/hardware/duetscreen/duetscreen_7_v0.1_display_s.jpg){target=_blank}
+
 
 # Introduction
 
