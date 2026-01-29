@@ -2,13 +2,13 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-01-29T12:30:10.013Z
+date: 2026-01-29T12:32:39.541Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
 ---
 
-[![Image of DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen_7_v0.1_display_s.jpg )](/hardware/duetscreen/duetscreen_7_v0.1_display_s.jpg){target=_blank}
+[![Image of DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen_7_v0.1_display_s_cropped.jpg)](/hardware/duetscreen/duetscreen_7_v0.1_display_s_cropped.jpg){target=_blank}
 
 
 # Introduction
