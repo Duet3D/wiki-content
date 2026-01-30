@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2025-09-11T16:05:51.984Z
+date: 2026-01-30T16:41:26.918Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -333,7 +333,22 @@ When using a macro as custom gcode, do not use G, M, N, or T as parameters in a 
 
 *These are supported from RRF 3.5*
 
-A sequence of expressions exclosed in { } and separated by commas is an array expression. A trailing comma before the closing } is required when constructing a 1-element array and optional when there are two or more elements. The types of the elements do not all need to be the same. Examples:
+**RRF 3.7.0 and later**
+
+A sequence of expressions exclosed in `[ ]` and separated by commas is an array expression. It may have zero, one or more elements. A trailing command is permitted and ignored if there is at least one element. The types of the elements do not all need to be the same. Examples:
+
+`[]` is an empty array
+`[1,2,3]` is an array of three elements
+`[1,2,3,]` is an array of three elements with the same value as the previous example
+`[pi,]` is an array of one element
+`[pi]` is an array of one element with the same value as the previous example
+`[1,[2,3,4],5]` is an array of three elements, whose second value is itself an array
+
+The array expression format supported in RRF 3.5.x and 3.6.x are also supported.
+
+**RRF 3.5.x and 3.6.x**
+
+A sequence of expressions exclosed in `{ }` and separated by commas is an array expression. A trailing comma before the closing } is required when constructing a 1-element array and optional when there are two or more elements. There must be at least one element. The types of the elements do not all need to be the same. Examples:
 
 `{1,2,3}` is an array of three elements
 `{1,2,3,}` is an array of three elements with the same value as the previous example
@@ -341,9 +356,11 @@ A sequence of expressions exclosed in { } and separated by commas is an array ex
 `{pi}` is not an array, it is a simple value
 `{1,{2,3,4},5}` is an array of three elements, whose second value is itself an array
 
+**All RRF versions**
+
 The unary prefix operator `#` can be applied to a value of array type to get the number of elements, and the indexing operator `[ ]` can be applied to extract a single element.
 
-Note, once created arrays are fixed length. An array variable must be reassigned to a new array to change its length.
+Once created arrays have fixed length so you cannot assign values to out-of-bounds elements. An array variable can be reassigned with a new array value to change its length.
 
 ## Unary prefix operators
 
