@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2026-01-30T16:41:26.918Z
+date: 2026-01-30T16:43:40.028Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -344,7 +344,7 @@ A sequence of expressions exclosed in `[ ]` and separated by commas is an array 
 `[pi]` is an array of one element with the same value as the previous example
 `[1,[2,3,4],5]` is an array of three elements, whose second value is itself an array
 
-The array expression format supported in RRF 3.5.x and 3.6.x are also supported.
+The array expression format of RRF 3.5.x and 3.6.x is also supported.
 
 **RRF 3.5.x and 3.6.x**
 
