@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-01-05T17:20:35.223Z
+date: 2026-02-06T11:28:52.604Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3887,6 +3887,8 @@ M300 C"io5.out"
 See also [Macros, sounds section](/User_manual/Tuning/Macros#sounds){target=_blank}
 
 ## M301: Set PID parameters
+
+*This comand is deprecated and will be removed in a future version of RepRapFirmware*
 
 ### Parameters
 
