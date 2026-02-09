@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-02-06T11:28:52.604Z
+date: 2026-02-09T17:17:52.012Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4303,10 +4303,10 @@ M308 S1 P"spi.cs1" Y"rtd-max31865"                    ; configure sensor 1 as PT
 
 #### Thermocouple
 
-##### Additional parameters for MAX31856-based thermocouple sensors
+##### Additional parameters for MAX31856 and MAX31855-based thermocouple sensors
 
 * **Y"sensor_type"** The sensor and interface type: "thermocouple-max31855" or "thermocouple-max31856" 
-* **K"c"** The thermocouple type letter, default K
+* **K"c"** The thermocouple type letter, default K. Supported only on MAX31856-based sensors. MAX31855-based sensors support a single thermocouple type depending on which variant of the MAX31855 chip is used. Duet thermocouple daughter boards using MAX31855 always support type K.
 * **Fnn** (where nn is 50 or 60) The local mains frequency. Readings will be timed to optimise rejection of interference at this frequency.
 
 ##### Thermocouple examples
