@@ -2,7 +2,7 @@
 title: Duet 3 INDX Toolboard
 description: The Duet 3 INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-09T12:52:00.317Z
+date: 2026-02-09T12:54:02.475Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -89,12 +89,12 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 
 | Function | Pin location | RRF3 Pin name | Notes |
 |---|---|---|
-| Outputs | FAN (on VF board) | hsfan | VIN voltage |
+| Outputs | FAN (on VF board) | hsfan | Heatsink fan, VIN voltage |
 | ^^ | ^^ | hsfan.tach | Pulled up to +5V |
-| ^^ | FAN (on MCU board) | out1 | VIN voltage |
+| ^^ | FAN (on MCU board) | out1 | Intended for print cooling fan,  VIN voltage |
 | ^^ | ^^ | out1.tach | Pulled up to +5V |
-| ^^ | LED | led | 5V drive for WS2812 or simiar LED strings |
-| Inputs | IO_0 | io0.in | 3.3V power, 30V tolerant |
+| ^^ | LED | led | 5V drive for WS2812 or similar LED strings |
+| Inputs | IO_0 | io0 .in | 3.3V power, 30V tolerant |
 | ^^ |  | boardtemp | MCU board temperature |
 | ^^ | Coil FFC | coiltemp | Scanning Z probe coil temperature |
 
