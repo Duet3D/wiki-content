@@ -2,7 +2,7 @@
 title: Duet 3 INDX Toolboard
 description: The Duet 3 INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-09T12:40:11.654Z
+date: 2026-02-09T12:52:00.317Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -55,6 +55,19 @@ The following jumper blocks are provided:
 - 2-pin CAN_RESET jumper. Only install this if the firmware running on the board is non-functioning. When the board is powered up with this jumper installed, it tells the bootloader to reset the CAN address to default (121) and then fetch and install new firmware even if firmware is already installed.
 - 2-pin CAN_TERM jumper. Install this if the board is the last board at one end of the CAN bus.
 
+## LED indications
+
+LEDs are provided to indicate the following:
+
+| Label | Colour | Function |
+|--|--|--|
+| **VIN** | Blue | Indicates presence of VIN power (VIN should be externally fused) |
+| **3.3V** | Green | Indicates presence of 3.3V power from on-board regulator |
+| **ACT / LED 1** | Green | Indicates activity on the CAN-FD bus |
+| **STATUS / LED 0** | Red | Status LED. See description below |
+
+**Status LED:** In normal use, the red LED flashes slowly (approx 1Hz) in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
+
 ## Software notes
 The firmware file for this board is called Duet3Firmware_TOOLINDX.bin.
 
@@ -66,9 +79,24 @@ The default CAN address (which is also the CAN address after the reset jumper is
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assemble is not fully inserted into the heater coil or is misaligned, this can result in the temperture being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flaammable material to enter the heater coil area.
 
-### Pins available for use in RepRapFirmware configuration commands:
+## Pin names
 
-TODO
+For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names).
+
+RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of gcode commands, eg M574, M558, M950.
+
+The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mainboard.
+
+| Function | Pin location | RRF3 Pin name | Notes |
+|---|---|---|
+| Outputs | FAN (on VF board) | hsfan | VIN voltage |
+| ^^ | ^^ | hsfan.tach | Pulled up to +5V |
+| ^^ | FAN (on MCU board) | out1 | VIN voltage |
+| ^^ | ^^ | out1.tach | Pulled up to +5V |
+| ^^ | LED | led | 5V drive for WS2812 or simiar LED strings |
+| Inputs | IO_0 | io0.in | 3.3V power, 30V tolerant |
+| ^^ |  | boardtemp | MCU board temperature |
+| ^^ | Coil FFC | coiltemp | Scanning Z probe coil temperature |
 
 ### Configuring the induction heater and IR sensor
 
