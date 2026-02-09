@@ -2,7 +2,7 @@
 title: Duet 3 INDX Toolboard
 description: The Duet 3 INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-09T10:31:43.811Z
+date: 2026-02-09T10:32:23.990Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -51,7 +51,7 @@ If you need to disconnect and reconnect the FFCs linking the two boards, be awar
 
 ### Jumpers
 The following jumper blocks are provided:
-- 3x2-pin USB/CAN select jumper block. When running RepRapFirmware, do not install any jumnpers in this block. Jumpers should only be inserted when running alternaive firmwarer that uses USB communications instead of CAN-FD.
+- 3x2-pin USB/CAN select jumper block. When running RepRapFirmware, do not install any jumnpers in this block. Jumpers should only be inserted when running alternaive firmware that uses USB communications instead of CAN-FD.
 - 2-pin CAN_RESET jumper. Only install this if the firmware running on the board is non-functioning. When the board is powered up with this jumper installed, it tells the bootloader to reset the CAN address to default (121) and then fetch and install new firmware even if firmware is already installed.
 - 2-pin CAN_TERM jumper. Install this if the board is the last board at one end of the CAN bus.
 
