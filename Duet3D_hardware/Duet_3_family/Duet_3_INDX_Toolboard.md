@@ -2,7 +2,7 @@
 title: Duet 3 INDX Toolboard
 description: The Duet 3 INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-09T13:16:27.748Z
+date: 2026-02-09T13:19:29.907Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -113,8 +113,8 @@ M308 S6 Y"thermopile_tpis.ambient" P"121.S4.2" A"Hot end surround"         ; con
 M950 H1 C"121.nozzleheat" T4
 
 ```
-The heatsink fan must be configured to run at full PWM when the nozzle is significantly above ambient temperature (e.g. above 50C). Here are suitable commands to configure it as fan #1, assuming again that the nozzle temperature sensor is sensor #4:
+The heatsink fan must be configured to run at full PWM when the nozzle is significantly above ambient temperature (e.g. above 40C). Here are suitable commands to configure it as fan #1, assuming again that the nozzle temperature sensor is sensor #4:
 ```
 M950 F1 C"121.out0+out0.tach"               ; heatsink fan
-M106 P1 H4 T50 S1                           ; turn on when nozzle temperature is >= 50C
+M106 P1 H4 T40 S1                           ; turn on when nozzle temperature is >= 50C
 ```
