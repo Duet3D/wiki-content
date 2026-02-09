@@ -2,7 +2,7 @@
 title: Duet 3 INDX Toolboard
 description: The Duet 3 INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-09T10:22:49.466Z
+date: 2026-02-09T10:31:43.811Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -59,6 +59,10 @@ The following jumper blocks are provided:
 The firmware file for this board is called Duet3Firmware_TOOLINDX.bin.
 
 The bootloader file for this board is called Duet3Bootloader-SAME5x_composite.bin.
+
+The minimum firmware version for this board is 3.7.0-alpha dated 2026-02-09 or later. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
+
+**CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assemble is not fully inserted into the heater coil or is misaligned, this can result in the temperture being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flaammable material to enter the heater coil area.
 
 ### Pins available for use in RepRapFirmware configuration commands:
 
