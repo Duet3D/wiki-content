@@ -2,7 +2,7 @@
 title: Duet 3 INDX Toolboard
 description: The Duet 3 INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-09T12:54:02.475Z
+date: 2026-02-09T13:09:09.479Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -100,6 +100,17 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 
 ### Configuring the induction heater and IR sensor
 
-TODO
+The thermopile sensor is configured using the M308 command with sensor type `"thermopile_tpis.object"` and pin name `"i2c"`. As well as the main output which provides nozzle temperature, it has two additional outputs, which may be used for monitoring. Auxiliary output 1 has type `"thermopile_tpis.ambient"` and is the ambient temperature reported by the thermopile sensor. Auxiliary output 2 has type `"thermopile_tpis.environment"` and is the temperature of the nozzle surround reported by the auxiliary thermistor.
 
+The inductive heater is configured using the M950 command with pin name "nozzleheat". The temperature sensor number in the M950 command but refer to the thermopile sensor primary output.
+
+Example configuration, using sensor #4 for the nozzle temperature and heater #1, and the default CAN address (121):
+
+```
+M308 S4 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile" T100000 B4311   ; configure thermopile main output
+M308 S5 Y"thermopile_tpis.ambient" P"121.S4.1" A"Thermopile ambient"       ; configure thermopile ambient output (optional)
+M308 S6 Y"thermopile_tpis.ambient" P"121.S4.2" A"Hot end surround"         ; configure nozzle environment output (optional)
+M950 H1 C"121.nozzleheat" T4
+
+```
 
