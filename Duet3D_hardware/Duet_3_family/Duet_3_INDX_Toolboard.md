@@ -2,7 +2,7 @@
 title: Duet 3 INDX Toolboard
 description: The Duet 3 INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-09T13:09:09.479Z
+date: 2026-02-09T13:16:27.748Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -79,7 +79,7 @@ The default CAN address (which is also the CAN address after the reset jumper is
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assemble is not fully inserted into the heater coil or is misaligned, this can result in the temperture being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flaammable material to enter the heater coil area.
 
-## Pin names
+### Pin names
 
 For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names).
 
@@ -98,7 +98,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ |  | boardtemp | MCU board temperature |
 | ^^ | Coil FFC | coiltemp | Scanning Z probe coil temperature |
 
-### Configuring the induction heater and IR sensor
+### Configuring the induction heater, IR temperature sensor and heatsink fan
 
 The thermopile sensor is configured using the M308 command with sensor type `"thermopile_tpis.object"` and pin name `"i2c"`. As well as the main output which provides nozzle temperature, it has two additional outputs, which may be used for monitoring. Auxiliary output 1 has type `"thermopile_tpis.ambient"` and is the ambient temperature reported by the thermopile sensor. Auxiliary output 2 has type `"thermopile_tpis.environment"` and is the temperature of the nozzle surround reported by the auxiliary thermistor.
 
@@ -113,4 +113,8 @@ M308 S6 Y"thermopile_tpis.ambient" P"121.S4.2" A"Hot end surround"         ; con
 M950 H1 C"121.nozzleheat" T4
 
 ```
-
+The heatsink fan must be configured to run at full PWM when the nozzle is significantly above ambient temperature (e.g. above 50C). Here are suitable commands to configure it as fan #1, assuming again that the nozzle temperature sensor is sensor #4:
+```
+M950 F1 C"121.out0+out0.tach"               ; heatsink fan
+M106 P1 H4 T50 S1                           ; turn on when nozzle temperature is >= 50C
+```
