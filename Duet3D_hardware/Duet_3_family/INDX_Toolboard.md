@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: TheINDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-10T13:36:52.052Z
+date: 2026-02-10T13:44:46.250Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -10,7 +10,9 @@ dateCreated: 2026-02-09T09:34:17.141Z
 
 # INDX Tool Board
 
-INDX is a trademark of Bondtech [TODO choose the correct wording here]
+This page is about using the Bondtech INDX tool board with Duet 3 or other electronics running RepRapFirmware.
+
+[TODO insert INDX trade mark info here]
 
 ## Hardware notes
 
