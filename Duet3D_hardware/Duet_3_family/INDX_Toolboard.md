@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: TheINDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-10T14:11:30.363Z
+date: 2026-02-10T14:25:13.510Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -30,7 +30,7 @@ This page is about using the Bondtech INDX tool board with Duet 3 or other elect
 | **Stepper driver** | Maximum 1.0A peak current, 0.71A RMS
 | **FAN outoput on MCU board maximum current** | TBD |
 | **Input power voltage** | 24V +/- 2V |
-| **Power input max current** | 4A maximum)
+| **Power input max current** | 4A
 | **Inputs** | IO_0 is 30V-tolerant |
 | **Fuses** | None onboard. Use INDX Link board (5A fuse fitted), Duet 3 Tool Distribution Board (5A fuse fitted), or if directly connected to a power supply use an inline fuse holder with 5A or lower fuse depending on required current draw. |
 | **5V external load** | TBD |
