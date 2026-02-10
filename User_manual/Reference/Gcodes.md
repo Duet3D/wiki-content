@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-02-09T17:17:52.012Z
+date: 2026-02-10T15:07:55.454Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2444,7 +2444,7 @@ Request the temperature of the current extruder and the build base in degrees Ce
 * **Lnnn** Set the minimum fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases) when a non-zero fan speed is requested.
 * **Xnnn** Set the maximum fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases) when a non-zero fan speed is requested.
 * **Bnnn** Blip time - fan will be run at full PWM for this number of seconds when started from standstill. Default is B0.1 which means that there is a 100ms burst after starting the fan.
-* **Hnn:nn:nn...** Enable thermostatic mode and select sensor monitored. H-1 disables thermostatic mode. Relates to the sensor number(s) created by M308.
+* **Hnn:nn:nn...** Enable thermostatic mode and select sensor(s) monitored. H-1 disables thermostatic mode. Relates to the sensor number(s) created by M308.
 * **Rnnn** Restore fan speed to the value it has when the print was paused (R1) or the last time the fan speed was set and no P parameter was provided (R2).
 * **Tnnn** or **Tnn:nn** Set thermostatic mode trigger temperature, or temperature control range
 * **C"name"** Set custom name for this fan (supported in RRF >= 2.01)
