@@ -2,7 +2,7 @@
 title: Duet 3 INDX Toolboard
 description: The Duet 3 INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-09T13:19:29.907Z
+date: 2026-02-10T13:35:54.447Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -16,7 +16,7 @@ INDX is a trademark of Bondtech [TODO choose the correct wording here]
 
 The INDX tool board comprises two PCBs connected by two 20-way FFCs (Flexible Flat Cables). These will normally be supplied ready-mounted on a tool head.
 
-The VF board is connected to the induction heater, IR temperature sensor, heatsink fan, and load cell. Do not make any other connectons to the VF board, or remove the existing connections.
+The VF board is connected to the induction heater, IR temperature sensor, heatsink fan, and load cell. Do not make any other connectons to the VF board, or remove the existing connections. The heatsink fan defaults to running continuously; therefore it will run whenever no firmware is installed on the board, or firmware is being updated, or no configuration commands have been received from the main board.
 
 The MCU board is connected to the rest of a Duet/RepRapFirmware system using a single XT30 2+2 connector. This provides power to the board (thick red and black wires, positive and ground respectively) and CAN (yellow and white wires, CANH and CANL respectively).
 
@@ -51,7 +51,7 @@ If you need to disconnect and reconnect the FFCs linking the two boards, be awar
 
 ### Jumpers
 The following jumper blocks are provided:
-- 3x2-pin USB/CAN select jumper block. When running RepRapFirmware, do not install any jumnpers in this block. Jumpers should only be inserted when running alternaive firmware that uses USB communication instead of CAN-FD.
+- 3x2-pin USB/CAN select jumper block. When running RepRapFirmware, do not install any jumnpers in this block. Jumpers should only be inserted when running alternative firmware that uses USB for communication with the rest of the system instead of CAN-FD.
 - 2-pin CAN_RESET jumper. Only install this if the firmware running on the board is non-functioning. When the board is powered up with this jumper installed, it tells the bootloader to reset the CAN address to default (121) and then fetch and install new firmware even if firmware is already installed.
 - 2-pin CAN_TERM jumper. Install this if the board is the last board at one end of the CAN bus.
 
@@ -66,7 +66,7 @@ LEDs are provided to indicate the following:
 | **ACT / LED 1** | Green | Indicates activity on the CAN-FD bus |
 | **STATUS / LED 0** | Red | Status LED. See description below |
 
-**Status LED:** In normal use, the red LED flashes slowly (approx 1Hz) in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
+**Status LED:** In normal use, the red LED flashes slowly (approx 1Hz) in sync with the main board to indicate that it has CAN time sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
 
 ## Software notes
 The firmware file for this board is called Duet3Firmware_TOOLINDX.bin.
@@ -85,9 +85,9 @@ For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_
 
 RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of gcode commands, eg M574, M558, M950.
 
-The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mainboard.
+The Duet 3 series uses the pin name format *expansion-board-address.pin-name* to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with *0.* refers to a pin on the Duet 3 Mainboard.
 
-| Function | Pin location | RRF3 Pin name | Notes |
+| Function | Pin location | RepRapFirmware pin name | Notes |
 |---|---|---|
 | Outputs | FAN (on VF board) | hsfan | Heatsink fan, VIN voltage |
 | ^^ | ^^ | hsfan.tach | Pulled up to +5V |
@@ -95,7 +95,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | out1.tach | Pulled up to +5V |
 | ^^ | LED | led | 5V drive for WS2812 or similar LED strings |
 | Inputs | IO_0 | io0 .in | 3.3V power, 30V tolerant |
-| ^^ |  | boardtemp | MCU board temperature |
+| ^^ | internal | boardtemp | MCU board temperature |
 | ^^ | Coil FFC | coiltemp | Scanning Z probe coil temperature |
 
 ### Configuring the induction heater, IR temperature sensor and heatsink fan
