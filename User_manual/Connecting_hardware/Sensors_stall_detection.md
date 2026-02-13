@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2025-02-18T12:47:43.570Z
+date: 2026-02-13T11:29:21.705Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -17,22 +17,21 @@ dateCreated: 2021-10-22T13:05:41.274Z
 
 The **TMC5160/2160** drivers (Duet 3 MB6HC and Duet 3 EB3HC), **TMC2209** drivers (Duet 3 Mini 5+, Duet 3 Toolboard 1LC),  **TMC2240** drivers (Duet 3 Roto Toolboard) and Trinamic **TMC2660** drivers (Duet 2 WiFi / Ethernet) support the stallGuard^TM^ feature. This feature allows the driver to detect motor stalls under some circumstances. Stall detection may be useful for detecting when a motor has skipped steps due to the nozzle hitting an obstruction, and for homing the printer without using endstop switches. RepRapFirmware 1.20 and later provides facilities for configuring and using stall detection.
 
-**The TMC2224 drivers on the Duet Maestro do not support stall detection.**
-
-Currently (RRF 3.4.5), stall detection on Duet 3 CAN-FD expansion boards cannot be used for homing. See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations). This limitation is due to be removed in RRF 3.6
-
 ## Table of features
 
 Below are the various modes provided by the Trinamic stepper drivers used in Duet3D hardware.
 
 | Board | Driver chip and Datasheet link | Microstep Interpolation | stealthChop | spreadCycle | stallGuard | coolStep |
 |:---|:---|
-| Duet 3 MB6HC / Duet 3 EB3HC | [TMC2160](https://www.analog.com/en/products/tmc2160.html) or [TMC5160](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC5160A_Datasheet_Rev1.14.pdf) | Y | Y (SC2) | Y | Y (SG2) | Y |
+| Duet 3 Mainboard 6HC| [TMC2160](https://www.analog.com/en/products/tmc2160.html) or [TMC5160](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC5160A_Datasheet_Rev1.14.pdf) | Y | Y (SC2) | Y | Y (SG2) | Y |
+| Duet 3 Expansion 3HC | [TMC2160](https://www.analog.com/en/products/tmc2160.html) | Y | Y (SC2) | Y | Y (SG2) | Y |
+| Duet 3 Expansion 1HCL | [TMC2160](https://www.analog.com/en/products/tmc2160.html) | Y | Y (SC2) | Y | Y (SG2) | Y |
+| Duet 3 Motor 23CL | [TMC2160](https://www.analog.com/en/products/tmc2160.html) | Y | Y (SC2) | Y | Y (SG2) | Y |
 | Duet 3 Mini 5+ | [TMC2209](https://www.analog.com/en/products/TMC2209.html) | Y | Y (SC2) | Y | Y (SG4) | Y |
 | Duet 3 Roto Toolboard | [TMC2240](https://www.analog.com/en/products/tmc2240.html) | Y | Y (SC2) | Y | Y (SG4) | Y |
 | Duet 3 Toolboard 1LC | [TMC2209](https://www.analog.com/en/products/TMC2209.html) | Y | Y (SC2) | Y | Y (SG4) | Y |
+
 | Duet 2 WiFi  and Ethernet | [TMC2660](https://www.analog.com/en/products/TMC2660.html) | 16x only | N | Y | Y (SG2) | Y |
-| Duet 2 Maestro | [TMC2224](https://www.analog.com/en/products/tmc2224.html) | Y | Y (SC2) | Y | **N** | N |
 
 
 # Limitations of stall detection
@@ -63,7 +62,7 @@ Stall detection is configured using the [M915](/User_manual/Reference/Gcodes/M91
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200 (try 400 for 0.9deg motors)
 * **Rn** Action to take on detecting a stall from any of these drivers, see 'Action to take on detecting a stall' section below.
 
-Additionally, the **TMC2209** stepper driver used in Duet 3 Mini 5+ and Duet 3 Tool board TOOL1LC features stallGuard 4. This is optimised for operation with stealthChop, while most other Trinamic drivers (e.g. TMC2160, TMC5160 and TMC2660) have stallGuard 2 which works with spreadCycle. To use stall detection with the TMC2209 you will need to put the driver into stealthChop mode and adjust the speed at which stealthChop changes over to spreadCycle. These are both set by [M569](/User_manual/Reference/Gcodes/M569) which provides the D parameter to set the driver mode (use D3 for stealthChop) and the V parameter for the changeover microstep interval.
+Additionally, the **TMC2209** used in Duet 3 Mini 5+ and Duet 3 Tool board TOOL1LC, along with the **TMC2240** usedd on the Roto Toolboard feature stallGuard 4. This is optimised for operation with stealthChop, while most other Trinamic drivers (e.g. TMC2160, TMC5160 and TMC2660) have stallGuard 2 which works with spreadCycle. To use stall detection with the TMC2209/TMC2240 you will need to put the driver into stealthChop mode and adjust the speed at which stealthChop changes over to spreadCycle. These are both set by [M569](/User_manual/Reference/Gcodes/M569) which provides the D parameter to set the driver mode (use D3 for stealthChop) and the V parameter for the changeover microstep interval.
 
 * Send M569 P[driver_number] with no othe rparameters to see current driver mode, V parameter and the speed that this corresponds to.
 * Reducing the V parameter increases the speed at which the driver changes from stealthChop to spreadCycle. Make sure that any stall detection happens while the driver is in stealthChop mode.
