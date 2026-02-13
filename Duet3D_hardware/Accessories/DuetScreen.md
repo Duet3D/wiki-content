@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-01-29T15:23:12.921Z
+date: 2026-02-13T22:26:47.259Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -75,7 +75,7 @@ The DuetScreen 7 has 6 mounting posts, these are M3 tapped, 10mm high posts sold
 
 ## 3D model
 
-A zip of the STEP file for the screen is here: [duetscreen_7_1.0_step.zip](/hardware/duetscreen/duetscreen_7_1.0_step.zip){target=_blank}
+A zip of the STEP file for the screen is here: [duet_screen_7_1.0_step.zip](/hardware/duetscreen/duet_screen_7_1.0_step.zip){target=_blank}
 
 ## Enclosure
 
