@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2026-02-13T11:29:21.705Z
+date: 2026-02-13T11:32:09.974Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -16,6 +16,8 @@ dateCreated: 2021-10-22T13:05:41.274Z
 # Overview
 
 The **TMC5160/2160** drivers (Duet 3 MB6HC and Duet 3 EB3HC), **TMC2209** drivers (Duet 3 Mini 5+, Duet 3 Toolboard 1LC),  **TMC2240** drivers (Duet 3 Roto Toolboard) and Trinamic **TMC2660** drivers (Duet 2 WiFi / Ethernet) support the stallGuard^TM^ feature. This feature allows the driver to detect motor stalls under some circumstances. Stall detection may be useful for detecting when a motor has skipped steps due to the nozzle hitting an obstruction, and for homing the printer without using endstop switches. RepRapFirmware 1.20 and later provides facilities for configuring and using stall detection.
+
+Note to use stall detection for homing on Duet 3 Expansion boards you need to be using RRF 3.6.0 or later.
 
 ## Table of features
 
