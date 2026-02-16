@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-16T10:00:55.198Z
+date: 2026-02-16T10:04:34.348Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -32,7 +32,7 @@ This page is about using the Bondtech INDX tool board with Duet 3 or other elect
 | **Input power voltage** | 24V +/- 2V |
 | **Power input max current** | 4A
 | **Inputs** | IO_0 is 30V-tolerant |
-| **Fuses** | None onboard. Use INDX Link board (5A fuse fitted), Duet 3 Tool Distribution Board (5A fuse fitted), or if directly connected to a power supply use an inline fuse holder with 5A or lower fuse depending on required current draw. |
+| **Fuses** | None onboard. Use INDX Link board (4A fuse fitted), Duet 3 Tool Distribution Board (4A fuse fitted), or if directly connected to a power supply use an inline fuse holder with 4A or lower fuse depending on required current draw. |
 | **5V external load** | TBD |
 | **3.3V external load** | TBD |
 | **Maximum ambient temperature** | 80°C |
