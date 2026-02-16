@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-16T15:36:23.456Z
+date: 2026-02-16T15:37:59.637Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -52,7 +52,7 @@ The MCU board also provides the following connections:
 - 3-pin JST PA connector for the print cooling fan with optional tacho
 - 3-pin IO0 connector, for an endstop or other input device
 - 3 Pin connector for WS2812 (aka Neopixel) or similar LEDs
-- 4-pin FFC connector for optional scanning inductive sensor coil
+- 4-pin FFC connector for optional scanning inductive sensor coil. This requires a **same side FFC** to connect to a standard Duet3D coil.
 - 5-pin USB OUT connector. This is not used when running RepRapFirmware.
 
 [TODO Diagram to be provided here]
@@ -138,5 +138,5 @@ M106 P1 H4 T45 S1                           ; turn on when nozzle temperature is
 ```
 The print cooling fan should be configured in the usual way, typically as fan #0:
 ```
-M950 F0 C!121.pcfan+pcfan.tach"             ; print cooling fan
+M950 F0 C"121.pcfan+pcfan.tach"             ; print cooling fan
 M106 P1 S0                                  ; turn off print cooling fan
