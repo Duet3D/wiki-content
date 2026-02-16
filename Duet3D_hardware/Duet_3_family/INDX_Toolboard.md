@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-16T15:39:54.041Z
+date: 2026-02-16T15:42:48.933Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -95,7 +95,9 @@ The default CAN address (which is also the CAN address after the reset jumper is
 
 As at 2026-02-16 the RGB status LEDs on the VF board are not driven, although a temporary pin name is provided to allow them to be tested.
 
-**CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assemble is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
+The inductive heater is fast and powerful, therefore the usual default tool heater model is inappropriate. When it is first configured as a heater, a more suitable default model is applied, which can be overridden in the usual way using M307.
+
+**CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assembly is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
 
 [TODO link to Bondtech INDX warnings and Cautions]
 
