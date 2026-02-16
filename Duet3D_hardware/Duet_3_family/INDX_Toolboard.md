@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-16T10:04:34.348Z
+date: 2026-02-16T10:09:12.720Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -43,9 +43,9 @@ The INDX tool board comprises two PCBs connected by two 20-way FFCs (Flexible Fl
 
 The VF board is connected to the induction heater, IR temperature sensor, heatsink fan, and load cell. Do not make any other connectons to the VF board, or remove the existing connections. The heatsink fan is connected to the VF board and defaults to running continuously; therefore it will run whenever no firmware is installed on the board, or firmware is being updated, or no configuration commands have been received from the main board.
 
-The MCU board is connected to the rest of a Duet/RepRapFirmware system using a single XT30 2+2 connector. This provides power to the board (thick red and black wires, positive and ground respectively) and CAN (yellow and white wires, CANH and CANL respectively).
+The MCU board is connected to the rest of a Duet/RepRapFirmware system using a single XT30 2+2 connector. This provides power to the board (thick red and black wires, positive and ground respectively) and CAN FD (yellow and white wires, CANH and CANL respectively).
 
-The board requires 24V nominal power, fused externally at 3A or 5A. We recommend that you use a Duet 3 Tool Distribution Board or INDX Link Board because they include the necessary fuse and simplify wiring. If the INDX is the only CAN-connected expansion in your system then you can instead use a direct CAN connection to the main board and an inline auto fuse in the positive supply wire.
+The board requires 24V nominal power, fused externally at 3A or 4A. We recommend that you use a Duet 3 Tool Distribution Board or INDX Link Board because they include the necessary fuse and simplify wiring. If the INDX is the only CAN-connected expansion in your system then you can instead use a direct CAN connection to the main board and an inline auto fuse in the positive supply wire.
 
 The MCU board also provides the following connections:
 - 4-pin connector for the stepper motor in the INDX toolhead
@@ -94,6 +94,8 @@ The minimum RepRapFirmware version for this board is 3.7.0-alpha dated 2026-02-1
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assemble is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
+
+[TODO link to Bondtech INDX warnings and Cautions]
 
 ### Pin names
 
