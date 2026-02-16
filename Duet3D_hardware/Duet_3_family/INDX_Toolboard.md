@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-16T15:37:59.637Z
+date: 2026-02-16T15:39:54.041Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -92,6 +92,8 @@ The bootloader file for this board is called Duet3Bootloader-SAME5x_composite.bi
 The minimum RepRapFirmware version for this board is 3.7.0-alpha dated 2026-02-10 or later. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
+
+As at 2026-02-16 the RGB status LEDs on the VF board are not driven, although a temporary pin name is provided to allow them to be tested.
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assemble is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
 
