@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-02-10T15:07:55.454Z
+date: 2026-02-17T22:46:58.248Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2753,7 +2753,7 @@ Supported in RepRapFirmware 1.21 and later.
 
 ### Parameters
 
-* **Pnnn** Message type (0 = Generic [default], 1 = USB, 2 = PanelDue/UART, 3 = HTTP, 4 = Telnet, 5 = second UART, 6 = MQTT Client [RRF 3.5 and later on WiFi-equipped Duet 3 boards only]) (optional)
+* **Pnnn** Message type: 0 = Generic [default], 1 = USB, 2 = PanelDue/UART, 3 = HTTP, 4 = Telnet, 5 = second UART, 6 = MQTT Client [RRF 3.5 and later on WiFi-equipped Duet 3 boards, or RRF 3.6 on all Duet 3 boards], 7 = second USB channel [RRF 3.7 and later on Duet 3 boards] (optional)
 * **S"msg"** Message to send , limit of 100 characters
 * **Lnnn** Log level of this message (0 = do not log this line, 1 = log as WARN, 2 = log as INFO, 3 = log as DEBUG (default)) (RRF 3.2 and later)
 * **T"topic"** The topic to publish the message under (only valid on MQTT Client message).
