@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-18T13:59:12.317Z
+date: 2026-02-18T14:00:20.514Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -62,7 +62,7 @@ The MCU board also provides the following connections:
 If you need to disconnect and reconnect the FFCs linking the two boards, be aware of the following:
 - Be sure to place the contact side of the FFC against the contacts in the socket
 - Be sure to insert the cable straight into the middle of the connector. It is easy to insert a cable so that it is skewed and shorts the pins out. If you do this and then power up the board, it is likely to be damaged.
-- The latching mechanisms on the vertical FFCs on the MCU board are counter-intuitive. Thet are unlatched when the latch is in the up position. After inserting the FFCs, push the latch down towards the PCB to lock the FFC in place.
+- The latching mechanisms on the vertical FFCs on the MCU board are counter-intuitive. Thet are unlatched when the latch is in the up position (away from the PCB). After inserting the FFCs, push the latch down towards the PCB to lock the FFC in place.
 
 ### Jumpers
 
