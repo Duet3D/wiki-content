@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-16T15:42:48.933Z
+date: 2026-02-18T13:46:16.008Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -129,7 +129,7 @@ The inductive heater is configured using the M950 command with pin name `"nozzle
 Example configuration, using sensor #4 for the nozzle temperature, heater #1, and the default CAN address (121):
 
 ```
-M308 S4 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile" T100000 B4311   ; configure thermopile main output
+M308 S4 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile"                 ; configure thermopile main output (add T100000 B4311 if using old 100K thermistor)
 M308 S5 Y"thermopile_tpis.ambient" P"121.S4.1" A"Thermopile ambient"       ; configure thermopile ambient output (optional)
 M308 S6 Y"thermopile_tpis.environment" P"121.S4.2" A"Hot end surround"     ; configure nozzle environment output (optional)
 M950 H1 C"121.nozzleheat" T4                                               ; configure induction heater
