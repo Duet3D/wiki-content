@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-18T13:55:59.143Z
+date: 2026-02-18T13:56:33.804Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -28,7 +28,7 @@ This page is about using the Bondtech INDX tool board with Duet 3 or other elect
 
 |---|---|
 | **Stepper driver** | Maximum 1.0A peak current, 0.71A RMS
-| **FAN outoput on MCU board maximum current** | TBD |
+| **FAN output on MCU board maximum current** | TBD |
 | **Input power voltage** | 24V +/- 2V |
 | **Power input max current** | 4A
 | **Inputs** | IO_0 is 30V-tolerant |
