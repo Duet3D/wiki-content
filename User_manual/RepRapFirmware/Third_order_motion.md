@@ -2,7 +2,7 @@
 title: Support for third-order motion control
 description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
 published: true
-date: 2026-02-18T22:36:41.021Z
+date: 2026-02-18T22:40:47.148Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
@@ -24,7 +24,7 @@ In a third order motion system, acceleration is not allowed to change abruptly. 
 
 The potential advantages of third-order motion control are:
 * Less tendency to excite high frequency resonances. However, in 3D printers the troublesome resonances are generally at lower frequencies, so input shaping is a better way to avoid exciting them.
-* In order to apply extruder pressure advance, the extruder motion is modified by making the extrusion speed the commanded speed plus a component related to (typically proportional to) extruder acceleration. Since acceleration changes abruptly when using second order motion control, adding this extra component reduce the extrusion system to first order because it demands instantaneous changes in extrusion speed. If we switch to third order motion then we no longer need instantaneous changes to extrusion speed, making the extrusion second order after applying pressure advance.
+* In order to apply extruder pressure advance, the extruder motion is modified by making the extrusion speed the commanded speed plus a component related to (typically proportional to) extruder acceleration. Since acceleration changes abruptly when using second-order motion control, adding this extra component reduce the extrusion system to first-order because it demands instantaneous changes in extrusion speed. If we switch to third-order motion then we no longer need instantaneous changes to extrusion speed, making the extrusion second-order after applying pressure advance.
 
 The main disadvantages of third-order motion control are:
 * It is much more computationally expensive, because the equations of motion change from being quadratic to being cubic. Depending on the situation it may be necessary to solve quadratic, cubic or quartic equations when planning motion, such that jerk is avoided at the boundaries between moves.
@@ -36,7 +36,7 @@ RepRapFirmware 3.6.0 for Duet 3 6HC provides an alternative mechanism for steppe
 
 Calculating the required motor position only requires evaluation of a quadratic polynomial when using second order motion control, or a cubic polynomial for third order motion control. Therefore **the experimental third-order motion control support can only be enabled in firmware builds for the 6HC** and it can only be used when all axes and extruders that are driven by motors attached to the main board are configured to use phase stepping.
 
-It is permitted to have additional axes and/or extruders driven from CAN-connected boards. However, third-order motion control is not currently supported by CAN-connected boards. Because of this, the motion commands sent to CAN-connected boards will be second-order approximations of the third-order motion used on the main board. Therefore they will not be perfectly synchronised with the main board during acceleration and deceleration. This may be acceptable for axes that are not greatly involved in movement with extrusion. For example, it is likely that the Z axis of a 3D printer can be driven from a CAN-connected board without significant issues.
+It is permitted to have additional axes and/or extruders driven from CAN-connected boards. However, third-order motion control is not currently supported by CAN-connected boards. Because of this, the motion commands sent to CAN-connected boards will be second-order approximations of the third-order motion used on the main board. Therefore they will not be perfectly synchronised with the main board during acceleration and deceleration. This may be acceptable for axes that are not greatly involved in movement with extrusion. For example, it is likely that the Z axis of a 3D printer can be driven from a CAN-connected board without significant issues when using third-order motion for the XY axes and the extruder(s).
 
 Phase stepping is enabled using the [M970 command](/User_manual/Reference/Gcodes#m970-enabledisable-phase-stepping). Note, stall detection is not supported when using phase stepping; therefore if the machine uses stall-detect homing then the homing files should check which mode the axes being homes are in, disable phase stepping for those axes, perform the homing operation, then revert any axes to phase stepping that were using it. Object model field `move.axes[].phaseStep` can be used to establish whether an axis uses phase stepping.
 
@@ -55,8 +55,6 @@ In firmware builds that support it the M201 command accepts an additional parame
 If the acceleration time is set to zero (which is the default at startup) then second-order motion control is used. If it is set nonzero but there are any axes or extruders that use local drivers and are not configured to use phase stepping, then second-order motion control is used but a warning is generated whenever M201 is used. If it is set nonzero and all axes and extruders with local drivers use phase stepping, then third-order motion control is used.
 
 The acceleration time parameter is common to all axes and extruders, therefore maximum jerk (i.e. rate of change of acceleration) cannot be set individually for each axis or extruder. It is available in the object model field `move.accelerationTime`.
-
-Third-order motion is not yet supported on CAN-connected expansion boards (including main boards used as expansion boards). If third-order motion control is in use and a move involves CAN-connected motors, those motors will be commanded to execute second-order moves that have approximately the same profile as the third-order moves on the main board.
 
 Object model field `move.usingSCurve` indicates whether or not third order motion control is in use.
 
