@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-18T13:46:16.008Z
+date: 2026-02-18T13:55:59.143Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -144,3 +144,26 @@ The print cooling fan should be configured in the usual way, typically as fan #0
 ```
 M950 F0 C"121.pcfan+pcfan.tach"             ; print cooling fan
 M106 P1 S0                                  ; turn off print cooling fan
+```
+
+### Configuring Neopixel or other WS2812 LED strings
+
+Use this command to configure an LED string on the INDX board:
+```
+M950 E0 T1 C"121.led"
+```
+Then use M150 commands to set the LED colours.
+
+### Testing the RGB LEDs on the VF board
+
+The RGB LEDs will in a future firmware release be driven automatically according to the state of the printer. Meanwhile thay can be tested by configuring a GpOut port like this:
+```
+M950 P0 C"121.ate.lp5817"
+```
+Then use M42 commands targeted at that port to set the colours. The S parameter in the command should be set to a number betwene 0.0 and 1.0 calculated as follows `(R + 256 * G + 65536 * B)/16777216.0` where R, G and B are the desired red, green and blue components each in the range 0 to 255. Examples:
+```
+M42 P0 S0.00001519918442   ; set LEDs red
+M42 P0 S0.003890991211     ; set LEDs green
+M42 P0 S0.99609375         ; set LEDs blue
+M42 P0 S0.9961089492       ; set LEDs purple
+```
