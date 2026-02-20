@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-02-13T22:26:47.259Z
+date: 2026-02-20T11:44:13.304Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -138,7 +138,7 @@ The Connection choice is made on the Settings > Connection screen:
 2. On the Settings > Connection screen, select the USB connection method.
   [![DuetScreen Settings Connection screen showing connection method with USB selected](/hardware/duetscreen/duetscreen-settings-connection-usb-0.1.png =600x)](/hardware/duetscreen/duetscreen-settings-connection-usb-0.1.png){target=_blank}
 
-> When the DuetScreen detects a USB connection to a Duet3D mainboard, it will automatically send `M575 P0 S0` to configure the mainboard for USB communication.
+> When the DuetScreen detects a USB connection to a Duet3D mainboard, it will automatically send `M575 P0 S4` to configure the mainboard for USB communication.
 {.is-info}
 
 ### WiFi
@@ -196,7 +196,7 @@ This file should contain the WiFi credentials in the following format:
 1. Connect the DuetScreen to the mainboard using a UART cable (see below).
 2. In Settings > Connections, set 'Connection Method' to `UART (legacy)`.
 2. The 'USB-C Mode' selection is irrelevant in this case.
-3. Set the baud rate on the Duet mainboard to `115200`. Use `M575 P1 S1 B115200` in config.g. This is similar to connecting a PanelDue, other than the default baud rate is 115200
+3. Set the baud rate on the Duet mainboard to `115200`. Use `M575 P1 S4 B115200` in config.g. This is similar to connecting a PanelDue, other than the default baud rate is 115200
 
 
 [![duetscreen-settings-connection-usb-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-uart-0.1.png =600x)](/hardware/duetscreen/duetscreen-settings-connection-uart-0.1.png){target=_blank}
