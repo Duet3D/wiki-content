@@ -2,7 +2,7 @@
 title: Duet 3 Family
 description: 
 published: true
-date: 2025-11-23T11:02:20.011Z
+date: 2026-02-24T16:09:08.367Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:14:53.360Z
@@ -50,6 +50,7 @@ Accessories that fit directly to a Duet 3 mainboard
 
 ## Displays
 
+[Duet3D DuetScreen](/Duet3D_hardware/Accessories/DuetScreen)
 [Duet3D PanelDue](/Duet3D_hardware/Accessories/PanelDue)
 
 ## Filament monitors
