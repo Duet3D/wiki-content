@@ -2,7 +2,7 @@
 title: Duet 2 Family
 description: 
 published: true
-date: 2026-02-24T16:09:37.098Z
+date: 2026-02-24T16:12:00.212Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:10:53.077Z
@@ -21,7 +21,7 @@ dateCreated: 2021-06-03T16:10:53.077Z
 
 ## Displays
 
-[Duet3D Duetscreen](/Duet3D_hardware/Accessories/DuetScreen)
+[Duet3D DuetScreen](/Duet3D_hardware/Accessories/DuetScreen)
 [Duet3D PanelDue](/Duet3D_hardware/Accessories/PanelDue)
 
 ## Filament monitors
