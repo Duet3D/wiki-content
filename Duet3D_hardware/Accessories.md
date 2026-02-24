@@ -2,7 +2,7 @@
 title: Accessories
 description: 
 published: true
-date: 2025-11-23T10:41:19.085Z
+date: 2026-02-24T16:09:54.278Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:18:25.503Z
@@ -14,6 +14,7 @@ Hardware information on Duet3D-produced accessories that work with **Duet 2** an
 
 ## Displays
 
+[Duet3D Duetscreen](/Duet3D_hardware/Accessories/DuetScreen)
 [Duet3D PanelDue](/Duet3D_hardware/Accessories/PanelDue)
 
 ## Filament monitors
