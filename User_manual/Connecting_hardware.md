@@ -2,7 +2,7 @@
 title: User manual: Connecting hardware
 description: 
 published: true
-date: 2025-12-05T13:08:36.957Z
+date: 2026-02-24T16:11:32.103Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:51:46.990Z
@@ -79,6 +79,7 @@ Example guide: Water flow sensor failsafe-->
 
 # Displays
 
+[Connecting a DuetScreen](/Duet3D_hardware/Accessories/DuetScreen#connecting-a-duetscreen)
 [Connecting a PanelDue](/User_manual/Connecting_hardware/Display_PanelDue)
 [Connecting 12864 and other displays](/User_manual/Connecting_hardware/Display_12864)
 [12864 display menu system](/User_manual/Connecting_hardware/Display_12864_menu)
