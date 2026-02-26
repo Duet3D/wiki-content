@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-18T14:00:20.514Z
+date: 2026-02-26T13:13:01.735Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -87,7 +87,7 @@ Aside from the status LEDs mounted on the VF board, LEDs are provided on the MCU
 ## Software notes
 The RepRapFirmware binary file for this board is called Duet3Firmware_TOOLINDX.bin.
 
-The bootloader file for this board is called Duet3Bootloader-SAME5x_composite.bin.
+The bootloader file for this board is called Duet3Bootloader-SAME5x_CAN_USB.bin.
 
 The minimum RepRapFirmware version for this board is 3.7.0-alpha dated 2026-02-10 or later. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
