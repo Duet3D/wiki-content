@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2024-11-28T17:11:19.648Z
+date: 2026-03-10T14:09:10.560Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -20,13 +20,14 @@ DHT sensors are low-cost digital temperature and humidity sensors. They use a ca
 RepRapFirmware from v1.20 supports DHT11, DHT21 and DHT22 sensors.
 RepRapFirmware from v3.4 drops support for DHT11 sensors
 RepRapFirmware from v3.5 adds support for BME280 sensors
+RepRapFirmware from v3.7 adds support for BME680, BME688 and BME690 sensors
 
 # General recommendations
 
-* The BME280 is recommended. DHT22 is supported, but is becoming harder to find. DHT21 is also supported, but is less accurate. DHT11 support has been removed from current firmware. 
+* The BME280 or BME680/688/690 is recommended. DHT22 is supported, but is becoming harder to find. DHT21 is also supported, but is less accurate. DHT11 support has been removed from current firmware.
 * DHT22/21/11 connect using 3 wires. As well as +3.3V and ground, the DHT sensor needs a combined input-output line. This is usually connected to one of the SPI CS lines on the Temperature Daughterboard connector, or one of the IOx.OUT pins.
-* BME280 connect using 6 wires, and connects to pins on the Temperature Daughterboard connector.
-* In RRF 3, the humidity and pressure (BME280 only) channels of the same sensor are configured as piggyback sensors off the main sensor.
+* BME280 and BME680/688/690 connect using 6 wires, and connects to pins on the Temperature Daughterboard connector.
+* In RRF 3, the humidity and pressure (BME280/BME68x only) channels of the same sensor are configured as piggyback sensors off the main sensor. The BME680/688/690 also provides a gas resistance channel.
 
 # Choosing a DHT sensor
 
@@ -50,6 +51,25 @@ Relatively low-cost, the BME280 from Bosch usually comes packaged on a small bre
 * BME280 sensors are only supported in RepRapFirmware 3.5 and later.
 * RepRapFirmware currently supports BME280 sensors using SPI, not I2C. Breakout boards need to have the appropriate pins accessible. For example, [this board from Adafruit](https://www.adafruit.com/product/2652) or [this one from Sparkfun](https://www.sparkfun.com/products/13676) should work fine. Many boards available have only 4 pins; these are I2C only, and are not supported.
 * The BMP280 (temperature and barometric pressure only) is not supported.
+
+## BME680 / BME688 / BME690
+
+The BME680, BME688 and BME690 are environmental sensors from Bosch that measure temperature, humidity, barometric pressure and gas resistance (air quality). They are more capable than the BME280 due to the addition of the gas sensor.
+
+* Humidity: ±3% accuracy
+* Temperature: -40 to 85°C temperature readings ±1°C accuracy
+* Pressure: 300 to 1100 hPa with ±0.6 hPa accuracy
+* Gas resistance: indicates air quality / VOC concentration (Ω)
+* Sensing period: 1 Hz sampling rate (once every second)
+* Dimensions: vary
+
+### Notes
+
+* BME68x sensors are only supported on Duet 3, not Duet 2.
+* BME68x sensors are only supported in RepRapFirmware 3.7 and later.
+* RepRapFirmware supports BME68x sensors using SPI only, not I2C. Wiring is the same as for the BME280.
+* The gas resistance output reflects air quality: higher resistance means cleaner air. In typical clean indoor air expect 50–200 kΩ once the sensor has warmed up. The sensor requires a burn-in period of several minutes before gas readings stabilise.
+* The gas heater runs at 320°C for 150 ms per measurement cycle.
 
 ## DHT22
 
@@ -98,6 +118,8 @@ BME280 sensors should be less sensitive to interference than DHT sensors, but th
 ### Wiring
 
 Using the Temperature Daughterboard connector (TEMP_DB), connect the SDI (may be labelled as SDA), SDO and SCK (SCL) pins of the BME280 to MOSI, MISO and SCK respectively. Also connect CS (may be labelled CSB) to your chosen spi.cs pin, 3.3V power and ground.
+
+BME680/688/690 sensors use identical wiring to the BME280.
 
 | Duet Temp Daughterboard connector |||| BME280 |
 |---|---|
@@ -162,6 +184,25 @@ Example:
 m308 s11 y"bme280" p"spi.cs1" a"Ambient temp"
 m308 s12 y"bme-pressure" p"s11.1" a"Pressure[hPa]"
 m308 s13 y"bme-humidity" p"s11.2" a"Humidity[%]"
+```
+
+## BME680 / BME688 / BME690 sensors
+
+In RRF 3.7, [M308](/User_manual/Reference/Gcodes/M308) is used to define the BME68x sensor. Use the following parameters:
+
+* **Sn** Sensor number.
+* **P"pin_name"** See section above for pins to use with each Duet version.
+* **Y"sensor_type"** "bme68x", "bme68xpressure", "bme68xhumidity", "bme68xgas" (RRF3.7 and later on Duet 3 only)
+* **A"name"** Sensor name (optional), displayed in the web interface
+
+The BME68x has four outputs: temperature (primary), pressure, humidity and gas resistance. The pressure, humidity and gas resistance outputs are attached as secondary outputs using the primary sensor number with a dot-indexed suffix.
+
+Example:
+```
+M308 S11 Y"bme68x" P"spi.cs0" A"Ambient temp"
+M308 S12 Y"bme68xpressure" P"S11.1" A"Pressure[hPa]"
+M308 S13 Y"bme68xhumidity" P"S11.2" A"Humidity[%]"
+M308 S14 Y"bme68xgas" P"S11.3" A"Gas resistance[Ohm]"
 ```
 
 ## DHT22/21/11 sensors
