@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-02-25T13:48:32.483Z
+date: 2026-03-10T14:28:19.109Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4252,6 +4252,7 @@ M950 H0 C"bed_heat" Q100 T0 ; heater 0 uses the bed_heat pin, sensor 0, PWM freq
 * For those platforms that provide power voltage monitoring, the calibration voltage setting allows the heating controller to adjust the power automatically in response to changes in the power supply voltage. For example, if a bed or chamber heater is turned on or off, this may cause the power supply voltage to change a little, which if not corrected for would change the extruder heater power.
 * M307 parameters for all heaters are saved to config-override.g using `M500`.
 
+
 ## M308: Set or report sensor parameters
 
 M308 is supported in RepRapFirmware 3. If running RRF2.x or earlier, use M305.
@@ -4358,7 +4359,8 @@ M308 S1 P"spi.cs1" Y"thermocouple-max31856"           ; configure sensor 1 as K-
 * **Y"sensor_type"** The sensor and interface type: 
   "dht21", "dht22", "dht-humidity" - for DHT sensors
   "bme280", "bme-pressure", "bme-humidity" - BME280 sensors
-* **P"nnn"** parameter for "dht-humidity", "bme-pressure" and "bme-humidity"
+  "bme68x", "bme68x-pressure", "bme68x-humidity", "bme68x-gas" - BME680/688/690 sensors (RRF 3.7 and later)
+* **P"nnn"** parameter for "dht-humidity", "bme-pressure", "bme-humidity", "bme68x-pressure", "bme68x-humidity" and "bme68x-gas"
 
 ##### Temperature/Humidity/Pressure examples
 
@@ -4368,6 +4370,14 @@ M308 S10 P"0.spi.cs1" Y"dht22" A"Filament Temp"       ; define DHT22 temperature
 M308 S11 P"S10.1" Y"dhthumidity" A"Filament Hum[%]"   ; Attach DHT22 humidity sensor to secondary output of temperature sensor
 </pre>
 
+<br>
+<pre class="cblock">
+M308 S10 P"spi.cs1" Y"bme68x" A"Chamber Temp"         ; define BME68x temperature sensor (primary)
+M308 S11 P"S10.1" Y"bme68x-pressure" A"Chamber Pres"   ; attach BME68x pressure output (secondary output 1)
+M308 S12 P"S10.2" Y"bme68x-humidity" A"Chamber Hum[%]" ; attach BME68x humidity output (secondary output 2)
+M308 S13 P"S10.3" Y"bme68x-gas" A"Chamber Gas[ohm]"    ; attach BME68x gas resistance output (secondary output 3)
+</pre>
+
 
 ##### Temperature/Humidity/Pressure notes
 
@@ -4375,6 +4385,8 @@ M308 S11 P"S10.1" Y"dhthumidity" A"Filament Hum[%]"   ; Attach DHT22 humidity se
 * "bme280" is only supported in RRF 3.5 and later, and only on Duet 3 boards.
 * DHT sensors provide a primary temperature output and an additional output providing humidity. To access the humidity output of a DHT sensor you must first configure the primary sensor of type "dht21" or "dht22". Then you can configure "dht-humidity" to be attached to the DHT sensor's secondary output, by specifying port ```P"Snnn.1"``` where **nnn** is the sensor number of the primary sensor.
 * Similarly, BME280 sensors provide a primary temperature output and two additional outputs providing pressure and humidity. To access the additional output of a BME280 sensor you must first configure the primary sensor of type "bme280". Then you can configure sensor "bme-pressure" to be attached to the BME280 sensor's secondary output, by specifying port ```P"Snnn.1"``` where nnn is the sensor number of the primary sensor; and you can configure sensor "bme-humidity" to be attached to the BME280 sensor's secondary output by specifying port ```P"Snnn.2"```. If the BME280 is connected to a CAN-connected expansion board then you must also prefix the port name with the CAN address of that board, e.g. ```P"10.S20.1"```.
+* BME680, BME688 and BME690 sensors are supported from RRF 3.7 and later, and only on Duet 3 boards. They connect via SPI and the wiring is identical to the BME280. They provide a primary temperature output and three additional outputs providing pressure, humidity and gas resistance. To use a BME68x sensor, first configure the primary sensor of type "bme68x" with the SPI chip select pin. Then configure "bme68x-pressure" with port ```P"Snnn.1"```, "bme68x-humidity" with port ```P"Snnn.2"```, and "bme68x-gas" with port ```P"Snnn.3"```, where **nnn** is the sensor number of the primary sensor. If the sensor is connected to a CAN-connected expansion board, prefix the port name with the CAN address of that board, e.g. ```P"10.S10.1"```.
+* The gas resistance output ("bme68x-gas") reports the resistance in ohms of the MOX gas sensing element. It returns -1.0 until a valid gas reading has been obtained (the sensor requires a heating cycle before the first valid reading). The gas resistance value depends on the heater temperature profile programmed into the sensor and on ambient air quality; refer to the Bosch BME68x documentation for guidance on heater profile selection and gas resistance interpretation.
 * See also [Connecting digital humidity and temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_DHT).
 
 
