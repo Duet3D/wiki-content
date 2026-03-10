@@ -2,7 +2,7 @@
 title: Connecting Digital Humidity and Temperature (DHT) sensors
 description: Describes choosing, connecting and configuring Digital Humidity and Temperature (DHT) sensors.
 published: true
-date: 2026-03-10T14:09:10.560Z
+date: 2026-03-10T14:10:27.968Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-14T16:07:27.411Z
@@ -192,7 +192,7 @@ In RRF 3.7, [M308](/User_manual/Reference/Gcodes/M308) is used to define the BME
 
 * **Sn** Sensor number.
 * **P"pin_name"** See section above for pins to use with each Duet version.
-* **Y"sensor_type"** "bme68x", "bme68xpressure", "bme68xhumidity", "bme68xgas" (RRF3.7 and later on Duet 3 only)
+* **Y"sensor_type"** "bme68x", "bme68x-pressure", "bme68x-humidity", "bme68x-gas" (RRF3.7 and later on Duet 3 only)
 * **A"name"** Sensor name (optional), displayed in the web interface
 
 The BME68x has four outputs: temperature (primary), pressure, humidity and gas resistance. The pressure, humidity and gas resistance outputs are attached as secondary outputs using the primary sensor number with a dot-indexed suffix.
@@ -200,9 +200,9 @@ The BME68x has four outputs: temperature (primary), pressure, humidity and gas r
 Example:
 ```
 M308 S11 Y"bme68x" P"spi.cs0" A"Ambient temp"
-M308 S12 Y"bme68xpressure" P"S11.1" A"Pressure[hPa]"
-M308 S13 Y"bme68xhumidity" P"S11.2" A"Humidity[%]"
-M308 S14 Y"bme68xgas" P"S11.3" A"Gas resistance[Ohm]"
+M308 S12 Y"bme68x-pressure" P"S11.1" A"Pressure[hPa]"
+M308 S13 Y"bme68x-humidity" P"S11.2" A"Humidity[%]"
+M308 S14 Y"bme68x-gas" P"S11.3" A"Gas resistance[Ohm]"
 ```
 
 ## DHT22/21/11 sensors
