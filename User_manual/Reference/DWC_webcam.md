@@ -2,7 +2,7 @@
 title: Connecting a web camera to Duet Web Control
 description: Duet 2 and Duet 3 mainboards do not support a directly-connected web camera. However, you can buy a suitable Wifi or Ethernet IP camera and then configure Duet Web Control to include an image from the camera on the Print page.
 published: true
-date: 2024-10-30T09:55:11.713Z
+date: 2026-03-12T13:18:47.048Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T15:12:46.132Z
@@ -93,7 +93,20 @@ The cameras will also work, generally, in low to no light, I forgot where i got 
 
 ## Spyglass
 
-(Info to come)
+### Description
+
+[Spyglass](https://github.com/mainsail-crew/spyglass) is a modern webcam server for CSI-connected cameras on the Raspberry Pi. It requires Bookworm or newer to operate. Duet3D provides a [plugin](https://github.com/Duet3D/SpyglassWebcamServerPlugin) which bundles this application for easy installation in SBC mode.
+
+
+### Usage
+
+Once this plugin has been installed and started using the Plugins page on DWC, it can be configured in DWC. To achieve this, go to the `Settings` -> `General` page and make the following changes:
+
+- Set `Webcam URL` to `http://[HOSTNAME]:8080/stream`
+- Set `Webcam update interval (in ms)` to `0`
+- Go to the `Job` -> `Webcam` page to see your live stream
+
+For snapshots it is also possible to use `http://[HOSTNAME]:8080/snapshot` instead.
 
 ## Motion
 
