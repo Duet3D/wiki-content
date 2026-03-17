@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2026-03-17T11:57:05.393Z
+date: 2026-03-17T13:04:30.086Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -393,7 +393,13 @@ With the M569.1 E parameter correctly specified, failure to maintain position wi
 
 `Error: M569.6: Driver 20.0 basic tuning failed, the measured motion was inconsistent`
 
-The "measured motion was inconsistent" message means either that there was an issue with the encoder or that the motor did not move smoothly. 
-* Check the encoder wiring. 
+This message means either that there was an issue with the encoder or that the motor did not move smoothly. 
+* Check the encoder wiring.
+  * If you're using the single-ended quadrature connection, make sure to put a jumper on "quadrature differential/single ended select".
+  * If you're using the differential quadrature connection, make sure to remove any jumper on "quadrature differential/single ended select".
 * Increase the motor current. 
 * If the motors are already connected to the motion system by belts, try removing the belts to see if tuning can then be accomplished.
+
+`Error: M569.6: Driver 20.0 basic tuning failed, the measured motion was less than expected, measured counts/rev is about 1014.2` or `the measured motion was more than expected`
+
+This message means that the expected encoder pulses per revolution (PPR) set by M569.1 C parameter was not what was measured. Check the specification of the encoder; 1000PPR is fairly standard. Usually you can change the M569.1 C parameter to close to what is suggested by the firmware.
