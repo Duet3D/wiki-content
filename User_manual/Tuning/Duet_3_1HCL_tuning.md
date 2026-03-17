@@ -2,7 +2,7 @@
 title: Tuning the Duet 3 Expansion 1HCL
 description: How to tune the Duet 3 1HCL Expansion board to achieve good closed loop performance. 
 published: true
-date: 2025-08-05T12:46:37.736Z
+date: 2026-03-17T11:57:05.393Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:38:19.042Z
@@ -389,6 +389,11 @@ With the M569.1 E parameter correctly specified, failure to maintain position wi
 
 # Troubleshooting
 
-## Error on M569.6 Command
+## Error on M569.6 tuning/calibration command
 
-Coming Soon!
+`Error: M569.6: Driver 20.0 basic tuning failed, the measured motion was inconsistent`
+
+The "measured motion was inconsistent" message means either that there was an issue with the encoder or that the motor did not move smoothly. 
+* Check the encoder wiring. 
+* Increase the motor current. 
+* If the motors are already connected to the motion system by belts, try removing the belts to see if tuning can then be accomplished.
