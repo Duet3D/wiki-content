@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-03-10T14:28:19.109Z
+date: 2026-03-20T11:54:57.507Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8993,6 +8993,7 @@ M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED por
 * **C"name"** Pin name
 * **Qnn** (optional) LED clock frequency, default 3000000Hz.
 * **Tn** (optional) LED type: 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them.
+* **Kn** (optional, RRF 3.5.3 and later) For LEDs, the colour order for Dotstar LED strips: 0 (BGR), 1 (BRG), 2 (RGB), 3 (RBG), 4 (GBR), 5 (GRB)
 * **Unnn** (optional) The maximum number of LEDs in the strip. Default 60, larger values use more memory.
 
 ##### Notes
