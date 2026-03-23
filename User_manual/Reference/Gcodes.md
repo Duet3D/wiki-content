@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-03-20T11:54:57.507Z
+date: 2026-03-23T08:32:06.755Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2927,7 +2927,7 @@ Set the PID to measure temperatures and calculate the power to send to the heate
 ### Parameters
 
 * **Pnnn** (RRF 1.20 and later) Bed heater slot, default 0
-* **Hnnn** Heater number
+* **Hn[:n:...]** Heater number(s); from RRF 3.7 multiple heaters can be assigned to a slot using a colon-separated list
 * **Snnn** Active/Target temperature
 * **Rnnn** Standby temperature
 
@@ -2938,57 +2938,30 @@ In RRF3 a M140 command with H parameter (other than H-1) must come after the M95
 ### Examples
 <br>
 <pre class="cblock">
-M140 H0      ; bed heater 0 uses heater 0
-M140 P1 H1   ; bed heater 1 uses heater 1
-M140 H-1     ; disable bed heater
-M140 S55     ; set bed temperature to 55C
-M140 S65 R40 ; set bed temperature to 65C and bed standby temperature to 40C
-M140 S-273.1 ; switch off bed heater
+M140 H0        ; bed heater slot 0 uses heater 0
+M140 P1 H1     ; bed heater slot 1 uses heater 1
+M140 H0:1:2    ; bed heater slot 0 uses heaters 0, 1 and 2 (RRF 3.7 and later)
+M140 H-1       ; remove all heaters from bed heater slot 0
+M140 P1 H-1    ; remove all heaters from bed heater slot 1
+M140 S55       ; set bed temperature to 55C
+M140 S65 R40   ; set bed temperature to 65C and bed standby temperature to 40C
+M140 S-273.1   ; switch off bed heater
 </pre>
 
-The first example informs the firmware that bed heater 0 (implied, because no P parameter is provided) uses heater 0.
-The second example informs the firmware that bed heater 1 (P1) uses heater 1.
-The third example disables the bed heater. No bed heaters will be shown in DWC.
-The fourth example sets the temperature of the bed heater to 55^o^C and returns control to the host immediately (*i.e.* before that temperature has been reached by the bed).
-The fifth example sets the bed temperature to 65^o^C and the bed standby temperature to 40^o^C.
-The sixth example sets the active/target bed temperature to absolute negative temperature (-273 or lower). This switches off the bed heater.
+The first example informs the firmware that bed heater slot 0 (implied, because no P parameter is provided) uses heater 0.
+The second example informs the firmware that bed heater slot 1 (P1) uses heater 1.
+The third example assigns heaters 0, 1 and 2 to bed heater slot 0; when a temperature is set for that slot, all three heaters will be controlled together.
+The fourth example removes all heaters from bed heater slot 0 (the default when no P parameter is given). Use `M140 P<slot> H-1` to clear a different slot.
+The fifth example sets the temperature of the bed heater to 55^o^C and returns control to the host immediately (*i.e.* before that temperature has been reached by the bed).
+The sixth example sets the bed temperature to 65^o^C and the bed standby temperature to 40^o^C.
+The seventh example sets the active/target bed temperature to absolute negative temperature (-273 or lower). This switches off the bed heater.
 
 ### Notes
 
 * If a temperature close to absolute zero is set (strictly less than -273°C in RRF 3.3 and earlier, less than or equal to -273°C in RRF 3.4.0 and later), the bed heater will be switched off.
 * The 'H' parameter sets the heated bed heater number(s). If no heated bed is present, a negative value may be specified to disable it. M140 commands with H parameters would normally be used only in the config.g file.
+* **From RRF 3.7:** Multiple heaters can be assigned to a single bed heater slot by providing a colon-separated list of heater numbers in the H parameter (e.g. `M140 H0:1:2`). All heaters in a slot are controlled together when setting temperatures.
 * See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of bed heaters each Duet board and firmware version supports.
-* **From RRF 3.7:** When neither **P** nor **H** is provided, the **S** and **R** parameters apply to all bed heater slots configured via [M140.1](#m1401-configure-bed-heater-control-list). By default only slot 0 is controlled.
-
-## M140.1: Configure Bed Heater Control List
-
-*Supported from RRF 3.7*
-
-Configures which bed heater **slots** are affected by an `M140 S` or `M140 R` command when no `P` parameter is given. By default only slot 0 is controlled.
-
-### Parameters
-
-* **Snnn:nnn...** Colon-separated list of bed heater slot indices to control. Use **S-1** to clear the list so that no beds are controlled by a bare `M140 S`/`M140 R`.
-
-### Examples
-<br>
-<pre class="cblock">
-M140.1 S0        ; only slot 0 responds to M140 S/R (default)
-M140.1 S0:1:2    ; slots 0, 1 and 2 all respond to M140 S/R
-M140.1 S-1       ; no slots respond to M140 S/R
-M140.1           ; report the currently configured slot list
-</pre>
-
-The first example restores the default behaviour where only bed heater slot 0 is controlled by a bare `M140 S` or `M140 R` command.
-The second example configures slots 0, 1 and 2 to all be set to the same temperature when `M140 S` or `M140 R` is issued without a `P` parameter.
-The third example clears the list, so a bare `M140 S`/`M140 R` has no effect on any bed heater.
-The fourth example (no parameters) reports the current list of controlled slots.
-
-### Notes
-
-* This command only affects the *implicit* (no-`P`) behaviour of `M140 S` and `M140 R`. You can still target individual slots explicitly with `M140 P`*n* `S`*temp*.
-* The setting is exposed in the object model under `heat.bedHeaterControlMask`.
-* Slot indices that are out of range are silently ignored, matching the behaviour of other multi-valued mapping commands such as M563 fan mapping.
 
 ## M141: Set Chamber Temperature (Fast) or Configure Chamber Heater
 
