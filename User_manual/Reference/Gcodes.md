@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-03-23T08:32:06.755Z
+date: 2026-04-01T13:37:40.062Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6868,6 +6868,7 @@ M579 X1.0127 Y0.998
 
 On a suitable-configured IDEX printer, a scaling factor of -1 for the U axis can be used to turn a ditto print into a mirror image print.
 
+<!-- 
 ## M580: Select Roland
 
 *This M-code is not available by default. To enable it change the value of SUPPORT_ROLAND in the Pins_\*.h file from 0 to 1 and recompile the firmware.*
@@ -6890,6 +6891,7 @@ M580 R1 PVS4;!VZ2;!MC1;
 M580 selects a Roland device for output if the R field is 1, and returns to native mode if the R field is 0.
 
 The optional P string is sent to the Roland if R is 1. It is permissible to call this repeatedly with R set to 1 and different strings in the P field to communicate directly with a Roland.
+-->
 
 ## M581: Configure external trigger on inputs and/or endstops
 
