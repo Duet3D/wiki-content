@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-04-02T11:36:58.612Z
+date: 2026-04-02T13:23:39.298Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -163,11 +163,11 @@ There are a couple of methods to connect the DuetScreen to a WiFi network.
     * Find your WiFi SSID from the list under 'Available WiFi Networks'. If none are shown press `Refresh`. You may need to restart the DuetScreen if you have recently enabled the WiFi module.
     * Press the `Join` button, and enter the SSID password
     * The button should change to two buttons `Disconnect` and `Forget`
+    * The screen's IP address with be set automatically by DHCP (see below for setting a manual IP address)
     * You can change SSID by pressing `Disconnect` and then `Connect` to another SSID
     * If you press `Forget`, the SSID will be removed from the list of remembered SSIDs
 
-2. You can copy a file called `wpa_supplicant.conf` to the root of the microSD card. This file should be placed on the microSD card after it has been flashed. This method is the easiest if you are setting up multiple DuetScreens, or you know the WiFi credentials in advance.
-This file should contain the WiFi credentials in the following format:
+2. You can copy a file called `wpa_supplicant.conf` to the root of the microSD card. This file should be placed on the microSD card after it has been flashed. This method is the easiest if you are setting up multiple DuetScreens, or you know the WiFi credentials in advance. This file should contain the WiFi credentials in the following format:
     ```
     ctrl_interface=/var/run/wpa_supplicant
     update_config=1
@@ -179,13 +179,25 @@ This file should contain the WiFi credentials in the following format:
         key_mgmt=WPA-PSK
     }
     ```
-
+    
 #### Connect the DuetScreen to a Duet Mainboard
 
 1. In Settings > Connections, make sure 'Connection Method' is set to `Internal WiFi` connection method.
 2. Ensure the DuetScreen is connected to the same WiFi network as the mainboard.
 3. Enter the IP address and password (if applicable) of the Duet mainboard in 'Duet IP Address' and 'Duet Password' fields.
   [![duetscreen-settings-connection-wifi-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-wifi-0.1.png =600x)](/hardware/duetscreen/duetscreen-settings-connection-wifi-0.1.png){target=_blank}
+
+#### Setting the IP address manually
+
+You can set the screen's IP address manually by creating a `dhcpcd.conf` file in the first FAT (boot) partition. For example:
+
+```
+interface wlan0
+
+static ip_address=192.168.1.2/24
+static routers=192.168.1.254
+static domain_name_servers=192.168.1.254
+```
 
 ### Ethernet
 
@@ -198,13 +210,24 @@ The DuetScreen does not have an Ethernet port, but does support most USB-A/USB-C
 * On the Settings > Connection screen: 
   * Set the 'Connection Method' to `Network`
   * Set the 'USB-C Mode' to `USB-C Host`. (`USB-C Device` is only used to connect to a PC for software debugging.)
-  * The DuetScreen should connect to your network and set the IP address via DHCP.
+  * The DuetScreen should connect to your network and set the IP address automatically via DHCP (see below for setting a manual IP address).
 
 #### Connect the DuetScreen to a Duet Mainboard
 
 1. Ensure the DuetScreen is connected to the same network as the mainboard.
 1. Enter the IP address and password (if applicable) of the Duet mainboard in 'Duet IP Address' and 'Duet Password' fields.
 
+#### Setting the IP address manually
+
+You can set the screen's IP address manually by creating a `dhcpcd.conf` file in the first FAT (boot) partition. For example:
+
+```
+interface eth0
+
+static ip_address=192.168.1.2/24
+static routers=192.168.1.254
+static domain_name_servers=192.168.1.254
+```
 
 ### UART
 
