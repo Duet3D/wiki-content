@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-02-24T15:41:31.050Z
+date: 2026-04-02T11:36:58.612Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -180,13 +180,31 @@ This file should contain the WiFi credentials in the following format:
     }
     ```
 
-
 #### Connect the DuetScreen to a Duet Mainboard
 
 1. In Settings > Connections, make sure 'Connection Method' is set to `Internal WiFi` connection method.
 2. Ensure the DuetScreen is connected to the same WiFi network as the mainboard.
 3. Enter the IP address and password (if applicable) of the Duet mainboard in 'Duet IP Address' and 'Duet Password' fields.
   [![duetscreen-settings-connection-wifi-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-wifi-0.1.png =600x)](/hardware/duetscreen/duetscreen-settings-connection-wifi-0.1.png){target=_blank}
+
+### Ethernet
+
+The DuetScreen does not have an Ethernet port, but does support most USB-A/USB-C to Ethernet dongles using generic USB net class device drivers, as well as those using RTL8150/8152/8153 and AX88179A chipsets (as of v1.0.0 firmware). 
+
+* To use a USB to Ethernet dongle:
+  * Plug in the USB to Ethernet adapter into the USB-A or USB-C port, depending on the adapter.
+  * Power can be supplied by the USB-C to Ethernet adapter, if it supports it.
+  * Connect a network-connected Ethernet cable to the adapter.
+* On the Settings > Connection screen: 
+  * Set the 'Connection Method' to `Network`
+  * Set the 'USB-C Mode' to `USB-C Host`. (`USB-C Device` is only used to connect to a PC for software debugging.)
+  * The DuetScreen should connect to your network and set the IP address via DHCP.
+
+#### Connect the DuetScreen to a Duet Mainboard
+
+1. Ensure the DuetScreen is connected to the same network as the mainboard.
+1. Enter the IP address and password (if applicable) of the Duet mainboard in 'Duet IP Address' and 'Duet Password' fields.
+
 
 ### UART
 
