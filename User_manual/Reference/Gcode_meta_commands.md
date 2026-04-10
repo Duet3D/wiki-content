@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2026-01-30T16:43:40.028Z
+date: 2026-04-10T17:00:54.339Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -390,7 +390,7 @@ Where an expression has multiple binary operators of the same precedence and par
 | >= | 4 | (int,int)->bool, (float,float)->bool | Greater than or equal |
 | & or && | 3 | (bool,bool)->bool | Boolean and |
 | \| or \|\| | 3 | (bool,bool)->bool | Boolean or |
-| ^ | 2 | (string,string)->string | String concatenation |
+| ^ | 2 | (string,string)->string, (array, array)->array | String concatenation, or (in RRF 3.7.x and later) array concatenation. In RRF 3.6.x and earlier both arguments are always converted to string. In RRF 3.7.x or later they are converted to string unless they are both arrays. |
 
 **Caution!** The multiplication operator * will work when it is used anywhere inside an expression or subexpression enclosed in { } but not otherwise. This is because the * character in a line of GCode normally introduces an end-of-line checksum.
 
@@ -416,7 +416,7 @@ The following functions are supported, with their conventional meanings:
 | datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a **DateTime**, or a string with format "yyyy-mm-ddThh:mm:ss" to a **DateTime**. Available in RRF 3.4.0 and later. |
 | degrees | float->float | Converts radians to degrees |
 | drop | (string, int)->string or (array, int)->array | Returns all but the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0 and later). |
-| exists | name  -> bool | Yields **true** if *name* is a valid variable or object model element name and is not null (available in RRF 3.3.0 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. |
+| exists | name  -> bool | Yields **true** if *name* is a valid variable or object model element name and is not null (available in RRF 3.3.0 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. In RRF 3.6.x and later, *name* may also be an expression of the form *#e1* and returns true if *e1* is a valid expression to which the # operator may be applied; or an expression of the form *e1[e2]* and returns true if the *e1* can be indexed using the *[ ]* operator and *e2* is a valid index into it. |
 | exp | float->float | Returns *e* raised to the operand (supported in RRF 3.5.0 and later) |
 | fileexists | string->bool | Yields **true** if the string parameter is the name of a file in the file system (available in RRF 3.5.0 and later). |
 | fileread | (string, int, int, char)->array | Returns an array of elements read from a single-line CSV or similar file (available in RRF 3.5.0 and later). The string parameter is the name of the file to read. The first integer parameter is the number of elements to skip; the second is the maximum number of elements to read; and the character is the field separator, typically ','. See note at the end of this table.|
@@ -427,7 +427,7 @@ The following functions are supported, with their conventional meanings:
 | max | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
 | min | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
 | mod | (int, int)->int or (float, float)->float | Returns the remainder from dividing the first operand by the second operand |
-| pow | (float, float)->float or (int, int)->int | Returns the first operand to the power of the second operand  (supported in RRF 3.5.0 and later). The result type is **int** if the operands are int, the second operand is non-negative, and the result fits in an **int**. |
+| pow | (float, float)->float or (int, int)->int | Returns the first operand to the power of the second operand  (supported in RRF 3.5.0 and later). The result type is **int** if the operands are **int**, the second operand is non-negative, and the result fits in an **int**; else the result type is **float**. |
 | radians | float->float | Converts degrees to radians |
 | random | int->int | Operand must >= 1. Returns a pseudo-random integer in the range 0 to one less than the operand. |
 | round | float->int or float->float | Rounds to nearest integer, or to nearest even integer if the fractional part of the operand is exactly one half. Result is **int** if it fits in a 32-bit signed integer, else **float** (available in RRF 3.6.0 and later). |
@@ -668,7 +668,6 @@ if (fileexists(var.config))
 
 echo "Creating directory "^var.dir
 M98 P"scripts/createDirectory.g" D{var.dir} ; Wraps M470 P{var.dir} because of a bug that stopped macro execution
-
 
 echo {"Creating filament "^var.name^" (un)loading at "^var.temperature^"C"}
 
