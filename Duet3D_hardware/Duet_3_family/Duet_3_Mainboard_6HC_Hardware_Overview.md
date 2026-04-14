@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-01-07T10:12:17.167Z
+date: 2026-04-14T21:48:42.190Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -186,7 +186,7 @@ On v0.5 boards the GND and V_FUSED legends on the underside of the board are the
 
 
 
-> The 4 wire motor and OUT1, OUT2 and OUT3 are [JST VH series connectors](http://www.jst-mfg.com/product/pdf/eng/eVH.pdf). They require a minimum of 22AWG wire (20AWG or 0.5mm^2^ recommended. Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way; but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heatshrink sleeving over the insulation to bulk up the insulation. You will need a suitable crimping tool for the crimp pins, for example Engineer PA21 (use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation). Alternatively you can solder the wire to the crimp pin{.is-info}
+> The 4 wire motor and OUT1, OUT2 and OUT3 are [JST VH series connectors](http://www.jst-mfg.com/product/pdf/eng/eVH.pdf). They require a minimum of 22AWG wire (20AWG or 0.5mm^2^ recommended). Most NEMA17 size stepper motor wire will will not be thick enough to use in the normal way; but you can double the stripped part of the wire back on itself to bulk it up, and put a small length of heatshrink sleeving over the insulation to bulk up the insulation. You will need a suitable crimping tool for the crimp pins, for example Engineer PA21 (use the 2.2mm jaw opening to crimp the bare wire and the 2.5mm on to crimp the insulation). Alternatively you can solder the wire to the crimp pin.{.is-info}
 
 > The default 5V power configuration is Internal-5V-EN jumpered, 5V->SBC jumpered (the Duet is powering the SBC) , SBC->5V not jumpered. If you want the SBC to provide 5V to the Duet then remove the jumper from Internal-5V-EN and place a jumper on SBC-5V (leaving the 5V->SBC jumper in place).  **NOTE** this bypasses the 5V protection and a fault on the SBC may damage the Duet. See [Power distribution, 5V](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#h-5v) section below.{.is-info}
 
