@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-04-01T13:37:40.062Z
+date: 2026-04-15T11:16:23.667Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6565,13 +6565,15 @@ This turns the controlled pin output on whenever forwad extrusion is being done 
 ### Parameters
 
 * **Dnnn** Extruder number(s)
-* **Snnn** Pressure advance amount (in seconds) to use for that extruder or extruders
+* **Snnn** or **Snnn:nnn** Pressure advance amount (in seconds) to use for that extruder or extruders (two values are allowed only in RRF 3.7.0 and later)
+* **Lnnn** Pressure advance distance at which to switch from the first S value to the second (RRF 3.7.0 and later)
 
 ### Examples
 <br>
 <pre class="cblock">
-M572 D0 S0.1 ; set extruder 0 pressure advance to 0.1 seconds
-M572 D0:1:2 S0.2 ; set extruder 0, 1 and 2 pressure advance to 0.2 seconds (RepRapFirmware 1.20 and later)
+M572 D0 S0.1          ; set extruder 0 pressure advance to 0.1 seconds
+M572 D0:1:2 S0.2      ; set extruder 0, 1 and 2 pressure advance to 0.2 seconds (RepRapFirmware 1.20 and later)
+M572 D0 S0.9:0.1 L5.0 ; set extruder 0 pressure advance to 0.9 seconds reducing to 0.1 seconds above 5mm pressure advance distance (RepRapFirmware 3.7.0 and later)
 </pre>
 
 ### Description
@@ -6586,6 +6588,7 @@ Pressure advance causes the extruder drive position to be advanced or retarded d
 * When upgrading to RRF 3.6.0, when input shaping is used, pressure advance may need to be reduced compared to 3.5.x firmware.
 * When enabling and configuring pressure advance, the extruder acceleration ([M201](/User_manual/Reference/Gcodes/M201) E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk) in mm/s, divided by pressure advance (M572 S parameter) in seconds. Note [M566](/User_manual/Reference/Gcodes/M566) reports jerk in mm/min, [M205](/User_manual/Reference/Gcodes/M205) reports jerk in mm/s. For example, if a machine used extruder jerk of 50mm/s (3,000mm/min) at a PA of 0.02s, maximum extruder acceleration would be 50 / 0.02 = 2,500mm/s^2. 
 * For more details such as tuning the value see [Pressure advance](/User_manual/Tuning/Pressure_advance){target=_blank}.
+* RRF 3.7.0 and later support two-slope pressure advance, where one value of pressure advance is used at low speeds and a different (normally lower, or zero) value is used at high speeds. The changover occurs when the pressure advance distance exceeds the L parameter, or equivalently  when the extrusion speed in mm/sec exceeds the L parameter divided by the first S parameter.
 
 ## M573: Report heater PWM
 
