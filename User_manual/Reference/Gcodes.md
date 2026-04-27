@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-04-15T11:16:23.667Z
+date: 2026-04-27T08:34:17.094Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9035,17 +9035,18 @@ The procedure for changing the data rate is:
 
 An alternative procedure is being introduced and will become available in RRF 3.7 and later.
 
-## M953: Set CAN-FD bus fast data rate
+## M953: Enable CAN and set fast data rate
 
-*Provisional specification - not yet implemented*
+*Provisional specification - support planned in 3.7.0*
 
-This command allows the bandwidth of the CAN bus to be optimised, by increasing the data rate during transmission of CAN-FD data packets by means of the BRS (bit rate switch) feature. The maximum speed supported by CAN-FD is 8Mbits/sec but the practical limit depends on the cable length, cable quality, number of devices on the bus and CAN interface hardware used. The rate specified will be rounded down to the nearest achievable rate.
+This command enables the CAN subsystem on the master board. It also selects whether or not Bit Rate Switching (BRS) is used and if it is, it sets the data phase bit rate.
 
 ### Parameters
 
-* **Sn.n** Requested bit rate in Mbits/second. Ignored if it is lower than the bit rate for the negotiation phase.
-* **T0.n** Fraction of the bit time between the bit start and the sample point (optional)
-* **J0.n** Maximum jump time as a fraction of the bit time (optional)
+* **Sn.n** Requested arbitration phase bit rate in Kbits/second, default 1000. Other supported values are 500 and 250.
+* **Rn** Bit rate mutiplier for the data phase, default 1. Supported values are 1, 2, 3, 4, 6 and 8.
+* **T0.n** Fraction of the data bit time between the bit start and the sample point (optional)
+* **J0.n** Maximum jump time as a fraction of the data bit time (optional)
 * **Caa:bb** Transceiver delay compensation offset and minimum, in nanoseconds (optional)
 
 ### Examples
@@ -9062,11 +9063,15 @@ Glitches seen by the receiver while the transceiver delay is being measured will
 
 When CAN is implemented on Microchip SAME5x and SAMC21 processors, these values are converted from nanoseconds into time quanta and stored in the TDCO and TDCF fields of the transceiver delay compensation register.
 
-## M954: Configure as CAN expansion board
+## M954: Configure as CAN expansion board and enable CAN
 
 *Supported in RRF 3.4 and later on Duet 3 boards*
 
-This command is used to reconfigure the board it is executed on as a CAN-connected expansion board. It would typically be the only command in the config.g file. When it is executed, the board changes its CAN address to the one specified in the A parameter, stops sending CAN time sync messages, and responds to requests received via CAN just like a regular expansion board. 
+This command is used to reconfigure the board it is executed on as a CAN-connected expansion board. It would typically be the only command in the config.g file.
+
+In RRF 3.6 and earlier, when it is executed the board changes its CAN address to the one specified in the A parameter, stops sending CAN time sync messages, and responds to requests received via CAN just like a regular expansion board.
+
+In RRF 3.7 and later, when it is executed the board changes its CAN address to the one specified in the A parameter and listens for time sync messages. When it sees time sync messages it sets its fast data rate and responds to requests received via CAN.
 
 ### Parameters
 
