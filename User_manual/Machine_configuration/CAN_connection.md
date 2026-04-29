@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2026-04-29T13:02:51.471Z
+date: 2026-04-29T13:07:04.166Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -347,24 +347,24 @@ The latest bootloaders and CANiap files can be downloaded from [here](https://gi
 
 # Enabling bit rate switching
 
-Firmware 3.7.0 and later provide support for CAN-FD bit rate switching. During the data phase of a CAN transmission, the bus length is not important, so a higher bit rate can be used subject to the quality of the cable. This is specially useful if the normal bit rate has to be reduced because of long cable lengths.
+Firmware 3.7.0 and later provide support for CAN-FD bit rate switching. During the data phase of a CAN transmission, the bus length is not important because data is being sent in one direction, so a higher bit rate can be used subject to the quality of the cabling. This is especially useful if the normal bit rate has to be reduced because of long cable lengths.
 
 There are some restrictions on the use of bit rate switching:
 * The main board must support an external CAN timestamp counter. For Duets this means that the 6HC and 6XD boards can act as the master, but the Duet 3 Mini cannot.
-* Existing Duet 3 expansion and tool boards do not support an external CAN timestamp counter. This may affect the ability to ensure accurate time synchronisation between the main board and expansion boards, especially under conditions of high CAN traffic. We need to conduct further testing to establish whether we can work around this. On the other hand, 6HC and 6XD boards used as expansion boards do not have this issue. Future Duet 3 expansion and tool boards will not have this issue.
+* Existing Duet 3 expansion and tool boards do not support an external CAN timestamp counter. This may affect the ability to ensure accurate time synchronisation between the main board and expansion boards, especially under conditions of high CAN traffic. We need to conduct further testing to establish whether we can work around this. 6HC and 6XD boards used as expansion boards do not have this issue. Future Duet 3 expansion and tool board designs will not have this issue.
 * The bit rate multiplier (i.e. data but rate divided by normal bit rate) must be 2, 3, 4, 6 or 8.
 * The maximum data rate supported by the CAN transceivers on Duet 3 boards is 8Mbits/sec. The CAN transceivers on non-Duet boards may have a lower maximum bit rate.
 * All boards in the system must run a firmware version that supports bit rate switching (i.e. 3.7.x).
-* The CAN cabling is more critical when using bot rate switching. Use twisted pair cable (unshielded is OK). Stubs may cause reflectons that degrade the high-speed signals, so keep stubs short and if necessary use ferrite beads to suppress ringing (the new Duet Tool Distribution Boards include these as standard).
+* The CAN cabling is more critical when using bit rate switching. Use twisted pair cable (unshielded is OK). Stubs may cause reflectons that degrade the high-speed signals, so keep stubs short and if necessary use ferrite beads to suppress ringing (the new Duet Tool Distribution Boards include these as standard).
 
 ## Provisonal instructions for enabling bit rate switching (subject to change)
-Bit rate switching is enabled executing the M953 command on the main board. The R parameter specifies the bit rate mutiplier. You can also specify the sample point using the U parameter but the default (0.78) is usually suitable. RepRapFirmware will commnicate the bit rate switching parameters to the other boards. If you lose contact with other boards after enabling bit rate switching, set the bit rate multiplier to 1 to disable bit rate switching.
+Bit rate switching is enabled by executing the M953 command on the main board. The R parameter specifies the bit rate mutiplier. You can also specify the sample point using the U parameter but the default (0.78) is usually suitable. RepRapFirmware will communicate the bit rate switching parameters to the other boards. If you lose contact with other boards after enabling bit rate switching, set the bit rate multiplier to 1 to disable bit rate switching.
 
 Examples:
-
-`M953 R4   ; enable bit rate switching, data is sent at 4x the nominal speed`
-`M953 R1   ; disable bit rate switching`
-
+```
+M953 R4    ; enable bit rate switching, data is sent at 4x the nominal speed
+M953 R1    ; disable bit rate switching
+```
 # Troubleshooting
 
 ## Checking the CAN error statistics
