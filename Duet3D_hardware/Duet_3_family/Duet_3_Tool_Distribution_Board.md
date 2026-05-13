@@ -2,7 +2,7 @@
 title: Duet 3 Tool Distribution Board
 description: A board to make wiring multiple Duet 3 Toolboards easy.
 published: true
-date: 2025-10-08T14:59:50.540Z
+date: 2026-05-13T06:34:06.882Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:17:03.874Z
@@ -218,6 +218,8 @@ Some expansion and tool boards only have a two-pin CAN connection, eg Duet 3 Rot
 
 [![duet_3_tdbv1.0_can_wiring_04.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdbv1.0_can_wiring_04.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdbv1.0_can_wiring_04.jpg){target=_blank}Stubs can support more than one board, so long as the total length of the stub is under 1m.
 
+<p style="clear:both"></p>
+
 
 #### Revision v0.5
 
@@ -236,10 +238,12 @@ Some expansion and tool boards only have a two-pin CAN connection, eg Duet 3 Rot
 * Make sure CAN_H wires connect to CAN_H pins only, and CAN_L wires connect to CAN_L pins only.
 * The Tool Distribution Boards can support up to eight boards directly connected in this way, but make sure the total length of the stubs is less than 5m.
 
-
 <p style="clear:both"></p>
 
+
 [![duet_3_tdb_can_wiring_04.jpg](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_04.jpg =500x){.align-right}](/duet_boards/duet_3_can_expansion/duet_3_tdb_can_wiring_04.jpg){target=_blank}Stubs can support more than one board, so long as the total length of the stub is under 1m.
+
+<p style="clear:both"></p>
 
 
 ### Unused tool connections
