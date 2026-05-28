@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2025-09-21T13:15:43.957Z
+date: 2026-05-28T07:06:57.541Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -496,7 +496,7 @@ You will need to remove the bootloader protection by doing Erase Chip first and 
 
 Ethernet Only
 
-* Replaced the SD card filer/protection component that was no longer available with a functionally equivalent part. This will not change SD card perfomance or other functionality.
+* Replaced the SD card filter/protection component that was no longer available with a functionally equivalent part. This will not change SD card perfomance or other functionality.
 
 ## Revision 1.03
 
@@ -529,7 +529,7 @@ WiFi revision is version 1.02, Ethernet revision is 1.02a
 ## Revision 0.5
 
 * Add 5V TVS diode footprint option so either 1610 or SMC can be used on 5V.
-* Move OUT3 and OUT 4 connector up slightly to clear the stepper diver expansion header.
+* Move OUT3 and OUT 4 connector up slightly to clear the stepper driver expansion header.
 * Added pullup between Driver enable and 3.3.V
 * Add 3.3V TVS diode
 * Updated the 12V and 5V BUCK input circuits to improve EMC performance.
