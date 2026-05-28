@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-05-28T07:06:57.541Z
+date: 2026-05-28T07:11:34.911Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -27,13 +27,13 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 |  | **Duet 3 Mini 5+ WiFi** | **Duet 3 Mini 5+ Ethernet** |
 | **Processor** | [ATSAME54P20A](https://www.microchip.com/wwwproducts/en/ATSAME54P20A){target=_blank} ||
 | **Processor features** | 32-bit, 120MHz ARM Cortex M4F, 1Mb flash, 256Kb RAM, hardware floating point (single precision), DMA, 4Kb cache ||
-| **Networking/Comms** | 2.4GHz WiFi; USB port; CAN-FD bus | 10BaseT/100BaseTX Ethernet; USB port; serial port; CAN-FD bus |
+| **Networking/Comms** | 2.4GHz WiFi; USB port; up to two serial ports; CAN-FD bus | 10BaseT/100BaseTX Ethernet; USB port; up to two serial ports; CAN-FD bus |
 | **On-board stepper drivers** | 5 x [TMC2209](https://www.trinamic.com/products/integrated-circuits/details/tmc2209-la/){target=_blank} ||
 | **Stepper driver features** | Up to 2.0A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 ||
 | **High current outputs** | 1 x 15A, 2 x 5A each ||
 | **Medium current outputs** | 4 x PWM-controlled outputs, of which 2 support tacho input. Voltage selectable between VIN and 12V in 2 banks ||
 | **Thermistor/PT1000 inputs** | 3 x inputs, optimised for 100K thermistors and PT1000 sensors ||
-| **Inputs/Outputs** | 5 x on-board I/O connectors plus 2 x input-only connectors for endstop, filament monitor, Z probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Also one output with 5V signal level for hobby servo, laser control or VFD. Two I/O connectors have serial UART support. ||
+| **Inputs/Outputs** | 5 x on-board I/O connectors plus 2 x input-only connectors for endstop, filament monitor, Z probe, hobby servo or PanelDue connection. Inputs are 30V-tolerant. Also one output with 5V signal level for hobby servo, laser control or VFD. Two of the I/O connectors have serial UART support. ||
 | **Power monitoring** | VIN voltage monitoring allows for the state to be saved on power failure. ||
 | **SD card interface** | On-board high speed SD card socket. ||
 
