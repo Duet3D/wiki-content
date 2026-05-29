@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-04-27T08:34:17.094Z
+date: 2026-05-29T19:31:43.587Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3892,7 +3892,7 @@ See also [Macros, sounds section](/User_manual/Tuning/Macros#sounds){target=_bla
 
 ## M301: Set PID parameters
 
-*This comand is deprecated and will be removed in a future version of RepRapFirmware*
+*This comand is deprecated. Support is discontinued from RepRapFirmware 3.7.*
 
 ### Parameters
 
@@ -3915,7 +3915,7 @@ M301 H1 P20 I0.5 D100 ; Set PID values
 ### Notes
 
 * Sets Proportional (P), Integral (I) and Derivative (D) values for hot end. See also M303
-  * H: Is the heater number, and is compulsory. H0 is the bed, H1 is the first hot end, H2 the second etc.
+  * H: Is the heater number, default 1.
   * P: Proportional value
   * I: Integral value
   * D: Derivative value
@@ -3984,9 +3984,12 @@ Tuning is performed asynchronously. Run M303 with no parameters while a tuning i
 
 ## M304: Set PID parameters - Bed
 
+*This command is deprecated. Support is discontinued from RepRapFirmware 3.7.*
+
 ### Parameters
 
 * *This command can be used without any additional parameters.*
+* H: Is the heater number, default 0.
 * **Pnnn** proportional (Kp)
 * **Innn** integral (Ki)
 * **Dnnn** derivative (Kd)
