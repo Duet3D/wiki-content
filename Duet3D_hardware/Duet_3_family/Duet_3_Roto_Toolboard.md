@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2026-02-09T17:10:54.611Z
+date: 2026-06-01T15:11:02.425Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -88,7 +88,7 @@ The mount for Roto and SZP coil board shown at the top of the page is available 
 
 ## Description of Connections
 
-Duet 3 Toolboard 1LC provides the following connectors:
+Duet 3 Roto Toolboard provides the following connectors:
 
 | Connector| Label | Function |
 |--
