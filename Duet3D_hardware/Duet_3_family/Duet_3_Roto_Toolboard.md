@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2026-06-01T15:11:02.425Z
+date: 2026-06-05T10:06:48.083Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -311,7 +311,9 @@ Example mesh of 792 points that took ~20 seconds to produce.
 
 ### Mounting
 
-The bottom of the SZP coil should be around 1 to 2mm above the tip of the nozzle, so that when scanning the bed the G31 trigger height can be set to around 2mm to avoid the nozzle contacting the bed, while keeping the coil fairly close to the bed.
+The SZP most effective range is when the bottom of the SZP coil is between 2 to 6mm from the bed. Probe resolution and accuracy drops above and below this range. Ideally, the bottom of the SZP coil should be around 2.5mm to 3mm above the tip of the nozzle. This allows the SZP to act as a Z probe, for setting Z datum, and function as a bed mesh scanner.
+
+However, there are some caveats if you have a bed that has distortion, as the nozzle may hit the bed surface during scanning. You may need to mount the SZP coil closer to the bed, so the nozzle is further from the bed during scanning. This may cause the SZP to be ineffective for setting Z datum, and require the use of another probe or other way of setting Z datum. See [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration) for more guidance.
 
 ### Configuration
 
