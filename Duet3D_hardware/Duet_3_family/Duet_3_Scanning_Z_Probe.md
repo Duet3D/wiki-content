@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2025-09-22T09:12:29.763Z
+date: 2026-06-05T10:49:29.895Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -75,13 +75,11 @@ There are three M2 mounting holes and overall dimensions are 38mmx20mm
 
 ## Mounting
 
-* The SZP board can be mounted anywhere within reach of the supplied FFC cable (100mm).
-* Duet3D supply two coils, a 12mm coil and a 15mm coil. In theory the 12mm coils are higher resolution than the 15mm coils but we need more testing to confirm which is best, so we provide both.
-* Make sure there is no metal in the 30mm ABOVE the coil, or it will pick this up and give false readings
-* The bottom of the SZP coil should be around 3mm above the tip of the nozzle. The G31 Z trigger height can be set to around 2mm, so the coil is 5mm from the bed, to avoid the nozzle contacting the bed while keeping the coil close enough to the bed to get an accurate reading.
-* Route the SZP ribbon cable away from the coil, ie make sure it doesn't go over the coil
-* Ensure that the ribbon cable is FULLY inserted into the tiny connector, at both ends. Try reseating this if you continue to get erratic readings
-* You can use M2.5 countersunk screws (often supplied with smaller fans) to mount the coil, which stick out about 0.7mm. M3 countersunk screws stick out a bit further. There are M3 screws with low profile heads, usually between 0.8mm and 1mm; search for "m3 ultra low profile thin head".
+The SZP is most effective in the range when the bottom of the SZP coil is between 2 to 6mm from the bed; all SZP probing and scanning should be done within this range. Probe resolution drops above and below this range. Ideally, the bottom of the SZP coil should be around 2.5mm to 3mm above the tip of the nozzle. This allows the SZP to act as a Z probe, for setting Z datum, and function as a bed mesh scanner.
+
+However, there are some caveats if you have a bed that has distortion, as the nozzle may hit the bed surface during scanning. You may need to mount the SZP coil closer to the bed, so the nozzle is further from the bed during scanning. This may cause the SZP to be ineffective for setting Z datum, and require the use of another probe or other way of setting Z datum. 
+
+See [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration) for full instructions on mounting, configuring, calibration and usage.
 
 Here is an example with it mounted on a Mini Stealth Burner tool on a Voron:
 
