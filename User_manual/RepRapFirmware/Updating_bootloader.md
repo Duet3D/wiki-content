@@ -2,7 +2,7 @@
 title: Updating the bootloader on Duet 3 expansion and tool boards
 description: Duet 3 expansion boards and tool boards have  a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features.
 published: true
-date: 2025-11-14T11:59:13.099Z
+date: 2026-06-09T13:00:54.764Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:04:31.062Z
@@ -62,7 +62,18 @@ Bootloader ID: SAMC21 bootloader version 2.3 (2021-01-26b1)
 
 If it reports **Bootloader ID: not available** then your board is using a version 1.x bootloader.
 
-# Updating the bootloader using an Atmel ICE
+# Updating the bootloader OpenOCD 
+Using an Raspberry Pi Debug Probe or similar SWD device that is supported by OpenOCD
+
+## Prerequisites
+
+* Rapsberry Pi [Debug Probe](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html) or other SWD device that works with OpenOCD
+* [OpenOCD](https://openocd.org/) installed. v0.12.0 was used for this guide.
+* A pogo pin setup to connect to the SWD pads. (e.g this clip type can be used, variations available from [adafruit](https://www.adafruit.com/product/5433) and [pi hut](https://thepihut.com/products/pogo-pin-probe-clip-6-pins-with-2-54mm-0-1-pitch))
+
+
+
+# Updating the bootloader using an Atmel ICE and Microchip Studio
 
 ## Prerequisites
 
