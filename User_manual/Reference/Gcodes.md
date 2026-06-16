@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-06-16T10:22:08.642Z
+date: 2026-06-16T16:25:46.647Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9233,7 +9233,7 @@ This command triggers a firmware update if the necessary files are present on th
 
 * **Snnn** Firmware module number(s), default 0
 * **Bnnn** CAN address of the board to be updated (RRF 3.0 and later, Duet 3 only)
-* **P"filename"** Filename of firmware binary to use (RRF 3.3 and later)
+* **P"filename"** Filename of firmware binary to use (RRF 3.3 and later), not available in conjunction with S3
 * **F[feed]** Set package feed for DSF packages (RRF 3.5 and later, SBC only)
 * **V[version]** Install a specific DSF/RRF combination (RRF 3.5 and later, SBC only)
 
@@ -9262,7 +9262,7 @@ M997 S4                              ; update firmware on connected PanelDue
   * **3** - update the bootloader on the CAN-connected Duet 3 expansion board specified by the B parameter (see [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader){target=_blank})
   * **4** - update PanelDue firmware (RRF 3.2 and later; see [PanelDue firmware update instructions](/User_manual/RepRapFirmware/Updating_PanelDue){target=_blank}).
 * **B** parameter: On Duet 3 only this command take an optional B (board number) parameter which is the CAN address of the board to be updated, default 0 (i.e. main board).
-* **P** parameter: The optional P parameter can be used to provide the filename of the file to be used for updating a module. This can either only be a filename in which case it will prepend directories.firmware to it (0:/firmware) or can be an absolute path to the file to be used. It is not allowed to use P parameter and multiple modules, e.g. S1:4. (RRF 3.3 and later).
+* **P** parameter (RRF 3.3 and later): The optional P parameter can be used to provide the filename of the file to be used for updating a module. This can either only be a filename in which case it will prepend directories.firmware to it (0:/firmware) or can be an absolute path to the file to be used. It is not allowed to use P parameter and multiple modules, e.g. S1:4. The P parameter is ignored when S3 is used (bootloader update).
 * **F** and **V** parameters: In SBC mode from RRF 3.5 and later, `M997 S2` can be used to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). It also supports two optional arguments:
   * F"[feed]" - Set package feed for DSF packages where `<feed>` can be `stable` (default), `unstable`, `stable-x.y`, or `unstable-x.y` where x.y corresponds to a version. e.g. 3.4 or 3.5.
   * V"[version]" - Install a specific DSF/RRF combination (must not be used together with `M997 F`). Example: `M997 S2 V"3.5.0-rc.2"`
