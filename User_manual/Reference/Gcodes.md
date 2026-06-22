@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-06-16T16:25:46.647Z
+date: 2026-06-22T09:36:33.972Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1056,7 +1056,7 @@ Probe toward workpiece, stop on contact, signal error if failure. Supported in R
 
 ### Parameters
 
-* **X,Y,Z,U,V,W,A,B,Cnnn**: Target position (up until RRF 3.1.1 these are expected to be machine coordinates)
+* **X,Y,Z,U,V,W,A,B,Cnnn**: Target position (after RRF 3.1.1 these are user coordinates)
 * **Pnn**: Probe number to use, default 0 (deprecated in RRF 3.3 and later)
 * **Knn**: Probe number to use, default 0 (RRF 3.3 and later)
 * **Fnnn**: Feed rate, i.e. probing speed, mm/min (RRF 3.6.0 and later). 
