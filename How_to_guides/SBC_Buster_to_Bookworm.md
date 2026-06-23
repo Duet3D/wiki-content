@@ -1,8 +1,8 @@
 ---
 title: Updating SBC distribution (buster/bookworm to trixie)
-description: Guide to update a Raspberry Pi Single Board Computer (SBC) running Duet Software Framework from Buster to Bookworm
+description: Guide to update a Raspberry Pi Single Board Computer (SBC) running Duet Software Framework from Buster/Bookworm to Trixie
 published: true
-date: 2026-06-23T08:00:40.226Z
+date: 2026-06-23T08:01:10.920Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-15T16:11:48.467Z
