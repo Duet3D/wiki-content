@@ -2,7 +2,7 @@
 title: Duet3D PT100 temperature sensor daughterboard
 description: Overview of the Duet3D PT100 daughterboard
 published: true
-date: 2025-01-28T10:47:15.823Z
+date: 2026-06-26T09:18:28.710Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T11:12:36.201Z
@@ -43,6 +43,14 @@ The PT100 daughterboard uses the Maxim Integrated MAX31865 RTD sensor IC.  This 
 ## MAX31865 sensor IC details
 
 An external resistor sets the sensitivity for the RTD being used (in the case of the Duet3D daughterboard this is a PT100) and a precision delta-sigma ADC converts the ratio of the RTD resistance to the reference resistance into digital form. High Accuracy: 15-Bit ADC Resolution; Nominal Temperature Resolution 0.03125°C (Varies Due to RTD Nonlinearity). Total Accuracy Over All Operating Conditions: 0.5°C (0.05% of Full Scale) max. For more information see the [Maxim Integrated MAX31865 product page](https://www.maximintegrated.com/en/products/interface/sensor-interface/MAX31865.html){target=_blank}.
+
+## Using PT1000 sensors
+
+To use PT1000 sensors witht the PT100 temperature sensor daughterboard, the reference resistor on the daughterboard would need to be changed:
+
+> The ADC therefore produces a digital output that is equal to the ratio of the RTD resistance to the reference resistance. A reference resistor equal to four times the RTD’s 0NC resistance is optimum for a platinum RTD. Therefore, a PT100 uses a 400 ohm reference resistor, and a PT1000 uses a 4k ohm reference resistor.
+
+See the notes on page 10 of [the MAX31865 datasheet here](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31865.pdf).
 
 ## Operating limits
 
