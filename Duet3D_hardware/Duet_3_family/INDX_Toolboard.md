@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-06-28T14:13:40.817Z
+date: 2026-06-28T14:20:20.849Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -64,10 +64,13 @@ If you need to disconnect and reconnect the FFCs linking the two boards, be awar
 - Be sure to insert the cable straight into the middle of the connector. It is easy to insert a cable so that it is skewed and shorts the pins out. If you do this and then power up the board, it is likely to be damaged.
 - The latching mechanisms on the vertical FFCs on the MCU board are counter-intuitive. Thet are unlatched when the latch is in the up position (away from the PCB). After inserting the FFCs, push the latch down towards the PCB to lock the FFC in place.
 
+### Switch
+
+Set the `CAN <-> USB` switch to the `CAN` position.
+
 ### Jumpers
 
 The following jumper blocks are provided:
-- 3x2-pin USB/CAN select jumper block. When running RepRapFirmware, do not install any jumnpers in this block. Jumpers should only be inserted when running alternative firmware that uses USB for communication with the rest of the system instead of CAN-FD.
 - 2-pin CAN_RESET jumper. Only install this if the firmware running on the board is non-functioning. When the board is powered up with this jumper installed, it tells the bootloader to reset the CAN address to default (121) and then fetch and install new firmware even if firmware is already installed.
 - 2-pin CAN_TERM jumper. Install this if the board is the last board at one end of the CAN bus.
 
@@ -89,13 +92,11 @@ The RepRapFirmware binary file for this board is called Duet3Firmware_TOOLINDX.b
 
 The bootloader file for this board is called Duet3Bootloader-SAME5x_CAN_USB.bin.
 
-The minimum RepRapFirmware version for this board is 3.7.0-alpha dated 2026-02-10 or later. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
+The minimum RepRapFirmware version for this board is 3.7.0-beta.1. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
-As at 2026-02-16 the RGB status LEDs on the VF board are not driven, although a temporary pin name is provided to allow them to be tested.
-
-The inductive heater is fast and powerful, therefore the usual default tool heater model is inappropriate. When it is first configured as a heater, a more suitable default model is applied, which can be overridden in the usual way using M307.
+The inductive heater is fast and powerful, therefore the standard RepRapFirmware default tool heater model is inappropriate. When it is first configured as a heater, a more suitable default model is applied automatically.
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assembly is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
 
