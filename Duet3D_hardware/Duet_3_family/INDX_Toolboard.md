@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-02-26T13:13:01.735Z
+date: 2026-06-28T14:13:40.817Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -126,19 +126,19 @@ The thermopile sensor is configured using the M308 command with sensor type `"th
 
 The inductive heater is configured using the M950 command with pin name `"nozzleheat"`. The temperature sensor number in the M950 command must refer to the thermopile sensor primary output.
 
-Example configuration, using sensor #4 for the nozzle temperature, heater #1, and the default CAN address (121):
+Example configuration, using sensor #1 for the nozzle temperature, heater #1, and the default CAN address (121):
 
 ```
-M308 S4 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile"                 ; configure thermopile main output (add T100000 B4311 if using old 100K thermistor)
-M308 S5 Y"thermopile_tpis.ambient" P"121.S4.1" A"Thermopile ambient"       ; configure thermopile ambient output (optional)
-M308 S6 Y"thermopile_tpis.environment" P"121.S4.2" A"Hot end surround"     ; configure nozzle environment output (optional)
-M950 H1 C"121.nozzleheat" T4                                               ; configure induction heater
+M308 S1 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile"                 ; configure thermopile main output (add T100000 B4311 if using old 100K thermistor)
+M308 S2 Y"thermopile_tpis.ambient" P"121.S1.1" A"Thermopile ambient"       ; configure thermopile ambient output (optional)
+M308 S3 Y"thermopile_tpis.environment" P"121.S1.2" A"Hot end surround"     ; configure nozzle environment output (optional)
+M950 H1 C"121.nozzleheat" T1                                               ; configure induction heater
 
 ```
-The heatsink fan should be configured to run at full PWM when the nozzle is significantly above ambient temperature (e.g. above 45C). Here are suitable commands to configure it as fan #1, assuming again that the nozzle temperature sensor is sensor #4:
+The heatsink fan should be configured to run at full PWM when the nozzle is significantly above ambient temperature (e.g. above 45C). Here are suitable commands to configure it as fan #1, assuming again that the nozzle temperature sensor is sensor #1:
 ```
 M950 F1 C"121.hsfan+hsfan.tach"             ; heatsink fan
-M106 P1 H4 T45 S1                           ; turn on when nozzle temperature is >= 50C
+M106 P1 H1 T45 S1                           ; turn on when nozzle temperature is >= 50C
 ```
 The print cooling fan should be configured in the usual way, typically as fan #0:
 ```
