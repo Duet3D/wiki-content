@@ -2,7 +2,7 @@
 title: Duet Software Framework (DSF) on other boards
 description: Duet Software Framework is the bundle of software programs running on the Raspberry Pi that connects to and controls the Duet 3.
 published: true
-date: 2025-11-03T10:29:06.374Z
+date: 2026-06-28T15:35:07.815Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-15T10:49:14.406Z
@@ -177,7 +177,7 @@ This means AppArmor support must be enabled before third-party plugins can be in
 To achieve this on a Raspberry Pi, perform the following:
 
 1. Install the `apparmor` package
-1. Edit the kernel command line and append `lsm=apparmor` to it (for Raspberry Pi this is saved in `/boot/cmdline.txt`)
+1. Edit the kernel command line and append `lsm=apparmor` to it (for Raspberry Pi this is saved in `/boot/firmware/cmdline.txt`)
 1. Reboot the machine
 1. Check if the AppArmor module is enabled (run `aa-status` and check the output)
 
