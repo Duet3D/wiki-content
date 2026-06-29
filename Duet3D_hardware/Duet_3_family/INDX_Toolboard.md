@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-06-28T14:20:20.849Z
+date: 2026-06-29T15:11:01.567Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -124,6 +124,16 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 ### Configuring the induction heater, IR temperature sensor and heatsink fan
 
 The thermopile sensor is configured using the M308 command with sensor type `"thermopile_tpis.object"` and pin name `"i2c"`. As well as the main output which provides nozzle temperature, it has two additional outputs which may be used for monitoring. Auxiliary output 1 has type `"thermopile_tpis.ambient"` and is the ambient temperature reported by the thermopile sensor. Auxiliary output 2 has type `"thermopile_tpis.environment"` and is the temperature of the nozzle surround reported by the auxiliary thermistor.
+
+As at 2026-06-29 the M308 command to configure the thermopile sensor accepts the following parameters, however many of these are likely to be withdrawn in future. None of these parameters should be needed in normal use.
+
+- **S** Sensor number
+- **R** Radiation exponent, must be between 3.8 and 4.4. The theoretical value is 4.0 but the sensor manufacturer recommends 4.2.
+- **F** Object field of view times emissivity, expressed as a fraction of 256. Normally in the range 110 to 120.
+- **W** Surroundings (as measured by the aux thermistor) field of view times emissivity, expressed as a fraction of 256. The sum of the F and W parameters should not exceed 256.
+- **T** Aux thermistor resistance at 25C
+- **B** Aux thermistor B parameter
+- **C** Aux thermistor C parameter
 
 The inductive heater is configured using the M950 command with pin name `"nozzleheat"`. The temperature sensor number in the M950 command must refer to the thermopile sensor primary output.
 
