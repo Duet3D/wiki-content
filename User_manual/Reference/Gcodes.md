@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-07-01T13:44:48.509Z
+date: 2026-07-03T11:52:20.280Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4357,7 +4357,7 @@ M308 S13 P"S10.3" Y"bme68x-gas" A"Chamber Gas[ohm]"    ; attach BME68x gas resis
 
 ##### Temperature/Humidity/Pressure notes
 
-* "dht11" is supported in firmware up to RRF 3.3, but removed from RRF 3.4 onward. DHT11 sensors are no longer recommened for new designs so replace them with a BME280 sensor instead.
+* "dht11" is supported in firmware up to RRF 3.3, but removed from RRF 3.4 onward. DHT11 sensors are no longer recommended for new designs so replace them with a BME280 sensor instead.
 * "bme280" is only supported in RRF 3.5 and later, and only on Duet 3 boards.
 * DHT sensors provide a primary temperature output and an additional output providing humidity. To access the humidity output of a DHT sensor you must first configure the primary sensor of type "dht21" or "dht22". Then you can configure "dht-humidity" to be attached to the DHT sensor's secondary output, by specifying port ```P"Snnn.1"``` where **nnn** is the sensor number of the primary sensor.
 * Similarly, BME280 sensors provide a primary temperature output and two additional outputs providing pressure and humidity. To access the additional output of a BME280 sensor you must first configure the primary sensor of type "bme280". Then you can configure sensor "bme-pressure" to be attached to the BME280 sensor's secondary output, by specifying port ```P"Snnn.1"``` where nnn is the sensor number of the primary sensor; and you can configure sensor "bme-humidity" to be attached to the BME280 sensor's secondary output by specifying port ```P"Snnn.2"```. If the BME280 is connected to a CAN-connected expansion board then you must also prefix the port name with the CAN address of that board, e.g. ```P"10.S20.1"```.
@@ -4413,7 +4413,7 @@ M308 S13 Y"drivertemp" P"1.dummy" A"3HC Steppers"
 
 #### Duet 3 ADC daughterboard
 
-**Additional parameters for Duet 3 ADC daughterboard**
+##### Additional parameters for Duet 3 ADC daughterboard
 
 * **Y"sensor_type"** The sensor and interface type: "ads131.chan0.u" or "ads131.chan0.b" depending on whether unipolar or bipolar operation is required
 * **P"pin_name"** <br>**Channel 0**: "spi.cs0" if using a 6HC main board, "spi.cs1" for other main boards; except that if this daughter board is fitted on top of another Duet3D daughter board then add 2 to the cs number. <br>**Channel 1**: "Sxx.1" where xx is the sensor number of the first channel <br>(note you need to prepend the expansion board CAN address if the sensor is on an expansion board)
@@ -4436,6 +4436,33 @@ M308 S21 Y"ads131.chan1" P"123.S20.1" B0.0 C5000.0 ; second channel for sensor o
 * Duet3 ADC daughterboard sensors: "ads131.***"  are only supported in RRF 3.6 and later, and only on Duet 3 boards.
 * See also [Duet 3 ADC daughterboard](/Duet3D_hardware/Accessories/Duet_3_ADC_daughterboard).
 
+#### Bondtech INDX radiant heat sensor
+
+##### Additional parameters for Bondtech INDX radiant heat sensor
+
+* **Y"sensorType"** The sensor type;
+  "thermopile_tpis.object" for the primary sensor
+  "thermopile_tpis.ambient" for the ambient temperature sensor
+  "thermopile_tpis.environment" for the thermistor that senses the temperature of the tool close to the sensor
+* **Tnnnn** Resistance of the auxiliary thermistor at 25C
+* **Bnnnn** B parameter of the auxiliary thermistor
+* **Cnnnn** C parameter of the auxiliary thermistor
+* **Rnn** Exponent used by the model used to calculate temperature from radiant heat, Must be between 3.8 and 4.4, default 4.2.
+* **Fnn** Combined field of view and radiance of the object, as a fraction of 256.
+* **Wnn** Combined field of view and radiance of the environment, as a fraction of 256.
+
+##### Bondtech INDX radiant heat sensor examples
+
+<br>
+<pre class="cblock">
+M308 S1 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile"                 ; configure thermopile main output
+M308 S2 Y"thermopile_tpis.ambient" P"121.S1.1" A"Thermopile ambient"       ; configure thermopile ambient output (optional)
+M308 S3 Y"thermopile_tpis.environment" P"121.S1.2" A"Hot end surround"     ; configure nozzle environment output (optional)
+</pre>
+
+##### Bondtech INDX radiant heat sensor notes
+
+* All parameters except Y are provided on a temporary basis for use by developers. Do not use those parameters unless instructed to do so by Duet3D or Bondtech.
 
 ### Notes
 
