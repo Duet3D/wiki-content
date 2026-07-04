@@ -2,7 +2,7 @@
 title: Duet3D PT100 temperature sensor daughterboard
 description: Overview of the Duet3D PT100 daughterboard
 published: true
-date: 2026-06-26T09:18:28.710Z
+date: 2026-07-04T07:24:22.275Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-07T11:12:36.201Z
@@ -46,7 +46,7 @@ An external resistor sets the sensitivity for the RTD being used (in the case of
 
 ## Using PT1000 sensors
 
-To use PT1000 sensors witht the PT100 temperature sensor daughterboard, the reference resistor on the daughterboard would need to be changed:
+To use PT1000 sensors with the PT100 temperature sensor daughterboard, the reference resistor on the daughterboard would need to be changed:
 
 > The ADC therefore produces a digital output that is equal to the ratio of the RTD resistance to the reference resistance. A reference resistor equal to four times the RTD’s 0NC resistance is optimum for a platinum RTD. Therefore, a PT100 uses a 400 ohm reference resistor, and a PT1000 uses a 4k ohm reference resistor.
 
