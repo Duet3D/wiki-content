@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-07-05T16:51:23.610Z
+date: 2026-07-05T16:55:41.210Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -626,10 +626,10 @@ check for continuity using a multimeter.
 # Tabs{.tabset}
 
 ## Revision v1.02d
- - Added the Aux CANFD bus connection (CAN0) to pins 2 and 5 of the RJ12 header (J23) for potential future firmware features.
+ - Added the Aux CANFD bus connection (CAN0) to pins 2 and 5 of the RJ12 header (J23) for potential future firmware features. If your application already uses both the main CAN1 header and the AUX/CAN0 header then the cuttable jumper connections on the bottom of the board will need to be cut to remove the CAN0 bus from the RJ12 connector
  - Added pogo pin pads for SWD signals on the bottom of the board
  - Updated the high current output mosfets (TR1,TR3,TR5 for OUT1, OUT2, OUT3) to AON7264E due to part availability.
- - Changed the SD card socket to a different version due to part availability (no position or fucntionality change) 
+ - Changed the SD card socket to a different version due to part availability (no position or functionality change)
 
 ## Revision v1.02c
 - RS485 port added. This uses the UART on IO1 so IO1 cannot be used at the same time as the RS485 port. The individual, unused driver 5 diag pin was repurposed for the RS485 transceiver RX/TX switching pin. The SWD header was removed to fit the RS485 header in. The SWD pins are still available as pogo pin contacts under the PCB.
