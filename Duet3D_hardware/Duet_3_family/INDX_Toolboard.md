@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: false
-date: 2026-06-29T15:11:01.567Z
+date: 2026-07-09T13:47:25.452Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -66,13 +66,35 @@ If you need to disconnect and reconnect the FFCs linking the two boards, be awar
 
 ### Switch
 
-Set the `CAN <-> USB` switch to the `CAN` position.
+RRF supports the CAN connection, so set the `CAN <-> USB` switch on the MCU board to the `CAN` position.
 
 ### Jumpers
 
 The following jumper blocks are provided:
 - 2-pin CAN_RESET jumper. Only install this if the firmware running on the board is non-functioning. When the board is powered up with this jumper installed, it tells the bootloader to reset the CAN address to default (121) and then fetch and install new firmware even if firmware is already installed.
 - 2-pin CAN_TERM jumper. Install this if the board is the last board at one end of the CAN bus.
+
+## Wiring
+
+The Bondtech INDX tool head is normally supplied with an associated Link board. This board provides the following:
+* 4A fuse in the VIN supply to the INDX tool head
+* USB isolator to protect a host computer USB port from damage in the event of a USB malfunction (in particular, a broken ground connection). This is not required when using RRF because RRF does not use the USB port.
+* Protection against VIN reverse polarity at the VIN terminal block.
+
+### To use the Link board:
+* Set the CAN<->USB switch on the Link board to CAN
+* Connect the power and signal connectors of the cable supplied to the VOUT and DATA OUT pins of the Link board
+* Connect the VIN power supply to the 2-way terminal block
+* Connect the CAN IN connector to the CAN bus from your main board
+* If the INDX tool is the last board on the CAN bus, do not connect anything to the CAN OUT port on the Link board, and install the termination junper on the IND MCU board
+* If the INDX tool is not the last board on the CAN bus, connect the CAN OUT port to the next board in the chain, and do not fit the termination junper on the INDX MCU board.
+* Do not connect anything to the USB port on the Link board.
+
+### To use a Duet Tool Distribution Board instead of the Link board (note, you will not have VIN reverse polarity protection):
+* Choose an output for the Tool Distribution Board to connect the INDX tool to
+* Replace the 5A fuse in that position of the Tool Distribution Board with the 4A fuse for the Link board
+* Connect the power and data connectors of the supplied cable to the selected position on the Tool Distribution Board. If using a version 1.0 Tool Distribution Board then the connectors are compatible. If using a version 0.5 board then you will need to change the 2-pin PA connector on the cable to a 4-pin PH connector.
+* See the Tool Distribution Board instructions for generic instructions for connecting tool boards
 
 ## LED indications
 
@@ -88,15 +110,15 @@ Aside from the status LEDs mounted on the VF board, LEDs are provided on the MCU
 **Status LED:** In normal use, the red LED flashes slowly (approx 1Hz) in sync with the main board to indicate that it has CAN time sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
 
 ## Software notes
-The RepRapFirmware binary file for this board is called Duet3Firmware_TOOLINDX.bin.
+The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**.
 
-The bootloader file for this board is called Duet3Bootloader-SAME5x_CAN_USB.bin.
+The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bin**.
 
 The minimum RepRapFirmware version for this board is 3.7.0-beta.1. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
-The inductive heater is fast and powerful, therefore the standard RepRapFirmware default tool heater model is inappropriate. When it is first configured as a heater, a more suitable default model is applied automatically.
+The inductive heater is fast and powerful, therefore the standard RepRapFirmware default tool heater model is inappropriate. When it is first configured as a heater, a more suitable default model is applied automatically. **Heater tuning must be run before using the INDX tool.**
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assembly is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
 
@@ -159,22 +181,8 @@ M106 P1 S0                                  ; turn off print cooling fan
 
 ### Configuring Neopixel or other WS2812 LED strings
 
-Use this command to configure an LED string on the INDX board:
+Use this command to configure an LED string connected to the LED port of the INDX board:
 ```
 M950 E0 T1 C"121.led"
 ```
 Then use M150 commands to set the LED colours.
-
-### Testing the RGB LEDs on the VF board
-
-The RGB LEDs will in a future firmware release be driven automatically according to the state of the printer. Meanwhile thay can be tested by configuring a GpOut port like this:
-```
-M950 P0 C"121.ate.lp5817"
-```
-Then use M42 commands targeted at that port to set the colours. The S parameter in the command should be set to a number betwene 0.0 and 1.0 calculated as follows `(R + 256 * G + 65536 * B)/16777216.0` where R, G and B are the desired red, green and blue components each in the range 0 to 255. Examples:
-```
-M42 P0 S0.00001519918442   ; set LEDs red
-M42 P0 S0.003890991211     ; set LEDs green
-M42 P0 S0.99609375         ; set LEDs blue
-M42 P0 S0.9961089492       ; set LEDs purple
-```
