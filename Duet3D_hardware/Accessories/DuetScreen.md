@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-04-02T13:23:39.298Z
+date: 2026-07-09T12:34:22.360Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -67,7 +67,7 @@ More information for developers is available on our github repositories (note cu
 
 ## Mounting
 
-The DuetScreen 7 has 6 mounting posts, these are M3 tapped, 10mm high posts soldered into the board. In many cases only the outer 4 will be required.
+The DuetScreen 7 has 6 mounting posts, these are M3 tapped, 8mm high posts soldered into the board. In many cases only the outer 4 will be required.
 
 > Do not over torque screws into these mounting posts. They are rated to 0.5 Nm, however to mount the screen there is no need to go above 0.2 Nm
 {.is-info}
