@@ -1,8 +1,8 @@
 ---
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
-published: false
-date: 2026-07-09T13:47:25.452Z
+published: true
+date: 2026-07-09T13:48:33.463Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
