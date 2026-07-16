@@ -2,7 +2,7 @@
 title: Connector and spare part numbers
 description: This is a growing list of connectors and spare part numbers. If a spare part is required that is not on the list please check the source on github or ask on the forums 
 published: true
-date: 2026-04-14T22:18:23.867Z
+date: 2026-07-16T11:23:25.975Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-05T22:43:02.549Z
@@ -18,14 +18,16 @@ dateCreated: 2021-12-05T22:43:02.549Z
 
 2.54mm Molex compatible connectors are used for everything **EXCEPT** the medium-current outputs, and the stepper motor outputs on the 6HC and 3HC, which use JST VH (see below). 2.54mm Molex compatible connectors are widely available from the usual electronic component distributors, and on eBay.
 
-|---|---|
-| **2-way shell** | 22-01-2025 or 22-01-3027 (or Würth Elektronik 61900211621) |
-| **3-way shell** | 22-01-2035 or 22-01-3037 (or 61900311621) |
-| **4-way shell** | 22-01-2045 or 22-01-3047  (or 61900411621) |
-| **5-way shell** | 22-01-2055 or 22-01-3057  (or 61900511621) |
-| **Crimp pins for all of the above** | 08-50-0032 (for 22-01-20x5 series shells)</br>08-50-0113 or 08-50-0114 (for 22-01-30x7 shells)</br>61900113722DEC for the Würth Elektronik shells |
+> Please note, the Molex KK compatible shells and crimp pins that we supply with Duets are usually made by Würth Elektronik. The crimp pins made by Würth should only be used with shells made by Würth.  In particular, they will not lock into Molex 22-01-20x5 shells.
+{.is-warning}
 
-Please note, the Molex KK compatible shells and crimp pins that we supply with Duets are usually made by Würth Elektronik. The crimp pins made by Würth should only be used with shells made by Würth.  In particular, they will not lock into Molex 22-01-20x5 shells.
+| Part | Würth Elektronik P/N | Molex P/N (current) | Molex P/N (legacy) | JYK P/N |
+|:---|:---|
+| **2-way shell** | 61900211621 | 22-01-3027 | 22-01-2025 | H2500-02 |
+| **3-way shell** | 61900311621 | 22-01-3037 | 22-01-2035 | H2500-03 |
+| **4-way shell** | 61900411621 | 22-01-3047 | 22-01-2045 | H2500-04 |
+| **5-way shell** | 61900511621 | 22-01-3057 | 22-01-2055 | H2500-05 |
+| **Crimp pin** | 61900113722DEC | 08-50-0113 or 08-50-0114 | 08-50-0032 | T2500-02 |
 
 ### JST VH
 
@@ -93,13 +95,14 @@ The **6-pin SWD connector** on some Duet 3 boards is ZHR-6 (JST ZH). It is norma
 
 # Duet 2
 
-## Molex Style Connectors
+## 2.54mm Molex compatible
 
 The connectors for the stepper motor,  endstop switch, thermistors and fans on the Duet 2 are Molex KK type. The Dupont-style connectors typically used with RAMPS and other electronics will also fit them. However, for maximum reliability we recommend using the correct Molex female connectors or compatible connectors, because they lock in place and will only fit one way round.
 
 Molex KK connectors are widely available from the usual electronic component distributors, and on eBay.  There are compatible connectors available from Würth Elektronik and JYK.  The commonly available KF2510 connector kits also fit quite well and include extra pieces for future expansion.
 
-Please note that the shells and crimp pins that supplied with Duets are usually made by Würth Elektronik. The crimp pins made by Würth should only be used with shells made by Würth.  In particular, they will not lock into Molex 22-01-20x5 shells.  In general you should use crimp pins and shells from the same manufacturer to ensure compatibility.
+> Please note that the shells and crimp pins that supplied with Duets are usually made by Würth Elektronik. The crimp pins made by Würth should only be used with shells made by Würth.  In particular, they will not lock into Molex 22-01-20x5 shells.  In general you should use crimp pins and shells from the same manufacturer to ensure compatibility.
+{.is-warning}
 
 Here are the compatible part numbers:
 
