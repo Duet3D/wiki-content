@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-07-17T10:01:21.123Z
+date: 2026-07-17T21:30:55.993Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9192,6 +9192,32 @@ Raise a heater fault from expansion board at CAN address 2 on heater 1
 * **P** parameter: (non-negative integer) additional information about the event, e.g. the subtype of a heater fault or a filament error. The meaning of the optional additional parameters also depends on the event type. For example, for a driver error it is the driver status.
 * **S** parameter: the full text string describing the fault (the same string that is written to the log file, if the event is logged). This is intended to be suitable to show to the user.
 * For more information, see the [Events](/User_manual/RepRapFirmware/Events) wiki page.
+
+## M959: Configure CAN expansion board behaviour
+
+*Supported in RepRapFirmware 3.7 and later*
+
+This command configures how the connection between the main board and a CAN-FD expansion board is supervised. The main board flags an expansion board as timed out (raising an `expansion-timeout` event) when it has received no status report from it for half the connection timeout. The expansion board switches all of its heaters off when it had time sync with the main board and then received no time sync messages for the full connection timeout, so that heaters do not stay on unsupervised if the CAN connection fails. When the connection is restored, the expansion board announces itself again and the main board raises an `expansion-reconnect` event.
+
+### Parameters
+
+* **Bnn** CAN address of the expansion board to configure (1..126)
+* **Tnn** (optional) Connection timeout in seconds, minimum 3, default 10
+
+### Examples
+<br>
+<pre class="cblock">
+M959 B121 T30 ; set the connection timeout of the board at CAN address 121 to 30 seconds
+M959 B121     ; report the connection timeout of the board at CAN address 121
+M959          ; report the connection timeouts of all expansion boards
+</pre>
+
+### Notes
+
+* The current timeout of each expansion board is available in the object model as `boards[].timeout`.
+* If T is given, the value is stored on the main board and sent to the expansion board. Like other configuration, the expansion board reverts to the default when it is reset, so M959 normally belongs in config.g.
+* The expansion board only switches its heaters off if it had established time sync and then lost it. A board that starts up without a main board present does not time out.
+* Heater setpoints are not restored automatically when the board reconnects; the expansion-reconnect event macro can be used to do that. Its P parameter is 0 if the board announced itself after a reset, 1 if it reconnected with its configuration intact, or 3 if it reconnected with its configuration intact but switched its heaters off while disconnected. For more information, see the [Events](/User_manual/RepRapFirmware/Events) wiki page.
 
 ## M970: Enable/disable phase stepping
 
