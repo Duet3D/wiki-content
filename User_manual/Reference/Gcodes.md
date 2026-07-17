@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-07-03T11:52:20.280Z
+date: 2026-07-17T10:01:21.123Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6733,13 +6733,14 @@ This sets the communications parameters of the serial comms channel specified by
 * **Pnnn** Serial channel number
 * **Bnnn** Baud rate, default 57600 (same as the default PanelDue baud rate)
 * **C"port_name"** Port name for Transmit/Receive control of the RS485 transceiver when the mode is Device and you are using it for Modbus RTU (S7). Not required when running on Duet hardware with a built-in RS485 transceiver. Not required if the transceiver module does automatic transmit/receive switching (note that such transceivers may not work with some Modbus devices).
-* **Snnn** Mode: 0 = PanelDue; 1 (default) = PanelDue mode, checksum or CRC required; 2 = raw mode; 3 = raw mode with checksum or CRC required; 4 = PanelDue mode, CRC required; 5 = disabled; 6 = raw mode, CRC required; 7 = Device, eg Modbus or UART (if supported).
+* **Snnn** Mode: 0 = PanelDue; 1 (default) = PanelDue mode, checksum or CRC required; 2 = raw mode; 3 = raw mode with checksum or CRC required; 4 = PanelDue mode, CRC required; 5 = disabled; 6 = raw mode, CRC required; 7 = Device, e.g. Modbus or raw UART (if supported).
+* **Fn** Selects number of data bits and parity (optional, supported in RRF 3.7.0-beta2 and later). Only applied when the port is in Device mode. 0 = 8 data bits, no parity bit (default); 1 = 8 data bits, even parity; 2 = 8 data bits, odd parity.
 
 ### Examples
 <br>
 <pre class="cblock">
 M575 P1 B57600 S1 ; sets first auxiliary port (io0 on Duet 3) to PanelDue mode
-M575 P2 B9600 S7 ; sets second auxiliary port (io1 on Duet 3) to Device mode (eg for RS485)
+M575 P2 B9600 S7 ; sets second auxiliary port (io1 on Duet 3) to Device mode (e.g. for Modbus)
 </pre>
 
 ### Notes
