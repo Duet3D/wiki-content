@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-07-17T21:30:55.993Z
+date: 2026-07-20T09:46:17.523Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3348,6 +3348,7 @@ M203 X6000 Y6000 Z300 E10000
 
 * **Pnnn** Acceleration for printing moves
 * **Tnnn** Acceleration for travel moves
+* **Snnn** Set acceleration for both travel and printing moves (deprecated)
 
 ### Examples
 <br>
