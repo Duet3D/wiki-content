@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-25T20:11:04.134Z
+date: 2026-07-25T20:27:41.716Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -181,13 +181,41 @@ M950 F0 C"121.pcfan+pcfan.tach"             ; print cooling fan
 M106 P1 S0                                  ; turn off print cooling fan
 ```
 
-## Extruder current
+## Extruder setup
 
-Use
+
+Use the following commands, adjust if you have changed the CAN address
 ```
-M906 E600
+M584 E121.0 ; set extruder mapping
+M350 E16 I1 ; configure microstepping with interpolation
+M92 E561.4 ; equivalent to a rotation distance of 5.7mm at 16 microstepping
+M566 E600 ; set maximum instantaneous speed changes (mm/min)
+M203 E9000 ; set maximum speeds (mm/min)
+M201 E3500 ; set accelerations (mm/s^2)
+M906 E600 ; 600mA - If bondtech specify a different current use the one they recommend
+
 ```
-600mA - If bondtech specify a different current use the one they recommend
+
+## Fans
+
+### Heatsink cooling Fan
+
+```
+M950 F1 C"121.hsfan+hsfan.tach"
+```
+
+### Part cooling Fan
+
+Directly connected blowers
+```
+M950 F0 C"121.pcfan"
+```
+
+if you use a part cooling solution with a tacho then:
+
+```
+M950 F0 C"121.pcfan+pcfan.tach"
+```
 
 ## Configuring Neopixel or other WS2812 LED strings
 
