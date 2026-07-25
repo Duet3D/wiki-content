@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-25T20:27:41.716Z
+date: 2026-07-25T20:40:39.384Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -145,7 +145,7 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 
 # Configuration
 
-## Configuring the induction heater, IR temperature sensor and heatsink fan
+## Configuring the induction heater, IR temperature sensor
 
 The thermopile sensor is configured using the M308 command with sensor type `"thermopile_tpis.object"` and pin name `"i2c"`. As well as the main output which provides nozzle temperature, it has two additional outputs which may be used for monitoring. Auxiliary output 1 has type `"thermopile_tpis.ambient"` and is the ambient temperature reported by the thermopile sensor. Auxiliary output 2 has type `"thermopile_tpis.environment"` and is the temperature of the nozzle surround reported by the auxiliary thermistor.
 
@@ -168,17 +168,13 @@ M308 S1 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile"                 ; con
 M308 S2 Y"thermopile_tpis.ambient" P"121.S1.1" A"Thermopile ambient"       ; configure thermopile ambient output (optional)
 M308 S3 Y"thermopile_tpis.environment" P"121.S1.2" A"Hot end surround"     ; configure nozzle environment output (optional)
 M950 H1 C"121.nozzleheat" T1                                               ; configure induction heater
+```
+
+### Onboard temperature sensor
+This helps monitor chamber and INDX MCU board temperature.
 
 ```
-The heatsink fan should be configured to run at full PWM when the nozzle is significantly above ambient temperature (e.g. above 45C). Here are suitable commands to configure it as fan #1, assuming again that the nozzle temperature sensor is sensor #1:
-```
-M950 F1 C"121.hsfan+hsfan.tach"             ; heatsink fan
-M106 P1 H1 T45 S1                           ; turn on when nozzle temperature is >= 50C
-```
-The print cooling fan should be configured in the usual way, typically as fan #0:
-```
-M950 F0 C"121.pcfan+pcfan.tach"             ; print cooling fan
-M106 P1 S0                                  ; turn off print cooling fan
+M308 S10 Y"thermistor" P"121.boardtemp" A"INDXboardtemp"                   ; Onboard INDX board sensor 
 ```
 
 ## Extruder setup
@@ -200,18 +196,22 @@ M906 E600 ; 600mA - If bondtech specify a different current use the one they rec
 
 ### Heatsink cooling Fan
 
+
+The heatsink fan should be configured to run at full PWM when the nozzle is significantly above ambient temperature (e.g. above 45C). Here are suitable commands to configure it as fan #1, assuming again that the nozzle temperature sensor is sensor #1:
 ```
-M950 F1 C"121.hsfan+hsfan.tach"
+M950 F1 C"121.hsfan+hsfan.tach"      ; heatsink fan
+M106 P1 C"Heatsink" H1 T45 S1       ; turn on when nozzle temperature is >= 45C
 ```
 
 ### Part cooling Fan
 
-Directly connected blowers
+Directly connected fans
 ```
 M950 F0 C"121.pcfan"
+M106 P0 C"Part" S0                                  ; turn off print cooling fan
 ```
 
-if you use a part cooling solution with a tacho then:
+if you use a directy connected part cooling solution with a tacho then:
 
 ```
 M950 F0 C"121.pcfan+pcfan.tach"
