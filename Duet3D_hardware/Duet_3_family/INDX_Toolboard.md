@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-25T19:12:30.934Z
+date: 2026-07-25T19:22:27.993Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -144,7 +144,9 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 | ^^ | (internal) | boardtemp | MCU board temperature |
 | ^^ | Coil FFC | coiltemp | Scanning Z probe coil temperature |
 
-### Configuring the induction heater, IR temperature sensor and heatsink fan
+# Configuration
+
+## Configuring the induction heater, IR temperature sensor and heatsink fan
 
 The thermopile sensor is configured using the M308 command with sensor type `"thermopile_tpis.object"` and pin name `"i2c"`. As well as the main output which provides nozzle temperature, it has two additional outputs which may be used for monitoring. Auxiliary output 1 has type `"thermopile_tpis.ambient"` and is the ambient temperature reported by the thermopile sensor. Auxiliary output 2 has type `"thermopile_tpis.environment"` and is the temperature of the nozzle surround reported by the auxiliary thermistor.
 
@@ -180,7 +182,15 @@ M950 F0 C"121.pcfan+pcfan.tach"             ; print cooling fan
 M106 P1 S0                                  ; turn off print cooling fan
 ```
 
-### Configuring Neopixel or other WS2812 LED strings
+## Configuring Neopixel or other WS2812 LED strings
+
+Use this command to configure an LED string connected to the LED port of the INDX board:
+```
+M950 E0 T1 C"121.led"
+```
+Then use M150 commands to set the LED colours.
+
+## Configuring the Accelerometer
 
 Use this command to configure an LED string connected to the LED port of the INDX board:
 ```
