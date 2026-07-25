@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-25T19:22:27.993Z
+date: 2026-07-25T20:11:04.134Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -123,7 +123,6 @@ The inductive heater is fast and powerful, therefore the standard RepRapFirmware
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assembly is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
 
-[TODO link to Bondtech INDX warnings and Cautions]
 
 ### Pin names
 
@@ -182,6 +181,14 @@ M950 F0 C"121.pcfan+pcfan.tach"             ; print cooling fan
 M106 P1 S0                                  ; turn off print cooling fan
 ```
 
+## Extruder current
+
+Use
+```
+M906 E600
+```
+600mA - If bondtech specify a different current use the one they recommend
+
 ## Configuring Neopixel or other WS2812 LED strings
 
 Use this command to configure an LED string connected to the LED port of the INDX board:
@@ -192,8 +199,26 @@ Then use M150 commands to set the LED colours.
 
 ## Configuring the Accelerometer
 
-Use this command to configure an LED string connected to the LED port of the INDX board:
+### Configuration
+
+Add the following to your config.g:
 ```
-M950 E0 T1 C"121.led"
+M955 P121.0 I16 ; Add INDX accelerometer 
 ```
-Then use M150 commands to set the LED colours.
+See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
+
+#### Orientation
+
+![duet3_indx_v1.0_accelerometer.png](/duet_boards/duet_3_can_expansion/duet3_indx_v1.0_accelerometer.png)
+
+In the normal INDX mounting orientation, with tools picked up from the front Z+ of the accelerometer is +Y on the machine, and +X is oriented to -Z. so the correct command is 
+```
+M955 P12.1 I16
+```
+If you have tools mounted on the rear instead and the INDX head mounted backwards, then Z+ of the accelerometer is -Y, and +X is oriented to -Z. so the correct command is
+```
+M955 P12.1 I56
+```
+### Calibration and usage
+
+For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
