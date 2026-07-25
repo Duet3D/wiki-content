@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-09T13:48:33.463Z
+date: 2026-07-25T19:12:30.934Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -12,7 +12,9 @@ dateCreated: 2026-02-09T09:34:17.141Z
 
 This page is about using the Bondtech INDX tool board with Duet 3 or other electronics running RepRapFirmware.
 
-[TODO insert INDX trade mark info here]
+The INDX documentation from bondtech is here: https://github.com/BondtechAB/INDX
+It should be read in conjunction with this page.
+
 
 ## Features
 - Controls induction heater, thermopile sensor, load cell and heatsink fan integrated with INDX toolhead
@@ -55,7 +57,6 @@ The MCU board also provides the following connections:
 - 4-pin FFC connector for optional scanning inductive sensor coil. This requires a **same side FFC** to connect to a standard Duet3D coil.
 - 5-pin USB OUT connector. This is not used when running RepRapFirmware.
 
-[TODO Diagram to be provided here]
 
 ### Connecting the 20-way FFCs
 
