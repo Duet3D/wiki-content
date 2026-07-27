@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-27T13:03:56.734Z
+date: 2026-07-27T13:51:45.344Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -57,6 +57,11 @@ The MCU board also provides the following connections:
 - 4-pin FFC connector for optional scanning inductive sensor coil. This requires a **same side FFC** to connect to a standard Duet3D coil.
 - 5-pin USB OUT connector. This is not used when running RepRapFirmware.
 
+### Pin diagram
+
+[![Bondtech PCB pinout](https://github.com/BondtechAB/INDX/raw/main/images/bondtech-indx-pcb-pinout.jpg)](https://github.com/BondtechAB/INDX#electrical-requirements){target=_blank}
+
+*this is linked from the [Bondtech documentation](https://github.com/BondtechAB/INDX#electrical-requirements) for convenience*,
 
 ### Connecting the 20-way FFCs
 
@@ -334,26 +339,17 @@ if !exists(global.INDX_State)
 if !exists(global.INDX_TC_SPEED)
   global INDX_TC_SPEED = 12000 ; Highest safe toolchange feedrate
 else
-  set global.INDX_TC_SPEED = 10000
+  set global.INDX_TC_SPEED = 24000
 if !exists(global.INDX_TC_ACCEL)
   global INDX_TC_ACCEL= 1 ; Highest safe toolchange acceleration
 else
-  set global.INDX_TC_ACCEL = 1
-
-if !exists(global.MODE_SPORT)
-  global MODE_SPORT = 1
-else
-  set global.MODE_SPORT
-if !exists(global.MODE_NORMAL)
-  global MODE_NORMAL= 0.7
-else
-  set global.MODE_NORMAL
-if !exists(global.MODE_STEALTH)
-  global MODE_STEALTH = 0.2
-else
-  set global.MODE_STEALTH
+  set global.INDX_TC_ACCEL = 10000
   
-;Set 
+;Set the  mode in use (1.0 = Full speed, Bondtech calls "SPORT, 0.7= "NORMAL", 0.3 = "STEALTH"
+if !exists(global.INDX_TC_MODE)
+  global INDX_TC_MODE = 1.0 
+else
+  set global.INDX_TC_MODE = 1.0
 ```
 
 The values for `INDX_TC_SPEED` and `INDX_TC_ACCEL` should be set to appropriate values for the specific machine mechanics, they are the max safe values. The options to modify them down by 70% or 30% are options shown by Bondtech. These values for "Normal" and "stealth" can be chend for 70% and 30% to other values as you like.
