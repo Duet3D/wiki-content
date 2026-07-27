@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-27T10:17:38.248Z
+date: 2026-07-27T11:38:09.150Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -91,7 +91,8 @@ The Bondtech INDX tool head is normally supplied with an associated Link board. 
 * If the INDX tool is not the last board on the CAN bus, connect the CAN OUT port to the next board in the chain, and do not fit the termination junper on the INDX MCU board.
 * Do not connect anything to the USB port on the Link board.
 
-### To use a Duet Tool Distribution Board instead of the Link board (note, you will not have VIN reverse polarity protection):
+### To use a Duet Tool Distribution Board instead of the Link board 
+>You will not have VIN reverse polarity protection.{.is-warning}
 * Choose an output for the Tool Distribution Board to connect the INDX tool to
 * Replace the 5A fuse in that position of the Tool Distribution Board with the 4A fuse for the Link board
 * Connect the power and data connectors of the supplied cable to the selected position on the Tool Distribution Board. If using a version 1.0 Tool Distribution Board then the connectors are compatible. If using a version 0.5 board then you will need to change the 2-pin PA connector on the cable to a 4-pin PH connector.
@@ -167,7 +168,7 @@ The inductive heater is configured using the M950 command with pin name `"nozzle
 Example configuration, using sensor #1 for the nozzle temperature, heater #1, and the default CAN address (121):
 
 ```
-M308 S1 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile"                 ; configure thermopile main output
+M308 S1 Y"thermopile_tpis.object" P"121.i2c" A"INDX"                 ; configure thermopile main output
 M308 S2 Y"thermopile_tpis.ambient" P"121.S1.1" A"Thermopile ambient"       ; configure thermopile ambient output (optional)
 M308 S3 Y"thermopile_tpis.environment" P"121.S1.2" A"Hot end surround"     ; configure nozzle environment output (optional)
 M950 H1 C"121.nozzleheat" T1                                               ; configure induction heater
@@ -179,6 +180,10 @@ This helps monitor chamber and INDX MCU board temperature.
 ```
 M308 S10 Y"thermistor" P"121.boardtemp" A"INDXboardtemp"                   ; Onboard INDX board sensor 
 ```
+The location of the thermistor is shown here:
+![indx_thermistor.png](/duet_boards/duet_3_can_expansion/indx_thermistor.png =400x)
+
+It is not immune from self heating on the INDX PCB, so it is not an absolute measure of the chamber temperature, but is a useful data point about the temperature of INDX mcu board which is useful, especially if running INDX in a heated chamber close to the design limits set by Bondtech.
 
 ## Extruder setup
 
@@ -269,18 +274,23 @@ The scanning z probe coil, if attached is setup as a second Z probe. It integrat
 
 The INDX tool has an optiona mount for the SZP coil that should be used. It ensures correct mounting distance from the bed. It places an offical SZP coil 3mm above the nozzle, centered on X and 35.1mm "behind" the nozzle on Y. (Measured in CAD)
 
-If al alternative mounting solution is used then aim for a 3mm offset between the nozzle and the coil.
+If an alternative mounting solution is used then aim for a 3mm offset between the nozzle and the coil.
 
 ### Configuration
 
 Add the following to your config.g:
 ```
 ; Scanning Z probe
-M558 K1 P11 C"121.i2c.ldc1612" F36000 T36000
+M558 K1 P11 C"121.i2c.ldc1612" F24000 T24000
 M308 S10 Y"thermistor" P"121.coiltemp" A"SZP coil temp" ; thermistor on SZP coil
-G31 K1 P584254 X0 Y-35.1 Z2 ; set SZP probe trigger value, offset and trigger height
+M558.2 K1 S16 R87251
+G31 K1 X0 Y-35.1 Z2 ; set SZP probe trigger value, offset and trigger height
+; Mesh Bed Compensation
+M557 X-100:100 Y-100:100 S10 ; define grid for mesh bed compensation probe 2
 ```
-
+>The M558.2 parameters need to be calibrated, see the next section.
+>
+>The M557 mesh parameters need to be set to your bed co-ordinates that the coil can reach. The example is for a 200x200 bed with the zero point in the center{.is-info}
 
 ### Calibration and usage
 
@@ -292,4 +302,13 @@ For general in formation about SZP calibration and usage, see [Scanning Z Probe 
 The endstop input on tool can be used for any digital IO function. The moost common use is to home the tool along the X axis. The configuraiton line for this is:
 ```
 M574 X1 P"121.io0.in" S1 ; configure X axis endstop on the low end of the X axis
+```
+
+## Motor encoder
+
+To follow.
+
+For testing the following command will report the angle and encoder status are in M122 after the encoder is configured
+```
+M569.1 P121.0 T3
 ```
