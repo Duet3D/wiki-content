@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-27T11:38:09.150Z
+date: 2026-07-27T13:03:56.734Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -312,3 +312,49 @@ For testing the following command will report the angle and encoder status are i
 ```
 M569.1 P121.0 T3
 ```
+
+# Macros
+
+## Global variables
+
+The following glbal variable definitions are needed in `config.g` , they are then used by the INDX tool macros
+```
+;variables for tool changes
+if !exists(global.tool_clearance_y)
+  global tool_clearance_y = 0
+
+;INDX States:
+; -1 = Open / no tool
+; 0,1,2 etc = Closed with that tool loaded
+;@TODO extend to persist the state through power cycles.
+if !exists(global.INDX_State)
+  global INDX_State = -1 ; for now intialiase as open 
+
+;variables that modify the speeds for tool changes
+if !exists(global.INDX_TC_SPEED)
+  global INDX_TC_SPEED = 12000 ; Highest safe toolchange feedrate
+else
+  set global.INDX_TC_SPEED = 10000
+if !exists(global.INDX_TC_ACCEL)
+  global INDX_TC_ACCEL= 1 ; Highest safe toolchange acceleration
+else
+  set global.INDX_TC_ACCEL = 1
+
+if !exists(global.MODE_SPORT)
+  global MODE_SPORT = 1
+else
+  set global.MODE_SPORT
+if !exists(global.MODE_NORMAL)
+  global MODE_NORMAL= 0.7
+else
+  set global.MODE_NORMAL
+if !exists(global.MODE_STEALTH)
+  global MODE_STEALTH = 0.2
+else
+  set global.MODE_STEALTH
+  
+;Set 
+```
+
+The values for `INDX_TC_SPEED` and `INDX_TC_ACCEL` should be set to appropriate values for the specific machine mechanics, they are the max safe values. The options to modify them down by 70% or 30% are options shown by Bondtech. These values for "Normal" and "stealth" can be chend for 70% and 30% to other values as you like.
+
