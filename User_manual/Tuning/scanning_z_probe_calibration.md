@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2025-12-05T13:08:03.891Z
+date: 2026-07-27T10:19:44.544Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -18,7 +18,7 @@ Duet3D have boards that use the LDC1612 chip, including the [Duet 3 Scanning Z P
 
 ## Wiring
 
-See the individual pages on the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe) and the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) for how to wire up the board and connect the coil.
+See the individual pages on the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe), the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) and the [Duet 3 INDX Toolboard](/Duet3D_hardware/Duet_3_family/INDX_Toolboard) for how to wire up the board and connect the coil.
 
 ## Mounting
 
