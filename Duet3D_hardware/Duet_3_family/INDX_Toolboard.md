@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-27T09:20:00.839Z
+date: 2026-07-27T10:17:38.248Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -145,6 +145,9 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 
 # Configuration
 
+
+>If you change the CAN address, the CAN address in the following commands will need to change from `121` to match{.is-info}
+
 ## Induction heater and IR temperature sensor
 
 The thermopile sensor is configured using the M308 command with sensor type `"thermopile_tpis.object"` and pin name `"i2c"`. As well as the main output which provides nozzle temperature, it has two additional outputs which may be used for monitoring. Auxiliary output 1 has type `"thermopile_tpis.ambient"` and is the ambient temperature reported by the thermopile sensor. Auxiliary output 2 has type `"thermopile_tpis.environment"` and is the temperature of the nozzle surround reported by the auxiliary thermistor.
@@ -260,9 +263,33 @@ M558 K0 P1 C"121.loadcell"
 ```
 ## SZP
 
+The scanning z probe coil, if attached is setup as a second Z probe. It integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
+
+### Mounting
+
+The INDX tool has an optiona mount for the SZP coil that should be used. It ensures correct mounting distance from the bed. It places an offical SZP coil 3mm above the nozzle, centered on X and 35.1mm "behind" the nozzle on Y. (Measured in CAD)
+
+If al alternative mounting solution is used then aim for a 3mm offset between the nozzle and the coil.
+
+### Configuration
+
+Add the following to your config.g:
+```
+; Scanning Z probe
+M558 K1 P11 C"121.i2c.ldc1612" F36000 T36000
+M308 S10 Y"thermistor" P"121.coiltemp" A"SZP coil temp" ; thermistor on SZP coil
+G31 K1 P584254 X0 Y-35.1 Z2 ; set SZP probe trigger value, offset and trigger height
+```
+
+
+### Calibration and usage
+
+For general in formation about SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
+
+
 ## Endstop
 
 The endstop input on tool can be used for any digital IO function. The moost common use is to home the tool along the X axis. The configuraiton line for this is:
 ```
-M574 X1 P"^121.io0.in" S1 ; configure X axis endstop on the low end of the X axis
+M574 X1 P"121.io0.in" S1 ; configure X axis endstop on the low end of the X axis
 ```
