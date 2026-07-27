@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-25T20:40:39.384Z
+date: 2026-07-27T09:20:00.839Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -145,7 +145,7 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 
 # Configuration
 
-## Configuring the induction heater, IR temperature sensor
+## Induction heater and IR temperature sensor
 
 The thermopile sensor is configured using the M308 command with sensor type `"thermopile_tpis.object"` and pin name `"i2c"`. As well as the main output which provides nozzle temperature, it has two additional outputs which may be used for monitoring. Auxiliary output 1 has type `"thermopile_tpis.ambient"` and is the ambient temperature reported by the thermopile sensor. Auxiliary output 2 has type `"thermopile_tpis.environment"` and is the temperature of the nozzle surround reported by the auxiliary thermistor.
 
@@ -164,7 +164,7 @@ The inductive heater is configured using the M950 command with pin name `"nozzle
 Example configuration, using sensor #1 for the nozzle temperature, heater #1, and the default CAN address (121):
 
 ```
-M308 S1 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile"                 ; configure thermopile main output (add T100000 B4311 if using old 100K thermistor)
+M308 S1 Y"thermopile_tpis.object" P"121.i2c" A"Thermopile"                 ; configure thermopile main output
 M308 S2 Y"thermopile_tpis.ambient" P"121.S1.1" A"Thermopile ambient"       ; configure thermopile ambient output (optional)
 M308 S3 Y"thermopile_tpis.environment" P"121.S1.2" A"Hot end surround"     ; configure nozzle environment output (optional)
 M950 H1 C"121.nozzleheat" T1                                               ; configure induction heater
@@ -217,7 +217,7 @@ if you use a directy connected part cooling solution with a tacho then:
 M950 F0 C"121.pcfan+pcfan.tach"
 ```
 
-## Configuring Neopixel or other WS2812 LED strings
+## Neopixel or other WS2812 LED strings
 
 Use this command to configure an LED string connected to the LED port of the INDX board:
 ```
@@ -225,7 +225,7 @@ M950 E0 T1 C"121.led"
 ```
 Then use M150 commands to set the LED colours.
 
-## Configuring the Accelerometer
+## Accelerometer
 
 ### Configuration
 
@@ -250,3 +250,19 @@ M955 P12.1 I56
 ### Calibration and usage
 
 For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
+
+## Loadcell
+
+There is a calibration stage that needs to be added to this documentation from Bondtech's documentation.
+
+```
+M558 K0 P1 C"121.loadcell"
+```
+## SZP
+
+## Endstop
+
+The endstop input on tool can be used for any digital IO function. The moost common use is to home the tool along the X axis. The configuraiton line for this is:
+```
+M574 X1 P"^121.io0.in" S1 ; configure X axis endstop on the low end of the X axis
+```
