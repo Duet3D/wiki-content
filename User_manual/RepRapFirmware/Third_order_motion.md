@@ -1,8 +1,8 @@
 ---
 title: Support for third-order motion control
-description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is not currently available in standard builds of RepRapFirmware.
+description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is available RepRapFirmware in 3.7 beta2 and later
 published: true
-date: 2026-02-18T22:40:47.148Z
+date: 2026-07-28T15:05:43.038Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
