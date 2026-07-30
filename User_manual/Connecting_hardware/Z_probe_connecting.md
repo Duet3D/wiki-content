@@ -2,7 +2,7 @@
 title: Connecting a Z probe
 description: This page describes how to connect a variety of Z probes to the Duet hardware.
 published: true
-date: 2025-11-11T07:41:09.186Z
+date: 2026-07-30T16:55:56.847Z
 tags: z probe
 editor: markdown
 dateCreated: 2021-04-28T10:34:14.769Z
@@ -150,11 +150,11 @@ Select this mode if you have no Z probe. When the firmware tries to execute a co
 
 ##### Mode 1
 
-This is a probe with an analog output connected to the Z probe connector. The probe output must rise as it gets closer to the bed. If the probe output falls as it gets closer, invert the probe output by adding the I1 parameter in the M558 command. The control signal is driven HIGH.
+This is a probe with an analog output connected to the Z probe connector. The probe output must rise as it gets closer to the bed. If the probe output falls as it gets closer, in firmware 1.16 to 2.x invert the probe output by adding the I1 parameter in the M558 command. The control signal is driven HIGH.
 
 ##### Mode 2
 
-This is a probe with an analog output that requires the Duet to provide modulation signal and demodulate the returned signal. The probe output rises as it gets closer to the bed. If the probe output falls as it gets closer, invert the probe output by adding the I1 parameter, in the M558 command. The Duet drives the control signal with a 250Hz square wave. The firmware extracts that part of the analog signal received on the IN pin that is in phase with the modulation.
+This is a probe with an analog output that requires the Duet to provide modulation signal and demodulate the returned signal. The probe output rises as it gets closer to the bed. If the probe output falls as it gets closer, in firmware 1.16 to 2.x invert the probe output by adding the I1 parameter, in the M558 command. The Duet drives the control signal with a 250Hz square wave. The firmware extracts that part of the analog signal received on the IN pin that is in phase with the modulation.
 
 ##### Mode 3
 
@@ -170,7 +170,7 @@ The device connected to the E0 STP pin must be able to sink 1.5mA for the Duet 2
 
 A switch or digital output device connected between the STP or IN and GND terminals of the connector. The only pullup resistor is the 100K nominal pullup in the microcontroller so the sink current requirement is tiny. The input must be active high when triggered.
 
-Similar to mode 4 except that the Z probe connector is used. In firmware 1.16 and later you can use the I1 parameter in the M558 command to invert the probe signal to select active low.
+Similar to mode 4 except that the Z probe connector is used. In firmware 1.16 to 2.x you can use the I1 parameter in the M558 command to invert the probe signal to select active low.
 
 ##### Mode 6
 
