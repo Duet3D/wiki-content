@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-07-31T19:30:11.452Z
+date: 2026-07-31T20:00:23.718Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6022,7 +6022,6 @@ RepRapFirmware maps the loaded filament on a per-extruder basis so if you have a
 
 * **Hnnn** H1 = forbid movement of axes that have not been homed, H0 = allow movement of axes that have not been homed (firmware 1.21 and later)
 * **Snnn** S1 = limit movement within axis boundaries, S0 = allow movement outside boundaries
-* **Rnnn** R1 = clamp relative moves that exceed the axis boundaries to those boundaries (default), R0 = throw an error instead (firmware 3.7 and later)
 
 ### Examples
 <br>
