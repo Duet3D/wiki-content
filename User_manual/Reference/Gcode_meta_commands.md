@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2026-04-10T17:00:54.339Z
+date: 2026-08-02T20:40:54.354Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -66,6 +66,20 @@ echo >>"data.csv" ","^sensors.filamentMonitors[0].position^","^sensors.filamentM
 If you needs to write a new file with multiple entries on a single line and the file may already exist, use M472 to delete it first. You can use the fileexists() condition to only delete the file if it exists.
 
 > Note echo only echos back to the input its sent from, or to a file. To get information to a different input (e.g. echo to the HTTP UI from a macro called from a different input) use [M118](/User_manual/Reference/Gcodes/M118).{.is-info}
+
+## Blocks and indentation
+
+Indentation determines the extent of a block. A block starts at the first line that is indented further than the preceding line, and ends just before the next line that is indented less.
+
+An increase in indentation always starts a new block, even when the preceding line is not an if, elif, else or while keyword. For example, this creates a block containing a single command:
+
+```
+G1 X0
+  G1 Y0
+G1 Z0
+```
+
+This matters when declaring local variables, because a local variable ceases to exist at the end of the block in which it is declared. See the Local variable declaration section below.
 
 ## Conditional construct
 
@@ -156,6 +170,14 @@ while <boolean-expression>
 `var <new-variable-name> = <expression>`
 
 This creates a new variable called *var.\<new-variable-name>* and initializes it to *\<expression>*. The name must not already be in use. The scope of a local name is the remainder of the block in which it is declared.
+
+Blocks are determined by indentation, so a variable declared on a line that is indented further than the preceding line ceases to exist as soon as the indentation is reduced again. In this example var.bbb no longer exists by the time the echo command runs, so the echo command fails:
+
+```
+var aaa = "aaa"
+  var bbb = "bbb"
+echo var.aaa, var.bbb
+```
 
 ### Global variable declaration
 
