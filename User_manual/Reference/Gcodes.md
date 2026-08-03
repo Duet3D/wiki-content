@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-07-31T20:04:20.898Z
+date: 2026-08-03T10:27:04.534Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6741,21 +6741,30 @@ This sets the communications parameters of the serial comms channel specified by
 ### Examples
 <br>
 <pre class="cblock">
+;RRF 3.6 and earlier
 M575 P1 B57600 S1 ; sets first auxiliary port (io0 on Duet 3) to PanelDue mode
 M575 P2 B9600 S7 ; sets second auxiliary port (io1 on Duet 3) to Device mode (e.g. for Modbus)
 </pre>
 
 ### Notes
 
-* **P parameter**
+* **P parameter** (RRF 3.6 and earlier)
   * P0 specifies the main serial interface, typically a USB port. 
   * P1 specifies an auxiliary serial port (for example, the port used to connect a PanelDue, usually io0 on Duet 3) 
   * P2 specifies a second auxiliary port if there is one (for example, the port used for RS485, usually io1 on Duet 3)
+* **P parameter** (RRF 3.7 and later)
+  All Duet 3 main boards now provide two CDC channels over USB. This means that in M575 commands, device 1 is now the second USB CDC device, device 2 is the first serial port, and device 3 is the second serial port.
+  * P0 specifies the main serial interface, typically a USB port. 
+  * P1 specifies the second serial interface, typically a USB port. 
+  * P2 specifies an auxiliary serial port (for example, the port used to connect a PanelDue, usually io0 on Duet 3) 
+  * P3 specifies a second auxiliary port if there is one (for example, the port used for RS485, usually io1 on Duet 3)
+  
 * The **B parameter** is the required baud rate (this parameter is ignored if the port is a true USB port).
 * The **S parameter** defines the mode. Modes 2 and 3 are supported in RRF 3.01 and later. Modes 4 and 6 are supported in RRF 3.4 and later. Mode 5 is supported in RRF 3.6 and later. Mode 7 is supported by RRF 3.6 and later on some boards.
 * In RRF 3.1 and later for Duet 3, the auxiliary serial port remains disabled until a M575 P1 command is received. This is to allow the IO_0 port to be used for other purposes. In RRF 3.2 and later on all boards, the auxilliary serial port(s) remain disabled until enabled using M575.
 * In RRF 3.6.0 and later, the USB port can now be switched into PanelDue mode using M575.
-* Details of the CRC calculation are outlined in the [Gcode Structure](/User_manual/Reference/Gcodes#crc) section above
+* Details of the CRC calculation are outlined in the [Gcode Structure](/User_manual/Reference/Gcodes#crc){target=_blank} section above
+* For more information connecting RS485/Modbus devices, see [Connecting RS485 and Modbus RTU devices](/User_manual/Connecting_hardware/RS485_Modbus){target=_blank}
 
 #### PanelDue mode vs Raw mode
 
