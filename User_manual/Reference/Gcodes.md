@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-03T19:16:30.876Z
+date: 2026-08-03T19:25:28.097Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7478,6 +7478,8 @@ M589 S"DuetSSID" P"password" I192.168.0.1 C1
 
 This command configures a given pin to read a filament sensor and configures filament monitoring for its corresponding extruder. The filament sensor may be a simple switch that detects the presence of filament, or a sensor that measures filament motion (e.g. laser, magnetic or pulsed filament monitor), or both.
 
+In RRF 3.7.0-beta.3 and later, filament monitors that can detect filament presence report it in the object model as sensors.filamentMonitors[].filamentPresent, and the presence and motion indications of a monitor are available as virtual general purpose input ports (see M950) for use with triggers and for terminating filament loading moves (see the E parameter of M574).
+
 In **RRF 3.4 and later** the action on a filament error is to raise a filament-error event. See [Events](/User_manual/RepRapFirmware/Events){target=_blank}.
 
 In **RRF 3.3 and 3.2** the action on a filament error is to.
@@ -8828,7 +8830,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 
 * **Hnn** Heater number
 * **Fnn** Fan number
-* **Jnn** Input pin number
+* **Jnn** Input pin number. In RRF 3.7.0-beta.3 and later the C parameter may name a virtual input fed by a filament monitor instead of a physical pin: "fm0.switch" follows the filament present indication of the filament monitor of extruder 0, and "fm0.motion" reads active while that monitor has detected filament movement within the last 0.5 seconds. A leading '!' inverts the state.
 * **Pnn** or **Snn** Output/servo pin number. Each P and/or S number needs to be unique, eg P1, P2, S3 P4, S5 etc. Servo pins are GpOut pins with a different default PWM frequency.
 * **Rnn** Spindle number
 * **Dn** (Duet 3 MB6HC only) SD slot number. The only value supported is 1.
