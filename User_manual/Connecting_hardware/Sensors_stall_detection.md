@@ -2,7 +2,7 @@
 title: Stall detection and sensorless homing
 description: 
 published: true
-date: 2026-02-13T11:32:09.974Z
+date: 2026-08-03T19:20:11.790Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-22T13:05:41.274Z
@@ -264,7 +264,7 @@ Use M915 and the stall detection threshold you found.
 * Use M83 to select relative extruder motion, in case the macro is called when absolute extrusion is in effect
 * If on a delta printer, send G91 to select relative movement (bug workaround for firmware 1.21 and earlier, see later)
 * In case the motor is already stalled, retract a small amount of filament (e.g. 1mm) to ensure that it is not flagged as stalled.
-* Send a G1 H1 Ennn Fnnn command with appropriate E and F parameters. The E parameter should be long enough for the filament to reach the hot end, and the F parameter should be fast enough to activate stall detection (see the H parameter in the M915 command). The H1 parameter means "stop at the endstop" as usual, and for an extruder the endstop is always stall detection.
+* Send a G1 H1 Ennn Fnnn command with appropriate E and F parameters. The E parameter should be long enough for the filament to reach the hot end, and the F parameter should be fast enough to activate stall detection (see the H parameter in the M915 command). The H1 parameter means "stop at the endstop" as usual, and for an extruder the endstop is stall detection by default. In RRF 3.7.0-beta.3 and later a filament monitor or another input can be bound as the extruder endstop instead, see the E parameter of M574.
 * Use M913 E100 to restore the extruder motor current to 100%
 * If your macro is intended to be used with the hot end hot, do whatever priming you want to do.
 
