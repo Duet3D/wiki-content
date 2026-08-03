@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-03T10:27:04.534Z
+date: 2026-08-03T19:16:30.876Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6654,13 +6654,14 @@ In RRF 3.4 and later, if you need to find the average heater PWM, you can query 
 * **Xnnn** Position of X endstop: 0 = none, 1 = low end, 2 = high end.
 * **Ynnn** Position of Y endstop: 0 = none, 1 = low end, 2 = high end.
 * **Znnn** Position of Z endstop: 0 = none, 1 = low end, 2 = high end.
+* **Ennn** Extruder number (RRF 3.7.0-beta.3 and later). Binds a general purpose input port as the filament endstop for that extruder: the P parameter gives the number of an input port created by M950 J. P"nil" reverts the extruder to motor stall detection (the default). Cannot be combined with axis parameters in the same command.
 * **P"pin_name"** Defines the pin name(s) that the endstop(s) for the specified axis are connected to, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Needed when S=1. May need ! before pin name to invert signal, or ^ to enable the pullup resistor, for example on the Duet 2 expansion header if using the pins directly without a duex5.
 * **Snnn** 1 = switch-type (eg microswitch) endstop input, 2 = Z probe (when used to home an axis other than Z), 3 = single motor load detection, 4 = multiple motor load detection (see Notes).
 * **Knnn** Optional Z probe number (3.5 or later, only for S2, defaults to 0)
 
 ##### Order dependency
 
-This command must be later in config.g than the M584 command that creates additional axes, or axes that have multiple motors and endstops.
+This command must be later in config.g than the M584 command that creates additional axes, or axes that have multiple motors and endstops. An M574 command with the E parameter must be later in config.g than the M950 J command that creates the input port it refers to.
 
 ##### Examples
 
@@ -6671,6 +6672,8 @@ M574 Y2 S1 P"!io2.in" ; configure active low endstop switch for high end on Y (D
 M574 Z1 S1 P"e0stop"  ; configure active high endstop switch for low end on Z (Duet 2)
 M574 U1 S2            ; configure Z-probe endstop for low end on U
 M574 V2 S3            ; configure sensorless endstop for high end on V
+M574 E0 P2            ; use GP input 2 (created by M950 J2) as the filament endstop for extruder 0
+M574 E0 P"nil"        ; revert extruder 0 to motor stall detection
 </pre>
 
 To use two Z motors using independent homing switches, declare two Z motors in M584, then declare two pins for Z endstops in a single M574 command. Example
@@ -6692,6 +6695,7 @@ The order of endstop switch pin names in M574 must match the order of Z motor dr
 * A Z probe and a Z endstop (e.g. a switch) can both be configured at the same time. G30 commands will use the probe setup with M558, and G1 H1 Z moves use the endstop configured with M574 Z.
 * Endstop type S4 means use motor stall detection (like S3) but if there are multiple motors dedicated to a single axis, stop each one individually as it stalls. S3 means use motor stall detection but if there are multiple motors dedicated to a single axis, stop all those motors when the first one stalls.
 * Pull up resistors on Duet 2/Duex5 inputs should be configured for connecting a digital inputs (like a switch, BLtouch, etc) only on inputs not labelled "n"Stop (xstop, ystop etc).
+* When a filament endstop is bound to an extruder (E and P parameters, RRF 3.7.0-beta.3 and later), a G1 H1 extruder-only move stops when the input reads active during positive extrusion, or inactive during negative extrusion, so the same input terminates both filament loading and unloading moves. Extruders without a bound input use motor stall detection as before. `M574 E0` without P reports the current binding, and M574 without parameters lists all of them.
 * To un-configure an endstop and free up any associated input pins, set the endstop position of that axis to 'none'. For example, `M574 X0` will delete the X endstop and free up any inputs that it was using.
 
 #### M574 - RepRapFirmware 2.x and earlier
