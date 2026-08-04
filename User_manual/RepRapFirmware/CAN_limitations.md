@@ -2,7 +2,7 @@
 title: Duet 3 with CAN expansion firmware configuration limitations
 description: RepRapFirmware for Duet 3 with CAN-connected tool or expansion boards currently has the following limitations when tool boards or expansion boards are used.
 published: true
-date: 2026-08-03T19:25:56.666Z
+date: 2026-08-04T11:00:09.921Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T15:19:36.333Z
@@ -42,7 +42,7 @@ We plan to remove these in future firmware releases.
 ## Limitations in firmware 3.6 and earlier
 * The M571 command cannot be used in conjunction with extruders driven from CAN-connected expansion boards, or IO on expansion boards.
 * Using the reset button on the Duet 3 mainboards does not reset the expansion boards, they need to be reset explicitly (`M999 Bnn`). A soft reset of the mainboard (`M999`) will cause the expansion boards to reset.
-* In the object model sub-object `sensors.filamentMonitors[].calibrated` is not available for filament monitors on CAN-connected board and will be reported as null.
+* In the object model sub-object `sensors.filamentMonitors[].calibrated` is not available for filament monitors on CAN-connected boards and will be reported as null. In RRF 3.7.0-beta.3 and later it is reported, provided that the expansion or tool board runs the matching firmware version.
 * `sensors.filamentMonitors[].filamentPresent` and the virtual filament monitor input ports created by M950 J (RRF 3.7.0-beta.3 and later) are supported for filament monitors on CAN-connected boards; state changes reach the main board with a small additional latency.
 
 ## Additional limitations in firmware 3.5 and earlier
@@ -51,7 +51,6 @@ We plan to remove these in future firmware releases.
 * In firmware 3.5 the machine coordinates in the object model are updated in semi-real-time (every 250ms) instead of at tne end of each move; however this does not work for axes driven by a CAN-connected expansion board.
 
 ## Additional limitations in firmware 3.4 and earlier
-* When filament monitors are configured on expansion boards, the "calibrated" values in the object model are not updated; however they can be queried using M591 as usual.
 * Input shaping is not supported on axis motors driven by expansion boards.
 * Cold extrusion prevention is not enforced on extruders driven from CAN-connected expansion boards.
 
