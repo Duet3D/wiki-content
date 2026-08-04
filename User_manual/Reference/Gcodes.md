@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-04T10:18:32.385Z
+date: 2026-08-04T10:22:51.201Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2705,7 +2705,7 @@ The **P** parameter is no longer supported, and has been removed from RRF 3.5 an
 ### Parameters
 
 * *This command can be used without any additional parameters.*
-* **Pnnn** Tool number
+* **Pnnn** Tool number. In RRF 3.7.0-beta.3 and later this may be a colon-separated list of tool numbers (e.g. P0:1), and P without a value waits for all tools
 * **Hnnn** Heater number, or a colon-separated list of heater numbers (e.g. H0:1)
 * **Cnnn** Chamber number, or a colon-separated list of chamber numbers. C without a value waits for all chamber heaters
 * **Snn** Tolerance in degC (firmware 2.02/1.23 and later, default 2)
@@ -2718,9 +2718,9 @@ M116 P1
 M116 H0 S5
 </pre>
 
-The first example waits for *all* bed, chamber, and tool heaters to arrive at their set values. Note that in RRF 3.5.0 and later, the scope of tool heaters to wait for is limited to the heaters of the currently selected tool of the selected motion system.
+The first example waits for *all* bed, chamber, and tool heaters to arrive at their set values. Note that in RRF 3.5.0 and later, the scope of tool heaters to wait for is limited to the heaters of the currently selected tool of the selected motion system. In RRF 3.7.0-beta.3 and later, M116 without parameters waits for the tools of the invoking motion system and tools not used by any motion system, plus bed, chamber and other slow heaters; tools in use by another motion system are not waited for.
 
-The second shows the optional 'P' parameter that is used to specify a tool number. If this parameter is present, then the system only waits for temperatures associated with that tool to arrive at their set values. This is useful during tool changes, to wait for the new tool to heat up without necessarily waiting for the old one to cool down fully.
+The second shows the optional 'P' parameter that is used to specify a tool number. If this parameter is present, then the system only waits for temperatures associated with that tool to arrive at their set values. This is useful during tool changes, to wait for the new tool to heat up without necessarily waiting for the old one to cool down fully. In RRF 3.7.0-beta.3 and later, several tools can be specified (e.g. M116 P0:1), and M116 P without a tool number waits for all defined tools.
 
 The third example waits for the bed to reach its temperature +-5 degC.
 
