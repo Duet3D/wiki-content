@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2025-12-03T17:09:03.169Z
+date: 2026-08-06T08:12:44.050Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -147,7 +147,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 {.is-info}
 
 > We have recommendations for what software to use on Windows, macOS and Linux. This is because 3D printer host programs (such as Pronterface) and other terminal emulation programs may send all characters in uppercase, which causes problems when making changes to WiFi settings, as the SSID and password are case sensitive.
-{.is-info}
+{.is-warning}
 
 # {.tabset}
 ## Windows
