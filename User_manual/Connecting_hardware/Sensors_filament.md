@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2026-08-07T09:05:51.624Z
+date: 2026-08-07T09:07:29.680Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -304,7 +304,8 @@ G1 H1 E600 F1200        ; feed up to 600mm; the move stops when the monitor sees
 
 ; unload.g
 M83
-G1 H1 E-600 F1200       ; retract up to 600mm; the move stops shortly after the filament has left the monitor
+G1 E-5 F1200            ; start with a short retract without endstop checking so that the monitor sees movement, else the next move would stop immediately
+G1 H1 E-600 F1200       ; keep retracting; the move stops shortly after the filament has left the monitor
 </pre>
 
 Note that filament monitors on CAN-connected expansion and tool boards are supported; the state is reported to the main board so expect a slightly higher trigger latency than for a monitor connected to the main board.
