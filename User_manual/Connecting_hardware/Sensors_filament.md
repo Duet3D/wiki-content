@@ -2,7 +2,7 @@
 title: Connecting and configuring filament-out sensors
 description: If your printer knows when it has run out of filament, it can abort the job, or it can pause while you load new filament.
 published: true
-date: 2026-08-03T19:20:07.052Z
+date: 2026-08-07T09:05:51.624Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-26T13:10:27.693Z
@@ -288,7 +288,7 @@ In RRF 3.7.0-beta.3 and later the filament present indication and the motion det
 * `M950 J2 C"fm0.switch"` creates GP input port 2 that follows the filament present indication of the filament monitor of extruder 0. This requires a monitor type that can detect filament presence (P1, P2, P4 or P6). Prefix the name with ! to invert the state.
 * `M950 J2 C"fm0.motion"` creates a port that reads active while that monitor has detected filament movement within the last 0.5 seconds. This works with the Duet3D and pulse-generating monitor types and is intended for monitors without a filament presence switch.
 * These ports can be used like any other input, for example with M581 triggers, M577, and in conditional GCode via the sensors.gpIn[] object model entries. Monitors that can detect filament presence also report it in the object model as sensors.filamentMonitors[].filamentPresent.
-* `M574 E0 P2` makes GP input port 2 the filament endstop of extruder 0. A G1 H1 extruder move then stops early when the port becomes active during positive extrusion, or inactive during negative extrusion, so the same port terminates both loading and unloading moves. `M574 E0 P"nil"` reverts to motor stall detection.
+* `M574 E0 P2` makes GP input port 2 the filament endstop of extruder 0. A G1 H1 extruder move then stops early when the port becomes active during positive extrusion, or inactive during negative extrusion, so the same port terminates both loading and unloading moves. `M574 E0 P-1` reverts to motor stall detection.
 
 Example configuration and load/unload macros for a rotating magnet monitor without a filament presence switch:
 
