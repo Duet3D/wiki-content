@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-04T10:22:51.201Z
+date: 2026-08-07T09:05:38.371Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6654,7 +6654,7 @@ In RRF 3.4 and later, if you need to find the average heater PWM, you can query 
 * **Xnnn** Position of X endstop: 0 = none, 1 = low end, 2 = high end.
 * **Ynnn** Position of Y endstop: 0 = none, 1 = low end, 2 = high end.
 * **Znnn** Position of Z endstop: 0 = none, 1 = low end, 2 = high end.
-* **Ennn** Extruder number (RRF 3.7.0-beta.3 and later). Binds a general purpose input port as the filament endstop for that extruder: the P parameter gives the number of an input port created by M950 J. P"nil" reverts the extruder to motor stall detection (the default). Cannot be combined with axis parameters in the same command.
+* **Ennn** Extruder number (RRF 3.7.0-beta.3 and later). Binds a general purpose input port as the filament endstop for that extruder: the P parameter gives the number of an input port created by M950 J. P-1 reverts the extruder to motor stall detection (the default). Cannot be combined with axis parameters in the same command.
 * **P"pin_name"** Defines the pin name(s) that the endstop(s) for the specified axis are connected to, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Needed when S=1. May need ! before pin name to invert signal, or ^ to enable the pullup resistor, for example on the Duet 2 expansion header if using the pins directly without a duex5.
 * **Snnn** 1 = switch-type (eg microswitch) endstop input, 2 = Z probe (when used to home an axis other than Z), 3 = single motor load detection, 4 = multiple motor load detection (see Notes).
 * **Knnn** Optional Z probe number (3.5 or later, only for S2, defaults to 0)
@@ -6673,7 +6673,7 @@ M574 Z1 S1 P"e0stop"  ; configure active high endstop switch for low end on Z (D
 M574 U1 S2            ; configure Z-probe endstop for low end on U
 M574 V2 S3            ; configure sensorless endstop for high end on V
 M574 E0 P2            ; use GP input 2 (created by M950 J2) as the filament endstop for extruder 0
-M574 E0 P"nil"        ; revert extruder 0 to motor stall detection
+M574 E0 P-1           ; revert extruder 0 to motor stall detection
 </pre>
 
 To use two Z motors using independent homing switches, declare two Z motors in M584, then declare two pins for Z endstops in a single M574 command. Example
