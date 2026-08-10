@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2025-06-11T10:30:20.174Z
+date: 2026-08-10T08:29:53.353Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -505,6 +505,11 @@ Some motors have a motor brake fitted for an holding brake solenoid. See the sec
 # Revisions
 
 ## Tabs {.tabset}
+
+### Revision v2.0a
+
+* No functional changes.
+* Changed diode footprint due to part availability.
 
 ### Revision v2.0
 
