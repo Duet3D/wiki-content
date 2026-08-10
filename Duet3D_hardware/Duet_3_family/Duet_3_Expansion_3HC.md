@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2025-07-15T08:56:38.217Z
+date: 2026-08-10T11:32:51.880Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -16,7 +16,7 @@ The Duet 3 Expansion 3HC supports the following:
 ## Hardware specification
 
 |---|---|
-| **Processor** | [Atmel ATSAME51N](https://www.microchip.com/wwwproducts/en/ATSAME51N19A){target=_blank} |
+| **Processor** | [Microchip ATSAME51N](https://www.microchip.com/en-us/product/ATSAME51N19A){target=_blank}(versions up to v1.03), [Microchip ATSAME51P](https://www.microchip.com/en-us/product/ATSAME54P20A){target=_blank} (v1.03 and later)|
 | **Prosessor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM and many peripherals |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard | 
 | **On-board stepper drivers** | 3 x [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
@@ -312,6 +312,12 @@ Ensure you have can communication (the status light is flashing in sync with the
 # Revision History
 
 # Tabs{.tabset}
+
+## Revision v1.03
+* Changed to ATSAME54P20A processor
+* Added a second CAN port to the RJ12 connector on pins 3 and 5 for potential future firmware features.
+* Change both CAN bus termination resistors to a single 120R resistor with a single jumper
+
 ## Revision v1.02b
 
 * Changed stepper driver MOSFETS to ones used on 6HC due to part availability - no functional change.
