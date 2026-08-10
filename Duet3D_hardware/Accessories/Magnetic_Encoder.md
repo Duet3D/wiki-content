@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2026-08-10T14:20:41.192Z
+date: 2026-08-10T14:38:12.551Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -22,11 +22,23 @@ The Duet3D magnetic encoder senses motor position and rotation using a hall effe
 * Maximum sensor RPM supported 14500 ^2^
 * Supplied with a 4mm thick, 6mm diameter magnet
 * SPI output for communication with a Duet 3 Expansion 1HCL controller (supplied with a 150mm ribbon cable for this purpose)
-* 3.3V operation - compatible with the Duet 3 Expansion 1HCL controller (Can be modified for 5V operation for other applications. 
+* (v2.0 and later) 5V operation - compatible with the Duet 3 Expansion 1HCL controller via the use of the supplied SPI Buffer board.
+* (v1.0 and earlier) 3.3V operation - compatible with the Duet 3 Expansion 1HCL controller (Can be modified for 5V operation for other applications. 
 * Maximum ambient temperature: 85°C
 
 ^1^ AS5047D/P sensors are interchangeable in this application.
 ^2^ Max system RPM possible depends on the Duet 3 Expansion 1HCL controller closed loop speed and the maximum motor RPM
+
+
+## SPI Buffer
+
+V2.0 Magnetic Encoder boards are supplied with an SPI buffer board, see here mounted on the 1HCL box header
+![1hcl_and_mag_enc_v2.0_buffer_board.jpg](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0_buffer_board.jpg =600x)
+
+The v2.0 magnetic encoders have a buffer on SPI_MISO, and expect 5V signals on MOSI_SCK and CS lines. the buffer board provides this and drops the MISO signal back to 3.3V
+
+> The SPI Buffer board **MUST** be used with v2.0 Magnetic encoders. It** MUST NOT** be used with v1.0 Magnetic encoders.{.is-warning}
+
 
 ### Limitations on use
 
@@ -60,6 +72,7 @@ The STEP file is [hosted here](https://github.com/Duet3D/Duet3-Magnetic-Encoder/
 | Qty | Item | Remarks |
 |:---|:---|
 | 1 | Magnetic Encoder PCB | Included |
+| 1 | SPI Buffer PCB, v2.0 only | Included |
 | 1 | 6mm diameter x 4mm long diametrically-magnetised magnet | Included. A 6mm magnet was chosen because it fits even in recessed shaft NEMA 17 motors. |
 | 4 | 0.5mm M3 nylon washer | Included |
 | 4 | 1mm M3 nylon washer | Included |
@@ -129,7 +142,7 @@ important parameter for the linearity of the system. The strength of the magneti
 
 <details>
 <summary>Magnets and temperature</summary>
-  The temperature will also affect the magnetic field, with higher temperatures reducing the strength of the magentic field. Check the maximum temperature the motor will get to and check the specification of the magnet. Duet3D supply high temperature magnets for mounting on the motor shaft, which should not be needed in most cases, but could help if the motor is running hot. See section 2.6 of the application note.
+  The temperature will also affect the magnetic field, with higher temperatures reducing the strength of the magnetic field. Check the maximum temperature the motor will get to and check the specification of the magnet. Duet3D supplies high temperature magnets for mounting on the motor shaft, which should not be needed in most cases, but could help if the motor is running hot. See section 2.6 of the application note.
 
   [![Figure 18: Magnetic flux density Bz of N35H magnet at different temperature (same magnet)](/hardware/magnetic_encoder/mag_enc_installation_notes_05.png)](/hardware/magnetic_encoder/mag_enc_installation_notes_05.png){target=_blank}
 
@@ -147,6 +160,20 @@ important parameter for the linearity of the system. The strength of the magneti
 
 ## Step 4 - Connect to Duet 3 Expansion 1HCL
 
+# Tabs {.tabset}
+
+## v2.0
+
+Connect the encoder board to the Duet 3 Expansion 1HCL to the Magnetic Encoder v2.0 Buffer board using a 10-way straight-through ribbon cable. Fit the buffer board into the 10-way box connector on the 1HCL.
+
+![A Duet 3 1HCL v2.0 with the SPI buffer board fitted, connected to a Magnetic Encoder board via a 2oomm ribbon cable](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0.jpg =800x)
+
+>Ensure that the SPI buffer board is placed centrally in the socket on the 1HCL. It is possible to insert it shifted left or right by a pair of pins.{.is-warning}
+
+>The buffer board must be mounted on the 1HCL box header and not on the Magnetic encoder.{.is-warning}
+
+## v1.0
+
 * Connect using the ribbon cable and a stepper motor cable to the 1HCL.
 * Move on to configuration.
 
@@ -162,10 +189,10 @@ This should be read in conjunction with the [Duet 3 Expansion 1HCL documentation
 
 The T parameter specifies that the encoder used is the Duet 3 Magnetic encoder 
 
-Here's an sample excerpt from a config.g file for RRF 3.5 to drive the X motors from 1HCL board configured at CAN addresses 50, with a Duet 3 Magnetic encoder.
+Here is a sample excerpt from a config.g file for RRF 3.5 to drive the X motors from 1HCL board configured at CAN addresses 50, with a Duet 3 Magnetic encoder.
 
 ```
-M569.1 P50.0 T3 E1:2 R100 I0 D0 ; Configure the Duet 3 Expansion 1HCL board at CAN address 50 with a Duet 3 magnetic encoder, warn if 1 fullstep threshold exceeded, error if 2 full steps threshold exceeded. 
+M569.1 P50.0 T3 E1:2 R100 I0 D0 ; Configure the Duet 3 Expansion 1HCL board at CAN address 50 with a Duet 3 magnetic encoder, warn if 1 full step threshold exceeded, error if 2 full steps threshold exceeded. 
 M569 P50.0 D4 S1 ; Configure the motor on the Duet 3 Expansion 1HCL controller at can address 50 as being in closed-loop drive mode (D4) and not reversed (S1) 
 M584 X50.0; set X drivers
 ```
@@ -197,13 +224,13 @@ It must be run once for a new 1HCL, motor, magnet or magnetic encoder board. The
 
 ## v1.0
 
-* Added a footprint for the ABN signals on their own header (not pipulated) for alternative uses/testing.
+* Added a footprint for the ABN signals on their own header (not populated) for alternative uses/testing.
 
 ## v0.3
 
 * Changed the ribbon cable header to 2x5 to match the SPI encoder input header on the 1HC
-* Routed the A/B/N signals to he header (currently not used)
+* Routed the A/B/N signals to the header (currently not used)
 
-## v0.2 - Prototpye
+## v0.2 - Prototype
 
 Initial prototype
