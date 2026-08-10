@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-07-05T17:19:06.014Z
+date: 2026-08-10T11:10:46.488Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -59,7 +59,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 
 ## Tabs {.tabset}
 
-### Revision v1.02
+### Revision v1.02 and later
 
 |:--|:--|
 | **Stepper drivers** | Up to 6.3A peak current |
@@ -148,15 +148,18 @@ The STEP file for the Duet 3 Mainboard 6HC is shared on the [Duet3D github here]
 ## Wiring diagram
 
 ## Tabs {.tabset}
+### Revision v1.02d
+[![Duet 3 MB 6HC v1.02d wiring diagram showing all the pin connections, click on the image for a larger version](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02d_d1.0_wiring.png =745x)](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02d_d1.0_wiring.png){target=_blank}!
+
 
 ### Revision v1.02c
 
-[![Duet 3 MB 6HC v1.02c wiring diagram shwoing all the pin connections, click on the image for a larger version](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02c_d1.0_wiring.png =745x)](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02c_d1.0_wiring.png){target=_blank}
+[![Duet 3 MB 6HC v1.02c wiring diagram showing all the pin connections, click on the image for a larger version](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02c_d1.0_wiring.png =745x)](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02c_d1.0_wiring.png){target=_blank}
 
 
 ### Revision v1.02
 
-[![Duet 3 MB 6HC v1.02 wiring diagram shwoing all the pin connections, click on the image for a larger version](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_d1.1_wiring.png =745x)](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_d1.1_wiring.png){target=_blank}
+[![Duet 3 MB 6HC v1.02 wiring diagram showing all the pin connections, click on the image for a larger version](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_d1.1_wiring.png =745x)](/duet_boards/duet_3_mb6hc/duet3_mb_6hc_v1.02_d1.1_wiring.png){target=_blank}
 
 ### Revision v1.0 and v1.01
 <!--removed the picture, just have the link for this very old board to speed up page loading -->
@@ -193,6 +196,10 @@ On v0.5 boards the GND and V_FUSED legends on the underside of the board are the
 >The two banks of Low Current outputs (OUT4-6, OUT7-9) can be separately selected to be powered by either VIN or internal 12V. Total 12V fan current draw must not exceed 800mA.{.is-info}
 
 >The separate OUT0 Power in allows for a different voltage to be supplied for the OUT0 high current output (e.g. for a large bed heater). If this is not required VIN power must be applied to both the POWER IN and the OUT0 POWER IN terminals for OUT 0 to be powered.{.is-info}
+
+> On v1.02d the AUX CAN signsla (CAN0_H/L) are also conencted to the main CAN RK11 header on pins 2 and 5. There are cuttable traces on the bottom of the board so that they can be disconnected if there is a requirement to use the AUX_CAN header.
+![The back of the Duet 3 6HC v1.02d board showing the cuttable jumpers to disconnect the CAN0 signals from the CAN header.](/duet_boards/duet_3_mb6hc/duet3_6hcv1.02d_aux_can_disconnect.png =300x)
+They should not be left connected to both headers when the AUX_CAN header is in use as the connecitons on the main CAN header will be a long unterminated stub.{.is-info}
 
 >The SBC_3.3V is purely to ensure logic levels are the same between the Duet and the SBC. Do not attempt to use this pin to apply, or draw, 3.3V.{.is-warning}
 
@@ -240,9 +247,9 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
 | **1 x 2x6 header** | ESP | *v1.02 and later boards*: Header to connect an ESP WiFi board. |
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
-| **1 x RJ11 CAN connector** | CAN1_OUT | *v1.02 and later boards*: RJ11 connector for CAN1 (main CAN-FD bus). **USE CAN1** for connecting Duet expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. |
-| ^^ | CAN_OUT |*v1.01a and earlier boards.* RJ11 CAN connector for CAN0 and CAN1. **USE CAN1** for connecting Duet expansion boards, CAN0 is for future expansion; see CAN-FD bus expansion section below. A permanent termination resistor is fitted, so this board must be at one end of the CAN bus |
-| **1 x 2-pin KK connector** | CAN0_OUT | *v1.02 and later boards.* Secondary CAN-FD bus for future expansion. **Use CAN1** for connecting expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. |
+| **1 x RJ11 CAN connector** | CAN1_OUT | *v1.02 and later boards*: RJ11 connector for CAN1 (main CAN-FD bus). **USE CAN1** for connecting Duet expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. 
+| ^^ | CAN_OUT |*v1.01a and earlier boards and v1.02d and later boards.* RJ11 CAN connector for CAN0 and CAN1. **USE CAN1** (pins 3,4) for connecting Duet expansion boards, CAN0 (pins 2,5) is for future expansion; see CAN-FD bus expansion section below. On v1.01a and earlier boardsA permanent termination resistor is fitted, so this board must be at one end of the CAN bus. On v1.02d and later boards there are drill-to-disconnect jumpers for the can termination resistors. On v1.02d there are also drill-to-disconnect jumpers to disconnect the CAN-0 signals if the AUX_CAN header is to be used.  |
+| **1 x 2-pin KK connector** | AUX_CAN | *v1.02 and later boards.* Secondary CAN-FD bus for future expansion. **Use CAN1** for connecting expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. |
 
 **Notes**
 
