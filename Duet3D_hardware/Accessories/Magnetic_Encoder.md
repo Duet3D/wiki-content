@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2025-02-27T16:57:52.855Z
+date: 2026-08-10T14:20:41.192Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -187,6 +187,17 @@ It must be run once for a new 1HCL, motor, magnet or magnetic encoder board. The
 # Revision history
 
 # Tabs {.tabset}
+
+## v2.0
+
+* Connected the 5V pin from the 1HCL header (pin 10 on box header).
+* Removed the "cut for 5V operation" jumper - The AS5047x now operates in 5V mode.
+* Added a 5V buffer to the SPI_MISO line
+* Requires the use of the "SPI Buffer" board supplied with v2.0 Magnetic Encoder boards which buffer the MOSI,SCLK,and CS signals from the 1HCL to 5V and handles the BUFFERED MISO line back to the 1HCL.
+
+## v1.0
+
+* Added a footprint for the ABN signals on their own header (not pipulated) for alternative uses/testing.
 
 ## v0.3
 
