@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-08-10T11:10:46.488Z
+date: 2026-08-10T11:21:06.724Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -197,9 +197,7 @@ On v0.5 boards the GND and V_FUSED legends on the underside of the board are the
 
 >The separate OUT0 Power in allows for a different voltage to be supplied for the OUT0 high current output (e.g. for a large bed heater). If this is not required VIN power must be applied to both the POWER IN and the OUT0 POWER IN terminals for OUT 0 to be powered.{.is-info}
 
-> On v1.02d the AUX CAN signsla (CAN0_H/L) are also conencted to the main CAN RK11 header on pins 2 and 5. There are cuttable traces on the bottom of the board so that they can be disconnected if there is a requirement to use the AUX_CAN header.
-![The back of the Duet 3 6HC v1.02d board showing the cuttable jumpers to disconnect the CAN0 signals from the CAN header.](/duet_boards/duet_3_mb6hc/duet3_6hcv1.02d_aux_can_disconnect.png =300x)
-They should not be left connected to both headers when the AUX_CAN header is in use as the connecitons on the main CAN header will be a long unterminated stub.{.is-info}
+> On v1.02d the AUX CAN signals (CAN0_H/L) are also connected to the main CAN RJ12 header on pins 2 and 5. See the CAN FD bus documentation below for further information{.is-info}
 
 >The SBC_3.3V is purely to ensure logic levels are the same between the Duet and the SBC. Do not attempt to use this pin to apply, or draw, 3.3V.{.is-warning}
 
@@ -248,7 +246,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2x6 header** | ESP | *v1.02 and later boards*: Header to connect an ESP WiFi board. |
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
 | **1 x RJ11 CAN connector** | CAN1_OUT | *v1.02 and later boards*: RJ11 connector for CAN1 (main CAN-FD bus). **USE CAN1** for connecting Duet expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. 
-| ^^ | CAN_OUT |*v1.01a and earlier boards and v1.02d and later boards.* RJ11 CAN connector for CAN0 and CAN1. **USE CAN1** (pins 3,4) for connecting Duet expansion boards, CAN0 (pins 2,5) is for future expansion; see CAN-FD bus expansion section below. On v1.01a and earlier boardsA permanent termination resistor is fitted, so this board must be at one end of the CAN bus. On v1.02d and later boards there are drill-to-disconnect jumpers for the can termination resistors. On v1.02d there are also drill-to-disconnect jumpers to disconnect the CAN-0 signals if the AUX_CAN header is to be used.  |
+| ^^ | CAN_OUT |*v1.01a and earlier boards and v1.02d and later boards.* RJ11 CAN connector for CAN0 and CAN1. **USE CAN1** (pins 3,4) for connecting Duet expansion boards, CAN0 (pins 2,5) is for future expansion; see CAN-FD bus expansion section below. On v1.01a and earlier boards a permanent termination resistor is fitted, so this board must be at one end of the CAN bus. On v1.02d and later boards there are drill-to-disconnect jumpers for the can termination resistors. On v1.02d there are also drill-to-disconnect jumpers to disconnect the CAN-0 signals if the AUX_CAN header is to be used.  |
 | **1 x 2-pin KK connector** | AUX_CAN | *v1.02 and later boards.* Secondary CAN-FD bus for future expansion. **Use CAN1** for connecting expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. |
 
 **Notes**
@@ -483,9 +481,9 @@ If you wish to power the Duet and SBC separately, fit just one jumper, to "Int 5
 
 If you wish to power the Duet and SBC separately, both from external 5V power supplies, remove all the jumpers. Supply 5V power to the Duet via the 'EXT 5V' connector.
 
-**Note:** No other jumper configuration is recommended or supported.
+>No other jumper configuration is recommended or supported.{.is-warning}
 
-**Note:** Newer SBCs (e.g. RPi 4) need too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarily the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give an under voltage warning.
+>Newer SBCs (e.g. RPi 4) need too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarly the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give an under voltage warning.{.is-warning}
 
 ## Electronics power consumption
 
@@ -571,7 +569,7 @@ Note: maximum current drawn by external devices at 12V must not exceed 800mA.
 
 ## CAN-FD Bus expansion
 
-The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a range of expansion devices. The maximum number of expansion devices on the bus depends on the firmware used; see [Firmware configuration limits](https://docs.duet3d.com/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits).
+The CAN-FD bus provides connectivity to compatible devices. Duet3D manufactures a range of expansion devices. The maximum number of expansion devices on the bus depends on the firmware used; see [Firmware configuration limits](https://docs.duet3d.com/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits).
 
 The CAN BUS is connected via RJ11 and at least 2-core twisted pair wiring. 6-core RJ11 wiring is more common, and can be used, though only one pair of wires are used.
 
@@ -586,13 +584,23 @@ There is a 120R bus termination fitted to the CAN-FD bus on the 6HC boards, so n
 ### Removing the bus termination
 
 On the back side of the board are 2 drill to disconnect jumpers per bus:
-![6hc_can_termination_drillable.png](/duet_boards/duet_3_mb6hc/6hc_can_termination_drillable.png)
+![The back of the Duet 3 6HC board showing the cuttable jumpers to disconnect the CAN1 and CON0 bus termination resistors](/duet_boards/duet_3_mb6hc/6hc_can_termination_drillable.png =400x)
 
 To disconnect the termination resistors, use a small drill bit ~2mm **by hand** to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. **Do not drill all the way through the board**, the copper layer is approx 70um thick (i.e. very thin!) once its removed test that the pads are actually disconnected by checking that there is no continuity between them with a multimeter.
 
 Both jumpers must be disconnected or connected. do not do only one.
 
 If in the future you want to add the termination resistor back into the circuit the jumper can be bridged with solder.
+
+### CAN vs AUX CAN
+
+There are drill-to-disconnect jumpers on the bottom of the board so that they can be disconnected if there is a requirement to use the AUX_CAN header.
+![The back of the Duet 3 6HC v1.02d board showing the cuttable jumpers to disconnect the CAN0 signals from the CAN header.](/duet_boards/duet_3_mb6hc/duet3_6hcv1.02d_aux_can_disconnect.png =300x)
+They should not be left connected to both headers when the AUX_CAN header is in use as the connections on the main CAN header will be a long unterminated stub.
+
+To disconnect the termination resistors, use a small drill bit ~2mm **by hand** to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. **Do not drill all the way through the board**, the copper layer is approx 70um thick (i.e. very thin!) once its removed test that the pads are actually disconnected by checking that there is no continuity between them with a multimeter.
+
+Both jumpers must be disconnected or connected. do not do only one.
 
 ## RS485
 
@@ -645,7 +653,7 @@ check for continuity using a multimeter.
 - minor changes to diodes to update to newer versions.
 
 ## Revision v1.02b
-- Minor changes to USB host support circuit.
+- Minor changes to the USB host support circuit.
 - Silk screen changes to aid clarity.
 
 ## Revision v1.02a
@@ -672,7 +680,7 @@ check for continuity using a multimeter.
 - Added the termination resistors back to CAN0, provided drill to cut pads to disconnect the termination resistors for CAN0 and CAN1
 
 ## Revision v1.01a
-- DNP the jumpers for 5V power between the Duet and the SBC. A more modern SBC (e.g. RPi 4) needs too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarily the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give a under voltage warning.
+- DNP the jumpers for 5V power between the Duet and the SBC. A more modern SBC (e.g. RPi 4) needs too much 5V power, especially with a screen, to make it sensible to supply from the Duet. Similarly the spare 5V power budget on the SBC may not be sufficient for the Duet. In addition some SBCs require >5V on the 5V rail to not give a under voltage warning.
 - Minor component changes that do not impact functionality.
 ## Revision v1.01
 - Improved ADC calibration
@@ -687,7 +695,7 @@ check for continuity using a multimeter.
 - minor changes to molex KK footprint outlines
 ## Revision v0.6
 - Removed dedicated hobby servo connector as multiple IO ports can drive a hobby servo.
-- Added a second CAN Bus tranceiver and connected it to PINs 2,5 of the RJ11 port
+- Added a second CAN Bus transceiver and connected it to PINs 2,5 of the RJ11 port
 - Swap polarity of CANL and CANH signals to match expansion board. (Pin 3 for CANH pin 4 for CANL)
 - Removed the second JST VH terminal from Driver 2 because the jumper method will not work as there are not jumper available for that pitch of connector.
 - Added jumpers to allow 5V from or to the SBC.
