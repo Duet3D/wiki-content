@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2026-08-10T12:39:13.245Z
+date: 2026-08-10T12:45:04.025Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -247,7 +247,7 @@ Two RJ11 connectors labeled CAN IN and CAN OUT. It doesn't matter which you use 
 
 The DIAG LED between the two CAN connectors indicates CAN bus state. When the expansion board starts up this LED will blink rapidly. If the expansion board is connected to a main board running compatible firmware, the LED on the expansion board will switch to blinking synchronously with the main board LED once time sync has been established across the CAN bus.
 
-From V1.03 there are two CAN busses on the connector CAN1 (pin 
+From V1.03 there are two CAN busses on the connector CAN1 (pin 3 and 4) is the primary CAN-FD bus and ise used for normal Duet 3 expanion operation, CAN0 (pins 2 and5) is a secondsry CAN bus for future firmware use. 
 
 ### Termination
 
