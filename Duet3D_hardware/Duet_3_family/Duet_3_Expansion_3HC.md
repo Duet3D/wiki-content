@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2026-08-10T13:37:33.335Z
+date: 2026-08-10T13:38:41.851Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -17,7 +17,7 @@ The Duet 3 Expansion 3HC supports the following:
 
 |---|---|
 | **Processor** | [Microchip ATSAME51N](https://www.microchip.com/en-us/product/ATSAME51N19A){target=_blank}(versions up to and including v1.02b), [Microchip ATSAME51P](https://www.microchip.com/en-us/product/ATSAME54P20A){target=_blank} (v1.03 and later)|
-| **Prosessor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM and many peripherals |
+| **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM and many peripherals |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard | 
 | **On-board stepper drivers** | 3 x [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
 | **Stepper driver features** | Up to 6.3A peak current, microstep interpolation from any setting to x256, stall detection, stealthChop2 | 
@@ -247,7 +247,7 @@ Two RJ11 connectors labeled CAN IN and CAN OUT. It doesn't matter which you use 
 
 The DIAG LED between the two CAN connectors indicates CAN bus state. When the expansion board starts up this LED will blink rapidly. If the expansion board is connected to a main board running compatible firmware, the LED on the expansion board will switch to blinking synchronously with the main board LED once time sync has been established across the CAN bus.
 
-From V1.03 there are two CAN busses on the connector CAN1 (pin 3 and 4) is the primary CAN-FD bus and ise used for normal Duet 3 expanion operation, CAN0 (pins 2 and5) is a secondsry CAN bus for future firmware use. 
+From V1.03 there are two CAN buses on the connector CAN1 (pin 3 and 4) is the primary CAN-FD bus and is used for normal Duet 3 expansion operation, CAN0 (pins 2 and5) is a secondary CAN bus for future firmware use.
 
 ### Termination
 
