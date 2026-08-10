@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2026-08-10T14:47:19.444Z
+date: 2026-08-10T15:33:29.317Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -37,7 +37,7 @@ V2.0 Magnetic Encoder boards are supplied with an SPI buffer board, see here mou
 
 The v2.0 magnetic encoders have a buffer on SPI_MISO, and expect 5V signals on MOSI_SCK and CS lines. the buffer board provides this and drops the MISO signal back to 3.3V
 
-> The SPI Buffer board **MUST** be used with v2.0 Magnetic encoders. It** MUST NOT** be used with v1.0 Magnetic encoders.{.is-warning}
+> The SPI Buffer board **MUST** be used with v2.0 Magnetic encoders. It **MUST NOT** be used with v1.0 Magnetic encoders.{.is-warning}
 
 
 ### Limitations on use
