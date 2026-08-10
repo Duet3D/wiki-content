@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2026-08-10T08:29:53.353Z
+date: 2026-08-10T14:08:04.033Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -349,9 +349,16 @@ If the encoder has a differential output then connect the A+ to , B+ to the sign
 
 The Duet 3 Expansion 1HCL supports the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder). We supply this encoder on a Nema17 form factor PCB, designed to sense a diametrically magnetised magnet glued to the back of the motor shaft. We have also used this encoder board on a Nema23 motor using a printed adapter.
 
+### Magnetic Encoder v1.0
 Connect the encoder board to the Duet 3 Expansion 1HCL to the 10-way box connector using a 10-way straight-through ribbon cable. The cable length should not exceed 200mm.
 
+### Magnetic Encoder v2.0
+Connect the encoder board to the Duet 3 Expansion 1HCL to the Magnetic Encoder v2.0 Buffer board using a 10-way straight-through ribbon cable. Fit the buffer board into the 10-way box connector on the 1HCL.
 See the [Duet3D Magnetic Encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) documentation for more information.
+
+![A Duet 3 1HCL v2.0 with the SPI buffer board fitted, connected to a Magnetic Encoder board via a 2oomm ribbon cable](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0.jpg =800x)
+
+>Ensure that the SPI buffer board is placed centrally in the socket on the 1HCL. It is possible to insert it shifted left or right by a pair of pins.{.is-warning}
 
 ## Linear quadrature encoder plus Duet3D Magnetic Shaft Encoder
 
