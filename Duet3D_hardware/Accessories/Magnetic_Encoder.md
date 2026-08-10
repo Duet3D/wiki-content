@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2026-08-10T14:38:12.551Z
+date: 2026-08-10T14:47:19.444Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -170,7 +170,7 @@ Connect the encoder board to the Duet 3 Expansion 1HCL to the Magnetic Encoder v
 
 >Ensure that the SPI buffer board is placed centrally in the socket on the 1HCL. It is possible to insert it shifted left or right by a pair of pins.{.is-warning}
 
->The buffer board must be mounted on the 1HCL box header and not on the Magnetic encoder.{.is-warning}
+>The buffer board must be mounted on the 1HCL box header and not on the Magnetic Encoder board.{.is-warning}
 
 ## v1.0
 
