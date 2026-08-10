@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2026-08-10T12:45:04.025Z
+date: 2026-08-10T13:37:33.335Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -16,7 +16,7 @@ The Duet 3 Expansion 3HC supports the following:
 ## Hardware specification
 
 |---|---|
-| **Processor** | [Microchip ATSAME51N](https://www.microchip.com/en-us/product/ATSAME51N19A){target=_blank}(versions up to v1.03), [Microchip ATSAME51P](https://www.microchip.com/en-us/product/ATSAME54P20A){target=_blank} (v1.03 and later)|
+| **Processor** | [Microchip ATSAME51N](https://www.microchip.com/en-us/product/ATSAME51N19A){target=_blank}(versions up to and including v1.02b), [Microchip ATSAME51P](https://www.microchip.com/en-us/product/ATSAME54P20A){target=_blank} (v1.03 and later)|
 | **Prosessor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 384Kb RAM and many peripherals |
 | **Networking/Comms** | CAN-FD BUS for connection to the Duet 3 Mainboard | 
 | **On-board stepper drivers** | 3 x [TMC2160](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} |
@@ -251,7 +251,13 @@ From V1.03 there are two CAN busses on the connector CAN1 (pin 3 and 4) is the p
 
 ### Termination
 
-Just behind the RJ11 connectors is a 4-pin terminal block. On the last board in the CAN chain only (the one with a cable in only one of the RJ11 connectors), two jumpers must be fitted in that block to terminate the CAN bus. Jumpers must not be fitted in expansion boards that are not at the end of the CAN bus.
+Just behind the RJ11 connectors is a 4-pin terminal block. termination is required on the last board in the CAN chain only (the one with a cable in only one of the RJ11 connectors). Jumpers must not be fitted in expansion boards that are not at the end of the CAN bus.
+
+#### v1.02b and earlier
+Two jumpers must be fitted in that block to terminate the CAN bus. 
+
+#### v1.03 and later
+A jumper must be fitted in the MAIN position to terminate the CAN1 main bus. Similarly a jumper must be fitted to the AUX position to terminate the CAN0 aux bus.
 
 ### Address
 
@@ -310,7 +316,7 @@ Once the update is complete restart the mainboard and 3HC, then send M115 B## (w
 
 ## Forcing a firmware update
 
-If the 3HC is unresponsive, or the firmware update is not working, set all the dip switches to "off", then reset the 3HC. This will force the 3HC bootloader to request a firmware update over CAN when it starts up. Once the firmware update had completed and the sync light is flashing in time with the Duet 3 mainboard then set the dip switches back to the address being used for this board and reset the Duet 3 mainboard and the 3HC.
+If the 3HC is unresponsive, or the firmware update is not working, set all the dip switches to "off", then reset the 3HC. This will force the 3HC bootloader to request a firmware update over CAN when it starts up. Once the firmware update has completed and the sync light is flashing in time with the Duet 3 mainboard then set the dip switches back to the address being used for this board and reset the Duet 3 mainboard and the 3HC.
 
 Ensure the 3HC firmware is in the /firmware directory (/sys on RRF versions earlier than 3.3)
 
