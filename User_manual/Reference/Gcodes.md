@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-07T09:05:38.371Z
+date: 2026-08-11T12:29:50.667Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5604,6 +5604,7 @@ Defines the points for for G32 bed probing. The P value is the index of the poin
 * **Annn** Maximum number of times to probe each point, default 1. Maximum, as of RRF 2.03, is 31. Setting M558 A parameter to anything >31 set it to 0 instead of to 31
 * **Snnn** Tolerance when probing multiple times, default 0.03mm
 * **Bn** If 1, turn off all heaters while probing, default (B0) leaves heaters on.
+* **Vnnn** Load cell scale in grams per count. Mandatory for probe type 12, not permitted for other probe types. Supported in RRF 3.7 and later.
 
 ##### Order dependency
 
@@ -5642,10 +5643,11 @@ A probe may be a switch, an IR proximity sensor, or some other device. The **P**
 * P9 is as P5 but for a BLTouch probe that needs to be retracted and redeployed between probe points.
 * P10 means use Z motor stall detection as the probe trigger.
 * P11 means a scanning Z probe with an analog output (supported from RRF 3.5.0). Such probes must be calibrated before use (see M558.1).
+* P12 means a load cell probe, which triggers on the force measured when the nozzle touches the bed (supported from RRF 3.7). Such probes must be given the scale in grams per count using the V parameter.
 
 Probe types 4, 6 and 7 (used in RRF 2.x) are not supported in RRF 3.x. Instead, use type 5 (filtered digital) or 8 (unfiltered digital) and use the C parameter to specify the input. 
 
-Probes connected to Duet 3 expansion or tool boards are limited to types 8 and 9. Firmware 3.5 and later also support type 11.
+Probes connected to Duet 3 expansion or tool boards are limited to types 8 and 9. Firmware 3.5 and later also support type 11, and firmware 3.7 and later also support types 1 and 12. Type 12 is only supported on expansion and tool boards.
 
 Only one Type 2 probe can be configured, and if using Duet 3 then it must be connected to the Duet 3 main board, not to a CAN-connected expansion or tool board.
 
