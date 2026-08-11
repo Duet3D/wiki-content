@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2026-08-10T14:08:04.033Z
+date: 2026-08-11T10:21:02.935Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -525,6 +525,7 @@ Some motors have a motor brake fitted for an holding brake solenoid. See the sec
 * Changed OUT1 to a dedicated BRAKE header, including the fast brake engagement circuit also used on the M23CL.
 * V_AUX power input replaces V_BRAKE. V_AUX allows for backup power to be provided.
 * The SPI encoder header now supports a range of Duet3D SPI daughterboards (PT100/Thermocouple/SPI ADC).
+* The SPI encoder header is rotated 180 degrees compared to v1.0 boards.
 * Temperature input headers relocated to the side of the board.
 
 ### Revision v1.0a
