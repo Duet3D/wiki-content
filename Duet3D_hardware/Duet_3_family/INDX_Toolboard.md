@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-11T09:04:20.667Z
+date: 2026-08-11T09:13:29.281Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -154,7 +154,7 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 
 >If you change the CAN address, the CAN address in the following commands will need to change from `121` to match{.is-info}
 
-Some of these functions require the INDX macro pack to be installed. See the #Macros 
+Some of these functions require the INDX macro pack to be installed. See the [INDX Macros](/Duet3D_hardware/Duet_3_family/INDX_Toolboard#indx-macros) section below.
 
 ## Induction heater and IR temperature sensor
 
@@ -334,9 +334,20 @@ add "M98 P"INDX_variables.g" to the end of config.g to run this file on startup.
 
 Some global variable values that are set during calibration routines or tool changes need to persist between machine reboots. The `0:/sys/INDX_WRITE_STATE.g` macro writes these variables to `0:/sys/indx-state.g` which is run at the end of `0:/sys/INDX_variables.g` to restore saved variables.
 
-currently the active tool is written every tool change. This will be made optional in the future to reduce SD card wear.
+Currently the active tool is written every tool change. This will be made optional in the future to reduce SD card wear.
 
-### 
+## Tool management macros
+`0:/sys/INDX_OPEN.g` - Open the tool
+`0:/sys/INDX_CLOSE.g` - Normal close of the tool
+
+## Loadcell Macros
+
+In order to calibrate and then probe with the load cell the following macros are used:
+`0:/sys/INDX_LC_CALIBRATE.g` - A guided calibration routine that prompts the user to take steps to achieve loadcell calibration and saves the calibration
+`0:/sys/INDX_TARE.g` - Stores the raw loadcell value when no tool is mounted
+`0:/sys/INDX_CLOSE_CAL.g` - Locks + seats the full ~1600 g force onto the cell
+`0:/sys/INDX_LC_CAL.g` - Computes grams/count against the known force
+
 
 
 
