@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-11T09:21:59.565Z
+date: 2026-08-11T10:29:11.288Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -12,7 +12,7 @@ dateCreated: 2026-02-09T09:34:17.141Z
 
 This page is about using the Bondtech INDX tool board with Duet 3 or other electronics running RepRapFirmware.
 
-The INDX documentation from bondtech is here: https://github.com/BondtechAB/INDX
+The INDX documentation from Bondtech is here: https://github.com/BondtechAB/INDX
 It should be read in conjunction with this page.
 
 
@@ -21,8 +21,8 @@ It should be read in conjunction with this page.
 - Drives INDX tool head extruder motor, with closed loop option if a suitable diametrically-magnetised magnet is attached to the end of the motor shaft
 - RGB LEDs on VF board displaying status information, visible via light pipes in the INDX toolhead
 - Output for a print cooling fan with optional tacho
-- Output for WS2812 or similar LED string
-- Supports connection of sensor coil for scanning inductve sensor
+- Output for WS2812 or similar (Neopixel) LED string
+- Supports connection of sensor coil for scanning inductive sensor
 - On-board accelerometer
 - Uncommitted input for endstop or similar
 
@@ -43,7 +43,7 @@ It should be read in conjunction with this page.
 
 The INDX tool board comprises two PCBs connected by two 20-way FFCs (Flexible Flat Cables). These will normally be supplied ready-mounted on a tool head.
 
-The VF board is connected to the induction heater, IR temperature sensor, heatsink fan, and load cell. Do not make any other connectons to the VF board, or remove the existing connections. The heatsink fan is connected to the VF board and defaults to running continuously; therefore it will run whenever no firmware is installed on the board, or firmware is being updated, or no configuration commands have been received from the main board.
+The VF board is connected to the induction heater, IR temperature sensor, heatsink fan, and load cell. Do not make any other connections to the VF board, or remove the existing connections. The heatsink fan is connected to the VF board and defaults to running continuously; therefore it will run whenever no firmware is installed on the board, or firmware is being updated, or no configuration commands have been received from the main board.
 
 The MCU board is connected to the rest of a Duet/RepRapFirmware system using a single XT30 2+2 connector. This provides power to the board (thick red and black wires, positive and ground respectively) and CAN FD (yellow and white wires, CANH and CANL respectively).
 
@@ -54,7 +54,7 @@ The MCU board also provides the following connections:
 - 3-pin JST PA connector for the print cooling fan with optional tacho
 - 3-pin IO0 connector, for an endstop or other input device
 - 3 Pin connector for WS2812 (aka Neopixel) or similar LEDs
-- 4-pin FFC connector for optional scanning inductive sensor coil. This requires a **same side FFC** to connect to a standard Duet3D coil.
+- 4-pin FFC connector for optional scanning inductive sensor coil. This requires a **same side FFC** (A-A) to connect to a standard Duet3D coil or the Bondtech SZP coil.
 - 5-pin USB OUT connector. This is not used when running RepRapFirmware.
 
 ### Pin diagram
@@ -68,7 +68,7 @@ The MCU board also provides the following connections:
 If you need to disconnect and reconnect the FFCs linking the two boards, be aware of the following:
 - Be sure to place the contact side of the FFC against the contacts in the socket
 - Be sure to insert the cable straight into the middle of the connector. It is easy to insert a cable so that it is skewed and shorts the pins out. If you do this and then power up the board, it is likely to be damaged.
-- The latching mechanisms on the vertical FFCs on the MCU board are counter-intuitive. Thet are unlatched when the latch is in the up position (away from the PCB). After inserting the FFCs, push the latch down towards the PCB to lock the FFC in place.
+- The latching mechanisms on the vertical FFCs on the MCU board are counter-intuitive. They are unlatched when the latch is in the up position (away from the PCB). After inserting the FFCs, push the latch down towards the PCB to lock the FFC in place.
 
 ### Switch
 
@@ -92,8 +92,8 @@ The Bondtech INDX tool head is normally supplied with an associated Link board. 
 * Connect the power and signal connectors of the cable supplied to the VOUT and DATA OUT pins of the Link board
 * Connect the VIN power supply to the 2-way terminal block
 * Connect the CAN IN connector to the CAN bus from your main board
-* If the INDX tool is the last board on the CAN bus, do not connect anything to the CAN OUT port on the Link board, and install the termination junper on the IND MCU board
-* If the INDX tool is not the last board on the CAN bus, connect the CAN OUT port to the next board in the chain, and do not fit the termination junper on the INDX MCU board.
+* If the INDX tool is the last board on the CAN bus, do not connect anything to the CAN OUT port on the Link board, and install the termination jumper on the IND MCU board
+* If the INDX tool is not the last board on the CAN bus, connect the CAN OUT port to the next board in the chain, and do not fit the termination jumper on the INDX MCU board.
 * Do not connect anything to the USB port on the Link board.
 
 ### To use a Duet Tool Distribution Board instead of the Link board 
@@ -226,7 +226,7 @@ M950 F0 C"121.pcfan"
 M106 P0 C"Part" S0                                  ; turn off print cooling fan
 ```
 
-if you use a directy connected part cooling solution with a tacho then:
+if you use a directly connected part cooling solution with a tacho then:
 
 ```
 M950 F0 C"121.pcfan+pcfan.tach"
@@ -274,19 +274,19 @@ There is a calibration stage that needs to be added to this documentation from B
 M558 K0 P1 C"121.loadcell"
 ```
 
-If you loadcell raw value _decreases_  when load is applied to the mounted tool from below (i.e. the normal force direction for probing) then you can invert the ouput using the `!` character infront of the pin name. e.g.:
+If you loadcell raw value _decreases_ when load is applied to the mounted tool from below (i.e. the normal force direction for probing) then you can invert the ouput using the `!` character in front of the pin name. e.g.:
 `M558 K0 P1 C"!121.loadcell"`
 
->Important, the loadcell reading being negative does not necessarily mean you need to invert the output, what is important is if the value decreases when probing, then invert it.{.is-warning}
+>Important, the load cell reading being negative does not necessarily mean you need to invert the output, what is important is if the value decreases when probing, then invert it.{.is-warning}
 
 
 ## SZP
 
-The scanning z probe coil, if attached is setup as a second Z probe. It integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
+The scanning z probe coil, if attached, is setup as a second Z probe. It integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
 
 ### Mounting
 
-The INDX tool has an optiona mount for the SZP coil that should be used. It ensures correct mounting distance from the bed. It places an offical SZP coil 3mm above the nozzle, centered on X and 35.1mm "behind" the nozzle on Y. (Measured in CAD)
+The INDX tool has an optional mount for the SZP coil that should be used. It ensures correct mounting distance from the bed. It places an offical Bondtech SZP coil 3mm above the nozzle, centered on X and 35.1mm "behind" the nozzle on Y. (Measured in CAD)
 
 If an alternative mounting solution is used then aim for a 3mm offset between the nozzle and the coil.
 
@@ -308,19 +308,19 @@ M557 X-100:100 Y-100:100 S10 ; define grid for mesh bed compensation probe 2
 
 ### Calibration and usage
 
-For general in formation about SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
+For general information about SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
 
 
 ## Endstop
 
-The endstop input on tool can be used for any digital IO function. The moost common use is to home the tool along the X axis. The configuraiton line for this is:
+The endstop input on tool can be used for any digital IO function. The most common use is to home the tool along the X axis. The configuration line for this is:
 ```
 M574 X1 P"121.io0.in" S1 ; configure X axis endstop on the low end of the X axis
 ```
 
 ## Motor encoder
 
-To follow.
+To follow. This requires a diametrically polarised magnet attached to the back of the motor shaft and the INDX MCU mounted ~1mm from the magnet. At the time of writing (11 August 20206) this magnet was not being provided in INDX units.
 
 For testing the following command will report the angle and encoder status are in M122 after the encoder is configured
 ```
@@ -333,7 +333,7 @@ These macros are a work in progress. This section describes the macros as a whol
 
 ## Global variables
 
-Global variables are used to sychronise incformation between the various macros for INDX calibration and tasks such as loadcell probing. To make it easier to manage these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle.
+Global variables are used to synchronise information between the various macros for INDX calibration and tasks such as load cell probing To make it easier to manage these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle.
 
 add "M98 P"INDX_variables.g" to the end of config.g to run this file on startup.
 
@@ -352,13 +352,16 @@ Currently the active tool is written every tool change. This will be made option
 
 ### Calibration
 In order to calibrate and then probe with the load cell the following macros are used:
-`0:/sys/INDX_LC_CALIBRATE.g` - A guided calibration routine that prompts the user to take steps to achieve loadcell calibration and saves the calibration
-`0:/sys/INDX_TARE.g` - Stores the raw loadcell value when no tool is mounted
+`0:/sys/INDX_LC_CALIBRATE.g` - A guided calibration routine that prompts the user to take steps to achieve load cell calibration and saves the calibration
+`0:/sys/INDX_TARE.g` - Stores the raw load cell value when no tool is mounted
 `0:/sys/INDX_CLOSE_CAL.g` - Locks + seats the full ~1600 g force onto the cell
 `0:/sys/INDX_LC_CAL.g` - Computes grams/count against the known force.
 
 ### Z Probing
 
+`0:/sys/homez.g` - Due to the requirements to tare just before each probe, and carry out multiplle probes to establish Z0 base your homez.g off this macro.
+`0:/sys/bed.g`  - for 3 point bed levelling (e.g. on a voron trident).
+`0:/sys/mesh.g`  - for bed mesh using the loadcell (as opposed to the SZP.
 
 
 
