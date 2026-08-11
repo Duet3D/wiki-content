@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-11T09:13:29.281Z
+date: 2026-08-11T09:21:59.565Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -273,6 +273,13 @@ There is a calibration stage that needs to be added to this documentation from B
 ```
 M558 K0 P1 C"121.loadcell"
 ```
+
+If you loadcell raw value _decreases_  when load is applied to the mounted tool from below (i.e. the normal force direction for probing) then you can invert the ouput using the `!` character infront of the pin name. e.g.:
+`M558 K0 P1 C"!121.loadcell"`
+
+>Important, the loadcell reading being negative does not necessarily mean you need to invert the output, what is important is if the value decreases when probing, then invert it.{.is-warning}
+
+
 ## SZP
 
 The scanning z probe coil, if attached is setup as a second Z probe. It integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
@@ -342,11 +349,17 @@ Currently the active tool is written every tool change. This will be made option
 
 ## Loadcell Macros
 
+
+### Calibration
 In order to calibrate and then probe with the load cell the following macros are used:
 `0:/sys/INDX_LC_CALIBRATE.g` - A guided calibration routine that prompts the user to take steps to achieve loadcell calibration and saves the calibration
 `0:/sys/INDX_TARE.g` - Stores the raw loadcell value when no tool is mounted
 `0:/sys/INDX_CLOSE_CAL.g` - Locks + seats the full ~1600 g force onto the cell
-`0:/sys/INDX_LC_CAL.g` - Computes grams/count against the known force
+`0:/sys/INDX_LC_CAL.g` - Computes grams/count against the known force.
+
+### Z Probing
+
+
 
 
 
