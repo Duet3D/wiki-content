@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2026-08-10T15:33:29.317Z
+date: 2026-08-11T14:59:29.451Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -162,22 +162,32 @@ important parameter for the linearity of the system. The strength of the magneti
 
 # Tabs {.tabset}
 
-## v2.0
+## v2.0 Magnetic encoder
+
+### Duet 3 Expansion 1HCL v2.0 and later
 
 Connect the encoder board to the Duet 3 Expansion 1HCL to the Magnetic Encoder v2.0 Buffer board using a 10-way straight-through ribbon cable. Fit the buffer board into the 10-way box connector on the 1HCL.
 
-![A Duet 3 1HCL v2.0 with the SPI buffer board fitted, connected to a Magnetic Encoder board via a 2oomm ribbon cable](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0.jpg =800x)
+![A Duet 3 1HCL v2.0 with the SPI buffer board fitted, connected to a Magnetic Encoder board via a 20cmm ribbon cable](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0.jpg =800x)
 
 >Ensure that the SPI buffer board is placed centrally in the socket on the 1HCL. It is possible to insert it shifted left or right by a pair of pins.{.is-warning}
 
 >The buffer board must be mounted on the 1HCL box header and not on the Magnetic Encoder board.{.is-warning}
 
-## v1.0
+### Duet 3 Expansion 1HCL v1.0 and earlier
+
+As above, but note that the SPI Encoder Input connector on the 1HCL v1.0 is orientated differently from the 1HCL v2.0, and the SPI buffer board should be connected 180° rotated compared to the picture above. See the [1HCL wiring diagrams here](https://docs.duet3d.com/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL#wiring-diagram){target=_blank}.
+
+## v1.0, v0.3 Magnetic encoder
 
 * Connect using the ribbon cable and a stepper motor cable to the 1HCL.
+* The ribbon cable and connector are keyed, so cannot be inserted the wrong way around. 
+  Note there is a difference between the 1HCL v1.0 and v2.0; the SPI Encoder Input connector is rotated 180°.
 * Move on to configuration.
 
 ![mag_enc_v0.3_installation_step3.png](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step5.png)
+
+The above picture shows a 1HCL v1.0 connected to a magnetic encoder v1.0.
 
 # Configuration
 
