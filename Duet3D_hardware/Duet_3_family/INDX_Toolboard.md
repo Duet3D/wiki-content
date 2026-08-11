@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-07-27T13:51:45.344Z
+date: 2026-08-11T09:04:20.667Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -153,6 +153,8 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 
 
 >If you change the CAN address, the CAN address in the following commands will need to change from `121` to match{.is-info}
+
+Some of these functions require the INDX macro pack to be installed. See the #Macros 
 
 ## Induction heater and IR temperature sensor
 
@@ -318,39 +320,23 @@ For testing the following command will report the angle and encoder status are i
 M569.1 P121.0 T3
 ```
 
-# Macros
+# INDX Macros
+
+These macros are a work in progress. This section describes the macros as a whole, see individual function parts of the documentation for how to use them.
 
 ## Global variables
 
-The following glbal variable definitions are needed in `config.g` , they are then used by the INDX tool macros
-```
-;variables for tool changes
-if !exists(global.tool_clearance_y)
-  global tool_clearance_y = 0
+Global variables are used to sychronise incformation between the various macros for INDX calibration and tasks such as loadcell probing. To make it easier to manage these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle.
 
-;INDX States:
-; -1 = Open / no tool
-; 0,1,2 etc = Closed with that tool loaded
-;@TODO extend to persist the state through power cycles.
-if !exists(global.INDX_State)
-  global INDX_State = -1 ; for now intialiase as open 
+add "M98 P"INDX_variables.g" to the end of config.g to run this file on startup.
 
-;variables that modify the speeds for tool changes
-if !exists(global.INDX_TC_SPEED)
-  global INDX_TC_SPEED = 12000 ; Highest safe toolchange feedrate
-else
-  set global.INDX_TC_SPEED = 24000
-if !exists(global.INDX_TC_ACCEL)
-  global INDX_TC_ACCEL= 1 ; Highest safe toolchange acceleration
-else
-  set global.INDX_TC_ACCEL = 10000
-  
-;Set the  mode in use (1.0 = Full speed, Bondtech calls "SPORT, 0.7= "NORMAL", 0.3 = "STEALTH"
-if !exists(global.INDX_TC_MODE)
-  global INDX_TC_MODE = 1.0 
-else
-  set global.INDX_TC_MODE = 1.0
-```
+### INDX Write State
 
-The values for `INDX_TC_SPEED` and `INDX_TC_ACCEL` should be set to appropriate values for the specific machine mechanics, they are the max safe values. The options to modify them down by 70% or 30% are options shown by Bondtech. These values for "Normal" and "stealth" can be chend for 70% and 30% to other values as you like.
+Some global variable values that are set during calibration routines or tool changes need to persist between machine reboots. The `0:/sys/INDX_WRITE_STATE.g` macro writes these variables to `0:/sys/indx-state.g` which is run at the end of `0:/sys/INDX_variables.g` to restore saved variables.
+
+currently the active tool is written every tool change. This will be made optional in the future to reduce SD card wear.
+
+### 
+
+
 
