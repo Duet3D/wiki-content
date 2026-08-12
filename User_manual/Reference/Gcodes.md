@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-11T12:29:50.667Z
+date: 2026-08-12T11:32:33.199Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -947,7 +947,7 @@ NOTE:
 #### RepRapFirmware v3.3 and later
 
 * **Kn** Selects the Z probe number. If there is no K parameter then Z probe 0 is used.
-* **Pnnn** Trigger value
+* **Pnnn** Trigger value. For load cell probes (type 12) this is the trigger force in grams, relative to the automatic tare taken at the start of each probing move; it may be negative to trigger when the force falls to the threshold, for example when probing towards a surface above the nozzle (RRF 3.7 and later).
 * **Znnn** Trigger Z height in mm (default 0.7)
 * **X,Y,U,V,W,A,B,C...nnn** Probe Offsets for all axes except Z^1^
 * **Snnn** Calibration temperature^2^
@@ -5604,7 +5604,8 @@ Defines the points for for G32 bed probing. The P value is the index of the poin
 * **Annn** Maximum number of times to probe each point, default 1. Maximum, as of RRF 2.03, is 31. Setting M558 A parameter to anything >31 set it to 0 instead of to 31
 * **Snnn** Tolerance when probing multiple times, default 0.03mm
 * **Bn** If 1, turn off all heaters while probing, default (B0) leaves heaters on.
-* **Vnnn** Load cell scale in grams per count. Mandatory for probe type 12, not permitted for other probe types. Supported in RRF 3.7 and later.
+* **Vnnn** Load cell scale in grams per count. Mandatory for probe type 12, not permitted for other probe types. The sign is part of the calibration: use a negative value if the raw reading falls as the force on the cell increases. Supported in RRF 3.7 and later.
+* **Ulll:hhh** Safe window for the load cell preload in grams, for probe type 12 only. Two values in ascending order. Before each probing move the firmware tares the load cell and checks the preload measured at that moment against this window; if it is outside, for example because no tool is locked or the cell is faulty, probing is refused. Two equal values (e.g. U0:0) disable the check. The window is best derived from the same calibration that produces the V scale, for example by bracketing the measured tool locking force. Supported in RRF 3.7 and later.
 
 ##### Order dependency
 
@@ -5643,7 +5644,7 @@ A probe may be a switch, an IR proximity sensor, or some other device. The **P**
 * P9 is as P5 but for a BLTouch probe that needs to be retracted and redeployed between probe points.
 * P10 means use Z motor stall detection as the probe trigger.
 * P11 means a scanning Z probe with an analog output (supported from RRF 3.5.0). Such probes must be calibrated before use (see M558.1).
-* P12 means a load cell probe, which triggers on the force measured when the nozzle touches the bed (supported from RRF 3.7). Such probes must be given the scale in grams per count using the V parameter.
+* P12 means a load cell probe, which triggers on the force measured when the nozzle touches the bed (supported from RRF 3.7). Such probes must be given the scale in grams per count using the V parameter. The firmware tares the load cell automatically when the probe is created and again at the start of each probing move, and refuses to start a probing move if the reading is invalid (exactly zero, indicating a dead or saturated cell); this check is always active, whether or not the U parameter is used.
 
 Probe types 4, 6 and 7 (used in RRF 2.x) are not supported in RRF 3.x. Instead, use type 5 (filtered digital) or 8 (unfiltered digital) and use the C parameter to specify the input. 
 
