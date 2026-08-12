@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-12T13:13:07.653Z
+date: 2026-08-12T13:15:17.972Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -285,8 +285,6 @@ Probe type 12 is a load cell probe. The trigger comparison runs on the tool boar
 `G31 P` is the trigger force in grams. The firmware tares the load cell automatically when a probing move starts, so the threshold is relative to the resting force at that moment and no manual tare is needed before probing. 40 to 70g is a reasonable starting point.
 
 Optionally `M558 U<low>:<high>` sets a safe window in grams for the preload, i.e. the resting force latched by the tare (`sensors.probes[0].preload`). A probing move is refused if the preload is outside the window when the move starts. This catches probing without a locked tool or with a badly seated tool.
-
->If you set up load cell probing with an earlier firmware version: the threshold is now in grams, not raw counts. Remove any `G31 ... P{global.INDX_LC_Z_trigger}` line from your probing macros; a stale counts value applied as grams results in a threshold that can never trigger.{.is-warning}
 
 >Test in the air before the first real probe: start a probing move well above the bed and press the nozzle upwards by hand. The move must stop immediately. This verifies the threshold and the sign of V without risking a head crash.{.is-warning}
 
