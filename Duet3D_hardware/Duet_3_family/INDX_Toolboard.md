@@ -2,13 +2,15 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-12T06:16:17.364Z
+date: 2026-08-12T13:07:32.409Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
 ---
 
 # INDX Tool Board
+
+>Load cell Z probing support is still work in progress. The configuration commands and macros described on this page are likely to change during the RepRapFirmware 3.7 beta cycle{.is-info}
 
 This page is about using the Bondtech INDX tool board with Duet 3 or other electronics running RepRapFirmware.
 
