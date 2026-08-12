@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-12T06:05:08.568Z
+date: 2026-08-12T06:13:20.482Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -160,7 +160,7 @@ Some of these functions require the INDX macro pack to be installed. See the [IN
 
 The thermopile sensor is configured using the M308 command with sensor type `"thermopile_tpis.object"` and pin name `"i2c"`. As well as the main output which provides nozzle temperature, it has two additional outputs which may be used for monitoring. Auxiliary output 1 has type `"thermopile_tpis.ambient"` and is the ambient temperature reported by the thermopile sensor. Auxiliary output 2 has type `"thermopile_tpis.environment"` and is the temperature of the nozzle surround reported by the auxiliary thermistor.
 
-As at 2026-06-29 the M308 command to configure the thermopile sensor accepts the following parameters, however many of these are likely to be withdrawn in future. None of these parameters should be needed in normal use.
+As at 2026-06-29 the M308 command to configure the thermopile sensor accepts the following parameters, however many of these are likely to be withdrawn in future. Only the S parameter should be needed in normal use.
 
 - **S** Sensor number
 - **R** Radiation exponent, must be between 3.8 and 4.4. The theoretical value is 4.0 but the sensor manufacturer recommends 4.2.
@@ -254,7 +254,7 @@ See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure th
 
 ![duet3_indx_v1.0_accelerometer.png](/duet_boards/duet_3_can_expansion/duet3_indx_v1.0_accelerometer.png)
 
-In the normal INDX mounting orientation, with tools picked up from the front Z+ of the accelerometer is +Y on the machine, and +X is oriented to -Z. so the correct command is 
+In the normal INDX mounting orientation, with tools picked up from the front Z+ of the accelerometer is +Y on the machine, and +X is oriented to -Z. So the correct command is 
 ```
 M955 P12.1 I16
 ```
@@ -320,7 +320,7 @@ M574 X1 P"121.io0.in" S1 ; configure X axis endstop on the low end of the X axis
 
 ## Motor encoder
 
-To follow. This requires a diametrically polarised magnet attached to the back of the motor shaft and the INDX MCU mounted ~1mm from the magnet. At the time of writing (11 August 20206) this magnet was not being provided in INDX units.
+To follow. This requires a diametrically polarised magnet attached to the back of the motor shaft and the INDX MCU mounted ~1mm from the magnet. At the time of writing (11 August 2026) this magnet was not being provided in INDX units.
 
 For testing the following command will report the angle and encoder status are in M122 after the encoder is configured
 ```
@@ -333,9 +333,7 @@ These macros are a work in progress. This section describes the macros as a whol
 
 ## Global variables
 
-Global variables are used to synchronise information between the various macros for INDX calibration and tasks such as load cell probing To make it easier to manage these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle.
-
-add "M98 P"INDX_variables.g" to the end of config.g to run this file on startup.
+Global variables are used to synchronise information between the various macros for INDX calibration and tasks such as load cell probing To make it easier to manage these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle. Add `M98 P"INDX_variables.g` to the end of config.g to run this file on startup.
 
 ### INDX Write State
 
