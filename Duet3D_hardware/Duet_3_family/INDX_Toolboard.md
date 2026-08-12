@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-12T13:07:32.409Z
+date: 2026-08-12T13:13:07.653Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -269,16 +269,26 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 ## Loadcell
 
-There is a calibration stage that needs to be added to this documentation from Bondtech's documentation.
+The load cell in the INDX toolhead is used as a Z probe: the nozzle probes the bed directly and the probe triggers when the contact force reaches the configured threshold. Load cell probing needs RepRapFirmware 3.7.0-beta.3 or later on both the INDX tool board and the main board; with older firmware on either side the probe will not start.
+
+Add the following to your config.g:
 
 ```
-M558 K0 P1 C"121.loadcell"
+M558 K0 P12 C"121.loadcell" V0.11
+G31 K0 P70 Z0
 ```
 
-If you loadcell raw value _decreases_ when load is applied to the mounted tool from below (i.e. the normal force direction for probing) then you can invert the ouput using the `!` character in front of the pin name. e.g.:
-`M558 K0 P1 C"!121.loadcell"`
+Probe type 12 is a load cell probe. The trigger comparison runs on the tool board at the full ADC sample rate (about 1.3kHz), so the trigger latency is around a millisecond and probing speeds of 300mm/min are practical.
 
->Important, the load cell reading being negative does not necessarily mean you need to invert the output, what is important is if the value decreases when probing, then invert it.{.is-warning}
+`M558 V` is the load cell scale in grams per raw ADC count and is required for this probe type. The INDX calibration macros described below determine it from the known tool locking force (about 1600g). The sign of V must be chosen so that the force reported in the object model (`sensors.probes[0].force`, shown in DWC) goes positive when the nozzle is pushed towards the bed. Test this by pressing the nozzle upwards by hand with a tool locked; if the force reading goes negative, negate V. Do not use the `!` pin inversion that was previously recommended on this page; the sign of V replaces it.
+
+`G31 P` is the trigger force in grams. The firmware tares the load cell automatically when a probing move starts, so the threshold is relative to the resting force at that moment and no manual tare is needed before probing. 40 to 70g is a reasonable starting point.
+
+Optionally `M558 U<low>:<high>` sets a safe window in grams for the preload, i.e. the resting force latched by the tare (`sensors.probes[0].preload`). A probing move is refused if the preload is outside the window when the move starts. This catches probing without a locked tool or with a badly seated tool.
+
+>If you set up load cell probing with an earlier firmware version: the threshold is now in grams, not raw counts. Remove any `G31 ... P{global.INDX_LC_Z_trigger}` line from your probing macros; a stale counts value applied as grams results in a threshold that can never trigger.{.is-warning}
+
+>Test in the air before the first real probe: start a probing move well above the bed and press the nozzle upwards by hand. The move must stop immediately. This verifies the threshold and the sign of V without risking a head crash.{.is-warning}
 
 
 ## SZP
