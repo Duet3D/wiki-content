@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2026-07-27T10:24:20.387Z
+date: 2026-08-13T11:06:41.005Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -23,7 +23,7 @@ See the individual pages on the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_
 ## Mounting
 
 * Duet3D supply two coils with the Duet 3 Roto toolboard and Duet 3 Scanning Z Probe, a 12mm coil and a 15mm coil. In theory the 12mm coils are higher resolution than the 15mm coils but we need more testing to confirm which is best, so we provide both.
-* Make sure there is no metal in the 30mm ABOVE the coil, or it will pick this up and give false readings The INDX tool has a tool designed for its specific mounting solution, supplied by Bondtech.
+* Make sure there is no metal in the 30mm ABOVE the coil, or it will pick this up and give false readings The INDX tool has a mount designed for its specific mounting solution, supplied by Bondtech.
 * The bottom of the SZP coil should be around 1 to 2mm above the tip of the nozzle. The G31 Z trigger height can be set to around 2mm, so the coil is 4mm from the bed, to avoid the nozzle contacting the bed while keeping the coil close enough to the bed to get an accurate reading.
 * Route the SZP ribbon cable away from the coil, ie make sure it doesn't go over the coil
 * Ensure that the ribbon cable is FULLY inserted into the tiny connector, at both ends. Try reseating this if you continue to get erratic readings
