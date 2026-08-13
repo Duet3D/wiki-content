@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-12T11:32:33.199Z
+date: 2026-08-13T08:54:22.663Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5867,6 +5867,27 @@ Supported from RRF 3.6.0
 * In touch mode the output of the probe is monitored as the probing move progresses. When the rate of change reduces sharply (the exact details depending on the sensitivity parameters) it is assumed hat the nozzle has contacted the bed. The Z height is assumed to be the value set using the H parameter.
 * When an analog Z probe is created using M558, the mode is set to standard mode, the feed rate in touch mode (M558.3 F parameter) is set to the feed rate in standard mode (first or only value of the M558 F parameter) and the touch mode nozzle height and sensitivity assume default values. Fast-then-slow probing is not available in touch mode, however you can still use the M558 A parameter to probe multiple times.
 * More information is available at [Using the SZP in touch mode to set Z height](/User_manual/Tuning/scanning_z_probe_calibration#using-the-szp-in-touch-mode-to-set-z-height).
+
+
+## M558.4: Tare load cell probe
+
+Supported from RRF 3.7.0-beta.3
+
+### Parameters
+
+* **Knn** Z probe number (default 0)
+
+### Example
+
+<pre class="cblock">
+M558.4 K0 ; tare load cell probe 0
+</pre>
+
+### Notes
+
+* This command latches the current load cell reading as the new baseline, so the reported force is zeroed and the check for an already triggered probe at the start of a probing move uses the new baseline.
+* The probe must have been created as a load cell probe (type 12) using M558.
+* Taring also happens automatically when the probe is created and at the start of every probing move, so this command is only needed to clear a large offset before the next probing move starts, for example after locking or unlocking a tool or after recalibrating the load cell.
 
 
 ## M559: Upload file
