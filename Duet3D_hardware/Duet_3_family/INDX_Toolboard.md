@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-13T09:38:17.903Z
+date: 2026-08-13T10:09:47.009Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -306,8 +306,8 @@ Add the following to your config.g:
 ; Scanning Z probe
 M558 K1 P11 C"121.i2c.ldc1612" F24000 T24000
 M308 S10 Y"thermistor" P"121.coiltemp" A"SZP coil temp" ; thermistor on SZP coil
-M558.2 K1 S16 R87251
-G31 K1 X0 Y-35.1 Z2 ; set SZP probe trigger value, offset and trigger height
+M558.2 K1 S15 R136980
+G31 K1 X0 Y-35.1 Z3.5 ; set SZP probe trigger value, offset and trigger height
 ; Mesh Bed Compensation
 M557 X-100:100 Y-100:100 S10 ; define grid for mesh bed compensation probe 2
 ```
