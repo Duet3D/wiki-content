@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-13T09:23:38.644Z
+date: 2026-08-13T09:53:42.121Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8854,7 +8854,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 
 * **Hnn** Heater number
 * **Fnn** Fan number
-* **Jnn** Input pin number. In RRF 3.7.0-beta.3 and later the C parameter may name a virtual input fed by a filament monitor instead of a physical pin. The name is "fmN.switch" or "fmN.motion" where N is the number of the extruder the monitor is configured for (the D parameter of M591): "fm0.switch" follows the filament present indication of the filament monitor of extruder 0, and "fm0.motion" reads active while that monitor has detected filament movement within the last 0.5 seconds. A leading '!' inverts the state.
+* **Jnn** Input pin number. In RRF 3.7.0-beta.3 and later the C parameter may name a virtual input fed by a filament monitor instead of a physical pin. The name is "fmN.switch" or "fmN.motion" where N is the number of the extruder the monitor is configured for (the D parameter of M591): "fm0.switch" follows the filament present indication of the filament monitor of extruder 0, and "fm0.motion" reads active while that monitor has detected filament movement within the last 0.5 seconds. "probeN" follows the triggered state of Z probe N, for example to terminate filament loading moves (see the E parameter of M574) when a load cell probe senses the filament pressing against the nozzle. A leading '!' inverts the state.
 * **Pnn** or **Snn** Output/servo pin number. Each P and/or S number needs to be unique, eg P1, P2, S3 P4, S5 etc. Servo pins are GpOut pins with a different default PWM frequency.
 * **Rnn** Spindle number
 * **Dn** (Duet 3 MB6HC only) SD slot number. The only value supported is 1.
