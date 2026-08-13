@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-13T08:54:22.663Z
+date: 2026-08-13T09:23:38.644Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5644,7 +5644,7 @@ A probe may be a switch, an IR proximity sensor, or some other device. The **P**
 * P9 is as P5 but for a BLTouch probe that needs to be retracted and redeployed between probe points.
 * P10 means use Z motor stall detection as the probe trigger.
 * P11 means a scanning Z probe with an analog output (supported from RRF 3.5.0). Such probes must be calibrated before use (see M558.1).
-* P12 means a load cell probe, which triggers on the force measured when the nozzle touches the bed (supported from RRF 3.7). Such probes must be given the scale in grams per count using the V parameter. The firmware tares the load cell automatically when the probe is created and again at the start of each probing move, and refuses to start a probing move if the reading is invalid (exactly zero, indicating a dead or saturated cell); this check is always active, whether or not the U parameter is used.
+* P12 means a load cell probe, which triggers on the force measured when the nozzle touches the bed (supported from RRF 3.7). Such probes must be given the scale in grams per count using the V parameter. The firmware tares the load cell automatically when the probe is created and again at the start of each probing move, and refuses to start a probing move if the reading is invalid (exactly zero, indicating a dead or saturated cell); this check is always active, whether or not the U parameter is used. Between probing moves the baseline additionally tracks slow drift such as thermal changes, so the reported force stays near zero while the probe is idle; the baseline is frozen for the duration of each probing move (RRF 3.7.0-beta.3 and later).
 
 Probe types 4, 6 and 7 (used in RRF 2.x) are not supported in RRF 3.x. Instead, use type 5 (filtered digital) or 8 (unfiltered digital) and use the C parameter to specify the input. 
 
@@ -5887,7 +5887,7 @@ M558.4 K0 ; tare load cell probe 0
 
 * This command latches the current load cell reading as the new baseline, so the reported force is zeroed and the check for an already triggered probe at the start of a probing move uses the new baseline.
 * The probe must have been created as a load cell probe (type 12) using M558.
-* Taring also happens automatically when the probe is created and at the start of every probing move, so this command is only needed to clear a large offset before the next probing move starts, for example after locking or unlocking a tool or after recalibrating the load cell.
+* Taring also happens automatically when the probe is created and at the start of every probing move, and between probing moves the baseline tracks slow drift by itself. A step change such as locking or unlocking a tool takes a few seconds to be absorbed by that tracking; use this command to zero the reading immediately instead, for example at the end of a tool change or calibration macro.
 
 
 ## M559: Upload file
