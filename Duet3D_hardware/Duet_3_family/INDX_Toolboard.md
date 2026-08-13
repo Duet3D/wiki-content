@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-13T09:24:17.713Z
+date: 2026-08-13T09:38:17.903Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -280,11 +280,11 @@ G31 K0 P70 Z0
 
 Probe type 12 is a load cell probe. The trigger comparison runs on the tool board at the full ADC sample rate (about 1.3kHz), so the trigger latency is around a millisecond and probing speeds of 300mm/min are practical.
 
-`M558 V` is the load cell scale in grams per raw ADC count and is required for this probe type. The INDX calibration macros described below determine it from the known tool locking force (about 1600g). The sign of V must be chosen so that the force reported in the object model (`sensors.probes[0].force`, shown in DWC) goes positive when the nozzle is pushed towards the bed. Test this by pressing the nozzle upwards by hand with a tool locked; if the force reading goes negative, negate V. Pin inversion (`!`) is not supported on the load cell input.
+`M558 V` is the load cell scale in grams per raw ADC count and is required for this probe type. The INDX calibration macros described below determine it from the known tool locking force (about 1600g). The sign of V must be chosen so that the force reported in the object model (`sensors.probes[0].loadCell.force`, shown in DWC) goes positive when the nozzle is pushed towards the bed. Test this by pressing the nozzle upwards by hand with a tool locked; if the force reading goes negative, negate V. Pin inversion (`!`) is not supported on the load cell input.
 
 `G31 P` is the trigger force in grams. The firmware tares the load cell automatically when a probing move starts, so the threshold is relative to the resting force at that moment and no manual tare is needed before probing. Between probing moves the baseline tracks slow drift by itself, so the displayed force stays near zero while the machine is idle; a step change such as locking or unlocking a tool is absorbed within a few seconds, or immediately by sending `M558.4 K0`. 40 to 70g is a reasonable starting point.
 
-Optionally `M558 U<low>:<high>` sets a safe window in grams for the preload, i.e. the resting force latched by the tare (`sensors.probes[0].preload`). A probing move is refused if the preload is outside the window when the move starts. This catches probing without a locked tool or with a badly seated tool.
+Optionally `M558 U<low>:<high>` sets a safe window in grams for the preload, i.e. the resting force latched by the tare (`sensors.probes[0].loadCell.preload`). A probing move is refused if the preload is outside the window when the move starts. This catches probing without a locked tool or with a badly seated tool.
 
 >Test in the air before the first real probe: start a probing move well above the bed and press the nozzle upwards by hand. The move must stop immediately. This verifies the threshold and the sign of V without risking a head crash.{.is-warning}
 
