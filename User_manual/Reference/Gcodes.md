@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-13T09:53:42.121Z
+date: 2026-08-17T16:07:35.629Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3544,7 +3544,7 @@ Write data to a Modbus slave device using standard Modbus protocol. If the devic
 
 ### Parameters
 
-* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
+* **Pnn** Serial port to send/receive through, numbered as in M575 (RRF 3.7 and later: 2 = first aux port, 3 = second aux port; RRF3.6.x and earlier: 1 = first aux port, 2 = second aux port).
 * **Ann** Modbus slave device address
 * **Fn** (optional) Modbus function code, must be one of: 5 (Write Single Coil), 6 (Write Single Register), 15 (Write Multiple Coils), 16 (Write Multiple Registers, default)
 * **Rnn** First Modbus coil or register number to write to
@@ -3570,7 +3570,7 @@ Write data to a generic UART device.
 
 ### Parameters
 
-* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
+* **Pnn** Serial port to send/receive through, numbered as in M575 (RRF 3.7 and later: 2 = first aux port, 3 = second aux port; RRF3.6.x and earlier: 1 = first aux port, 2 = second aux port).
 * **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
 * **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
 
@@ -3600,7 +3600,7 @@ Write data to a Nordson Ultimus V via UART. See the [Nordson Ultimus V manual he
 
 ### Parameters
 
-* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
+* **Pnn** Serial port to send/receive through, numbered as in M575 (RRF 3.7 and later: 2 = first aux port, 3 = second aux port; RRF3.6.x and earlier: 1 = first aux port, 2 = second aux port).
 * **Bnn:nn:nn...** Array of data to send to the UART. Each element is 1 byte, if a value is greater than 0xFF (255) then it will be truncated to the lowest byte.
 * **S"ascii data"** data to send (alternative to B parameter). Each character is converted to the corresponding ASCII value. Ignored if **B** parameter is present.
 
@@ -3623,7 +3623,7 @@ Perform a non-standard transaction with a Modbus slave device. The request and r
 
 ### Parameters
 
-* **Pnn** Serial port to send/receive through, numbered as in M575 (1 = first aux port, 2 = second aux port). The port must already have been set to Device mode using M575.
+* **Pnn** Serial port to send/receive through, numbered as in M575 (RRF 3.7 and later: 2 = first aux port, 3 = second aux port; RRF3.6.x and earlier: 1 = first aux port, 2 = second aux port).
 * **Ann** Modbus slave device address
 * **Rnn** Number of bytes to receive excluding the slave address and the CRC
 * **Bnn:nn:nn...** Values to send excluding the slave address and the CRC
@@ -3664,7 +3664,7 @@ Request data (synchronously) from a Modbus slave device.
 
 ### Parameters
 
-* **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Device mode using M575.
+* **Pnn** Port to send/receive through, numbered as in M575 (RRF 3.7 and later: 2 = first aux port, 3 = second aux port; RRF3.6.x and earlier: 1 = first aux port, 2 = second aux port).
 * **Ann** Modbus device address
 * **Rnn** Register number to start from
 * **Bnn** How many registers,coils or inputs to request
@@ -3689,7 +3689,7 @@ Request data (synchronously) from a UART device.
 
 ### Parameters
 
-* **Pnn** Port to request data through, same numbering as in M575 command (1 = first aux port, 2 = second aux port). The port must already have been put into Device mode using M575.
+* **Pnn** Port to send/receive through, numbered as in M575 (RRF 3.7 and later: 2 = first aux port, 3 = second aux port; RRF3.6.x and earlier: 1 = first aux port, 2 = second aux port).
 * **Bnn** How many bytes to read
 * **V"name"** (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
 
@@ -6776,16 +6776,16 @@ M575 P2 B9600 S7 ; sets second auxiliary port (io1 on Duet 3) to Device mode (e.
 
 ### Notes
 
-* **P parameter** (RRF 3.6 and earlier)
-  * P0 specifies the main serial interface, typically a USB port. 
-  * P1 specifies an auxiliary serial port (for example, the port used to connect a PanelDue, usually io0 on Duet 3) 
-  * P2 specifies a second auxiliary port if there is one (for example, the port used for RS485, usually io1 on Duet 3)
 * **P parameter** (RRF 3.7 and later)
   All Duet 3 main boards now provide two CDC channels over USB. This means that in M575 commands, device 1 is now the second USB CDC device, device 2 is the first serial port, and device 3 is the second serial port.
   * P0 specifies the main serial interface, typically a USB port. 
   * P1 specifies the second serial interface, typically a USB port. 
   * P2 specifies an auxiliary serial port (for example, the port used to connect a PanelDue, usually io0 on Duet 3) 
   * P3 specifies a second auxiliary port if there is one (for example, the port used for RS485, usually io1 on Duet 3)
+* **P parameter** (RRF 3.6 and earlier)
+  * P0 specifies the main serial interface, typically a USB port. 
+  * P1 specifies an auxiliary serial port (for example, the port used to connect a PanelDue, usually io0 on Duet 3) 
+  * P2 specifies a second auxiliary port if there is one (for example, the port used for RS485, usually io1 on Duet 3)
   
 * The **B parameter** is the required baud rate (this parameter is ignored if the port is a true USB port).
 * The **S parameter** defines the mode. Modes 2 and 3 are supported in RRF 3.01 and later. Modes 4 and 6 are supported in RRF 3.4 and later. Mode 5 is supported in RRF 3.6 and later. Mode 7 is supported by RRF 3.6 and later on some boards.
