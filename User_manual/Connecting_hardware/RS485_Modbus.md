@@ -2,7 +2,7 @@
 title: Connecting RS485 and Modbus RTU devices
 description: 
 published: true
-date: 2025-10-31T09:40:31.145Z
+date: 2026-08-17T16:36:30.456Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-10T14:15:26.485Z
@@ -84,7 +84,7 @@ For other Duet 3 boards with external RS485 transceivers
 ## Firmware configuration
 
 Configure the firmware to use the RS485 transceiver with [M575](/User_manual/Reference/Gcodes/M575), where:
-* **Pnnn**: Serial channel number. Note that P0 = USB, P1 = io0, P2 = io1
+* **Pn**: Serial port number. Note: RRF 3.7 and later, P0 = USB, P1 = USB secondary, P2 = io0, P3 = io1; RRF3.6.x and earlier, P0 = USB, P1 = io0, P2 = io1
 * **Bnnn**: Baud rate, default 57600bps. Set this to match your device
 * **Snnn**: serial port mode. 1 by default, set to 7 for 'Device' for Modbus
 * **C"port_name"**: Port name for firmware Transmit/Receive control of the RS485 transceiver.
