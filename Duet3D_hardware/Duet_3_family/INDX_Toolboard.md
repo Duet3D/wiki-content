@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-18T10:27:57.315Z
+date: 2026-08-18T10:30:54.573Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -322,7 +322,7 @@ For general information about SZP calibration and usage, see [Scanning Z Probe c
 
 ## Endstop
 
-The endstop input on tool can be used for any digital IO function. The most common use is to home the tool along the X axis. The configuration line for this is:
+The endstop input on the MCU board can be used for any digital IO function. The most common use is to home the tool along the X axis. The configuration line for this is:
 ```
 M574 X1 P"121.io0.in" S1 ; configure X axis endstop on the low end of the X axis
 ```
