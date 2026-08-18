@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-18T10:30:54.573Z
+date: 2026-08-18T12:30:10.633Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -126,7 +126,7 @@ The minimum RepRapFirmware version for this board is 3.7.0-beta.1. However, **fi
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
-The inductive heater is fast and powerful, therefore the standard RepRapFirmware default tool heater model is inappropriate. **Heater tuning must be run before using the INDX tool.** When running firmware 3.7.0-beta.3 and later, the heater must also be calibrated before it can be used, to account for small manufacturing differences between heaters. This calibration step is run when heater tuning is commanded. 
+The inductive heater is fast and powerful, therefore the standard RepRapFirmware default tool heater model is inappropriate. **Heater tuning must be run before using the INDX tool.** When running firmware 3.7.0-beta.3 and later, the heater must also be calibrated before it can be used, to account for small manufacturing differences between heaters. This calibration step is run when heater tuning is commanded. Tuning must be carried out with a tool present and locked in place.
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assembly is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
 
