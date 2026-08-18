@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-18T09:54:11.612Z
+date: 2026-08-18T10:18:02.344Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -122,7 +122,7 @@ The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX
 
 The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bin**.
 
-The minimum RepRapFirmware version for this board is 3.7.0-beta.1. However, **firmware 3.7.0-beta.3 or later is highly recommended as it incliudes additional protection against overheating**. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
+The minimum RepRapFirmware version for this board is 3.7.0-beta.1. However, **firmware 3.7.0-beta.3 or later is highly recommended as it includes additional protection against overheating**. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
@@ -176,7 +176,7 @@ The inductive heater is configured using the M950 command with pin name `"nozzle
 Example configuration, using sensor #1 for the nozzle temperature, heater #1, and the default CAN address (121):
 
 ```
-M308 S1 Y"thermopile_tpis.object" P"121.i2c" A"INDX"                 ; configure thermopile main output
+M308 S1 Y"thermopile_tpis.object" P"121.i2c" A"INDX"                       ; configure thermopile main output
 M308 S2 Y"thermopile_tpis.ambient" P"121.S1.1" A"Thermopile ambient"       ; configure thermopile ambient output (optional)
 M308 S3 Y"thermopile_tpis.environment" P"121.S1.2" A"Hot end surround"     ; configure nozzle environment output (optional)
 M950 H1 C"121.nozzleheat" T1                                               ; configure induction heater
@@ -198,13 +198,13 @@ It is not immune from self heating on the INDX PCB, so it is not an absolute mea
 
 Use the following commands, adjust if you have changed the CAN address
 ```
-M584 E121.0 ; set extruder mapping
-M350 E16 I1 ; configure microstepping with interpolation
-M92 E561.4 ; equivalent to a rotation distance of 5.7mm at 16 microstepping
-M566 E600 ; set maximum instantaneous speed changes (mm/min)
-M203 E9000 ; set maximum speeds (mm/min)
-M201 E3500 ; set accelerations (mm/s^2)
-M906 E600 ; 600mA - If bondtech specify a different current use the one they recommend
+M584 E121.0  ; set extruder mapping
+M350 E16 I1  ; configure microstepping with interpolation
+M92 E561.4   ; equivalent to a rotation distance of 5.7mm at 16 microstepping
+M566 E600    ; set maximum instantaneous speed changes (mm/min)
+M203 E9000   ; set maximum speeds (mm/min)
+M201 E3500   ; set accelerations (mm/s^2)
+M906 E600    ; 600mA - If bondtech specify a different current use the one they recommend
 
 ```
 
@@ -215,7 +215,7 @@ M906 E600 ; 600mA - If bondtech specify a different current use the one they rec
 
 The heatsink fan should be configured to run at full PWM when the nozzle is significantly above ambient temperature (e.g. above 45C). Here are suitable commands to configure it as fan #1, assuming again that the nozzle temperature sensor is sensor #1:
 ```
-M950 F1 C"121.hsfan+hsfan.tach"      ; heatsink fan
+M950 F1 C"121.hsfan+hsfan.tach"     ; heatsink fan
 M106 P1 C"Heatsink" H1 T45 S1       ; turn on when nozzle temperature is >= 45C
 ```
 
@@ -224,7 +224,7 @@ M106 P1 C"Heatsink" H1 T45 S1       ; turn on when nozzle temperature is >= 45C
 Directly connected fans
 ```
 M950 F0 C"121.pcfan"
-M106 P0 C"Part" S0                                  ; turn off print cooling fan
+M106 P0 C"Part" S0                  ; turn off print cooling fan
 ```
 
 if you use a directly connected part cooling solution with a tacho then:
