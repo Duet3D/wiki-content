@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-18T10:18:02.344Z
+date: 2026-08-18T10:27:57.315Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -297,7 +297,7 @@ The scanning z probe coil, if attached, is setup as a second Z probe. It integra
 
 The INDX tool has an optional mount for the SZP coil that should be used. It ensures correct mounting distance from the bed. It places an offical Bondtech SZP coil 3mm above the nozzle, centered on X and 35.1mm on +Y relative to the nozzle, assuming the tool is mounted to pick up tools at Ymin (as is conventional). (Measured in CAD)
 
-If an alternative mounting solution is used then aim for a 3mm offset between the nozzle and the coil.
+If an alternative mounting solution is used then aim for a 3mm Z offset between the tip of the nozzle and the underside of the coil.
 
 ### Configuration
 
