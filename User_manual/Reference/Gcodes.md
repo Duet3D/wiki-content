@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-19T17:04:24.361Z
+date: 2026-08-19T17:10:49.776Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9336,6 +9336,35 @@ Configure the acceleration constant used to scale the motor current in phase ste
 <pre class="cblock">
 M970.2 X50000.0 Y50000.0 Z50000.0 E50000.0:50000.0
 </pre>
+
+## M970.3: Configure phase stepping waveform correction
+
+*Support in RepRapFirmware after 3.7.0-beta.3*
+
+Applies a sinusoidal correction to the commanded electrical angle of a motor, to compensate for motor and driver non-linearity. The correction only takes effect while that axis is in phase stepping mode, see [M970](/User_manual/Reference/Gcodes/M970){target=_blank}.
+
+### Parameters
+
+* **Pnnn** Driver number
+* **Snn** Harmonic of the electrical cycle to correct, 1 to 16
+* **Jnnn** Correction magnitude in degrees, 0 to 90. J0 removes the correction for that harmonic
+* **Onnn** Correction phase in degrees, 0 to 360 (default 0)
+
+### Examples
+<br>
+<pre class="cblock">
+M970.3 P0.0 S2 J1.5 O200
+M970.3 P0.0
+</pre>
+
+### Notes
+
+* Up to 4 harmonics can be corrected per driver.
+* M970.3 with only the P parameter reports the corrections in force, for example "Driver 0 waveform correction: S2 J1.500 O200.0", or "none" if the driver has none.
+* Corrections are not saved over a reset, so they belong in config.g.
+* Only local drivers of a Duet 3 MB6HC are supported; remote drivers are rejected.
+* The command waits for motion to stop before changing a correction.
+* For a motor in step/dir mode the equivalent is [M569.2](/User_manual/Reference/Gcodes/M569.2){target=_blank}, which corrects the driver's sine table instead and is more restricted.
 
 ## M997: Perform in-application firmware update
 
