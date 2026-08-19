@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-19T12:49:48.833Z
+date: 2026-08-19T17:04:24.361Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6258,7 +6258,8 @@ For RRF 3.4, if you are using a quadrature encoder on the motor shaft,  the enco
 
 *Duet 3 Expansion 1HCL reading of stepper driver registers fixed in RRF 3.5.1. 
 Supported in RRF 3.4.0 and later on main boards and CAN-connected boards with TMC22xx or TMC51xx stepper drivers. 
-Supported in RRF 3.3 and later on main boards only, with TMC22xx or TMC51xx stepper drivers.*
+Supported in RRF 3.3 and later on main boards only, with TMC22xx or TMC51xx stepper drivers. 
+Sine table waveform correction (S, J and O parameters) supported after 3.7.0-beta.3, on Duet 3 MB6HC main board drivers only.*
 
 
 ### Parameters
@@ -6266,11 +6267,16 @@ Supported in RRF 3.3 and later on main boards only, with TMC22xx or TMC51xx step
 * **Pnn** Motor driver number
 * **Rnn** Register number, 0-127
 * **Vnnnn** Value to write (optional)
+* **Snn** Harmonic of the electrical cycle to correct, must be a multiple of 4 (4, 8, 12 or 16)
+* **Jnnn** Correction magnitude in degrees, 0 to 90. J0 removes the correction for that harmonic
+* **Onnn** Correction phase in degrees, 0 or 180 (default 0)
 
 ### Examples
 <br>
 <pre class="cblock">
 M569.2 P1 R0
+M569.2 P0.0 S4 J1.28 O180
+M569.2 P0.0
 </pre>
 
 ### Description
@@ -6278,6 +6284,12 @@ M569.2 P1 R0
 If the V parameter is not provided, this command reads the specified register and returns the value of that register. If the V parameter is provided, that value is written to the specified register.
 
 **WARNING!** Use of M569.2 to write stepper driver registers may result in damage to the stepper drivers, for example from excessive motor current or insufficient blanking time.
+
+If the S parameter is provided, the command instead modifies the driver's programmable microstep table, applying a sinusoidal correction of the given harmonic to the current waveform to compensate for motor and driver non-linearity. Up to 4 harmonics can be corrected per driver. Because a single table is shared by both coils, only harmonics that are multiples of 4 can be represented, and the phase is restricted to 0 or 180 degrees; corrections that cannot be represented are rejected. The command waits for motion to stop before writing the table.
+
+M569.2 with only the P parameter reports the corrections in force, for example "Driver 0 waveform correction: S4 J1.276 O180.0", or "none" if the driver has none.
+
+Corrections are not saved over a reset, so they belong in config.g. This form is only supported on the main board's own drivers, not on CAN-connected drivers.
 
 ## M569.3: Read Motor Driver Encoder via secondary CAN bus
 
