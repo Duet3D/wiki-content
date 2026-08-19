@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-17T16:07:35.629Z
+date: 2026-08-19T09:14:04.817Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -2875,6 +2875,8 @@ Note: do not use M122 with a P parameter of 1000 or greater. Most of these value
 * P1005 test the response to an unaligned memory access
 * P1006 test the response to accessing an invalid region of memory
 * P1007 read/write 32-bit words: A = address, R = number of 32-bit words (optional, default 1), V = value to write (optional)
+* P1008 allocate memory until the firmware runs out, to test the out-of-memory handling
+* P1009 leave an I2C slave device holding SDA low, to test that the I2C bus recovers (RepRapFirmware 3.6.4 and later). Supported on Duet 2 with a DueX2/DueX5 attached and, with the B parameter, on expansion boards with an I2C accelerometer, e.g. M122 B120 P1009
 
 The 'B' parameter is used in RepRapFirmware 3 on Duet 3 only, to report diagnostic information from connected boards. The B (board number) parameter is the CAN address of the board to be queried, default 0 (i.e. main board). Example:
 <br>
