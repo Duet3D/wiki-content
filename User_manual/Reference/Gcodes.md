@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-19T09:14:04.817Z
+date: 2026-08-19T12:49:48.833Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6824,8 +6824,10 @@ This sets the communications parameters of the SPI channel.
 ### Parameters
 
 * **Snnn** Maximum delay between full SPI transfers (in ms, defaults to 25ms)
-* **Fnnn** Maximum delay between full SPI transfers when a file is open (in ms, defaults to 5ms)
+* **Fnnn** Maximum delay between full SPI transfers when a file is open (in ms, defaults to 5ms, support for F parameter removed from RRF 3.7 and later)
 * **Pnnn** Number of events required to skip the delay (defaults to 4)
+* **Bnnn** Burst mode window (in ms, defaults to 50, RRF 3.7 and later). After an expression evaluation, variable assignment or macro request RRF keeps transfers going at the burst delay for this long
+* **Dnnn** Delay between full SPI transfers in burst mode (in ms, defaults to 2, RRF 3.7 and later)
 
 
 ## M577: Wait until endstop is triggered
