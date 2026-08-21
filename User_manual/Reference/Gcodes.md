@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-19T17:10:49.776Z
+date: 2026-08-21T15:31:28.591Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6229,7 +6229,7 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 * **Pnn** Motor driver number
 * **Tn** Encoder type: 0=none (default), 1=linear quadrature encoder plus Duet3D magnetic shaft encoder (RRF 3.5 and later only), 2=quadrature motor shaft encoder, 3=[Duet3D magnetic encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) (RRF 3.5 and later only)
 * **Cn.n** In RRF 3.4, for a quadrature motor shaft encoder (T2) this is the number of counts per full step. In RRF 3.5 and later, for a quadrature shaft encoder (T2) or linear composite encoder (T1) it is the number of quadrature encoder pulses per revolution. Not required for a magnetic shaft encoder.
-* **En.n:m.m** Error thresholds. If m.m is nonzero then whenever the actual position is more than m.m full motor steps of the desired position, this will be reported as a driver error. If n.n is nonzero and n.n < m.m then whenever the actual position is more than n.n full steps of the desired position but is less than m.m full steps, this will be reported as a driver warning. (Default: m.m=2.0, n.n=1.0) The action that is taken on a error/warning can be configured using the [event system](/User_manual/RepRapFirmware/Events)
+* **En.n:m.m** Error thresholds. If m.m is nonzero then whenever the actual position is more than m.m full motor steps of the desired position, this will be reported as a driver error. If n.n is nonzero and n.n < m.m then whenever the actual position is more than n.n full steps of the desired position but is less than m.m full steps, this will be reported as a driver warning. (Default: n.n=2.0, m.m=4.0) The action that is taken on a error/warning can be configured using the [event system](/User_manual/RepRapFirmware/Events)
 * **Sn.n** (optional, RRF 3.5 and later only) Motor full steps per revolution, default 200.
 * **Rn.n** Proportional constant
 * **In.n** (optional) Integral constant
@@ -6250,7 +6250,10 @@ For RRF 3.4, if you are using a quadrature encoder on the motor shaft,  the enco
 
 * Supported for drivers attached to:
   * [Duet 3 Expansion 1HCL boards](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL){target=_blank}
+  * [Duet 3 Motor 23CL](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL){target=_blank}
+  * [INDX Toolboard](/Duet3D_hardware/Duet_3_family/INDX_Toolboard){target=_blank}
 * The E parameter defaults to 0.0:0.0 in RRF 3.4.x. **If you do not override this default, then failure to maintain position will not be reported.**
+* After 3.7.0-beta.3, m.m is also the trigger point of a motor load detection endstop (M574 S3 or S4) on a driver that is in closed loop or assisted open loop mode. While such a homing move is running the position error is expected, so it is not also reported as a driver error.
 * See [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_blank} for further details on setting the proportional/integral/derivative constants.
 * The Q parameter is relevant, and required, only when the driver is put into torque mode, see M569.4.
 
@@ -6732,6 +6735,7 @@ The order of endstop switch pin names in M574 must match the order of Z motor dr
 * The S2 option of M574 is intended for use only when axes other than Z are using the Z probe for homing. The only printers known to do this are the RepRapPro Ormerod, Huxley Duo, and Mendel Tricolour machines. When using the Z probe to home Z, M574 Z has no bearing on the probe setup or usage.
 * A Z probe and a Z endstop (e.g. a switch) can both be configured at the same time. G30 commands will use the probe setup with M558, and G1 H1 Z moves use the endstop configured with M574 Z.
 * Endstop type S4 means use motor stall detection (like S3) but if there are multiple motors dedicated to a single axis, stop each one individually as it stalls. S3 means use motor stall detection but if there are multiple motors dedicated to a single axis, stop all those motors when the first one stalls.
+* Motor load detection endstops (S3 and S4) normally use the stepper driver's StallGuard feature, which is configured with M915. After 3.7.0-beta.3, a driver that is in closed loop or assisted open loop mode (M569 D4 or D5) uses the encoder position error instead, because StallGuard is not available in those modes. The endstop triggers when the position error exceeds the error threshold set by the M569.1 E parameter, M915 has no effect on it, and there is no minimum speed for the homing move. The driver must have been tuned first, otherwise the homing move is abandoned with an error.
 * Pull up resistors on Duet 2/Duex5 inputs should be configured for connecting a digital inputs (like a switch, BLtouch, etc) only on inputs not labelled "n"Stop (xstop, ystop etc).
 * When a filament endstop is bound to an extruder (E and P parameters, RRF 3.7.0-beta.3 and later), a G1 H1 extruder-only move stops when the input reads active during positive extrusion, or inactive during negative extrusion, so the same input terminates both filament loading and unloading moves. Extruders without a bound input use motor stall detection as before. `M574 E0` without P reports the current binding, and M574 without parameters lists all of them.
 * To un-configure an endstop and free up any associated input pins, set the endstop position of that axis to 'none'. For example, `M574 X0` will delete the X endstop and free up any inputs that it was using.
@@ -8750,6 +8754,7 @@ M915 X Y S5 R2
 * See the Trinamic TMC2660 and TMC2130 datasheets for more information about the operation and limitations of motor stall detection.
 * See here for more detailed information on [Stall Detection and Sensorless Homing](/User_manual/Connecting_hardware/Sensors_stall_detection){target=_blank}.
 * In RRF 3.6.0 and later, when stall detect endstops are configured, G1 H1/H3/H4 moves are vetted to ensure that stall detection has been configured and suitable parameters and movement speed have been selected to make stall detection possible; otherwise the move is abandoned and an error message generated.
+* After 3.7.0-beta.3, M915 has no effect on a driver that is in closed loop or assisted open loop mode (M569 D4 or D5), because such drivers cannot use StallGuard. A motor load detection endstop on those drivers uses the encoder position error instead, see M574 and the M569.1 E parameter.
 
 ## M916: Resume print after power failure
 
