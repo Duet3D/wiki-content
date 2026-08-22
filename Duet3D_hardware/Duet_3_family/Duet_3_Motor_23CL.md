@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2025-10-24T18:29:28.060Z
+date: 2026-08-22T12:33:22.777Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -21,29 +21,29 @@ Note the M23CL series are in active development and this documentation will be e
 
 ## Hardware specification
 
-| |M23CL-56-2804B|M23CL-56-2804|M23CL-76-2804B|M23CL-76-2804|
-|:---|:---|:---|:---|:---|
-| **Holding torque** | 12.6 Kg/cm || 18.9 Kg/cm||
-| **Detent torque** | 0.4 Kg/cm || 0.86 Kg/cm||
-| **Full step angle^1^** | 1.8deg ||||
-| **Max current/phase** | 2.8A || 2.8A ||
-| **Resistance/phase**| 1.13 ohms||0.9 ohms||
-| **Inductance/phase**| 3.6 mH|| 2.5 mH||
-| **Rotor inertia** | 0.3Kg/cm^2 || 0.48Kg/cm^2 ||
-| **Motor section length** | 56mm || 76mm||
-| **Total length** | 157±1mm | 107±1mm | 177±1mm | 127±1mm |
-| **Brake** | 24V, 1.5Nm| No Brake fitted| 24V, 1.5Nm| No Brake fitted|
-| **Ambient temperature**|-20°C to +50°C||||
-| **Max motor & controller temperature**|85°C||||
-| **Input voltage** | 24V to 48V ||||
-| **Processor** | Microchip ATSAME51G19A ||||
-| **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit ||||
-| **Networking/comms** | CAN-FD bus for connection to the Duet 3 Mainboard. Optional on-board CAN-FD bus termination. ||||
-| **On-board stepper driver** | 1x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} ||||
-| **Stepper driver features** | SPI controlled, can be run in open loop, assisted open loop, or closed loop mode. ||||
-| **Encoder inputs** | Hall effect, 14-bit resolution ||||
-| **Temperature monitoring** | 1x on-board thermistor and processor temperature available for temperature monitoring. ||||
-| **Closed loop control monitoring** | Real-time performance of the closed loop control data is available for local action or remote monitoring ||||
+| |M23CL-56-2804B|M23CL-56-2804|M23CL-76-2804B|M23CL-76-2804|M23CL-103-2804|
+|:---|:---|:---|:---|:---|:---|
+| **Holding torque** | 12.6 Kg/cm || 18.9 Kg/cm|| 27.5 Kg/cm *TBC||
+| **Detent torque** | 0.4 Kg/cm || 0.86 Kg/cm|| 1.22 Kg/cm||
+| **Full step angle^1^** | 1.8deg ||||||
+| **Max current/phase** | 2.8A || 2.8A || 3.3A *TBC ||
+| **Resistance/phase**| 1.13 ohms||0.9 ohms||0.7 ohms||
+| **Inductance/phase**| 3.6 mH|| 2.5 mH|| 2.7 mH||
+| **Rotor inertia** | 0.3Kg/cm^2 || 0.48Kg/cm^2 || 0.773Kg/cm^2 ||
+| **Motor section length** | 56mm || 76mm|| 103mm||
+| **Total length** | 157±1mm | 107±1mm | 177±1mm | 127±1mm | 154±1mm |
+| **Brake** | 24V, 1.5Nm| No Brake fitted| 24V, 1.5Nm| No Brake fitted| No Brake fitted|
+| **Ambient temperature**|-20°C to +50°C||||||
+| **Max motor & controller temperature**|85°C||||||
+| **Input voltage** | 24V to 48V ||||||
+| **Processor** | Microchip ATSAME51G19A ||||||
+| **Processor features** | 32-bit, 120MHz ARM Cortex-M4F, 512Kb flash, 192Kb RAM, hardware single precision floating point unit ||||||
+| **Networking/comms** | CAN-FD bus for connection to the Duet 3 Mainboard. Optional on-board CAN-FD bus termination. ||||||
+| **On-board stepper driver** | 1x [TMC2160A](https://www.trinamic.com/products/integrated-circuits/details/tmc2160-ta/){target=_blank} ||||||
+| **Stepper driver features** | SPI controlled, can be run in open loop, assisted open loop, or closed loop mode. ||||||
+| **Encoder inputs** | Hall effect, 14-bit resolution ||||||
+| **Temperature monitoring** | 1x on-board thermistor and processor temperature available for temperature monitoring. ||||||
+| **Closed loop control monitoring** | Real-time performance of the closed loop control data is available for local action or remote monitoring ||||||
 
 ^1^ In open loop mode up to 256 microstepping can be configured
 
