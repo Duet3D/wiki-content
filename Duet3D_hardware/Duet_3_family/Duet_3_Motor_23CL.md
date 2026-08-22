@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2026-08-22T12:33:22.777Z
+date: 2026-08-22T12:35:06.444Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -21,11 +21,11 @@ Note the M23CL series are in active development and this documentation will be e
 
 ## Hardware specification
 
-| |M23CL-56-2804B|M23CL-56-2804|M23CL-76-2804B|M23CL-76-2804|M23CL-103-2804|
+| |M23CL-56-2804B^1^|M23CL-56-2804^1^|M23CL-76-2804B|M23CL-76-2804|M23CL-103-2804^1^|
 |:---|:---|:---|:---|:---|:---|
 | **Holding torque** | 12.6 Kg/cm || 18.9 Kg/cm|| 27.5 Kg/cm *TBC||
 | **Detent torque** | 0.4 Kg/cm || 0.86 Kg/cm|| 1.22 Kg/cm||
-| **Full step angle^1^** | 1.8deg ||||||
+| **Full step angle^2^** | 1.8deg ||||||
 | **Max current/phase** | 2.8A || 2.8A || 3.3A *TBC ||
 | **Resistance/phase**| 1.13 ohms||0.9 ohms||0.7 ohms||
 | **Inductance/phase**| 3.6 mH|| 2.5 mH|| 2.7 mH||
@@ -45,7 +45,8 @@ Note the M23CL series are in active development and this documentation will be e
 | **Temperature monitoring** | 1x on-board thermistor and processor temperature available for temperature monitoring. ||||||
 | **Closed loop control monitoring** | Real-time performance of the closed loop control data is available for local action or remote monitoring ||||||
 
-^1^ In open loop mode up to 256 microstepping can be configured
+^1^ Special order lengths - contact Duet3D for more details.
+^2^ In open loop mode up to 256 microstepping can be configured
 
 ## Firmware notes
 
