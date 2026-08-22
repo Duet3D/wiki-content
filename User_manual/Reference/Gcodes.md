@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-21T17:20:48.174Z
+date: 2026-08-22T14:36:38.017Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8097,6 +8097,7 @@ M669 must come earlier in config.g than any [M671](/User_manual/Reference/Gcodes
 * In RRF 3, segmentation is not normally used unless the S and/or T parameter is given. Segmenting moves is useful when faster pause response is wanted.
 * Unlike some other firmwares, for CoreXY and similar kinematics RRF allows for the fact that the maximum speed and acceleration the machine is capable of varies with the direction of the move. This means that for best performance you should use higher M201 and M203 values in RRF than in those firmwares. See [Configuring RepRapFirmware for CoreXY Printer](/User_manual/Machine_configuration/Configuration_coreXY#drives-and-axes)
 * For more information on configuring a machine with specific kinematics, see [Machine configuration](/User_manual/Machine_configuration)
+*  Segmentation must be less than half a mesh bed levelling segment (i.e. if the M557 S value is 10, segmentation T value needs to be <5).
 
 ##### Examples
 
