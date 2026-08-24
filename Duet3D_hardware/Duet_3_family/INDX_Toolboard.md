@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-18T12:30:10.633Z
+date: 2026-08-24T14:28:17.065Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -10,7 +10,7 @@ dateCreated: 2026-02-09T09:34:17.141Z
 
 # INDX Tool Board
 
->Load cell Z probing support is still work in progress. The configuration commands and macros described on this page are likely to change during the RepRapFirmware 3.7 beta cycle{.is-info}
+>Full support is still work in progress. The configuration commands and macros described on this page are likely to change during the RepRapFirmware 3.7 beta cycle{.is-info}
 
 This page is about using the Bondtech INDX tool board with Duet 3 or other electronics running RepRapFirmware.
 
@@ -118,11 +118,13 @@ Aside from the status LEDs mounted on the VF board, LEDs are provided on the MCU
 **Status LED:** In normal use, the red LED flashes slowly (approx 1Hz) in sync with the main board to indicate that it has CAN time sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
 
 ## Software notes
-The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**.
+The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**. See 
 
 The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bin**.
+Reposted by M122 B121 as: `SAME5x composite bootloader version 3.02` (the version number will increase with future versions, do not use a version prior to 3.02)
+Available from Bonstech here: https://github.com/BondtechAB/indx-bootloader
 
-The minimum RepRapFirmware version for this board is 3.7.0-beta.1. However, **firmware 3.7.0-beta.3 or later is highly recommended as it includes additional protection against overheating**. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
+The minimum RepRapFirmware version for this board is 3.7.0-beta.3. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
@@ -271,6 +273,8 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 The load cell in the INDX toolhead is used as a Z probe: the nozzle probes the bed directly and the probe triggers when the contact force reaches the configured threshold. Load cell probing needs RepRapFirmware 3.7.0-beta.3 or later on both the INDX tool board and the main board; with older firmware on either side the probe will not start.
 
+To use the macros provided for INDX without modification is recommended you configure the SZP as probe 0 and shown in the example below.
+
 Add the following to your config.g:
 
 ```
@@ -300,6 +304,8 @@ The INDX tool has an optional mount for the SZP coil that should be used. It ens
 If an alternative mounting solution is used then aim for a 3mm Z offset between the tip of the nozzle and the underside of the coil.
 
 ### Configuration
+
+To use the macros provided for INDX without modification is recommended you configure the SZP as probe 1 and shown in the example below.
 
 Add the following to your config.g:
 ```
@@ -336,6 +342,46 @@ For testing the following command will report the angle and encoder status are i
 M569.1 P121.0 T3
 ```
 
+## Bed Mesh
+
+The INDX tool head allows us to mesh with either the loadcell or the SZP probe. The loadcell will take longer to mesh the entire bed, however it is measuring the actual surface, and not the metal that is potential below the surface on for example coated beds). Also if there are gantry twists or other mechanical issues with the machine. The load cell will produce a more accurate mesh because the SZP coil is displayed from the nozzle tip and so will move differently relative to the nozzle tip with those mechanical issues. On the other hand the SZP mesh is much quicker to perform at a high probe density.
+
+The recommendation is to mesh with first the load cell and then the SZP and compare those meshes. Then a decision can be made to use the SZP mesh if it is close enough, correct mechanical twists if possible, or stick with the loadcell mesh.
+
+### Using G29 with the INDX example mesh.g
+
+   `G29`        -> SZP scanning probe (default)
+   `G29 K1`     -> SZP scanning probe
+   `G29 K0`     -> INDX load cell, i.e. the nozzle touches the bed at each point
+
+Each probe needs its own grid, so the grid is set here rather than in config.g: M557 defines
+one grid at a time, and the SZP normally uses a finer pitch than the load cell because it does
+not have to touch the bed so its quicker. The M557 in config.g is only the power-up default.
+
+The grid can be overridden per run, so a print start script can mesh just the area it needs:, e.g `G29 K0 X{-50,50} Y{-40,40} I20` 
+   `X{min,max}`  grid limits in X       (array of 2; defaults below if omitted)
+   `Y{min,max}`  grid limits in Y       (array of 2; defaults below if omitted)
+   `I<spacing>`  point spacing in mm, applied to both axes (defaults below if omitted)
+   `J<spacing>`  optional Y spacing; when given, I sets the X spacing only
+   `F"name.csv"` optional extra copy of the height map, for keeping a series of runs apart. 
+
+X and Y take two values and must be written as arrays, e.g. `X{-50,50}`. I and J take a single value each: `I{30,20}` is NOT accepted, use `I30 J20`.
+
+The firmware moves the head so the PROBE is over each grid point, using the G31 X/Y offsets, so the grids below are in probe coordinates and each one must be reachable by that probe. The SZP sits behind the nozzle, so its grid can extend further back and less far forward.
+
+Height maps written, so the last run of each probe is always available for comparison:
+   `heightmap.csv`            the run that just finished - this is the active map
+   `heightmap_loadcell.csv`   the last load cell run
+   `heightmap_SZP.csv`        the last SZP run
+
+For both probes the X and Y must be homed and a tool must be loaded: the SZP establishes the Z datum with the load cell, which needs the nozzle.
+
+
+
+
+
+
+
 # INDX Macros
 
 These macros are a work in progress. This section describes the macros as a whole, see individual function parts of the documentation for how to use them.
@@ -360,15 +406,15 @@ Currently the active tool is written every tool change. This will be made option
 ### Calibration
 In order to calibrate and then probe with the load cell the following macros are used:
 `0:/sys/INDX_LC_CALIBRATE.g` - A guided calibration routine that prompts the user to take steps to achieve load cell calibration and saves the calibration
-`0:/sys/INDX_TARE.g` - Stores the raw load cell value when no tool is mounted
+`0:/sys/INDX_TARE.g` - Capturea the empty-head baseline for load-cell CALIBRATION
 `0:/sys/INDX_CLOSE_CAL.g` - Locks + seats the full ~1600 g force onto the cell
 `0:/sys/INDX_LC_CAL.g` - Computes grams/count against the known force.
 
 ### Z Probing
 
-`0:/sys/homez.g` - Due to the requirements to tare just before each probe, and carry out multiplle probes to establish Z0 base your homez.g off this macro.
+`0:/sys/homez.g` - an example homez.g - adpat for your specific machine
 `0:/sys/bed.g`  - for 3 point bed levelling (e.g. on a voron trident).
-`0:/sys/mesh.g`  - for bed mesh using the loadcell (as opposed to the SZP.
+`0:/sys/mesh.g`  - for bed mesh using the loadcell or SZP - see the .
 `0:/sys/INDX_LC_ZTRIGGER.g` carry out a Z probe with a tare just before the movement.
 
 
