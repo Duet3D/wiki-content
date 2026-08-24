@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-22T14:36:38.017Z
+date: 2026-08-24T11:25:24.609Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6236,6 +6236,7 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 * **Dn.n** (optional) Derivative constant
 * **Vn.n** (optional, RRF 3.5 and later only) Velocity feedforward constant
 * **An.n** (optional, RRF 3.5 and later only) Acceleration feedforward constant
+* **Bn.n** (optional, RRF 3.7 and later only) Position error deadband in full steps, default 0. While no movement is commanded, position errors up to this value are ignored by the closed loop controller so that it does not react to encoder noise at standstill. Errors larger than the deadband are corrected as normal.
 * **Hn.n** (optional, RRF 3.5 and earlier only) Minimum holding current as a percentage of the configured motor current when operating in closed loop mode
 * **Qn.n** (optional, RRF 3.5 and later only) Motor torque in newton-metres per amp of peak motor current
 * **Y"type"** (optional, RRF 3.6.2 and later only) Type of magnetic encoder used, only matters when using T1 or T3. Defaults to "as5047d" if not provided.
