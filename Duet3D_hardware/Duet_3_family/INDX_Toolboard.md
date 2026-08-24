@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-24T14:28:17.065Z
+date: 2026-08-24T14:29:20.149Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -414,7 +414,7 @@ In order to calibrate and then probe with the load cell the following macros are
 
 `0:/sys/homez.g` - an example homez.g - adpat for your specific machine
 `0:/sys/bed.g`  - for 3 point bed levelling (e.g. on a voron trident).
-`0:/sys/mesh.g`  - for bed mesh using the loadcell or SZP - see the .
+`0:/sys/mesh.g`  - for bed mesh using the loadcell or SZP - see the [Bed Mesh](Duet3D_hardware/Duet_3_family/INDX_Toolboard#bed-mesh) section above. 
 `0:/sys/INDX_LC_ZTRIGGER.g` carry out a Z probe with a tare just before the movement.
 
 
