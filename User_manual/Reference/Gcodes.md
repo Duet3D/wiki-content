@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-25T12:52:47.440Z
+date: 2026-08-25T12:54:38.432Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1376,8 +1376,7 @@ The effect of M0 depends on the state of the machine.
   **Or**: if M0 is sent at any other time, **stop.g** is run if present.
 1. All motors are put into idle mode.
 1. If there is no stop.g or cancel.g file (as appropriate) then all heaters are turned off too. In RRF versions prior to 3.4 you can prevent heaters being turned off using parameter H1.
-
-
+###
 See also [M1 - sleep or conditional stop](/User_manual/Reference/Gcodes/M1){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
 
 ## M1: Sleep or Conditional stop
@@ -1401,9 +1400,10 @@ The effect of M1 depends on the state of the machine.
 1. **sleep.g** is run if present.
 1. All motors are set to idle current, heaters are turned off.
 
-G and M codes can still be sent, the first of which will wake it up again. See also [M0 - stop or unconditional stop](/User_manual/Reference/Gcodes/M0){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
-
 If Marlin is emulated in RepRapFirmware, this does the same as [M25](/User_manual/Reference/Gcodes/M25){target=_blank} if the code was read from a serial or Telnet connection, else the macro file **sleep.g** is run before all heaters and drives are turned off.
+
+###
+G and M codes can still be sent, the first of which will wake it up again. See also [M0 - stop or unconditional stop](/User_manual/Reference/Gcodes/M0){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
 
 ## M2: Program End
 
