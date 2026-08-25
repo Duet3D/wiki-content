@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-25T11:40:19.806Z
+date: 2026-08-25T11:41:50.790Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1362,9 +1362,10 @@ The effect of M0 depends on the state of the machine.
 1. **Either**: if the axes are homed and if a print is paused (M25), it executes the macro file **cancel.g** if present.
   **Or**: if M0 is sent at any other time, **stop.g** is run if present.
 1. If there is no stop.g or cancel.g file (as appropriate) then all heaters are turned off too. 
+
 Note: *From RRF 3.5b1, When a print file completes normally then file stop.g is run automatically even if the print file did not end with a M0 command.*
 
-Note: Motors are not put into idle mode automatically, instead the normal idle mode setting via M84 and M906 I are used.
+Note: *Motors are not put into idle mode automatically, instead the normal idle mode setting via M84 and M906 I are used.*
 
 #### M0 in RepRapFirmware 3.4 and earlier
 
