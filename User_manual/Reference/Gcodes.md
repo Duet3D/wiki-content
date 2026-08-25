@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-25T11:41:50.790Z
+date: 2026-08-25T12:52:47.440Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1398,9 +1398,8 @@ This command terminates the current job. At present, it behaves just like M0.
 The effect of M1 depends on the state of the machine.
 
 1. The firmware finishes any moves left in its buffer.
-1. **Either**: if the axes are homed and if a print is paused (M25), it executes the macro file **cancel.g** if present. 
-  **Or**: if M1 is sent at any other time, **sleep.g** is run if present.
-1. All motors and heaters are are turned off.
+1. **sleep.g** is run if present.
+1. All motors are set to idle current, heaters are turned off.
 
 G and M codes can still be sent, the first of which will wake it up again. See also [M0 - stop or unconditional stop](/User_manual/Reference/Gcodes/M0){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
 
