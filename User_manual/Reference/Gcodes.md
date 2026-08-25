@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-25T12:54:38.432Z
+date: 2026-08-25T13:03:53.378Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1359,13 +1359,16 @@ M0
 The effect of M0 depends on the state of the machine.
 
 1. The firmware finishes any moves left in its buffer.
-1. **Either**: if the axes are homed and if a print is paused (M25), it executes the macro file **cancel.g** if present.
-  **Or**: if M0 is sent at any other time, **stop.g** is run if present.
-1. If there is no stop.g or cancel.g file (as appropriate) then all heaters are turned off too. 
+1. From within the job file: the job ends and stop.g is run if present.
+From any other input when the job is paused (M25): the job is cancelled and cancel.g is run if present, or stop.g if cancel.g does not exist.
+From any other input when no job is paused: M0 reports "Pause the print before attempting to cancel it" and does nothing else.
+1. If neither file exists then all heaters are turned off. 
 
-Note: *From RRF 3.5b1, When a print file completes normally then file stop.g is run automatically even if the print file did not end with a M0 command.*
+**Note:** From RRF 3.5b1, when a print file completes normally then file stop.g is run automatically even if the print file did not end with a M0 command.
 
-Note: *Motors are not put into idle mode automatically, instead the normal idle mode setting via M84 and M906 I are used.*
+**Note:** Since RRF 3.5.0beta1, cancel.g is run whether or not the axes are homed. Check for homed axes in cancel.g before moving.
+
+**Note:** M0 does not set motors to idle current immediately. They go to idle current on the normal idle timeout set by M84, at the current set by M906 I.
 
 #### M0 in RepRapFirmware 3.4 and earlier
 
@@ -1398,7 +1401,7 @@ The effect of M1 depends on the state of the machine.
 
 1. The firmware finishes any moves left in its buffer.
 1. **sleep.g** is run if present.
-1. All motors are set to idle current, heaters are turned off.
+1. All motors are set to idle current. Heaters are turned off if sleep.g does not exist (RRF 3.4), or always unless H1 was given (RRF 3.3 and earlier).
 
 If Marlin is emulated in RepRapFirmware, this does the same as [M25](/User_manual/Reference/Gcodes/M25){target=_blank} if the code was read from a serial or Telnet connection, else the macro file **sleep.g** is run before all heaters and drives are turned off.
 
