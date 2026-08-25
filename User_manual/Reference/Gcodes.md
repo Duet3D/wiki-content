@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-25T13:03:53.378Z
+date: 2026-08-25T14:58:48.586Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6287,7 +6287,7 @@ For RRF 3.4, if you are using a quadrature encoder on the motor shaft,  the enco
 *Duet 3 Expansion 1HCL reading of stepper driver registers fixed in RRF 3.5.1. 
 Supported in RRF 3.4.0 and later on main boards and CAN-connected boards with TMC22xx or TMC51xx stepper drivers. 
 Supported in RRF 3.3 and later on main boards only, with TMC22xx or TMC51xx stepper drivers. 
-Sine table waveform correction (S, J and O parameters) supported after 3.7.0-beta.3, on Duet 3 MB6HC main board drivers only.*
+Sine table waveform correction (S, J and O parameters) supported after 3.7.0-beta.3, on Duet 3 MB6HC main board drivers and on CAN-connected drivers with TMC5160/2160 or SPI-connected TMC2240 stepper drivers (e.g. EXP3HC, EXP1HCL, M23CL).*
 
 
 ### Parameters
@@ -6304,6 +6304,7 @@ Sine table waveform correction (S, J and O parameters) supported after 3.7.0-bet
 <pre class="cblock">
 M569.2 P1 R0
 M569.2 P0.0 S4 J1.28 O180
+M569.2 P40.0 S4 J1.28
 M569.2 P0.0
 </pre>
 
@@ -6317,7 +6318,7 @@ If the S parameter is provided, the command instead modifies the driver's progra
 
 M569.2 with only the P parameter reports the corrections in force, for example "Driver 0 waveform correction: S4 J1.276 O180.0", or "none" if the driver has none.
 
-Corrections are not saved over a reset, so they belong in config.g. This form is only supported on the main board's own drivers, not on CAN-connected drivers.
+Corrections are not saved over a reset, so they belong in config.g.
 
 ## M569.3: Read Motor Driver Encoder via secondary CAN bus
 
