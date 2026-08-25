@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-24T11:25:24.609Z
+date: 2026-08-25T11:32:16.081Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1373,6 +1373,13 @@ See also [M1 - sleep or conditional stop](/User_manual/Reference/Gcodes/M1){targ
 M1
 </pre>
 
+### Tabs {.tabset}
+
+#### M1 in RepRapFirmware 3.5 and later
+
+This command terminates the current job. At present, it behaves just like M0.
+
+#### M1 in RepRapFirmware 3.4 and earlier
 The effect of M1 depends on the state of the machine.
 
 1. The firmware finishes any moves left in its buffer.
