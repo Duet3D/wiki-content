@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-25T11:32:16.081Z
+date: 2026-08-25T11:40:19.806Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1352,6 +1352,22 @@ G94 is Units per Minute Mode. In units per minute feed mode, an F word is interp
 M0
 </pre>
 
+### Tabs {.tabset}
+
+#### M0 in RepRapFirmware 3.5 and later
+
+The effect of M0 depends on the state of the machine.
+
+1. The firmware finishes any moves left in its buffer.
+1. **Either**: if the axes are homed and if a print is paused (M25), it executes the macro file **cancel.g** if present.
+  **Or**: if M0 is sent at any other time, **stop.g** is run if present.
+1. If there is no stop.g or cancel.g file (as appropriate) then all heaters are turned off too. 
+Note: *From RRF 3.5b1, When a print file completes normally then file stop.g is run automatically even if the print file did not end with a M0 command.*
+
+Note: Motors are not put into idle mode automatically, instead the normal idle mode setting via M84 and M906 I are used.
+
+#### M0 in RepRapFirmware 3.4 and earlier
+
 The effect of M0 depends on the state of the machine.
 
 1. The firmware finishes any moves left in its buffer.
@@ -1359,8 +1375,6 @@ The effect of M0 depends on the state of the machine.
   **Or**: if M0 is sent at any other time, **stop.g** is run if present.
 1. All motors are put into idle mode.
 1. If there is no stop.g or cancel.g file (as appropriate) then all heaters are turned off too. In RRF versions prior to 3.4 you can prevent heaters being turned off using parameter H1.
-
-Note: *From RRF 3.5b1, When a print file completes normally then file stop.g is run automatically even if the print file did not end with a M0 command.*
 
 
 See also [M1 - sleep or conditional stop](/User_manual/Reference/Gcodes/M1){target=_blank}, [M112 - emergency stop](/User_manual/Reference/Gcodes/M112){target=_blank}.
