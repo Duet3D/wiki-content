@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-26T10:12:10.265Z
+date: 2026-08-26T11:03:28.090Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4729,7 +4729,7 @@ This runs macro file **sys/retractprobe#.g** (where # is the probe number) if it
 
 ## M404: Filament diameter
 
-**Deprecated in RRF 3.6 and later; planned for removal in RRF 3.7.**
+**Deprecated in RRF 3.6 and later; use M200 instead**
 
 ### Parameters
 
