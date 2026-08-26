@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-25T14:58:48.586Z
+date: 2026-08-26T08:57:48.325Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3342,6 +3342,7 @@ Sets the acceleration that axes should use for special types of move that should
 * **Vnnn** Maximum feedrate for V axis
 * **Wnnn** Maximum feedrate for W axis
 * **Ennn:nnn...** Maximum feedrates for extruder drives
+* **Sn** Optional, S1 changes units to mm/sec, S0 (or any other S value) mm/min (default)
 * **Innn** Minimum overall movement speed (firmware 2.03 and later), default 30mm/min
 
 ### Order dependency
@@ -3353,10 +3354,15 @@ If this command refers to any axes other than X, Y and Z then it must be later i
 <pre class="cblock">
 M203 X6000 Y6000 Z300 E10000
 </pre>
+<br>
+<pre class="cblock">
+M203 Z10 S1 ;mm/s 
+M203 X6000 Y6000 ;mm/min
+</pre>
 
 ### Notes
 
-* Sets the maximum feedrates that your machine can do in mm/min
+* Sets the maximum feedrates that your machine can do in mm/min (or mm/s of th option S1 parameter is used)
 * RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
   Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M203 Z300, not M203 Z300,300
 * RepRapFirmware has a default minimum movement speed of 0.5mm/sec, or 30mm/minute. Gcode commands sent with a slower feedrate than this (e.g. drilling) will automatically run at this speed. 
