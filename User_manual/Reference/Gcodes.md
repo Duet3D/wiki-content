@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-26T11:03:28.090Z
+date: 2026-08-26T13:09:40.193Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3329,7 +3329,7 @@ Sets the acceleration that axes should use for special types of move that should
 * These values are used for probing moves (because some types of Z probe can be triggered by high acceleration at the start of the move) and for moves that involve stall detection endstops (because high acceleration can bring the motor close to stalling). 
 * If a single E value is provided, that value is applied to all extruders. The values must be provided in mm/sec^2^ even if G20 has been used to set units to inches. 
 * M201.1 without parameters reports the current settings.
-* In RepRapFirmware 3.6.0 and later, when stall detection is used to feed filament until it reaches the hot end using a G1 H1 E move, the acceleration is reduced to the E value specified by M201.1. This makes it easier to use stall detection to feed filament when the extruder drive motor runs at high speed or has high inertia.
+* In RepRapFirmware 3.4.x the special acceleration value was not applied to extruders when stall detection was used to feed filament until it reaches the hot end using a G1 H1 E move. This was corrected in RRF 3.5 and later.
 
 ## M203: Set maximum feedrate
 
