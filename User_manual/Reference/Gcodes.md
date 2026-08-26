@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-26T08:57:48.325Z
+date: 2026-08-26T10:12:10.265Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5669,9 +5669,9 @@ A probe may be a switch, an IR proximity sensor, or some other device. The **P**
 
 * P0 indicates that no probe is present. Whenever Z probing is commanded, you will be prompted to jog the Z axis until the nozzle is just touching the bed and then signal completion.
 * P1 specifies an unmodulated or smart IR probe, or any other probe type that emulates one (probe output is an analog signal that rises with decreasing nozzle height above the bed). If there is a control signal to the probe, it is driven high when the probe type is P1.
-* P2 specifies a simple modulated IR probe, where the modulation is commanded directly by the main board firmware using the control signal to the probe.
-* P3 is similar to P1 but drives the control signal to the probe low. This may be used to switch between different Z probes.
-* P5 selects a switch by default (normally closed) for bed probing between the In and Gnd pins of the IO connector (Duet 3) or Z-probe connector (Duet 2).
+* P2 specifies a simple modulated IR probe, where the modulation is commanded directly by the main board firmware using the control signal to the probe. (*deprecated from RRF 3.7.0*)
+* P3 is similar to P1 but drives the control signal to the probe low. This may be used to switch between different Z probes. (*Not supported from RRF 3.7.0 onward*)
+* P5 selects a switch by default (normally closed) for bed probing between the In and Gnd pins of the IO connector (Duet 3) or Z-probe connector (Duet 2). (*deprecated from RRF 3.7.0 - use P8*)
 * P8 is as P5 but is unfiltered, for faster response time.
 * P9 is as P5 but for a BLTouch probe that needs to be retracted and redeployed between probe points.
 * P10 means use Z motor stall detection as the probe trigger.
