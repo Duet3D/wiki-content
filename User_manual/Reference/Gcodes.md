@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-26T13:09:40.193Z
+date: 2026-08-26T13:48:09.624Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3303,7 +3303,7 @@ Example: If you have two motors on your Z axis, physically connected to Z and E0
 
 In experimental 3.6.x firmware builds that support S-curve acceleration, the T parameter (acceleration time) specifies the time in seconds to go from zero to maximum acceleration. The jerk (maximum rate of change of acceleration) for each axis or extruder is then computed as the maximum acceleration for that axis or extruder divided by this acceleration time parameter. If the acceleration time is set to zero (which is the default) then S-curve acceleration is not used. If it is configured nonzero but not all local axes and extruders use phase stepping then S-curve acceleration is not used.
 
-## M201.1: Set reduced acceleration for special move types
+## M201.1: Set acceleration for special move types
 
 *Supported in RRF 3.4 and later*
 
@@ -3322,7 +3322,7 @@ M201.1 X500 Y500 Z20 E500:500
 
 ### Description
 
-Sets the acceleration that axes should use for special types of move that should be done using reduced acceleration.
+Sets the acceleration that axes should use for special types of move that should be done using (normally) reduced acceleration.
 
 ### Notes
 
