@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-29T09:55:47.692Z
+date: 2026-08-29T10:07:29.580Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -425,6 +425,10 @@ In **RRF 3.x**:
 | RRF 3, G0/G1 S parameter AFTER M452 Laser Mode. ||
 |:------------|----------|
 | S parameter sets laser power with range of 0-255. ||
+
+Note: a G1 Snnn command without axis movement will not trigger the laser, there must be some movement. For example:
+`G1 S128 ; laser does not turn on`
+`G1 X10 S128 ; laser turns on`
 
 In **RRF 3.5.0 and later**:
 
