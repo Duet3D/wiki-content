@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a laser engraver/cutter
 description: How to configure RRF to use a PWM driven laser module
 published: true
-date: 2024-07-03T15:21:26.893Z
+date: 2026-08-29T10:03:37.884Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:48:48.343Z
@@ -122,6 +122,11 @@ Most laser cutter/engraver software can output at least one of these forms of GC
 ## Using G1 S[0...254]
 
 The recommended way to control a laser is to use S parameters on [G1](/User_manual/Reference/Gcodes/G1) commands to set the laser power. Most programs that generate GCode for laser devices have this option.
+
+> Note: a G1 command without axis movement will not trigger the laser, there must be some movement. For example:
+`G1 S128 ; laser does not turn on`
+`G1 X10 S128 ; laser turns on`
+{.is-info}
 
 ## Using G1 raster clustering
 
