@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-26T15:02:52.291Z
+date: 2026-08-29T09:55:47.692Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1444,7 +1444,7 @@ M3 S255  ; laser mode, set laser power to full on
 
 #### M3 in RepRapFirmware 3.5 and later
 
-* **M3** commands are now supported in FFF/FDM mode as well as CNC and laser mode. This will allow mixing of additive and subtractive tools wihtout switching mode.
+* **M3** commands are now supported in FFF/FDM mode as well as CNC and laser mode. This will allow mixing of additive and subtractive tools without switching mode.
 * **FFF mode:**
   * In FFF mode, M3 will control a predefined spindle, as 'CNC mode' below. Lasers are not supported.
 * **CNC mode:**
