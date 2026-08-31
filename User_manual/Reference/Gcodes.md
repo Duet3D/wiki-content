@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-29T10:07:29.580Z
+date: 2026-08-31T11:04:13.956Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7123,7 +7123,7 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 ##### Examples
 <br>
 <pre class="cblock">
-M581.1 T2 P"sensors.gpIn[0] = 1" R1 ; invoke trigger 2 when the digital input configures using M950 J0 changes from inactive to active
+M581.1 T2 P"sensors.gpIn[0].value = 1" R1 ; invoke trigger 2 when the digital input configures using M950 J0 changes from inactive to active
 M581.1 T2 P-1                       ; don't invoke trigger 2 on any input change any more
 </pre>
 
