@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-01T13:01:36.490Z
+date: 2026-09-01T14:41:21.514Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8738,7 +8738,7 @@ M914 ; report expansion signal voltage level
 
 ## M915: Configure motor stall detection
 
-This sets the stall detection parameters and optionally the low-load current reduction parameters for TMC2660, TMC2130 or similar driver chips. Use either the P parameter to specify which driver number(s) you want to configure, or the axis names of the axes that those motors drive (the parameters will then be applied to all the drivers associated with any of those axes).
+This sets the stall detection parameters and optionally the low-load current reduction parameters for TMC2660, TMC2130 or similar driver chips. Use either the P parameter to specify which driver number(s) you want to configure, or the axis names of the axes that those motors drive (the parameters will then be applied to all the drivers associated with any of those axes), or the E parameter to specify extruder numbers.
 
 ### Tabs {.tabset}
 
@@ -8748,6 +8748,7 @@ This sets the stall detection parameters and optionally the low-load current red
 
 * **Pnnn:nnn:...** Drive number(s) to configure
 * **X,Y,Z,U,V,W,A,B,C** Axes to configure (alternative to using the P parameter)
+* **Ennn:nnn:...** Extruder number(s) to configure (alternative to using the P parameter)
 * **Snnn** Stall detection threshold (see notes below)
 * **Fn** Stall detection filter mode, 1 = filtered (one reading per 4 full steps), 0 = unfiltered (default, 1 reading per full step)
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200
@@ -8770,6 +8771,7 @@ This sets the stall detection parameters and optionally the low-load current red
 
 * **Pnnn:nnn:...** Drive number(s) to configure
 * **X,Y,Z,U,V,W,A,B,C** Axes to configure (alternative to using the P parameter)
+* **Ennn:nnn:...** Extruder number(s) to configure (alternative to using the P parameter)
 * **Snnn** Stall detection threshold (see notes below)
 * **Fn** Stall detection filter mode, 1 = filtered (one reading per 4 full steps), 0 = unfiltered (default, 1 reading per full step)
 * **Hnnn** (optional) Minimum motor full steps per second for stall detection to be considered reliable, default 200
