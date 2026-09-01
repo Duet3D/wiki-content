@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-01T07:29:16.674Z
+date: 2026-09-01T07:53:59.195Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9349,7 +9349,7 @@ Enable phase stepping for `X` and `E0`, enable step direction for `Y`, `Z`, and 
 * Stall detect is not supported while phase stepping is enabled.
 * M970 with no parameters reports the step mode of every axis and extruder, for example "Axis step mode - X:1, Y:0, Z:0, E:0".
 * Phase stepping is supported on Duet 3 MB6HC main board drivers and, over CAN, on Duet 3 Expansion 3HC drivers. Main boards that do not support phase stepping (Duet 3 Mini 5+, MB6XD and Duet 2) do not implement M970 at all, so they cannot phase step the drivers of an attached expansion board either.
-* The Duet 3 Expansion 1HCL and M23CL are closed loop boards and do not support open loop phase stepping. They reject M970 with "Command is not supported"; their drivers can still be linearised with the sine table correction of [M569.2](/User_manual/Reference/Gcodes/M569.2){target=_blank}.
+* The Duet 3 Expansion 1HCL and M23CL are closed loop boards and do not support open loop phase stepping. They reject M970 with "Command is not supported"; their drivers can still be linearised with the sine table correction of [M569.2](/User_manual/Reference/Gcodes/M569_2){target=_blank}.
 * An axis or extruder must be driven either entirely by local drivers or entirely by CAN-connected drivers. Enabling phase stepping on a mixed axis is rejected with "Phase stepping is not supported on axes with both local and remote drivers".
 
 ## M970.1: Configure phase stepping velocity constant
