@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-01T12:50:34.372Z
+date: 2026-09-01T13:01:36.490Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1879,7 +1879,7 @@ Set the file offset in bytes from the start of the SD card file selected by M23.
 
 The C parameter restores the modal motion command for files that omit the command letter on continuation lines, as Fanuc-style and some laser G-code does (for example `X10 Y10` following an earlier `G1`). RepRapFirmware writes it into resurrect.g whenever the paused move came from a G0, G1, G2 or G3 command, and omits it when the command is not known. Without it, resuming such a file at a line that carries no command letter fails.
 
-Pausing and resuming a file that uses implied motion commands is fully supported in RRF 3.7 and later, in standalone mode and in SBC mode alike. RRF 3.6 and earlier do not record the modal command at the restore position, so a job paused before such a line does not resume correctly on those versions.
+Pausing and resuming a file that uses implied motion commands is supported in RRF 3.7 and later, in standalone mode and in SBC mode alike.
 
 ## M27: Report SD print status
 
