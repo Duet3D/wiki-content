@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-08-31T11:04:13.956Z
+date: 2026-09-01T07:29:16.674Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9320,9 +9320,10 @@ M959          ; report the connection timeouts of all expansion boards
 
 ## M970: Enable/disable phase stepping
 
-*Support in RepRapFirmware 3.6 and later*
+*Support in RepRapFirmware 3.6 and later on Duet 3 MB6HC main board drivers.
+Support for CAN-connected Duet 3 Expansion 3HC drivers after 3.7.0-beta.3*
 
-Motor drivers on Duet 3 6HC allow for direct control of the motor phases. This command allows setting the motion controller to use phase stepping instead of step and direction.
+Motor drivers on the Duet 3 MB6HC main board and on the Duet 3 Expansion 3HC allow for direct control of the motor phases. This command allows setting the motion controller to use phase stepping instead of step and direction.
 
 ### Parameters
 
@@ -9346,10 +9347,14 @@ Enable phase stepping for `X` and `E0`, enable step direction for `Y`, `Z`, and 
 * In phase stepping, the motor current is scaled based on the current speed and acceleration. The current will not exceed the value set by [M906](/User_manual/Reference/Gcodes/M906){target=_blank}.
 * The standstill current factor set by [M917](/User_manual/Reference/Gcodes/M917){target=_blank} is also used to scale the motor current. The scaled current will be a minimum of the current * standstill current factor.
 * Stall detect is not supported while phase stepping is enabled.
+* M970 with no parameters reports the step mode of every axis and extruder, for example "Axis step mode - X:1, Y:0, Z:0, E:0".
+* Phase stepping is supported on Duet 3 MB6HC main board drivers and, over CAN, on Duet 3 Expansion 3HC drivers. Main boards that do not support phase stepping (Duet 3 Mini 5+, MB6XD and Duet 2) do not implement M970 at all, so they cannot phase step the drivers of an attached expansion board either.
+* The Duet 3 Expansion 1HCL and M23CL are closed loop boards and do not support open loop phase stepping. They reject M970 with "Command is not supported"; their drivers can still be linearised with the sine table correction of [M569.2](/User_manual/Reference/Gcodes/M569.2){target=_blank}.
+* An axis or extruder must be driven either entirely by local drivers or entirely by CAN-connected drivers. Enabling phase stepping on a mixed axis is rejected with "Phase stepping is not supported on axes with both local and remote drivers".
 
 ## M970.1: Configure phase stepping velocity constant
 
-*Support in RepRapFirmware 3.6 and later*
+*Support in RepRapFirmware 3.6 and later. Support for CAN-connected drivers after 3.7.0-beta.3*
 
 Configure the velocity constant used to scale the motor current in phase stepping.
 
@@ -9363,9 +9368,13 @@ Configure the velocity constant used to scale the motor current in phase steppin
 M970.1 X1000.0 Y2000.0 Z1000.0 E1000.0:1000.0
 </pre>
 
+### Notes
+
+* The constant is applied to all drivers of that axis, local and CAN-connected alike.
+
 ## M970.2: Configure phase stepping acceleration constant
 
-*Support in RepRapFirmware 3.6 and later*
+*Support in RepRapFirmware 3.6 and later. Support for CAN-connected drivers after 3.7.0-beta.3*
 
 Configure the acceleration constant used to scale the motor current in phase stepping.
 
@@ -9378,6 +9387,10 @@ Configure the acceleration constant used to scale the motor current in phase ste
 <pre class="cblock">
 M970.2 X50000.0 Y50000.0 Z50000.0 E50000.0:50000.0
 </pre>
+
+### Notes
+
+* The constant is applied to all drivers of that axis, local and CAN-connected alike.
 
 ## M970.3: Configure phase stepping waveform correction
 
@@ -9404,7 +9417,7 @@ M970.3 P0.0
 * Up to 4 harmonics can be corrected per driver.
 * M970.3 with only the P parameter reports the corrections in force, for example "Driver 0 waveform correction: S2 J1.500 O200.0", or "none" if the driver has none.
 * Corrections are not saved over a reset, so they belong in config.g.
-* Only local drivers of a Duet 3 MB6HC are supported; remote drivers are rejected.
+* Supported on Duet 3 MB6HC main board drivers and on CAN-connected Duet 3 Expansion 3HC drivers. Drivers that cannot phase step, including those on the Duet 3 Expansion 1HCL and M23CL, reject the command.
 * The command waits for motion to stop before changing a correction.
 * For a motor in step/dir mode the equivalent is [M569.2](/User_manual/Reference/Gcodes/M569.2){target=_blank}, which corrects the driver's sine table instead and is more restricted.
 
