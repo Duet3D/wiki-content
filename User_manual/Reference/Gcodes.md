@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-01T07:53:59.195Z
+date: 2026-09-01T12:45:46.325Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1865,6 +1865,7 @@ After movement is halted as described above but prior to the pause operation com
 ### Parameters
 
 * Snnn File position from start of file in bytes
+* Cn (RRF 3.7 and later, optional) The G0/G1/G2/G3 command that was in effect at the specified file position, 0 to 3
 * Pnnn (Optional) Proportion of the first move to be skipped, default 0.0, must be less than 1.0
 * Xnnn, Ynnn, Znnn (Optional) If the command at the specified file position is a G2 or G3 command and the P parameter is nonzero then these are the coordinates of the centre of the arc for that command.
 
@@ -1875,6 +1876,8 @@ M26 S49315
 </pre>
 
 Set the file offset in bytes from the start of the SD card file selected by M23. The offset must correspond to the start of a GCode command. This command is used when restarting a job that was interrupted, for example by a power failure.
+
+The C parameter restores the modal motion command for files that omit the command letter on continuation lines, as Fanuc-style and some laser G-code does (for example `X10 Y10` following an earlier `G1`). RepRapFirmware writes it into resurrect.g whenever the paused move came from a G0, G1, G2 or G3 command, and omits it when the command is not known. Without it, resuming such a file at a line that carries no command letter fails.
 
 ## M27: Report SD print status
 
@@ -4698,6 +4701,8 @@ M400 S1  ; wait until motion stops, do not release any axes or extruders
 ### Notes
 
 Finishes all current moves and and thus clears the buffer. That's identical to G4 P0 except that G4 P0 does not release any axes or extruders.
+
+In RRF 3.7 and later, M400 re-reads the machine position from the motors only when a move may have stopped short of its target, for example a homing, probing or stall-detection move. Earlier versions did so on every M400, which quantised the current position to whole motor steps and could distort a following G2 or G3 arc.
 
 ## M401: Deploy z-probe
 
