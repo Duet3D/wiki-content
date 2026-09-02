@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-09-02T18:44:12.540Z
+date: 2026-09-02T18:45:28.763Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -523,7 +523,7 @@ WiFi revision is version 1.02, Ethernet revision is 1.02a
 
 ## Revision 1.01
 
-* Added Jumpers to bypass 10K input protection resistors with 470R resistors for IO2.in and IO3.in. This is to allow these inputs to be used with I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
+* Added Jumpers to bypass 10K input protection resistors with 470R resistors for IO2.in and IO3.in. This is to allow these inputs to be used with I2C.<br> **Note:** I2C on Duet 3 mainboards boards is only supported from RRF 3.7 and later.<br> **Note:** The jumper for I03.in provides no functionality because I2C is not supported on those pins, it will be removed in a later board revision
 * Add a 10K pulldown resistor between signal line io4_out and ground. This is to prevent PS_ON turning on momentarily when the board is powered up.
 
 ## Revision 1.0
