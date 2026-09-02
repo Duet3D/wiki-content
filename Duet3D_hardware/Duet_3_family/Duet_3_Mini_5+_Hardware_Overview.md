@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-09-02T13:29:41.557Z
+date: 2026-09-02T18:44:12.540Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -127,6 +127,8 @@ The STEP files for both boards are available [on Github here](https://github.com
 Ethernet only
 [![An image showing the connections for the Duet 3 Mini 5+ v1.03 Ethernet](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_wiring.png =x500)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_wiring.png){target=_blank}
 
+**Note:** The jumper for I03.in provides no functionality because I2C is not supported on those pins, it will be removed in a later board revision
+
 ### Revision v0.5 to v1.02
 
 [![An image showing the connections for the Duet 3 Mini 5+ v0.5-v1.02 wifi and ethernet](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.5_wiring.png =x500)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.5_wiring.png){target=_blank}
@@ -183,8 +185,8 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **Reset** |  | Single push to reset the board. Double push to put the board into UF2 bootloader upload mode. See [User manual: Updating firmware - Duet 3 Mini 5+ via USB](/User_manual/RepRapFirmware/Updating_firmware#duet-3-mini-5-wifiethernet){target=_blank} |
 | **1 x JST ZH 6-pin connectors** | SWD | Connection for an SWD programming device such as an Atmel-ICE |
 | **1 x 2-pin KK connectors** | CAN | CAN-FD Bus connection for Duet 3 CAN-FD expansion boards. |
-| **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signal levels with 470R series resistors. IO_1,2,3 are PWM capable. IO_0 and IO_1 can optonally be configured as serial ports instead. |
-| **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. Jumpers to allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
+| **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signal levels with 470R series resistors. IO_1,2,3 are PWM capable. IO_0 and IO_1 can optionally be configured as serial ports instead. |
+| **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. A Jumper allows the 10K resistor on IO2.in to be bypassed with 470R resistors. This is required to use IO2 for I2C. <br>**Note:** I2C on Duet 3 mainboards boards is only supported from RRF 3.7 and later. <br> **Note:** The jumper for I03.in provides no functionality because I2C is not supported on those pins; it will be removed in a later board revision. |
 | **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
@@ -194,7 +196,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **2 x 3-pin Jumpers** | 5V_SELECT |*Version 1.03 and later*: Source of optional External 5V input, see note 2 below |
 | **1 x 2-pin Jumper** | Int_5V_Disable | Connect a jumper across this to disable the internal 5V regulator, see note 2 below |
 | **2 x 2x5 IDCs** | 12864_EXP1, 12864_EXP2 | Headers for connecting a 12864 display using  a ST7567 controller, see "Connecting a 12864 display" below. |
-| **1 x 3-pin KK connector** | NP_LED | This is to connect and power NeoPixel LED strips (DotStar LED strips are not supported) . Connect the  DO pin to Neopixel DI. External 5V must be supplied to the "EXT 5V" header to power the NeoPixel array, they cannot be powered from the onboard regulator. |
+| **1 x 3-pin KK connector** | NP_LED | This is to connect and power NeoPixel LED strips (DotStar LED strips are not supported) . Connect the  DO pin to Neopixel DI. External 5V must be supplied to the "EXT 5V" header to power the NeoPixel array; they cannot be powered from the onboard regulator. |
 | **1 x 3-pin KK connector** | EXT 5V | Input for External 5V supply, see Note 2 below. There is a buffered 5V "pson" pin which can be used to switch an external supply, note it is shared with io4.out |
 
 **Notes**
@@ -232,7 +234,7 @@ The red LED next to the Reset button is labelled "STATUS".  *On version 0.2 boar
 
 For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}.
 
-RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of gcode commands, e.g. M574, M558, M950.
+RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of Gcode commands, e.g. M574, M558, M950.
 
 The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mini 5+.
 
@@ -255,7 +257,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | TEMP_1 | temp1 | |
 | TEMP_2 | temp2 | |
 | **Inputs/Output** |||
-| IO_0 | io0.in | PanelDue, endstops, Z probes, filament monitors etc. Shares io0.out and io0.in pins with PanelDue_SD connector. |
+| IO_0 | io0.in | PanelDue, endstops, Z probes, filament monitors etc. It shares io0.out and io0.in pins with the PanelDue_SD connector. |
 | ^^ | io0.out | ^^ |
 | IO_1 | io1.in | Endstops, Z probes, filament monitors etc. |
 | ^^ | io1.out | ^^ |
@@ -306,7 +308,7 @@ The individual IO_x connectors have the following capabilities:
 
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|
-| 0 | yes | no | no | AUX0 port, can be used to connect a PanelDue. Configure using M575 P1. Shares io0.out and io0.in pins with PanelDue_SD connector. |
+| 0 | yes | no | no | AUX0 port, can be used to connect a PanelDue. Configure using M575 P1. It shares io0.out and io0.in pins with the PanelDue_SD connector. |
 | 1 | yes | no | yes | AUX1 port. Configure using M575 P2. |
 | 2 | yes | no | yes | The  standard firmware does not support this UART |
 | 3 | no | yes | yes | Shared with  backlight control on 12864 displays having Neopixel backlights |
@@ -435,7 +437,7 @@ The maximum current that fans can draw depends on the fan voltage, and how it is
 * VIN-powered fans are only limited by the connectors, which are rated at 2A.
 * Internally supplied 12V-powered fans are limited by a total current of 800mA, as that is what the 12V regulator can supply.
 * You can connect 5V fans to the internal 5V regulator by either bridging from a 5V pin to the centre pin of OUT_3&4 Select V or OUT_5&6 Select V (which will supply both connected fan headers with 5V), or supplying 5V directly to the fan and using the fan#- pin to control it). Internally supplied 5V-powered fans are limited by a total current of 1A (which is also used to supply power to other components, see Operating limits), as that is what the 5V regulator can supply.
-* You can use an external voltage regulator, and either supply the fans directly or using the centre pin of OUT_3&4 Select V or OUT_5&6 Select V. Current is limited by the connectors, which are rated at 2A.
+* You can use an external voltage regulator, and either supply the fans directly or use the centre pin of OUT_3&4 Select V or OUT_5&6 Select V. Current is limited by the connectors, which are rated at 2A.
 
 See also [Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting){target=_blank}.
 
@@ -500,7 +502,7 @@ You will need to remove the bootloader protection by doing Erase Chip first and 
 
 Ethernet Only
 
-* Replaced the SD card filter/protection component that was no longer available with a functionally equivalent part. This will not change SD card perfomance or other functionality.
+* Replaced the SD card filter/protection component that was no longer available with a functionally equivalent part. This will not change SD card performance or other functionality.
 
 ## Revision 1.03
 
@@ -573,3 +575,5 @@ First prototype, this revision will not be supported in future firmware releases
 Version 0.2 boards run RepRapFirmware 3.2beta1 or beta2. The WiFi and Ethernet variants use a common firmware binary, named Duet3Mini5plus.uf2 in the 3.2beta 1 release, and Duet3Mini5plus_v02.uf2 in the 3.2beta 2 release. These binaries also support an attached Single Board Computer.
 
 Note that support for version 0.2 prototypes will not be maintained in future firmware, starting from RRF 3.2 stable onwards.
+
+
