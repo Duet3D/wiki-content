@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-01T14:41:21.514Z
+date: 2026-09-02T09:11:02.718Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1865,7 +1865,7 @@ After movement is halted as described above but prior to the pause operation com
 ### Parameters
 
 * Snnn File position from start of file in bytes
-* Cn (RRF 3.7 and later, optional) The G0/G1/G2/G3 command that was in effect at the specified file position, 0 to 3
+* Cn (RRF 3.7 and later, optional) The G0/G1/G2/G3 command that was in effect at the specified file position, 0 to 3 (only supported in Laser and CNC mode)
 * Pnnn (Optional) Proportion of the first move to be skipped, default 0.0, must be less than 1.0
 * Xnnn, Ynnn, Znnn (Optional) If the command at the specified file position is a G2 or G3 command and the P parameter is nonzero then these are the coordinates of the centre of the arc for that command.
 
