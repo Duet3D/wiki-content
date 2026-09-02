@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-08-10T11:21:06.724Z
+date: 2026-09-02T13:31:09.895Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -315,9 +315,9 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | io0.out | ^^ |
 | ^^ | IO_1 | io1.in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
-| ^^ | IO_2 | io2.in | ^^ |
+| ^^ | IO_2 | io2.in | Endstops, Z probes, filament monitors etc. On version 1.02 and later boards a bypass jumper is provided to allow IO_2 to be used for 3.3V I2C communications, subject to firmware support (the IN pin is SCL, the OUT pin is SDA). |
 | ^^ | ^^ | io2.out | ^^ |
-| ^^ | IO_3 | io3.in | ^^ |
+| ^^ | IO_3 | io3.in | Endstops, Z probes, filament monitors etc. |
 | ^^ | ^^ | io3.out | ^^ |
 | ^^ | IO_4 | io4.in | ^^ |
 | ^^ | ^^ | io4.out | ^^ |
