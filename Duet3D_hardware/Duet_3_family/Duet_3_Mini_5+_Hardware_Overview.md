@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-05-28T07:43:28.186Z
+date: 2026-09-02T13:29:41.557Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -252,12 +252,16 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | OUT_6 | out6, laser, vfd | Pin shared with OUT 6 and LASER/VFD connectors |
 | **Temperature inputs** |||
 | TEMP_0 | temp0 | |
-
-| IO_1 | io1.in | endstops, Z probes, filament monitors etc |
+| TEMP_1 | temp1 | |
+| TEMP_2 | temp2 | |
+| **Inputs/Output** |||
+| IO_0 | io0.in | PanelDue, endstops, Z probes, filament monitors etc. Shares io0.out and io0.in pins with PanelDue_SD connector. |
+| ^^ | io0.out | ^^ |
+| IO_1 | io1.in | Endstops, Z probes, filament monitors etc. |
 | ^^ | io1.out | ^^ |
-| IO_2 | io2.in | ^^ |
+| IO_2 | io2.in | Endstops, Z probes, filament monitors etc. On version 1.01 and later boards a bypass jumper is provided to allow IO_2 to be used for 3.3V I2C communications, subject to firmware support (the IN pin is SCL, the OUT pin is SDA). |
 | ^^ | io2.out | ^^ |
-| IO_3 | io3.in | ^^ |
+| IO_3 | io3.in | Endstops, Z probes, filament monitors etc. |
 | ^^ | io3.out, 12864 neopixel pin | ^^ |
 | IO_4 | io4.in | ^^ |
 | ^^ | io4.out, pson | ^^ |
