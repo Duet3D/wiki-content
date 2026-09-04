@@ -2,7 +2,7 @@
 title: Tuning the heater temperature control
 description: 
 published: true
-date: 2025-07-25T14:49:31.321Z
+date: 2026-09-04T09:33:54.062Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:50:06.140Z
@@ -146,6 +146,10 @@ When a heater goes into the fault state, an error message is generated giving th
 * A thermocouple or PT100 interface chip reported an error for several consecutive readings
 * During initial heating, the temperature was not rising as fast as expected. This can occur if you have a slow or low-powered heater and you have not tuned the heater model, so that your heater has a greater dead time or a lower gain than the default model
 * The heater reached the target temperature, but the temperature subsequently varied by more than +/-10C. This can occur if you are using unsuitable PID parameters, or if you turn on a very strong print cooling fan that cools the nozzle excessively.
+
+## Temperature oscillates above a certain setpoint but is stable below it
+
+An incorrect heater model causes this. Run or re-run auto tuning.
 
 # Setting the model parameters manually
 
