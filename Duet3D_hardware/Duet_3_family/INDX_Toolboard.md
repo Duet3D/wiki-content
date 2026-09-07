@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-07T15:16:09.288Z
+date: 2026-09-07T15:16:22.316Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -205,7 +205,7 @@ Use the following command, assuming the INDX tool is tool 0 on your system:
 M303 T0 F1 S220
 ```
 
-F1 = is use full part cooling fan PWM when tuning, if you normally use less then use that lower value.
+F1 = Use full part cooling fan PWM when tuning, if you normally use less then use that lower value.
 
 S220 = temperature to tune at. 
 
