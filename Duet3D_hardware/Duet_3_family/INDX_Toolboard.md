@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-08-24T14:29:55.832Z
+date: 2026-09-07T15:16:09.288Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -194,6 +194,20 @@ The location of the thermistor is shown here:
 ![indx_thermistor.png](/duet_boards/duet_3_can_expansion/indx_thermistor.png =400x)
 
 It is not immune from self heating on the INDX PCB, so it is not an absolute measure of the chamber temperature, but is a useful data point about the temperature of INDX mcu board which is useful, especially if running INDX in a heated chamber close to the design limits set by Bondtech.
+
+### Heater tuning
+
+Before first use the heater must be tuned using [M303](/User_manual/Reference/Gcodes/M303) with a tool loaded and locked in place. Ideally the part cooling solution you plan to use will also be in place, however you can do an inital tune without it for testing. Before a print with part cooling it should be retuned with the part cooling solution in place.
+
+Use the following command, assuming the INDX tool is tool 0 on your system:
+
+```
+M303 T0 F1 S220
+```
+
+F1 = is use full part cooling fan PWM when tuning, if you normally use less then use that lower value.
+
+S220 = temperature to tune at. 
 
 ## Extruder setup
 
