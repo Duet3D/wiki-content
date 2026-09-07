@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-07T09:57:52.968Z
+date: 2026-09-07T17:26:18.201Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -7532,7 +7532,7 @@ M588 S"*"
 
 ## M589: Configure access point parameters
 
-**This command must not be used in the config,g file**
+**This command must not be used in the config.g file**
 
 ### Parameters
 
