@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-02T09:11:02.718Z
+date: 2026-09-07T09:57:52.968Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4691,18 +4691,19 @@ RepRapFirmware does not adjust the extrusion factor to account for the layer hei
 
 ### Parameters
 
-* **Sn** (RRF 3.5.0 and later only, optional, default 0) 0 = release all axes and extruders owned by the current motion system except for axes/extruders needed by the current tool, 1 = do not release axes or extruders
+* **Sn** (RRF 3.5.0 and later only, optional, default 0) Accepted but has no effect: the axes and extruders are released as described under Notes whether S0 or S1 is given
 
 ### Examples
 <br>
 <pre class="cblock">
 M400     ; wait until motion stops, in RRF 3.5.0 and later with multiple motion systems release owned axes and extruders
-M400 S1  ; wait until motion stops, do not release any axes or extruders
 </pre>
 
 ### Notes
 
-Finishes all current moves and and thus clears the buffer. That's identical to G4 P0 except that G4 P0 does not release any axes or extruders.
+Finishes all current moves and thus clears the buffer. G4 P0 waits the same way when the input stream has commanded motion since it last waited for motion to stop.
+
+In RRF 3.5.0 and later with multiple motion systems, waiting for motion to stop releases the axes and extruders owned by the current motion system, except the X and Y axes and the extruders used by its current tool. Every command that waits for motion to stop does this, including G4, so M400 S1 does not keep the axes owned. Owned axes are only kept while a homing, probing or tool change macro is running.
 
 In RRF 3.7 and later, M400 re-reads the machine position from the motors only when a move may have stopped short of its target, for example a homing, probing or stall-detection move. Earlier versions did so on every M400, which quantised the current position to whole motor steps and could distort a following G2 or G3 arc.
 
