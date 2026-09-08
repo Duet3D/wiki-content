@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-08T14:06:48.479Z
+date: 2026-09-08T15:38:16.490Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -197,7 +197,10 @@ It is not immune from self heating on the INDX PCB, so it is not an absolute mea
 
 ### Heater tuning
 
-Before first use the heater must be tuned using [M303](/User_manual/Reference/Gcodes/M303) with a tool loaded and locked in place. Ideally the part cooling solution you plan to use will also be in place, however you can do an inital tune without it for testing. Before a print with part cooling it should be retuned with the part cooling solution in place.
+Before first use the heater must be tuned using [M303](/User_manual/Reference/Gcodes/M303) with a **tool loaded and locked in place**.
+The first heater tune will run a calibration so you cannot use the "A" parameter for the first heater tune.
+
+Ideally the part cooling solution you plan to use will also be in place, however you can do an inital tune without it for testing. Before a print with part cooling it should be re-tuned with the part cooling solution in place.
 
 Use the following command, assuming the INDX tool is tool 0 on your system:
 
@@ -205,12 +208,13 @@ Use the following command, assuming the INDX tool is tool 0 on your system:
 M303 T0 F1 S220
 ```
 
-F1 = Use full part cooling fan PWM when tuning, if you normally use less then use that lower value.
+F1 = Use full part cooling fan PWM when tuning, if you normally use less than full part coolin in a print, then use that lower value.
 
-S220 = temperature to tune at. 
+S220 = temperature to tune at. Select the temperature you will be printing at. If you pan to use a wider range of temperatures you can either tune at a middle temperature, or have multiple sets of M307 parameters and switch them in your start gcode or filament gocde.
+
+Future tuning cycles, after the initial calibration, can use the "A" parameter
 
 ## Extruder setup
-
 
 Use the following commands, adjust if you have changed the CAN address
 ```
@@ -227,7 +231,6 @@ M906 E600    ; 600mA - If bondtech specify a different current use the one they 
 ## Fans
 
 ### Heatsink cooling Fan
-
 
 The heatsink fan should be configured to run at full PWM when the nozzle is significantly above ambient temperature (e.g. above 45C). Here are suitable commands to configure it as fan #1, assuming again that the nozzle temperature sensor is sensor #1:
 ```
@@ -396,12 +399,6 @@ Height maps written, so the last run of each probe is always available for compa
    `heightmap_SZP.csv`        the last SZP run
 
 For both probes the X and Y must be homed and a tool must be loaded: the SZP establishes the Z datum with the load cell, which needs the nozzle.
-
-
-
-
-
-
 
 # INDX Macros
 
