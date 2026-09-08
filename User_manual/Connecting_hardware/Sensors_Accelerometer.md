@@ -2,7 +2,7 @@
 title: Connecting an accelerometer
 description: This is a description of the accelerometer support in RRF 3.3 and later.
 published: true
-date: 2025-02-06T13:22:02.013Z
+date: 2026-09-08T07:33:12.157Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T14:50:57.165Z
@@ -29,11 +29,12 @@ Duet 3 mainboards, Duet 2 WiFi/Ethernet and Duet 2 Maestro support a directly-co
 * [Duet3D Accelerometer](https://docs.duet3d.com/Duet3D_hardware/Accessories/Duet3D_Accelerometer){target=_blank}, using the LIS3DH or LIS2DW, designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards.
 * Accelerometer boards using the LIS3DH / LIS3DSH / LIS2DW are available from eBay, Amazon and other retailers such as [SparkFun](https://www.sparkfun.com/){target=_blank}, [Adafruit](https://www.adafruit.com/){target=_blank}, [Digikey](https://www.digikey.com/) [The Pi Hut (UK)](https://thepihut.com/){target=_blank}, [HobbyTronics (UK)](https://www.hobbytronics.co.uk/){target=_blank} and [Pimoroni (UK)](https://shop.pimoroni.com/){target=_blank}. The Adafruit and SparkFun boards are also available from Digikey. There are two different versions of the Adafruit LIS3DH board; either can be used.
 
-Duet 3 mainboards also support CAN-bus connected boards with built-in accelerometers. Duet3D have a number of boards with a built-in accelerometer:
+Duet 3 mainboards also support CAN-bus connected boards with built-in accelerometers. These boards have a built-in accelerometer:
 
-* [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) (v1.1 and later) Duet 3 CAN-FD toolboard with LIS3DH accelerometer.
+* [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) (v1.1 and later) Duet 3 CAN-FD toolboard with LIS3DH or LIS2DW accelerometer.
 * [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) Duet 3 CAN-FD toolboard with LIS2DW accelerometer.
 * [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe) Duet 3 CAN-FD scanning Z probe board with LIS2DW accelerometer.
+* [Bondtech INDX tool head board](https://docs.duet3d.com/en/Duet3D_hardware/Duet_3_family/INDX_Toolboard) with LIS2DW accelerometer
 
 Duet 3 mainboards also support CAN-bus connected boards with wired accelerometers.
 * [Sammy-C21](/Duet3D_hardware/Duet_3_family/Using_the_Sammy-C21_development_board_with_Duet_3) with a wired accelerometer.
