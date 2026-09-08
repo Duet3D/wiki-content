@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-07T15:16:22.316Z
+date: 2026-09-08T08:32:27.127Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -247,6 +247,13 @@ if you use a directly connected part cooling solution with a tacho then:
 
 ```
 M950 F0 C"121.pcfan+pcfan.tach"
+```
+
+## Tool
+
+Assuming the heater and fan numbering used above, the tool configuration line is:
+```
+M563 P0 S"INDX" D0 H1 F0 ; create INDX tool
 ```
 
 ## Neopixel or other WS2812 LED strings
