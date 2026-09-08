@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-08T08:32:27.127Z
+date: 2026-09-08T14:06:48.479Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -124,11 +124,11 @@ The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bi
 Reposted by M122 B121 as: `SAME5x composite bootloader version 3.02` (the version number will increase with future versions, do not use a version prior to 3.02)
 Available from Bonstech here: https://github.com/BondtechAB/indx-bootloader
 
-The minimum RepRapFirmware version for this board is 3.7.0-beta.3. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
+The minimum RepRapFirmware version for this board is 3.7.0-rc1. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
-The inductive heater is fast and powerful, therefore the standard RepRapFirmware default tool heater model is inappropriate. **Heater tuning must be run before using the INDX tool.** When running firmware 3.7.0-beta.3 and later, the heater must also be calibrated before it can be used, to account for small manufacturing differences between heaters. This calibration step is run when heater tuning is commanded. Tuning must be carried out with a tool present and locked in place.
+The inductive heater is fast and powerful, therefore the standard RepRapFirmware default tool heater model is inappropriate. **Heater tuning must be run before using the INDX tool.** The heater must also be calibrated before it can be used, to account for small manufacturing differences between heaters. This calibration step is run when heater tuning is commanded. Tuning must be carried out with a tool present and locked in place.
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assembly is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
 
@@ -270,7 +270,7 @@ Then use M150 commands to set the LED colours.
 
 Add the following to your config.g:
 ```
-M955 P121.0 I16 ; Add INDX accelerometer 
+M955 P0 C"121.i2c.lis" I16 ; Configure INDX accelerometer 
 ```
 See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
 
@@ -292,7 +292,7 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 ## Loadcell
 
-The load cell in the INDX toolhead is used as a Z probe: the nozzle probes the bed directly and the probe triggers when the contact force reaches the configured threshold. Load cell probing needs RepRapFirmware 3.7.0-beta.3 or later on both the INDX tool board and the main board; with older firmware on either side the probe will not start.
+The load cell in the INDX toolhead is used as a Z probe: the nozzle probes the bed directly and the probe triggers when the contact force reaches the configured threshold. Load cell probing needs RepRapFirmware 3.7.0-rc1 or later on both the INDX tool board and the main board; with older firmware on either side the probe will not start.
 
 To use the macros provided for INDX without modification is recommended you configure the SZP as probe 0 and shown in the example below.
 
