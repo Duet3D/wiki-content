@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-07T17:26:18.201Z
+date: 2026-09-08T13:33:56.559Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9228,7 +9228,39 @@ After this command is executed, for diagnostic purposes a few GCode commands can
 
 This command configures an accelerometer.
 
-### Parameters (provisional)
+### Tabs {.tabset}
+ 
+#### RRF 3.7 and later
+
+*RRF 3.7.0-RC.1 and later*
+
+##### Parameters
+
+* **Pnn** Accelerometer to use (currently only P0, see note)
+* **C"ccc.aaa+bbb"** or **C"ccc.i2c.lis"** CAN address, and pins to use for CS and INT (in that order) when connecting the accelerometer via SPI (required), or CAN address and I2C info for toolboard accelerometers.
+* **Inn** Accelerometer orientation
+* **Snnn** Sample rate (Hz)
+* **Rnn** Resolution (bits), typically 8, 10 or 12
+* **Q**nnn (RRF 3.3 and later) SPI clock frequency (optional, default 2000000 i.e. 2MHz)
+
+##### Examples
+<br>
+<pre class="cblock">
+M955 P0 C"spi.cs1+spi.cs0" I10 ; configure accelerometer on mainboard using SPI pins and specify orientation 
+M955 P0 C"3.spi.cs1+spi.cs0" I10 ; configure accelerometer on expansion board 3 using SPI pins and specify orientation 
+M955 P0 C"120.i2c.lis" I10  ; configure accelerometer 0 as i2c-connected accelerometer on SZP (CAN address 120) with orientation 10 and default resolution
+</pre>
+
+##### Notes
+
+* The **P** parameter is the logical accelerometer number and does not include a board address. Currently it may only be P0 or omitted (defaulting to P0). In future we may support configuration of more than one accelerometer as a time.
+* The **C** parameter is mandatory in M955 and includes the board CAN address if it is not the main board.
+* For a built-in accelerometer on a tool board, or an accelerometer connected to SAMMYC21 via I2C, use "120.i2c.lis" (120 is the board CAN address here).
+* SPI-connected accelerometers are now tested and working on the 3HC and 1HCL.
+
+#### RRF 3.6 and earlier
+
+##### Parameters
 
 * **Pnn** or **Pbb.nn** Accelerometer to use (required)
 * **Inn** Accelerometer orientation
@@ -9237,18 +9269,21 @@ This command configures an accelerometer.
 * **C"aaa+bbb"** Pins to use for CS and INT (in that order) when connecting the accelerometer via SPI
 * **Q**nnn (RRF 3.3 and later) SPI clock frequency (optional, default 2000000 i.e. 2MHz)
 
-### Examples
+###### Examples
 <br>
 <pre class="cblock">
 M955 P0 C"spi.cs1+spi.cs0" I10 ; configure accelerometer on mainboard using SPI pins and specify orientation 
 M955 P121.0 I10                ; configure accelerometer on toolboard with CAN address 121 and specify orientation 
 </pre>
 
-### Notes
+##### Notes
 
 * The **P** parameter selects which accelerometer to use and is mandatory. To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**. Use **P0** for an accelerometer connected locally (i.e. on the mainboard) via SPI.
-* If none of the other parameters are provided, the current configuration of the specified accelerometer is reported. Otherwise the configuration of that accelerometer is adjusted according to the I, S, and R parameters. These configuration settings persist until they are changed.
 * The **C** parameter is needed only when the accelerometer is connected to a mainboard, and defines the pins used for the CS and INT signals. It is not needed when using a toolboard with integrated accelerometer.
+
+### Notes
+
+* If none of the other parameters are provided, the current configuration of the specified accelerometer is reported. Otherwise the configuration of that accelerometer is adjusted according to the I, S, and R parameters. These configuration settings persist until they are changed.
 * The **I** (orientation) parameter tells the firmware which of the 24 possible orientations the accelerometer chip is in relative to the printer axes. It is expressed as a 2-digit number. The first digit specifies which machine direction the Z axis of the accelerometer chip (usually the top face of the chip) faces, as follows: 0 = +X, 1 = +Y, 2 = +Z, 4 = -X, 5 = -Y, 6 = -Z. The second digit expresses which direction the X axis of the accelerometer chip faces, using the same code. If the accelerometer chip axes line up with the machine axis, the orientation is 20. This is the default orientation if no orientation has been specified.
 * The **S** and **R** parameters control how the accelerometer is programmed. The R parameter is ignored unless the S parameter is also provided. If S is provided but R is missing, a default resolution is used. The sensor resolution will be adjusted to be no greater than the value of the R parameter (or the minimum supported resolution if greater), then the sensor sampling rate will be adjusted to a value supported at that resolution that is close to the S parameter. The actual rate and resolution selected can be found by using M955 with just the P parameter.
 * For more information on connecting accelerometers, see the [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) wiki page.
@@ -9259,7 +9294,33 @@ M955 P121.0 I10                ; configure accelerometer on toolboard with CAN a
 
 This command causes the specified number of accelerometer samples to be collected and saved to a .csv file.
 
-### Parameters (provisional)
+### Tabs {.tabset}
+ 
+#### RRF 3.7 and later
+
+*RRF 3.7.0-RC.1 and later*
+
+##### Parameters
+
+* **Pnn** Accelerometer to use (currently only P0, see note)
+* **Snnn** Number of samples to collect (required)
+* **X** and/or **Y** and/or **Z** (optional) Machine axes to collect data for. If no axes are specified, or if the accelerometer type is LIS2DW (supported in RRF 3.5.0 and later) then data is collected for all three axes.
+* **An** (required) 0 = activate immediately, 1 = activate just before the start of the next move, 2 = activate just before the start of the deceleration segment of the next move
+* **F"filename.csv"** Name of the file to save the data in (optional, supported by RRF 3.4 and later). The default folder is `0:/sys/accelerometer` . If not specified then the filename will be composed from the current date/time.
+
+###### Examples
+<br>
+<pre class="cblock">
+M956 P0 A0 S2000  ; collect 2000 samples from accelerometer 0 immediately</pre>
+
+##### Notes
+
+* In 3.7 the **P** parameter is the logical accelerometer number and does not include a board address. Currently it may only be P0 or omitted (defaulting to P0). In future we may support configuration of more than one accelerometer as a time.
+* For more information on connecting accelerometers, see the [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) wiki page.
+
+#### RRF 3.6 and earlier
+
+##### Parameters
 
 * **Pnn** or **Pbb.nn** Accelerometer to use (required)
 * **Snnn** Number of samples to collect (required)
@@ -9267,10 +9328,11 @@ This command causes the specified number of accelerometer samples to be collecte
 * **An** (required) 0 = activate immediately, 1 = activate just before the start of the next move, 2 = activate just before the start of the deceleration segment of the next move
 * **F"filename.csv"** Name of the file to save the data in (optional, supported by RRF 3.4 and later). The default folder is `0:/sys/accelerometer` . If not specified then the filename will be composed from the current date/time.
 
-### Notes
+##### Notes
 
 * The **P** parameter selects which accelerometer to use and is mandatory. 
 * To use an accelerometer on a CAN-connected expansion board, use the form **P***board-address*.*device-number* for example **P22.0**.
+* For more information on connecting accelerometers, see the [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) wiki page.
 
 ## M957: Raise event
 
