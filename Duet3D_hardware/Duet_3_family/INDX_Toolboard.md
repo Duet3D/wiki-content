@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-08T15:38:16.490Z
+date: 2026-09-08T15:41:25.198Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -10,7 +10,7 @@ dateCreated: 2026-02-09T09:34:17.141Z
 
 # INDX Tool Board
 
->Full support is still work in progress. The configuration commands and macros described on this page are likely to change during the RepRapFirmware 3.7 beta cycle{.is-info}
+>Full support is still a work in progress. The configuration commands and macros described on this page are likely to change during the RepRapFirmware 3.7 beta cycle{.is-info}
 
 This page is about using the Bondtech INDX tool board with Duet 3 or other electronics running RepRapFirmware.
 
@@ -137,7 +137,7 @@ The inductive heater is fast and powerful, therefore the standard RepRapFirmware
 
 For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names).
 
-RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. Pins can be defined for use by a number of gcode commands, e.g. M308, M574, M558, M950.
+RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. Pins can be defined for use by a number of GCode commands, e.g. M308, M574, M558, M950.
 
 The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name* to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with *0.* refers to a pin on the Duet 3 main board.
 
@@ -157,7 +157,7 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 
 >If you change the CAN address, the CAN address in the following commands will need to change from `121` to match{.is-info}
 
-Some of these functions require the INDX macro pack to be installed. See the [INDX Macros](/Duet3D_hardware/Duet_3_family/INDX_Toolboard#indx-macros) section below.
+Some of these functions require the INDX macro pack to be installed. See the [INDX Macros](/Duet3D_hardware/Duet_3_family/INDX_Toolboard#index-macros) section below.
 
 ## Induction heater and IR temperature sensor
 
@@ -173,7 +173,7 @@ As at 2026-06-29 the M308 command to configure the thermopile sensor accepts the
 - **B** Aux thermistor B parameter
 - **C** Aux thermistor C parameter
 
-The inductive heater is configured using the M950 command with pin name `"nozzleheat"`. The temperature sensor number in the M950 command must refer to the thermopile sensor primary output.
+The inductive heater is configured using the M950 command with the pin name `"nozzleheat"`. The temperature sensor number in the M950 command must refer to the thermopile sensor primary output.
 
 Example configuration, using sensor #1 for the nozzle temperature, heater #1, and the default CAN address (121):
 
@@ -200,7 +200,7 @@ It is not immune from self heating on the INDX PCB, so it is not an absolute mea
 Before first use the heater must be tuned using [M303](/User_manual/Reference/Gcodes/M303) with a **tool loaded and locked in place**.
 The first heater tune will run a calibration so you cannot use the "A" parameter for the first heater tune.
 
-Ideally the part cooling solution you plan to use will also be in place, however you can do an inital tune without it for testing. Before a print with part cooling it should be re-tuned with the part cooling solution in place.
+Ideally the part cooling solution you plan to use will also be in place, however you can do an initial tune without it for testing. Before a print with part cooling it should be re-tuned with the part cooling solution in place.
 
 Use the following command, assuming the INDX tool is tool 0 on your system:
 
@@ -208,9 +208,9 @@ Use the following command, assuming the INDX tool is tool 0 on your system:
 M303 T0 F1 S220
 ```
 
-F1 = Use full part cooling fan PWM when tuning, if you normally use less than full part coolin in a print, then use that lower value.
+F1 = Use full part cooling fan PWM when tuning, if you normally use less than full part cooling in a print, then use that lower value.
 
-S220 = temperature to tune at. Select the temperature you will be printing at. If you pan to use a wider range of temperatures you can either tune at a middle temperature, or have multiple sets of M307 parameters and switch them in your start gcode or filament gocde.
+S220 = temperature to tune at. Select the temperature you will be printing at. If you plan to use a wider range of temperatures you can either tune at a middle temperature, or have multiple sets of M307 parameters and switch them in your start GCode or filament GCode.
 
 Future tuning cycles, after the initial calibration, can use the "A" parameter
 
@@ -275,7 +275,7 @@ Add the following to your config.g:
 ```
 M955 P0 C"121.i2c.lis" I16 ; Configure INDX accelerometer 
 ```
-See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
+See [M955](/User_manual/Reference/Gcodes/M955) for how to set up and configure the accelerometer.
 
 #### Orientation
 
@@ -319,11 +319,11 @@ Optionally `M558 U<low>:<high>` sets a safe window in grams for the preload, i.e
 
 ## SZP
 
-The scanning z probe coil, if attached, is setup as a second Z probe. It integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
+The scanning z probe coil, if attached, is set up as a second Z probe. It integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
 
 ### Mounting
 
-The INDX tool has an optional mount for the SZP coil that should be used. It ensures correct mounting distance from the bed. It places an offical Bondtech SZP coil 3mm above the nozzle, centered on X and 35.1mm on +Y relative to the nozzle, assuming the tool is mounted to pick up tools at Ymin (as is conventional). (Measured in CAD)
+The INDX tool has an optional mount for the SZP coil that should be used. It ensures correct mounting distance from the bed. It places an official Bondtech SZP coil 3mm above the nozzle, centered on X and 35.1mm on +Y relative to the nozzle, assuming the tool is mounted to pick up tools at Ymin (as is conventional). (Measured in CAD)
 
 If an alternative mounting solution is used then aim for a 3mm Z offset between the tip of the nozzle and the underside of the coil.
 
@@ -380,7 +380,7 @@ The recommendation is to mesh with first the load cell and then the SZP and comp
 
 Each probe needs its own grid, so the grid is set here rather than in config.g: M557 defines
 one grid at a time, and the SZP normally uses a finer pitch than the load cell because it does
-not have to touch the bed so its quicker. The M557 in config.g is only the power-up default.
+not have to touch the bed so it's quicker. The M557 in config.g is only the power-up default.
 
 The grid can be overridden per run, so a print start script can mesh just the area it needs:, e.g `G29 K0 X{-50,50} Y{-40,40} I20` 
    `X{min,max}`  grid limits in X       (array of 2; defaults below if omitted)
@@ -424,17 +424,13 @@ Currently the active tool is written every tool change. This will be made option
 ### Calibration
 In order to calibrate and then probe with the load cell the following macros are used:
 `0:/sys/INDX_LC_CALIBRATE.g` - A guided calibration routine that prompts the user to take steps to achieve load cell calibration and saves the calibration
-`0:/sys/INDX_TARE.g` - Capturea the empty-head baseline for load-cell CALIBRATION
+`0:/sys/INDX_TARE.g` - Capture the empty-head baseline for load-cell CALIBRATION
 `0:/sys/INDX_CLOSE_CAL.g` - Locks + seats the full ~1600 g force onto the cell
 `0:/sys/INDX_LC_CAL.g` - Computes grams/count against the known force.
 
 ### Z Probing
 
-`0:/sys/homez.g` - an example homez.g - adpat for your specific machine
+`0:/sys/homez.g` - an example homez.g - adapt for your specific machine
 `0:/sys/bed.g`  - for 3 point bed levelling (e.g. on a voron trident).
 `0:/sys/mesh.g`  - for bed mesh using the loadcell or SZP - see the [Bed Mesh](/Duet3D_hardware/Duet_3_family/INDX_Toolboard#bed-mesh) section above. 
 `0:/sys/INDX_LC_ZTRIGGER.g` carry out a Z probe with a tare just before the movement.
-
-
-
-
