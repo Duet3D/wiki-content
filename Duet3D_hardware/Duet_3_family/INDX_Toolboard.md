@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-08T15:41:25.198Z
+date: 2026-09-08T15:47:25.515Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -205,14 +205,10 @@ Ideally the part cooling solution you plan to use will also be in place, however
 Use the following command, assuming the INDX tool is tool 0 on your system:
 
 ```
-M303 T0 F1 S220
+M303 T0 S220
 ```
 
-F1 = Use full part cooling fan PWM when tuning, if you normally use less than full part cooling in a print, then use that lower value.
-
 S220 = temperature to tune at. Select the temperature you will be printing at. If you plan to use a wider range of temperatures you can either tune at a middle temperature, or have multiple sets of M307 parameters and switch them in your start GCode or filament GCode.
-
-Future tuning cycles, after the initial calibration, can use the "A" parameter
 
 ## Extruder setup
 
