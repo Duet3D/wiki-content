@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-08T13:33:56.559Z
+date: 2026-09-09T11:05:15.328Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9236,7 +9236,7 @@ This command configures an accelerometer.
 
 ##### Parameters
 
-* **Pnn** Accelerometer to use (currently only P0, see note)
+* **Pnn** Accelerometer to use (required, currently only P0, see note)
 * **C"ccc.aaa+bbb"** or **C"ccc.i2c.lis"** CAN address, and pins to use for CS and INT (in that order) when connecting the accelerometer via SPI (required), or CAN address and I2C info for toolboard accelerometers.
 * **Inn** Accelerometer orientation
 * **Snnn** Sample rate (Hz)
@@ -9253,7 +9253,7 @@ M955 P0 C"120.i2c.lis" I10  ; configure accelerometer 0 as i2c-connected accele
 
 ##### Notes
 
-* The **P** parameter is the logical accelerometer number and does not include a board address. Currently it may only be P0 or omitted (defaulting to P0). In future we may support configuration of more than one accelerometer as a time.
+* The **P** parameter is the logical accelerometer number and does not include a board address. In 3.7.0-rc.1 it may only be P0. In 3.7.0-rc.2 and later we will support configuration of more than one accelerometer as a time.
 * The **C** parameter is mandatory in M955 and includes the board CAN address if it is not the main board.
 * For a built-in accelerometer on a tool board, or an accelerometer connected to SAMMYC21 via I2C, use "120.i2c.lis" (120 is the board CAN address here).
 * SPI-connected accelerometers are now tested and working on the 3HC and 1HCL.
@@ -9302,7 +9302,7 @@ This command causes the specified number of accelerometer samples to be collecte
 
 ##### Parameters
 
-* **Pnn** Accelerometer to use (currently only P0, see note)
+* **Pnn** Accelerometer to use (required, currently only P0, see note)
 * **Snnn** Number of samples to collect (required)
 * **X** and/or **Y** and/or **Z** (optional) Machine axes to collect data for. If no axes are specified, or if the accelerometer type is LIS2DW (supported in RRF 3.5.0 and later) then data is collected for all three axes.
 * **An** (required) 0 = activate immediately, 1 = activate just before the start of the next move, 2 = activate just before the start of the deceleration segment of the next move
@@ -9315,7 +9315,7 @@ M956 P0 A0 S2000  ; collect 2000 samples from accelerometer 0 immediately</pre>
 
 ##### Notes
 
-* In 3.7 the **P** parameter is the logical accelerometer number and does not include a board address. Currently it may only be P0 or omitted (defaulting to P0). In future we may support configuration of more than one accelerometer as a time.
+* In 3.7 the **P** parameter is the logical accelerometer number and does not include a board address. In 3.7.0-rc.1 it may only be P0. In 3.7.0-rc.2 and later we will support configuration of more than one accelerometer as a time.
 * For more information on connecting accelerometers, see the [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) wiki page.
 
 #### RRF 3.6 and earlier
