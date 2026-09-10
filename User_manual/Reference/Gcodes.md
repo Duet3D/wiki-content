@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-09T11:05:15.328Z
+date: 2026-09-10T13:43:20.518Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4558,7 +4558,7 @@ Generally, heater feedforward is intended for high flow hot ends or pellet extru
 ### Notes
 
 * If the P parameter is not provided, the current tool is assumed. If the S, T and A parameters are not provided, the existing coefficients are reported.
-* The units of S are PWM fraction (on a scale of 0 to 1) per mm/sec of filament forward movement.
+* The units of S are PWM fraction (on a scale of 0 to 1) per mm/sec of filament forward movement. As a rough guide, 1.75mm PETG filament extruded at 235C requires a value of about 0.0475.
 * The units of T are degrees Celsius per mm/sec of filament forward movement.
 * Feedforward is not applied to nonprinting moves, i.e. extruder moves only, with no other movement parameters. Typically these are retract, reprime, and filament loading moves.
 * In RRF 3.6.0 and later, tool heater feedforward based on extrusion rate now works on heaters attached to CAN-connected expansion and tool boards.
