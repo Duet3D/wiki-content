@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-10T10:01:28.150Z
+date: 2026-09-10T10:03:07.922Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -419,6 +419,9 @@ Currently the active tool is written every tool change. This will be made option
 ## Tool management macros
 `0:/sys/INDX_OPEN.g` - Open the tool
 `0:/sys/INDX_CLOSE.g` - Normal close of the tool
+
+### Tool change macros
+Important note, the heater must be turned off before the tool is unlocked ( make this an early step in tfreeN.g ) other wise a heater fault will be rasied when the tool is removed.
 
 ## Loadcell Macros
 
