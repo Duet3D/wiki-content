@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-10T10:00:54.761Z
+date: 2026-09-10T10:01:28.150Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -214,7 +214,7 @@ S220 = temperature to tune at. Select the temperature you will be printing at. I
 
 The INDX nozzles have a low thermal mass, so the flow of filament though the nozzle removes a significant % of the heat quickly. This action is compensated by an extrusion rate heater feed forward term set with [M309](/User_manual/Reference/Gcodes/M309). 
 
-Because the heater can respond so quickly to small changes in temperature the method of calibration shown there: [Heater feedforward](https://docs.duet3d.com/User_manual/Connecting_hardware/Heaters_tuning#heater-feedforward) for the S parameter is not effective. We suggest starting with a S parameter of [TBC] and adjusting from there until heater faults are not generated at the maximum extrusion rate you pan to use for the nozzle size, type and filament.
+Because the heater can respond so quickly to small changes in temperature the method of calibration shown there: [Heater feedforward](https://docs.duet3d.com/User_manual/Connecting_hardware/Heaters_tuning#heater-feedforward) for the S parameter is not effective. We suggest starting with a S parameter of [TBC] and adjusting from there until heater faults are not generated at the maximum extrusion rate you plan to use for the nozzle size, type and filament.
 
 ## Extruder setup
 
