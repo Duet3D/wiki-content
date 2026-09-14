@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2026-08-22T12:35:06.444Z
+date: 2026-09-14T16:22:28.165Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -87,7 +87,7 @@ Note: Pin 3 of the POWER in connector in version v1.0 of the Duet 3 Motor23CL is
 
 Supply between 24V and 48V to the M8 3-way power connector on the motor, observing the correct polarity.
 
-> Do not plug or in the the motors to a power supply that is already plugged in, the inrush current can blow the internal proteciton fuse.{.is-warning}
+> Do not plug or in the the motors to a power supply that is already plugged in, the inrush current can blow the internal protection fuse.{.is-warning}
 
 > If you use a relay to control VIN power to the motor, ie the power supply is already switched on, and a relay is used to turn on power to the motor, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.{.is-warning}
 
