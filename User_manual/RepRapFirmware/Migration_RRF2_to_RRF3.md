@@ -2,7 +2,7 @@
 title: Migration from RRF2 to RRF3
 description: RepRapFirmware 3 is the next generation of the leading 32-bit 3D printer firmware, developed by Duet3D and derived from the RepRapFirmware code base developed by Adrian Bowyer.
 published: true
-date: 2025-12-15T09:04:48.016Z
+date: 2026-09-14T11:22:54.016Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-29T20:21:14.611Z
@@ -200,7 +200,7 @@ Example:
 
 If you don't specify a CAN address then RRF assumes that you are referring to a pin on the maon board.
 
-Occasionally a pin may be used in two different modes. Currently this applies donly to the `temp0` pin of the TOOL1LC board, which can use two dfferent types of analog-to-digital converter. The secondary mode can be selected by prefixing the pni name with `*`.
+Occasionally a pin may be used in two different modes. Currently this applies donly to the `temp0` pin of the TOOL1LC board, which can use two dfferent types of analog-to-digital converter. The secondary mode can be selected by prefixing the pin name with `*`.
 
 Example:
 
