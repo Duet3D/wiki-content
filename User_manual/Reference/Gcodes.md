@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-17T12:57:07.795Z
+date: 2026-09-17T15:58:32.591Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -4423,7 +4423,7 @@ M308 S13 P"S10.3" Y"bme68x-gas" A"Chamber Gas[ohm]"    ; attach BME68x gas resis
 M308 S10 Y"mcu-temp" A"MCU"                              ; defines sensor 10 as MCU temperature sensor
 M308 S11 Y"drivers" A"Duet stepper drivers"              ; defines sensor 11 as stepper driver temperature sensor
 M308 S12 Y"drivers-duex" A"Duex stepper drivers"         ; for Duet 2 WiFi/Ethernet with DueX2/5, defines sensor 12 as DueX2/5 stepper driver temps
-M308 S13 Y"board-temp" P"123.dummy" A"Motor temperature" ; for M23 motors with firmware 3.7.x
+M308 S13 Y"board-temp" P"123.dummy" A"Motor temperature" ; for M23 motors or INDX tool board with firmware 3.7.x
 </pre>
 
 To read mcu and driver temperatures on an expansion board connected to a Duet 3 mainboard, put the CAN address at the start of a dummy P parameter. For example, a board at CAN address 1 would use:
