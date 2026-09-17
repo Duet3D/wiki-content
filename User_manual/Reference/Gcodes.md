@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-10T13:43:20.518Z
+date: 2026-09-17T12:57:07.795Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -169,7 +169,7 @@ From RRF version 3.4
 Example: 
 <br>
 <pre class="cblock">
-N100 G0 X100 F6000 *51369
+N100 G0 X100 F6000*51369
 </pre>
 If present, the CRC should be the last field in a line, but before a comment. For GCode stored in files on SD cards the CRC is usually omitted.
 
@@ -4408,20 +4408,22 @@ M308 S13 P"S10.3" Y"bme68x-gas" A"Chamber Gas[ohm]"    ; attach BME68x gas resis
 * See also [Connecting digital humidity and temperature sensors](/User_manual/Connecting_hardware/Temperature_connecting_DHT).
 
 
-#### MCU/motor driver temperature
+#### MCU, board or motor driver temperature
 
 * **Y"sensor_type"** The sensor and interface type: 
   "drivers" 
   "mcu-temp" (see note below regarding "mcu-temp" support on Duet 3 Mini 5+)
+  "board-temp" (only in firmware 3.7.0 and later, on boards with embedded thermistors)
   "drivers-duex" (only supported by Duet WiFi/Ethernet with an attached DueX2 or DueX5). 
 
-##### MCU/motor driver temperature examples
+##### MCU/board/motor driver temperature examples
 
 <br>
 <pre class="cblock">
-M308 S10 Y"mcu-temp" A"MCU"                           ; defines sensor 10 as MCU temperature sensor
-M308 S11 Y"drivers" A"Duet stepper drivers"           ; defines sensor 11 as stepper driver temperature sensor
-M308 S12 Y"drivers-duex" A"Duex stepper drivers"      ; for Duet 2 WiFi/Ethernet with DueX2/5, defines sensor 12 as DueX2/5 stepper driver temps
+M308 S10 Y"mcu-temp" A"MCU"                              ; defines sensor 10 as MCU temperature sensor
+M308 S11 Y"drivers" A"Duet stepper drivers"              ; defines sensor 11 as stepper driver temperature sensor
+M308 S12 Y"drivers-duex" A"Duex stepper drivers"         ; for Duet 2 WiFi/Ethernet with DueX2/5, defines sensor 12 as DueX2/5 stepper driver temps
+M308 S13 Y"board-temp" P"123.dummy" A"Motor temperature" ; for M23 motors with firmware 3.7.x
 </pre>
 
 To read mcu and driver temperatures on an expansion board connected to a Duet 3 mainboard, put the CAN address at the start of a dummy P parameter. For example, a board at CAN address 1 would use:
@@ -4432,11 +4434,12 @@ M308 S13 Y"drivertemp" P"1.dummy" A"3HC Steppers"
 </pre>
 
 
-##### MCU/motor driver temperature notes
+##### MCU/board/motor driver temperature notes
 
-* The Trinamic drivers used on Duets do not report temperature, rather they report one of: temperature OK, temperature overheat warning, and temperature overheat error. RRF translates these three states into readings of 0C, 100C and 150C.
-* mcu-temp on Duet 3 Mini 5+: The SAME54P20A chip used in the Duet 3 Mini 5+ does not have a functioning temperature sensor. In theory it does have an on-chip temperature sensor, but the errata document for the chip says it doesn't work. However, experimental support for the Duet 3 Mini 5+ on-chip MCU temperature sensor has been added in RepRapFirmware 3.3. As the chip manufacturer advises that it is not supported and should not be used, we can't promise that it will give useful readings on all boards. It will be removed if it causes significant support issues. Please report any issues in the [Duet3D support forum](https://forum.duet3d.com/){target=_blank}.
-* From RRF 3.4.0 "drivertemp" is changed to "drivers" to match the main board.
+* Most Trinamic drivers used on Duets do not report temperature, rather they report one of: temperature OK, temperature overheat warning, and temperature overheat error. RRF translates these three states into readings of 0C, 100C and 150C. The exception is the TMC2240 which reports its actual temperature.
+* `mcu-temp` on Duet 3 Mini 5+ and expansion boards: The SAME54P20A chip used in the Duet 3 Mini 5+ and the SAME51 chips used on many expansion boards have on-chip temperature sensors, but the errata document for the chip family says it doesn't work. In practice it does usually appear to work, so RRF supports it. As the chip manufacturer advises that it is not supported and should not be used, we can't promise that it will give useful readings on all boards. It will be removed if it causes significant support issues. Please report any issues in the [Duet3D support forum](https://forum.duet3d.com/){target=_blank}.
+* From RRF 3.4.0 `drivertemp` is changed to `drivers` to match the main board.
+* `board-temp` is supported only on some expanson boards, and only in firmware 3.7.x and later.
 
 
 #### Linear analog
@@ -4848,11 +4851,11 @@ The fields may be in any order in the response. Other implementations may omit f
 ### Examples
 <br>
 <pre class="cblock">
-M409 K"move.axes" F"f"   ; report all frequently-changing properties of all axes
+M409 K"move.axes" F"f"          ; report all frequently-changing properties of all axes
 M409 K"move.axes[0]" F"v,n,d4"  ; report all properties of the first axis, including values not normally reported, to a maximum depth of 4
-M409 K"move.axes[].homed"  ; for all axes, report whether it is homed
-M409 K"#move.axes"     ; report the number of axes
-M409 F"v"          ; report the whole object model to the default depth
+M409 K"move.axes[].homed"       ; for all axes, report whether it is homed
+M409 K"#move.axes"              ; report the number of axes
+M409 F"v"                       ; report the whole object model to the default depth
 </pre>
 
 ### Usage
