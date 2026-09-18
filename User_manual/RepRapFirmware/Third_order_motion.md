@@ -2,7 +2,7 @@
 title: Support for third-order motion control
 description: This page describes the experimental support for third-order motion control, sometimes referred to as S-curve acceleration. This support is available RepRapFirmware in 3.7 beta2 and later
 published: true
-date: 2026-07-29T08:05:26.536Z
+date: 2026-09-18T10:55:42.629Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-28T09:22:43.388Z
@@ -36,7 +36,7 @@ RepRapFirmware 3.6.0 and later for Duet 3 6HC main boards provide an alternative
 
 Calculating the required motor position only requires evaluation of a quadratic polynomial when using second order motion control, or a cubic polynomial for third order motion control. Therefore **the experimental third-order motion control support can only be enabled in firmware builds for the 6HC** and it can only be used when all axes and extruders that are driven by motors attached to the main board are configured to use phase stepping.
 
-It is permitted to have additional axes and/or extruders driven from CAN-connected boards. However, third-order motion control is not currently supported by CAN-connected boards. Because of this, the motion commands sent to CAN-connected boards will be second-order approximations of the third-order motion used on the main board. Therefore they will not be perfectly synchronised with the main board during acceleration and deceleration. This may be acceptable for axes that are not greatly involved in movement with extrusion. For example, it is likely that the Z axis of a 3D printer can be driven from a CAN-connected board without significant issues when using third-order motion for the XY axes and the extruder(s). We expect to support third-order motion on some expansion boards in future, in particular the EXP3HC.
+It is permitted to have additional axes and/or extruders driven from CAN-connected boards. However, third-order motion control is not currently supported by CAN-connected boards. Because of this, the motion commands sent to CAN-connected boards will be second-order approximations of the third-order motion used on the main board. Therefore they will not be perfectly synchronised with the main board during acceleration and deceleration. This may be acceptable for axes that are not greatly involved in movement with extrusion. For example, it is likely that the Z axis of a 3D printer can be driven from a CAN-connected board without significant issues when using third-order motion for the XY axes and the extruder(s). We expect to support third-order motion on some expansion boards in future, in particular the EXP3HC. In RepRapFirmware 3.7 and later, M201 with a T parameter generates a warning if any axis or extruder uses a CAN-connected driver.
 
 Phase stepping is enabled using the [M970 command](/User_manual/Reference/Gcodes#m970-enabledisable-phase-stepping). Note, stall detection is not supported when using phase stepping; therefore if the machine uses stall-detect homing then the homing files should check which mode the axes being homes are in, disable phase stepping for those axes, perform the homing operation, then revert any axes to phase stepping that were using it. Object model field `move.axes[].phaseStep` can be used to establish whether an axis uses phase stepping.
 
