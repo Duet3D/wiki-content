@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-17T15:58:32.591Z
+date: 2026-09-18T10:55:26.533Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3288,7 +3288,7 @@ Volumetric extrusion is an option you can set in some slicers whereby all extrus
 * **Vnnn** Acceleration for V axis
 * **Wnnn** Acceleration for W axis
 * **Ennn:nnn...** Acceleration for extruder drives
-* **Tn.nn** Acceleration time, only available in experimental firmware bulds that support S-curve acceleration
+* **Tn.nn** Acceleration time in seconds for third-order motion control, default 0 (Duet 3 MB6HC only, firmware 3.7 and later)
 
 ### Order dependency
 
@@ -3310,7 +3310,7 @@ RepRapFirmware does not support individual motor settings where an axis has mult
 
 Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M201 Z100, not M201 Z100:100.
 
-In experimental 3.6.x firmware builds that support S-curve acceleration, the T parameter (acceleration time) specifies the time in seconds to go from zero to maximum acceleration. The jerk (maximum rate of change of acceleration) for each axis or extruder is then computed as the maximum acceleration for that axis or extruder divided by this acceleration time parameter. If the acceleration time is set to zero (which is the default) then S-curve acceleration is not used. If it is configured nonzero but not all local axes and extruders use phase stepping then S-curve acceleration is not used.
+In RepRapFirmware 3.7 and later on the Duet 3 MB6HC, the T parameter (acceleration time) specifies the time in seconds to go from zero to maximum acceleration and enables [third-order motion control](/User_manual/RepRapFirmware/Third_order_motion). The jerk (maximum rate of change of acceleration) for each axis or extruder is computed as the maximum acceleration for that axis or extruder divided by this acceleration time. If the acceleration time is zero (the default) then second-order motion is used. If it is nonzero but not all axes and extruders with local drivers use phase stepping then second-order motion is used and a warning is generated. Third-order motion is not applied to drivers on CAN-connected expansion boards, which receive second-order approximations of the moves, so a warning is generated if any axis or extruder uses such a driver. On boards other than the MB6HC the T parameter is not supported and generates a warning.
 
 ## M201.1: Set acceleration for special move types
 
