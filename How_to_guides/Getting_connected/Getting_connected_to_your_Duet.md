@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2026-08-06T08:12:44.050Z
+date: 2026-09-18T10:08:55.801Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -117,7 +117,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 ### Windows 
 
 [![02_connect_via_usb_02.jpg](/guides/getting_connected/02_connect_usb_02.jpg =50%x){.align-right}](/guides/getting_connected/02_connect_usb_02.jpg){target=_blank}**Windows** users:
-* Download the [USB drivers for Duet here](https://github.com/Duet3D/RepRapFirmware/blob/dev/Driver/WindowsDriverFiles.zip){target=_blank} and extract the files to a suitable location. 
+* Download the [USB drivers for Duet here](https://github.com/Duet3D/RepRapFirmware/blob/HEAD/Driver/){target=_blank} and extract the files to a suitable location. 
 * To install drivers, open Device Manager by pressing Windows Key + R and type devmgmt.msc, or launch from the Start menu by typing "Device Manager". On Windows 10, you can right-click on the Start icon and click on "Device Manager".
 * Look for any devices with a yellow triangle, or for any "Generic USB" devices which would indicate that the Duet driver is not installed.
 * If a USB device does show the yellow triangle, or as a Generic USB device, right click on the device. Click Install Driver and browse to the location of the driver that was downloaded at the beginning of this step. Continue setup by clicking "Next" until the device driver has been installed.
