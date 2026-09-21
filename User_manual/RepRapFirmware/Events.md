@@ -2,7 +2,7 @@
 title: Events
 description: An “event” is an occurrence that occurs during a job and may require the normal printing process to be paused and some manual or automatic action to be performed.
 published: true
-date: 2026-09-21T18:38:45.403Z
+date: 2026-09-21T18:41:03.125Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-17T14:46:17.569Z
@@ -75,7 +75,7 @@ If the macro file is not found then default processing occurs as shown in the ta
 | driver-stall | Local driver # | 0 | CAN address of board with driver | Inform user via console and continue | Warning |
 | driver-warning | Local driver # | Lower 16 bits of driver status word | CAN address of board with driver | Inform user via console and continue | Warning |
 | board-temperature-warning | 0 | Board temperature in tenths of a degree C | CAN address of the board | Inform user via console and continue | Warning |
-| board-over-temperature | 0 | Board temperature in tenths of a degree C | CAN address of the board | Any drivers on that board that use external mosfets or do not monitor the temperature of internal mosfets are disabled until the temperature drops below the error threshold (before the event is raised). Pause print without running pause.g and inform user via message box | Error |
+| board-over-temperature | 0 | Board temperature in tenths of a degree C | CAN address of the board | Before the event is raised, any drivers on that board that use external mosfets or do not monitor the temperature of internal mosfets are disabled. They will be re-enabled when the temperature drops below the warning threshold. The default action is to pause the job without running pause.g and inform the user via a message box | Error |
 
 Once processing is completed the event is removed from the queue. If an event of a particular type in in the queue and that condition happens again on the same device, a second event of the same type/device is not added to the queue.
 
