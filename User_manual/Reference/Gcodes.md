@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-18T10:55:26.533Z
+date: 2026-09-23T10:27:10.769Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9181,7 +9181,7 @@ An alternative procedure is being introduced and will become available in RRF 3.
 
 ## M953: Enable CAN and set fast data rate
 
-*Provisional specification - support planned in 3.7.0*
+*Provisional specification - experimental support in 3.7.0*
 
 This command enables the CAN subsystem on the master board. It also selects whether or not Bit Rate Switching (BRS) is used and if it is, it sets the data phase bit rate.
 
