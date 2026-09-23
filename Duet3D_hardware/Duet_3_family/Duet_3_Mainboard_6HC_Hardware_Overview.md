@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-09-23T11:55:47.611Z
+date: 2026-09-23T13:06:02.863Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -235,13 +235,13 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2-pin jumper** | PD_CD_OVERRIDE | *v1.02 and later boards.* Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
 | **4 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2, TEMP_3 | Connections for thermistor or PT1000 sensors. |
 | **1 x RJ45 network connector** | Ethernet | 100BaseT Port. non MDIX connect to an Ethernet switch, hub or MDIX enabled laptop port. If connecting to a non MDIX enabled port use a crossover cable. Orange LED on Ethernet port indicates Ethernet enabled, green LED indicates network activity |
-| **9 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4, IO_5, IO_6, IO_7, IO_8 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
+| **9 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4, IO_5, IO_6, IO_7, IO_8 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V and have 27K pullup resistors to +3.3V. The outputs are 3.3V signals levels with 470R series resistors. |
 | **1 x 4-pin KK connector** | DS_LED | This is to connect and power DotStar LED strips. |
 | ^^ | ^^ | *see note 2 below*.
 | **1 x 2-pin KK connector** | RS485 | (v1.02c and later) IO1 is connected to this header via an RS485 transceiver to allow connection of RS485 devices. The RS485_EN jumper must be fitted to connect IO1.in to the RS485 transceiver. |
 | **1 x 2-pin jumper** | RS485 EN | Jumper to enable RS485 use by connecting IO1.in to the RS485 transceiver|
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | Only on v1.02b and earlier. Replaced with pogo pin contacts under the board from v1.02c and later. This is for firmware debugging|
-| **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Add a jumper to bypass the 10k resistor on IO2.in so that it can be used for I2C. **Note:** I2C is supported on this board in firmware 3.7 and later. |
+| **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Add a jumper to bypass the 10k resistor on IO2.in so that it can be used for I2C. **Note:** I2C is supported on this board in firmware 3.7 and later. When using the IO2 connector for I2C, external pullup resistors (typically 4.7K) must be connected between +3.3V and each of IO2.in (aka SCL) and IO2.out (aka SDA). |
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
 | **1 x 2x6 header** | ESP | *v1.02 and later boards*: Header to connect an ESP WiFi board. |
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
