@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-09-02T13:31:09.895Z
+date: 2026-09-23T11:55:47.611Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -241,7 +241,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2-pin KK connector** | RS485 | (v1.02c and later) IO1 is connected to this header via an RS485 transceiver to allow connection of RS485 devices. The RS485_EN jumper must be fitted to connect IO1.in to the RS485 transceiver. |
 | **1 x 2-pin jumper** | RS485 EN | Jumper to enable RS485 use by connecting IO1.in to the RS485 transceiver|
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | Only on v1.02b and earlier. Replaced with pogo pin contacts under the board from v1.02c and later. This is for firmware debugging|
-| **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Add a jumper to bypass the 10k resistor on IO2.in, so it can be used for I2C. **Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
+| **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Add a jumper to bypass the 10k resistor on IO2.in so that it can be used for I2C. **Note:** I2C is supported on this board in firmware 3.7 and later. |
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
 | **1 x 2x6 header** | ESP | *v1.02 and later boards*: Header to connect an ESP WiFi board. |
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
