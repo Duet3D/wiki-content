@@ -2,7 +2,7 @@
 title: Tuning stepper motor drivers
 description: This article covers tuning Trinamic stepper motor drivers in Duet 3 MB6HC, EB3HC, Toolboard 1LC and Mini 5+, and Duet 2 WiFi / Ethernet and Maestro
 published: true
-date: 2026-09-23T16:42:06.147Z
+date: 2026-09-23T16:44:10.578Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-12T15:42:36.812Z
@@ -102,13 +102,6 @@ Duet 2 WiFi output from ``M569 P0``
 `
 Drive 0 runs forwards, active low enable, step timing fast, mode spreadCycle, ccr 0x101b4, toff 4, tblank 2, hstart/hend/hdec 3/3/0, pos 0
 `
-
-Duet 2 Maestro output from ``M569 P0``
-
-`
-Drive 0 runs in reverse, active low enable, step timing fast, mode stealthChop, ccr 0x00053, toff 3, tblank 0, hstart/hend/hdec 5/0/0, pos 72, tpwmthrs 2000 (4.3 mm/sec)
-`
-
 ## Configuring stealthChop
 
 ### Considerations
