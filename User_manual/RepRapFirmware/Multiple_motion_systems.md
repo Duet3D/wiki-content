@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2026-09-07T09:58:14.361Z
+date: 2026-09-23T14:34:59.912Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -16,8 +16,8 @@ The primary application is to speed up printing by having the printer work on se
 
 # Prerequisites
 
--   Due to memory limitations, RRF on Duet 2 series boards does not support this feature. All Duet 3 main boards support it, however performance on Duet 3 Mini might be limiting.
--   Only two motion systems are currently supported. In the future we may increase this limit on Duet 3 MB6HC and MB6XD boards.
+-   Due to memory limitations, RRF on Duet 2 series boards does not support this feature. Duet 3 Mini does not support it in RRF 3.7 and later. All other Duet 3 main boards support it.
+-   Only two motion systems are currently supported. In the future we may increase this limit.
 -   By default, the second motion queue is only three elements long. Use the [M595](/User_manual/Reference/Gcodes/M595) command to lengthen it, for example: `M595 Q1 P60` will increase it to 60 elements (the same number as in the primary movement queue on MB6HC and MB6XD boards).
 -   At any time, each motion system “owns” a set of physical axes and extruders. It may also own a tool. No other motion system can use those axes/extruders or that tool until the owning motion system releases it. See below for details of ownership of axes and extruders.
 -   For any two axes owned by different motion systems, those axes may not share a motor. For example, on a CoreXY machine the X and Y axes cannot be owned by different motion systems.
