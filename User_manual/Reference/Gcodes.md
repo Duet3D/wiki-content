@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-23T10:28:01.404Z
+date: 2026-09-23T17:00:35.129Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8622,7 +8622,7 @@ M906 X300 Y500 Z200 E350:350
 * Current setting on the various Duet boards are as follows:
   * Duet 2 WiF/Ethernet is done in steps of 100mA and is rounded down.
   * Duet Maestro is in steps of 50mA and rounded down.
-  * Duet 3 MB6HC and EXP3HC is in steps of 26.2mA.
+  * Duet 3 MB6HC and EXP3HC is in steps of 25.4mA.
   * Duet 3 Mini5+ is in steps of 74mA (provisionally), rounded down.
   * Duet 3 1LC toolboard is in steps of 50mA, rounded down.
 
