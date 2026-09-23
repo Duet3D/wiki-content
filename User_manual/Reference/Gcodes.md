@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-23T17:00:35.129Z
+date: 2026-09-23T21:06:07.004Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6249,7 +6249,7 @@ After turning off command G1 instructions must send as many E values as the tool
 * **Cnnnn** (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160 and TMC5160 stepper drivers) Lowest 17 bits of the chopper control register value.
 * **Bnn** (firmware 2.02 and later) Blanking time (*tbl*) in the chopper control register, 0 to 3. See the TMC driver datasheet.
 * **Hnn** (firmware 2.02 and later) *thigh* parameter for those stepper driver chips that support it, e.g. TMC5160 and TMC2160. Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec. See also the V parameter.
-* **Yaa:bb** or **Yaa:bb:cc** (firmware 2.02 and later) Hysteresis start, end and decrement values in the chopper control register. See the TMC driver datasheet for the meaning.
+* **Yaa:bb** or **Yaa:bb:cc** (firmware 2.02 and later) Hysteresis start, end and decrement values in the chopper control register. The values are raw register fields (5/0 means HSTRT +6, HEND −3). See the TMC driver datasheet for the meaning.
 * **Vnnn** (firmware 2.02 and later) *tpwmthrs* parameter for those stepper driver chips that support it. This is the interval in clock cycles between 1/256 microsteps below which the drivers will switch from stealthChop to to spreadCycle mode. Only applies when the driver is configured in stealthChop mode. Typical value are from 100 (high speed) to 4000 (low speed). Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec.
 * **Unn** (firmware 3.6.0 onwards) for stepper drivers that support *globalscaler* (TMC5160/2160). This is the maximum value to use for iRun current scaler, 0-31. If not set (and in older firmware versions), this is set to 31 and globalscaler is calculated, otherwise iRun will be set to the value specified. However if the target current can't be reached by reducing globalscaler alone, iRun, and iHold, are also reduced, likewise if the target current is high then iRun and iHold may be increased to achieve it. This means iRun and iHold may be set different than specified to ensure the requested current is applied to the motors, sending `M569 Px` can be used to verify the iRun value used and the calculated current the driver will actually apply to the motor. Setting iRun directly can allow setting hysteresis start/end values that are more suitable for specific motors, resulting in lower noise. In theory this should only be needed when using low inductance motors, or a high motor supply voltage (e.g. 48V). You can use the excel calculator provided by TMC to help tune iRun and hysteresis values.
 
@@ -9308,7 +9308,7 @@ This command causes the specified number of accelerometer samples to be collecte
 * **Pnn** Accelerometer to use (required, currently only P0, see note)
 * **Snnn** Number of samples to collect (required)
 * **X** and/or **Y** and/or **Z** (optional) Machine axes to collect data for. If no axes are specified, or if the accelerometer type is LIS2DW (supported in RRF 3.5.0 and later) then data is collected for all three axes.
-* **An** (required) 0 = activate immediately, 1 = activate just before the start of the next move, 2 = activate just before the start of the deceleration segment of the next move
+* **An** (required) 0 = activate immediately (future version of RRF will implement: 1 = activate just before the start of the next move, 2 = activate just before the start of the deceleration segment of the next move)
 * **F"filename.csv"** Name of the file to save the data in (optional, supported by RRF 3.4 and later). The default folder is `0:/sys/accelerometer` . If not specified then the filename will be composed from the current date/time.
 
 ###### Examples
@@ -9328,7 +9328,7 @@ M956 P0 A0 S2000  ; collect 2000 samples from accelerometer 0 immediately</pre>
 * **Pnn** or **Pbb.nn** Accelerometer to use (required)
 * **Snnn** Number of samples to collect (required)
 * **X** and/or **Y** and/or **Z** (optional) Machine axes to collect data for. If no axes are specified, or if the accelerometer type is LIS2DW (supported in RRF 3.5.0 and later) then data is collected for all three axes.
-* **An** (required) 0 = activate immediately, 1 = activate just before the start of the next move, 2 = activate just before the start of the deceleration segment of the next move
+* **An** (required) 0 = activate immediately (future version of RRF will implement: 1 = activate just before the start of the next move, 2 = activate just before the start of the deceleration segment of the next move)
 * **F"filename.csv"** Name of the file to save the data in (optional, supported by RRF 3.4 and later). The default folder is `0:/sys/accelerometer` . If not specified then the filename will be composed from the current date/time.
 
 ##### Notes
