@@ -2,7 +2,7 @@
 title: RepRapFirmware overview
 description: Description for RepRapFirmware including the capabilities and limitations of configuration.
 published: true
-date: 2024-12-11T16:26:41.052Z
+date: 2026-09-23T15:44:16.506Z
 tags: overview, kinematics, limitations
 editor: markdown
 dateCreated: 2021-11-29T15:30:45.435Z
@@ -97,6 +97,44 @@ RepRapFirmware has some configuration limits. Note that:
 
 # Tabs {.tabset}
 
+## RepRapfirmware v3.7
+
+| | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Notes |
+|---|---|
+| MaxSensors | 56 | 56 | The maximum number of sensors |
+| MaxHeaters | 32 | 32 | The maximum number of heaters |
+| MaxPortsPerHeater | 3 | 2 | The maximum number of output ports per heater |
+| MaxMonitorsPerHeater | 3 | 3 | The maximum number of monitors per heater |
+| MaxBedHeaters | 12 | 4 | The maximum number of bed heaters |
+| MaxHeatersPerBed | **4** | **4** | The maximum number of heaters assigned to one bed heater slot |
+| MaxChamberHeaters | 8 | 4 | The maximum number of chamber heaters |
+| MaxHeatersPerChamber | **4** | **4** | The maximum number of heaters assigned to one chamber heater slot |
+| MaxZProbes | 8 | 8 | The maximum number of probes |
+| MaxGridProbePoints | 961 | 441 | The maximum number of mesh bed compensation points |
+| MaxGpInPorts | 56 | 56 | The maximum number of general purpose input ports |
+| MaxGpOutPorts | 64 | 64 | The maximum number of general purpose output ports |
+| MaxAxes | 30 | 10 | The maximum number of movement axes |
+| MaxDriversPerAxis | 8 | 4 | The maximum number of stepper drivers assigned to one axis |
+| MaxExtruders | 20 | 8 | The maximum number of extruders |
+| MaxAxesPlusExtruders | 32 | 12 | The maximum number of axes + extruders |
+| MaxTools | 50 | 50 | The maximum number of tools |
+| MaxHeatersPerTool | 20 | 8 | The maximum number of heaters per tool |
+| MaxExtrudersPerTool | 12 | 8 | The maximum number of extruders per tool |
+| MaxFans | 32 | 32 | The maximum number of fans |
+| MaxTriggers | 32 | 16 | The maximum number of triggers |
+| MaxSpindles | 4 | 4 | Maximum number of configurable spindles |
+| MaxZProbeProgramBytes | 8 | 8 | Maximum number of bytes in a Z probe program |
+| MaxCanDrivers | 30 | 8 | The maximum number of CAN connected stepper drivers |
+| MaxCanBoards | 20 | 8 | The maximum number of CAN connected boards |
+| MaxLedStrips | 5 | 5 | The maximum number of LED strips |
+| MaxAccelerometers | **10** | **10** | The maximum number of accelerometers. Only one accelerometer can be connected to each board |
+| Motion systems | 2 | **1** | The number of motion systems |
+
+*Note: Duet 2 WiFi/Ethernet is no longer supported in RRF 3.7 and later*
+
+*Note: Multiple motion systems are no longer supported on the Duet 3 Mini 5+ in RRF 3.7 and later.*
+
+
 ## RepRapfirmware v3.6
 
 | | Duet 3 MB6HC/6XD | Duet 3 Mini 5+ | Duet 2 WiFi/Ethernet | Notes |
@@ -115,7 +153,7 @@ RepRapFirmware has some configuration limits. Note that:
 | MaxDriversPerAxis | 8 | 4 | 6 | The maximum number of stepper drivers assigned to one axis |
 | MaxExtruders | 20 | 8 | 7 | The maximum number of extruders |
 | MaxAxesPlusExtruders | 32 | 12 | 12 | The maximum number of axes + extruders |
-| MaxHeatersPerTool | 20 | 2 | 8 | The maximum number of heaters per tool |
+| MaxHeatersPerTool | 20 | **8** | 8 | The maximum number of heaters per tool |
 | MaxExtrudersPerTool | 12 | 8 | 8 | The maximum number of extruders per tool |
 | MaxFans | **32** | **32** | 12 | The maximum number of fans |
 | MaxTriggers | 32 | 16 | 16 | The maximum number of triggers |
