@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2026-09-02T13:37:15.729Z
+date: 2026-09-24T12:43:00.452Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -314,7 +314,7 @@ Capabilities of IO_0 to IO_8 are shown below.
 | 5 | no | yes | no |  |
 | 6 | no | yes | no |  |
 | 7 | no | yes | yes |  |
-| 8 | no | yes | no |  |
+| 8 | no | no | no |  |
 
 ### Opto-isolated IO headers
 
