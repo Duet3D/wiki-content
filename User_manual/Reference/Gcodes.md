@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-26T12:26:29.852Z
+date: 2026-09-28T12:22:51.122Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5431,6 +5431,7 @@ Quotation marks around the password are mandatory in RRF3, but discretionary in 
 * **Innn** (Optional) Number of the network interface to manage (defaults to 0). Only needed if the board supports more than one network interface, such as Duet 3 MB6HC revision 1.02 or later with the optional WiFi interface. On that board, I0 is the Ethernet interface and I1 is the WiFi interface.
 * **P"ssid"** (optional, RepRapFirmware 1.20 and later) SSID of network to connect to. The SSID and password must already have been registered using M587. If this parameter is not present, the WiFi will try to connect to the strongest network that is broadcasting its SSID and whose SSID has been registered using M587.
 * **Snnn** 0 = disable networking, 1 = enable networking as a client, 2 = enable networking as an access point , -1 = disable WiFi module
+* **Tn** (RRF 3.7 and later, only together with S) 1 = enable TLS support, 0 = no TLS (default), -1 = delete the certificate and key stored on the WiFi module, then start without TLS. TLS needs an ESP32-based WiFi module running WiFi firmware 2.4.0 or later.
 
 ##### Examples
 <br>
@@ -5444,6 +5445,9 @@ Enables networking as a client, and joins the network with the SSID 'MyNetwork',
 
 * Also works with the WiFi interface on an attached SBC. See M587 for configuration limitation.
 * On Duet boards with WiFi interfaces running firmware 1.19 and later, the IP address is set in the M587 command when you configure the access point details.
+* On the first `M552 T1 S1` the WiFi module imports `server.crt` and `server.key` from `/sys` on the SD card into its own flash and then deletes the SD card copies. See [HTTPS setup](https://github.com/Duet3D/RepRapFirmware/blob/3.7-dev/HTTPS%20setup.md) for creating them.
+* The TLS setting is not remembered. Any `M552 S1` without `T1` starts the interface without TLS, so keep `T1` on the M552 line in config.g.
+* `M552 T1` only enables TLS support. Use `M586 ... T1` to enable HTTPS, FTPS or TelnetS.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
 
 #### Ethernet interfaces (Duet 2/3 Ethernet and 06/085)
@@ -5453,6 +5457,7 @@ Enables networking as a client, and joins the network with the SSID 'MyNetwork',
 * **Innn** (Optional) Number of the network interface to manage (defaults to 0).
 * **Pnnn** IP address, 0.0.0.0 means acquire an IP address using DHCP
 * **Snnn** 0 = disable networking, 1 = enable networking
+* **Tn** (RRF 3.7 and later, standalone mode only, only together with S) 1 = enable TLS support and load `server.crt` and `server.key` from `/sys` on the SD card, 0 = no TLS (default), -1 = securely delete `/sys/server.crt` and `/sys/server.key`, then start without TLS. T-1 is only honoured while the interface is disabled.
 * **Rnnn** (Optional) HTTP port, default 80 (Deprecated, RepRapFirmware 1.17 and earlier only)
 
 ##### Examples
@@ -5474,6 +5479,9 @@ The I1 setting here specifies the second network interface on the SBC. This uses
 ##### Notes
 
 * M552 with no parameters reports the current network state and IP address.
+* To change the TLS setting of a running Ethernet interface, send `M552 S0` first and then `M552 T1 S1`.
+* The TLS setting is not remembered. Any `M552 S1` without `T1` starts the interface without TLS, so keep `T1` on the M552 line in config.g.
+* `M552 T1` only enables TLS support. Use `M586 ... T1` to enable HTTPS, FTPS or TelnetS.
 * In firmware 1.18 and later the HTTP port address is set using the M586 command, so the R parameter of this command is no longer supported.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
 
@@ -7345,10 +7353,8 @@ M585 X100 F600 E3 L0 S0 ; probe X until E0 endstop goes low
 * **Snn** 0 = disable this protocol, 1 = enable this protocol
 * **Hnn** Remote server IP address (only applicable for MQTT, see also M586.4)
 * **Rnn** TCP port number to use for the specified protocol. Ignored unless S = 1. If this parameter is not provided then the default port for that protocol and TLS setting is used. When S=0 the default port numbers are 80, 21 and 23 respectively.
-* **Tnn** 0 = don't use TLS, 1 = use TLS. Ignored unless S = 1. If this parameter is not provided, then TLS will be used if the firmware supports it and a security certificate has been configured. If T1 is given but the firmware does not support TLS or no certificate is available, then the protocol will not be enabled and an error message will be returned.
+* **Tn** 0 = plain protocol (default), 1 = TLS variant. Ignored unless S = 1. In standalone mode (RRF 3.7 and later, requires `M552 T1`) the TLS variants are HTTPS, FTPS and TelnetS on default ports 443, 990 and 992, and they are enabled independently of the plain protocols, so `M586 P0 S1 T1` adds HTTPS and leaves HTTP running. In SBC mode the TLS variants are HTTPS, SFTP and SSH.
 * **C"\<site>"** (RRF 3.2 and later only) Set or reset allowed site for Cross-Origin Resource Sharing (CORS) HTTP requests
-
-**Note**: TLS has not yet been implemented in RepRapFirmware, therefore T1 will not work.
 
 ### Examples
 <br>
@@ -7366,7 +7372,7 @@ M586 P2 T1 S1 ; enable SSH
 
 ### Notes
 
-* Standalone mode does not support any secure protocols (M586 ... T1), ie HTTP, FTP and Telnet only. SBC mode can support HTTPS, SFTP and SSH. 
+* In standalone mode, secure protocols need RRF 3.7 or later, a board with an Ethernet interface or an ESP32-based WiFi module, and TLS support enabled with `M552 T1`. `M586 Pn S0` disables both the plain and the TLS variant of the protocol.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
 * In SBC mode, `M586 I` is not supported. Configure ufw or another firewall to restrict protocol access per adapter if required.
 * M586 with no S parameter reports the current support for the available protocols.
