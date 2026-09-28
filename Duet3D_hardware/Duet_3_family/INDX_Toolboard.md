@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-28T12:23:28.022Z
+date: 2026-09-28T13:50:26.521Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -124,7 +124,7 @@ The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bi
 Reposted by M122 B121 as: `SAME5x composite bootloader version 3.02` (the version number will increase with future versions, do not use a version prior to 3.02)
 Available from Bonstech here: https://github.com/BondtechAB/indx-bootloader
 
-The minimum RepRapFirmware version for this board is 3.7.0-rc1. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
+The minimum RepRapFirmware version for this board is 3.7.0-rc2. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
@@ -296,7 +296,7 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 ## Loadcell
 
-The load cell in the INDX toolhead is used as a Z probe: the nozzle probes the bed directly and the probe triggers when the contact force reaches the configured threshold. Load cell probing needs RepRapFirmware 3.7.0-rc1 or later on both the INDX tool board and the main board; with older firmware on either side the probe will not start.
+The load cell in the INDX toolhead is used as a Z probe: the nozzle probes the bed directly and the probe triggers when the contact force reaches the configured threshold. Load cell probing needs RepRapFirmware 3.7.0-rc2 or later on both the INDX tool board and the main board.
 
 To use the macros provided for INDX without modification is recommended you configure the SZP as probe 0 and shown in the example below.
 
