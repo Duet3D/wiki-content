@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-10T10:03:07.922Z
+date: 2026-09-28T12:23:28.022Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -149,7 +149,6 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 | ^^ | ^^ | pcfan.tach | Pulled up to +5V |
 | ^^ | LED | led | 5V drive for WS2812 or similar LED strings |
 | Inputs | IO_0 | io0.in | Input with 3.3V power provided, 30V tolerant |
-| ^^ | (internal) | boardtemp | MCU board temperature |
 | ^^ | Coil FFC | coiltemp | Scanning Z probe coil temperature |
 
 # Configuration
@@ -188,7 +187,7 @@ M950 H1 C"121.nozzleheat" T1                                               ; con
 This helps monitor chamber and INDX MCU board temperature.
 
 ```
-M308 S10 Y"thermistor" P"121.boardtemp" A"INDXboardtemp"                   ; Onboard INDX board sensor 
+M308 S10 Y"board-temp" P"121.dummy" A"INDXboardtemp"                      ; Onboard INDX board sensor 
 ```
 The location of the thermistor is shown here:
 ![indx_thermistor.png](/duet_boards/duet_3_can_expansion/indx_thermistor.png =400x)
@@ -285,11 +284,11 @@ See [M955](/User_manual/Reference/Gcodes/M955) for how to set up and configure t
 
 In the normal INDX mounting orientation, with tools picked up from the front Z+ of the accelerometer is +Y on the machine, and +X is oriented to -Z. So the correct command is 
 ```
-M955 P12.1 I16
+M955 P0 C"121.i2c.lis" I16
 ```
 If you have tools mounted on the rear instead and the INDX head mounted backwards, then Z+ of the accelerometer is -Y, and +X is oriented to -Z. so the correct command is
 ```
-M955 P12.1 I56
+M955 P0 C"121.i2c.lis" I56
 ```
 ### Calibration and usage
 
