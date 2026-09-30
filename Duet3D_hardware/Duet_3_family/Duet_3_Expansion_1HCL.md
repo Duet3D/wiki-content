@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2026-08-11T10:21:02.935Z
+date: 2026-09-30T10:00:34.462Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
