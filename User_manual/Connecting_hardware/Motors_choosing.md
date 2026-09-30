@@ -2,7 +2,7 @@
 title: Choosing stepper motors
 description: This page provides in depth consideration for choosing stepper motors
 published: true
-date: 2024-01-30T10:02:58.342Z
+date: 2026-09-30T16:48:07.558Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-05T11:49:00.204Z
@@ -10,10 +10,10 @@ dateCreated: 2021-10-05T11:49:00.204Z
 
 # General recommendations
 
-* Unless you will be using external stepper motor drivers, choose motors with a rated current of at most 7A for Duet 3 Mainboard 6HC and Expansion 3HC boards, 3A for the Duet 2 WiFi/Ethernet, 2.4A for Duet 3 Mini 5+, 2.0A for Duet 2 Maestro and 1.7A for Duet 3 Toolboard 1LC.
+* Unless you will be using external stepper motor drivers, choose motors with a rated current of at most 7A for Duet 3 Mainboard 6HC , Expansion 3HC and Expansion 1HCL boards, 2.8A for the Duet 2 WiFi/Ethernet, 2.4A for Duet 3 Mini 5+, and 1.7A for Duet 3 Toolboard 1LC.
 * Choose axis motors with a rated current of at least 1.2A. Lower current = higher inductance = lower speed before loss of torque.
 * You can use motors with a lower rated current (eg 500mA) for geared extruder motors, as these motors don't tend to run as fast or need as much torque as axis motors.
-* Plan to run each stepper motor at between 50% and 85% of its rated current.
+* Plan to set the motor current (M906, which sets the peak current) to between 50% and 85% of the motor rated current. See [Rated current](#rated-current) for when a higher current can be used..
 * Size: Nema 17 is the most popular size used in 3D printers. Nema 14 is an alternative in a highly-geared extruder. Use Nema 23 motors if you cannot get sufficient torque from long Nema 17 motors. Duet 3 6HC/3HC can drive Nema 34 motors too.
 * Avoid motors with rated voltage (or product of rated current and phase resistance) > 4V or inductance > 4mH.
 * Choose 0.9deg/step motors where you want extra positioning accuracy, e.g. for the tower motors of a delta printer. Otherwise choose 1.8deg/step motors.
@@ -36,19 +36,35 @@ With 6-wire stepper motors, there are still 2 coils, but each coil has a centre 
 
 ## Rated current
 
-This is the maximum current you may pass through both windings at the same time. The maximum current through one winding (which is what really matters when using microstepping) is rarely quoted and will be a little higher. However, even with one winding driven at the quoted rated current, the motor will get very hot. So the usual practice is to set the motor current to no more than about 85% of the rated current. Therefore, to get maximum torque out of your motors without overheating them, you should choose motors with a current rating no more than 25% higher than the recommended maximum stepper driver current. This gives:
+The rated current is the current per phase that the motor can carry continuously with both phases energised. The holding torque is specified at this current.
 
-* Duet 3 Mainboard 6HC and Expansion board 3HC  (recommended maximum motor current 6.3A peak/4.45A RMS) => Stepper motor rated current <= 7A
+M906 sets the peak current per phase. When the motor is moving, the current in each phase follows a sine wave. So a peak current equal to the rated current produces half the rated heat in the motor and about 71% of the holding torque. When the motor is at standstill the phase currents do not change. Depending on the rotor position, one phase can carry the full peak current continuously while the other phase carries none. All the heat is then generated in one motor winding and in one set of driver output mosfets.
+
+So use these limits:
+
+* Peak current when moving at a reasonable speed: no greater than 1.414 times the rated current.
+* Peak current at standstill: no greater than the rated current.
+
+We recommend setting the peak current no greater than the rated current. A lower setting, for example 85% of the rated current, keeps the motor cooler. If you set the peak current greater than the rated current, use standstill current reduction (M917) to keep the standstill current no greater than the rated current. For example, a 2A motor can be run at M906 2800 with M917 71, which gives a standstill current of 2A.
+
+Notes:
+
+1. The default standstill current (M917) is 71% on the Duet 3 Mainboard 6HC, Expansion 3HC and Expansion 1HCL, and 75% on the Duet 3 Mini 5+ and Toolboard 1LC.
+2. Duet 2 boards do not support standstill current reduction. On these boards, set the peak current no greater than the rated current.
+3. Boards with TMC2160 or TMC5160 drivers (Duet 3 Mainboard 6HC, Expansion 3HC and Expansion 1HCL) limit the standstill current to about 4.45A (71% of 6.3A), even if the M906 current multiplied by the M917 percentage gives a higher value. On the Expansion 1HCL this limit also applies in closed loop and assisted open loop modes, so the maximum current in those modes is about 4.3A peak.
+
+To get maximum torque out of your motors without overheating them, choose motors with a rated current no more than about 18% higher than the recommended maximum stepper driver current. The driver can then supply 85% of the motor rated current. This gives:
+
+* Duet 3 Mainboard 6HC, Expansion board 3HC and Expansion board 1HCL (recommended maximum motor current 6.3A peak/4.45A RMS) => Stepper motor rated current <= 7.4A
 * Duet 3 Mini 5+ (recommended maximum motor current 2.0A peak) => Stepper motor rated current <= 2.4A
-* Duet 3 Tooboard (recommended maximum motor current 1.4A peak) => Stepper motor rated current <= 1.7A
-* Duet 2 WiFi and Duet 2 Ethernet (maximum motor current 2.4A peak) => Stepper motor rated current <= 3.0A
-* Duet 2 Maestro (maximum motor current 1.6A peak with good fan cooling) => Stepper motor rated current <= 2.0A. 
+* Duet 3 Toolboard (recommended maximum motor current 1.4A peak) => Stepper motor rated current <= 1.7A
+* Duet 2 WiFi and Duet 2 Ethernet (maximum motor current 2.4A peak) => Stepper motor rated current <= 2.8A
 
 However, if you use motors with lower current (e.g. 1.0 to 1.2A) and 24V power, then the drivers will run cooler.
 
 ## Holding torque
 
-This is the maximum torque that the motor can provide with both windings energised at full current before it starts jumping steps. The holding torque with one winding energised at the rated current is about 1/sqrt(2) times that. The torque is proportional to current (except at very low currents), so for example if you set the drivers to 85% of the motor rated current, then the maximum torque will be 85% * 0.707 = 60% of the specified holding torque.
+This is the maximum torque that the motor can provide with both windings energised at full current before it starts jumping steps. The holding torque with one winding energised at the rated current is about 1/sqrt(2) times that. The torque is proportional to current (except at very low currents), so for example if you set the peak current (M906) to 85% of the motor rated current, then the maximum torque will be 85% * 0.707 = 60% of the specified holding torque.
 
 Torque is produced when the rotor angle is different from the ideal angle that corresponds to the current in its windings. When a stepper motor is accelerating, it has to produce torque to overcome its own rotor inertia and the mass of the load it is driving. In order to produce this torque, the rotor angle must lag the ideal angle. In turn, the load will lag the position commanded by the firmware.
 
