@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2026-09-14T16:22:28.165Z
+date: 2026-10-01T12:20:54.723Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -271,6 +271,41 @@ In contrast to usual drivers, the closed loop axes can have their holding curren
 
 ## Temperature sensor
 
+## Tabs {.tabset}
+
+### RepRapFirmware 3.7
+
+A new sensor type `board-temp` has been added to support board temperature monitoring. The board temperature sensor is no longer addressable as a thermistor. Instead it must be addressed as sensor type `board-temp`. This has allowed the maximum motor current in open loop mode to be increased from 3.6A to 6.3A,
+
+In addition [events](/User_manual/RepRapFirmware/Events) are now raised based on the board temperature:
+
+#### board-temperature-warning**
+A board temperature warning event is raised above 80C. This will run `0:/sys/*board-temperature-warning.g` if present, if not present it will inform the user via console and continue.
+
+#### board-over-temperature**
+A board temperature warning event is raised above 85C. Drivers on that board disabled until the temperature drops below the error threshold (before the event is raised).  Then it will run `0:/sys/board-over-temperature.g` if present, if not present it will pause print without running pause.g and inform the user via message box. Drivers are re-enabled when `board-temp` drops below 80C
+
+A board temperature sensor fault is treated as over-temperature, the board temperature is not checked during the first 3 seconds after start, and phase disconnection warnings are suppressed while the drivers are disabled.
+
+#### Running a trigger on board-temp
+
+The following code is an example of how `board-temp` can be used in config.g to track the internal control board temperature.
+
+```
+; configure M23CL on can address 70's board temperature sensor as temperature sensor number 3
+M308 S3 P"70.boardtemp" Y"board-temp" 
+```
+
+These sensors would be displayed in the "extras" tab in  DWC and available in the object model.
+
+If the 80C and 85C events are too high temperature for your application is it possible to use the `board-temp` to trigger a macro at a different temperature.
+
+```
+M581.1 T3 P"sensors.analog[3].lastReading > 70" ; Run trigger3.g when temperature sensor number 3 reads >70C
+```
+This runs trigger3.g using [M581.1](/User_manual/Reference/Gcodes/M581_1). That trigger file can take any appropriate actions for the specific machine and motor.
+
+### RepRapFirmware 3.6 and earlier
 The following code can be used in config.g to monitor the internal control board temperature.
 
 ```
