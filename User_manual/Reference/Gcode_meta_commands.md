@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2026-08-02T20:40:54.354Z
+date: 2026-10-05T09:25:25.214Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -66,6 +66,21 @@ echo >>"data.csv" ","^sensors.filamentMonitors[0].position^","^sensors.filamentM
 If you needs to write a new file with multiple entries on a single line and the file may already exist, use M472 to delete it first. You can use the fileexists() condition to only delete the file if it exists.
 
 > Note echo only echos back to the input its sent from, or to a file. To get information to a different input (e.g. echo to the HTTP UI from a macro called from a different input) use [M118](/User_manual/Reference/Gcodes/M118).{.is-info}
+
+## Skip command
+
+`skip`
+
+The skip command does nothing. Any text after skip on the same line is ignored. The command can be sent from any input, not only from a file.
+
+RRF inserts a skip command internally when a file ends inside a while loop, so that the loop can complete. You can also use skip as a placeholder, for example to show that the body of an if, elif or else part is empty on purpose. An empty body is also valid without it.
+
+```
+if sensors.gpIn[0].value = 1
+  skip                                  ; nothing to do when the button is pressed
+else
+  M291 P"Press the button to continue" S2
+```
 
 ## Blocks and indentation
 
