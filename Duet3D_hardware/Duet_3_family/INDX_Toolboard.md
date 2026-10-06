@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T16:47:11.906Z
+date: 2026-10-06T16:56:00.140Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -314,7 +314,7 @@ G31 K0 P50 Z0
 
 Probe type 12 is a load cell probe. The trigger comparison runs on the tool board at the full ADC sample rate (about 1.3kHz), so the trigger latency is around a millisecond and probing speeds of 300mm/min are practical.
 
-`M558 V` is the load cell scale in grams per raw ADC count and is required for this probe type. The INDX calibration macros described below determine it from the known tool locking force (about 1600g). The actual calibration value can change somewaht (~10%) between tools. The sign of V must be chosen so that the force reported in the object model (`sensors.probes[0].loadCell.force`, shown in DWC) goes positive when the nozzle is pushed towards the bed. Test this by pressing the nozzle upwards by hand with a tool locked; if the force reading goes negative, negate V. Pin inversion (`!`) is not supported on the load cell input.
+`M558 V` is the load cell scale in grams per raw ADC count and is required for this probe type. The INDX calibration macros described below determine it from the known tool locking force (about 1600g). The actual calibration value can change somewhat (~10%) between tools. The sign of V must be chosen so that the force reported in the object model (`sensors.probes[0].loadCell.force`, shown in DWC) goes positive when the nozzle is pushed towards the bed. Test this by pressing the nozzle upwards by hand with a tool locked; if the force reading goes negative, negate V. Pin inversion (`!`) is not supported on the load cell input.
 
 `G31 P` is the trigger force in grams. The firmware tares the load cell automatically when a probing move starts, so the threshold is relative to the resting force at that moment and no manual tare is needed before probing. Between probing moves the baseline tracks slow drift by itself, so the displayed force stays near zero while the machine is idle; a step change such as locking or unlocking a tool is absorbed within a few seconds, or immediately by sending `M558.4 K0`. 40 to 70g is a reasonable starting point.
 
@@ -347,11 +347,11 @@ M308 S10 Y"thermistor" P"121.coiltemp" A"SZP coil temp" ; thermistor on SZP coil
 M558.2 K1 S15 R134990
 G31 K1 X0 Y35.1 Z3.5 ; set SZP probe trigger value, offset and trigger height
 ; Mesh Bed Compensation
-M557 X-100:100 Y-100:100 S10 ; define grid for mesh bed compensation probe 1
+M557 X-100:100 Y-64.9:100 S10 ; define grid for mesh bed compensation probe 1
 ```
 >The M558.2 parameters need to be calibrated, see the next section.
 >
->The M557 mesh parameters need to be set to your bed co-ordinates that the coil can reach. The example is for a 200x200 bed with the zero point in the center{.is-info}
+>The M557 mesh parameters need to be set to your bed co-ordinates that the coil can reach. The example is for a 200x200 bed with the zero point in the center. The front edge is Y-64.9 because the probe cannot go further forward than `global.safeYmin` (-100) plus the SZP Y offset (35.1).{.is-info}
 
 ### Calibration and usage
 
@@ -395,7 +395,7 @@ The grid can be overridden per run, so a print start script can mesh just the ar
 
 Use I, not S, for the spacing: G29 reads S as its own subfunction. The area is trimmed to what the probe can reach with the head at or above `global.safeYmin`, with a warning.
 
-The firmware moves the head so the PROBE is over each grid point, using the G31 X/Y offsets, so the grids below are in probe coordinates and each one must be reachable by that probe.
+The firmware moves the head so the PROBE is over each grid point, using the G31 X/Y offsets, so the area is in probe coordinates.
 
 Height maps written, so the last run of each probe is always available for comparison:
    `heightmap.csv`            the run that just finished - this is the active map
@@ -423,11 +423,11 @@ Some global variable values that are set during calibration routines or tool cha
 
 Currently the active tool is written twice every tool change (once when the latch opens and once when it locks). This will be made optional in the future to reduce SD card wear.
 
-This state is used in config.g to record which tool was left in the head at the last tool change that was recorded. but the following in config.g at the end, after the INDX_variables.g line
+This state is used in config.g to select the tool that was on the head at the last recorded tool change. Put the following in config.g at the end, after the INDX_variables.g line
 
 ```
 ; Re-select whatever tool indx-state.g says is physically on the head
-if global.INDX_State >= 0 && global.INDX_State < #tools
+if global.INDX_State >= 0 && global.INDX_State < #global.INDX_tool_x
   T{global.INDX_State} P0
 elif global.INDX_State = 99
   echo "config.g: latch is closed but the tool is unknown - no tool selected. Run INDX_OPEN or set global.INDX_State."
@@ -479,6 +479,7 @@ The tool change macros conduct a number of checks to make it more likely that a 
 - A head below `global.safeYmin` first moves out in Y only, clear of the docks.
 
 `INDX_TC_POST.g` (pickup):
+- The head must be at the dock trigger line left by `INDX_TC_PRE.g`; otherwise nothing moves.
 - Load cell: the clamping force must rise by at least 700 g as the latch closes.
 - Heat: heating must raise the nozzle temperature by 3 °C within 5 seconds.
 
@@ -491,7 +492,7 @@ When a check fails, `global.INDX_TC_check_action` sets what happens: 0 shows a w
 In order to calibrate and then probe with the load cell the following macros are used:
 `0:/sys/INDX_LC_CALIBRATE.g` - A guided calibration routine that prompts the user to take steps to achieve load cell calibration and saves the calibration
 `0:/sys/INDX_TARE.g` - Capture the empty-head baseline for load-cell CALIBRATION
-`0:/sys/INDX_CLOSE_CAL.g` - Locks + seats the full ~1600 g force onto the cell
+`0:/sys/INDX_CLOSE_CAL.g` - Locks the latch, then seats it a further 1 mm at low speed to achieve the ~1600g force specifed by Bondtech
 `0:/sys/INDX_LC_CAL.g` - Computes grams/count against the known force.
 
 ### Z Probing
