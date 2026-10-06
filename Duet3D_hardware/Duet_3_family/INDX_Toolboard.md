@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T13:28:07.626Z
+date: 2026-10-06T13:33:20.613Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -468,25 +468,20 @@ The tool change macros conduct a number of checks to make it more likely that a 
 The tool change macros conduct a number of checks to make it more likely that a failed pickup or drop-off will be detected.
 
 `INDX_TC_FREE.g` (drop-off):
-- The tool number must have a dock position in `global.INDX_tool_x`.
 - X and Y must be homed before any movement.
-- A tool must be on the head to drop off.
+- A tool must be on the head to drop off. (as recorded in `global.INDX_State`)
 - The dock position must be within the machine axis limits.
 - A head below `global.safeYmin` first moves out in Y only, clear of the docks.
 - Load cell: the clamping force must drop by at least 700 g as the latch opens.
 - Temperature (tools above 70 °C): the IR reading must drop faster than normal cooling.
 
 `INDX_TC_PRE.g` (approach to the next tool):
-- The tool number must have a dock position in `global.INDX_tool_x`.
-- X and Y must be homed before any movement.
-- The head must be empty before approaching a dock.
+- The head must be empty before approaching a dock. (as recorded in `global.INDX_State`)
 - The dock position must be within the machine axis limits.
 - A head below `global.safeYmin` first moves out in Y only, clear of the docks.
 
 `INDX_TC_POST.g` (pickup):
-- The tool number must have a dock position in `global.INDX_tool_x`.
 - The tool being picked up must be the selected tool.
-- The dock X position must be within the X axis limits.
 - Load cell: the clamping force must rise by at least 700 g as the latch closes.
 - Heat: heating must raise the nozzle temperature by 3 °C within 5 seconds.
 
