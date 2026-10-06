@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-09-28T13:50:26.521Z
+date: 2026-10-06T12:46:42.420Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -420,7 +420,28 @@ Currently the active tool is written every tool change. This will be made option
 `0:/sys/INDX_CLOSE.g` - Normal close of the tool
 
 ### Tool change macros
-Important note, the heater must be turned off before the tool is unlocked ( make this an early step in tfreeN.g ) other wise a heater fault will be rasied when the tool is removed.
+
+There is one tool change amcro for each of the steps:
+`INDX_TC_FREE.g` park the tool on the head in its dock, called from `tfreeN.g`
+`INDX_TC_PRE.g` move the head to the trigger line of the dock of the tool about to be picked up, called from `tpreN.g`
+`INDX_TC_POST.g` lock the new tool on and leave the dock, called from `tpostN.g`
+
+So there still need to be as many `tfreeN.g`,`tpreN.g` and `tpostN.g` macros are there are tools defined, but they all just call the same INDX_ macros. For example:
+
+```
+; tfree0 - free tool 0.
+M98 P"INDX_TC_FREE.g" T0
+```
+```
+; tpre0 - approach the tool 0 dock.
+M98 P"INDX_TC_PRE.g" T0
+```
+```
+; tpost0 - engage and lock tool 0.
+M98 P"INDX_TC_POST.g" T0
+```
+
+Important note, the heater must be turned off before the tool is unlocked (make this an early step in tfreeN.g) otherwise a heater fault will be rasied when the tool is removed.
 
 ## Loadcell Macros
 
