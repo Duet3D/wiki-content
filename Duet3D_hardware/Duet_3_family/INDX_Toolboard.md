@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T12:46:42.420Z
+date: 2026-10-06T12:55:02.367Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -441,7 +441,16 @@ M98 P"INDX_TC_PRE.g" T0
 M98 P"INDX_TC_POST.g" T0
 ```
 
-Important note, the heater must be turned off before the tool is unlocked (make this an early step in tfreeN.g) otherwise a heater fault will be rasied when the tool is removed.
+>Note: Using the example macros, the standby temperatures set by the slicer or otherwise are overwritten with 0 at the next tool change: on pickup by INDX_TC_PRE, and on park by INDX_TC_FREE.{.is-info}
+
+>Note:  The heater must be turned off before the tool is unlocked (make this an early step in tfreeN.g) otherwise a heater fault will be rasied when the tool is removed.{.is-info}
+
+#### Tool Change Checks
+
+The tool change macros conduct a number of checks to make it more likely that a failed pickup or dropoof will be detected.
+
+
+
 
 ## Loadcell Macros
 
