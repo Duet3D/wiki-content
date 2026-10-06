@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T13:33:20.613Z
+date: 2026-10-06T13:46:46.091Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -121,8 +121,8 @@ Aside from the status LEDs mounted on the VF board, LEDs are provided on the MCU
 The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**. See 
 
 The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bin**.
-Reposted by M122 B121 as: `SAME5x composite bootloader version 3.02` (the version number will increase with future versions, do not use a version prior to 3.02)
-Available from Bonstech here: https://github.com/BondtechAB/indx-bootloader
+Reported by M122 B121 as: `SAME5x composite bootloader version 3.02` (the version number will increase with future versions, do not use a version prior to 3.02)
+Available from Bondtech here: https://github.com/BondtechAB/indx-bootloader
 
 The minimum RepRapFirmware version for this board is 3.7.0. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
@@ -187,7 +187,7 @@ M950 H1 C"121.nozzleheat" T1                                               ; con
 This helps monitor chamber and INDX MCU board temperature.
 
 ```
-M308 S10 Y"board-temp" P"121.dummy" A"INDXboardtemp"                      ; Onboard INDX board sensor 
+M308 S11 Y"board-temp" P"121.dummy" A"INDXboardtemp"                      ; Onboard INDX board sensor 
 ```
 The location of the thermistor is shown here:
 ![indx_thermistor.png](/duet_boards/duet_3_can_expansion/indx_thermistor.png =400x)
@@ -263,7 +263,7 @@ M563 P2 S"INDX" D0 H1 F0 ; create INDX tool 2
 M563 P3 S"INDX" D0 H1 F0 ; create INDX tool 3
 ```
 
-Tool dock offsets are recorded in `0:/sys/INDX_variables.g`, see the Global Variables section below.
+Tool dock offsets are recorded in `0:/sys/INDX_variables.g`.
 
 ## Neopixel or other WS2812 LED strings
 
@@ -337,7 +337,7 @@ If an alternative mounting solution is used then aim for a 3mm Z offset between 
 
 ### Configuration
 
-To use the macros provided for INDX without modification is recommended you configure the SZP as probe 1 and shown in the example below.
+To use the macros provided for INDX without modification it is recommended you configure the SZP as probe 1 as shown in the example below.
 
 Add the following to your config.g:
 ```
@@ -386,7 +386,7 @@ The recommendation is to mesh with first the load cell and then the SZP and comp
    `G29 K1`     -> SZP scanning probe
    `G29 K0`     -> INDX load cell, i.e. the nozzle touches the bed at each point
 
-The grid is set here rather than in config.g. The SZP normally uses a finer pitch than the load cell because it does not have to touch the bed so it's quicker. The M557 in config.g is only the power-up default.
+The grid is set in `mesh.g` rather than in config.g. The SZP normally uses a finer pitch than the load cell because it does not have to touch the bed so it's quicker. The M557 in config.g is only the power-up default.
 
 The grid can be overridden per run, so a print start script can mesh just the area it needs:, e.g `G29 K0 X{-50,50} Y{-40,40} I20` 
    `X{min,max} Y{min,max}`  area in probe coordinates (default global.INDX_mesh_min/max)
@@ -395,7 +395,7 @@ The grid can be overridden per run, so a print start script can mesh just the ar
 
 Use I, not S, for the spacing: G29 reads S as its own subfunction. The area is trimmed to what the probe can reach with the head at or above `global.safeYmin`, with a warning.
 
-The firmware moves the head so the PROBE is over each grid point, using the G31 X/Y offsets, so the grids below are in probe coordinates and each one must be reachable by that probe. The SZP sits behind the nozzle, so its grid can extend further back and less far forward.
+The firmware moves the head so the PROBE is over each grid point, using the G31 X/Y offsets, so the grids below are in probe coordinates and each one must be reachable by that probe.
 
 Height maps written, so the last run of each probe is always available for comparison:
    `heightmap.csv`            the run that just finished - this is the active map
@@ -420,7 +420,7 @@ Some global variable values that are set during calibration routines or tool cha
 
 Currently the active tool is written twice every tool change (once when the latch opens and once when it locks). This will be made optional in the future to reduce SD card wear.
 
-This state is used in config.g to set which tool was left in the dock at the last tool change that was recorded. but the folloing in config.g at the end, after the INDX_variables.g line
+This state is used in config.g to record which tool was left in the head at the last tool change that was recorded. but the following in config.g at the end, after the INDX_variables.g line
 
 ```
 ; Re-select whatever tool indx-state.g says is physically on the head
@@ -458,30 +458,24 @@ M98 P"INDX_TC_POST.g" T0
 
 >Note: Using the example macros, the standby temperatures set by the slicer or otherwise are overwritten with 0 at the next tool change: on pickup by INDX_TC_PRE, and on park by INDX_TC_FREE.{.is-info}
 
-
-#### Tool Change Checks
-
-The tool change macros conduct a number of checks to make it more likely that a failed pickup or dropoff will be detected.
-
 #### Tool Change Checks
 
 The tool change macros conduct a number of checks to make it more likely that a failed pickup or drop-off will be detected.
 
 `INDX_TC_FREE.g` (drop-off):
 - X and Y must be homed before any movement.
-- A tool must be on the head to drop off. (as recorded in `global.INDX_State`)
+- A tool must be on the head to drop off (as recorded in `global.INDX_State`).
 - The dock position must be within the machine axis limits.
 - A head below `global.safeYmin` first moves out in Y only, clear of the docks.
 - Load cell: the clamping force must drop by at least 700 g as the latch opens.
 - Temperature (tools above 70 °C): the IR reading must drop faster than normal cooling.
 
 `INDX_TC_PRE.g` (approach to the next tool):
-- The head must be empty before approaching a dock. (as recorded in `global.INDX_State`)
+- The head must be empty before approaching a dock (as recorded in `global.INDX_State`).
 - The dock position must be within the machine axis limits.
 - A head below `global.safeYmin` first moves out in Y only, clear of the docks.
 
 `INDX_TC_POST.g` (pickup):
-- The tool being picked up must be the selected tool.
 - Load cell: the clamping force must rise by at least 700 g as the latch closes.
 - Heat: heating must raise the nozzle temperature by 3 °C within 5 seconds.
 
