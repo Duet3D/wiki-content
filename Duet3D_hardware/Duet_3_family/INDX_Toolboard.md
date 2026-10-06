@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T13:21:04.346Z
+date: 2026-10-06T13:28:07.626Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -318,7 +318,7 @@ Probe type 12 is a load cell probe. The trigger comparison runs on the tool boar
 
 `G31 P` is the trigger force in grams. The firmware tares the load cell automatically when a probing move starts, so the threshold is relative to the resting force at that moment and no manual tare is needed before probing. Between probing moves the baseline tracks slow drift by itself, so the displayed force stays near zero while the machine is idle; a step change such as locking or unlocking a tool is absorbed within a few seconds, or immediately by sending `M558.4 K0`. 40 to 70g is a reasonable starting point.
 
->Note: INDX_variables.g applies G31 K0 P{INDX_LC_trigger_grams}, so with the macros installed the P value in config.g is overwritten.{.is-info}
+>Note: INDX_variables.g applies G31 K0 P{global.INDX_LC_trigger_grams}, so with the macros installed the P value in config.g is overwritten.{.is-info}
 
 Optionally `M558 U<low>:<high>` sets a safe window in grams for the preload, i.e. the resting force latched by the tare (`sensors.probes[0].loadCell.preload`). A probing move is refused if the preload is outside the window when the move starts. This catches probing without a locked tool or with a badly seated tool.
 
@@ -468,29 +468,29 @@ The tool change macros conduct a number of checks to make it more likely that a 
 The tool change macros conduct a number of checks to make it more likely that a failed pickup or drop-off will be detected.
 
 `INDX_TC_FREE.g` (drop-off):
-- The tool number must have a dock position in `INDX_tool_x`.
+- The tool number must have a dock position in `global.INDX_tool_x`.
 - X and Y must be homed before any movement.
 - A tool must be on the head to drop off.
 - The dock position must be within the machine axis limits.
-- A head below `safeYmin` first moves out in Y only, clear of the docks.
+- A head below `global.safeYmin` first moves out in Y only, clear of the docks.
 - Load cell: the clamping force must drop by at least 700 g as the latch opens.
 - Temperature (tools above 70 °C): the IR reading must drop faster than normal cooling.
 
 `INDX_TC_PRE.g` (approach to the next tool):
-- The tool number must have a dock position in `INDX_tool_x`.
+- The tool number must have a dock position in `global.INDX_tool_x`.
 - X and Y must be homed before any movement.
 - The head must be empty before approaching a dock.
 - The dock position must be within the machine axis limits.
-- A head below `safeYmin` first moves out in Y only, clear of the docks.
+- A head below `global.safeYmin` first moves out in Y only, clear of the docks.
 
 `INDX_TC_POST.g` (pickup):
-- The tool number must have a dock position in `INDX_tool_x`.
+- The tool number must have a dock position in `global.INDX_tool_x`.
 - The tool being picked up must be the selected tool.
 - The dock X position must be within the X axis limits.
 - Load cell: the clamping force must rise by at least 700 g as the latch closes.
 - Heat: heating must raise the nozzle temperature by 3 °C within 5 seconds.
 
-When a check fails, `INDX_TC_check_action` sets what happens: 0 shows a warning, 1 stops the tool change. The thresholds are set in `INDX_variables.g`. The load cell checks are skipped if the load cell is not calibrated. If no tool was picked up, the heat check also produces a heater fault ("inductive heater load error: is a tool loaded?").
+When a check fails, `global.INDX_TC_check_action` sets what happens: 0 shows a warning, 1 stops the tool change. The thresholds are set in `INDX_variables.g`. The load cell checks are skipped if the load cell is not calibrated. If no tool was picked up, the heat check also produces a heater fault ("inductive heater load error: is a tool loaded?").
 
 ## Loadcell Macros
 
