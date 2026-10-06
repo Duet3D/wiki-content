@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T17:17:03.201Z
+date: 2026-10-06T17:21:22.828Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -93,7 +93,7 @@ The Bondtech INDX tool head is normally supplied with an associated Link board. 
 * Connect the power and signal connectors of the cable supplied to the VOUT and DATA OUT pins of the Link board
 * Connect the VIN power supply to the 2-way terminal block
 * Connect the CAN IN connector to the CAN bus from your main board
-* If the INDX tool is the last board on the CAN bus, do not connect anything to the CAN OUT port on the Link board, and install the termination jumper on the IND MCU board
+* If the INDX tool is the last board on the CAN bus, do not connect anything to the CAN OUT port on the Link board, and install the termination jumper on the INDX MCU board
 * If the INDX tool is not the last board on the CAN bus, connect the CAN OUT port to the next board in the chain, and do not fit the termination jumper on the INDX MCU board.
 * Do not connect anything to the USB port on the Link board.
 
@@ -213,7 +213,7 @@ S220 = temperature to tune at. Select the temperature you will be printing at. I
 
 ### Heater feed forward
 
-The INDX nozzles have a low thermal mass, so the flow of filament though the nozzle removes a significant % of the heat quickly. This action is compensated by an extrusion rate heater feed forward term set with [M309](/User_manual/Reference/Gcodes/M309). 
+The INDX nozzles have a low thermal mass, so the flow of filament through the nozzle removes a significant % of the heat quickly. This action is compensated by an extrusion rate heater feed forward term set with [M309](/User_manual/Reference/Gcodes/M309). 
 
 Because the heater can respond so quickly to small changes in temperature the method of calibration shown there: [Heater feedforward](https://docs.duet3d.com/User_manual/Connecting_hardware/Heaters_tuning#heater-feedforward) for the S parameter is not effective. We suggest starting with a S parameter of [TBC] and adjusting from there until heater faults are not generated at the maximum extrusion rate you plan to use for the nozzle size, type and filament.
 
@@ -373,14 +373,14 @@ M574 X1 P"121.io0.in" S1 ; configure X axis endstop on the low end of the X axis
 
 To follow. This requires a diametrically polarised magnet attached to the back of the motor shaft and the INDX MCU mounted ~1mm from the magnet. At the time of writing (11 August 2026) this magnet was not being provided in INDX units.
 
-For testing the following command will report the angle and encoder status are in M122 after the encoder is configured
+For testing the following command will report the angle and encoder status in M122 after the encoder is configured
 ```
 M569.1 P121.0 T3
 ```
 
 ## Bed Mesh
 
-The INDX tool head allows us to mesh with either the loadcell or the SZP probe. The loadcell will take longer to mesh the entire bed, however it is measuring the actual surface, and not the metal that is potential below the surface on for example coated beds). Also if there are gantry twists or other mechanical issues with the machine. The load cell will produce a more accurate mesh because the SZP coil is displayed from the nozzle tip and so will move differently relative to the nozzle tip with those mechanical issues. On the other hand the SZP mesh is much quicker to perform at a high probe density.
+The INDX tool head allows us to mesh with either the loadcell or the SZP probe. The loadcell will take longer to mesh the entire bed, however it is measuring the actual surface, and not the metal that is potentially below the surface (for example, on coated beds). Also, if there are gantry twists or other mechanical issues with the machine, the load cell will produce a more accurate mesh because the SZP coil is displaced from the nozzle tip and so will move differently relative to the nozzle tip with those mechanical issues. On the other hand the SZP mesh is much quicker to perform at a high probe density.
 
 The recommendation is to mesh with first the load cell and then the SZP and compare those meshes. Then a decision can be made to use the SZP mesh if it is close enough, correct mechanical twists if possible, or stick with the loadcell mesh.
 
@@ -417,7 +417,7 @@ The macros are hosted on Bondtech's Github here:
 
 ## Global variables
 
-Global variables are used to synchronise information between the various macros for INDX calibration and tasks such as load cell probing To make it easier to manage these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle.
+Global variables are used to synchronise information between the various macros for INDX calibration and tasks such as load cell probing. To make them easier to manage, these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle.
 
 Add `M98 P"INDX_variables.g"` to the end of config.g to run this file on startup.
 
@@ -475,7 +475,7 @@ elif global.INDX_State = 99
 | 0 to n | That tool is locked on the head |
 | 99 | Latch closed, tool unknown |
 
-The tool change macros set `global.INDX_State` and save it with `INDX_WRITE_STATE.g`. `INDX_OPEN.g` sets -1 and `INDX_CLOSE.g` sets 99, but neither saves it. `INDX_LC_CALIBRATE.g` asks which tool was seated, then sets the state to that tool and selects it. The state is saved if the calibration is saved.
+The tool change macros set `global.INDX_State` and save it with `INDX_WRITE_STATE.g`. `INDX_OPEN.g` sets -1 and `INDX_CLOSE.g` sets 99, and both save it. `INDX_LC_CALIBRATE.g` asks which tool was seated, then sets the state to that tool and selects it. The state is saved if the calibration is saved.
 
 #### Recovering from a state mismatch
 
@@ -484,13 +484,17 @@ The tool change macros stop if `global.INDX_State` does not match the selected t
 1. Check which tool, if any, is on the head.
 2. If tool n is on the head, send `set global.INDX_State = n` then `T<n> P0`.
 3. If the head is empty and the latch is closed, run `M98 P"INDX_OPEN.g"`. If the head is empty and the latch is open, send `set global.INDX_State = -1` then `T-1 P0`.
-4. Send `M98 P"INDX_WRITE_STATE.g"` so that the corrected state is used after a restart.
+4. Unless `INDX_OPEN.g` was used, send `M98 P"INDX_WRITE_STATE.g"` so that the corrected state is used after a restart.
 
 `P0` selects or deselects the tool without running the tool change macros. Do not use `T<n>` without `P0` to correct the state, because that starts a tool change.
 
 ## Tool management macros
 `0:/sys/INDX_OPEN.g` - Open the tool
 `0:/sys/INDX_CLOSE.g` - Normal close of the tool
+`0:/sys/INDX_LATCH_ENGAGE.g` - A further 3 mm slow latch move, to make sure a closed latch is fully engaged
+`0:/sys/INDX_LATCH_MOVE.g` - Moves the latch motor for all the latch macros, selecting the latch tool if no tool is selected
+`0:/sys/INDX_UNLOCK_DANCE.g` - Releases a tool seated in its dock, called by `INDX_TC_FREE.g`
+`0:/sys/INDX_TC_REPORT.g` - Logs each tool change check and acts on a failure, called by the tool change macros
 
 ### Tool change macros
 
@@ -499,7 +503,7 @@ There is one tool change macro for each of the steps:
 `INDX_TC_PRE.g` move the head to the trigger line of the dock of the tool about to be picked up, called from `tpreN.g`
 `INDX_TC_POST.g` lock the new tool on and leave the dock, called from `tpostN.g`
 
-So there still need to be as many `tfreeN.g`,`tpreN.g` and `tpostN.g` macros as are there are tools defined, but they all just call the same INDX_ macros. For example:
+So there still need to be as many `tfreeN.g`,`tpreN.g` and `tpostN.g` macros as there are tools defined, but they all just call the same INDX_ macros. For example:
 
 ```
 ; tfree0 - free tool 0
@@ -586,8 +590,10 @@ The empty-head checks always stop the tool change, whatever `global.INDX_TC_chec
 In order to calibrate and then probe with the load cell the following macros are used:
 `0:/sys/INDX_LC_CALIBRATE.g` - A guided calibration routine that prompts the user to take steps to achieve load cell calibration and saves the calibration
 `0:/sys/INDX_TARE.g` - Capture the empty-head baseline for load-cell CALIBRATION
-`0:/sys/INDX_CLOSE_CAL.g` - Locks the latch, then seats it a further 1 mm at low speed to achieve the ~1600g force specifed by Bondtech
+`0:/sys/INDX_CLOSE_CAL.g` - Locks the latch, then seats it a further 1 mm at low speed to achieve the ~1600g force specified by Bondtech
 `0:/sys/INDX_LC_CAL.g` - Computes grams/count against the known force.
+
+A one-line macro in `0:/macros` containing `M98 P"0:/sys/INDX_LC_CALIBRATE.g"` makes the calibration available in the DWC Macros list.
 
 ### Z Probing
 
@@ -596,3 +602,15 @@ In order to calibrate and then probe with the load cell the following macros are
 `0:/sys/mesh.g`  - for bed mesh using the loadcell or SZP - see the [Bed Mesh](/Duet3D_hardware/Duet_3_family/INDX_Toolboard#bed-mesh) section above. 
 `0:/sys/INDX_LC_RAW.g` - read the raw load cell level into global.INDX_LC_raw (used by tool change macros)
 `0:/sys/INDX_LC_RETARE.g`  - zero the reported load cell force
+
+## Homing
+
+- Homing files must not select or change the tool. The tool is selected at startup from `global.INDX_State`, and after that only by tool changes.
+- Home X and Y before Z. The tool change macros and `homez.g` stop if X and Y are not homed.
+- `homez.g` needs a tool locked on the head and a calibrated load cell, because the nozzle is the probe.
+- `homez.g` ends with the head at `global.safeYmin`.
+- With `global.INDX_LC_DEBUG` set to 1, `homez.g` probes a second time and reports the difference from the trigger height.
+
+## Testing
+
+`0:/macros/INDX_TC_TEST.g` - Optional soak test. It cycles through every tool a set number of times and logs every tool change check. See the comments at the top of the file for its parameters.
