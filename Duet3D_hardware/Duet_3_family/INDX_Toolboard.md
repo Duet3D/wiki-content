@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T17:35:34.399Z
+date: 2026-10-06T17:37:27.362Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -452,6 +452,10 @@ The default/example value is for the Duet3D test machine; measure the positions 
 - The example `homez.g`, `mesh.g`, `pause.g` and `stop.g` move the head to `global.safeYmin`, not below it. `bed.g` aborts if a levelling point is outside the axis limits, and `mesh.g` trims the mesh area to what the probe can reach.
 - The config.g `M208` Y minimum must be at or below `global.INDX_dock_y`. The tool change macros abort if the dock is outside it.
 - Set `global.safeYmin` so that the head, with a tool locked on, clears the tools in the docks.
+
+### Debugging
+
+`global.INDX_DEBUG` turns debugging output on (1) or off (0). When it is on, the INDX macros print additional information for many operations. Send `set global.INDX_DEBUG = 1` to turn it on. The value is saved by `INDX_WRITE_STATE.g` and restored at startup.
 
 ### INDX Write State
 
