@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T17:21:22.828Z
+date: 2026-10-06T17:23:52.507Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -118,7 +118,7 @@ Aside from the status LEDs mounted on the VF board, LEDs are provided on the MCU
 **Status LED:** In normal use, the red LED flashes slowly (approx 1Hz) in sync with the main board to indicate that it has CAN time sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
 
 ## Software notes
-The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**. See 
+The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**. 
 
 The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bin**.
 Reported by M122 B121 as: `SAME5x composite bootloader version 3.02` (the version number will increase with future versions, do not use a version prior to 3.02)
