@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T12:55:02.367Z
+date: 2026-10-06T13:21:04.346Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -124,7 +124,7 @@ The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bi
 Reposted by M122 B121 as: `SAME5x composite bootloader version 3.02` (the version number will increase with future versions, do not use a version prior to 3.02)
 Available from Bonstech here: https://github.com/BondtechAB/indx-bootloader
 
-The minimum RepRapFirmware version for this board is 3.7.0-rc2. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
+The minimum RepRapFirmware version for this board is 3.7.0. This applies to the firmware running on the main board too. If older main board firmware is used then some of the functionality may be missing, in particular the heater and the load cell are unlikely to work.
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
@@ -156,7 +156,7 @@ The RepRapFirmware 3 uses the pin name format *expansion-board-address.pin-name*
 
 >If you change the CAN address, the CAN address in the following commands will need to change from `121` to match{.is-info}
 
-Some of these functions require the INDX macro pack to be installed. See the [INDX Macros](/Duet3D_hardware/Duet_3_family/INDX_Toolboard#index-macros) section below.
+Some of these functions require the INDX macro pack to be installed. See the [INDX Macros](/Duet3D_hardware/Duet_3_family/INDX_Toolboard#indx-macros) section below.
 
 ## Induction heater and IR temperature sensor
 
@@ -255,10 +255,15 @@ M950 F0 C"121.pcfan+pcfan.tach"
 
 ## Tool
 
-Assuming the heater and fan numbering used above, the tool configuration line is:
+Assuming the heater and fan numbering used above, the tool configuration lines are as follows, adjust the number of lines based on the number of tools:
 ```
-M563 P0 S"INDX" D0 H1 F0 ; create INDX tool
+M563 P0 S"INDX" D0 H1 F0 ; create INDX tool 0
+M563 P1 S"INDX" D0 H1 F0 ; create INDX tool 1
+M563 P2 S"INDX" D0 H1 F0 ; create INDX tool 2
+M563 P3 S"INDX" D0 H1 F0 ; create INDX tool 3
 ```
+
+Tool dock offsets are recorded in `0:/sys/INDX_variables.g`, see the Global Variables section below.
 
 ## Neopixel or other WS2812 LED strings
 
@@ -296,15 +301,15 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 ## Loadcell
 
-The load cell in the INDX toolhead is used as a Z probe: the nozzle probes the bed directly and the probe triggers when the contact force reaches the configured threshold. Load cell probing needs RepRapFirmware 3.7.0-rc2 or later on both the INDX tool board and the main board.
+The load cell in the INDX toolhead is used as a Z probe: the nozzle probes the bed directly and the probe triggers when the contact force reaches the configured threshold.
 
-To use the macros provided for INDX without modification is recommended you configure the SZP as probe 0 and shown in the example below.
+To use the macros provided for INDX without modification it is recommended you configure the Loadcell as probe 0 as shown in the example below.
 
 Add the following to your config.g:
 
 ```
 M558 K0 P12 C"121.loadcell" V0.11
-G31 K0 P70 Z0
+G31 K0 P50 Z0
 ```
 
 Probe type 12 is a load cell probe. The trigger comparison runs on the tool board at the full ADC sample rate (about 1.3kHz), so the trigger latency is around a millisecond and probing speeds of 300mm/min are practical.
@@ -312,6 +317,8 @@ Probe type 12 is a load cell probe. The trigger comparison runs on the tool boar
 `M558 V` is the load cell scale in grams per raw ADC count and is required for this probe type. The INDX calibration macros described below determine it from the known tool locking force (about 1600g). The sign of V must be chosen so that the force reported in the object model (`sensors.probes[0].loadCell.force`, shown in DWC) goes positive when the nozzle is pushed towards the bed. Test this by pressing the nozzle upwards by hand with a tool locked; if the force reading goes negative, negate V. Pin inversion (`!`) is not supported on the load cell input.
 
 `G31 P` is the trigger force in grams. The firmware tares the load cell automatically when a probing move starts, so the threshold is relative to the resting force at that moment and no manual tare is needed before probing. Between probing moves the baseline tracks slow drift by itself, so the displayed force stays near zero while the machine is idle; a step change such as locking or unlocking a tool is absorbed within a few seconds, or immediately by sending `M558.4 K0`. 40 to 70g is a reasonable starting point.
+
+>Note: INDX_variables.g applies G31 K0 P{INDX_LC_trigger_grams}, so with the macros installed the P value in config.g is overwritten.{.is-info}
 
 Optionally `M558 U<low>:<high>` sets a safe window in grams for the preload, i.e. the resting force latched by the tare (`sensors.probes[0].loadCell.preload`). A probing move is refused if the preload is outside the window when the move starts. This catches probing without a locked tool or with a badly seated tool.
 
@@ -340,7 +347,7 @@ M308 S10 Y"thermistor" P"121.coiltemp" A"SZP coil temp" ; thermistor on SZP coil
 M558.2 K1 S15 R134990
 G31 K1 X0 Y35.1 Z3.5 ; set SZP probe trigger value, offset and trigger height
 ; Mesh Bed Compensation
-M557 X-100:100 Y-100:100 S10 ; define grid for mesh bed compensation probe 2
+M557 X-100:100 Y-100:100 S10 ; define grid for mesh bed compensation probe 1
 ```
 >The M558.2 parameters need to be calibrated, see the next section.
 >
@@ -379,18 +386,14 @@ The recommendation is to mesh with first the load cell and then the SZP and comp
    `G29 K1`     -> SZP scanning probe
    `G29 K0`     -> INDX load cell, i.e. the nozzle touches the bed at each point
 
-Each probe needs its own grid, so the grid is set here rather than in config.g: M557 defines
-one grid at a time, and the SZP normally uses a finer pitch than the load cell because it does
-not have to touch the bed so it's quicker. The M557 in config.g is only the power-up default.
+The grid is set here rather than in config.g. The SZP normally uses a finer pitch than the load cell because it does not have to touch the bed so it's quicker. The M557 in config.g is only the power-up default.
 
 The grid can be overridden per run, so a print start script can mesh just the area it needs:, e.g `G29 K0 X{-50,50} Y{-40,40} I20` 
-   `X{min,max}`  grid limits in X       (array of 2; defaults below if omitted)
-   `Y{min,max}`  grid limits in Y       (array of 2; defaults below if omitted)
-   `I<spacing>`  point spacing in mm, applied to both axes (defaults below if omitted)
-   `J<spacing>`  optional Y spacing; when given, I sets the X spacing only
-   `F"name.csv"` optional extra copy of the height map, for keeping a series of runs apart. 
+   `X{min,max} Y{min,max}`  area in probe coordinates (default global.INDX_mesh_min/max)
+   `I<spacing> [J<Y spacing>]`  point spacing in mm (default global.INDX_mesh_spacing)
+   `F"name.csv"  `          extra copy of the height map
 
-X and Y take two values and must be written as arrays, e.g. `X{-50,50}`. I and J take a single value each: `I{30,20}` is NOT accepted, use `I30 J20`.
+Use I, not S, for the spacing: G29 reads S as its own subfunction. The area is trimmed to what the probe can reach with the head at or above `global.safeYmin`, with a warning.
 
 The firmware moves the head so the PROBE is over each grid point, using the G31 X/Y offsets, so the grids below are in probe coordinates and each one must be reachable by that probe. The SZP sits behind the nozzle, so its grid can extend further back and less far forward.
 
@@ -407,13 +410,25 @@ These macros are a work in progress. This section describes the macros as a whol
 
 ## Global variables
 
-Global variables are used to synchronise information between the various macros for INDX calibration and tasks such as load cell probing To make it easier to manage these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle. Add `M98 P"INDX_variables.g` to the end of config.g to run this file on startup.
+Global variables are used to synchronise information between the various macros for INDX calibration and tasks such as load cell probing To make it easier to manage these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle.
+
+Add `M98 P"INDX_variables.g"` to the end of config.g to run this file on startup.
 
 ### INDX Write State
 
 Some global variable values that are set during calibration routines or tool changes need to persist between machine reboots. The `0:/sys/INDX_WRITE_STATE.g` macro writes these variables to `0:/sys/indx-state.g` which is run at the end of `0:/sys/INDX_variables.g` to restore saved variables.
 
-Currently the active tool is written every tool change. This will be made optional in the future to reduce SD card wear.
+Currently the active tool is written twice every tool change (once when the latch opens and once when it locks). This will be made optional in the future to reduce SD card wear.
+
+This state is used in config.g to set which tool was left in the dock at the last tool change that was recorded. but the folloing in config.g at the end, after the INDX_variables.g line
+
+```
+; Re-select whatever tool indx-state.g says is physically on the head
+if global.INDX_State >= 0 && global.INDX_State < #tools
+  T{global.INDX_State} P0
+elif global.INDX_State = 99
+  echo "config.g: latch is closed but the tool is unknown - no tool selected. Run INDX_OPEN or set global.INDX_State."
+```
 
 ## Tool management macros
 `0:/sys/INDX_OPEN.g` - Open the tool
@@ -421,36 +436,61 @@ Currently the active tool is written every tool change. This will be made option
 
 ### Tool change macros
 
-There is one tool change amcro for each of the steps:
+There is one tool change macro for each of the steps:
 `INDX_TC_FREE.g` park the tool on the head in its dock, called from `tfreeN.g`
 `INDX_TC_PRE.g` move the head to the trigger line of the dock of the tool about to be picked up, called from `tpreN.g`
 `INDX_TC_POST.g` lock the new tool on and leave the dock, called from `tpostN.g`
 
-So there still need to be as many `tfreeN.g`,`tpreN.g` and `tpostN.g` macros are there are tools defined, but they all just call the same INDX_ macros. For example:
+So there still need to be as many `tfreeN.g`,`tpreN.g` and `tpostN.g` macros as are there are tools defined, but they all just call the same INDX_ macros. For example:
 
 ```
-; tfree0 - free tool 0.
+; tfree0 - free tool 0
 M98 P"INDX_TC_FREE.g" T0
 ```
 ```
-; tpre0 - approach the tool 0 dock.
+; tpre0 - approach the tool 0 dock
 M98 P"INDX_TC_PRE.g" T0
 ```
 ```
-; tpost0 - engage and lock tool 0.
+; tpost0 - engage and lock tool 0
 M98 P"INDX_TC_POST.g" T0
 ```
 
 >Note: Using the example macros, the standby temperatures set by the slicer or otherwise are overwritten with 0 at the next tool change: on pickup by INDX_TC_PRE, and on park by INDX_TC_FREE.{.is-info}
 
->Note:  The heater must be turned off before the tool is unlocked (make this an early step in tfreeN.g) otherwise a heater fault will be rasied when the tool is removed.{.is-info}
 
 #### Tool Change Checks
 
-The tool change macros conduct a number of checks to make it more likely that a failed pickup or dropoof will be detected.
+The tool change macros conduct a number of checks to make it more likely that a failed pickup or dropoff will be detected.
 
+#### Tool Change Checks
 
+The tool change macros conduct a number of checks to make it more likely that a failed pickup or drop-off will be detected.
 
+`INDX_TC_FREE.g` (drop-off):
+- The tool number must have a dock position in `INDX_tool_x`.
+- X and Y must be homed before any movement.
+- A tool must be on the head to drop off.
+- The dock position must be within the machine axis limits.
+- A head below `safeYmin` first moves out in Y only, clear of the docks.
+- Load cell: the clamping force must drop by at least 700 g as the latch opens.
+- Temperature (tools above 70 °C): the IR reading must drop faster than normal cooling.
+
+`INDX_TC_PRE.g` (approach to the next tool):
+- The tool number must have a dock position in `INDX_tool_x`.
+- X and Y must be homed before any movement.
+- The head must be empty before approaching a dock.
+- The dock position must be within the machine axis limits.
+- A head below `safeYmin` first moves out in Y only, clear of the docks.
+
+`INDX_TC_POST.g` (pickup):
+- The tool number must have a dock position in `INDX_tool_x`.
+- The tool being picked up must be the selected tool.
+- The dock X position must be within the X axis limits.
+- Load cell: the clamping force must rise by at least 700 g as the latch closes.
+- Heat: heating must raise the nozzle temperature by 3 °C within 5 seconds.
+
+When a check fails, `INDX_TC_check_action` sets what happens: 0 shows a warning, 1 stops the tool change. The thresholds are set in `INDX_variables.g`. The load cell checks are skipped if the load cell is not calibrated. If no tool was picked up, the heat check also produces a heater fault ("inductive heater load error: is a tool loaded?").
 
 ## Loadcell Macros
 
@@ -467,4 +507,5 @@ In order to calibrate and then probe with the load cell the following macros are
 `0:/sys/homez.g` - an example homez.g - adapt for your specific machine
 `0:/sys/bed.g`  - for 3 point bed levelling (e.g. on a voron trident).
 `0:/sys/mesh.g`  - for bed mesh using the loadcell or SZP - see the [Bed Mesh](/Duet3D_hardware/Duet_3_family/INDX_Toolboard#bed-mesh) section above. 
-`0:/sys/INDX_LC_ZTRIGGER.g` carry out a Z probe with a tare just before the movement.
+`0:/sys/INDX_LC_RAW.g` - read the raw load cell level into global.INDX_LC_raw (used by tool change macros)
+`0:/sys/INDX_LC_RETARE.g`  - zero the reported load cell force
