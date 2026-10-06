@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T16:56:00.140Z
+date: 2026-10-06T17:10:39.727Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -263,7 +263,7 @@ M563 P2 S"INDX" D0 H1 F0 ; create INDX tool 2
 M563 P3 S"INDX" D0 H1 F0 ; create INDX tool 3
 ```
 
-Tool dock offsets are recorded in `0:/sys/INDX_variables.g`.
+The dock positions are set in `0:/sys/INDX_variables.g`, see [Dock and speed settings](#dock-and-speed-settings).
 
 ## Neopixel or other WS2812 LED strings
 
@@ -417,6 +417,36 @@ Global variables are used to synchronise information between the various macros 
 
 Add `M98 P"INDX_variables.g"` to the end of config.g to run this file on startup.
 
+### Dock and speed settings
+
+These variables in `0:/sys/INDX_variables.g` set the dock positions and the tool change speeds. All positions are machine coordinates. The defaults/example values are for the Duet3D test machine; measure the positions on your own machine.
+
+| Variable | Default | Description |
+|---|---|---|
+| `global.INDX_tool_x` | `{-110, -65.5, -19, 27}` | X centre of each dock in mm. The index is the tool number. Add one entry for each INDX tool defined with M563. |
+| `global.INDX_dock_y` | `-127` | Y in mm at which a tool is fully seated in its dock. Shared by all docks. |
+| `global.INDX_dock_dir` | `-1` | Y direction into the docks: -1 if the docks are at the Y minimum, +1 if at the Y maximum. |
+| `global.INDX_trigger_offset` | `5.0` | Distance in mm from the dock line back to the trigger line, where the head stops before the latch moves. |
+| `global.INDX_peel_distance` | `10.0` | Distance in mm the head moves back from the dock line at contact speed after a drop-off or pickup, to clear the dock pins. |
+| `global.INDX_z_hop` | `1.0` | Z raise in mm before travelling to a dock. 0 disables it. |
+| `global.INDX_TC_SPEED` | `24000` | Travel speed in mm/min. |
+| `global.INDX_TC_MODE` | `1.0` | Multiplier on `global.INDX_TC_SPEED`, e.g. 0.3 for the first tests. |
+| `global.INDX_TC_contact_speed` | `1000` | Maximum speed in mm/min for moves within the slow zone. |
+| `global.INDX_TC_slow_zone` | `10` | Distance in mm from the dock line within which moves run at the contact speed. It is never less than `global.INDX_trigger_offset`. |
+
+### Safe Y minimum
+
+The default/example value is for the Duet3D test machine; measure the positions on your own machine.
+
+`global.safeYmin` (default -100) is the lowest Y the head can reach outside a tool change. It keeps the head clear of the tools in the docks.
+
+- At startup `INDX_variables.g` stores the config.g `M208` Y minimum in `global.INDX_Y_hard_min`, then raises the Y minimum to `global.safeYmin`.
+- Normal moves cannot go below `global.safeYmin`.
+- Only the tool change macros go below it. They turn the axis limits off with `M564 S0` in the dock area and turn them back on when the head returns to `global.safeYmin`.
+- The example `homez.g`, `mesh.g`, `pause.g` and `stop.g` move the head to `global.safeYmin`, not below it. `bed.g` aborts if a levelling point is outside the axis limits, and `mesh.g` trims the mesh area to what the probe can reach.
+- The config.g `M208` Y minimum must be at or below `global.INDX_dock_y`. The tool change macros abort if the dock is outside it.
+- Set `global.safeYmin` so that the head, with a tool locked on, clears the tools in the docks.
+
 ### INDX Write State
 
 Some global variable values that are set during calibration routines or tool changes need to persist between machine reboots. The `0:/sys/INDX_WRITE_STATE.g` macro writes these variables to `0:/sys/indx-state.g` which is run at the end of `0:/sys/INDX_variables.g` to restore saved variables.
@@ -432,6 +462,27 @@ if global.INDX_State >= 0 && global.INDX_State < #global.INDX_tool_x
 elif global.INDX_State = 99
   echo "config.g: latch is closed but the tool is unknown - no tool selected. Run INDX_OPEN or set global.INDX_State."
 ```
+
+#### global.INDX_State values
+
+| Value | Meaning |
+|---|---|
+| -1 | Latch open, no tool on the head |
+| 0 to n | That tool is locked on the head |
+| 99 | Latch closed, tool unknown |
+
+The tool change macros set `global.INDX_State` and save it with `INDX_WRITE_STATE.g`. `INDX_OPEN.g` sets -1 and `INDX_CLOSE.g` sets 99, but neither saves it. `INDX_LC_CALIBRATE.g` asks which tool was seated, then sets the state to that tool and selects it. The state is saved if the calibration is saved.
+
+#### Recovering from a state mismatch
+
+The tool change macros stop if `global.INDX_State` does not match the selected tool, for example `INDX_TC_FREE: T0 is selected but global.INDX_State is 1`. To recover:
+
+1. Check which tool, if any, is on the head.
+2. If tool n is on the head, send `set global.INDX_State = n` then `T<n> P0`.
+3. If the head is empty and the latch is closed, run `M98 P"INDX_OPEN.g"`. If the head is empty and the latch is open, send `set global.INDX_State = -1` then `T-1 P0`.
+4. Send `M98 P"INDX_WRITE_STATE.g"` so that the corrected state is used after a restart.
+
+`P0` selects or deselects the tool without running the tool change macros. Do not use `T<n>` without `P0` to correct the state, because that starts a tool change.
 
 ## Tool management macros
 `0:/sys/INDX_OPEN.g` - Open the tool
@@ -460,6 +511,39 @@ M98 P"INDX_TC_POST.g" T0
 ```
 
 >Note: Using the example macros, the standby temperatures set by the slicer or otherwise are overwritten with 0 at the next tool change: on pickup by INDX_TC_PRE, and on park by INDX_TC_FREE.{.is-info}
+
+#### Tool change sequence
+
+RRF runs `tfree` for the old tool, then `tpre` and `tpost` for the new tool. All XY moves use `G53` machine coordinates and set both X and Y, so tool offsets and the previous head position do not affect them.
+
+`INDX_TC_FREE.g` (drop-off):
+
+1. Turn the heater off.
+2. Raise Z by `global.INDX_z_hop`.
+3. If the head is below `global.safeYmin`, move out in Y only.
+4. Travel along `global.safeYmin` to the dock X.
+5. Move to the slow zone at travel speed, then to the trigger line at contact speed.
+6. Release the tool: small latch moves alternate with Y moves to the dock line, then the latch opens fully.
+7. Move back by `global.INDX_peel_distance` at contact speed, then to `global.safeYmin`.
+8. Run the drop-off checks.
+
+`INDX_TC_PRE.g` (approach to the next tool):
+
+1. Raise Z by `global.INDX_z_hop`, unless the drop-off has already raised it.
+2. If the head is below `global.safeYmin`, move out in Y only.
+3. Travel along `global.safeYmin` to the dock X.
+4. Move to the slow zone at travel speed, then to the trigger line at contact speed.
+
+`INDX_TC_POST.g` (pickup):
+
+1. Move to the dock line at contact speed.
+2. Lock the latch.
+3. Move back by `global.INDX_peel_distance` at contact speed, then to `global.safeYmin`.
+4. Run the load cell check.
+5. Lower Z to the height before the tool change.
+6. Run the heat check, then heat to the tool's active temperature.
+
+After `T-1`, only the drop-off runs, so Z stays raised by `global.INDX_z_hop` until the next pickup.
 
 #### Tool Change Checks
 
