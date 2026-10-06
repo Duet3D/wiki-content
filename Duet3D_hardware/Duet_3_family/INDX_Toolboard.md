@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T17:10:39.727Z
+date: 2026-10-06T17:17:03.201Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -183,6 +183,8 @@ M308 S3 Y"thermopile_tpis.environment" P"121.S1.2" A"Hot end surround"     ; con
 M950 H1 C"121.nozzleheat" T1                                               ; configure induction heater
 ```
 
+During a tool change the INDX macros turn the heater off before the latch opens, and heat the new tool to its active temperature only after the head has left the dock. Standby temperatures are not used.
+
 ### Onboard temperature sensor
 This helps monitor chamber and INDX MCU board temperature.
 
@@ -264,6 +266,8 @@ M563 P3 S"INDX" D0 H1 F0 ; create INDX tool 3
 ```
 
 The dock positions are set in `0:/sys/INDX_variables.g`, see [Dock and speed settings](#dock-and-speed-settings).
+
+The latch is driven by the extruder motor, and RRF discards extruder moves when no tool is selected. `INDX_variables.g` therefore also creates tool 9, "INDX latch", with no heater. The macros select it only to move the latch when no tool is selected. It shows in DWC but is not used for printing. Because of it, `#tools` is 10, so the macros use `#global.INDX_tool_x` for the number of INDX tools.
 
 ## Neopixel or other WS2812 LED strings
 
@@ -536,6 +540,8 @@ RRF runs `tfree` for the old tool, then `tpre` and `tpost` for the new tool. All
 
 `INDX_TC_POST.g` (pickup):
 
+The latch is locked here, not in `INDX_TC_PRE.g`, because no tool is selected while `tpre` runs.
+
 1. Move to the dock line at contact speed.
 2. Lock the latch.
 3. Move back by `global.INDX_peel_distance` at contact speed, then to `global.safeYmin`.
@@ -554,6 +560,7 @@ The tool change macros conduct a number of checks to make it more likely that a 
 - A tool must be on the head to drop off (as recorded in `global.INDX_State`).
 - The dock position must be within the machine axis limits.
 - A head below `global.safeYmin` first moves out in Y only, clear of the docks.
+- Load cell: the reading must be at least 700 g above this dock's empty-head reading.
 - Load cell: the clamping force must drop by at least 700 g as the latch opens.
 - Temperature (tools above 70 °C): the IR reading must drop faster than normal cooling.
 
@@ -561,6 +568,7 @@ The tool change macros conduct a number of checks to make it more likely that a 
 - The head must be empty before approaching a dock (as recorded in `global.INDX_State`).
 - The dock position must be within the machine axis limits.
 - A head below `global.safeYmin` first moves out in Y only, clear of the docks.
+- Load cell: the reading must be within 700 g of this dock's empty-head reading.
 
 `INDX_TC_POST.g` (pickup):
 - The head must be at the dock trigger line left by `INDX_TC_PRE.g`; otherwise nothing moves.
@@ -568,6 +576,8 @@ The tool change macros conduct a number of checks to make it more likely that a 
 - Heat: heating must raise the nozzle temperature by 3 °C within 5 seconds.
 
 When a check fails, `global.INDX_TC_check_action` sets what happens: 0 shows a warning, 1 stops the tool change. The thresholds are set in `INDX_variables.g`. The load cell checks are skipped if the load cell is not calibrated. If no tool was picked up, the heat check also produces a heater fault ("inductive heater load error: is a tool loaded?").
+
+The empty-head checks always stop the tool change, whatever `global.INDX_TC_check_action` is set to. Each dock's empty-head reading is taken during a successful tool change and is lost at restart, so these checks start after the first change at each dock.
 
 ## Loadcell Macros
 
