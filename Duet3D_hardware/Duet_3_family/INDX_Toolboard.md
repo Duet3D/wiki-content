@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T17:23:52.507Z
+date: 2026-10-06T17:32:01.380Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -118,7 +118,7 @@ Aside from the status LEDs mounted on the VF board, LEDs are provided on the MCU
 **Status LED:** In normal use, the red LED flashes slowly (approx 1Hz) in sync with the main board to indicate that it has CAN time sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
 
 ## Software notes
-The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**. 
+The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**. See 
 
 The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bin**.
 Reported by M122 B121 as: `SAME5x composite bootloader version 3.02` (the version number will increase with future versions, do not use a version prior to 3.02)
@@ -380,7 +380,7 @@ M569.1 P121.0 T3
 
 ## Bed Mesh
 
-The INDX tool head allows us to mesh with either the loadcell or the SZP probe. The loadcell will take longer to mesh the entire bed, however it is measuring the actual surface, and not the metal that is potentially below the surface (for example, on coated beds). Also, if there are gantry twists or other mechanical issues with the machine, the load cell will produce a more accurate mesh because the SZP coil is displaced from the nozzle tip and so will move differently relative to the nozzle tip with those mechanical issues. On the other hand the SZP mesh is much quicker to perform at a high probe density.
+The INDX tool head allows us to mesh with either the loadcell or the SZP probe. The loadcell will take longer to mesh the entire bed, however it is measuring the actual surface, and not the metal that is potentially below the surface (for example on coated beds). Also, if there are gantry twists or other mechanical issues with the machine, the load cell will produce a more accurate mesh because the SZP coil is displaced from the nozzle tip and so will move differently relative to the nozzle tip with those mechanical issues. On the other hand the SZP mesh is much quicker to perform at a high probe density.
 
 The recommendation is to mesh with first the load cell and then the SZP and compare those meshes. Then a decision can be made to use the SZP mesh if it is close enough, correct mechanical twists if possible, or stick with the loadcell mesh.
 
@@ -420,6 +420,8 @@ The macros are hosted on Bondtech's Github here:
 Global variables are used to synchronise information between the various macros for INDX calibration and tasks such as load cell probing. To make them easier to manage, these variables are contained in `0:/sys/INDX_variables.g` which is put in the sys directory as part of the macros bundle.
 
 Add `M98 P"INDX_variables.g"` to the end of config.g to run this file on startup.
+
+After editing the file, send `M98 P"INDX_variables.g"` to apply the changes without a restart. `global.INDX_State` keeps its current value, because the saved state is only read at startup.
 
 ### Dock and speed settings
 
@@ -495,6 +497,7 @@ The tool change macros stop if `global.INDX_State` does not match the selected t
 `0:/sys/INDX_LATCH_MOVE.g` - Moves the latch motor for all the latch macros, selecting the latch tool if no tool is selected
 `0:/sys/INDX_UNLOCK_DANCE.g` - Releases a tool seated in its dock, called by `INDX_TC_FREE.g`
 `0:/sys/INDX_TC_REPORT.g` - Logs each tool change check and acts on a failure, called by the tool change macros
+`0:/sys/INDX_TOOL_CHECK.g` - Confirms a tool is on the head with a short heat check, called by `homez.g`, `bed.g` and `mesh.g`
 
 ### Tool change macros
 
@@ -607,9 +610,9 @@ A one-line macro in `0:/macros` containing `M98 P"0:/sys/INDX_LC_CALIBRATE.g"` m
 
 - Homing files must not select or change the tool. The tool is selected at startup from `global.INDX_State`, and after that only by tool changes.
 - Home X and Y before Z. The tool change macros and `homez.g` stop if X and Y are not homed.
-- `homez.g` needs a tool locked on the head and a calibrated load cell, because the nozzle is the probe.
+- `homez.g`, `bed.g` and `mesh.g` need a tool locked on the head and selected, and a calibrated load cell, because the nozzle is the probe. `INDX_TOOL_CHECK.g` confirms the tool is there with a short heat check: the nozzle must rise 3 °C within 5 seconds.
 - `homez.g` ends with the head at `global.safeYmin`.
-- With `global.INDX_LC_DEBUG` set to 1, `homez.g` probes a second time and reports the difference from the trigger height.
+- With `global.INDX_DEBUG` set to 1, `homez.g` probes a second time and reports the difference from the trigger height.
 
 ## Testing
 
