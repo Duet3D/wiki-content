@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T17:32:01.380Z
+date: 2026-10-06T17:35:25.143Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -118,7 +118,7 @@ Aside from the status LEDs mounted on the VF board, LEDs are provided on the MCU
 **Status LED:** In normal use, the red LED flashes slowly (approx 1Hz) in sync with the main board to indicate that it has CAN time sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
 
 ## Software notes
-The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**. See 
+The RepRapFirmware binary file for this board is called **Duet3Firmware_TOOLINDX.bin**. 
 
 The bootloader file for this board is called **Duet3Bootloader-SAME5x_CAN_USB.bin**.
 Reported by M122 B121 as: `SAME5x composite bootloader version 3.02` (the version number will increase with future versions, do not use a version prior to 3.02)
@@ -380,7 +380,7 @@ M569.1 P121.0 T3
 
 ## Bed Mesh
 
-The INDX tool head allows us to mesh with either the loadcell or the SZP probe. The loadcell will take longer to mesh the entire bed, however it is measuring the actual surface, and not the metal that is potentially below the surface (for example on coated beds). Also, if there are gantry twists or other mechanical issues with the machine, the load cell will produce a more accurate mesh because the SZP coil is displaced from the nozzle tip and so will move differently relative to the nozzle tip with those mechanical issues. On the other hand the SZP mesh is much quicker to perform at a high probe density.
+The INDX tool head allows us to mesh with either the loadcell or the SZP probe. The loadcell will take longer to mesh the entire bed, however it is measuring the actual surface, and not the metal that is potentially below the surface (for example, on coated beds). Also, if there are gantry twists or other mechanical issues with the machine, the load cell will produce a more accurate mesh because the SZP coil is displaced from the nozzle tip and so will move differently relative to the nozzle tip with those mechanical issues. On the other hand the SZP mesh is much quicker to perform at a high probe density.
 
 The recommendation is to mesh with first the load cell and then the SZP and compare those meshes. Then a decision can be made to use the SZP mesh if it is close enough, correct mechanical twists if possible, or stick with the loadcell mesh.
 
@@ -390,7 +390,7 @@ The recommendation is to mesh with first the load cell and then the SZP and comp
    `G29 K1`     -> SZP scanning probe
    `G29 K0`     -> INDX load cell, i.e. the nozzle touches the bed at each point
 
-The grid is set in `mesh.g` rather than in config.g. The SZP normally uses a finer pitch than the load cell because it does not have to touch the bed so it's quicker. The M557 in config.g is only the power-up default.
+The default area and spacing are set in `INDX_variables.g` (`global.INDX_mesh_min`, `global.INDX_mesh_max` and `global.INDX_mesh_spacing`, default 30 mm) and are shared by both probes. `mesh.g` applies them with M557, so the M557 in config.g is only the power-up default.
 
 The grid can be overridden per run, so a print start script can mesh just the area it needs:, e.g `G29 K0 X{-50,50} Y{-40,40} I20` 
    `X{min,max} Y{min,max}`  area in probe coordinates (default global.INDX_mesh_min/max)
@@ -617,3 +617,17 @@ A one-line macro in `0:/macros` containing `M98 P"0:/sys/INDX_LC_CALIBRATE.g"` m
 ## Testing
 
 `0:/macros/INDX_TC_TEST.g` - Optional soak test. It cycles through every tool a set number of times and logs every tool change check. See the comments at the top of the file for its parameters.
+
+## Resuming a print
+
+>`resurrect-prologue.g` has not been extensively tested. Test it on your machine before relying on it.{.is-warning}
+
+`0:/sys/resurrect-prologue.g` prepares the machine when a print is resumed with M916. `resurrect.g` calls it with the X, Y and Z at which the print stopped.
+
+1. If `global.INDX_State` shows no tool on the head, it turns the tool heaters off. It stops if the state is 99.
+2. It shows the saved state and the stop position, and waits for confirmation that the head matches and is clear of the docks.
+3. It homes X and Y.
+4. It selects the tool recorded in `global.INDX_State` with `P0`, so no tool change runs.
+5. If Z is not homed, it takes Z to be 5 mm above the stop height, where `pause.g` left it. This lift must match the Z lift in `pause.g`.
+
+`resurrect.g` then selects the print tool with a normal T command, which runs a tool change if a different tool is on the head.
