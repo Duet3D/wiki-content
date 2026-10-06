@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-09-28T12:22:51.122Z
+date: 2026-10-06T13:40:08.043Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6414,7 +6414,7 @@ Tell one or more motor drivers to apply a specified torque regardless of positio
 ### Parameters
 
 * **Pn.n** Motor CAN address and driver number. Can also be a colon separated list of driver numbers.
-* **Tn.n** The torque to apply in units of Nm, or zero to leave torque mode. Applying the requested torque is dependnt on on the M569.1 Q parameter having been specified correctly (not applicable to Hangprnter/ODrive).
+* **Tn.n** The torque to apply in units of Nm, or zero to leave torque mode. Applying the requested torque is dependent on on the M569.1 Q parameter having been specified correctly (not applicable to Hangprinter/ODrive). The sign of T sets the direction relative to the M569 direction setting
 * **Vn.n** (optional) Maximum speed to move at in full steps per second. A zero (the default) or negative value means no limit. Not supported on Hangprinter/ODrive.
 
 ### Examples
@@ -6448,6 +6448,7 @@ pos_mode, pos_mode
 * Use the Q parameter of the M569.1 command to specify the torque constant of the motor.
 * The driver is put back into position mode by requesting a torque smaller than 0.0001 Nm
 * Sending a regular motion command (e.g. G1) that reques movement by the motor also puts the motor back into position mode.
+* Machine position is not updated in torque mode in RRF 3.7.0 or earlier. this will be changed in a future version.
 * Hangprinter's "torque mode" is implemented as a RepRapFirmware macro that depends on M569.4.
 
 ## M569.5: Closed loop data collection
