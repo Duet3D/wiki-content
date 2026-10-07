@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-06T13:40:08.043Z
+date: 2026-10-07T17:43:43.242Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5714,7 +5714,7 @@ The **C** parameter specifies the input pin and the optional modulation pin. See
 The **H** parameter:
 * Defines the dive height when Z probing, which is the height above the trigger height from which probing starts. 
 * The default is 3mm or 5mm depending on firmware version. You may wish to increase it during initial calibration. 
-* When using mesh bed compensation or running G30 commands with specified XY coordinates (for example from the bed.g file), the firmware moves the Z probe to this height above where it expects the bed to be before commencing probing. The maximum depth of probing from this position is twice the dive height. 
+* When using mesh bed compensation or running G30 commands with specified XY coordinates (for example from the bed.g file), the firmware moves the Z probe to this height above where it expects the bed to be before commencing probing. If the Z axis has been homed, the probing move ends at (M208 Z minimum - first dive height + trigger height), so with a Z minimum of 0 the maximum depth of probing is twice the dive height. The probing move is not limited by the M208 Z minimum. 
 * A large dive height will tolerate a very uneven bed or poor calibration. A small dive height will make probing faster, because the Z probe has less distance to travel before reaching the bed. 
 * From RRF 3.5.1, the H parameter supports two dive heights. When probing multiple times at the same point, the second and subsequent probes use the second dive height and it is calculated relative to the height at which the probe last triggered. The idea is to speed up probing if you make the second dive height smaller than the first.
 
