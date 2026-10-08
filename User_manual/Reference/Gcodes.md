@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-07T17:43:43.242Z
+date: 2026-10-08T13:51:47.588Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5446,6 +5446,7 @@ Enables networking as a client, and joins the network with the SSID 'MyNetwork',
 * Also works with the WiFi interface on an attached SBC. See M587 for configuration limitation.
 * On Duet boards with WiFi interfaces running firmware 1.19 and later, the IP address is set in the M587 command when you configure the access point details.
 * On the first `M552 T1 S1` the WiFi module imports `server.crt` and `server.key` from `/sys` on the SD card into its own flash and then deletes the SD card copies. See [HTTPS setup](https://github.com/Duet3D/RepRapFirmware/blob/3.7-dev/HTTPS%20setup.md) for creating them.
+* Note there is a bug with all Chromium browsers that prevents large transfers working over TLS to memory constrained devices - use Firefox.
 * The TLS setting is not remembered. Any `M552 S1` without `T1` starts the interface without TLS, so keep `T1` on the M552 line in config.g.
 * `M552 T1` only enables TLS support. Use `M586 ... T1` to enable HTTPS, FTPS or TelnetS.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
