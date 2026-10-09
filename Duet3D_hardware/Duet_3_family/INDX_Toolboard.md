@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-06T17:37:27.362Z
+date: 2026-10-09T12:10:43.123Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -560,7 +560,7 @@ The latch is locked here, not in `INDX_TC_PRE.g`, because no tool is selected wh
 5. Lower Z to the height before the tool change.
 6. Run the heat check, then heat to the tool's active temperature.
 
-After `T-1`, only the drop-off runs, so Z stays raised by `global.INDX_z_hop` until the next pickup.
+After `T-1`, only the drop-off runs, so Z stays raised by `global.INDX_z_hop`. A later pickup from no tool returns Z to the height it started at.
 
 #### Tool Change Checks
 
