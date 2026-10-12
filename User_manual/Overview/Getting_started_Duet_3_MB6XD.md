@@ -2,7 +2,7 @@
 title: Getting started with Duet 3 Mainboard 6XD
 description: 
 published: true
-date: 2022-11-02T23:26:16.293Z
+date: 2026-10-12T16:05:16.230Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-29T15:35:43.090Z
@@ -122,7 +122,7 @@ See here for the [Duet 3 Mainboard 6XD Wiring Diagram](/Duet3D_hardware/Duet_3_f
 
 ## Connecting External Motor Drivers
 
-The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. The Step, Dir and Enable outputs from the 6XD are either low (when "on") or floating/high impedence when "off". To connect a Pololu/StepStick/similar driver to the 6XD a 10K pullup resistor is needed from the Step/Dir/En lines to +5V.
+The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. On v1.0 and v1.01 boards, the Step, Dir and Enable outputs are either low or high impedance (floating). On v1.02 and later boards, they are either low or driven to +5V. To connect a Pololu/StepStick/similar driver to a v1.0 or v1.01 board, a 10K pullup resistor is needed from each of the Step/Dir/En lines to +5V. The resistors are not needed on v1.02 and later boards. For the enable polarity and the driver error inputs, see [Connecting External Motor Drivers](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview#connecting-external-motor-drivers).
 
 This diagram shows connection to a "typical" optoisolated stepper motor driver
 
