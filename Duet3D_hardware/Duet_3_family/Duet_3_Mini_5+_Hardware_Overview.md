@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-09-02T18:45:28.763Z
+date: 2026-10-12T17:03:46.361Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -186,7 +186,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **1 x JST ZH 6-pin connectors** | SWD | Connection for an SWD programming device such as an Atmel-ICE |
 | **1 x 2-pin KK connectors** | CAN | CAN-FD Bus connection for Duet 3 CAN-FD expansion boards. |
 | **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signal levels with 470R series resistors. IO_1,2,3 are PWM capable. IO_0 and IO_1 can optionally be configured as serial ports instead. |
-| **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. A Jumper allows the 10K resistor on IO2.in to be bypassed with 470R resistors. This is required to use IO2 for I2C. <br>**Note:** I2C on Duet 3 mainboards boards is only supported from RRF 3.7 and later. <br> **Note:** The jumper for I03.in provides no functionality because I2C is not supported on those pins; it will be removed in a later board revision. |
+| **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. Fit the IO2.in jumper to bypass the 10K resistor on io2.in with a 470R resistor. The IO2.in jumper must be fitted to use IO_2 for I2C, see [I2C](#i2c). <br> **Note:** The IO3.in jumper has no function, because I2C is not supported on IO_3. It will be removed in a later board revision. |
 | **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
@@ -261,7 +261,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | io0.out | ^^ |
 | IO_1 | io1.in | Endstops, Z probes, filament monitors etc. |
 | ^^ | io1.out | ^^ |
-| IO_2 | io2.in | Endstops, Z probes, filament monitors etc. On version 1.01 and later boards a bypass jumper is provided to allow IO_2 to be used for 3.3V I2C communications, subject to firmware support (the IN pin is SCL, the OUT pin is SDA). |
+| IO_2 | io2.in | Endstops, Z probes, filament monitors etc. On v1.01 and later boards, IO_2 can also be used for I2C, see [I2C](#i2c). |
 | ^^ | io2.out | ^^ |
 | IO_3 | io3.in | Endstops, Z probes, filament monitors etc. |
 | ^^ | io3.out, 12864 neopixel pin | ^^ |
@@ -301,8 +301,7 @@ Except as noted in the table below, an IO_x_IN pin can always be used to provide
 Additionally:
 * IO output pins can be used as inputs, but are only 3.3V tolerant. When using a io_out pin as an input, you need to either enable the pullup resistor using the ^ character at the start of the port name, or use an external pullup resistor to +3.3V. On the Mini5+, output pins can't generate interrupts, so will work as inputs for some uses only (e.g. endstops).
 * IO input pins can be used as outputs, but have 10K protection resistors in series with them, so you would need to bypass these to use them as outputs. Warning: it can be easy to damage the board irreparably doing this, and modifying your board will invalidate the warranty.
-* On board revision v1.01 and later only, jumpers allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. This is required to use IO2 or IO3 for I2C.
-**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
+* On board revision v1.01 and later only, jumpers allow the 10K resistors on IO2.in and IO3.in to be bypassed with 470R resistors. The IO2.in jumper must be fitted to use IO_2 for I2C, see [I2C](#i2c). The IO3.in jumper has no function.
 
 The individual IO_x connectors have the following capabilities:
 
@@ -310,11 +309,21 @@ The individual IO_x connectors have the following capabilities:
 |:---|:---|
 | 0 | yes | no | no | AUX0 port, can be used to connect a PanelDue. Configure using M575 P1. It shares io0.out and io0.in pins with the PanelDue_SD connector. |
 | 1 | yes | no | yes | AUX1 port. Configure using M575 P2. |
-| 2 | yes | no | yes | The  standard firmware does not support this UART |
+| 2 | yes | no | yes | The  standard firmware does not support this UART. Can be used for I2C, see [I2C](#i2c). |
 | 3 | no | yes | yes | Shared with  backlight control on 12864 displays having Neopixel backlights |
 | 4 | no | no | no | IO4_OUT is shared with PSON output |
 | 5 | no | no | n/a | 3-pin connector, input only |
 | 6 | no | yes | n/a | 3-pin connector, input only |
+
+### I2C
+
+RepRapFirmware 3.7.0 and later supports I2C on the Duet 3 Mini 5+. I2C can only be used with the [M260](/User_manual/Reference/Gcodes/M260) and [M261](/User_manual/Reference/Gcodes/M261) commands.
+
+I2C can only be used on port IO_2, and the IO2.in bypass jumper must be fitted. This jumper is provided on v1.01 and later boards. I2C cannot be used on earlier boards, because they do not have this jumper.
+
+The I2C SCL signal is on pin io2.in. The I2C SDA signal is on pin io2.out.
+
+External pullup resistors must be connected between SCL and +3.3V, and between SDA and +3.3V. Some I2C device breakout boards include these resistors. If the resistors are not present, I2C does not work correctly.
 
 ## Power distribution
 
