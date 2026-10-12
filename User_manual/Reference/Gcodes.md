@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-08T13:52:57.350Z
+date: 2026-10-12T11:15:45.901Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9189,7 +9189,7 @@ An alternative procedure is being introduced and will become available in RRF 3.
 
 ## M953: Enable CAN and set fast data rate
 
-*Provisional specification - experimental support in 3.7.0*
+*Experimental support in 3.7.0*
 
 This command enables the CAN subsystem on the master board. It also selects whether or not Bit Rate Switching (BRS) is used and if it is, it sets the data phase bit rate.
 
@@ -9209,11 +9209,11 @@ M953 S4.0 T0.6 J0.2
 
 ### Notes
 
-The optional **C** parameter allows fine-tuning of the transmitter delay compensation. The first parameter is the offset added to the measured transmitter delay. The optional second value, which must be greater than the first, is the minimum delay compensation applied. 
-
-Glitches seen by the receiver while the transceiver delay is being measured will be ignored if they would result in a transceiver delay compensation lower than this value. 
+The optional **C** parameter allows fine-tuning of the transmitter delay compensation. The first parameter is the offset added to the measured transmitter delay. The optional second value, which must be greater than the first, is the minimum delay compensation applied. Glitches seen by the receiver while the transceiver delay is being measured will be ignored if they would result in a transceiver delay compensation lower than this value. 
 
 When CAN BRS is implemented on Microchip SAME5x and SAMC21 processors, these values are converted from nanoseconds into time quanta and stored in the TDCO and TDCF fields of the transceiver delay compensation register.
+
+For further information see [Enabling bit rate switching](https://docs.duet3d.com/en/User_manual/Machine_configuration/CAN_connection#enabling-bit-rate-switching)
 
 ## M954: Configure as CAN expansion board and enable CAN
 
@@ -9243,7 +9243,7 @@ This command configures an accelerometer.
  
 #### RRF 3.7 and later
 
-*RRF 3.7.0-RC.1 and later*
+*RRF 3.7.0 and later (including 3.7.0-rc versions)*
 
 ##### Parameters
 
