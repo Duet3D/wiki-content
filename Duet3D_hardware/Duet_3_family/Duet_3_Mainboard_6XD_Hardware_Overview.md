@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2026-09-24T12:43:00.452Z
+date: 2026-10-12T16:01:06.716Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -56,13 +56,13 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **High current outputs** | 3 x high current outputs up to 6A each, total high current heater limit fused at 15A |
 | **Medium current outputs** | 6 x medium current outputs up to 1A each, each bank of medium current outputs fused at 2A (note when set to 12V there is a total 800mA limit) |
-| **External Driver Signal voltage** | 5V nominal (min. 4.2V @ 20mA) |
+| **External Driver Signal voltage** | 5V nominal (min. 4.2V @ 20mA) on v1.02 and later. On v1.0 and v1.01 the outputs are open drain and do not drive a high level, see [Connecting External Motor Drivers](#connecting-external-motor-drivers). |
 | **External Driver Signal current** | 20mA maximum |
 | **Non opto isolated Inputs** | Permanent 27K pullup resistor to +3.3V included. Input voltage limits: -1V to +30V. |
 | **Non opto isolated Outputs** | 3.3V signal level, 470 ohm series resistor |
 | **Opto Isolated Inputs** | 24V nominal, working range 12V to 50V. Reverse polarity protection included. Compatible with both PNP and NPN PLC outputs. |
 | **Opto Isolated Outputs** | Max voltage 55V, max current 50mA |
-| **Driver Error inputs** | Selectable 10K pullup resistor to +5V or 10K pull down to GND. Input voltage limits: -1V to +24V. |
+| **Driver Error inputs** | Selectable 10K pullup resistor to +5V or 10K pull down to GND. Input voltage limits: -1V to +24V. The firmware sets the polarity at startup, see [Driver error inputs](#driver-error-inputs). |
 | **Fuses** | 15A for V_FUSED, 3A for each bank of medium current outputs/ |
 | **5V current limit** | 2A total on 5V including any PanelDue or other display, and any endstops/Z probes that draw significant power, and any SBC powered by the Duet. |
 | **3.3V current limit** | No more than 300mA from 3.3V external. |
@@ -162,7 +162,7 @@ The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is 
 | **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface boards.|
 | **6 x 6-pin KK connectors** | DRIVER_0-DRIVER_5 | External stepper or servo motor driver connections. 5V, GND, single ended outputs for Step, Dir and Enable along with a fault input provided per driver. See "Connecting External Drivers" section below. |
 | **1 x 3-pin Jumper** |  Driver Enable Polarity | A jumper in the "left" position is used for external drivers which are enabled when a voltage is applied to the enable connection (Active Enable). A jumper in the "right" position is used for external drivers which are disabled when a voltage is applied to the enable connection (Active Disable) (*Note the v0.1 boards have the silkscreen reversed*). |
-| **1 x 3-pin Jumper** |  Error Pull u/d Select | A jumper in the "top"/Pull Down position applies a pull down resistor to the driver fault signals - an external driver must set the line high to indicate a fault. A jumper in the "bottom"/Pull Up position applies a pull up resistor to the driver fault signals - an external driver must set the line low to indicate a fault |
+| **1 x 3-pin Jumper** |  Error Pull u/d Select | A jumper in the "top"/Pull Down position applies a pull down resistor to the driver fault signals - an external driver must set the line high to indicate a fault. A jumper in the "bottom"/Pull Up position applies a pull up resistor to the driver fault signals - an external driver must set the line low to indicate a fault. The firmware sets the polarity of the error inputs at startup, see [Driver error inputs](#driver-error-inputs). |
 | **1 x 4-pin KK connector** | DS_LED | This is to connect and power DotStar LED strips. |
 | ^^ | ^^ | **Caution!** *see note 2 below* |
 | **Network** | Ethernet | 1 x RJ45 100BaseT Port. *non MDIX* connect to an Ethernet switch, hub or MDIX enabled laptop port. If connecting to a non MDIX enabled port use a crossover cable. Orange LED on Ethernet port indicates Ethernet enabled, green LED indicates network activity |
@@ -269,7 +269,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
 | ^^ | ^^ | spi.cs4 | ^^ |
-| Driver error inputs | DRIVER 0| driver0.err | For receiving error signals from external drivers. These generate [events](/User_manual/RepRapFirmware/Events), so you do not normally need to read them. |
+| Driver error inputs | DRIVER 0| driver0.err | For receiving error signals from external drivers. These generate [events](/User_manual/RepRapFirmware/Events), so you do not normally need to read them. To read an error input yourself, see [Driver error inputs](#driver-error-inputs). |
 | ^^ | DRIVER 1| driver1.err | ^^ |
 | ^^ | DRIVER 2| driver2.err | ^^ |
 | ^^ | DRIVER 3| driver3.err | ^^ |
@@ -460,23 +460,65 @@ Power overdraw conditions may result in poor communication between the Pi and Du
 
 ## Connecting External Motor Drivers
 
-The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. Note that:
-* The **Step** and **Dir** outputs from the 6XD are either low (when "on") or floating/high-impedance when "off". 
-  * The 6XD will generate negative-going step pulses, and this will only work if the driver samples steps on the leading edge of the pulse. For stepstick and similar drivers, that will depend on the driver chip. Otherwise, add an inverter between the step output and the driver.
-  * Direction can be flipped using M569 S parameter.
-* The **Enable** output is either low when "on" and high impedance when "off", or vice versa, depending on the position of the 'Driver Enable Polarity' (En_Pol) jumper.
-  * The jumper sets the default value in case a M569 command with R parameter isn't seen. The main aim of this is to power up with the drivers disabled.
-  * The `M569 R#` parameter overrides the jumper. 
-  **R0** = signal not energised to enable the driver. On v1.01 and earlier boards this means high impedance; on v1.02 this means pulled to +5V. 
-  **R1** = signal energised to enable the driver. This means the output is pulled to low impedence.
+The Duet 3 Mainboard 6XD supports directly connecting external stepper drivers that have opto-isolated or similar inputs. The **Step**, **Dir** and **Enable** outputs depend on the board revision, so select the tab for your board below.
+
+Note that:
+* The 6XD will generate negative-going step pulses, and this will only work if the driver samples steps on the leading edge of the pulse. For stepstick and similar drivers, that will depend on the driver chip. Otherwise, add an inverter between the step output and the driver.
+* Direction can be flipped using M569 S parameter.
+* The state of the **Enable** output depends on the 'Driver Enable Polarity' (En_Pol) jumper and the M569 R parameter.
+  * The firmware reads the jumper at startup and uses it as the default value in case a M569 command with R parameter isn't seen. The main aim of this is to power up with the drivers disabled. The Active Enable position gives R0, and the Active Disable position gives R1.
+  * The `M569 R#` parameter overrides the jumper.
+  * `M569 R-1` switches the Enable output as for R0, and the driver error input is not monitored. See [Driver error inputs](#driver-error-inputs).
+
+### Tabs{.tabset}
+
+#### v1.02 and later
+
+The Step, Dir and Enable outputs are push-pull outputs. Each output is either low or driven to +5V.
+
+**R0**: the driver is enabled when the Enable output is +5V, and disabled when it is low.
+**R1**: the driver is enabled when the Enable output is low, and disabled when it is +5V.
 
 This diagram shows connection to a "typical" optoisolated stepper motor driver
 
 [![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png){target=_blank} [![duet_3_mb6xd_ext_driver.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg =400x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg){target=_blank}
 
-To connect a Pololu/StepStick/similar driver to the 6XD, when using a version 1.01 or earlier 6XD board a 10K pullup resistor is needed from each of the Step/Dir/En lines to +5V. This diagram shows connection to a stepper motor driver that has +5V inputs and a common ground. The resistors are not needed when using a version 1.02 or later board.
+A driver that has +5V inputs and a common ground, such as a Pololu/StepStick/similar driver, can be connected directly. Connect the Step, Dir and En outputs to the driver inputs, and GND to the driver ground.
+
+#### v1.0-v1.01
+
+The Step, Dir and Enable outputs are open drain outputs. Each output is either low or high impedance (floating). The outputs do not drive a high level.
+
+**R0**: the driver is enabled when the Enable output is high impedance, and disabled when it is low.
+**R1**: the driver is enabled when the Enable output is low, and disabled when it is high impedance.
+
+This diagram shows connection to a "typical" optoisolated stepper motor driver. An opto-isolated driver wired from +5V to the 6XD output does not need pullup resistors, because the opto-isolator supplies the current and the 6XD output only sinks it.
+
+[![Connection of Driver 0 on the Duet 3 MB 6XD to a "typical" optoisolated stepper motor driver](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn.png){target=_blank} [![duet_3_mb6xd_ext_driver.jpg](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg =400x)](/duet_boards/duet_3_mb6xd/duet_3_mb6xd_ext_driver.jpg){target=_blank}
+
+A driver that needs a driven high level, such as a Pololu/StepStick/similar driver with +5V inputs and a common ground, needs a 10K pullup resistor from each of the Step/Dir/En lines to +5V. This diagram shows connection to a stepper motor driver that has +5V inputs and a common ground.
 
 [![Connection of Driver 0 on the Duet 3 MB 6XD to a stepper motor driver with +5V inputs and common ground](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn_2.png =400x)](/duet_boards/duet_3_mb6xd/duet3_mb_6xd_v1.0_later_dvr_conn_2.png){target=_blank}
+
+
+### Driver error inputs
+
+Each driver connector has an error input for the fault or alarm output of the external driver. The Error Pull u/d Select jumper applies a 10K pullup to +5V, or a 10K pull down to GND, to all six error inputs.
+
+The firmware sets the polarity of the error inputs at startup by reading all six inputs. If three or more read high, it treats the inputs as active low; otherwise it treats them as active high. It assumes most drivers are not in fault at power up. If the external drivers are unpowered but loading the error inputs, or in fault when the Duet starts, the polarity can be set wrongly. In that case driver error events are raised before config.g runs. Unconnected inputs read as "no fault", because the Error Pull u/d jumper sets their level.
+
+When an error input becomes active, the firmware raises a driver error [event](/User_manual/RepRapFirmware/Events). `M569 R-1` stops the monitoring for that driver.
+
+To set the polarity for each driver, or to take a different action on an error, read the error input as a GPIO input and use a trigger:
+
+```
+M569 P0.1 R-1                ; Enable output switched as for R0, built-in error monitoring off
+M950 J1 C"!driver1.err"      ; GPIO input 1 is active when the error input is low
+M581 P1 T2 S1 R0             ; run sys/trigger2.g when input 1 becomes active, at any time
+```
+
+* Use the `!` prefix to invert the input. Do not use the `^` prefix, because the Error Pull u/d jumper sets the input level.
+* This method only suits drivers that need R0, because `M569 R-1` switches the Enable output as for R0.
 
 For firmware configuration, including mapping drives to axes, configuring enable polarity, and configuring step timing, see the [Connecting external stepper and servo drivers](/User_manual/Connecting_hardware/Motors_connecting_external) wiki page.
 
@@ -529,7 +571,7 @@ If in the future you want to add the termination resistor back into the circuit 
 # Tabs{.tabset}
 ## Revision 1.02
 
-* Changed the Step, Dir and Enable outputs to have active pullups for beter compatibility with some servo drivers
+* Changed the Step, Dir and Enable outputs from open drain to push-pull (low or +5V) for better compatibility with some servo drivers
 * Added hardware support for RS485 on UART 1 shared with IO1), a 3 pin RS485 header and an RS485 enable jumper
 * Reset External header position moved slightly.
 * Minor changes to USB host support circuit.
