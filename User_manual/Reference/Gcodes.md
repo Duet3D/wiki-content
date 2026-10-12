@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-12T11:15:45.901Z
+date: 2026-10-12T11:35:26.220Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9187,7 +9187,7 @@ The procedure for changing the data rate is:
 
 An alternative procedure is being introduced and will become available in RRF 3.7 and later.
 
-## M953: Enable CAN and set fast data rate
+## M953: Enable CAN, set data rate and optionally enable BRS
 
 *Experimental support in 3.7.0*
 
@@ -9196,22 +9196,22 @@ This command enables the CAN subsystem on the master board. It also selects whet
 ### Parameters
 
 * **Sn.n** Requested arbitration phase bit rate in Kbits/second, default 1000. Other supported values are 500 and 250.
-* **Rn** Bit rate mutiplier for the data phase, default 1. Supported values are 1, 2, 3, 4, 6 and 8.
-* **T0.n** Fraction of the data bit time between the bit start and the sample point (optional)
-* **J0.n** Maximum jump time as a fraction of the data bit time (optional)
-* **Caa:bb** Transceiver delay compensation offset and minimum, in nanoseconds (optional)
+* **Rn** (optional) Bit rate mutiplier for the data phase, default 1. Supported values are 1, 2, 3, 4, 6 and 8.
+* **T0.n** (optional) Fraction of the data bit time between the bit start and the sample point for the arbitration phase
+* **J0.n** (optional) Maximum jump time as a fraction of the data bit time for the arbitration phase
+* **U0.n** (optional) Fraction of the data bit time between the bit start and the sample point for the data phase
+* **K0.n** (optional) Maximum jump time as a fraction of the data bit time for the data phase
+* **Caa:bb** (optional) Transceiver delay compensation offset and minimum, in nanoseconds
 
 ### Examples
 <br>
 <pre class="cblock">
-M953 S4.0 T0.6 J0.2
+M953 S1000 R4     ; use standard 1Mbps arbitration bit rate and x4 data phase multiplier (4Mbps)
 </pre>
 
 ### Notes
 
-The optional **C** parameter allows fine-tuning of the transmitter delay compensation. The first parameter is the offset added to the measured transmitter delay. The optional second value, which must be greater than the first, is the minimum delay compensation applied. Glitches seen by the receiver while the transceiver delay is being measured will be ignored if they would result in a transceiver delay compensation lower than this value. 
-
-When CAN BRS is implemented on Microchip SAME5x and SAMC21 processors, these values are converted from nanoseconds into time quanta and stored in the TDCO and TDCF fields of the transceiver delay compensation register.
+The optional **T**, **J**, **U*, **K** and **C** parameters are not normally used. 
 
 For further information see [Enabling bit rate switching](https://docs.duet3d.com/en/User_manual/Machine_configuration/CAN_connection#enabling-bit-rate-switching)
 
