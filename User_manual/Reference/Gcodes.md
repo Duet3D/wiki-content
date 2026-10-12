@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-12T11:35:26.220Z
+date: 2026-10-12T11:42:43.793Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -34,7 +34,7 @@ The GCode can originate from a number of sources:
 
 * Sent to over USB (for example from [Pronterface](http://www.pronterface.com/){target=_blank})
 * Sent by the [Duet Web Control (DWC)](/User_manual/Reference/Duet_Web_Control_Manual){target=_blank} Interface
-* Sent by an external controller such as the [PanelDue](/Duet3D_hardware/Accessories/PanelDue){target=_blank}
+* Sent by an external controller such as the [PanelDue](/Duet3D_hardware/Accessories/PanelDue){target=_blank} or [Duet Screen](https://docs.duet3d.com/Duet3D_hardware/Accessories/DuetScreen){target=_blank}
 
 In all cases the GCode could
 
