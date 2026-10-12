@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-09-23T13:06:02.863Z
+date: 2026-10-12T17:01:57.816Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -241,7 +241,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2-pin KK connector** | RS485 | (v1.02c and later) IO1 is connected to this header via an RS485 transceiver to allow connection of RS485 devices. The RS485_EN jumper must be fitted to connect IO1.in to the RS485 transceiver. |
 | **1 x 2-pin jumper** | RS485 EN | Jumper to enable RS485 use by connecting IO1.in to the RS485 transceiver|
 | **1 x 6-pin JST ZH (ZHR-6) connector** | SWD | Only on v1.02b and earlier. Replaced with pogo pin contacts under the board from v1.02c and later. This is for firmware debugging|
-| **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Add a jumper to bypass the 10k resistor on IO2.in so that it can be used for I2C. **Note:** I2C is supported on this board in firmware 3.7 and later. When using the IO2 connector for I2C, external pullup resistors (typically 4.7K) must be connected between +3.3V and each of IO2.in (aka SCL) and IO2.out (aka SDA). |
+| **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Fit this jumper to bypass the 10K resistor on io2.in. The jumper must be fitted to use IO_2 for I2C, see [I2C](#i2c). |
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
 | **1 x 2x6 header** | ESP | *v1.02 and later boards*: Header to connect an ESP WiFi board. |
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
@@ -315,7 +315,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | io0.out | ^^ |
 | ^^ | IO_1 | io1.in | ^^ |
 | ^^ | ^^ | io1.out | ^^ |
-| ^^ | IO_2 | io2.in | Endstops, Z probes, filament monitors etc. On version 1.02 and later boards a bypass jumper is provided to allow IO_2 to be used for 3.3V I2C communications, subject to firmware support (the IN pin is SCL, the OUT pin is SDA). |
+| ^^ | IO_2 | io2.in | Endstops, Z probes, filament monitors etc. On v1.02 and later boards, IO_2 can also be used for I2C, see [I2C](#i2c). |
 | ^^ | ^^ | io2.out | ^^ |
 | ^^ | IO_3 | io3.in | Endstops, Z probes, filament monitors etc. |
 | ^^ | ^^ | io3.out | ^^ |
@@ -369,7 +369,7 @@ On the version 1.02 boards the individual IO_x connectors have the following add
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no |  |
 | 1 | yes | no | no |Combined with the RS485 header on v1.02c and later.<br> A jumper is provided to connect IO1.in to the RS485 header (RS485 EN) |
-| 2 | no | no | no | A jumper is provided to bypass the 10K input protection resistor to allow I2C to be used on this port.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
+| 2 | no | no | no | Can be used for I2C, see [I2C](#i2c). |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
 | 5 | no | yes | yes |  |
@@ -385,7 +385,7 @@ On the version 0.6, 1.0 and 1.01 boards the individual IO_x connectors have the 
 |:---|:---|:---|:---|:---|
 | 0 | yes | no | no |  |
 | 1 | yes | no | no |  |
-| 2 | no | no | no | Could in principle be used for I2C if a resistor is changed.</br>**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards. |
+| 2 | no | no | no | Cannot be used for I2C, see [I2C](#i2c). |
 | 3 | no | yes | no |  |
 | 4 | no | yes | yes |  |
 | 5 | no | yes | yes |  |
@@ -408,6 +408,16 @@ On the Duet 3 Mainboard 6HC prototype v0.5 boards the capabilities are different
 | 6 | no | yes | no |  |
 | 7 | yes | no | no | In current firmware builds, dedicated to supporting a PanelDue, may not be used for any other purpose |
 | 8 | no | no | yes |  |
+
+## I2C
+
+RepRapFirmware 3.7.0 and later supports I2C on the Duet 3 Mainboard 6HC. I2C can only be used with the [M260](/User_manual/Reference/Gcodes/M260) and [M261](/User_manual/Reference/Gcodes/M261) commands.
+
+I2C can only be used on port IO_2, and the IO2 I2C BYPASS jumper must be fitted. This jumper is provided on v1.02 and later boards. I2C cannot be used on earlier boards, because they do not have this jumper.
+
+The I2C SCL signal is on pin io2.in. The I2C SDA signal is on pin io2.out.
+
+External pullup resistors must be connected between SCL and +3.3V, and between SDA and +3.3V. Some I2C device breakout boards include these resistors. If the resistors are not present, I2C does not work correctly. In particular, an attempt to send data to an I2C address where no device is present may not return an error. This applies to a transaction that sends data and does not read data back.
 
 ## Power distribution
 
