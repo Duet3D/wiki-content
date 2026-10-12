@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2026-04-29T13:07:04.166Z
+date: 2026-10-12T11:37:52.167Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -347,17 +347,18 @@ The latest bootloaders and CANiap files can be downloaded from [here](https://gi
 
 # Enabling bit rate switching
 
-Firmware 3.7.0 and later provide support for CAN-FD bit rate switching. During the data phase of a CAN transmission, the bus length is not important because data is being sent in one direction, so a higher bit rate can be used subject to the quality of the cabling. This is especially useful if the normal bit rate has to be reduced because of long cable lengths.
+Firmware 3.7.0 and later provide support for CAN-FD bit rate switching. During the data phase of a CAN transmission, the bus length is not important because data is being sent in one direction, so a higher bit rate can be used subject to the quality of the cabling. The higher bit rate increases the bus bandwidth This is especially useful if the normal bit rate has to be reduced because of long cable lengths.
 
 There are some restrictions on the use of bit rate switching:
 * The main board must support an external CAN timestamp counter. For Duets this means that the 6HC and 6XD boards can act as the master, but the Duet 3 Mini cannot.
 * Existing Duet 3 expansion and tool boards do not support an external CAN timestamp counter. This may affect the ability to ensure accurate time synchronisation between the main board and expansion boards, especially under conditions of high CAN traffic. We need to conduct further testing to establish whether we can work around this. 6HC and 6XD boards used as expansion boards do not have this issue. Future Duet 3 expansion and tool board designs will not have this issue.
-* The bit rate multiplier (i.e. data but rate divided by normal bit rate) must be 2, 3, 4, 6 or 8.
+* The bit rate multiplier (i.e. data but rate divided by normal bit rate) must be 2, 3, 4, 6 or 8. For example, if the default RepRapFirmware bit rate of 1Mbps is configured and the bit rate multipler is set to 4 then the data phase bit rate is 4Mbps.
 * The maximum data rate supported by the CAN transceivers on Duet 3 boards is 8Mbits/sec. The CAN transceivers on non-Duet boards may have a lower maximum bit rate.
 * All boards in the system must run a firmware version that supports bit rate switching (i.e. 3.7.x).
 * The CAN cabling is more critical when using bit rate switching. Use twisted pair cable (unshielded is OK). Stubs may cause reflectons that degrade the high-speed signals, so keep stubs short and if necessary use ferrite beads to suppress ringing (the new Duet Tool Distribution Boards include these as standard).
+* Older MB6HC and EXP3HC boards are fitted with common mode CAN chokes that do not support high bit rates. These can be recognised by the marking `513A` on the top of the common mode choke (this is a black rectangular component situated close to the CAN connector). The recommended maximum bit rate for these boards is 2Mbps (e.g. 1Mbps standard rate with x2 bit rate multiplier).
 
-## Provisonal instructions for enabling bit rate switching (subject to change)
+## Instructions for enabling bit rate switching
 Bit rate switching is enabled by executing the M953 command on the main board. The R parameter specifies the bit rate mutiplier. You can also specify the sample point using the U parameter but the default (0.78) is usually suitable. RepRapFirmware will communicate the bit rate switching parameters to the other boards. If you lose contact with other boards after enabling bit rate switching, set the bit rate multiplier to 1 to disable bit rate switching.
 
 Examples:
@@ -373,7 +374,7 @@ To check whether any CAN errors are occurring, use command `M122 B#` (where # is
 
 `CAN messages queued 273022, send timeouts 0, received 380326, lost 0, ignored 0, errs 0, boc 0, free buffers 8, min 6, error reg 0`
 
-In a healthy system the values reported for `send timeouts`, `lost`, `ignored`, `errs` and `boc` should all be zero. Nonzero values may be reported if you have perform firmware updates or board resets since the system was powered on. If you see nonzero values at other times, compare the values reported by different boards. If just one tool or expansion board reports errors bit others report no errors, then the problem is likely to be with the CAN connecton to that board. If more then one tool/expansion board report errors but other tool/expansion boards report no errors, and the boards reporting errors are daisy-chained at the end of the bus farthest from the main board, then that provsed a clue about where the bad CAN connection is; or it cojld be that the boards reporting errors are powered from a separate PSU and that PSU doesnt have a common ground with the main board PSU.
+In a healthy system the values reported for `send timeouts`, `lost`, `ignored`, `errs` and `boc` should all be zero. Nonzero values may be reported if you have performed firmware updates or board resets since the system was powered on. If you see nonzero values at other times, compare the values reported by different boards. If just one tool or expansion board reports errors but others report no errors, then the problem is likely to be with the CAN connection to that board. If more then one tool/expansion board report errors but other tool/expansion boards report no errors, and the boards reporting errors are daisy-chained at the end of the bus farthest from the main board, then that provides a clue about where the bad CAN connection is; or it could be that the boards reporting errors are powered from a separate PSU and that PSU doesnt have a common ground with the main board PSU.
 
 ## LED behaviour and error codes
 
