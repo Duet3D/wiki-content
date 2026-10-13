@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-12T11:42:43.793Z
+date: 2026-10-13T11:48:15.219Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3731,7 +3731,7 @@ Request data (synchronously) from a UART device.
 ### Parameters
 
 * **Pnn** Port to send/receive through, numbered as in M575 (RRF 3.7 and later: 2 = first aux port, 3 = second aux port; RRF3.6.x and earlier: 1 = first aux port, 2 = second aux port).
-* **Bnn** How many bytes to read
+* **Bnn** How many bytes to read. Zero means clear the UART receive buffer.
 * **V"name"** (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Order dependency
