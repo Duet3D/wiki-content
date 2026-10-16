@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-16T13:52:24.833Z
+date: 2026-10-16T13:54:53.748Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5934,7 +5934,7 @@ Supported from RRF 3.7.0-beta.3
 * **Knn** Z probe number (default 0)
 
 ### Example
-
+<br>
 <pre class="cblock">
 M558.4 K0 ; tare load cell probe 0
 </pre>
