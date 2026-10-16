@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-16T13:35:54.162Z
+date: 2026-10-16T13:52:24.833Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6909,13 +6909,14 @@ This switches the USB channel that the command is received on to the SBC protoco
 
 ### Parameters
 
-* **Pnnn** SBC protocol version, either USB or SPI. This must be the protocol version that RRF uses, otherwise RRF reports an error.
+* **Pnnn** SBC protocol version. This must be the protocol version that RRF uses (7 in RRF 3.7.0), otherwise RRF reports "Unsupported protocol version". DSF sends the correct value.
 
 ### Notes
 
-* DSF sends this command when the board has started in SBC mode (no SD card) and no SBC is connected over SPI. You do not need to send it yourself.
-* The command must be received on a USB channel. RRF reports an error if the SBC is already connected or if the P parameter is missing.
-
+* DSF 3.7 sends `M576.1 P7` when the board has started in SBC mode (no SD card) and no SBC is connected over SPI. You do not need to send it yourself.
+* The command always switches to USB, and must be received on a USB channel. 
+* RRF reports an "Unsupported protocol version" error if the SBC is already connected or if the P parameter is missing.
+* This is not a user command, it is sent automatically by DSF.
 
 ## M577: Wait until endstop is triggered
 
