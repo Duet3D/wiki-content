@@ -2,7 +2,7 @@
 title: GCodes not implemented
 description:  This page lists GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware. 
 published: true
-date: 2025-12-03T10:25:22.846Z
+date: 2026-10-16T17:31:48.387Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:45:16.729Z
@@ -28,7 +28,7 @@ We believe a macro can be written to achieve the same functionality in a more fl
 * M355: Turn case lights on/off (use a macro that calls M42 or M150, depending on the type of lights used.)
 * M126: Open Valve (Can use a servo on any PWM pin and M280, write a macro M126.g if required)
 * M127: Close Valve (Can use a servo on any PWM pin and M280, write a macro M127.g if required)
-* M146: Set Chamber Humidity (use a macro and M42 to control humidifier, M305 to view the humidity with a DHT sensor)
+* M146: Set Chamber Humidity (use a macro and M42 to control humidifier, M308 to view the humidity with a DHT sensor)
 * M240: Trigger camera (use a macro to call M42 to trigger a pin connected to a camera)
 * M240: Start conveyor belt motor / echo off (use a macro to control a conveyor axis/for echo debug use M111)
 * M241: Stop conveyor belt motor / echo on (use a macro to control a conveyor axis/for echo debug use M111)
@@ -80,12 +80,12 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M113: Set Extruder PWM (No requirement)
 * M128: Extruder Pressure PWM (use M42)
 * M129: Extruder pressure off (use M42)
-* M130: Set PID P value (use M301)
-* M131: Set PID I value (use M301)
-* M132: Set PID D value (use M301)
-* M133: Set PID I limit value (use M301)
+* M130: Set PID P value (use M307, or M301 in RRF 3.6 and earlier)
+* M131: Set PID I value (use M307, or M301 in RRF 3.6 and earlier)
+* M132: Set PID D value (use M307, or M301 in RRF 3.6 and earlier)
+* M133: Set PID I limit value (use M307, or M301 in RRF 3.6 and earlier)
 * M134: Write PID values to EEPROM (use M500)
-* M136: Print PID settings to host (use M301)
+* M136: Print PID settings to host (use M307)
 * M149: Set temperature units (No demand, just use C)
 * M155: Automatically send temperatures (hosts should use polling)
 * M160: Number of mixed materials ( use M567)
@@ -109,6 +109,8 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M246: Stop cooler (use normal fan control M106 etc)
 * M250: Set LCD contrast (better set using the LCD if its a smart LCD)
 * M251: Measure Z steps from homing stop (Delta printers) (No demand)
+* M301: Set PID parameters (not supported in RRF 3.7.0 and later, use M307)
+* M304: Set PID parameters - Bed (not supported in RRF 3.7.0 and later, use M307)
 * M306: Set home offset calculated from toolhead position (No demand)
 * M320: Activate autolevel (use bed probing, levelling Gcodes G29-G32)
 * M321: Deactivate autolevel (use G29)
@@ -125,6 +127,7 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M381: Disable all solenoids (use M42)
 * M405: Filament Sensor on (This and M406 are a subset of the functionality of [M591](/User_manual/Reference/Gcodes/M591)) 
 * M406: Filament Sensor off 
+* M408: Report JSON-style response (not implemented in RRF 3.7.0 and later, use M409)
 * M420: Set RGB Colors as PWM (use M150)
 * M420/M421: Enable/Disable Mesh Leveling (use bed probing, levelling Gcodes G29-G32)
 * M460: Define temperature range for thermistor controlled fan (use M106 to set a fan in thermostatic mode)
