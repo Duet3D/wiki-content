@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-13T11:48:15.219Z
+date: 2026-10-16T13:35:54.162Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6901,6 +6901,20 @@ This sets the communications parameters of the SPI channel.
 * **Pnnn** Number of events required to skip the delay (defaults to 4)
 * **Bnnn** Burst mode window (in ms, defaults to 50, RRF 3.7 and later). After an expression evaluation, variable assignment or macro request RRF keeps transfers going at the burst delay for this long
 * **Dnnn** Delay between full SPI transfers in burst mode (in ms, defaults to 2, RRF 3.7 and later)
+
+## M576.1: Switch SBC connection to USB
+
+*Supported in RRF 3.7 and later in SBC mode, on Duet 3 MB6HC, MB6XD and Mini 5+.*
+This switches the USB channel that the command is received on to the SBC protocol, so that the SBC connection uses that USB channel instead of SPI.
+
+### Parameters
+
+* **Pnnn** SBC protocol version, either USB or SPI. This must be the protocol version that RRF uses, otherwise RRF reports an error.
+
+### Notes
+
+* DSF sends this command when the board has started in SBC mode (no SD card) and no SBC is connected over SPI. You do not need to send it yourself.
+* The command must be received on a USB channel. RRF reports an error if the SBC is already connected or if the P parameter is missing.
 
 
 ## M577: Wait until endstop is triggered
