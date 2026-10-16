@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2026-10-16T16:09:07.395Z
+date: 2026-10-16T16:12:50.127Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -266,8 +266,11 @@ The following implicit type conversions will be performed:
 
 * If the context requires type **float** (e.g. a function such as **sin** or **sqrt**) but a value of type **int** is provided, then the **int** value will be converted to **float**
 * If the context requires type **string** (e.g. an operand of the **echo** command) but a value of some other type is provided, the value will be converted to **string**
-* If the context requires two or more operand of the same type, then if one or more of of them has type **float** but some have type **int** then they will all be conerted to **float**
-* If the context requires two or more operand of the same type, then if one or more of of them has type **string** but some have type **char** then they will all be converted to type **string**
+
+The following balancing conversions are performed when two or more operands of the same type are expected:
+
+* If the context requires operands of the same type, then if one or more of of them has type **float** but some have type **int** then they will all be converted to **float**
+* If the context requires operands of the same type, then if one or more of of them has type **string** but some have type **char** then they will all be converted to **string**
 
 Hint: to force an expression of any type to be converted to type **string**, concatenate it with the empty string using the ^ operator.
 
@@ -279,7 +282,7 @@ The following named constants are provided:
 |:---|:---|
 | false | bool | Boolean false |
 | input | (variable) | The most recent input from a message box with mode 4, 5, 6 or 7 (see M291 command)
-| iterations | int | The number of completed iterations of the innermost loop |
+| iterations | int | The number of completed iterations of the innermost loop. An error is raised if it is used where there is no containing loop. |
 | line | int | The current line number in the file being executed |
 | null | object | The null object |
 | pi | float | Pi (3.14159265...) |
