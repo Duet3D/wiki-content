@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2026-10-05T09:25:25.214Z
+date: 2026-10-16T16:09:07.395Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -260,12 +260,14 @@ The available types of expressions and variables are: **bool**, **int**, **float
 
 RepRapFirmware uses some additional types internally such as **driverId**, **ipAddress** and **macAddress**.
 
-## Type conversions
+## Implicit type conversions
 
-The following implicit type conversions will be performed when necessary:
+The following implicit type conversions will be performed:
 
-* from type **int** to type **float**
-* from any type to **string**
+* If the context requires type **float** (e.g. a function such as **sin** or **sqrt**) but a value of type **int** is provided, then the **int** value will be converted to **float**
+* If the context requires type **string** (e.g. an operand of the **echo** command) but a value of some other type is provided, the value will be converted to **string**
+* If the context requires two or more operand of the same type, then if one or more of of them has type **float** but some have type **int** then they will all be conerted to **float**
+* If the context requires two or more operand of the same type, then if one or more of of them has type **string** but some have type **char** then they will all be converted to type **string**
 
 Hint: to force an expression of any type to be converted to type **string**, concatenate it with the empty string using the ^ operator.
 
@@ -395,7 +397,7 @@ A sequence of expressions exclosed in `{ }` and separated by commas is an array 
 
 **All RRF versions**
 
-The unary prefix operator `#` can be applied to a value of array type to get the number of elements, and the indexing operator `[ ]` can be applied to extract a single element.
+The unary prefix operator `#` can be applied to a value of array type to get the number of elements, and the indexing operator `[ ]` can be applied to extract a single element. In later versons of RRF you can also apply `#` and `[ ]` to string values to count the number of characters or extract individual characters.
 
 Once created arrays have fixed length so you cannot assign values to out-of-bounds elements. An array variable can be reassigned with a new array value to change its length.
 
@@ -419,7 +421,7 @@ Where an expression has multiple binary operators of the same precedence and par
 | / | 6 | (float,float)->float | Division |
 | + | 5 | (int,int)->int, (float,float)->float, (DateTime,int)->DateTime | Addition. When adding an int to a DateTime the second operand is in seconds. |
 | - | 5 | (int,int)->int, (float,float)->float, (DateTime,DateTime)->int, (DateTime,int)->DateTime | Subtraction. When subtracting one DateTime from another the result is in seconds. When subtracting an int from a DateTime the second operand is in seconds. |
-| = or == | 4 | (X,X)->bool | Equality (X stands for any type). Either the two operands must have the same type or one of them must be the constant **null**. |
+| = or == | 4 | (X,X)->bool | Equality (X stands for any type). If one of the operands is **null** then the result is **true** if the other oerand is also **null**, else false. Otherwise the operands are balanced to the same type and then compared. |
 | != | 4 | (X,X)->bool | Inequality (X stands for any type). Either the two operands must have the same type or one of them must be the constant **null**. |
 | < | 4 | (int,int)->bool, (float,float->bool | Less than |
 | <= | 4 | (int,int)->bool, (float,float)->bool | Less than or equal |
@@ -461,8 +463,8 @@ The following functions are supported, with their conventional meanings:
 | floor | float->int or float->float | Result is **int** if it fits in a 32-bit signed integer, else **float** |
 | isnan | float->bool | Returns **true** if the operand is a NaN (Not-a-Number) e.g. *sqrt(-1)* |
 | log | float->float | Returns the natural logarithm of the operand (supported in RRF 3.5.0 and later) |
-| max | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
-| min | (float, ...)->float or (int, ...)->int | Accepts 1 or more arguments. If any argument is NaN then the result is NaN. |
+| max | (float, ...)->float or (int, ...)->int | Accepts one or more arguments. When called with two or more arguments, the arguments are balanced to the same type. If that type is **float** then if any argument is NaN then the result is NaN. When called with one argument, that argument must have array type and the result is as if **max** was called with every element of the array as an argument. If the array has zero elements then an error is reported; if t has one argument then that value is returned. |
+| min | (float, ...)->float or (int, ...)->int | Accepts one or more arguments. When called with two or more arguments, the arguments are balanced to the same type. If that type is **float** then if any argument is NaN then the result is NaN. When called with one argument, that argument must have array type and the result is as if **min** was called with every element of the array as an argument. If the array has zero elements then an error is reported; if t has one argument then that value is returned. |
 | mod | (int, int)->int or (float, float)->float | Returns the remainder from dividing the first operand by the second operand |
 | pow | (float, float)->float or (int, int)->int | Returns the first operand to the power of the second operand  (supported in RRF 3.5.0 and later). The result type is **int** if the operands are **int**, the second operand is non-negative, and the result fits in an **int**; else the result type is **float**. |
 | radians | float->float | Converts degrees to radians |
