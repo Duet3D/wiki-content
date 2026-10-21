@@ -2,7 +2,7 @@
 title: Duet3D Documentation
 description: Introduction to the Duet3D range of control electronics
 published: true
-date: 2025-10-15T10:50:34.915Z
+date: 2026-10-21T23:52:28.200Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-20T11:08:57.551Z
@@ -29,7 +29,8 @@ All Duet3D mainboards support networking and [Duet Web Control](/User_manual/Ref
 
 
 # How to use this documentation
-<!-- TODO broaden this section a bit. -->
+<!-- TODO broaden this section a bit.
+More comments to test -->
 The documentation is split into hardware reference pages, a Software manual and some supporting guides and other pages.
 
 The hardware reference pages have a detailed pinout to aid in wiring, along with pin descriptions and limitations. Please familiarise yourself with the Duet3D hardware you are using, especially poarities and voltage limits before connecting power and other elements of your machine. 
@@ -39,4 +40,5 @@ The software user manual contains information about how to configure RepRapFirmw
 # How to get support
 
 We provide support through our forum, please sign up and post any questions there: [https://forum.duet3d.com/](https://forum.duet3d.com/){target=_blank}
+
 
