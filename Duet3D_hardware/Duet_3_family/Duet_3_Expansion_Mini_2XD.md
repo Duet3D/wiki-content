@@ -2,7 +2,7 @@
 title: Duet 3 Expansion Mini 2XD
 description: The Duet 3 Expansion Mini 2XD is an expansion board designed to connect two external drivers to the Duet 3 mini 5+ mainboard.
 published: true
-date: 2025-09-26T14:53:07.678Z
+date: 2026-10-22T11:12:34.186Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-25T16:27:40.851Z
@@ -79,10 +79,8 @@ The Duet 3 Expansion Mini 2XD supports directly connecting external stepper driv
   * The 2XD generates negative-going step pulses, and this will only work if the driver samples steps on the leading edge of the pulse. For stepstick and similar drivers, that will depend on the driver chip. Otherwise, add an inverter between the step output and the driver.
   * Direction can be flipped using M569 S parameter.
 * The **Enable** output is close to 0V when "on" and close to 5V when "off", or vice versa, depending on the position of the 'Driver Enable Polarity' (En_Pol) jumper. Note, on the Mini5+ all seven possible drivers use a common Enable signal.
-  * The jumper sets the default value in case a M569 command with R parameter isn't seen. The main aim of this is to power up with the drivers disabled.
-  * The `M569 R#` parameter overrides the jumper. 
-  **R0** = signal not energised (pulled to +5V) to enable the driver. 
-  **R1** = signal energised (pulled to 0V) to enable the driver.
+  * Only the jumper sets the polarity. The M569 R parameter has no effect on the Enable output.
+  * The Enable output follows the common Enable signal of the Mini 5+, which RRF turns on when VIN power is present. In RRF 3.7.0 and earlier, M18 and M84 do not disable the external drivers connected to the 2XD.
 
 This diagram shows connection to a typical optoisolated stepper motor driver, it is the same as on the 6XD.
 
