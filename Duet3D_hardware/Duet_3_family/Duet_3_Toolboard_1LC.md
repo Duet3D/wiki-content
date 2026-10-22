@@ -2,7 +2,7 @@
 title: Duet 3 Toolboard 1LC
 description: The Duet 3 Toolboard decentralises the control of all functions of a direct extruder. This demonstrates how the CAN bus supported by Duet 3 can be used to reduce wiring and provide easy tool swaps.
 published: true
-date: 2025-06-11T10:33:55.649Z
+date: 2026-10-22T11:48:45.610Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T14:01:58.889Z
@@ -385,7 +385,7 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 Full support for using an accelerometer with input shaping is implemented in RRF 3.4. It is recommended that the [input shaping plugin](/User_manual/Tuning/Input_shaping_plugin) is used to help select and turne the best input shaper for a specific application.
 
-Accelerometer data can be captured and written to a file using [M956](/User_manual/Reference/Gcodes/M956). There is a plugin for RRF in 3.3RC1 that will display the data:
+Accelerometer data can be captured and written to a file using [M956](/User_manual/Reference/Gcodes/M956). There is a plugin for RRF in 3.3 that will display the data:
 
 ![duet_3_1lc_v1.1_accelerometer_02.png](/manual/inputshaping/profile1.png =800x)
 
@@ -400,7 +400,7 @@ Forum user [Nuramori](https://forum.duet3d.com/user/nuramori) has produced [a gr
 
 ## Connecting a BL Touch
 
-The Toolboard supports probe type 8 (unfiltered switch) and 9 (BL Touch). To connect a BL Touch, see table below.
+The Toolboard supports probe type 8 (unfiltered switch) and 9 (BL Touch), and in RRF 3.7 and later type 1 (analog). To connect a BL Touch, see table below.
 
 | Toolboard IO_0 connector pin | BLTouch pin | Colour |
 |:---|:---|
