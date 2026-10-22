@@ -2,7 +2,7 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2026-06-05T10:51:39.303Z
+date: 2026-10-22T11:41:47.056Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
@@ -258,7 +258,7 @@ Check that you can communicate with the Roto toolboard, by sending
 
 Result should be something like
 
-`Duet TOOL1RR firmware version 3.5.2 (2024-06-10 13:24:08)`
+`Duet TOOL1RR firmware version 3.7.0 (2026-10-08 12:18:44)`
 
 For a full report, send
 
@@ -286,7 +286,7 @@ To check versions are the same:
 
 * Send `M115` and `M115 B#` (where # is the Roto Toolboard CAN address, usually 121) to report the firmware version of the mainboard and the Roto Toolboard.
 * If they are not the same version, download the matching version firmware files from the [RepRapFirmware Github repository](https://github.com/Duet3D/RepRapFirmware/releases).
-* The firmware filename is Duet3Firmware_TOOLRR.bin and this needs to be uploaded to the /firmware folder of the SD card on the attached SBC, or the SD card in the Duet 3 main board if it is running in standalone mode.
+* The firmware filename is Duet3Firmware_TOOL1RR.bin and this needs to be uploaded to the /firmware folder of the SD card on the attached SBC, or the SD card in the Duet 3 main board if it is running in standalone mode.
 * Update the firmware by using the `M997 B#` command, where # is the CAN address of the board.
 
 Factory resetting the board using the CAN reset jumper will cause the bootloader to erase the current firmware, reset the CAN address to the default value of 121, and request the firmware file from the mainboard.
@@ -338,8 +338,9 @@ For SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/T
 
 Add the following to your config.g:
 ```
-M955 P121.0 I10 ; Add accelerometer on Roto with CAN address 121 and specify orientation
+M955 P0 C"121.i2c.lis" I10 ; Add accelerometer 0 on Roto with CAN address 121 and specify orientation
 ```
+In RRF 3.6 and earlier, use `M955 P121.0 I10` instead.
 See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
 
 ### Orientation
@@ -354,7 +355,7 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 
 ## Connecting a BL Touch
 
-The Toolboard supports probe type 8 (unfiltered switch) and 9 (BL Touch). To connect a BL Touch, see table below.
+The Toolboard supports probe type 8 (unfiltered switch) and 9 (BL Touch), and in RRF 3.7 and later type 1 (analog). To connect a BL Touch, see table below.
 
 | Toolboard IO_0 connector pin | BLTouch pin | Colour |
 |:---|:---|
