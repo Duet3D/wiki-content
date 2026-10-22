@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1HCL
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals. 
 published: true
-date: 2026-09-30T10:00:34.462Z
+date: 2026-10-22T11:05:01.570Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T12:59:49.801Z
@@ -97,13 +97,17 @@ A linear composite encoder comprises a linear quadrature encoder that tracks pos
 
 The Expansion 1HCL board supports the following modes of motor control:
 
-* **Open loop mode**. In this mode the driver behaves in a similar way to the drivers on the 6HC main board. If an encoder has been connected and calibrated then it is possible to collect data on the position error for short periods.
+* **Open loop mode**. In this mode the driver behaves in a similar way to the drivers on the 6HC main board. If an encoder has been connected and calibrated then it is possible to collect data on the position error for short periods. In RRF 3.7 and later, phase stepping ([M970](/User_manual/Reference/Gcodes/M970)) and waveform correction ([M970.3](/User_manual/Reference/Gcodes/M970_3)) are supported in this mode.
 * **Closed loop mode**. In this mode an error signal is computed from the difference between the desired motor position and the position reported by the encoder. This error signal is used to apply a torque to correct the error via a modified PID controller. Warning and error events can be generated when the error exceeds configurable thresholds. When the controller is unable to achieve the desired position, it will recover to the correct position when either the obstruction is removed or a command is sent to move the axis or extruder to a position that can be achieved. Maximum speed is reduced compared to open loop mode; a reasonable predictor of maximum speed is the "Speed at which torque starts to drop (high slip angle)" reported by our motor EMF estimator at https://www.reprapfirmware.org/emf.html, or the speed that  corresponds to about 5000 full steps per second if that is lower. The PID controller must be tuned for best response.
-* **Assisted open loop mode** (supported in firmware 3.5.0-beta.4 and later only). In this mode the motor is operated as if in open loop mode, but whenever it is detected that the error between desired and actual position is getting too high, the motor current is automatically increased until the error is reduced. This allows a low initial current to be used, which makes the motor quieter at standstill and low motor speeds. As with closed loop mode, warning and error events can be generated when the error exceeds configurable thresholds. However, if the position requested cannot be achieved and the error exceeds approximately 4 full motor steps, the position will not be corrected when the obstruction is removed or the motor is commanded to a position that can be reached. No further out-of-position events will be generated until the command to enter assisted open loop mode is repeated. Unlike closed loop mode, good operation can be achieved with little or no tuning.
+* **Assisted open loop mode** (supported in firmware 3.5.0 and later only). In this mode the motor is operated as if in open loop mode, but whenever it is detected that the error between desired and actual position is getting too high, the motor current is automatically increased until the error is reduced. This allows a low initial current to be used, which makes the motor quieter at standstill and low motor speeds. As with closed loop mode, warning and error events can be generated when the error exceeds configurable thresholds. However, if the position requested cannot be achieved and the error exceeds approximately 4 full motor steps, the position will not be corrected when the obstruction is removed or the motor is commanded to a position that can be reached. No further out-of-position events will be generated until the command to enter assisted open loop mode is repeated. Unlike closed loop mode, good operation can be achieved with little or no tuning.
+
+In RRF 3.7 and later, the waveform correction set by M970.3 is also applied in closed loop and assisted open loop modes, except while tuning or calibrating.
 
 ## Firmware notes
 
 * Compatible RepRapFirmware versions: RRF 3.4 and later
+* If the main board runs RRF 3.7 or later, the 1HCL must also run RRF 3.7 or later.
+* In RRF 3.7 and later, the 1HCL turns its heaters off when it loses time sync with the main board for longer than the connection timeout set by [M959](/User_manual/Reference/Gcodes/M959) (default 10 seconds).
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
 ## Open source
@@ -174,7 +178,7 @@ Duet 3 Expansion 1HCL provides the following connectors:
 | **1 x 2-pin JST PA connector** | BRAKE| Intended for a motor brake, Max current: 1A. See the section on motor brake voltage control below for more details about using >24V as V_BRAKE with a 24V brake|
 | **1 x 3-pin jumper** | BRAKE_Select_V | The positive supply to the BRAKE connector is supplied from the centre pin of this 3-pin jumper block. A jumper in the left position will power it from the fused VIN supply (V_FUSED), or a jumper in the right position will power it from the fused V_AUX supply (VA_FUSED).|
 | **1 x 4-pin JST VH connector** | DRIVER 0 | Stepper motor connections. (See note on JST VH connectors in 'Wiring notes' above.) |
-| **1 x 2x5 IDC connector** | SPI | SPI encoder input/ SPI Daughterboard header - compatible with SPI daughterboards such as the PT100 and Thermocouple daughterboard |
+| **1 x 2x5 IDC connector** | SPI | SPI encoder input/ SPI Daughterboard header - compatible with SPI daughterboards such as the PT100 and Thermocouple daughterboard. In RRF 3.7 and later, an SPI accelerometer can also be connected. |
 | **1 x 2-pin JST PA connector** | TEMP_0 | Connections for thermistor or PT1000 sensors |
 | **1 x 2-pin JST PA connector** | TEMP_1 | Connections for thermistor or PT1000 sensors |
 | **1 x 5-pin JST PA connector** | IO_1 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signal levels with 470R series resistors. |
@@ -438,11 +442,11 @@ In order to get correct function follow this process:
 1. In closed loop mode, the motor position is calculated from the movement parameters as a floating point number of full steps.
 
 
-### RRF 3.5beta3 and earlier
+### RRF 3.4 and earlier
 
-While in closed loop mode, step pulses are not sent to the stepper motor driver in the same manner as an open loop driver. However, firmware versions prior to 3.5beta4 still use microsteps internally to represent moves.
+While in closed loop mode, step pulses are not sent to the stepper motor driver in the same manner as an open loop driver. However, firmware versions prior to 3.5.0 still use microsteps internally to represent moves.
 
-Therefore, when running firmware earlier than 3.5beta4 the microstep settings (M92) for the 1HCL should be high enough to use the full encoder CPR. e.g. if the encoder is 1000PPR (so 4000CPR) and the full steps/rev of a 1.8 degree/step motor is 200, then the microstepping needs to be at least 4000/200 = 20 to make use of the full resolution of the encoder.
+Therefore, when running firmware earlier than 3.5.0 the microstep settings (M92) for the 1HCL should be high enough to use the full encoder CPR. e.g. if the encoder is 1000PPR (so 4000CPR) and the full steps/rev of a 1.8 degree/step motor is 200, then the microstepping needs to be at least 4000/200 = 20 to make use of the full resolution of the encoder.
 
 Microsteps must be set in powers of 2, in the same manner as open loop drivers, i.e. 1, 2, 4, 8, 16, 32, 64, 128 or 256 x microstepping.
 
@@ -507,7 +511,7 @@ Where the "motorovertemp.g" macro can have whatever actions are appropriate. Thi
 
 ## Motor Brake Control
 
-Some motors have a motor brake fitted for an holding brake solenoid. See the section above on "Motor Brake Voltage" for a description of how to set the correct jumper and M567.9 command depending on the board version.
+Some motors have a motor brake fitted for an holding brake solenoid. See the section above on "Motor Brake Voltage" for a description of how to set the correct jumper and M569.7 command depending on the board version.
 
 # Revisions
 
@@ -539,7 +543,7 @@ Some motors have a motor brake fitted for an holding brake solenoid. See the sec
 
 * Pin changes to allow a UART and PWM on IO_0 and I2C on IO_1
 * Add a physical jumper for I2C support on IO_1
-**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
+**Note:** RepRapFirmware does not currently support I2C on Duet 3 expansion boards.
 * Change the SPI header to be a 2x5 box header so an off the shelf 2x5 ribbon cable can be used.	Used the same pinout arrangement as the SPI temperature Daughterboard connector (with the quadrature pins where CS lines were).
 * Add a second temperature input on PA7 (AIN7)
 * Remove the button
