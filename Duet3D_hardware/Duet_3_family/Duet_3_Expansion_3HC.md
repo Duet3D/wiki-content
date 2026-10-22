@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 3HC
 description: The Duet 3 Expansion 3HC board connects to the Duet 3 CAN-FD bus and provides 3 high current stepper driver channels, along with heaters, fans and GPIO.
 published: true
-date: 2026-08-10T13:38:41.851Z
+date: 2026-10-22T11:11:47.148Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:57:32.828Z
@@ -44,6 +44,8 @@ The Duet 3 Expansion 3HC supports the following:
 ## Firmware notes
 
 * Compatible RepRapFirmware versions: RRF 3.x
+* If the main board runs RRF 3.7 or later, the 3HC must also run RRF 3.7 or later, because heaters on a 3HC running older firmware do not work.
+* In RRF 3.7 and later, the 3HC turns its heaters off when it loses time sync with the main board for longer than the connection timeout set by [M959](/User_manual/Reference/Gcodes/M959) (default 10 seconds).
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
 ## Open source
@@ -125,7 +127,7 @@ Duet 3 Expansion 3HC provides the following connectors:
 | **3 x 2-pin KK headers** | TEMP_0 TEMP_1 TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x5 header** |  | This is for connecting PT100 and thermocouple interface boards (the same boards that the Duet 2 series uses). |
 | **3 x 4-pin JST VH** | DRIVER_0 DRIVER_1 DRIVER_2 | Stepper motor connections. *(see note on JST VH connectors)* |
-| **1 x 2x5 header** | SPI_1 / TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
+| **1 x 2x5 header** | SPI_1 / TEMPDB | This is for connecting PT100 and thermocouple interface boards. In RRF 3.7 and later, an SPI accelerometer can also be connected. |
 | **6 x 5-pin KK headers** | IO_0 IO_1 IO_2 IO_3 IO_4 IO_5 | These are for endstop switches, Z probes, filament monitors, servos, and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V. The outputs are 3.3V signals levels with 470R series resistors. |
 | ^^ | ^^ | **Caution!** Check the pinout of these using the wiring diagram linked above before connecting anything to them. |
 | **1 x 6-pin SWD connector** | SWD | This is for firmware debugging and also provides a backup mechanism to program firmware. |
@@ -194,7 +196,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | IO_5 | io5.in | ^^ |
 | ^^ | io5.out | ^^ |
 | **SPI CS** |||
-| SPIO | spi.cs0 | Thermocouple and/or PT100 daughterboard |
+| SPIO | spi.cs0 | Thermocouple and/or PT100 daughterboard, or accelerometer (RRF 3.7 and later) |
 | ^^ | spi.cs1 | ^^ |
 | ^^ | spi.cs2 | ^^ |
 | ^^ | spi.cs3 | ^^ |
@@ -220,7 +222,7 @@ Except as noted in the table below, an IO_x_IN pin can always be used to provide
 
 ^1^ RepRapFirmware does not currently support UART or I2C on Duet 3 expansion/tool boards.
 
-^2^ To use IO 0 with I2C the protection bypass resistor must be fitted to bypass the 10K series resistor. If this is fitted then IO0.in is no longer protected sufficiently against over voltage/over current. Note that RepRapFirmware does not currently support I2C on Duet 3 boards.
+^2^ To use IO 0 with I2C the protection bypass resistor must be fitted to bypass the 10K series resistor. If this is fitted then IO0.in is no longer protected sufficiently against over voltage/over current. Note that RepRapFirmware does not currently support I2C on Duet 3 expansion boards.
 
 ## Power wiring
 
@@ -359,7 +361,7 @@ Ensure you have can communication (the status light is flashing in sync with the
 * Add Programming pads so the SWD header does not need to be used for initial programming.
 * Enlarged the VFUSED trace to the three high current outputs so its capable of handling 15A@40C rise.
 * Added bypass jumper to IO_0_IN to bypass the 10K protection resistor to allow for I2C to be used on IO_0. 
-**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
+**Note:** RepRapFirmware does not currently support I2C on Duet 3 expansion boards.
 * Many changes to components to work around supply chain issues that do not impact the functionality of the board.
 
 ## Revision v1.0a
