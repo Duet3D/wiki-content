@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2026-06-05T10:49:29.895Z
+date: 2026-10-22T11:42:31.176Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -192,7 +192,7 @@ Check that you can communicate with the SZP by sending
 
 Result should be something like
 
-`Duet SZP firmware version 3.5.2 (2024-06-10 13:24:08)`
+`Duet SZP firmware version 3.7.0 (2026-10-08 12:18:44)`
 
 For a full report, send
 
@@ -254,8 +254,9 @@ For SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/T
 
 Add the following to your config.g:
 ```
-M955 P120.0 I20 ; Add accelerometer on SZP with CAN address 120 and specify orientation
+M955 P0 C"120.i2c.lis" I20 ; Add accelerometer 0 on SZP with CAN address 120 and specify orientation
 ```
+In RRF 3.6 and earlier, use `M955 P120.0 I20` instead.
 See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
 
 ### Orientation
