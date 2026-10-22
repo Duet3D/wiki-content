@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-10-09T12:10:43.123Z
+date: 2026-10-22T11:49:40.808Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -10,7 +10,7 @@ dateCreated: 2026-02-09T09:34:17.141Z
 
 # INDX Tool Board
 
->Full support is still a work in progress. The configuration commands and macros described on this page are likely to change during the RepRapFirmware 3.7 beta cycle{.is-info}
+>Full support is still a work in progress. The configuration commands and macros described on this page are likely to change in future RepRapFirmware versions{.is-info}
 
 This page is about using the Bondtech INDX tool board with Duet 3 or other electronics running RepRapFirmware.
 
@@ -128,7 +128,7 @@ The minimum RepRapFirmware version for this board is 3.7.0. This applies to the 
 
 The default CAN address (which is also the CAN address after the reset jumper is used) is 121.
 
-The inductive heater is fast and powerful, therefore the standard RepRapFirmware default tool heater model is inappropriate. **Heater tuning must be run before using the INDX tool.** The heater must also be calibrated before it can be used, to account for small manufacturing differences between heaters. This calibration step is run when heater tuning is commanded. Tuning must be carried out with a tool present and locked in place.
+The inductive heater is fast and powerful, therefore the standard RepRapFirmware default tool heater model is inappropriate. **Heater tuning must be run before using the INDX tool.** Heater tuning must also be run again after upgrading the tool board to firmware 3.7.0 from an earlier version. The heater must also be calibrated before it can be used, to account for small manufacturing differences between heaters. This calibration step is run when heater tuning is commanded. Tuning must be carried out with a tool present and locked in place.
 
 **CAUTION!** The inductive heater is fast and powerful. It can easily heat the nozzle or other metalwork placed inside the heater coil to dangerously high temperatures. Use only the correct firmware versions, and keep the firmware up to date. If the nozzle assembly is not fully inserted into the heater coil or is misaligned, this can result in the temperature being under-read, resulting in heating to a higher temperature than was intended. Do not allow paper or other flammable material to enter the heater coil area.
 
