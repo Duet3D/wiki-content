@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-22T16:51:09.300Z
+date: 2026-10-22T18:52:06.017Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -3325,7 +3325,7 @@ RepRapFirmware does not support individual motor settings where an axis has mult
 
 Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M201 Z100, not M201 Z100:100.
 
-In RepRapFirmware 3.7 and later on the Duet 3 MB6HC, the T parameter (acceleration time) specifies the time in seconds to go from zero to maximum acceleration and enables [third-order motion control](/User_manual/RepRapFirmware/Third_order_motion). The jerk (maximum rate of change of acceleration) for each axis or extruder is computed as the maximum acceleration for that axis or extruder divided by this acceleration time. If the acceleration time is zero (the default) then second-order motion is used. If it is nonzero but not all axes and extruders with local drivers use phase stepping then second-order motion is used and a warning is generated. Third-order motion is not applied to drivers on CAN-connected expansion boards, which receive second-order approximations of the moves, so a warning is generated if any axis or extruder uses such a driver. On boards other than the MB6HC the T parameter is not supported and generates a warning.
+In RepRapFirmware 3.7 and later on the Duet 3 MB6HC, the T parameter (acceleration time) specifies the time in seconds to go from zero to maximum acceleration and enables [third-order motion control](/User_manual/RepRapFirmware/Third_order_motion). The jerk (maximum rate of change of acceleration) for each axis or extruder is computed as the maximum acceleration for that axis or extruder divided by this acceleration time. If the acceleration time is zero (the default) then second-order motion is used. If it is nonzero but not all axes and extruders with local drivers use [phase stepping](/User_manual/Tuning/Phase_stepping) then second-order motion is used and a warning is generated. Third-order motion is not applied to drivers on CAN-connected expansion boards, which receive second-order approximations of the moves, so a warning is generated if any axis or extruder uses such a driver. On boards other than the MB6HC the T parameter is not supported and generates a warning.
 
 ## M201.1: Set acceleration for special move types
 
@@ -9032,6 +9032,8 @@ Note this is not supported on Duet 2 with TMC2660 or on external drivers.
 
 In RRF 3.7 and later, M917 also applies to drivers on a Duet 3 MB6HC or Duet 3 Mini 5+ running in expansion mode.
 
+For a driver in phase stepping mode, the M917 percentage sets the minimum motor current. See [Phase stepping](/User_manual/Tuning/Phase_stepping#motor-current).
+
 ## M918: Configure direct-connect display
 
 This command is used to tell RepRapFirmware about a directly-connected LCD such as a 12864 or compatible display.
@@ -9573,7 +9575,7 @@ M959          ; report the connection timeouts of all expansion boards
 *Support in RepRapFirmware 3.6 and later on Duet 3 MB6HC main board drivers.
 Support for CAN-connected drivers in 3.7.0 and later*
 
-Motor drivers on the Duet 3 MB6HC main board and on the Duet 3 Expansion 3HC allow for direct control of the motor phases. This command allows setting the motion controller to use phase stepping instead of step and direction.
+Motor drivers on the Duet 3 MB6HC main board and, in RRF 3.7.0 and later, on some CAN-connected boards allow direct control of the motor phases. This command sets the motion controller to use phase stepping instead of step and direction. See [Phase stepping](/User_manual/Tuning/Phase_stepping) for the supported boards and how to configure phase stepping.
 
 ### Parameters
 
@@ -9581,7 +9583,7 @@ Motor drivers on the Duet 3 MB6HC main board and on the Duet 3 Expansion 3HC all
 
 ### Order dependency
 
-This command must appear after any M584 command that refers to the same axis.
+This command must appear after any M584 command that refers to the same axis. In RRF 3.7.0 and later, an M584 command that changes the drivers of an axis returns that axis to step and direction mode.
 
 ### Examples
 <br>
@@ -9594,9 +9596,9 @@ Enable phase stepping for `X` and `E0`, enable step direction for `Y`, `Z`, and 
 ### Notes
 
 * Phase stepping can be enabled/disabled for each axis/extruder individually. 
-* In phase stepping, the motor current is scaled based on the current speed and acceleration. The current will not exceed the value set by [M906](/User_manual/Reference/Gcodes/M906){target=_blank}.
+* In phase stepping, the motor current is scaled based on the current speed and acceleration, using the constants set by [M970.1](/User_manual/Reference/Gcodes/M970_1){target=_blank} and [M970.2](/User_manual/Reference/Gcodes/M970_2){target=_blank}. The current will not exceed the value set by [M906](/User_manual/Reference/Gcodes/M906){target=_blank}. See [Phase stepping](/User_manual/Tuning/Phase_stepping#motor-current).
 * The standstill current factor set by [M917](/User_manual/Reference/Gcodes/M917){target=_blank} is also used to scale the motor current. The scaled current will be a minimum of the current * standstill current factor.
-* Stall detect is not supported while phase stepping is enabled.
+* Stall detect is not supported while phase stepping is enabled. See [Phase stepping](/User_manual/Tuning/Phase_stepping#stall-detection) for how to home an axis with stall detection.
 * M970 with no parameters reports the step mode of every axis and extruder, for example "Axis step mode - X:1, Y:0, Z:0, E:0".
 * Phase stepping is supported on Duet 3 MB6HC main board drivers and, in RRF 3.7.0 and later over CAN, on Duet 3 Expansion 3HC drivers and on Duet 3 MB6HC boards running in expansion mode. In RRF 3.7.0 and later, main boards that do not support phase stepping on their own drivers (Duet 3 Mini 5+ and MB6XD) implement M970 to configure phase stepping on the drivers of attached expansion boards. In RRF 3.6 these boards and Duet 2 do not implement M970.
 * The Duet 3 Expansion 1HCL, M23CL and INDX tool board are closed loop boards. In RRF 3.7.0 and later they support phase stepping when the driver is in open loop mode. They reject M970 for a driver in closed loop or assisted open loop mode. Their drivers can also be linearised with the sine table correction of [M569.2](/User_manual/Reference/Gcodes/M569_2){target=_blank}.
@@ -9621,6 +9623,8 @@ M970.1 X1000.0 Y2000.0 Z1000.0 E1000.0:1000.0
 ### Notes
 
 * The constant is applied to all drivers of that axis, local and CAN-connected alike.
+* The velocity term of the current calculation is proportional to Kv. With the default value, the speed alone gives full current at 1920 full steps per second. A higher value gives full current at a lower speed. See [Phase stepping](/User_manual/Tuning/Phase_stepping#motor-current).
+* M970.1 with no parameters reports the values, for example "Axis phase step Kv - X:1000.000000, Y:1000.000000, Z:1000.000000, E:1000.000000".
 
 ## M970.2: Configure phase stepping acceleration constant
 
@@ -9641,12 +9645,14 @@ M970.2 X50000.0 Y50000.0 Z50000.0 E50000.0:50000.0
 ### Notes
 
 * The constant is applied to all drivers of that axis, local and CAN-connected alike.
+* The acceleration term of the current calculation is proportional to Ka. With the default value, the acceleration alone gives full current at 288000 full steps per second². A higher value gives full current at a lower acceleration. See [Phase stepping](/User_manual/Tuning/Phase_stepping#motor-current).
+* M970.2 with no parameters reports the values, for example "Axis phase step Ka - X:50000.000000, Y:50000.000000, Z:50000.000000, E:50000.000000".
 
 ## M970.3: Configure phase stepping waveform correction
 
 *Support in RepRapFirmware 3.7.0 and later*
 
-Applies a sinusoidal correction to the commanded electrical angle of a motor, to compensate for motor and driver non-linearity. The correction takes effect while that axis is in phase stepping mode, see [M970](/User_manual/Reference/Gcodes/M970){target=_blank}.
+Applies a sinusoidal correction to the commanded electrical angle of a motor, to compensate for motor and driver non-linearity. The correction takes effect while that axis is in phase stepping mode, see [M970](/User_manual/Reference/Gcodes/M970){target=_blank} and [Phase stepping](/User_manual/Tuning/Phase_stepping#waveform-correction).
 
 ### Parameters
 
