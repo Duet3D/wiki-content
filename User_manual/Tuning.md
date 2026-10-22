@@ -2,11 +2,12 @@
 title: User manual: Tuning
 description: 
 published: true
-date: 2024-01-05T22:04:21.271Z
+date: 2026-10-22T10:52:44.541Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-08T13:58:18.971Z
 ---
+
 
 # Printer setup
 
@@ -23,6 +24,7 @@ dateCreated: 2021-06-08T13:58:18.971Z
 See [this forum thread](https://forum.duet3d.com/topic/6181/){target=_blank} for	Tuning Macros Menus (Acceleration, Jerk, Retraction, Pressure Advance)
 [Pressure advance](/User_manual/Tuning/Pressure_advance)
 [Input shaping](/User_manual/Tuning/Input_shaping)
+[Phase stepping](/User_manual/Tuning/Phase_stepping)
 
 [Tuning the Duet 3 Expansion 1HCL](/User_manual/Tuning/Duet_3_1HCL_tuning)
 <!--[Slicing recommendations](/User_manual/Reference/Slicing_recommendations)
