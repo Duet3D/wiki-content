@@ -2,7 +2,7 @@
 title: Duet 3 Motor 23CL
 description: A range of CAN-FD connected closed loop NEMA 23 motors for Duet 3 ecosystem.
 published: true
-date: 2026-10-01T12:20:54.723Z
+date: 2026-10-22T11:18:04.372Z
 tags: 
 editor: markdown
 dateCreated: 2023-01-09T19:18:18.412Z
@@ -100,7 +100,7 @@ Pin 3 of the POWER in connector in version v1.0 of the Duet 3 Motor23CL is inter
 
 > When VIN power to the motor is reapplied by the safety relay an inrush of current will occur, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.{.is-warning}
 
-> In version 3.6 firmware when V_IN power is applied, the motor will attempt to move back to the position its commanded to be in as rapidly as it can. If the motor was moved while VIN power was not applied then this can cause undesirable results. This behaviour may be addressed in future firmware versions, until that time avoid moving the motor when in this state, alternatively if that's not possible (e.g. due to a Z axis that moves under load when not powered), use a Motor 23CL with a brake.
+> In version 3.6 and 3.7 firmware when V_IN power is applied, the motor will attempt to move back to the position its commanded to be in as rapidly as it can. If the motor was moved while VIN power was not applied then this can cause undesirable results. This behaviour may be addressed in future firmware versions, until that time avoid moving the motor when in this state, alternatively if that's not possible (e.g. due to a Z axis that moves under load when not powered), use a Motor 23CL with a brake.
 {.is-warning}
 
 
@@ -134,13 +134,15 @@ The M23CL incorporates a hall effect position sensor sensing a magnet on the mot
 The Duet3 Motor23CL supports the following modes of motor control:
 
 ## Open loop mode
-In this mode the driver behaves in a similar way to the drivers on the 6HC main board. If an encoder has been connected and calibrated then it is possible to collect data on the position error for short periods.
+In this mode the driver behaves in a similar way to the drivers on the 6HC main board. If an encoder has been connected and calibrated then it is possible to collect data on the position error for short periods. In RRF 3.7 and later, phase stepping ([M970](/User_manual/Reference/Gcodes/M970)) and waveform correction ([M970.3](/User_manual/Reference/Gcodes/M970_3)) can be used in this mode.
 
 ## Closed loop mode
 In this mode an error signal is computed from the difference between the desired motor position and the position reported by the encoder. This error signal is used to apply a torque to correct the error via a modified PID controller. Warning and error events can be generated when the error exceeds configurable thresholds. When the controller is unable to achieve the desired position, it will recover to the correct position when either the obstruction is removed or a command is sent to move the axis or extruder to a position that can be achieved. Maximum speed is reduced compared to open loop mode. The PID controller must be tuned for best response.
 
 ## Assisted open loop mode
 In this mode the motor is operated as if in open loop mode, but whenever it is detected that the error between desired and actual position is getting too high, the motor current is automatically increased until the error is reduced. This allows a low initial current to be used, which makes the motor quieter at standstill and low motor speeds. As with closed loop mode, warning and error events can be generated when the error exceeds configurable thresholds. However, if the position requested cannot be achieved and the error exceeds approximately 4 full motor steps, the position will not be corrected when the obstruction is removed or the motor is commanded to a position that can be reached. No further out-of-position events will be generated until the command to enter assisted open loop mode is repeated. Unlike closed loop mode, good operation can be achieved with little or no tuning.
+
+In RRF 3.7 and later, the waveform correction set by M970.3 is also applied in closed loop and assisted open loop modes, except while tuning or calibrating.
 
 # Commissioning
 
@@ -280,10 +282,10 @@ A new sensor type `board-temp` has been added to support board temperature monit
 In addition [events](/User_manual/RepRapFirmware/Events) are now raised based on the board temperature:
 
 #### board-temperature-warning**
-A board temperature warning event is raised above 80C. This will run `0:/sys/*board-temperature-warning.g` if present, if not present it will inform the user via console and continue.
+A board temperature warning event is raised above 80C. This will run `0:/sys/board-temperature-warning.g` if present, if not present it will inform the user via console and continue.
 
 #### board-over-temperature**
-A board temperature warning event is raised above 85C. Drivers on that board disabled until the temperature drops below the error threshold (before the event is raised).  Then it will run `0:/sys/board-over-temperature.g` if present, if not present it will pause print without running pause.g and inform the user via message box. Drivers are re-enabled when `board-temp` drops below 80C
+A board over-temperature event is raised above 85C. Drivers on that board disabled until the temperature drops 1C below the warning threshold (before the event is raised).  Then it will run `0:/sys/board-over-temperature.g` if present, if not present it will pause print without running pause.g and inform the user via message box. Drivers are re-enabled when `board-temp` drops to 79C or below
 
 A board temperature sensor fault is treated as over-temperature, the board temperature is not checked during the first 3 seconds after start, and phase disconnection warnings are suppressed while the drivers are disabled.
 
