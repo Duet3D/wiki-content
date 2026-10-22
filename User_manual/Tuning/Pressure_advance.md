@@ -2,7 +2,7 @@
 title: Pressure advance
 description: Pressure advance aims to compensate for the elasticity of the filament and the extruder system.
 published: true
-date: 2025-04-29T15:17:24.613Z
+date: 2026-10-22T10:46:09.493Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T16:23:22.545Z
@@ -41,6 +41,14 @@ M572 D0:1 S0.1
 ```
 
 To assign different values to different extruders, you need to use separate M572 commands.
+
+RRF 3.7.0 and later also support two-slope pressure advance. To use it, give two S values and an L parameter. The first S value is used until the pressure advance distance (the extrusion speed in mm/sec multiplied by the first S value) reaches the L value in mm, and the second S value (normally lower, or zero) is used above that. For example:
+
+```
+M572 D0 S0.9:0.1 L5.0
+```
+
+When two S values are given, the extruder acceleration limit described below uses the first S value.
 
 # How much pressure advance to use?
 
@@ -137,7 +145,7 @@ Once you have a good value, do some other test prints of more detailed models, l
 
 If you use a large amount of pressure advance then the extruder may retract filament at the end of a move. If that move is followed by a travel move with retraction of the filament, then the total amount of retraction may be too great for your hot end. Therefore you should consider reducing retraction when you enable pressure advance.
 
-When the extruder acceleration changes, the extruder velocity has to change instantaneously. If the configured extruder jerk is too low to permit this, the extruder acceleration will be restricted so as to honour the maximum configured extruder jerk, and this may in turn limit the printing acceleration. So if enabling pressure advance slows down printing, this may be a sign that the allowed extruder jerk configured in the M566 command is too low. This may prove problematic for remote direct drive extruders like the Zesty Nimble which use a high gear ratio and low jerk values.
+When the extruder acceleration changes, the extruder velocity has to change instantaneously. If the configured extruder jerk is too low to permit this, the extruder acceleration will be restricted so as to honour the maximum configured extruder jerk, and this may in turn limit the printing acceleration. So if enabling pressure advance slows down printing, this may be a sign that the allowed extruder jerk configured in the M566 command is too low. This may prove problematic for remote direct drive extruders like the Zesty Nimble which use a high gear ratio and low jerk values. With [third-order motion control](/User_manual/RepRapFirmware/Third_order_motion#input-shaping-and-pressure-advance) on the Duet 3 MB6HC in RRF 3.7.0 and later, the extruder acceleration changes gradually, so pressure advance does not need an instantaneous change in extruder speed when the acceleration changes.
 
 You may notice that when using pressure advance there may be a gap between the perimeters and the solid infill lines. To combat this you may need to adjust the infill overlap value in the slicer.
 
