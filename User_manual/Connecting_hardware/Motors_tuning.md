@@ -2,11 +2,12 @@
 title: Tuning stepper motor drivers
 description: This article covers tuning Trinamic stepper motor drivers in Duet 3 MB6HC, EB3HC, Toolboard 1LC and Mini 5+, and Duet 2 WiFi / Ethernet and Maestro
 published: true
-date: 2026-09-23T16:44:10.578Z
+date: 2026-10-22T10:47:35.217Z
 tags: 
 editor: markdown
 dateCreated: 2021-10-12T15:42:36.812Z
 ---
+
 
 
 **THIS PAGE IS A WORK IN PROGRESS!**
@@ -31,8 +32,6 @@ The Duet range of boards feature Trinamic stepper drivers, which have a number o
 | Duet 3 Toolboard 1LC | [TMC2209](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2209_Datasheet_V105.pdf) | Y | Y (SC2) | Y | Y (SG4) | Y |
 | Duet 2 WiFi  and Ethernet | [TMC2660](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2660_datasheet_Rev1.07.pdf) | 16x only | N | Y | Y (SG2) | Y |
 | Duet 2 Maestro | [TMC2224](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC220x_TMC2224_Datasheet_Rev1.10.pdf) | Y | Y (SC2) | Y | N | N |
-
-Please note that currently (RRF 3.2), stall detection on Duet 3 tool boards (Duet 3 TOOL1LC) and expansion boards (Duet 3 EB3HC) are not yet reported and cannot be used for homing. See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
 Note that for the rest of this Document "TMC2160" is used to refer to both TMC2160 or TMC5160
 
@@ -64,6 +63,10 @@ coolStep allows energy savings by automatically adapting the motor current to th
 
 **coolStep is not supported on TMC2224 drivers in Duet 2 Maestro.**
 
+## Phase stepping
+
+On some Duet 3 boards, RepRapFirmware can drive the motor coils directly instead of sending step pulses to the driver. See [Phase stepping](/User_manual/Tuning/Phase_stepping).
+
 ## Trinamic parameters
 
 | Parameter | Description | Gcode |
@@ -85,22 +88,22 @@ coolStep allows energy savings by automatically adapting the motor current to th
 [M569](/User_manual/Reference/Gcodes/M569) is used to set stepper driver settings. The following parameters are used to enable tuning of the Trinamic drivers:
 
 * Dnn (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160 stepper drivers) Driver mode: 0=constant off time, 1=random off time, 2=spread cycle, 3=stealthChop or stealthChop2 (mode 3 for TMC22xx/TMC2160/TMC516x only). The default is spreadCycle for all drivers. In stealthChop mode the drivers will switch over to spreadCycle automatically at high speeds, see the V parameter.
-* Cnnnn (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160 and TMC516x stepper drivers) Lowest 17 bits of the chopper control register value.
-* Bnn (firmware 2.02RC1 and later) Blanking time (tbl) in the chopper control register, 0 to 3. See the TMC driver datasheet.
-* Hnn (firmware 2.02RC2 and later) thigh parameter for those stepper driver chips that support it, e.g. TMC2160. Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec. See also the V parameter.
-* Yaa:bb or Yaa:bb:cc (firmware 2.02RC2 and later) Hysteresis start, end and decrement values in the chopper control register. See the TMC driver datasheet for the meaning.
-* Vnnn (firmware 2.02RC1 and later) tpwmthrs parameter for those stepper driver chips that support it. This is the interval in clock cycles between 1/256 microsteps below which the drivers will switch from stealthChop to to spreadCycle mode. Only applies when the driver is configured in stealthChop mode. Typical value are from 100 (high speed) to 4000 (low speed). Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec.
+* Cnnnn (firmware 2.0 and later, only applies to TMC2660, TMC22xx, TMC2160 and TMC516x stepper drivers) Lowest 17 bits of the chopper control register value. In RRF 3.7.0 and later the TPFD, FD3 and DISFDCC fields can also be set on TMC2160, TMC5160 and TMC2240 drivers, the C parameter is also applied to drivers on CAN-connected boards, and M569 reports only the bits of the chopper control register that the C parameter can set.
+* Bnn (firmware 2.02 and later) Blanking time (tbl) in the chopper control register, 0 to 3. See the TMC driver datasheet.
+* Hnn (firmware 2.02 and later) thigh parameter for those stepper driver chips that support it, e.g. TMC2160. Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec. See also the V parameter.
+* Yaa:bb or Yaa:bb:cc (firmware 2.02 and later) Hysteresis start, end and decrement values in the chopper control register. See the TMC driver datasheet for the meaning.
+* Vnnn (firmware 2.02 and later) tpwmthrs parameter for those stepper driver chips that support it. This is the interval in clock cycles between 1/256 microsteps below which the drivers will switch from stealthChop to to spreadCycle mode. Only applies when the driver is configured in stealthChop mode. Typical value are from 100 (high speed) to 4000 (low speed). Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec.
 
 Duet 3 MB6HC output from ``M569 P0``
 
 `
-Drive 0 runs forwards, active low enable, step timing fast, mode spreadCycle, ccr 0x08053, toff 3, tblank 1, hstart/hend/hdec 5/0/0, pos 0, tpwmthrs 2000 (4.7 mm/sec), thigh 200 (46.9 mm/sec)
+Driver 0.0 runs forwards, active low enable, timing fast, mode spreadCycle, ccr 0x008053, toff 3, tblank 1, thigh 200 (46.9 mm/sec), gs 39, iRun/iHold 31/21, current 990.2, hstart/hend/hdec 5/0/0, pos 0
 `
 
 Duet 2 WiFi output from ``M569 P0``
 
 `
-Drive 0 runs forwards, active low enable, step timing fast, mode spreadCycle, ccr 0x101b4, toff 4, tblank 2, hstart/hend/hdec 3/3/0, pos 0
+Drive 0 runs forwards, active low enable, timing fast, mode spreadCycle, ccr 0x101b4, toff 4, tblank 2, hstart/hend/hdec 3/3/0, pos 0
 `
 ## Configuring stealthChop
 
@@ -135,23 +138,28 @@ These are the conditions you need for the drivers to run in stealthChop mode:
 
 1. tpwmthrs low enough for the speed you are using. This is set by the M569 V parameter. Lower values increase the speed at which the driver will switch over to spreadCycle. M569 with just a P parameter will translate the existing tpwmthrs to mm/sec belt speed for you.
 1. thigh low enough for the speed you are using. This is set by the M569 H parameter. The units are the same as for tpwmthrs. M569 with just a P parameter will translate the existing thigh to mm/sec belt speed for you.
-1. tcoolthrs low enough for the speed you are using. This is set by the M915 T parameter. The units are the same as for the M569 H and V parameters. Although M915 with P and/or axis parameters sets the value correctly, there is a bug in firmware 3.1.x when you use M915 with just a drive and/or axis parameter. The bug is that the value reported as "coolstep" should be the existing T parameter, but isn't. The value of tcoolthrs defaults to 2000, which is usually too high if you want to use stealthChop. The reason it is this high is to allow stall detection to work. Stall detection is not compatible with stealthChop on the TMC2160.
+1. tcoolthrs low enough for the speed you are using. RRF sets tcoolthrs from the M915 H parameter (minimum full steps per second for stall detection); a higher H value gives a lower tcoolthrs. When the driver is in stealthChop mode, M569 with just a P parameter reports tcoolthrs and the corresponding mm/sec belt speed. Stall detection is not compatible with stealthChop on the TMC2160.
 1. You must execute the proper tuning sequence after switching to stealthChop. This means: apply motor current, pause for more than 130ms, then execute a move at reasonable speed.
 1. You must enable stealthChop using M569 P# D3.
 1. stealthChop cannot function properly at speeds high enough that it can't supply as much current as it wants to to the stepper motor due to insufficient power supply voltage.
 
-So to use stealthChop, set tpwmthrs, thigh and tcoolthrs all to the same value, for example:
+So to use stealthChop, set tpwmthrs and thigh to the same value, and set M915 H so that tcoolthrs is no higher than that value, for example:
 
 ```
 M569 P0 D3 H50 v50
-M915 P0 T50
+M915 P0 H1000 ; tcoolthrs about 49
 ```
 
 You can send M569 P0 to see what belt speed the H and V parameters correspond to. What you are satisfied that you have the threshold high enough, execute the tuning procedure. If necessary, you can execute a very short move (just 1 microstep is enough) to power up the motors at the start.
 
 In principle you could use different values of thigh and tcoolthrs so that at speeds too high for stealthChop you still use coolStep, however i'm not sure that there are any speeds at which coolStep provides any advantages over stealthChop.
 
-If you are using stall-detect homing, then in the homing file you must increase the M915 T parameter to a value that corresponds to a speed below the speed of your homing move. [I have not yet checked whether you also need to switch to spreadCycle mode explicitly]. After homing, reduce the M915 T parameter again, then execute the tuning procedure.
+If you are using stall-detect homing, then in the homing file you must reduce the M915 H parameter to a value that corresponds to a speed below the speed of your homing move. The driver must also be in the mode that its stall detection needs during the homing move (see [Stall detection and sensorless homing](/User_manual/Connecting_hardware/Sensors_stall_detection#background-on-stall-detection)):
+
+* TMC2209 and TMC2240 drivers (stallGuard 4) detect stalls only in stealthChop mode. Use a homing speed below the tpwmthrs speed, so that the driver does not change over to spreadCycle. See [stealthChop tuning](#stealthchop-tuning) for how to find the tpwmthrs speed.
+* TMC2160 and TMC5160 drivers (stallGuard 2) detect stalls only in spreadCycle mode. Send M569 P# D2 before the homing moves, and M569 P# D3 after them.
+
+After homing, set the M915 H parameter back again, then execute the tuning procedure.
 
 ## Configuring spreadCycle
 
