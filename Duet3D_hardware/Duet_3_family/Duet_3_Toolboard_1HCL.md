@@ -2,7 +2,7 @@
 title: 
 description: 
 published: true
-date: 2026-10-22T11:45:06.962Z
+date: 2026-10-22T11:47:09.878Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-22T11:45:06.962Z
