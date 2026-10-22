@@ -2,7 +2,7 @@
 title: Duet 3 Expansion 1XD
 description: A CAN-FD connected expansion board for the Duet 3 Mainboard that allows connection for a single external stepper driver and associated peripherals.
 published: true
-date: 2025-11-09T08:39:50.281Z
+date: 2026-10-22T11:07:45.667Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-14T12:07:32.465Z
@@ -43,6 +43,8 @@ The Duet 3 Expansion 1XD board provides step, direction and enable outputs to in
 ## Firmware notes
 
 * Compatible RepRapFirmware versions: RRF 3.x
+* If the main board runs RRF 3.7 or later, the 1XD must also run RRF 3.7 or later.
+* In RRF 3.7 and later, the 1XD turns its heaters off when it loses time sync with the main board for longer than the connection timeout set by [M959](/User_manual/Reference/Gcodes/M959) (default 10 seconds).
 * Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
 
 ## Open source
@@ -151,11 +153,11 @@ The individual IO_x connectors have the following capabilities:
 
 | IO # | UART/I2C? | Analog in? | PWM out? | Notes |
 |:---|:---|
-| 0 | No | No | Yes |  |
-| 1 | No | Yes | No | Input only, no ouput pin.  |
+| 0 | No | Yes | Yes |  |
+| 1 | No | No | No | Input only, no ouput pin.  |
 | 2 | No | No | Yes |   |
 
-**Note:** RepRapFirmware does not currently support I2C on Duet 3 boards.
+**Note:** RepRapFirmware does not currently support I2C on Duet 3 expansion boards.
 
 ## Power wiring
 
