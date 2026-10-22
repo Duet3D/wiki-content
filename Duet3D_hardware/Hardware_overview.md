@@ -2,7 +2,7 @@
 title: Hardware overview
 description: 
 published: true
-date: 2022-12-13T11:24:53.560Z
+date: 2026-10-22T11:54:20.108Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-06T11:36:08.818Z
@@ -35,10 +35,10 @@ dateCreated: 2021-12-06T11:36:08.818Z
 | **Input power voltage** | 11V to 48V* | 11V to 30V | 11V to 25V || 11V to 25V ||
 | **Power monitoring** | VIN voltage and 12V regulator output voltage || VIN voltage || VIN voltage and input to on-board 5V regulator ||
 | **LCD support** | Typically provided by HDMI touch screen attached to the SBC. PanelDue also supported. || PanelDue colour touch screen, mini 12864 mono graphics display using ST7567 controller (3.3V signal levels) || PanelDue colour touch screen ||
-| **LED strip support** | Neopixel (max. 240 RGBW or 320 RGB in RRF 3.4) or DotStar || Neopixel (max. 80 RGBW or 106 RGB in RRF 3.4, external 5V power required) || Neopixel (max. 60 RGBW or 80 RGB in RRF 3.4, external 5V power required) ||
+| **LED strip support** | Neopixel (max. 240 RGBW or 320 RGB in RRF 3.5 and later) or DotStar || Neopixel (max. number limited by free memory in RRF 3.5 and later, external 5V power required) || Neopixel (max. number limited by free memory in RRF 3.5 and later, external 5V power required) ||
 | **Other expansion** | Almost unlimited expansion via CAN-FD-connected expansion boards || Via I/O ports and CAN-FD bus || 4 GPIO pins on Duex 2/Duex 5 expansion board, 16 GPIO pins on third-party SX1509B-based I/O expansion board ||
 | **SD card interface speed** | 25Mbytes/sec || 22.5Mbytes/sec || 20Mbytes/sec ||
-| **RepRapFirmware versions available** | 3.0 series |||| 2.0 series, 3.0 series ||
+| **RepRapFirmware versions available** | 3.0 series |||| 2.0 series, 3.0 series up to 3.6.x ||
 | **Dimensions** | 140x134mm | 140x115mm | 120x100mm || 120x100mm ||
 
 **Note 6HC boards before v1.02 had a max VIN voltage of 32V*
