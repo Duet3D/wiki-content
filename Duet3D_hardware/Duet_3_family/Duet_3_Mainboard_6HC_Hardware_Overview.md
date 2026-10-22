@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-10-12T17:01:57.816Z
+date: 2026-10-22T11:14:10.610Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -333,13 +333,13 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | spi.cs1 | ^^ |
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
-| PanelDue | PanelDue | spi.cs4 | External SD card CS, note io0 pins shared with io0 header.|
+| PanelDue | PanelDue | none | External SD card CS, note io0 pins shared with io0 header.|
 | ^^ | ^^ | io0.in | ^^ |
 | ^^ | ^^ | io0.out | ^^ |
 | RS485 | RS485 | io1.in | note io1 pins shared with io1 header.|
 | ^^ | ^^ | io1.out | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
-| ^^ | DOTSTAR | led | For controlling DotStar or NeoPixel LEDs (firmware 3.5.0-beta.4 and later only)
+| ^^ | DOTSTAR | led | For controlling DotStar or NeoPixel LEDs (firmware 3.5.0 and later only)
 
 ## Input/Output
 
@@ -553,6 +553,8 @@ Note that the wifi module is the second network interface on the 6HC (the ethern
 
 * You can add this to config.g if you want WiFi to be enabled on boot.
 
+* In RRF 3.7 and later, HTTP is not enabled by default. Add `M586 I1 P0 S1` to config.g to enable HTTP on the WiFi interface, so that you can connect to Duet Web Control over WiFi.
+
 #### WiFi Module 3d Model
 [STEP File](https://github.com/Duet3D/Duet3-Wifi-Module/blob/main/Duet3_Wifi_Module_v0.1/Duet3_Wifi_Module_STEP.zip)
 
@@ -583,7 +585,7 @@ The CAN-FD bus provides connectivity to compatible devices. Duet3D manufactures 
 
 The CAN BUS is connected via RJ11 and at least 2-core twisted pair wiring. 6-core RJ11 wiring is more common, and can be used, though only one pair of wires are used.
 
-The Duet 3 Mainboard 6HC has support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.5 and earlier) only **CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics.
+The Duet 3 Mainboard 6HC has support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.7 and earlier) only **CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics.
 
 For further information on CAN connectivity, see [CAN connection](/User_manual/Machine_configuration/CAN_connection)
 
@@ -618,11 +620,13 @@ Note to use RS485 you must fit the RS485_EN jumper in order to connect IO1 to th
 
 ### Modbus RTU
 
-First set the serial port to device mode using [M575: Set serial comms parameters](/User_manual/Reference/Gcodes/M575). On the 6HC io1 is the secondary serial channel  so the command is:
+First set the serial port to device mode using [M575: Set serial comms parameters](/User_manual/Reference/Gcodes/M575). On the 6HC io1 is the secondary serial channel  so the command in RRF 3.7 and later is:
 
 `
-M575 P2 S7
+M575 P3 S7
 `
+
+In RRF 3.6 and earlier the command is `M575 P2 S7`.
 
 The gcode commands [M260.1: Modbus write registers or coils](/User_manual/Reference/Gcodes/M260_1) and [M261.1: Modbus read registers, coils or inputs](/User_manual/Reference/Gcodes/M261_1) are used to write to and read from MODBUS RTU devices over RS485
 
