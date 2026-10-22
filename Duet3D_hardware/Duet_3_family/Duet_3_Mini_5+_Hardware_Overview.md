@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-10-12T17:03:46.361Z
+date: 2026-10-22T11:17:12.470Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -64,7 +64,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 ## Firmware notes
 
-* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later. The Duet3 Mini 5+ Ethernet v1.03 requires v3.5 or later firmware.
+* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later. The Duet3 Mini 5+ Ethernet v1.03 requires v3.5 or later firmware. The Duet 3 Mini 5+ WiFi v1.04 and later requires v3.6.4 or later firmware.
 * For **firmware update instructions**:
   * Standalone mode - [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. 
   * SBC mode - [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
@@ -221,7 +221,7 @@ LEDs are provided to indicate the following:
 | **OUT_1** | Red | Next to the OUT 1 connector, indicates when on |
 | **OUT_2** | Red | Next to the OUT 2 connector, indicates when on |
 
-The red LED next to the Reset button is labelled "STATUS".  *On version 0.2 boards it is labelled DIAG*. It indicates the state of the board, as follows.
+The red LED next to the Reset button is labelled "STATUS". It indicates the state of the board, as follows.
 
 | LED | Meaning |
 |:---|:---|
@@ -264,7 +264,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | IO_2 | io2.in | Endstops, Z probes, filament monitors etc. On v1.01 and later boards, IO_2 can also be used for I2C, see [I2C](#i2c). |
 | ^^ | io2.out | ^^ |
 | IO_3 | io3.in | Endstops, Z probes, filament monitors etc. |
-| ^^ | io3.out, 12864 neopixel pin | ^^ |
+| ^^ | io3.out, lcd.np (12864 neopixel pin) | ^^ |
 | IO_4 | io4.in | ^^ |
 | ^^ | io4.out, pson | ^^ |
 | IO_5 | io5.in | Input only |
@@ -279,9 +279,9 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | EXT 5V | pson, io4.out | For controlling an external PSU or SSR, shared with io4.out |
 | NEOPIXEL | led | For controlling Neopixel LEDs (firmware 3.5 and later only)
 | 12864_EXP1 | lcd.a0,exp1.7 | (RRF 3.5 and later only) Pin 7 of the EXP1 connector. Available for general output if no 12864 display is connected.<br> Shared with spi.cs4 on SPI DB header on v1.03 and later.
-| ^^ | enc.sw,exp1.9 | (RRF 3.5.0-rc.1 and later) Pin 9 of the EXP1 connector. Available for general output if no 12864 display is connected.
-| ^^ | lcd.buzz,exp1.10 | (RRF 3.5.0-rc.1 and later only) Pin 10 of the EXP1 connector. Available for general output including PWM if no 12864 display is connected.
-| 12864_EXP2 | enc.b,exp2.6 | (RRF 3.5 and later) Pin 6 of the EXP2 connector. Available for general input (max 3.3V) and output if no 12864 display is connected. There is no protection on this pin.
+| ^^ | enc.sw,exp1.9 | (RRF 3.5.0 and later) Pin 9 of the EXP1 connector. Available for general output if no 12864 display is connected.
+| ^^ | lcd.buzz,exp1.10 | (RRF 3.5.0 and later only) Pin 10 of the EXP1 connector. Available for general output including PWM if no 12864 display is connected.
+| 12864_EXP2 | enc.b | (RRF 3.5 and later) Pin 6 of the EXP2 connector. Available for general input (max 3.3V) and output if no 12864 display is connected. There is no protection on this pin.
 | ^^ | enc.a,exp2.8 | (RRF 3.5 and later) Pin 8 of the EXP2 connector. Available for general input (max 3.3V) and output if no 12864 display is connected. There is no protection on this pin.
 
 ## Input/Output
@@ -307,8 +307,8 @@ The individual IO_x connectors have the following capabilities:
 
 | IO # | UART? | Analog in? | PWM out? | Notes |
 |:---|:---|
-| 0 | yes | no | no | AUX0 port, can be used to connect a PanelDue. Configure using M575 P1. It shares io0.out and io0.in pins with the PanelDue_SD connector. |
-| 1 | yes | no | yes | AUX1 port. Configure using M575 P2. |
+| 0 | yes | no | no | AUX0 port, can be used to connect a PanelDue. Configure using M575 P2 (RRF 3.7 and later) or M575 P1 (RRF 3.6 and earlier). It shares io0.out and io0.in pins with the PanelDue_SD connector. |
+| 1 | yes | no | yes | AUX1 port. Configure using M575 P3 (RRF 3.7 and later) or M575 P2 (RRF 3.6 and earlier). |
 | 2 | yes | no | yes | The  standard firmware does not support this UART. Can be used for I2C, see [I2C](#i2c). |
 | 3 | no | yes | yes | Shared with  backlight control on 12864 displays having Neopixel backlights |
 | 4 | no | no | no | IO4_OUT is shared with PSON output |
@@ -413,7 +413,8 @@ The signal levels are mostly 3.3V. This means that LCD modules using a ST7920 di
 
 ```
 M918 P2                     ; enable ST7567-based 12864 display
-M150 X2 R255 U255 B255 S3   ; set all 3 LEDs to white
+M950 E0 C"io3.out" T1 U3    ; create an RGB NeoPixel LED strip for the 3 LEDs
+M150 E0 R255 U255 B255 S3   ; set all 3 LEDs to white
 ```
 
 You can adjust the M150 command to change the backlight colours. Please note, interrupts are disabled for a short time while the backlight colours are changed, and printing will be paused during this time; therefore you should not change the backlight colours during a print.
@@ -564,7 +565,7 @@ WiFi revision is version 1.02, Ethernet revision is 1.02a
 
 ## Revision 0.2
 
-First prototype, this revision will not be supported in future firmware releases.
+First prototype. RepRapFirmware 3.2 and later do not support this revision.
 
 ### Revision 0.2 IO port pin capabilities
 
@@ -579,10 +580,5 @@ First prototype, this revision will not be supported in future firmware releases
 | 6 | no | no | n/a | 3-pin connector, input only |
 | 7 | no | no | n/a | 3-pin connector, input only |
 
-**Firmware note:**
-
-Version 0.2 boards run RepRapFirmware 3.2beta1 or beta2. The WiFi and Ethernet variants use a common firmware binary, named Duet3Mini5plus.uf2 in the 3.2beta 1 release, and Duet3Mini5plus_v02.uf2 in the 3.2beta 2 release. These binaries also support an attached Single Board Computer.
-
-Note that support for version 0.2 prototypes will not be maintained in future firmware, starting from RRF 3.2 stable onwards.
 
 
