@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2026-10-12T16:27:01.650Z
+date: 2026-10-22T11:15:13.847Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -55,7 +55,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **Input power voltage** | 11V to 30V (14V-30V to use onboard 12V regulator)|
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **High current outputs** | 3 x high current outputs up to 6A each, total high current heater limit fused at 15A |
-| **Medium current outputs** | 6 x medium current outputs up to 1A each, each bank of medium current outputs fused at 2A (note when set to 12V there is a total 800mA limit) |
+| **Medium current outputs** | 6 x medium current outputs up to 1A each, each bank of medium current outputs fused at 3A (note when set to 12V there is a total 800mA limit) |
 | **External Driver Signal voltage** | 5V nominal (min. 4.2V @ 20mA) on v1.02 and later. On v1.0 and v1.01 the outputs are open drain and do not drive a high level, see [Connecting External Motor Drivers](#connecting-external-motor-drivers). |
 | **External Driver Signal current** | 20mA maximum |
 | **Non opto isolated Inputs** | Permanent 27K pullup resistor to +3.3V included. Input voltage limits: -1V to +30V. |
@@ -277,7 +277,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | DRIVER 5| driver5.err | ^^ |
 | Miscellaneous | EXT 5V | pson | For controlling an external PSU or SSR |
 | ^^ | LASER/VFD | laser, vfd | 5V PWM signal.  |
-| ^^ | DOTSTAR | led | For controlling DotStar or NeoPixel LEDs (firmware 3.5.0-beta.4 and later only)
+| ^^ | DOTSTAR | led | For controlling DotStar or NeoPixel LEDs (firmware 3.5.0 and later only)
 
 ## Input/Output Port capabilities
 
@@ -556,7 +556,7 @@ The CAN-FD bus provides connectivity to compatible devices. Duet3D manufacture a
 
 The CAN BUS is connected via RJ11 and at least 2-core twisted pair wiring. 6-core RJ11 wiring is more common, and can be used, though only one pair of wires are used.
 
-The Duet 3 Mainboard 6XD has support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.5 and earlier) only **CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics. 
+The Duet 3 Mainboard 6XD has support for two CAN busses; CAN0 and CAN1. Currently (RRF v3.7 and earlier) only **CAN1** is used for connecting CAN-FD Duet 3 Expansion and Tool boards. CAN0 can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics. 
 
 For further information on CAN connectivity, see [CAN connection](/User_manual/Machine_configuration/CAN_connection)
 
