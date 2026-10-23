@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-23T13:59:39.546Z
+date: 2026-10-23T21:29:28.463Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -10,13 +10,13 @@ dateCreated: 2021-04-27T14:09:24.591Z
 
 # Introduction
  
-GCodes are a widely used machine control language. They are human readable and editable. This page describes the RepRapFirmware supported GCodes. RepRapFirmware follows the philosophy of "GCode everywhere", in essence the users or external program's interaction with the firmware should be through GCodes. There are GCodes for all supported control and configuration inputs along with status and debugging information.
+GCodes are a widely used machine control language. They are human readable and editable. This page describes the RepRapFirmware supported GCodes. RepRapFirmware follows the philosophy of "GCode everywhere", in essence the user's or an external program's interaction with the firmware should be through GCodes. There are GCodes for all supported control and configuration inputs along with status and debugging information.
 
 RepRapFirmware GCodes were originally based on the information from the [RepRap wiki GCode page](http://reprap.org/wiki/G-code){target=_blank}. There are some GCodes listed on that page that are not implemented in RepRapFirmware. More details can be found on the [GCodes not implemented](/User_manual/Reference/Gcodes_not_implemented){target=_blank} page.
 
 # GCode and RepRapFirmware
 
-A typical piece of GCode sent to a machine running RepRapFirmware might look like this (The meaning of these codes (and more) is explained below on this page.)
+A typical piece of GCode sent to a machine running RepRapFirmware might look like this (the meaning of these codes, and more, is explained below on this page):
 <br>
 <pre class="cblock">
 G10 P0 S195 R175
@@ -28,22 +28,22 @@ G1 X100.4 Y99.3 E0.23 F600
 
 ## GCode Everywhere
 
-A design philosophy of RepRapFirmware is "GCode everywhere" what this means is explained in this sub section
+A design philosophy of RepRapFirmware is "GCode everywhere"; what this means is explained in this subsection.
 
 The GCode can originate from a number of sources:
 
-* Sent to over USB (for example from [Pronterface](http://www.pronterface.com/){target=_blank})
+* Sent over USB (for example from [Pronterface](http://www.pronterface.com/){target=_blank})
 * Sent by the [Duet Web Control (DWC)](/User_manual/Reference/Duet_Web_Control_Manual){target=_blank} Interface
 * Sent by an external controller such as the [PanelDue](/Duet3D_hardware/Accessories/PanelDue){target=_blank} or [Duet Screen](https://docs.duet3d.com/Duet3D_hardware/Accessories/DuetScreen){target=_blank}
 
 In all cases the GCode could
 
-* be entered by user one line at time, for example during configuration or testing
+* be entered by the user one line at a time, for example during configuration or testing
 * be sent by the User Interface (Pronterface, Web Interface or PanelDue) in response to the user pressing buttons
 * originate from [Macros](/User_manual/Tuning/Macros){target=_blank} that are triggered on startup, on certain events (such as error conditions), or called by the user or UI.
-* be from a GCode file which are normally stored on the on-board or external SD card.
+* be from a GCode file, which are normally stored on the on-board or external SD card.
 
-A key difference from other 3d printer firmwares is not employing a separate command set (other than GCodes) to configure the printer. To that end RepRapFirmware has a large collection of configuration GCodes that allow the behaviour of the machine to be controlled. For some examples of when these GCodes are employed have a look at these wiki pages:
+A key difference from other 3D printer firmwares is not employing a separate command set (other than GCodes) to configure the printer. To that end RepRapFirmware has a large collection of configuration GCodes that allow the behaviour of the machine to be controlled. For some examples of when these GCodes are employed have a look at these wiki pages:
 
 * [Configuring RepRapFirmware for a Cartesian printer](/User_manual/Machine_configuration/Configuration_cartesian){target=_blank}
 * [Configuring RepRapFirmware for a Linear Delta printer](/User_manual/Machine_configuration/Configuration_linear_delta){target=_blank}
@@ -57,7 +57,7 @@ A key difference from other 3d printer firmwares is not employing a separate com
 * [Configuring RepRapFirmware for a Polar printer **UPDATE LINK**](){target=_blank}
 * [Configuring RepRapFirmware for a Hangprinter printer **UPDATE LINK**](){target=_blank}-->
 
-The advantage of "GCode everywhere" is the same commands can be send from any of the GCode sources, and originate from the user, a UI, macro or file and it will generate the same response from the firmware. This greatly improves the ease and power of firmware configuration and operation.
+The advantage of "GCode everywhere" is that the same commands can be sent from any of the GCode sources; whether they originate from the user, a UI, a macro or a file, they will generate the same response from the firmware. This greatly improves the ease and power of firmware configuration and operation.
 
 # GCode Structure
 
@@ -100,7 +100,7 @@ A RepRap GCode is a list of fields that are separated by white spaces or line br
 
 In RepRapFirmware 3.01 and later, instead of a number you may use an expression enclosed in braces, for example {2+2}. See [GCode Meta Commands](/User_manual/Reference/Gcode_meta_commands){target=_blank} for details of the supported expression types.
 
-In RepRapFirmware, some parameters can be followed by more than one number, with colon used to separate them. Typically this is used to specify extruder parameters, with one value provided per extruder. If only one value is provided where a value is needed for each extruder, then that value is applied to all extruders.
+In RepRapFirmware, some parameters can be followed by more than one number, with a colon used to separate them. Typically this is used to specify extruder parameters, with one value provided per extruder. If only one value is provided where a value is needed for each extruder, then that value is applied to all extruders.
 
 
 | Letter | Meaning |
@@ -110,12 +110,12 @@ In RepRapFirmware, some parameters can be followed by more than one number, with
 | Tnnn | Select tool nnn. In RepRap, a tool is typically associated with a nozzle, which may be fed by one or more extruders. |
 | Snnn | Command parameter, such as time in seconds; temperatures |
 | Pnnn | Command parameter, such as time in milliseconds; proportional (Kp) in PID Tuning |
-| Xnnn | A X coordinate, usually to move to. This can be an Integer or Fractional number. |
-| Ynnn | A Y coordinate, usually to move to. This can be an Integer or Fractional number. |
-| Znnn | A Z coordinate, usually to move to. This can be an Integer or Fractional number. |
+| Xnnn | X coordinate, usually to move to. This can be an Integer or Fractional number. |
+| Ynnn | Y coordinate, usually to move to. This can be an Integer or Fractional number. |
+| Znnn | Z coordinate, usually to move to. This can be an Integer or Fractional number. |
 | U,V,W | Additional axis coordinates |
 | A,B,C | Additional axis coordinates in some commands, used for various purposes in others |
-| Dnnn | Parameter - used for diameter; derivative (Kd) in PID Tuning; drive number; or additonal axis |
+| Dnnn | Parameter - used for diameter; derivative (Kd) in PID Tuning; drive number; or additional axis |
 | Innn | Parameter - X-offset in arc move; integral (Ki) in PID Tuning |
 | Jnnn | Parameter - Y-offset in arc move |
 | K n | Typically used for Z probe number
@@ -123,7 +123,7 @@ In RepRapFirmware, some parameters can be followed by more than one number, with
 | Fnnn | Feedrate in mm per minute. (Speed of print head movement) |
 | Rnnn | Parameter - used for temperatures |
 | Qnnn | Parameter - usually a frequency |
-| Ennn | Length of filament to move through the extruder. This is exactly like X, Y and Z, but for the length of filament to consume. Where a tool has more than one extruder drive then Ennn:nnn:nnn etc is supported to allow for the individual morement of each to be controlled directly |
+| Ennn | Length of filament to move through the extruder. This is exactly like X, Y and Z, but for the length of filament to consume. Where a tool has more than one extruder drive then Ennn:nnn:nnn etc is supported to allow for the individual movement of each to be controlled directly |
 | Nnnn | Line number. Optional |
 | *nnn | Checksum. Used to check for communications errors. Optional |
 
@@ -179,7 +179,7 @@ If present, the CRC should be the last field in a line, but before a comment. Fo
 
 The CRC is appended in decimal and it must always be 5 digits.
 
-If checking is supported, the RepRap firmware checks the CRC against a locally-computed value. If they differ, or has no checksum when M575 requires one, RepRapFirmware discards the line without executing it or sending a reply.
+If checking is supported, the firmware checks the CRC against a locally-computed value. If the CRCs differ, or the line has no checksum when M575 requires one, the line is discarded without executing it or sending a reply.
 
 **Method**
 
@@ -189,7 +189,7 @@ You can test your calculation using this [online tool](https://crccalc.com/?crc=
 
 #### *: Checksum
 
-It is recommended to use a CRC, this is here only for legacy reasons.
+It is recommended to use a CRC. Checksum usage is described below for legacy reasons.
 
 Example: *71
 
@@ -260,7 +260,7 @@ As soon as one of these commands is received it is acknowledged and stored local
 
 ## Filenames and Paths
 
-* '0:/' is root of the on board SD card in stand alone mode; the equivalent folder in SBC mode is '/opt/dsf/sd/'.
+* '0:/' is the root of the on-board SD card in standalone mode; the equivalent folder in SBC mode is '/opt/dsf/sd/'.
 * If there is a second SD card slot in the machine then its root is '1:/'.
 * Long file names (e.g. longer than 8.3 format) are supported, file names with spaces are supported.
 * Full paths, including all directories and subdirectories are limited to 120 characters. e.g.:
@@ -336,7 +336,7 @@ Same as G1 except as follows:
 * When in Laser or CNC mode, the move is executed at the maximum feedrate available. The F parameter (if present) is ignored.
 * In some architectures such as Scara and Polar the move will not necessarily be in a straight line.
 
-See 'G1: Controlled linear' move for usage.
+See 'G1: Controlled linear move' for usage.
 
 ## G1: Controlled linear move
 
@@ -376,7 +376,7 @@ G1 E10:10:5:0:0 F300 ; with a tool that has 5 extruder drives, extrude 10mm on d
 
 RepRapFirmware treats G0 and G1 in the same way **except** as follows:
 * On SCARA and similar architectures that normally require linear motion to be approximated by short segments, a single continuous non-segmented movement will be used if this can be done without the print head dropping below the current Z height.
-* In Laser and CNC mode, G0 moves are executed at the maximum feed rate available, to comply with the NIST GCode standard, This feed rate is set by the M203 command.
+* In Laser and CNC mode, G0 moves are executed at the maximum feed rate available, to comply with the NIST GCode standard. This feed rate is set by the M203 command.
 * RRF maintains a flag for feed rate (F parameter). For all G1/2/3 moves (and G0 moves in FDM mode) the following is true:
   * Each input channel (SD card, USB, http, telnet etc) has its own flag for feed rate.
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no feed rate is specified in config.g, the default of 3000mm/min (50mm/s) is used.
@@ -490,7 +490,7 @@ G1 F1500
 G1 X50 Y25.3 E22.4 F3000
 </pre>
 
-However, in the above example, we set a feedrate of 1500mm/minute on line 1, then do the move described above accelerating to a feedrate of 3000 mm/minute as it does so. The extrusion will accelerate along with the X and Y movement, so everything stays synchronized.
+However, in the above example, we set a feedrate of 1500mm/minute on line 1, then do the move described above accelerating to a feedrate of 3000 mm/minute as it does so. The extrusion will accelerate along with the X and Y movement, so everything stays synchronised.
 
 Feedrate is treated as simply another variable (like X, Y, Z, and E) to be linearly interpolated. This gives complete control over the acceleration and deceleration of the printer head in such a way that ensures that everything moves smoothly together, and the right volume of material is extruded at all points. The feedrate specified may not be reached due to a lower feedrate limit being configured, or the move being too short for the axis to accelerate and decelerate in time.
 
@@ -542,8 +542,8 @@ Either the R parameter must be provided, or at least one of I and J must be prov
 ### Examples
 <br>
 <pre class="cblock">
-G2 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Clockwise arc from the current point to point (X=90.6,Y=13.8), with a center point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
-G3 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Counter-Clockwise arc from the current point to point (X=90.6,Y=13.8), with a center point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
+G2 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Clockwise arc from the current point to point (X=90.6,Y=13.8), with a centre point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
+G3 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Counter-Clockwise arc from the current point to point (X=90.6,Y=13.8), with a centre point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
 G2 X100 Y50 R200            ; (draw a clockwise arc with radius 200 from the current position to X=100 Y=50)
 </pre>
 
@@ -611,7 +611,7 @@ Remember that any parameter that you don't specify will automatically be set to 
 
 The R value is the standby temperature in ^o^C that will be used for the tool, and the S value is its operating temperature. If you don't want the tool to be at a different temperature when not in use, set both values the same.
 
-Temperatures set with G10 do not wait for the heaters to reach temp before proceeding. In order to wait for the temp use a M116 command after the G10 to wait for temps to be reached.
+Temperatures set with G10 do not wait for the heaters to reach temp before proceeding. In order to wait for the temp use an M116 command after the G10 to wait for temps to be reached.
 
 See the [T code (select tool)](/User_manual/Reference/Gcodes/T){target=_blank} below. In tools with multiple heaters the temperatures for them all are specified thus: R100.0:90.0:20.0 S185.0:200.0:150.0 .
 
@@ -686,14 +686,14 @@ G10
 ### Notes
 
 * Retracts filament then performs any zlift/hop according to settings of M207.
-* RepRapFirmware recognizes G10 as a command to set tool offsets and/or temperatures if the P parameter is present, and as a retraction command if it is absent.
+* RepRapFirmware recognises G10 as a command to set tool offsets and/or temperatures if the P parameter is present, and as a retraction command if it is absent.
 * G10 will retract all extruders associated with a tool as defined by M563, regardless of the mixing ratio set in M567
 
 ## G11: Unretract
 
 ### Parameters
 
-* no parameters in the RepRapFirmware implementation)
+* (no parameters in the RepRapFirmware implementation)
 
 ### Examples
 <br>
@@ -758,12 +758,12 @@ Units from this command onwards are in inches. Note that this is only intended t
 ### Examples
 <br>
 <pre class="cblock">
-G21 ; set units to millimeters
+G21 ; set units to millimetres
 </pre>
 
 ### Description
 
-Units from this command onwards are in millimeters. This is the default.
+Units from this command onwards are in millimetres. This is the default.
 
 ### Notes
 
@@ -794,9 +794,9 @@ G28    ; Home all axes
 G28 XZ ; Home the X and Z axes
 </pre>
 
-The **X** and **Z** parameters in this example act only as flags. Any coordinates given are ignored. For example, G28 Z10 results in the same behavior as G28 Z. Delta printers cannot home individual axes, but must always home all three towers, so the **X Y Z** parameters are simply ignored if the Firmware is in Delta mode.
+The **X** and **Z** parameters in this example act only as flags. Any coordinates given are ignored. For example, G28 Z10 results in the same behaviour as G28 Z. Delta printers cannot home individual axes, but must always home all three towers, so the **X Y Z** parameters are simply ignored if the firmware is in Delta mode.
 
-The purpose of homing is to move the specified axes in such a way as to establish a known position for them, for example by moving an axis motor until an endstop switch is triggered. Homing an axis normally leaves it in a fixed position, however this position needs not be the zero position.
+The purpose of homing is to move the specified axes in such a way as to establish a known position for them, for example by moving an axis motor until an endstop switch is triggered. Homing an axis normally leaves it in a fixed position, however, this position need not be the zero position.
 
 The way in which each axis is homed is completely configurable using the homing macro files, which specify what actions are taken. Execution of the G28 command is as follows:
 
@@ -806,9 +806,9 @@ The way in which each axis is homed is completely configurable using the homing 
 * For each remaining axis flagged as "to be homed" the appropriate homing file is executed (**homex.g**, **homey.g**, **homez.g** etc.).
 * If flags are used, the axes are homed in the order X, Y, Z etc, not in the order the flags are specified (e.g. G28 ZX will home X first, then Z)
 
-For Cartesian printers that use a Z probe to home Z instead of an endstop it is sensible to setup the **homeall.g** with the XY axes to home first, then move the carriage to a safe position –usually the middle of the bed– where it can safely probe downward to home Z. For an example see [Configuring RepRapFirmware for a Cartesian printer](/User_manual/Machine_configuration/Configuration_cartesian){target=_blank}.
+For Cartesian printers that use a Z probe to home Z instead of an endstop it is sensible to set up the **homeall.g** with the XY axes to home first, then move the carriage to a safe position –usually the middle of the bed– where it can safely probe downward to home Z. For an example see [Configuring RepRapFirmware for a Cartesian printer](/User_manual/Machine_configuration/Configuration_cartesian){target=_blank}.
 
-Neither homeall.g nor any other homing file may itself contain a G28 command, however it may use a M98 command to invoke another homing file.
+Neither homeall.g nor any other homing file may itself contain a G28 command, however it may use an M98 command to invoke another homing file.
 
 Because the behaviour of **G28** can be complex, it is recommended to consider the printer actions carefully before including **G28** in your ending GCode. On a Cartesian or CoreXY it could result in colliding with the printed object. An alternative to move the carriage at the completion of a print is to use **G0** or **G1**.
 
@@ -827,7 +827,7 @@ This command uses a probe to measure the bed height at 4 or more points to deter
 
 ### Parameters
 
-* **S0** Probe the bed, save the height map in a file on the SD card, and activate mesh bed compensation. The height map is stored in file is */sys/heightmap.csv*.
+* **S0** Probe the bed, save the height map in a file on the SD card, and activate mesh bed compensation. The height map is stored in file */sys/heightmap.csv*.
 * **S1** Load the height map from file and activate mesh bed compensation. The default filename is as for S0 but a different filename can be specified using the P parameter.
 * **S2** Disable mesh bed compensation and clear the height map (also clears the map of invalid probe points in builds that support it)
 * **S3** Save height map to the specified file (supported in RRF 2.04 and later)
@@ -860,7 +860,7 @@ G29 S4 P"probePoints.csv" ; Load probe points file "probePoints.csv"
 * The S4 subfunction supports selective probing, such as probing a grid with holes in it. The probe points file (default */sys/probePoints.csv*) needs to be manually created. To use:
   1. Create a valid probe points file; the default file name is */sys/probePoints.csv*. The format of a probe points file is similar to a height map file except for the following:
   - The first line must start with "RepRapFirmware probe points file v2" instead of "RepRapFirmware height map file v2" (the rest of the line is not processed)
-  - The fourth and subsequent lines have the value 1 at points that are to be probed if they are reachable and 0 in points that are to be omitted.
+  - The fourth and subsequent lines have the value 1 at points that are to be probed if they are reachable and 0 at points that are to be omitted.
   2. Send an appropriate G29 S4 command, eg `G29 S4 P"probePoints.csv"`.
   3. When G29 S0 is called subsequently, the grid definition defined in the probe points file is used instead of the grid defined by M557, and reachable points are probed or not as indicated in the file.
 * If you have a probe that needs to be deployed and retracted (e.g. a BL touch) see the [Controlling deployable probes](/User_manual/Connecting_hardware/Z_probe_connecting#controlling-deployable-probes) documentation. **NOTE** If you have **deployprobe.g** or **retractprobe.g** in the /sys/ directory the firmware will attempt to use them, only have them if you need them.
@@ -932,7 +932,7 @@ NOTE:
 * If a "normal" **Z parameter** is given instead of -9999 or lower, then the bed is not probed, but instead that value is used as if the Z probe had triggered at that height.
 * The **H parameter** is an optional height correction for that probe point. It allows for the Z probe having a trigger height that varies with XY position. The nominal trigger height of the Z probe (e.g. at bed centre) is declared in the Z parameter of the G31 command in the config.g file. When you probe using G30 and the probe triggers, the firmware will assume that the nozzle is at the nominal trigger height plus the value you have in the H parameter. For example, when doing delta calibration, it can account for the change in trigger height caused by effector tilt, if the vertical offset caused by the tilt has been measured.
 * The **K parameter** is applicable to all G30 commands. It is the Z probe number, default 0. It is not remembered between G30 commands, it always defaults to 0.
-* Using a Scanning Z Probes as a normal Z probe is supported in RRF 3.5.0 and later.
+* Using a Scanning Z Probe as a normal Z probe is supported in RRF 3.5.0 and later.
 * If you have a probe that needs to be deployed and retracted (e.g. a BL touch) see the [Controlling deployable probes](/User_manual/Connecting_hardware/Z_probe_connecting#controlling-deployable-probes) documentation. **NOTE** If you have **deployprobe.g** or **retractprobe.g** in the /sys/ directory the firmware will attempt to use them, only have them if you need them.
 
 ## G31: Set or Report Current Probe status
@@ -1028,7 +1028,7 @@ It must also come after M584 if it references any axes beyond X and Y (RRF >=3.3
 ### Notes
 
 * When used on its own this reports whether the Z probe is triggered, or gives the Z probe value in some units if the probe generates height values. If combined with a Z and P field (example: G31 P312 Z0.7) this will set the Z height to 0.7mm when the Z-probe value reaches 312 when a G28 Z0 (zero Z axis) command is sent. The machine will then move a further -0.7mm in Z to place itself at Z = 0. This allows non-contact measuring probes to approach but not touch the bed, and for the gap left to be allowed for. If the probe is a touch probe and generates a simple 0/1 off/on signal, then G31 Z0.7 will tell the RepRap machine that it is at a height of 0.7mm (as configured by Z0.7 in this example) when the probe is triggered.
-* If you are using the nozzle as a probe (for example with a peizo or switch that the hotend has a travel distance to trigger) then remember the Z offset may need to be negative (ie the probe triggers under Z0)
+* If you are using the nozzle as a probe (for example with a piezo or switch that the hotend has a travel distance to trigger) then remember the Z offset may need to be negative (ie the probe triggers under Z0)
 * The G31 parameters of each probe can be saved to override-config.g using `M500 P31`. 
 
 
@@ -1048,13 +1048,13 @@ The firmware executes macro file **bed.g**. This macro normally uses G30 command
 
 For more detail on using G32 for automatic Delta calibration see: [Calibrating a delta printer](/User_manual/Tuning/Delta_calibration){target=_blank}
 
-For more detail on using G32 for automatic leveling of a cartesian or CoreXY see: [Bed levelling using multiple independent Z motors](/User_manual/Connecting_hardware/Z_probe_auto_levelling){target=_blank}
+For more detail on using G32 for automatic levelling of a Cartesian or CoreXY see: [Bed levelling using multiple independent Z motors](/User_manual/Connecting_hardware/Z_probe_auto_levelling){target=_blank}
 
-For more detail on using G32 for manual bed leveling assistant see: [Using the manual bed levelling assistant](/User_manual/Connecting_hardware/Z_probe_manual_levelling){target=_blank}
+For more detail on using G32 for manual bed levelling assistant see: [Using the manual bed levelling assistant](/User_manual/Connecting_hardware/Z_probe_manual_levelling){target=_blank}
 
 ## G38.2: Straight Probe
 
-Probe toward workpiece, stop on contact, signal error if failure. Supported in RepRapFirmware 3 and later.
+Probe towards workpiece, stop on contact, signal error if failure. Supported in RepRapFirmware 3 and later.
 
 ### Parameters
 
@@ -1069,8 +1069,8 @@ G38.x Straight Probe will perform a probing move in a straight line with the cur
 
 **Modes**
 
-* **G38.2**: probe toward workpiece, stop on contact, signal error if failure
-* **G38.3**: probe toward workpiece, stop on contact
+* **G38.2**: probe towards workpiece, stop on contact, signal error if failure
+* **G38.3**: probe towards workpiece, stop on contact
 * **G38.4**: probe away from workpiece, stop on loss of contact, signal error if failure
 * **G38.5**: probe away from workpiece, stop on loss of contact
 
@@ -1089,7 +1089,7 @@ G38.x Straight Probe will perform a probing move in a straight line with the cur
 
 ## G38.3: Straight Probe
 
-Probe toward workpiece, stop on contact Supported in RepRapFirmware 3 and later.
+Probe towards workpiece, stop on contact. Supported in RepRapFirmware 3 and later.
 See 'G38.2: Straight Probe' for usage.
 
 ## G38.4: Straight Probe
@@ -1179,7 +1179,7 @@ Supported in firmware 1.21 and later.
 
 * **Snn** specifies memory slot number (0-based) to save into (default 0)
 
-RepRapFirmware for Duets generally provides slots 0 thru 5. When a print is paused the coordinates are saved to slot 1 automatically, and at the start of a tool change the coordinates are saved to slot 2 automatically. The remaining slots are free to use for any purpose. Use G0 or G1 with the appropriate R parameter to move the current tool to a saved position.
+RepRapFirmware for Duets generally provides slots 0 to 5. When a print is paused the coordinates are saved to slot 1 automatically, and at the start of a tool change the coordinates are saved to slot 2 automatically. The remaining slots are free to use for any purpose. Use G0 or G1 with the appropriate R parameter to move the current tool to a saved position.
 
 **Note:** Do not use G60 in pause.g . It is not needed as the co-ordinates are saved in slot 1 automatically. Using it in pause.g can lead to issues with restoring the primary and secondary motion system correctly in RRF 3.5.1
 
@@ -1200,7 +1200,7 @@ RepRapFirmware for Duets generally provides slots 0 thru 5. When a print is paus
 
 ### Description
 
-Rotates the coordinate system in the current plane as selected by [G17](/User_manual/Reference/Gcodes/G17){target=_blank}, [G18](/User_manual/Reference/Gcodes/G18){target=_blank} or [G19](/User_manual/Reference/Gcodes/G19){target=_blank}. You may either specify the coordinates of the two axes of the selected plan (e.g. X and Y if using the default XY plane or after G17) or you may specify A and B coordinates.
+Rotates the coordinate system in the current plane as selected by [G17](/User_manual/Reference/Gcodes/G17){target=_blank}, [G18](/User_manual/Reference/Gcodes/G18){target=_blank} or [G19](/User_manual/Reference/Gcodes/G19){target=_blank}. You may either specify the coordinates of the two axes of the selected plane (e.g. X and Y if using the default XY plane or after G17) or you may specify A and B coordinates.
 
 ### Notes
 
@@ -1209,7 +1209,7 @@ Rotates the coordinate system in the current plane as selected by [G17](/User_ma
   * The selected plane is not XY;
   * G53 is in effect;
   * A system macro (i.e. one that is invoked automatically, such as homing or tool change) is being run.
-* If G68 coordinate rotaton is in effect and you use one of G54 thru G59.3 to switch to a different workplace coordinate system, the rotation origin will move in line with the origin of the workplace coordinate system.
+* If G68 coordinate rotation is in effect and you use one of G54 to G59.3 to switch to a different workplace coordinate system, the rotation origin will move in line with the origin of the workplace coordinate system.
 * In RRF 3.6.1 and later, the current G68 rotation parameters can be saved to override-config.g using `M500 P68`. 
 * In RRF 3.7 and later, G68 without an R parameter reports the current rotation angle and centre.
 
@@ -1311,7 +1311,7 @@ G93
 
 ### Description
 
-G93 is Inverse Time Mode. In inverse time feed rate mode, an F word means the move should be completed in (one divided by the F number) minutes. For example, F2.0 means the move should be completed in a half a minute.
+G93 is Inverse Time Mode. In inverse time feed rate mode, an F word means the move should be completed in (one divided by the F number) minutes. For example, F2.0 means the move should be completed in half a minute.
 
 ### Notes
 
@@ -1339,7 +1339,7 @@ G94
 
 ### Description
 
-G94 is Units per Minute Mode. In units per minute feed mode, an F word is interpreted to mean the controlled point should move at a certain number of inches per minute, millimeters per minute, or degrees per minute, depending upon what length units are being used and which axis or axes are moving. 
+G94 is Units per Minute Mode. In units per minute feed mode, an F word is interpreted to mean the controlled point should move at a certain number of inches per minute, millimetres per minute, or degrees per minute, depending upon what length units are being used and which axis or axes are moving. 
 
 ### Notes
 
@@ -1374,7 +1374,7 @@ From any other input when the job is paused (M25): the job is cancelled and canc
 From any other input when no job is paused: M0 reports "Pause the print before attempting to cancel it" and does nothing else.
 1. If neither file exists then all heaters are turned off. 
 
-**Note:** From RRF 3.5.0, when a print file completes normally then file stop.g is run automatically even if the print file did not end with a M0 command.
+**Note:** From RRF 3.5.0, when a print file completes normally then file stop.g is run automatically even if the print file did not end with an M0 command.
 
 **Note:** Since RRF 3.5.0, cancel.g is run whether or not the axes are homed. Check for homed axes in cancel.g before moving.
 
@@ -1490,7 +1490,7 @@ M3 S255  ; laser mode, set laser power to full on
   * Using the S parameter will additionally set the spindle RPM of the current tool.
   * It is an error if there is no tool active or the active tool does not have a spindle assigned and there is no P parameter provided to define which spindle this should be applied to.
 * Laser mode:
-  * M3 turns the laser on, with the S parameter setting the laser power (0 to 255), before a series corresponding G1 move. 
+  * M3 turns the laser on, with the S parameter setting the laser power (0 to 255), before a series of corresponding G1 moves. 
   * The relationship between the S parameter and laser power depends on the R parameter that was specified in the M452 command. 
   * Note there can be issues using this mode as the M-command queue is only 8 commands long, while the G-command queue is 20 commands long. You may get stuttering, particularly when raster engraving. Better to use G1 with S parameter.
 
@@ -1523,7 +1523,7 @@ M4 S4000 ; turn on spindle at speed of 4000 RPM, counterclockwise
 
 #### M4 in RepRapFirmware 3.5 and later
 
-* **M4** commands are now supported in FFF/FDM mode as well as CNC mode. This will allow mixing of additive and subtractive tools wihtout switching mode.
+* **M4** commands are now supported in FFF/FDM mode as well as CNC mode. This will allow mixing of additive and subtractive tools without switching mode.
 * **FFF mode:**
   * In FFF mode, M4 will control a predefined spindle, as 'CNC mode' below. Lasers are not supported.
 * **CNC mode:**
@@ -1560,7 +1560,7 @@ M5 ; turn off spindle/laser
 
 #### M5 in RepRapFirmware 3.5 and later
 
-* **M5** commands are now supported in FFF/FDM mode as well as CNC and laser mode. This will allow mixing of additive and subtractive tools wihtout switching mode.
+* **M5** commands are now supported in FFF/FDM mode as well as CNC and laser mode. This will allow mixing of additive and subtractive tools without switching mode.
 * **FFF mode:**
   * In FFF mode, M5 will control a predefined spindle, as 'CNC mode' below. Lasers are not supported.
 * **CNC mode:**
@@ -1639,7 +1639,7 @@ M18 X E0:2 ; Disable X, extruder 0 and extruder 2 motors.
 
 ### Notes
 
-* Stops the idle hold on all axis and extruder, effectively disabling the specified motor, or all motors. Disables motors and allows axes to move 'freely.' 
+* Stops the idle hold on all or specified axes and extruders, effectively disabling the motor(s) of the specified axes, or all motors. Disables motors and allows axes to move 'freely.' 
 * When used without parameters, all axis and extruder motors are disabled. 
 * Individual motors can be disabled with the X, Y, Z etc axis switches.
 * The axes whose motors are disabled are marked as not homed.
@@ -1725,7 +1725,7 @@ M20 S3 R23
 
 #### Standalone mode
 
-The specified SD card is initialized.
+The specified SD card is initialised.
 
 ##### Parameters
 
@@ -1742,7 +1742,7 @@ M21 P1
 ##### Notes
 
 * If an SD card is loaded when the machine is switched on, this will happen by default. 
-* SD cards must be initialized for the other SD functions to work.
+* SD cards must be initialised for the other SD functions to work.
 
 #### SBC mode
 
@@ -1847,7 +1847,7 @@ The machine prints from the file selected with the M23 command. If the print was
 
 When this command is used to resume a print that was paused, the macro file **resume.g** is run prior to resuming the print.
 
-> If an axis or axes are un-homed resume.g will not run (see the equivalent behaviour in the documentation for [M25](/User_manual/Reference/Gcodes/M25). This is to allow pausing and resuming early in a job file where a machine may not yet be homed. If axes were homed when pause.g is run and subsequently become unhomed then resuming will cancel the print without running resume.g, or if axis movement when axes are not homed is permitted via [M564](/User_manual/Reference/Gcodes/M564), the print resumes without resume.g being run.{.is-info}
+> If an axis or axes are un-homed resume.g will not run (see the equivalent behaviour in the documentation for [M25](/User_manual/Reference/Gcodes/M25)). This is to allow pausing and resuming early in a job file where a machine may not yet be homed. If axes were homed when pause.g is run and subsequently become unhomed then resuming will cancel the print without running resume.g, or if axis movement when axes are not homed is permitted via [M564](/User_manual/Reference/Gcodes/M564), the print resumes without resume.g being run.{.is-info}
 
 ## M25: Pause SD print
 
@@ -2087,11 +2087,11 @@ M38 gcodes/myfile.g
 
 If the file cannot be opened, then the string "Cannot open file:" followed by the file name is returned instead.
 
-This used to compute the SHA1 hash  but that deprecated and removed from ReprapFirmware 3.5.2 and later.
+In RRF 3.5.1 and earlier, M38 computes the SHA1 hash. This was deprecated and removed from RRF 3.5.2 and later.
 
 ## M39: Report SD card information
 
-*Supported in ReprapFirmware 1.21 and later.*
+*Supported in RepRapFirmware 1.21 and later.*
 
 This command returns information about the SD card in the specified slot in the requested format.
 
@@ -2114,7 +2114,7 @@ M39 S2
 
 ### Notes
 
-In the JSON response, capacity, partition size (RRF 3.4 and later), free space and cluster size are in bytes. and interface speed is in bytes/second.
+In the JSON response, capacity, partition size (RRF 3.4 and later), free space and cluster size are in bytes, and interface speed is in bytes/second.
 
 ## M42: Switch I/O pin
 
@@ -2169,7 +2169,7 @@ M42 switches a general purpose I/O pin. Use M42 Px Sy to set pin x to value y. T
 
 ##### Notes
 
-In RRF 2.x, the 'P' pin number reference is an internal firmware reference named "digital pin" which It maps on different connector pins depending the hardware. See [Controlling unused IO pins](/User_manual/Connecting_hardware/IO_GPIO){target=_blank} for all the unused pin mappings in RRF 2.x.
+In RRF 2.x, the 'P' pin number reference is an internal firmware reference named "digital pin" which maps to different connector pins depending on the hardware. See [Controlling unused IO pins](/User_manual/Connecting_hardware/IO_GPIO){target=_blank} for all the unused pin mappings in RRF 2.x.
 
 For Duet 0.8.5 and 0.6, along with pre 1.16 versions of RepRapFirmware, see the [RepRap GCode dictionary M42 entry](http://reprap.org/wiki/G-code#M42:_Switch_I.2FO_pin){target=_blank}.
 
@@ -2179,7 +2179,7 @@ For Duet 0.8.5 and 0.6, along with pre 1.16 versions of RepRapFirmware, see the 
 
 * **Pnn** Percentage of the print that has been completed (not used by RRF)
 * **Rnn** Remaining print time in minutes
-* **Cnn** Time until user interacton is required, in minutes (supported by RRF 3.6.0 and later)
+* **Cnn** Time until user interaction is required, in minutes (supported by RRF 3.6.0 and later)
 
 M73 is generated by some slicers, to inform the firmware about the state of the print so that it can provide a better estimate of the remaining print time.
 
@@ -2268,7 +2268,7 @@ Now resetting the Virtual E position to 0, followed by a further move:
 `M114`
 Response (abridged):
 `.. E:11.000 E0:21.0 ..`
-So the virtual E position has incremented form 0 to 11, but the E0 counter was not reset by G92 E0, so has continued to count up from 10, so is now at 21.
+So the virtual E position has incremented from 0 to 11, but the E0 counter was not reset by G92 E0, so has continued to count up from 10, so is now at 21.
 
 ##### Multiple extruders
 
@@ -2288,9 +2288,9 @@ Switching to T2 (no extrusion in the tool change commands in this example), then
 `M114`
 Response
 `.. E:5.000 E0:10.0 E1:0.0 E2:-5.0 ..`
-This shows the issue with using absolute extrusion with multiple tools. The virtual extruder was on 10, so in absolute mode the command to move to 5 is a retraction of 5mm. so its updated form 10 to 5, and the selected extruder (E2) moves back from 0 to -5.
+This shows the issue with using absolute extrusion with multiple tools. The virtual extruder was on 10, so in absolute mode the command to move to 5 is a retraction of 5mm, so it is updated from 10 to 5, and the selected extruder (E2) moves back from 0 to -5.
 
-It is possible to work around this by resetting the virtual extruder position using G92 E0 before each tool change. Alternatively if its state is needed to be maintained then saving the virtual position into a separate global variable for each tool as part of the tfreeN.g tool change macros and then restoring it in the tpostN.g tool change macros should allow this, however in most cases its better to use M83
+It is possible to work around this by resetting the virtual extruder position using G92 E0 before each tool change. Alternatively if its state is needed to be maintained then saving the virtual position into a separate global variable for each tool as part of the tfreeN.g tool change macros and then restoring it in the tpostN.g tool change macros should allow this, however in most cases it's better to use M83
 
 ## M83: Set extruder to relative mode
 
@@ -2331,7 +2331,7 @@ M84 E0:1:2:3:4 ; Disable specific motors
 
 ### Description
 
-Stops the idle hold on all axis and extruder, effectively disabling the specified motor, or all motors, the same as [M18](/User_manual/Reference/Gcodes/M18). Be aware that by disabling idle hold during printing, you will get quality issues.
+Stops the idle hold on all axes and extruders, effectively disabling the motor(s) on the specified axis, or all motors, the same as [M18](/User_manual/Reference/Gcodes/M18). Be aware that by disabling idle hold during printing, you will get quality issues.
 Also used to set the idle timeout for all motors. For example, `M84 S10` will idle the stepper motors after 10 seconds of inactivity. The idle current is set by the [M906](/User_manual/Reference/Gcodes/M906) I parameter.
 
 ### Notes
@@ -2449,7 +2449,7 @@ M104 S190
 M104 S220 T1
 </pre>
 
-The first example sets the active and standby temperature of the current tool to 190^o^C and return control to the host immediately (*i.e.* before that temperature has been reached by the extruder). If no tool is active, it will apply to the lowest non-negative tool number.
+The first example sets the active and standby temperature of the current tool to 190^o^C and returns control to the host immediately (*i.e.* before that temperature has been reached by the extruder). If no tool is active, it will apply to the lowest non-negative tool number.
 
 The second example sets the active and standby temperatures of tool 1 to 220^o^C. If tool 1 is off, it will be set to standby as well (resulting in tool 1 heating up to the temperature given).
 
@@ -2489,7 +2489,7 @@ Use [M409](/User_manual/Reference/Gcodes/M409){target=_blank} to get status info
 * **Xnnn** Set the maximum fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases) when a non-zero fan speed is requested.
 * **Bnnn** Blip time - fan will be run at full PWM for this number of seconds when started from standstill. Default is B0.1 which means that there is a 100ms burst after starting the fan.
 * **Hnn:nn:nn...** Enable thermostatic mode and select sensor(s) monitored. H-1 disables thermostatic mode. Relates to the sensor number(s) created by M308.
-* **Rnnn** Restore fan speed to the value it has when the print was paused (R1) or the last time the fan speed was set and no P parameter was provided (R2).
+* **Rnnn** Restore fan speed to the value it had when the print was paused (R1) or the last time the fan speed was set and no P parameter was provided (R2).
 * **Tnnn** or **Tnn:nn** Set thermostatic mode trigger temperature, or temperature control range
 * **C"name"** Set custom name for this fan (supported in RRF >= 2.01)
 
@@ -2502,7 +2502,7 @@ M106 P1 T45 H1:2 X0.7 ; (RRF 3.4 and later, see notes)
 M106 P1 T40:50 H1:2
 </pre>
 
-The first example turns on the default cooling fan at half speed. The second (RRF 3.3 and earlier) and third (RRF 3.4 and later) examples sets the second fan to a thermostatic fan for sensors 1 and 2 (e.g. the extruder heaters in a dual-nozzle machine) such that the fan will be on at 70% PWM when either hot end is at or above 45C. The third example also sets up a thermostatic fan, but this time it runs in proportional mode; fan speed scales from 0% to 100% as temperature rises from 40C to 50C. 
+The first example turns on the default cooling fan at half speed. The second (RRF 3.3 and earlier) and third (RRF 3.4 and later) examples set the second fan to a thermostatic fan for sensors 1 and 2 (e.g. the extruder heaters in a dual-nozzle machine) such that the fan will be on at 70% PWM when either hot end is at or above 45C. The third example also sets up a thermostatic fan, but this time it runs in proportional mode; fan speed scales from 0% to 100% as temperature rises from 40C to 50C. 
 <br>
 <pre class="cblock">
 M308 S10 Y"mcu-temp" A"MCU"                      ; defines sensor 10 as MCU temperature sensor
@@ -2519,8 +2519,8 @@ This example sets up an electronics cooling fan that starts to turn on when the 
 * The **P** parameter relates to the fan number created by M950, NOT the fan pin number on the board as in RRF2.x.
 * The **H** parameter relates to the sensor number(s) created by M308, not the temperature sensor pin number on the board as in RRF2.x.
 * From RRF 3.4, when a fan is configured as thermostatic using M106, the S parameter is now ignored. If a single T value is given, then when the temperature is above the T parameter the fan will run at the PWM specified by the X (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the S parameter. 
-* If a fan is configured to trigger on a sensor that represents a stepper driver over-temperature flags (ie M308 ... Y'drivers'), then when the fan turns on it will delay the reporting of an over-temperature warning for the corresponding drivers for a few seconds, to give the fan time to cool the driver down.
-* If you were using the PB6 tacho input on Duet 2 WiFi/Ethernet running RRF 2.x, you must declare this in a M950 command for the fan concerned in RRF 3.x.
+* If a fan is configured to trigger on a sensor that represents a stepper driver over-temperature flag (ie M308 ... Y'drivers'), then when the fan turns on it will delay the reporting of an over-temperature warning for the corresponding drivers for a few seconds, to give the fan time to cool the driver down.
+* If you were using the PB6 tacho input on Duet 2 WiFi/Ethernet running RRF 2.x, you must declare this in an M950 command for the fan concerned in RRF 3.x.
 
 Example
 <br>
@@ -2544,7 +2544,7 @@ M950 F2 C"!Fan2+exp.pb6" Q25000  ; fan 2 is a 4-wire PWM fan so invert it, use h
 * **Xnnn** Set the maximum fan speed (0.0-1.0 or >1.0-255, 0 is off in both cases) when a non-zero fan speed is requested. (supported in RRF >= 2.02)
 * **Bnnn** Blip time - fan will be run at full PWM for this number of seconds when started from standstill. Default is B0.1 which means that there is a 100ms burst after starting the fan.
 * **Hnn:nn:nn...** Enable thermostatic mode and select heaters monitored. H-1 disables thermostatic mode. (In RRF2 this relates to the sensor number(s) created by M308, not the temperature sensor pin number on the board)
-* **Rnnn** Restore fan speed to the value it has when the print was paused (R1) or the last time the fan speed was set and no P parameter was provided (R2).
+* **Rnnn** Restore fan speed to the value it had when the print was paused (R1) or the last time the fan speed was set and no P parameter was provided (R2).
 * **Tnnn** or **Tnn:nn** Set thermostatic mode trigger temperature, or temperature control range
 * **C"name"** Set custom name for this fan (supported in RRF >= 2.01)
 * **Ann** Logical pin number that this fan is connected to (supported in RRF >= 2.02) (not supported in RRF3, use M950)
@@ -2564,17 +2564,17 @@ The first example turns on the default cooling fan at half speed. The second exa
 
 * The **F** parameter sets the fan PWM frequency, in Hz. The default is F250, which works with most fans, try F100 or lower if you find that you can't control the speed of your fan. This parameter is ignored for fans connected to the fan outputs of a DueX2 or DueX5 because those outputs don't support variable PWM frequency.
 * The **I** parameter causes the fan output signal to be inverted if its value is greater than zero. This makes the cooling fan output suitable for feeding the PWM input of a 4-wire fan via a diode. If the parameter is present and zero, the output is not inverted. If the I parameter is negative then in RRF 1.16 and later the fan is disabled, which frees up the pin for use as a general purpose I/O pin that can be controlled using M42.
-* The **A** parameter can be used to assign a fan to a different output pin, for example a spare heater output (use a M307 command to disable the heater and free up the pin first). 
+* The **A** parameter can be used to assign a fan to a different output pin, for example a spare heater output (use an M307 command to disable the heater and free up the pin first). 
 * In firmware versions 1.19 and later, fans can respond to virtual heaters (which have heater numbers 100 upwards) as well as real heaters. If a fan is configured to trigger on a virtual heater whose sensor represents TMC2660 driver over-temperature flags, then when the fan turns on it will delay the reporting of an over-temperature warning for the corresponding drivers for a few seconds, to give the fan time to cool the driver down.
 
 ### Notes - all firmware versions
 
 * The parameter **S** declares the PWM value (0.0-1.0 or >1.0-255, 0 is off in both cases). **M106 S0** turns the fan off.
 * If an **S** parameter is provided but no other parameter is present, then the speeds of the print cooling fans associated with the current tool will be set (see the F parameter in the M563 command). If no tool is active then the speed of Fan 0 will be set.
-* The **R** parameter allows the fan speed to be set to a remenmbered value. When a pause is commanded, the speed of the print cooling fan for the current tool is remembered in restore point 1. When a tool change is commanded, the speed of the print cooling fan for the current tool is remembered in restore point 2. Either way, if no tool is active then the speed of fan 0 is remembered. These remembered speeds can be recalled using parameter **R1** or **R2** in a subsequent M106 command. In particular, using **M106 R1** in the resume.g macro allows the pause.g macro to switch off the fans and have them resume when the print is resumed. Similarly, using **M106 R2** in tpost#.g files allows the configured fan speed to be passed between tools, which is useful on multi extruder printers where the slicing software may not specify the fan speed on tool change.
+* The **R** parameter allows the fan speed to be set to a remembered value. When a pause is commanded, the speed of the print cooling fan for the current tool is remembered in restore point 1. When a tool change is commanded, the speed of the print cooling fan for the current tool is remembered in restore point 2. Either way, if no tool is active then the speed of fan 0 is remembered. These remembered speeds can be recalled using parameter **R1** or **R2** in a subsequent M106 command. In particular, using **M106 R1** in the resume.g macro allows the pause.g macro to switch off the fans and have them resume when the print is resumed. Similarly, using **M106 R2** in tpost#.g files allows the configured fan speed to be passed between tools, which is useful on multi extruder printers where the slicing software may not specify the fan speed on tool change.
 * The **T** and **H** parameters allow a fan to be configured to operate in thermostatic mode, for example to use one of the fan channels to control the hot end fan. In this mode the fan will be on when the temperature of any of the sensors listed in the **H** parameter is at or above the trigger temperature set by the **T** parameter, and off otherwise. Thermostatic mode can be disabled using parameter **H-1**. In RRF 3.4 and later, the fan will run at the PWM specified by the **X** (maximum PWM) parameter (default 1.0). In RRF 3.3 and earlier, the fan will run at the PWM specified by the **S** parameter.
 * In firmware 1.19 and later, the **T** parameter may be of the form **Taaa:bbb** where *aaa* is the temperature at/below which the fan should be fully off and *bbb* is the temperature at which the fan should be fully on. The PWM will be set proportionally if the temperature is between these limits.
-* The **B** parameter sets the time for which the fan will be operated at full PWM when started from cold, to allow low fan speeds t be used. A value of 0.1 seconds is usually sufficient.
+* The **B** parameter sets the time for which the fan will be operated at full PWM when started from cold, to allow low fan speeds to be used. A value of 0.1 seconds is usually sufficient.
 * The **L** parameter defines the minimum PWM value that is usable with this fan. If a lower value is commanded that is not zero, it will be rounded up to this value.
 * The **X** parameter defines the maximum PWM value that is usable with this fan. The requested PWM value (**S** parameter) is scaled to be between 0 and **X** parameter value, and rounded up to the minimum if defined (**L** parameter). e.g. if **X128** is set, **S255** will set PWM to 128; **S128** will set PWM to 64.
 
@@ -2737,7 +2737,7 @@ Request the Firmware Version and Capabilities of the current microcontroller. Se
 
 The **B** parameter is used on Duet 3 only, in RRF v3.x and later. M115 can take an optional B (board number) parameter which is the CAN address of the board to be queried, default 0 (i.e. main board).
 
-The **P** parameter is no longer supported, and has been removed from RRF 3.5 and later, to save memory on Duet 2. It is used tell the firmware about the hardware on which it is running, if RRF can't identify it. Should only be used in config.g, if you're having problems. If the P parameter is present then the integer argument specifies the hardware being used. 
+The **P** parameter is no longer supported, and has been removed from RRF 3.5 and later, to save memory on Duet 2. It is used to tell the firmware about the hardware on which it is running, if RRF can't identify it. Should only be used in config.g, if you're having problems. If the P parameter is present then the integer argument specifies the hardware being used. 
 * In RRF v2.x to v3.4.x, only Duet 2 hardware could be specified. This was mainly used for internal testing.
 * In RRF v1.x, the following are supported on first-generation Duets:
   * M115 P0 - Automatic board type selection if supported, or default if not
@@ -2799,7 +2799,7 @@ Supported in RepRapFirmware 1.21 and later.
 ### Parameters
 
 * **Pnnn** Message type: 0 = Generic [default], 1 = USB, 2 = PanelDue/UART, 3 = HTTP, 4 = Telnet, 5 = second UART, 6 = MQTT Client [RRF 3.5 and later on WiFi-equipped Duet 3 boards, or RRF 3.6 and later on all Duet 3 boards], 7 = second USB channel [RRF 3.7 and later on Duet 3 boards] (optional)
-* **S"msg"** Message to send , limit of 255 characters
+* **S"msg"** Message to send, limit of 255 characters
 * **Lnnn** Log level of this message (0 = do not log this line, 1 = log as WARN, 2 = log as INFO, 3 = log as DEBUG (default)) (RRF 3.2 and later)
 * **T"topic"** The topic to publish the message under (only valid on MQTT Client message).
 * **Qnn** The QOS level of the message to publish, from `0` to `2` (only valid for MQTT Client message, optional). Defaults to `0` if not specified.
@@ -2915,7 +2915,7 @@ The following P parameter is supported on boards that use Arm Cortex M4 processo
 
 * P500 Sn - n=0 disables the processor write buffer; n=1 enables it which is the default at power up. If the S parameter is missing then the current enable/disable state is reported. Disabling the write buffer reduces performance, but can help when debugging if the processor resets and the M122 reset data indicates that the cause was an imprecise exception. Disabling the write buffer will usually make the exception precise in future. On expansion boards (B parameter), P500 reports the state, P501 disables the write buffer and P502 enables it.
 
-Note: do not use M122 with a P parameter of 1000 or greater. Most of these values are used to test the error reporting facilities and deliberately cause the firmware to crash . As at firmware 3.7.0 these are:
+Note: do not use M122 with a P parameter of 1000 or greater. Most of these values are used to test the error reporting facilities and deliberately cause the firmware to crash. As at firmware 3.7.0 these are:
 
 * P1001 cause a watchdog reset
 * P1002 test what happens when a module gets stuck in a spin loop
@@ -2986,7 +2986,7 @@ Set the PID to measure temperatures and calculate the power to send to the heate
 
 ### Order dependency
 
-In RRF3 a M140 command with H parameter (other than H-1) must come after the M950 command that creates that heater, and before any M143 command that sets a temperature limit for that heater.
+In RRF3 an M140 command with H parameter (other than H-1) must come after the M950 command that creates that heater, and before any M143 command that sets a temperature limit for that heater.
 
 ### Examples
 <br>
@@ -3027,7 +3027,7 @@ The seventh example sets the active/target bed temperature to absolute negative 
 
 ### Order dependency
 
-In RRF3 a M141 command with H parameter (other than H-1) must come after the M950 command that creates that heater, and before any M143 command that sets a temperature limit for that heater.
+In RRF3 an M141 command with H parameter (other than H-1) must come after the M950 command that creates that heater, and before any M143 command that sets a temperature limit for that heater.
 
 ### Examples
 <br>
@@ -3037,7 +3037,7 @@ M141 H3
 M141 P1 H4
 </pre>
 
-The first example sets the temperature of the chamber to 30^o^C and return control to the host immediately (*i.e.* before that temperature has been reached by the chamber).
+The first example sets the temperature of the chamber to 30^o^C and returns control to the host immediately (*i.e.* before that temperature has been reached by the chamber).
 The second example specifies that chamber heater 0 (the default if no P parameter is given) uses heater 3.
 The third example specifies that chamber heater 1 uses heater 4.
 
@@ -3080,7 +3080,7 @@ M143 H1 P1 S285 A0 ; raise a heater fault if it exceeds 285C
 * **H** Heater number to turn off if an anomaly is detected (default 1 which is normally the first hot end). This must be a real heater.
 * **S** Maximum permitted temperature
 * **P** Heater protection instance (defaults to H parameter if omitted)^1^
-* **X** Heater number whose temperature sensor is used to monitor the heater specified in the H parameter. This can be a virtual heater. It default to the value of the H parameter.^1^
+* **X** Heater number whose temperature sensor is used to monitor the heater specified in the H parameter. This can be a virtual heater. It defaults to the value of the H parameter.^1^
 * **A** Action to trigger (0: Generate heater fault [default] 1: Switch off permanently 2: Switch off temporarily)^1^
 * **C** Condition for temperature event (0: Temperature too high [default] 1: Temperature too low)^1^
 
@@ -3100,7 +3100,7 @@ M143 P100 H3 X104 A2 C0 S65
 
 ##### RepRapFirmware 2.x notes
 
-To control heaters via two thermistors, RepRapFirmware allows the configuration of extra heater protection elements whose index starts from 100. On the Duet 2 Wifi and Duet 2 Ethernet there are 8 extra heater protections available (100-107). See also [M305](/User_manual/Reference/Gcodes/M305){target=_blank}.
+To control heaters via two thermistors, RepRapFirmware allows the configuration of extra heater protection elements whose index starts from 100. On the Duet 2 WiFi and Duet 2 Ethernet there are 8 extra heater protections available (100-107). See also [M305](/User_manual/Reference/Gcodes/M305){target=_blank}.
 
 ##### Order dependency
 
@@ -3111,7 +3111,7 @@ If the heater is a bed or chamber heater then the M143 command must come after t
 ^1^ Supported in RepRapFirmware 1.20 and later. Starting from this version RepRapFirmware allows more granular control over the heater subsystem. By default each heater has one heater protection instance assigned to it, which is by default configured to generate a heater fault if the maximum heater temperature is exceeded.
 
 * The default maximum temperature for all heaters was 300°C prior to RepRapFirmware version 1.13, and 262°C from 1.13. At RepRapFirmware 1.17 the default maximum temperatures were 262C for extruders and 125C for the bed. In RRF 3.01 and later the default maximum temperature is 285C for tool heaters and 125C for bed heaters. Chamber heaters use 100C in RRF 3.7 and later and 125C in earlier versions. When the temperature of the heater exceeds this value a heater error will be triggered.
-* With A0 set on RepRapFirmware 1.26.1, PS_ON is triggered after the fault has exisited for the duration defined by the S parameter set in M570.
+* With A0 set on RepRapFirmware 1.26.1, PS_ON is triggered after the fault has existed for the duration defined by the S parameter set in M570.
 
 ## M144: Bed Standby
 
@@ -3149,17 +3149,17 @@ Switch the bed to its standby temperature. M144 S1 will set it back to its activ
 ##### Examples
 <br>
 <pre class="cblock">
-M950 E0 C"led" T1 Q3000000   ; create a RGB Neopixel LED strip on the LED port and set SPI frequency to 3MHz<br>
+M950 E0 C"led" T1 Q3000000   ; create an RGB Neopixel LED strip on the LED port and set SPI frequency to 3MHz<br>
 M150 E0 R255 P128 S20 F1     ; set first 20 LEDs to red, half brightness, more commands for the strip follow
 M150 E0 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished programming strip
 </pre>
 
-Оn **Fysetc 12864mini display** you can set all three LEDs separately. For display configuration and encoder illumination:
+On **Fysetc 12864mini display** you can set all three LEDs separately. For display configuration and encoder illumination:
 
 <br>
 <pre class="cblock">
 M918 P2 E-4 F2000000           ; Fysetc 12864mini
-M950 E0 C"io3.out" T1 U3       ; create a RGB Neopixel LED strip with 3 LEDs on the Duet 3 Mini 5+ 12864_EXP1 header<br>
+M950 E0 C"io3.out" T1 U3       ; create an RGB Neopixel LED strip with 3 LEDs on the Duet 3 Mini 5+ 12864_EXP1 header<br>
 M150 E0 R0 U0 B255 P255 S1 F1  ; display led blue
 M150 E0 R255 U0 B0 P255 S1 F1  ; left encoder led red
 M150 E0 R0 U255 B0 P255 S1 F0  ; right encoder led green
@@ -3188,7 +3188,7 @@ M150 R255 P128 S20 F1     ; set first 20 LEDs to red, half brightness, more comm
 M150 U255 B255 P255 S20   ; set next 20 LEDs to cyan, full brightness, finished programming strip
 </pre>
 
-Оn **Fysetc 12864mini display** you can set all three LEDs separately. For display configuration and encoder illumination:
+On **Fysetc 12864mini display** you can set all three LEDs separately. For display configuration and encoder illumination:
 
 <br>
 <pre class="cblock">
@@ -3390,7 +3390,7 @@ M203 X6000 Y6000 ;mm/min
 
 ### Notes
 
-* Sets the maximum feedrates that your machine can do in mm/min (or mm/s of th option S1 parameter is used)
+* Sets the maximum feedrates that your machine can do in mm/min (or mm/s if the optional S1 parameter is used)
 * RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
   Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M203 Z300, not M203 Z300,300
 * RepRapFirmware has a default minimum movement speed of 0.5mm/sec, or 30mm/minute. Gcode commands sent with a slower feedrate than this (e.g. drilling) will automatically run at this speed. 
@@ -3420,7 +3420,7 @@ M204 P500 T2000
 
 * M204 sets travel and printing acceleration limits for the current motion system. They stay in effect until another M204 command changes them or the firmware is reset.
 * Use M201 to set per-axis accelerations and extruder accelerations. RepRapFirmware applies the M204 accelerations to the move as a whole, and also applies the limits set by M201 to each axis and extruder.
-* RepRapFirmware applies M204 accelerations to the X and Y axes of the current tool. This includes active tools that map X/Y to additional axis (eg U/V). If additional axes are directly commanded (eg G1 commands to U/V axes) when the tool that maps these to X/Y is not selected, or the selected tool does not map X/Y to the other axes, then M204 limits will not be applied.
+* RepRapFirmware applies M204 accelerations to the X and Y axes of the current tool. This includes active tools that map X/Y to additional axes (eg U/V). If additional axes are directly commanded (eg G1 commands to U/V axes) when the tool that maps these to X/Y is not selected, or the selected tool does not map X/Y to the other axes, then M204 limits will not be applied.
 * Values are in mm/s².
 * This command is supported by firmware version 1.18 and later.
 
@@ -3614,7 +3614,7 @@ One M260 command can send and receive at most 34 bytes in total. If R requests m
 
 *Supported from firmware version 3.6*
 
-Write data to a Modbus slave device using standard Modbus protocol. If the device you wish to commuicatre with does not use the standard Modbus-RTU command set then you may be able to communicate with it using M260.4 instead.
+Write data to a Modbus slave device using standard Modbus protocol. If the device you wish to communicate with does not use the standard Modbus-RTU command set then you may be able to communicate with it using M260.4 instead.
 
 ### Parameters
 
@@ -3745,7 +3745,7 @@ Request data (synchronously) from a Modbus slave device.
 * **Pnn** Port to send/receive through, numbered as in M575 (RRF 3.7 and later: 2 = first aux port, 3 = second aux port; RRF3.6.x and earlier: 1 = first aux port, 2 = second aux port).
 * **Ann** Modbus device address
 * **Rnn** Register number to start from
-* **Bnn** How many registers,coils or inputs to request
+* **Bnn** How many registers, coils or inputs to request
 * **Fn** (optional) Modbus function code, must be one of: 1 (Read Coils), 2 (Read Discrete Inputs), 3 (Read Holding Registers), 4 (Read Input Registers, default)
 * **V"name"** (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
 
@@ -3875,7 +3875,7 @@ Supported in firmware version 1.19 and later.
 * **R"message"** Optional title for the message box. Must be enclosed in double quotation marks too. Maximum length 100 characters in RRF 3.5 and later. PanelDue shows only the first 50 characters.
 * **Sn** Message box mode (see below), default 1 
 * **Tn** Timeout in seconds, only used for types 0, 1, and those with a cancel button (type 3 or higher with J1 or J2 parameter; the message box is cancelled upon timeout). The message will be cancelled after this amount of time if the user does not cancel it before then. A zero value means that the message does not time out (it may still be cancelled by the user if it has a Cancel button). For modes 0 and 1 there is a default timeout of 10 seconds if no T parameter is provided. For other modes the default is no timeout.
-* **X, Y, Z,,,** 0 = no special action (default), 1 = display jog buttons alongside the message to allow the user to adjust the head position on the specified axis. Only valid in with message box modes S2 and S3.
+* **X, Y, Z,,,** 0 = no special action (default), 1 = display jog buttons alongside the message to allow the user to adjust the head position on the specified axis. Only valid with message box modes S2 and S3.
 * **Jn** (RRF 3.5 and later only, optional) If message box mode >= 4: 0 = no Cancel button (default), 1 = display a Cancel button (job/macro is cancelled immediately when pressed or when it times out); 2 (RRF 3.6.0 and later) = display a Cancel button (result variable is set to -1 when pressed or when timeout is reached). Message box mode 3 always has a Cancel button; in mode 3, J2 (RRF 3.6.0 and later) also makes the Cancel button and the timeout set the result variable to -1 instead of cancelling the job or macro.
 * **K{"choice1","choice1",...}**  (RRF 3.5 and later only) List of choices, required (and only used) when S=4.
 * **Lnnn** (RRF 3.5 and later only, optional) Minimum accepted value (S=5 or S=6), or minimum number of characters (S=7).
@@ -3902,10 +3902,10 @@ S7: Prompt for a string value. L is the minimum number of characters (default 1)
 
 * The combination S0 T0 is not permitted, because that would generate a message box with no close button and that never times out, which would lock up the user interface.
 * Duet Web Control 2.03 and later support HTML messages but those may not be displayed correctly on an attached PanelDue.
-* When using Duet 3 with attached SBC, DSF versions before v3.1.1 support only non-blocking calls are supported in DuetSoftwareFramework. M291 is fully supported in DSF v3.1.1 and later.
-* The limit in RRF 3.4 and later is 256 characters in the entire GCode command. Before 3.4 is was 200 characters, in RRF2 it's 160 characters.
+* When using Duet 3 with an attached SBC, DSF versions before v3.1.1 support only non-blocking calls. M291 is fully supported in DSF v3.1.1 and later.
+* The limit in RRF 3.4 and later is 256 characters in the entire GCode command. In RRF 3.3.x and earlier it is 200 characters, and in RRF 2.x it is 160 characters.
 * When M291 is received from USB, Telnet or a serial port, RRF also sends the title and message text back to that channel. In RRF 3.6 and earlier this is done only for the first USB channel, Telnet and the second serial port. In RRF 3.7 and later it is also done for the second USB channel and the first serial port.
-* For message box modes 4 and higher The J parameter specifies whether a Cancel button is provided and what action is taken when that button is pressed or the timeout (see T parameter) expires. J1 causes execution of the entire file stack from which the M291 command was executed to be terminated. J2 (supported in RRF 3.6.0 and later) causes the message box to be cancelled but execution to continue as normal with **result** set to -1 and the value of **input** undefined. Therefore when J2 is used the value of **result** must be tested in the line that follows the M291 command.
+* For message box modes 4 and higher, the J parameter specifies whether a Cancel button is provided and what action is taken when that button is pressed or the timeout (see T parameter) expires. J1 causes execution of the entire file stack from which the M291 command was executed to be terminated. J2 (supported in RRF 3.6.0 and later) causes the message box to be cancelled but execution to continue as normal with **result** set to -1 and the value of **input** undefined. Therefore when J2 is used the value of **result** must be tested in the line that follows the M291 command.
 
 ### Examples
 <br>
@@ -3933,7 +3933,7 @@ echo {input^" entered by user"}
 * **R{expression}** (RRF 3.5 and later, only present if P=0 and the message box mode was 4 or greater) The returned value. For message box mode 4 this is an integer representing the choice that was selected, counting from 0. For message box modes 5/6/7 this is the integer/float/string value that was entered.
 * **Snnn** (RRF 3.5 and later) The sequence number of the message being acknowledged
 
-This command is sent by the user interface when the user acknowledges a message that was displayed because of a M291 command with parameter S=2 or S=3.  DWC and PanelDue 3.5 and later also use thie command to acknowledge a non-blocking message (M291 command with parameter S=0 or S=1) but in that case the S parameter must match the sequence number of the message being acknowledged. The P parameter is ignored unless M291 was called with S=3, and always ignored by RRF 3.5 and later if the R parameter is present.
+This command is sent by the user interface when the user acknowledges a message that was displayed because of an M291 command with parameter S=2 or S=3.  DWC and PanelDue 3.5 and later also use this command to acknowledge a non-blocking message (M291 command with parameter S=0 or S=1) but in that case the S parameter must match the sequence number of the message being acknowledged. The P parameter is ignored unless M291 was called with S=3, and always ignored by RRF 3.5 and later if the R parameter is present.
 
 In RRF versions prior to 3.5, M292 may only be used to acknowledge blocking message boxes. RRF 3.5 and later allow M292 to be used to cancel non-blocking message boxes too, provided that the correct sequence number is specified.
 
@@ -3976,7 +3976,7 @@ See also [Macros, sounds section](/User_manual/Tuning/Macros#sounds){target=_bla
 
 ## M301: Set PID parameters
 
-*This comand is deprecated. Support is discontinued from RepRapFirmware 3.7.*
+*This command is deprecated. Support is discontinued from RepRapFirmware 3.7.*
 
 ### Parameters
 
@@ -4030,7 +4030,7 @@ This tells the printer to only allow movement of the extruder motor above a cert
 
 The minimum temperatures for extrusion can be set using the Snnn parameter with a default value of 160°C if unset. A minimum retraction temperature can be set with the Rnnn parameter. The default for this is 90°C.
 
-M302 with no parameters it will report the current cold extrusion state.
+M302 with no parameters will report the current cold extrusion state.
 
 One limitation of M302 is that it requires a heater with temperature sensor to be configured for the temperature to be monitored. If your system does not have a heater on this tool, you can define the tool in M563 without a heater to disable cold extrusion protection on that tool. Example: 
 <br>
@@ -4122,7 +4122,7 @@ Sets the parameters for temperature measurement. The example above tells the fir
 
 **Notes - RepRapFirmware 3**
 
-Prior to RRF3, every temperature sensor belongs to a heater. For sensors with no controllable heater (e.g. the MCU temperature sensor) you have to create a "virtual heater" in order to be able to use the sensor. In RRF3, sensors are created and configured independently from heaters, using the M308 command. When creating a heater using M950, you tell it which sensor to use. You must create the sensor before you refer to it in a M950 command. M305 is not used.
+Prior to RRF3, every temperature sensor belongs to a heater. For sensors with no controllable heater (e.g. the MCU temperature sensor) you have to create a "virtual heater" in order to be able to use the sensor. In RRF3, sensors are created and configured independently from heaters, using the M308 command. When creating a heater using M950, you tell it which sensor to use. You must create the sensor before you refer to it in an M950 command. M305 is not used.
 
 **Notes - RepRapFirmware 2.x and earlier**
 
@@ -4134,7 +4134,7 @@ M305 P1 T100000 R1000 B4200 H14 L-11 X2
 
 The H correction affects the reading at high ADC input voltages, so it has the greatest effect at low temperatures. The L correction affects the reading at low input voltages, which correspond to high temperatures. The ADC on the Duet 2 WiFi and Duet 2 Ethernet is self-calibrating, so you should not need to provide any corrections when using these controllers.
 
-The X parameter tells the firmware which temperature sensor channel to use channel, as follows:
+The X parameter tells the firmware which temperature sensor channel to use, as follows:
 
 * Channels 0, 1... are the thermistor inputs for heaters 0, 1 etc.
 * Channels 100, 101... are MAX31855 thermocouple channels using chip selects CS1, CS2... on the SPI bus, see [Connecting thermocouples](/User_manual/Connecting_hardware/Temperature_connecting_thermocouples){target=_blank}.
@@ -4145,7 +4145,7 @@ The X parameter tells the firmware which temperature sensor channel to use chann
 * Channels 450, 451... are as 400, 401... but specify the corresponding humidity sensor of the DHTxx
 * Channels 500, 501... are the thermistor inputs, but configured for PT1000 sensors rather than thermistors. Only the R, H and L parameters are significant, see example below.
 * Channel 1000 is the on-chip microcontroller temperature sensor
-* Channel 1001 represents the temperature warning and overheat flags on the TMC2660, TMC2224 or other smart drivers on the Duet main board. It reads 0C when there is no warning, 100C if any driver reports over-temperature warning , and 150C if any driver reports over temperature shutdown.
+* Channel 1001 represents the temperature warning and overheat flags on the TMC2660, TMC2224 or other smart drivers on the Duet main board. It reads 0C when there is no warning, 100C if any driver reports over-temperature warning, and 150C if any driver reports over temperature shutdown.
 * Channel 1002 is as channel 1001 but for drivers on the Duex 2 or Duex 5 expansion board.
 
 If the M305 command for a real heater does not specify a sensor channel and the heater has not been configured yet, then it defaults to using the thermistor associated with that heater.
@@ -4153,10 +4153,10 @@ If the M305 command for a real heater does not specify a sensor channel and the 
 PT1000 Example:
 <br>
 <pre class="cblock">
-M305 P1 X501 R2200 ; heater 1 uses a PT1000 connected to thermistor channel 1 which has a 2.2K series resistor (i.e a Duet 2 Maestro)
+M305 P1 X501 R2200 ; heater 1 uses a PT1000 connected to thermistor channel 1 which has a 2.2K series resistor (i.e. a Duet 2 Maestro)
 </pre>
 
-Note: PT1000 sensors connected to thermistor inputs have lower resolution than PT100 sensors connected via the PT100 daughter board. The accuracy of PT1000 sensors should be very good on the Duet 2 Maestro and generally good on the Duet 2 Wifi and Duet 2 Ethernet. See the [PT1000 documentation](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000){target=_blank} for more details.
+Note: PT1000 sensors connected to thermistor inputs have lower resolution than PT100 sensors connected via the PT100 daughter board. The accuracy of PT1000 sensors should be very good on the Duet 2 Maestro and generally good on the Duet 2 WiFi and Duet 2 Ethernet. See the [PT1000 documentation](/User_manual/Connecting_hardware/Temperature_connecting_thermistors_PT1000){target=_blank} for more details.
 
 Virtual heaters 100, 101 and 102 are preconfigured to use temperature sensor channels 1000, 1001 and 1002 respectively. We suggest you use virtual heaters 103 upwards if you want to create additional virtual heaters.
 
@@ -4172,7 +4172,7 @@ you should get the response "Heater 101 uses TMC2660 temperature warnings sensor
 M305 P101 S"Drivers"
 </pre>
 
-After that, if you go to the "Extra" tab in DWC (where is says Tools/Heaters/Extra), you will see "Drivers" as an entry.
+After that, if you go to the "Extra" tab in DWC (where it says Tools/Heaters/Extra), you will see "Drivers" as an entry.
 
 ## M307: Set or report heating process parameters
 
@@ -4192,7 +4192,7 @@ After that, if you go to the "Extra" tab in DWC (where is says Tools/Heaters/Ext
 
 * **Bn** selects Bang-bang control instead of PID if non-zero. Default at power-up is 0 for extruder heaters, 1 for bed and chamber heaters.
 * **Innn** Invert PWM signal (I0 = not inverted, I1 = invert PWM/bang-bang signal for inverted temperature control [e.g. with Peltier elements])
-* **Snnn** maximum PWM to be used used with this heater on a scale of 0 to 1. Default 1.0.
+* **Snnn** maximum PWM to be used with this heater on a scale of 0 to 1. Default 1.0.
 * **Vnnn** VIN supply voltage at which the R parameter was calibrated. This allows the PID controller to compensate for changes in supply voltage. A value of zero disables compensation for changes in VIN voltage. Supply voltage compensation is applied to hot end heaters only, not to bed or chamber heaters.
 
 ##### Examples (RRF 3.4 and later)
@@ -4224,8 +4224,8 @@ M307 H1 R2.186 K0.17:0.11 D5.67 S1.00 V24.0 ; set the process parameters for hea
 **Additional parameters to help control the heating process:**
 
 * **Bn** selects Bang-bang control instead of PID if non-zero. Default at power-up is 0 for extruder heaters, 1 for the bed heater.
-* **Innn** Invert PWM signal (I0 = not inverted, I1 = invert PWM/bang-bang signal for inverted temperature control [e.g. with Peltier elements]
-* **Snnn** maximum PWM to be used used with this heater on a scale of 0 to 1. Default 1.0.
+* **Innn** Invert PWM signal (I0 = not inverted, I1 = invert PWM/bang-bang signal for inverted temperature control [e.g. with Peltier elements])
+* **Snnn** maximum PWM to be used with this heater on a scale of 0 to 1. Default 1.0.
 * **Vnnn** VIN supply voltage at which the R parameter was calibrated (RepRapFirmware 1.20 and later). This allows the PID controller to compensate for changes in supply voltage. A value of zero disables compensation for changes in VIN voltage. Supply voltage compensation is applied to hot end heaters only, not to bed or chamber heaters.
 
 ##### Examples (RRF 3.2 and 3.3)
@@ -4253,7 +4253,7 @@ M307 H1 R2.186 C202.1:155.0 D5.67 S1.00 V24.0 ; set the process parameters for h
 
 * **Bn** selects Bang-bang control instead of PID if non-zero. Default at power-up is 0 for extruder heaters, 1 for the bed heater.
 * **Innn** Invert PWM signal (I0 = not inverted, I1 = invert PWM/bang-bang signal for inverted temperature control [e.g. with Peltier elements])
-* **Snnn** maximum PWM to be used used with this heater on a scale of 0 to 1. Default 1.0.
+* **Snnn** maximum PWM to be used with this heater on a scale of 0 to 1. Default 1.0.
 * **Vnnn** VIN supply voltage at which the A parameter was calibrated (RepRapFirmware 1.20 and later). This allows the PID controller to compensate for changes in supply voltage. A value of zero disables compensation for changes in VIN voltage. Supply voltage compensation is applied to hot end heaters only, not to bed or chamber heaters.
 
 ##### Examples (RRF 3.1 and 3.0)
@@ -4294,7 +4294,7 @@ M950 H0 C"bed_heat" Q100 T0 ; heater 0 uses the bed_heat pin, sensor 0, PWM freq
 
 * **Bn** selects Bang-bang control instead of PID if non-zero. Default at power-up is 0 for extruder heaters, 1 for the bed heater.
 * **Innn** Invert PWM signal (I0 = not inverted, I1 = invert PWM/bang-bang signal for inverted temperature control [e.g. with Peltier elements], I2 = full PWM signal inversion, I3 = both I1 and I2)
-* **Snnn** maximum PWM to be used used with this heater on a scale of 0 to 1. Default 1.0.
+* **Snnn** maximum PWM to be used with this heater on a scale of 0 to 1. Default 1.0.
 * **Vnnn** VIN supply voltage at which the A parameter was calibrated (RepRapFirmware 1.20 and later). This allows the PID controller to compensate for changes in supply voltage. A value of zero disables compensation for changes in VIN voltage. Supply voltage compensation is applied to hot end heaters only, not to bed or chamber heaters.
 * **Fnnn** PWM frequency to use
 
@@ -4308,7 +4308,7 @@ M950 H0 C"bed_heat" Q100 T0 ; heater 0 uses the bed_heat pin, sensor 0, PWM freq
 
 ### Notes
 
-* Each heater and its corresponding load may be approximated as a first order process with dead time, which is characterised by the gain, time constant and dead time parameters. The model can used to calculate optimum PID parameters (including using different values for the heating or cooling phase and the steady state phase), to better detect heater faults, and to calculate feed-forward terms to better respond to changes in the load. Normally these model parameters are found by auto tuning - see [M303](/User_manual/Reference/Gcodes/M303){target=_blank} and [Tuning heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning){target=_blank}.
+* Each heater and its corresponding load may be approximated as a first order process with dead time, which is characterised by the gain, time constant and dead time parameters. The model can be used to calculate optimum PID parameters (including using different values for the heating or cooling phase and the steady state phase), to better detect heater faults, and to calculate feed-forward terms to better respond to changes in the load. Normally these model parameters are found by auto tuning - see [M303](/User_manual/Reference/Gcodes/M303){target=_blank} and [Tuning heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning){target=_blank}.
 * If no M307 command has been used for a heater, RRF uses a default model that depends on whether the heater is assigned to a tool, a bed or a chamber. In RRF 3.7 and later a chamber heater has its own default model, with a dead time of 30 seconds. In RRF 3.7 and later, when a heater on a CAN-connected board is assigned to a tool, bed or chamber, RRF asks that board for its default model, so that a tool board with a non-standard heater can supply suitable values.
 * For those platforms that provide power voltage monitoring, the calibration voltage setting allows the heating controller to adjust the power automatically in response to changes in the power supply voltage. For example, if a bed or chamber heater is turned on or off, this may cause the power supply voltage to change a little, which if not corrected for would change the extruder heater power.
 * M307 parameters for all heaters are saved to config-override.g using `M500`.
@@ -4545,7 +4545,7 @@ M308 S21 Y"ads131.chan1" P"123.S20.1" B0.0 C5000.0 ; second channel for sensor o
 * **Tnnnn** Resistance of the auxiliary thermistor at 25C
 * **Bnnnn** B parameter of the auxiliary thermistor
 * **Cnnnn** C parameter of the auxiliary thermistor
-* **Rnn** Exponent used by the model used to calculate temperature from radiant heat, Must be between 3.8 and 4.4, default 4.2.
+* **Rnn** Exponent used by the model used to calculate temperature from radiant heat. Must be between 3.8 and 4.4, default 4.2.
 * **Fnn** Combined field of view and radiance of the object, as a fraction of 256.
 * **Wnn** Combined field of view and radiance of the environment, as a fraction of 256.
 
@@ -4605,8 +4605,8 @@ Supported in RepRapFirmware v3.4 and later
 ### Description
 
 Heater feedforward allows for better regulation of heater temperature, when subjected to changing fan speeds or extrusion rates. RepRapFirmware supports a number of methods of heater feedforward:
-* Fan speed to heater power feedforward is calibrated during heater tuning with M303, and stored in the M307 K parameter. This increase heater power, to maintain current temperature, as fan speed increases.
-* Extrusion rate to heater power feedforward is configured by M309 S parameter. This increase heater power, to maintain current temperature, as extrusion rate increses.
+* Fan speed to heater power feedforward is calibrated during heater tuning with M303, and stored in the M307 K parameter. This increases heater power, to maintain current temperature, as fan speed increases.
+* Extrusion rate to heater power feedforward is configured by M309 S parameter. This increases heater power, to maintain current temperature, as extrusion rate increases.
 * In RRF 3.6.0 and later, heater temperature feedforward is configured by M309 T and A parameters. This changes the temperature setpoint as extrusion rate changes, so temperature can be set lower when going slow, and higher when going faster.
 
 Generally, heater feedforward is intended for high flow hot ends or pellet extruders. It's not normally needed on regular hot ends with a 0.4mm or similar size nozzle where the temperature drop caused by extrusion is less than 1C. Heater temperature feedforward is useful when there are big changes in extrusion speed through a job.
@@ -4633,7 +4633,7 @@ Generally, heater feedforward is intended for high flow hot ends or pellet extru
 * **Ynn** Set stepping mode for the Y axis
 * **Znn** Set stepping mode for the Z axis
 * **Enn** Set stepping mode for Extruder 0 (use Enn:nn:nn etc. for multiple extruders)
-* **Inn** Enable (nn=1) or disable (nn=0) microstep interpolation mode for the specified drivers, if they support it. All Duet 3 boards, and Duet 2 Maestro supports interpolation at all microstep settings. Duet 2 WiFi/Ethernet support interpolation (to x256 microstepping) only when configured for x16 microstepping.
+* **Inn** Enable (nn=1) or disable (nn=0) microstep interpolation mode for the specified drivers, if they support it. All Duet 3 boards, and Duet 2 Maestro, support interpolation at all microstep settings. Duet 2 WiFi/Ethernet support interpolation (to x256 microstepping) only when configured for x16 microstepping.
 
 **Modes (nn)**
 
@@ -4655,7 +4655,7 @@ This command must be later in config.g than any M584 command.
 <br>
 <pre class="cblock">
 M350 Z1 ;set the Z-axis' driver to use full steps
-M350 E4:4:4 ;set extruders 0-2 to use quarter steps)
+M350 E4:4:4 ;set extruders 0-2 to use quarter steps
 </pre>
 
 When M350 is processed, the steps/mm will be adjusted automatically to allow for any changes in microstepping. Therefore you can either:
@@ -4821,7 +4821,7 @@ In older versions of RRF the 'D' parameter was used to properly detect the first
 
 The filament diameter specified using this command is only used by the print monitor, and only when the slicer is Pathio (which is no longer maintained) or a very old version of KissSlicer, because those slicers report the filament usage by volume instead of by length.
 
-The filament diameter specified using his command is separate from the per-extruder filament diameter specified using the M200 command and is not exposed in the object model.
+The filament diameter specified using this command is separate from the per-extruder filament diameter specified using the M200 command and is not exposed in the object model.
 
 ## M408: Report JSON-style response
 
@@ -4857,7 +4857,7 @@ Here is an example of a type 0 response from RRF 3.6.3 on a Duet 3 MB6HC with on
 
 The response is set as a single line with a newline character at the end. The meaning of the fields is:
 
-**status**: I=idle, P=printing from SD card, S=stopped (i.e. needs a reset), C=running config file (i.e starting up), A=paused or cancelling a print, D=pausing, R=resuming from a pause, B=busy (e.g. running a macro), F=performing firmware update, O=off (no motor power), M=simulating, T=changing tool
+**status**: I=idle, P=printing from SD card, S=stopped (i.e. needs a reset), C=running config file (i.e. starting up), A=paused or cancelling a print, D=pausing, R=resuming from a pause, B=busy (e.g. running a macro), F=performing firmware update, O=off (no motor power), M=simulating, T=changing tool
 **heaters**: current heater temperatures. The first value is bed heater 0 (0.0 if there is no bed heater), followed by heaters 1 upwards to the highest heater used by a tool
 **active**: active temperatures of the heaters
 **standby**: standby temperatures of the heaters
@@ -4952,14 +4952,14 @@ If the key string is malformed or refers to a property that does not exist in th
 
 ## M425: Configure backlash compensation
 
-Support in RRF 3.5 and later.
+Supported in RRF 3.5 and later.
 
 ### Parameters
 
 * **X,Y,Z,A,B...** Backlash in mm for the specified axis motor
 * **Snn** (optional) Distance multiplier, 1 to 100, default 10
 
-This command tells RRF to insert additional steps when the specified motors reverse direction, to compensate for backlash. The additional steps are inserted over a distance of at least the distance multiplier times the amount of backlash. For example, a multiplier of 10 and a backlash of 0.5mm would mean that the backlash steps would be inserted over as many moves as needed to make up at least 5mm of movement. If the multipler is set too low then missed steps could result.
+This command tells RRF to insert additional steps when the specified motors reverse direction, to compensate for backlash. The additional steps are inserted over a distance of at least the distance multiplier times the amount of backlash. For example, a multiplier of 10 and a backlash of 0.5mm would mean that the backlash steps would be inserted over as many moves as needed to make up at least 5mm of movement. If the multiplier is set too low then missed steps could result.
 
 The X,Y,Z... parameters refer to individual motors or sets of motors, not Cartesian axes. For example, on a CoreXY machine the X parameter defines the backlash compensation applied to the X motor, and the Y parameter defines the backlash compensation applied to the Y motor.
 
@@ -4993,7 +4993,7 @@ M450
 
 ### Notes
 
-Printers can be used for different task by exchanging the toolhead. Depending on the tool, a different behavior of some commands can be expected. This command reports the current working mode. Possible responses are:
+Printers can be used for different tasks by exchanging the toolhead. Depending on the tool, a different behaviour of some commands can be expected. This command reports the current working mode. Possible responses are:
 
 PrinterMode:FFF
 
@@ -5025,7 +5025,7 @@ In RRF 3.7 and later, a G0 or G1 command without an H parameter that commands an
 
 ## M452: Select Laser Device Mode
 
-Support in RRF 2.01 and later.
+Supported in RRF 2.01 and later.
 
 ### {.tabset}
 
@@ -5131,7 +5131,7 @@ M453
 
 * **Snnn** (optional) Spindle index, defaults to 0. Duet 2 supports 4 spindles max
 * **C"aaa+bbb+ccc"** Names of the ports used to drive the spindle motor. "aaa" is the PWM port used to control the speed. "bbb" (optional) is the digital port used to turn the spindle motor on. "ccc" (optional) is the name of the port used to command reverse instead of forward spindle rotation.
-* **Rbbb** or **Raaa:bbb** (optional) RPM values that are achieved at zero PWM and at maximum RPM. Used to convert the S parameter in M3 and M4 commands to a PWM value.
+* **Rbbb** or **Raaa:bbb** (optional) RPM values that are achieved at zero PWM and at maximum PWM. Used to convert the S parameter in M3 and M4 commands to a PWM value.
 * **Qnnn** (optional) The PWM frequency to use
 * **Tnnn** (optional) Assign spindle to a tool allowing better control in DWC
 
@@ -5275,11 +5275,11 @@ M486                   ; List the objects on the build plate
 
 ### Description
 
-This provides an interface to identify objects on the print bed and cancel them. Basic usage: Use **M486 Tnn** to tell the firmware how many objects there are, so it can provide an LCD interface. (Otherwise the firmware counts them up in the first layer.) In every layer of your GCode, preface each object's layer slice with **M486 S[index]** to indicate which object is being printed. The index should be zero-based. To cancel the first object, use **M486 P0**; to cancel the 5th object use **M486 P4**; and so on. The "current" object is canceled with **M486 C**.
+This provides an interface to identify objects on the print bed and cancel them. Basic usage: Use **M486 Tnn** to tell the firmware how many objects there are, so it can provide an LCD interface. (Otherwise the firmware counts them up in the first layer.) In every layer of your GCode, preface each object's layer slice with **M486 S[index]** to indicate which object is being printed. The index should be zero-based. To cancel the first object, use **M486 P0**; to cancel the 5th object use **M486 P4**; and so on. The "current" object is cancelled with **M486 C**.
 
-GCodes associated with the canceled objects are no longer printed. Firmware supports this feature by ignoring G0-G3/G5 moves in XYZ while updating F and keeping the E coordinate up-to-date without extruding.
+GCodes associated with the cancelled objects are no longer printed. Firmware supports this feature by ignoring G0-G3/G5 moves in XYZ while updating F and keeping the E coordinate up-to-date without extruding.
 
-Slicers should number purge towers and other global features with a negative index (or other flag) to distinguish them from regular print objects, since it is important to preserve color changes, purge towers, and brims.
+Slicers should number purge towers and other global features with a negative index (or other flag) to distinguish them from regular print objects, since it is important to preserve colour changes, purge towers, and brims.
 
 In RepRapFirmware, if the GCode file being printed contains object label comments (e.g. using the "Label objects" option in PrusaSlicer) then it is not necessary to use M486 S commands to indicate which object is being printed. Objects on the build plate will be numbered from 0 in the order in which their labels first appear in the file.
 
@@ -5430,7 +5430,7 @@ Sets the [MAC address](http://en.wikipedia.org/wiki/MAC_address){target=_blank} 
 ### Notes
 
 * On WiFi-equipped Duet boards (Duet 3 Mini 5+ WiFi and Duet 2 WiFi) the MAC address is unique and set on the WiFi Module so this command has no effect. 
-* The default MAC address on a Ethernet-equipped Duet boards is generated from the unique processor ID so there is normally no need to change it.
+* The default MAC address on Ethernet-equipped Duet boards is generated from the unique processor ID so there is normally no need to change it.
 * All devices running on the same network should have different MAC addresses. For your printers, changing the last digit is sufficient.
 * In SBC mode, this command should be in dsf-config.g, NOT config.g.
 * In standalone mode in RRF 3.7 and later, the P parameter may also be a string expression.
@@ -5452,7 +5452,7 @@ M550 P"Godzilla"
 
 Sets the name of the printer to (in the case of the above example) Godzilla. The name can be any string of printable characters except ';', which still means start comment. The name shows at the top of the DWC page.
 
-The machine name is also used to allow local network discovery using **mDNS local network discovery**. Rather than remembering the ip address of the printer to connect to, or having to find it if assigned by DHCP (mDNS works both with fixed ip address and DHCP), you can use it's name. Using the example name above, in your browser connect to the DWC with `http://Godzilla.local`.
+The machine name is also used to allow local network discovery using **mDNS local network discovery**. Rather than remembering the IP address of the printer to connect to, or having to find it if assigned by DHCP (mDNS works both with fixed IP address and DHCP), you can use its name. Using the example name above, in your browser connect to the DWC with `http://Godzilla.local`.
 
 ### Notes
 
@@ -5475,15 +5475,13 @@ The machine name is also used to allow local network discovery using **mDNS loca
 M551 P"my-very-secret-word"
 </pre>
 
-### Description
-
-The code 'P' is not part of the password. Note that as this is sent in clear it does not (nor is it intended to) offer a security. But on machines that are (say) on a network, it might prevent idle messing about. The password can contain any printable characters except ';', which still means start comment.
-
 ### Notes
 
-If the specified password differs from the default one (i.e. reprap), the user will be asked to enter it when a connection is established.
-
-Quotation marks around the password are recommended but not mandatory.
+* The code 'P' is not part of the password. 
+* Note that as this is stored (on the SD card) and sent (over the network) unencrypted, it does not (nor is it intended to) offer any security. But on machines that are (say) on a network, it might prevent idle messing about. 
+* The password can contain any printable characters except ';', which still means start comment.
+* If the specified password differs from the default one (i.e. reprap), the user will be asked to enter it when a connection is established.
+* Quotation marks around the password are recommended but not mandatory.
 
 ## M552: Set IP address, enable/disable network interface
 
@@ -5495,7 +5493,7 @@ Quotation marks around the password are recommended but not mandatory.
 
 * **Innn** (Optional) Number of the network interface to manage (defaults to 0). Only needed if the board supports more than one network interface, such as Duet 3 MB6HC revision 1.02 or later with the optional WiFi interface. On that board, I0 is the Ethernet interface and I1 is the WiFi interface.
 * **P"ssid"** (optional, RepRapFirmware 1.20 and later) SSID of network to connect to. The SSID and password must already have been registered using M587. If this parameter is not present, the WiFi will try to connect to the strongest network that is broadcasting its SSID and whose SSID has been registered using M587.
-* **Snnn** 0 = disable networking, 1 = enable networking as a client, 2 = enable networking as an access point , -1 = disable WiFi module
+* **Snnn** 0 = disable networking, 1 = enable networking as a client, 2 = enable networking as an access point, -1 = disable WiFi module
 * **Tn** (RRF 3.7 and later, only together with S) 1 = enable TLS support, 0 = no TLS (default), -1 = delete the certificate and key stored on the WiFi module, then start without TLS. TLS needs an ESP32-based WiFi module running WiFi firmware 2.4.0 or later.
 
 ##### Examples
@@ -5611,7 +5609,7 @@ M555 P1
 
 ### Description
 
-Set the firmware to a mode where its input and (especially) output behaves similar to other established firmware. The mode applies only to the input channel that sends the command. The value of the 'P' argument is:
+Set the firmware to a mode where its input and (especially) output behaves similarly to other established firmware. The mode applies only to the input channel that sends the command. The value of the 'P' argument is:
 
 | value | Firmware |
 |:---|:---|
@@ -5648,8 +5646,8 @@ This tells software the tangents of the angles between the axes of the machine o
 ### Notes
 
 * The S parameter is the length of a triangle along each axis in mm. 
-* The X, Y and Z figures are the number of millimeters of the short side of the triangle that represents how out of true a pair of axes is. The X figure is the error between X and Y, the Y figure is the error between Y and Z, and the Z figure is the error between X and Z. Positive values indicate that the angle between the axis pair is obtuse, negative acute.
-* If you have calcuated the skew factor by other means, use S1 in M556 and the XYZ parameters are the skew factors.
+* The X, Y and Z figures are the number of millimetres of the short side of the triangle that represents how out of true a pair of axes is. The X figure is the error between X and Y, the Y figure is the error between Y and Z, and the Z figure is the error between X and Z. Positive values indicate that the angle between the axis pair is obtuse, negative acute.
+* If you have calculated the skew factor by other means, use S1 in M556 and the XYZ parameters are the skew factors.
 * Printable parts for calibrating the deviation from orthogonality can be found on the [RepRapPro Github repository](https://github.com/reprappro/RepRapFirmware/tree/master/STL){target=_blank}. 
 * For an explanation of the measuring process and alternative methods, see [Orthogonal axis compensation with M556](/User_manual/Tuning/Orthogonal_axis_compensation){target=_blank}.
 
@@ -5686,13 +5684,13 @@ Defines the grid for [G29 Mesh Bed probing](/User_manual/Reference/Gcodes/G29){t
 
 * In RRF 3.3 and later, it is possible to use an arbitrary axes pair for probing, e.g. X-A or U-C. When using **Raaa** to define a radius this will default to X-Y.
 * For Cartesian printers, specify minimum and maximum X and Y values to probe and the probing interval. For Delta printers, specify the probing radius. If you define both, the probing area will be the intersection of the rectangular area and the circle. 
-* See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of probe points each Duet board and firmware version supports. Can be 961 (31x31 grid) or 441 (21x21 grid). In RRF 1.x - 121 on the Duet 06/085 (enough for a 11x11 grid).
+* See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of probe points each Duet board and firmware version supports. Can be 961 (31x31 grid) or 441 (21x21 grid). In RRF 1.x - 121 on the Duet 06/085 (enough for an 11x11 grid).
 
 #### Define G32 probe points
 
 ##### Parameters
 
-Deprecated and not supported in firmware 1.18 and later. Cartesian/CoreXY printers only,
+Deprecated and not supported in firmware 1.18 and later. Cartesian/CoreXY printers only.
 
 * **Pnnn** Probe point number
 * **Xnnn** X coordinate
@@ -5706,7 +5704,7 @@ M557 P1 X30 Y40.5
 
 ##### Description
 
-Defines the points for for G32 bed probing. The P value is the index of the point (indices start at 0) and the X and Y values are the position to move extruder 0 to to probe the bed. An implementation should allow a minimum of three points (P0, P1 and P2). This just records the point coordinates; it does not actually do the probing. See [G32](/User_manual/Reference/Gcodes/G32){target=_blank}. Defining the probe points in this way is deprecated in RepRapFirmware, you should define them in a bed.g file instead.
+Defines the points for G32 bed probing. The P value is the index of the point (indices start at 0) and the X and Y values are the position to move extruder 0 to to probe the bed. An implementation should allow a minimum of three points (P0, P1 and P2). This just records the point coordinates; it does not actually do the probing. See [G32](/User_manual/Reference/Gcodes/G32){target=_blank}. Defining the probe points in this way is deprecated in RepRapFirmware, you should define them in a bed.g file instead.
 
 ## M558: Create or modify probe
 
@@ -5779,7 +5777,7 @@ Probe types 1, 2 and 5 on the main board can only be used for probe 0 (K0).
 
 M558 with P parameter deletes the existing probe with that K number (if any) and creates a new probe. This resets the G31 values for that probe to default values.
 
-The **C** parameter specifies the input pin and the optional modulation pin. See [Pin names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank} for a list of available pins and their names to use. Invert the input by prefixing the input pin with ! character, when using an NPN output inductive or capacitive sensor or using an NO switch (not recommended, use a NC switch instead). The pullup resistor on the Z probe input is disabled by default. Enable it by prefixing the input pin (C parameter) with the ^ character. Enable pullup resistor with ^ if using Duet 2, running RRF3, using the Z probe input pin, and the probe type is a switch or BLTouch.
+The **C** parameter specifies the input pin and the optional modulation pin. See [Pin names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank} for a list of available pins and their names to use. Invert the input by prefixing the input pin with ! character, when using an NPN output inductive or capacitive sensor or using an NO switch (not recommended, use an NC switch instead). The pullup resistor on the Z probe input is disabled by default. Enable it by prefixing the input pin (C parameter) with the ^ character. Enable pullup resistor with ^ if using Duet 2, running RRF3, using the Z probe input pin, and the probe type is a switch or BLTouch.
 
 The **H** parameter:
 * Defines the dive height when Z probing, which is the height above the trigger height from which probing starts. 
@@ -5791,7 +5789,7 @@ The **H** parameter:
 The **F** parameter:
 * With a single value for the **F** parameter, this defines the probing feed rate (i.e. probing speed), in mm/min.
 * From RRF 3.3 you can provide two **F** parameters instead of one, where the second is lower than the first, for example F1000:500. When doing a plain G30 command, an additional probe will be done using the first speed to establish the approximate bed position, before one or more additional probes are done using the second speed. The first speed will not be used when probing at a defined point or when mesh bed probing.
-* From RRF 3.5.0 the **F** parameter can take up to three values. The third value is the scanning speed for scanning Z probes, and is only used by them, and only reports by M558 for scanning Z probes. If a scanning Z probe is used as an ordinary Z probe with G30 (which is be supported in 3.5.0) then the first two speeds given in the F parameter will be used, as usual.
+* From RRF 3.5.0 the **F** parameter can take up to three values. The third value is the scanning speed for scanning Z probes, and is only used by them, and is only reported by M558 for scanning Z probes. If a scanning Z probe is used as an ordinary Z probe with G30 (which is supported in 3.5.0) then the first two speeds given in the F parameter will be used, as usual.
 
 The **A** and **S** parameters control multiple probing. Probing is repeated until two consecutive probe attempts produce results that differ by no more than the S parameter; then the average of those two results is used. For example, S-1 would force averaging. However, if the number of attempts specified by the A parameter is reached without getting two consecutive results within tolerance of each other, no further probe attempts are made and the average result of all the attempts is used.
 
@@ -5809,7 +5807,7 @@ See also: [Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing
 * **Innn** Invert (I1) or do not invert (I0, default) the Z probe reading (RepRapFirmware 1.16 - 2.x, not 3.x)
 * **Rnnn** Z probe recovery time before the probing move is started, default zero (seconds) (RepRapFirmware 1.17 and later). This is to allow the probe to settle after executing a travel move to the coordinates to probe.
 * **Tnnn** Travel speed to and between probe points (mm/min). This is also the Z lift speed after probing. The corresponding axis speed limits set by M203 will be used instead if they are lower.
-* **Annn** Maximum number of times to probe each point, default 1. Maximum, as of 2.03, is 31. Setting M558 A parameter to anything >31 set it to 0 instead of to 31
+* **Annn** Maximum number of times to probe each point, default 1. Maximum, as of 2.03, is 31. Setting M558 A parameter to anything >31 sets it to 0 instead of to 31
 * **Snnn** Tolerance when probing multiple times, default 0.03mm
 * **Bn** If 1, turn off all heaters while probing, default (B0) leaves heaters on. (RepRapFirmware 1.21 and later)
 * **Cn** Endstop input number when the probe type is P4, default 3 (RepRapFirmware 2.02/1.23 and later)
@@ -5843,7 +5841,7 @@ M280 P3 S10 I1 ; send control signal to BLTouch through heater 3 pin
 
 ##### Notes
 
-A probe may be a switch, an IR proximity sensor, or some other device. The **P** selects which to use:
+A probe may be a switch, an IR proximity sensor, or some other device. The **P** parameter selects which to use:
 
 * P0 indicates that no probe is present. Whenever Z probing is commanded, you will be prompted to jog the Z axis until the nozzle is just touching the bed and then signal completion.
 * P1 specifies an unmodulated or smart IR probe, or any other probe type that emulates one (probe output is an analog signal that rises with decreasing nozzle height above the bed). If there is a control signal to the probe, it is driven high when the probe type is P1.
@@ -5989,7 +5987,7 @@ Supported from RRF 3.6.0
 
 * All parameters are optional. If the K parameter is not provided then probe 0 is assumed. If other parameters are not provided then their values remain unchanged. If no parameters (except possibly K) are provided then the existing values are reported.
 * In standard mode the output of an analog Z probe is compared with the threshold as the probing move progresses. When the probe output reaches the threshold, probing stops and the Z height is assumed to be equal to the trigger height. In RepRapFirmware both the threshold and trigger height are set using the G31 command.
-* In touch mode the output of the probe is monitored as the probing move progresses. When the rate of change reduces sharply (the exact details depending on the sensitivity parameters) it is assumed hat the nozzle has contacted the bed. The Z height is assumed to be the value set using the H parameter.
+* In touch mode the output of the probe is monitored as the probing move progresses. When the rate of change reduces sharply (the exact details depending on the sensitivity parameters) it is assumed that the nozzle has contacted the bed. The Z height is assumed to be the value set using the H parameter.
 * When an analog Z probe is created using M558, the mode is set to standard mode, the feed rate in touch mode (M558.3 F parameter) is set to 200mm/min and the touch mode nozzle height and sensitivity assume default values (-0.1mm and 0.5). Fast-then-slow probing is not available in touch mode, however you can still use the M558 A parameter to probe multiple times.
 * More information is available at [Using the SZP in touch mode to set Z height](/User_manual/Tuning/scanning_z_probe_calibration#using-the-szp-in-touch-mode-to-set-z-height).
 
@@ -6020,7 +6018,7 @@ M558.4 K0 ; tare load cell probe 0
 ### Parameters
 
 * **P"filename"** File name to upload to. 
-* **Snnn** File size for binary transfer. If not present, the transfer is terminated by a M29 command
+* **Snnn** File size for binary transfer. If not present, the transfer is terminated by an M29 command
 * **Cnnn** CRC-32 of the file (optional)
 
 ### Examples
@@ -6134,7 +6132,7 @@ Alternatively, if the slicer does not support generating G1 commands with multip
 **F** The print cooling fan number(s) of the tool, default 0. Use this parameter if you are not using fan 0 as the print cooling fan for the tool you are defining. **You do not need to, and must not, list the fan numbers of thermostatic hot end fans here**. To use more than one print cooling fan for the tool, the definition would typically look like this:
 <br>
 <pre class="cblock">
-M563 P0 D0 H1 F0:1 ; tool 0 uses extruder drive 0 and heater 1. Fan 0 and Fan 1 are use by tool 0 as print cooling fans.
+M563 P0 D0 H1 F0:1 ; tool 0 uses extruder drive 0 and heater 1. Fan 0 and Fan 1 are used by tool 0 as print cooling fans.
 </pre>
 
 **R** The spindle number mapped to this tool. (RRF >= 3.3)
@@ -6205,7 +6203,7 @@ M566 X600 Y600 Z50 E600
 
 Sets the maximum allowable speed change (sometimes called 'jerk speed') of each motor when changing direction.
 
-The model files and GCode files used by repraps generally render circles and other curves shapes as a sequence of straight line segments. If the motors were not allowed any instantaneous speed change, they would have to come to a stop at the junction between each pair of line segments. By allowing a certain amount of instantaneous speed change, printing speed can be maintained when the angle between the two line segments is small enough.
+The model files and GCode files used by 3D printers and CNC machines generally render circles and other curved shapes as a sequence of straight line segments. If the motors were not allowed any instantaneous speed change, they would have to come to a stop at the junction between each pair of line segments. By allowing a certain amount of instantaneous speed change, printing speed can be maintained when the angle between the two line segments is small enough.
 
 **X** and **Y** parameter: If you set the X and Y values too low, then the printer will be slow at printing curves. If they are too high then the printer may be noisy when cornering and you may suffer ringing and other print artefacts, or even missed steps.
 
@@ -6218,7 +6216,7 @@ The model files and GCode files used by repraps generally render circles and oth
 ### Notes
 
 * In RRF 3.6.0 and later, jerk limits set using M566 (or the default jerk limits if M566 has never been used) can no longer be exceeded by a subsequent M205 command. In config.g you should use M566 to set the maximum jerk values that the machine can use reliably. You may also set default values using M205 if you want these to be lower. In previous firmware versions, M566 and M205 both adjusted a single set of jerk limits. In this release, RRF maintains separate machine jerk limits and jerk limits for the current job. M566 sets both jerk limits, whereas M205 sets only the jerk limits for the current job. The current job jerk limits are constrained to be no higher than the machine jerk limits. This allows slicers to use M205 to change the allowed jerk without exceeding machine limits.
-* The minimum jerk speed supported in as at firmware version 2.02 is 0.1mm/sec.
+* The minimum jerk speed supported is 0.1mm/sec (RRF 2.02 and later).
 * RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour.
 * Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M566 Z50, not M566 Z50:50
 
@@ -6245,7 +6243,7 @@ This will move to X=20 extruding a total length of filament of 1.3mm. The first 
 
 ### Notes
 
-**WARNING**: Currently the firmware will allow to set a mixing ratio where every extruder will drive at 100% - in case of a setup where several extruders feed the same hotend (like Diamond Hotends) this can lead to dangerously high pressures that could damage the printer.
+**WARNING**: Currently the firmware will allow the setting of a mixing ratio where every extruder will drive at 100% - in case of a setup where several extruders feed the same hotend (like Diamond Hotends) this can lead to dangerously high pressures that could damage the printer.
 
 The default is for the first driver to be set to 1, and all others to be set to 0. (ie for 2 drivers the default is E1:0)
 
@@ -6288,7 +6286,7 @@ Remember that any parameter that you don't specify will automatically be set to 
 
 RepRapFirmware will report the tool parameters if only the tool number is specified.
 
-Temperatures set with M568 do not wait for the heaters to reach temp before proceeding. In order to wait for the temp use a M116 command after the M568 to wait for temps to be reached.
+Temperatures set with M568 do not wait for the heaters to reach temp before proceeding. In order to wait for the temp use an M116 command after the M568 to wait for temps to be reached.
 
 See the [T code (select tool)](/User_manual/Reference/Gcodes/T){target=_blank} below. In tools with multiple heaters the temperatures for them all are specified thus: R100.0:90.0:20.0 S185.0:200.0:150.0 .
 
@@ -6332,8 +6330,8 @@ After turning off command G1 instructions must send as many E values as the tool
 * **Bnn** (firmware 2.02 and later) Blanking time (*tbl*) in the chopper control register, 0 to 3. See the TMC driver datasheet.
 * **Hnn** (firmware 2.02 and later) *thigh* parameter for those stepper driver chips that support it, e.g. TMC5160 and TMC2160. Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec. See also the V parameter.
 * **Yaa:bb** or **Yaa:bb:cc** (firmware 2.02 and later) Hysteresis start, end and decrement values in the chopper control register. The values are raw register fields (5/0 means HSTRT +6, HEND −3). See the TMC driver datasheet for the meaning.
-* **Vnnn** (firmware 2.02 and later) *tpwmthrs* parameter for those stepper driver chips that support it. This is the interval in clock cycles between 1/256 microsteps below which the drivers will switch from stealthChop to to spreadCycle mode. Only applies when the driver is configured in stealthChop mode. Typical value are from 100 (high speed) to 4000 (low speed). Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec.
-* **Unn** (firmware 3.6.0 onwards) for stepper drivers that support *globalscaler* (TMC5160/2160). This is the maximum value to use for iRun current scaler, 0-31. U-1 restores the default. A value below 16 gives a warning, because it may result in poor microstep performance. If not set (and in older firmware versions), this is set to 31 and globalscaler is calculated, otherwise iRun will be set to the value specified. However if the target current can't be reached by reducing globalscaler alone, iRun, and iHold, are also reduced, likewise if the target current is high then iRun and iHold may be increased to achieve it. This means iRun and iHold may be set different than specified to ensure the requested current is applied to the motors, sending `M569 Px` can be used to verify the iRun value used and the calculated current the driver will actually apply to the motor. Setting iRun directly can allow setting hysteresis start/end values that are more suitable for specific motors, resulting in lower noise. In theory this should only be needed when using low inductance motors, or a high motor supply voltage (e.g. 48V). You can use the excel calculator provided by TMC to help tune iRun and hysteresis values.
+* **Vnnn** (firmware 2.02 and later) *tpwmthrs* parameter for those stepper driver chips that support it. This is the interval in clock cycles between 1/256 microsteps below which the drivers will switch from stealthChop to spreadCycle mode. Only applies when the driver is configured in stealthChop mode. Typical values are from 100 (high speed) to 4000 (low speed). Send M569 P# (where # is the driver number) with no additional parameters to see how this translates into mm/sec.
+* **Unn** (firmware 3.6.0 onwards) for stepper drivers that support *globalscaler* (TMC5160/2160). This is the maximum value to use for iRun current scaler, 0-31. U-1 restores the default. A value below 16 gives a warning, because it may result in poor microstep performance. If not set (and in older firmware versions), this is set to 31 and globalscaler is calculated, otherwise iRun will be set to the value specified. However if the target current can't be reached by reducing globalscaler alone, iRun, and iHold, are also reduced, likewise if the target current is high then iRun and iHold may be increased to achieve it. This means iRun and iHold may be set different than specified to ensure the requested current is applied to the motors, sending `M569 Px` can be used to verify the iRun value used and the calculated current the driver will actually apply to the motor. Setting iRun directly can allow setting hysteresis start/end values that are more suitable for specific motors, resulting in lower noise. In theory this should only be needed when using low inductance motors, or a high motor supply voltage (e.g. 48V). You can use the Excel calculator provided by TMC to help tune iRun and hysteresis values.
 
 ### Examples
 <br>
@@ -6357,7 +6355,7 @@ M569 P5 R1 T2.5:2.5:5:0  ; driver 5 requires an active high enable, 2.5us minimu
 * **Pnn** Motor driver number
 * **Tn** Encoder type: 0=none (default), 1=linear quadrature encoder plus Duet3D magnetic shaft encoder (RRF 3.5 and later only), 2=quadrature motor shaft encoder, 3=[Duet3D magnetic encoder](/Duet3D_hardware/Accessories/Magnetic_Encoder) (RRF 3.5 and later only)
 * **Cn.n** In RRF 3.4, for a quadrature motor shaft encoder (T2) this is the number of counts per full step. In RRF 3.5 and later, for a quadrature shaft encoder (T2) or linear composite encoder (T1) it is the number of quadrature encoder pulses per revolution. Not required for a magnetic shaft encoder.
-* **En.n:m.m** Error thresholds. If m.m is nonzero then whenever the actual position is more than m.m full motor steps of the desired position, this will be reported as a driver error. If n.n is nonzero and n.n < m.m then whenever the actual position is more than n.n full steps of the desired position but is less than m.m full steps, this will be reported as a driver warning. (Default: n.n=2.0, m.m=4.0) The action that is taken on a error/warning can be configured using the [event system](/User_manual/RepRapFirmware/Events)
+* **En.n:m.m** Error thresholds. If m.m is nonzero then whenever the actual position is more than m.m full motor steps of the desired position, this will be reported as a driver error. If n.n is nonzero and n.n < m.m then whenever the actual position is more than n.n full steps of the desired position but is less than m.m full steps, this will be reported as a driver warning. (Default: n.n=2.0, m.m=4.0) The action that is taken on an error/warning can be configured using the [event system](/User_manual/RepRapFirmware/Events)
 * **Sn.n** (optional, RRF 3.5 and later only) Motor full steps per revolution, default 200.
 * **Rn.n** Proportional constant
 * **In.n** (optional) Integral constant
@@ -6428,12 +6426,12 @@ Corrections are not saved over a reset, so they belong in config.g.
 
 *Supported on Duet 3 MB6HC and MB6XD boards with ODrives connected to the second CAN bus and Hangprinter kinematics configured*
 
-Report a current motor encoder positions to the host in units of arc degrees (1/360'ths of turns), relative to some reference position that you set with the **S** parameter.
+Report the current motor encoder positions to the host in units of arc degrees (1/360'ths of turns), relative to some reference position that you set with the **S** parameter.
 
 ### Parameters
 
 * **Pnn** Motor driver number, or board address and driver number. Several (remote) drivers may be specified, separated by colon. No more than number of visible axes, as specified by M584 P parameter, are allowed.
-* **S** Sets an encoder reference point. Current and subsequent M569.3 Pn.n calls returns numbers that are relative to the M569.3 Pn.n S call.
+* **S** Sets an encoder reference point. Current and subsequent M569.3 Pn.n calls return numbers that are relative to the M569.3 Pn.n S call.
 
 ### Examples
 <br>
@@ -6489,7 +6487,7 @@ Tell one or more motor drivers to apply a specified torque regardless of positio
 ### Parameters
 
 * **Pn.n** Motor CAN address and driver number. Can also be a colon separated list of driver numbers.
-* **Tn.n** The torque to apply in units of Nm, or zero to leave torque mode. Applying the requested torque is dependent on on the M569.1 Q parameter having been specified correctly (not applicable to Hangprinter/ODrive). The sign of T sets the direction relative to the M569 direction setting
+* **Tn.n** The torque to apply in units of Nm, or zero to leave torque mode. Applying the requested torque is dependent on the M569.1 Q parameter having been specified correctly (not applicable to Hangprinter/ODrive). The sign of T sets the direction relative to the M569 direction setting
 * **Vn.n** (optional) Maximum speed to move at in full steps per second. A zero (the default) or negative value means no limit. Not supported on Hangprinter/ODrive.
 
 ### Examples
@@ -6522,8 +6520,8 @@ pos_mode, pos_mode
 * If **P** or **T** parameter is missing, then no action is taken.
 * Use the Q parameter of the M569.1 command to specify the torque constant of the motor.
 * The driver is put back into position mode by requesting zero torque (T0)
-* Sending a regular motion command (e.g. G1) that reques movement by the motor also puts the motor back into position mode.
-* Machine position is not updated in torque mode in RRF 3.7.0 or earlier. this will be changed in a future version.
+* Sending a regular motion command (e.g. G1) that requests movement by the motor also puts the motor back into position mode.
+* Machine position is not updated in torque mode in RRF 3.7.0 or earlier. This will be changed in a future version.
 * Hangprinter's "torque mode" is implemented as a RepRapFirmware macro that depends on M569.4.
 
 ## M569.5: Closed loop data collection
@@ -6538,7 +6536,7 @@ Collect performance data from a drive whilst in closed loop mode. Can be used al
 * **Rnn** Sample rate. Measured in samples per second. If R0 is sent, the board will record as fast as possible.
 * **Dnn** Variables filter. Determines which variables are recorded. See below for a list of available variables and how they are represented.
 * **Vnn** Perform a tuning manoeuvre. Available manoeuvres described below.
-* **Snn** Number of samples to record. When recording with rate R0, this sample rate is limited depending on the number of variables being recorded. The command will report back the maximum allowable samples if the maximum is exceeded. The maximum allowable samples may differ between board types since it is dependant on the available RAM.
+* **Snn** Number of samples to record. When recording with rate R0, this sample rate is limited depending on the number of variables being recorded. The command will report back the maximum allowable samples if the maximum is exceeded. The maximum allowable samples may differ between board types since it is dependent on the available RAM.
 
 ### Description
 
@@ -6550,7 +6548,7 @@ The following variables are available to record:
 | Measured Motor Steps | The current position of the motor measured in the standard unit of 'steps'. Similar to raw encoder reading, but will be standardised across different types of encoders with different CPRs. | 2 |
 | Target Motor Steps | The number of steps that the motor has been commanded to take. This becomes the target signal fed into the PID controller. | 4 |
 | Current Error | The difference between the current motor steps and the target motor steps. Directly used as an input to the PID controller. | 8 |
-| PID Control Signal | The control signal (normalised between -255 and 255 coming from the PID controller. | 16 |
+| PID Control Signal | The control signal (normalised between -255 and 255) coming from the PID controller. | 16 |
 | PID P Term | The value of the PID controller's P term. | 32 |
 | PID I Term | The value of the PID controller's I term | 64 |
 | PID D Term | The value of the PID controller's D term. | 128 |
@@ -6570,7 +6568,7 @@ The following manoeuvres are available:
 | Manoeuvre Name | Description | Manoeuvre ID |
 |:---|:---|
 | Polarity Detection and Zeroing | Detects in which orientation the stepper motor coils are connected, this will also detect if a motor's wiring is faulty or it is not plugged in. Ensures that a feedback reading of 0 corresponds to the position the encoder assumes when only coil A is energised. Note this move would normally be carried out using M569.6 prior to PID loop tuning. | 1 |
-| Absolute SPI Encoder Calibration | Calibrates the encoder positions to the motor. Note this move would normally be carried out using M569.6 prior to PID loop tuning and only needs to be done once per Motor,encoder and 1HCL combination. | 2 |
+| Absolute SPI Encoder Calibration | Calibrates the encoder positions to the motor. Note this move would normally be carried out using M569.6 prior to PID loop tuning and only needs to be done once per motor, encoder and 1HCL combination. | 2 |
 | Step Manoeuvre | Applies a sudden change of 4 full steps to the PID target to view the step response of the PID controller. | 64 |
 
 ### Examples
@@ -6581,7 +6579,7 @@ The usual way of generating a move and collecting the data is to send something 
 M569.5 P50.0 S2000 A1 R0 D24831 V0 G91 G1 H1 X5 F6000 G90
 </pre>
 
-Using driver 0 attached to board 50 (P50.0) record 2000 samples (S2000) during the following move (A1) as fast as possible (R0) of variable IDs 1, 2, 4, 8, 16, 32, 64, 128, 8192 and 16384 (D24831) not using a tuning manoeuvre (V0). A switch to relative positioning (G91) is followed by a homing move (G1 H1) follows, moving +5mm in the X axis at 6000mm/min (F6000, or 100mm/second), and then switched back to absolute positioning (G90).
+Using driver 0 attached to board 50 (P50.0), record 2000 samples (S2000) during the following move (A1) as fast as possible (R0) of variable IDs 1, 2, 4, 8, 16, 32, 64, 128, 8192 and 16384 (D24831), not using a tuning manoeuvre (V0). A switch to relative positioning (G91) is followed by a homing move (G1 H1), moving +5mm in the X axis at 6000mm/min (F6000, or 100mm/second), and then switched back to absolute positioning (G90).
 
 <br>
 <pre class="cblock">
@@ -6613,7 +6611,7 @@ Perform a [runtime tuning manoeuvre](/User_manual/Tuning/Duet_3_1HCL_tuning#runt
 
 ### Description
 
-**Warning: Duet firmware currently only supports tuning one driver at a time. This means that when tuning a multi-driver axis, one driver will move and the other(s) will not. If attempting to tune a multi-driver axis, please take appropriate mitigation to ensure the axis doesn't become stressed/misaligned when only one one driver moves.**
+**Warning: Duet firmware currently only supports tuning one driver at a time. This means that when tuning a multi-driver axis, one driver will move and the other(s) will not. If attempting to tune a multi-driver axis, please take appropriate mitigation to ensure the axis doesn't become stressed/misaligned when only one driver moves.**
 
 The [closed-loop tuning page](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_blank} lists the available tuning moves.
 
@@ -6621,7 +6619,7 @@ The [closed-loop tuning page](/User_manual/Tuning/Duet_3_1HCL_tuning){target=_bl
 <br>
 <pre class="cblock">
 M569.6 P50.0 V1 ; conduct polarity detection and zeroing move on closed loop driver on HCL board at address 50.
-M569.6 P51.0 V2 ; conduct magnetic encoder calibration on move on closed loop driver on HCL board with magnetic encoder at address 51.
+M569.6 P51.0 V2 ; conduct magnetic encoder calibration move on closed loop driver on HCL board with magnetic encoder at address 51.
 </pre>
 
 ### Notes
@@ -6693,7 +6691,7 @@ This command is available on boards running the STM32 port of RepRapFirmware (ve
 * **Tnnn** Permitted temperature excursion from the setpoint for this heater (default 15C)
 * **Rn** (RRF 3.5 and later only) Maximum number of consecutive temperature reading failures before a heater fault is raised. The default is 3 which guarantees that a fault will be raised within one second of a sensor becoming disconnected or shorted. Using R0 will result in a heater fault being raised immediately when a sensor fails to deliver a sensible reading, but will make the system more likely to report spurious failures if the sensor or its wiring is subjected to electrical interference or ESD.
 
-The actions taken on a heater fault, after the heater is shutdown, are now handled by the [event system](/User_manual/RepRapFirmware/Events). 
+The actions taken on a heater fault, after the heater is shut down, are now handled by the [event system](/User_manual/RepRapFirmware/Events). 
 
 #### RRF 3.4.0 to 3.4.3 
 
@@ -6701,7 +6699,7 @@ The actions taken on a heater fault, after the heater is shutdown, are now handl
 * **Pnnn** Time in seconds for which a temperature anomaly must persist on this heater before raising a heater fault (default 5 seconds)
 * **Tnnn** Permitted temperature excursion from the setpoint for this heater (default 15C)
 
-The actions taken on a heater fault, after the heater is shutdown, are now handled by the [event system](/User_manual/RepRapFirmware/Events). 
+The actions taken on a heater fault, after the heater is shut down, are now handled by the [event system](/User_manual/RepRapFirmware/Events). 
 
 #### RRF 3.3 and earlier 
 **Parameters for RepRapFirmware 1.15e to 3.3**
@@ -6709,7 +6707,7 @@ The actions taken on a heater fault, after the heater is shutdown, are now handl
 * **Hnnn** Heater number
 * **Pnnn** Time in seconds for which a temperature anomaly must persist on this heater before raising a heater fault (default 5 seconds)
 * **Tnnn** Permitted temperature excursion from the setpoint for this heater (default 15C)
-* **Snnn** (RRF versions between 1.20 and 3.3 inclusive only) Integer timeout in minutes (can be set to 0) for print to be cancelled after heater fault. If the S parameter timeout occurs (which only happens if a SD print is in progress), RRF will also try to turn off power via the PS_ON pin.
+* **Snnn** (RRF versions between 1.20 and 3.3 inclusive only) Integer timeout in minutes (can be set to 0) for print to be cancelled after heater fault. If the S parameter timeout occurs (which only happens if an SD print is in progress), RRF will also try to turn off power via the PS_ON pin.
 
 
 **Parameters for RepRapFirmware 1.14 and earlier**
@@ -6718,7 +6716,7 @@ The actions taken on a heater fault, after the heater is shutdown, are now handl
 
 ### Order dependency
 
-When using RepRapFirmware 3 the M570 command must come later in config,g than the M950 command that creates the heater specified in the H parameter.
+When using RepRapFirmware 3 the M570 command must come later in config.g than the M950 command that creates the heater specified in the H parameter.
 
 ### Examples
 <br>
@@ -6754,7 +6752,7 @@ M571 P"io4.out" S0.5 ; turn on io4.out output at 50% PWM while extrusion is comm
 
 ### Description
 
-This turns the controlled pin output on whenever forwad extrusion is being done by any extruder, and turns it off when no forward extrusion is taking place. The output could control a fan or a stirrer or anything else that needs to work just when extrusion is happening. The S parameter sets the value of the PWM to the output. 0.0 or a negative value means the output is off whether or notforward extrusion is taking place; 1.0 means the output is fully on when forward extrusion is taking place and off at other times.
+This turns the controlled pin output on whenever forward extrusion is being done by any extruder, and turns it off when no forward extrusion is taking place. The output could control a fan or a stirrer or anything else that needs to work just when extrusion is happening. The S parameter sets the value of the PWM to the output. 0.0 or a negative value means the output is off whether or not forward extrusion is taking place; 1.0 means the output is fully on when forward extrusion is taking place and off at other times.
 
 ### Notes
 
@@ -6796,11 +6794,11 @@ Pressure advance causes the extruder drive position to be advanced or retarded d
 
 ### Notes
 
-* If you configure Input Shaping, you will need to retune your Pressure Advance. It is recommend to first tune Input Shaping, then Pressure Advance, then Retraction.
+* If you configure Input Shaping, you will need to retune your Pressure Advance. It is recommended to first tune Input Shaping, then Pressure Advance, then Retraction.
 * When upgrading to RRF 3.6.0, when input shaping is used, pressure advance may need to be reduced compared to 3.5.x firmware.
 * When enabling and configuring pressure advance, the extruder acceleration ([M201](/User_manual/Reference/Gcodes/M201) E parameter) has to be limited to the allowable instantaneous speed change of the extruder (aka jerk) in mm/s, divided by pressure advance (M572 S parameter) in seconds. Note [M566](/User_manual/Reference/Gcodes/M566) reports jerk in mm/min, [M205](/User_manual/Reference/Gcodes/M205) reports jerk in mm/s. For example, if a machine used extruder jerk of 50mm/s (3,000mm/min) at a PA of 0.02s, maximum extruder acceleration would be 50 / 0.02 = 2,500mm/s^2. 
 * For more details such as tuning the value see [Pressure advance](/User_manual/Tuning/Pressure_advance){target=_blank}.
-* RRF 3.7.0 and later support two-slope pressure advance, where one value of pressure advance is used at low speeds and a different (normally lower, or zero) value is used at high speeds. The changover occurs when the pressure advance distance exceeds the L parameter, or equivalently  when the extrusion speed in mm/sec exceeds the L parameter divided by the first S parameter.
+* RRF 3.7.0 and later support two-slope pressure advance, where one value of pressure advance is used at low speeds and a different (normally lower, or zero) value is used at high speeds. The changeover occurs when the pressure advance distance exceeds the L parameter, or equivalently  when the extrusion speed in mm/sec exceeds the L parameter divided by the first S parameter.
 * In RRF 3.7.0 and later the pressure advance settings of each extruder are reported in object model field `move.extruders[].pressAdv`, which has fields `k0` (first S value), `k1` (second S value) and `d` (L value, or null if single-slope pressure advance is configured). Field `move.extruders[].pressureAdvance` is obsolete; its value is the same as `k0`.
 * M572 without an S parameter reports the pressure advance of each extruder. In RRF 3.7.0 and later an extruder that uses two-slope pressure advance is reported as the first S value, the second S value and the L value, in brackets and separated by spaces.
 
@@ -6871,13 +6869,13 @@ The order of endstop switch pin names in M574 must match the order of Z motor dr
 
 * In RRF3, the M574 command allows for more flexibility than in RRF2. This includes supporting axes defined with multiple motors and multiple endstops (one per motor), use of non-default endstop inputs, and re-assigning endstop inputs.
 * Use a separate M574 command for each axis. For historical reasons, RRF currently allows multiple endstops to be declared using M574 in some situations, but this facility may be withdrawn in future versions.
-* For endstop types other than stall detecton, parameter **P** gives the pin name(s) for the endstop(s) for the specified axis. If the number of pins matches the number of motors assigned to that axis, motors will be stopped individually when their endstop switches trigger.
+* For endstop types other than stall detection, parameter **P** gives the pin name(s) for the endstop(s) for the specified axis. If the number of pins matches the number of motors assigned to that axis, motors will be stopped individually when their endstop switches trigger.
 * For active low endstops, use type S1 and invert the input by prefixing the pin name with '!', for example `M574 X1 S1 P"!io1.in"`. Invert the input when using an NPN output normally-open inductive or capacitive sensor, or using a normally-open switch (not recommended, use a normally-closed switch instead).
 * The S2 option of M574 is intended for use only when axes other than Z are using the Z probe for homing. The only printers known to do this are the RepRapPro Ormerod, Huxley Duo, and Mendel Tricolour machines. When using the Z probe to home Z, M574 Z has no bearing on the probe setup or usage.
 * A Z probe and a Z endstop (e.g. a switch) can both be configured at the same time. G30 commands will use the probe setup with M558, and G1 H1 Z moves use the endstop configured with M574 Z.
 * Endstop type S4 means use motor stall detection (like S3) but if there are multiple motors dedicated to a single axis, stop each one individually as it stalls. S3 means use motor stall detection but if there are multiple motors dedicated to a single axis, stop all those motors when the first one stalls.
 * Endstop type S5 (RRF 3.7.0 and later) homes against the encoder of a driver on a CAN-connected board, instead of against the driver's StallGuard feature. It triggers when the motor falls behind the commanded position by the first value of the M569.1 E parameter, measured in full motor steps. Because it compares the distance commanded with the distance the encoder measured, it works whether the driver is in open loop, closed loop or assisted open loop mode, it needs no tuning, M915 does not apply to it, and there is no minimum speed for the homing move. All motors of the axis are stopped when the first one triggers.
-* Pull up resistors on Duet 2/Duex5 inputs should be configured for connecting a digital inputs (like a switch, BLtouch, etc) only on inputs not labelled "n"Stop (xstop, ystop etc).
+* Pull up resistors on Duet 2/Duex5 inputs should be configured for connecting digital inputs (like a switch, BLtouch, etc) only on inputs not labelled "n"Stop (xstop, ystop etc).
 * When a filament endstop is bound to an extruder (E and P parameters, RRF 3.7.0 and later), a G1 H1 or G1 H4 extruder-only move stops when the input reads active during positive extrusion, or inactive during negative extrusion, so the same input terminates both filament loading and unloading moves. Extruders without a bound input use motor stall detection as before. `M574 E0` without P reports the current binding, and M574 without parameters lists all of them.
 * To un-configure an endstop and free up any associated input pins, set the endstop position of that axis to 'none'. For example, `M574 X0` will delete the X endstop and free up any inputs that it was using.
 
@@ -6960,14 +6958,14 @@ M575 P2 B9600 S7 ; sets second auxiliary port (io1 on Duet 3) to Device mode (e.
 
 PanelDue mode is more resistant to interference and lost data because of the JSON structure and associated field identifiers, and makes it easier to distinguish the responses to particular commands from other data.
 
-here is an example of the M114 command and response sent in PanelDue mode
+Here is an example of the M114 command and response sent in PanelDue mode
 <br>
 <pre class="cblock">
 M114
 {"seq":6,"resp":"X:10.000 Y:50.000 Z:1.000 U:0.000 E:0.000 E0:0.0 E1:0.0 Count 4800 4000 400 4000 Machine 10.000 50.000 1.000 0.000 Bed comp 0.000\n"}
 </pre>
 
-here is an example of the same command in raw mode
+Here is an example of the same command in raw mode
 <br>
 <pre class="cblock">
 M114
@@ -7045,7 +7043,7 @@ M577 P"!xstop+!e0stop" ; wait until the X and E0 endstop inputs are both low
 
 ##### Notes
 
-Use the P parameter to specify one or more pin names. The pin(s) do not need to be exclusively used by M577; for example, it is permitted to specify the name of a pin that has already been declared as used by an endstop switch in a M574 command.
+Use the P parameter to specify one or more pin names. The pin(s) do not need to be exclusively used by M577; for example, it is permitted to specify the name of a pin that has already been declared as used by an endstop switch in an M574 command.
 
 The command waits for a high input level. To wait for a low input level, invert the pin name by prefixing "!".
 
@@ -7093,7 +7091,7 @@ This fires inkjet head 3 (the P field) using the bit pattern specified by the S 
 
 ### Notes
 
-If the P parameter is ommitted inkjet 0 is assumed.
+If the P parameter is omitted inkjet 0 is assumed.
 
 This is a version of the M700 command used by [Inkshield](http://reprap.org/wiki/Inkshield){target=_blank}.
 
@@ -7118,7 +7116,7 @@ M579 X1.0127 Y0.998
 
 ### Notes
 
-On a suitable-configured IDEX printer, a scaling factor of -1 for the U axis can be used to turn a ditto print into a mirror image print.
+On a suitably configured IDEX printer, a scaling factor of -1 for the U axis can be used to turn a ditto print into a mirror image print.
 
 <!-- 
 ## M580: Select Roland
@@ -7184,7 +7182,7 @@ M581 T2 P-1        ; don't invoke trigger 2 on any input change any more
 * See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of triggers each Duet board and firmware version supports.
 * **Warning**: if executed during a job, and more than one line long the GCode within the trigger file may be executed between later commands from the job. Bounding the trigger file with M25 and M24 may help, but this will cause warnings if the trigger happens outside of a job. The use of M25/M24 will cause the execution of pause and resume system macros.
 
-For examples, see [Using triggers to control the Duet](/User_manual/Tuning/Triggers){target=_blank} and [Connecting and emergency stop](/User_manual/Connecting_hardware/IO_E_stop){target=_blank}.
+For examples, see [Using triggers to control the Duet](/User_manual/Tuning/Triggers){target=_blank} and [Connecting an emergency stop](/User_manual/Connecting_hardware/IO_E_stop){target=_blank}.
 
 #### RepRapFirmware 3.0
 
@@ -7204,7 +7202,7 @@ M581 P"nil" T2              ; don't invoke trigger 2 on any input change any mor
 ##### Notes
 
 * Use the P parameter to specify one or more pin names. Use P"nil" to disable that trigger number.
-* The pin(s) do not need to be exclusively used by M581; for example, it is permitted to specify the name of a pin that has already been declared as used by an endstop switch in a M574 command.
+* The pin(s) do not need to be exclusively used by M581; for example, it is permitted to specify the name of a pin that has already been declared as used by an endstop switch in an M574 command.
 * The S parameter used in RRF2.x is removed. The command waits for a low-to-high input transition. To wait for a high-to-low transition, invert the pin name using '!'.
 * When M581 is executed, if the T parameter is present but the other parameters are omitted, the trigger inputs and edge polarities for that trigger number are reported. Otherwise, the specified inputs and their polarities are added to the conditions that cause that trigger.
 * Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
@@ -7246,7 +7244,7 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 ##### Examples
 <br>
 <pre class="cblock">
-M581.1 T2 P"sensors.gpIn[0].value = 1" R1 ; invoke trigger 2 when the digital input configures using M950 J0 changes from inactive to active
+M581.1 T2 P"sensors.gpIn[0].value = 1" R1 ; invoke trigger 2 when the digital input configured using M950 J0 changes from inactive to active
 M581.1 T2 P-1                       ; don't invoke trigger 2 on any input change any more
 </pre>
 
@@ -7300,7 +7298,7 @@ M582 T3 S1 ; set trigger #3 pending unconditionally
 * The maximum number of axes configurable is dependent on the firmware version, see: [RepRapFirmware overview, firmware configuration limits](https://docs.duet3d.com/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits)
 * **VERY IMPORTANT!** X (driver 0), Y (driver 1) and Z (driver 2) are assigned by default. 
 * There are no default extruder drives; all extruder drives must be declared explicitly using M584.
-* Using M584 to map drivers to axes does not affect endstop inputs. Endstops inputs for each axis need to be defined. 
+* Using M584 to map drivers to axes does not affect endstop inputs. Endstop inputs for each axis need to be defined. 
 * In RRF 3.6 and later, if M584 assigns drivers to an axis or extruder that uses phase stepping, that axis or extruder is changed to step and direction mode. Use [M970](/User_manual/Reference/Gcodes/M970){target=_blank} after M584 to enable phase stepping again.
 
 #### RepRapFirmware 3.4.x and earlier
@@ -7314,7 +7312,7 @@ M582 T3 S1 ; set trigger #3 pending unconditionally
 * **Unnn, Vnnn, Wnnn, Annn, ...** Additional axes and driver number(s). Available axis names depend on firmware version: 
   UVW available from RepRapFirmware 1.16
   UVWABC available from RepRapFirmware 1.19 and 2.x
-  UVWABCD available from RepRapFirmware 3.0 thru 3.2
+  UVWABCD available from RepRapFirmware 3.0 to 3.2
   UVWABCDabcdefghijkl available in RepRapFirmware 3.4
 * **Rn** (optional, supported in RRF 3.2 and later) 0 = axes created in this command are linear, 1 = axes created are rotational. If not present, RRF 3.2 and later assume UVW are linear and ABCD are rotational.
 * **Sn** (optional, supported in RRF 3.2 and later) 0 = axes created in this command are treated as linear in feedrate calculations, 1 = axes created are treated as rotational in feedrate calculations. See section 2.1.2.5 of the NIST GCode standard for how the feedrate is interpreted. Default is S0 for linear axes and S1 for rotational axes (see the R parameter).
@@ -7329,8 +7327,8 @@ M582 T3 S1 ; set trigger #3 pending unconditionally
 * In **RRF 3.2.2 and earlier**, X (driver 0), Y (driver 1), Z (driver 2) and one extruder (driver 3) are assigned by default. 
 * Changing an existing drive (i.e. X, Y, Z or E) to a different driver with an **existing** assignment will result in two axes using the same driver, e.g. M584 X1 results in 'Driver assignments: X1 Y1 Z2'. Changing a drive to an unassigned driver results in the drive moving to the new driver, e.g. M584 Z3 results in 'Driver assignments: X1 Y1 Z3'. This may result in unexpected behaviour. It is best practice to define all drives explicitly as in the above example, if you are not using the default drive/driver assignments.
 * Using M584 to map drivers to axes does not affect endstop inputs. 
-  * In RRF 3, endstops inputs for each axis need to be defined. 
-  * In RRF 2, endstop inputs XYZ are pre-allocated, after that they are allocated in the order in which axes are created. So if you create just one extra axes (e.g. U), it will use the E0 endstop input. If more than one axis is created in a single M584 command, endstop inputs are allocated to the new axes in axis creation order (see previous item). For example, M584 C5 U6 would allocate endstop input E0 to the U axis and E1 to the C axis.
+  * In RRF 3, endstop inputs for each axis need to be defined. 
+  * In RRF 2, endstop inputs XYZ are pre-allocated, after that they are allocated in the order in which axes are created. So if you create just one extra axis (e.g. U), it will use the E0 endstop input. If more than one axis is created in a single M584 command, endstop inputs are allocated to the new axes in axis creation order (see previous item). For example, M584 C5 U6 would allocate endstop input E0 to the U axis and E1 to the C axis.
 
 
 ### Order dependency
@@ -7345,10 +7343,10 @@ M584 X0 Y1 Z2:3 E4:5:6 ; Driver 0 controls the X motor, 1 controls Y, 2 and 3 co
 
 ### Notes (all versions)
 
-* Every driver that is assigned must have its current set using M906. Not setting a current will default a low current (approx 1/32 of the driver max current), however M906 will report 0 until a current is assigned. Disable the driver explicitly if you do not want any current sent to a driver that is assigned.
+* Every driver that is assigned must have its current set using M906. Not setting a current will default to a low current (approx 1/32 of the driver max current), however M906 will report 0 until a current is assigned. Disable the driver explicitly if you do not want any current sent to a driver that is assigned.
 * Because GCode is normally case insensitive, axes that are represented by lowercase letters must be prefixed with a single quote character in GCode commands. For example, M584 'A1.2 would assign axis 'a' to driver 1.2, and G1 'A10 would move the 'a' axis to the 10mm or 10 degree position (or by 10mm or 10 degrees if in relative mode).
-* **P** paramter: You can hide axes, starting with the last axis created, using the P parameter. Hidden axes have no homing buttons or jog controls in the user interface.
-* If you create more than one axis in a M584 command, the axes are created in the order UVWABCDabcdefghijkl regardless of the order of the parameters in the M584 command. This affects which axes will be hidden if you use the M584 P parameter to hide axes. For example, M584 C5 U6 creates axes U and C in that order, so M584 P4 would hide the C axis, not the U axis. If you want to create the axes in the order C then U (so that M584 P4 hides the U axis), use two M584 commands: M584 C5 followed by M584 U6.
+* **P** parameter: You can hide axes, starting with the last axis created, using the P parameter. Hidden axes have no homing buttons or jog controls in the user interface.
+* If you create more than one axis in an M584 command, the axes are created in the order UVWABCDabcdefghijkl regardless of the order of the parameters in the M584 command. This affects which axes will be hidden if you use the M584 P parameter to hide axes. For example, M584 C5 U6 creates axes U and C in that order, so M584 P4 would hide the C axis, not the U axis. If you want to create the axes in the order C then U (so that M584 P4 hides the U axis), use two M584 commands: M584 C5 followed by M584 U6.
 * RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M92 Z80, not M92 Z80:80
 * On the Duet 2 WiFi and Duet 2 Ethernet, if you configure multiple drivers for an axis, either all of them must be TMC2660 drivers on the Duet or a Duet expansion board, or none of them must be. This is to facilitate dynamic microstepping and other features of the TMC2660.
 * On Duet 3 mainboards and expansion boards, the drivers are assigned with \<board CAN address>.\<driver number>. The mainboard is always CAN address 0, and is implied if omitted. Example:
@@ -7378,7 +7376,7 @@ M584 X0 Y1 Z2:3 E4:5:6 ; Driver 0 controls the X motor, 1 controls Y, 2 and 3 co
 
 *Supported in RRF 1.20 and later.*
 
-In machines with at least one tool probe this code allows to update the current tool's offset by driving it into a given endstop. This code works similarly to G1 .. H1 (machine homing; G1 .. S1 is RRF 2.02 and earlier) except that it sets the offset of the current tool instead of the machine position, and that a custom endstop number (RRF 2.x) or custom Z probe (RRF 3.x) can be used.
+In machines with at least one tool probe, this Gcode updates the current tool's offset by driving it into a given endstop. This works similarly to G1 .. H1 (machine homing; G1 .. S1 is RRF 2.02 and earlier) except that it sets the offset of the current tool instead of the machine position, and that a custom endstop number (RRF 2.x) or custom Z probe (RRF 3.x) can be used.
 
 ### Tabs {.tabset}
 
@@ -7470,7 +7468,7 @@ M586 P0 S1 ; enable HTTP
 M586 P1 S0 ; disable FTP
 M586 P2 S1 ; enable Telnet
 ; SBC mode
-; NOTE: In SBC mode sending these makes a persistant change, do not add to config.g
+; NOTE: In SBC mode sending these makes a persistent change, do not add to config.g
 M586 P0 T1 S1 ; enable HTTPS
 M586 P1 T1 S1 ; enable SFTP
 M586 P2 T1 S1 ; enable SSH
@@ -7488,7 +7486,7 @@ M586 P2 T1 S1 ; enable SSH
 
 ## M586.4: Configure MQTT Client
 
-*Supported from firmware version 3.5, on WiFi-equipped Duet 3 series main boards running in standalone mode. Requires the WiFi interface to be running WiFi server version 2.1 or later. Supported in SBC mode and Duet 3 series with ethernet networks from 3.6.0*
+*Supported from firmware version 3.5, on WiFi-equipped Duet 3 series main boards running in standalone mode. Requires the WiFi interface to be running WiFi server version 2.1 or later. Supported in SBC mode and Duet 3 series with Ethernet networks from 3.6.0*
 
 ### Parameters
 
@@ -7573,7 +7571,7 @@ When using one of these modes there are additional parameters and the meaning of
 
 **EAP-TLS**
 
-* **U"uuu"** Filename of client/user certficate in /sys directory
+* **U"uuu"** Filename of client/user certificate in /sys directory
 * **P"ppp"** Filename of private key file in /sys directory
 * **Q"qqq"** Private key password
 
@@ -7594,12 +7592,12 @@ M587 X2 E"ca.pem" S"test-ap" U"bob" P"hello"  ; Connect to AP "test-ap" with EAP
 * In SBC mode (v3.3 and later) it is not possible to configure different IP addresses per SSID.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
 * Many programs used to send GCodes convert all characters to uppercase. In firmware 1.19.2 and later, within any quoted string you can use a single-quote character to indicate that the following character should be changed to lowercase. For example, M587 S"ABC" P"P'A'S'SW'O'R'D" would specify that the password is "PassWord". Use two single quote characters to represent one actual single quote character in the password or in the SSID. For example, if your SSID is "Pete's network" then enter "Pete''s network".
-* The use of special characters in the SSID cannot be guaranteed to work. In general it's best to avoid most special characters. Spaces, periods, dashes, underscores, and other punctuation is likely ok, but special characters on the number keys likely are not safe. (@#$%^&\*). If you are having troubles adding your SSID, try a simplified version with only letters and numbers.
+* The use of special characters in the SSID cannot be guaranteed to work. In general it's best to avoid most special characters. Spaces, periods, dashes, underscores, and other punctuation is likely ok, but special characters on the number keys likely are not safe. (@#$%^&\*). If you are having trouble adding your SSID, try a simplified version with only letters and numbers.
 * M587 with no parameters lists all the remembered SSIDs, but not the remembered passwords.
 * The M587 command will fail if the WiFi module has not yet been taken out of reset. So if the WiFi module has not been started, send M552 S0 to put it in idle mode first.
 * When connecting to an open network with no password, M587 still requires the P parameter. However, it doesn't matter what password you provide as long as it is empty (P"", standalone mode only) or meets the minimum length requirement (8 characters) for M587.
 
-**Important!** Do not use M587 within config.g. As well as being a security hazard, writing the access point parameters to WiFi chip every time you start the Duet may eventually wear out the flash memory. Also, the wifi module does not get enabled until the end of running config.g (see [this forum thread](https://forum.duet3d.com/post/42798){target=_blank} for explanation). It is better to use a macro to send M587.
+**Important!** Do not use M587 within config.g. As well as being a security hazard, writing the access point parameters to WiFi chip every time you start the Duet may eventually wear out the flash memory. Also, the WiFi module does not get enabled until the end of running config.g (see [this forum thread](https://forum.duet3d.com/post/42798){target=_blank} for explanation). It is better to use a macro to send M587.
 
 ## M587.1: Start network scan
 
@@ -7611,7 +7609,7 @@ Supported only by RRF 3.5 or later with WiFi firmware 2.0 or later.
 
 None
 
-This command causes the WiFi module to start a network scan. During the scan, any existing WiFi connection will be lost until the scan is complete. If starting ths command from Duet Web Control connected over WiFi, wait for the reconnection before sending M587.2.
+This command causes the WiFi module to start a network scan. During the scan, any existing WiFi connection will be lost until the scan is complete. If starting this command from Duet Web Control connected over WiFi, wait for the reconnection before sending M587.2.
 
 ## M587.2: Return network scan results
 
@@ -7623,7 +7621,7 @@ Supported only by RRF 3.5 or later with WiFi firmware 2.0 or later.
 
 * **Fn** 0 = report in plain text (default), 1 = report in JSON format
 
-This command waits for any active wifi scan to compete, then returns the result. The JSON format is intended for use by Duet Web Control, PanelDue and other user interfaces.
+This command waits for any active WiFi scan to complete, then returns the result. The JSON format is intended for use by Duet Web Control, PanelDue and other user interfaces.
 
 ## M588: Forget WiFi host network
 
@@ -7668,11 +7666,11 @@ M589 S"DuetSSID" P"password" I192.168.0.1 C1
 ### Usage
 
 **To use AP mode:**
-* Send a M589 command once from the console, or via macro to set the access point name, IP address etc. These parameters will be saved within the WiFi module.
+* Send an M589 command once from the console, or via macro to set the access point name, IP address etc. These parameters will be saved within the WiFi module.
 * The password must be at least 8 characters long. See notes of [M587](/User_manual/Reference/Gcodes/M587) for valid characters.
 * The M589 command will fail if the WiFi module has not yet been taken out of reset. So if the WiFi module has not been started, send M552 S0 to put it in idle mode first.
 * M589 does not work from within config.g at startup.
-* Use M552 S2 in config.g to start the wifi module.
+* Use M552 S2 in config.g to start the WiFi module.
 * WPA2 security will be used by default.
 * Look for the wireless network name you specified on your device and connect to it using the password you set.
 
@@ -7688,7 +7686,7 @@ In RRF 3.7.0 and later, filament monitors that can detect filament presence repo
 
 In **RRF 3.4 and later** the action on a filament error is to raise a filament-error event. See [Events](/User_manual/RepRapFirmware/Events){target=_blank}.
 
-In **RRF 3.3 and 3.2** the action on a filament error is to.
+In **RRF 3.3 and 3.2** the action on a filament error is to:
 
 * pause the print
 * run filament-error#.g if available, where # is the extruder number
@@ -7715,7 +7713,7 @@ Note that filament monitoring in RRF is only active when printing from SD card, 
   * 6 = Duet3D laser sensor with microswitch
   * 7 = pulse-generating sensor
 * **C"name"** Pin name the filament sensor is connected to (RRF3 only), see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. DueX2/5 users, see Notes below.
-* **Sn** 0 = disable filament monitoring (default), 1 = enable filament monitoring when printing from SD card, 2 = enable filament monitoring all the time (S2 is supported RRF 3.5.0 and later ). Filament monitors accumulate calibration data (where applicable) even when filament monitoring is disabled.
+* **Sn** 0 = disable filament monitoring (default), 1 = enable filament monitoring when printing from SD card, 2 = enable filament monitoring all the time (S2 is supported in RRF 3.5.0 and later). Filament monitors accumulate calibration data (where applicable) even when filament monitoring is disabled.
 
 **Additional parameters for Duet3D rotating magnet filament monitor**
 
@@ -7784,7 +7782,7 @@ M591 D1 ; display filament sensor parameters for extruder drive 1
 
 ### Notes
 
-* DueX2/5: Endstop inputs on the DueX expansion board (duex.e[2-6]stop in RRF 3.x, C5 thru C9 in RRF 2.x) can only be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation or laser sensor). However, the endstop inputs on the Duet 2 WiFi/Ethernet CONN_LCD connector (connlcd.4 and connlcd.3 in RRF3.x, C10 and C11 in RRF 2.x) support any filament sensor.
+* DueX2/5: Endstop inputs on the DueX expansion board (duex.e[2-6]stop in RRF 3.x, C5 to C9 in RRF 2.x) can only be used for simple filament presence sensors (e.g. microswitch), not for sensors that detect motion (e.g. rotation or laser sensor). However, the endstop inputs on the Duet 2 WiFi/Ethernet CONN_LCD connector (connlcd.4 and connlcd.3 in RRF3.x, C10 and C11 in RRF 2.x) support any filament sensor.
 * To free a filament sensor's GPIO pin, run M591 D# P0, where # is the corresponding extruder.
 * On Duet 3 with CAN-connected boards, a filament monitor of type 3 to 7 must be connected to the same board as the extruder driver. A simple sensor (type 1 or 2) must be connected to the same board as the extruder driver, or (in RRF 3.5.2 and later) to the main board.
 
@@ -7848,7 +7846,7 @@ M593 P"none"      ; disable input shaping
 
 ##### Notes
 
-* In RRF 3.6.0, the input shaping algorithm has been changed. The new algorithm has the advantage that it can be (and is) applied to any type of move, including short segmented moves. The disadvantage that it introduces artefacts at direction changes.
+* In RRF 3.6.0, the input shaping algorithm has been changed. The new algorithm has the advantage that it can be (and is) applied to any type of move, including short segmented moves. The disadvantage is that it introduces artefacts at direction changes.
 * In RRF 3.6.0, the minimum input shaping frequency has been reduced to 4Hz for all boards.
 * The L parameter is not used in RRF 3.6.0 and later. The H and T parameters changed compared to earlier versions.
 * In RRF 3.7.0 and later, an M593 command with F and/or S but no P parameter does not change the type of input shaping. In RRF 3.6, such a command selected ZVD input shaping if input shaping was disabled. To enable ZVD input shaping, use P"zvd".
@@ -7934,7 +7932,7 @@ Note: In firmware 2.02 up to 3.3 the only form of input shaping supported is Dyn
 ### Notes
 
 * Input shaping not working for your printer? Check this:
-  * High X and Y jerk values are an issue for all types of Input Shaping because the theory behind IS assumes no jerk. Therefore you should set the X and Y jerk limits only as high as necessary to allow curves to be printed smoothly. Users report jerk values of 5mm/s (300mm/min) seem to allow for IS to work, and curves to print smoothly, though test it works for you.
+  * High X and Y jerk values are an issue for all types of Input Shaping because the theory behind IS assumes no jerk. Therefore you should set the X and Y jerk limits only as high as necessary to allow curves to be printed smoothly. Users report jerk values of 5mm/s (300mm/min) seem to allow for IS to work, and curves to print smoothly, though test that it works for you.
   * Another cause of IS not working is mesh compensation with a fine mesh and low acceleration. This splits the acceleration and deceleration parts of a move across multiple segments, which makes it difficult for RRF to apply IS.
   * A third cause is short accelerate/decelerate moves. In RRF 3.6.0 and later, input shaping is applied to short moves and to segmented moves, so this cause and the previous one apply only to RRF 3.5 and earlier.
 
@@ -7944,7 +7942,7 @@ Note: In firmware 2.02 up to 3.3 the only form of input shaping supported is Dyn
 
 * If you don't have an accelerometer, take a print that exhibits ringing on the perimeters (for example a cube), preferably printed single-wall or external-perimeters-first. Divide the speed at which the outer perimeter was printed (in mm/sec) by the distance between adjacent ringing peaks (in mm). When measuring the distance between peaks, ignore peaks close to the corner where the ringing started (these peaks will be spaced more closely because the print head will have been accelerating in that area).
 
-* Cartesian and CoreXY printers will typically have different frequencies of ringing for the X and Y axes. In this case it is is usually best to aim to cancel the lower ringing frequency. If the frequencies are not much different, in a moving-bed Cartesian printer you can reduce the higher ringing frequency by adding mass to that axis or reducing belt tension on that axis. Note that X axis ringing causes artefacts predominantly on the Y face of the test cube, and vice versa.
+* Cartesian and CoreXY printers will typically have different frequencies of ringing for the X and Y axes. In this case it is usually best to aim to cancel the lower ringing frequency. If the frequencies are not much different, in a moving-bed Cartesian printer you can reduce the higher ringing frequency by adding mass to that axis or reducing belt tension on that axis. Note that X axis ringing causes artefacts predominantly on the Y face of the test cube, and vice versa.
 
 * Keep in mind that you have to retune Pressure Advance after you have configured Input Shaping. The Pressure Advance will differ from shaper to shaper and from frequency to frequency.
 
@@ -8026,7 +8024,7 @@ M597 V0 Y23.5
 
 In the above example, the position of the Y axis must always be at least 23.5mm greater than the position of the V axis.
 
-When Y and V are driven by independent motion systems and executing moves independently, in any block of GCode between synchronisation points, using this example the minimum of all Y coordinates inside the block (including the initial Y coordinate) must be at least 23.5mm greater than the maximum of the all V coordinates inside the block. If this is not the case, the job will be aborted prior to starting the first move that would cause the conflict.
+When Y and V are driven by independent motion systems and executing moves independently, in any block of GCode between synchronisation points, using this example the minimum of all Y coordinates inside the block (including the initial Y coordinate) must be at least 23.5mm greater than the maximum of all V coordinates inside the block. If this is not the case, the job will be aborted prior to starting the first move that would cause the conflict.
 
 ## M598: Synchronise motion systems
 
@@ -8043,7 +8041,7 @@ This command is used in print files when multiple movement systems are being use
 
 ## M599: Define keepout zone
 
-*Supported in firmware version 3.5.0 later on Duet 3 main boards*
+*Supported in firmware version 3.5.0 and later on Duet 3 main boards*
 
 ### Parameters
 
@@ -8098,7 +8096,7 @@ If the S1 parameter is present and the command occurs within a job from SD card 
 * In the event that this command with the S1 parameter is executed from a job file when the input stream has already been forked, it is ignored.
 * If the S1 parameter is present and the command is used from an input channel other than a file stream then a warning is issued but it is otherwise ignored.
 * If this command is run without the S parameter then the firmware just reports whether the input stream that runs stored jobs has been forked.
-* See also the [M596](/User_manual/Reference/Gcodes/M596) command that selects a motion system, and the [M598](/User_manual/Reference/Gcodes/M598) command which is used to synchronise forked input streams at particular point in the file.
+* See also the [M596](/User_manual/Reference/Gcodes/M596) command that selects a motion system, and the [M598](/User_manual/Reference/Gcodes/M598) command which is used to synchronise forked input streams at a particular point in the file.
 * See [Multiple Motion Systems](/User_manual/RepRapFirmware/Multiple_motion_systems) for more information.
 
 ## M650: Set peel move parameters
@@ -8176,7 +8174,7 @@ M665 L250 R160 B80 H240 X0 Y0 Z0
 
 ## M666: Set delta endstop adjustment
 
-Sets delta endstops adjustments.
+Sets delta endstop adjustments.
 
 ### Parameters
 
@@ -8265,7 +8263,7 @@ M669 must come earlier in config.g than any [M671](/User_manual/Reference/Gcodes
 ##### Notes
 
 * All these parameters are optional. The movement coefficient matrices are initialised to suitable values for the kinematics type you selected in the M667 or M669 command, but you can modify them using these parameters. If you send M669 with no parameters, the existing matrix will be reported.
-* When CoreXZ kinematics is selected, the default matrix assumes there is a 3:1 reduction on the Z axis, as in the original CoreXZ design described at on the [RepRap forums here](https://reprap.org/forum/read.php?2,377858){target=_blank}. If your CoreXZ printer has a different reduction or no reduction then you will need to use the Z parameter to change the Z line of the matrix. For example, if there is no Z reduction then use Z1:0:-1.
+* When CoreXZ kinematics is selected, the default matrix assumes there is a 3:1 reduction on the Z axis, as in the original CoreXZ design described on the [RepRap forums here](https://reprap.org/forum/read.php?2,377858){target=_blank}. If your CoreXZ printer has a different reduction or no reduction then you will need to use the Z parameter to change the Z line of the matrix. For example, if there is no Z reduction then use Z1:0:-1.
 * A modified line overrides the default for that axis row, so for example sending M669 K0 X1:0:1 Y0:1:0 Z1:0:-1, produces a CoreXZ matrix, not a cartesian matrix. (The K0 is completely overridden in a 3 axis system). To that end if you are using a modified matrix, it is best to fully specify the matrix to avoid confusion. If you fully override the matrix, the "K" parameter can be any of the linear K parameters.
 * In RRF 3, segmentation is not normally used unless the S and/or T parameter is given. Segmenting moves is useful when faster pause response is wanted. In RRF 3.7 and later, pause and M221 extrusion factor changes act on queued moves that have not yet been committed, so segmentation also makes M221 changes take effect sooner. For example, M669 S10 gives segments of about 100ms and M669 S20 gives segments of about 50ms.
 * Unlike some other firmwares, for CoreXY and similar kinematics RRF allows for the fact that the maximum speed and acceleration the machine is capable of varies with the direction of the move. This means that for best performance you should use higher M201 and M203 values in RRF than in those firmwares. See [Configuring RepRapFirmware for CoreXY Printer](/User_manual/Machine_configuration/Configuration_coreXY#drives-and-axes)
@@ -8410,8 +8408,8 @@ M669 K4 P300 D250 A-90:90 B-135:135 C0:0:0 S100 X300 Y0
 
 ### Parameters
 
-* **Pnn:nn:nn...** - List of up to 16 port numbers that bits 0, 1, 2... control. In RRF2.x and earlier these are logical port numbers. In RRF 3.6.0 and later these are GpOut port numbers that have previously been assiged using M950. RRF 3.x versions before 3.6.0 do not use this parameter.
-* **Cnnn** - Up to 16 pin name(s) to be controlled. Used only in RRF3.x versions before 3.6.0. See [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank})
+* **Pnn:nn:nn...** - List of up to 16 port numbers that bits 0, 1, 2... control. In RRF2.x and earlier these are logical port numbers. In RRF 3.6.0 and later these are GpOut port numbers that have previously been assigned using M950. RRF 3.x versions before 3.6.0 do not use this parameter.
+* **Cnnn** - Up to 16 pin name(s) to be controlled. Used only in RRF3.x versions before 3.6.0. See [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}
 * **Tnnn** - Port switching time advance in milliseconds
 
 ### Examples
@@ -8425,12 +8423,12 @@ M670 T5 P2:3:8                            ; RRF 3.6.0 or later
 ### Notes
 
 * RepRapFirmware 1.19 and later provides an optional P parameter on the G1 command to allow I/O ports to be set to specified states for the duration of the move. The argument to the P parameter is a bitmap giving the required state of each port. The M670 command specifies the mapping between the bits of that argument and logical port numbers. Optionally, the T parameter can be used to advance the I/O port switching a short time before the corresponding move begins.
-* In RRF3 pror to version 3.6.0 the P parameter is removed. Use the C parameter to specify the pin names to be used.
+* In RRF3 prior to version 3.6.0 the P parameter is removed. Use the C parameter to specify the pin names to be used.
 * In all versions of RRF3 the ports or pins specified must be on the main board, not on a CAN-connected expansion board. On Duet 2 some or all of the ports may be on a DueX or additional SX1509B chip.
 
 ## M671: Define positions of Z pivot points or bed levelling screws
 
-Informs the firmware of the positions of the pivot points, where the bed or gantry connect to the Z axis.
+Informs the firmware of the positions of the pivot points, where the bed or gantry connects to the Z axis.
 
 ### Parameters
 
@@ -8485,7 +8483,7 @@ M672 S105:50:205
 
 ### Notes
 
-For the Duet3d smart effector:
+For the Duet3D smart effector:
 * The programming pin has to be defined in the [M558](/User_manual/Reference/Gcodes/M558){target=_blank} command
 * To program the sensitivity threshold, send command M672 S105:*aaa*:*bbb* replacing *aaa* by the desired threshold and *bbb* by 255 - *aaa*. The green LED will flash 4 times if the command is accepted. When you subsequently power up the effector, the green LED will flash three times instead of twice to indicate that a custom sensitivity is being used. Higher values make the sensor less sensitive. The default threshold for the Duet3D Smart Effector is 50.
 * To revert to factory sensitivity, send command M672 S131:131. The green LED will flash 5 times if the command is accepted. When you subsequently power up the effector, the green LED will flash twice to indicate that default settings are being used.
@@ -8518,11 +8516,11 @@ If no rotary axis is given and at least four probe points have been taken, M673 
 
 ## M674: Set Z to center point
 
-This code is intended to determine the Z center point of a stash that is mounted on a rotary axis. This code is yet to be implemented.
+This code is intended to determine the Z centre point of a stash that is mounted on a rotary axis. This code is yet to be implemented.
 
 ## M675: Find center of cavity
 
-This code is intended to find the center of a cavity that can be measured using a probe. It probes towards the minimum end of the specified axis to find one side of the cavity, backs off a little, and then probes towards the maximum end of the same axis to find the other side. 
+This code is intended to find the centre of a cavity that can be measured using a probe. It probes towards the minimum end of the specified axis to find one side of the cavity, backs off a little, and then probes towards the maximum end of the same axis to find the other side. 
 
 ### Parameters
 
@@ -8545,7 +8543,7 @@ A tool must be selected before this code is run.
 How it works:
 * Once this code starts, RepRapFirmware will move to the lower end looking for the probe to be triggered. 
 * Once it is triggered, the lower position is saved and the axis maximum is probed. 
-* As soon as both triggers have been hit, the center point is calculated and the machine moves to the calculated point.
+* As soon as both triggers have been hit, the centre point is calculated and the machine moves to the calculated point.
 
 ## M701: Load filament
 
@@ -8703,7 +8701,7 @@ Before the calibration is performed by the external scanner, "calibrate_pre.g" i
 
 *Not supported in RRF 3.5 and later.*
 
-Sends the ALIGN ON/OFF command the attached 3D scanner. 
+Sends the ALIGN ON/OFF command to the attached 3D scanner. 
 
 ### Parameters
 
@@ -8724,7 +8722,7 @@ Some devices turn on a laser when this command is received. If the 'P' parameter
 
 *Not supported in RRF 3.5 and later.*
 
-Sends the SHUTDOWN command the attached 3D scanner.
+Sends the SHUTDOWN command to the attached 3D scanner.
 
 ### Examples
 <br>
@@ -8762,7 +8760,7 @@ Updates the machine's local date and time or reports them if no parameters are s
 
 * **Pnnn** Current date in the format YYYY-MM-DD
 * **Snnn** Current time in the format HH:MM:SS
-* **Tnnn** (Supported by DSF v3.3 and later) Timezone to set (e.g *Europe/Berlin*)
+* **Tnnn** (Supported by DSF v3.3 and later) Timezone to set (e.g. *Europe/Berlin*)
 * **Annn** (Supported by DSF v3.5.3 and later) Automatically set date and time via NTP
 
 ### Examples
@@ -8775,7 +8773,7 @@ M905 A0 P"2024-09-17" S"15:19:54" T"Europe/Berlin" ; DSF v3.5.3 and later only
 
 ### Notes
 
-The time should be specified in 24-hours format as in "13:45" instead of 1:45PM.
+The time should be specified in 24-hour format as in "13:45" instead of 1:45PM.
 
 Timezone setting is only supported by Duets in SBC mode with DSF v3.3 and later.
 
@@ -8805,15 +8803,15 @@ M906 X300 Y500 Z200 E350:350
 ### Notes
 
 * RRF uses peak current. Divide by 1.414 for RMS current as used in Marlin implementations for Trinamic drivers
-* Current setting on the various Duet boards are as follows:
-  * Duet 2 WiF/Ethernet is done in steps of 100mA and is rounded down.
+* Current setting on the various Duet boards is as follows:
+  * Duet 2 WiFi/Ethernet is done in steps of 100mA and is rounded down.
   * Duet Maestro is in steps of 50mA and rounded down.
   * Duet 3 MB6HC and EXP3HC is in steps of 25.4mA.
   * Duet 3 Mini5+ is in steps of 74mA (provisionally), rounded down.
   * Duet 3 1LC toolboard is in steps of 50mA, rounded down.
 
 * The **I** parameter is the percentage of normal that the motor currents should be reduced to when the printer becomes idle but the motors have not been switched off. The default value is 30% and will always be at least 100mA - starting from RRF 2.02 setting it to 0 will disable the steppers after timeout like M18|M84 do and if an axis is related to the motor, throw out the "homing" of it, since it is likely that the position cannot be precisely determined anymore. Note that the idle current is applied globally for all motors and cannot be set per axis.
-* Every driver that is assigned must have its current set using M906. Not setting a current will default a low current (approx 1/32 of the driver max current), however M906 will report 0 until a current is assigned. Disable the driver explicitly if you do not want any current sent to a driver that is assigned.
+* Every driver that is assigned must have its current set using M906. Not setting a current will default to a low current (approx 1/32 of the driver max current), however M906 will report 0 until a current is assigned. Disable the driver explicitly if you do not want any current sent to a driver that is assigned.
 * As a rule of thumb, the recommendation is to set M906 to use 60-85% of the rated maximum current for the motor. Though you can go above or below as needed, and will have to tune for a balance of motor temperature, motor torque, and noise level. You can also use the EMF calculator ([reprapfirmware.org](https://www.reprapfirmware.org/){target=_blank} and click on EMF calculator) to play with different values to see how it changes behaviour.
 * The **T** parameter (RRF 3.6.0 and later) is used to set the idle timeout for all motors (M84 was previously used for this). For example, M906 T10 will idle the stepper motors after 10 seconds of inactivity. Setting `M906 T0` does NOT mean "never idle hold" (ie motors stay on all the time, at full current), and T0 is an invalid setting. The correct way to set no idle hold (ie motors are 'always on') is to use M906 I parameter to set the idle hold to the required level, eg `M906 I100`.
 * RepRapFirmware does not support individual motor settings where an axis has multiple motors connected to different stepper drivers. The first parameter specified will be used for all motors on the axis. You should use identical motors on any axis that has more than one motor to avoid unexpected behaviour. Example: If you have two motors on your Z axis, physically connected to Z and E0 stepper drivers, configured with M584 Z2:3, set M906 Z200, not M906 Z200:200
@@ -8889,11 +8887,11 @@ M912 P0 S10.5
 
 Many microcontrollers used to control 3D printers have built-in temperature monitors, but they normally need to be calibrated for temperature reading offset. The S parameter specifies the value that should be added to the raw temperature reading to provide a more accurate result.
 
-(Currently only for the CPU on-chip temperature sensor P0. Other P parameter could in the future be added for boards with multiple on-chip sensors)
+(Currently only for the CPU on-chip temperature sensor P0. Other P parameters could in the future be added for boards with multiple on-chip sensors)
 
 ## M913: Set motor percentage of normal current
 
-This allows motor currents to be set to a specified percentage of their normal values as set by [M906](/User_manual/Reference/Gcodes/M906){target=_blank}. It can be used (for example) to reduce motor current during course homing, to make homing quieter or to reduce the risk of damage to endstops, and to reduce current while loading filament to guard against the possibility of feeding too much filament. Use M913 again with the appropriate parameters set to 100 to restore the normal currents.
+This allows motor currents to be set to a specified percentage of their normal values as set by [M906](/User_manual/Reference/Gcodes/M906){target=_blank}. It can be used (for example) to reduce motor current during coarse homing, to make homing quieter or to reduce the risk of damage to endstops, and to reduce current while loading filament to guard against the possibility of feeding too much filament. Use M913 again with the appropriate parameters set to 100 to restore the normal currents.
 
 ### Parameters
 
@@ -8949,7 +8947,7 @@ This sets the stall detection parameters and optionally the low-load current red
 ##### Notes
 
 * In RRF 3.6.0, a homing move that uses stall detect endstops will be cancelled and an error message generated if the movement speed is too low for stall detection to be definitely feasible (also if it is too high when using TMC2209 or TMC2240 drivers). There are small speed ranges that will be rejected by this release but may in practice have worked on some boards using previous firmware versions, so please test stall homing after upgrading. 
-* In RRF 3.4.0 thru 3.4.5, motor stalls don't generate events when not printing from SD card. RRF 3.4.6 and later do generate events when not printing from SD card.
+* In RRF 3.4.0 to 3.4.5, motor stalls don't generate events when not printing from SD card. RRF 3.4.6 and later do generate events when not printing from SD card.
 * In RRF v3.4 and later, R2 and R3 both cause an event to be created when the driver stalls. 
 * To handle the event, RRF calls driver-stall.g passing the stalled local driver number in param.D and the CAN address of the board concerned in param.B. 
 * If file driver-stall.g is not found then the default action is to report it to the console and carry on.
@@ -9106,7 +9104,7 @@ Also see [M118](/User_manual/Reference/Gcodes/M118){target=_blank}.
 
 M950 is used to create heaters, fans, GPIO ports, spindles (3.3 and later) and LED strips (3.5 and later), and to assign pins to them. Each M950 command assigns a pin or pins to a single device. Every M950 command must have **exactly one** of the H, F, J, P, S, R, D (for Duet 3 MB6HC only) or E (in RRF 3.5 and later) parameters.
 
-If a M950 command has C and/or Q parameters, then the pin allocation and/or frequency will be configured accordingly. Otherwise, the current configuration will be reported.
+If an M950 command has C and/or Q parameters, then the pin allocation and/or frequency will be configured accordingly. Otherwise, the current configuration will be reported.
 
 ### Tabs {.tabset}
 
@@ -9123,7 +9121,7 @@ If a M950 command has C and/or Q parameters, then the pin allocation and/or freq
 * **En** LED strip number
 * **C"name"** Pin name(s) and optional inversion status, see [Pin Names](/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names){target=_blank}. Pin name "nil" frees up the pin. A leading '!' character inverts the input or output. A leading '^' character enables the pullup resistor^1^. The '^' and '!' characters may be placed in either order.
 * **Qnn** (optional) PWM frequency in Hz. Valid range: 1-65535, default: 500 for GpOut pins, 250 for fans and heaters. Max value for heaters 1000, to avoid overheating the mosfets. For LED strips (supported in RRF 3.5.0 and later only) this is the LED clock frequency.
-* **Tn** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)). When creating a LED strip (supported in RRF 3.5.0 and later only): LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them. When creating a spindle, type of spindle control (RRF 3.6.0 and later): T0 (default) = enable/direction inputs, T1 = forward/reverse inputs.
+* **Tn** When creating a heater: temperature sensor number, required (see [M308](/User_manual/Reference/Gcodes/M308)). When creating an LED strip (supported in RRF 3.5.0 and later only): LED type (optional): 0 = DotStar, 1 = RGB Neopixel (default), 2 = RGBW Neopixel. DotStar LEDs can normally be assigned only to an output intended for them. When creating a spindle, type of spindle control (RRF 3.6.0 and later): T0 (default) = enable/direction inputs, T1 = forward/reverse inputs.
 * **Bn** When creating a heater: optional ambient temperature sensor number (supported in RRF 3.7.0 and later). For example, when creating a tool heater that operates in a heated chamber, this would be the chamber temperature sensor.
 * **Lbbb** or **Laaa:bbb** (optional, for spindles only) RPM values that are achieved at zero PWM (optional) and at maximum PWM.
 * **Kaaa(:bbb[:ccc])** (optional, RRF 3.5 and later) For spindles, these are the PWM values (0..1) for spindle control (max [aaa] - or - min, max [aaa:bbb] - or - min, max, idle [aaa:bbb:ccc]).
@@ -9280,7 +9278,7 @@ M950 R0 C"out3" L12000 ; Spindle 0 uses out3 as RPM pin and has a max RPM of 120
   * If a third pin is defined it is used as spindle forward/reverse.
 * **Qfff** is the PWM frequency as usual
 * **Laa:bb** sets the RPM range as "aa" to "bb". "Lbb" just sets the max RPM to "bb". Default RPM values are 60 min 10000 max
-* In RRF 3.6.0 and later, sending `M950 R#` were R# is the spindle number, reports on that spindle.
+* In RRF 3.6.0 and later, sending `M950 R#` where R# is the spindle number, reports on that spindle.
 
 #### SD card slot
 
@@ -9299,7 +9297,7 @@ Supported in RRF 3.5.0 and later.
 
 <br>
 <pre class="cblock">
-M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED port (RRF 3.5 and later)
+M950 E0 C"led" T2              ; create an RGBW Neopixel LED strip on the LED port (RRF 3.5 and later)
 </pre>
 
 * **En** LED strip number
@@ -9315,7 +9313,7 @@ M950 E0 C"led" T2              ; create a RGBW Neopixel LED strip on the LED por
 * The **Unn** parameter defines the maximum number of LEDs in a strip, and the default is 60. It can be increased using the M950 U parameter, subject to 
   (a) available RAM and 
   (b) on the 6HC and 6XD there is an additional limit because the DMA buffer has to be in non-cached memory. For 6HC and 6XD the max LEDs for a strip connected to the dedicated LED port is currently 240 Neopixel RGBW or 320 RGB. It might reduce in future.
-* When configuring a LED strip on a tool board or 1XD (which have very little free RAM), or configuring multiple LED strips, using a lower U parameter (ie set U to the number of LEDs) is advised to save RAM.
+* When configuring an LED strip on a tool board or 1XD (which have very little free RAM), or configuring multiple LED strips, using a lower U parameter (ie set U to the number of LEDs) is advised to save RAM.
 
 ## M951: Set height following mode parameters
 
@@ -9352,7 +9350,7 @@ Some CAN-connected expansion boards are too small to carry address selection swi
 <br>
 <pre class="cblock">
 M952 B121 A20  ; change the CAN address of expansion board 121 to 20
-M952 B20 S500  ; change the CAN bit rate or expansion board 20 to 500kbps
+M952 B20 S500  ; change the CAN bit rate of expansion board 20 to 500kbps
 </pre>
 
 ### Notes
@@ -9541,7 +9539,7 @@ This command is used to raise an event or trigger internally as if the event had
 * **Dnn** Device number to which the event relates
 * **Bnn** (optional) CAN address of the board that the event should appear to originate from
 * **Pnn** (optional) Additional data about the event (unsigned integer)
-* **S"text"** (optional) Short test string to be appended to the event message
+* **S"text"** (optional) Short text string to be appended to the event message
 
 ### Examples
 <br>
@@ -9587,7 +9585,7 @@ M959          ; report the connection timeouts of all expansion boards
 
 ## M970: Enable/disable phase stepping
 
-*Support in RepRapFirmware 3.6 and later on Duet 3 MB6HC main board drivers.
+*Supported in RepRapFirmware 3.6 and later on Duet 3 MB6HC main board drivers.
 Support for CAN-connected drivers in 3.7.0 and later*
 
 Motor drivers on the Duet 3 MB6HC main board and, in RRF 3.7.0 and later, on some CAN-connected boards allow direct control of the motor phases. This command sets the motion controller to use phase stepping instead of step and direction. See [Phase stepping](/User_manual/Tuning/Phase_stepping) for the supported boards and how to configure phase stepping.
@@ -9621,7 +9619,7 @@ Enable phase stepping for `X` and `E0`, enable step direction for `Y`, `Z`, and 
 
 ## M970.1: Configure phase stepping velocity constant
 
-*Support in RepRapFirmware 3.6 and later. Support for CAN-connected drivers in 3.7.0 and later*
+*Supported in RepRapFirmware 3.6 and later. Support for CAN-connected drivers in 3.7.0 and later*
 
 Configure the velocity constant used to scale the motor current in phase stepping.
 
@@ -9643,7 +9641,7 @@ M970.1 X1000.0 Y2000.0 Z1000.0 E1000.0:1000.0
 
 ## M970.2: Configure phase stepping acceleration constant
 
-*Support in RepRapFirmware 3.6 and later. Support for CAN-connected drivers in 3.7.0 and later*
+*Supported in RepRapFirmware 3.6 and later. Support for CAN-connected drivers in 3.7.0 and later*
 
 Configure the acceleration constant used to scale the motor current in phase stepping.
 
@@ -9665,7 +9663,7 @@ M970.2 X50000.0 Y50000.0 Z50000.0 E50000.0:50000.0
 
 ## M970.3: Configure phase stepping waveform correction
 
-*Support in RepRapFirmware 3.7.0 and later*
+*Supported in RepRapFirmware 3.7.0 and later*
 
 Applies a sinusoidal correction to the commanded electrical angle of a motor, to compensate for motor and driver non-linearity. The correction takes effect while that axis is in phase stepping mode, see [M970](/User_manual/Reference/Gcodes/M970){target=_blank} and [Phase stepping](/User_manual/Tuning/Phase_stepping#waveform-correction).
 
@@ -9722,13 +9720,13 @@ M997 S4                              ; update firmware on connected PanelDue
 
 ### Notes
 
-* **S** parameter: in RepRapFirmware on the Duet series, the S parameter selects the firmware module numbers are as follows:
+* **S** parameter: in RepRapFirmware on the Duet series, the S parameter selects the firmware module; the module numbers are as follows:
   * **0** - main firmware, specific for Duet board. Needs the appropriate IAP (In-App Programmer, specific to the Duet board) binary present on the SD card to be able to install the firmware. See [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank} for full details. RRF 3.7 cannot use the IAP files from earlier versions, so upload the IAP files supplied with RRF 3.7 to the SD card.
   * **1** - WiFi module firmware, filename DuetWiFiServer.bin or DuetWiFiModule_32S3.bin depending on the board (WiFi-equipped Duets only). DuetWiFiModule_32S3.bin is used on the Duet 3 MB6HC and, in RRF 3.7 and later, on the Duet 3 Mini WiFi version 1.04 and later.
   * **2** - update DSF packages in SBC mode (RRF 3.5 or later)
   * **3** - update the bootloader on the CAN-connected Duet 3 expansion board specified by the B parameter (see [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader){target=_blank})
   * **4** - update PanelDue firmware (RRF 3.2 and later; see [PanelDue firmware update instructions](/User_manual/RepRapFirmware/Updating_PanelDue){target=_blank}).
-* **B** parameter: On Duet 3 only this command take an optional B (board number) parameter which is the CAN address of the board to be updated, default 0 (i.e. main board).
+* **B** parameter: On Duet 3 only this command takes an optional B (board number) parameter which is the CAN address of the board to be updated, default 0 (i.e. main board).
 * **P** parameter (RRF 3.3 and later): The optional P parameter can be used to provide the filename of the file to be used for updating a module. This can either only be a filename in which case it will prepend directories.firmware to it (0:/firmware) or can be an absolute path to the file to be used. It is not allowed to use P parameter and multiple modules, e.g. S1:4. The P parameter is ignored when S3 is used (bootloader update).
 * **F** and **V** parameters: In SBC mode from RRF 3.5 and later, `M997 S2` can be used to install the latest DSF and security-related packages on DuetPi (via `apt update`/`unattended-upgrade`). It also supports two optional arguments:
   * F"[feed]" - Set package feed for DSF packages where `<feed>` can be `stable` (default), `unstable`, `stable-x.y`, or `unstable-x.y` where x.y corresponds to a version. e.g. 3.4 or 3.5.
@@ -9814,7 +9812,7 @@ If T*n* is used to select tool *n* but that tool is already active, the command 
 1. If a tool is already selected, deselect it and set its heaters to their standby temperatures (as defined by the R parameter in the most recent G10/M568 command for that tool)
 1. Run macro tpre#.g where # is the number of the new tool
 1. Set the new tool to its operating temperatures specified by the S parameter in the most recent G10/M568 command for that tool
-1. Run macro tpost#.g where # is the number of the new tool. Typically this file would contain at least a M116 command to wait for its temperatures to stabilise.
+1. Run macro tpost#.g where # is the number of the new tool. Typically this file would contain at least an M116 command to wait for its temperatures to stabilise.
 1. Apply any X, Y, Z offset for the new tool specified by G10
 1. Use the new tool.
 
@@ -9823,7 +9821,7 @@ If T*n* is used to select tool *n* but that tool is already active, the command 
 * Selecting a non-existent tool (49, say) just does Steps 1-2 above, and also removes any X/Y/Z offset applied for the old tool. That is to say it leaves the previous tool in its standby state. You can, of course, use the G10/M568 command beforehand to set that standby temperature to anything you like.
 * After a reset tools will not start heating until they are selected. You can either put them all at their standby temperature by selecting them in turn, or leave them off so they only come on if/when you first use them. The M0, M1 and M112 commands turn them all off. You can, of course, turn them all off with the M1 command, then turn some back on again. Don't forget also to turn on the heated bed (if any) if you use that trick.
 * Tool numbering starts at 0 by default however M563 allows the user to specify tool numbers, so with them you can have tools 17, 29 and 48 if you want. Negative numbers are not allowed. The highest Tool number that can be defined from RRF3 onwards is 49.
-* From RRF 3.3 both selecting as well as deselecting with a configured spindle will stop the spindle assigned to these tools. This is in accordance to NIST GCode standard that says "after a tool change is complete the spindle is stopped".
+* From RRF 3.3 both selecting as well as deselecting with a configured spindle will stop the spindle assigned to these tools. This is in accordance with the NIST GCode standard that says "after a tool change is complete the spindle is stopped".
 * Under special circumstances, the execution of tool macro files may not be desired. RepRapFirmware 1.19 or later supports an optional **P** parameter to specify which macros shall be run. If it is absent then all of the macros above will be run, else you can pass a bitmap of all the macros to be executed. The bitmap of this value consists of tfree=1, tpre=2 and tpost=4.
 * You may wish to include a move to a parking position within the tfreeN.g GCode macro in order to allow the new extruder to reach temperature while not in contact with the print.
 * Tool offsets are applied whenever there is a current tool. So they are applied in tfree.g (for the outgoing tool) and in tpost.g (for the incoming tool), but not in tpre.g (because no tool is current at that point).
