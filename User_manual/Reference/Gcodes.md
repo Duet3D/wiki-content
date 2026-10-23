@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-23T22:03:37.296Z
+date: 2026-10-23T22:12:26.135Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6557,8 +6557,8 @@ The following variables are available to record:
 | Phase Shift | The difference between the desired step phase and the step phase. Roughly proportional to torque applied. | 1024 |
 | Coil A Current | The current running through coil A, expressed as a proportion of the motor's maximum current normalised between -255 to 255. | 2048 |
 | Coil B Current | The current running through coil B, expressed as a proportion of the motor's maximum current normalised between -255 to 255. | 4096 |
-| PID V Term | The value of the PID controller's P term. | 8192 |
-| PID A Term | The value of the PID controller's I term | 16384 |
+| PID V Term | The value of the PID controller's V term. | 8192 |
+| PID A Term | The value of the PID controller's A term | 16384 |
 | Motor current fraction | The fraction of the configured motor current that is set | 32768 |
 
 To record multiple variables, sum the variable IDs and pass the resulting value as the D parameter. For example, to record coil A current (2048) and coil B current (4096), use D6144.
@@ -8516,7 +8516,7 @@ If no rotary axis is given and at least four probe points have been taken, M673 
 
 ## M674: Set Z to centre point
 
-This code is intended to determine the Z centre point of a stash that is mounted on a rotary axis. This code is yet to be implemented.
+This code is intended to determine the Z centre point of a workpiece that is mounted on a rotary axis. This code is yet to be implemented.
 
 ## M675: Find centre of cavity
 
