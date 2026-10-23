@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-23T21:54:52.810Z
+date: 2026-10-23T22:03:37.296Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -8162,7 +8162,7 @@ M665 L250 R160 B80 H240 X0 Y0 Z0
 
 ### Notes
 
-* The **X**, **Y** and **Z** parameters are the X, Y and Z tower angular offsets from the ideal (i.e. equilateral triangle) positions, in degrees, measured anti-clockwise looking down on the printer.
+* The **X**, **Y** and **Z** parameters are the X, Y and Z tower angular offsets from the ideal (i.e. equilateral triangle) positions, in degrees, measured counterclockwise looking down on the printer.
 * In RRF 2.03 and later, multiple **L** values can be provided, for example:
   <br>
   <pre class="cblock">
@@ -8323,8 +8323,8 @@ Kinematics is coreXY, no segmentation, modified matrix:
 
 * **Pnnn** Proximal arm length (mm)
 * **Dnnn** Distal arm length (mm)
-* **Annn:nnn** Proximal arm joint movement minimum and maximum angles, in degrees anticlockwise seen from above relative to the X axis
-* **Bnnn:nnn** Proximal-to-distal arm joint movement minimum and maximum angles, in degrees anticlockwise seen from above relative to both arms in line
+* **Annn:nnn** Proximal arm joint movement minimum and maximum angles, in degrees counterclockwise seen from above relative to the X axis
+* **Bnnn:nnn** Proximal-to-distal arm joint movement minimum and maximum angles, in degrees counterclockwise seen from above relative to both arms in line
 * **Cnnn:nnn:nnn** Crosstalk factors. The first component is the proximal motor steps to equivalent distal steps factor, the second is the proximal motor steps to equivalent Z motor steps factor, and the third component is the distal motor steps to equivalent Z motor steps factor.
 * **Rnnn** (optional, RRF 2.03 and later only) Minimum permitted printing radius from the proximal axis. If not specified, it will be calculated to be slightly larger than the distance between nozzle and proximal axis when the distal axis is homed.
 * **Snnn** Segments per second (because smooth XY motion is approximated by means of segmentation)
@@ -8395,7 +8395,7 @@ M669 K4 P300 D250 A-90:90 B-135:135 C0:0:0 S100 X300 Y0
 * **Aaaa:bbb** Minimum and maximum arm angles, in degrees above the horizontal. The maximum angle is also the angle at which the homing switches trigger. Default -45:45.
 * **Rnnn** Delta radius (mm), default 50
 * **Bnnn** Printable radius (mm), default 80
-* **Xnnn, Ynnn, Znnn** Corrections to the angles of the X, Y and Z arm inner joints relative to the standard angles of -150, -30 and +90 degrees, in degrees anticlockwise seen from above. Default 0.
+* **Xnnn, Ynnn, Znnn** Corrections to the angles of the X, Y and Z arm inner joints relative to the standard angles of -150, -30 and +90 degrees, in degrees counterclockwise seen from above. Default 0.
 * **Snnn** Segments per second
 * **Tnnn** Minimum segment length (mm)
 
