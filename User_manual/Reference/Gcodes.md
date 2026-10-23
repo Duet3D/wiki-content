@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-22T18:52:06.017Z
+date: 2026-10-23T13:59:39.546Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -124,7 +124,7 @@ In RepRapFirmware, some parameters can be followed by more than one number, with
 | Rnnn | Parameter - used for temperatures |
 | Qnnn | Parameter - usually a frequency |
 | Ennn | Length of filament to move through the extruder. This is exactly like X, Y and Z, but for the length of filament to consume. Where a tool has more than one extruder drive then Ennn:nnn:nnn etc is supported to allow for the individual morement of each to be controlled directly |
-| Nnnn | Line number. Used to request repeat transmission in the case of communications errors. Optional |
+| Nnnn | Line number. Optional |
 | *nnn | Checksum. Used to check for communications errors. Optional |
 
 ### Case sensitivity
@@ -161,7 +161,11 @@ Example: N123
 
 If present, the line number should be the first field in a line. For GCode stored in files on SD cards the line number is usually omitted.
 
-If checking is supported, the firmware expects line numbers to increase by 1 each line, and if that doesn't happen it is flagged as an error. But you can reset the count using M110 (see below).
+Each line takes its line number from the N field at the start of the line. A line without an N field gets the previous line number plus 1. 
+
+RepRapFirmware does not check that line numbers are consecutive, and does not ask the host to resend a line. 
+
+The line number is used in error messages and is shown in the object model field inputs[].lineNumber.
 
 #### *: CRC
 From RRF version 3.4
@@ -173,9 +177,9 @@ N100 G0 X100 F6000*51369
 </pre>
 If present, the CRC should be the last field in a line, but before a comment. For GCode stored in files on SD cards the CRC is usually omitted.
 
-The CRC is appened in decimal and it must always be 5 digits.
+The CRC is appended in decimal and it must always be 5 digits.
 
-If checking is supported, the RepRap firmware checks the CRC against a locally-computed value and, if they differ, requests a repeat transmission of the line of the given number.
+If checking is supported, the RepRap firmware checks the CRC against a locally-computed value. If they differ, or has no checksum when M575 requires one, RepRapFirmware discards the line without executing it or sending a reply.
 
 **Method**
 
@@ -191,7 +195,7 @@ Example: *71
 
 If present, the checksum should be the last field in a line, but before a comment. For GCode stored in files on SD cards the checksum is usually omitted.
 
-If checking is supported, the RepRap firmware checks the checksum against a locally-computed value and, if they differ, requests a repeat transmission of the line of the given number.
+If checking is supported, the RepRap firmware checks the checksum against a locally-computed value and, if they differ, discards the line without executing it or sending a reply.
 
 **Method**
 
@@ -199,7 +203,7 @@ Example: N123 [...G Code in here...] *71
 
 The firmware checks the line number and the checksum.
 
-You can leave both of these out - RepRapFirmware will still work, but it won't do checking. You have to have both or neither though. If only one appears, it produces an error. See [this forum thread](https://forum.duet3d.com/topic/15134/){target=_blank} for an example of usage, in this case sending GCode to the PanelDue port without disabling checksums.
+You can leave both of these out - RepRapFirmware will still work, but it won't do checking. A checksum or CRC is recognised only when the line also has a line number. On a port that requires a checksum or CRC (see the M575 S parameter), RRF discards a line that has none. See [this forum thread](https://forum.duet3d.com/topic/15134/){target=_blank} for an example of usage, in this case sending GCode to the PanelDue port without disabling checksums.
 
 The checksum "cs" for a GCode string "cmd" (including its line number) is computed by xor-ing the bytes in the string up to and not including the * character as follows:
 <br>
@@ -2625,7 +2629,7 @@ To better support slicers that don't select a tool when doing a single-extrusion
 M110 N123
 </pre>
 
-This example sets the current line number to 123. Thus the expected next line after this command will be 124.
+RepRapFirmware accepts this command but takes no action. It takes the line number of each line from the N field at the start of that line, if there is one, and does not check that line numbers are consecutive.
 
 ## M111: Set Debug Level
 
@@ -3765,7 +3769,7 @@ Request data (synchronously) from a UART device.
 ### Parameters
 
 * **Pnn** Port to send/receive through, numbered as in M575 (RRF 3.7 and later: 2 = first aux port, 3 = second aux port; RRF3.6.x and earlier: 1 = first aux port, 2 = second aux port).
-* **Bnn** How many bytes to read. B0 means clear the UART receive buffer.
+* **Bnn** How many bytes to read. B0 means discard any data in the receive buffer of the selected port.
 * **V"name"** (optional) name of a new variable to receive data into. If this parameter is not present then the data read is output to the console.
 
 ### Order dependency
@@ -3776,8 +3780,8 @@ The port used by the P parameter must already have been set to Device mode using
 <br>
 <pre class="cblock">
 ;RRF 3.7 and later (use P1 for the first aux port in RRF 3.6)
-M261.2 P2 B2 V"data" 	; (RepRapFirmware) Read 2 bytes from the first aux port and store the result in var.data
-M261.2 P2 B0			; Clear UART buffer
+M261.2 P2 B2 V"data"  ; (RepRapFirmware) Read 2 bytes from the first aux port and store the result in var.data
+M261.2 P2 B0          ; Discard any data in the receive buffer of the first aux port
 </pre>
 
 
@@ -3795,7 +3799,7 @@ M261.2 P2 B0			; Clear UART buffer
 ##### Examples
 <br>
 <pre class="cblock">
-M950 S0 C"out9"  ; assign GPIO port 0 to out9 pin, servo mode
+M950 S0 C"io4.out"  ; assign GPIO port 0 to io4.out pin (3.3V PWM pin on 6HC/6XD), servo mode
 ...
 M280 P0 S80  ; set 80deg servo position on GPIO port 0
 </pre>
@@ -6754,8 +6758,19 @@ This turns the controlled pin output on whenever forwad extrusion is being done 
 
 ### Notes
 
+### Tabs {.tabset}
+
+#### RRF 3.x and later
+
 * In RepRapFirmware 3.6.0 and later you specify the GpOut port number using the P parameter. The port must previously have been created using the [M950](/User_manual/Reference/Gcodes/M950) command and must be on the main board.
 * In RepRapFirmware 3.0 to 3.5.x you specify the pin name using the P parameter.
+
+#### RRF 1.x and 2.x
+
+ * For RepRapFirmware 1.x and 2.x, pin numbers are the same as in the M42 and M280 commands. The pin you specify must not be in use for anything else, so if it is normally used as a heater you must disable the heater first using M307, or if it is used for a fan you must disable the fan using M106 with the I-1 parameter. 
+* RepRapFirmware 1.20 and later do not default to using the FAN0 output, so you must send M571 with a P parameter at least once to define the pin that you wish to use.
+* In RepRapFirmware 1.17 and later you can use the P parameter to change the pin used and set the PWM frequency. Defaults to using the FAN0 output.
+
 
 ## M572: Set or report extruder pressure advance
 
@@ -9226,7 +9241,7 @@ M950 J1 C"!io4.in"             ; Input 1 uses io4.in pin, inverted
 
 <br>
 <pre class="cblock">
-M950 P0 C"io4.out"             ; create output/servo port 0 attached to io4.out pin
+M950 P0 C"io4.out"             ; create output/servo port 0 attached to io4.out pin (3.3V PWM pin on 6HC/6XD)
 </pre>
 
 * **Pnn** or **Snn** Output/servo pin number. Each P and/or S number needs to be unique, eg P1, P2, S3 P4, S5 etc. Servo pins are GpOut pins with a different default PWM frequency.
