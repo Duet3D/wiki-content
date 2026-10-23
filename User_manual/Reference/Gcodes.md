@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-23T21:29:28.463Z
+date: 2026-10-23T21:54:52.810Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -317,7 +317,7 @@ Blah
 Gx P1 X2 Y3 Z4 ; description of effect
 </pre>
 
-### Descripton
+### Description
 
 Blah blah
 
@@ -515,12 +515,12 @@ See 'G3: Controlled Arc Move' for usage.
 
 ## G3: Controlled Arc Move
 
-Counter-clockwise arc move. Supported by RRF 1.18 and later in FDM mode, RRF 1.20 and later in CNC mode, and RRF 2.01 and later in Laser mode.
+Counterclockwise arc move. Supported by RRF 1.18 and later in FDM mode, RRF 1.20 and later in CNC mode, and RRF 2.01 and later in Laser mode.
 
 ### Usage
 
 * G2 Xnnn Ynnn Znnn Innn Jnnn Ennn Fnnn *(Clockwise Arc)*
-* G3 Xnnn Ynnn Znnn Innn Jnnn Ennn Fnnn *(Counter-Clockwise Arc)*
+* G3 Xnnn Ynnn Znnn Innn Jnnn Ennn Fnnn *(Counterclockwise Arc)*
 
 ### Parameters
 
@@ -543,7 +543,7 @@ Either the R parameter must be provided, or at least one of I and J must be prov
 <br>
 <pre class="cblock">
 G2 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Clockwise arc from the current point to point (X=90.6,Y=13.8), with a centre point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
-G3 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Counter-Clockwise arc from the current point to point (X=90.6,Y=13.8), with a centre point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
+G3 X90.6 Y13.8 I5 J10 E22.4 ; (Move in a Counterclockwise arc from the current point to point (X=90.6,Y=13.8), with a centre point at (X=current_X+5, Y=current_Y+10), extruding 22.4mm of material between starting and stopping)
 G2 X100 Y50 R200            ; (draw a clockwise arc with radius 200 from the current position to X=100 Y=50)
 </pre>
 
@@ -642,8 +642,8 @@ This form of the G10 command is recognised by having either or both of the L and
 
 * Tool offsets are given as the offset of the nozzle relative to the print head reference point, so the signs are opposite to what you might expect because tool offsets are subtracted from the required printing locations during printing.
 * Any parameter that you don't specify will automatically be set to the last value for that parameter. That usually means that you want explicitly to set Z0.0. RepRapFirmware will report the tool parameters if only the tool number is specified.
-* The G10 workplace offsets of all workplaces are saved automatically to override-config.g using `M500`. 
-* The G10 tool offsets of any tool offsets that were established by probing are saved automatically to override-config.g using `M500`. `M500 P10` saves the offsets of all tools. 
+* The G10 workplace offsets of all workplaces are saved automatically to config-override.g using `M500`. 
+* The G10 tool offsets of any tool offsets that were established by probing are saved automatically to config-override.g using `M500`. `M500 P10` saves the offsets of all tools. 
 
 See also [M585](/User_manual/Reference/Gcodes/M585){target=_blank}.
 
@@ -753,7 +753,7 @@ Units from this command onwards are in inches. Note that this is only intended t
   * At the end of running config.g at startup, the flag state is copied to all input channels. If no units are specified in config.g, the default G21 (mm) is used.
   * The flag state is saved when a macro starts and is restored when a macro ends.
 
-## G21: Set Units to Millimeters
+## G21: Set Units to Millimetres
 
 ### Examples
 <br>
@@ -1029,7 +1029,7 @@ It must also come after M584 if it references any axes beyond X and Y (RRF >=3.3
 
 * When used on its own this reports whether the Z probe is triggered, or gives the Z probe value in some units if the probe generates height values. If combined with a Z and P field (example: G31 P312 Z0.7) this will set the Z height to 0.7mm when the Z-probe value reaches 312 when a G28 Z0 (zero Z axis) command is sent. The machine will then move a further -0.7mm in Z to place itself at Z = 0. This allows non-contact measuring probes to approach but not touch the bed, and for the gap left to be allowed for. If the probe is a touch probe and generates a simple 0/1 off/on signal, then G31 Z0.7 will tell the RepRap machine that it is at a height of 0.7mm (as configured by Z0.7 in this example) when the probe is triggered.
 * If you are using the nozzle as a probe (for example with a piezo or switch that the hotend has a travel distance to trigger) then remember the Z offset may need to be negative (ie the probe triggers under Z0)
-* The G31 parameters of each probe can be saved to override-config.g using `M500 P31`. 
+* The G31 parameters of each probe can be saved to config-override.g using `M500 P31`. 
 
 
 ## G32: Run bed.g macro
@@ -1195,7 +1195,7 @@ RepRapFirmware for Duets generally provides slots 0 to 5. When a print is paused
 * **Xnnn, Ynnn...** Centre coordinates to rotate about
 * **Annn** first centre coordinate in the selected plane (e.g. equivalent to Xnnn if the selected plane is XY)
 * **Bnnn** second centre coordinate in the selected plane (e.g. equivalent to Ynnn if the selected plane is XY)
-* **Rnnn** angle to rotate in degrees. Positive angles rotate anticlockwise when viewing the selected plane from above.
+* **Rnnn** angle to rotate in degrees. Positive angles rotate counterclockwise when viewing the selected plane from above.
 * **I** If present, the R angle is added to the current rotation angle instead of replacing it.
 
 ### Description
@@ -1210,7 +1210,7 @@ Rotates the coordinate system in the current plane as selected by [G17](/User_ma
   * G53 is in effect;
   * A system macro (i.e. one that is invoked automatically, such as homing or tool change) is being run.
 * If G68 coordinate rotation is in effect and you use one of G54 to G59.3 to switch to a different workplace coordinate system, the rotation origin will move in line with the origin of the workplace coordinate system.
-* In RRF 3.6.1 and later, the current G68 rotation parameters can be saved to override-config.g using `M500 P68`. 
+* In RRF 3.6.1 and later, the current G68 rotation parameters can be saved to config-override.g using `M500 P68`. 
 * In RRF 3.7 and later, G68 without an R parameter reports the current rotation angle and centre.
 
 ## G69: Cancel coordinate rotation
@@ -1469,7 +1469,7 @@ M3 S255  ; laser mode, set laser power to full on
   * The relationship between the S parameter and laser power depends on the R parameter that was specified in the M452 command. 
   * Note there can be issues using this mode as the M-command queue is only 8 commands long, while the G-command queue is 20 commands long. You may get stuttering, particularly when raster engraving. Better to use G1 with S parameter, and the 'raster clustering' format for even better performance (see G1 entry, S parameter section).
 
-#### M3 in RepRapFirmware 3.0 and 3.4
+#### M3 in RepRapFirmware 3.0 to 3.4
 
 * CNC mode:
   * M3 can be called without any parameters and will start the spindle of the current tool turning clockwise at the spindle RPM of that tool.
@@ -1719,7 +1719,7 @@ M20 S3 R23
 
 
 
-## M21: Initialize SD card
+## M21: Initialise SD card
 
 ### Tabs {.tabset}
 
@@ -3877,7 +3877,7 @@ Supported in firmware version 1.19 and later.
 * **Tn** Timeout in seconds, only used for types 0, 1, and those with a cancel button (type 3 or higher with J1 or J2 parameter; the message box is cancelled upon timeout). The message will be cancelled after this amount of time if the user does not cancel it before then. A zero value means that the message does not time out (it may still be cancelled by the user if it has a Cancel button). For modes 0 and 1 there is a default timeout of 10 seconds if no T parameter is provided. For other modes the default is no timeout.
 * **X, Y, Z,,,** 0 = no special action (default), 1 = display jog buttons alongside the message to allow the user to adjust the head position on the specified axis. Only valid with message box modes S2 and S3.
 * **Jn** (RRF 3.5 and later only, optional) If message box mode >= 4: 0 = no Cancel button (default), 1 = display a Cancel button (job/macro is cancelled immediately when pressed or when it times out); 2 (RRF 3.6.0 and later) = display a Cancel button (result variable is set to -1 when pressed or when timeout is reached). Message box mode 3 always has a Cancel button; in mode 3, J2 (RRF 3.6.0 and later) also makes the Cancel button and the timeout set the result variable to -1 instead of cancelling the job or macro.
-* **K{"choice1","choice1",...}**  (RRF 3.5 and later only) List of choices, required (and only used) when S=4.
+* **K{"choice1","choice2",...}**  (RRF 3.5 and later only) List of choices, required (and only used) when S=4.
 * **Lnnn** (RRF 3.5 and later only, optional) Minimum accepted value (S=5 or S=6), or minimum number of characters (S=7).
 * **Hnnn** (RRF 3.5 and later only, optional) Maximum accepted value (S=5 or S=6), or maximum number of characters (S=7).
 * **Fnnn** or **F"text"** (RRF 3.5 and later only, optional) default choice number (counting from 0) when S=4, or default value when S>=5.
@@ -7503,7 +7503,7 @@ M586 P2 T1 S1 ; enable SSH
 
 ### Example
 
-#### In standalone/SBC mode (RRF 3.6:
+#### In standalone/SBC mode (RRF 3.6 and later):
 
 <br>
 <pre class="cblock">
@@ -8514,11 +8514,11 @@ To make use of this code it is required to take two probe points via [G30 P](/Us
 
 If no rotary axis is given and at least four probe points have been taken, M673 instead calculates the offset of the rotary axis centre in X or Y and in Z, reports it, and moves the X or Y axis and the Z axis by that offset.
 
-## M674: Set Z to center point
+## M674: Set Z to centre point
 
 This code is intended to determine the Z centre point of a stash that is mounted on a rotary axis. This code is yet to be implemented.
 
-## M675: Find center of cavity
+## M675: Find centre of cavity
 
 This code is intended to find the centre of a cavity that can be measured using a probe. It probes towards the minimum end of the specified axis to find one side of the cavity, backs off a little, and then probes towards the maximum end of the same axis to find the other side. 
 
