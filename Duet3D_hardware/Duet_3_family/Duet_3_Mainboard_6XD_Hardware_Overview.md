@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2026-10-22T11:15:13.847Z
+date: 2026-10-27T13:08:42.627Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -43,7 +43,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **External stepper driver support** | 6 on board, further via CAN-FD bus |
 | **Stepper driver expansion** | Via CAN-FD expansion boards |
 | **IO/Output/thermistor expansion** | Via CAN-FD expansion boards |
-| **PT100 and thermocouple daughter board support** | Supports 2 x daughterboards (4 channels) on board. Additional boards supported via CAN-FD-connected expansion boards. |
+| **PT100, thermocouple and ADC daughterboard support** | Supports 2 x daughterboards on board. Additional boards supported via CAN-FD-connected expansion boards. |
 | **Servo support** | One output with 5V signal level for hobby servo, laser or VFD converter |
 | **LCD support** | PanelDue, or via HDMI touch screen attached to the SBC. |
 | **LED strip support** | Neopixel (max. 60 LEDs) or DotStar |
@@ -159,7 +159,7 @@ The MOSFETs' heatsinks are connected to the PCB and the majority of the heat is 
 | **1 x 2-pin Jumper** |  PD_CD_OVERRIDE | *v1.0 boards and later.* Add a jumper to connect Card Detect on the PanelDue to ground, to handle PanelDue versions that don't support Card Detect. |
 | **1 x RJ11 CAN connector** | CAN_1_OUT | RJ11 connector for CAN1 (main CAN-FD bus). **USE CAN1** for connecting Duet expansion boards, see CAN-FD bus expansion section below. Without modification, it must be at one end of the CAN bus, however the bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
 | **1 x 2-pin KK connector** | CAN_0_OUT | Secondary CAN-FD bus for future expansion. **Use CAN1** for connecting expansion boards, see CAN-FD bus expansion section below. Bus termination resistors can be disconnected with drillable/solder-able jumpers underneath the board |
-| **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard) or [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) interface boards.|
+| **1 x 2x5 IDC connector** | SPI_DB | For connecting up to two [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard), [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard) or [ADC](/Duet3D_hardware/Accessories/Duet_3_ADC_daughterboard) daughterboards.|
 | **6 x 6-pin KK connectors** | DRIVER_0-DRIVER_5 | External stepper or servo motor driver connections. 5V, GND, single ended outputs for Step, Dir and Enable along with a fault input provided per driver. See "Connecting External Drivers" section below. |
 | **1 x 3-pin Jumper** |  Driver Enable Polarity | A jumper in the "left" position is used for external drivers which are enabled when a voltage is applied to the enable connection (Active Enable). A jumper in the "right" position is used for external drivers which are disabled when a voltage is applied to the enable connection (Active Disable) (*Note the v0.1 boards have the silkscreen reversed*). |
 | **1 x 3-pin Jumper** |  Error Pull u/d Select | A jumper in the "top"/Pull Down position applies a pull down resistor to the driver fault signals - an external driver must set the line high to indicate a fault. A jumper in the "bottom"/Pull Up position applies a pull up resistor to the driver fault signals - an external driver must set the line low to indicate a fault. The firmware sets the polarity of the error inputs at startup, see [Driver error inputs](#driver-error-inputs). |
@@ -265,7 +265,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | !io7.out.iso | ^^ |
 | ^^ | IO_8 | !io8.in.iso | ^^ |
 | ^^ | ^^ | !io8.out.iso | ^^ |
-| SPI CS | TEMPDB | spi.cs1 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
+| SPI CS | TEMPDB | spi.cs1 | Temperature daughterboard connector, for Thermocouple, PT100 and ADC boards, Accelerometer etc |
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
 | ^^ | ^^ | spi.cs4 | ^^ |
