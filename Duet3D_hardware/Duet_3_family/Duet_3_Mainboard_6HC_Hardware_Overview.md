@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-10-22T11:14:10.610Z
+date: 2026-10-27T13:08:18.801Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -44,7 +44,7 @@ The main hardware features of the Duet 3 Mainboard 6HC are listed below.
 | **External stepper driver support** | Via CAN-FD bus |
 | **Stepper driver expansion** | 20+ via CAN-FD-connected expansion boards |
 | **High current output and/or thermistor expansion** | 20+ via CAN-FD-connected expansion boards |
-| **PT100 and thermocouple daughterboard support** | Supports 2 x daughterboards (4 channels) on board. 50+ via CAN-FD-connected expansion boards. |
+| **PT100, thermocouple and ADC daughterboard support** | Supports 2 x daughterboards on board. 50+ via CAN-FD-connected expansion boards. |
 | **LCD support** | PanelDue, or via HDMI touch screen attached to the SBC. |
 | **LED strip support** | RGB/RGBW Neopixel or DotStar. Note: LEDs can draw a lot of current so external 5V supply is required to drive more than ~8, see the operating limits below. |
 | **CAN-FD expansion** | A huge variety supported via CAN-FD-connected expansion boards. WiFi via optional Duet 3 WiFi Module (6HC v1.02 or later only, see 'Network, user interface and plugins' below). |
@@ -244,7 +244,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2-pin jumper** | IO2 I2C BYPASS | *v1.02 and later boards.* Fit this jumper to bypass the 10K resistor on io2.in. The jumper must be fitted to use IO_2 for I2C, see [I2C](#i2c). |
 | **1 x 2x13 header** | SBC | This is for connecting a single board computer (SBC) such as a Raspberry Pi. |
 | **1 x 2x6 header** | ESP | *v1.02 and later boards*: Header to connect an ESP WiFi board. |
-| **1 x 2x5 header** | TEMPDB | This is for connecting PT100 and thermocouple interface boards. |
+| **1 x 2x5 header** | TEMPDB | This is for connecting PT100, thermocouple and [ADC](/Duet3D_hardware/Accessories/Duet_3_ADC_daughterboard) daughterboards. |
 | **1 x RJ11 CAN connector** | CAN1_OUT | *v1.02 and later boards*: RJ11 connector for CAN1 (main CAN-FD bus). **USE CAN1** for connecting Duet expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. 
 | ^^ | CAN_OUT |*v1.01a and earlier boards and v1.02d and later boards.* RJ11 CAN connector for CAN0 and CAN1. **USE CAN1** (pins 3,4) for connecting Duet expansion boards, CAN0 (pins 2,5) is for future expansion; see CAN-FD bus expansion section below. On v1.01a and earlier boards a permanent termination resistor is fitted, so this board must be at one end of the CAN bus. On v1.02d and later boards there are drill-to-disconnect jumpers for the can termination resistors. On v1.02d there are also drill-to-disconnect jumpers to disconnect the CAN-0 signals if the AUX_CAN header is to be used.  |
 | **1 x 2-pin KK connector** | AUX_CAN | *v1.02 and later boards.* Secondary CAN-FD bus for future expansion. **Use CAN1** for connecting expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. |
@@ -329,7 +329,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | ^^ | ^^ | io7.out | ^^ |
 | ^^ | IO_8 | io8.in | ^^ |
 | ^^ | ^^ | io8.out | ^^ |
-| SPI CS | SPI_DB | spi.cs0 | Temperature daughterboard connector, for Thermocouple and PT100 boards, Accelerometer etc |
+| SPI CS | SPI_DB | spi.cs0 | Temperature daughterboard connector, for Thermocouple, PT100 and ADC boards, Accelerometer etc |
 | ^^ | ^^ | spi.cs1 | ^^ |
 | ^^ | ^^ | spi.cs2 | ^^ |
 | ^^ | ^^ | spi.cs3 | ^^ |
@@ -719,4 +719,3 @@ check for continuity using a multimeter.
 ## Revision v0.5
 
 Prototype board, no longer supported
-
