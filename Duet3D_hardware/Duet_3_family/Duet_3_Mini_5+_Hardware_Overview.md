@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-10-22T11:17:12.470Z
+date: 2026-10-27T13:07:51.665Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -43,7 +43,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 | **Support for attached Raspberry Pi or other Single Board Computer (SBC)** | Yes ||
 | **External stepper driver support** | 2 x external stepper drivers from stepper driver expansion connector. Multiple expansion via the CAN-FD bus. ||
 | **Stepper driver expansion** | 2 x additional TMC2209 stepper drivers using a Duet 3 Expansion Mini 2+. Further expansion via CAN-FD bus ||
-| **PT100 and thermocouple daughterboard support** | Supports 1 x daughterboard (2 channels) on board. More via CAN-FD-connected expansion boards. ||
+| **PT100, thermocouple and ADC daughterboard support** | Supports 1 x daughterboard on board. More via CAN-FD-connected expansion boards. ||
 | **LCD support** | PanelDue colour touch screen, mini 12864 mono graphics display using ST7567 controller (3.3V signal levels) ||
 | **LED strip support** | RGB Neopixel (max. 60 LEDs, external 5V power required) ||
 | **Other expansion** | Via I/O ports and CAN-FD bus ||
@@ -64,7 +64,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 ## Firmware notes
 
-* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later. The Duet3 Mini 5+ Ethernet v1.03 requires v3.5 or later firmware. The Duet 3 Mini 5+ WiFi v1.04 and later requires v3.6.4 or later firmware.
+* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later. The Duet3 Mini 5+ Ethernet v1.03 requires v3.5 or later firmware. The Duet 3 Mini 5+ WiFi v1.04 and later requires v3.7.0 or later firmware.
 * For **firmware update instructions**:
   * Standalone mode - [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. 
   * SBC mode - [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
@@ -190,7 +190,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
-| **1 x 2x5 IDC connector** | SPI DB | *(Connector named TEMPDB before v1.03)* <br> For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard){target=_blank}, [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard){target=_blank} or [Duet3D Accelerometer](/Duet3D_hardware/Accessories/Duet3D_Accelerometer){target=_blank} interface board. **Note** on v1.02 and earlier boards cannot be stacked so only 1 board at a time is supported. |
+| **1 x 2x5 IDC connector** | SPI DB | *(Connector named TEMPDB before v1.03)* <br> For connecting a [PT100](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard){target=_blank}, [thermocouple](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard){target=_blank}, [ADC](/Duet3D_hardware/Accessories/Duet_3_ADC_daughterboard){target=_blank} or [Duet3D Accelerometer](/Duet3D_hardware/Accessories/Duet3D_Accelerometer){target=_blank} interface board. **Note** on v1.02 and earlier boards cannot be stacked so only 1 board at a time is supported. |
 | **2 x 2-pin Jumper2** | SPI3_SELECT<br>SPI4_SELECT| *Version 1.03 and later*: only. Route the spi.cs3 and spi.cs4 signals to the SPI DB connector instead of the 12864 display EXT1 connector |
 | **1 x 3-pin Jumper** | 5V_SELECT | *v0.5-v1.02* Source of optional External 5V input, see note 2 below |
 | **2 x 3-pin Jumpers** | 5V_SELECT |*Version 1.03 and later*: Source of optional External 5V input, see note 2 below |
@@ -270,7 +270,7 @@ The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to
 | IO_5 | io5.in | Input only |
 | IO_6 | io6.in | ^^ |
 | **SPI CS** |||
-| SPI DB | spi.cs1 | *(Connector named TEMPDB before v1.03)* Thermocouple or PT100 daughterboard |
+| SPI DB | spi.cs1 | *(Connector named TEMPDB before v1.03)* Thermocouple, PT100 or ADC daughterboard |
 | ^^ | spi.cs2 | ^^ |
 | ^^ | spi.cs3 | v1.03 and later only, shared with lcd.cs3 Jumper selectable |
 | ^^ | spi.cs4 | v1.03 and later only, shared with lcd.a0 Jumper selectable|
@@ -579,6 +579,3 @@ First prototype. RepRapFirmware 3.2 and later do not support this revision.
 | 5 | no | no | no | IO5_OUT is shared with PSON output |
 | 6 | no | no | n/a | 3-pin connector, input only |
 | 7 | no | no | n/a | 3-pin connector, input only |
-
-
-
