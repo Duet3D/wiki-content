@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2026-09-23T15:03:43.472Z
+date: 2026-10-27T15:32:27.422Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -117,7 +117,24 @@ When a job file completes or executes M0/1/2, RRF waits for both motion systems 
 
 If a job file, HTTP or SBC calls a macro then both motion systems execute it; but the contained commands will generally be executed by only one of File and File2. The reason for this is that a macro may contain M596 commands, so both File and File2 need to execute it. Each will skip the commands that don't apply to it.
 
-A few other commands lock both motion systems but they are mostly configuration commands, e.g. M569 and M569.1 when used with parameters other than just the driver number, M574 when changing axis endstops, M150 when addressing Neopixels on a bit-banged port, M563 when used to create or delete a tool, M81, etc.
+Other commands lock both motion systems. These are mostly configuration commands that change something the motion systems share, and in RRF 3.7 they are:
+
+* `G10 L2` and `G10 L20` when setting workplace coordinates
+* `M0`, `M1` and `M2`, but only when cancelling a paused job
+* `M37` when entering or leaving simulation mode
+* `M81`
+* `M92`, `M201`, `M206`, `M350`, `M375`, `M561`, `M584`, `M593`, `M595`, `M665`, `M666`, `M669`, `M671`, `M673`, `M906`, `M913`, `M917` and `M918` when setting values rather than reporting them
+* `M150` when addressing an LED strip on a bit-banged port
+* `M302`
+* `M451`, `M452` and `M453` when changing the machine mode
+* `M502` and `M505`
+* `M563` when creating, changing or deleting a tool
+* `M569` and its sub-commands when used with parameters other than just the driver number
+* `M574` when changing axis endstops
+* `M970` and its sub-commands when setting phase stepping parameters
+* `M997`
+
+In SBC mode, DSF can also ask the firmware to lock both motion systems on its behalf.
 
 ## Input channel flags
 
