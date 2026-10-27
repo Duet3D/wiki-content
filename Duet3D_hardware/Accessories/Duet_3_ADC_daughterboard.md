@@ -2,7 +2,7 @@
 title: Duet 3 ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2025-10-06T14:11:46.157Z
+date: 2026-10-27T13:05:44.924Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -152,7 +152,7 @@ Each ADC has an associated 3-pin header to select how the ADC reference input fo
 
 # Firmware configuration
 
-The daughter board is supported by firmware 3.6.0-beta.3 and later for Duet 3 main boards, 3HC and 1HCL expansion boards
+The daughter board is supported by firmware 3.6.0 and later for Duet 3 main boards, Duet 3 main boards running in expansion mode, and 3HC and 1HCL expansion boards.
 
 ## Configuring the first channel
 
@@ -184,7 +184,7 @@ Connected to the terminal block labelled SENS2 you must first configure the firs
 Examples:
 
 ```
-M308 S11 Y"ads131.chan1" P"S10.1" ;secondary sensor using default C and D values
+M308 S11 Y"ads131.chan1" P"S10.1" ;secondary sensor using default B and C values
 M308 S21 Y"ads131.chan1" P"123.S20.1" B0.0 C5000.0 ; second channel for sensor on expansion board with CAN address 123 range 0-5000
 ```
 The unipolar/bipolar selection will be set the same as for the first channel.
