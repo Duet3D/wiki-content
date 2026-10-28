@@ -2,7 +2,7 @@
 title: Scanning Z Probe Calibration
 description: Setting up and calibrating scanning Z probes
 published: true
-date: 2026-10-28T11:52:24.572Z
+date: 2026-10-28T12:18:32.589Z
 tags: 
 editor: markdown
 dateCreated: 2023-10-17T16:07:33.512Z
@@ -36,7 +36,7 @@ The following Gcodes are used to configure the SZP:
 [M558](/User_manual/Reference/Gcodes/M558) - Sets probe number (K parameter), type (P), input pin (C), feed rate (F) and travel speed (T)
 [M558.1](/User_manual/Reference/Gcodes/M558_1) - Calibrate height vs reading of scanning Z probe (see below)
 [M558.2](/User_manual/Reference/Gcodes/M558_2) - Calibrate or set drive level and reading offset for scanning Z probe (see below)
-[M558.3](/User_manual/Reference/Gcodes/M558_3) - Set scanning probe touch mode parameters (RRF 3.6.0-beta.3+2 and later only)
+[M558.3](/User_manual/Reference/Gcodes/M558_3) - Set scanning probe touch mode parameters (RRF 3.6.0 and later only)
 [M308](/User_manual/Reference/Gcodes/M308) - Setup SZP temperature sensor
 [G31](/User_manual/Reference/Gcodes/G31) - Set probe offsets and temperature compensation
 [M557](/User_manual/Reference/Gcodes/M557) - Define mesh grid
@@ -92,7 +92,7 @@ To calibrate manually:
 * After calibrating, send `M558.1 K1` to see the results. It should report something like:
   ```
   M558.1 K1
-  Scanning probe coefficients [1.840e-1, -2.865e-4, 2.598e-10, 2.937e-17]
+  Scanning probe offset: 0.184mm, A: -2.865e-4, B: 2.598e-10, C: 2.937e-17
   ```
   This can be saved to config.g, but note that SZP coil readings change with temperature, so this calibration may not be suitable at all temperatures. That is why it's worth doing each time you do a bed scan.
   
@@ -143,7 +143,7 @@ For now, we recommend using another method to set the Z height.
 
 # Using the SZP in touch mode to set Z height
 
-Firmware 3.6.0-beta.4 and later support scanning probe touch mode experimentally. In touch mode the tool head bearing the sensor is lowered (or the bed raised) and the reading from the sensor is monitored, until the rate of change of the reading reduces sharply, which happens when the nozzle contacts the bed.
+Firmware 3.6.0 and later support scanning probe touch mode experimentally. In touch mode the tool head bearing the sensor is lowered (or the bed raised) and the reading from the sensor is monitored, until the rate of change of the reading reduces sharply, which happens when the nozzle contacts the bed.
 
 Use of touch mode requires that the sensor continues to give good readings all the way from the height at which probing starts right down to when the nozzle contacts the bed. The selected drive level (see M558.2) and a suitable height of the sensor coil above the nozzle are critical to achieving this. See later for a workaround if you can't achieve this.
 
@@ -155,10 +155,10 @@ It is highly desirable that there is some compliance in either the tool head mou
 
 Touch mode is enabled using the [M558.3](/User_manual/Reference/Gcodes/M558_3) command. You can use this command to turn touch mode on and off, and also to set the following parameters that are used in touch mode. **The default values are likely to be changed in future firmware versions**.
 - F parameter: probing speed in touch mode, default 200mm/min (3.3mm/sec). The algorithm used to detect tuch is designed to be optimal around this speed.
-- V parameter: In RRF 3.6.0-rc.1 this is the touch mode threshold (lower = more sensitive to touch) in the range 0.0 to 5.0, default 0.5. *[In 3.6.0-beta.4 it was sensitivity in the range 0.0 to 1.0, default 0.8.]* Lower threshold (or higher sensitivity) may improve accuracy and reduce the distance by which the nozzle pushes into the bed, but if it is too high then noise in the sensor reading may cause a premature stop.
+- V parameter: This is the touch mode threshold (lower = more sensitive to touch) in the range 0.0 to 10.0, default 0.5. Lower threshold (or higher sensitivity) may improve accuracy and reduce the distance by which the nozzle pushes into the bed, but if it is too high then noise in the sensor reading may cause a premature stop.
 - H parameter: nozzle height to be assumed when probing stops. This will be negative. The default is -0.1mm.
 
-To calibrate touch mode **when using RRF 3.6.0-rc.1**:
+To calibrate touch mode **when using RRF 3.6.0 or later**:
 - You may wish to use the M913 command to reduce current to the Z motors when touch probing, to reduce the chance of damage if the touch is not detected.
 - Check that the probe reading increases as the nozzle nears the bed. If you start with the nozzle a long way above the bed, then as you move it closer the reading displayed in DWC should increase, very slowly at first and more rapidly up to the point at which the nozzle contacts the bed. Make sure you don't get a reading of all nines at any point. If you do then adjust the drive current (M558.2) and if necessary see the note below on using a 2-stage homing process.
 - Manually command the nozzle down until it just touches the bed, then send G92 Z0 to set that position as Z=0. Command thre nozzle up 5mm.
