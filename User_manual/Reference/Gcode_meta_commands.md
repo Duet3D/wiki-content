@@ -2,7 +2,7 @@
 title: GCode meta commands
 description: RepRapFirmware 3.01 introduced the concept of basic programming constructs (conditionals, loops and parameters) to GCode. This combined with the rich object model in RRF3 provides a powerful new layer of control customisation.
 published: true
-date: 2026-10-16T16:12:50.127Z
+date: 2026-10-28T17:33:56.592Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T20:03:05.882Z
@@ -32,6 +32,8 @@ At least one expression must be provided. The expressions are converted to strin
 echo move.axes[0].homed, move.axes[1].homed, move.axes[2].homed
 ```
 
+In RRF 3.7.0 and later, when the value of an expression is an array, the echo command encloses the elements in [ ] and encloses elements that are strings or characters in quotation marks. In RRF 3.6.x and earlier, the elements are enclosed in { } and are not quoted.
+
 Starting with firmware 3.4 the output from an echo command can be redirected to a file. To create a file (deleting any existing file of the same name) containing the text resulting from the echo command, use this syntax:
 
 `echo ><filename> <expression>, <expression>, ...`
@@ -42,7 +44,7 @@ To append a line to an existing file (or create a new file if it doesn't already
 
 `echo >><filename> <expression>, <expression>, ...`
 
-To append to a file without adding a newline character at the end, so that multiple echo commands can be used to build a single long line, use the following (supported in firmware 3.5beta2 and later):
+To append to a file without adding a newline character at the end, so that multiple echo commands can be used to build a single long line, use the following (supported in firmware 3.5.0 and later):
 
 `echo >>><filename> <expression>, <expression>, ...`
 
@@ -221,7 +223,7 @@ Variables must conform to the following naming convention:
 
 * The first character must be a letter
 * The remaining characters must be letters, digits or the underscore character
-* There is no specific limit on variable length, other than the total length of the expression that uses the variables must be <250 characters
+* The variable name, including the *global.* or *var.* prefix, is limited to 120 characters, and the total length of the expression that uses the variables must be <250 characters
 
 # Use of expressions within GCode commands
 
@@ -236,6 +238,8 @@ G1 X{move.axes[0].max-10} Y{move.axes[1].min+10}
 ```
 
 Using an expression to replace a parameter letter, or to replace the command number after the initial G or M, is not supported. (so  for example *G1 {global.extruder_axis}^2* is not supported)
+
+In RRF 3.7.0 and later, an IP address or MAC address parameter may also be an expression that evaluates to a string, for example `M552 P{global.ipAddress}`. In RRF 3.6.x and earlier this is supported in SBC mode only.
 
 If a parameter of a G- or M-command requires multiple values and you want to use expressions for some or all of them, then when using RRF 3.5 and later the whole parameter must be an array expression (see later); for example:
 ```
@@ -256,7 +260,7 @@ Sub-expressions may be enclosed in { } or in ( ). However, standard CNC GCode us
 
 ## Types
 
-The available types of expressions and variables are: **bool**, **int**, **float**, **string**, **DateTime**, **object** and **array**. The only operations available on values of type **object** are comparison with **null** and taking a member. The only operations available on values of type **array** are taking the length (unary prefix operator #) and indexing (operator [ ] ).
+The available types of expressions and variables are: **bool**, **int**, **float**, **string**, **DateTime**, **object** and **array**. The only operations available on values of type **object** are comparison with **null** and taking a member. The only operations available on values of type **array** are taking the length (unary prefix operator #), indexing (operator [ ] ) and, in RRF 3.7.0 and later, concatenation (operator ^).
 
 RepRapFirmware uses some additional types internally such as **driverId**, **ipAddress** and **macAddress**.
 
@@ -289,7 +293,7 @@ The following named constants are provided:
 | result | int | 0 if the last G-, M- or T-command on this input channel was successful, 1 if it returned a warning, 2 or greater if it returned an error, or -1 if it was a blocking M291 message box command that had a Cancel button and either the Cancel button was pressed or the message box timed out.^1^  Meta commands do not change 'result'. |
 | true | bool | Boolean true |
 
-^1^ In RRF 3.5.0-rc3 and earlier, pressing 'Cancel' or M291 timing out will cancel the current job/macro, and any subsequent lines in the job/macro are not processed, rather than set result to -1. See [this discussion on the Duet3D forums](https://forum.duet3d.com/topic/34945/meta-gcode-result-variable-inconsistent-with-docs){target=_blank} for a workaround. Note that DSF 3.5 and 3.6 do not update the `result` constant when a G-code is interpreted by DSF or third-party plugins.
+^1^ In RRF 3.4 and earlier, pressing 'Cancel' or M291 timing out will cancel the current job/macro, and any subsequent lines in the job/macro are not processed, rather than set result to -1. See [this discussion on the Duet3D forums](https://forum.duet3d.com/topic/34945/meta-gcode-result-variable-inconsistent-with-docs){target=_blank} for a workaround. Note that DSF 3.5 and 3.6 do not update the `result` constant when a G-code is interpreted by DSF or third-party plugins. In RRF 3.7.0 and later with DSF 3.7.0 and later, it is updated.
 
 ## Literals
 
@@ -297,7 +301,7 @@ Integer literals may be expressed in decimal format (e.g. *4321*), hexadecimal f
 
 Floating point literals may be expressed in fixed-point simple format (e.g. *165.32*) or scientific format (e.g. *6.2e6*).
 
-String literals are surrounded by double quote characters (e.g. *"Hello world"*). To include a double-quote character in a string iteral, use two double-quote characters (e.g. *"Here is some ""quoted text"""*). String literals are limited to 100 characters.
+String literals are surrounded by double quote characters (e.g. *"Hello world"*). To include a double-quote character in a string iteral, use two double-quote characters (e.g. *"Here is some ""quoted text"""*). String literals are limited to 256 characters.
 
 Character literals (supported in RRF 3.5.0 and later) are surrounded by single quote characters (e.g. *'a'*).
 
@@ -306,6 +310,8 @@ There are no literals of other types, however named constants **true**, **false*
 ## Object model properties
 
 Expressions may use the values of any properties in the RepRapFirmware Object Model (OM). See [Object Model of RepRapFirmware](https://github.com/Duet3D/RepRapFirmware/wiki/Object-Model-Documentation){target=_blank} to see what is available.
+
+In RRF 3.7.0 and later, if an object model value is null, then indexing it (operator [ ] ) or taking a member of it gives null. In RRF 3.6.x and earlier this reports an error.
 
 ## Variables
 
@@ -328,11 +334,9 @@ exists(global.defaultSpeed)
 
 ### Array-valued variables
 
-Supported from RRF 3.5, Gcode commands that have a parameter that accepts multiple values separated by a colon (eg `M93 E350:400`) can accept expressions.
+Supported from RRF 3.5, Gcode commands that have a parameter that accepts multiple values separated by a colon (eg `M92 E350:400`) can accept expressions.
 
-In RRF 3.6 and later, the entire parameter must be an array expression enclosed in { }, e.g. `M92 E{global.e0StepsPerMm, 400}`.
-
-In RRF 3.5, each individual value can be an expression enclosed in { }, e.g. `M92 E{global.e0StepsPerMm}:400`
+In RRF 3.5 and later, the entire parameter must be an array expression enclosed in { }, e.g. `M92 E{global.e0StepsPerMm, 400}`.
 
 ### Notes
 
@@ -377,7 +381,7 @@ When using a macro as custom gcode, do not use G, M, N, or T as parameters in a 
 
 **RRF 3.7.0 and later**
 
-A sequence of expressions exclosed in `[ ]` and separated by commas is an array expression. It may have zero, one or more elements. A trailing command is permitted and ignored if there is at least one element. The types of the elements do not all need to be the same. Examples:
+A sequence of expressions exclosed in `[ ]` and separated by commas is an array expression. It may have zero, one or more elements. A trailing comma is permitted and ignored if there is at least one element. The types of the elements do not all need to be the same. Examples:
 
 `[]` is an empty array
 `[1,2,3]` is an array of three elements
@@ -458,7 +462,7 @@ The following functions are supported, with their conventional meanings:
 | datetime | int->DateTime or string->DateTime | Converts a number of seconds from the datum to a **DateTime**, or a string with format "yyyy-mm-ddThh:mm:ss" to a **DateTime**. Available in RRF 3.4.0 and later. |
 | degrees | float->float | Converts radians to degrees |
 | drop | (string, int)->string or (array, int)->array | Returns all but the first N elements of the first argument, where N is the smaller of the second argument and the length of the first argument (available in RRF 3.6.0 and later). |
-| exists | name  -> bool | Yields **true** if *name* is a valid variable or object model element name and is not null (available in RRF 3.3.0 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. In RRF 3.6.x and later, *name* may also be an expression of the form *#e1* and returns true if *e1* is a valid expression to which the # operator may be applied; or an expression of the form *e1[e2]* and returns true if the *e1* can be indexed using the *[ ]* operator and *e2* is a valid index into it. |
+| exists | name  -> bool | Yields **true** if *name* is a valid variable name, or a valid object model element name and the element is not null (available in RRF 3.3.0 and later). Especially useful for testing whether a particular parameter has been provided when a file macro was called. In RRF 3.6.x and later, *name* may also be an expression of the form *e1[e2]*, which returns true if *e1* is an array and *e2* is a valid index into it. In RRF 3.6.x, if *e1* is a variable that is not an array, an error is reported. In RRF 3.7.0 and later, *name* may also be of the form *#e1*, which returns true if *e1* is an array or a string. In RRF 3.7.0, *exists(e1[e2])* and *exists(#e1)* also return true for a variable that is not an array; this is corrected in RRF 3.7.1. |
 | exp | float->float | Returns *e* raised to the operand (supported in RRF 3.5.0 and later) |
 | fileexists | string->bool | Yields **true** if the string parameter is the name of a file in the file system (available in RRF 3.5.0 and later). |
 | fileread | (string, int, int, char)->array | Returns an array of elements read from a single-line CSV or similar file (available in RRF 3.5.0 and later). The string parameter is the name of the file to read. The first integer parameter is the number of elements to skip; the second is the maximum number of elements to read; and the character is the field separator, typically ','. See note at the end of this table.|
@@ -518,7 +522,7 @@ Caution must be taken not to start a loop that takes a long time to complete, wi
 
 ## Meta Gcode evaluation in SBC mode
 
-In SBC mode only, DSF waits for pending codes to be executed before a meta code is evaluated. `M576 S0` is likely to help, to reduce the delay between SPI transfers. This will be addressed in RRF 3.7, see [this Github issue](https://github.com/Duet3D/DuetSoftwareFramework/issues/211){target=_blank}.
+In SBC mode only, DSF waits for pending codes to be executed before a meta code is evaluated. `M576 S0` is likely to help, to reduce the delay between SPI transfers. In RRF 3.7.0 and later, after RRF evaluates an expression for DSF, it exchanges data with DSF every 2ms for the next 50ms instead of waiting for the M576 S delay. The M576 B and D parameters change these times. See [this Github issue](https://github.com/Duet3D/DuetSoftwareFramework/issues/211){target=_blank}.
 
 ## Job information and custom Object Model keys
 
@@ -657,7 +661,7 @@ Use case examples:
 
 ```
 if {param.T} == {global.lastTool}
-	pass
+	skip
 else
 	M98 P"scripts/persistentglobal.g" V"lastTool" X{param.T}
 	echo "set tool num:", {param.T}
