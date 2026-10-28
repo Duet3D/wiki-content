@@ -2,7 +2,7 @@
 title: Duet 2 Maestro
 description: 
 published: true
-date: 2025-06-05T13:53:29.455Z
+date: 2026-10-28T15:35:47.240Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-10T14:00:38.659Z
@@ -223,11 +223,15 @@ See also:
 
 ## Motion
 
-The Duet 2 Maestro can drive 5 independent stepper motors. It uses Trinamic TMC2224 stepper drivers, which in addition to the standard step/direction/enable interface provide additional functionality (for example digital current selection and interpolation between microsteps) through SPI. If users wish to use different drivers (for example supporting higher currents) then 2 additional channels of step/direction/enable/uart pins are available on the E2 and E3 external driver headers. With the onboard stepper drivers, it is possible to connect multiple motors in series; a connector is provided to make this convenient for the Z axis.
+The Duet 2 Maestro can drive 5 independent stepper motors. It uses Trinamic TMC2224 stepper drivers, which in addition to the standard step/direction/enable interface provide additional functionality (for example digital current selection and interpolation between microsteps) through SPI.
+
+When setting motor current with M906, RRF uses peak current. Divide by 1.414 for RMS current as used in Marlin implementations for Trinamic drivers. Current setting on the Duet Maestro is in steps of 50mA and rounded down.
+
+If users wish to use different drivers (for example supporting higher currents) then 2 additional channels of step/direction/enable/uart pins are available on the E2 and E3 external driver headers. With the onboard stepper drivers, it is possible to connect multiple motors in series; a connector is provided to make this convenient for the Z axis.
 
 The Duet 2 Maestro provides connectors for one endstop for each axis; these can be simple microswitches (normally open or normally closed) or they can be more complicated boards (for example optical switches). 3.3V endstop power is provided and the inputs will tolerate up to 30V. Any of these endstop pins can also be configured to trigger user-defined actions, for example as a filament-out sensor or emergency-stop button.
 
-The Duet  2 Maestro also provides a connector specifically for a Z probe. This supports simple switches, sensors producing analog outputs at 3.3 V levels, sensors providing analog outputs that require an on/off modulation signal, and sensors providing digital outputs at up to 30V.
+The Duet 2 Maestro also provides a connector specifically for a Z probe. This supports simple switches, sensors producing analog outputs at 3.3 V levels, sensors providing analog outputs that require an on/off modulation signal, and sensors providing digital outputs at up to 30V.
 
 See also:
 
