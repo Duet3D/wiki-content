@@ -2,18 +2,12 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2026-10-28T11:46:37.541Z
+date: 2026-10-28T11:47:01.358Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
 ---
 
-
-Duet3D Documentation
-Search...
-Viewing source as of Oct 22, 2026 12:41 PM of page /Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard
-ID 483
-Version ID 6254
 ![Image of the Duet 3 Roto Toolboard mounted on an E3D Revo Roto, with a Roto extruder and Scanning Z Probe coil attached](/duet_boards/duet_3_can_expansion/duet_3_rrtb/rrtb_mounted_s_wb.jpg =600x)
 
 # Introduction
@@ -323,6 +317,16 @@ However, there are some caveats if you have a bed that has distortion, as the no
 
 See [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration) for full instructions on mounting, configuring, calibration and usage.
 
+### Coil FFC
+
+Use a 4-way, 0.5mm pitch FFC with contacts on opposite sides. Duet3D supplies 50mm and 150mm cables. Longer cables can be used, but the capacitance of the cable is part of the coil's tuned circuit, so any change in that capacitance (for example when the cable moves) appears as a change in measured height. A longer cable also picks up more interference. To keep readings stable:
+* Keep the cable as short as your mounting allows.
+* Do not use a shielded FFC, because the shield adds capacitance.
+* Fix the cable along its whole length so it cannot move, and do not route it over the coil.
+* Keep the cable away from stepper motor and heater wires. If it has to cross them, cross at right angles.
+
+After changing the cable, recalibrate the drive current and the height vs reading.
+
 ### Configuration
 
 Add the following to your config.g:
@@ -399,4 +403,3 @@ An ITR20001/T reflective optical sensor can be soldered onto the pads on the boa
 ## PCB revision v1.0
 
 * Initial version after internal prototypes
-Content is available under the Creative Commons Attribution-ShareAlike License, by Duet3D. | Powered by Wiki.js
