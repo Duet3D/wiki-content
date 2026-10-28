@@ -2,7 +2,7 @@
 title: Duet 3 Scanning Z Probe
 description: The Duet 3 Scanning Z probe allows for quick inductive scans of metallic bed surfaces to build a point mesh of the surface to be used for mesh bed compensation.
 published: true
-date: 2026-10-22T11:42:31.176Z
+date: 2026-10-28T11:35:29.572Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-05T11:50:23.699Z
@@ -106,6 +106,16 @@ Duet 3 Scanning Z probe has the following connectors:
 |--
 | 4-pin JST PA | GND, 5V, CAN_L, CAN_H| +5V power and CAN|
 | 4-pin 0.5mm pitch FFC | Temp, VSSA, COILA, COILB | Connection for FFC cable to coil|
+
+## Coil FFC
+
+Use a 4-way, 0.5mm pitch FFC with contacts on opposite sides. Duet3D supplies a 150mm cable. Longer cables can be used, but the capacitance of the cable is part of the coil's tuned circuit, so any change in that capacitance (for example when the cable moves) appears as a change in measured height. A longer cable also picks up more interference. To keep readings stable:
+* Keep the cable as short as your mounting allows.
+* Do not use a shielded FFC, because the shield adds capacitance.
+* Fix the cable along its whole length so it cannot move, and do not route it over the coil.
+* Keep the cable away from stepper motor and heater wires. If it has to cross them, cross at right angles.
+
+After changing the cable, recalibrate the drive current and the height vs reading. See [Scanning Z probe calibration](/User_manual/Tuning/scanning_z_probe_calibration).
 
 ## LED indications
 
@@ -292,4 +302,3 @@ For an overview of using accelerometers to capture data on axis movement see: [C
 ## PCB revision v0.1
 
 initial prototype, internal testing only
-
