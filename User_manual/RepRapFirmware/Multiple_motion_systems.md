@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2026-10-27T15:32:27.422Z
+date: 2026-10-28T16:56:57.985Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -123,16 +123,19 @@ Other commands lock both motion systems. These are mostly configuration commands
 * `M0`, `M1` and `M2`, but only when cancelling a paused job
 * `M37` when entering or leaving simulation mode
 * `M81`
-* `M92`, `M201`, `M206`, `M350`, `M375`, `M561`, `M584`, `M593`, `M595`, `M665`, `M666`, `M669`, `M671`, `M673`, `M906`, `M913`, `M917` and `M918` when setting values rather than reporting them
+* `M92`, `M206`, `M302`, `M350`, `M593`, `M906`, `M913` and `M917` when setting values rather than reporting them
 * `M150` when addressing an LED strip on a bit-banged port
-* `M302`
+* `M201` when setting the acceleration time with the `T` parameter
+* `M375`, `M561`, `M584`, `M595`, `M665`, `M666`, `M669`, `M671` and `M673`, including when they only report values
 * `M451`, `M452` and `M453` when changing the machine mode
 * `M502` and `M505`
 * `M563` when creating, changing or deleting a tool
-* `M569` and its sub-commands when used with parameters other than just the driver number
+* `M569` with the `R` or `S` parameter, or `D` or `V` for a driver on an expansion board; `M569.1`; `M569.2` with the `S` parameter; `M569.6` when starting tuning
 * `M574` when changing axis endstops
 * `M970` and its sub-commands when setting phase stepping parameters
 * `M997`
+
+Pausing a print also locks both motion systems, whether it is caused by `M25`, `M226`, `M600` or an event, and so does resuming it with `M24`. The same applies while a print is being cancelled or is finishing.
 
 In SBC mode, DSF can also ask the firmware to lock both motion systems on its behalf.
 
