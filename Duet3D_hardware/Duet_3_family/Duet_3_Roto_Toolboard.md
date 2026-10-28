@@ -2,394 +2,182 @@
 title: Duet 3 Roto Toolboard
 description: The Duet 3 Roto Toolboard controls of all functions of a direct extruder and is designed to fit and connect easily with the E3D Revo Roto extruder.
 published: true
-date: 2026-10-22T11:41:47.056Z
+date: 2026-10-28T11:45:11.443Z
 tags: 
 editor: markdown
 dateCreated: 2023-11-28T14:45:30.179Z
 ---
 
-![Image of the Duet 3 Roto Toolboard mounted on an E3D Revo Roto, with a Roto extruder and Scanning Z Probe coil attached](/duet_boards/duet_3_can_expansion/duet_3_rrtb/rrtb_mounted_s_wb.jpg =600x)
-
 # Introduction
 
-The Duet 3 Roto Toolboard is designed to integrate easily with the [E3D Revo Roto extruder](https://e3d-online.com/products/roto-extruder){target=_blank} and E3D Revo hotends, heaters and temperature sensors. The following connect using the E3D supplied connectors for easy wiring: extruder motor, a 2 or 3-wire heatsink fan, revo heater, thermistor, and secondary temperature sensor. This tool board also provides dedicated connectors for a Duet 3 scanning Z probe coil (supplied as standard) and a [Revo Roto specific version of the Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Roto_Filament_Monitor) (additional cost option). It also supports a 2, 3 or 4-wire part cooling fan and provides 4 IO ports for endstops, other types of filament monitor and/or Z probe, and a Neopixel LED header.
+Induction-based probes need to have the sensor drive level calibrated and the result saved to config.g before using it as a scanning Z probe (SZP).
 
-This reduces the number of wires run to the print head to two power wires and a twisted pair for the CAN-FD bus. 
+# LDC1612-based probes
 
-# Features
+Duet3D have boards that use the LDC1612 chip, including the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe) the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) and the [Duet 3 INDX Toolboard](/Duet3D_hardware/Duet_3_family/INDX_Toolboard).
 
-## Hardware specification
+## Wiring
 
-|---|---|
-| **Processor** | [ATSAME51G19A](https://www.microchip.com/en-us/product/ATSAME51G19A){target=_blank} |
-| **Processor features** | 32-bit, 120MHz ARM Cortex M4F, 512KB Flash, 192KB RAM |
-| **Networking/Comms** | CAN-FD interconnect to Duet 3 CAN-FD bus |
-| **On-board stepper driver** | 1 x [TMC2240](https://www.analog.com/en/products/tmc2240.html){target=_blank} |
-| **Stepper driver features** | Up to 1.6A^1^ peak current, microstep interpolation from any setting to x256, stall detection |
-| **High current outputs** | 1 x 3.4A, VIN voltage only (80W at 24V) |
-| **Thermistor/PT1000 inputs** | 3 x inputs, 2 optimised for 100K thermistors and PT1000 sensors, 1 used for the coil temperature on the SZP coil.|
-| **Medium current outputs** | 1 x 4-pin (VIN voltage - designed for part cooling using 2, 3 or 4 pin fans) and 1 x 3-pin (5V compatible with the Roto heatsink cooling fan using 2 or 3 pin fans). Both are PWM-controlled output with tacho input |
-| **Inputs/Outputs** | 3 x on-board I/O connectors for endstop, switches, filament monitor, Z probe. 1 x footprint for a switch or optical proximity sensor|
-| **Accelerometer** | Integrated [LIS2DW12](https://www.st.com/en/mems-and-sensors/lis2dw12.html) accelerometer |
-| **Inductive Sensor** | Integrated [LDC1612](https://www.ti.com/product/LDC1612) inductive sensor for scanning Z probe |
-| **Power monitoring** | VIN voltage reporting |
-
-*^1^ Maximum current is limited to 1.0A peak in firmware versions earlier than 3.6.0. The Revo Roto extruder motor should not be operated at more than 600mA.*
-## Operating limits
-
-|---|---|
-| **Stepper driver** | Maximum 1.6A peak current, 1.13A RMS^1^
-| **OUT_1 maximum current** | 3.4A |
-| **Input power voltage** | 12V to 32V |
-| **Power input max current** | 5A maximum)
-| **Inputs/Outputs** | IO_0, IO_1, IO_2 and IO_3 are 30V-tolerant |
-| **Fuses** | None onboard. Use Duet 3 Tool Distribution Board (5A fitted), or if directly connected to a power supply use an inline fuse holder with 5A or lower fuse depending on required current draw. |
-| **5V external load** | 700mA maximum |
-| **3.3V external load** | 200mA maximum |
-| **Maximum ambient temperature** | 70°C |
-
-
-## Firmware notes
-
-* Compatible RepRapFirmware versions: RRF 3.5 and later
-* Firmware limitations: See [Duet 3 with CAN expansion firmware configuration limitations](/User_manual/RepRapFirmware/CAN_limitations).
-
-# Physical properties
-
-## Dimensions
-
-The mounting hole pattern is designed for the sized for the E3D Revo Roto, and it is sized to fit within the side dimensions of the Roto.
-
-[![Diagram showing the outer dimensions and mounting holes for the Duet3 Roto Toolboard v1.0](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_dimensions.png =500x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_dimensions.png){target=_blank}
-
-## 3D model
-
-The STEP file is available [on Github here](https://github.com/Duet3D/Duet3-RotoToolboard/blob/master/v1.0/Duet3_TB_Roto_v1.0.step){target=_blank}.
+See the individual pages on the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe), the [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) and the [Duet 3 INDX Toolboard](/Duet3D_hardware/Duet_3_family/INDX_Toolboard) for how to wire up the board and connect the coil.
 
 ## Mounting
 
-Mount on the side of the E3D Roto with standoffs/spacers sufficient to ensure none of the components or connectors on the back of the board can touch the metal heatsink or motor of the E3D Revo Roto extruder. The E3D Revo Roto extruder can use either M3 through bolts or M4 self tapping plastic screws for mounting into the mounting holes. See E3D documentation for further information.
+* Duet3D supply two coils with the Duet 3 Roto toolboard and Duet 3 Scanning Z Probe, a 12mm coil and a 15mm coil. In theory the 12mm coils are higher resolution than the 15mm coils but we need more testing to confirm which is best, so we provide both.
+* Make sure there is no metal in the 30mm ABOVE the coil, or it will pick this up and give false readings The INDX tool has a mount designed for its specific mounting solution, supplied by Bondtech.
+* The bottom of the SZP coil should be around 1 to 2mm above the tip of the nozzle. The G31 Z trigger height can be set to around 2mm, so the coil is 4mm from the bed, to avoid the nozzle contacting the bed while keeping the coil close enough to the bed to get an accurate reading.
+* Route the SZP ribbon cable away from the coil, ie make sure it doesn't go over the coil
+* Fix the ribbon cable so it cannot move, and keep it away from stepper motor and heater wires. If you use a longer cable, see [Coil FFC](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe#coil-ffc).
+* Ensure that the ribbon cable is FULLY inserted into the tiny connector, at both ends. Try reseating this if you continue to get erratic readings
+* You can use M2.5 countersunk screws (often supplied with smaller fans) to mount the coil, which stick out about 0.7mm. M3 countersunk screws stick out a bit further. There are M3 screws with low profile heads, usually between 0.8mm and 1mm; search for "m3 ultra low profile thin head".
+
+## Configuration
+
+The following Gcodes are used to configure the SZP:
+[M558](/User_manual/Reference/Gcodes/M558) - Sets probe number (K parameter), type (P), input pin (C), feed rate (F) and travel speed (T)
+[M558.1](/User_manual/Reference/Gcodes/M558_1) - Calibrate height vs reading of scanning Z probe (see below)
+[M558.2](/User_manual/Reference/Gcodes/M558_2) - Calibrate or set drive level and reading offset for scanning Z probe (see below)
+[M558.3](/User_manual/Reference/Gcodes/M558_3) - Set scanning probe touch mode parameters (RRF 3.6.0-beta.3+2 and later only)
+[M308](/User_manual/Reference/Gcodes/M308) - Setup SZP temperature sensor
+[G31](/User_manual/Reference/Gcodes/G31) - Set probe offsets and temperature compensation
+[M557](/User_manual/Reference/Gcodes/M557) - Define mesh grid
+
+Add the following to your config.g. Some values will be dependent on your specific setup. See the Calibration section below for determining the M558.2 values.
 
-A simple spacer design is available [here](https://github.com/Duet3D/Duet3-RotoToolboard/blob/master/v1.0/roto%20spacer.step){target=_blank}.
-
-The mount for Roto and SZP coil board shown at the top of the page is available [here](https://github.com/Duet3D/Duet3-RotoToolboard/tree/master/mechanical){target=_blank}. Note that you may need to adjust the mount to get the SZP coil at the correct height for your nozzle.
-
-# Physical connections
-
-## Wiring diagram
-
-[![diagram showing the pinout for each of the headers on the Duet 3 Roto Toolboard v1.0](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_wiring_latest.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_wiring_latest.png){target=_blank}
-
-## Wiring notes
-
-* **XT30 2+2:** If you do not use a pre-assembled cable then the two CAN pins are best crimped using an engineer PA09 type crimper.
-* We recommend connecting the hot end metalwork to ground on the toolboard via a resistor (10k to 1M Ohm), if it is not grounded through its mounting system. This will prevent the hot end building up static charge, which might otherwise occur as filament is extruded and may then flash over to the tool board thermistor input, causing damage.
-* The top screw hole is grounded via 100K resistors to provide a path to ground for any static build up in the extruder however because the Roto uses plastic mounting points a short wire will be needed from the mounting hole to a point on the metal extruder heatsink (*picture to follow*)
-
-## Description of Connections
-
-Duet 3 Roto Toolboard provides the following connectors:
-
-| Connector| Label | Function |
-|--
-| 1 x XT30 2+2 | VIN, GND, CAN_L,CAN_H | Two pins for main VIN and GND along with CAN pins. See CAN section below.  |
-| 4-pin Molex Microfit 2x2 | DRIVER_0 | Stepper motor connection |
-| 3-pin JST PH | LED | Connection for Neopixel LEDs |
-| 2-pin Molex Microfit | OUT_0 | High current output intended for an extruder heater, maximum current 3.4A, this is VIN voltage only.<br>There is no flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
-| 2-pin Molex Microfit | TEMP_1 | Thermistor or PT1000 input |
-| 2-pin Molex Microfit | TEMP_0 | Thermistor or PT1000 input |
-| 4-pin 0.5mm pitch FFC | SZP | Connection for a Duet 3 Scanning Z Probe Coil |
-| 3-pin JST PH | IO_2 | 3.3V, io2.in, GND, for endstop/ Z-probe/ Filament monitor.<br>Input is 30V-tolerant |
-| 3-pin Molex Microfit | OUT_2 | Medium current 5V output intended for, 5V Fan maximum current 0.6A, as part of the overall 5V power budget. Has optional Tacho input. Intended for the heatsink cooling fan on a Revo Roto <br>There is no flyback diode on this output, so if you connect an inductive load, you must use an external flyback diode. |
-| 4-pin JST PH | IO_0 | 5V, io0.in, GND, io0.out, for endstop/ Z-probe/ Filament monitor.<br>Input is 30V-tolerant |
-| 3-pin JST PH | IO_1 | 3.3V, io1.in, GND, for endstop/ Z-probe/ Filament monitor.<br>Input is 30V-tolerant |
-| 4-pin JST PH | OUT_1 | 4-wire fan output (also accepts a 2- or 3-wire fan) intended for use as the print cooling fan.<br>1A total max current at VIN voltage.<br>This output is protected by a flyback diode.<br>**Note** When using a 4-wire fan, the tacho reading is valid at all PWM settings. |
-| 1 x 4-pin footprint | IO_3 | In version 1.0 this footprint intended for a ITR20001/T reflective optical sensor is reversed however the IO pin can be used for other purposes. <br> Example use case is a tool docking confirmation switch. |
-| 4-pin 0.5mm pitch FFC | I2C | For connecting the [Revo Roto version of the Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) |
-
-
-## LED indications
-
-LEDs are provided to indicate the following:
-
-| Label | Colour | Function |
-|--|--|--|
-| **VIN** | Blue | Indicates presence of VIN power (VIN should be externally fused) |
-| **3.3V** | Green | Indicates presence of 3.3V power from on-board regulator |
-| **ACT / LED 1** | Green | Indicates activity on the CAN-FD bus |
-| **STATUS / LED 0** | Red | Status LED. See description below |
-
-**Status LED:** In normal use, the red LED flashes slowly (approx 1Hz) in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board. For a list of these error codes see [CAN_connection basics](https://docs.duet3d.com/User_manual/Machine_configuration/CAN_connection#led-behaviour-and-error-codes).
-
-## Pin names
-
-For more information on pin names, see [Pin Names](https://docs.duet3d.com/User_manual/RepRapFirmware/Migration_RRF2_to_RRF3#pin-names).
-
-RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default. Pins can be defined for use by a number of gcode commands, eg M574, M558, M950.
-
-The Duet 3 series uses the pin name format "expansion-board-address.pin-name" to identify pins on expansion board, where *expansion-board-address* is the numeric CAN address of the board. A pin name that does not start with a sequence of decimal digits followed by a period, or that starts with "0." refers to a pin on the Duet 3 Mainboard.
-
-| Function | Pin location | RRF3 Pin name | Notes |
-|---|---|---|
-| Outputs | OUT_0 | out0 | VIN voltage |
-| ^^ | OUT_1 | out1 | VIN voltage |
-| ^^ | ^^ | out1.tach |  |
-| ^^ | OUT_2 | out2 | 5V |
-| ^^ | ^^ | out2.tach |  |
-| Inputs/Outputs | IO_0 | io0.out | 5V power , 3.3V logic on io0.out|
-| ^^ | ^^ | io0.in | 30V tolerant |
-| ^^ | IO_1 | io1.in | 30V tolerant |
-| ^^ | IO_2 | io2.in | 30V tolerant |
-| ^^ | IO_3 | io3.in | 30V tolerant. |
-| ^^ | TEMP_0 | temp0 |  |
-| ^^ | TEMP_1 | temp1 |  |
-| ^^ | TEMP_2 | temp2 | Scanning Z Probe coil thermistor |
-| ^^ | LED | led |  |
-
-## Input/Output
-
-OUT_0, OUT_1 and OUT_2 are PWM-capable.
-
-The individual IO_x connectors have the following capabilities:
-
-| IO # | UART? | Analog in? | PWM out? | Notes |
-|:---|:---|
-| IO_0 | Yes | Yes | Yes | **Note:** RepRapFirmware does not currently support UART or I2C on Duet 3 expansion/tool boards. |
-| IO_1 | No | No | No | Input only, no output pin |
-| IO_2 | No | No | No | Input only, no output pin |
-| IO_3 | No | No | No | Input only, no output pin |
-
-## Power wiring
-
-Supply between 12V and 32V to the appropriate pins of the XT30 2+2 power connector on the Toolboard through a fuse and observing the correct polarity. Inline blade fuse holders are readily available, pick the lowest rated fuse appropriate for your heater and motor current draw.
-
-> If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
->
-> OUT ports on the mainboard should NOT be used to switch power to expansion or tool boards directly. See the note at the end of the 'inrush current' section at the link above.  
-{.is-info}
-
-## CAN
-
-See also [CAN Connection Basics](/User_manual/Machine_configuration/CAN_connection){target=_blank}.
-
-It is possible to connect a Roto Toolboard directly to the Duet 3 Mainboard 6HC, 6XD, Duet 3 Mini 5+, or daisy chain it with other toolboards or any Duet 3 Expansion board.
-
-### CAN Connection
-
-The XT30(2+2) pre-wired cables supplied with the boards have different wire colours depending on the wiring batch.
-
-| CAN | Prototpyes and initial V1.0 | Later V1.0 | Moulded connector | Moulded connector (first version) |
-|:---|:---|
-| CAN H | Blue | Yellow | Yellow | Yellow |
-| CAN L | White | White | White | Green | 
-
-
-### Tabs {.tabset}
-
-#### Duet 3 Mainboard 6HC, 6XD, and Expansion boards
-
-Connect the RJ11 socket on the Duet 3 Mainboard 6HC, 6XD or Expansion board, pins 3 and 4 (the middle 2 pins) of the RJ11 connector to pins 4 and 3 of the Toolboard, making sure you get them the right way round i.e. CAN1_H in the Duet to CAN_H on the Toolboard. Don't connect anything to pins 2 and 5 of the RJ11 connector on the Duet.
-
-[![Direct connection of a Roto toolboard to the Duet 3 6HC](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_6hc_direct_connection_d1.0.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_6hc_direct_connection_d1.0.png){target=_blank}
-
-
-#### Duet 3 Mini 5+
-
-On the Duet 3 Mini 5+ connect the CAN_FD socket to the 2 CAN pins on the Toolboard, and terminate the other 2 CAN pins.
-
-[![Duet 3 Roto Toolbpoard connected to Duet 3 mini 5+](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_mini5+_direct_connection_d1.0.png =600x)](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_mini5+_direct_connection_d1.0.png){target=_blank}
-
-#### Duet 3 Tool Distribution Board
-
-You can use the Roto tool board with the existing Tool Distribution Board (TDB) like this:
-
-If the cable length from the TDB to the Roto Tool Board is no more than 1m:
-
-* Connect the Roto CAN wires to just two of the pins on the 4-pin connector on the TDB
-* Install the bypass jumpers for that port on the TDB
-
-If it's more than 1m:
-
-* Don't install the bypass jumpers for that port on the TDB
-* Run two twisted pairs from the 4-pin connector on the TDB to a junction point no more than 1m from the Roto Tool Board, then use the Roto Tool Board cable to connect the Roto Tool Board to that junction.
-
-
-#### Daisy Chaining
-
-Multiple Duet 3 Roto toolboards can be connected by daisy chaining the CAN bus connection.
-- Ideally the stubs of the bus should be kept as short as possible so the Daisy chaining should be made at or close to the XT30 connector. Connect two wires for CAN_L, and two wires for CAN_H. Ideally these wires should be twisted in two pairs (CAN_H and CAN_L in 1 pair, the second CAN_H and CAN_L in the other pair). One pair then goes to the  mainboard or other CAN-FD board earlier in the bus, the other pair goes to the next Roto Toolboard.
-- In practice, stubs up to 1m long are usually satisfactory.
-
-Note only the last CAN-FD device on the bus should have the termination resistor fitted.
-
-### Terminating resistor
-
-Fit the 2.0mm pitch jumper on the CAN Termination resistor jumper pins if the Roto Toolboard is to be the last device on the CAN_FD bus.
-
-# Commissioning
-
-## Startup Time
-
-> Add the following to your sys/config.g file
-{.is-info}
-
-It is recommended to add the following to config.g, before any commands that reference any CAN bus connected expansion boards, eg close to the start of config.g
-
-`G4 S2 ; wait for expansion boards to start`
-
-## Set the CAN address
-
-> The default CAN address is 121. Changing the CAN address is only necessary if you have another CAN-connected boards with the same CAN address, eg another Duet 3 Toolboard.
-{.is-info}
-
-All boards in the system must have different CAN addresses. Toolboards are shipped set to a default CAN address of 121. Therefore, if you have more than one Toolboard, **only one of them must be powered up and connected to the CAN bus until the address is changed.** So disconnect power to all but one of them (you can leave the CAN bus connected if it's easier).
-
-* Send command `M115 B#` to verify that the main board can communicate with the Toolboard, where # is the original CAN address (normally 121)
-* Send command `M952 B# A##` where ## is the new address you want to use. We suggest you use addresses starting at 20 for Toolboards. So for the first Toolboard, if your new CAN board was at address 121, send `M952 B121 A20`.
-* Power the system down and up again, or send `M999 B121`. This will cause the Toolboard to restart with the new address.
-* Send command `M122 B20` (or whatever address you chose) to verify that you can communicate with the Toolboard at its new address
-* You can now power up the next Toolboard and commission it in the same way, choosing a different CAN address for it.
-
-## Testing communication
-
-Check that you can communicate with the Roto toolboard, by sending 
-
-`M115 B121`
-
-Result should be something like
-
-`Duet TOOL1RR firmware version 3.7.0 (2026-10-08 12:18:44)`
-
-For a full report, send
-
-`M122 B121`
-
-The status of the accelerometer and Inductive probe is listed at the end of the report.
-
-## LED indications
-
-In normal use, the red LED flashes slowly in sync with the main board to indicate that it has CAN sync, or flashes continuously and rapidly to indicate that it doesn't. It also flashes startup error codes, for example if the bootloader doesn't find valid firmware on the board.
-
-## Factory Reset
-
-The board will do a factory reset if you power it up with a 2.0mm jumper fitted to the CAN reset jumper pins. The CAN address will be reset to the default (121), the CAN bus timing will also be reset to default (1Mbps), and the bootloader will request a firmware update.
-
-
-## Updating the firmware
-
-> The Roto Toolboard needs RRF v3.5 or later, and the same firmware version must also be running on the Duet 3 mainboard.
-{.is-info}
-
-Usually, if you update the firmware using the .zip package of the latest release, connected CAN boards will be updated to the same release.
-
-To check versions are the same:
-
-* Send `M115` and `M115 B#` (where # is the Roto Toolboard CAN address, usually 121) to report the firmware version of the mainboard and the Roto Toolboard.
-* If they are not the same version, download the matching version firmware files from the [RepRapFirmware Github repository](https://github.com/Duet3D/RepRapFirmware/releases).
-* The firmware filename is Duet3Firmware_TOOL1RR.bin and this needs to be uploaded to the /firmware folder of the SD card on the attached SBC, or the SD card in the Duet 3 main board if it is running in standalone mode.
-* Update the firmware by using the `M997 B#` command, where # is the CAN address of the board.
-
-Factory resetting the board using the CAN reset jumper will cause the bootloader to erase the current firmware, reset the CAN address to the default value of 121, and request the firmware file from the mainboard.
-
-## Updating the bootloader
-
-> Updating the bootloader is rarely necessary.
-{.is-info}
-
-Duet 3 expansion boards and tool boards have a bootstrap loader written to the start of flash so that they can load firmware from the main board via CAN. This bootloader may occasionally need to be updated in order to support new features. See [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
-
-# Connecting peripherals
-
-
-## Scanning Z Probe
-
-The Duet 3 Roto Toolboard integrates the same inductive sensing chip as the [Duet 3 Scanning Z Probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe). It allows for a point mesh of the bed to be built up quickly as no movement in Z is required to read the bed distance, and individual readings happen very quickly.
-
-Here is an example point map form the SZP on a Duet 3 Mainboard 6HC
-![image_792points.png](/duet_boards/duet_3_can_expansion/duet_3_szp/image_792points.png =800x)
-Example mesh of 792 points that took ~20 seconds to produce.
-
-### Mounting
-
-The SZP is most effective in the range when the bottom of the SZP coil is between 2 to 6mm from the bed; all SZP probing and scanning should be done within this range. Probe resolution drops above and below this range. Ideally, the bottom of the SZP coil should be around 2.5mm to 3mm above the tip of the nozzle. This allows the SZP to act as a Z probe, for setting Z datum, and function as a bed mesh scanner.
-
-However, there are some caveats if you have a bed that has distortion, as the nozzle may hit the bed surface during scanning. You may need to mount the SZP coil closer to the bed, so the nozzle is further from the bed during scanning. This may cause the SZP to be ineffective for setting Z datum, and require the use of another probe or other way of setting Z datum. 
-
-See [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration) for full instructions on mounting, configuring, calibration and usage.
-
-### Configuration
-
-Add the following to your config.g:
 ```
 ; Scanning Z probe
-M558 K1 P11 C"121.i2c.ldc1612" F36000 T36000
-M308 A"SZP coil" S10 Y"thermistor" P"121.temp2" ; thermistor on coil
+M558 K1 P11 C"120.i2c.ldc1612" F36000 T36000    ; configure SZP as probe 1, type 11, on CAN address 120
+M308 A"SZP coil" S10 Y"thermistor" P"120.temp0" ; thermistor on SZP coil
+G31 K1 Z2 Y-17                                  ; define probe 1 offsets and trigger height
+M558.2 K1 S15 R101133                           ; set drive current and reading offset
+M557 X-140:140 Y-90:80 S10                      ; Define mesh grid for probe 1 (overwrites probe 0 mesh grid)
 ```
 
-* If you change the CAN address, the CAN address in M558 C parameter and M308 P parameter will need to change.
+### Notes
 
-### Calibration and usage
+* In M558, the K parameter sets the probe number. If you have more than one probe, you need to set the K parameter so each probe is unique. If there is no K parameter then 0 is used. 
+* In M558, the C parameter defines the CAN address ("120") and the pin name ("i2c.ldc1612"). You may need to change the CAN address to your specific configuration.
+* Measure the G31 offset of the probe from the nozzle in X and Y: [Test and calibrate a Z probe - measuring probe x y offset](/User_manual/Connecting_hardware/Z_probe_testing#measuring-probe-x-y-offset)
+* M308 P parameter pin name is `120.temp0` for Duet 3 Scanning Z Probe, and `121.temp2` for Duet 3 Roto Toolboard.
+* Set the G31 Z trigger height to the height where the SZP coil is 4-5mm from the bed. The coil should be mounted higher than the nozzle, but not so high that the nozzle hits the bed when scanning.
 
-For SZP calibration and usage, see [Scanning Z Probe calibration](/User_manual/Tuning/scanning_z_probe_calibration)
+## Calibration
 
-## Accelerometer
+[M558.1](/User_manual/Reference/Gcodes/M558_1) - Calibrate height vs reading of scanning Z probe 
+[M558.2](/User_manual/Reference/Gcodes/M558_2) - Calibrate or set drive level and reading offset for scanning Z probe
 
-### Configuration
+### Drive level and reading offset
 
-Add the following to your config.g:
+To calibrate drive level and reading offset: 
+* Set the Z datum (Z=0), either by homing Z using another probe, or by moving the nozzle to just touch the bed and send G92 Z0.
+* Position the sensor above the bed at the minimum height that you expect to use it. 
+  * This will usually be the G31 Z parameter trigger height.
+  * This height should also allow the nozzle to pass over the whole bed without dragging on it, with a little extra height (eg 1mm) for safety. 
+  * For example, if the trigger height is set to 2mm (G31 Z2), and the bed error is expected to be not more than 1mm, the minimum height would be 2mm. 
+* Run `M558.2 K1 S-1` to calibrate the drive level. If it is successful then it should report the resulting drive level. 
+  * If it is unsuccessful, send the command again a few more times, until you get a positive result
+  * If it is continuously unsuccessful, check the ribbon cable is seated properly in the connectors, the ribbon cable is away from the coil, and there's no metal above the probe (see 'Mounting' above)
+* You can also use `M558.2 K1` with no S parameter to report the current drive level (S parameter) and reading offset (R parameter). 
+* Add an M558.2 command in config.g to set that drive level and reading offset. E.g. if the probe number is #1,and the reported drive level after calibration was 15 and reading offset is 101133, then use `M558.2 K1 S15 R101133`. Add this later in config.g than the M558 K1 command that configures the probe.
+* Also check that the Z probe reading is sensible when the sensor is a long way above the bed. The aim is to get sensible readings (i.e. not 999999) from the minimum height to "infinite" height.
+* A typical drive level is around 15 for the 12mm coil. Higher or lower drive level settings may cause sporadic 999999 readings. If you get these, try adjusting the Z height you do the `M558.2 K1 S-1` calibration at.
+
+### Height vs reading
+
+The height vs. reading then needs to be calibrated, using [M558.1](/User_manual/Reference/Gcodes/M558_1). If you have another way of determining Z=0 (e.g. another Z probe, or touch the nozzle to the build plate and set G92 Z0) then it's best to do this immediately before scanning rather than try to save the calibration. An example of this is in the mesh.g file shown below. 
+
+To calibrate manually:
+* Move the probe so it is over your normal Z datum reference point, ie when you home Z.
+* Send an appropriate M558.1 command. The K parameter chooses the probe number. The S parameter defines the range either side of the trigger height that the probe will scan, and use for calibration.
+* For example, a trigger height of 2mm (set by `G31 K1 Z2`) means the nozzle is 2mm from the bed, and the coil is 4mm from the bed, when triggered. Setting an S parameter of less than 2, eg 1.7, will calibrate the probe in the range 3.7mm to 0.3mm, ie 2+1.7 to 2-1.7. Send `M558.1 K1 S1.7`.
+* After calibrating, send `M558.1 K1` to see the results. It should report something like:
+  ```
+  M558.1 K1
+  Scanning probe coefficients [1.840e-1, -2.865e-4, 2.598e-10, 2.937e-17]
+  ```
+  This can be saved to config.g, but note that SZP coil readings change with temperature, so this calibration may not be suitable at all temperatures. That is why it's worth doing each time you do a bed scan.
+  
+## Example mesh.g file
+
+An example mesh.g file, which is run when a [G29](/User_manual/Reference/Gcodes/G29) command is sent (to do a bed mesh scan), might be:
+
 ```
-M955 P0 C"121.i2c.lis" I10 ; Add accelerometer 0 on Roto with CAN address 121 and specify orientation
+T-1
+M208 S0 Y100
+G29 S2
+G1 X0 Y0 F30000
+G30
+if exists(param.K) & param.K=1
+  G1 Z6  ; to avoid backlash
+  M558.1 K1 S1.7
+G29 S0 K{exists(param.K) ? param.K : 0}
+G1 X0 Y-150 F18000
+M208 S0 Y49
 ```
-In RRF 3.6 and earlier, use `M955 P121.0 I10` instead.
-See [M955](/User_manual/Reference/Gcodes/M955) for how to setup and configure the accelerometer.
 
-### Orientation
+Note that in the above example:
+* the scanning Z probe is K1. Probe K0 is used to home Z before doing this scan. 
+* The T-1 is there because this is a tool changer and the scanning probe is on the pickup head. 
+* The M208 commands are likewise specific to a tool changer. 
+* The G1 X0 Y0 command sends the probe to the centre of the bed (on a machine with the X0 Y0 origin in the centre). 
+* The M558.1 does the height vs reading calibration. In this case, the S1.7 causes the probe to move 1.7mm either side of the trigger height. If the trigger height is 2mm, it will go from 3.7mm down to 0.3mm.
 
-The Duet 3 Roto toolboard has an XYZ arrow to aid orientation of the accelerometer. The Z axis is  in the direction of the top face of the board/chip. The default alignment is to align the axes on the board with the axes of your machine, but it may not be possible, so this is configurable in M955. 
+A simplified mesh.g file might be:
 
-![duet3_rrtb_v1.0_d1.0_accelerometer.png](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_d1.0_accelerometer.png)
+```
+M557 X-135:145 Y-145:145 P10 ; Define grid for mesh bed compensation, origin in bed centre
+G29 S2                       ; Disable mesh bed compensation
+G28 Z                        ; Home Z
+G1 Z6                        ; To avoid backlash move to point higher than start of calibration
+M558.1 K1 S1.7               ; Calibrate probe
+G1 Z6                        ; Move up at end of calibration
+G29 S0 K1                    ; Scan bed and create mesh
+```
 
-### Calibration and usage
+# Using the SZP in normal mode to set Z height
 
-For an overview of using accelerometers to capture data on axis movement see: [Connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer)
+A scanning Z probe is designed to do just that; scan the bed to create a bed mesh. With careful calibration it should be possible to use it as a probe to set the Z height. However, inductive probes are susceptible to temperature, and will give different readings at different temperatures at the same height.
 
-## Connecting a BL Touch
+Testing is currently ongoing to produce a good method to calibrate the SZP for different temperatures. These instructions will be updated when testing is complete, and recommendations can be made.
 
-The Toolboard supports probe type 8 (unfiltered switch) and 9 (BL Touch), and in RRF 3.7 and later type 1 (analog). To connect a BL Touch, see table below.
+For now, we recommend using another method to set the Z height.
 
-| Toolboard IO_0 connector pin | BLTouch pin | Colour |
-|:---|:---|
-| io0_out | Control | Orange |
-| GND | GND | Black + Brown |
-| io0_in | OUT | White |
-| 5V_EXT | +5V | Red |
+# Using the SZP in touch mode to set Z height
 
-See [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)
+Firmware 3.6.0-beta.4 and later support scanning probe touch mode experimentally. In touch mode the tool head bearing the sensor is lowered (or the bed raised) and the reading from the sensor is monitored, until the rate of change of the reading reduces sharply, which happens when the nozzle contacts the bed.
 
-## Connecting a filament monitor
+Use of touch mode requires that the sensor continues to give good readings all the way from the height at which probing starts right down to when the nozzle contacts the bed. The selected drive level (see M558.2) and a suitable height of the sensor coil above the nozzle are critical to achieving this. See later for a workaround if you can't achieve this.
 
-For filament monitoring, we recommend using the [Duet3D Roto Filament Monitor](/Duet3D_hardware/Accessories/Roto_Filament_Monitor), which is designed specifically to work with the Roto Toolboard and extruder.
+The Z axis must move smoothly. Any spots at which the Z axis binds and stops moving for a few microsteps are likely to cause the probe to trigger.
 
-It is also still possible to use the [Duet3D Magnetic Filament Monitor](/Duet3D_hardware/Accessories/Rotating_Magnet_Filament_Monitor)
+The mechanics of the tool head mounting must be such that when the nozzle contacts the bed, continued operation of the Z motor(s) doesn't bring the sense coil any nearer to the bed. If the tool head tends to pivot about the X rail under these conditions, such pivoting must not bring the coil closer to the bed (it is acceptable for it to move the coil away from the bed)
 
-Connector IO_1 or IO2 provides a 3.3V supply and 3.3V input signal level, suitable for a Duet3D Rotating Magnet filament monitor. 
+It is highly desirable that there is some compliance in either the tool head mounting or the bed supports such that the Z motor(s) can overshoot Z=0 by a small amount without generating excessive forces.
 
-See [Connecting and configuring a filament runout sensor](/User_manual/Connecting_hardware/Sensors_filament)
+Touch mode is enabled using the [M558.3](/User_manual/Reference/Gcodes/M558_3) command. You can use this command to turn touch mode on and off, and also to set the following parameters that are used in touch mode. **The default values are likely to be changed in future firmware versions**.
+- F parameter: probing speed in touch mode, default 200mm/min (3.3mm/sec). The algorithm used to detect tuch is designed to be optimal around this speed.
+- V parameter: In RRF 3.6.0-rc.1 this is the touch mode threshold (lower = more sensitive to touch) in the range 0.0 to 5.0, default 0.5. *[In 3.6.0-beta.4 it was sensitivity in the range 0.0 to 1.0, default 0.8.]* Lower threshold (or higher sensitivity) may improve accuracy and reduce the distance by which the nozzle pushes into the bed, but if it is too high then noise in the sensor reading may cause a premature stop.
+- H parameter: nozzle height to be assumed when probing stops. This will be negative. The default is -0.1mm.
 
-<!--  Commented out until a new version with the correct footprint is released
-## Adding an IO_3 Reflective Optical Sensor
+To calibrate touch mode **when using RRF 3.6.0-rc.1**:
+- You may wish to use the M913 command to reduce current to the Z motors when touch probing, to reduce the chance of damage if the touch is not detected.
+- Check that the probe reading increases as the nozzle nears the bed. If you start with the nozzle a long way above the bed, then as you move it closer the reading displayed in DWC should increase, very slowly at first and more rapidly up to the point at which the nozzle contacts the bed. Make sure you don't get a reading of all nines at any point. If you do then adjust the drive current (M558.2) and if necessary see the note below on using a 2-stage homing process.
+- Manually command the nozzle down until it just touches the bed, then send G92 Z0 to set that position as Z=0. Command thre nozzle up 5mm.
+- Send ```M558.3 K# S1 V0.1``` to put the probe in touch mode and set the threshold very low (0.1).
+- Execute ```G30 K# S-1 G1 Z5``` where # is the probe number. Expect the probing to stop almost immediately because a false contact has been detected. RRF will report the height at which the probe stopped.
+- Increase the V parameter (e.g. in steps of 0.1) until no false contact is detected and the probe stops only when the nozzle contacts the bed.
+- Probe multiple times with this setting to check that you never get false triggering. If you do, increase V a little more.
+- Use the reported G30 S-1 stop height as the M558.3 H parameter.
 
-An ITR20001/T reflective optical sensor can be soldered onto the pads on the board, for example to implement a tool docking sensor. It is connected to pin io3_in.
+Touch probing must always be initiated with the nozzle above the bed. If the nozzle is already in contact with the bed when touch probing is initiated, the touch will probably not be detected.
 
-![Renders of an ITR20001/T reflective optical sensor on the Roto toolboard ](/duet_boards/duet_3_can_expansion/duet_3_rrtb/duet3_rrtb_v1.0_opto.png =300x)
+When homing Z you may wish to use a 2-stage homing process:
+1. Set the drive current (M558.2) to a value that gives good readings from when the sensor is far from the bed down to when the nozzle is about 3mm above the bed. Set the trigger height (G31) to a value that gives good readings, perhaps 3 to 5mm.
+2. Set the probe to normal mode (M558.3).
+3. Execute G30 with a high probing speed, to probe down to the trigger height. This will get the nozzle to 3 to 5mm above the bed.
+4. If necessary, increase the drive current (M558.2) to a value that gives good readings from the normal mode trigger height right down to Z=0.
+5. Switch to touch mode (M558.3).
+6. Execute G30 again to probe in touch mode.
 
--->
+# Other analog probes
 
-
-# PCB Revision History
-
-# Tabs{.tabset}
-
-## PCB revision v1.0
-
-* Initial version after internal prototypes
+To come.
