@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2026-10-28T17:15:37.495Z
+date: 2026-10-28T17:26:46.213Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -10,7 +10,7 @@ dateCreated: 2022-03-22T10:08:15.620Z
 
 # Overview
 
-RepRapFirmware 3.5 provides experimental support for multiple motion systems that move asynchronously with respect to each other. Each motion system has its own current tool. A single GCode job file or input stream controls all the motion systems. Additional commands in the GCode stream specify which motion system each command is destined for. Some commands (in particular [M400](/User_manual/Reference/Gcodes/M400)) cause motion to be synchronised, i.e. when the command is reached the system waits for all commands for any motion system prior to that command to complete before continuing.
+RepRapFirmware 3.5 and later provide experimental support for multiple motion systems that move asynchronously with respect to each other. Each motion system has its own current tool. A single GCode job file or input stream controls all the motion systems. Additional commands in the GCode stream specify which motion system each command is destined for. Some commands (in particular [M400](/User_manual/Reference/Gcodes/M400)) cause motion to be synchronised, i.e. when the command is reached the system waits for all commands for any motion system prior to that command to complete before continuing.
 
 The primary application is to speed up printing by having the printer work on separate parts of a large print concurrently, or to print two different objects at the same time.
 
@@ -18,7 +18,7 @@ The primary application is to speed up printing by having the printer work on se
 
 -   Due to memory limitations, RRF on Duet 2 series boards does not support this feature. Duet 3 Mini does not support it in RRF 3.7 and later. All other Duet 3 main boards support it.
 -   Only two motion systems are currently supported. In the future we may increase this limit.
--   By default, the second motion queue is only three elements long. Use the [M595](/User_manual/Reference/Gcodes/M595) command to lengthen it, for example: `M595 Q1 P60` will increase it to 60 elements (the same number as in the primary movement queue on MB6HC and MB6XD boards).
+-   In RRF 3.5, by default the second motion queue is only three elements long (five on MB6HC and MB6XD boards). Use the [M595](/User_manual/Reference/Gcodes/M595) command to lengthen it, for example: `M595 Q1 P60` will increase it to 60 elements (the same number as in the primary movement queue on MB6HC and MB6XD boards). In RRF 3.6 and later, the second motion queue has the same default length as the primary movement queue.
 -   At any time, each motion system “owns” a set of physical axes and extruders. It may also own a tool. No other motion system can use those axes/extruders or that tool until the owning motion system releases it. See below for details of ownership of axes and extruders.
 -   For any two axes owned by different motion systems, those axes may not share a motor. For example, on a CoreXY machine the X and Y axes cannot be owned by different motion systems.
 
@@ -41,9 +41,9 @@ Use the [M597](https://docs.duet3d.com/en/User_manual/Reference/Gcodes#m597-coll
 # Synchronising the motion systems
 
 There will be times when the two motion systems need to be synchronised. For example, when the two motion systems are used to drive the two print heads of a IDEXY machine independently, they will need to synchronise at each layer change because they share a common Z axis. 
-* Use the [M598](/User_manual/Reference/Gcodes/M598) command to cause the movement system that reaches the command first to wait for the other one to catch up. Upon reaching the M598 command, each motion system will release the axes that it owns, but not any extruders used by a tool that it owns.
+* Use the [M598](/User_manual/Reference/Gcodes/M598) command to cause the movement system that reaches the command first to wait for the other one to catch up. Upon reaching the M598 command, each motion system will release the axes and extruders that it owns, except the axes and extruders used by its current tool.
 * Use [M400](/User_manual/Reference/Gcodes/M400) to wait until all motion in the current motion system stops and release the owned axes and extruders, except the current tool's own axes and extruders. When M400 is used inside a probing macro such as `deployprobe.g` or `retractprobe.g`, nothing is released
-* `M400 S1` waits until motion in the current motion system stops but keeps all owned axes and extruders. `G4` waits for motion to stop only if motion has been commanded from the same input since the last wait, and does not release any axes or extruders
+* `M400 S1`, and `G4` when motion has been commanded from the same input since the last wait, also wait until motion stops and release the owned axes and extruders in the same way. No command keeps them owned across a wait
 
 Certain other commands will also cause synchronisation (details to follow).
 
@@ -68,6 +68,7 @@ For command streams from USB, async serial input (including PanelDue) and the DW
 | Daemon | 9 | |
 | Aux2 | 10 | UART2 |
 | Autopause | 11 | |
+| USB2 | 14 | Second USB channel (RRF 3.7 and later) |
 
 ## Command streams from file
 
@@ -130,7 +131,7 @@ Other commands lock both motion systems. These are mostly configuration commands
 * `M451`, `M452` and `M453` when changing the machine mode
 * `M502` and `M505`
 * `M563` when creating, changing or deleting a tool
-* `M569` with the `R` or `S` parameter, or `D` or `V` for a driver on an expansion board; `M569.1`; `M569.2` with the `S` parameter; `M569.6` when starting tuning
+* `M569` with the `R` or `S` parameter, or `D` or `V` for a driver on an expansion board; `M569.1` with parameters other than just the driver number; `M569.2` with the `S` parameter; `M569.6` when starting tuning
 * `M574` when changing axis endstops
 * `M970` and its sub-commands when setting phase stepping parameters
 * `M997`
@@ -155,4 +156,3 @@ Each input channel (SD card, USB, http, telnet etc) has its own set of flags. Fo
 | G93/G94 | Inverse time mode/units per minute mode | G94 (units per minute) | |
 | M82/83 | Extruder absolute/relative mode | M82 (absolute) | |
 | M200 | Volumtric extrusion | Disabled | |
-
