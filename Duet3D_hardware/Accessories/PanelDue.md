@@ -2,7 +2,7 @@
 title: Duet3D PanelDue
 description: 
 published: true
-date: 2025-07-17T16:16:13.983Z
+date: 2026-10-30T13:31:08.564Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-17T14:02:21.351Z
@@ -196,13 +196,15 @@ PanelDue V2
 
 ## Configuration
 
-**RepRapFirmware 3.x and later**: Using a PanelDue with Duet 3 and Duet 2 and RRF3 will require `M575 P1 S4 B57600` being present in config.g. Older versions of RRF and PanelDueFirware required `M575 P1 S1 B57600` but although this will still work with more recent firmnwares, it doesn't provide the same degree of protection against interference as the command that uses `S4`.
+**RepRapFirmware 3.x and later**: Using a PanelDue with Duet 3 and Duet 2 and RRF3 will require `M575 P2 S4 B57600` being present in config.g (in RRF 3.6, use M575 P1 S4 B115200). Older versions of RRF and PanelDueFirware required `M575 P1 S1 B57600` but although this will still work with more recent firmnwares, it doesn't provide the same degree of protection against interference as the command that uses `S4`.
 
 **RepRapFirmware 2.x and earlier**: In RRF2 the command above was assumed as the default, so no additional configuration is required.
 
 ## Updating PanelDue Firmware
 
 See: [PanelDue_Firmware_update](/User_manual/RepRapFirmware/Updating_PanelDue)
+
+With RRF 3.7 and later, the PanelDue must run PanelDue firmware 3.7.0 or later. Older PanelDue firmware does not display bed or chamber heaters with RRF 3.7.
 
 # Version History
 
@@ -223,3 +225,5 @@ ATSAM3S4B processor (64MHz, 48kb RAM, 256kb flash).
 ## Version 1.0, 1.1 and earlier 2
 
 ATSAM3S2B processor (64MHz, 32kb RAM, 128kB flash)
+
+PanelDue versions with this processor are not supported by RRF 3.7 and later.
