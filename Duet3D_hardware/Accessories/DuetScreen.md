@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-07-09T12:34:22.360Z
+date: 2026-10-30T13:26:19.950Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -187,6 +187,8 @@ There are a couple of methods to connect the DuetScreen to a WiFi network.
 3. Enter the IP address and password (if applicable) of the Duet mainboard in 'Duet IP Address' and 'Duet Password' fields.
   [![duetscreen-settings-connection-wifi-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-wifi-0.1.png =600x)](/hardware/duetscreen/duetscreen-settings-connection-wifi-0.1.png){target=_blank}
 
+In RRF 3.7 and later, the mainboard config.g must include `M586 P0 S1` to enable HTTP.
+
 #### Setting the IP address manually
 
 You can set the screen's IP address manually by creating a `dhcpcd.conf` file in the first FAT (boot) partition. For example:
@@ -217,6 +219,8 @@ The DuetScreen does not have an Ethernet port, but does support most USB-A/USB-C
 1. Ensure the DuetScreen is connected to the same network as the mainboard.
 1. Enter the IP address and password (if applicable) of the Duet mainboard in 'Duet IP Address' and 'Duet Password' fields.
 
+In RRF 3.7 and later, the mainboard config.g must include `M586 P0 S1` to enable HTTP.
+
 #### Setting the IP address manually
 
 You can set the screen's IP address manually by creating a `dhcpcd.conf` file in the first FAT (boot) partition. For example:
@@ -238,7 +242,7 @@ static domain_name_servers=192.168.1.254
 1. Connect the DuetScreen to the mainboard using a UART cable (see below).
 2. In Settings > Connections, set 'Connection Method' to `UART (legacy)`.
 2. The 'USB-C Mode' selection is irrelevant in this case.
-3. Set the baud rate on the Duet mainboard to `115200`. Use `M575 P1 S4 B115200` in config.g. This is similar to connecting a PanelDue, other than the default baud rate is 115200
+3. Set the baud rate on the Duet mainboard to `115200`. Use `M575 P2 S4 B115200` in config.g (in RRF 3.6, use `M575 P1 S4 B115200`). This is similar to connecting a PanelDue, other than the default baud rate is 115200
 
 
 [![duetscreen-settings-connection-usb-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-uart-0.1.png =600x)](/hardware/duetscreen/duetscreen-settings-connection-uart-0.1.png){target=_blank}
