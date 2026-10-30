@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: true
-date: 2024-11-13T12:58:53.523Z
+date: 2026-10-30T15:01:27.504Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -52,15 +52,15 @@ TELNET is disabled
 
 You may receive errors that look like these; comments after are added to help fix them:
 ```
-Error: Unknown pin name 'duex.e1heat' ; incorrect pin name, see the 'Pin names' section of your boards hardware info page
+Error: Unknown pin name 'e1heat' ; incorrect pin name on Duet 3, see the 'Pin names' section of your boards hardware info page
 Error: Heater 1 not found ; If the M950 command that defines a heater is incorrect, no heater is created, all subsequent commands referring to it generate an error
 Error: Heater 1 does not exist ; see above
 Error: Sensor 4 does not exist ; M950 heater definition includes a reference to a sensor that hasn't been configured
 Error: Bad command: mp"" Y"thermistor" T100000 B4138 ; Related to the above, the M308 line defining the sensor is incorrect
-Error: in file macro line 108: M308: missing parameter 'S' ; as above
+Error: in file config.g line 108: M308: missing parameter 'S' ; as above
 Error: Heater 4 not found ; With the M308 and M950 command not correct, no heater is created, all subsequent commands referring to it generate an error
 Error: Heater 4 does not exist ; as above
-Error: Unknown pin name 'duex.fan0' ; Incorrect fan pin name, see the 'Pin names' section of your boards hardware info page
+Error: Unknown pin name 'fan0' ; Incorrect fan pin name on Duet 3, see the 'Pin names' section of your boards hardware info page
 Error: Fan number 0 not found ; If the M950 command that defines a fan is incorrect, no fan is created, all subsequent commands referring to it generate an error
 Warning: Heater 0 predicted maximum temperature at full power is 403°C ; This is just a warning, not necessarily an error. It is usually due to M307 parameters for that heater, and often that the heater has not been tuned, but also the heater might just be able to get that hot!
 ```
@@ -179,7 +179,6 @@ To tune a bed or chamber heater, send `M303 H0 S60` where 'H' is the heater numb
 
 If successful, the firmware will report the parameters to use, and an [M307](/User_manual/Reference/Gcodes/M307) GCcode command e.g.:
 `M307 H1 R7.046 K1.519:0.006 D3.58 E1.35 S1.00 B0 V23.9` (RRF 3.4 and later)
-`M307 H1 B0 R1.839 C270.7:170.1 D8.10 S1.00 V12.1` (RRF 3.3 and earlier)
 
 Then, either:
 * Copy this into your config.g, replacing the existing one for the heater, or
@@ -261,7 +260,7 @@ M574 Z2 S1 P"!io4.in" ; configure switch-type (e.g. microswitch) endstop for hig
 * Think of "low end" and "high end" as a numeric scale for the axis. If your Y axis has a 250mm range of motion, the low end is 0mm and the high end is 250mm.
 * Observe the physical location of each endstop and compare it to this setting. If it is incorrect, change it now.
 * On a Delta, all endstops are usually at the high end. On Cartesian and CoreXY, the Z low end is where the nozzle is closest to the bed, ie where Z=0.
-* The S parameter configures the type of endstop: 1=switch, 2=Z-probe, 3=motor stall, 4=multiple motor stall (see [M574](/User_manual/Reference/Gcodes/M574) for usage).
+* The S parameter configures the type of endstop: 1=switch, 2=Z-probe, 3=motor stall, 4=multiple motor stall, 5=encoder position error (RRF 3.7 and later) (see [M574](/User_manual/Reference/Gcodes/M574) for usage).
 
 > Note that if you changed which end your endstop is located, you will generally need to update your homing macros (homeall.g, homex.g, homey.g, homez.g and any others if you have more axes) to get the axis to move in the correct direction, towards the endstop, during homing.
 {.is-info}
@@ -273,7 +272,7 @@ M574 Z2 S1 P"!io4.in" ; configure switch-type (e.g. microswitch) endstop for hig
 * An active high endstop is one which pulls the signal to ground when the endstop is not pressed. On Duet, this means it is 'normally closed' (or NC) when not pressed. Duet3D recommend NC endstops, as they are less susceptible to interference from other sources, eg stepper motor wiring.
 * On Duet 2 WiFi/Ethernet, you can test whether your endstops are active low or active high by observing the red LED next to the corresponding stepper motor connector. If the LED is lit when the endstop is triggered, this would indicate an active low endstop. If the LED is lit when the endstop is not triggered, this would indicate an active high endstop.
 * If you found that the endstop was responding the wrong way in the test in the previous section, the pin input can be inverted in the endstop definition in config.g. Do this by:
-  * Invert the signal in the M574 command with `!`, eg `M574 Y2 P"!ystop"`
+  * Invert the signal in the M574 command with `!`, eg `M574 Y2 P"!io2.in"`
   * If the M574 command already has a `!` in it, remove it.
   * If you edit config.g, any changes will be implemented when you reset the Duet.
   * Alternatively, you can send the command in the GCode console, where it will have immediate effect.
@@ -361,8 +360,8 @@ Once you have checked your motors are moving the correct direction and distance,
 
 * If you are using a PanelDue, if connected properly it should already be configured.
 * You can check that it is functioning by making sure that it turned on and is displaying reasonably correct temperature information. You may also choose to home an axis or by starting a heater.
-* If the display continuously shows 'connecting...' in the top right corner, make sure you have the following command in config.g: `M575 P1 S1 B57600`
-* You may need to update the PanelDue firmware to match the version of RepRapFirmware you are using. See [Updating PanelDue firmware](/User_manual/RepRapFirmware/Updating_PanelDue).
+* If the display continuously shows 'connecting...' in the top right corner, make sure you have the following command in config.g: `M575 P2 S1 B57600` (RRF 3.7 and later) or `M575 P1 S1 B57600` (RRF 3.6 and earlier)
+* You may need to update the PanelDue firmware to match the version of RepRapFirmware you are using. RRF 3.7 and later need PanelDue firmware 3.7.0 or later. See [Updating PanelDue firmware](/User_manual/RepRapFirmware/Updating_PanelDue).
 
 # 13. Commissioning Complete!
 
