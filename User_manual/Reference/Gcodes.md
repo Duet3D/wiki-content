@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-30T13:13:38.004Z
+date: 2026-10-30T13:36:26.377Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5509,12 +5509,12 @@ Enables networking as a client, and joins the network with the SSID 'MyNetwork',
 * Also works with the WiFi interface on an attached SBC. See M587 for configuration limitations.
 * On a WiFi interface, the IP address, gateway and netmask are set in the M587 command for each remembered network. M553 and M554 do not apply to WiFi interfaces.
 * In RRF 3.7 and later in standalone mode, HTTP is not enabled by default, so Duet Web Control cannot connect until it is enabled. Add `M586 P0 S1` to config.g, or `M586 I1 P0 S1` for the optional WiFi interface on a Duet 3 MB6HC. See [M586](/User_manual/Reference/Gcodes/M586){target=_blank}.
-* On each `M552 T1 S1`, if `server.crt` and `server.key` are both present in `/sys` on the SD card, the WiFi module imports them into its own flash and then deletes the SD card copies. See [HTTPS setup](https://github.com/Duet3D/RepRapFirmware/blob/3.7-dev/HTTPS%20setup.md) for creating them.
+* On each `M552 T1 S1`, if `server.crt` and `server.key` are both present in `/sys` on the SD card, the WiFi module imports them into its own flash and then deletes the SD card copies. See [HTTPS setup](https://github.com/Duet3D/RepRapFirmware/blob/3.7-dev/HTTPS%20setup.md){target=_blank} for creating them.
 * The TLS setting is not remembered after a restart, so keep `T1` on the M552 line in config.g. An `M552 S1` without `T1` clears the TLS setting. It does not restart an interface that is already running, but a later `M586 ... T1` does not start HTTPS, FTPS or TelnetS until `M552 T1 S1` is sent.
 * `M552 T1` only enables TLS support. Use `M586 ... T1` to enable HTTPS, FTPS or TelnetS.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
 
-#### Ethernet interfaces (Duet 2/3 Ethernet and 06/085)
+#### Ethernet interfaces (Duet 2/3 Ethernet)
 
 ##### Parameters
 
@@ -5547,7 +5547,7 @@ The I1 setting here specifies the second network interface on the SBC. This uses
 * In RRF 3.7 and later in standalone mode, HTTP is not enabled by default, so Duet Web Control cannot connect until it is enabled. Add `M586 P0 S1` to config.g. See [M586](/User_manual/Reference/Gcodes/M586){target=_blank}.
 * The first `M552 S1` after start-up sets the TLS setting of an Ethernet interface. A later `M552 T1 S1` does not enable TLS, even after `M552 S0`. To change the TLS setting, edit config.g and restart the Duet.
 * The TLS setting is not remembered after a restart, so keep `T1` on the M552 line in config.g.
-* `M552 T1` only enables TLS support. Use `M586 ... T1` to enable HTTPS, FTPS or TelnetS.
+* `M552 T1` only enables TLS support. Use `M586 ... T1` to enable HTTPS, FTPS or TelnetS. See [HTTPS setup](https://github.com/Duet3D/RepRapFirmware/blob/3.7-dev/HTTPS%20setup.md){target=_blank} for full instructions.
 * Note there is a bug with all Chromium browsers that prevents large transfers working over TLS to memory-constrained devices - **use Firefox**.
 * In standalone mode in RRF 3.7 and later, the P parameter may also be a string expression.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
