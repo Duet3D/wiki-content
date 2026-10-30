@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2025-01-28T12:10:53.424Z
+date: 2026-10-30T13:35:46.715Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -36,7 +36,7 @@ Information for connecting older versions of the PanelDue is available from [dc4
 
 |  | Connect to: | Notes |
 |:---|:---|
-| Duet 3 | IO_0 | Only IO_0 supports PanelDue |
+| Duet 3 | IO_0 | IO_1 can also be used, with `M575 P3` (`M575 P2` in RRF 3.6 and earlier). RRF 3.6 and earlier do not recognise the PanelDue emergency stop sequence on IO_1. |
 | Duet 2 WiFi/Ethernet | PANELDUE connector |  |
 | Duet 2 Maestro | PANELDUE connector |  |
 
@@ -188,7 +188,7 @@ On the Duet 3 Mini 5+ you can ground the card detect signal by bridging pins 2 a
 
 # Firmware configuration
 
-**RepRapFirmware 3.x and later**: Using a PanelDue with Duet 3 and Duet 2 and RRF3 will require `M575 P1 S1 B57600` being present in config.g.
+**RepRapFirmware 3.x and later**: Using a PanelDue requires `M575 P2 S1 B57600` being present in config.g. In RRF 3.6 and earlier, use `M575 P1 S1 B57600`.
 
 **RepRapFirmware 2.x and earlier**: In RRF2 the command above was assumed as the default, so no additional configuration is required.
 
@@ -197,6 +197,8 @@ On the Duet 3 Mini 5+ you can ground the card detect signal by bridging pins 2 a
 Generally it is best to run the latest version of the PanelDue firmware that is supported by the RepRapFirmware version on your Duet mainboard. See: [Installing and updating PanelDue firmware](/User_manual/RepRapFirmware/Updating_PanelDue){target=_blank}
 
 From RRF v3.2, PanelDue firmware releases are co-ordinated with the RRF release, and share the same version number. Use the PanelDue firmware version that matches your Duet mainboard's firmware version.
+
+RRF 3.7 and later require PanelDue firmware 3.7.0 or later. With older PanelDue firmware, the PanelDue does not show bed or chamber heaters. PanelDue firmware 3.7.0 also works with RRF 3.6.
 
 | RepRapFirmware version | PanelDue firmware version | Notes |
 |---|---|
@@ -215,6 +217,8 @@ The PanelDue firmware v1.24 assumes a fixed relationship between bed, tools and 
 * PanelDue does not recognise Chamber heaters, or extra heated beds. It will show them as heaters, though.
 
 These restrictions are largely removed in later versions of the PanelDue firmware. However, they will require you to update RepRapFirmware on your Duet mainboard.
+
+RRF 3.7 and later do not support PanelDue firmware v1.24, because RRF 3.7 does not support the M408 command. PanelDue boards with the ATSAM3S2BA processor (version 1.0, 1.1 and early version 2 boards) cannot run PanelDue firmware 3.x, so they cannot be used with RRF 3.7 and later.
 
 # Configuring the display
 
