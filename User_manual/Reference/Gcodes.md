@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-28T16:39:28.312Z
+date: 2026-10-30T11:26:02.213Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5507,7 +5507,8 @@ Enables networking as a client, and joins the network with the SSID 'MyNetwork',
 ##### Notes
 
 * Also works with the WiFi interface on an attached SBC. See M587 for configuration limitations.
-* On Duet boards with WiFi interfaces running firmware 1.19 and later, the IP address is set in the M587 command when you configure the access point details.
+* On a WiFi interface, the IP address, gateway and netmask are set in the M587 command for each remembered network. M553 and M554 do not apply to WiFi interfaces.
+* In RRF 3.7 and later in standalone mode, HTTP is not enabled by default, so Duet Web Control cannot connect until it is enabled. Add `M586 P0 S1` to config.g, or `M586 I1 P0 S1` for the optional WiFi interface on a Duet 3 MB6HC. See [M586](/User_manual/Reference/Gcodes/M586){target=_blank}.
 * On each `M552 T1 S1`, if `server.crt` and `server.key` are both present in `/sys` on the SD card, the WiFi module imports them into its own flash and then deletes the SD card copies. See [HTTPS setup](https://github.com/Duet3D/RepRapFirmware/blob/3.7-dev/HTTPS%20setup.md) for creating them.
 * The TLS setting is not remembered after a restart, so keep `T1` on the M552 line in config.g. An `M552 S1` without `T1` clears the TLS setting. It does not restart an interface that is already running, but a later `M586 ... T1` does not start HTTPS, FTPS or TelnetS until `M552 T1 S1` is sent.
 * `M552 T1` only enables TLS support. Use `M586 ... T1` to enable HTTPS, FTPS or TelnetS.
@@ -5524,7 +5525,7 @@ Enables networking as a client, and joins the network with the SSID 'MyNetwork',
 
 ##### Examples
 
-**Duet 2 Ethernet:**
+**Duet 3 in standalone mode:**
 <br>
 <pre class="cblock">
 M552 S1 P192.168.1.14
@@ -5541,6 +5542,7 @@ The I1 setting here specifies the second network interface on the SBC. This uses
 ##### Notes
 
 * M552 with no parameters reports the current network state and IP address.
+* In RRF 3.7 and later in standalone mode, HTTP is not enabled by default, so Duet Web Control cannot connect until it is enabled. Add `M586 P0 S1` to config.g. See [M586](/User_manual/Reference/Gcodes/M586){target=_blank}.
 * The first `M552 S1` after start-up sets the TLS setting of an Ethernet interface. A later `M552 T1 S1` does not enable TLS, even after `M552 S0`. To change the TLS setting, edit config.g and restart the Duet.
 * The TLS setting is not remembered after a restart, so keep `T1` on the M552 line in config.g.
 * `M552 T1` only enables TLS support. Use `M586 ... T1` to enable HTTPS, FTPS or TelnetS.
@@ -5552,7 +5554,7 @@ The I1 setting here specifies the second network interface on the SBC. This uses
 
 ### Parameters
 
-* **Innn** (Optional) Number of the network interface to manage (defaults to 0)
+* **Innn** (Optional, SBC mode only) Number of the network interface to manage (defaults to 0). In standalone mode this parameter is ignored.
 * **Pnnn** Net mask
 
 ### Examples
@@ -5565,17 +5567,17 @@ Sets the network mask of the RepRap machine to (in this case) 255.255.255.0.
 
 ### Notes
 
+* In standalone mode, M553 sets the netmask of the Ethernet interface only. It has no effect on a WiFi interface, including the optional WiFi interface on a Duet 3 MB6HC. For a WiFi network, set the netmask with the K parameter of [M587](/User_manual/Reference/Gcodes/M587){target=_blank}.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
 * A restart may be required before the new network mask is used. 
-* If no 'P' field is specified, this echoes the existing network mask configured.
-* DuetWifiFirmware versions 1.18 and earlier do not support setting the network mask manually.
+* If no 'P' field is specified, this echoes the network mask set by M553. In standalone mode this is the Ethernet setting, not the netmask in use by a WiFi interface or a netmask obtained by DHCP.
 * In standalone mode in RRF 3.7 and later, the P parameter may also be a string expression.
 
 ## M554: Set Gateway and/or DNS server
 
 ### Parameters
 
-* **Innn** (Optional) Number of the network interface to manage (defaults to 0)
+* **Innn** (Optional, SBC mode only) Number of the network interface to manage (defaults to 0). In standalone mode this parameter is ignored.
 * **Pnnn** Gateway
 * **Snnn** (Optional) DNS server (only supported by DSF 3.3 with DuetPi system config plugin)
 
@@ -5589,10 +5591,10 @@ Sets the Gateway IP address of the RepRap machine to (in this case) 192.168.1.1.
 
 ### Notes
 
+* In standalone mode, M554 sets the gateway of the Ethernet interface only. It has no effect on a WiFi interface, including the optional WiFi interface on a Duet 3 MB6HC. For a WiFi network, set the gateway with the J parameter of [M587](/User_manual/Reference/Gcodes/M587){target=_blank}.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g. Also make sure to set a static IP address *before* trying to set a static gateway or DNS server.
 * A restart may be required before the new gateway IP address is used. 
-* If no 'P' field is specified, this echoes the existing Gateway IP address configured.
-* DuetWifiFirmware versions 1.18 and earlier do not support setting the gateway address.
+* If no 'P' field is specified, this echoes the gateway IP address set by M554. In standalone mode this is the Ethernet setting, not the gateway in use by a WiFi interface or a gateway obtained by DHCP.
 * In standalone mode in RRF 3.7 and later, the P parameter may also be a string expression.
 
 ## M555: Set compatibility
@@ -7550,8 +7552,8 @@ M586 P4 S0                          ; Disable MQTT protocol/client; disconnects 
 * **S"ccc"** Network SSID (case sensitive)
 * **P"ccc"** Network password (case sensitive)
 * **Inn.nn.nn.nn** (optional) IP address to use when connected to this network. If zero or not specified then an IP address will be acquired via DHCP.
-* **Jnn.nn.nn.nn** (optional) Gateway IP address to use when connected to this network.
-* **Knn.nn.nn.nn** (optional) Netmask to use when connected to this network
+* **Jnn.nn.nn.nn** (optional) Gateway IP address to use when connected to this network. Only used when a fixed IP address is set with the I parameter. When the IP address is acquired via DHCP, the gateway is also acquired via DHCP.
+* **Knn.nn.nn.nn** (optional) Netmask to use when connected to this network. Only used when a fixed IP address is set with the I parameter. When the IP address is acquired via DHCP, the netmask is also acquired via DHCP.
 * **Lnn.nn.nn.nn** (optional, supported only by DuetPi + DSF v3.3 or newer) DNS server to use
 * **Cnnn** (supported only by DuetPi + DSF v3.3 or newer) Country code for the WiFi adapter, only required if not set before
 * **Fn** (optional) Format of the response when M587 is used to report the remembered list: 0=plain text (default), 1=JSON
@@ -7561,17 +7563,17 @@ The SSID and password must always be enclosed in double quotation marks.
 
 RepRapFirmware 3.5 and later with WiFiServer 2.1 and later support WiFi Enterprise Authentication experimentally. The modes supported are:
 
-* EAP-TLS (only on ESP32-C3) - certificate-based authentication; needs a client certificate, private key and an optional private key password
+* EAP-TLS (ESP32-S3 WiFi modules only) - certificate-based authentication; needs a client certificate, private key and an optional private key password
 * EAP-TTLS-MSCHAPv2 - username and password authentication
 * EAP-PEAP-MSCHAPv2 - username and password authentication
 
-All three protocols have an option to specify an anonymous identity and CA validation certificate.
+All three protocols accept an anonymous identity and a CA validation certificate. EAP-TLS requires the anonymous identity; for the other two it is optional.
 
 When using one of these modes there are additional parameters and the meaning of the P parameter may be changed, as follows:
 
 * **Xn** Authentication mode: 0=WPA2-PSK, 1=EAP-TLS (supported on ESP32-S3 WiFi modules only), 2=EAP-PEAP-MSCHAPv2, 3=EAP-TTLS-MSCHAPv2
 * **E"eee"** Filename of CA validation certificate in /sys directory of SD card
-* **A"aaa"** Anonymous identity
+* **A"aaa"** Anonymous identity (required for EAP-TLS)
 
 ### Protocol-specific parameters:
 
@@ -7589,12 +7591,13 @@ When using one of these modes there are additional parameters and the meaning of
 ### Examples
 <br>
 <pre class="cblock">
-M587 S"Network-ssid-123" P"Password123" I192.128.1.200  ; connect to access point "Network-ssid-123" using WPA2-PSK authentication
+M587 S"Network-ssid-123" P"Password123" I192.168.1.200  ; connect to access point "Network-ssid-123" using WPA2-PSK authentication
 M587 X2 E"ca.pem" S"test-ap" U"bob" P"hello"  ; Connect to AP "test-ap" with EAP-PEAP-MSCHAPv2, username "bob" and password "hello". Perform CA validation with certificate sys/ca.pem
 </pre>
 
 ### Notes
 
+* In standalone mode, the IP address, gateway and netmask of a WiFi interface are set only by M587. M553 and M554 apply to Ethernet interfaces only, and their I parameter does not select a WiFi interface.
 * In SBC mode (v3.3 and later) it is not possible to configure different IP addresses per SSID.
 * In SBC mode, sending this command makes a persistent change. It does not need to be added to dsf-config.g. It should NOT be included in config.g.
 * Many programs used to send GCodes convert all characters to uppercase. In firmware 1.19.2 and later, within any quoted string you can use a single-quote character to indicate that the following character should be changed to lowercase. For example, M587 S"ABC" P"P'A'S'SW'O'R'D" would specify that the password is "PassWord". Use two single quote characters to represent one actual single quote character in the password or in the SSID. For example, if your SSID is "Pete's network" then enter "Pete''s network".
