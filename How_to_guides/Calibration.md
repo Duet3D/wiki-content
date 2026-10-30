@@ -2,7 +2,7 @@
 title: Calibrating your Duet-based machine
 description: 
 published: true
-date: 2025-08-04T14:10:54.251Z
+date: 2026-10-30T14:45:50.918Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-30T12:13:26.620Z
@@ -96,7 +96,7 @@ While this guide uses the example of calibrating an Ender 3, the procedures show
 
 * First we need to load some filament. PLA will work fine.
 * Set the hotend temp to the high end of the temperature range for your chosen filament.
-* Or, if you choose to cold extrude, separate the extruder motor from the hot end, and enter M564 H0 to allow the extruder to move while cold.
+* Or, if you choose to cold extrude, separate the extruder motor from the hot end, and enter M302 P1 to allow the extruder to move while cold.
 * Load the filament and push it all the way down until it starts to come out the nozzle.
 * Take your ruler or caliper and your marker.
 * Measure 110mm from the body of the extruder where the filament enters out along the length of the filament.
