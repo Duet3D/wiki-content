@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2026-07-23T22:35:38.080Z
+date: 2026-10-30T12:14:47.286Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z
@@ -13,6 +13,8 @@ dateCreated: 2021-11-30T23:07:58.871Z
 # Introduction
 
 This document covers networking options in more detail, including setting up WiFi-enabled Duet 3 boards in standalone mode and Duet 2 WiFi, and direct connections to Ethernet-enabled Duets (Duet 3 with Ethernet in standalone mode, Duet 2 Ethernet, Duet 2 Maestro).
+
+**Note:** in RRF 3.7 and later in standalone mode, HTTP is not enabled by default. Add [M586](/User_manual/Reference/Gcodes/M586) P0 S1 to config.g to enable HTTP, which Duet Web Control needs. The factory config.g of boards shipped with RRF 3.7 contains this command. On a Duet 3 6HC with the WiFi module, use M586 I1 P0 S1 to enable HTTP on the WiFi interface.
 
 # Duets with WiFi 
 
@@ -30,7 +32,7 @@ This is the standard setup, with the Duet connecting to your network through a W
 
 * Connect to Duet, via USB and serial terminal, or via console if already connected to network.
 * In the serial terminal, use [M587](/User_manual/Reference/Gcodes/M587) to add a WiFi host network to the remembered list of networks. Don't add M587 to config.g.
-* To set a static IP address, use the 'I' parameter in your M587 command. If you leave this out, the Duet IP address will be set by the router, using DHCP.
+* To set a static IP address, use the 'I' parameter in your M587 command. If you leave this out, the Duet IP address will be set by the router, using DHCP. With a static IP address, use the 'J' and 'K' parameters to set the gateway and netmask. [M553](/User_manual/Reference/Gcodes/M553) and [M554](/User_manual/Reference/Gcodes/M554) set the Ethernet interface only, and do not change a WiFi interface.
 * Use [M552](/User_manual/Reference/Gcodes/M552) S1 in config.g to turn on networking, and connect. You can specify the host network to connect to using the 'P' parameter, so long as the host network has already been stored using M587.
 
 **Note:** the IP addresses in the following diagram are an example of how a network may be configured. Your network may use different IP addresses and ranges.
@@ -84,6 +86,7 @@ If you are unable to directly cable the Duet to your network router, you can con
   ```
   M552 P192.168.2.1 S1 ; IP address
   M553 P255.255.255.0  ; Subnet mask
+  M586 P0 S1           ; Enable HTTP (needed in RRF 3.7 and later)
   ```
 * Note: it is important to ensure that the last values of the IP address for Duet and computer are different.
 * Then connect to the Duet by opening a browser and going to `192.168.2.1`
@@ -93,6 +96,18 @@ If you are unable to directly cable the Duet to your network router, you can con
 **Note:** the IP addresses in the following diagram are an example of how a network may be configured. Your network may use different IP addresses and ranges.
 
 ![networking_06.png](/manual/configuration/networking_06.png)
+
+# HTTPS and other secure protocols
+
+*Supported in RRF 3.7 and later in standalone mode, on Duet 3 6HC, 6XD and Mini 5+*
+
+RepRapFirmware can provide HTTPS, FTPS and TelnetS, which use TLS. TLS is supported on the Ethernet interface. It is also supported on the WiFi interface when the WiFi module is an ESP32-based module running WiFi firmware 2.4.0 or later. This is the optional WiFi module of the Duet 3 6HC, and the module of the Duet 3 Mini 5+ WiFi version 1.04 and later. The ESP8266-based WiFi module of the Duet 2 WiFi and of earlier Duet 3 Mini 5+ WiFi boards does not support TLS.
+
+* Create a private key and a certificate in PEM format, and copy them to `/sys/server.key` and `/sys/server.crt` on the SD card. See [HTTPS setup](https://github.com/Duet3D/RepRapFirmware/blob/3.7-dev/HTTPS%20setup.md){target=_blank} for instructions.
+* Add the T1 parameter to the [M552](/User_manual/Reference/Gcodes/M552) command in config.g, for example `M552 S1 T1`. This enables TLS support on the network interface.
+* Use [M586](/User_manual/Reference/Gcodes/M586) with the T1 parameter to enable each secure protocol, for example `M586 P0 S1 T1` to enable HTTPS on port 443.
+
+In SBC mode, DSF provides HTTPS. See [M586](/User_manual/Reference/Gcodes/M586).
 
 # Duet 3 with Single Board Computer (SBC)
 
@@ -113,9 +128,11 @@ mDNS is supported natively in Windows 10, most Ubuntu distributions, and Mac OS.
 Use of mDNS naming also relies on the firmware on the Duet:
 
 * Duet 2 WiFi - mDNS support in all RRF versions
-* Duet 2 Ethernet, Duet 2 Maestro - mDNS support introduced with RRF v2.04RC3
+* Duet 2 Ethernet, Duet 2 Maestro - mDNS support introduced with RRF v2.04
+* Duet 3 6HC, Duet 3 6XD, Duet 3 Mini 5+ WiFi - mDNS supported
+* Duet 3 Mini 5+ Ethernet - mDNS support introduced with RRF 3.7.0
 
-The machine name is also used as the NetBIOS name, which can help to identify the Duet on a network. This is only supported on Duet 2 WiFi.
+The machine name is also used as the NetBIOS name, which can help to identify the Duet on a network. This is supported on Duet 2 WiFi and on the Ethernet and WiFi interfaces of Duet 3 boards.
 
 Note: Both the mDNS and NetBIOS name are limited to 15 characters. If you use a longer name, the mDNS name will be the first 15 characters, e.g. if the Duet name is "3DPrinterWithVeryLongName", you should still be able to connect to "3DPrinterWithVe.local".
 
