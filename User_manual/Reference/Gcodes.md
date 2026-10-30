@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-10-30T11:26:02.213Z
+date: 2026-10-30T13:13:38.004Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -5534,8 +5534,10 @@ M552 S1 P192.168.1.14
 Sets the IP address of the machine to (in this case) 192.168.1.14. If the S parameter is not present then the enable/disable state of the network interface is not changed.
 
 **Duet 3 in SBC mode:**
-
-* M552 I1 S1 P0.0.0.0 ; set the second interface on the SBC to use DHCP and enable it.
+<br>
+<pre class="cblock">
+M552 I1 S1 P0.0.0.0 ; set the second interface on the SBC to use DHCP and enable it.
+</pre>
 
 The I1 setting here specifies the second network interface on the SBC. This uses the [DuetPi Management Plugin](https://github.com/Duet3D/DuetSoftwareFramework/tree/v3.3-dev/src/DuetPiManagementPlugin#readme){target=_blank} (installed by default from RRF 3.3 onwards) to set the address on the SBC. To determine which interface is which on the SBC, the object model explorer can be used to see the current settings of each interface.
 
