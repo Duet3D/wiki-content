@@ -2,7 +2,7 @@
 title: Duet3D Accelerometer
 description: A standalone accelerometer board using the LIS2DW12 MEMS digital motion sensor. It designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards
 published: true
-date: 2026-08-10T11:06:36.913Z
+date: 2026-10-30T13:21:08.345Z
 tags: 
 editor: markdown
 dateCreated: 2023-06-22T01:09:12.785Z
@@ -25,8 +25,9 @@ Various Duet 3 toolboards have a builtin accelerometer. However for systems not 
 
 ## Firmware notes
 
-* **Duet3D Accelerometer v0.2** is compatible RepRapFirmware v3.4.6 or v3.5beta4 and later
-* **Duet3D Accelerometer v1.0** is compatible RepRapFirmware v3.5.0-rc.2 and later
+* **Duet3D Accelerometer v0.2** is compatible RepRapFirmware v3.4.6 or v3.5.0 and later
+* **Duet3D Accelerometer v1.0** is compatible RepRapFirmware v3.5.0 and later
+* Connection to the SPI daughterboard header of a Duet 3 Expansion 3HC or Duet 3 Expansion 1HCL version 2.0 is supported in RepRapFirmware 3.7 and later
 
 # Physical properties and connections
 
@@ -68,6 +69,11 @@ Duet3D accelerometer connected to the Duet 3 6HC mainboard
 ![Duet3D accelerometer connected to the Duet 3 Mini5+ mainboard](/hardware/accelerometer/duet3d_accelerometer_mini5+.jpg =400x)
 Duet3D accelerometer connected to the Duet 3 Mini5+ mainboard
 
+[![Pin 1 of the SPI_1 header on the Duet 3 Expansion 3HC for the Duet3D accelerometer](/hardware/accelerometer/duet3d_accelerometer_3hc_wiring.png =600x)](/hardware/accelerometer/duet3d_accelerometer_3hc_wiring.png){target=_blank}
+Duet3D accelerometer connection to the SPI_1 header of the Duet 3 Expansion 3HC (RRF 3.7 and later)
+
+The SPI_1 header on the Duet 3 Expansion 3HC (v1.03 shown) has the same pin order as the SPI daughterboard header on the Duet 3 Mainboard 6HC. Connect the cable so that pin 1 of the connector goes to pin 1 of the header. With the driver connectors at the bottom, as in the 3HC wiring diagram, pin 1 is the bottom right pin. The accelerometer CS signal uses pin 1 (spi.cs1) and INT1 uses pin 3 (spi.cs0), so the command is `M955 P[address].0 C"spi.cs1+spi.cs0"`, where [address] is the CAN address of the 3HC.
+
 # Orientation
 
 The I (orientation) parameter tells the firmware which of the 24 possible orientations the accelerometer chip is in relative to the printer axes. It is expressed as a 2-digit number. The first digit specifies which machine direction the Z axis of the accelerometer chip (usually the top face of the chip) faces, as follows: 0 = +X, 1 = +Y, 2 = +Z, 4 = -X, 5 = -Y, 6 = -Z. The second digit expresses which direction the X axis of the accelerometer chip faces, using the same code. If the accelerometer chip axes line up with the machine axis, the orientation is 20. This is the default orientation if no orientation has been specified.
@@ -83,6 +89,8 @@ In all the images below the image of the accelerometer is shown as if stood in f
 | +Z to -X | NA | ![](/hardware/accelerometer/orientation/41.png){target=_blank}<br>`M955 P[##] I41` | ![](/hardware/accelerometer/orientation/42.png){target=_blank}<br>`M955 P[##] I42` | NA | ![](/hardware/accelerometer/orientation/45.png){target=_blank}<br>`M955 P[##] I45` | ![](/hardware/accelerometer/orientation/46.png){target=_blank}<br>`M955 P[##] I46` |
 | +Z to -Y | ![](/hardware/accelerometer/orientation/50.png){target=_blank}<br>`M955 P[##] I50` | NA | ![](/hardware/accelerometer/orientation/52.png){target=_blank}<br>`M955 P[##] I52` | ![](/hardware/accelerometer/orientation/54.png){target=_blank}<br>`M955 P[##] I54` | NA | ![](/hardware/accelerometer/orientation/56.png){target=_blank}<br>`M955 P[##] I56` |
 | +Z to -Z | ![](/hardware/accelerometer/orientation/60.png){target=_blank}<br>`M955 P[##] I60` | ![](/hardware/accelerometer/orientation/61.png){target=_blank}<br>`M955 P[##] I61` | NA | ![](/hardware/accelerometer/orientation/64.png){target=_blank}<br>`M955 P[##] I64` | ![](/hardware/accelerometer/orientation/65.png){target=_blank}<br>`M955 P[##] I65` | NA |
+
+In RRF 3.7 and later, the M955 command must also include the C parameter, otherwise the I parameter is not applied. See [M955](/User_manual/Reference/Gcodes/M955).
 
 # Configuration and use
 
