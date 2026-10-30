@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2026-10-27T13:08:42.627Z
+date: 2026-10-30T13:17:14.045Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -55,7 +55,7 @@ The main hardware features of the Duet 3 6XD are listed below.
 | **Input power voltage** | 11V to 30V (14V-30V to use onboard 12V regulator)|
 | **Input connector rated current** | 25A maximum, or fused limit (whichever is lower) |
 | **High current outputs** | 3 x high current outputs up to 6A each, total high current heater limit fused at 15A |
-| **Medium current outputs** | 6 x medium current outputs up to 1A each, each bank of medium current outputs fused at 3A (note when set to 12V there is a total 800mA limit) |
+| **Medium current outputs** | 6 x medium current outputs up to 2A each when powered from VIN, each bank of medium current outputs fused at 3A (note when set to 12V there is a total 800mA limit) |
 | **External Driver Signal voltage** | 5V nominal (min. 4.2V @ 20mA) on v1.02 and later. On v1.0 and v1.01 the outputs are open drain and do not drive a high level, see [Connecting External Motor Drivers](#connecting-external-motor-drivers). |
 | **External Driver Signal current** | 20mA maximum |
 | **Non opto isolated Inputs** | Permanent 27K pullup resistor to +3.3V included. Input voltage limits: -1V to +30V. |
@@ -369,18 +369,19 @@ See [M260.1](/User_manual/Reference/Gcodes/M260_1) and [M261.1](/User_manual/Ref
 
 Supply 12V-24V input power (11-30V absolute minimum/maximum) between the GND and VIN terminals.
 
-VIN is split via four fuses:
+VIN is split via three fuses:
 
 * V_FUSED: 15A :  All on board power demands, other than those specified below
 * VLC1_FUSE: 3A :  OUT3-OUT5 when the select jumper is on VIN
 * VLC2_FUSE: 3A :  OUT6-OUT8 when the select jumper is on VIN
-* VFUSED_IO: 300mA: VIN current for the Opto-isolated Output headers IO_5-IO_8
 
 V_FUSED is distributed across the board as follows:
 
 * 12V Regulator
 * 5V regulator
 * OUT 0 - OUT 2 headers
+* V+ GND header
+* VFUSED_IO: 300mA fuse: VIN current for the Opto-isolated Output headers IO_5-IO_8
 
 > If you use a relay to control VIN power to the board, ie the power supply is already switched on, and a relay is used to turn on power to the board, you should use an inrush current limiter wired in series with VIN. See the [section on Inrush current here](https://docs.duet3d.com/en/User_manual/Connecting_hardware/Power_choosing#inrush-current){target=_blank}.
 >
