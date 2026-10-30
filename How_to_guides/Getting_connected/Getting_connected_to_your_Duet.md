@@ -2,7 +2,7 @@
 title: Getting connected to your Duet
 description: Unboxing and initial connection to a Duet 2 Wifi / Ethernet, Duet 2 Maestro, Duet 3 MB6HC and Duet 3 Mini 5+ WiFi / Ethernet
 published: true
-date: 2026-09-18T10:08:55.801Z
+date: 2026-10-30T12:18:50.236Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-06T11:40:14.664Z
@@ -129,7 +129,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 [![02_connect_via_usb_03.jpg](/guides/getting_connected/02_connect_usb_03.jpg =50%x){.align-right}](/guides/getting_connected/02_connect_usb_03.jpg){target=_blank}**macOS** users have no drivers to install. 
 * To check the Duet is recognised open Applications > Utilities > System Information, under Hardware > USB for a 'Duet' entry. It may also show as a 'Communication Device' if connected through a USB hub.
-* For the Serial Port name, open Applications > Utilities > Terminal, then run `ls /dev/tty.*` The Duet uses a port with USB in the name, e.g. `/dev/tty.usbmodem1411`
+* For the Serial Port name, open Applications > Utilities > Terminal, then run `ls /dev/tty.*` The Duet uses a port with USB in the name, e.g. `/dev/tty.usbmodem1411`. A Duet 3 running RRF 3.7 or later provides two USB serial channels, so two ports are listed. Use the first one.
 
 <p style="clear:both"></p>
 
@@ -137,7 +137,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 [![02_connect_via_usb_04.png](/guides/getting_connected/02_connect_usb_04.png =50%x){.align-right}](/guides/getting_connected/02_connect_usb_04.png){target=_blank}**Linux** users have no drivers to install. 
 * To check the Duet is recognised open a Terminal window and send `lsusb`, which should show an entry for the Duet. 
-* For the Serial Port name, send `ls /dev/tty*` which should show an entry `/dev/ttyACM[number]`. This is the port the Duet is using.
+* For the Serial Port name, send `ls /dev/tty*` which should show an entry `/dev/ttyACM[number]`. This is the port the Duet is using. A Duet 3 running RRF 3.7 or later provides two USB serial channels, so two entries are listed, typically `/dev/ttyACM0` and `/dev/ttyACM1`. Use the first one.
 
 <p style="clear:both"></p>
 
@@ -168,7 +168,7 @@ If you have any problems with your Duet when using this guide, rather than posti
 [![YAT](/guides/getting_connected/03_connect_to_duet_win_02.png =50%x){.align-right}](/guides/getting_connected/03_connect_to_duet_win_02.png){target=_blank}If the "Terminal Settings" screen doesn't open automatically, select "Terminal" menu, then "Settings".
 
 **Select the correct COM port as the Serial Port.** 
-  If unsure of the COM port number, press **Windows Key + R** on your keyboard and type `devmgmt.msc`. Your Duet will be listed under Ports (COM & LPT) as USB Serial Device (COM#) or similar. Use COM# as the Serial Port in YAT.
+  If unsure of the COM port number, press **Windows Key + R** on your keyboard and type `devmgmt.msc`. Your Duet will be listed under Ports (COM & LPT) as USB Serial Device (COM#) or similar. Use COM# as the Serial Port in YAT. A Duet 3 running RRF 3.7 or later provides two USB serial channels, so it is listed twice. Use the first one.
 
 **Select "DTR on"** 
 For newer versions of RepRapFirmware (3.6 and later), on Duet 3 boards, the terminal emulator **must raise the DTR line**, otherwise RRF will not transmit data.  
@@ -191,7 +191,7 @@ If you didn't click "DTR on" in the Terminal Settings, click on the 'DTR' button
 
 <p style="clear:both"></p>
 
-> If you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of *"WiFi reported error: no known networks found"* messages. Don't worry, that's normal, and it means that the Duet is working! 
+> If you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of *"Error: WiFi module reported: no known networks found"* messages. Don't worry, that's normal, and it means that the Duet is working! 
 {.is-info}
 
 ## macOS
@@ -228,7 +228,7 @@ If you get an error, *"Sorry, could not find a PTY."* unplug the USB, plug it ba
 
 <p style="clear:both"></p>
 
->No matter which connection method you use, if you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of "WiFi reported error: no known networks found" messages. Don't worry, that's normal, and it means that the Duet is working!
+>No matter which connection method you use, if you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of "Error: WiFi module reported: no known networks found" messages. Don't worry, that's normal, and it means that the Duet is working!
 {.is-info}
 
 > At certain points in these instructions, you may need to use quote marks in commands. Any double quotation marks must be sent as straight double quotation marks. To enable straight double quotation marks go to System Preferences > Keyboard > Text. Then under the Double Quotes drop down, select straight double quotations.
@@ -262,19 +262,20 @@ Run `screen /dev/ttyACM0 115200`. (Replace "ttyACM0" with the port name if it's 
 
 <p style="clear:both"></p>
 
-> No matter which connection method you use, if you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of "WiFi reported error: no known networks found" messages. Don't worry, that's normal, and it means that the Duet is working!
+> No matter which connection method you use, if you are connecting to a **Duet 2 WiFi** or **Duet 3 Mini 5+ WiFi**, you may see lots of "Error: WiFi module reported: no known networks found" messages. Don't worry, that's normal, and it means that the Duet is working!
 {.is-info}
 
 # 4. Check your Firmware Version
 By this point, your computer should be connected and talking to your Duet. You may have received a number of messages from the Duet already; it's generally safe to ignore these for now. The Duet uses 'GCodes' to communicate and for all configuration. See the [GCode dictionary here](/User_manual/Reference/Gcodes) for a description and full list.
 
-If you have a **Duet 2 Wifi** or **Duet 3 Mini 5+ WiFi**, you may find you are getting a lot of messages like *"WiFi reported error: no known networks found"*. The default configuration turns on the WiFi, but it is not finding a network to connect to. To stop the WiFi, send `M552 S-1` (see [M552](/User_manual/Reference/Gcodes/M552) in the GCode dictionary).
+If you have a **Duet 2 Wifi** or **Duet 3 Mini 5+ WiFi**, you may find you are getting a lot of messages like *"Error: WiFi module reported: no known networks found"*. The default configuration turns on the WiFi, but it is not finding a network to connect to. To stop the WiFi, send `M552 S-1` (see [M552](/User_manual/Reference/Gcodes/M552) in the GCode dictionary).
 
 To check the Duet's firmware version, send command `M115` to the Duet board (see [M115](/User_manual/Reference/Gcodes/M115) in the GCode dictionary). The Duet will respond with the firmware version being used.
 
 ## Tabs {.tabset}
 
 > Once you know the firmware version your Duet is using, check for the latest version of the firmware in our [Github repository here](https://github.com/Duet3D/RepRapFirmware/releases){target=_blank}. Use the 'Latest release', not any 'pre-release', 'beta' or 'RC' version until you are familiar with Duet.
+> RRF 3.7 and later do not support Duet 2. The last supported version is 3.6.x for Duet 2 WiFi and Ethernet, and 3.5.x for Duet 2 Maestro.
 > If your Duet is using an old firmware version, we recommend upgrading. See [Installing and Updating Firmware](/User_manual/RepRapFirmware/Updating_firmware) documentation.
 {.is-info}
 
@@ -320,7 +321,7 @@ Copy `M115` and paste into terminal and then hit enter. You will see OK when a s
 
 ### WiFi Duets
 
-> For **Duets with WiFi**: Duet 2 WiFi and Duet 3 Mini 5+ WiFi; both have internal and external antenna versions.
+> For **Duets with WiFi**: Duet 2 WiFi and Duet 3 Mini 5+ WiFi; both have internal and external antenna versions. For the optional WiFi module on the Duet 3 Mainboard 6HC, see [WiFi module installation and setup](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview#wifi-module-installation-and-setup).
 {.is-info}
 
 #### WiFi status LED and antenna
@@ -331,10 +332,10 @@ Your Duet WiFi will either have a blue LED on the WiFi module, or a green LED ne
 
 #### Set WiFi to idle mode
 
-[![YAT](/guides/getting_connected/05_network_01.jpg =50%x){.align-right}](/guides/getting_connected/05_network_01.jpg){target=_blank}[![YAT](/guides/getting_connected/05_network_02.jpg =50%x){.align-right}](/guides/getting_connected/05_network_02.jpg){target=_blank}If you didn't turn off WiFi in Step 4, you may find you are getting a lot of messages like *"WiFi reported error: no known networks found"*. The default configuration turns on the WiFi, but it is not finding a known network to connect to. The GCode command [M552](/User_manual/Reference/Gcodes/M552) controls the network interface.
+[![YAT](/guides/getting_connected/05_network_01.jpg =50%x){.align-right}](/guides/getting_connected/05_network_01.jpg){target=_blank}[![YAT](/guides/getting_connected/05_network_02.jpg =50%x){.align-right}](/guides/getting_connected/05_network_02.jpg){target=_blank}If you didn't turn off WiFi in Step 4, you may find you are getting a lot of messages like *"Error: WiFi module reported: no known networks found"*. The default configuration turns on the WiFi, but it is not finding a known network to connect to. The GCode command [M552](/User_manual/Reference/Gcodes/M552) controls the network interface.
 * To stop the WiFi, send `M552 S-1`. 
 * Send `M552` to check the status. It should say *"WiFi module is disabled"*. 
-* Now put it into idle mode by sending command `M552 S0`. The response should be *"WiFi module is started"*. 
+* Now put it into idle mode by sending command `M552 S0`. The response should be *"WiFi module started"*. 
 * Send `M552` again, and the Duet should reply with *"WiFi module is idle"*.
 
 [![Screen](/guides/getting_connected/05_network_03.jpg =50%x){.align-right}](/guides/getting_connected/05_network_03.jpg){target=_blank}**macOS** and **Linux** users using 'screen': send the same commands as above, you just won't be able to see what you have sent.
@@ -363,6 +364,8 @@ For workarounds, see the note in the Gcode dictionary entry for [M587](/User_man
 
 [![/guides/getting_connected/05_network_05.jpg](/guides/getting_connected/05_network_05.jpg =50%x){.align-right}](/guides/getting_connected/05_network_05.jpg){target=_blank}[![/guides/getting_connected/05_network_06.jpg](/guides/getting_connected/05_network_06.jpg =50%x){.align-right}](/guides/getting_connected/05_network_06.jpg){target=_blank}Send command `M552 S1` to connect to WiFi. After a moment, the Duet will confirm the connection and the IP address of the Duet controller. The blue LED on the WiFi module will flash as it connects, then should be on constantly once connected.
 
+Send `M586 P0 S1` to enable HTTP, which Duet Web Control uses. In RRF 3.7 and later HTTP is not enabled by default. Boards supplied with RRF 3.7 enable it in config.g, so on those boards this command makes no change.
+
 **macOS** and **Linux** users using 'screen': send the same commands as above, you just won't be able to see what you have sent.
 
 At this point your Duet should be on the WiFi network. To connect to the Duet Web Control (DWC) interface, continue to Step 6.
@@ -376,7 +379,7 @@ At this point your Duet should be on the WiFi network. To connect to the Duet We
 {.is-info}
 
 
-> **M587** saves the SSID and password to the Duet 2 Wifi, and is persistent. You do not need to run this command every time the board is started. **M552 S1** starts the network, and this command **does** need to be run every time the board starts (so ensure it is in config.g so it runs automatically - editing config.g will be covered later)
+> **M587** saves the SSID and password to the WiFi module, and is persistent. You do not need to run this command every time the board is started. **M552 S1** and **M586 P0 S1** need to be run every time the board starts, so ensure they are in config.g so that they run automatically. Editing config.g is covered in step 7.
 {.is-info}
 
 > **macOS** users using 'screen': Press CTRL-A then CTRL-\ to exit screen and return to terminal.
@@ -406,7 +409,9 @@ Plug an ethernet cable into the Duet's ethernet port and connect the other end o
 * **DHCP**: Most home routers are setup to assign IP addresses by DHCP. Send `M552 S0` to disable networking, then `M552 S1 P0.0.0.0` to enable networking and have your router assign an IP address.
 * **Fixed Address**: You can set the Duet to use a fixed IP address. Note that if you use a fixed address, care should be taken that it does not conflict with other devices on the network. Send `M552 S0` to disable networking, then `M552 S1 Px.x.x.x` to enable networking, where "x.x.x.x" is the IP address you want to use, eg 192.168.1.15.
 
-In both cases, after 10-30 seconds the board should reply with Network running and the IP address the Duet is using. Send M552 to check the settings.
+In both cases, after 10-30 seconds the board should reply with Ethernet running (Duet 3) or Network running (Duet 2) and the IP address the Duet is using. Send M552 to check the settings.
+
+Send `M586 P0 S1` to enable HTTP, which Duet Web Control uses. In RRF 3.7 and later HTTP is not enabled by default. Boards supplied with RRF 3.7 enable it in config.g, so on those boards this command makes no change.
 
 <p style="clear:both"></p>
 
@@ -423,7 +428,10 @@ You can safely close Terminal at this point.
 > Duet Web Control (also known as DWC) is the user interface used over a network connection in a browser to configure and control a Duet. The manual for the use of the DWC is here: [Duet Web Control Manual](/User_manual/Reference/Duet_Web_Control_Manual)
 {.is-info}
 
-> Note that network connections to DWC are unsecured **http** sessions. Your browser may try to force using a more secure **https** session, and you may receive a warning when you try to connect to DWC. DWC in standalone mode does not support https connections. As the Duet is on your local network, it should be fine to ignore this warning and connect. 
+> Note that network connections to DWC are unsecured **http** sessions. Your browser may try to force using a more secure **https** session, and you may receive a warning when you try to connect to DWC. DWC in standalone mode does not support https connections in RRF 3.6 and earlier. RRF 3.7 and later can serve https on Duet 3 boards with an Ethernet interface or an ESP32-based WiFi module; see [M586](/User_manual/Reference/Gcodes/M586). As the Duet is on your local network, it should be fine to ignore this warning and connect. 
+{.is-warning}
+
+> If DWC does not load and the Duet runs RRF 3.7 or later with a config.g made for earlier firmware, send `M586 P0 S1` over the USB connection to enable HTTP. Step 7 explains how to check that config.g enables HTTP.
 {.is-warning}
 
 
@@ -435,7 +443,7 @@ You should now see the main control page for the Duet!
 
 <p style="clear:both"></p>
 
-[![06_dwc_03.jpg](/guides/getting_connected/06_dwc_03.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_03.jpg){target=_blank}Your Duet may have shipped with older firmware and DWC version. We recommend updating to the latest available version as soon as possible; see [User manual: Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware). A screenshot of DWC v1 is shown on the right.
+[![06_dwc_03.jpg](/guides/getting_connected/06_dwc_03.jpg =50%x){.align-right}](/guides/getting_connected/06_dwc_03.jpg){target=_blank}Your Duet may have shipped with older firmware and DWC version. We recommend updating to the latest available version (3.6.x for Duet 2 WiFi and Ethernet, 3.5.x for Duet 2 Maestro) as soon as possible; see [User manual: Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware). A screenshot of DWC v1 is shown on the right.
 
 # 7. Ensure Future Connectivity
 
@@ -460,9 +468,11 @@ Then...
 
 [![07_config_03.jpg](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}Check that there is a command `M552 S1` without a semicolon at the beginning of the line. This enables the WiFi module at power on.
 
-Setting `M552 S1` in the config.g is sufficient to enable networking and let your network router assign an IP address via **DHCP**. 
+Check that there is also a command `M586 P0 S1`, which enables HTTP for Duet Web Control. In RRF 3.7 and later HTTP is not enabled by default. A config.g made for RRF 3.6 or earlier does not contain this command, so add it.
 
-If you need to assign a **static IP address**, use M587 with the I parameter when setting up the SSID in Step 5. See [M587 in the GCode dictionary](/User_manual/Reference/Gcodes/M587).
+With these commands in config.g, your network router assigns an IP address via **DHCP**. 
+
+If you need to assign a **static IP address**, use M587 with the I parameter when setting up the SSID in Step 5. Use the J and K parameters of M587 to set the gateway and netmask; they are only used together with I. M553 and M554 do not apply to WiFi. See [M587 in the GCode dictionary](/User_manual/Reference/Gcodes/M587).
 
 <p style="clear:both"></p>
 
@@ -472,6 +482,8 @@ If you need to assign a **static IP address**, use M587 with the I parameter whe
 {.is-info}
 
 [![07_config_03.jpg](/guides/getting_connected/07_config_03.jpg =50%x){.align-right}](/guides/getting_connected/07_config_03.jpg){target=_blank}[![07_config_04.jpg](/guides/getting_connected/07_config_04.jpg =50%x){.align-right}](/guides/getting_connected/07_config_04.jpg){target=_blank}Check that there is a command `M552 S1` without a semicolon at the beginning of the line. This enables the ethernet module at power on.
+
+Check that there is also a command `M586 P0 S1`, which enables HTTP for Duet Web Control. In RRF 3.7 and later HTTP is not enabled by default. A config.g made for RRF 3.6 or earlier does not contain this command, so add it.
 
 Ethernet-enabled Duets come with a factory-configured fixed IP address for testing. In the last few steps you set up network access temporarily. For these Duets you now need to change the config.g so you can access the Duet Web Console (DWC) following a power cycle.
 
