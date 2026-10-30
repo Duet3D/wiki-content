@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-10-27T13:08:18.801Z
+date: 2026-10-30T12:13:38.712Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -547,7 +547,7 @@ Note that the wifi module is the second network interface on the 6HC (the ethern
 
 * Send `M552 I1 S0` to take the WiFi module out of its disabled state and into idle.
 
-* Use [M587](/User_manual/Reference/Gcodes/M587) to add the SSID and password of your wifi network. Note, it does not need to be the same network that the ethernet is connected to. The WiFi interface will get its own IP address via DHCP, or you can specify what IP address to use in the M587 command.
+* Use [M587](/User_manual/Reference/Gcodes/M587) to add the SSID and password of your wifi network. Note, it does not need to be the same network that the ethernet is connected to. The WiFi interface will get its own IP address via DHCP, or you can specify what IP address to use in the M587 command. With a fixed IP address, set the gateway and netmask with the J and K parameters of M587. M553 and M554 set the Ethernet interface only, even with `I1`.
 
 * Send `M552 I1 S1` to enable the WiFi interface in client mode and connect to an access point that you specified using M587. Send `M552 I1` or `M122` to see the configured IP address.
 
