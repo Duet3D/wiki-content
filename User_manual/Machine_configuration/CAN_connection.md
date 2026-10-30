@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2026-10-12T11:37:52.167Z
+date: 2026-10-30T17:07:45.807Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -37,7 +37,7 @@ A power supply needs to be able to provide enough current for all the boards con
 
 CAN-FD (and CAN) is nominally a linear bus system, using a twisted pair of wires that carry a differential signal, i.e. one wire carries a high signal (CAN_H) and the other the low signal (CAN_L). This makes it very resilient to interference and electrical noise; it was developed for the automotive industry. The pair of wires need not be twisted over short distances, and can be twisted and if necessary shielded over long distances and/or for particularly noisy environments.
 
-![can_basics_wiring_01.png](/manual/configuration/can_basics_wiring_01.png =800x){target=_blank}
+[![can_basics_wiring_01.png](/manual/configuration/can_basics_wiring_01.png =800x)](/manual/configuration/can_basics_wiring_01.png){target=_blank}
 
 Apart from the devices at each end of the CAN bus, each device on the CAN bus needs CAN wires from the previous device, and CAN wires to the next device. The devices at each end of the bus need to 'terminate' the bus with 120 ohm resistors to avoid reflections. 
 
@@ -61,15 +61,15 @@ Twisted pair cables terminated in RJ11/RJ12 connectors are sold in some countrie
 
 ### Example of a good cable:
 
-![can_basics_02.jpg](/manual/configuration/can_basics_02.jpg =50%x){.align-right}{target=_blank} The colours of the wires going to the pins on the right is hard to see because they are white with a stripe, as is usual for twisted pairs; but the order of colours is the same at both ends.
+[![can_basics_02.jpg](/manual/configuration/can_basics_02.jpg =50%x){.align-right}](/manual/configuration/can_basics_02.jpg){target=_blank} The colours of the wires going to the pins on the right is hard to see because they are white with a stripe, as is usual for twisted pairs; but the order of colours is the same at both ends.
 
 ### Example of an unsuitable cable:
 
-![can_basics_03.jpg](/manual/configuration/can_basics_03.jpg =50%x){.align-right}{target=_blank} Having just the middle 2 pins wired is OK, but they are crossed so this cable is no good for CAN (it's a cable that was supplied with an ADSL or DSL modem). This is common for cables made from non-twisted-pair cable that is either flat with a seam on one side, or half-round.
+[![can_basics_03.jpg](/manual/configuration/can_basics_03.jpg =50%x){.align-right}](/manual/configuration/can_basics_03.jpg){target=_blank} Having just the middle 2 pins wired is OK, but they are crossed so this cable is no good for CAN (it's a cable that was supplied with an ADSL or DSL modem). This is common for cables made from non-twisted-pair cable that is either flat with a seam on one side, or half-round.
 
 ### Make your own cables
 
-![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =50%x){.align-right}{target=_blank} You can also make up your own cables. Kits of RJ11 (usually 6P4C) connectors and the corresponding assembly tool are readily available.  For the cable, you can buy unshielded twisted pair cable (e.g. Lapp 0035101 has two twisted pairs, so suitable for connecting a Tool Board to a Tool Distribution Board); or buy a length of twisted pair ribbon cable and separate it into individual pairs; or for short distances, use telephone cable.
+[![can_basics_01.jpg](/manual/configuration/can_basics_01.jpg =50%x){.align-right}](/manual/configuration/can_basics_01.jpg){target=_blank} You can also make up your own cables. Kits of RJ11 (usually 6P4C) connectors and the corresponding assembly tool are readily available.  For the cable, you can buy unshielded twisted pair cable (e.g. Lapp 0035101 has two twisted pairs, so suitable for connecting a Tool Board to a Tool Distribution Board); or buy a length of twisted pair ribbon cable and separate it into individual pairs; or for short distances, use telephone cable.
 
 Note that when crimping RJ11 connectors, it is possible to over-crimp them, causing the contacts on the connector to be pressed down so far that they don't make contact with the inside the socket. Check this if you have communication problems.
 
