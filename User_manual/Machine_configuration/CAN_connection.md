@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2026-10-30T17:07:45.807Z
+date: 2026-10-30T17:10:20.797Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -84,7 +84,7 @@ This image shows a cable made to connect a Duet 3 Mini to a Tool Distribution Bo
 
 Typically, the CAN bus is wired in a daisy-chain-style between boards. At one end will be the mainboard, with the CAN bus connecting to each subseqent board. 
 
-![can_basics_wiring_02.png](/manual/configuration/can_basics_wiring_02.png =800x){target=_blank}
+[![can_basics_wiring_02.png](/manual/configuration/can_basics_wiring_02.png =800x)](/manual/configuration/can_basics_wiring_02.png){target=_blank}
 
 Daisy-chaining can be mixed with stubs to create the CAN bus that best suits your requirements.
 
@@ -92,7 +92,7 @@ Daisy-chaining can be mixed with stubs to create the CAN bus that best suits you
 
 Stubs are branches off the CAN bus that are a single twisted pair of wires. The maximum recommended stub length for the 1Mbit/sec signalling rates used by Duet is 1m, and should preferably use ferrite beads to suppress ringing. Stubs can have multiple boards on them, but the total length of the stub should still not be more than 1m. The total length of all stubs should not be more than 5m.
 
-![can_basics_wiring_03.png](/manual/configuration/can_basics_wiring_03.png =800x){target=_blank}
+[![can_basics_wiring_03.png](/manual/configuration/can_basics_wiring_03.png =800x)](/manual/configuration/can_basics_wiring_03.png){target=_blank}
 
 In the above diagram, Expansion 2 and Expansion 3 are on a single stub. It may be convenient to terminate the CAN bus on Expansion 3, and remove the termination on Expansion 4, if the wire lengths require it. Then Expansion 4 is on a stub.
 
