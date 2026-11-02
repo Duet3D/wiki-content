@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Raspberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2025-11-03T10:54:44.505Z
+date: 2026-11-02T11:12:48.677Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -163,6 +163,12 @@ network={
 1. The Duet 3 Mini+ cannot power the Pi. You must power the Pi separately. The Raspberry Pi is sensitive to the input voltage, and many smartphone chargers or other USB power supplies cannot supply sufficient voltage. Therefore, we strongly recommend that you use the official Raspberry Pi PSU, or another PSU specifically designed to power a Raspberry Pi. If the red LED on the Pi is not continuously illuminated, the power supply is insufficient.
 
 <p style="clear:both"></p>
+
+## Connecting over USB instead of SPI
+
+With RRF 3.7 and DSF 3.7 or later, the Duet 3 MB6HC, MB6XD and Mini 5+ can also talk to the SBC over USB. The ribbon cable is not needed then. Connect the Duet's USB port to a USB port on the SBC and switch DSF to USB as described in [Switch between SPI and USB](#h-switch-between-spi-and-usb). The power notes above still apply.
+
+SPI stays the default. USB currently transfers G-code at about a third of the SPI rate, which can matter for prints with many short segments, so use it when your SBC has no usable SPI/GPIO header or a ribbon cable is not practical.
 
 # 4. First Boot
 
@@ -365,6 +371,18 @@ For example, `M997 S2 F"unstable"` switches to the 'unstable' package feed, and 
 
 In **RRF 3.4.x and earlier**, to switch between stable/release package feed and unstable/beta package feed, see [DSF installation](https://docs.duet3d.com/User_manual/Machine_configuration/DSF_RPi#software-installation){target=_blank}.
 
+## Switch between SPI and USB
+
+Requires RRF 3.7 and DSF 3.7 or later. The connection DSF uses is set by `CommunicationMethod` in `/opt/dsf/conf/config.json`. To switch to USB:
+
+1. Connect via SSH and open the file with `sudo nano /opt/dsf/conf/config.json`.
+1. Change `"CommunicationMethod": "spi"` to `"CommunicationMethod": "usb"`.
+1. Save the file and run `sudo systemctl restart duetcontrolserver`.
+
+The Duet shows up as two serial devices, normally `/dev/ttyACM0` for the USB console and `/dev/ttyACM1` for the channel DSF uses. `UsbDevice` in the same file defaults to `/dev/ttyACM1`, so only change it if other USB serial adapters on the SBC take the lower numbers. DSF sends `M576.1` by itself to move RRF over to USB, so config.g needs no changes.
+
+To go back to SPI, set `CommunicationMethod` to `"spi"` again and restart DCS. Neither direction needs a reset of the Duet.
+
 ## Virtual SD card
 
 In SBC mode and RRF v3.4 or newer these commands may be used to mount/unmount block devices or remote endpoints using the mount command. These commands should go in **dsf-config.g** NOT config.g. (Requires DuetPi Management Plugin.)
@@ -460,6 +478,20 @@ This error message means the service attempted to wait for a signal on the trans
 
 When DSF gets a signal over the transfer ready pin, it attempts to exchange data over SPI. If the received data is completely empty, this error message is generated.
 This error message indicates a problem with the SPI peripheral either on the Duet or on the SBC. Check the continuity between the SPI pins on the Duet and SBC sides.
+
+## USB connection
+
+### DCS fails to start right after switching from SPI to USB
+
+The first DCS start after the switch usually fails with a timeout or `SBC interface already connected`, because RRF keeps the SPI connection for a few more seconds. systemd restarts DCS after 5 seconds and it connects then, so this can be ignored.
+
+### Serial device not found
+
+DCS cannot open the device set in `UsbDevice`. Run `lsusb -d 1d50:` to check if the SBC sees the Duet at all:
+
+* `ID 1d50:60ef` means the Duet is connected and runs RRF 3.7 or later. Check that `UsbDevice` points to the right `ttyACM` device.
+* `ID 1d50:60ee` means the Duet runs an older firmware version without USB support for SBC mode. Update RRF over SPI first.
+* No output means the SBC does not see the Duet. Check the USB cable, some cables only carry power.
 
 ## Trivial checks
 
