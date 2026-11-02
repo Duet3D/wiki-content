@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-11-02T16:01:17.934Z
+date: 2026-11-02T18:26:04.904Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9398,7 +9398,7 @@ This command sets the CAN timing on the main board. It can also enable Bit Rate 
 ### Parameters
 
 * **Pn** (optional, RRF 3.7.1 and later) CAN bus to configure, numbered as printed on the board. The default is the main CAN bus CAN1. P0 selects the secondary CAN bus CAN0, which only the Duet 3 MB6HC and MB6XD have.
-* **Annn** (optional, P0 only, RRF 3.7.1 and later) Lowest CAN address of the expansion boards connected to CAN0. Boards with addresses from A to 125 must be connected to CAN0, all other boards to CAN1. Address 126 always stays on CAN1 for boards that use this address for firmware updates. A0 (default) assigns no boards to CAN0.
+* **Annn** (optional, P0 only, RRF 3.7.1 and later) Lowest CAN address of the expansion boards connected to CAN0. Boards with addresses from A to 125 must be connected to CAN0, all other boards to CAN1. Firmware updates of boards using address 126 work on both CAN buses. A0 (default) assigns no boards to CAN0.
 * **Cn** (optional, P0 only, RRF 3.7.1 and later) C1 makes CAN0 a classic CAN bus, which is needed to talk to ODrive motor controllers on a Hangprinter. C0 (default) makes CAN0 a CAN-FD expansion bus.
 * **Sn.n** Requested arbitration phase bit rate in Kbits/second, default 1000, or 250 for CAN0 in classic mode. Other supported values are 500 and 250.
 * **Rn** (optional, Duet 3 MB6HC and MB6XD only) Bit rate multiplier for the data phase. Supported values are 1, 2, 3, 4, 6 and 8. R1 disables BRS. Include R in every M953 command. Each CAN bus has its own setting, and R is not supported on CAN0 in classic mode.
