@@ -2,7 +2,7 @@
 title: Duet 3 ADC daughterboard
 description: Overview of the Duet3D Analog-to-Digital Converter (ADC)  daughterboard
 published: true
-date: 2026-10-27T13:05:44.924Z
+date: 2026-11-02T22:54:17.853Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T18:02:17.231Z
@@ -50,7 +50,7 @@ Mainboards and expansion boards that support only one daughterboard can have eit
 
 |---|---|
 | **Power pass through voltage** | 12-36V |
-| **Power pass through max current** | 200mA |
+| **Power pass through max current** | 160mA |
 | **Data signalling voltage** | 3.3V |
 | **Maximum ambient temperature** | 80°C |
 | **Absolute maximum board temperature** | 85°C |
