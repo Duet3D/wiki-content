@@ -2,7 +2,7 @@
 title: Duet Software Framework
 description: DSF Overview
 published: true
-date: 2023-03-28T15:06:59.467Z
+date: 2026-11-02T11:12:53.498Z
 tags: 
 editor: markdown
 dateCreated: 2022-12-01T14:46:05.540Z
@@ -24,7 +24,9 @@ For security reasons, the main DSF services run under a dedicate `dsf` user and 
 
 ## Link to RepRapFirmware
 
-DSF uses SPI to exchange data with RepRapFirmware. When RepRapFirmware (with built-in SBC support) starts and no SD card is present, RRF attempts to connect to an SBC automatically over SPI. In order to flag when data may be exchanged, a separate pin, the so-called TfrRdy pin, is used.
+By default DSF exchanges data with RepRapFirmware over SPI. When RepRapFirmware (with built-in SBC support) starts and no SD card is present, RRF attempts to connect to an SBC automatically over SPI. In order to flag when data may be exchanged, a separate pin, the so-called TfrRdy pin, is used.
+
+Since version 3.7, DSF can use USB instead on the Duet 3 MB6HC, MB6XD and Mini 5+. No ribbon cable or TfrRdy pin is needed in that mode. See [Switch between SPI and USB](/User_manual/Machine_configuration/SBC_setup#h-switch-between-spi-and-usb) for the setup.
 
 For more details, please check out the project's [README](https://github.com/Duet3D/DuetSoftwareFramework) and extra wiki pages.
 
