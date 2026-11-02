@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2026-11-02T16:01:32.945Z
+date: 2026-11-02T16:13:23.410Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -426,6 +426,10 @@ The board will reset its address to default and then:
 
 * If the board has a version 3.0 or later bootloader, it will listen for CAN messages broadcast by the main board at the default bit rate (1Mbit/sec) and also at 500kbit/sec and 250kbit/sec. If messages are heard then set its bit rate to be the same and then request firmware from the main board.
 * If the board has a bootloader with a version earlier than 3.0, it will set the CAN bus speed to default 1Mbit/sec and then request firmware from the main board. This will only succeed if the main board is using 1Mbit/sec.
+
+## Board 119 appears after a firmware update
+
+On a Duet 3 Toolboard 1LC version 1.1 or later with a bootloader older than version 2.6, the bootloader uses CAN address 119 instead of the board's own address while it downloads new firmware. The firmware update itself works normally, but afterwards the object model and DWC list an additional board 119 without a name in state "resetting". This entry stays until the main board is restarted and can be ignored. If another board uses CAN address 119, it is shown in state "resetting" for a moment after the update instead. On a Duet 3 MB6HC or MB6XD that uses CAN0 for expansion boards, the update also works when address 119 is assigned to the other CAN bus. To get rid of the extra entry permanently, update the bootloader of the tool board, see [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
 
 ## If the bootloader becomes corrupted
 
