@@ -2,7 +2,7 @@
 title: Duet 3 Family
 description: 
 published: true
-date: 2026-09-28T12:33:58.684Z
+date: 2026-11-02T22:53:17.334Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:14:53.360Z
@@ -34,7 +34,6 @@ dateCreated: 2021-06-03T16:14:53.360Z
 
 [Duet 3 Motor 23CL](/Duet3D_hardware/Duet_3_family/Duet_3_Motor_23CL)
 [Duet 3 Scanning Z probe](/Duet3D_hardware/Duet_3_family/Duet_3_Scanning_Z_Probe)
-[Duet 3 High Resolution ADC daughterboard](/Duet3D_hardware/Accessories/Duet_3_ADC_daughterboard)
 
 [Using the Sammy-C21 development board with Duet 3](/Duet3D_hardware/Duet_3_family/Using_the_Sammy-C21_development_board_with_Duet_3)
 [Using a Duet 3 Mainboard as an expansion board](/User_manual/Machine_configuration/CAN_connection#mainboard-as-expansion-board)
@@ -76,6 +75,9 @@ Accessories that fit directly to a Duet 3 mainboard
 
 [Duet3D PT100 temperature sensor daughterboard](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard)
 [Duet3D Thermocouple daughterboard](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard)
+
+## Other sensing
+[Duet 3 High Resolution ADC daughterboard](/Duet3D_hardware/Accessories/Duet_3_ADC_daughterboard)
 
 # Discontinued accessories
 
