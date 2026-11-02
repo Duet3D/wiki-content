@@ -2,7 +2,7 @@
 title: Accessories
 description: 
 published: true
-date: 2026-10-30T13:28:11.389Z
+date: 2026-11-02T22:53:38.855Z
 tags: 
 editor: markdown
 dateCreated: 2021-06-03T16:18:25.503Z
@@ -39,6 +39,9 @@ Hardware information on Duet3D-produced accessories that work with **Duet 2** an
 
 [Duet3D PT100 temperature sensor daughterboard](/Duet3D_hardware/Accessories/PT100_Temperature_Daughterboard)
 [Duet3D Thermocouple daughterboard](/Duet3D_hardware/Accessories/Thermocouple_Daughterboard)
+
+## Other sensing
+[Duet 3 High Resolution ADC daughterboard](/Duet3D_hardware/Accessories/Duet_3_ADC_daughterboard)
 
 # Discontinued accessories
 
