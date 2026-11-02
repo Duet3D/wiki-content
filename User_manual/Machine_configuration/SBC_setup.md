@@ -2,7 +2,7 @@
 title: Single Board Computer (SBC) setup for Duet 3
 description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Raspberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2026-11-02T11:12:48.677Z
+date: 2026-11-02T11:13:49.487Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -166,7 +166,7 @@ network={
 
 ## Connecting over USB instead of SPI
 
-With RRF 3.7 and DSF 3.7 or later, the Duet 3 MB6HC, MB6XD and Mini 5+ can also talk to the SBC over USB. The ribbon cable is not needed then. Connect the Duet's USB port to a USB port on the SBC and switch DSF to USB as described in [Switch between SPI and USB](#h-switch-between-spi-and-usb). The power notes above still apply.
+With RRF 3.7 and DSF 3.7 or later, the Duet 3 MB6HC, MB6XD and Mini 5+ can also talk to the SBC over USB. The ribbon cable is not needed then. Connect the Duet's USB port to a USB port on the SBC and switch DSF to USB as described in [Switch between SPI and USB](#switch-between-spi-and-usb). The power notes above still apply.
 
 SPI stays the default. USB currently transfers G-code at about a third of the SPI rate, which can matter for prints with many short segments, so use it when your SBC has no usable SPI/GPIO header or a ribbon cable is not practical.
 
