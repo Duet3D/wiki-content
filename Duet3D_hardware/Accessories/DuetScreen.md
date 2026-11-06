@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-10-30T13:26:19.950Z
+date: 2026-11-06T15:11:09.606Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -13,11 +13,11 @@ dateCreated: 2026-01-16T14:53:50.598Z
 
 # Introduction
 
-The Duet3D DuetScreen is a family of colour touch screen controllers for Duet 2 and Duet 3 based machines. It is also compatible with other Controllers running RepRapFirmware. 
+The Duet3D DuetScreen is a family of colour touch screen controllers for Duet 2 and Duet 3 based machines. It is also compatible with other controllers running RepRapFirmware. 
 
-The current hardware implementation is the DuetScreen 7, other screen sizes are planned in the future.
+The current hardware implementation is the DuetScreen 7. Other screen sizes are planned in the future.
 
-The DuetScreen application is built on LVGL and provides a modern machine control UI,  initially focused on 3d printers. Its modular design allows for future versions for other machine types.
+The DuetScreen application is built on LVGL and provides a modern machine control UI, initially focused on 3D printers. Its modular design allows for future versions for other machine types.
 
 # Features
 
@@ -53,9 +53,9 @@ Note: ^2^ See the [powering the screen](#powering-the-duetscreen) section below.
 ## Software and Firmware notes
 
 ### DuetScreen 
-The DuetScreen runs a lightweight version of linux based on [Buildroot](https://buildroot.org/){target=_blank}, this is designed for embedded systems and allows for fast startup. The UI is built on [LVGL](https://lvgl.io/){target=_blank}.
+The DuetScreen runs a lightweight version of Linux based on [Buildroot](https://buildroot.org/){target=_blank}. This is designed for embedded systems and allows for fast startup. The UI is built on [LVGL](https://lvgl.io/){target=_blank}.
 
-More information for developers is available on our github repositories (note currently private, will be made public in due course):
+More information for developers is available on our GitHub repositories (note currently private, will be made public in due course):
 [DuetScreen](https://github.com/Duet3D/DuetScreen){target=_blank}
 [buildroot-duetscreen](https://github.com/Duet3D/buildroot-duetscreen){target=_blank}
 
@@ -67,9 +67,9 @@ More information for developers is available on our github repositories (note cu
 
 ## Mounting
 
-The DuetScreen 7 has 6 mounting posts, these are M3 tapped, 8mm high posts soldered into the board. In many cases only the outer 4 will be required.
+The DuetScreen 7 has 6 mounting posts. These are M3 tapped, 8mm high posts soldered into the board. In many cases only the outer 4 will be required.
 
-> Do not over torque screws into these mounting posts. They are rated to 0.5 Nm, however to mount the screen there is no need to go above 0.2 Nm
+> Do not over torque screws into these mounting posts. They are rated to 0.5 Nm. However, to mount the screen there is no need to go above 0.2 Nm.
 {.is-info}
 
 
@@ -81,16 +81,16 @@ A zip of the STEP file for the screen is here: [duet_screen_7_1.0_step.zip](/har
 ## Enclosure
 
 ### Duet3D reference enclosure
-This enclosure is designed by [chrishamm](https://forum.duet3d.com/user/chrishamm){target=_blank}, The Zip file contains both the STEP file and a FreeCAD 1.0 project.
+This enclosure is designed by [chrishamm](https://forum.duet3d.com/user/chrishamm){target=_blank}. The Zip file contains both the STEP file and a FreeCAD 1.0 project.
 [case_duetscreen_v1.0.zip](/hardware/duetscreen/case_duetscreen_v1.0.zip){target=_blank}
 
-Tony has made some minor tweaks to Christians design which are available here: [case_duetscreen_v1.0_tony_mod.zip](/hardware/duetscreen/case_duetscreen_v1.0_tony_mod.zip){target=_blank}
+Tony has made some minor tweaks to Christian's design which are available here: [case_duetscreen_v1.0_tony_mod.zip](/hardware/duetscreen/case_duetscreen_v1.0_tony_mod.zip){target=_blank}
 
 # Connecting a DuetScreen
 
 ## Wiring Diagram
 
-[![Wiring Diagram for the DuetScreen 7 v1.0 shpwing the pinouts of the connectors and connector labels](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png)](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png){target=_blank}!
+[![Wiring Diagram for the DuetScreen 7 v1.0 showing the pinouts of the connectors and connector labels](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png)](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png){target=_blank}
 
 
 ## Powering the DuetScreen
@@ -99,8 +99,8 @@ Tony has made some minor tweaks to Christians design which are available here: [
 {.is-warning}
 
 The DuetScreen can be powered in the following ways:
-- **5V_IN**: This is the recommended method when connecting over USB or WIFI. 
-- **USB-C**: This is fine when using WIFI.
+- **5V_IN**: This is the recommended method when connecting over USB or WiFi. 
+- **USB-C**: This is fine when using WiFi.
 - **UART5**: This is a legacy method for compatibility with PanelDue wiring. It is not recommended for new installations.
 
 ## USB Ports
@@ -108,11 +108,11 @@ The DuetScreen has two USB ports:
 
 **USB-A**: This port is a host port. 
 - Its primary purpose is for USB Flash drives to be connected, currently for software upgrades and potentially for print files in the future.
-- It is possible to use it to connect to a Duet3D mainboard, or external wifi module as well.
+- It is possible to use it to connect to a Duet3D mainboard, or external WiFi module as well.
 
 **USB-C**: This port can be a host or device port.
 - It can be used to connect to a Duet3D mainboard in host mode
-- It is possible to use it to add and external wifi modules or USB flash drives in host mode (although the USB A port may be easier)
+- It is possible to use it to add external WiFi modules or USB flash drives in host mode (although the USB A port may be easier)
 - It can be used to connect to a PC in device mode for software debugging.
 - It can be used to power the DuetScreen in either mode (assuming the attached device/host is able to supply power).
 
@@ -124,7 +124,7 @@ The DuetScreen has two USB ports:
 
 ## Connecting to a Duet mainboard
 
-Multiple methods are available to connect the DuetScreen to a mainboard. The recommended method is to use a USB cable. This allows for a consistent connection, not reliant on a wifi network and is the easiest to set up.
+Multiple methods are available to connect the DuetScreen to a mainboard. The recommended method is to use a USB cable. This allows for a consistent connection, not reliant on a WiFi network and is the easiest to set up.
 
 The Connection choice is made on the Settings > Connection screen:
 
@@ -134,7 +134,7 @@ The Connection choice is made on the Settings > Connection screen:
 
 ### USB
 1. Connect the DuetScreen to the mainboard using a USB cable.
-    - **Either** the **USB-A** and **USB-C** ports on the DuetScreen can be used.
+    - **Either** the **USB-A** or **USB-C** port on the DuetScreen can be used.
     - If using the **USB-C** port, make sure USB-C Mode is set to `USB-C Host`.
 2. On the Settings > Connection screen, select the USB connection method.
   [![DuetScreen Settings Connection screen showing connection method with USB selected](/hardware/duetscreen/duetscreen-settings-connection-usb-0.1.png =600x)](/hardware/duetscreen/duetscreen-settings-connection-usb-0.1.png){target=_blank}
@@ -163,7 +163,7 @@ There are a couple of methods to connect the DuetScreen to a WiFi network.
     * Find your WiFi SSID from the list under 'Available WiFi Networks'. If none are shown press `Refresh`. You may need to restart the DuetScreen if you have recently enabled the WiFi module.
     * Press the `Join` button, and enter the SSID password
     * The button should change to two buttons `Disconnect` and `Forget`
-    * The screen's IP address with be set automatically by DHCP (see below for setting a manual IP address)
+    * The screen's IP address will be set automatically by DHCP (see below for setting a manual IP address)
     * You can change SSID by pressing `Disconnect` and then `Connect` to another SSID
     * If you press `Forget`, the SSID will be removed from the list of remembered SSIDs
 
@@ -184,7 +184,7 @@ There are a couple of methods to connect the DuetScreen to a WiFi network.
 
 1. In Settings > Connections, make sure 'Connection Method' is set to `Internal WiFi` connection method.
 2. Ensure the DuetScreen is connected to the same WiFi network as the mainboard.
-3. Enter the IP address and password (if applicable) of the Duet mainboard in 'Duet IP Address' and 'Duet Password' fields.
+3. Enter the IP address and password (if applicable) of the Duet mainboard in the 'Duet IP Address' and 'Duet Password' fields.
   [![duetscreen-settings-connection-wifi-0.1.png](/hardware/duetscreen/duetscreen-settings-connection-wifi-0.1.png =600x)](/hardware/duetscreen/duetscreen-settings-connection-wifi-0.1.png){target=_blank}
 
 In RRF 3.7 and later, the mainboard config.g must include `M586 P0 S1` to enable HTTP.
@@ -206,7 +206,7 @@ static domain_name_servers=192.168.1.254
 The DuetScreen does not have an Ethernet port, but does support most USB-A/USB-C to Ethernet dongles using generic USB net class device drivers, as well as those using RTL8150/8152/8153 and AX88179A chipsets (as of v1.0.0 firmware). 
 
 * To use a USB to Ethernet dongle:
-  * Plug in the USB to Ethernet adapter into the USB-A or USB-C port, depending on the adapter.
+  * Plug the USB to Ethernet adapter into the USB-A or USB-C port, depending on the adapter.
   * Power can be supplied by the USB-C to Ethernet adapter, if it supports it.
   * Connect a network-connected Ethernet cable to the adapter.
 * On the Settings > Connection screen: 
@@ -217,7 +217,7 @@ The DuetScreen does not have an Ethernet port, but does support most USB-A/USB-C
 #### Connect the DuetScreen to a Duet Mainboard
 
 1. Ensure the DuetScreen is connected to the same network as the mainboard.
-1. Enter the IP address and password (if applicable) of the Duet mainboard in 'Duet IP Address' and 'Duet Password' fields.
+1. Enter the IP address and password (if applicable) of the Duet mainboard in the 'Duet IP Address' and 'Duet Password' fields.
 
 In RRF 3.7 and later, the mainboard config.g must include `M586 P0 S1` to enable HTTP.
 
@@ -268,7 +268,7 @@ All other screens and functions are accessed using the menu buttons on the left 
 
 If there is too much information to fit in a display area, for example in the list of tools or the list of jobs, a scroll bar will show on the side of the display area. Drag the list up and down to see the full list.
 
-There is an **Emergency Stop** button in the bottom left corner, and is shown on every screen. To use this, **press and drag it a short distance**. If you press it by mistake, it will not cause an emergency stop, but you will get a message.
+There is an **Emergency Stop** button in the bottom left corner, and it is shown on every screen. To use this, **press and drag it a short distance**. If you press it by mistake, it will not cause an emergency stop, but you will get a message.
 
 On pages with tabs, the DuetScreen will remember the last tab you visited if you navigate away. For example, if you are viewing the Control > Bed Levelling tab, then go to the Console, when you go back to Control, the Bed Levelling tab will be shown.
 
@@ -281,7 +281,7 @@ On pages with tabs, the DuetScreen will remember the last tab you visited if you
 
 The **Dashboard** screen gives you a quick overview of the state of your machine.
 
-[![DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank}Tools, heaters and temperatures are displayed on the left. The currently-active tool, if any, will be highlighted. Tools can be set to active or standby, and heaters can be set to active, standby or off. Active and standby temperatures can be set. Tools, beds and chamber heaters are all displayed; drag up and down to see the full list.
+[![DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-dashboard-multitool-job-01.png){target=_blank}Tools, heaters and temperatures are displayed on the left. The currently-active tool, if any, will be highlighted. Tools can be set to active or standby, and heaters can be set to active, standby or off. Active and standby temperatures can be set. Tools, beds and chamber heaters are all displayed. Drag up and down to see the full list.
 
 Heater temperatures are shown on the graph. Heaters can be individually turned off and on by clicking their name next to the graph.
 
@@ -318,7 +318,7 @@ The **Jobs** tab shows the list of jobs in the /gcodes folder on the SD card, in
 
 The **Control** screens give you more fine-grained, manual control over your machine.
 
-[![DuetScreen Contol screen showing movement controls, with unhomed axes highlighted](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png){target=_blank}The initial **Move** tab gives you control over the axes, typically showing the X, Y and Z axes. Additional axes will show next to the Z axis.
+[![DuetScreen Control screen showing movement controls, with unhomed axes highlighted](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move_unhomed-01.png){target=_blank}The initial **Move** tab gives you control over the axes, typically showing the X, Y and Z axes. Additional axes will show next to the Z axis.
 
 There are buttons for homing all axes, individual axes, and disabling motors (M18). These all have confirmation dialogues, to avoid unexpected movement if you press them by mistake.
 
@@ -327,13 +327,13 @@ If axes are unhomed, the homing buttons will be brighter, and the move buttons c
 <p style="clear:both"></p>
 
 
-[![DuetScreen Contol screen showing movement controls, with axes homed and manual movement controls enabled](/hardware/duetscreen/duetscreen-control-move_homed-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move_homed-01.png){target=_blank} Once homed, axes can be moved using the arrow buttons, or +/- buttons. Distance and Feedrate are set at the bottom of the screen.
+[![DuetScreen Control screen showing movement controls, with axes homed and manual movement controls enabled](/hardware/duetscreen/duetscreen-control-move_homed-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-move_homed-01.png){target=_blank} Once homed, axes can be moved using the arrow buttons, or +/- buttons. Distance and Feedrate are set at the bottom of the screen.
 
 Babystepping can be adjusted using the controls on the right side.
 
 <p style="clear:both"></p>
 
-[![DuetScreen Contol screen showing tool and temperature controls](/hardware/duetscreen/duetscreen-control-temperature_multitool-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-temperature_multitool-01.png){target=_blank}The **Tool / Temperature** tab gives granular control over tool states.
+[![DuetScreen Control screen showing tool and temperature controls](/hardware/duetscreen/duetscreen-control-temperature_multitool-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-temperature_multitool-01.png){target=_blank}The **Tool / Temperature** tab gives granular control over tool states.
 
 The currently-active tool, if any, will be highlighted. Tools can be set to active or standby, and heaters can be set to active, standby or off. Active and standby temperatures, and extrusion factor can be set. Filaments can be set, loaded and unloaded.
 
@@ -341,11 +341,11 @@ On the right is the extrusion control for the current tool. Set the distance and
 
 <p style="clear:both"></p>
 
-[![DuetScreen Contol screen showing Bed Levelling controls, with a heightmap heatmap shown](/hardware/duetscreen/duetscreen-control-heightmap-02.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-heightmap-02.png){target=_blank}The **Bed Levelling** tab presents controls for True Bed Levelling ([G32](/User_manual/Reference/Gcodes/G32){target=_blank}) and Mesh Bed Compensation ([G29](/User_manual/Reference/Gcodes/G29){target=_blank}). Previously saved bed meshes can also be viewed and loaded.
+[![DuetScreen Control screen showing Bed Levelling controls, with a heightmap heatmap shown](/hardware/duetscreen/duetscreen-control-heightmap-02.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-heightmap-02.png){target=_blank}The **Bed Levelling** tab presents controls for True Bed Levelling ([G32](/User_manual/Reference/Gcodes/G32){target=_blank}) and Mesh Bed Compensation ([G29](/User_manual/Reference/Gcodes/G29){target=_blank}). Previously saved bed meshes can also be viewed and loaded.
 
 <p style="clear:both"></p>
 
-[![DuetScreen Contol screen showing Fan controls, with fan sliders set at different levels](/hardware/duetscreen/duetscreen-control-fans-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-fans-01.png){target=_blank}The **Fans** tab shows currently configured fans, and allows manual control over them. Fan percentage can be set by clicking the "Off" or "Max" buttons, using the +/- buttons to increase/decrease the percentage, or by clicking on the fan percentage and using the fan dialogue to enter the amount.  
+[![DuetScreen Control screen showing Fan controls, with fan sliders set at different levels](/hardware/duetscreen/duetscreen-control-fans-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-control-fans-01.png){target=_blank}The **Fans** tab shows currently configured fans, and allows manual control over them. Fan percentage can be set by clicking the "Off" or "Max" buttons, using the +/- buttons to increase/decrease the percentage, or by clicking on the fan percentage and using the fan dialogue to enter the amount.  
 
 <p style="clear:both"></p>
 
@@ -365,7 +365,7 @@ The **Files** screen has two tabs, allowing access to files that have been uploa
 
 ### Console
 
-[![DuetScreen Console screen showing serial terminal access and Gcode Glossary](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png){target=_blank}The **Console** screen provides a serial terminal for sending Gcode commands directly to the Duet. There is also a Gcode command glossary, with brief descriptions of all Gcodes.
+[![DuetScreen Console screen showing serial terminal access and GCode Glossary](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-console_keyboard-0.1.png){target=_blank}The **Console** screen provides a serial terminal for sending GCode commands directly to the Duet. There is also a GCode command glossary, with brief descriptions of all GCodes.
 
 <p style="clear:both"></p>
 
@@ -384,7 +384,7 @@ If WiFi is selected, it will search for WiFi SSIDs and show a list to connect to
 
 <p style="clear:both"></p>
 
-[![DuetScreen Settings Display screen showing themes, fonts and colour options](/hardware/duetscreen/duetscreen-settings-display-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-display-01.png){target=_blank}The **Display** tab provides options for the customising the display. There are a number of different themes, and options for changing the fonts and the icon set.
+[![DuetScreen Settings Display screen showing themes, fonts and colour options](/hardware/duetscreen/duetscreen-settings-display-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-display-01.png){target=_blank}The **Display** tab provides options for customising the display. There are a number of different themes, and options for changing the fonts and the icon set.
 
 Using the "Custom" theme, you can also change the primary and secondary colour palette.
 
@@ -399,7 +399,7 @@ Using the "Custom" theme, you can also change the primary and secondary colour p
 # DuetScreen Software
 
 ## Writing DuetScreen Software to the SD card
-1. Download the latest `sdcard.img` from the [release page on Github](https://github.com/Duet3D/DuetScreen/tags){target=_blank}.
+1. Download the latest `sdcard.img` from the [release page on GitHub](https://github.com/Duet3D/DuetScreen/tags){target=_blank}.
 2. There are multiple programs to write an image file to an SD card:
 
     - We recommend using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}, which has versions for Windows, MacOS, Linux and Raspberry Pi.
@@ -419,7 +419,7 @@ Several methods are available to update the DuetScreen.
 > In this case, follow the instructions in the [Flashing a new DuetScreen](#flashing-a-new-duetscreen) section above.
 {.is-info}
 
-The (`DuetScreen.tar.gz`) will be available with all releases that do not require a full SD card image reflash.
+The update file (`DuetScreen.tar.gz`) will be available with all releases that do not require a full SD card image reflash.
 
 ### Using the GUI
 1. Copy the update file (`DuetScreen.tar.gz`) to the root directory of a USB flash drive.
