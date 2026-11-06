@@ -2,7 +2,7 @@
 title: Duet3D Accelerometer
 description: A standalone accelerometer board using the LIS2DW12 MEMS digital motion sensor. It designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards
 published: true
-date: 2026-10-30T13:23:36.836Z
+date: 2026-11-06T15:03:36.513Z
 tags: 
 editor: markdown
 dateCreated: 2023-06-22T01:09:12.785Z
@@ -10,7 +10,7 @@ dateCreated: 2023-06-22T01:09:12.785Z
 
 # Introduction
 
-Various Duet 3 toolboards have a builtin accelerometer. However for systems not using a toolboard, this small stand alone accelerometer can be used. It connects to the SPI Daughterboard header (also labelled Temp DB on earlier Duets) with the supplied 1m ribbon cable. Accelerometer readings captured can be used to tune input shaping parameters to avoid ringing artefacts.
+Various Duet 3 tool boards have a built-in accelerometer. However for systems not using a tool board, this small standalone accelerometer can be used. It connects to the SPI Daughterboard header (also labelled Temp DB on earlier Duets) with the supplied 1m ribbon cable. Accelerometer readings captured can be used to tune input shaping parameters to avoid ringing artefacts.
 
 # Features
 
@@ -25,8 +25,8 @@ Various Duet 3 toolboards have a builtin accelerometer. However for systems not 
 
 ## Firmware notes
 
-* **Duet3D Accelerometer v0.2** is compatible RepRapFirmware v3.4.6 or v3.5.0 and later
-* **Duet3D Accelerometer v1.0** is compatible RepRapFirmware v3.5.0 and later
+* **Duet3D Accelerometer v0.2** is compatible with RepRapFirmware v3.4.6 or v3.5.0 and later
+* **Duet3D Accelerometer v1.0** is compatible with RepRapFirmware v3.5.0 and later
 * Connection to the SPI daughterboard header of a Duet 3 Expansion 3HC or Duet 3 Expansion 1HCL version 2.0 is supported in RepRapFirmware 3.7 and later
 
 # Physical properties and connections
@@ -37,41 +37,40 @@ Various Duet 3 toolboards have a builtin accelerometer. However for systems not 
 
 ## Mounting
 
-The hole in the PCB is 6.1mm so it can be mounted using a standard 3d printing nozzle as well as systems like the Revo nozzles:
+The hole in the PCB is 6.1mm so it can be mounted using a standard 3D printing nozzle as well as systems like the Revo nozzles:
 
-![Duet3d accelerometer on revo micro](/hardware/accelerometer/duet3d_accelerometer_on_revo_micro.jpg =400x)
+[![Duet3d accelerometer on revo micro](/hardware/accelerometer/duet3d_accelerometer_on_revo_micro.jpg =400x)](/hardware/accelerometer/duet3d_accelerometer_on_revo_micro.jpg){target=_blank}
 
-The accelerometer needs to be firmly mounted for data collection so it the nozzle is <6mm (such as the revo) use a m4 washer between the flanged top of the revo heatbreak and the accelerometer PCB. This is not necessary for V6 and similar nozzles.
+The accelerometer needs to be firmly mounted for data collection so if the nozzle is <6mm (such as the Revo) use an M4 washer between the flanged top of the Revo heatbreak and the accelerometer PCB. This is not necessary for V6 and similar nozzles.
 
-In the case of the revo the spring holding the heater core against the end of the nozzle is not sufficent to hold the accelerometer PCB firmly in position by itself, hence the requirement to mount it using an M4 wahser and the flange of the nozzle.
+In the case of the Revo the spring holding the heater core against the end of the nozzle is not sufficient to hold the accelerometer PCB firmly in position by itself, hence the requirement to mount it using an M4 washer and the flange of the nozzle.
 
-Note the orientation of the accelerometer board is important the correct data collection and analysis, see the orientation section below.
+Note the orientation of the accelerometer board is important for correct data collection and analysis. See the orientation section below.
 
-> **WARNING: Do not heat the hotend with the accelerometer mounted using the nozzle.**
+> **WARNING: Do not heat the hot end with the accelerometer mounted using the nozzle.**
 Manually set the active and standby temperature to 0°C before using the IS plugin.
 {.is-danger}
 
 ## 3D model
 
-A STEP 3D model is [available on github.](https://github.com/Duet3D/Duet3D-Accelerometer/tree/main/Duet3D%20Accelerometer%20v0.2){target=_blank}
+A STEP 3D model is [available on GitHub](https://github.com/Duet3D/Duet3D-Accelerometer/tree/main/Duet3D%20Accelerometer%20v0.2){target=_blank}.
 
 ## Wiring Diagram
 
-[![diagram showing the pinout for the header on the Duet 3D Accelerometer v0.2](/hardware/accelerometer/duet3d_accelerometer_v0.2_wiring.png =400x)](/hardware/accelerometer/duet3d_accelerometer_v0.2_wiring.png)
+[![diagram showing the pinout for the header on the Duet 3D Accelerometer v0.2](/hardware/accelerometer/duet3d_accelerometer_v0.2_wiring.png =400x)](/hardware/accelerometer/duet3d_accelerometer_v0.2_wiring.png){target=_blank}
 
 ## Wiring notes
 
-The accelerometer comes with a 1m long 10 way IDC cable that plugs directly into the SPI DB header on Duet mainboards. Ensure the connector orentation is correct so pin1 on the IDC goes to pin 1 on the mainboard:
+The accelerometer comes with a 1m long 10 way IDC cable that plugs directly into the SPI DB header on Duet mainboards. Ensure the connector orientation is correct so pin 1 on the IDC goes to pin 1 on the mainboard:
 
-![Duet3D accelerometer connected to the Duet 3 6HC mainboard](/hardware/accelerometer/duet3d_accelerometer_6hc.jpg =400x)
+[![Duet3D accelerometer connected to the Duet 3 6HC mainboard](/hardware/accelerometer/duet3d_accelerometer_6hc.jpg =400x)](/hardware/accelerometer/duet3d_accelerometer_6hc.jpg){target=_blank}
 Duet3D accelerometer connected to the Duet 3 6HC mainboard
 
-![Duet3D accelerometer connected to the Duet 3 Mini5+ mainboard](/hardware/accelerometer/duet3d_accelerometer_mini5+.jpg =400x)
+[![Duet3D accelerometer connected to the Duet 3 Mini5+ mainboard](/hardware/accelerometer/duet3d_accelerometer_mini5+.jpg =400x)](/hardware/accelerometer/duet3d_accelerometer_mini5+.jpg){target=_blank}
 Duet3D accelerometer connected to the Duet 3 Mini5+ mainboard
 
 [![Pin 1 of the SPI_1 header on the Duet 3 Expansion 3HC for the Duet3D accelerometer](/hardware/accelerometer/duet3d_accelerometer_3hc_wiring.png =600x)](/hardware/accelerometer/duet3d_accelerometer_3hc_wiring.png){target=_blank}
 Duet3D accelerometer connection to the SPI_1 header of the Duet 3 Expansion 3HC (RRF 3.7 and later)
-
 
 The SPI_1 header on the Duet 3 Expansion 3HC (v1.03 shown) has the same pin order as the SPI daughterboard header on the Duet 3 Mainboard 6HC. Connect the cable so that pin 1 of the connector goes to pin 1 of the header. With the driver connectors at the bottom, as in the 3HC wiring diagram, pin 1 is the bottom right pin. The accelerometer CS signal uses pin 1 (spi.cs1) and INT1 uses pin 3 (spi.cs0), so the command is `M955 P[address].0 C"spi.cs1+spi.cs0"`, where [address] is the CAN address of the 3HC.
 
@@ -79,7 +78,7 @@ The SPI_1 header on the Duet 3 Expansion 3HC (v1.03 shown) has the same pin orde
 
 The I (orientation) parameter tells the firmware which of the 24 possible orientations the accelerometer chip is in relative to the printer axes. It is expressed as a 2-digit number. The first digit specifies which machine direction the Z axis of the accelerometer chip (usually the top face of the chip) faces, as follows: 0 = +X, 1 = +Y, 2 = +Z, 4 = -X, 5 = -Y, 6 = -Z. The second digit expresses which direction the X axis of the accelerometer chip faces, using the same code. If the accelerometer chip axes line up with the machine axis, the orientation is 20. This is the default orientation if no orientation has been specified.
 
-In all the images below the image of the accelerometer is shown as if stood in front of a "normal" machine where X+ is to the right and Y+ is towards the back
+In all the images below the image of the accelerometer is shown as if stood in front of a "normal" machine where X+ is to the right and Y+ is towards the back.
 
 | Accelerometer axis to machine axis |||||||
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -91,11 +90,11 @@ In all the images below the image of the accelerometer is shown as if stood in f
 | +Z to -Y | ![](/hardware/accelerometer/orientation/50.png){target=_blank}<br>`M955 P[##] I50` | NA | ![](/hardware/accelerometer/orientation/52.png){target=_blank}<br>`M955 P[##] I52` | ![](/hardware/accelerometer/orientation/54.png){target=_blank}<br>`M955 P[##] I54` | NA | ![](/hardware/accelerometer/orientation/56.png){target=_blank}<br>`M955 P[##] I56` |
 | +Z to -Z | ![](/hardware/accelerometer/orientation/60.png){target=_blank}<br>`M955 P[##] I60` | ![](/hardware/accelerometer/orientation/61.png){target=_blank}<br>`M955 P[##] I61` | NA | ![](/hardware/accelerometer/orientation/64.png){target=_blank}<br>`M955 P[##] I64` | ![](/hardware/accelerometer/orientation/65.png){target=_blank}<br>`M955 P[##] I65` | NA |
 
-In RRF 3.7 and later, the M955 command must also include the C parameter, otherwise the I parameter is not applied. See [M955](/User_manual/Reference/Gcodes/M955).
+In RRF 3.7 and later, the M955 command must also include the C parameter. Otherwise, the I parameter is not applied. See [M955](/User_manual/Reference/Gcodes/M955).
 
 # Configuration and use
 
-See the [connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) page for details on how to configure and use the accelerometer
+See the [connecting an accelerometer](/User_manual/Connecting_hardware/Sensors_Accelerometer) page for details on how to configure and use the accelerometer.
 
 See the [input shaping](/User_manual/Tuning/Input_shaping) page for details on how to use input shaping.
 
