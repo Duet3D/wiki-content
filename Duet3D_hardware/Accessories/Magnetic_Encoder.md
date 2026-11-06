@@ -2,7 +2,7 @@
 title: Duet3D Magnetic Encoder
 description: A Magnetic encoder for sensing motor position and rotation. Uses a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor
 published: true
-date: 2026-10-30T13:28:56.047Z
+date: 2026-11-06T17:10:13.194Z
 tags: 
 editor: markdown
 dateCreated: 2023-04-11T17:51:43.791Z
@@ -12,7 +12,7 @@ dateCreated: 2023-04-11T17:51:43.791Z
 
 The Duet3D magnetic encoder senses motor position and rotation using a hall effect sensor to detect the rotation of a diametrically-magnetised disc magnet attached to the motor shaft at the rear of the motor.
 
-![magneticencoderv0.3_05_s.jpg](/hardware/magnetic_encoder/magneticencoderv0.3_05_s.jpg =400x)
+[![Magnetic encoder v0.3](/hardware/magnetic_encoder/magneticencoderv0.3_05_s.jpg =400x)](/hardware/magnetic_encoder/magneticencoderv0.3_05_s.jpg){target=_blank}
 
 # Features
 
@@ -23,7 +23,7 @@ The Duet3D magnetic encoder senses motor position and rotation using a hall effe
 * Supplied with a 4mm thick, 6mm diameter magnet
 * SPI output for communication with a Duet 3 Expansion 1HCL controller (supplied with a 150mm ribbon cable for this purpose)
 * (v2.0 and later) 5V operation - compatible with the Duet 3 Expansion 1HCL controller via the use of the supplied SPI Buffer board.
-* (v1.0 and earlier) 3.3V operation - compatible with the Duet 3 Expansion 1HCL controller (Can be modified for 5V operation for other applications. 
+* (v1.0 and earlier) 3.3V operation - compatible with the Duet 3 Expansion 1HCL controller (Can be modified for 5V operation for other applications.) 
 * Maximum ambient temperature: 85°C
 
 ^1^ AS5047D/P sensors are interchangeable in this application.
@@ -33,9 +33,9 @@ The Duet3D magnetic encoder senses motor position and rotation using a hall effe
 ## SPI Buffer
 
 V2.0 Magnetic Encoder boards are supplied with an SPI buffer board, see here mounted on the 1HCL box header
-![1hcl_and_mag_enc_v2.0_buffer_board.jpg](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0_buffer_board.jpg =600x)
+[![1hcl and magnetic encoder v2.0 buffer board](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0_buffer_board.jpg =600x)](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0_buffer_board.jpg){target=_blank}
 
-The v2.0 magnetic encoders have a buffer on SPI_MISO, and expect 5V signals on MOSI_SCK and CS lines. the buffer board provides this and drops the MISO signal back to 3.3V
+The v2.0 magnetic encoders have a buffer on SPI_MISO, and expect 5V signals on MOSI_SCK and CS lines. The buffer board provides this and drops the MISO signal back to 3.3V.
 
 > The SPI Buffer board **MUST** be used with v2.0 Magnetic encoders. It **MUST NOT** be used with v1.0 Magnetic encoders.{.is-warning}
 
@@ -87,25 +87,25 @@ The SPI Buffer STEP file is [hosted here](https://github.com/Duet3D/Duet3-Magnet
 
 ### Printed Jig
 
-In order to ensure the magnet is centered on the motor shaft, a printed jig can assist with the magnet installation.
+In order to ensure the magnet is centred on the motor shaft, a printed jig can assist with the magnet installation.
 The STL and OpenSCAD design for the jig are [available here](https://github.com/Duet3D/Duet3-Magnetic-Encoder/tree/main/Magnet%20Alignment%20Jig){target=_blank}
-The jig can be printed using a reasonably tuned FDM 3d printer with a 0.4mm nozzle.
+The jig can be printed using a reasonably tuned FDM 3D printer with a 0.4mm nozzle.
 
-![Render of the magnetic Encoder magnet alignment jig](/hardware/magnetic_encoder/mag_enc_v0.3_installation_jig.png)
+[![Render of the magnetic Encoder magnet alignment jig](/hardware/magnetic_encoder/mag_enc_v0.3_installation_jig.png)](/hardware/magnetic_encoder/mag_enc_v0.3_installation_jig.png){target=_blank}
 
 
 ## Step 1 - Print, test fit jig and magnet
 
 * Test fit the printed jig to the motor, and test that the magnet can move freely in the central alignment hole without significant lateral movement
 
-![Image showing a Nema17 motor, the 3d printed magnet alignment jig and the magnet](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step1.png)
+[![Image showing a Nema17 motor, the 3d printed magnet alignment jig and the magnet](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step1.png)](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step1.png){target=_blank}
 
 ## Step 2 - Glue in magnet
 
 * Apply adhesive to the magnet, glue to rear motor shaft and leave adhesive to cure. 
 * Follow the manufacturer's instructions for the adhesive regarding curing time, temperature and any pressure required.
 
-![Image showing the before and after of the magnet placed in the alignment jig on the back of the Nema17 motor](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step2.png)
+[![Image showing the before and after of the magnet placed in the alignment jig on the back of the Nema17 motor](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step2.png)](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step2.png){target=_blank}
 
 ### Notes on magnet placement
 
@@ -113,7 +113,7 @@ There are three main factors that affect the strength and linearity of the magne
 
 <details>
 <summary>Off-axis magnet placement and encoder errors</summary>
-  The linearity of the detected magnetic field changes with mechanical displacements in the x and y direction (ie if the magnet is off-centre). Ideally, the magnet should rotate over the sensor chip such that the centre of the magnet, the centre of rotation, and the centre of the chip, are in one vertical line. The better the magnet is centred on the shaft, the lower the encoder errors will be. See section 1.5 and 1.6 of the application note.
+  The linearity of the detected magnetic field changes with mechanical displacements in the x and y direction (i.e. if the magnet is off-centre). Ideally, the magnet should rotate over the sensor chip such that the centre of the magnet, the centre of rotation, and the centre of the chip, are in one vertical line. The better the magnet is centred on the shaft, the lower the encoder errors will be. See section 1.5 and 1.6 of the application note.
 
   > The integral non linearity (INL) is one of the important parameters for position sensors in general. This parameter specifies the effective angle error from the total system. The magnetic position sensor system performance is mainly dependent on magnetic and mechanical constraints. Electrical errors from position sensor IC play mostly a minor role.
   
@@ -152,13 +152,13 @@ important parameter for the linearity of the system. The strength of the magneti
 
 ## Step 3 - Mount Magnetic Encoder PCB on motor
 
-* Remove two of the four m3 threaded bolts from the motor from opposing corners.
+* Remove two of the four M3 threaded bolts from the motor from opposing corners.
 
-![Image showing the Nema 17 motor with two of the 4 bolts through the back of the motor removes, also shown are the Magnetic encoder PCB, two long M3 bolts and 4 sets of nylon washers of different thicknesses.](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step3.png)
+[![Image showing the Nema 17 motor with two of the 4 bolts through the back of the motor removes, also shown are the Magnetic encoder PCB, two long M3 bolts and 4 sets of nylon washers of different thicknesses.](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step3.png)](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step3.png){target=_blank}
 
 * Fit the magnetic encoder board to the back of the motor, using the nylon washers as spacers so the encoder chip is ~1mm from the magnet.
 
-![Image showing the encoder board fitted to the back of the motor using nylon spacers and the longer M3 bolts. the image shows that the Magnetic encoder chip mounted on the baord is ~1mm for the magnet.](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step4.png)
+[![Image showing the encoder board fitted to the back of the motor using nylon spacers and the longer M3 bolts. the image shows that the Magnetic encoder chip mounted on the baord is ~1mm for the magnet.](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step4.png)](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step4.png){target=_blank}
 
 ## Step 4 - Connect to Duet 3 Expansion 1HCL
 
@@ -170,7 +170,7 @@ important parameter for the linearity of the system. The strength of the magneti
 
 Connect the encoder board to the Duet 3 Expansion 1HCL to the Magnetic Encoder v2.0 Buffer board using a 10-way straight-through ribbon cable. Fit the buffer board into the 10-way box connector on the 1HCL.
 
-![A Duet 3 1HCL v2.0 with the SPI buffer board fitted, connected to a Magnetic Encoder board via a 20cmm ribbon cable](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0.jpg =800x)
+[![A Duet 3 1HCL v2.0 with the SPI buffer board fitted, connected to a Magnetic Encoder board via a 20cmm ribbon cable](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0.jpg =800x)](/hardware/magnetic_encoder/1hcl_and_mag_enc_v2.0.jpg){target=_blank}
 
 >Ensure that the SPI buffer board is placed centrally in the socket on the 1HCL. It is possible to insert it shifted left or right by a pair of pins.{.is-warning}
 
@@ -184,24 +184,24 @@ As above, but note that the SPI Encoder Input connector on the 1HCL v1.0 is orie
 
 * Connect using the ribbon cable and a stepper motor cable to the 1HCL.
 * The ribbon cable and connector are keyed, so cannot be inserted the wrong way around. 
-  Note there is a difference between the 1HCL v1.0 and v2.0; the SPI Encoder Input connector is rotated 180°.
+  Note that on the 1HCL v2.0, the SPI Encoder Input connector is rotated 180° when compared to the 1HCL v1.0.
 * Move on to configuration.
 
-![mag_enc_v0.3_installation_step3.png](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step5.png)
+[![mag_enc_v0.3_installation_step3.png](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step5.png)](/hardware/magnetic_encoder/mag_enc_v0.3_installation_step5.png){target=_blank}
 
 The above picture shows a 1HCL v1.0 connected to a magnetic encoder v1.0.
 
 # Configuration
 
-This should be read in conjunction with the [Duet 3 Expansion 1HCL documentation](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL#commissioning){target=_blank}
+This should be read in conjunction with the [Duet 3 Expansion 1HCL documentation](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1HCL#commissioning){target=_blank}.
 
 ## Config.g changes
 
 [M569.1](/User_manual/Reference/Gcodes/M569_1){target=_blank} is used to configure the closed loop driver. 
 
-The T parameter specifies that the encoder used is the Duet 3 Magnetic encoder 
+The T parameter specifies that the encoder used is the Duet 3 Magnetic encoder.
 
-Here is a sample excerpt from a config.g file for RRF 3.5 to drive the X motors from 1HCL board configured at CAN addresses 50, with a Duet 3 Magnetic encoder.
+Here is a sample excerpt from a config.g file for RRF 3.5 to drive the X motors from a 1HCL board configured at CAN address 50, with a Duet 3 Magnetic encoder.
 
 ```
 M569.1 P50.0 T3 E1:2 R100 I0 D0 ; Configure the Duet 3 Expansion 1HCL board at CAN address 50 with a Duet 3 magnetic encoder, warn if 1 full step threshold exceeded, error if 2 full steps threshold exceeded. 
@@ -219,7 +219,7 @@ M569.6 P50.0 V2 ; conduct magnetic encoder calibration on move on closed loop dr
 
 This can be checked with V3 and cleared with V4, see [Runtime Tuning](/User_manual/Tuning/Duet_3_1HCL_tuning#runtime-tuning ){target=_blank}.
 
-It must be run once for a new 1HCL, motor, magnet or magnetic encoder board. The values are stored in flash memory, so it does not need to be run again unless the system changes (i.e. you replace the Duet 3 Expansion 1HCL controller, motor, magnet or magnet encoder board, or you remove and re-fit the magnetic encoder board or the magnet).
+It must be run once for a new 1HCL, motor, magnet or magnetic encoder board. The values are stored in flash memory, so it does not need to be run again unless the system changes (i.e. you replace the Duet 3 Expansion 1HCL controller, motor, magnet or magnetic encoder board, or you remove and re-fit the magnetic encoder board or the magnet).
 
 > Note: this initial tuning must be run with the motor unloaded for best results {.is-warning}
 
@@ -232,7 +232,7 @@ It must be run once for a new 1HCL, motor, magnet or magnetic encoder board. The
 * Connected the 5V pin from the 1HCL header (pin 10 on box header).
 * Removed the "cut for 5V operation" jumper - The AS5047x now operates in 5V mode.
 * Added a 5V buffer to the SPI_MISO line
-* Requires the use of the "SPI Buffer" board supplied with v2.0 Magnetic Encoder boards which buffer the MOSI,SCLK,and CS signals from the 1HCL to 5V and handles the BUFFERED MISO line back to the 1HCL.
+* Requires the use of the "SPI Buffer" board supplied with v2.0 Magnetic Encoder boards which buffer the MOSI, SCLK and CS signals from the 1HCL to 5V and handles the BUFFERED MISO line back to the 1HCL.
 
 ## v1.0
 
