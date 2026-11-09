@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2026-11-02T16:13:23.410Z
+date: 2026-11-09T14:59:26.089Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -118,7 +118,7 @@ Earlier versions have a permanent termination resistor, so must be at one end of
 
 Mainboard 6HC and 6XD can also be used as expansion boards. See 'Mainboard used as expansion board' section below.
 
-The 6HC and 6XD have two CAN buses, CAN0 and CAN1. CAN1 is the main CAN-FD bus for Duet 3 expansion and tool boards. From RRF 3.7.1, CAN0 can be used as a second CAN-FD bus for expansion and tool boards: after [M953](/User_manual/Reference/Gcodes/M953) P0 A64, for example, the boards with CAN addresses 64 to 125 are connected to CAN0 and all others to CAN1. Alternatively M953 P0 C1 makes CAN0 a classic CAN bus, which is used to talk to ODrive motor controllers on a Hangprinter. In RRF 3.7.0 and earlier, CAN0 can only be used for the ODrives.
+The 6HC and 6XD have two CAN buses, CAN0 and CAN1. CAN1 is the main CAN-FD bus for Duet 3 expansion and tool boards. From RRF 3.7.1, CAN0 can be used experimentally as a second CAN-FD bus for expansion and tool boards: after [M953](/User_manual/Reference/Gcodes/M953) P0 A64, for example, the boards with CAN addresses 64 to 125 are connected to CAN0 and all others to CAN1. Alternatively M953 P0 C1 makes CAN0 a classic CAN bus, which is used to talk to ODrive motor controllers on a Hangprinter. In RRF 3.7.0 and earlier, CAN0 can only be used for the ODrives.
 
 #### Duet 3 Mini 5+
 
