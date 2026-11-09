@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-11-09T14:59:55.860Z
+date: 2026-11-09T17:44:18.936Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -6744,15 +6744,20 @@ For further details about heater fault handling see [Heater faults and how to av
 
 ### Parameters
 
-* **Snnn** Output value
+* **Snnn:nnn** Output value. In RepRapFirmware 3.7.1 and later the optional second value is the output value of the retraction port; if only one value is given it is used for both ports
 * **Fnnn** Output PWM frequency (RepRapFirmware 1.17 and later; deprecated in 3.2 and later; not available in 3.5.0 and later)
 * **Qnnn** Output PWM frequency (RepRapFirmware 3.2 and later; not used in 3.6.0 and later)
-* **Pnnn** (RepRapFirmware 3.6.0 and later) GpOut port number to use
+* **Pnnn:nnn** (RepRapFirmware 3.6.0 and later) GpOut port number to use. In RepRapFirmware 3.7.1 and later an optional second GpOut port number is turned on while any extruder retracts. -1 means no port. If only one port number is given, no retraction port is used
 * **P"pin-name"** (RepRapFirmware 3.0 to 3.5.x) Name of the pin to use
 
 ### Examples
 <br>
 <pre class="cblock">
+; RRF 3.7.1 and later
+M950 P3 C"io4.out"       ; GpOut port 3 drives the extrude valve
+M950 P4 C"io5.out"       ; GpOut port 4 drives the retract valve
+M571 P3:4 S1             ; port 3 on while extruding, port 4 on while retracting
+M571 P3:3 S0.5:0.8       ; one port, 50% PWM while extruding and 80% while retracting
 ; RRF 3.6.0 and later
 M950 P3 C"io4.out"       ; set io4.out pin (PWM capable on 6HC) to GPIO port 3
 M571 P3 S0.5             ; turn on GpOut port 3 at 50% PWM while extrusion is commanded
@@ -6762,7 +6767,9 @@ M571 P"io4.out" S0.5 ; turn on io4.out output at 50% PWM while extrusion is comm
 
 ### Description
 
-This turns the controlled pin output on whenever forward extrusion is being done by any extruder, and turns it off when no forward extrusion is taking place. The output could control a fan or a stirrer or anything else that needs to work just when extrusion is happening. The S parameter sets the value of the PWM to the output. 0.0 or a negative value means the output is off whether or not forward extrusion is taking place; 1.0 means the output is fully on when forward extrusion is taking place and off at other times.
+This turns the controlled pin output on whenever forward extrusion is being done by any extruder, and turns it off when no forward extrusion is taking place. The output could control a fan or a stirrer or anything else that needs to work just when extrusion is happening. The S parameter sets the value of the PWM to the output. 1.0 means the output is fully on when forward extrusion is taking place and off at other times. With 0.0 or a negative value M571 does not drive the output at all.
+
+In RepRapFirmware 3.7.1 and later a second port can be given that is turned on whenever any extruder retracts and off at other times, for example to drive a retract valve. If both ports are the same, that port is on during both extrusion and retraction, with the PWM value given for each. A move in which one extruder extrudes and another retracts turns both outputs on.
 
 ### Notes
 
@@ -6772,6 +6779,10 @@ This turns the controlled pin output on whenever forward extrusion is being done
 
 * In RepRapFirmware 3.6.0 and later you specify the GpOut port number using the P parameter. The port must previously have been created using the [M950](/User_manual/Reference/Gcodes/M950) command and must be on the main board.
 * In RepRapFirmware 3.0 to 3.5.x you specify the pin name using the P parameter.
+* The outputs are switched by a separate task, so they change up to about 2ms after the move has started.
+* When input shaping is used, a move that is not shaped, such as a retraction, starts only when the shaping of the previous move has finished. Both outputs are off during this gap, which typically lasts some tens of milliseconds.
+* Only moves of the first motion system switch the outputs.
+* In RepRapFirmware 3.7.1 and later, the outputs are turned off at the end of the last move, also when an endstop or an emergency pause stops a move early, when M571 assigns a different port, and on an emergency stop. Extrusion or retraction that the cold extrusion check prevents does not switch them.
 
 #### RRF 1.x and 2.x
 
