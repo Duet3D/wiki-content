@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6HC
 description: Overview of Duet 3 Mainboard 6HC hardware features.
 published: true
-date: 2026-11-02T16:01:38.186Z
+date: 2026-11-09T14:59:31.248Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-09T14:00:13.273Z
@@ -247,7 +247,7 @@ Duet 3 Mainboard 6HC provides the following connectors:
 | **1 x 2x5 header** | TEMPDB | This is for connecting PT100, thermocouple and [ADC](/Duet3D_hardware/Accessories/Duet_3_ADC_daughterboard) daughterboards. |
 | **1 x RJ11 CAN connector** | CAN1_OUT | *v1.02 and later boards*: RJ11 connector for CAN1 (main CAN-FD bus). **USE CAN1** for connecting Duet expansion boards, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. 
 | ^^ | CAN_OUT |*v1.01a and earlier boards and v1.02d and later boards.* RJ11 CAN connector for CAN0 and CAN1. **USE CAN1** (pins 3,4) for connecting Duet expansion boards, CAN0 (pins 2,5) is for future expansion; see CAN-FD bus expansion section below. On v1.01a and earlier boards a permanent termination resistor is fitted, so this board must be at one end of the CAN bus. On v1.02d and later boards there are drill-to-disconnect jumpers for the can termination resistors. On v1.02d there are also drill-to-disconnect jumpers to disconnect the CAN-0 signals if the AUX_CAN header is to be used.  |
-| **1 x 2-pin KK connector** | AUX_CAN | *v1.02 and later boards.* Secondary CAN-FD bus CAN0. From RRF 3.7.1 expansion boards can also be connected to it, see [M953](/User_manual/Reference/Gcodes/M953) P0 A. Use CAN1 for expansion boards in earlier firmware, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. |
+| **1 x 2-pin KK connector** | AUX_CAN | *v1.02 and later boards.* Secondary CAN-FD bus CAN0. From RRF 3.7.1 expansion boards can also be connected to it experimentally, see [M953](/User_manual/Reference/Gcodes/M953) P0 A. Use CAN1 for expansion boards in earlier firmware, see CAN-FD bus expansion section below. Termination resistor fitted so normally this board must be at the end of the bus. There are drill-to-disconnect jumpers that allow the termination resistor to be removed, however this is not required in normal operation. |
 
 **Notes**
 
@@ -585,7 +585,7 @@ The CAN-FD bus provides connectivity to compatible devices. Duet3D manufactures 
 
 The CAN BUS is connected via RJ11 and at least 2-core twisted pair wiring. 6-core RJ11 wiring is more common, and can be used, though only one pair of wires are used.
 
-The Duet 3 Mainboard 6HC has two CAN buses, CAN0 and CAN1. CAN1 is the main CAN-FD bus for Duet 3 expansion and tool boards. From RRF 3.7.1, CAN0 can be used as a second CAN-FD bus for expansion and tool boards: after [M953](/User_manual/Reference/Gcodes/M953) P0 A64, for example, the boards with CAN addresses 64 to 125 are connected to CAN0 and all others to CAN1. Alternatively M953 P0 C1 makes CAN0 a classic CAN bus, which is used to talk to ODrive motor controllers on a Hangprinter. In RRF 3.7.0 and earlier, CAN0 can only be used for the ODrives.
+The Duet 3 Mainboard 6HC has two CAN buses, CAN0 and CAN1. CAN1 is the main CAN-FD bus for Duet 3 expansion and tool boards. From RRF 3.7.1, CAN0 can be used experimentally as a second CAN-FD bus for expansion and tool boards: after [M953](/User_manual/Reference/Gcodes/M953) P0 A64, for example, the boards with CAN addresses 64 to 125 are connected to CAN0 and all others to CAN1. Alternatively M953 P0 C1 makes CAN0 a classic CAN bus, which is used to talk to ODrive motor controllers on a Hangprinter. In RRF 3.7.0 and earlier, CAN0 can only be used for the ODrives.
 
 For further information on CAN connectivity, see [CAN connection](/User_manual/Machine_configuration/CAN_connection)
 
