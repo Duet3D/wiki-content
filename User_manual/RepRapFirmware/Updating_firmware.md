@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2025-11-08T10:19:30.824Z
+date: 2026-11-09T13:51:45.711Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -242,8 +242,9 @@ Bossa is available for Windows, Apple macOS and Linux.
 ##### Windows
 
 * Download one of:
-  * [Duet3D version of Bossa](https://github.com/Duet3D/BOSSA/releases/tag/1.9.1a-duet3d) (Windows only .exe file; supports Duet 2 and Duet 3 6HC/6XD)
-  * [ShumaTech Bossa v1.9.1](https://github.com/shumatech/BOSSA/releases/tag/1.9.1) (Windows/Mac installer, supports Duet 2, does not support Duet 3 6HC/6XD).
+  * [Duet3D version of Bossa](https://github.com/Duet3D/BOSSA/releases/){target=_blank} Use the latest version, Release 1.9.1b-duet3d at time of writing. (Windows .zip file; supports Duet 2 and Duet 3 6HC/6XD)
+  * [ShumaTech Bossa v1.9.1](https://github.com/shumatech/BOSSA/releases/tag/1.9.1){target=_blank} Not recommended. (Windows installer; supports Duet 2, does not support Duet 3 6HC/6XD).
+* Unzip, or install, Bossa.
 * Open Bossa. It should detect the correct COM port automatically, if not press 'Refresh' and select the port from the drop down menu.
 * Browse to the firmware binary file to be installed, and select it.
 * **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*, then press *Write*.
@@ -254,14 +255,13 @@ Bossa is available for Windows, Apple macOS and Linux.
 
 ##### macOS
 
-Currently, Bossa for macOS only supports flashing Duet 2 WiFi/Ethernet/Maestro boards, and NOT Duet 3 MB6HC/6XD boards. 
+Duet3D has updated Bossa (GUI) and bossac (command-line) to work with Intel and Apple Silicon Macs (Oct 2026). It is able to flash all current and past Duet3D boards, except the Mini 5+, which does not require Bossa to update the firmware. There are compiled versions for Intel and Apple Silicon (ARM64) Macs.
 
-For Duet 3 MB6HC/6XD boards, we recommend using a Windows PC, Raspberry Pi, or other Linux PC/installation/virtual machine. Intel-based Macs can boot into a Linux Live USB; see the other tabs here for guides. For ARM-based Macs, installing Windows 11 for ARM as a virtual machine also works. Please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x) for more details and other work arounds.
-
-Flashing with Bossa on macOS:
-
-* Download [ShumaTech Bossa v1.9.1](https://github.com/shumatech/BOSSA/releases/tag/1.9.1) (Windows/Mac installer, supports Duet 2, does not support Duet 3 6HC/6XD).
-* Open Bossa. It should detect the correct port automatically, if not press 'Refresh' and select the port from the drop down menu.
+**To use:**
+* Download the .dmg for your Mac architecture from the [Duet3D BOSSA GitHub repository](https://github.com/Duet3D/BOSSA/releases){target=_blank}. Use the latest version (Release 1.9.1b-duet3d at time of writing). Decompress the .dmg file, and copy it to an appropriate location.
+* To use the GUI BOSSA application, double click it.
+* The BOSSA application is not 'signed' (an Apple developer account is required, which Duet3D don't have), and MacOS will not open it when you try to run it the first time. To allow it to run, go to System Settings > Privacy and Security, scroll down to the Security section. There should be section that says '"BOSSA.app" was blocked to protect your Mac'. There should be an option to "Open Anyway". Click that, then "Open Anyway" again, then it will prompt for your password, which should finally open BOSSA. 
+* BOSSA should detect the correct port automatically. If not press 'Refresh' and select the port from the drop down menu.
 * Browse to the firmware binary file to be installed, and select it.
 * **IMPORTANT:** Check boxes *Erase all*, *Lock*, and *Boot to flash*, then press *Write*.
 ![firmware_update_06_bossa.png](/manual/configuration/firmware_update_07_bossa.png =500x)
