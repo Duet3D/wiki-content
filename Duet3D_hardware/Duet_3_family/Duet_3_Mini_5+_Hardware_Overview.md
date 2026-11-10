@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-11-10T12:16:34.559Z
+date: 2026-11-10T12:20:05.722Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -64,7 +64,7 @@ The main hardware features of the Duet 3 Mini 5+ are listed below.
 
 ## Firmware notes
 
-* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later. The Duet3 Mini 5+ Ethernet v1.03 requires v3.5 or later firmware. The Duet 3 Mini 5+ WiFi v1.04 and later requires v3.7.0 or later firmware.
+* Duet 3 Mini 5+ is compatible with RepRapFirmware version 3.2 and later. The Duet3 Mini 5+ Ethernet v1.03 requires v3.5 or later firmware. The Duet 3 Mini 5+ WiFi v1.04 and later requires v3.7 or later firmware.
 * For **firmware update instructions**:
   * Standalone mode - [Installing and updating firmware](/User_manual/RepRapFirmware/Updating_firmware){target=_blank}. 
   * SBC mode - [SBC setup for Duet 3](/User_manual/Machine_configuration/SBC_setup){target=_blank}.
@@ -358,8 +358,7 @@ V_FUSED is distributed across the board as follows:
 
 ### Tabs{.tabset}
 
-#### Revision v1.03
-Ethernet only
+#### Revision v1.03 and later
 
 **5V**: Split up to 5V_EXT, 5V_INT. Those points can also be supplied by USB (i.e. VBUS) and from the 5V SELECT jumpers that allow selection from 5V_EXT_INPUT and 5V_SBC.
 * **5V_EXT feeds**:
@@ -419,7 +418,7 @@ M150 E0 R255 U255 B255 S3   ; set all 3 LEDs to white
 
 You can adjust the M150 command to change the backlight colours. Please note, interrupts are disabled for a short time while the backlight colours are changed, and printing will be paused during this time; therefore you should not change the backlight colours during a print.
 
-Note: (v1.03 only) the 12864 display cannot be used in conjunction with a second SPI DB as pins are shared.
+Note: (v1.03 and later) the 12864 display cannot be used in conjunction with a second SPI DB as pins are shared.
 
 ### Connecting a PanelDue
 
