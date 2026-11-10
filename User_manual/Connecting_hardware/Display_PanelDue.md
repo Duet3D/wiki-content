@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2026-10-30T13:35:46.715Z
+date: 2026-11-10T10:37:27.692Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -188,9 +188,23 @@ On the Duet 3 Mini 5+ you can ground the card detect signal by bridging pins 2 a
 
 # Firmware configuration
 
-**RepRapFirmware 3.x and later**: Using a PanelDue requires `M575 P2 S1 B57600` being present in config.g. In RRF 3.6 and earlier, use `M575 P1 S1 B57600`.
+## Configuration
 
-**RepRapFirmware 2.x and earlier**: In RRF2 the command above was assumed as the default, so no additional configuration is required.
+Use [M575](/User_manual/Reference/Gcodes/M575){target=_blank} to configure the serial channel number (P parameter), communication mode (S parameter) and baud rate (B parameter). The M575 command should be in config.g.
+
+**RepRapFirmware 3.7 and later**: use `M575 P2 S4 B115200` in config.g. RRF 3.7 introduced an extra USB port as P1, so serial port numbers incremented by 1. If you are using a long cable cable, you may need to reduce the baud rate, in which case change the B parameter to `B57600`
+
+**RepRapFirmware 3.4 to 3.6**: use `M575 P1 S4 B57600` in config.g. RRF 3.4 introduced CRC error detection with S4. Requires PanelDueFirmware v3.4.1 or later.
+
+**RepRapFirmware 3.0 to 3.3**: use `M575 P1 S1 B57600` in config.g. 
+
+**RepRapFirmware 2.x and earlier**: `M575 P1 S1 B57600` is assumed as the default, so no additional configuration is required unless the parameters need to be changed.
+
+#### Notes
+
+Older versions of RRF (3.3 and earlier) and PanelDueFirmware ( only support checksum error detection, with `S1`. Although this will still work with more recent firmwares, it doesn't provide the same degree of protection against interference as CRC error detection, set with `S4`.
+
+With a short cable, you may be able to increase the baud rate (B parameter) to B115200. Output buffers clear faster so there is less chance of delays when using multiple DWC connections, and the PanelDue might update a bit quicker. Longer cables risk interference at higher baud rates.
 
 ## PanelDue firmware and RRF compatibility
 
