@@ -2,7 +2,7 @@
 title: Installing and Updating PanelDue Firmware
 description: This page describes how to update the PanelDue Firmware.
 published: true
-date: 2025-06-04T10:51:45.629Z
+date: 2026-11-10T10:22:51.101Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T13:21:58.270Z
@@ -28,13 +28,13 @@ With the PanelDue connected to the Duet, and powered up, click on "Setup" on the
 > Generally, use the same PanelDue firmware version as the RepRapFirmware version installed on the mainboard. For example, for RepRapFirmware 3.5.x, use PanelDue firmware 3.5.x.
 {.is-info}
 
-From **RepRapFirmware 3.6.0** you will need to upgrade your PanelDue to firmware 3.5.1 or later. This is because some floating point values in the object model returned by M409 and HTTP call rr_model are now expressed using exponential format, which older versions of PanelDueFirmware don't handle. 
+From **RepRapFirmware 3.7.x** you will need to upgrade your PanelDue to firmware 3.5.2 or later. This is because of a change in the way that RRF reports delta kinematics.
 
-From **RepRapFirmware 3.7.x** including alpha, beta and RC versions, you will need to upgrade your PanelDue to firmware 3.5.2 or later. This is because of a change in the way that RRF reports delta kinematics.
+From **RepRapFirmware 3.6.x** you will need to upgrade your PanelDue to firmware 3.5.1 or later. This is because some floating point values in the object model returned by M409 and HTTP call rr_model are now expressed using exponential format, which older versions of PanelDueFirmware don't handle. 
 
-From RepRapFirmware 3.1.1, PanelDue hardware versions 7i, 5i, V3 and those V2 with ATSAM3S4B processor (shipped after August 2016) can use the improved [PanelDue firmware version 3.2.x and later](https://github.com/Duet3D/PanelDueFirmware/releases/){target=_blank}. Unfortunately, due to the lack of RAM, this and later versions of PanelDue firmware will not run on V1 or early V2 PanelDue boards that use the ATSAM3S2B chip. See [PanelDue firmware notes](https://github.com/Duet3D/PanelDueFirmware/blob/master/whatsnew.md){target=_blank} for details.
+From **RepRapFirmware 3.1.1**, PanelDue hardware versions 7i, 5i, V3 and those V2 with ATSAM3S4B processor (shipped after August 2016) can use the improved [PanelDue firmware version 3.2.x and later](https://github.com/Duet3D/PanelDueFirmware/releases/){target=_blank}. Unfortunately, due to the lack of RAM, this and later versions of PanelDue firmware will not run on V1 or early V2 PanelDue boards that use the ATSAM3S2B chip. See [PanelDue firmware notes](https://github.com/Duet3D/PanelDueFirmware/blob/master/whatsnew.md){target=_blank} for details.
 
-For all versions of RepRapFirmware prior to RRF 3.1.1 use [PanelDue firmware version 1.25.0](https://github.com/Duet3D/PanelDueFirmware/releases/tag/1.25.0){target=_blank} on all versions of PanelDue hardware.
+For all versions of **RepRapFirmware prior to RRF 3.1.1** use [PanelDue firmware version 1.25.0](https://github.com/Duet3D/PanelDueFirmware/releases/tag/1.25.0){target=_blank} on all versions of PanelDue hardware.
 
 ## Find the correct file
 
@@ -139,7 +139,7 @@ If your Duet is running versions of RepRapFirmware older than RRF 3.2, or you ar
 
 ## Requirements
 
-* Download and install Bossa 1.9.1 from [ShumaTech](http://www.shumatech.com/web/products/bossa){target=_blank}. Versions of bossa or bossac earlier than 1.8 will not be able to program the version 3.0 PanelDue board. Apple Macintosh users, please see [this forum thread](https://forum.duet3d.com/topic/11445/flashing-firmware-on-mac-os-x){target=_blank}
+* Download and install Bossa. See the [Bossa installation instructions here](/User_manual/RepRapFirmware/Updating_firmware#software-for-firmware-flashing){target=_blank}.
 * Download the appropriate PanelDue firmware file from the sources listed above.
 
 ## Connect the PanelDue to the host computer
