@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-11-06T15:11:09.606Z
+date: 2026-11-10T13:57:52.039Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -375,6 +375,11 @@ The **Files** screen has two tabs, allowing access to files that have been uploa
 The **Settings** screens allow you to manage and fine tune the DuetScreen for your machine. There are four tabs.
 
 [![DuetScreen Settings General screen showing language, brightness and notification settings](/hardware/duetscreen/duetscreen-settings-general-01.png =50%x){.align-right}](/hardware/duetscreen/duetscreen-settings-general-01.png){target=_blank}The **General** tab has settings for initial DuetScreen setup, and message notification handling. 
+
+The **Notification Level** changes what severity of messages are displayed as a modal. Messages are typically responses to gcodes (a failed G28 would generate an error for example). The messages are categorised into a severity like DWC and only messages that have an equal or greater severity to the setting you choose will be shown as a modal. There are 4 levels to the notifications: Info, Success, Warn and Error. Info will show all messages, Warning is only warning and errors, and Error is only errors.
+
+This doesn't impact what is displayed in the console, as all messages are shown there.
+
 
 <p style="clear:both"></p>
 
