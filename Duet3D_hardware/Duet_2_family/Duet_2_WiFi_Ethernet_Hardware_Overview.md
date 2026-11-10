@@ -2,25 +2,25 @@
 title: Duet 2 WiFi and Ethernet Hardware Overview
 description: The Duet 2 Wifi and Ethernet are 2nd generation Duet 3D printer electronics. 
 published: true
-date: 2024-10-17T11:49:18.687Z
+date: 2026-11-10T14:48:19.471Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:41:40.953Z
 ---
 
-![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top.jpg =500x)
+![duet_2_wifi_v1.04c_top.jpg](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_v1.04c_top.jpg =500x){target=_blank}
 
 # Introduction
 
 The Duet 2 WiFi and Ethernet are the 2nd generation of Duet 3D motion control electronics. They are an advanced 32-bit controller for 3D printers and other CNC machines.
 
-> The Duet 2 Wifi External Antenna and Duet 2 Ethernet are Not Recommended for New Designs. The Duet 2 Wifi with Internal Antenna is End Of Life.{.is-info}
+> The Duet 2 WiFi External Antenna and Duet 2 Ethernet are Not Recommended for New Designs. The Duet 2 WiFi with Internal Antenna is End Of Life.{.is-info}
 
 # Features
 
 Duet 2 WiFi and Ethernet - main hardware features.
 
-![duet_2_we_v1.04_feature.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_v1.04_feature.png =600x)
+![duet_2_we_v1.04_feature.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_v1.04_feature.png =600x){target=_blank}
 
 The feature diagram for v1.03 and earlier is below.
 
@@ -47,7 +47,7 @@ The feature diagram for v1.03 and earlier is below.
 | **EXPANSION** ||
 |---|---|
 | **Support for attached Raspberry Pi or other Single Board Computer (SBC)** | Yes, from RRF 3.2 (requires hardware modification/additional hardware) |
-| **External stepper driver support** | Up to 7 external stepper drivers when not using Duex expansion board. Signal levels are 3.3V. A 5-channel expansion breakout board is available to level shift them to 5V. |
+| **External stepper driver support** | Up to 7 external stepper drivers when not using DueX expansion board. Signal levels are 3.3V. A 5-channel expansion breakout board is available to level shift them to 5V. |
 | **Stepper driver expansion** | Up to 7 additional stepper drivers, of which up to 5 can be TMC2660, as offered by optional [DueX5 expansion board](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) |
 | **PT100 and thermocouple daughter board support** | 2 boards (4 channels) |
 | **Heater/thermistor expansion** | 5 more extruder heater outputs and thermistor inputs, 2 more PT100/thermocouple daughter boards (4 channels), offered by optional [DueX5 expansion board](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) |
@@ -58,7 +58,7 @@ The feature diagram for v1.03 and earlier is below.
 
 | **NOTES** |
 |---|
-| ^1^ The board is rated to 18A on the bed heater channel, however from version 1.04 forwards they are supplied with a 15A fuse fitted (18A are difficult to source). If you need 18A on the bed heater channel then you need to fit a 20A fuse and take further precautions against over current. |
+| ^1^ The board is rated to 18A on the bed heater channel. However, from version 1.04 forwards they are supplied with a 15A fuse fitted (18A are difficult to source). If you need 18A on the bed heater channel then you need to fit a 20A fuse and take further precautions against over current. |
 | ^2^ The medium current output circuit is fused at 1A. The individual outputs are rated for 1A continuous, but 1.5A for short periods, e.g. fan starting up. The fuse can be increased to 2A as long as the individual outputs will be used within their ratings. |
 
 ## Operating limits
@@ -70,7 +70,7 @@ The feature diagram for v1.03 and earlier is below.
 | **Input connector rated current** | 25A maximum |
 | **Inputs/Outputs** | STP pins are 8V-tolerant on revision 1.04 and later, Z Probe IN pin is 30V-tolerant in revision 1.04 and later |
 | **Fuses** | 15A for bed, 7.5A for stepper drivers and extruder heaters, 1A for fans. |
-| **5V current limit** | 2.0A total on 5V and 3.3v, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power.
+| **5V current limit** | 2.0A total on 5V and 3.3V, including the internal current consumption (around 200-300mA), any PanelDue or other display, and any endstops/Z probes that draw significant power.
 | **Maximum ambient temperature** | 70°C |
 
 **Note: At high currents, it is essential to use either ferrules or solid core wire with the terminal blocks on the Duet 2 and DueX.**
@@ -83,7 +83,7 @@ When on external 5V power with no connected devices drawing power from the 3.3V 
 
 ## Firmware notes
 
-* Compatible RepRapFirmware versions: RRF 2.x, RRF 3.x
+* Compatible RepRapFirmware versions: RRF 2.x, RRF 3.x up to 3.6.x. Not supported in RRF 3.7.0 or later because of flash memory constraints.
 * The Duet 2 WiFi has a WiFi module, the [ESP8266](https://en.wikipedia.org/wiki/ESP8266){target=_blank}. This is another 32-bit microcontroller with its own flash storage area, which is where the WiFi connection details are stored. It runs its own firmware, which occasionally needs to be updated. The Duet 2 Ethernet has a W5500 TCP IP processor on board which handles the low level Ethernet networking functions. Installation of both the WiFi and Ethernet modules on the same board at the same time is not supported.
 
 
@@ -91,10 +91,10 @@ When on external 5V power with no connected devices drawing power from the 3.3V 
 
 Importantly Duets are Open:
 
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet-2-Hardware/blob/master/LICENSE){target=_blank}
-* All hardware [source files](https://github.com/Duet3D/Duet-2-Hardware){target=_blank} are available on Github.
-* Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/){target=_blank} using open tools means the barrier to getting involved is as low as possible.
+* The Duets are Open Hardware. See [our licence here](https://github.com/Duet3D/Duet-2-Hardware/blob/master/LICENSE){target=_blank}
+* All hardware [source files](https://github.com/Duet3D/Duet-2-Hardware){target=_blank} are available on GitHub.
+* Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained. See [Contributing to development](/User_manual/Reference/Developers){target=_blank} for more information.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank} and [Eclipse](https://eclipse.org/){target=_blank}. Using open tools means the barrier to getting involved is as low as possible.
 
 ## Feature Comparison
 
@@ -115,7 +115,7 @@ The diagrams below show the mounting hole points in the format X,Y so the bottom
 
 *Note: from v1.05 the WiFi Antenna size on the Duet 2 WiFi internal antenna version has increased slightly*
 
-[See this image for Duet 2 Wifi dimensions for v1.04c and earlier](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_dimensions.png){target=_blank}
+[See this image for Duet 2 WiFi dimensions for v1.04c and earlier](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_wifi_dimensions.png){target=_blank}
 
 
 
@@ -134,7 +134,7 @@ Please note:
 
 ## Cooling
 
-The PCB is designed to transfer heat from the stepper drivers and power mosfets to the underside of the board. Therefore your mounting method should encourage good airflow underneath the board.
+The PCB is designed to transfer heat from the stepper drivers and power MOSFETs to the underside of the board. Therefore your mounting method should encourage good airflow underneath the board.
 
 If you mount the board vertically, make sure that cool air can enter at the bottom of the board, flow upwards behind the board, and escape at the top. Convection cooling will usually be sufficient, but if you are using high stepper motor currents then you may wish to add a fan below the board to encourage the upward flow of air. Make the spacing between the back of the board and the panel or enclosure large enough to allow a good flow of air.
 
@@ -144,9 +144,9 @@ If you mount the board horizontally then a cooling fan is recommended, especiall
 
 ## 3D models
 
-Phil Maddox has created a 3d model of the Duet 2 WiFi [available here](https://grabcad.com/library/duet-wifi-1){target=_blank}.
+Phil Maddox has created a 3D model of the Duet 2 WiFi [available here](https://grabcad.com/library/duet-wifi-1){target=_blank}.
 
-Giuliano Moschini has created a model based on the Duet 2 WiFi model for the Duet 2 Ethernet [available here](https://grabcad.com/library/duet-ethernet-1){target=_blank}
+Giuliano Moschini has created a model based on the Duet 2 WiFi model for the Duet 2 Ethernet [available here](https://grabcad.com/library/duet-ethernet-1){target=_blank}.
 
 # Physical connections
 
@@ -154,29 +154,29 @@ Giuliano Moschini has created a model based on the Duet 2 WiFi model for the Due
 
 ### Revision v1.0 and later
 
-The version 1.0 and later boards is shown in the diagram below.
+The version 1.0 and later boards are shown in the diagram below.
 
 [![Diagram showing the Duet 2 board with the pins labelled to aid wiring.](/duet_boards/duet_2_wifi_ethernet_maestro/duet2ndgen_connections_v1.0-1.5_d2.1.png =600x)](/duet_boards/duet_2_wifi_ethernet_maestro/duet2ndgen_connections_v1.0-1.5_d2.1.png){target=_blank}
 
-The .svg version of this diagram is [available on github](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Wiring%20Diagrams){target=_blank}.
+The .svg version of this diagram is [available on GitHub](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Wiring%20Diagrams){target=_blank}.
 
 ## Description of Connections
 
-Duet 2 WiFi and Ethernet profide the following connectors:
+Duet 2 WiFi and Ethernet provide the following connectors:
 
 | Header | PCB label | Function |
 |---|---|
 | **2-way screw terminals, 6.35mm spacing** | POWER IN, GND, VIN | Two terminals for main VIN and GND. |
-| **2-way screw terminals, 6.35mm spacing** | BED HEATER, BED-, VIN | Two terminals intended to drive a bed heater. The ground side BED- is switched by a mosfet and the positive side is protected by a 15A fuse. If using the BED HEATER terminal to drive a SSR, take note that their polarity is opposite to the polarity of the VIN terminals. There is no on-board flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
+| **2-way screw terminals, 6.35mm spacing** | BED HEATER, BED-, VIN | Two terminals intended to drive a bed heater. The ground side BED- is switched by a MOSFET and the positive side is protected by a 15A fuse. If using the BED HEATER terminal to drive an SSR, take note that their polarity is opposite to the polarity of the VIN terminals. There is no on-board flyback diode on this output, so if you connect a high-current inductive load, you must use an external flyback diode. |
 | **5 x 4-pin KK headers** | X MOTOR, Y MOTOR, Z MOTOR, E0 MOTOR, E1 MOTOR | Stepper motor connections. Z MOTOR has two 4-pin KK headers, wired in series, for convenient connection of two Z axis stepper motors to ZA and ZB. If you only have one Z-Axis stepper motor, connect it to ZA connector and ensure jumpers are installed on the ZB connector; without a second stepper motor or the jumpers in place on ZB, ZA will not function. |
-| **4-way screw terminals, 3.5mm spacing** | E0 HEAT, E1 HEAT | Intended for high current output, eg extruder heaters or fans. Maximum recommended current 6A each. There are no on-board flyback diodes on these outputs, so if you connect a high-current inductive load, you must use an external flyback diode. |
+| **4-way screw terminals, 3.5mm spacing** | E0 HEAT, E1 HEAT | Intended for high current output, e.g. extruder heaters or fans. Maximum recommended current 6A each. There are no on-board flyback diodes on these outputs, so if you connect a high-current inductive load, you must use an external flyback diode. |
 | **3 x 2-pin KK headers** | BED TEMP, E0 TEMP, E1 TEMP | Connections for thermistor or PT1000 sensors |
 | **5 x 3-pin KK headers** | X_STOP, Y_STOP, Z_STOP, E0_STOP, E1_STOP | I/O connectors for endstop and filament monitors |
 | **5 x 2-pin KK headers** | Always On Fans, FAN0, FAN1, FAN2 | 2 always-on fan connectors, 3 PWM-controlled fan connectors. Voltage selectable between VIN, 5V or external supply (all fans together). Total current draw not to exceed 1A. From board revision v1.02, PWM fan outputs are protected by on-board flyback diodes. |
 | **1 x 4-pin KK headers** | PanelDue | Connector for 4-wire PanelDue connection |
 | **1 x 4-pin KK headers** | Probe | Connector for probe with IN/GND/MOD/3V3 pins. NOTE: IN pin is 30V-tolerant in revision 1.04 and later, but only 3.3V-tolerant in revision 1.03 boards and earlier. |
 | **1 x 3-pin KK headers** | 5V_PS | Used to turn on and off an external 12/24V supply |
-| **2x5 header, open** | SPIO | This is for connecting PT100 and thermocouple interface boards and/or other SPI connected devices, eg accelerometer. |
+| **2x5 header, open** | SPIO | This is for connecting PT100 and thermocouple interface boards and/or other SPI connected devices, e.g. accelerometer. |
 | **2 x 10 pin IDC header** | CONN_SD, CONN_LCD | Connects the PanelDue UART and shared SPI bus for external SD card. Powered from 5V supply |
 | **2x25 header, keyed** | EXPANSION HEADER | 50-pin header for connecting DueX5, DueX2 or Duet Breakout Board, for additional stepper motors, heaters, temperature sensors, endstops, probes, fans etc. Pins can also be connected to individually for various additional functionality |
 | **Network** | **WiFi:** | Blue LED indicates WiFi connection status. |
@@ -186,7 +186,7 @@ Duet 2 WiFi and Ethernet profide the following connectors:
 
 The board has a number of on board LEDs which are used to indicate the state of power, endstop switches, heaters etc:
 
-![duet_2_we_leds.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_leds.png =500x)
+![duet_2_we_leds.png](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_leds.png =500x){target=_blank}
 
 ## Pin names
 
@@ -194,24 +194,24 @@ For more information on pin names, see [Pin Names](/User_manual/RepRapFirmware/M
 
 RepRapFirmware 3 uses pin names for user-accessible pins, rather than pin numbers, to communicate with individual pins on the PCB. In RRF 3 no user-accessible pins are defined at startup by default.
 
-For legacy reasons, the pins on the Duet 2 and Duex PCBs and wiring diagram are labelled in a manner similar, but not exactly the same, as the RepRapFirmware 3.x pin name format. For example:
+For legacy reasons, the pins on the Duet 2 and DueX PCBs and wiring diagram are labelled in a manner similar, but not exactly the same, as the RepRapFirmware 3.x pin name format. For example:
 
 fan2 -> FAN2 etc
 ystop -> Y endstop switch, low end, active high
 zprobe.in+zprobe.mod -> Z_PROBE_IN and ZPROBE_MOD
 exp.heater5 - > HEATER5
 
-Pins can be defined for use by a number of gcode commands, eg M574, M558, M950. Once defined, if you need to free up, for example, the fan 0 pins, use:
+Pins can be defined for use by a number of GCode commands, e.g. M574, M558, M950. Once defined, if you need to free up, for example, the fan 0 pins, use:
 
 `M950 F0 C"nil" ; disable fan 0 and free up the associated pin`
 
 Or to free up an endstop, send:
 
-`M574 X0 P”nil”`
+`M574 X0 P"nil"`
 
-In the table below, multiple names on a line are aliases for a single pin. Some pins (primarily heater pins) have an inversion between the processor and the corresponding output, RRF3 will automatically allow for this inversion. These pins are marked with a * after the pin name in the list below. For legacy reasons some Duex pins are inverted or not, depending on the name/alias used to access them. This is indicated with a ! in front of the pin name in the sable below. e.g. exp.heater3 is the same pin as !duex.e2heat the ! indicates that the logic of the pin is inverted when referred to as "duex.e2heat"
+In the table below, multiple names on a line are aliases for a single pin. Some pins (primarily heater pins) have an inversion between the processor and the corresponding output. RRF3 will automatically allow for this inversion. These pins are marked with a * after the pin name in the list below. For legacy reasons some DueX pins are inverted or not, depending on the name/alias used to access them. This is indicated with a ! in front of the pin name in the table below. For example, exp.heater3 is the same pin as !duex.e2heat. The ! indicates that the logic of the pin is inverted when referred to as "duex.e2heat"
 
-| Pin label on Duet PCB/wiring diagram | RRF3 Pin name (Duet) | Notes / Shared with (on Duex/BoB) |
+| Pin label on Duet PCB/wiring diagram | RRF3 Pin name (Duet) | Notes / Shared with (on DueX/BoB) |
 |--|--|
 | **Heater outputs** |||
 | BED HEAT | bedheat * | |
@@ -295,12 +295,12 @@ To see where these pins are, see the *Wiring diagram* section above.
 | connlcd.encb | - | CONN_LCD ENC_B (pin 3) | yes | no | no | |
 | connlcd.enca | - | CONN_LCD ENC_A (pin 4) | yes | no | no | |
 | connsd.encsw | 64 | CONN_SD ENC_SW (pin 7) | yes | no | no | See notes below. Signal name: ENC_SW |
-| connlcd.5, connlcd.db7, connlcd.np | - | CONN_LCD pin 5 | yes | no | no | RRF 3.5beta4 and later only
-| connlcd.6, connlcd.rs | - | CONN_LCD pin 6 | yes | no | no | RRF 3.5beta4 and later only
-| connlcd.7, connlcd.db6 | - | CONN_LCD pin 7 | yes | no | no | RRF 3.5beta4 and later only
-| connlcd.8, connlcd.en | - | CONN_LCD pin 8 | yes | no | no | RRF 3.5beta4 and later only
-| connlcd.9, connlcd.db5 | - | CONN_LCD pin 9 | yes | no | no | RRF 3.5beta4 and later only
-| connlcd.10, connlcd.db4 | - | CONN_LCD pin 10 | yes | no | no | RRF 3.5beta4 and later only
+| connlcd.5, connlcd.db7, connlcd.np | - | CONN_LCD pin 5 | yes | no | no | RRF 3.5.0 and later only
+| connlcd.6, connlcd.rs | - | CONN_LCD pin 6 | yes | no | no | RRF 3.5.0 and later only
+| connlcd.7, connlcd.db6 | - | CONN_LCD pin 7 | yes | no | no | RRF 3.5.0 and later only
+| connlcd.8, connlcd.en | - | CONN_LCD pin 8 | yes | no | no | RRF 3.5.0 and later only
+| connlcd.9, connlcd.db5 | - | CONN_LCD pin 9 | yes | no | no | RRF 3.5.0 and later only
+| connlcd.10, connlcd.db4 | - | CONN_LCD pin 10 | yes | no | no | RRF 3.5.0 and later only
 | urxd0	| - | PanelDue Dout | yes | no | no | Available for I/O if PanelDue not enabled |
 | utxd0 |	- | PanelDue Din | yes | no | no | Available for I/O if PanelDue not enabled |
 | pson | - | EXT 5V, PS_ON pin | output only | no | no | Open drain. Available if not controlling PSU |
@@ -309,11 +309,11 @@ To see where these pins are, see the *Wiring diagram* section above.
 | sx1509b.[0-15] | 120-135 | SX1509B expansion I/O pins | yes | yes | no | On an SX1509B-based expander board at I2C address 0x71 connected to a Duet 2 WiFi/Ethernet. See [Adding additional output ports](/User_manual/Connecting_hardware/IO_additional_IO) |
 
 **Notes:**
-* RRF 3.x - Pull up resistors on Duet 2/DueX5 inputs should be configured for connecting a digital input (like a switch, BLtouch, etc) only on inputs not labelled "n"Stop (xstop, ystop etc).
+* RRF 3.x - Pullup resistors on Duet 2/DueX5 inputs should be configured for connecting a digital input (like a switch, BLTouch, etc.) only on inputs not labelled "n"Stop (xstop, ystop etc).
 * RRF 2.x - Logical pin numbers for RRF 2.x are not the physical pin numbers on the expansion header, or the internal pin numbering within the firmware.
 * RRF 2.x - Logical pins 64 and 65 are supported in firmware 2.01 and later only. Note that the Z_PROB_MOD pin is driven automatically when some Z probe modes are selected.
-* RRF 2.x - Disable a heater using M307 H# A-1 C-1 D-1 to make the pin available, where # is the heater number, and make sure that no tool is configured to use that heater.
-* RRF 2.x - Disable a fan using M106 P# I-1 to make the pin available, where # is the fan number. 
+* RRF 2.x - Disable a heater using `M307 H# A-1 C-1 D-1` to make the pin available, where # is the heater number, and make sure that no tool is configured to use that heater.
+* RRF 2.x - Disable a fan using `M106 P# I-1` to make the pin available, where # is the fan number. 
 
 
 ## Power distribution
@@ -338,9 +338,9 @@ See also:
 
 ## Motion
 
-The Duet 2 WiFi and Ethernet can drive 5 independent stepper motors. It uses Trinamic TMC2660 stepper drivers, which in addition to the standard step/direction/enable interface provide additional functionality (for example digital current selection and interpolation between microsteps) through SPI. If these chips become damaged or if users wish to use different drivers (for example supporting higher currents) then 5 additional channels of step/direction/enable pins are available on the expansion connector. With the onboard stepper drivers, it is possible to connect multiple motors in series; a connector is provided to make this convenient for the Z axis.
+The Duet 2 WiFi and Ethernet can drive 5 independent stepper motors. It uses Trinamic TMC2660 stepper drivers, which in addition to the standard step/direction/enable interface provide additional functionality (for example digital current selection and interpolation between microsteps) through SPI. If these chips become damaged or if users wish to use different drivers (for example supporting higher currents) then 5 additional channels of step/direction/enable pins are available on the expansion connector. With the onboard stepper drivers, it is possible to connect multiple motors in series. A connector is provided to make this convenient for the Z axis.
 
-The Duet 2 WiFi and Ethernet  provides connectors for one endstop for each axis; these can be simple microswitches (normally open or normally closed) or they can be more complicated boards (for example optical switches) so long as they run off 3.3 V and can provide a digital (on/off) output. Additional endstop pins are available on the expansion connector. Any of these endstop pins can also be configured to trigger user-defined actions, for example as a filament-out sensor or emergency-stop button.
+The Duet 2 WiFi and Ethernet provides connectors for one endstop for each axis. These can be simple microswitches (normally open or normally closed) or they can be more complicated boards (for example optical switches) so long as they run off 3.3 V and can provide a digital (on/off) output. Additional endstop pins are available on the expansion connector. Any of these endstop pins can also be configured to trigger user-defined actions, for example as a filament-out sensor or emergency-stop button.
 
 The Duet 2 WiFi and Ethernet also provides a connector specifically for a Z probe. This supports simple switches, boards producing analog outputs (at 3.3 V levels) and boards providing analog outputs that require an on/off modulation signal.
 
@@ -353,11 +353,11 @@ See also:
 
 ## Heating
 
-The Duet 2 WiFi and Ethernet  supports power distribution to and control of three heaters: a heated bed (assumed to be the highest current draw with a maximum of 18A) and two extruder heaters. These are fed from the 12/24V circuit, but the PWM switching is carried out by MOSFETs on the ground, so if necessary they can be run off different voltages. Very high power bed heaters should probably be supplied independently and switched with a SSR.
+The Duet 2 WiFi and Ethernet supports power distribution to and control of three heaters: a heated bed (assumed to be the highest current draw with a maximum of 18A) and two extruder heaters. These are fed from the 12/24V circuit, but the PWM switching is carried out by MOSFETs on the ground, so if necessary they can be run off different voltages. Very high power bed heaters should probably be supplied independently and switched with an SSR.
 
 Alongside each heater there is a temperature sensor input. These can be connected directly to thermistors (whose properties are set in the printer configuration files) or via expansion boards to PT100 sensors or thermocouples.
 
-The Duet 2 WiFi and Ethernet  also provides connectors for several fans, some always-on and some PWM-controlled. These can be supplied with 12/24V or with 5V, or (since again the switching is by MOSFETs on the ground line) if necessary from user-supplied power inputs.
+The Duet 2 WiFi and Ethernet also provides connectors for several fans, some always-on and some PWM-controlled. These can be supplied with 12/24V or with 5V, or (since again the switching is by MOSFETs on the ground line) if necessary from user-supplied power inputs.
 
 See also:
 
@@ -379,20 +379,20 @@ See the Duet 2 WiFi and Ethernet wiring diagrams above for the expansion connect
 
 # PCB revision history
 
-The Duet 2 WiFi and Ethernet both use the same Duet 2 base controller board. The difference is only in the communications module. This base controller board has gone through a number of PCB design revisions. The revision number is marked on the silkscreen on the board, to the left of the large processor chip. The linked page has more  information on the [Version Numbering](/Duet3D_hardware/Hardware_overview#version-numbering) system.
+The Duet 2 WiFi and Ethernet both use the same Duet 2 base controller board. The difference is only in the communications module. This base controller board has gone through a number of PCB design revisions. The revision number is marked on the silkscreen on the board, to the left of the large processor chip. The linked page has more information on the [Version Numbering](/Duet3D_hardware/Hardware_overview#version-numbering) system.
 
 ## Tabs {.tabset}
 
 ### PCB revision v1.06
 
-The following changes were necessary due to component availability issues, they do not result in functional changes to the design:.
+The following changes were necessary due to component availability issues. They do not result in functional changes to the design.
 
 * Changed the 5V buck regulator to AP64200 due to part availability issues.
 * Various passive component changes to support the new regulator.
 
 In addition the following improvements to the design were made:
 
-* Split the 5V rail into 5V_INT and 5V_EXT. this provides additional protection to some of the more sensitive components on the board from abuse in the form or feeding >5V into a 5V pin.
+* Split the 5V rail into 5V_INT and 5V_EXT. This provides additional protection to some of the more sensitive components on the board from abuse in the form of feeding >5V into a 5V pin.
 * Added TVS diodes to improve ESD protection
 * Increase the pad size for the VIN screw terminal pins
 
@@ -423,13 +423,13 @@ Note: 1.04 Duet WiFi/Ethernet boards manufactured in June/July 2018 had the inco
 
 ### PCB revision v1.03
 
-The feature diagram for PCB revision v1.03 and earlier is below
+The feature diagram for PCB revision v1.03 and earlier is below.
 <!--removed the picture, just have the link for this very old board to speed up page loading -->
 [Duet 2 v1.03 feature diagram](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_v1.03_feature.png){target=_blank}
 
-Compared to PCB revision v1.02  the following changes have been implemented:
+Compared to PCB revision v1.02 the following changes have been implemented:
 
-* The Fan MOSFETS now have a miniblade fuse in the VIN supply (not 5V supply).
+* The Fan MOSFETs now have a miniblade fuse in the VIN supply (not 5V supply).
 * Each of the TMC2660s Stall Guard outputs is ORd together and fed to the MCU. This allows for quicker reaction to SG signals.
 * Minor routing changes
 
@@ -452,7 +452,7 @@ Compared to PCB revision v1.0 it had the following changes:
 
 * Minor routing changes
 * The filter capacitors for the ADC inputs are connected to main ground, to better protect the MCU if the VSSA fuse blows
-* **Note:** (There is an error on v1.0 and v1.01 on the silkscreen where the E0-/E1- and VIN  are reversed - use the diagram above rather than the silkscreen. This is fixed in v1.02 boards)
+* **Note:** (There is an error on v1.0 and v1.01 on the silkscreen where the E0-/E1- and VIN are reversed - use the diagram above rather than the silkscreen. This is fixed in v1.02 boards)
 
 Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/DuetWifiv1.01){target=_blank}
 
@@ -461,11 +461,11 @@ Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/mas
 The first production version. Compared to the prototype it had the following changes:
 
 * ESP_COMMS Header breaks out all the spare ESP pins.
-* Added test points for Step,Dir and CS for the onboard stepper drivers.
+* Added test points for Step, Dir and CS for the onboard stepper drivers.
 * Top and bottom copper layer thicknesses increased to 2oz
 * Added a global enable signal for the TMC2660 drivers
 * Minor routing changes.
-* **Note:** (There is an error on v1.0 and v1.01 on the silkscreen where the E0-/E1- and VIN  are reversed - use the diagram above rather than the silkscreen. This is fixed in v1.02 boards)
+* **Note:** (There is an error on v1.0 and v1.01 on the silkscreen where the E0-/E1- and VIN are reversed - use the diagram above rather than the silkscreen. This is fixed in v1.02 boards)
 
 Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet2/Old%20versions/DuetWifiv1.0){target=_blank}
 
@@ -473,7 +473,7 @@ Source files [available here](https://github.com/Duet3D/Duet-2-Hardware/tree/mas
 
 This board is identifiable by the white solder-mask (all other boards are blue) it was made in a limited production run compared the version.
 
-* On the white pre-production boards in some wiring configurations, if you reset the Duet 2 WiFi by pressing the Reset button when the motors are energised, then the stepper motors may move  while the Reset button is held down. This is fixed in the production boards.
+* On the white pre-production boards in some wiring configurations, if you reset the Duet 2 WiFi by pressing the Reset button when the motors are energised, then the stepper motors may move while the Reset button is held down. This is fixed in the production boards.
 
 For the initial beta testers who have the old WHITE pre-production boards the pin out is below. The differences from the production boards are:
 
@@ -485,4 +485,4 @@ c) endstop connectors reversed.
 
 > **The linked diagram is for white pre-production Duet WiFi boards only!** {.is-warning}
 <!--removed the picture, just have the link for this very old board to speed up page loading -->
-[Duet 2 Wifi v0.2 prototype wiring](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_prototype_wiring.png){target=_blank}
+[Duet 2 WiFi v0.2 prototype wiring](/duet_boards/duet_2_wifi_ethernet_maestro/duet_2_we_prototype_wiring.png){target=_blank}
