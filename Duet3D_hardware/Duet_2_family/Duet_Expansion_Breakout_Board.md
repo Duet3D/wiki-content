@@ -2,17 +2,17 @@
 title: Duet Expansion Breakout Board
 description: This breakout board connects to the Duet 2 (Wifi or Ethernet) expansion header and is specifically designed for external drivers that take differential signals. It also breaks out heater 6 and 7 signals to 5V.
 published: true
-date: 2022-02-11T11:04:40.385Z
+date: 2026-11-10T14:52:06.732Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-06T14:26:49.243Z
 ---
 
-![duet_expansion_bob_v1.2_top.jpg](/duet_boards/duet_2_expansion/duet_expansion_bob_v1.2_top.jpg =600x)
+![duet_expansion_bob_v1.2_top.jpg](/duet_boards/duet_2_expansion/duet_expansion_bob_v1.2_top.jpg =600x){target=_blank}
 
 # Introduction
 
-The Duet Expansion Breakout Board (BoB) connects to the Duet 2 (Wifi or Ethernet) expansion header and is specifically designed for external drivers that take differential signals. It also breaks out heater 6 and 7 signals to 5V.
+The Duet Expansion Breakout Board (BoB) connects to the Duet 2 (WiFi or Ethernet) expansion header and is specifically designed for external drivers that take differential signals. It also breaks out heater 6 and 7 signals to 5V.
 
 # Features
 
@@ -26,16 +26,16 @@ To do
 
 ## Firmware notes
 
-The Duet Expansion Breakout Board is compatible with a Duet 2 WiFi/Ethernet board running RepRapFirmware v1.21 and later, including RRF v2 and v3.
+The Duet Expansion Breakout Board is compatible with a Duet 2 WiFi/Ethernet board running RepRapFirmware v1.21 to v3.6.x, including RRF v2 and v3.
 
 ## Open source
 
 Importantly Duets are Open:
 
-* The Duets are Open Hardware, see [our license here](https://github.com/Duet3D/Duet-2-Hardware/blob/master/LICENSE)
-* All hardware [source files](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet_Expansion/Expansion_Breakoutv1.1) are available on Github.
-* Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html) with source files available and actively maintained, see [Contributing to development](/User_manual/Reference/Developers) for more information.
-* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/) and [Eclipse](https://eclipse.org/) using open tools means the barrier to getting involved is as low as possible.
+* The Duets are Open Hardware. See [our licence here](https://github.com/Duet3D/Duet-2-Hardware/blob/master/LICENSE){target=_blank}
+* All hardware [source files](https://github.com/Duet3D/Duet-2-Hardware/tree/master/Duet_Expansion/Expansion_Breakoutv1.1){target=_blank} are available on GitHub.
+* Both the Duet Web Control web interface and RepRapFirmware are [Open Source Software](http://www.gnu.org/licenses/gpl-3.0.en.html){target=_blank} with source files available and actively maintained. See [Contributing to development](/User_manual/Reference/Developers) for more information.
+* The Duet hardware and RepRapFirmware are built with Open tools: designed in [KiCad](http://kicad.org/){target=_blank} and [Eclipse](https://eclipse.org/){target=_blank} using open tools means the barrier to getting involved is as low as possible.
 
 # Physical properties
 
@@ -55,9 +55,9 @@ The board has 4 x M4 clearance holes for mounting.
 
 ## Description of connections
 
-A 50 way IDC cable is required to connect the expansion breakout board to a second generation Duet board (Wifi or Ethernet). Note that it is not compatible with first generation Duet boards (0.6, 0.8.5), nor with Duet 3 boards.
+A 50 way IDC cable is required to connect the expansion breakout board to a second generation Duet board (WiFi or Ethernet). Note that it is not compatible with first generation Duet boards (0.6, 0.8.5), nor with Duet 3 boards.
 
-All 5 driver channels provide 3.6V differential signals on ENA-,ENA+, DIR_,DIR+, STEP- and STEP+. Two wires are required for each balanced signal, it is designed to connect to external drivers that take a balanced input, for example the Leadshine DM556 drivers.
+All 5 driver channels provide 3.6V differential signals on ENA-,ENA+, DIR_,DIR+, STEP- and STEP+. Two wires are required for each balanced signal. It is designed to connect to external drivers that take a balanced input, for example the Leadshine DM556 drivers.
 
 Two headers for connecting small hobby servos are also provided.
 
@@ -81,7 +81,7 @@ Depending on the driver, your ENA input may be a Disable input, not an Enable in
 
 Two headers for connecting small hobby servos are available on the Duet Expansion Breakout Board, using Heater 6 and Heater 7 PWM pins. Use them to connect a servo (see [Using servos](/User_manual/Connecting_hardware/Motors_servos)) or as the control for a probe like the BLTouch (see [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)).
 
-Note that the output of the PWM pin is inverted, as it is on the Duex2 and Duex5 expansion board, so any connected servo should have the pin definition inverted. For example, in RRF 3, use:
+Note that the output of the PWM pin is inverted, as it is on the DueX2 and DueX5 expansion boards, so any connected servo should have the pin definition inverted. For example, in RRF 3, use:
 
 `M950 S0 C"!exp.heater7"`
 
@@ -91,7 +91,7 @@ The '!' character in the definition inverts the signal.
 
 ## RepRapFirmware 1.21 onwards, 2.x, 3.x
 
-External drivers are configured using [M569](/User_manual/Reference/Gcodes/M569) and mapped to axes using [M584](/User_manual/Reference/Gcodes/M584). The Duet 2 WiFi/Ethernet has five onboard drivers (numbered 0 to 4), and the Duet Expansion Breakout Board allows for the connection of up to five external drivers, numbered 5 to 9. Using M569, define the driver number and stepper driver parameters, then map these drives to the relevant axes, eg:
+External drivers are configured using [M569](/User_manual/Reference/Gcodes/M569) and mapped to axes using [M584](/User_manual/Reference/Gcodes/M584). The Duet 2 WiFi/Ethernet has five onboard drivers (numbered 0 to 4), and the Duet Expansion Breakout Board allows for the connection of up to five external drivers, numbered 5 to 9. Using M569, define the driver number and stepper driver parameters, then map these drives to the relevant axes, e.g.:
 
 ```
 ; Drives
@@ -103,10 +103,10 @@ M569 P8 R1 T2.5:2.5:5:5 S1    ; physical drive 8 goes forwards (Z)
 M584 X5 Y6:7 Z8    ; set drive mapping
 ```
 
-For more information on how to map axis to these drivers (for example if you want to use external drivers for the X,Y and Z axis) see [using external drivers](/User_manual/Connecting_hardware/Motors_connecting_external).
+For more information on how to map axes to these drivers (for example if you want to use external drivers for the X,Y and Z axes) see [using external drivers](/User_manual/Connecting_hardware/Motors_connecting_external).
 
 # References and useful discussion links
 
-[solved-leadshine-closed-loop-external-motor-drivers-with-duet2](https://forum.duet3d.com/topic/17535/solved-leadshine-closed-loop-external-motor-drivers-with-duet2)
-[duet-expansion-board-ena-only-outputs-3-6v](https://forum.duet3d.com/topic/12346/duet-expansion-board-ena-only-outputs-3-6v)
-[duet-expansion-breakout-board-not-helping-me](https://forum.duet3d.com/topic/9601/duet-expansion-breakout-board-not-helping-me)
+[solved-leadshine-closed-loop-external-motor-drivers-with-duet2](https://forum.duet3d.com/topic/17535/solved-leadshine-closed-loop-external-motor-drivers-with-duet2){target=_blank}
+[duet-expansion-board-ena-only-outputs-3-6v](https://forum.duet3d.com/topic/12346/duet-expansion-board-ena-only-outputs-3-6v){target=_blank}
+[duet-expansion-breakout-board-not-helping-me](https://forum.duet3d.com/topic/9601/duet-expansion-breakout-board-not-helping-me){target=_blank}
