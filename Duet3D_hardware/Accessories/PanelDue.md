@@ -2,7 +2,7 @@
 title: Duet3D PanelDue
 description: 
 published: true
-date: 2026-11-09T15:35:52.248Z
+date: 2026-11-10T10:27:23.588Z
 tags: 
 editor: markdown
 dateCreated: 2021-08-17T14:02:21.351Z
@@ -198,7 +198,7 @@ PanelDue V2
 
 Use [M575](/User_manual/Reference/Gcodes/M575){target=_blank} to configure the serial channel number (P parameter), communication mode (S parameter) and baud rate (B parameter). The M575 command should be in config.g.
 
-**RepRapFirmware 3.7 and later**: use `M575 P2 S4 B57600` in config.g. RRF 3.7 introduced an extra USB port as P1, so serial port numbers incremented by 1.
+**RepRapFirmware 3.7 and later**: use `M575 P2 S4 B115200` in config.g. RRF 3.7 introduced an extra USB port as P1, so serial port numbers incremented by 1. If you are using a long cable cable, you may need to reduce the baud rate, in which case change the B parameter to `B57600`
 
 **RepRapFirmware 3.4 to 3.6**: use `M575 P1 S4 B57600` in config.g. RRF 3.4 introduced CRC error detection with S4. Requires PanelDueFirmware v3.4.1 or later.
 
