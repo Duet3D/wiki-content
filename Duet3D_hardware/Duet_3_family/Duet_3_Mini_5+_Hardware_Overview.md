@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-10-27T13:07:51.665Z
+date: 2026-11-10T12:13:54.399Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -88,9 +88,9 @@ See the [Hardware overview](/Duet3D_hardware/Hardware_overview){target=_blank} p
 ## Dimensions
 ## Tabs{.tabset}
 
-### v1.03
-Ethernet Only
-[![duet3_mini5+_v1.03_d1.0_dimensions.png](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_dimensions.png =500x)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_dimensions.png){target=_blank}
+### v1.03 - v1.04
+
+[![duet3_mini5+_v1.03_d1.0_dimensions.png](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_1.04_d1.1_dimensions.png =500x)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_1.04_d1.1_dimensions.png){target=_blank}
 
 ### v0.5-v1.02
 [![duet_3_mini_5+_wifi_dimensions.png](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.1_dimensions.png =500x)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v0.5-v1.02_d1.1_dimensions.png){target=_blank}
@@ -107,11 +107,11 @@ The stepper drivers' heatsinks are connected to the PCB and the majority of the 
 
 ### MCU Temp
 
-Unfortunately the SAME54P20A chip used in the Duet 3 Mini 5+ does not have a functioning temperature sensor. In theory it does have an on-chip temperature sensor, but the errata document for the chip says it doesn't work. However, it has been enabled in RRF 3.3 as an experiment, and does appear to give useful readings on the samples tested.
+The errata document for the SAME54P20A chip used in the Duet 3 Mini 5+ says the nchip temperature sensor does not work properly. However, it has been enabled in RRF 3.3 and later as an experiment, and does appear to give useful readings on the samples tested.
 
 ### Stepper Driver Temp
 
-Due to this you would be unable to monitor the MCU temp in order to control fans. The driver sensors do work for fan control, but only return flags of warning and overtemp,
+The TMC2209 driver sensors do work for fan control, but only return flags of warning and overtemp,
 
 ## 3D Model
 
@@ -123,11 +123,11 @@ The STEP files for both boards are available [on Github here](https://github.com
 
 ## Tabs{.tabset}
 
-### Revision v1.03
-Ethernet only
-[![An image showing the connections for the Duet 3 Mini 5+ v1.03 Ethernet](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_wiring.png =x500)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_d1.0_wiring.png){target=_blank}
+### Revision v1.03 to 1.04
 
-**Note:** The jumper for I03.in provides no functionality because I2C is not supported on those pins, it will be removed in a later board revision
+[![An image showing the connections for the Duet 3 Mini 5+ v1.03 Ethernet](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_1.04_d1.1_wiring.png =x500)](/duet_boards/duet_3_mini_5_plus/duet3_mini5+_v1.03_1.04_d1.1_wiring.png){target=_blank}
+
+**Note:** The jumper for I03.in on v1.03 boards provides no functionality because I2C is not supported on those pins, it is removed in v1.04.
 
 ### Revision v0.5 to v1.02
 
@@ -186,7 +186,7 @@ This prototype version of the Duet3 Mini 5+ had limited distribution
 | **1 x JST ZH 6-pin connectors** | SWD | Connection for an SWD programming device such as an Atmel-ICE |
 | **1 x 2-pin KK connectors** | CAN | CAN-FD Bus connection for Duet 3 CAN-FD expansion boards. |
 | **5 x 5-pin KK connectors** | IO_0, IO_1, IO_2, IO_3, IO_4 | These are for endstop switches, Z probes, filament monitors and other low-voltage I/O functions. Each connector provides both 3.3V and 5V power. The inputs will tolerate up to 30V with 10K series resistors (but see below for bypass option). The outputs are 3.3V signal levels with 470R series resistors. IO_1,2,3 are PWM capable. IO_0 and IO_1 can optionally be configured as serial ports instead. |
-| **2 x 2-pin Jumpers 10K->470R bypass** | IO2.in, IO3.in | v1.01 and later only. Fit the IO2.in jumper to bypass the 10K resistor on io2.in with a 470R resistor. The IO2.in jumper must be fitted to use IO_2 for I2C, see [I2C](#i2c). <br> **Note:** The IO3.in jumper has no function, because I2C is not supported on IO_3. It will be removed in a later board revision. |
+| **1 x 2-pin Jumpers 10K->470R bypass** | IO2. in | v1.01 and later only. Fit the IO2. in jumper to bypass the 10K resistor on io2. in with a 470R resistor. The IO2. in jumper must be fitted to use IO_2 for I2C, see [I2C](#i2c). <br> **Note:** The IO3. in jumper has no function, because I2C is not supported on IO_3. It was removed in v1.04 |
 | **2 x 3-pin KK connectors** | IO_5, IO_6 | Input only IO connections that will  tolerate up to 30V with 10K series resistors. Perfect for simple endstop switches.|
 | **3 x 2-pin KK connectors** | TEMP_0, TEMP_1, TEMP_2 | Connections for thermistor or PT1000 sensors. |
 | **1 x 2x13 IDC connector** | SBC | Connections to a Single Board Computer (SBC) such as a Raspberry Pi. |
