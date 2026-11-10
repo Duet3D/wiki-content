@@ -2,7 +2,7 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-11-10T12:13:54.399Z
+date: 2026-11-10T12:16:34.559Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
@@ -507,6 +507,16 @@ You will need to remove the bootloader protection by doing Erase Chip first and 
 # Revision History
 
 # Tabs{.tabset}
+
+## Revision 1.04
+Wifi Only
+
+* Incorporated all the relevant Ethernet Revisions from 1.02a,1.03,1.03a (including moving to a USB-C connector).
+* Changed WIFI module to ESP32.
+* Removed the unused bypass jumper on IO3.
+* changed back to TQFP for the MCU package - no functional change.
+* Changed 5V and 12V BUCK regulators to more available parts.
+* Other minor component changes due to availability.
 
 ## Revision 1.03a
 
