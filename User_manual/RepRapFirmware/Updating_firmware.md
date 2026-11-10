@@ -2,7 +2,7 @@
 title: Installing and Updating Firmware
 description: Instructions to update the main firmware on Duet 3 MB6HC and Duet 3 Mini 5+ in standalone mode, Duet 2 WiFi, Ethernet and Maestro, Duet Web Control (DWC) and the WiFi firmware on Duet 3 Mini 5+ WiFi and Duet 2 WiFi boards.
 published: true
-date: 2026-11-10T10:16:32.249Z
+date: 2026-11-10T10:17:04.141Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T12:57:13.348Z
@@ -223,7 +223,7 @@ You will need a Windows, Apple Macintosh or Linux PC (can be Raspberry Pi).
 
 <p style="clear:both"></p>
 
-### Software for firmware flashing
+## Software for firmware flashing
 
 ## {.tabset}
 
