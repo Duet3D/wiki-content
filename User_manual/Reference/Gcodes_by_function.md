@@ -2,7 +2,7 @@
 title: GCodes by function
 description: 
 published: true
-date: 2026-11-02T16:01:53.424Z
+date: 2026-11-11T09:24:17.858Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-06T15:58:12.677Z
@@ -193,6 +193,8 @@ dateCreated: 2021-07-06T15:58:12.677Z
 [M1](/User_manual/Reference/Gcodes/M1): Sleep or Conditional stop
 
 [M112](/User_manual/Reference/Gcodes/M112): Emergency Stop
+
+[M25.1](/User_manual/Reference/Gcodes/M25_1): Feed hold
 
 [M226](/User_manual/Reference/Gcodes/M226): Synchronous Pause
 
