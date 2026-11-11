@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-11-09T17:44:18.936Z
+date: 2026-11-11T09:24:00.589Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1179,7 +1179,7 @@ Supported in firmware 1.21 and later.
 
 * **Snn** specifies memory slot number (0-based) to save into (default 0)
 
-RepRapFirmware for Duets generally provides slots 0 to 5. When a print is paused the coordinates are saved to slot 1 automatically, and at the start of a tool change the coordinates are saved to slot 2 automatically. The remaining slots are free to use for any purpose. Use G0 or G1 with the appropriate R parameter to move the current tool to a saved position.
+RepRapFirmware for Duets generally provides slots 0 to 5. When a print is paused the coordinates are saved to slot 1 automatically, and at the start of a tool change the coordinates are saved to slot 2 automatically. In RRF 3.7.1 and later a feed hold (M25.1) also saves the held position to slot 1, unless the job is paused. The remaining slots are free to use for any purpose. Use G0 or G1 with the appropriate R parameter to move the current tool to a saved position.
 
 **Note:** Do not use G60 in pause.g . It is not needed as the coordinates are saved in slot 1 automatically. Using it in pause.g can lead to issues with restoring the primary and secondary motion system correctly in RRF 3.5.1
 
@@ -1370,8 +1370,8 @@ The effect of M0 depends on the state of the machine.
 
 1. The firmware finishes any moves left in its buffer.
 1. From within the job file: the job ends and stop.g is run if present.
-From any other input when the job is paused (M25): the job is cancelled and cancel.g is run if present, or stop.g if cancel.g does not exist.
-From any other input when no job is paused: M0 reports "Pause the print before attempting to cancel it" and does nothing else.
+From any other input when the job is paused (M25), or in RRF 3.7.1 and later stopped by a feed hold (M25.1): the job is cancelled and cancel.g is run if present, or stop.g if cancel.g does not exist.
+From any other input when the job is neither paused nor held: M0 reports "Pause the print before attempting to cancel it" and does nothing else.
 1. If neither file exists then all heaters are turned off. 
 
 **Note:** From RRF 3.5.0, when a print file completes normally then file stop.g is run automatically even if the print file did not end with an M0 command.
@@ -1847,6 +1847,8 @@ The machine prints from the file selected with the M23 command. If the print was
 
 When this command is used to resume a print that was paused, the macro file **resume.g** is run prior to resuming the print.
 
+In RRF 3.7.1 and later, M24 also releases a feed hold started with [M25.1](/User_manual/Reference/Gcodes/M25_1). If axes were jogged during the hold, the machine first returns to the held position. resume.g is not run unless the job is paused as well, in which case M24 releases the hold and resumes the job in one step.
+
 > If an axis or axes are unhomed, resume.g will not run (see the equivalent behaviour in the documentation for [M25](/User_manual/Reference/Gcodes/M25)). This is to allow pausing and resuming early in a job file where a machine may not yet be homed. If axes were homed when pause.g is run and subsequently become unhomed then resuming will cancel the print without running resume.g, or if axis movement when axes are not homed is permitted via [M564](/User_manual/Reference/Gcodes/M564), the print resumes without resume.g being run.{.is-info}
 
 ## M25: Pause SD print
@@ -1869,9 +1871,47 @@ In RRF 3.7 and later, RRF completes the move that is executing and the moves tha
 
 After movement is halted as described above but prior to the pause operation completing, the macro file **pause.g** is run. This allows the head to be moved away from the print, filament to be retracted, etc.
 
+> To stop motion without running pause.g and carry on from the exact same point, or to stop macros and other moves that are not part of a job, use [M25.1](/User_manual/Reference/Gcodes/M25_1) (RRF 3.7.1 and later).{.is-info}
+
 > If a pause is commanded while a macro is being executed, the pause will be deferred until the macro has completed.{.is-info}
 
 > If an axis or axes are unhomed, pause.g will not run, but the machine will still be paused. This is to allow pausing and resuming early in a job file where a machine may not yet be homed. Also when a print is resumed with an axis unhomed, resume.g is not run, see [M24](/User_manual/Reference/Gcodes/M24).{.is-info}
+
+## M25.1: Feed hold
+
+Supported in RRF 3.7.1 and later.
+
+### Parameters
+
+* **S1** (Optional) Stop and abort: once motion has stopped, discard the queued moves, abort the current job and abort all running macros
+
+### Examples
+<br>
+<pre class="cblock">
+M25.1    ; feed hold
+M24      ; carry on
+M25.1 S1 ; stop and abort
+</pre>
+
+### Description
+
+M25.1 stops all motion as soon as possible and keeps the moves that were queued, so that [M24](/User_manual/Reference/Gcodes/M24) carries on from where the machine stopped. Unlike [M25](/User_manual/Reference/Gcodes/M25) it is not limited to jobs: it also holds moves commanded by macros and from a console. It does not run pause.g or any other macro file, and it does not change heaters, spindles or fans. While the hold is active the machine status is `held`.
+
+RRF completes the move that is executing and the moves that have already been committed for execution, then stops within the configured jerk and acceleration limits in the same way as M25 does in RRF 3.7. To make a feed hold take effect quickly, use M669 to enable segmentation, for example M669 S20 (50ms segments). Segmentation will no longer be needed for this from RRF 3.8, which is planned to stop in the middle of a move.
+
+A G1 H1 homing move is stopped at once and M24 completes it. Probing moves (G30, G38 and G1 H3 or H4) are completed before motion stops.
+
+With S1 the motion stops in the same way but nothing is kept. A job in progress is aborted, which turns all heaters off without running stop.g or cancel.g, and all running macros are aborted. The motors stay energised and the axes stay homed, apart from axes whose homing move was interrupted.
+
+### Notes
+
+* M25.1 is not allowed in the job file. Use [M226](/User_manual/Reference/Gcodes/M226) to pause from within a job.
+* M25.1 and the M24 that releases it are acted on as soon as they are received over USB, HTTP or Telnet, even while that input is waiting for another command to complete. In SBC mode DSF gives them the same priority.
+* While a feed hold is active, G0 and G1 moves that do not come from the job or from a macro are executed as jogs. M24 then moves back to the held position before the held moves carry on, and the machine status is `resuming` on the way. Arcs, homing, probing and extruder moves are rejected, and jogging is not available when [third-order motion control](/User_manual/RepRapFirmware/Third_order_motion) is in use. Moves commanded by a macro wait until the hold is released.
+* Jogging needs an input that is not running the held macro itself. If the macro was started from the same input, for example both from Duet Web Control, the jog is queued behind that macro and is executed after the hold has been released.
+* The held position is saved to restore point 1 unless the job is paused, so `G1 R1 X0 Y0 Z0` returns to it.
+* M25 pauses a held job and runs pause.g as usual. M0 cancels a held job without pausing it first.
+* M25.1 is ignored during a simulation.
 
 ## M26: Set SD position
 
