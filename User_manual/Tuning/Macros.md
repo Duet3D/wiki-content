@@ -2,7 +2,7 @@
 title: Macros
 description: A work in progress page for useful gcode macros.
 published: true
-date: 2025-02-05T16:29:35.459Z
+date: 2026-11-11T09:24:33.787Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T14:50:28.135Z
@@ -160,6 +160,7 @@ See [Selecting a tool](/User_manual/Reference/Gcodes/T) and [Multiple tools and 
 
 * **start.g** is run when you start a print from SD card. Runs immediately before any slicer created gcode.
 * **pause.g** is run when you pause a print.
+* A feed hold ([M25.1](/User_manual/Reference/Gcodes/M25_1)) does not run any macro file.
 * **resume.g** is run when you resume a print.
 * **cancel.g** is optional, but if present is run when you cancel a paused print.
 * **stop.g** is optional, but if present is run when a print finishes normally with an M0 command at the end of the print job. (from RRF 3.5b1, When a print file completes normally then file stop.g is run automatically even if the print file did not end with a M0 command)
