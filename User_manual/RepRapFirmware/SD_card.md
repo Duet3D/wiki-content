@@ -2,7 +2,7 @@
 title: SD card
 description: SD card usage notes, specification, rebuilding contents and troubleshooting. 
 published: true
-date: 2025-10-13T19:50:06.530Z
+date: 2026-11-11T09:24:38.450Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T10:11:18.461Z
@@ -72,6 +72,7 @@ These Duets use the following folder structure:
 * **homex.g**, **homey.g**, **homez.g** and **homeall.g** are the homing scripts for a Cartesian or CoreXY printer. For a delta printer there is **homedelta.g** instead.
 * **bed.g** holds the script for probing the bed and calculating bed compensation on a Cartesian or CoreXY printer, or doing delta calibration on a delta printer.
 * **pause.g** is run when you pause a print.
+* A feed hold ([M25.1](/User_manual/Reference/Gcodes/M25_1)) does not run any macro file.
 * **resume.g** is run when you resume a print.
 * **cancel.g** is optional, but if present is run when you cancel a paused print.
 * **start.g** is optional, but if present is run whenever you start a job from the SD card
