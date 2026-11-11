@@ -2,7 +2,7 @@
 title: GCodes not implemented
 description:  This page lists GCodes that may be found in other firmwares/CNC control software which are not implemented in RepRapFirmware. 
 published: true
-date: 2026-10-16T17:31:48.387Z
+date: 2026-11-11T09:24:43.256Z
 tags: 
 editor: markdown
 dateCreated: 2021-12-03T21:45:16.729Z
@@ -46,7 +46,7 @@ When/If these are implemented depends very much on the demand.
 * M52: Adaptive Feed Control - Forward feed control set with M220, stepping back through the jb file is not supported.
 * M85: Set inactivity shut down timer (No demand)
 * M123: Tachometer value
-* M124: Immediate motor stop  - may be achieved sufficiently when feedhold is implemented.
+* M124: Immediate motor stop - use M25.1 (feed hold) or M25.1 S1 (stop and abort) in RRF 3.7.1 and later.
 * M407: Display filament diameter (currently does the same as M404, possibly change to display measured diameter in future)
 * M590: Report current tool type and index
 * M668: Set Z-offset compensations polynomial (currently only implemented in http://reprap.org/wiki/User:Foxkid dc42-cmm) fork.
@@ -72,7 +72,7 @@ These are unlikely to be implemented due to functionality existing in other RepR
 * M41: Loop (No requirement, conditional GCode is more powerful)
 * M43: Stand by on material exhausted (use M591)
 * M43: Pin report and debug (much of this functionality is available within M42, M581,M582, M583)
-* M53: Feed Stop Control - related to feedhold, once feedhold is implemented as a physical switch for feedhold can be mapped and unmapped using macros
+* M53: Feed Stop Control - use M25.1 and M24 in RRF 3.7.1 and later.
 * M93: Send axis_steps_per_unit (use M92)
 * M101: Turn extruder 1 on (Forward), Undo Retraction (use standard G1 commands, or G10 for firmware retraction)
 * M102: Turn extruder 1 on (Reverse) (use standard G1 commands, or G10 for firmware retraction)
