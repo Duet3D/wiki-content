@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a CNC machine
 description: This page describes the hardware and wiring, and changes to the RepRapFirmware files required to support a CNC.
 published: true
-date: 2025-10-31T09:41:58.841Z
+date: 2026-11-11T09:24:28.508Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:34:29.590Z
@@ -61,6 +61,14 @@ G1 R1 X0 Y0 Z5 F6000 ; Go to 5mm above position of the last cut move
 ```
 
 When a job is paused the coordinates and spindle RPM are saved to slot 1 automatically.
+
+## Feed hold
+
+In RRF 3.7.1 and later, [M25.1](/User_manual/Reference/Gcodes/M25_1) stops the machine without running pause.g and [M24](/User_manual/Reference/Gcodes/M24) carries on from the same point. The spindle keeps running during a feed hold. `M25.1 S1` stops the machine and aborts the job and all running macros.
+
+A feed hold takes effect at the end of the moves that are already being executed, so enable segmentation with [M669](/User_manual/Reference/Gcodes/M669), for example `M669 S20`, to keep the stopping distance short on long moves. This will no longer be needed from RRF 3.8, which is planned to stop in the middle of a move.
+
+In CNC mode Duet Web Control shows Feed Hold and Stop buttons next to the emergency stop button and in the Job Control panel.
 
 ## Example configuration and macros
 
