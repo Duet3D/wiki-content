@@ -2,7 +2,7 @@
 title: Multiple motion systems
 description: This page documents the support for multiple motion systems provided in RepRapFirmware 3.5 on Duet 3 boards.
 published: true
-date: 2026-10-28T17:26:46.213Z
+date: 2026-11-11T09:24:23.182Z
 tags: 
 editor: markdown
 dateCreated: 2022-03-22T10:08:15.620Z
@@ -121,7 +121,7 @@ If a job file, HTTP or SBC calls a macro then both motion systems execute it; bu
 Other commands lock both motion systems. These are mostly configuration commands that change something the motion systems share, and in RRF 3.7 they are:
 
 * `G10 L2` and `G10 L20` when setting workplace coordinates
-* `M0`, `M1` and `M2`, but only when cancelling a paused job
+* `M0`, `M1` and `M2`, but only when cancelling a paused or held job
 * `M37` when entering or leaving simulation mode
 * `M81`
 * `M92`, `M206`, `M302`, `M350`, `M593`, `M906`, `M913` and `M917` when setting values rather than reporting them
@@ -137,6 +137,8 @@ Other commands lock both motion systems. These are mostly configuration commands
 * `M997`
 
 Pausing a print also locks both motion systems, whether it is caused by `M25`, `M226`, `M600` or an event, and so does resuming it with `M24`. The same applies while a print is being cancelled or is finishing.
+
+A feed hold (`M25.1`) always stops both motion systems, and `M24` releases both.
 
 In SBC mode, DSF can also ask the firmware to lock both motion systems on its behalf.
 
