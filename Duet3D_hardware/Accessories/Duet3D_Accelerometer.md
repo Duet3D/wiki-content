@@ -2,7 +2,7 @@
 title: Duet3D Accelerometer
 description: A standalone accelerometer board using the LIS2DW12 MEMS digital motion sensor. It designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards
 published: true
-date: 2026-11-06T15:03:36.513Z
+date: 2026-11-11T09:35:15.062Z
 tags: 
 editor: markdown
 dateCreated: 2023-06-22T01:09:12.785Z
@@ -61,9 +61,14 @@ A STEP 3D model is [available on GitHub](https://github.com/Duet3D/Duet3D-Accele
 
 ## Wiring notes
 
-The accelerometer comes with a 1m long 10 way IDC cable that plugs directly into the SPI DB header on Duet mainboards. Ensure the connector orientation is correct so pin 1 on the IDC goes to pin 1 on the mainboard:
+The accelerometer comes with a 1m long 10 way IDC cable that plugs directly into the SPI DB header on Duet mainboards.
 
-[![Duet3D accelerometer connected to the Duet 3 6HC mainboard](/hardware/accelerometer/duet3d_accelerometer_6hc.jpg =400x)](/hardware/accelerometer/duet3d_accelerometer_6hc.jpg){target=_blank}
+> **IMPORTANT: Some supplied cables have reversed IDC plugs.**
+Ensure the connector orientation is correct so pin 1 on the IDC goes to pin 1 on the mainboard. Do not rely on the red stripe on the cable to indicate pin 1
+{.is-warning}
+
+[![Duet3D accelerometer connected to the Duet 3 6HC mainboard](/hardware/accelerometer/duet3d_accelerometer_reverse_cable.png =400x)](/hardware/accelerometer/duet3d_accelerometer_reverse_cable.png){target=_blank}
+
 Duet3D accelerometer connected to the Duet 3 6HC mainboard
 
 [![Duet3D accelerometer connected to the Duet 3 Mini5+ mainboard](/hardware/accelerometer/duet3d_accelerometer_mini5+.jpg =400x)](/hardware/accelerometer/duet3d_accelerometer_mini5+.jpg){target=_blank}
