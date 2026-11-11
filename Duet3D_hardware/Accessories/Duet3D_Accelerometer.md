@@ -2,7 +2,7 @@
 title: Duet3D Accelerometer
 description: A standalone accelerometer board using the LIS2DW12 MEMS digital motion sensor. It designed to plug into the SPI Daughterboard header on Duet 2 and 3 mainboards
 published: true
-date: 2026-11-11T09:39:01.329Z
+date: 2026-11-11T09:40:06.823Z
 tags: 
 editor: markdown
 dateCreated: 2023-06-22T01:09:12.785Z
@@ -69,10 +69,10 @@ Ensure the connector orientation is correct so pin 1 on the IDC goes to pin 1 on
 
 [![Duet3D accelerometer connected to the Duet 3 6HC mainboard](/hardware/accelerometer/duet3d_accelerometer_reverse_cable.png =400x)](/hardware/accelerometer/duet3d_accelerometer_reverse_cable.png){target=_blank}
 
-Duet3D accelerometer connected to the Duet 3 6HC mainboard
+Duet3D accelerometer connected to the Duet 3 6HC mainboard (reversed IDC plug cable)
 
 [![Duet3D accelerometer connected to the Duet 3 Mini5+ mainboard](/hardware/accelerometer/duet3d_accelerometer_mini5+.jpg =400x)](/hardware/accelerometer/duet3d_accelerometer_mini5+.jpg){target=_blank}
-Duet3D accelerometer connected to the Duet 3 Mini5+ mainboard
+Duet3D accelerometer connected to the Duet 3 Mini5+ mainboard (non reversed IDC plug cable)
 
 [![Pin 1 of the SPI_1 header on the Duet 3 Expansion 3HC for the Duet3D accelerometer](/hardware/accelerometer/duet3d_accelerometer_3hc_wiring.png =600x)](/hardware/accelerometer/duet3d_accelerometer_3hc_wiring.png){target=_blank}
 Duet3D accelerometer connection to the SPI_1 header of the Duet 3 Expansion 3HC (RRF 3.7 and later)
