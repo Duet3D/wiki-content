@@ -2,7 +2,7 @@
 title: Commissioning your machine
 description: 
 published: true
-date: 2026-10-30T15:01:27.504Z
+date: 2026-11-13T14:57:27.815Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:42:24.938Z
@@ -26,17 +26,17 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 # 2. Connect to Duet Web Console (DWC)
 
-> If you changed the machine name in the RepRapFirmware Configurator, this will be reflected in the .local address. For instance, if you named the machine "My Printer", you will navigate to myprinter.local/ (without spaces and not case sensitive).
+> If you changed the machine name in the RepRapFirmware Configurator, this will be reflected in the .local address. For instance, if you named the machine "My Printer", you will navigate to myprinter.local/ (without spaces and case-insensitive).
 {.is-info}
 
 Open your browser and navigate to `yourduetname.local` or the IP address you set.
 
 If you have trouble finding the IP address of the Duet, you can:
 * Connect to your Duet via USB. Send [M552](/User_manual/Reference/Gcodes/M552) to see the network configuration and IP address.
-* Login to your router; it should be able to show a list of connected devices
+* Log in to your router. It should be able to show a list of connected devices
 * Use a network scanning app to show the connected devices on the network.
 
-You will be using Duet Web Console (DWC) for most of the commissioning; see [User manual: Duet Web Console](/User_manual/Reference/Duet_Web_Control_Manual) for a full introduction to the interface.
+You will be using Duet Web Control (DWC) for most of the commissioning. See [User manual: Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual) for a full introduction to the interface.
 
 # 3. First check
 
@@ -64,18 +64,18 @@ Error: Unknown pin name 'fan0' ; Incorrect fan pin name on Duet 3, see the 'Pin 
 Error: Fan number 0 not found ; If the M950 command that defines a fan is incorrect, no fan is created, all subsequent commands referring to it generate an error
 Warning: Heater 0 predicted maximum temperature at full power is 403°C ; This is just a warning, not necessarily an error. It is usually due to M307 parameters for that heater, and often that the heater has not been tuned, but also the heater might just be able to get that hot!
 ```
-Depending on the error reported, check Gcode in your config.g and fix the error. 
+Depending on the error reported, check GCode in your config.g and fix the error. 
 
-You can use `M98 P"config.g"` any time to check your config.g, and is a useful diagnostic tool.
+You can use `M98 P"config.g"` any time to check your config.g, and it is a useful diagnostic tool.
 
 # 4. Check thermistors
 
 > To get accurate temperatures, you must configure temperature sensing correctly for the type of temperature sensor you are using. The default values in the RepRapFirmware Configuration Tool are unlikely to be correct!
 {.is-warning}
 
-[![dwc23_12_tool_states.png](/manual/dwc/dwc23_12_tool_states.png =50%x){.align-right}](/manual/dwc/dwc23_12_tool_states.png){target=_blank}On the 'Control > Dashboard' page of DWC, in the Tools section, check the 'Current' temperature reading on each heater. Each heater is configured to be either a Tool, Bed or Chamber, eg "T0", "Bed". 
+[![dwc23_12_tool_states.png](/manual/dwc/dwc23_12_tool_states.png =50%x){.align-right}](/manual/dwc/dwc23_12_tool_states.png){target=_blank}On the 'Control > Dashboard' page of DWC, in the Tools section, check the 'Current' temperature reading on each heater. Each heater is configured to be either a Tool, Bed or Chamber, e.g. "T0", "Bed". 
 * It should be around room temperature if the heaters have not recently been on. 
-* It is OK if there's a few degrees of error as thermistor readings have better resolution at higher temperatures.
+* It is OK if there are a few degrees of error as thermistor readings have better resolution at higher temperatures.
 
 **Troubleshooting**
 If you get a temperature reading of "-273°C", this indicates an open circuit, i.e. nothing is connected to the defined pins.
@@ -133,8 +133,8 @@ On the Dashboard page, the Tools section lists the tools, bed heaters and chambe
 The firmware allows one tool to be selected/active at a time. The associated heater(s) is/are set to 'active' when the tool is selected, and set to 'standby' when the tool is deselected. However, tool heaters can also be manually controlled, independently of tools.
 
 Under the first 'Heater [#]' (where # is the heater number) it should say 'off', 'standby' or 'active'.
-* Clicking the associated tool name (eg 'T0' in the Tool column) will cycle the heater between 'active' and 'standby', as the tool is selected and deselected. The target temperature for each state is set by the associated Active and Standby temperature.
-* Clicking the heater name (eg 'Heater 1' in the Heater column) will cycle the heater between 'active', 'standby' and 'off'. The heater can be controlled independently of the tool state.
+* Clicking the associated tool name (e.g. 'T0' in the Tool column) will cycle the heater between 'active' and 'standby', as the tool is selected and deselected. The target temperature for each state is set by the associated Active and Standby temperature.
+* Clicking the heater name (e.g. 'Heater 1' in the Heater column) will cycle the heater between 'active', 'standby' and 'off'. The heater can be controlled independently of the tool state.
 * Bed and Chamber heaters are controlled more directly, and cycle through 'active', 'standby' and 'off' whether you click the name or the heater number.
   
 **Testing heaters**
@@ -145,9 +145,9 @@ Under the first 'Heater [#]' (where # is the heater number) it should say 'off',
 * If the heater is already set to 'active', you should see the corresponding temperature begin to rise.
 * If the heater is set to 'standby' or 'off', DWC does not automatically activate it when temperature is set. Click the tool name or heater name until the heater is 'active'.
 
-With the heater set to 'active', you should see the corresponding temperature begin to rise, and this will show on the temperature chart. It is possible that it will overshoot the set temperature a bit; this is OK.
+With the heater set to 'active', you should see the corresponding temperature begin to rise, and this will show on the temperature chart. It is possible that it will overshoot the set temperature a bit. This is OK.
 
-You can also check that thermostatically controlled fans are working as expected, by setting a heater temperature higher than the trigger temperature for the fan, eg 60°C.
+You can also check that thermostatically controlled fans are working as expected, by setting a heater temperature higher than the trigger temperature for the fan, e.g. 60°C.
 
 Complete this step by clicking the tool, bed or chamber name, or the heater name, to set the tool/heater into 'standby' or 'off'.
 
@@ -177,7 +177,7 @@ To tune a bed or chamber heater, send `M303 H0 S60` where 'H' is the heater numb
 
 **Result**
 
-If successful, the firmware will report the parameters to use, and an [M307](/User_manual/Reference/Gcodes/M307) GCcode command e.g.:
+If successful, the firmware will report the parameters to use, and an [M307](/User_manual/Reference/Gcodes/M307) GCode command e.g.:
 `M307 H1 R7.046 K1.519:0.006 D3.58 E1.35 S1.00 B0 V23.9` (RRF 3.4 and later)
 
 Then, either:
@@ -195,7 +195,7 @@ If you encounter any errors, see [User manual: Tuning the heater temperature con
 
 # 8. Check Endstops
 
-> Never connect endstop wires from +3.3v to ground. This will create a short circuit and could damage the Duet.
+> Never connect endstop wires from +3.3V to ground. This will create a short circuit and could damage the Duet.
 {.is-warning}
 
 When 'homing' your machine, each axis will move towards the end of its travel. It expects to trigger a switch, which will set the axis location. Simple microswitches, hall sensors or optical sensors can be used.
@@ -218,8 +218,8 @@ You can check the status of your endstops a number of ways:
 
 [![wiring_d2we_06_test_endstop_01.png](/guides/wiring/wiring_d2we_06_test_endstop_01.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_01.png){target=_blank}Send [M119](/User_manual/Reference/Gcodes/M119) to check endstop status in all versions of DWC/RRF. This can be sent from DWC, a PanelDue, or over USB, if connected by serial terminal.
 * In DWC, go to Control > Console and type in `M119` in the text box, then press return or the 'Send' button. You should get the endstop status response in the area below.
-* If connected to the Duet by a serial terminial over USB, type `M119` and press return; the Duet will respond with the endstop status.
-* Press and hold an endstop switch, and sent the command again, and you should see the status response of that switch change.
+* If connected to the Duet by a serial terminal over USB, type `M119` and press return. The Duet will respond with the endstop status.
+* Press and hold an endstop switch, and send the command again, and you should see the status response of that switch change.
 
 <p style="clear:both"></p>
 
@@ -227,7 +227,7 @@ You can check the status of your endstops a number of ways:
 
 [![wiring_d2we_06_test_endstop_02.png](/guides/wiring/wiring_d2we_06_test_endstop_02.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_02.png){target=_blank}[![wiring_d2we_06_test_endstop_03.png](/guides/wiring/wiring_d2we_06_test_endstop_03.png =50%x){.align-right}](/guides/wiring/wiring_d2we_06_test_endstop_03.png){target=_blank}You can check the endstops status in the DWC Object model browser in RRF/DWC v3.0 and later. The RepRapFirmware Object model shows all the firmware variables and values.
 * Enable the Object model browser by going to 'Settings > Plugins > Integrated plugins' ('Settings > General > Built-in Plugins' in older versions of DWC) and click 'Start' on the 'Object Model Browser'.
-* A new menu option 'Object Model' will appear; select it.
+* A new menu option 'Object Model' will appear. Select it.
 * Navigate to 'sensors > endstops'. Expand the numbered sections. Trigger an endstop, and it will show as 'triggered = true' if correctly configured.
 
 <p style="clear:both"></p>
@@ -247,7 +247,7 @@ You can check the status of your endstops a number of ways:
 
 # 9. Re-configure Endstops
 
-If you found that any endstops are not configured properly in the last step, navigate to 'Files > System' and open the config.g file. Endstops are configured here. In RRF 3.x, each endstop has it's own configuration line, using [M574](/User_manual/Reference/Gcodes/M574), e.g.
+If you found that any endstops are not configured properly in the last step, navigate to 'Files > System' and open the config.g file. Endstops are configured here. In RRF 3.x, each endstop has its own configuration line, using [M574](/User_manual/Reference/Gcodes/M574), e.g.
 ```
 ; Endstops
 M574 X2 S1 P"io1.in"  ; configure switch-type (e.g. microswitch) endstop for high end on X via pin io1.in
@@ -256,10 +256,10 @@ M574 Z2 S1 P"!io4.in" ; configure switch-type (e.g. microswitch) endstop for hig
 ```
 
 **High end or low end?**
-* In RRF 3.x, the  M574 X, Y, and Z parameters configure the position of the endstop; 0 for no endstop, 1 for low end endstop, 2 for high end endstop. eg `M574 X0` would mean no endstop on X, `M574 Y2` means Y endstop on the high end.
+* In RRF 3.x, the M574 X, Y, and Z parameters configure the position of the endstop: 0 for no endstop, 1 for low end endstop, 2 for high end endstop. For example, `M574 X0` would mean no endstop on X, `M574 Y2` means Y endstop on the high end.
 * Think of "low end" and "high end" as a numeric scale for the axis. If your Y axis has a 250mm range of motion, the low end is 0mm and the high end is 250mm.
 * Observe the physical location of each endstop and compare it to this setting. If it is incorrect, change it now.
-* On a Delta, all endstops are usually at the high end. On Cartesian and CoreXY, the Z low end is where the nozzle is closest to the bed, ie where Z=0.
+* On a Delta, all endstops are usually at the high end. On Cartesian and CoreXY, the Z low end is where the nozzle is closest to the bed, i.e. where Z=0.
 * The S parameter configures the type of endstop: 1=switch, 2=Z-probe, 3=motor stall, 4=multiple motor stall, 5=encoder position error (RRF 3.7 and later) (see [M574](/User_manual/Reference/Gcodes/M574) for usage).
 
 > Note that if you changed which end your endstop is located, you will generally need to update your homing macros (homeall.g, homex.g, homey.g, homez.g and any others if you have more axes) to get the axis to move in the correct direction, towards the endstop, during homing.
@@ -269,10 +269,10 @@ M574 Z2 S1 P"!io4.in" ; configure switch-type (e.g. microswitch) endstop for hig
 **Active high or active low?**
 * In RRF 3.x, the M574 P parameter configures the pins the endstop is connected to. It also configures how the signal is interpreted.
 * An active low endstop is one which pulls the signal to ground when the endstop is pressed. On Duet, this means that it is 'normally open' (or NO) when not pressed. 
-* An active high endstop is one which pulls the signal to ground when the endstop is not pressed. On Duet, this means it is 'normally closed' (or NC) when not pressed. Duet3D recommend NC endstops, as they are less susceptible to interference from other sources, eg stepper motor wiring.
+* An active high endstop is one which pulls the signal to ground when the endstop is not pressed. On Duet, this means it is 'normally closed' (or NC) when not pressed. Duet3D recommend NC endstops, as they are less susceptible to interference from other sources, e.g. stepper motor wiring.
 * On Duet 2 WiFi/Ethernet, you can test whether your endstops are active low or active high by observing the red LED next to the corresponding stepper motor connector. If the LED is lit when the endstop is triggered, this would indicate an active low endstop. If the LED is lit when the endstop is not triggered, this would indicate an active high endstop.
 * If you found that the endstop was responding the wrong way in the test in the previous section, the pin input can be inverted in the endstop definition in config.g. Do this by:
-  * Invert the signal in the M574 command with `!`, eg `M574 Y2 P"!io2.in"`
+  * Invert the signal in the M574 command with `!`, e.g. `M574 Y2 P"!io2.in"`
   * If the M574 command already has a `!` in it, remove it.
   * If you edit config.g, any changes will be implemented when you reset the Duet.
   * Alternatively, you can send the command in the GCode console, where it will have immediate effect.
@@ -293,18 +293,18 @@ See [Configuring endstop switches](/User_manual/Connecting_hardware/Sensors_ends
   * Navigate back to 'Control > Dashboard'. 
 * Using the Machine Movement panel, move each stepper motor, individually, 1 mm in each direction by pressing the '< #-1' and '#+1 >' buttons for each axis, where # is the axis. 
 * If any motors move in the wrong direction, we will fix them after checking the extruder motors.
-* Note: for cartesian kinematics, where only one motor moves for each X, Y and Z axis, this is straightforward. If you have a CoreXY, delta or Scara, see [User manual: Testing stepper motors](/User_manual/Connecting_hardware/Motors_testing) for the correct motor movements.
+* Note: for Cartesian kinematics, where only one motor moves for each X, Y and Z axis, this is straightforward. If you have a CoreXY, delta or SCARA, see [User manual: Testing stepper motors](/User_manual/Connecting_hardware/Motors_testing) for the correct motor movements.
 * Note: a stepper can't be moved before homing, unless the [M564](/User_manual/Reference/Gcodes/M564) command is used to override this safety default.
 
 [![dwc23_12_tool_states.png](/manual/dwc/dwc23_12_tool_states.png =50%x){.align-right}](/manual/dwc/dwc23_14_machine_control_09.png){target=_blank}[![dwc23_14_machine_control_09.png](/manual/dwc/dwc23_14_machine_control_09.png =50%x){.align-right}](/manual/dwc/dwc23_14_machine_control_09.png){target=_blank}**Check the operation of your extruder stepper motors.**
 * To conduct this step, temporarily allow extruder movement without heating:
   * Navigate to 'Control > Console' and enter `M302 P1`. You can also enter GCodes into the field in the centre of the bar at the top of the page.
   * Navigate back to 'Control > Dashboard'.
-* Check that the tool you are testing is active; in the Tools + Extra panel, the tool should be highlighted blue, and the heater should be active. Make sure temperatures are set to 0 to avoid heating up the hot end.
+* Check that the tool you are testing is active. In the Tools + Extra panel, the tool should be highlighted blue, and the heater should be active. Make sure temperatures are set to 0 to avoid heating up the hot end.
 * Ideally, test the extruder motor without filament loaded, and observe the extruder gears to check which way they are turning. If you can't see them, start with no filament loaded, place some filament in the extruder so it just catches on the extruder gears, then command a short extrusion, to test which way the filament is pushed.
-* Use the Extrusion Control panel to move the extruder motor. Select a small feed amount, eg 5mm, and slow feedrate, eg 1mm/s, and press the Retract and Extrude buttons to test which way the extruder moves.
+* Use the Extrusion Control panel to move the extruder motor. Select a small feed amount, e.g. 5mm, and slow feedrate, e.g. 1mm/s, and press the Retract and Extrude buttons to test which way the extruder moves.
 * If the extruder motor moves in the wrong direction, we will fix it in the next step.
-* If the Retract and Extrude buttons are greyed out, check that the tool is selected and active, that the M302 command has been sent. If it is still greyed out, check in config.g that your tool definition (M563) includes the extruder drive (D parameter), eg M563 P0 D0 H1 F0.
+* If the Retract and Extrude buttons are greyed out, check that the tool is selected and active, and that the M302 command has been sent. If it is still greyed out, check in config.g that your tool definition (M563) includes the extruder drive (D parameter), e.g. `M563 P0 D0 H1 F0`.
 * Finish by re-applying cold extrusion prevention, with `M302 P0`.
 
 **Reversing a Stepper Motor**
@@ -319,14 +319,14 @@ See [Configuring endstop switches](/User_manual/Connecting_hardware/Sensors_ends
 Once the motors are moving in the correct direction, you can test if they are configured to move the correct distance.
 
 The distance an axis moves is defined by:
-  * the number of steps your stepper motors takes to make a full rotation (which is set physically by the stepper motors type) multiplied by the microstepping (set by [M350](/User_manual/Reference/Gcodes/M350), 
+  * the number of steps your stepper motors take to make a full rotation (which is set physically by the stepper motors type) multiplied by the microstepping (set by [M350](/User_manual/Reference/Gcodes/M350)), 
   * and the number of steps per mm to move the axis (set by [M92](/User_manual/Reference/Gcodes/M92))
   
 These should have been set correctly during [Configuring firmware](/How_to_guides/Configuring_firmware). 
 
 Test the X, Y, Z and any other axis motor by moving each axis a bit further (+/-10mm, then +/-100mm) and measure the distance moved with a ruler. If an axis moves too far, or not far enough, check the values you set for microstepping (M350) and steps per mm (M92).
 
-Testing and calibrating extruder motors is covered in the next guide, [Calibration](/How_to_guides/Calibration)
+Testing and calibrating extruder motors is covered in the next guide, [Calibration](/How_to_guides/Calibration).
 
 **Test homing**
 
@@ -340,19 +340,19 @@ Once you have checked your motors are moving the correct direction and distance,
 
 **Check configuration**
 
-* Begin by familiarizing yourself with the different probe modes; see [User manual: Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)
+* Begin by familiarising yourself with the different probe modes. See [User manual: Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)
 * Navigate to 'Files > System' and open the config.g file.
 * [M558](/User_manual/Reference/Gcodes/M558) configures the Z probe. Check the P value matches whichever probe you are using.
 * H value defines the dive height, which is the height above the trigger height from which probing starts.
-* F value defines the "feed rate", or probing speed in millimeters per minute.
-* T value defines the travel speed at which the probe is moved between probe points in millimeters per minute.
+* F value defines the "feed rate", or probing speed in millimetres per minute.
+* T value defines the travel speed at which the probe is moved between probe points in millimetres per minute.
 * For more information on Z probing see: 
   [User manual: Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing)
   [Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting)
 
 **Test Z Probe**
 
-* Test the Z probe by ensuring that the status changes in Duet Web Control. e.g. If using an IR probe, by putting a piece of paper under the probe.
+* Test the Z probe by ensuring that the status changes in Duet Web Control. For example, if using an IR probe, put a piece of paper under the probe.
 * For more detailed instructions, see [User manual: Test and calibrate a Z probe](/User_manual/Connecting_hardware/Z_probe_testing)
 * Once configured, tested and calibrated, you can test homing Z.
 
@@ -378,4 +378,4 @@ For the above see [User manual: Tuning](/User_manual/Tuning)
 
 For further details the following wiki pages are a good place to start:
 * [Configuring RepRapFirmware for a Cartesian Printer](/User_manual/Machine_configuration/Configuration_cartesian)
-* [Gcode dictionary](/User_manual/Reference/Gcodes)
+* [GCode dictionary](/User_manual/Reference/Gcodes)
