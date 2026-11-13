@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-11-11T09:24:00.589Z
+date: 2026-11-13T16:50:15.772Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9444,15 +9444,12 @@ The procedure for changing the data rate is:
 
 *Supported in RRF 3.7.0 and later*
 
-This command sets the CAN timing on the main board. It can also enable Bit Rate Switching (BRS), and sets the data phase bit rate when BRS is enabled. On the Duet 3 MB6HC and MB6XD it also configures the secondary CAN bus CAN0 (RRF 3.7.1 and later).
+This command sets the CAN timing on the main board. It can also enable Bit Rate Switching (BRS), and sets the data phase bit rate when BRS is enabled.
 
 ### Parameters
 
-* **Pn** (optional, RRF 3.7.1 and later) CAN bus to configure, numbered as printed on the board. The default is the main CAN bus CAN1. P0 selects the secondary CAN bus CAN0, which only the Duet 3 MB6HC and MB6XD have.
-* **Annn** (optional, P0 only, RRF 3.7.1 and later, experimental) Lowest CAN address of the expansion boards connected to CAN0. Boards with addresses from A to 125 must be connected to CAN0, all other boards to CAN1. Firmware updates of boards using address 126 work on both CAN buses. A0 (default) assigns no boards to CAN0.
-* **Cn** (optional, P0 only, RRF 3.7.1 and later) C1 makes CAN0 a classic CAN bus, which is needed to talk to ODrive motor controllers on a Hangprinter. C0 (default) makes CAN0 a CAN-FD expansion bus.
-* **Sn.n** Requested arbitration phase bit rate in Kbits/second, default 1000, or 250 for CAN0 in classic mode. Other supported values are 500 and 250.
-* **Rn** (optional, Duet 3 MB6HC and MB6XD only) Bit rate multiplier for the data phase. Supported values are 1, 2, 3, 4, 6 and 8. R1 disables BRS. Include R in every M953 command. Each CAN bus has its own setting, and R is not supported on CAN0 in classic mode.
+* **Sn.n** Requested arbitration phase bit rate in Kbits/second, default 1000. Other supported values are 500 and 250.
+* **Rn** (optional, Duet 3 MB6HC and MB6XD only) Bit rate multiplier for the data phase. Supported values are 1, 2, 3, 4, 6 and 8. R1 disables BRS. Include R in every M953 command.
 * **T0.n** (optional) Fraction of the data bit time between the bit start and the sample point for the arbitration phase
 * **J0.n** (optional) Maximum jump time as a fraction of the data bit time for the arbitration phase
 * **U0.n** (optional, Duet 3 MB6HC and MB6XD only, used only when R is present) Fraction of the data bit time between the bit start and the sample point for the data phase
@@ -9462,17 +9459,13 @@ This command sets the CAN timing on the main board. It can also enable Bit Rate 
 <br>
 <pre class="cblock">
 M953 S1000 R4     ; use standard 1Mbps arbitration bit rate and x4 data phase multiplier (4Mbps)
-M953 P0 A64       ; expansion boards with CAN addresses 64 to 125 are connected to CAN0
-M953 P0 C1        ; use CAN0 as a classic CAN bus at 250kbps, e.g. for ODrives
 </pre>
 
 ### Notes
 
 The optional **T**, **J**, **U** and **K** parameters are not normally used. 
 
-M953 with no parameters reports the CAN timing of the main board. M953 P0 reports the mode of CAN0, the addresses it serves and its timing.
-
-On the Duet 3 MB6HC and MB6XD, CAN1 is the main RJ11 CAN connector and CAN0 is the 2-pin AUX_CAN connector. Connecting expansion boards to CAN0 is experimental. Some board revisions also carry CAN0 on pins 2 and 5 of the RJ11 connector, see the hardware overview of the board. Until M953 P0 A is used, CAN0 only listens. Messages from an expansion board connected to the CAN bus that its address is not assigned to are ignored, and once config.g has finished a warning is reported every 10 seconds. Firmware update requests are always answered on the bus they arrive on, because the bootloaders of some boards use a different CAN address from their firmware. Tool boards and other expansion boards without address switches use their factory default address (120 to 124) until it is changed with M952, so with A120 or lower they belong on CAN0. Put M953 P0 near the start of config.g, before any command that refers to a board on CAN0. The object model reports the setting in boards[0].canSplitAddress.
+M953 with no parameters reports the CAN timing of the main board.
 
 For further information see [Enabling bit rate switching](https://docs.duet3d.com/en/User_manual/Machine_configuration/CAN_connection#enabling-bit-rate-switching)
 
