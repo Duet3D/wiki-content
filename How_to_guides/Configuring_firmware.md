@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for your machine
 description: 
 published: true
-date: 2022-04-06T12:11:44.357Z
+date: 2026-11-13T15:04:49.652Z
 tags: 
 editor: markdown
 dateCreated: 2022-02-04T13:25:14.342Z
@@ -21,23 +21,23 @@ If you have any problems with your Duet when using this guide, rather than posti
 
 # Read me first!
 
-RepRapFirmware is supplied as a ready-built binary file; effectively, all Duet mainboards are running the same firmware, though there are differences in the features of each board. 
+RepRapFirmware is supplied as a ready-built binary file. Effectively, all Duet mainboards are running the same firmware, though there are differences in the features of each board. 
 
 All configuration, and machine-specific parameters, are defined within the /sys/config.g file on the on-board SD card (or on the SD card in the connected Single Board Computer). This includes configuration for network, stepper motors, axis limits, endstops, probes, temperature sensors, heaters, cooling fans and tools. 
 
 The SD card also stores system macros. The uses of these include telling the machine what to do when homing, probing, and pausing, resuming, or cancelling a job.
 
-You can edit these configuration files (and sometimes this is required) either in the web interface, or by moving the SD card to a PC and using an ordinary text editor. You can also change these parameters on the fly by sending the appropriate G-codes.
+You can edit these configuration files (and sometimes this is required) either in the web interface, or by moving the SD card to a PC and using an ordinary text editor. You can also change these parameters on the fly by sending the appropriate GCodes.
 
-However, creating these configuration files by hand can be tricky. For this reason, we suggest using the [**RepRapFirmware Configuration Tool**](https://configtool.reprapfirmware.org/){target=_blank} to set up your machine's initial configuration. This will create a set of files to go on the SD card, including config.g and system macros for homing, probing, pausing resuming and cancelling, amongst others.
+However, creating these configuration files by hand can be tricky. For this reason, we suggest using the [**RepRapFirmware Configuration Tool**](https://configtool.reprapfirmware.org/){target=_blank} to set up your machine's initial configuration. This will create a set of files to go on the SD card, including config.g and system macros for homing, probing, pausing, resuming and cancelling, amongst others.
 
-Setting up the configuration requires some basic mechanical and electrical knowledge of the machine the Duet is being connected to. This information can usually be obtained from manufacturer documentation, or a google search. If you are updating an existing machine, the  firmware on the existing electronics may report the current configuration by sending [M501](/User_manual/Reference/Gcodes/M501). In a pinch you can measure. A list of the details needed and common values for them can be found on [User manual: Adapting an existing printer to Duet](/User_manual/Overview/Adapting){target=_blank}. 
+Setting up the configuration requires some basic mechanical and electrical knowledge of the machine the Duet is being connected to. This information can usually be obtained from manufacturer documentation, or a Google search. If you are updating an existing machine, the firmware on the existing electronics may report the current configuration by sending [M501](/User_manual/Reference/Gcodes/M501). In a pinch you can measure. A list of the details needed and common values for them can be found on [User manual: Adapting an existing printer to Duet](/User_manual/Overview/Adapting){target=_blank}. 
 
 ## Notes
 
-For more detailed description of the structure of the SD card, and description of files, see [User manual: SD card](/User_manual/RepRapFirmware/SD_card#sd-card-structure)
+For a more detailed description of the structure of the SD card, and a description of files, see [User manual: SD card](/User_manual/RepRapFirmware/SD_card#sd-card-structure)
 
-A full explanation of the configuration files that the configuration tool produces are detailed on the wiki page for [Configuring RepRapFirmware for a **Cartesian** printer](/User_manual/Machine_configuration/Configuration_cartesian). If you have a delta, corexy or other printer this guide is still a useful start point, as is the wiki page linked above. After that check the wiki pages for your specific printer type:
+A full explanation of the configuration files that the configuration tool produces is detailed on the wiki page for [Configuring RepRapFirmware for a **Cartesian** printer](/User_manual/Machine_configuration/Configuration_cartesian). If you have a delta, CoreXY or other printer this guide is still a useful start point, as is the wiki page linked above. After that check the wiki pages for your specific printer type:
 [Configuring RepRapFirmware for a **CoreXY** printer](/User_manual/Machine_configuration/Configuration_coreXY)
 [Configuring RepRapFirmware for a **Linear Delta** printer](/User_manual/Machine_configuration/Configuration_linear_delta)
 [Configuring RepRapFirmware for an **IDEX** printer](/User_manual/Machine_configuration/Configuration_IDEX)
@@ -46,7 +46,7 @@ A full explanation of the configuration files that the configuration tool produc
 [Configuring RepRapFirmware for a **Polar** printer](/User_manual/Machine_configuration/Configuration_Polar)
 [Configuring RepRapFirmware for a **Rotary Delta** printer](/User_manual/Machine_configuration/Configuration_rotary_delta)
 [Configuring RepRapFirmware for a **Serial SCARA** printer](/User_manual/Machine_configuration/Configuration_SCARA)
-[Configuration RepRapFirmware for a **Five bar parallel SCARA** printer](/User_manual/Machine_configuration/Configuration_five_bar_parallel_scara)
+[Configuring RepRapFirmware for a **Five bar parallel SCARA** printer](/User_manual/Machine_configuration/Configuration_five_bar_parallel_scara)
 [Configuring RepRapFirmware for a **Robot** printer](/User_manual/Machine_configuration/Configuring_RepRapFirmware_for_a_Robot_printer)
 
 While RepRapFirmware was originally written for 3D printers, it has evolved to be a very capable controller for other kinds of machines. See:
@@ -69,24 +69,24 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 
 [![config_02_general_01.png](/guides/configuration/config_02_general_01.png =50%x){.align-right}](/guides/configuration/config_02_general_01.png){target=_blank}[![config_02_general_02.png](/guides/configuration/config_02_general_02.png =50%x){.align-right}](/guides/configuration/config_02_general_02.png){target=_blank}**General preferences**
   * Choose your Duet board type from the drop down list.
-  * Choose your firmware version from the drop down list. We recommend using the latest 'release' version of RepRapFirmware. Refer to [User manual: Updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
+  * Choose your firmware version from the drop down list. We recommend using the latest 'release' version of RepRapFirmware. RRF 3.7 and later do not support Duet 2. The last supported version is 3.6.x for Duet 2 WiFi and Ethernet, and 3.5.x for Duet 2 Maestro. Refer to [User manual: Updating firmware](/User_manual/RepRapFirmware/Updating_firmware).
   * Give your printer a name. If you use mDNS (see [description here](https://docs.duet3d.com/en/User_manual/Machine_configuration/Networking#a-note-about-mdns-local-network-discovery)) you can access your printer over the network by name, rather than IP address.
-  * If you're running your Duet connected to a Single Board Computer (SBC, eg a Raspberry Pi), deselect 'Run in standalone mode without SBC'.
+  * If you're running your Duet connected to a Single Board Computer (SBC, e.g. a Raspberry Pi), deselect 'Run in standalone mode without SBC'.
   * Select 'Read config-override.g' to enable reading of a file that contains extra, automatically generated, configuration. See [M500](/User_manual/Reference/Gcodes/M500) for details.
   * Select 'Save print state on power failure' to enable your machine to resume printing after a power failure. See [User manual: Resume a print after a power failure](/User_manual/Tuning/Resume) for details.
   
 **Printer Geometry**
-* Choose your printer geometry. The configuration tool only supports Cartesian, CoreXY, CoreXZ and (linear) Delta. If your machine has a different kinematics/geometry, you can still use the configuration tool; select the geometry that most closely matches your machine, then follow the kinematic-specific documentation (see the Notes at the beginning of this guide).
+* Choose your printer geometry. The configuration tool only supports Cartesian, CoreXY, CoreXZ and (linear) Delta. If your machine has a different kinematics/geometry, you can still use the configuration tool. Select the geometry that most closely matches your machine, then follow the kinematic-specific documentation (see the Notes at the beginning of this guide).
 * If you choose **Cartesian**, **CoreXY** or **CoreXZ**, put in the limits for the X, Y and Z axes. This is generally the size of the bed, and the maximum height you can print to.
-  * The nozzle is at X0 Y0 usually at the front left of the bed; a positive X axis move moves the nozzle from left to right, and a positive Y axis move moves it front to back. If you have a machine where the bed moves in Y, the bed will move from the back to the front; the nozzle moves *relatively* front to back. A postive Z move will increase the distance between nozzle and bed; the Z axis either moves the nozzle up, or moves the bed down.
+  * The nozzle is at X0 Y0, usually at the front left of the bed. A positive X axis move moves the nozzle from left to right, and a positive Y axis move moves it front to back. If you have a machine where the bed moves in Y, the bed will move from the back to the front. The nozzle moves *relatively* front to back. A positive Z move will increase the distance between nozzle and bed. The Z axis either moves the nozzle up, or moves the bed down.
   * If the nozzle can go over the edge of the bed before hitting the endstop, you can use negative values. For example, if the nozzle goes 20mm over the edge of the bed before stopping at the minimum X endstop, put '-20' in 'X minimum'.
-  * You can set X0 Y0 to the middle of the bed. See [User manual: Centering the bed or setting the bed origin](/User_manual/Tuning/Bed_origin).
-* If you choose **Delta**, you will need to enter some Delta-specific geometry information. This doesn't have to be precise; you will need to calibrate the Delta later anyway. See [Calibrating a delta printer](/User_manual/Tuning/Delta_calibration) for details.
-  * X0 Y0 will be in the center of the bed.
+  * You can set X0 Y0 to the middle of the bed. See [User manual: Centring the bed or setting the bed origin](/User_manual/Tuning/Bed_origin).
+* If you choose **Delta**, you will need to enter some Delta-specific geometry information. This doesn't have to be precise, as you will need to calibrate the Delta later anyway. See [Calibrating a delta printer](/User_manual/Tuning/Delta_calibration) for details.
+  * X0 Y0 will be in the centre of the bed.
 
 **Homing preferences**
 * This section defines homing speeds and the amount Z lifts between probing points. Leave as-is unless you know the speeds and Z dive height you want to use.
-* There are a couple of check boxes you can tick to increase these heights if this is the first time setting up a machine, and want to be cautious.
+* There are a couple of check boxes you can tick to increase these heights if this is the first time setting up a machine, and you want to be cautious.
 
 # 3. I/O Mapping
 
@@ -105,19 +105,19 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 
 **Fan mapping**
 * Define which pins the fans connect to.
-* FAN 0 is usually the part cooling fan. FAN 1 is usually the hot end cooling fan, and is often set to thermostatic (ie temperature controlled) operation.
+* FAN 0 is usually the part cooling fan. FAN 1 is usually the hot end cooling fan, and is often set to thermostatic (i.e. temperature controlled) operation.
 * See [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting) for details of connecting and configuring two, three and four wire fans.
 
 **Heaters**
 * Add or remove heaters as necessary.
 * Define each heater as a Bed, Nozzle or Chamber heater, and which output pins the heater will connect to. See [User manual: Heater overview](/User_manual/Connecting_hardware/Heaters_overview) for details of heater support.
-* Define the temperature sensing channel for each heater. Thermistors and PT1000 temperature sensors can be connected directly to the board, which PT100 and thermocouples need an extra temperature daughterboard. 
+* Define the temperature sensing channel for each heater. Thermistors and PT1000 temperature sensors can be connected directly to the board, while PT100 and thermocouples need an extra temperature daughterboard. 
 * See [User manual: Choosing temperature sensors](/User_manual/Connecting_hardware/Temperature_choosing) for more details.
 
 **Z-probe**
-* Choose the input pin for you probe.
-* Very few probes are modulated; unless you know your's is, leave blank.
-* Only probes that need to be deployed/retracted, like the BLTouch, need a PWM contol channel set.
+* Choose the input pin for your probe.
+* Very few probes are modulated. Unless you know yours is, leave blank.
+* Only probes that need to be deployed/retracted, like the BLTouch, need a PWM control channel set.
 * See [User manual: Choosing a Z probe](/User_manual/Connecting_hardware/Z_probe_choosing) for more details on choosing a suitable probe, and [User manual: Connecting a Z probe](/User_manual/Connecting_hardware/Z_probe_connecting) for connecting and configuration.
 
 # 4. Motors
@@ -126,9 +126,9 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 
 **Axes and extruder**
 * Motor settings will depend on your choice of motor, motion system and kinematics. It's best to start with conservative settings, and increase them as you tune your machine.
-* We generally advise to use x16 microstepping, with interpolation; stepper motors are usually not capable of higher resolution or repeatability when using higher microstepping modes.
+* We generally advise to use x16 microstepping, with interpolation. Stepper motors are usually not capable of higher resolution or repeatability when using higher microstepping modes.
 * For steps per mm, there is a calculator built in to help you calculate the correct number. It can calculate steps per mm for belt, leadscrew and extruder.
-* Maximum speed change, maximum speed and acceleration, will depend on your choice of motor, motion system and kinematics. It's best to start slow, then increase to find the limit (ie where each axis looses steps, or there is too much vibration), then reduce until you find a safe setting that performs as desired.
+* Maximum speed change, maximum speed and acceleration, will depend on your choice of motor, motion system and kinematics. It's best to start slow, then increase to find the limit (i.e. where each axis loses steps, or there is too much vibration), then reduce until you find a safe setting that performs as desired.
 * A typical setting for motor current is 60% to 85% of the rated current of your stepper motors.
 * If configuring for RRF 2.x and earlier, you will have the option to select which motor driver each drive is connected to.
 
@@ -141,9 +141,9 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 [![config_05_endstops_01.png](/guides/configuration/config_05_endstops_01.png =50%x){.align-right}](/guides/configuration/config_05_endstops_01.png){target=_blank}**Endstop configuration**
 * Set the endstop type and location.
 * Some endstop type options will be unavailable if they have not been configured on the I/O Mapping page, Drives section (RRF 3.x).
-* Sensorless homing is when the motor stalls at the end of it's travel. See [User manaul: Stall detection and sensorless homing](/User_manual/Connecting_hardware/Sensors_stall_detection) for details.
+* Sensorless homing is when the motor stalls at the end of its travel. See [User manual: Stall detection and sensorless homing](/User_manual/Connecting_hardware/Sensors_stall_detection) for details.
 * If configuring for RRF 2.x and earlier, instead of 'Switch', you will have the option to select either 'Active high (NC - Normally Closed)' or 'Active low (N0 - Normally Open)' switch types.
-* For the 'Endstop location', the 'Low end' is where the axis is at it's minimum. For X and Y, this is the minimum set on the General page, Printer geometry section. For Z, this is where the nozzle touches the bed (either the bed moves up to touch the nozzle, or the nozzle moves down to touch the bed), and is usually Z0.
+* For the 'Endstop location', the 'Low end' is where the axis is at its minimum. For X and Y, this is the minimum set on the General page, Printer geometry section. For Z, this is where the nozzle touches the bed (either the bed moves up to touch the nozzle, or the nozzle moves down to touch the bed), and is usually Z0.
 
 **Z Probe**
 * Some Probe types will be unavailable if they have not been configured on the I/O Mapping page, Z Probe section (RRF 3.x).
@@ -166,14 +166,14 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 * Clicking on 'R25', 'Beta' or 'C' parameter boxes for a heater will bring up a pop-up, allowing you to select your thermistor type from a drop-down list.
 * If your particular thermistor is not listed, clicking 'Custom' on the drop down list shows a thermistor parameter calculator. Enter values for it to calculate the thermistor coefficients for you.
 * If you know your thermistor parameters, you can input them directly in the R25, beta and C boxes.
-* If you selected PT1000, PT100 or thermocouple as the temperature sensor for a heater, ignore the values; they will be overwritten with appropriate values for your chosen sensor.
+* If you selected PT1000, PT100 or thermocouple as the temperature sensor for a heater, ignore the values. They will be overwritten with appropriate values for your chosen sensor.
 
 # 7. Fans
 
 [![config_07_fans_01.png](/guides/configuration/config_07_fans_01.png =50%x){.align-right}](/guides/configuration/config_07_fans_01.png){target=_blank}**Cooling fans**
-* In a 3D printer with a single print head, FAN 0 is usually assigned as the print cooling fan and FAN 1 for the hot end heatsink fan. This is the easiest configuration to use because it's what most G-code slicing software (and the firmware, in RRF 2.x and earlier) expects by default.
+* In a 3D printer with a single print head, FAN 0 is usually assigned as the print cooling fan and FAN 1 for the hot end heatsink fan. This is the easiest configuration to use because it's what most GCode slicing software (and the firmware, in RRF 2.x and earlier) expects by default.
 * Set the initial fan speed and PWM frequency. Check your fan's specification to find what PWM frequency it works best at.
-* Each fan can be configured in firmware as a gcode controlled fan or as a thermostatically-controlled fan. If you choose thermostatic control, set the heater that is monitored, and the temperature that triggers the fan to start.
+* Each fan can be configured in firmware as a GCode controlled fan or as a thermostatically-controlled fan. If you choose thermostatic control, set the heater that is monitored, and the temperature that triggers the fan to start.
 * If configuring for RRF 2.x and earlier, you will have the option to add/remove fans, and to invert the fan output. Fans are mapped to their corresponding output pins by default, but can be remapped using [M106](/User_manual/Reference/Gcodes/M106) with the A parameter.
 * See [User manual: Connecting and configuring fans](/User_manual/Connecting_hardware/Fans_connecting) for more details.
 
@@ -196,8 +196,8 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 [![config_09_compensation_01.png](/guides/configuration/config_09_compensation_01.png =50%x){.align-right}](/guides/configuration/config_09_compensation_01.png){target=_blank}**Bed probing for Mesh Bed Compensation**
 * Mesh Bed Compensation allows the printer to adjust the nozzle height during printing to compensate for an uneven bed or for sag in the gantry.
 * Set the bed area to be probed for Mesh Bed Compensation.
-* Some areas of the bed may not be reachable by the probe if it has a large offset from the nozzle; account for this offset in the minimum and maximum numbers.
-* Set the grid spacing. Up to 441 probe points can be sampled for each mesh.
+* Some areas of the bed may not be reachable by the probe if it has a large offset from the nozzle. Account for this offset in the minimum and maximum numbers.
+* Set the grid spacing. Up to 441 probe points (961 on Duet 3 MB6HC and MB6XD) can be sampled for each mesh.
 * See [Mesh Bed Compensation](/User_manual/Connecting_hardware/Z_probe_mesh_bed) for full details.
 
 **Orthogonal Axis Compensation**
@@ -220,9 +220,9 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 * Enter a password, to require password access to DWC. Note that as the password is sent unencrypted it does not (nor is it intended to) offer a high level of security. But on machines that are (say) on a network, it might prevent idle messing about.
 * If you are configuring a WiFi-equipped Duet, you can enter the WiFi SSID name and password. A configuration file called 'runonce.g' will be created, which will run and then be deleted on reboot, which will configure the Duet's WiFi.
 * Acquire Dynamic IP Address via DHCP
-  * If selected, your Duet will acquire it's IP address from the network DHCP server.
-  * If not selected, you can define the IP address, Subnet Mask and Gateway address to use. If setting these on a WiFi-equipped Duets, these will be added to the 'runonce.g' configuration file, and set on the next reboot after uploading to the Duet. On Ethernet-equipped Duets, these parameters are added to the M552 command that enables networking, in config.g.
-* Enable HTTP to allow access to the Duet Web Console
+  * If selected, your Duet will acquire its IP address from the network DHCP server.
+  * If not selected, you can define the IP address, Subnet Mask and Gateway address to use. If setting these on WiFi-equipped Duets, these will be added to the 'runonce.g' configuration file, and set on the next reboot after uploading to the Duet. On Ethernet-equipped Duets, these parameters are added to the M552 command that enables networking, in config.g.
+* Enable HTTP to allow access to Duet Web Control. In RRF 3.7 and later, HTTP is not enabled by default, so config.g must contain `M586 P0 S1`.
 * Enable FTP and Telnet to have those services available on the Duet.
 * See [User manual: Networking](/User_manual/Machine_configuration/Networking) for more details.
 
@@ -245,7 +245,7 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 
 # 14. Upload configuration via Duet Web Control
 
-[![config_14_dwc_02.png](/guides/configuration/config_14_dwc_02.png =50%x){.align-right}](/guides/configuration/config_14_dwc_02.png){target=_blank}[![config_15_upload_01.png](/guides/configuration/config_15_upload_01.png =50%x){.align-right}](/guides/configuration/config_15_upload_01.png){target=_blank}[![config_15_upload_02.png](/guides/configuration/config_15_upload_02.png =50%x){.align-right}](/guides/configuration/config_15_upload_02.png){target=_blank}This and following steps use Duet Web Control (DWC) to setup and control the Duet. See [User manual: Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual){target=_blank} for full documentation.
+[![config_14_dwc_02.png](/guides/configuration/config_14_dwc_02.png =50%x){.align-right}](/guides/configuration/config_14_dwc_02.png){target=_blank}[![config_15_upload_01.png](/guides/configuration/config_15_upload_01.png =50%x){.align-right}](/guides/configuration/config_15_upload_01.png){target=_blank}[![config_15_upload_02.png](/guides/configuration/config_15_upload_02.png =50%x){.align-right}](/guides/configuration/config_15_upload_02.png){target=_blank}This and following steps use Duet Web Control (DWC) to set up and control the Duet. See [User manual: Duet Web Control](/User_manual/Reference/Duet_Web_Control_Manual){target=_blank} for full documentation.
 * Open your browser and navigate to:
   * `duettest.local` (assuming the printer name is still "duettest", and your network setup supports mDNS), or
   * the IP address of the printer (if this has changed from when setup, either your router should be able to report the addresses of everything connected, or connect to the Duet via USB and send M552)
@@ -265,7 +265,7 @@ While RepRapFirmware was originally written for 3D printers, it has evolved to b
 * If you selected both of the above, you can choose not to install the firmware, but you should reset the Duet.
 * If you selected neither of the above, the Duet should still notice that you have uploaded a configuration file and will ask to be rebooted.
 * Select Yes to reboot the Duet and apply the new configuration.
-* A configuration change sent via a G-Code console will take effect immediately, but will be lost when the device is rebooted (unless the system file has been edited to also reflect the change).
+* A configuration change sent via a GCode console will take effect immediately, but will be lost when the device is rebooted (unless the system file has been edited to also reflect the change).
 
 # 16. Configuration complete!
 
