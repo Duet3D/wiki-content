@@ -2,7 +2,7 @@
 title: GCodes by function
 description: 
 published: true
-date: 2026-11-11T09:24:17.858Z
+date: 2026-11-13T16:50:56.474Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-06T15:58:12.677Z
@@ -344,7 +344,7 @@ dateCreated: 2021-07-06T15:58:12.677Z
 
 [M952](/User_manual/Reference/Gcodes/M952): Set CAN-FD expansion board address and/or normal data rate
 
-[M953](/User_manual/Reference/Gcodes/M953): Set CAN timing and configure CAN0
+[M953](/User_manual/Reference/Gcodes/M953): Set CAN-FD bus fast data rate
 
 [M954](/User_manual/Reference/Gcodes/M954): Configure as CAN expansion board
 
