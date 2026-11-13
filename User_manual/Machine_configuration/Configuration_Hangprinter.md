@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Hangprinter
 description: This page describes how to set up the configuration files for Hangprinters. The same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics.
 published: true
-date: 2026-11-02T16:01:49.225Z
+date: 2026-11-13T16:50:51.590Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T11:56:32.634Z
@@ -77,8 +77,6 @@ The [M666](/User_manual/Reference/Gcodes/M666) parameters are used to configure 
 * **Cnn:nn:nn:nn** Torque constants, default 0. These are required for reading motor forces from ODrives. They are the same values as is configured in the ODrives themselves
 
 ## Changes to other commands
-
-ODrive motor controllers are connected to CAN0 of the Duet 3 MB6HC or MB6XD. From RRF 3.7.1, CAN0 is a CAN-FD expansion bus by default, so add [M953](/User_manual/Reference/Gcodes/M953) P0 C1 near the start of config.g to make it a classic CAN bus for the ODrives.
 
 In the [M92](/User_manual/Reference/Gcodes/M92) command, the XYZU parameters are the steps per mm of line extension or retraction by the A, B, C and D spools.
 
