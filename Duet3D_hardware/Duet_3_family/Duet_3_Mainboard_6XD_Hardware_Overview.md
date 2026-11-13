@@ -2,7 +2,7 @@
 title: Duet 3 Mainboard 6XD
 description: Overview of Duet 3 Mainboard 6XD hardware features.
 published: true
-date: 2026-11-13T12:29:33.832Z
+date: 2026-11-13T12:31:23.507Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-24T19:30:04.220Z
@@ -568,7 +568,7 @@ There is a 120R bus termination fitted to the CAN-FD bus so normally this board 
 ### Removing the bus termination
 
 On the back side of the board are 2 drill to disconnect jumpers per bus:
-![6xd_can_termination_drillable.png](/duet_boards/duet_3_mb6xd/6xd_can_termination_drillable.png){target=_blank}
+[![6xd_can_termination_drillable.png](/duet_boards/duet_3_mb6xd/6xd_can_termination_drillable.png =400x)](/duet_boards/duet_3_mb6xd/6xd_can_termination_drillable.png){target=_blank}
 
 To disconnect the termination resistors, use a small drill bit ~2mm **by hand** to carefully remove the connection between the two pads that is made with the ring of the copper between the pads. **Do not drill all the way through the board**. The copper layer is approx 70um thick (i.e. very thin!). Once it's removed, test that the pads are actually disconnected by checking that there is no continuity between them with a voltmeter.
 
