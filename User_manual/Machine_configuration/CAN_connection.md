@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2026-11-09T14:59:26.089Z
+date: 2026-11-13T16:50:33.270Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -118,7 +118,7 @@ Earlier versions have a permanent termination resistor, so must be at one end of
 
 Mainboard 6HC and 6XD can also be used as expansion boards. See 'Mainboard used as expansion board' section below.
 
-The 6HC and 6XD have two CAN buses, CAN0 and CAN1. CAN1 is the main CAN-FD bus for Duet 3 expansion and tool boards. From RRF 3.7.1, CAN0 can be used experimentally as a second CAN-FD bus for expansion and tool boards: after [M953](/User_manual/Reference/Gcodes/M953) P0 A64, for example, the boards with CAN addresses 64 to 125 are connected to CAN0 and all others to CAN1. Alternatively M953 P0 C1 makes CAN0 a classic CAN bus, which is used to talk to ODrive motor controllers on a Hangprinter. In RRF 3.7.0 and earlier, CAN0 can only be used for the ODrives.
+The 6HC and 6XD have support for two CAN busses; CAN0 and CAN1. Currently (as at RRF 3.6.x) **only CAN1** is used for connecting CAN-FD Duet 3 Main, Expansion and Tool boards. CAN0 is for future expansion, and can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics.
 
 #### Duet 3 Mini 5+
 
@@ -429,7 +429,7 @@ The board will reset its address to default and then:
 
 ## Board 119 appears after a firmware update
 
-On a Duet 3 Toolboard 1LC version 1.1 or later with a bootloader older than version 2.6, the bootloader uses CAN address 119 instead of the board's own address while it downloads new firmware. The firmware update itself works normally, but afterwards the object model and DWC list an additional board 119 without a name in state "resetting". This entry stays until the main board is restarted and can be ignored. If another board uses CAN address 119, it is shown in state "resetting" for a moment after the update instead. On a Duet 3 MB6HC or MB6XD that uses CAN0 for expansion boards, the update also works when address 119 is assigned to the other CAN bus. To get rid of the extra entry permanently, update the bootloader of the tool board, see [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
+On a Duet 3 Toolboard 1LC version 1.1 or later with a bootloader older than version 2.6, the bootloader uses CAN address 119 instead of the board's own address while it downloads new firmware. The firmware update itself works normally, but afterwards the object model and DWC list an additional board 119 without a name in state "resetting". This entry stays until the main board is restarted and can be ignored. If another board uses CAN address 119, it is shown in state "resetting" for a moment after the update instead. To get rid of the extra entry permanently, update the bootloader of the tool board, see [Updating the bootloader on Duet 3 expansion and tool boards](/User_manual/RepRapFirmware/Updating_bootloader).
 
 ## If the bootloader becomes corrupted
 
