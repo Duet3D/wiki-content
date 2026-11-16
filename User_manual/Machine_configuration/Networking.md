@@ -2,7 +2,7 @@
 title: Setting up networking on Duet
 description: This document covers networking options in more detail, including setting up a Duet mainboards with WiFi in Access Point mode, and direct connections to Ethernet-enabled Duets. 
 published: true
-date: 2026-10-30T12:14:47.286Z
+date: 2026-11-16T22:39:48.642Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T23:07:58.871Z
@@ -96,6 +96,29 @@ If you are unable to directly cable the Duet to your network router, you can con
 **Note:** the IP addresses in the following diagram are an example of how a network may be configured. Your network may use different IP addresses and ranges.
 
 ![networking_06.png](/manual/configuration/networking_06.png)
+
+# MAC addresses
+
+Duet boards do not take their MAC addresses from a manufacturer's registered range, so the addresses can't be listed in advance. To add a Duet to a network whitelist, read the address from each board.
+
+## Ethernet
+
+Duets with Ethernet (Duet 3 in standalone mode, Duet 2 Ethernet) calculate their Ethernet MAC address at startup from the unique ID of the processor. M122 reports this ID as "Board ID". The first byte of the address is always `BE`, and the other five bytes come from the unique ID, so they are different on each board. For example, a board with the ID `YHPJK-53XZG-T59BL-LBMNM-QU0NN-SSDY8` has the MAC address `be:5e:62:e3:68:dc`.
+
+The `BE` byte marks the address as locally administered. This means it does not use a manufacturer prefix, so a whitelist based on a prefix won't match it. The unique ID is folded into five bytes, so two boards can in theory get the same address.
+
+* To read the address, send [M540](/User_manual/Reference/Gcodes/M540) with no parameters.
+* To use a different address, for example one assigned by your IT department, add `M540 P` followed by the address to config.g, before the other network commands.
+
+## WiFi
+
+On Duets with WiFi (Duet 2 WiFi, Duet 3 Mini 5+ WiFi and the optional WiFi module of the Duet 3 6HC), the WiFi module has its own MAC address. The module manufacturer (Espressif) programmed this address, and it uses an Espressif manufacturer prefix. It can't be changed.
+
+* To read the address, send [M122](/User_manual/Reference/Gcodes/M122) and look for "MAC address" in the WiFi section of the report. On the Duet 3 6HC, `M540 I1` also reports it while the WiFi interface is active.
+
+## SBC mode
+
+When a Duet 3 runs with a Single Board Computer (SBC), the SBC provides the network connection. The network sees the SBC's own MAC address, not the Duet's.
 
 # HTTPS and other secure protocols
 
