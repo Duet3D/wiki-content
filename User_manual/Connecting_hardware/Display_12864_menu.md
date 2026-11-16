@@ -2,7 +2,7 @@
 title: 12864 display menu system
 description: 
 published: true
-date: 2025-05-02T09:29:24.794Z
+date: 2026-11-16T17:31:49.052Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-08T15:18:45.632Z
@@ -10,24 +10,25 @@ dateCreated: 2021-11-08T15:18:45.632Z
 
 # Introduction
 
-Some Duet 3D mainboards support a dynamically-configured menu system to use on a 12864 display + encoder. As the Duet 3D electronics are capable of being used in many different configurations, with differing requirements, a fixed menu system is not suitable. Therefore the menu structure is defined in files on the Duet mainboard SD card.
+Some Duet3D mainboards support a dynamically-configured menu system to use on a 12864 display + encoder. As the Duet3D electronics are capable of being used in many different configurations, with differing requirements, a fixed menu system is not suitable. Therefore the menu structure is defined in files on the Duet mainboard SD card.
 
 # Supported Duets
 
 Support for 12864 displays was originally introduced for Duet 2 Maestro. 12864 support has now been extended to other Duet boards:
 
 * Duet 3 Mini 5+ - from RRF 3.1.1
-* Duet 2 WiFi and Ethernet - experimental, needs extra hardware, from RRF 3.2 beta1
+* Duet 2 WiFi and Ethernet - experimental, needs extra hardware, from RRF 3.2
 * Duet Maestro - RRF 2.x and 3.x
 
 See [Connecting 12864 and other displays](/User_manual/Connecting_hardware/Display_12864) for details.
 
-**NOTE:** on **Single Board Computer** (SBC, i.e. Raspberry Pi) setups where a 12864 display is connected to a supported Duet board (see above), the file and macro list are unavailable in the 12864 menus. This is because the SBC presents a virtual SD card rather than a physical one that the 12864 system can not access.
-See [this thread on the forum](https://forum.duet3d.com/topic/32997/duet-3-sbc-with-12864-display-sd-card-access) for a workaround to allow access to specific macros.
+**NOTE:** in RRF 3.6 and earlier, on **Single Board Computer** (SBC, i.e. Raspberry Pi) setups where a 12864 display is connected to a supported Duet board (see above), the file and macro list are unavailable in the 12864 menus. This is because the SBC presents a virtual SD card rather than a physical one that the 12864 system cannot access.
+See [this thread on the forum](https://forum.duet3d.com/topic/32997/duet-3-sbc-with-12864-display-sd-card-access){target=_blank} for a workaround to allow access to specific macros.
+In RRF 3.7 and later, the 'files' menu item also works in SBC mode. RRF reads the file list from the SBC.
 
 # Configuration
 
-Before a 12864 display can be used, the M918 P1 Enn command must be sent to enable it (P1) and set the encoder resolution and direction (Enn, where nn usually needs to be -4, -2, 2 or 4). This command would normally be put in the config.g file. See [M918](/User_manual/Reference/Gcodes/M918) in the Gcode dictionary for more details. Example:
+Before a 12864 display can be used, the `M918 P1 Enn` command must be sent to enable it (P1) and set the encoder resolution and direction (Enn, where nn usually needs to be -4, -2, 2 or 4). This command would normally be put in the config.g file. See [M918](/User_manual/Reference/Gcodes/M918) in the GCode dictionary for more details. Example:
 
 ```
 M918 P1 E4 F2000000 ; configure direct-connect display
@@ -37,10 +38,10 @@ Folder **/menu** of the micro SD card installed in the Duet is used to hold menu
 
 There are a number of published user-created menu file sets you can use:
 
-* JadonM - [UltimateDuetMenuSystem](https://github.com/jadonmmiller/UltimateDuetMenuSystem)
+* JadonM - [UltimateDuetMenuSystem](https://github.com/jadonmmiller/UltimateDuetMenuSystem){target=_blank}
 As far as we know, JadonM's menu system is currently the only one that supports selecting and printing files from the external SD card on the display itself.
-* mudcruzr - [Duet-Maestro-12864-Menu-Files](https://github.com/mudcruzr/Duet-Maestro-12864-Menu-Files)
-* jottesman - [DUET3D_12864LCD_MenuFiles](https://github.com/tinkerlifeprojects/DUET3D_12864LCD_MenuFiles)
+* mudcruzr - [Duet-Maestro-12864-Menu-Files](https://github.com/mudcruzr/Duet-Maestro-12864-Menu-Files){target=_blank}
+* jottesman - [DUET3D_12864LCD_MenuFiles](https://github.com/tinkerlifeprojects/DUET3D_12864LCD_MenuFiles){target=_blank}
 
 Many thanks to these users for their work!
 
@@ -48,7 +49,7 @@ If you want to create your own set of menu files, or modify existing ones, read 
 
 # Menu files
 
-You can create and edit menu files within Duet web Control version 1.22.1 and later. If the /menu folder doesn't exist on the SD card, it will be created when you use the New File button to create a menu file.
+You can create and edit menu files within Duet Web Control version 1.22.1 and later. If the /menu folder doesn't exist on the SD card, it will be created when you use the New File button to create a menu file.
 
 Generally, each line in a menu file describes one display element. Each line has the following syntax:
 
@@ -77,11 +78,11 @@ The following commands are supported:
 | button | [Rnn] [Cnn] [Wnn] [Fnn] T"text" [Vnn] A"action" [L"filename"] | Display selectable  text using the specified font. If the text is clicked then execute the specified action. Some actions require a filename. |
 | value | [Rnn] [Cnn] [Wnn] [Hn] [Fnn] [Dnn] Nvv | Display the specified value with the specified width to the specified number of decimal places |
 | alter | [Rnn] [Cnn] [Wnn] [Hn] [Fnn] [Dnn] Nvv | Display the specified value with the specified width to the specified number of decimal places and allow it to be altered |
-| files | [Rnn] [Fnn] Nnn I"initial-directory" | Display a list of files N files high and allow one of the files to be selected. The list uses the full width of the display. This menu item type is not available when the Duet is used with a Single Board Computer. |
+| files | [Rnn] [Fnn] Nnn I"initial-directory" | Display a list of files N files high and allow one of the files to be selected. The list uses the full width of the display. In RRF 3.6 and earlier, this menu item type is not available when the Duet is used with a Single Board Computer. |
 
 An action string ('A' parameter) can be any of:
 
-* A Gcode command string (must begin with G, M or T). In such a string, #0 represents the full name of the current file, in double quotes. When executing the 'files' command, this is the file selected by the user. When executing the 'button' command, this is copied from the L parameter.
+* A GCode command string (must begin with G, M or T). In such a string, #0 represents the full name of the current file, in double quotes. When executing the 'files' command, this is the file selected by the user. When executing the 'button' command, this is copied from the L parameter.
 * 'menu *name*' chains to the menu file called *name*
 * 'return' returns to the parent menu
 
@@ -171,7 +172,7 @@ button R39 C0 T"Preheat ABS" A"M98 P#0" L"/macros/Preheat ABS"
 button R51 C0 T"Select file to print" A"menu" L"listFiles"
 ```
 
-**Note:** From RRF 3.5.0 the firmware expects M98 commands to have the macro name or path/name in quotes. See [this thread on the forum](https://forum.duet3d.com/topic/35429/3-5rc4-12864-display-menu-m98). The above should work in RRF 3.5.0 and earlier version. It could be rewritten as:
+**Note:** From RRF 3.5.0 the firmware expects M98 commands to have the macro name or path/name in quotes. See [this thread on the forum](https://forum.duet3d.com/topic/35429/3-5rc4-12864-display-menu-m98){target=_blank}. The above also works in RRF 3.5.0 and later, because RRF adds the quotes when it replaces #0 with the L parameter. It could be rewritten as:
 
 ```
 button R27 C0 T"Preheat PLA" A"M98 P""/macros/Preheat PLA"""
