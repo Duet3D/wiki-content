@@ -1,8 +1,8 @@
 ---
 title: Single Board Computer (SBC) setup for Duet 3
-description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+,4 or 5 that allows the Raspberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
+description: Duet 3 mainboards can be connected to a Raspberry Pi 3B+, 4 or 5 that allows the Raspberry Pi to provide Networking, UI and other functionality to the Duet 3. This page will outline how to get setup initially, and what to do if there are issues. 
 published: true
-date: 2026-11-03T15:02:49.820Z
+date: 2026-11-17T17:25:02.291Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:13:44.507Z
@@ -14,7 +14,7 @@ dateCreated: 2021-11-30T22:13:44.507Z
 > This guide describes how to setup an **optional** Single Board Computer (SBC) with Duet 3, allowing the Duet to run in 'SBC mode'. If you don't have, or don't want to connect, an SBC to your Duet, it is not necessary; you can run your Duet in 'standalone' mode, and ignore this guide.
 {.is-info}
 
-[![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_03.jpg){target=_blank}Duet 3 mainboards support connecting a Single Board Computer (SBC) such as a Raspberry Pi. The SBC runs its operating system (Raspberry Pi OS in the case of Raspberry Pi), with the Duet Software Framework (DSF) running on the Raspberry Pi OS. DSF is the bundle of software programs that connects to and controls the Duet 3.
+[![sbc_setup_03.jpg](/manual/configuration/sbc_setup_03.jpg =50%x){.align-right}](/manual/configuration/sbc_setup_03.jpg){target=_blank}Duet 3 mainboards support connecting a Single Board Computer (SBC) such as a Raspberry Pi 3B+, 4 or 5. The SBC runs its operating system (Raspberry Pi OS in the case of Raspberry Pi), with the Duet Software Framework (DSF) running on the Raspberry Pi OS. DSF is the bundle of software programs that connects to and controls the Duet 3.
 
 SBC mode allows part of the functionality to be handled by the SBC. This offers a number of benefits:
 - Faster network transfer speeds
