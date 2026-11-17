@@ -2,7 +2,7 @@
 title: Connecting and configuring fans
 description: 
 published: true
-date: 2025-03-19T14:50:14.680Z
+date: 2026-11-17T15:07:15.051Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-24T16:04:06.507Z
@@ -15,25 +15,25 @@ dateCreated: 2021-09-24T16:04:06.507Z
 
 # Introduction
 
-Duet mainboards support a variety of fans; depending on the Duet board, two-, three- and four-wire PWM-capable fans, running at voltages of 5V, 12V, VIN or an externally-supplied voltage. Fans can be always-on, thermostatically-controlled, and/or G-code controlled.
+Duet mainboards support a variety of fans: depending on the Duet board, two-, three- and four-wire PWM-capable fans, running at voltages of 5V, 12V, VIN or an externally-supplied voltage. Fans can be always-on, thermostatically-controlled, and/or GCode controlled.
 
 # Overview
 
 ## Supported fans
 
-The rotation speed of most commonly-available fans is usually voltage-controlled, i.e. lowering the voltage reduces fan speed. However, Duet boards use Pulse Width Modulation (PWM) to control the speed; this effectively means the fan is getting the full voltage, but this is being turned on and off very quickly. The speed of most fans can be controlled this way, but some fans only support voltage control not PWM, and will only work at 100%. The fan speed may not always scale smoothly with PWM. Ideally, choose fans that support PWM speed control.
+The rotation speed of most commonly-available fans is usually voltage-controlled, i.e. lowering the voltage reduces fan speed. However, Duet boards use Pulse Width Modulation (PWM) to control the speed. This effectively means the fan is getting the full voltage, but this is being turned on and off very quickly. The speed of most fans can be controlled this way, but some fans only support voltage control not PWM, and will only work at 100%. The fan speed may not always scale smoothly with PWM. Ideally, choose fans that support PWM speed control.
 
 ## Duet boards and fan outputs
 
 | Duet board | Number of fan headers |||| Total maximum current limit | Current limit per connector | Supported voltages |
 |:---|:---|
 |  | Always-on | 2-pin | 3-pin | 4-pin | | | |
-| [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | 1 | 3 | - | 3 | 800ma @ 12V, 10A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
-| [Duet 3 Mainboard 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | 1 | 3 | - | 3 | 800ma @ 12V, 10A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
-| [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | - | 2 | - | 2 | 800ma @ 12V, 7.5A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
-| [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC) | 1 | 3 | - | 3 | 800ma @ 12V, 7.5A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
-| [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) | - | - | 1 | 1 | (v1.0 board) 800ma @ 12V |  | 12V |
-| ^^ | ^^ | ^^ | ^^ | ^^ | (v1.1 board) 800ma @ 12V, 2A @ VIN |  | 12V / VIN |
+| [Duet 3 Mainboard 6HC](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6HC_Hardware_Overview) | 1 | 3 | - | 3 | 800mA @ 12V, 10A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
+| [Duet 3 Mainboard 6XD](/Duet3D_hardware/Duet_3_family/Duet_3_Mainboard_6XD_Hardware_Overview) | 1 | 3 | - | 3 | 800mA @ 12V, 10A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
+| [Duet 3 Mini 5+](/Duet3D_hardware/Duet_3_family/Duet_3_Mini_5+_Hardware_Overview) | - | 2 | - | 2 | 800mA @ 12V, 7.5A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
+| [Duet 3 Expansion 3HC](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_3HC) | 1 | 3 | - | 3 | 800mA @ 12V, 7.5A @ VIN (fuse) | 2A | 12V / VIN / external power, in 2 banks |
+| [Duet 3 Toolboard 1LC](/Duet3D_hardware/Duet_3_family/Duet_3_Toolboard_1LC) | - | - | 1 | 1 | (v1.0 board) 800mA @ 12V |  | 12V |
+| ^^ | ^^ | ^^ | ^^ | ^^ | (v1.1 board) 800mA @ 12V, 2A @ VIN |  | 12V / VIN |
 | [Duet 3 Roto Toolboard](/Duet3D_hardware/Duet_3_family/Duet_3_Roto_Toolboard) | - | - | 1 | 1 | 1A @ VIN, 0.6A @ 5V |  | 5V / VIN |
 | [Duet 3 Expansion 1XD](/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD) | - | 2 | - | - | 4A @ VIN | 2A | VIN |
 | [Duet 2 WiFi and Ethernet](/Duet3D_hardware/Duet_2_family/Duet_2_WiFi_Ethernet_Hardware_Overview) | 2 | 3 | - | - | 2A @ 5V (total 5V/3.3V), 1A @ VIN (fuse) | 2A | 5V / VIN / external power |
@@ -42,7 +42,7 @@ The rotation speed of most commonly-available fans is usually voltage-controlled
 
 **Note:** fans can also be connected to spare heater outputs. These run on VIN voltage, and usually have enough current capacity for even the biggest fans.
 
-Duet 2 WiFi/Ethernet and Maestro can support 3- and 4-wire fans, see below for details on how to connect them. 
+Duet 2 WiFi/Ethernet and Maestro can support 3- and 4-wire fans. See below for details on how to connect them. 
 
 ## Board-specific notes on voltage selection
 
@@ -50,15 +50,15 @@ Duet 2 WiFi/Ethernet and Maestro can support 3- and 4-wire fans, see below for d
 
 #### Duet 3 Mainboard 6HC
 
-The 3-pin jumpers above each bank of fan connectors (OUT4 to OUT6, and OUT7 to OUT9) select the voltage for each bank of fans, of either VIN (10A fuse) or 12V (800mA, supplied by onboard 12V regulator. You can supply a different voltage to the centre pin of the 3-pin jumper, pin VOUTLCx, to run different voltages.
+The 3-pin jumpers above each bank of fan connectors (OUT4 to OUT6, and OUT7 to OUT9) select the voltage for each bank of fans, of either VIN (10A fuse) or 12V (800mA, supplied by onboard 12V regulator). You can supply a different voltage to the centre pin of the 3-pin jumper, pin VOUTLCx, to run different voltages.
 
 #### Duet 3 Mini 5+
 
-The 3-pin jumpers above each bank of fan connectors (OUT3 and OUT4, OUT5 and OUT6) select the voltage for each bank of fans, of either VIN (7.5A fuse) or 12V (800mA, supplied by onboard 12V regulator. You can supply a different voltage to the centre pin of the 3-pin jumper, pin VOUTLCx, to run fans at different voltages.
+The 3-pin jumpers above each bank of fan connectors (OUT3 and OUT4, OUT5 and OUT6) select the voltage for each bank of fans, of either VIN (7.5A fuse) or 12V (800mA, supplied by onboard 12V regulator). You can supply a different voltage to the centre pin of the 3-pin jumper, pin VOUTLCx, to run fans at different voltages.
 
 #### Duet 3 Expansion 3HC
 
-The 3-pin jumpers above each bank of fan connectors (OUT3 to OUT5, and OUT6 to OUT8) select the voltage for each bank of fans, of either VIN (10A fuse) or 12V (800mA, supplied by onboard 12V regulator. You can supply a different voltage to the centre pin of the 3-pin jumper, pin VOUTLCx, to run different voltages.
+The 3-pin jumpers above each bank of fan connectors (OUT3 to OUT5, and OUT6 to OUT8) select the voltage for each bank of fans, of either VIN (10A fuse) or 12V (800mA, supplied by onboard 12V regulator). You can supply a different voltage to the centre pin of the 3-pin jumper, pin VOUTLCx, to run different voltages.
 
 #### Duet 2 WiFi / Ethernet
 
@@ -68,20 +68,20 @@ The 3-pin jumper (V_FAN) allows you to select whether all fans (three controlled
 
 DueX boards have 6 further PWM controllable fans (FAN3 - FAN8). V FAN JUMPER SELECT selects voltage for PWM fans, between 5V (internally or externally supplied), 12V internal and VIN. 
 
-*DueX board versions before 0.8 had 5 fan connections see the [DueX hardware page](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) for details.*
+*DueX board versions before 0.8 had 5 fan connections. See the [DueX hardware page](/Duet3D_hardware/Duet_2_family/DueX2_and_DueX5) for details.*
 
 #### Duet 2 Maestro
 
-There are two 3-pin jumpers (V_FAN_A and V_FAN_B) to select fan pin voltages between VIN or the Duet's 5V supply. V FAN A controls FAN0, FAN1 and the always-on fan pins, V_FAN_B controls FAN2. You can supply a different voltage to the centre pin of the 3-pin jumper, pin V_FAN_A or V_FAN_B, to run fans at different voltages.
+There are two 3-pin jumpers (V_FAN_A and V_FAN_B) to select fan pin voltages between VIN or the Duet's 5V supply. V FAN A controls FAN0, FAN1 and the always-on fan pins. V_FAN_B controls FAN2. You can supply a different voltage to the centre pin of the 3-pin jumper, pin V_FAN_A or V_FAN_B, to run fans at different voltages.
 
 
 ## General recommendations
 
-* Our intention is that in a 3D printer with a single print head, you define/use **Fan0 for the print cooling fan** and **Fan1 for the heatsink fan**. This is the easiest configuration to use because it's what most G-code slicing software (and the firmware, in RRF 2.x and earlier) expects by default.
-* If you have a multi-tool setup, you can define the print cooling fan of each tool as part of the tool. This gets around the issue of Slicer software not supporting multiple part cooling fans. See "Allocating fans to tools" section below.
+* Our intention is that in a 3D printer with a single print head, you define/use **Fan0 for the print cooling fan** and **Fan1 for the heatsink fan**. This is the easiest configuration to use because it's what most GCode slicing software expects by default.
+* If you have a multi-tool setup, you can define the print cooling fan of each tool as part of the tool. This gets around the issue of Slicer software not supporting multiple part cooling fans. See the "Allocating fans to tools" section below.
 * Mixed-voltage setups are not directly supported, but the Duet switches the fans' connections to ground, so you may be able to connect each fan's positive side to the appropriate voltage and its negative side to the appropriate pin on the Duet. 
-* Each controlled fan can be configured in firmware as a gcode controlled fan or as a thermostatically-controlled fan.
-* See table above for our recommendations on continuous current draw. However, a current 'blip' that goes over this limit for a few seconds while the fan starts up should not harm them.
+* Each controlled fan can be configured in firmware as a GCode controlled fan or as a thermostatically-controlled fan.
+* See the table above for our recommendations on continuous current draw. However, a current 'blip' that goes over this limit for a few seconds while the fan starts up should not harm them.
 
 # Connecting fans
 
@@ -92,7 +92,7 @@ Fans are polarised. When connecting a fan to a fan connector, the fan's positive
 
 ## Fan wire colours
 
-2-wire fans usually have black and red wires. 3- and 4- wire fans usually come with pre-crimped housings, and the wire order is standard. The colour of the wires may not be, though. Below is the most common wire colours.
+2-wire fans usually have black and red wires. 3- and 4- wire fans usually come with pre-crimped housings, and the wire order is standard. The colour of the wires may not be, though. Below are the most common wire colours.
 
 | | 2-wire fan | 3-wire fan || 4-wire fan ||
 |---|---|
@@ -101,7 +101,7 @@ Fans are polarised. When connecting a fan to a fan connector, the fan's positive
 | Tachometer | | Yellow | Green | Yellow | Green |
 | PWM | | | | Blue | Blue |
 
-Fans can also come with wires all the same colour, eg all black or grey, unhelpfully. You will need to identify which wires are which to ensure you connect them correctly.
+Fans can also come with wires all the same colour, e.g. all black or grey, unhelpfully. You will need to identify which wires are which to ensure you connect them correctly.
 
 ## Connecting fans to Duet fan pins
 
@@ -141,7 +141,7 @@ You will need to rewire a 3-wire fan to connect it to a 2- or 4-pin fan connecto
 | tach (yellow or green) | (see note) | tach |
 | -ve (black) | out[n]- / FAN[n]- | out[n]- |
 
-Note: On **Duet 2** boards running RRF 3.x, connect the tacho wire of a 3-wire fan to the cathode of a small signal diode (1N4148 should be OK) and connect the anode of the diode to any available digital input pin, to provide a reading of the fan RPM. For example, on Duet 2 WiFi/Ethenet connect it to pin PB6, and on Duet 2 Maestro use one of the four expansion pins. In RRF 2.x, only Duet 2 WiFi/Ethernet expansion pin PB6 supports tacho, and is defined by default. Or you can leave it not connected. 
+Note: On **Duet 2** boards running RRF 3.x, connect the tacho wire of a 3-wire fan to the cathode of a small signal diode (1N4148 should be OK) and connect the anode of the diode to any available digital input pin, to provide a reading of the fan RPM. For example, on Duet 2 WiFi/Ethernet connect it to pin PB6, and on Duet 2 Maestro use one of the four expansion pins. Or you can leave it not connected. 
 
 The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as the PWM pin. A 3-wire fan should simply plug in.
 
@@ -167,11 +167,11 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 
 #### Notes
 
-* RepRapFirmware expects a connected 4-wire fan to adhere to the [Intel 4-Wire Pulse Width Modulation (PWM) Controlled Fans specification](https://web.archive.org/web/20110726062453/http://www.formfactors.org/developer/specs/4_Wire_PWM_Spec.pdf).
+* RepRapFirmware expects a connected 4-wire fan to adhere to the [Intel 4-Wire Pulse Width Modulation (PWM) Controlled Fans specification](https://web.archive.org/web/20110726062453/http://www.formfactors.org/developer/specs/4_Wire_PWM_Spec.pdf){target=_blank}.
 * This means that the expected Pulses Per Revolution (PPR) from the tacho is 2, and the RPM reading calculated assumes that.
 * The Intel fan specification also says that the fan must be able to go down to 30% PWM or lower. Below 30% PWM the fan is allowed to continue at the 30% PWM level, or go slower, or turn off. So at zero PWM the fan may still be at 30%. Most Noctua fans turn off at zero PWM.
 * If the speed control of a 4-wire fan is not working well, i.e. fan speed does not scale well with PWM setting, you may be able to improve the response by connecting an external pullup resistor between the PWM input and +5V. 10K ohm would be a good starting point.
-* For more information, see [this forum thread](https://forum.duet3d.com/topic/25511/).
+* For more information, see [this forum thread](https://forum.duet3d.com/topic/25511/){target=_blank}.
 
 
 #### Tabs {.tabset}
@@ -207,23 +207,23 @@ The **Duet 3 Toolboard 1LC** has one 3-pin fan connector. It uses the GND pin as
 
 NOTE: on **Duet 2** with only 2-pin fan connectors, the recommended connections are:
 * Negative (black) wires: connect to the - pin of an always-on fan connector.
-* Positive (red or yellow): connect to the + pin of an always-on fan connector; or if VIN is 24V and you are using a 12V fan, to the +12V output of a buck converter fed from VIN.
-* Tacho wire (yellow or green): optionally, connect the tacho wire of a 4-wire fan to the cathode of a small signal diode (1N4148 should be OK) and connect the anode of the diode to any available digital input pin, to provide a reading of the fan RPM. For example, on Duet 2 WiFi/Ethenet connect it to pin PB6, and on Duet 2 Maestro use one of the four expansion pins. In RRF 2.x, only Duet 2 WiFi/Ethernet expansion pin PB6 supports tacho, and is defined by default. Or you can leave it not connected. 
+* Positive (red or yellow): connect to the + pin of an always-on fan connector, or if VIN is 24V and you are using a 12V fan, to the +12V output of a buck converter fed from VIN.
+* Tacho wire (yellow or green): optionally, connect the tacho wire of a 4-wire fan to the cathode of a small signal diode (1N4148 should be OK) and connect the anode of the diode to any available digital input pin, to provide a reading of the fan RPM. For example, on Duet 2 WiFi/Ethernet connect it to pin PB6, and on Duet 2 Maestro use one of the four expansion pins. Or you can leave it not connected. 
 * PWM control (blue) wire: connect it to the FAN- pin of your chosen controlled fan connector.
-* Configure the fan with the PWM signal inverted and define the pin the tacho wire is connected to with pullup resistor enabled (see section below for firmware configuration)
+* Configure the fan with the PWM signal inverted and define the pin the tacho wire is connected to with pullup resistor enabled (see section below for firmware configuration).
 
 
 
 ## Duet 2: Using 12V fans when VIN is 24V
 
-If you need to use 12V fans but your ``VIN`` is 24V and all your fans are 12V, then on the Duet 2 Wifi / Ethernet you have the following options using a buck-down converter:
+If you need to use 12V fans but your ``VIN`` is 24V and all your fans are 12V, then on the Duet 2 WiFi / Ethernet you have the following options using a buck-down converter:
 
-1. Note that the Duet 3 has an internal 12v regulator so no buck converter is needed.
+1. Note that the Duet 3 has an internal 12V regulator so no buck converter is needed.
 1. Wire the buck regulator input directly to the ``VIN`` terminals, and the output to the centre pin of ``V_FAN``^1^
 1. Wire the buck regulator positive input to the ``VIN`` end of ``V_FAN``, the output to the centre pin of ``V_FAN``, and ground to any power ground connection (possibly the ground side of an always-on fan output)^2^
 1. Put a jumper on ``V_FAN`` at the ``VIN`` end. Wire the buck regulator input to an always-on fan output. Wire the positive wires of 12V fans directly to the buck regulator output, and the negative wires to the ``FAN-`` pins of the controlled fan outputs as usual^3^
 1. Here is an example wiring diagram for connecting the buck converter.
-![blv_mgn_cube_12v_fan_on_24v.jpg](/manual/fans/blv_mgn_cube_12v_fan_on_24v.jpg =600x)
+![blv_mgn_cube_12v_fan_on_24v.jpg](/manual/fans/blv_mgn_cube_12v_fan_on_24v.jpg =600x){target=_blank}
 <!--1. [Here is an example implementation of a buck converter being used to power 12v fans and LEDs in a 24v system. **UPDATE LINK**]()-->
 
 ### Notes
@@ -248,13 +248,13 @@ If you want to run your other fans on a Duet 2 from 5V but your always-on fans f
 
 ## Thermostatically controlled fans
 
-As mentioned above, many hot ends require a fan to keep the heatsink cool, so that the filament remains solid until it passes through the heat break into the melt zone. This fan should be on any time the hot end is hot enough to melt plastic, but can safely be off when the hot end is cool even if the rest of the machine is on. Duet boards support this mode of operation. Plug your fan into one of the PWM fan pins, and configure it as a thermostatic fan for the appropriate heater by putting the appropriate M106 G-code in config.g. For example:
+As mentioned above, many hot ends require a fan to keep the heatsink cool, so that the filament remains solid until it passes through the heat break into the melt zone. This fan should be on any time the hot end is hot enough to melt plastic, but can safely be off when the hot end is cool even if the rest of the machine is on. Duet boards support this mode of operation. Plug your fan into one of the PWM fan pins, and configure it as a thermostatic fan for the appropriate heater by putting the appropriate M106 GCode in config.g. For example:
 
 ```
 M106 P1 T45 H1
 ```
 
-This sets fan 1 to run any time the temperature of heater 1 is above 45 Celsius. See [M106](/User_manual/Reference/Gcodes/M106) for details. We recommend you use the FAN1 connector for a thermostatically-controlled hot end fan, because on the Duet 2 WiFi / Ethernet in RRF 2.x it defaults to being on at power up , to provide maximum safety if you restart your Duet when the hot end is hot.
+This sets fan 1 to run any time the temperature of sensor 1 is above 45 Celsius. See [M106](/User_manual/Reference/Gcodes/M106) for details.
 
 A thermostatically controlled hot end fan will be turned on automatically when you auto tune any heater that it monitors.
 
@@ -262,12 +262,11 @@ Note: thermostatic fans SHOULD NOT be mapped to tools.
 
 ## G-code controlled fans
 
-Printing PLA (and perhaps other plastics) benefits from additional cooling of printed layers, particularly when layers are printing quickly. That said, excessive cooling can cause problems with first layer adhesion or even interfere with a new layer's bonding to the previous one. Many slicer programs will introduce fan control G-codes to run the fan strongly for layers that print quickly, and only start running the fan after the first few layers. Attach/define such a fan to one of the connectors FAN0, FAN1, or FAN2. If your slicer doesn't support specifying which fan to control, it defaults to FAN0.
+Printing PLA (and perhaps other plastics) benefits from additional cooling of printed layers, particularly when layers are printing quickly. That said, excessive cooling can cause problems with first layer adhesion or even interfere with a new layer's bonding to the previous one. Many slicer programs will introduce fan control GCodes to run the fan strongly for layers that print quickly, and only start running the fan after the first few layers. Attach such a fan to a PWM output (normally medium current outputs on Duet 3 boards) and create it with M950. If your slicer doesn't specify which fan to control, M106 controls the fans of the current tool, or fan 0 if no tool is selected.
 
-The gcode command to set the fan speed is M106 Pnn Svv where nn is the fan number (default 0 if the P parameter is not present) and vv is the required speed. The speed can be expressed either in the range 0 to 1, or in the range 0 to 255. A value of 1 or less will be assumed to be in the range 0 to 1. A value of 0 corresponds to off, and a value of 1 or 255 corresponds to full speed.
+The GCode command to set the fan speed is `M106 Pnn Svv` where nn is the fan number and vv is the required speed. The speed can be expressed either in the range 0 to 1, or in the range 0 to 255. A value of 1 or less will be assumed to be in the range 0 to 1. A value of 0 corresponds to off, and a value of 1 or 255 corresponds to full speed.
 
 **In RRF 2.x, on Duet 2 WiFi/Ethernet, FAN1 is set up as a thermostatically-controlled fan by default because it is typically used to control the hot end heatsink fan.** To use it as a normal controlled fan, you must first cancel thermostatic mode by sending **M106 P1 H-1**.
-
 
 # Configuring fans
 
@@ -290,10 +289,10 @@ M106 P0 S0 H-1       ; set fan 0 value. Thermostatic control is turned off
 M950 F1 C"out4" Q500 ; create fan 1 on pin out4 and set its frequency
 M106 P1 S1 H1 T45    ; set fan 1 value. Thermostatic control is turned on
 
-: 3-wire fan with tacho
-M950 F2 C"out4+out4.tach" ; Fan 2 uses out4, and using out4.tach as a tacho input
+; 3-wire fan with tacho
+M950 F2 C"out6+out6.tach" ; Fan 2 uses out6, and using out6.tach as a tacho input
 
-: 4-wire PWM fan and tacho
+; 4-wire PWM fan and tacho
 M950 F3 C"!out5+out5.tach" ; Fan 3 uses out5, but we are using a PWM fan so the output needs to be inverted, and using out5.tach as a tacho input
 M950 F3 C"!out7+io4.in" ; 4-wire fan connected to 2-pin header on 6HC, io4.in for tacho input
 ```
@@ -313,10 +312,10 @@ M106 P0 S0 H-1       ; set fan 0 value. Thermostatic control is turned off
 M950 F1 C"fan1" Q500 ; create fan 1 on pin fan1 and set its frequency
 M106 P1 S1 H1 T45    ; set fan 1 value. Thermostatic control is turned on
 
-: 3-wire fan with tacho
+; 3-wire fan with tacho
 M950 F2 C"fan2+^exp.pb6" ; Fan 2 uses the Fan2 output, and using PB6 as a tacho input with pullup resistor enabled
 
-: 4-wire PWM fan and tacho
+; 4-wire PWM fan and tacho
 M950 F2 C"!fan2+^exp.pb6" ; Fan 2 uses the Fan2 output, but we are using a PWM fan so the output needs to be inverted, also we are using PB6 as a tacho input with pullup resistor enabled
 ```
 ### RepRapFirmware 2x and earlier
@@ -337,9 +336,9 @@ M106 P2 S0 I1 F25000 H-1 ; set fan 2 value, invert PWM signal, and set PWM frequ
 
 ## Allocating fans to tools
 
-Most slicers do not support having multiple separate print cooling fans so they simply send M106 Snnn, rather than allowing the choice of which fan is allocated to which hotend.
+Most slicers do not support having multiple separate print cooling fans so they simply send `M106 Snnn`, rather than allowing the choice of which fan is allocated to which hot end.
 
-To solve this, other fan channels can be mapped to fan 0 when a specific tool is selected for example:
+To solve this, other fan channels can be mapped to fan 0 when a specific tool is selected, for example:
 
 ```
 M563 P0 D0 H1 F0 ; tool 0 uses extruder 0, heater 1 and fan 0
