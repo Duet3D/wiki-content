@@ -2,13 +2,13 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-11-19T17:29:28.945Z
+date: 2026-11-19T17:31:34.322Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
 ---
 
-[![Image of DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen_7_v0.1_display_s_cropped.jpg)](/hardware/duetscreen/duetscreen_7_v0.1_display_s_cropped.jpg){target=_blank}
+[![Image of DuetScreen Dashboard screen showing the Tools, temperature, temperature graph and the jobs list, with thumbnails for the jobs](/hardware/duetscreen/duetscreen_7_v0.1_display_s_cropped.jpg =600x)](/hardware/duetscreen/duetscreen_7_v0.1_display_s_cropped.jpg){target=_blank}
 
 
 # Introduction
@@ -89,7 +89,7 @@ This enclosure is designed by [chrishamm](https://forum.duet3d.com/user/chrisham
 
 ## Wiring Diagram
 
-[![Wiring Diagram for the DuetScreen 7 v1.0 showing the pinouts of the connectors and connector labels](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png)](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png){target=_blank}
+[![Wiring Diagram for the DuetScreen 7 v1.0 showing the pinouts of the connectors and connector labels](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png =600x)](/hardware/duetscreen/duetscreen_v1.0_d1.0_wiring.png){target=_blank}
 
 
 ## Powering the DuetScreen
