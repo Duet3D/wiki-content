@@ -2,7 +2,7 @@
 title: Duet3D DuetScreen
 description: The DuetScreen is a modern high resolution machine control interface running LVGL.
 published: true
-date: 2026-11-10T13:57:52.039Z
+date: 2026-11-19T17:29:28.945Z
 tags: duetscreen 7inch display paneldue
 editor: markdown
 dateCreated: 2026-01-16T14:53:50.598Z
@@ -81,10 +81,9 @@ A zip of the STEP file for the screen is here: [duet_screen_7_1.0_step.zip](/har
 ## Enclosure
 
 ### Duet3D reference enclosure
-This enclosure is designed by [chrishamm](https://forum.duet3d.com/user/chrishamm){target=_blank}. The Zip file contains both the STEP file and a FreeCAD 1.0 project.
-[case_duetscreen_v1.0.zip](/hardware/duetscreen/case_duetscreen_v1.0.zip){target=_blank}
+This enclosure is designed by [chrishamm](https://forum.duet3d.com/user/chrishamm){target=_blank}. The Zip file contains STEP, STL and SolidCraft versions of the case. [case_duetscreen_v1.1.zip](/hardware/duetscreen/case_duetscreen_v1.1.zip){target=_blank}
 
-Tony has made some minor tweaks to Christian's design which are available here: [case_duetscreen_v1.0_tony_mod.zip](/hardware/duetscreen/case_duetscreen_v1.0_tony_mod.zip){target=_blank}
+[![duetscreen_case_v1.1-1.jpg](/hardware/duetscreen/duetscreen_case_v1.1-1.jpg =400x)](/hardware/duetscreen/duetscreen_case_v1.1-1.jpg){target=_blank} [![duetscreen_case_v1.1-2.jpg](/hardware/duetscreen/duetscreen_case_v1.1-2.jpg =400x)](/hardware/duetscreen/duetscreen_case_v1.1-2.jpg){target=_blank}
 
 # Connecting a DuetScreen
 
