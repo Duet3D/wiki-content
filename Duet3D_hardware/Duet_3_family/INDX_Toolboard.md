@@ -2,7 +2,7 @@
 title: INDX Toolboard
 description: The INDX Toolboard controls of all functions of the nozzle-swapping Bondtech INDX toolhead.
 published: true
-date: 2026-11-18T08:58:25.877Z
+date: 2026-11-19T18:42:14.385Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-09T09:34:17.141Z
@@ -98,14 +98,14 @@ The Bondtech INDX tool head is normally supplied with an associated Link board. 
 * Do not connect anything to the USB port on the Link board.
 
 ### To use a Duet Tool Distribution Board instead of the Link board 
->You will not have VIN reverse polarity protection.{.is-warning}
+>You will not have VIN reverse polarity protection. This configuration may not be covered by warranty.{.is-warning}
 * Choose an output on the Tool Distribution Board to connect the INDX tool to
 * Replace the 5A fuse in that position of the Tool Distribution Board with the 4A fuse from the Link board
 * Connect the power and data connectors of the supplied cable to the selected position on the Tool Distribution Board. If using a version 1.0 Tool Distribution Board then the connectors are compatible. If using a version 0.5 board then you will need to change the 2-pin PA connector on the cable to a 4-pin PH connector.
 * See the Tool Distribution Board instructions for generic instructions for connecting tool boards
 
 ### To connect directly to the main board if there are no other CAN-connected boards in the system
->You will not have VIN reverse polarity protection.{.is-warning}
+>You will not have VIN reverse polarity protection. This configuration may not be covered by warranty.{.is-warning}
 * Connect the CAN conductors of the supplied cable to the CAN port on the main board, taking care to connect CAN_L (white wire) and CAN_H (yellow wire) the right way round. If you get them the wrong way round, the system will not work but no damage will be done.
 * Connect the black power conductor to power supply 0V.
 * Connect the red power conductor via an inline mini blade fuse holder with a 4A fuse to power supply +24V.
