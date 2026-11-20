@@ -2,7 +2,7 @@
 title: Connecting and configuring a bed heater
 description: 
 published: true
-date: 2022-02-10T10:19:43.275Z
+date: 2026-11-20T12:50:23.553Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-21T15:48:54.901Z
@@ -10,7 +10,7 @@ dateCreated: 2021-09-21T15:48:54.901Z
 
 # Introduction
 
-The bed heater often uses the highest proportion of the power consumed by a 3d printer and many plastics print better on a heated bed. Duet mainboards bed heater channels are generally fused at 15A. If more current is required then an external SSR can be used.
+The bed heater often uses the highest proportion of the power consumed by a 3d printer and many plastics print better on a heated bed. Duet mainboard bed heater channels are generally fused at 15A. If more current is required then an external SSR can be used.
 
 If in doubt, consult a qualified electrician.
 
@@ -23,11 +23,11 @@ If you want reasonably fast heating to around 100C for printing ABS, then a good
 * 200 x 200mm (e.g. typical Prusa-style Cartesian printer): 160W. (Typical Mk2-style PCB bed heaters are around 120W at low temperatures, but the actual power varies quite widely depending on the copper thickness, and the heater power drops off as they get hotter).
 * 300 x 300mm (e.g. large Cartesian or CoreXY printer): 360W
 * 170mm diameter (e.g. Mini Kossel): 90W
-* 330mm diameter (e.g larger Kossel): 342W
+* 330mm diameter (e.g. larger Kossel): 342W
 
 The usual options for powering a bed heater are:
 
-* Direct from the Duet using 12V power. The Duet 2 (Wifi and Ethernet) is rated for up to 18A bed heater current, so this is suitable up to 12 * 18 = 216W power.
+* Direct from the Duet using 12V power. The Duet 2 (WiFi and Ethernet) is rated for up to 18A bed heater current, so this is suitable up to 12 * 18 = 216W power.
 * Direct from the Duet using 24V power. With the Duet 2s this is suitable up to 24 * 18 = 432W heating power.
 * DC-DC SSR to control the bed heater, usually with a 24V supply.
 * DC-AC SSR to control an AC mains voltage bed heater.
@@ -36,16 +36,16 @@ Before you decide to use a 12V bed heater, check whether you need to supply 24V 
 
 ## Bed heater types
 
-These types pf bed heater are in common use:
+These types of bed heater are in common use:
 
-* PCB bed heater. These typically provide less than the recommended heating power for their size (see above). For example, typical Mk2-style 200x200mm PCB heaters have a heating power of around 120W so as to be within the rated current of RAMPS electronics. The actual heating power often varies between different samples, probably because of poor quality control on the thickness of the copper. The heating power drops off as the temperature rises because of the increasing resistivity of copper with temperature. You can get more power out of a 12V heater by turning up the power supply voltage; for example at 14V the heating power is increased by 36%. Don't plan on doing this with a 24V heater because the maximum recommended input voltage of the Duet 2 Wifi or Ethernet is 25V.
+* PCB bed heater. These typically provide less than the recommended heating power for their size (see above). For example, typical Mk2-style 200x200mm PCB heaters have a heating power of around 120W so as to be within the rated current of RAMPS electronics. The actual heating power often varies between different samples, probably because of poor quality control on the thickness of the copper. The heating power drops off as the temperature rises because of the increasing resistivity of copper with temperature. You can get more power out of a 12V heater by turning up the power supply voltage; for example at 14V the heating power is increased by 36%. Don't plan on doing this with a 24V heater because the maximum recommended input voltage of the Duet 2 WiFi or Ethernet is 25V.
 * Stick-on Kapton bed heater.
 * Stick-on silicone bed heater. The heating elements are usually nichrome, which has a very low temperature coefficient of resistance, so the heating power doesn't drop off appreciably as they get hotter. You can get silicone heaters custom made to your own size, voltage and power specification inexpensively from suppliers online.
 
 Tips:
 
 * When choosing a Kapton or Silicone heater, get one that is a little smaller than your bed plate so that there is room at the edges for bed mounting screws, and also for bed clips if you intend to clip glass print beds on to your bed plate.
-* With a silicone heater you usually have the option of having a thermistor embedded within the heater. It is quite possible to use these thermistors (I do), however a thermistor that is directly in contact with an aluminium bed plate will give a more accurate reading.
+* With a silicone heater you usually have the option of having a thermistor embedded within the heater. It is quite possible to use these thermistors (I do). However, a thermistor that is directly in contact with an aluminium bed plate will give a more accurate reading.
 
 # Connecting a bed heater
 
@@ -61,12 +61,12 @@ The bed heater connectors vary with the Duet mainboard version.
 | Duet 2 WiFi/Ethernet | 1 x 18A (15A fuse) | Screw terminal | bedheat | 0 |
 | Duet 2 Maestro | 1 x 18A (15A fuse) | Screw terminal | bedheat | 0 |
 
-Note that some boards are rated to 18A on the bed heater channel; however all Duets are supplied with a 15A fuse fitted (18A fuses are difficult to source). If you need 18A on the bed heater channel then you need to fit a 20A fuse and take further precautions against over-current. This rating has been increased from 15A due to [updated thermal testing](http://blog.think3dprint3d.com/2017/04/duetwifi-updated-thermal-testing.html).
+Note that some boards are rated to 18A on the bed heater channel. However, all Duets are supplied with a 15A fuse fitted (18A fuses are difficult to source). If you need 18A on the bed heater channel then you need to fit a 20A fuse and take further precautions against over-current. This rating has been increased from 15A due to [updated thermal testing](http://blog.think3dprint3d.com/2017/04/duetwifi-updated-thermal-testing.html){target=_blank}.
 
 ### Wiring
 
 - **Important!** Do not "tin" the ends of the wires. The heat generated by high bed currents can cause the wires to creep, which in turn makes them loose in the terminal block.
-- Make sure heater wires do not short out anywhere; to other wiring, or to the bed itself (if aluminium). A short may cause uncontrolled heating, or for VIN voltage to be feed into the low voltage rails (3.3V, 5V) of the Duet, causing a failure of the Duet.
+- Make sure heater wires do not short out anywhere: to other wiring, or to the bed itself (if aluminium). A short may cause uncontrolled heating, or for VIN voltage to be fed into the low voltage rails (3.3V, 5V) of the Duet, causing a failure of the Duet.
 - Check your wires are sufficient to handle the heater current.
 - You should re-check the bed heater terminal block screws for tightness regularly, especially during the first few days of use. This is especially important if you use stranded-core wire without crimping bootlace ferrules on the ends.
 
@@ -74,7 +74,7 @@ Note that some boards are rated to 18A on the bed heater channel; however all Du
 
 #### Duet 3 Mainboard 6HC
 
-The Duet 3 Mainboard 6HC has a separate OUT0 Power in, which allows for a separate PSU (12V-36V, can be different to VIN voltage) to supply the OUT0 high current output (e.g for a large bed heater). If this is not required, VIN power must be applied to both the POWER IN and the OUT0 POWER IN terminals for OUT 0 to be powered.
+The Duet 3 Mainboard 6HC has a separate OUT0 Power in, which allows for a separate PSU (12V-36V, can be different to VIN voltage) to supply the OUT0 high current output (e.g. for a large bed heater). If this is not required, VIN power must be applied to both the POWER IN and the OUT0 POWER IN terminals for OUT 0 to be powered.
 
 The 6HC is supplied with forked spade connectors, for wire gauges up to AWG13 / 2.5mm^2^.
 
@@ -104,11 +104,11 @@ Take appropriate safety precautions when using a mains voltage bed heater. In pa
 
 * Connect metal parts of the printer to mains ground. This includes the printer frame, the bed plate if it is conductive (e.g. aluminium), and any other metal parts that the bed heater or SSR wiring might come into contact with if wires break.
 * Ensure that it is not possible for the user to touch the SSR terminals or any other exposed mains wiring, or for you to touch the mains wiring when you are working on the printer with power applied. If your SSR is not supplied with a clear plastic safety cover, buy one (for the Crydom SSR listed above, the part number is KS101).
-* If the bed is moving, use highly-flexible wire or cable with a sufficient voltage rating to connect the moving bed heater to the stationary wiring. Cable intended for use in multimeter tests leads is one possibility.
+* If the bed is moving, use highly-flexible wire or cable with a sufficient voltage rating to connect the moving bed heater to the stationary wiring. Cable intended for use in multimeter test leads is one possibility.
 * If the bed is moving, you **must** use strain relief at both ends of that cable, to reduce the risk of the cable fracturing with repeated movement.
 * If the bed is moving, use a cable chain or similar to make sure that the cable can't get chafed or trapped.
-* Provide a fuse for the bed heater circuit or the whole printer appropriate to the current draw and the current rating of the mains lead. One option is to use a panel mount IEC mains inlet connector with a switch, neon indicator and fuse built in. See [this Thingiverse thing](https://www.thingiverse.com/thing:965396) for an example setup on a delta printer.
-* It is highly recommended that you power the printer via a Ground Fault Current Interruptor (GFCI) - more commonly called a RCD (Residual Current Device) in the UK - to protect against electric shock in the event of a fault.
+* Provide a fuse for the bed heater circuit or the whole printer appropriate to the current draw and the current rating of the mains lead. One option is to use a panel mount IEC mains inlet connector with a switch, neon indicator and fuse built in. See [this Thingiverse thing](https://www.thingiverse.com/thing:965396){target=_blank} for an example setup on a delta printer.
+* It is highly recommended that you power the printer via a Ground Fault Current Interruptor (GFCI) - more commonly called an RCD (Residual Current Device) in the UK - to protect against electric shock in the event of a fault.
 
 If in doubt, consult a qualified electrician.
 
@@ -121,9 +121,9 @@ If in doubt, consult a qualified electrician.
 In RRF 3.x, no heaters or temperature sensors are defined by default. If you have no bed heater, just don't define one.
 
 - [M308](/User_manual/Reference/Gcodes/M308) defines and configures the temperature sensor.
-- [M950](/User_manual/Reference/Gcodes/M950) defines and confiures the bed heater and associates it with the temperature sensor.
+- [M950](/User_manual/Reference/Gcodes/M950) defines and configures the bed heater and associates it with the temperature sensor.
 - [M307](/User_manual/Reference/Gcodes/M307) sets the heating process parameters.
-- [M140](/User_manual/Reference/Gcodes/M140) tells the firmware the heater is a bed heater 
+- [M140](/User_manual/Reference/Gcodes/M140) tells the firmware the heater is a bed heater. In RRF 3.7 and later, one bed heater slot can use up to 4 heaters, for example `M140 H0:1`. RRF sets the same temperature for all of them.
 - [M143](/User_manual/Reference/Gcodes/M143) sets a maximum heater temperature.
 
 RepRapFirmware 3.x does not automatically set different PWM frequencies for different outputs. If using an SSR then set the "Q" parameter in the [M950](/User_manual/Reference/Gcodes/M950) command to a low frequency like 10 Hz.
@@ -169,7 +169,7 @@ M305 P0 T100000 B3950 R4700 ; set thermistor + ADC parameters for heater 0
 M143 H0 S120                ; set temperature limit for heater 0 to 120C
 
 ```
-You can remap the bed heater to a different heater output (for example, when using an SSR, to leave the bed heater output available for a high current extruder heater) by using [M140](/User_manual/Reference/Gcodes/M140)
+You can remap the bed heater to a different heater output (for example, when using an SSR, to leave the bed heater output available for a high current extruder heater) by using [M140](/User_manual/Reference/Gcodes/M140).
 ```
 ; Heaters
 M140 H1                     ; remap heated bed to heater 1
@@ -178,7 +178,7 @@ M305 P1 T100000 B3950 R4700 ; set thermistor + ADC parameters for heater 1
 M143 H1 S120                ; set temperature limit for heater 1 to 120C
 ```
 
-If you want to remove heatbed from the system, replace M307, M305 and M143 with
+If you want to remove the heatbed from the system, replace M307, M305 and M143 with
 ```
 ; Heaters
 M140 H-1
@@ -186,4 +186,4 @@ M140 H-1
 
 # Tuning heater control
 
-[M307](/User_manual/Reference/Gcodes/M307) sets the heating process parameters. Tuning this with [M303](/User_manual/Reference/Gcodes/M303) should allow for finer control of the heater; more stable temperatures during printing, and less overshoot when setting temperatures. Each heating controller also performs temperature monitoring to try to detect fault conditions such as a heater of thermistor falling out of an extruder heating block. The temperature monitor relies on the model parameters to decide what is reasonable behaviour. See the wiki page on [Tuning the heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning).
+[M307](/User_manual/Reference/Gcodes/M307) sets the heating process parameters. Tuning this with [M303](/User_manual/Reference/Gcodes/M303) should allow for finer control of the heater: more stable temperatures during printing, and less overshoot when setting temperatures. Each heating controller also performs temperature monitoring to try to detect fault conditions such as a heater or thermistor falling out of an extruder heating block. The temperature monitor relies on the model parameters to decide what is reasonable behaviour. See the wiki page on [Tuning the heater temperature control](/User_manual/Connecting_hardware/Heaters_tuning).
