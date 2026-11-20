@@ -2,7 +2,7 @@
 title: Connecting and configuring a chamber heater
 description: 
 published: true
-date: 2021-09-22T13:34:10.752Z
+date: 2026-11-20T12:53:49.466Z
 tags: 
 editor: markdown
 dateCreated: 2021-09-22T13:26:27.130Z
@@ -20,7 +20,7 @@ If you have a chamber heater that runs on the same voltage as your Duet, you can
 
 ### Connecting a SSR to a heater output on the Duet
 
-SSRs generally accept anywhere between 3V and 32V input voltage, so you can connect the SSR to the heater terminal block, or any other PWM pin that has sufficient voltage and current to turn the SSR on and off. Make sure you connect the + and - terminals the right way round. The + terminal on the SSR goes to the heater terminal marked + or VIN, and the - terminal pin the SSR goes to the heater terminal marked -.
+SSRs generally accept anywhere between 3V and 32V input voltage, so you can connect the SSR to the heater terminal block, or any other PWM pin that has sufficient voltage and current to turn the SSR on and off. Make sure you connect the + and - terminals the right way round. The + terminal on the SSR goes to the heater terminal marked + or VIN, and the - terminal on the SSR goes to the heater terminal marked -.
 
 Connect the thermistor that measures chamber temperature to the associated thermistor input.
 
@@ -39,10 +39,10 @@ You will also need a thermistor input channel to monitor the chamber temperature
 Add the following commands to your config.g.
 - Define the thermistor that will control the chamber heater with [M308](/User_manual/Reference/Gcodes/M308). 
 - Define the heater, or SSR that controls the heater, with [M950](/User_manual/Reference/Gcodes/M950). You can set the PWM frequency with the Q parameter, usually 10Hz for a chamber heater. 
-- Set the heater parameters with [M307](/User_manual/Reference/Gcodes/M307). 
+- Set the heater parameters with [M307](/User_manual/Reference/Gcodes/M307). In RRF 3.7 and later, a chamber heater that has no M307 parameters uses a default model with a dead time of 30 seconds. 
 - Once connected, tune the chamber heater with [M303](/User_manual/Reference/Gcodes/M303), and update the [M307](/User_manual/Reference/Gcodes/M307) parameters with the new settings. 
-- Use [M141](/User_manual/Reference/Gcodes/M141) to define this heater as a chamber heater. 
-- Set a temperature limit for chamber heater with [M143](/User_manual/Reference/Gcodes/M143). 
+- Use [M141](/User_manual/Reference/Gcodes/M141) to define this heater as a chamber heater. In RRF 3.7 and later, one chamber heater slot can use up to 4 heaters, for example `M141 H2:3`. 
+- Set a temperature limit for the chamber heater with [M143](/User_manual/Reference/Gcodes/M143). If you do not set one, the limit is 100C in RRF 3.7 and later, and 125C in earlier versions. 
 
 Example:
 
@@ -84,7 +84,7 @@ M305 P3 R4700 T100000 B3950 ; heater 3 is monitored by a 100K thermistor with B=
 M301 H3 B1                  ; use bang-bang control for the chamber heater
 ```
 
-To use a different thermistor channel form the heater channel, add a suitable X parameter to the [M305](/User_manual/Reference/Gcodes/M305) command. For example, X1 would tell the firmware to use the thermistor channel associated with heater 1 (which is normally the first extruder heater).
+To use a different thermistor channel from the heater channel, add a suitable X parameter to the [M305](/User_manual/Reference/Gcodes/M305) command. For example, X1 would tell the firmware to use the thermistor channel associated with heater 1 (which is normally the first extruder heater).
 
 You can use PID control of the chamber heater if you wish. RepRapFirmware uses low frequency (10Hz) PWM on the chamber heater channel so as to be compatible with most SSRs.
 
@@ -92,6 +92,6 @@ You can use PID control of the chamber heater if you wish. RepRapFirmware uses l
 
 Use [M141](/User_manual/Reference/Gcodes/M141) and [M116](/User_manual/Reference/Gcodes/M116) to control the chamber heater. 
 
-Add the command ```M141 S###``` to your slicer start gcode, where ### is the required chamber temperature at the start. Also make sure there is a ```M116``` command somewhere after the M141 command, to wait for all temperatures to reach their assigned values.
+Add the command `M141 S###` to your slicer start GCode, where ### is the required chamber temperature at the start. Also make sure there is an `M116` command somewhere after the M141 command, to wait for all temperatures to reach their assigned values.
 
-In your end gcode, either use the command M0 (which normally switches all heaters off), or the command M141 S0 to turn the chamber heater off.
+In your end GCode, either use the command M0 (which normally switches all heaters off), or the command `M141 S0` to turn the chamber heater off.
