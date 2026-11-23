@@ -2,7 +2,7 @@
 title: CAN connection basics
 description: This page describes how to use the Duet 3 CAN-FD bus to connect expansion and tool boards to the Duet 3 main board.
 published: true
-date: 2026-11-13T16:50:33.270Z
+date: 2026-11-23T15:02:22.569Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-30T22:21:17.810Z
@@ -118,7 +118,7 @@ Earlier versions have a permanent termination resistor, so must be at one end of
 
 Mainboard 6HC and 6XD can also be used as expansion boards. See 'Mainboard used as expansion board' section below.
 
-The 6HC and 6XD have support for two CAN busses; CAN0 and CAN1. Currently (as at RRF 3.6.x) **only CAN1** is used for connecting CAN-FD Duet 3 Main, Expansion and Tool boards. CAN0 is for future expansion, and can be used for talking to non-RRF hardware that uses different protocols from that used by Duet 3 boards, including devices that talk plain CAN. Currently it is only used to configure motors for special kinematics.
+The 6HC and 6XD have two CAN buses, CAN0 and CAN1. CAN1 is the main CAN-FD bus for Duet 3 expansion and tool boards. From RRF 3.7.1, [M953](/User_manual/Reference/Gcodes/M953) I0 C1 makes CAN0 a second CAN-FD bus for expansion and tool boards. Boards can be connected to either bus, but each CAN address must be used only once across both buses. Alternatively M953 I0 C2 makes CAN0 a classic CAN bus, which is used to talk to ODrive motor controllers on a Hangprinter. In RRF 3.7.0 and earlier, CAN0 can only be used for the ODrives.
 
 #### Duet 3 Mini 5+
 
@@ -221,7 +221,7 @@ The address change will not take effect until the board is powered down and up a
 It is possible to run a Duet 3 mainboard as an expansion board. This allows greater flexibility in machine design, with mainboards able to provide more stepper drivers and I/O. To do this:
 * The first mainboard (6HC, 6XD or Mini 5+) is set up as normal. 
 * Additional 6HC, 6XD or Mini 5+ boards to be used as expansion boards have just a single command in the config.g files on their SD cards, which is [M954](/User_manual/Reference/Gcodes/M954). You use this with the A parameter to specify the CAN address for that board to use. Give each board a unique CAN address.
-* If you have a large system which needs to use a lower CAN bit rate, use a `M952 B0 Snnn` command prior to the M954 command to set that bit rate first. Future firmware versions may allow the bit rate to be specified in the M954 command.
+* If you have a large system which needs to use a lower CAN bit rate, use a `M953 Snnn` command (`M952 B0 Snnn` in RRF 3.7.0 and earlier) prior to the M954 command to set that bit rate first. Future firmware versions may allow the bit rate to be specified in the M954 command.
 * To allow for firmware updates via DWC you need to put a special IAP file in the **/firmware** folder of the SD card in each mainboard-as-expansion:
     * Duet 3 Mainboard 6HC used as expansion - *Duet3_CANiap32_MB6HC.bin*
     Duet 3 Mainboard 6XD used as expansion - *Duet3_CANiap32_MB6XD.bin*
@@ -341,7 +341,7 @@ If the longest distance between any two nodes on your CAN bus is greater then ab
 * Ensure that all tool boards and expansion boards have bootloader version 3.0 or later installed. These bootloaders can perform a CAN reset when the main board is configured to use any of these bit rates, whereas older bootloaders only work at 1Mbit/sec. Use M122 B# (where # is the CAN address of the board) to check the bootloader version on an expansion board. To update the bootloader, see [here](https://docs.duet3d.com/en/User_manual/RepRapFirmware/Updating_bootloader).
 * If you are using any Duet 3 main boards as expansion boards:
     * Ensure that the /firmware folders of the SD cards in those boards contains the latest version of the CANiap file for that board (old versions support only 1Mbit/sec).
-* Use `M952 B0 S###` (where ### is the required bit rate i.e. 500 or 250) at the start of the config.g file for the master main board and each main-board-as-expansion (for a mainboard-as-expansion, this command must be prior to the M954 command). Future firmware versions may allow the bit rate to be set in the M954 command instead.
+* Use `M953 S###` (`M952 B0 S###` in RRF 3.7.0 and earlier, where ### is the required bit rate i.e. 500 or 250) at the start of the config.g file for the master main board and each main-board-as-expansion (for a mainboard-as-expansion, this command must be prior to the M954 command). Future firmware versions may allow the bit rate to be set in the M954 command instead.
 
 The latest bootloaders and CANiap files can be downloaded from [here](https://github.com/Duet3D/Duet3Bootloader/releases).
 
