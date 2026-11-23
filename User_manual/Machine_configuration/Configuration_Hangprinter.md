@@ -2,7 +2,7 @@
 title: Configuring RepRapFirmware for a Hangprinter
 description: This page describes how to set up the configuration files for Hangprinters. The same firmware binary also supports Cartesian, Delta, CoreXY and other printers kinematics.
 published: true
-date: 2026-11-13T16:50:51.590Z
+date: 2026-11-23T15:02:01.932Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-26T11:56:32.634Z
@@ -75,6 +75,8 @@ The [M666](/User_manual/Reference/Gcodes/M666) parameters are used to configure 
 * **Ynn:nn:nn:nn** Guy wire lengths, Needed for flex compenation. Guy wires go between spool and final line roller. If your spools are all mounted on the D-anchor, on the ceiling plate, then you're all good, and you don't need to configure M666 Y values explicitly. If your spools are not all on the D-anchor then you must measure guy wire lengths and set them here. If your spools are all mounted on their respective anchors, so that you have no guy wires, then you should configure zeroed guy wire lengths M666 Y0.0:0.0:0.0:0.0.
 * **Tnn** Desired target force in Newtons, default 20. The flex compensation algorithm aims for at least this amount of force in the ABC line directions at all times. It can be thought of as a minimum pre-tension value. It's recommended to set it around 10 times higher than your W (mover weight in kg) value.
 * **Cnn:nn:nn:nn** Torque constants, default 0. These are required for reading motor forces from ODrives. They are the same values as is configured in the ODrives themselves
+
+ODrive motor controllers are connected to CAN0 of the Duet 3 MB6HC or MB6XD. From RRF 3.7.1, CAN0 is disabled by default, so add [M953](/User_manual/Reference/Gcodes/M953) I0 C2 near the start of config.g to make it a classic CAN bus for the ODrives.
 
 ## Changes to other commands
 
