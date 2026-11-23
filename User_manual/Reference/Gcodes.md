@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-11-23T15:02:28.840Z
+date: 2026-11-23T19:21:54.831Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1962,7 +1962,17 @@ Not SD printing.
 M28 filename.gco
 </pre>
 
-File specified by filename.gco is created (or overwritten if it exists) on the SD card and all subsequent commands sent to the machine are written to that file.
+File specified by filename.gco is created (or overwritten if it exists) on the SD card and all subsequent commands sent to the machine on the same input are written to that file instead of being executed, until M29 is received. A file name without a path is stored in the /gcodes folder.
+
+### Notes
+
+The reply is `Writing to file: filename.gco`, or an error if the file cannot be opened.
+
+RRF 3.6.5 and 3.7.1 and later: if the host closes the USB port before M29 has been sent, the upload is aborted and the partial file is deleted. In earlier versions the file stayed open and the commands of the next connection were written to it.
+
+In SBC mode, M28 sent to USB or another serial port of the main board only works in RRF 3.6.5 and 3.7.1 and later. Earlier versions executed the lines that followed instead of writing them to the file.
+
+To upload files that are not G-code, use [M559](/User_manual/Reference/Gcodes#m559-upload-file) or [M560](/User_manual/Reference/Gcodes#m560-upload-file).
 
 ## M29: Stop writing to SD card
 
@@ -1972,7 +1982,8 @@ File specified by filename.gco is created (or overwritten if it exists) on the S
 M29
 </pre>
 
-File opened by M28 command is closed, and all subsequent commands sent to the machine are executed as normal.
+File opened by M28 command is closed, and all subsequent commands sent to the machine are executed as normal. In Marlin emulation the reply is `Done saving file.`
+
 
 ## M30: Delete a file on the SD card
 
@@ -6064,19 +6075,33 @@ M558.4 K0 ; tare load cell probe 0
 
 ## M559: Upload file
 
+Uploads a file of any kind over USB or a serial port. Unlike M28, the file content is not interpreted, so it may be binary.
+
 ### Parameters
 
-* **P"filename"** File name to upload to. 
-* **Snnn** File size for binary transfer. If not present, the transfer is terminated by an M29 command
-* **Cnnn** CRC-32 of the file (optional)
+* **P"filename"** File name to upload to. A name without a path is stored in the /sys folder.
+* **Snnn** File size in bytes (optional). If it is not present or zero, the transfer is terminated by a special string, described below.
+* **Cnnn** CRC-32 of the file (optional), either as a decimal number or as a hex number in curly brackets, e.g. `C{0x9abcdef0}`. This is the same checksum that M38 reports. If it is not present or zero, the file is not checked.
 
 ### Examples
 <br>
 <pre class="cblock">
+M559 P"config.g" S1482 C2596069104
+M559 P"0:/macros/home-all" S310 C{0x4be30f52}
 M559 P"config.g"
 </pre>
 
 ### Notes
+
+After sending M559, wait for the reply `Writing to file: filename` and then send the file content. If the reply is an error, the file could not be opened and nothing must be sent. With the S parameter exactly that many bytes are taken as file content. Without it the file content must be followed by the string `<!-- **EoF** -->`, which therefore cannot occur in the file itself.
+
+When the file is complete, the reply is `Done saving file.` in Marlin emulation and empty otherwise. If the CRC-32 does not match, the reply is the error `CRC32 checksum doesn't match` and the file is left on the SD card as received.
+
+A hex number without curly brackets (`C0x9abcdef0`) is not supported. RepRapFirmware reads it as zero, so the file is not checked.
+
+RRF 3.6.5 and 3.7.1 and later: if the host closes the USB port during an upload, the upload is aborted and the partial file is deleted. In earlier versions the commands of the next connection were written to the file.
+
+In SBC mode M559 can be sent to USB or another serial port of the main board. Sent via DSF it is supported only on code stream connections of DSF 3.7.1 and later, where it works as described here except that an existing file is kept if the CRC-32 does not match. In all other cases DSF rejects it, because the file content cannot follow the command.
 
 In RRF 3.1 and earlier, the default filename is config.g and the default path is /sys. In RRF 3.2 and later there is no default filename.
 
@@ -6086,11 +6111,13 @@ Was used by the original web interface to upload a configuration file. Can now b
 
 ## M560: Upload file
 
+Uploads a file to the web folder. It works like [M559](/User_manual/Reference/Gcodes#m559-upload-file) in every other respect.
+
 ### Parameters
 
-* **P"filename"** File name to upload to. 
-* **Snnn** File size for binary transfer. If not present, the transfer is terminated by a special string, described below.
-* **Cnnn** CRC-32 of the file (optional)
+* **P"filename"** File name to upload to. A name without a path is stored in the /www folder.
+* **Snnn** File size in bytes (optional). If it is not present or zero, the transfer is terminated by a special string, described below.
+* **Cnnn** CRC-32 of the file (optional), as a decimal number or as a hex number in curly brackets. See M559.
 
 ### Examples
 <br>
@@ -6102,7 +6129,10 @@ M560 P"index.html"
 
 In RRF 3.1 and earlier, the default filename is reprap.htm and the default path is /www.
 
-After sending M560 the file should be sent, terminated by the string `<!-- **EoF** -->`. Clearly that string cannot exist in the body of the file, but can be put on the end to facilitate this process.
+After sending M560, wait for the reply `Writing to file: filename` and then send the file. Without the S parameter the file must be terminated by the string `<!-- **EoF** -->`. Clearly that string cannot exist in the body of the file, but can be put on the end to facilitate this process.
+
+See the notes on M559 for the replies, the CRC-32 check, aborted uploads and SBC mode.
+
 
 ## M561: Set Identity Transform
 
