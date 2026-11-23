@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-11-13T16:50:15.772Z
+date: 2026-11-23T15:02:28.840Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -9414,7 +9414,7 @@ Some CAN-connected expansion boards are too small to carry address selection swi
 
 ### Parameters
 
-* **Bn** Existing CAN address of expansion board to be changed, 1 to 125; or 0 to change the CAN bit rate of the main board.
+* **Bn** Existing CAN address of expansion board to be changed, 1 to 125; or 0 to change the CAN bit rate of the main board (RRF 3.7.0 and earlier only, use M953 in RRF 3.7.1 and later).
 * **An** (optional) New CAN address of that board, 1 to 125. Ignored if the B parameter is 0.
 * **Sn.n** (optional, default 1000) Requested CAN bit rate in Kbits/second (1K = 1000). 
 * **T0.n** (optional, default 0.78 in RRF 3.6.2 and later, 0.75 in earlier versions) Fraction of the bit time between the bit start and the sample point. Ignored if the S parameter is not present.
@@ -9438,18 +9438,20 @@ This command serves two functions:
 The procedure for changing the data rate is:
 
 * Use M952 to change the data rate on all the expansion boards, one at a time. After changing the data rate on each expansion board, you will no longer be able to communicate with it, and you may need to power it down or disconnect it from the CAN bus to prevent it interfering with subsequent CAN communications.
-* Change the data rate of the main board last. Then the main board should be able to communicate with all the expansion boards again.
+* Change the data rate of the main board last, with M953 in RRF 3.7.1 and later. Then the main board should be able to communicate with all the expansion boards again.
 
 ## M953: Enable CAN, set data rate and optionally enable BRS
 
 *Supported in RRF 3.7.0 and later*
 
-This command sets the CAN timing on the main board. It can also enable Bit Rate Switching (BRS), and sets the data phase bit rate when BRS is enabled.
+This command sets the CAN timing on the main board. It can also enable Bit Rate Switching (BRS), and sets the data phase bit rate when BRS is enabled. On the Duet 3 MB6HC and MB6XD it also enables the second CAN bus CAN0 (RRF 3.7.1 and later).
 
 ### Parameters
 
-* **Sn.n** Requested arbitration phase bit rate in Kbits/second, default 1000. Other supported values are 500 and 250.
-* **Rn** (optional, Duet 3 MB6HC and MB6XD only) Bit rate multiplier for the data phase. Supported values are 1, 2, 3, 4, 6 and 8. R1 disables BRS. Include R in every M953 command.
+* **In** (optional, RRF 3.7.1 and later) CAN bus to configure, numbered as printed on the board. The default is the main CAN bus CAN1. I0 selects the second CAN bus CAN0, which only the Duet 3 MB6HC and MB6XD have.
+* **Cn** (optional, I0 only, RRF 3.7.1 and later) Mode of CAN0: C0 disables it (default), C1 makes it a second CAN-FD bus for expansion and tool boards, C2 makes it a classic CAN bus, which is needed to talk to ODrive motor controllers on a Hangprinter.
+* **Sn.n** Requested arbitration phase bit rate in Kbits/second, default 1000, or 250 for CAN0 in classic mode. Other supported values are 500 and 250.
+* **Rn** (optional, Duet 3 MB6HC and MB6XD only) Bit rate multiplier for the data phase. Supported values are 1, 2, 3, 4, 6 and 8. R1 disables BRS. Include R in every M953 command. Each CAN bus has its own setting, and R is not supported on CAN0 in classic mode.
 * **T0.n** (optional) Fraction of the data bit time between the bit start and the sample point for the arbitration phase
 * **J0.n** (optional) Maximum jump time as a fraction of the data bit time for the arbitration phase
 * **U0.n** (optional, Duet 3 MB6HC and MB6XD only, used only when R is present) Fraction of the data bit time between the bit start and the sample point for the data phase
@@ -9459,13 +9461,21 @@ This command sets the CAN timing on the main board. It can also enable Bit Rate 
 <br>
 <pre class="cblock">
 M953 S1000 R4     ; use standard 1Mbps arbitration bit rate and x4 data phase multiplier (4Mbps)
+M953 I0 C1        ; enable CAN0 as a second CAN-FD bus for expansion boards
+M953 I0 C2        ; enable CAN0 as a classic CAN bus at 250kbps, e.g. for ODrives
 </pre>
 
 ### Notes
 
 The optional **T**, **J**, **U** and **K** parameters are not normally used. 
 
-M953 with no parameters reports the CAN timing of the main board.
+M953 with no parameters reports the mode and timing of every CAN bus. M953 I0 reports CAN0 only.
+
+On the Duet 3 MB6HC and MB6XD, CAN1 is the main RJ11 CAN connector and CAN0 is the 2-pin AUX_CAN connector. Some board revisions also carry CAN0 on pins 2 and 5 of the RJ11 connector, see the hardware overview of the board. CAN0 stays disabled until M953 I0 C1 or C2 enables it, and timing parameters for a disabled CAN0 are rejected.
+
+Expansion boards can be connected to either CAN bus, but each CAN address must be used only once across both buses. The main board learns the bus of each board from its announcement, and the object model reports it in boards[].interface. When both buses are in CAN-FD mode, a command for a board that has not been heard on either bus yet waits up to 1 second for it and then fails with "Board n has not been heard on any CAN bus". Messages from a board on a different bus from the one its address was first heard on are ignored, with a warning at most every 10 seconds once config.g has finished. If a board is moved to the other bus, or two boards with the same address are connected to different buses, correct the wiring or the addresses and restart the main board. Firmware update requests are answered on the bus they arrive on, because the bootloaders of some boards use a different CAN address from their firmware.
+
+When M953 changes the settings of a CAN-FD bus, it makes the expansion boards on that bus restart if they have been running for more than 5 seconds or have already been configured. Put M953 near the start of config.g, before any command that refers to an expansion board.
 
 For further information see [Enabling bit rate switching](https://docs.duet3d.com/en/User_manual/Machine_configuration/CAN_connection#enabling-bit-rate-switching)
 
