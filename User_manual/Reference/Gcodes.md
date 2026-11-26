@@ -2,7 +2,7 @@
 title: GCode dictionary
 description: 
 published: true
-date: 2026-11-23T19:21:54.831Z
+date: 2026-11-26T15:48:36.402Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-27T14:09:24.591Z
@@ -1847,7 +1847,7 @@ The machine prints from the file selected with the M23 command. If the print was
 
 When this command is used to resume a print that was paused, the macro file **resume.g** is run prior to resuming the print.
 
-In RRF 3.7.1 and later, M24 also releases a feed hold started with [M25.1](/User_manual/Reference/Gcodes/M25_1). If axes were jogged during the hold, the machine first returns to the held position. resume.g is not run unless the job is paused as well, in which case M24 releases the hold and resumes the job in one step.
+In RRF 3.7.1 and later, M24 also releases a feed hold started with [M25.1](/User_manual/Reference/Gcodes/M25_1). If axes were jogged during the hold, the machine first returns to the held position. resume.g is not run unless the job is paused as well, in which case M24 releases the hold and resumes the job in one step. M24 is rejected while the input of a feed hold trigger ([M581](/User_manual/Reference/Gcodes/M581) K3) is still active.
 
 > If an axis or axes are unhomed, resume.g will not run (see the equivalent behaviour in the documentation for [M25](/User_manual/Reference/Gcodes/M25)). This is to allow pausing and resuming early in a job file where a machine may not yet be homed. If axes were homed when pause.g is run and subsequently become unhomed then resuming will cancel the print without running resume.g, or if axis movement when axes are not homed is permitted via [M564](/User_manual/Reference/Gcodes/M564), the print resumes without resume.g being run.{.is-info}
 
@@ -1872,6 +1872,8 @@ In RRF 3.7 and later, RRF completes the move that is executing and the moves tha
 After movement is halted as described above but prior to the pause operation completing, the macro file **pause.g** is run. This allows the head to be moved away from the print, filament to be retracted, etc.
 
 > To stop motion without running pause.g and carry on from the exact same point, or to stop macros and other moves that are not part of a job, use [M25.1](/User_manual/Reference/Gcodes/M25_1) (RRF 3.7.1 and later).{.is-info}
+
+> M25 is rejected while a feed hold is active (RRF 3.7.1 and later). Release the hold with M24 first.{.is-info}
 
 > If a pause is commanded while a macro is being executed, the pause will be deferred until the macro has completed.{.is-info}
 
@@ -1910,7 +1912,8 @@ With S1 the motion stops in the same way but nothing is kept. A job in progress 
 * While a feed hold is active, G0 and G1 moves that do not come from the job or from a macro are executed as jogs. M24 then moves back to the held position before the held moves carry on, and the machine status is `resuming` on the way. Arcs, homing, probing and extruder moves are rejected, and jogging is not available when [third-order motion control](/User_manual/RepRapFirmware/Third_order_motion) is in use. Moves commanded by a macro wait until the hold is released.
 * Jogging needs an input that is not running the held macro itself. If the macro was started from the same input, for example both from Duet Web Control, the jog is queued behind that macro and is executed after the hold has been released.
 * The held position is saved to restore point 1 unless the job is paused, so `G1 R1 X0 Y0 Z0` returns to it.
-* M25 pauses a held job and runs pause.g as usual. M0 cancels a held job without pausing it first.
+* M25 is rejected while a feed hold is active. M0 cancels a held job without pausing it first.
+* A feed hold can also be started by an input, see the K parameter of [M581](/User_manual/Reference/Gcodes/M581).
 * M25.1 is ignored during a simulation.
 
 ## M26: Set SD position
@@ -7251,6 +7254,7 @@ The optional P string is sent to the Roland if R is 1. It is permissible to call
 * **P** Specify one or more input pin numbers that you created using M950 with the J parameter, or -1 to delete the trigger
 * **X**, **Y**, **Z** or any other axis letter(s): axes whose endstop switches are to cause the trigger
 * **S** Whether trigger occurs on an inactive-to-active edge of the inputs specified by the P and axis letter parameters (S1, default), active-to-inactive edge (S0), or ignores that input (S-1).
+* **Kn** Action when the trigger fires (RRF 3.7.1 and later): K0 emergency stop, K1 pause the print, K2 run the macro file sys/trigger#.g, K3 feed hold, K4 feed hold and abort. If K is not given, trigger 0 uses K0, trigger 1 uses K1 and all other triggers use K2.
 
 ##### Examples
 <br>
@@ -7258,18 +7262,21 @@ The optional P string is sent to the Roland if R is 1. It is permissible to call
 M581 T2 P0:3 S1 R1 ; invoke trigger 2 when an inactive-to-active edge is detected on input 0 or input 3 and a file is being printed from SD card
 M581 T3 X Y S1     ; invoke trigger 3 when the X or Y endstop switch is triggered
 M581 T2 P-1        ; don't invoke trigger 2 on any input change any more
+M581 T4 P2 S1 K3   ; start a feed hold when an inactive-to-active edge is detected on input 2 (RRF 3.7.1 and later)
 </pre>
 
 ##### Notes
 
 * The T parameter is always required.
 * The S parameter is ignored if there is no P parameter and no axis letter parameter(s).
-* If no P or R or axis letter parameter is provided, the trigger inputs and edge polarities for that trigger number are reported.
+* If no P, R, K or axis letter parameter is provided, the action, trigger inputs and edge polarities for that trigger number are reported.
 * Otherwise, if the P-1 parameter is provided, the trigger is deleted and any additional parameters are ignored.
 * Otherwise, any inputs specified by the P parameter and/or axis endstops specified by axis letter parameters are added to the conditions that cause that trigger with the polarity specified by the S parameter
 * If the R parameter is provided then the trigger enable condition is updated.
-* Trigger number 0 causes an emergency stop as if M112 had been received. Trigger number 1 causes the print to be paused as if M25 had been received. Any trigger number # greater than 1 causes the macro file sys/trigger#.g to be executed. Polling for further trigger conditions other than trigger 0 is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several triggers are pending, the one with the lowest trigger number takes priority.
-* T0 and T1 cannot be overridden with trigger files. i.e. sys/trigger0.g will be ignored, and T0 will always cause an emergency stop.
+* If the K parameter is provided then the trigger action is updated. Deleting a trigger with P-1 resets its action to the default.
+* In RRF 3.7.1 and later the K parameter selects what a trigger does. K0 causes an emergency stop as if M112 had been received. K1 causes the print to be paused as if M25 had been received; it is ignored if no print is in progress, if the print is already paused or while a feed hold is active. K2 causes the macro file sys/trigger#.g to be executed. K3 starts a feed hold as if M25.1 had been received and K4 a feed hold and abort as if M25.1 S1 had been received; neither runs a macro file. K0, K4 and K3 triggers are acted on as soon as they are detected, in that order. Polling for further K1 and K2 trigger conditions is suspended until the trigger macro file has been completed. RepRapFirmware does not wait for all queued moves to be completed before executing the macro, so you may wish to use the M400 command at the start of your macro file. If several K1 or K2 triggers are pending, the one with the lowest trigger number takes priority.
+* In RRF 3.7.0 and earlier there is no K parameter: trigger number 0 causes an emergency stop, trigger number 1 pauses the print and any other trigger number runs sys/trigger#.g. T0 and T1 cannot be overridden with trigger files there. In RRF 3.7.1 and later use K2 to make trigger 0 or 1 run sys/trigger0.g or sys/trigger1.g.
+* While the input of a K3 trigger is still active, M24 does not release the feed hold.
 * See [Firmware configuration limits](/User_manual/RepRapFirmware/RepRapFirmware_overview#firmware-configuration-limits) for the number of triggers each Duet board and firmware version supports.
 * **Warning**: if executed during a job and more than one line long, the GCode within the trigger file may be executed between later commands from the job. Bounding the trigger file with M25 and M24 may help, but this will cause warnings if the trigger happens outside of a job. The use of M25/M24 will cause the execution of pause and resume system macros.
 
@@ -7331,6 +7338,7 @@ M581 E1:2 S1 T2 C1 ; invoke trigger 2 when a rising edge is detected on the E1 o
 * **Tnn** (required) Logical trigger number to associate the input(s) with, from zero up to a firmware-specific maximum
 * **P"expression"** Specifies the object model expression to use, or use P-1 to delete the trigger
 * **R** Enable condition: whether to trigger at any time (R0, default), only when printing a file from SD card (R1), or only when not printing a file from SD card (R2). R-1 temporarily disables the trigger.
+* **Kn** Action when the trigger fires, see [M581](/User_manual/Reference/Gcodes/M581) (RRF 3.7.1 and later)
 
 ##### Examples
 <br>
@@ -7343,7 +7351,7 @@ M581.1 T2 P-1                       ; don't invoke trigger 2 on any input change
 
 * This is similar to M581 except that the trigger occurs when the value of the expression provided by the P parameter changes from **false** to **true**. The expression must yield a boolean result.
 * If an error occurs while evaluating the expression during execution of M581.1 then an error message is returned and the trigger is not created. If no error occurs while executing M581.1 but an error occurs while evaluating the expression subsequently, an error message is reported to all input channels and the trigger is disabled.
-* M581 and M581.1 use the same set of trigger numbers. Regardless of whether trigger number # was created using M581 or M581.1, you can use either `M581 T# P-1` or `M581.1 T# P-1` to delete it. Likewise you can use either `M581 T#` or `M581.1 T#` to report on it, and either `M581 T# Rn` or `M581.1 T# Rn` to change its enable condition.
+* M581 and M581.1 use the same set of trigger numbers. Regardless of whether trigger number # was created using M581 or M581.1, you can use either `M581 T# P-1` or `M581.1 T# P-1` to delete it. Likewise you can use either `M581 T#` or `M581.1 T#` to report on it, and either `M581 T# Rn` or `M581.1 T# Rn` to change its enable condition, and either `M581 T# Kn` or `M581.1 T# Kn` to change its action.
 * A trigger may be configured to respond to either input pin changes (M581) or to expression value changes (M581.1) but not both at the same time. Using M581.1 to create an expression-based trigger deletes any trigger conditions previously configured by M581 on the same trigger number, and vice versa.
 
 ## M582: Check external trigger
