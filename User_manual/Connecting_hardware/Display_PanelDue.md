@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2026-11-10T10:37:27.692Z
+date: 2026-11-27T18:06:11.927Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -296,3 +296,40 @@ Note the following:
 | 8) 3.3V EXT | VDD || Check if SD card reader requires 3.3V or 5V |
 | 9) IO_0_IN | - | - | Not connected |
 | 10) IO_0_OUT | - | - | Not connected |
+
+# Connecting a hand wheel/encoder
+
+The PanelDue 5i, 7i and V3 have an extra connector labelled X4, which is usually unpopulated. You can connect an CNC-style hand wheel or encoder. The standard PanelDue firmware does not support this, but the firmware source on Github include an option to support it. There are other PanelDue firmware, notably the [Diabase H-Series Pendant Firmware](https://github.com/diabase/H-Series-Pendant-Firmware){target=_blank}, that does.
+
+### Connector X4  pinout:
+
+# Tabs {.tabset}
+
+## PanelDue 5i
+
+The pin closest to the X4 legend is pin 1. Numbered from the left, the pin connections are:
+
+Pin 1: PB6 (intended for rotary encoder push button)
+Pin 2: PA2 (intended for rotary encoder A pin)
+Pin 3: PA3 (intended for rotary encoder B pin)
+Pin 4: +3.3V
+Pin 5: Ground (rotary encoder common pin)
+
+## PanelDue 7i
+
+The PanelDue 7i uses the same X4 pinout as the 5i, but the connector is vertical and pin 1 is at the bottom of the connector, so the pin closest to the X4 legend is pin 5.
+
+Pin 1: PB6 (intended for rotary encoder push button)
+Pin 2: PA2 (intended for rotary encoder A pin)
+Pin 3: PA3 (intended for rotary encoder B pin)
+Pin 4: +3.3V
+Pin 5: Ground (rotary encoder common pin)
+
+## PanelDue V3
+
+The PanelDue V3 has only four pins on the X4 connector. 
+
+Pin 1: Ground
+Pin 2: PA3 (intended for rotary encoder B pin)
+Pin 3: PA2 (intended for rotary encoder A pin)
+Pin 4: PB6 (intended for rotary encoder push button)
