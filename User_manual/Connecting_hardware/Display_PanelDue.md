@@ -2,7 +2,7 @@
 title: Connecting a PanelDue
 description: 
 published: true
-date: 2026-11-27T18:06:11.927Z
+date: 2026-11-27T18:18:15.981Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-09T17:02:03.830Z
@@ -299,37 +299,26 @@ Note the following:
 
 # Connecting a hand wheel/encoder
 
-The PanelDue 5i, 7i and V3 have an extra connector labelled X4, which is usually unpopulated. You can connect an CNC-style hand wheel or encoder. The standard PanelDue firmware does not support this, but the firmware source on Github include an option to support it. There are other PanelDue firmware, notably the [Diabase H-Series Pendant Firmware](https://github.com/diabase/H-Series-Pendant-Firmware){target=_blank}, that does.
+The PanelDue 5i, 7i and V3 have an extra connector labelled X4, which is usually unpopulated. This can be used to connect a standard rotary switch with quadrature outputs, or other devices. The standard PanelDueFirmware source code has an option to support a rotary encoder with push button, although this option is not enabled in the binary release files. There are other PanelDue firmware, notably the [Diabase H-Series Pendant Firmware](https://github.com/diabase/H-Series-Pendant-Firmware){target=_blank}, that does.
 
-### Connector X4  pinout:
+### PanelDue 5i and 7i
 
-# Tabs {.tabset}
+On the PanelDue 5i, pin 1 is on the right, and the X4 legend is close to pin 5. 
+On the PanelDue 7i, pin 1 is at the top, close to the X4 legend. 
 
-## PanelDue 5i
+The connections are:
 
-The pin closest to the X4 legend is pin 1. Numbered from the left, the pin connections are:
+Pin 1 - Ground (e.g. rotary switch common and one side of rotary switch push button)
+Pin 2 - +3.3V
+Pin 3 - Microcontroller PA3 (e.g. encoder B pin)
+Pin 4 - Microcontroller PA2 (e.g. encoder A pin)
+Pin 5 - Microcontroller PB6 (e.g. rotary switch push button)
 
-Pin 1: PB6 (intended for rotary encoder push button)
-Pin 2: PA2 (intended for rotary encoder A pin)
-Pin 3: PA3 (intended for rotary encoder B pin)
-Pin 4: +3.3V
-Pin 5: Ground (rotary encoder common pin)
+### PanelDue V3
 
-## PanelDue 7i
+The pin connections are labelled on the back of the board. They are:
 
-The PanelDue 7i uses the same X4 pinout as the 5i, but the connector is vertical and pin 1 is at the bottom of the connector, so the pin closest to the X4 legend is pin 5.
-
-Pin 1: PB6 (intended for rotary encoder push button)
-Pin 2: PA2 (intended for rotary encoder A pin)
-Pin 3: PA3 (intended for rotary encoder B pin)
-Pin 4: +3.3V
-Pin 5: Ground (rotary encoder common pin)
-
-## PanelDue V3
-
-The PanelDue V3 has only four pins on the X4 connector. 
-
-Pin 1: Ground
-Pin 2: PA3 (intended for rotary encoder B pin)
-Pin 3: PA2 (intended for rotary encoder A pin)
-Pin 4: PB6 (intended for rotary encoder push button)
+Pin 1 - Ground (e.g. rotary switch common and one side of rotary switch push button)
+Pin 2 - Microcontroller PA3 (e.g. encoder B pin)
+Pin 3 - Microcontroller PA2 (e.g. encoder A pin)
+Pin 4 - Microcontroller PB6 (e.g. rotary switch push button)
