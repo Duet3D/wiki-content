@@ -2,13 +2,13 @@
 title: Duet 3 Mini 5+
 description: Overview of Duet 3 Mini 5+ hardware features.
 published: true
-date: 2026-11-10T12:20:05.722Z
+date: 2026-11-28T12:03:30.114Z
 tags: 
 editor: markdown
 dateCreated: 2021-07-13T14:26:10.583Z
 ---
 
-[![duet_3_mini_5+_wifi_top.jpg](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg =400x)](/duet_boards/duet_3_mini_5_plus/duet_3_mini_5+_wifi_top.jpg){target=_blank}
+![duet 3 mini 5+ wifi v1.04](/duet_boards/duet_3_mini_5_plus/duet_3_mini5_wifi_v1.04_04_small.jpg)
 
 # Introduction
 
